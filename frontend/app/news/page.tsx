@@ -9,7 +9,7 @@ import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-new
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 // 30min ISR. The on-demand generation pattern means Docker build
-// doesn't need backend access — first request after deploy regenerates.
+// doesn't need backend access, first request after deploy regenerates.
 export const revalidate = 1800;
 
 // Meta follows the standard `Slay the Spire 2 {Topic} - {Descriptor} | Spire Codex`
@@ -95,10 +95,10 @@ export default async function NewsPage({
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Patch notes, dev updates, and community announcements from Mega Crit, plus press
-        coverage. Mirrored from Steam — read each post in full or follow the original link.
+        coverage. Mirrored from Steam, read each post in full or follow the original link.
       </p>
 
-      {/* Tabs — Community is the default; Press surfaces external coverage */}
+      {/* Tabs, Community is the default; Press surfaces external coverage */}
       <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
         {TABS.map((tb) => {
           const isActive = tb.key === activeTab;
@@ -134,7 +134,7 @@ export default async function NewsPage({
 
       <p className="text-xs text-[var(--text-muted)] mt-8">
         Article content © Mega Crit Games (Steam Community Announcements) and the respective
-        publishers. Spire Codex mirrors and archives this feed for searchability — original
+        publishers. Spire Codex mirrors and archives this feed for searchability, original
         links are preserved on every post.
       </p>
     </div>

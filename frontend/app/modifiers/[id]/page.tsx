@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(modifier.description || "");
     const title = `Modifier - ${modifier.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 custom-run modifier — ${modifier.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 custom-run modifier, ${modifier.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

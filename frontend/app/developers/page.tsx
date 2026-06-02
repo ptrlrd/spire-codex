@@ -333,7 +333,7 @@ console.log(relics.map(r => r.name));`}</code>
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
           Reproduce the game&rsquo;s in-run card thumbnail (used on the Run History / Game Over screens)
-          in any web project. Six PNG layers composited with CSS <code className="text-[var(--accent-gold)]">mask-image</code> —
+          in any web project. Six PNG layers composited with CSS <code className="text-[var(--accent-gold)]">mask-image</code>,
           no canvas, no WebGL, just tinted sprites. Colors come straight from the decompiled{" "}
           <code className="text-[var(--accent-gold)]">NTinyCard</code> and{" "}
           <code className="text-[var(--accent-gold)]">CardPoolModel.DeckEntryCardColor</code>.
@@ -369,7 +369,7 @@ console.log(relics.map(r => r.name));`}</code>
             Sprite assets
           </h3>
           <p className="text-sm text-[var(--text-secondary)] mb-3">
-            All 10 PNGs are served with CORS enabled — drop the base URL in front of each filename.
+            All 10 PNGs are served with CORS enabled, drop the base URL in front of each filename.
             Each sprite is 128×128, RGBA, white-on-transparent (meant to be tinted via CSS).
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
@@ -440,8 +440,8 @@ console.log(relics.map(r => r.name));`}</code>
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
             <code>{`<div class="tiny-card" style="
-  --back: #D62000;   /* pool color — Ironclad */
-  --banner: #FFDA36; /* rarity color — Rare */
+  --back: #D62000;   /* pool color, Ironclad */
+  --banner: #FFDA36; /* rarity color, Rare */
   position: relative;
   width: 64px;
   height: 64px;

@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(intent.description || "");
     const title = `Intent - ${intent.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 monster intent — ${intent.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 monster intent, ${intent.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

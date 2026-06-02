@@ -58,7 +58,7 @@ export default function LocalizedNames({
 
   // Fetch once on mount. We render the links in the DOM up-front (inside
   // a collapsed <details>) because Googlebot needs a crawl path between
-  // the localized variants — without DOM-resident links here, Sozu's
+  // the localized variants, without DOM-resident links here, Sozu's
   // /ptb/, /deu/, /jpn/, etc. variants stay orphaned and end up in
   // GSC's "Crawled - currently not indexed" bucket.
   useEffect(() => {
@@ -75,7 +75,7 @@ export default function LocalizedNames({
   // the crawler can still parse).
   const rows = names
     ? Object.entries(names)
-        // Skip the row matching the user's current language — they're
+        // Skip the row matching the user's current language, they're
         // already on it. English has no prefix; non-English use the
         // 3-letter slug.
         .filter(([apiName]) => {

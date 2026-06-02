@@ -30,17 +30,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/events/${id}`;
     return {
       title,
-      description: clipMetaDescription(`${gameName} event — ${name}${desc ? `: ${desc}` : ""}`),
+      description: clipMetaDescription(`${gameName} event, ${name}${desc ? `: ${desc}` : ""}`),
       openGraph: {
         type: "article",
         siteName: SITE_NAME,
         url: `${SITE_URL}/${lang}/events/${id}`,
         title,
-        description: clipMetaDescription(`${gameName} event — ${name}${desc ? `: ${desc}` : ""}`),
+        description: clipMetaDescription(`${gameName} event, ${name}${desc ? `: ${desc}` : ""}`),
         locale: LANG_HREFLANG[langCode],
         images: entity.image_url ? [{ url: imageUrl(entity.image_url) }] : [],
       },
-      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} event — ${name}${desc ? `: ${desc}` : ""}`) },
+      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} event, ${name}${desc ? `: ${desc}` : ""}`) },
       alternates: { canonical: `/${lang}/events/${id}`, languages },
     };
   } catch {

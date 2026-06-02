@@ -4,12 +4,12 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import ModifiersClient from "./ModifiersClient";
 
-// Pure client component, no fetches — pre-rendered at build time and
+// Pure client component, no fetches, pre-rendered at build time and
 // cached at CF edge indefinitely (modifier data only changes on deploy).
 
 const title = "Custom Mode Modifiers - All Modifiers - Slay the Spire 2 (sts2) | Spire Codex";
 const description =
-  "All 16 Slay the Spire 2 (sts2) custom-mode modifiers — Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions for each.";
+  "All 16 Slay the Spire 2 (sts2) custom-mode modifiers, Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions for each.";
 
 export const metadata: Metadata = {
   title,
@@ -38,7 +38,7 @@ export default function ModifiersPage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Custom Mode Modifiers",
       description:
-        "All 16 Slay the Spire 2 custom-mode modifiers — Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions.",
+        "All 16 Slay the Spire 2 custom-mode modifiers, Draft, Sealed Deck, Insanity, and more. Effects, deck rules, and Neow interactions.",
       path: "/modifiers",
     }),
   ];

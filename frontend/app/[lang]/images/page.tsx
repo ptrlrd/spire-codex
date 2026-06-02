@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). Browse and download game assets — card portraits, relic icons, monster sprites, and character art.`;
+  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). Browse and download game assets, card portraits, relic icons, monster sprites, and character art.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,

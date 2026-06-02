@@ -12,7 +12,7 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 
 const REVALIDATE = 1800;
 
-// Slay the Spire 2 Steam header — used as a fallback hero for text-only
+// Slay the Spire 2 Steam header, used as a fallback hero for text-only
 // announcements (hotfix patch notes etc. that ship with no inline image).
 // Sourced from Steam's public store CDN so it stays in sync with whatever
 // Mega Crit currently has up.

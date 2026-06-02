@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : "";
     const actText = encounter.act ? ` (${encounter.act})` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${encounter.room_type} encounter — ${encounter.name}${actText}.${monsterList}`,
+      `Slay the Spire 2 ${encounter.room_type} encounter, ${encounter.name}${actText}.${monsterList}`,
     );
     return {
       title,

@@ -35,7 +35,7 @@ const LanguageContext = createContext<LanguageContextType>({
 
 /**
  * Get language from URL path first, then localStorage, then default to English.
- * URL always takes priority — if you're on /jpn/cards, lang is "jpn".
+ * URL always takes priority, if you're on /jpn/cards, lang is "jpn".
  */
 function getLangFromUrl(): string | null {
   if (typeof window === "undefined") return null;

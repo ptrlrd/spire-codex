@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(affliction.description || "");
     const title = `Affliction - ${affliction.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 affliction — ${affliction.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 affliction, ${affliction.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

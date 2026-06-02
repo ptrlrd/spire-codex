@@ -14,7 +14,7 @@ export default function ThankYouPage() {
           enjoying the project, please make sure to share it on social media!
         </p>
 
-        {/* Ko-fi supporters — gold-accented featured block. Donations
+        {/* Ko-fi supporters, gold-accented featured block. Donations
             keep the lights on, so they get the visual weight to match. */}
         <div className="not-prose mt-2 rounded-xl border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 p-5">
           <div className="flex items-center gap-2 mb-3">

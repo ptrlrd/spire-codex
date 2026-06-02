@@ -1,8 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-// Renders a mechanics page body. Static prose only — no hooks, no
-// browser APIs — so this stays a server component and the resolved
+// Renders a mechanics page body. Static prose only, no hooks, no
+// browser APIs, so this stays a server component and the resolved
 // markdown lands in the initial HTML for SEO. The component mapping
 // mirrors the guides renderer so the two visual styles stay in sync.
 export default function MechanicMarkdown({ body }: { body: string }) {

@@ -27,7 +27,7 @@ interface AncientPool {
   selection: string;
   pools: Pool[];
   // Relic IDs this ancient offers as 5 distinct in-game options, one
-  // per character (e.g. Orobas's Sea Glass via DiscoveryTotems —
+  // per character (e.g. Orobas's Sea Glass via DiscoveryTotems,
   // shows up as Demon/Venom/Gear/Lich/Noble Glass). Sourced from the
   // ancient_pool_parser, merged into the response by the router.
   per_character_relics?: string[];
@@ -39,7 +39,7 @@ interface RelicInfo {
   description: string;
   image_url: string | null;
   rarity: string;
-  // Per-character display-name overrides — only Sea Glass populates
+  // Per-character display-name overrides, only Sea Glass populates
   // this today. Maps character display name → variant title (e.g.
   // {Ironclad: "Demon Glass", ...}).
   name_variants?: Record<string, string> | null;

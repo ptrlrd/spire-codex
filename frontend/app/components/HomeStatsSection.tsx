@@ -5,7 +5,7 @@ import { IS_BETA } from "@/lib/seo";
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Beta has run submissions disabled, so its stats endpoint reports near
 // zero. Pull from stable on beta so the section matches the community
-// leaderboards above. Server-side fetch — no CORS hop.
+// leaderboards above. Server-side fetch, no CORS hop.
 const RUNS_HOST = IS_BETA ? "https://spire-codex.com" : "";
 const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
 
@@ -44,7 +44,7 @@ function characterLabel(c: string, names?: Record<string, string>): string {
 
 /** Mirror of the win-rate colour ramp on /leaderboards/stats so a player
  * scanning the home page sees the same visual encoding for the same
- * percentages. Kept in lockstep manually — the source helper there is a
+ * percentages. Kept in lockstep manually, the source helper there is a
  * client component and not exported. */
 function winRateColor(pct: number): string {
   if (pct >= 30) return "#22c55e";
@@ -100,7 +100,7 @@ export default async function HomeStatsSection({
         </Link>
       </div>
 
-      {/* Single full-width block — same vertical layout as the Overview tab
+      {/* Single full-width block, same vertical layout as the Overview tab
           on /leaderboards/stats: 4-stat strip on top, character win-rate
           bars below, both inside one bordered card. */}
       <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 space-y-5">

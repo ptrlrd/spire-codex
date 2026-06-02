@@ -64,7 +64,7 @@ export default async function PotionsTierListPage() {
     score: scores[p.id.toUpperCase()]?.score ?? null,
   }));
 
-  // Top-30 by score for ItemList JSON-LD — gives Google a structured
+  // Top-30 by score for ItemList JSON-LD, gives Google a structured
   // ranked list it can render as carousel-style rich results.
   const rankedItems = [...entities]
     .filter((e) => e.score != null)
@@ -100,7 +100,7 @@ export default async function PotionsTierListPage() {
         <span className="text-sm text-[var(--text-muted)]">{entities.length.toLocaleString()} potions</span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link> —
+        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link>,
         community win-rate data with Bayesian shrinkage. Click any potion for full stats.
       </p>
 

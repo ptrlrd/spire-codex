@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `Spire Codex - ${gameName} ${dbWord} (${nativeName})`;
-  const description = `${gameName} ${dbWord} (${nativeName}) — Spire Codex. Browse cards, relics, characters, monsters, potions, events, and powers.`;
+  const description = `${gameName} ${dbWord} (${nativeName}), Spire Codex. Browse cards, relics, characters, monsters, potions, events, and powers.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/`,
@@ -100,7 +100,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <div className="min-h-screen">
       <JsonLd data={[buildWebSiteJsonLd(), buildVideoGameJsonLd()]} />
-      {/* Hero — mirrors `/page.tsx` so the localized routes get the same
+      {/* Hero, mirrors `/page.tsx` so the localized routes get the same
           search-led hero instead of the entity-count tagline. */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-red)]/8 via-transparent to-transparent" />

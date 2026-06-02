@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const name = entity.name || id;
     const title = `${gameName} ${name} - Orb | Spire Codex (${LANG_NAMES[langCode]})`;
     const description = clipMetaDescription(
-      `${gameName} orb — ${name}${desc ? `: ${desc}` : ""}`,
+      `${gameName} orb, ${name}${desc ? `: ${desc}` : ""}`,
     );
     const languages: Record<string, string> = { "en": `${SITE_URL}/orbs/${id}`, "x-default": `${SITE_URL}/orbs/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/orbs/${id}`;

@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (type === "keyword") {
     const title = `Keyword - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card keyword — ${data.name}${desc ? `: ${desc}` : ""} See every card that uses ${data.name}.`,
+      `Slay the Spire 2 card keyword, ${data.name}${desc ? `: ${desc}` : ""} See every card that uses ${data.name}.`,
     );
     return {
       title,
@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const title = `Term - ${data.name} - Slay the Spire 2 (sts2) | Spire Codex`;
   const metaDesc = clipMetaDescription(
-    `Slay the Spire 2 game term — ${data.name}${desc ? `: ${desc}` : ""}`,
+    `Slay the Spire 2 game term, ${data.name}${desc ? `: ${desc}` : ""}`,
   );
   return {
     title,

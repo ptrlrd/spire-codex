@@ -41,11 +41,11 @@ export default function TermsPage() {
 
       <div className="space-y-6 text-[var(--text-secondary)] leading-relaxed">
         <p>
-          By using Spire Codex (&ldquo;the Service&rdquo;) — including the website at{" "}
+          By using Spire Codex (&ldquo;the Service&rdquo;), including the website at{" "}
           <a href="https://spire-codex.com" className="text-[var(--accent-gold)] hover:underline">
             spire-codex.com
           </a>
-          , the public API, the embeddable widgets, and the Overwolf overlay — you agree to these terms. If you
+          , the public API, the embeddable widgets, and the Overwolf overlay, you agree to these terms. If you
           don&rsquo;t agree, please don&rsquo;t use the Service.
         </p>
 

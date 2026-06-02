@@ -130,7 +130,7 @@ export default function BrowseRunsClient() {
   // Free-text expression search ("user:bob asc:20 char:ironclad win" etc.)
   const [query, setQuery] = useState(() => searchParams.get("q") || "");
 
-  // Filters (mirror the previous browse tab — kept as controlled UI but
+  // Filters (mirror the previous browse tab, kept as controlled UI but
   // also derivable from the search expression)
   const [character, setCharacter] = useState(() => searchParams.get("character") || "");
   const [win, setWin] = useState<WinFilter>(() => {
@@ -191,7 +191,7 @@ export default function BrowseRunsClient() {
     return charNames[id.toUpperCase()] ?? displayName(`CHARACTER.${id}`);
   }
 
-  // Merge query expression filters with UI filters — UI takes precedence
+  // Merge query expression filters with UI filters, UI takes precedence
   // for values explicitly set, otherwise expression filters apply.
   const { filters: queryFilters, rest } = parseQuery(query);
   const effectiveChar = character || (queryFilters.char ? queryFilters.char.toUpperCase() : "");

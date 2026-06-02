@@ -92,7 +92,7 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
   }, [search, color, type, rarity, keyword, sort, updateUrl]);
 
   // Pull the discrete filters back out of the URL whenever it changes from
-  // outside this component — e.g. clicking a "Browse cards by character"
+  // outside this component, e.g. clicking a "Browse cards by character"
   // card on the hub above (a same-route navigation that doesn't remount
   // this client), or browser back/forward. Without this, the URL updated
   // but the dropdowns and grid never reflected it. Setting state to the

@@ -28,17 +28,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/modifiers/${id}`;
     return {
       title,
-      description: clipMetaDescription(`${gameName} custom-run modifier — ${name}${desc ? `: ${desc}` : ""}`),
+      description: clipMetaDescription(`${gameName} custom-run modifier, ${name}${desc ? `: ${desc}` : ""}`),
       openGraph: {
         type: "article",
         siteName: SITE_NAME,
         url: `${SITE_URL}/${lang}/modifiers/${id}`,
         title,
-        description: clipMetaDescription(`${gameName} custom-run modifier — ${name}${desc ? `: ${desc}` : ""}`),
+        description: clipMetaDescription(`${gameName} custom-run modifier, ${name}${desc ? `: ${desc}` : ""}`),
         locale: LANG_HREFLANG[langCode],
         images: [{ url: DEFAULT_OG_IMAGE }],
       },
-      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} custom-run modifier — ${name}${desc ? `: ${desc}` : ""}`) },
+      twitter: { card: "summary_large_image", title, description: clipMetaDescription(`${gameName} custom-run modifier, ${name}${desc ? `: ${desc}` : ""}`) },
       alternates: { canonical: `/${lang}/modifiers/${id}`, languages },
     };
   } catch {

@@ -32,7 +32,7 @@ const STAT_ORDER = [
 const PIPELINE_STEPS = [
   {
     title: "PCK Extraction",
-    desc: "GDRE Tools extracts the Godot .pck file — images, Spine animations, localization data (~9,947 files)",
+    desc: "GDRE Tools extracts the Godot .pck file, images, Spine animations, localization data (~9,947 files)",
   },
   {
     title: "DLL Decompilation",
@@ -73,8 +73,8 @@ export default function AboutPage() {
         {/* Intro */}
         <div className="text-[var(--text-secondary)] leading-relaxed space-y-4">
           <p>
-            Spire Codex is a comprehensive database for Slay the Spire 2 — commonly abbreviated
-            <strong className="text-[var(--text-primary)]"> StS2</strong> — built by
+            Spire Codex is a comprehensive database for Slay the Spire 2, commonly abbreviated
+            <strong className="text-[var(--text-primary)]"> StS2</strong>, built by
             reverse-engineering the game files. Every card, relic, monster, potion, event, and
             power on this site was extracted directly from the game&apos;s source code and
             localization data.
@@ -113,7 +113,7 @@ export default function AboutPage() {
           </p>
 
           <p>
-            Big thanks to everyone supporting the project — see the{" "}
+            Big thanks to everyone supporting the project, see the{" "}
             <Link href="/thank-you" className="text-[var(--accent-gold)] hover:underline">
               Thank You page
             </Link>

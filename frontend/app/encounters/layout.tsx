@@ -11,10 +11,10 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
   const title = "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex";
-  const ogDesc = `Slay the Spire 2 (sts2) encounters — browse all ${count} combat encounters including normal fights, elites, and bosses.`;
+  const ogDesc = `Slay the Spire 2 (sts2) encounters, browse all ${count} combat encounters including normal fights, elites, and bosses.`;
   return {
     title,
-    description: `All ${count} Slay the Spire 2 (sts2) encounters — normal fights, elites, and bosses. Monster compositions, act placement, and room types.`,
+    description: `All ${count} Slay the Spire 2 (sts2) encounters, normal fights, elites, and bosses. Monster compositions, act placement, and room types.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

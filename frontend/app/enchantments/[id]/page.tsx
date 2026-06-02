@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(enchantment.description || "");
     const title = `Enchantment - ${enchantment.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card enchantment — ${enchantment.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 card enchantment, ${enchantment.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

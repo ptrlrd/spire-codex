@@ -42,7 +42,7 @@ export default function ToolsPage() {
 
   // LeaderboardBrowseClient calls `useSearchParams()`, which opts the
   // whole tree out of static prerender and was preventing the JSON-LD
-  // sibling from making it into the SSR HTML — GSC saw zero
+  // sibling from making it into the SSR HTML, GSC saw zero
   // structured data on /leaderboards. Wrapping the client component
   // in <Suspense> isolates the bailout so the JsonLd ships in the
   // initial server response.

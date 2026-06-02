@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). Every potion by rarity and character pool — effects, shop prices, and use timing.`;
+  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). Every potion by rarity and character pool, effects, shop prices, and use timing.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,

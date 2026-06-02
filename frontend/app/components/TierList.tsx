@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { imageUrl } from "@/lib/image-url";
 
-// Use ?? not || — production sets NEXT_PUBLIC_API_URL="" intentionally
+// Use ?? not ||, production sets NEXT_PUBLIC_API_URL="" intentionally
 // so URLs resolve same-origin (nginx proxies /static to the backend
 // container). With ||, the empty string is falsy and the fallback
 // triggers, baking "http://localhost:8000" into every <img src> the
@@ -19,7 +19,7 @@ export interface TierEntity {
 
 interface Tier {
   letter: "S" | "A" | "B" | "C" | "D" | "F";
-  /** Inclusive lower bound — entities with score >= min land in this tier. */
+  /** Inclusive lower bound, entities with score >= min land in this tier. */
   min: number;
   className: string;
   label: string;
@@ -40,7 +40,7 @@ function tierForScore(score: number): Tier {
   for (const t of TIERS) {
     if (score >= t.min) return t;
   }
-  // Unreachable — last tier has min:0 so any score matches
+  // Unreachable, last tier has min:0 so any score matches
   return TIERS[TIERS.length - 1];
 }
 
@@ -61,7 +61,7 @@ interface TierListProps {
  * anywhere we want a tier-grouped display.
  */
 export default function TierList({ route, entities, showUnrated = true }: TierListProps) {
-  // Group entities by tier — scoreless go to the bottom in a separate
+  // Group entities by tier, scoreless go to the bottom in a separate
   // "Unrated" row so they're still discoverable but don't pollute the
   // tier signal. Within each tier, sort by score desc, then by name
   // for deterministic ordering at score ties.
@@ -101,7 +101,7 @@ export default function TierList({ route, entities, showUnrated = true }: TierLi
   if (rows.length === 0) {
     return (
       <p className="text-sm text-[var(--text-muted)] py-8 text-center">
-        No data available — submit a run to seed this tier list.
+        No data available, submit a run to seed this tier list.
       </p>
     );
   }

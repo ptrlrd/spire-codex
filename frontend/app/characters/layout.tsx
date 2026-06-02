@@ -3,12 +3,12 @@ import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "
 
 const title = "Characters - All Playable Characters - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
-  "Slay the Spire 2 characters — Ironclad, Silent, Defect, Necrobinder, and Regent. Starting decks, relics, stats, and more.";
+  "Slay the Spire 2 characters, Ironclad, Silent, Defect, Necrobinder, and Regent. Starting decks, relics, stats, and more.";
 
 export const metadata: Metadata = {
   title,
   description:
-    "All five Slay the Spire 2 (sts2) characters — Ironclad, Silent, Defect, Necrobinder, Regent. Starting decks, starter relic, HP, gold, and energy.",
+    "All five Slay the Spire 2 (sts2) characters, Ironclad, Silent, Defect, Necrobinder, Regent. Starting decks, starter relic, HP, gold, and energy.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

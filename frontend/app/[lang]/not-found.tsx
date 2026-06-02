@@ -4,7 +4,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/seo";
 
 /**
  * Locale-scoped 404 page. Mirrors `/not-found.tsx` but bounces back to
- * the home page — `/` covers all locales and the browser will
+ * the home page, `/` covers all locales and the browser will
  * re-route via the user's accept-language if they had been on a
  * locale path.
  *
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     "The page you were looking for doesn't exist on Spire Codex. Redirecting you home.",
   alternates: { canonical: SITE_URL },
   robots: { index: false, follow: true },
-  // meta-refresh emitted inline below — `metadata.other` would render
+  // meta-refresh emitted inline below, `metadata.other` would render
   // it as `<meta name="..."`, not `<meta http-equiv="...">`.
 };
 

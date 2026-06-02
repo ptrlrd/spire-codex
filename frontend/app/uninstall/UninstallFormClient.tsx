@@ -5,7 +5,7 @@ import { useState } from "react";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 // Each reason is shown as a checkbox. The labels are also the values sent
-// up to the backend — keeps the wire format human-readable when it lands
+// up to the backend, keeps the wire format human-readable when it lands
 // in the email body so no decoding step is needed when reading reports.
 const REASONS = [
   "I no longer need it",

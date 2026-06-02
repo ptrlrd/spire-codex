@@ -72,7 +72,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nativeName = LANG_NAMES[langCode];
   const title = `${gameName} ${t("Badges", lang)} - ${badge.name} | Spire Codex (${nativeName})`;
   const metaDesc = clipMetaDescription(
-    `${gameName} run-end badge — ${badge.name}${desc ? `: ${desc}` : ""}`,
+    `${gameName} run-end badge, ${badge.name}${desc ? `: ${desc}` : ""}`,
   );
 
   const languages: Record<string, string> = {

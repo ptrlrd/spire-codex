@@ -1,5 +1,5 @@
 /**
- * Entity-detail redirect helpers — used by every `<entity>/[id]/page.tsx`
+ * Entity-detail redirect helpers, used by every `<entity>/[id]/page.tsx`
  * route to send unknown IDs back to a sensible parent hub instead of
  * 404'ing.
  *
@@ -10,7 +10,7 @@
  * on the *server* via `redirect()` so search engines see a real
  * HTTP-level redirect, not a soft-404.
  *
- * Some entity types don't have a list page of their own — they're
+ * Some entity types don't have a list page of their own, they're
  * surfaced through `/reference` (acts, ascensions, intents, orbs,
  * afflictions, modifiers, achievements). Those redirect there.
  *
@@ -38,7 +38,7 @@ export type EntityKind =
   | "mechanics"
   | "badges"
   | "timeline"
-  // Entity types without their own /<entity> list page —
+  // Entity types without their own /<entity> list page,
   // these all surface through /reference instead.
   | "orbs"
   | "afflictions"
@@ -85,7 +85,7 @@ const PARENT_PATH: Record<EntityKind, string> = {
  * slug. Entries here generate a 308 (permanent) redirect that
  * preserves link equity through the rename.
  *
- * Empty by default — we don't have a documented rename history yet.
+ * Empty by default, we don't have a documented rename history yet.
  * Wire renames in here when they happen.
  */
 const LEGACY_IDS: Partial<Record<EntityKind, Record<string, string>>> = {
@@ -94,14 +94,14 @@ const LEGACY_IDS: Partial<Record<EntityKind, Record<string, string>>> = {
 
 /**
  * Send a request to the entity's parent hub, preserving an optional
- * locale prefix. Server-side `redirect()` — emits a real HTTP 307 by
+ * locale prefix. Server-side `redirect()`, emits a real HTTP 307 by
  * default. We use `permanentRedirect()` (308) for entity-not-found
  * because the old URL is never coming back as a valid entity page,
  * which matches the rules for 308: link equity transfers, search
  * engines re-target their index entry to the destination.
  *
  * IMPORTANT: must be called from a Server Component / route handler
- * — it throws a special internal error that Next intercepts. Don't
+ *, it throws a special internal error that Next intercepts. Don't
  * try to call it from a Client Component.
  */
 export function redirectMissingEntity(
@@ -119,7 +119,7 @@ export function redirectMissingEntity(
   }
 
   // Tier 1: unknown ID → parent hub. 308 (permanent) because the
-  // unknown ID is never going to start resolving on its own — better
+  // unknown ID is never going to start resolving on its own, better
   // to hand the equity to the hub than to keep returning 404 every
   // crawl.
   const prefix = lang ? `/${lang}` : "";

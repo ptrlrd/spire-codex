@@ -15,7 +15,7 @@ export const revalidate = 300;
 
 export const metadata: Metadata = {
   // Title leads with both abbreviated ("STS2") and full game name to
-  // match either query phrasing — the actual SERPs we're targeting use
+  // match either query phrasing, the actual SERPs we're targeting use
   // both. Order chosen so the abbreviation lands inside the truncation
   // window on mobile (Google trims at ~60 chars on phones).
   title: `Tier List - Cards, Relics & Potions Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
@@ -139,7 +139,7 @@ function buildFaqEntries(top: { cards: TopEntity[]; relics: TopEntity[]; potions
     },
     {
       question: "Is there a tier list per character?",
-      answer: "Yes — the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.",
+      answer: "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.",
     },
   );
   return faqs;
@@ -156,7 +156,7 @@ export default async function TierListIndex() {
   ]);
 
   // ISO 8601 date for the visible "updated" line. force-dynamic means
-  // this is fresh on every request — Google rewards visible-recent
+  // this is fresh on every request, Google rewards visible-recent
   // dates on tier-list-style pages.
   const updatedDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
@@ -203,7 +203,7 @@ export default async function TierListIndex() {
         <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">
           Codex Score
         </Link>
-        {" "}— a Bayesian-shrunk metric that compares each entity&apos;s win rate to the global
+        {" "}a Bayesian-shrunk metric that compares each entity&apos;s win rate to the global
         baseline, so a 5-pick perfect-record card doesn&apos;t outrank a 500-pick reliable one.
         Click any tier list below to see the full ranking with character or pool filters.
       </p>
@@ -222,7 +222,7 @@ export default async function TierListIndex() {
         ))}
       </div>
 
-      {/* Top-tier preview rows — concrete content above the fold so SEO
+      {/* Top-tier preview rows, concrete content above the fold so SEO
           crawlers immediately see this page is a ranked list, not a
           nav hub. Each row links straight to the full tier list. */}
       {previewBlocks.some((b) => b.entities.length > 0) && (
@@ -304,7 +304,7 @@ export default async function TierListIndex() {
         </Link>
       </section>
 
-      {/* FAQ — also wired up as FAQPage JSON-LD above so each Q can
+      {/* FAQ, also wired up as FAQPage JSON-LD above so each Q can
           land in Google's People-Also-Ask box. */}
       <section className="mb-4">
         <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">Frequently asked</h2>

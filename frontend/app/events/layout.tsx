@@ -11,10 +11,10 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
   const title = "Events - All In-Game Events - Slay the Spire 2 (sts2) | Spire Codex";
-  const ogDesc = `Slay the Spire 2 (sts2) events — browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`;
+  const ogDesc = `Slay the Spire 2 (sts2) events, browse all ${count} shrine events, Ancient encounters, and story events with choices, dialogue, and outcomes.`;
   return {
     title,
-    description: `All ${count} Slay the Spire 2 (sts2) events — shrines, Ancients, and story beats. Choices, dialogue, relic offerings, and every outcome path.`,
+    description: `All ${count} Slay the Spire 2 (sts2) events, shrines, Ancients, and story beats. Choices, dialogue, relic offerings, and every outcome path.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

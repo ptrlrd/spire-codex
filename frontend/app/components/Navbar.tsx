@@ -196,7 +196,7 @@ export default function Navbar() {
           </Link>
 
 
-          {/* Desktop nav — lg+ only. Single-row mega-menu pattern: each
+          {/* Desktop nav, lg+ only. Single-row mega-menu pattern: each
               group button opens a multi-column panel below the row. Pure
               CSS toggle (`group-hover` + `group-focus-within`) so keyboard
               users get the same affordance as mouse users; the panel is
@@ -204,7 +204,7 @@ export default function Navbar() {
               inner links out of the tab order while collapsed. The wrapper
               uses `top-full pt-1` (padding INSIDE the absolute box) so
               there's visual breathing room without breaking the hover
-              chain — a margin gap would briefly leave the cursor over
+              chain, a margin gap would briefly leave the cursor over
               "nothing" and snap the panel shut. Last group's panel is
               right-anchored so it doesn't push past the viewport edge. */}
           <div className="hidden lg:flex items-center gap-1 shrink-0">
@@ -285,7 +285,7 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Inline search bar — md only. At lg+ the nav owns the row
+          {/* Inline search bar, md only. At lg+ the nav owns the row
               and search collapses to the icon trigger in the right cluster
               (Apple / Linear pattern). The icon still opens the same modal
               and the `.` global hotkey works at every breakpoint. */}
@@ -319,7 +319,7 @@ export default function Navbar() {
             <SiteSwitcher />
             <LanguageSelector />
 
-            {/* Icon search — visible on mobile (below md) AND at lg+
+            {/* Icon search, visible on mobile (below md) AND at lg+
                 where the inline bar collapses. Sits next to the language
                 selector in the right cluster. */}
             {!isHome && (
@@ -328,7 +328,7 @@ export default function Navbar() {
               </div>
             )}
 
-          {/* User menu — hidden on beta (accounts are stable-only for now) */}
+          {/* User menu, hidden on beta (accounts are stable-only for now) */}
           {!authLoading && !IS_BETA && (
             <div className="relative">
               <button
@@ -443,7 +443,7 @@ export default function Navbar() {
               </svg>
             </button>
 
-            {/* Dropdown menu — `right-0` anchors to the burger's relative
+            {/* Dropdown menu, `right-0` anchors to the burger's relative
                 parent. Layout shifts (e.g. the SiteSwitcher button text
                 growing on beta after /api/versions resolves) used to push
                 the parent past the viewport edge, dragging the dropdown

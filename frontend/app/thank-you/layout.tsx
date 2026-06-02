@@ -3,7 +3,7 @@ import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 const title = "Thank You - Slay the Spire 2 (sts2) | Spire Codex";
 const description =
-  "Thanks to the Spire Codex community — Ko-fi supporters, contributors, bug reporters, and everyone who's helped grow this Slay the Spire 2 project.";
+  "Thanks to the Spire Codex community, Ko-fi supporters, contributors, bug reporters, and everyone who's helped grow this Slay the Spire 2 project.";
 const ogDesc = "Thank you to the Spire Codex community of supporters and contributors.";
 
 export const metadata: Metadata = {

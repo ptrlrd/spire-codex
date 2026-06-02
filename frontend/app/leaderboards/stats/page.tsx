@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 const title = "Stats - Slay the Spire 2 | Spire Codex";
 const description =
-  "Slay the Spire 2 stats — win rates by character, card pick rates, most common relics, deadliest encounters. Community-driven data from submitted runs.";
+  "Slay the Spire 2 stats, win rates by character, card pick rates, most common relics, deadliest encounters. Community-driven data from submitted runs.";
 
 export const metadata: Metadata = {
   title,
@@ -38,7 +38,7 @@ export default function StatsPage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Community Stats",
       description:
-        "Win rates by character, card pick rates, most common relics, deadliest encounters — aggregated from community-submitted runs.",
+        "Win rates by character, card pick rates, most common relics, deadliest encounters, aggregated from community-submitted runs.",
       path: "/leaderboards/stats",
     }),
   ];

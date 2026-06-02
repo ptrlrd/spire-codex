@@ -16,8 +16,8 @@ const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_A
  * to Google. Verified 2026-05-19 against `frontend/app/[lang]/` tree.
  *
  * Categories:
- *  - `LANG_LIST_ROUTES` — routes with `app/[lang]/{route}/page.tsx`
- *  - `LANG_DETAIL_ROUTES` — routes with `app/[lang]/{route}/[id]/page.tsx`
+ *  - `LANG_LIST_ROUTES`, routes with `app/[lang]/{route}/page.tsx`
+ *  - `LANG_DETAIL_ROUTES`, routes with `app/[lang]/{route}/[id]/page.tsx`
  *
  * The intersection gets both list + detail URLs in the sitemap; the
  * list-only entries get only the index page.
@@ -53,7 +53,7 @@ const LANG_LIST_ROUTES = [
 ] as const;
 
 // Routes with a working `app/[lang]/{route}/[id]/page.tsx` (or `[slug]`).
-// Excludes timeline — no [id] folder under [lang]/timeline so localized
+// Excludes timeline, no [id] folder under [lang]/timeline so localized
 // epoch URLs 404. Includes acts/ascensions/intents/orbs/afflictions/
 // modifiers/achievements even though their LIST pages don't exist under
 // [lang]/ (those are handled separately in LANG_LIST_ROUTES); the detail
@@ -100,7 +100,7 @@ const STATIC_PAGES = [
   { path: "/leaderboards/submit", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/leaderboards/stats", priority: 0.8, changeFrequency: "daily" as const },
   { path: "/leaderboards/scoring", priority: 0.6, changeFrequency: "monthly" as const },
-  // Tier list — high priority, daily changefreq because scores update
+  // Tier list, high priority, daily changefreq because scores update
   // every 30 minutes as new runs arrive. Per-character variants are
   // crawled via the in-DOM filter <Link>s on /tier-list/cards.
   { path: "/tier-list", priority: 0.9, changeFrequency: "daily" as const },
@@ -119,7 +119,7 @@ const STATIC_PAGES = [
   { path: "/badges", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/cards/browse", priority: 0.8, changeFrequency: "daily" as const },
   // Top-level content sections that existed on the site but were
-  // missing from the sitemap — fixed 2026-05-19.
+  // missing from the sitemap, fixed 2026-05-19.
   { path: "/news", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/unlocks", priority: 0.6, changeFrequency: "weekly" as const },
 ];
@@ -133,7 +133,7 @@ interface EntityWithImage {
 /**
  * Dynamic entity routes. `prefix` is the URL path; the `id.toLowerCase()`
  * is appended to form the detail URL. `localized` controls whether the
- * `/{lang}/{prefix}/{id}` variants are also emitted — this is gated by
+ * `/{lang}/{prefix}/{id}` variants are also emitted, this is gated by
  * whether the actual page file exists under `app/[lang]/`.
  */
 const DYNAMIC_ROUTES = [
@@ -156,7 +156,7 @@ const DYNAMIC_ROUTES = [
   { endpoint: "/api/modifiers", prefix: "/modifiers", priority: 0.5, localized: true },
   { endpoint: "/api/achievements", prefix: "/achievements", priority: 0.5, localized: true },
   { endpoint: "/api/badges", prefix: "/badges", priority: 0.5, localized: true },
-  // /api/epochs renders at /timeline/{id} — works in English, but the
+  // /api/epochs renders at /timeline/{id}, works in English, but the
   // localized [lang]/timeline directory has no [id] folder, so we keep
   // these English-only.
   { endpoint: "/api/epochs", prefix: "/timeline", priority: 0.5, localized: false },
@@ -175,15 +175,15 @@ async function fetchEntities(endpoint: string): Promise<EntityWithImage[]> {
 
 /**
  * Per-section freshness signal. Different content updates at different
- * cadences — slamming every URL with the same `now` timestamp on every
+ * cadences, slamming every URL with the same `now` timestamp on every
  * sitemap fetch defeats `lastmod`'s purpose (Google deprioritizes URLs
  * whose timestamp never changes). We bucket lastmod by content type
  * and pull a real signal from `/api/changelogs` for entity content.
  */
 async function getLastModBuckets(now: Date): Promise<{
-  content: Date; // entity data — last game patch / data parse
-  community: Date; // runs, leaderboards — refresh roughly hourly
-  static: Date; // hub pages, dev docs — week-stable
+  content: Date; // entity data, last game patch / data parse
+  community: Date; // runs, leaderboards, refresh roughly hourly
+  static: Date; // hub pages, dev docs, week-stable
 }> {
   // Default fallbacks if the backend is unreachable (frontend build under
   // network-isolated CI shouldn't hard-fail the sitemap).
@@ -208,7 +208,7 @@ async function getLastModBuckets(now: Date): Promise<{
     // keep fallback
   }
 
-  // Community pages tick more often — bucket to the hour so we get a
+  // Community pages tick more often, bucket to the hour so we get a
   // moving lastmod without burning crawl budget on every-minute changes.
   const community = new Date(now);
   community.setUTCMinutes(0, 0, 0);
@@ -244,7 +244,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: p.priority,
   }));
 
-  // English entity detail pages — kept in a side bucket so we can reuse
+  // English entity detail pages, kept in a side bucket so we can reuse
   // the per-route entity list for the localized expansion below without
   // re-fetching.
   type FetchedRoute = (typeof DYNAMIC_ROUTES)[number] & { entities: EntityWithImage[] };
@@ -272,7 +272,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })
   );
 
-  // Mechanics detail pages — fetched from /api/mechanics/sections so
+  // Mechanics detail pages, fetched from /api/mechanics/sections so
   // adding/removing a slug only requires a markdown file in
   // data/mechanics_pages/, no sitemap edit.
   type MechanicSectionMeta = { slug: string };
@@ -289,7 +289,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // News detail pages — pull recent gids from /api/news. Articles
+  // News detail pages, pull recent gids from /api/news. Articles
   // canonical-link back to Steam (see `news/[...slug]/page.tsx`) so
   // they're additive for "Slay the Spire 2 news"-style queries.
   type NewsItem = { gid: string; date?: number };
@@ -306,7 +306,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  // Tier list filter variants — each is its own indexable URL with
+  // Tier list filter variants, each is its own indexable URL with
   // its own generateMetadata title + canonical, so they need their
   // own sitemap entries to surface in search. Targets long-tail
   // queries like "ironclad tier list", "necrobinder relic tier list".
@@ -338,7 +338,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Localized list / hub pages: only emit routes that ACTUALLY exist
   // under `app/[lang]/`. Previously we expanded a hardcoded route list
   // that included `acts`, `ascensions`, `intents`, `orbs`, `afflictions`,
-  // `modifiers`, `achievements` — none of which have a localized list
+  // `modifiers`, `achievements`, none of which have a localized list
   // page, so all 91 of those URLs 404'd. Removed 2026-05-19.
   const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
     {
@@ -355,7 +355,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ]);
 
-  // Localized mechanics detail pages — page.tsx lives at
+  // Localized mechanics detail pages, page.tsx lives at
   // `app/[lang]/mechanics/[slug]/page.tsx`, so each slug × each lang
   // is a real URL.
   const langMechanicsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
@@ -377,7 +377,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  // Localized entity detail pages — only for routes that have a real
+  // Localized entity detail pages, only for routes that have a real
   // [id]/page.tsx under `app/[lang]/`. Previously this expanded ALL
   // DYNAMIC_ROUTES including timeline/acts/etc, producing 13 × 57 = 741
   // dead `/{lang}/timeline/{epoch}` URLs and similar.

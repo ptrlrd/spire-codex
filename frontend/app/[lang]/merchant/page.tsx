@@ -118,11 +118,11 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Character Cards (5)</h3>
-              <p className="text-[var(--text-muted)]">2 Attacks, 2 Skills, 1 Power — from your character pool. One random card is on sale for half price.</p>
+              <p className="text-[var(--text-muted)]">2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Colorless Cards (2)</h3>
-              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare — from the colorless pool. 15% price markup.</p>
+              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare, from the colorless pool. 15% price markup.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Relics (3)</h3>
@@ -304,7 +304,7 @@ export default async function LangMerchantPage({ params }: { params: Promise<{ l
 
           <div>
             <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-              Ascension 6+ — <span className="text-[var(--accent-gold)]">Inflation</span>
+              Ascension 6+, <span className="text-[var(--accent-gold)]">Inflation</span>
             </h3>
             <div className="flex flex-wrap gap-2">
               {[0, 1, 2, 3, 4, 5].map((i) => (

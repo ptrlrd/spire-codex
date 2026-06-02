@@ -39,7 +39,7 @@ interface MerchantConfig {
 }
 
 // Hardcoded fallback used only when /api/merchant/config is unreachable
-// at build/render time. Values mirror what merchant_parser.py extracts —
+// at build/render time. Values mirror what merchant_parser.py extracts,
 // kept in sync by running parse_all.py before any release. The fallback
 // exists purely so a backend outage doesn't break the page render.
 const FALLBACK_CONFIG: MerchantConfig = {
@@ -90,7 +90,7 @@ async function fetchMerchantConfig(): Promise<MerchantConfig> {
   }
 }
 
-// Display order for the rarity tiers — matches the previous hand-coded
+// Display order for the rarity tiers, matches the previous hand-coded
 // page so we don't surprise readers with a different sort. Rarities not
 // in this list fall through alphabetically at the end.
 const CARD_RARITY_ORDER = ["Common", "Uncommon", "Rare"];
@@ -175,11 +175,11 @@ export default async function MerchantPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Character Cards (5)</h3>
-              <p className="text-[var(--text-muted)]">2 Attacks, 2 Skills, 1 Power — from your character pool. One random card is on sale for half price.</p>
+              <p className="text-[var(--text-muted)]">2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Colorless Cards (2)</h3>
-              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare — from the colorless pool. {Math.round((cfg.cards.colorless_markup - 1) * 100)}% price markup.</p>
+              <p className="text-[var(--text-muted)]">1 Uncommon, 1 Rare, from the colorless pool. {Math.round((cfg.cards.colorless_markup - 1) * 100)}% price markup.</p>
             </div>
             <div className="bg-[var(--bg-primary)] rounded-lg p-3">
               <h3 className="font-semibold text-[var(--text-primary)] mb-1">Relics (3)</h3>
@@ -338,7 +338,7 @@ export default async function MerchantPage() {
 
           <div>
             <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-              Ascension 6+ — <span className="text-[var(--accent-gold)]">{cfg.card_removal.inflation_ascension.level}</span>
+              Ascension 6+, <span className="text-[var(--accent-gold)]">{cfg.card_removal.inflation_ascension.level}</span>
             </h3>
             <div className="flex flex-wrap gap-2">
               {[0, 1, 2, 3, 4, 5].map((i) => (

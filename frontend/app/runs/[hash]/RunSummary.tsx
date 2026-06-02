@@ -226,7 +226,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
         background: `color-mix(in srgb, ${charColor} 6%, var(--bg-card))`,
       }}
     >
-      {/* Top stats bar — game iconography */}
+      {/* Top stats bar, game iconography */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
         <Link href={`${lp}/characters/${charSlug}`} className="flex-shrink-0">
           <img
@@ -290,7 +290,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
         })}
       </div>
 
-      {/* Relics row — uses RelicPill tooltip */}
+      {/* Relics row, uses RelicPill tooltip */}
       <div className="mb-4">
         <div className="text-xs text-[var(--text-secondary)] mb-2">
           <span className="font-semibold">Relics ({player.relics.length}):</span>{" "}
@@ -324,7 +324,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
         </div>
       </div>
 
-      {/* Cards grid — card art thumbnails + CardPill tooltip */}
+      {/* Cards grid, card art thumbnails + CardPill tooltip */}
       <div>
         <div className="text-xs text-[var(--text-secondary)] mb-2">
           <span className="font-semibold">Cards ({player.deck.length}):</span>{" "}
@@ -373,7 +373,7 @@ function MapNode({
   const room = mp.rooms?.[0];
   const ps = mp.player_stats?.[0];
 
-  // Click target — encounter/event detail page derived from the room's model_id.
+  // Click target, encounter/event detail page derived from the room's model_id.
   const href = entityHref(room?.model_id ?? "", lp);
 
   const iconImg = (

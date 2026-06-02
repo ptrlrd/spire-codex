@@ -45,7 +45,7 @@ export const LANG_NAMES: Record<LangCode, string> = {
 
 /**
  * Localized "Slay the Spire 2" game name. Includes "(STS2)" inline
- * because the abbreviation is universal — players across every locale
+ * because the abbreviation is universal, players across every locale
  * type "sts2" into Google. Threaded through every [lang] page's title,
  * meta description, JSON-LD, and H1 via the `gameName` variable, so
  * this single source ships the abbreviation to all 52+ localized pages.

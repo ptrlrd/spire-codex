@@ -20,7 +20,7 @@ export interface MechanicSectionMeta {
 export const metadata: Metadata = {
   title: `Game Mechanics - Drop Rates, Combat & Map Data - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
-    "Slay the Spire 2 (sts2) mechanics — card and relic drop rates, gold rewards, map generation, combat formulas, and secrets. Pulled straight from the game's source.",
+    "Slay the Spire 2 (sts2) mechanics, card and relic drop rates, gold rewards, map generation, combat formulas, and secrets. Pulled straight from the game's source.",
   alternates: { canonical: `${SITE_URL}/mechanics`, languages: buildLanguageAlternates("/mechanics") },
   openGraph: {
     title: `Game Mechanics - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 async function fetchSections(): Promise<MechanicSectionMeta[]> {
-  // Tolerates ECONNREFUSED — the Docker frontend build runs `npm run build`
+  // Tolerates ECONNREFUSED, the Docker frontend build runs `npm run build`
   // before the backend container exists, and Next.js will still try to
   // statically render this page. Returning [] lets the build succeed; the
   // page renders empty in the build output and is hydrated on first

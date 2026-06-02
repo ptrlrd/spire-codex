@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(event.description || "");
     const title = `Event - ${event.name} - ${event.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${event.type} event — ${event.name}${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 ${event.type} event, ${event.name}${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

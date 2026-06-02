@@ -77,7 +77,7 @@ function tokenize(text: string): Token[] {
     } else if (COLOR_CLASSES[tag] || EFFECT_CLASSES[tag]) {
       tokens.push({ type: "open", value: m[0], tag });
     } else {
-      // Unknown tag — pass through as text
+      // Unknown tag, pass through as text
       tokens.push({ type: "text", value: m[0] });
     }
 
@@ -261,7 +261,7 @@ function cleanTemplateVars(text: string): string {
   // The literal {} appears inside SmartFormat plural branches as the var's
   // value placeholder (e.g. {Repeat:plural:| [blue]{}[/blue] times}). Resolve
   // it to the same blue "X" we use for runtime-dynamic numeric vars before the
-  // plural regex runs — otherwise its [^}]* plural capture stops at the inner
+  // plural regex runs, otherwise its [^}]* plural capture stops at the inner
   // closing brace and leaks the trailing literal as "{ times}" on the page.
   text = text.replace(/\{\}/g, "[blue]X[/blue]");
   // Handle {Var:plural:singular|plural} → plural
@@ -272,7 +272,7 @@ function cleanTemplateVars(text: string): string {
   text = text.replace(/\{Repeat:plural:\|[^}]*\}/g, "");
   // Handle remaining {VarName} → styled "X" (runtime-dynamic value)
   text = text.replace(/\{\w+\}/g, "[blue]X[/blue]");
-  // Handle dynamic [Var] square bracket vars — but preserve valid rich text tags and icons
+  // Handle dynamic [Var] square bracket vars, but preserve valid rich text tags and icons
   text = text.replace(/\[([^\]]+)\]/g, (match, inner) => {
     // Preserve valid tags, icon tags, and parameterized tags like font_size=22
     if (VALID_TAGS.has(inner) || /^(energy|star):(\d+|X)$/.test(inner)) return match;
@@ -462,7 +462,7 @@ export default function RichDescription({
     }
 
     if (node.text !== undefined) {
-      // Check card refs first — card names take priority over interactive words
+      // Check card refs first, card names take priority over interactive words
       // (e.g. "Minion Strikes" should link to the card, not match "Minion" power)
       if (relatedCards?.length) {
         const cardSegs = splitWithCardRefs(node.text, relatedCards);

@@ -5,7 +5,7 @@ import type { Relic, Potion, Power } from "@/lib/api";
 
 /**
  * Programmatic prose block at the bottom of each entity's Overview
- * tab. The prose is English-only — every locale used to render the
+ * tab. The prose is English-only, every locale used to render the
  * SAME English boilerplate text on top of localized chrome, which
  * Google's algorithm reads as duplicate content across translations
  * and dumps the localized variants into "Crawled - currently not
@@ -15,12 +15,12 @@ import type { Relic, Potion, Power } from "@/lib/api";
  * - English: full prose (60-100 words of factual contextual content
  *   to push the page past Google's "thin content" floor)
  * - Non-English: a single sentence built ENTIRELY from already-
- *   localized API fields (name, rarity, pool — translated server-
+ *   localized API fields (name, rarity, pool, translated server-
  *   side per language). No English connective text. This ensures
  *   each locale's page body is genuinely different from the others
  *   while still adding minimal SEO weight beyond the bare description.
  *
- * Long-term, full localized prose templates would be ideal — but
+ * Long-term, full localized prose templates would be ideal, but
  * those require professional translation of ~30 sentence patterns
  * × 14 languages. Until then, this asymmetry preserves indexation.
  *
@@ -57,7 +57,7 @@ export default function EntityProse(props: Props) {
       );
     } else {
       sentences.push(
-        `It is not sold by the merchant — the only routes to acquire it are reward drops, events, or boss rewards depending on its pool.`
+        `It is not sold by the merchant, the only routes to acquire it are reward drops, events, or boss rewards depending on its pool.`
       );
     }
     sentences.push(
@@ -101,11 +101,11 @@ export default function EntityProse(props: Props) {
   sentences.push(`${name} is a ${type.toLowerCase()} power that stacks as ${stack}.`);
   if (type === "Buff") {
     sentences.push(
-      `Buffs are positive effects on the recipient — applying ${name} to a player or ally improves their position; applying it to an enemy strengthens that enemy.`
+      `Buffs are positive effects on the recipient, applying ${name} to a player or ally improves their position; applying it to an enemy strengthens that enemy.`
     );
   } else if (type === "Debuff") {
     sentences.push(
-      `Debuffs are negative effects on the recipient — applying ${name} to an enemy weakens them; applying it to a player or ally is a drawback.`
+      `Debuffs are negative effects on the recipient, applying ${name} to an enemy weakens them; applying it to a player or ally is a drawback.`
     );
   } else {
     sentences.push(
@@ -118,7 +118,7 @@ export default function EntityProse(props: Props) {
     );
   } else {
     sentences.push(
-      `${name} is not directly applied by any cards in the player's pool — it appears via enemy moves, relics, or events.`
+      `${name} is not directly applied by any cards in the player's pool, it appears via enemy moves, relics, or events.`
     );
   }
   return <Prose sentences={sentences} />;

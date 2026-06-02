@@ -15,13 +15,13 @@ const API_INTERNAL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
-// Inline <img> src — relative path in prod (NEXT_PUBLIC_API_URL is "") so the
+// Inline <img> src, relative path in prod (NEXT_PUBLIC_API_URL is "") so the
 // browser hits the same origin. ?? (not ||) is critical: with || an empty
 // string falls through to the localhost fallback in production.
 const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 // OG / JSON-LD images need ABSOLUTE URLs (social crawlers don't resolve
-// relative paths), so prefer NEXT_PUBLIC_SITE_URL — which is set to
+// relative paths), so prefer NEXT_PUBLIC_SITE_URL, which is set to
 // https://spire-codex.com in prod CI.
 const ABSOLUTE_BASE =
   process.env.NEXT_PUBLIC_SITE_URL ||
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const subtype = badge.tiered ? "Tiered" : "Badge";
   const title = `Badge - ${badge.name} - ${subtype} - Slay the Spire 2 (sts2) | Spire Codex`;
   const metaDesc = clipMetaDescription(
-    `Slay the Spire 2 ${subtype.toLowerCase()} run-end badge — ${badge.name}${desc ? `: ${desc}` : ""}`,
+    `Slay the Spire 2 ${subtype.toLowerCase()} run-end badge, ${badge.name}${desc ? `: ${desc}` : ""}`,
   );
   return {
     title,
@@ -117,14 +117,14 @@ export default async function BadgePage({ params }: Props) {
     {
       question: `Is ${badge.name} a tiered badge?`,
       answer: badge.tiered
-        ? `Yes — ${badge.name} has ${badge.tiers.length} tiers (${badge.tiers.map((t) => RARITY_LABEL[t.rarity] ?? t.rarity).join(", ")}).`
-        : `No — ${badge.name} has a single tier.`,
+        ? `Yes, ${badge.name} has ${badge.tiers.length} tiers (${badge.tiers.map((t) => RARITY_LABEL[t.rarity] ?? t.rarity).join(", ")}).`
+        : `No, ${badge.name} has a single tier.`,
     },
     {
       question: `Can ${badge.name} be earned in single-player?`,
       answer: badge.multiplayer_only
-        ? `No — ${badge.name} is only earnable in multiplayer runs.`
-        : `Yes — ${badge.name} can be earned in both single-player and multiplayer.`,
+        ? `No, ${badge.name} is only earnable in multiplayer runs.`
+        : `Yes, ${badge.name} can be earned in both single-player and multiplayer.`,
     },
   ];
 

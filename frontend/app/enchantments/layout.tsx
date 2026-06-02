@@ -8,7 +8,7 @@ const ogDesc =
 export const metadata: Metadata = {
   title,
   description:
-    "Every Slay the Spire 2 (sts2) enchantment — effects, card-type restrictions, stackability, and the extra card text added to Attack, Skill, and Power cards.",
+    "Every Slay the Spire 2 (sts2) enchantment, effects, card-type restrictions, stackability, and the extra card text added to Attack, Skill, and Power cards.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

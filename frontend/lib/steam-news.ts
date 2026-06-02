@@ -3,7 +3,7 @@
  *
  * `sanitizeSteamNews` converts Steam's mixed HTML+BBCode body into safe
  * HTML for direct insertion via `dangerouslySetInnerHTML`. We don't pull
- * a full DOM sanitizer — the body is fetched from our own backend (which
+ * a full DOM sanitizer, the body is fetched from our own backend (which
  * archived it from Steam), so the threat model is "Steam author types
  * something weird" not "untrusted user input". The transforms below
  * cover everything Mega Crit posts in practice and strip anything else
@@ -22,7 +22,7 @@ function bbcodeToHtml(input: string): string {
   let s = input;
   // Lists need real parsing because Steam patch notes nest them inside
   // items (e.g. [*]Header[list][*]sub1[*]sub2[/list]) and a flat regex
-  // pass produces sibling `<ul>`s — visually flat instead of indented.
+  // pass produces sibling `<ul>`s, visually flat instead of indented.
   // Convert lists FIRST so the per-item content can still flow through
   // the inline-formatting passes below.
   s = convertLists(s);
@@ -36,7 +36,7 @@ function bbcodeToHtml(input: string): string {
   s = s.replaceAll(/\[i\]([\s\S]*?)\[\/i\]/g, "<em>$1</em>");
   s = s.replaceAll(/\[u\]([\s\S]*?)\[\/u\]/g, "<u>$1</u>");
   s = s.replaceAll(/\[strike\]([\s\S]*?)\[\/strike\]/g, "<s>$1</s>");
-  // Links — [url=https://...]label[/url] and bare [url]https://[/url]
+  // Links, [url=https://...]label[/url] and bare [url]https://[/url]
   s = s.replaceAll(
     /\[url=([^\]]+)\]([\s\S]*?)\[\/url\]/g,
     '<a href="$1" target="_blank" rel="noopener noreferrer nofollow">$2</a>',
@@ -74,7 +74,7 @@ function bbcodeToHtml(input: string): string {
  * The nested `[list]` is meant to live INSIDE the outer item, so the
  * generated HTML should be `<ul><li>Outer item<ul><li>Inner item</li></ul></li></ul>`,
  * not two sibling `<ul>`s. The previous flat regex pass produced the
- * sibling shape, which most browsers render at the same indent level —
+ * sibling shape, which most browsers render at the same indent level,
  * sub-bullets visually disappear into the outer list.
  *
  * We walk the string once with a depth-tracking parser. Each list level
@@ -142,7 +142,7 @@ function convertLists(input: string): string {
   return root.join("");
 }
 
-/** Strip script/iframe/object/embed regardless of attributes — defensive. */
+/** Strip script/iframe/object/embed regardless of attributes, defensive. */
 function stripDangerousTags(html: string): string {
   return html
     .replaceAll(/<script\b[^>]*>[\s\S]*?<\/script>/gi, "")
@@ -157,7 +157,7 @@ function stripDangerousTags(html: string): string {
     .replaceAll(/javascript:/gi, "");
 }
 
-// Block-level HTML tags we treat as "paragraph siblings" — text between
+// Block-level HTML tags we treat as "paragraph siblings", text between
 // them gets wrapped in `<p>` so prose actually breaks across paragraphs
 // instead of running into a wall. `<img>` and `<hr>` are voids; the rest
 // have open/close pairs that may nest (Steam patch notes routinely have
@@ -214,7 +214,7 @@ function findBlockSpans(html: string): BlockSpan[] {
       continue;
     }
     // Close tag. Pop the matching open. If the stack is empty we ignore
-    // the stray close (malformed input — be defensive, don't blow up).
+    // the stray close (malformed input, be defensive, don't blow up).
     while (stack.length > 0 && stack[stack.length - 1].name !== name) {
       stack.pop();
     }
@@ -233,7 +233,7 @@ function findBlockSpans(html: string): BlockSpan[] {
  * Steam patch notes mix BBCode block tags (converted upstream to `<h4>`,
  * `<ul>`, `<img>`) with prose paragraphs separated only by `\n\n`. Without
  * this step the prose sits as raw text inside the article wrapper and
- * the browser collapses every blank line — what should be a list of
+ * the browser collapses every blank line, what should be a list of
  * paragraphs reads as one giant blob.
  *
  * Algorithm: locate every top-level block-element span (depth-aware so
@@ -303,7 +303,7 @@ export function newsExcerpt(raw: string, maxLen = 200): string {
  * can use it as a hero/thumbnail. Handles both BBCode (Steam community
  * posts use `[img]{STEAM_CLAN_IMAGE}/...[/img]`) and the raw `<img>` tags
  * external press articles ship with. Returns null when the article has
- * no inline imagery — caller should fall back to a placeholder. */
+ * no inline imagery, caller should fall back to a placeholder. */
 export function firstNewsImage(raw: string | undefined | null): string | null {
   if (!raw) return null;
   // BBCode form: [img]{STEAM_CLAN_IMAGE}/29087962/abc.png[/img] or [img]https://.../foo.jpg[/img]
@@ -317,7 +317,7 @@ export function firstNewsImage(raw: string | undefined | null): string | null {
   // HTML form: <img src="https://...">
   const html = raw.match(/<img\b[^>]*\bsrc\s*=\s*["']([^"']+)["']/i);
   if (html) return html[1].trim();
-  // Bare {STEAM_CLAN_IMAGE} placeholder (rare — some posts skip the [img] wrapper)
+  // Bare {STEAM_CLAN_IMAGE} placeholder (rare, some posts skip the [img] wrapper)
   const bare = raw.match(/\{STEAM_CLAN_IMAGE\}\/[^\s\[]+/);
   if (bare) {
     return bare[0].replace("{STEAM_CLAN_IMAGE}", "https://clan.cloudflare.steamstatic.com/images");
@@ -339,7 +339,7 @@ export function canonicalSteamUrl(gid: string, appid: number = 2868840): string 
 }
 
 /** Build the on-site path for a given article. The Steam `gid` is a
- * stable globally-unique ID and works as a clean URL slug — no need to
+ * stable globally-unique ID and works as a clean URL slug, no need to
  * leak the full Steam URL into our path. The catchall route still
  * accepts the older encoded-URL form and 308-redirects it here so old
  * inbound links and search results converge on this shape. */
@@ -352,7 +352,7 @@ export function newsSlugForArticle(gid: string, basePath: string = "/news"): str
  *
  *   - https://store.steampowered.com/news/app/{appid}/view/{gid}
  *   - https://steamstore-a.akamaihd.net/news/externalpost/{feedname}/{gid}
- *   - bare gid (legacy /news/{gid} routes — kept for inbound links)
+ *   - bare gid (legacy /news/{gid} routes, kept for inbound links)
  *
  * Returns null when nothing usable can be extracted so callers can 404. */
 export function gidFromSlug(slug: string): string | null {
@@ -365,7 +365,7 @@ export function gidFromSlug(slug: string): string | null {
   })();
   // Bare numeric gid (covers legacy `/news/{gid}` URLs we shipped first).
   if (/^\d{6,}$/.test(decoded)) return decoded;
-  // Pull the last digit-only segment from the URL — Steam puts the gid at
+  // Pull the last digit-only segment from the URL, Steam puts the gid at
   // the end of every variant.
   const segments = decoded.split(/[/?#]/).filter(Boolean);
   for (let i = segments.length - 1; i >= 0; i--) {

@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) potions. Filter by rarity and character pool.`;
   return {
     title,
-    description: `Every Slay the Spire 2 (sts2) potion — all ${count}. Filter by rarity (Common, Uncommon, Rare) and character pool. Effects, shop prices, and use timing.`,
+    description: `Every Slay the Spire 2 (sts2) potion, all ${count}. Filter by rarity (Common, Uncommon, Rare) and character pool. Effects, shop prices, and use timing.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

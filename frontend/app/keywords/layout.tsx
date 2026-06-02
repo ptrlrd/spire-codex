@@ -3,12 +3,12 @@ import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "
 
 const title = "Keywords - All Card Keywords - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
-  "Browse all card keywords in Slay the Spire 2 (sts2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more.";
+  "Browse all card keywords in Slay the Spire 2 (sts2), Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more.";
 
 export const metadata: Metadata = {
   title,
   description:
-    "Browse all card keywords in Slay the Spire 2 (sts2) — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more. See every card with each keyword.",
+    "Browse all card keywords in Slay the Spire 2 (sts2), Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more. See every card with each keyword.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

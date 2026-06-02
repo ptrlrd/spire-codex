@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = `Monster - ${monster.name} - ${monster.type} - Slay the Spire 2 (sts2) | Spire Codex`;
     const movesText = monster.moves?.length ? `${monster.moves.length} known moves.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${monster.type} monster — ${monster.name}.${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
+      `Slay the Spire 2 ${monster.type} monster, ${monster.name}.${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
     );
     return {
       title,

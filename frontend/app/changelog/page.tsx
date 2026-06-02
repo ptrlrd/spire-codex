@@ -251,8 +251,8 @@ export default function ChangelogPage() {
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         {IS_BETA
-          ? "Track what changes between beta updates — compare patches and see what's new."
-          : "Track what changes between game updates — new cards, balance tweaks, removed content, and more."}
+          ? "Track what changes between beta updates, compare patches and see what's new."
+          : "Track what changes between game updates, new cards, balance tweaks, removed content, and more."}
       </p>
 
       {loading ? (

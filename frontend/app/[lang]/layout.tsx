@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${dbWord} - Spire Codex (${nativeName})`;
-  const description = `Spire Codex — ${gameName} ${dbWord}. ${nativeName}.`;
+  const description = `Spire Codex, ${gameName} ${dbWord}. ${nativeName}.`;
 
   // Build hreflang alternates: all other localized versions + English
   const languages: Record<string, string> = {

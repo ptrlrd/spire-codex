@@ -49,7 +49,7 @@ export default async function RecentlyAdded({
       items = data.items ?? [];
     }
   } catch {
-    // Endpoint optional — render nothing on failure
+    // Endpoint optional, render nothing on failure
   }
 
   if (items.length === 0) return null;

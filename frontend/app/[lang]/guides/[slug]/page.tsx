@@ -79,7 +79,7 @@ export default async function LangGuideDetailPage({
           },
           {
             question: "Where can I find more Slay the Spire 2 guides?",
-            answer: "Browse all community guides at spire-codex.com/guides — filtered by category, difficulty, and character.",
+            answer: "Browse all community guides at spire-codex.com/guides, filtered by category, difficulty, and character.",
           },
         ]),
       ]

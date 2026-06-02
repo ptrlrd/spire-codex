@@ -7,7 +7,7 @@ const ogDesc = "Browse Slay the Spire 2 cards by type, rarity, character, and ke
 export const metadata: Metadata = {
   title,
   description:
-    "Filtered card collections for Slay the Spire 2 (sts2) — 41 curated lists by type, rarity, character, and keyword (Attack, Skill, Power, Rare, Ironclad, more).",
+    "Filtered card collections for Slay the Spire 2 (sts2), 41 curated lists by type, rarity, character, and keyword (Attack, Skill, Power, Rare, Ironclad, more).",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

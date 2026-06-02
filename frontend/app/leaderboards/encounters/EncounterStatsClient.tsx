@@ -51,7 +51,7 @@ function toggle<T>(set: Set<T>, value: T): Set<T> {
 }
 
 function displayName(id: string): string {
-  // Fallback when we don't have an encounters lookup hit — humanize the
+  // Fallback when we don't have an encounters lookup hit, humanize the
   // upper-snake-case id. Matches the convention other stats tables use.
   return id
     .split("_")
@@ -72,7 +72,7 @@ export default function EncounterStatsClient() {
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
-  // Encounter metadata lookup — populates display names for the IDs the
+  // Encounter metadata lookup, populates display names for the IDs the
   // aggregator returns. /api/encounters carries name + room_type already,
   // so a single fetch + map lets us avoid a per-row API hit.
   const [meta, setMeta] = useState<Record<string, EncounterMeta>>({});
@@ -103,7 +103,7 @@ export default function EncounterStatsClient() {
       .finally(() => setLoading(false));
   }, [acts, roomTypes, multiplayer, page]);
 
-  // Reset to page 1 whenever the filter set changes — paging through a
+  // Reset to page 1 whenever the filter set changes, paging through a
   // previous query's results after a filter change would be confusing.
   useEffect(() => {
     setPage(1);

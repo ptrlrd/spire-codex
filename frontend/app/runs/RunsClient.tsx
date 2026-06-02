@@ -642,7 +642,7 @@ export default function RunsClient() {
           {/* File Upload */}
           <div className="bg-[var(--bg-card)] rounded-xl border border-dashed border-[var(--border-accent)] p-6 text-center">
             <p className="text-sm text-[var(--text-secondary)] mb-1">
-              Upload .run files — select one or multiple
+              Upload .run files, select one or multiple
             </p>
             <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
               <p><strong className="text-[var(--text-secondary)]">Windows:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">%AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>

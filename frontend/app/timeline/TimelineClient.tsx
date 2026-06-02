@@ -223,7 +223,7 @@ export default function TimelineClient({
       .finally(() => setLoading(false));
   }, [storyFilter, search, lang]);
 
-  // Group epochs by story — map story IDs case-insensitively
+  // Group epochs by story, map story IDs case-insensitively
   const storyMap = new Map<string, Story>();
   for (const s of stories) storyMap.set(s.id.toLowerCase(), s);
 

@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const gameName = LANG_GAME_NAME[langCode];
     const title = `${gameName} ${act.name} - Act Guide | Spire Codex (${LANG_NAMES[langCode]})`;
     const desc = clipMetaDescription(
-      `${gameName} act — ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters.`,
+      `${gameName} act, ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters.`,
     );
     const languages: Record<string, string> = { "en": `${SITE_URL}/acts/${id}`, "x-default": `${SITE_URL}/acts/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/acts/${id}`;

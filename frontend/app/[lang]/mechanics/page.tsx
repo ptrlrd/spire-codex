@@ -22,7 +22,7 @@ const API_INTERNAL =
 const CATEGORY = "mechanics";
 
 async function fetchSections(): Promise<MechanicSectionMeta[]> {
-  // See note in app/mechanics/page.tsx — backend isn't reachable during
+  // See note in app/mechanics/page.tsx, backend isn't reachable during
   // the Docker frontend build. Empty list is the safe fallback.
   try {
     const res = await fetch(`${API_INTERNAL}/api/mechanics/sections`, {

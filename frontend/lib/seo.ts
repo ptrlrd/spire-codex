@@ -21,7 +21,7 @@ export const HOME_OG_IMAGE = `${SITE_URL}/spire-codex-black-final.png`;
  * pointing to every supported locale variant + `x-default`.
  *
  * Bidirectional hreflang is the indexation signal Google uses to
- * disambiguate translated copies — without it, Google sees /cards and
+ * disambiguate translated copies, without it, Google sees /cards and
  * /jpn/cards as competing for the same query and picks ONE to index,
  * dumping the rest into "Crawled - currently not indexed". With it,
  * each locale variant indexes on its own and gets served to its

@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = `Character - ${char.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const stats = char.starting_hp ? `${char.starting_hp} HP, ${char.max_energy} Energy.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 playable character — ${char.name}.${stats ? ` ${stats}` : ""}${desc ? ` ${desc}` : ""}`,
+      `Slay the Spire 2 playable character, ${char.name}.${stats ? ` ${stats}` : ""}${desc ? ` ${desc}` : ""}`,
     );
     return {
       title,

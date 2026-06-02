@@ -261,7 +261,7 @@ export default function StatsClient() {
   const [character, setCharacter] = useState("");
   const [winFilter, setWinFilter] = useState("");
   const [ascension, setAscension] = useState("");
-  // Single-player vs multiplayer vs all. Empty string = all (default —
+  // Single-player vs multiplayer vs all. Empty string = all (default,
   // stats include both pools). Matches the backend `?players=` filter
   // on /api/runs/stats. Multiplayer runs are stored as one document
   // per player (player_count > 1), so leaving the filter off gives
@@ -336,7 +336,7 @@ export default function StatsClient() {
         setPotionData(pmMerged);
         setBetaIds(newBetaIds);
       } catch {
-        // Beta API unavailable — no problem
+        // Beta API unavailable, no problem
       }
     }
     loadEntityData();
@@ -547,7 +547,7 @@ export default function StatsClient() {
         to contribute.
       </p>
 
-      {/* Player-mode toggle — visually identical to LeaderboardBrowseClient's
+      {/* Player-mode toggle, visually identical to LeaderboardBrowseClient's
           mode pills (same wrapper, padding, colors) so the two pages
           read as one design language. "All" is the default here
           because aggregate stats are most useful when not artificially

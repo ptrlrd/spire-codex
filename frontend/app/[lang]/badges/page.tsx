@@ -46,7 +46,7 @@ export async function generateMetadata({
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
   const title = `${gameName} ${t("Badges", lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${t("Badges", lang)} — ${t("badges_tagline", lang)}`;
+  const description = `${gameName} ${t("Badges", lang)}, ${t("badges_tagline", lang)}`;
 
   const languages: Record<string, string> = {
     en: `${SITE_URL}/badges`,

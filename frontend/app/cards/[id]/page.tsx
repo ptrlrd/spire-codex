@@ -7,7 +7,7 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { imageUrl } from "@/lib/image-url";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
-// cache even with async-params pages — without it, Next 15+ sees
+// cache even with async-params pages, without it, Next 15+ sees
 // `await params` and marks the page dynamic, emitting
 // `Cache-Control: no-store` which makes CF refuse to cache.
 // dynamicParams=true (default) means any [id] is generated on demand
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card — ${card.name} (${card.cost ?? "X"}-cost ${card.rarity} ${card.type}, ${color}). ${descFlat}${keywords}`,
+      `Slay the Spire 2 card, ${card.name} (${card.cost ?? "X"}-cost ${card.rarity} ${card.type}, ${color}). ${descFlat}${keywords}`,
     );
     return {
       title,
@@ -91,7 +91,7 @@ export default async function Page({ params }: Props) {
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {
-    // Network / DNS / backend-down. Don't redirect blindly here — if
+    // Network / DNS / backend-down. Don't redirect blindly here, if
     // the backend is offline we'd send every detail page request into
     // a 308 storm at the hub. Fall through to render the client
     // component, which has its own retry-on-mount + Not Found UI.

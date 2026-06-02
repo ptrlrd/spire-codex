@@ -46,7 +46,7 @@ export default function SearchFilter({
 
   // Decouple input value from upstream `search` state so each keystroke
   // doesn't re-trigger the parent's URL update + API fetch (which caused
-  // the typing flicker on /cards, /relics, /potions, etc. — issue #274).
+  // the typing flicker on /cards, /relics, /potions, etc., issue #274).
   // Local `draft` advances immediately; `onSearchChange` fires 200ms after
   // typing stabilizes. External `search` prop changes (e.g. URL → state
   // sync on mount, or a clear-filter button) flow back into the draft.

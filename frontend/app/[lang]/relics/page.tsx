@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${relicsWord} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${relicsWord} (${nativeName}). Every relic by rarity and character pool — effects, flavor text, shop prices, and upgraded starters.`;
+  const description = `${gameName} ${relicsWord} (${nativeName}). Every relic by rarity and character pool, effects, flavor text, shop prices, and upgraded starters.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/relics`,

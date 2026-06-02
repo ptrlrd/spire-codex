@@ -110,7 +110,7 @@ function InlineTooltip({ label, tooltip, href, color, image }: {
     >
       <span className="font-medium">{label}</span>
       {tooltip && (
-        <span className="text-[var(--text-muted)] ml-1">— {tooltip.replace(/\[.*?\]/g, "").replace(/\n/g, " ").slice(0, 80)}</span>
+        <span className="text-[var(--text-muted)] ml-1">{tooltip.replace(/\[.*?\]/g, "").replace(/\n/g, " ").slice(0, 80)}</span>
       )}
       {show && tooltip && (
         <span className="absolute z-[100] bottom-full left-0 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none text-left">
@@ -432,7 +432,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
           {/* ===== Overview Tab ===== */}
           {tab === "overview" && (
             <>
-              {/* Description — show all variants if available */}
+              {/* Description, show all variants if available */}
               {hasVariants && card.type_variants ? (
                 <div className="space-y-3 mb-5">
                   {Object.entries(card.type_variants).map(([key, v]) => {
@@ -509,7 +509,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
           {/* ===== Details Tab ===== */}
           {tab === "details" && (
             <>
-              {/* Merchant Price — bare gold-icon + range, no pill box */}
+              {/* Merchant Price, bare gold-icon + range, no pill box */}
               {priceRange && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
@@ -534,7 +534,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
                 </div>
               )}
 
-              {/* Powers Applied — vertical list, hyperlinked, hover tooltip */}
+              {/* Powers Applied, vertical list, hyperlinked, hover tooltip */}
               {card.powers_applied && card.powers_applied.length > 0 && (
                 <div className="mb-5">
                   <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
@@ -574,7 +574,7 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
             </>
           )}
 
-          {/* ===== Stats Tab — community run aggregates ===== */}
+          {/* ===== Stats Tab, community run aggregates ===== */}
           {tab === "stats" && card && (
             <EntityRunStats entityType="cards" entityId={id} entityName={card.name} />
           )}

@@ -33,7 +33,7 @@ interface ExampleRow {
   score: number;
 }
 
-// Worked examples — should match _compute_score in
+// Worked examples, should match _compute_score in
 // backend/app/services/run_entity_stats.py exactly. Mirrored here so
 // the page is fully static (no API roundtrip on render).
 const EXAMPLES: ExampleRow[] = [
@@ -57,7 +57,7 @@ const TIERS = [
 
 export default function ScoringPage() {
   const articleAndBreadcrumb = buildDetailPageJsonLd({
-    name: "Codex Score — Slay the Spire 2 Tier Rating Methodology",
+    name: "Codex Score, Slay the Spire 2 Tier Rating Methodology",
     description:
       "How Codex Score ranks every Slay the Spire 2 card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
     path: "/leaderboards/scoring",
@@ -82,7 +82,7 @@ export default function ScoringPage() {
     {
       question: "What do the S, A, B, C, D, F tier grades mean?",
       answer:
-        "S (90–100) is genuinely elite. A (78–89) is reliable and strong. B (65–77) is above average. C (50–64) is average — most entities live here. D (35–49) is niche or filler. F (0–34) actively pulls runs toward losses.",
+        "S (90–100) is genuinely elite. A (78–89) is reliable and strong. B (65–77) is above average. C (50–64) is average, most entities live here. D (35–49) is niche or filler. F (0–34) actively pulls runs toward losses.",
     },
     {
       question: "How often does the Codex Score update?",
@@ -118,7 +118,7 @@ export default function ScoringPage() {
         </div>
         <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
           Every card, relic, and potion in <em>Slay the Spire 2</em> gets a single number that
-          summarizes <strong>how strongly it pulls toward winning runs</strong> — based purely
+          summarizes <strong>how strongly it pulls toward winning runs</strong>, based purely
           on community-submitted run data, not opinion. <strong>50</strong> is neutral
           (the average run wins roughly half the time at A0), <strong>100</strong> is best-in-class,
           <strong>0</strong> is worst. The same number drives the &ldquo;Top tier&rdquo; sort on
@@ -182,7 +182,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
           </li>
           <li>
             <strong>Scale range = ±15pp.</strong> A win-rate gap of 15 percentage points above
-            baseline maps to 100. Scores saturate beyond that — entities outside that band are
+            baseline maps to 100. Scores saturate beyond that, entities outside that band are
             genuinely off the distribution.
           </li>
           <li>
@@ -248,7 +248,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
           </li>
           <li>
             <strong>Biased toward submitter pool.</strong> The score reflects runs that real
-            humans bothered to submit — disproportionately wins, disproportionately ranked-mode
+            humans bothered to submit, disproportionately wins, disproportionately ranked-mode
             players. The baseline win rate is computed from the same pool, so the bias largely
             cancels out for relative ranking. But absolute win rates skew higher than the average
             player&apos;s.
@@ -294,7 +294,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
           Improve the scores
         </h3>
         <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
-          Every score gets sharper when more runs are submitted — especially losses, which are
+          Every score gets sharper when more runs are submitted, especially losses, which are
           chronically underrepresented in community datasets. The submitter pool is the data.
         </p>
         <Link

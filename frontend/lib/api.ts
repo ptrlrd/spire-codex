@@ -7,7 +7,7 @@ async function fetchApi<T>(path: string): Promise<T> {
 }
 
 // Variant for build-time metadata fetches: bounded so a stuck connection
-// can't hang `next build`. Used by layout `generateMetadata` calls — those
+// can't hang `next build`. Used by layout `generateMetadata` calls, those
 // run during static generation where the backend may not be reachable.
 async function fetchApiBounded<T>(path: string, timeoutMs = 3000): Promise<T> {
   const ctrl = new AbortController();
@@ -127,7 +127,7 @@ export interface Relic {
   merchant_price: MerchantPrice | null;
   image_url: string | null;
   image_variants: Record<string, string> | null;
-  // Per-character title overrides — only populated for relics whose
+  // Per-character title overrides, only populated for relics whose
   // displayed name changes by character (today: just Sea Glass →
   // Demon/Venom/Gear/Lich/Noble Glass). Keys are character display
   // names (Ironclad, Silent, Defect, Necrobinder, Regent).
@@ -472,7 +472,7 @@ export const api = {
   getNews: (params?: string) =>
     fetchApi<NewsListResponse>(`/api/news${params ? `?${params}` : ""}`),
   getNewsItem: (gid: string) => fetchApi<NewsArticle>(`/api/news/${gid}`),
-  // Bounded variant for use inside `generateMetadata` — won't hang the
+  // Bounded variant for use inside `generateMetadata`, won't hang the
   // build if the backend is unreachable. Caller should wrap in try/catch
   // and fall through to a hardcoded baseline.
   getStatsBounded: (timeoutMs?: number) =>

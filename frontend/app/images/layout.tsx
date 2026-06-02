@@ -5,12 +5,12 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 
 const title = "Images - Game Art & Assets - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
-  "Browse and download Slay the Spire 2 game assets — card portraits, relic icons, monster sprites, and more.";
+  "Browse and download Slay the Spire 2 game assets, card portraits, relic icons, monster sprites, and more.";
 
 export const metadata: Metadata = {
   title,
   description:
-    "Browse and download Slay the Spire 2 game assets — card portraits, relic icons, monster sprites, character art, and more.",
+    "Browse and download Slay the Spire 2 game assets, card portraits, relic icons, monster sprites, character art, and more.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -32,7 +32,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Images & Game Art",
       description:
-        "Browse and download Slay the Spire 2 game assets — card portraits, relic icons, monster sprites, character art, and more.",
+        "Browse and download Slay the Spire 2 game assets, card portraits, relic icons, monster sprites, character art, and more.",
       path: "/images",
     }),
   ];

@@ -271,7 +271,7 @@ export default function LeaderboardBrowseClient() {
         </Link>
       </div>
 
-      {/* Single vs Multi mode toggle — these are tracked separately in
+      {/* Single vs Multi mode toggle, these are tracked separately in
           the runs collection (player_count == 1 vs > 1) and a fast
           multiplayer run isn't directly comparable to a fast solo run
           (parallel rooms, shared encounters, etc.), so the leaderboards
@@ -297,7 +297,7 @@ export default function LeaderboardBrowseClient() {
           ))}
         </div>
 
-        {/* Game-mode pill row. Default is "standard" — custom-seed and
+        {/* Game-mode pill row. Default is "standard", custom-seed and
             daily runs aren't comparable to the canonical pool (different
             seed pool / different rules), so we surface them as opt-in
             ladders. Empty value = no filter (show all modes). */}
@@ -329,7 +329,7 @@ export default function LeaderboardBrowseClient() {
           ))}
         </div>
 
-        {/* Today sub-filter — only visible under Daily mode */}
+        {/* Today sub-filter, only visible under Daily mode */}
         {(gameMode === "daily" || gameMode === "daily_today") && (
           <button
             onClick={() => setGameMode(gameMode === "daily_today" ? "daily" : "daily_today")}
@@ -368,7 +368,7 @@ export default function LeaderboardBrowseClient() {
           {/* Character filter toggle buttons.
               Mobile (<sm): icon-only square chips so 5 characters + "All"
               fit one row even on a 360px viewport. The localized name
-              ("Sentinelle de fer" etc.) was the worst offender — French/
+              ("Sentinelle de fer" etc.) was the worst offender, French/
               German/Polish characters spilled the row to two lines on
               every phone breakpoint. Tooltip + aria-label preserve the
               name semantics for screen readers. sm+ shows name as before. */}
@@ -487,7 +487,7 @@ export default function LeaderboardBrowseClient() {
       {/* Browse Runs tab content */}
       {tab === "browse" && (
         <>
-          {/* Filter bar — 2-col grid on mobile, inline on sm+ */}
+          {/* Filter bar, 2-col grid on mobile, inline on sm+ */}
           <div className="grid grid-cols-2 gap-2 mb-4 sm:flex sm:flex-wrap">
             <select
               value={browseChar}
@@ -599,7 +599,7 @@ export default function LeaderboardBrowseClient() {
           )}
         </>
       )}
-      {/* Leaderboard pagination — also threads lang for translated labels */}
+      {/* Leaderboard pagination, also threads lang for translated labels */}
     </div>
   );
 }

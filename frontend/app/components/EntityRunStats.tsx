@@ -63,7 +63,7 @@ function characterPretty(c: string): string {
 }
 
 /**
- * "Stats" tab content — community-run aggregates for one entity.
+ * "Stats" tab content, community-run aggregates for one entity.
  * Layout: factual prose summary on top (doubles as SEO body content),
  * full per-character breakdown table below. Renders a graceful empty
  * state when the entity has no submitted runs yet so SEO crawlers
@@ -87,7 +87,7 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
 
   return (
     <div className="space-y-5">
-      {/* Codex Score hero — single 0-100 badge that summarizes the
+      {/* Codex Score hero, single 0-100 badge that summarizes the
           entity's community-meta strength. Bayesian-shrunk so low-N
           entities sit near neutral instead of saturating S/F tiers.
           See `_compute_score` in run_entity_stats.py for the formula. */}
@@ -112,7 +112,7 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
         </div>
       )}
 
-      {/* Prose summary — also serves as crawlable SEO body content. */}
+      {/* Prose summary, also serves as crawlable SEO body content. */}
       <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
         {empty ? (
           <>
@@ -158,7 +158,7 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
         )}
       </p>
 
-      {/* Per-character breakdown table — hidden when empty. */}
+      {/* Per-character breakdown table, hidden when empty. */}
       {!empty && stats.by_character.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">

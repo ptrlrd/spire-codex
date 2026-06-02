@@ -21,7 +21,7 @@ interface Entry {
   isCurrent: boolean;
   isMain: boolean;
   /** Non-null when clicking this entry should stay in the beta SPA
-   * and only update the `?version=` query param — null means "latest
+   * and only update the `?version=` query param, null means "latest
    * beta", undefined means "this entry is not a same-site beta switch
    * and should navigate via regular href". */
   betaVersion?: string | null;
@@ -34,8 +34,8 @@ function stripSuffix(v: string): string {
 /** Unified dropdown that replaces the old site-toggle button plus the
  * separate beta `VersionSelector`. Shows a colour-coded button for the
  * site the user is currently on (gold for main / emerald for beta) and
- * a dropdown listing every other option — main plus each beta version
- * — with the current view filtered out.
+ * a dropdown listing every other option, main plus each beta version
+ *, with the current view filtered out.
  *
  * The beta-versions list is fetched once from the beta backend
  * (`beta.spire-codex.com/api/versions`, CORS-open) so main can show
@@ -57,7 +57,7 @@ export default function SiteSwitcher() {
         if (!cancelled && Array.isArray(data)) setVersions(data);
       })
       .catch(() => {
-        /* beta API unreachable — dropdown just shows `main` */
+        /* beta API unreachable, dropdown just shows `main` */
       });
     return () => {
       cancelled = true;
@@ -109,7 +109,7 @@ export default function SiteSwitcher() {
         isMain: false,
         isCurrent,
         // When user is already on beta and picks a different beta version,
-        // stay in-SPA via the context setter — no full page reload.
+        // stay in-SPA via the context setter, no full page reload.
         betaVersion: IS_BETA ? (v.is_latest ? null : v.version) : undefined,
       };
     }),
@@ -168,7 +168,7 @@ export default function SiteSwitcher() {
                   href={e.href}
                   onClick={(ev) => {
                     if (isSameSite) {
-                      // Same-site beta-to-beta switch — stay in the
+                      // Same-site beta-to-beta switch, stay in the
                       // SPA, just flip the `?version=` query param.
                       ev.preventDefault();
                       setBetaVersion(e.betaVersion ?? null);

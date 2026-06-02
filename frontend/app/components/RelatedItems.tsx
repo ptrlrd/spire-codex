@@ -29,14 +29,14 @@ type RouteSegment =
 interface FetchGroup {
   /** Heading shown above the grid (already localized at call site). */
   label: string;
-  /** API path appended to NEXT_PUBLIC_API_URL — must return RelatedItem[]. */
+  /** API path appended to NEXT_PUBLIC_API_URL, must return RelatedItem[]. */
   path: string;
   /** Per-group cap. Defaults to 12. */
   limit?: number;
 }
 
 interface RelatedItemsProps {
-  /** ID of the entity currently on screen — filtered out of every group. */
+  /** ID of the entity currently on screen, filtered out of every group. */
   currentId: string;
   /** Route segment under which siblings live (e.g. `relics`, `potions`). */
   route: RouteSegment;
@@ -47,7 +47,7 @@ interface RelatedItemsProps {
 }
 
 /**
- * Renders a collapsible section of sibling-entity links — designed to
+ * Renders a collapsible section of sibling-entity links, designed to
  * thicken thin detail pages and create internal crawl paths between
  * related items so Google can index the localized variants properly.
  *
@@ -65,7 +65,7 @@ export default function RelatedItems({
   const lp = useLangPrefix();
   const [results, setResults] = useState<{ label: string; items: RelatedItem[] }[]>([]);
 
-  // Stringify the groups' paths into a stable dependency key — the
+  // Stringify the groups' paths into a stable dependency key, the
   // groups array is rebuilt every render at the call site, so a direct
   // array dep would loop forever. The path string fully captures what
   // the effect actually consumes (which API URLs to hit).

@@ -14,9 +14,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 import { ToastProvider } from "./components/Toast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
-// Self-hosted Umami analytics. Both values are public-by-design — the
+// Self-hosted Umami analytics. Both values are public-by-design, the
 // browser fetches the script + sends the website ID on every page
-// view — so there's no secret to manage.
+// view, so there's no secret to manage.
 //
 // `UMAMI_WEBSITE_ID` reads NEXT_PUBLIC_UMAMI_WEBSITE_ID, a BUILD-TIME
 // env var injected by frontend/Dockerfile via a build ARG. CI passes
@@ -30,7 +30,7 @@ import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 // time, after which runtime env changes aren't reachable, which would
 // silently strip the script tag from every prerendered page.
 //
-// Local-dev pollution is handled at the Umami side, not here — each
+// Local-dev pollution is handled at the Umami side, not here, each
 // website is configured with its own allowed domain so pings from
 // `localhost:3000` are rejected before they land in the stats.
 const UMAMI_SRC = "https://analytics.spire-codex.com/script.js";

@@ -74,7 +74,7 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
       })
       .then((cardList) => setCards(cardList))
       .catch(() => {
-        // Not a keyword — try glossary
+        // Not a keyword, try glossary
         return cachedFetch<GlossaryTerm>(`${API}/api/glossary/${id}?lang=${lang}`)
           .then((term) => setGlossary(term))
           .catch(() => setNotFound(true));

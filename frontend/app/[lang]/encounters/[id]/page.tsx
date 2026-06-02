@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : "";
     const roomType = entity.room_type ? `${entity.room_type} ` : "";
     const description = clipMetaDescription(
-      `${gameName} ${roomType}encounter — ${name}.${monsterList}`,
+      `${gameName} ${roomType}encounter, ${name}.${monsterList}`,
     );
     const languages: Record<string, string> = { "en": `${SITE_URL}/encounters/${id}`, "x-default": `${SITE_URL}/encounters/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/encounters/${id}`;

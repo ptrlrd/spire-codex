@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) cards. Filter by character, type, rarity, and keywords.`;
   return {
     title,
-    description: `Every Slay the Spire 2 (sts2) card — all ${count}. Filter by character, type, rarity, and keyword. Art, stats, upgrade text, and related cards.`,
+    description: `Every Slay the Spire 2 (sts2) card, all ${count}. Filter by character, type, rarity, and keyword. Art, stats, upgrade text, and related cards.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

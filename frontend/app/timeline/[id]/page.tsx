@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(epoch.description || "");
     const title = `Timeline - ${epoch.title} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 timeline epoch — ${epoch.title}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 timeline epoch, ${epoch.title}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

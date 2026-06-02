@@ -68,7 +68,7 @@ export default function PrivacyPage() {
             <li>
               <strong className="text-[var(--text-primary)]">Feedback you send.</strong> If you submit feedback
               through the website or overlay, we store the contact field you provide (Discord handle, email, or
-              GitHub username — whatever you type) along with the message body.
+              GitHub username, whatever you type) along with the message body.
             </li>
           </ul>
         </section>
@@ -104,7 +104,7 @@ export default function PrivacyPage() {
         <section>
           <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">Sharing</h2>
           <p>
-            We do not sell or rent any data. Submitted runs and persona names are public by design — they appear
+            We do not sell or rent any data. Submitted runs and persona names are public by design, they appear
             on leaderboards and on the public API at{" "}
             <a href="https://spire-codex.com/api/runs/list" className="text-[var(--accent-gold)] hover:underline">
               /api/runs/list

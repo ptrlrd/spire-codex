@@ -31,7 +31,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
   // Fetch on mount (not on toggle) so the related-card <Link>s sit in
   // the rendered DOM at first paint. Googlebot doesn't click toggles,
   // and this component is a critical internal-linking hub for the
-  // localized card detail pages — those were stuck in GSC's
+  // localized card detail pages, those were stuck in GSC's
   // "Crawled - currently not indexed" bucket because they had no
   // outbound crawl paths.
   useEffect(() => {

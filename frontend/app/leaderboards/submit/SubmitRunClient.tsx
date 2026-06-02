@@ -215,7 +215,7 @@ export default function SubmitRunClient() {
   // Run submissions are server-side rejected on beta (the backend returns
   // 403 with "Submit to spire-codex.com instead"). The Navbar already
   // hides this route on beta, but bookmarks / external links can still
-  // land here — show an upfront notice instead of letting users drag in
+  // land here, show an upfront notice instead of letting users drag in
   // files only to get a 403 per file. Two open bug reports (#104, #105)
   // came from exactly this flow before this gate existed.
   if (IS_BETA) {
@@ -230,7 +230,7 @@ export default function SubmitRunClient() {
             and community stats stay aligned with the stable game build.
           </p>
           <p className="text-sm text-[var(--text-secondary)] mb-5">
-            Head to the stable site to upload your runs — they&apos;ll appear
+            Head to the stable site to upload your runs, they&apos;ll appear
             on the public leaderboards within a minute.
           </p>
           <a

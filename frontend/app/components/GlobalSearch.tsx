@@ -20,7 +20,7 @@ interface CategoryConfig {
   endpoint: string;
   linkFn: (item: SearchResult) => string;
   subtitleFn?: (item: SearchResult) => string;
-  /** Absolute thumbnail URL — when present, the row renders it as a small preview. */
+  /** Absolute thumbnail URL, when present, the row renders it as a small preview. */
   thumbFn?: (item: SearchResult) => string;
   /** When true, activating the result opens it in a new tab instead of routing. */
   openExternal?: boolean;

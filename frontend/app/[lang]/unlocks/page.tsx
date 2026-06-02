@@ -66,7 +66,7 @@ export default async function LangUnlocksPage({ params }: { params: Promise<{ la
     ]),
     buildCollectionPageJsonLd({
       name: `${gameName} ${t("Unlocks", lang)}`,
-      description: `${gameName} unlocks — all unlockable cards, relics, potions, and characters with epoch progression and score thresholds.`,
+      description: `${gameName} unlocks, all unlockable cards, relics, potions, and characters with epoch progression and score thresholds.`,
       path: `/${lang}/unlocks`,
       inLanguage: LANG_HREFLANG[langCode],
     }),

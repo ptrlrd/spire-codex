@@ -117,7 +117,7 @@ export default function ImagesPage() {
 
   // Hydrate the version dropdown from /api/images/beta/versions, then
   // honor whatever's in the ?version= query string. Persisting selection
-  // in the URL makes the view shareable — link Discord at a specific
+  // in the URL makes the view shareable, link Discord at a specific
   // beta's art without needing app state.
   useEffect(() => {
     fetch(`${API}/api/images/beta/versions`)
@@ -136,7 +136,7 @@ export default function ImagesPage() {
       });
   }, []);
 
-  // Refetch categories whenever the selected beta version changes — the
+  // Refetch categories whenever the selected beta version changes, the
   // backend swaps `beta/cards` -> `beta/<version>/cards` server-side.
   useEffect(() => {
     setLoading(true);
@@ -179,7 +179,7 @@ export default function ImagesPage() {
         Browse and download game assets. Click a category to view, or download as a zip pack.
       </p>
 
-      {/* Version picker — only renders on the main site. Beta site
+      {/* Version picker, only renders on the main site. Beta site
           (beta.spire-codex.com) intentionally hides the dropdown so the
           page reflects exactly what that branch ships; cross-version
           browsing belongs on the main site. NEXT_PUBLIC_SITE_URL is

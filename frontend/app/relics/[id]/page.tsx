@@ -8,7 +8,7 @@ import { imageUrl } from "@/lib/image-url";
 
 // Relic data only changes on deploy. force-static + revalidate
 // keeps Next.js from auto-marking the page dynamic just because we
-// `await params` — needed for CF edge caching to engage.
+// `await params`, needed for CF edge caching to engage.
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(relic.description || "");
     const title = `Relic - ${relic.name} - ${relic.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${relic.rarity} relic — ${relic.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 ${relic.rarity} relic, ${relic.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

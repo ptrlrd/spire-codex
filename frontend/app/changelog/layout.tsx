@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  // Client-rendered changelog page — emit JSON-LD from the server
+  // Client-rendered changelog page, emit JSON-LD from the server
   // layout so the structured data appears in initial HTML for crawlers.
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     buildCollectionPageJsonLd({
       name: "Spire Codex Changelog",
       description:
-        "Slay the Spire 2 update history and Spire Codex changelog — patches, balance changes, and new content additions.",
+        "Slay the Spire 2 update history and Spire Codex changelog, patches, balance changes, and new content additions.",
       path: "/changelog",
     }),
   ];

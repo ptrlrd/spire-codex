@@ -21,7 +21,7 @@ const CATEGORY_BADGE: Record<string, string> = {
   content: "bg-red-500/20 text-red-300 border-red-500/30",
 };
 
-/** Mirrors the read pattern in `app/showcase/page.tsx` — Docker mount
+/** Mirrors the read pattern in `app/showcase/page.tsx`, Docker mount
  * first, then the relative dev path. Keeps the home section working in
  * both environments without an extra API hop. */
 async function loadShowcase(): Promise<ShowcaseProject[]> {
@@ -40,7 +40,7 @@ async function loadShowcase(): Promise<ShowcaseProject[]> {
 }
 
 /** Pick `n` items out of `arr` without replacement. Uses Math.random
- * directly — runs server-side per request (the home page is
+ * directly, runs server-side per request (the home page is
  * `force-dynamic`) so the rotation is genuine, not stuck on whatever
  * was cached at build time. */
 function pickRandom<T>(arr: T[], n: number): T[] {

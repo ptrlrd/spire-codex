@@ -8,7 +8,7 @@ const ogDesc =
 export const metadata: Metadata = {
   title,
   description:
-    "Slay the Spire 2 (sts2) merchant guide — card, relic, and potion shop prices by rarity, card removal costs, Fake Merchant relics. Values from the game source.",
+    "Slay the Spire 2 (sts2) merchant guide, card, relic, and potion shop prices by rarity, card removal costs, Fake Merchant relics. Values from the game source.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

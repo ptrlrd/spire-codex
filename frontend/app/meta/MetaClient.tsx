@@ -233,7 +233,7 @@ export default function MetaClient() {
         setPotionData(pmMerged);
         setBetaIds(newBetaIds);
       } catch {
-        // Beta API unavailable — no problem, stable data is sufficient
+        // Beta API unavailable, no problem, stable data is sufficient
       }
     }
     loadEntityData();

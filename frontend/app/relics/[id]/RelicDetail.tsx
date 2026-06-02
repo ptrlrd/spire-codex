@@ -155,7 +155,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
           <span className="text-[var(--text-muted)] capitalize">{relic.pool}</span>
         </div>
 
-        {/* Per-character display name overrides — Sea Glass renames itself
+        {/* Per-character display name overrides, Sea Glass renames itself
             ("Demon Glass" for Ironclad, "Venom Glass" for Silent, etc.).
             Surfaced as a single line under the rarity/pool row so visitors
             can find each variant by name without scrolling. */}
@@ -205,7 +205,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
               </div>
             )}
 
-            {/* Programmatic prose block — adds 60-100 words of factual
+            {/* Programmatic prose block, adds 60-100 words of factual
                 contextual content per page from already-localized
                 fields, pushing the page past Google's "thin content"
                 floor without needing per-language translations. */}
@@ -257,7 +257,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
           </>
         )}
 
-        {/* ===== Stats Tab — community run aggregates ===== */}
+        {/* ===== Stats Tab, community run aggregates ===== */}
         {tab === "stats" && (
           <EntityRunStats entityType="relics" entityId={id} entityName={relic.name} />
         )}
@@ -271,7 +271,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
         )}
 
         {/* Related-relics block sits outside the tabs so it's always
-            visible — gives Google a crawl path to siblings (same pool +
+            visible, gives Google a crawl path to siblings (same pool +
             same rarity) and adds 30+ extra word-equivalents of indexed
             content to what was a thin detail page. */}
         <RelatedItems

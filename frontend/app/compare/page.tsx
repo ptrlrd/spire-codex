@@ -65,7 +65,7 @@ export default function ComparePage() {
         <span className="text-[var(--accent-gold)]">Character Comparisons</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Compare Slay the Spire 2 characters side by side — stats, card pool breakdowns, keyword
+        Compare Slay the Spire 2 characters side by side, stats, card pool breakdowns, keyword
         distributions, and starting decks.
       </p>
 

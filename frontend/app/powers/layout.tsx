@@ -11,10 +11,10 @@ export async function generateMetadata(): Promise<Metadata> {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
   const title = "Powers - Complete Power List - Slay the Spire 2 (sts2) | Spire Codex";
-  const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior.`;
+  const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) powers, buffs, debuffs, and neutral effects. Filter by type and stack behavior.`;
   return {
     title,
-    description: `All ${count} Slay the Spire 2 (sts2) powers — buffs, debuffs, and neutral effects. Filter by type and stack behavior. Icons and full descriptions.`,
+    description: `All ${count} Slay the Spire 2 (sts2) powers, buffs, debuffs, and neutral effects. Filter by type and stack behavior. Icons and full descriptions.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

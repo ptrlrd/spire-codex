@@ -409,7 +409,7 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
         </div>
       )}
 
-      {/* Moves Section — the main event */}
+      {/* Moves Section, the main event */}
       {monster.moves && monster.moves.length > 0 && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">

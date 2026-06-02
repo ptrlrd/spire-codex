@@ -85,7 +85,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
   const heading = poolLabel && pool ? `${poolLabel} Relic Tier List` : "Relic Tier List";
   const path = `/tier-list/relics${pool ? `?pool=${pool}` : ""}`;
 
-  // Top-30 by score for ItemList JSON-LD — gives Google a structured
+  // Top-30 by score for ItemList JSON-LD, gives Google a structured
   // ranked list it can render as carousel-style rich results.
   const rankedItems = [...entities]
     .filter((e) => e.score != null)
@@ -121,7 +121,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
         <span className="text-sm text-[var(--text-muted)]">{entities.length.toLocaleString()} relics</span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link> —
+        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link>,
         community win-rate data with Bayesian shrinkage so a 5-pick relic doesn&apos;t outrank a
         500-pick one. Click any relic for full stats.
       </p>

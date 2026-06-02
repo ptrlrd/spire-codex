@@ -1,9 +1,9 @@
 const OVERWOLF_STORE_URL = "https://www.overwolf.com/app/ptrlrd-spire_codex";
 
 const FEATURES = [
-  "In-game lookup for cards, relics, potions, monsters, events, and powers — all backed by the live Spire Codex API, so the data matches every patch",
+  "In-game lookup for cards, relics, potions, monsters, events, and powers, all backed by the live Spire Codex API, so the data matches every patch",
   "Live run tracker reads current_run.save and updates a few times per minute as you move between rooms",
-  "Quick-peek window (Ctrl+Space) — instant search without leaving the game",
+  "Quick-peek window (Ctrl+Space), instant search without leaving the game",
   "Off-game desktop window so you can browse the codex between runs without alt-tabbing",
 ];
 
@@ -93,7 +93,7 @@ export default function OverlayPage() {
           Overwolf is a sandbox for in-game overlays trusted by millions of
           players across League of Legends, Minecraft, World of Warcraft and
           more. The platform handles sign-in, updates, and game-event APIs so
-          companion apps stay safe and unobtrusive — no DLL injection, no risk
+          companion apps stay safe and unobtrusive, no DLL injection, no risk
           of bans. Install Overwolf once and you can launch Spire Codex Overlay
           (and any other companion app you like) the next time you start the
           game.

@@ -16,7 +16,7 @@ const API =
   "http://localhost:8000";
 
 // Use ?? not || so an empty NEXT_PUBLIC_API_URL (production sets it to "")
-// passes through and image src becomes a relative `/static/...` URL — falling
+// passes through and image src becomes a relative `/static/...` URL, falling
 // back on `||` would route prod traffic at http://localhost:8000.
 const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -45,7 +45,7 @@ export default async function BadgesPage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Badges",
       description:
-        "All run-end badges in Slay the Spire 2 (sts2) — Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
+        "All run-end badges in Slay the Spire 2 (sts2), Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
       path: "/badges",
       items: badges.map((b) => ({
         name: b.name,

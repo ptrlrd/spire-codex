@@ -18,7 +18,7 @@ import {
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-// Skip the build-time prerender — CI doesn't have the backend so it would
+// Skip the build-time prerender, CI doesn't have the backend so it would
 // 404 every article and bake those 404s into the image.
 export const dynamic = "force-dynamic";
 export const revalidate = 1800;
@@ -37,9 +37,9 @@ async function fetchItem(gid: string): Promise<NewsArticle | null> {
 
 /** The slug catchall accepts a few shapes:
  *
- *   - `/news/{gid}`                   — current canonical shape, clean
+ *   - `/news/{gid}`                  , current canonical shape, clean
  *     and shareable
- *   - `/news/{encoded canonical url}` — older encoded-URL form, kept so
+ *   - `/news/{encoded canonical url}`, older encoded-URL form, kept so
  *     prior inbound links and search results still resolve
  *
  * Either way we pull the gid out, look up the archived article, and (if
@@ -49,7 +49,7 @@ async function fetchItem(gid: string): Promise<NewsArticle | null> {
 function joinSlug(parts: string[]): string {
   // Next.js splits the catchall on `/`. Bare gids are a single segment;
   // the older encoded-URL form was also a single segment. Steam URLs
-  // occasionally leak through unencoded as multiple segments — rejoin
+  // occasionally leak through unencoded as multiple segments, rejoin
   // defensively so `gidFromSlug()` can still pull the trailing digits.
   return parts.join("/");
 }
@@ -69,7 +69,7 @@ export async function generateMetadata({
   // identify the page as our archive of the Steam announcement, not just
   // the raw article body.
   const excerpt = newsExcerpt(article.contents ?? "", 160);
-  const description = `Slay the Spire 2 news on Spire Codex — ${article.title}. ${excerpt}`.slice(0, 300);
+  const description = `Slay the Spire 2 news on Spire Codex, ${article.title}. ${excerpt}`.slice(0, 300);
   const title = `${article.title} - Slay the Spire 2 News | ${SITE_NAME}`;
   const canonicalPath = newsSlugForArticle(article.gid);
   return {
@@ -101,12 +101,12 @@ export default async function NewsArticlePage({
   const { slug } = await params;
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  // Slug doesn't contain a gid — 308 back to the news index so any
+  // Slug doesn't contain a gid, 308 back to the news index so any
   // crawl equity from the bad path lands on a live page rather than
   // a 404.
   if (!gid) permanentRedirect("/news");
 
-  // The canonical shape is `/news/{gid}` — clean, shareable, and stable.
+  // The canonical shape is `/news/{gid}`, clean, shareable, and stable.
   // If the caller used the older encoded-URL form (or anything else that
   // happened to contain the gid), 308-redirect to the bare-gid path so
   // every flavour of inbound link converges on the canonical address.
@@ -115,7 +115,7 @@ export default async function NewsArticlePage({
   }
 
   const article = await fetchItem(gid);
-  // Archive miss — 308 back to /news so we transfer link equity to the
+  // Archive miss, 308 back to /news so we transfer link equity to the
   // list page rather than serving a hard 404. Most legitimate misses
   // are stale Google cache entries for articles Steam has rotated off
   // and we never archived; sending them to /news keeps the entries in
@@ -180,7 +180,7 @@ export default async function NewsArticlePage({
           >
             {article.is_external_url ? "the original publisher" : "Steam"}
           </a>
-          {" "}— content © Mega Crit Games / respective publisher. Spire Codex mirrors this
+          {" "}content © Mega Crit Games / respective publisher. Spire Codex mirrors this
           announcement so it stays searchable after Steam rotates it off the news feed.
         </p>
 

@@ -7,7 +7,7 @@ const ogDesc = "In-game overlay for Slay the Spire 2. Card lookups, relic info, 
 export const metadata: Metadata = {
   title,
   description:
-    "Spire Codex Overlay — the Overwolf companion for Slay the Spire 2 (sts2). In-game card, relic, and monster lookups plus one-click run uploads.",
+    "Spire Codex Overlay, the Overwolf companion for Slay the Spire 2 (sts2). In-game card, relic, and monster lookups plus one-click run uploads.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

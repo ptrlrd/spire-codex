@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(potion.description || "");
     const title = `Potion - ${potion.name} - ${potion.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${potion.rarity} potion — ${potion.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 ${potion.rarity} potion, ${potion.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

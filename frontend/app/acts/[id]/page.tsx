@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const act = await res.json();
     const title = `Act - ${act.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const desc = clipMetaDescription(
-      `Slay the Spire 2 act — ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`,
+      `Slay the Spire 2 act, ${act.name}. ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`,
     );
     return {
       title,

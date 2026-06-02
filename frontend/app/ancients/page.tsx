@@ -8,7 +8,7 @@ export const revalidate = 3600;
 
 const title = "Ancient Relic Pools - All Ancient Offerings - Slay the Spire 2 (sts2) | Spire Codex";
 const description =
-  "Relic pools for all 8 Slay the Spire 2 (sts2) Ancients — Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Every offering and condition.";
+  "Relic pools for all 8 Slay the Spire 2 (sts2) Ancients, Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, Tanx, Vakuu. Every offering and condition.";
 
 export const metadata: Metadata = {
   title,
@@ -37,7 +37,7 @@ export default function AncientsPage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Ancient Relic Pools",
       description:
-        "Relic pools for all 8 Slay the Spire 2 Ancients — every offering and the conditions required to receive it.",
+        "Relic pools for all 8 Slay the Spire 2 Ancients, every offering and the conditions required to receive it.",
       path: "/ancients",
     }),
   ];

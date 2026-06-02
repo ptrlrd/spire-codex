@@ -51,10 +51,10 @@ export default async function ShowcasePage() {
     buildCollectionPageJsonLd({
       name: "Spire Codex Community Showcase",
       description:
-        "Projects and tools built with the Spire Codex API — bots, widgets, apps, and content for the Slay the Spire 2 community.",
+        "Projects and tools built with the Spire Codex API, bots, widgets, apps, and content for the Slay the Spire 2 community.",
       path: "/showcase",
       // Project URLs are external (Discord, GitHub, third-party hosts),
-      // so we don't pass them as ItemList entries — the schema's
+      // so we don't pass them as ItemList entries, the schema's
       // ListItem URLs are auto-prefixed with SITE_URL. The
       // CollectionPage shell is still valuable on its own.
     }),

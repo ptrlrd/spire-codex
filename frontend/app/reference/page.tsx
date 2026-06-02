@@ -60,7 +60,7 @@ export default async function ReferencePage() {
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Reference",
       description:
-        "Quick reference for Slay the Spire 2 game mechanics — keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.",
+        "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.",
       path: "/reference",
     }),
   ];
@@ -74,7 +74,7 @@ export default async function ReferencePage() {
         </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Quick reference for Slay the Spire 2 game mechanics — keywords,
+        Quick reference for Slay the Spire 2 game mechanics, keywords,
         orbs, afflictions, intents, modifiers, achievements, acts, and ascension
         levels.
       </p>

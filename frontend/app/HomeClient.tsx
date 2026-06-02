@@ -29,19 +29,19 @@ const CHARACTERS = [
 
 const FALLBACK_DESCS: Record<string, string> = {
   cards: "Browse all Slay the Spire 2 cards. Filter by character, type, rarity, and keywords.",
-  characters: "View all Slay the Spire 2 characters — stats, starting decks, relics, and NPC dialogues.",
+  characters: "View all Slay the Spire 2 characters, stats, starting decks, relics, and NPC dialogues.",
   relics: "Explore all Slay the Spire 2 relics from starter to ancient tier. Filter by rarity and pool.",
-  monsters: "Study all Slay the Spire 2 monsters — HP, moves, damage stats, and ascension scaling.",
+  monsters: "Study all Slay the Spire 2 monsters, HP, moves, damage stats, and ascension scaling.",
   potions: "Discover all Slay the Spire 2 potions and their effects. Filter by rarity and character pool.",
-  enchantments: "View all Slay the Spire 2 enchantments — effects, card type restrictions, and stackability.",
-  encounters: "Browse all Slay the Spire 2 combat encounters across every act — normals, elites, and bosses.",
-  events: "Explore all Slay the Spire 2 events — shrine events, Ancient encounters, choices, and outcomes.",
-  powers: "Browse all Slay the Spire 2 powers — buffs, debuffs, and neutral status effects.",
-  timeline: "Explore the Slay the Spire 2 timeline — epochs, story arcs, and unlockable content.",
-  images: "Browse and download Slay the Spire 2 game art — card portraits, relic icons, monster sprites.",
-  reference: "Slay the Spire 2 reference — keywords, orbs, afflictions, intents, acts, ascension, and more.",
-  badges: "Run-end badges from Slay the Spire 2 — Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
-  guides: "Community strategy guides — character breakdowns, boss strategies, deckbuilding tips, and more.",
+  enchantments: "View all Slay the Spire 2 enchantments, effects, card type restrictions, and stackability.",
+  encounters: "Browse all Slay the Spire 2 combat encounters across every act, normals, elites, and bosses.",
+  events: "Explore all Slay the Spire 2 events, shrine events, Ancient encounters, choices, and outcomes.",
+  powers: "Browse all Slay the Spire 2 powers, buffs, debuffs, and neutral status effects.",
+  timeline: "Explore the Slay the Spire 2 timeline, epochs, story arcs, and unlockable content.",
+  images: "Browse and download Slay the Spire 2 game art, card portraits, relic icons, monster sprites.",
+  reference: "Slay the Spire 2 reference, keywords, orbs, afflictions, intents, acts, ascension, and more.",
+  badges: "Run-end badges from Slay the Spire 2, Bronze, Silver, and Gold tier mini-achievements awarded on the Game Over screen.",
+  guides: "Community strategy guides, character breakdowns, boss strategies, deckbuilding tips, and more.",
   leaderboards: "Fastest wins and highest ascensions from the community. Browse every submitted run.",
   submit: "Upload your .run files to contribute to leaderboards and community stats.",
   stats: "Win rates by character, card pick rates, most common relics, deadliest encounters.",
@@ -98,7 +98,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     // Use our UI translations for description if available, otherwise English fallback
     const uiKey = SECTION_LABEL_MAP[key];
     if (uiKey && lang !== "eng") {
-      return `${t(uiKey, lang)} — Spire Codex`;
+      return `${t(uiKey, lang)}, Spire Codex`;
     }
     return FALLBACK_DESCS[key] ?? "";
   };

@@ -5,16 +5,16 @@ import { IS_BETA } from "@/lib/seo";
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Beta has run submissions disabled, so its local runs.db is essentially
 // empty. Fetch leaderboard + recent-runs data from stable instead so the
-// section actually has content to show. Server-side fetch — no CORS hop.
+// section actually has content to show. Server-side fetch, no CORS hop.
 // All in-page links (row → /runs/{hash}, View more → /leaderboards) on
 // beta point at stable's absolute URL since the data only lives there.
 const RUNS_HOST = IS_BETA ? "https://spire-codex.com" : "";
 const RUNS_API = IS_BETA ? "https://spire-codex.com" : API;
-// The browser fetches images from the public API URL — `API_INTERNAL_URL`
+// The browser fetches images from the public API URL, `API_INTERNAL_URL`
 // only resolves inside the Docker network during server render. The
 // production build sets `NEXT_PUBLIC_API_URL=""` (empty) on purpose so
 // images render as same-origin `/static/...` paths that nginx routes
-// to the backend, so use `??` (nullish) instead of `||` (falsy) here —
+// to the backend, so use `??` (nullish) instead of `||` (falsy) here,
 // otherwise an intentional empty string falls through to localhost and
 // leaks into the SSR'd HTML.
 const PUBLIC_API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -106,7 +106,7 @@ function killedByLabel(killedBy: string | null): string | null {
 }
 
 async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | null }> {
-  // No server-side ascension filter — pull a page of fastest wins, then
+  // No server-side ascension filter, pull a page of fastest wins, then
   // pick the highest ascension tier that has at least one entry. Falls
   // back to "any ascension" so the section never renders empty when wins
   // exist at all.
@@ -120,7 +120,7 @@ async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | 
     if (wins.length === 0) return { runs: [], ascension: null };
     const a10 = wins.filter((r) => r.ascension >= TARGET_ASCENSION);
     if (a10.length > 0) return { runs: a10.slice(0, 5), ascension: TARGET_ASCENSION };
-    // No A10+ wins yet — show fastest at the highest tier we do have.
+    // No A10+ wins yet, show fastest at the highest tier we do have.
     const maxAsc = wins.reduce((m, r) => Math.max(m, r.ascension), 0);
     const top = wins.filter((r) => r.ascension === maxAsc).slice(0, 5);
     return { runs: top, ascension: maxAsc };
@@ -157,7 +157,7 @@ export default async function HomeLeaderboardSection({
   const [fastest, recent] = await Promise.all([loadFastestWins(), loadRecentRuns()]);
   if (fastest.runs.length === 0 && recent.length === 0) return null;
 
-  // On beta, point all in-page links at stable's absolute URL — the data
+  // On beta, point all in-page links at stable's absolute URL, the data
   // shown in this section came from stable, so the run-detail / browse /
   // submit pages need to live there too. On stable, stay relative so
   // the langPrefix stays meaningful.
@@ -211,7 +211,7 @@ export default async function HomeLeaderboardSection({
           </div>
           {fastest.runs.length === 0 ? (
             <p className="px-5 py-6 text-sm text-[var(--text-muted)]">
-              {t("No A10 wins submitted yet — be the first.", lang)}
+              {t("No A10 wins submitted yet, be the first.", lang)}
             </p>
           ) : (
             <ul className="divide-y divide-[var(--border-subtle)]">

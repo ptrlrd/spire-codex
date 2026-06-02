@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) relics. Filter by rarity and character pool. View relic effects and images.`;
   return {
     title,
-    description: `Every Slay the Spire 2 (sts2) relic — all ${count}. Filter by rarity (Common to Ancient) and character pool. Effects, flavor text, and shop prices.`,
+    description: `Every Slay the Spire 2 (sts2) relic, all ${count}. Filter by rarity (Common to Ancient) and character pool. Effects, flavor text, and shop prices.`,
     openGraph: {
       type: "website",
       siteName: SITE_NAME,

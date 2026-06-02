@@ -46,7 +46,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const title = `${scope} Tier List - Cards Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
   const description = color
     ? `${charLabel} card tier list for Slay the Spire 2 (sts2). Every ${charLabel?.toLowerCase()} card ranked S through F based on community win-rate data.`
-    : "Every Slay the Spire 2 (sts2) card ranked S through F. Tier list driven by Codex Score — community-submitted run win rates with Bayesian shrinkage.";
+    : "Every Slay the Spire 2 (sts2) card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.";
   const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
   return {
     title,
@@ -100,7 +100,7 @@ export default async function CardsTierListPage({ searchParams }: PageProps) {
   const heading = charLabel && color ? `${charLabel} Card Tier List` : "Card Tier List";
   const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
 
-  // Top-30 by score for the ItemList JSON-LD — gives Google a structured
+  // Top-30 by score for the ItemList JSON-LD, gives Google a structured
   // ranked list it can render as carousel-style rich results. Capped at
   // 30 because longer ItemLists inflate the JSON without much SEO gain.
   const rankedItems = [...entities]
@@ -137,12 +137,12 @@ export default async function CardsTierListPage({ searchParams }: PageProps) {
         <span className="text-sm text-[var(--text-muted)]">{entities.length.toLocaleString()} cards</span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link> —
+        Ranked by <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link>,
         community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral.
         Click any card for full stats.
       </p>
 
-      {/* Character filter — anchor links so each filtered view is its
+      {/* Character filter, anchor links so each filtered view is its
           own indexable URL (good for "ironclad tier list" SEO). */}
       <div className="flex flex-wrap gap-1.5 mb-6">
         {COLOR_FILTERS.map((opt) => {

@@ -11,7 +11,7 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 // caches the runtime-rendered HTML for the s-maxage TTL set in the
 // backend's CORSStaticMiddleware, so edge perf is unaffected.
 //
-// See feedback_frontend_build_offline_backend.md — same trap caught
+// See feedback_frontend_build_offline_backend.md, same trap caught
 // us once already on entity detail pages.
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;

@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(asc.description);
     const title = `Ascension - Level ${asc.level} - ${asc.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 Ascension ${asc.level} — ${asc.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 Ascension ${asc.level}, ${asc.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

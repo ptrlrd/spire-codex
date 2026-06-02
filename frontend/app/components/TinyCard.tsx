@@ -1,15 +1,15 @@
 import type { CSSProperties } from "react";
 
 /**
- * Tiny card sprite — matches the in-game `NTinyCard` used on the run-history /
+ * Tiny card sprite, matches the in-game `NTinyCard` used on the run-history /
  * game-over screen. Composites six layers:
  *
- *   1. card_back.png     — tinted by card pool/character
- *   2. desc_box.png      — dark description area
+ *   1. card_back.png    , tinted by card pool/character
+ *   2. desc_box.png     , dark description area
  *   3. {type}_portrait_shadow.png
  *   4. {type}_portrait.png
  *   5. banner_shadow.png
- *   6. banner.png        — tinted by card rarity
+ *   6. banner.png       , tinted by card rarity
  *
  * Sprites are served from `/static/images/ui/run_history_card/`. Tint colors
  * come directly from the decompiled game code (`NTinyCard.GetBannerColor` and
@@ -20,7 +20,7 @@ import { imageUrl } from "@/lib/image-url";
 
 const BASE = imageUrl("/static/images/ui/run_history_card");
 
-// CardPoolModel.DeckEntryCardColor — one per character/pool.
+// CardPoolModel.DeckEntryCardColor, one per character/pool.
 export const TINY_CARD_POOL_COLOR: Record<string, string> = {
   ironclad: "#D62000",
   silent: "#5EBD00",
@@ -35,7 +35,7 @@ export const TINY_CARD_POOL_COLOR: Record<string, string> = {
   token: "#FFFFFF",
 };
 
-// NTinyCard.GetBannerColor — one per rarity.
+// NTinyCard.GetBannerColor, one per rarity.
 export const TINY_CARD_BANNER_COLOR: Record<string, string> = {
   Basic: "#9C9C9C",
   Starter: "#9C9C9C",
@@ -50,7 +50,7 @@ export const TINY_CARD_BANNER_COLOR: Record<string, string> = {
   Token: "#9C9C9C",
 };
 
-// NTinyCard.SetCardPortraitShape — Attack/Power have their own, everything
+// NTinyCard.SetCardPortraitShape, Attack/Power have their own, everything
 // else falls through to the skill portrait.
 function portraitShape(type: string | undefined): "attack" | "power" | "skill" {
   if (type === "Attack") return "attack";

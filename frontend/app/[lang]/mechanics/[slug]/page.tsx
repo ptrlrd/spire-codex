@@ -19,7 +19,7 @@ interface MechanicSectionDetail extends MechanicSectionMeta {
 }
 
 async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
-  // See note in app/mechanics/[slug]/page.tsx — generateStaticParams
+  // See note in app/mechanics/[slug]/page.tsx, generateStaticParams
   // dropped, fetch hardened against build-time ECONNREFUSED.
   try {
     const res = await fetch(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {

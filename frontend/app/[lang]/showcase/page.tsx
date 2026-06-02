@@ -100,7 +100,7 @@ export default async function LangShowcasePage({ params }: { params: Promise<{ l
     ]),
     buildCollectionPageJsonLd({
       name: `${gameName} ${t("Community Showcase", lang)}`,
-      description: `${gameName} community projects — bots, widgets, apps, and tools built with the Spire Codex API.`,
+      description: `${gameName} community projects, bots, widgets, apps, and tools built with the Spire Codex API.`,
       path: `/${lang}/showcase`,
       items: projects.map((p) => ({ name: p.name, path: `/${lang}/showcase` })),
       inLanguage: LANG_HREFLANG[langCode],

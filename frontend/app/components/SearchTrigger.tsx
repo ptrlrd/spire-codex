@@ -4,7 +4,7 @@
  * Input-styled trigger that opens the GlobalSearch modal.
  *
  * GlobalSearch (rendered once in layout.tsx) listens for the "." keydown
- * event — dispatching that event is how we open it from anywhere.
+ * event, dispatching that event is how we open it from anywhere.
  */
 
 type Variant = "hero" | "nav" | "icon";
@@ -64,7 +64,7 @@ export default function SearchTrigger({ variant, className = "", placeholder }: 
     );
   }
 
-  // nav variant — mid-navbar, 40%-ish wide
+  // nav variant, mid-navbar, 40%-ish wide
   return (
     <button
       type="button"

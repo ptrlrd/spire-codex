@@ -1,6 +1,6 @@
 /**
  * Simple in-memory fetch cache for API responses.
- * Keyed by URL — identical requests return cached data instantly.
+ * Keyed by URL, identical requests return cached data instantly.
  * Cache lives for the browser session (cleared on page reload).
  */
 
@@ -8,7 +8,7 @@ const cache = new Map<string, { data: unknown; timestamp: number }>();
 const inflight = new Map<string, Promise<unknown>>();
 const MAX_AGE = 5 * 60 * 1000; // 5 minutes
 
-// Beta version — set by BetaVersionContext, read by cachedFetch
+// Beta version, set by BetaVersionContext, read by cachedFetch
 let _betaVersion: string | null = null;
 
 export function setBetaVersion(v: string | null) {

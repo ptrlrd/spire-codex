@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 const title = "Encounter Stats - Slay the Spire 2 (sts2) | Spire Codex";
 const description =
-  "Per-encounter Slay the Spire 2 stats — fatal counts, average damage, average turns, and a per-character breakdown for every monster, elite, and boss. Live aggregation from submitted community runs.";
+  "Per-encounter Slay the Spire 2 stats, fatal counts, average damage, average turns, and a per-character breakdown for every monster, elite, and boss. Live aggregation from submitted community runs.";
 
 export const metadata: Metadata = {
   title,

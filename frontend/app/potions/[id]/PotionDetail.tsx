@@ -144,7 +144,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
             <div className="text-[var(--text-secondary)] leading-relaxed">
               <RichDescription text={potion.description} />
             </div>
-            {/* Programmatic prose block — adds factual context using
+            {/* Programmatic prose block, adds factual context using
                 already-localized fields (rarity, pool, name) plus
                 merchant pricing tiers, pushing the page past Google's
                 "thin content" floor without per-language translation. */}
@@ -180,7 +180,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
           </>
         )}
 
-        {/* ===== Stats Tab — community run aggregates ===== */}
+        {/* ===== Stats Tab, community run aggregates ===== */}
         {tab === "stats" && (
           <EntityRunStats entityType="potions" entityId={id} entityName={potion.name} />
         )}
@@ -194,7 +194,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
         )}
 
         {/* Related-potions block sits outside the tabs so it's always
-            visible — gives Google a crawl path to siblings (same rarity
+            visible, gives Google a crawl path to siblings (same rarity
             and pool) and adds 30+ extra word-equivalents per page. */}
         <RelatedItems
           currentId={id}

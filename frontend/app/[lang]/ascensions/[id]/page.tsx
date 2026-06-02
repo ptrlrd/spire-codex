@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const gameName = LANG_GAME_NAME[langCode];
     const title = `${gameName} Ascension ${asc.level}: ${asc.name} | Spire Codex (${LANG_NAMES[langCode]})`;
     const description = clipMetaDescription(
-      `${gameName} Ascension ${asc.level} — ${asc.name}${desc ? `: ${desc}` : ""}`,
+      `${gameName} Ascension ${asc.level}, ${asc.name}${desc ? `: ${desc}` : ""}`,
     );
     const languages: Record<string, string> = { "en": `${SITE_URL}/ascensions/${id}`, "x-default": `${SITE_URL}/ascensions/${id}` };
     for (const code of SUPPORTED_LANGS) languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}/ascensions/${id}`;

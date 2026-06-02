@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} Ancient relic pools (${nativeName}). Every offering and condition for all 8 Ancients — Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, and more.`;
+  const description = `${gameName} Ancient relic pools (${nativeName}). Every offering and condition for all 8 Ancients, Neow, Tezcatara, Pael, Orobas, Darv, Nonupeipe, and more.`;
 
   const languages: Record<string, string> = {
     en: `${SITE_URL}/${CATEGORY}`,
@@ -66,7 +66,7 @@ export default async function LangAncientsPage({ params }: { params: Promise<{ l
     ]),
     buildCollectionPageJsonLd({
       name: `${gameName} Ancient Relic Pools`,
-      description: `Relic pools for all 8 ${gameName} Ancients — every offering and the conditions required to receive it.`,
+      description: `Relic pools for all 8 ${gameName} Ancients, every offering and the conditions required to receive it.`,
       path: `/${lang}/ancients`,
       inLanguage: LANG_HREFLANG[langCode],
     }),

@@ -8,7 +8,7 @@ const ogDesc =
 export const metadata: Metadata = {
   title,
   description:
-    "Knowledge Demon — a Discord bot for Slay the Spire 2 (sts2) communities. Slash commands for cards, relics, monsters, events, plus moderation and news feeds.",
+    "Knowledge Demon, a Discord bot for Slay the Spire 2 (sts2) communities. Slash commands for cards, relics, monsters, events, plus moderation and news feeds.",
   openGraph: {
     type: "website",
     siteName: SITE_NAME,

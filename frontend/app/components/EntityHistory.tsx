@@ -83,7 +83,7 @@ function ChangeValue({ raw, color }: { raw: string; color: string }) {
   if (parsed === raw || typeof parsed === "string") {
     return <span className={color}>{raw}</span>;
   }
-  // Render parsed structures as a compact, multi-line block — much easier
+  // Render parsed structures as a compact, multi-line block, much easier
   // to scan than `{'id': 'X', 'name': 'Y', ...}` on one line.
   return (
     <pre

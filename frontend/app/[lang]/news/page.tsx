@@ -44,7 +44,7 @@ export async function generateMetadata({
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
-  // Title + description use the standard format mirrored from /changelog —
+  // Title + description use the standard format mirrored from /changelog,
   // visible page copy uses `news_tagline`, meta uses the tighter
   // `news_meta_description`.
   const title = `${gameName} ${t("News", lang)} - ${t("News - Subtitle", lang)} | ${SITE_NAME} (${nativeName})`;
@@ -119,7 +119,7 @@ export default async function LangNewsPage({
     }),
   ];
 
-  // Localized tab labels — falls back to the English source label if the
+  // Localized tab labels, falls back to the English source label if the
   // translation key isn't present yet.
   const tabLabels: Record<Tab, { label: string; sublabel: string }> = {
     community: { label: t("Mega Crit", lang), sublabel: t("news_tab_community", lang) },

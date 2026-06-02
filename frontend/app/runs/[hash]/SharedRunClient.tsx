@@ -114,7 +114,7 @@ export default function SharedRunClient() {
         </button>
       </div>
 
-      {/* Compact header — Victory/Defeat banner + ascension */}
+      {/* Compact header, Victory/Defeat banner + ascension */}
       <div
         className="rounded-xl border px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-2"
         style={{ borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`, background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))` }}

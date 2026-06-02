@@ -10,7 +10,7 @@ import { SITE_URL, SITE_NAME } from "@/lib/seo";
  *   2. Send a meta-refresh to `/` after 3 seconds so casual visitors
  *      bounce back to a working page instead of getting stuck on the
  *      404, and set `<link rel="canonical" href="/">` so Search Console
- *      treats the URL as a duplicate of home (soft-404) — which the
+ *      treats the URL as a duplicate of home (soft-404), which the
  *      site owner has explicitly accepted as a trade-off to capture
  *      stray crawl traffic.
  *
@@ -36,7 +36,7 @@ export default function NotFound() {
   return (
     <>
       {/* metadata.other doesn't emit <meta http-equiv> correctly in
-          every Next 16 build path — explicit tag here as a belt &
+          every Next 16 build path, explicit tag here as a belt &
           braces. */}
       <meta httpEquiv="refresh" content="3;url=/" />
       <link rel="canonical" href={SITE_URL} />

@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `${gameName} ${t(CATEGORY_LABEL, lang)} | Spire Codex (${nativeName})`;
-  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). All five playable characters — Ironclad, Silent, Defect, Necrobinder, Regent. Starting decks and stats.`;
+  const description = `${gameName} ${t(CATEGORY_LABEL, lang)} (${nativeName}). All five playable characters, Ironclad, Silent, Defect, Necrobinder, Regent. Starting decks and stats.`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/${CATEGORY}`,

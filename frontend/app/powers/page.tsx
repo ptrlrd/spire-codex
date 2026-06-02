@@ -33,7 +33,7 @@ export default async function PowersPage() {
         <span className="text-[var(--accent-gold)]">Slay the Spire 2 (sts2) Powers</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Browse every power in Slay the Spire 2 — buffs, debuffs, and neutral effects. Filter by type and stack behavior.
+        Browse every power in Slay the Spire 2, buffs, debuffs, and neutral effects. Filter by type and stack behavior.
       </p>
 
       <RecentlyAdded entityType="powers" label="Power" pathPrefix="/powers" />

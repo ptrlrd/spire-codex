@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const desc = stripTagsFlat(orb.description || "");
     const title = `Orb - ${orb.name} - Slay the Spire 2 (sts2) | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 orb — ${orb.name}${desc ? `: ${desc}` : ""}`,
+      `Slay the Spire 2 orb, ${orb.name}${desc ? `: ${desc}` : ""}`,
     );
     return {
       title,

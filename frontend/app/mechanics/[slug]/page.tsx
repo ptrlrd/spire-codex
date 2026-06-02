@@ -19,7 +19,7 @@ interface MechanicSectionDetail extends MechanicSectionMeta {
 async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
   // Tolerates ECONNREFUSED so the Docker frontend build doesn't fail when
   // the backend container isn't running yet. Pages are rendered on demand
-  // post-deploy with the `revalidate` cache below — same pattern as every
+  // post-deploy with the `revalidate` cache below, same pattern as every
   // other entity detail page (cards, relics, monsters, etc.) which never
   // had generateStaticParams in the first place.
   try {

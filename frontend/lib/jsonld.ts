@@ -80,7 +80,7 @@ export function buildCollectionPageJsonLd({
 // Google's rich-results validator flags its absence. Per-entity data
 // doesn't carry its own publication timestamp (the data is parsed from
 // game files, not authored), so we anchor every entity page to the
-// codex launch date — accurate for "when did Spire Codex publish a
+// codex launch date, accurate for "when did Spire Codex publish a
 // page about this entity" and stable across re-renders.
 const SITE_LAUNCH_DATE = "2026-01-01T00:00:00.000Z";
 
@@ -147,7 +147,7 @@ export function buildWebSiteJsonLd() {
   // `potentialAction` exposes the Sitelinks Search Box. Google reads
   // this to wire up a search box directly in the SERP for our domain.
   // The `{search_term_string}` placeholder is required verbatim per
-  // schema.org spec — Google substitutes the user's query into it.
+  // schema.org spec, Google substitutes the user's query into it.
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
@@ -172,7 +172,7 @@ export function buildVideoGameJsonLd() {
   // `applicationCategory: "Game"` here but that field is for the
   // SoftwareApplication category taxonomy (e.g. "GameApplication")
   // and validators flag it as confusing when paired with VideoGame.
-  // Dropped — `@type: VideoGame` already conveys "this is a game".
+  // Dropped, `@type: VideoGame` already conveys "this is a game".
   return {
     "@context": "https://schema.org",
     "@type": "VideoGame",
@@ -191,7 +191,7 @@ export function buildVideoGameJsonLd() {
 
 export function buildSoftwareApplicationJsonLd() {
   // Google's SoftwareApplication rich-results gate on `aggregateRating`
-  // or `offers`. We don't accept reviews — keep `offers` (free) so the
+  // or `offers`. We don't accept reviews, keep `offers` (free) so the
   // schema passes validation. `image` added so the result is eligible
   // for SoftwareApp panel display.
   return {
@@ -266,7 +266,7 @@ export function buildNewsArticleJsonLd({
   imageUrl?: string;
 }) {
   // Publisher is the news source (Mega Crit or external publisher),
-  // not Spire Codex — we're mirroring. Google requires
+  // not Spire Codex, we're mirroring. Google requires
   // publisher.logo on NewsArticle; we use the default OG asset as a
   // stable fallback when we don't have the publisher's actual logo.
   const publisherName = feedlabel || "Mega Crit";
