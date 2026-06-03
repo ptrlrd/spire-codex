@@ -88,7 +88,7 @@
       ],
       "description": "감쇠 → 눈 레이저 → 강도 증가 → repeat"
     },
-    "image_url": null,
+    "image_url": "/static/images/monsters/aeonglass.webp",
     "beta_image_url": null
   },
   {
