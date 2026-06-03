@@ -124,6 +124,8 @@ Brain Leech specifically (answers the "which effect" question):
 
 Both options use default odds. Neither touches the pity offset.
 
+**These sources can give multiple rares.** Because every card rolls on its own and the pity offset is never involved, there's nothing stopping two (or more) rares from showing up. Combat rewards can't really do this: a rolled rare resets the offset, which drops the next slot's rare chance to ~0%. Default-odds sources have no such limit. Kaleidoscope is the clearest example: it hands out two 3-card rewards, each card an independent {{constants.card_rarity_odds.RegularRareOdds.base | pct}} rare roll, so a rare in each reward is uncommon (about 1 in 130) but completely normal.
+
 ### 2. Uniform across the whole pool
 
 Used by: the All Star modifier (and any source that grants a random card with no rarity restriction).
