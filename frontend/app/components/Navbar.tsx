@@ -28,7 +28,9 @@ const EXACT_MATCH = new Set(["/leaderboards"]);
 
 function isLinkActive(strippedPath: string, href: string): boolean {
   if (EXACT_MATCH.has(href)) return strippedPath === href;
-  return strippedPath.startsWith(href);
+  // Match on path-segment boundaries so e.g. "/tier-list" doesn't light up
+  // when the active route is "/tier-list-maker".
+  return strippedPath === href || strippedPath.startsWith(`${href}/`);
 }
 
 const NAV_GROUPS: NavGroup[] = [
@@ -79,6 +81,7 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Tools",
     links: [
+      { href: "/tier-list-maker", label: "Tier List Maker" },
       { href: "/overlay", label: "Overlay (Overwolf)" },
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon" },

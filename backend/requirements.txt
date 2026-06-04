@@ -12,3 +12,4 @@ pyjwt[crypto]==2.10.1
 libsql==0.1.11
 pymongo==4.10.1
 python-multipart==0.0.20
+boto3>=1.34,<2

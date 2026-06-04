@@ -35,6 +35,18 @@ UNINSTALL_FORWARD_FROM=op://Spire Codex/Resend/forward-from
 # Admin endpoints token (gates /api/admin/*)
 ADMIN_TOKEN=op://Spire Codex/Admin Token/value
 
+# Cloudflare R2 — backend writes tier list preview images to a DEDICATED
+# previews bucket (token scoped to just that bucket, so the backend can't
+# touch the main art bucket). R2_ENDPOINT is the account-level S3 endpoint
+# (https://<account_id>.r2.cloudflarestorage.com); R2_PUBLIC_BASE_URL is the
+# previews bucket's public custom domain. Match the item/field names to your
+# 1Password. When any of these are unset, previews are simply skipped.
+R2_ACCESS_KEY_ID=op://Spire Codex/R2 Tierlists/access_key_id
+R2_SECRET_ACCESS_KEY=op://Spire Codex/R2 Tierlists/secret_access_key
+R2_ENDPOINT=op://Spire Codex/R2 Tierlists/endpoint
+R2_BUCKET=spire-codex-tierlists
+R2_PUBLIC_BASE_URL=https://tierlists.spire-codex.com
+
 # MongoDB — runs database. Hosted on the secondary Lightsail box as a
 # single-node replica set. Primary app box reaches it over the private
 # Lightsail network; firewall rule restricts port 27017 to primary's
