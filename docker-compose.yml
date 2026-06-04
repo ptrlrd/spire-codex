@@ -29,6 +29,10 @@ services:
       context: ./frontend
       args:
         NEXT_PUBLIC_API_URL: http://localhost:8000
+        # Local static/ only ships .png originals; the API serves .webp paths
+        # that live on the CDN. Without this, imageUrl() falls back to the
+        # backend and every image 404s. CI bakes the same value (ci.yml).
+        NEXT_PUBLIC_CDN_URL: https://cdn.spire-codex.com
     ports:
       - "3000:3000"
     volumes:

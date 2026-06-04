@@ -5,6 +5,7 @@ import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import ProfileTierLists from "./ProfileTierLists";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -147,7 +148,7 @@ interface ProfileStatsProps {
   onDeleteConfirm: (hash: string | null) => void;
 }
 
-type Tab = "overview" | "runs" | "cards" | "relics" | "potions";
+type Tab = "overview" | "runs" | "cards" | "relics" | "potions" | "tierlists";
 
 export default function ProfileStats({
   runs, runsTotal, runsLoading, runsPage, runsTotalPages,
@@ -217,6 +218,7 @@ export default function ProfileStats({
     { key: "cards", label: "Cards" },
     { key: "relics", label: "Relics" },
     { key: "potions", label: "Potions" },
+    { key: "tierlists", label: "Tier Lists" },
   ];
 
   const topCards = (stats.top_cards || [])
@@ -582,6 +584,8 @@ export default function ProfileStats({
           )}
         </div>
       )}
+
+      {tab === "tierlists" && <ProfileTierLists />}
     </div>
   );
 }
