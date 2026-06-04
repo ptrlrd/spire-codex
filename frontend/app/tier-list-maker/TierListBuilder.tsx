@@ -283,11 +283,14 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   async function captureDataUrl(pixelRatio: number): Promise<string | null> {
     const node = captureRef.current;
     if (!node) return null;
-    // React drives input values via the property, not the attribute, so the
-    // cloned node html-to-image renders would lose the tier labels. Mirror
-    // each value onto its attribute first so the labels show in the export.
+    // React drives field values via the property, not the DOM, so the clone
+    // html-to-image renders would lose them. Mirror each onto the DOM first so
+    // the tier labels show in the export.
     node.querySelectorAll("input").forEach((el) => {
       el.setAttribute("value", (el as HTMLInputElement).value);
+    });
+    node.querySelectorAll("textarea").forEach((el) => {
+      el.textContent = (el as HTMLTextAreaElement).value;
     });
     const canvas = await toCanvas(node, {
       pixelRatio,
@@ -683,6 +686,17 @@ function TierRow({
   const [hexDraft, setHexDraft] = useState(tier.color);
   useEffect(() => setHexDraft(tier.color), [tier.color]);
 
+  // Auto-grow the label so multi-line labels (Shift+Enter) show in full
+  // instead of being clipped in the narrow label column.
+  const labelRef = useRef<HTMLTextAreaElement>(null);
+  useEffect(() => {
+    const el = labelRef.current;
+    if (el) {
+      el.style.height = "0px";
+      el.style.height = `${el.scrollHeight}px`;
+    }
+  }, [tier.label]);
+
   // Close the row editor on Escape (the X button covers the click path).
   useEffect(() => {
     if (!editing) return;
@@ -699,10 +713,20 @@ function TierRow({
         style={{ background: tier.color }}
         className="relative flex w-20 shrink-0 flex-col items-center justify-center gap-1 p-1 text-black"
       >
-        <input
+        <textarea
+          ref={labelRef}
           value={tier.label}
           onChange={(e) => onRename(tier.id, e.target.value)}
-          className="w-full bg-transparent text-center text-lg font-bold outline-none"
+          onKeyDown={(e) => {
+            // Enter commits (blur); Shift+Enter inserts a line break.
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              e.currentTarget.blur();
+            }
+          }}
+          rows={1}
+          spellCheck={false}
+          className="w-full resize-none overflow-hidden whitespace-pre-wrap break-words bg-transparent text-center text-lg font-bold leading-tight outline-none"
           aria-label="Tier label"
         />
         <button

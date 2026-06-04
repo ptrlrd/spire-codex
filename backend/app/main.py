@@ -256,6 +256,14 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
             response.headers["Cache-Control"] = "no-store"
         elif path.startswith("/api/auth/"):
             response.headers["Cache-Control"] = "private, no-store"
+        elif path.startswith("/api/tierlists") and not path.startswith(
+            "/api/tierlists/shared"
+        ):
+            # Per-user lists + owner-scoped reads must never be cached — the
+            # generic /api/* rule below would let the CDN serve one user's
+            # tier lists to everyone (and stale them for an hour after a save).
+            # The public /api/tierlists/shared/* reads fall through and cache.
+            response.headers["Cache-Control"] = "private, no-store"
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
         elif path.startswith("/api/"):

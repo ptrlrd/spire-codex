@@ -22,26 +22,27 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const owner = list.owner_username || "Anonymous";
     const label = ENTITY_LABEL[list.entity_type as EntityType] ?? "Tier";
-    // The unfurl headline — "{title} made by {owner}".
-    const ogTitle = `${list.title} made by ${owner}`;
+    // Unified with the rest of the site's titles:
+    // "{title} made by {owner} - Slay the Spire 2 (sts2) | Spire Codex"
+    const title = `${list.title} made by ${owner} - Slay the Spire 2 (sts2) | Spire Codex`;
     const description = `A ${label} tier list for Slay the Spire 2, made on Spire Codex.`;
     // The preview lives on the CDN; the API returns its URL when present.
     const images = list.image_url ? [list.image_url] : [];
 
     return {
-      title: `${ogTitle} - Slay the Spire 2 (sts2) | Spire Codex`,
+      title,
       description,
       openGraph: {
         type: "article",
         siteName: SITE_NAME,
         url: `${SITE_URL}/tier-list-maker/shared/${shareId}`,
-        title: ogTitle,
+        title,
         description,
         images,
       },
       twitter: {
         card: "summary_large_image",
-        title: ogTitle,
+        title,
         description,
         images,
       },
