@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Character, Card, Relic } from "@/lib/api";
+import type { Character, Card, Relic, Potion } from "@/lib/api";
 import RichDescription from "@/app/components/RichDescription";
+import ScoreBadge from "@/app/components/ScoreBadge";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 
@@ -31,6 +32,76 @@ const QUOTE_LABELS: Record<string, { label: string; icon: string }> = {
   banter_dead: { label: "Last Words", icon: "skull" },
 };
 
+interface TopEntry {
+  entity_id: string;
+  picks: number;
+  wins: number;
+  win_rate: number;
+  score: number | null;
+}
+
+interface TopEntity {
+  id: string;
+  name: string;
+  image_url: string | null;
+}
+
+// One "Top 5 picked" block. Mirrors the cards page top-by-score grid so
+// the character page reads as the same family of stats.
+function TopPicks({
+  title,
+  subtitle,
+  items,
+  lookup,
+  hrefBase,
+}: {
+  title: string;
+  subtitle: string;
+  items: TopEntry[];
+  lookup: (id: string) => TopEntity | undefined;
+  hrefBase: string;
+}) {
+  const resolved = items
+    .map((it) => ({ it, ent: lookup(it.entity_id) }))
+    .filter((x): x is { it: TopEntry; ent: TopEntity } => !!x.ent);
+  if (resolved.length === 0) return null;
+  return (
+    <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 mb-6">
+      <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-1">{title}</h2>
+      <p className="text-sm text-[var(--text-muted)] mb-4">{subtitle}</p>
+      <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {resolved.map(({ it, ent }) => (
+          <li key={it.entity_id}>
+            <Link
+              href={`${hrefBase}/${ent.id.toLowerCase()}`}
+              className="block group p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] transition-colors"
+            >
+              {ent.image_url && (
+                <img
+                  src={imageUrl(ent.image_url)}
+                  alt={`${ent.name} - Slay the Spire 2`}
+                  className="w-full h-24 object-contain mb-2"
+                  loading="lazy"
+                  crossOrigin="anonymous"
+                />
+              )}
+              <div className="flex items-center justify-between gap-2">
+                <span className="text-sm font-medium group-hover:text-[var(--accent-gold)] transition-colors truncate">
+                  {ent.name}
+                </span>
+                {it.score != null && <ScoreBadge score={it.score} size="sm" />}
+              </div>
+              <div className="text-xs text-[var(--text-muted)] mt-1">
+                {it.win_rate.toFixed(1)}% win · {it.picks.toLocaleString()} picks
+              </div>
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export default function CharacterDetail({ initialCharacter }: { initialCharacter?: Character | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -40,6 +111,10 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   const [relics, setRelics] = useState<Record<string, Relic>>({});
   const [allCards, setAllCards] = useState<Card[]>([]);
   const [poolRelics, setPoolRelics] = useState<Relic[]>([]);
+  const [potions, setPotions] = useState<Record<string, Potion>>({});
+  const [topCards, setTopCards] = useState<TopEntry[]>([]);
+  const [topRelics, setTopRelics] = useState<TopEntry[]>([]);
+  const [topPotions, setTopPotions] = useState<TopEntry[]>([]);
   const [loading, setLoading] = useState(!initialCharacter);
   const [notFound, setNotFound] = useState(false);
   const [expandedAncient, setExpandedAncient] = useState<string | null>(null);
@@ -71,6 +146,50 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
       })
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  // Run-metric driven "Top 5 picked" data + the potion catalog to
+  // resolve names/images. Kept separate from the catalog fetch above so
+  // a cold stats snapshot never blocks the rest of the page.
+  useEffect(() => {
+    if (!id) return;
+    const top = (type: string) =>
+      cachedFetch<TopEntry[]>(`${API}/api/runs/top/${type}/${id}?limit=5`).catch(
+        () => [] as TopEntry[],
+      );
+    Promise.all([
+      cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}`).catch(
+        () => [] as Potion[],
+      ),
+      top("cards"),
+      top("relics"),
+      top("potions"),
+    ]).then(([potionsData, tc, tr, tp]: [Potion[], TopEntry[], TopEntry[], TopEntry[]]) => {
+      const pm: Record<string, Potion> = {};
+      for (const p of potionsData ?? []) pm[p.id] = p;
+      setPotions(pm);
+      setTopCards(tc ?? []);
+      setTopRelics(tr ?? []);
+      setTopPotions(tp ?? []);
+    });
+  }, [id, lang]);
+
+  // Catalogs are keyed by their original id casing; run-metric entity
+  // ids come back upper-cased, so index everything by lowercase id.
+  const cardByLower = useMemo(() => {
+    const m: Record<string, Card> = {};
+    for (const k in cards) m[k.toLowerCase()] = cards[k];
+    return m;
+  }, [cards]);
+  const relicByLower = useMemo(() => {
+    const m: Record<string, Relic> = {};
+    for (const k in relics) m[k.toLowerCase()] = relics[k];
+    return m;
+  }, [relics]);
+  const potionByLower = useMemo(() => {
+    const m: Record<string, Potion> = {};
+    for (const k in potions) m[k.toLowerCase()] = potions[k];
+    return m;
+  }, [potions]);
 
   if (loading) {
     return (
@@ -278,6 +397,30 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
           })}
         </div>
       </div>
+
+      {/* Top picked from community runs, ranked by how often this
+          character's runs include them. */}
+      <TopPicks
+        title={`Top cards picked by ${char.name}`}
+        subtitle="Most-included cards across community-tracked runs, with win rate and Codex Score."
+        items={topCards}
+        lookup={(eid) => cardByLower[eid.toLowerCase()]}
+        hrefBase="/cards"
+      />
+      <TopPicks
+        title={`Top relics picked by ${char.name}`}
+        subtitle="Relics that show up most often in this character's runs."
+        items={topRelics}
+        lookup={(eid) => relicByLower[eid.toLowerCase()]}
+        hrefBase="/relics"
+      />
+      <TopPicks
+        title={`Top potions picked by ${char.name}`}
+        subtitle="Potions most commonly held in this character's runs."
+        items={topPotions}
+        lookup={(eid) => potionByLower[eid.toLowerCase()]}
+        hrefBase="/potions"
+      />
 
       {/* All Character Cards */}
       {allCards.length > 0 && (

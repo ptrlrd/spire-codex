@@ -101,6 +101,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [savedShareId, setSavedShareId] = useState<string | undefined>(initial?.share_id);
   const savedIdRef = useRef<string | undefined>(initial?.id);
   // The branded region (tier rows + Spire Codex header) captured on export.
@@ -250,7 +251,6 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     setSaving(true);
     setError(null);
     try {
-      const isCreate = !savedIdRef.current;
       const payload = buildPayload();
       let result: TierList;
       if (savedIdRef.current) {
@@ -260,27 +260,17 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
       }
       savedIdRef.current = result.id;
       setSavedShareId(result.share_id);
-
-      if (isCreate) {
-        // First save: render the preview now (so the OG card is ready), then
-        // land on the public /shared/ URL — that's the one people should share.
-        if (result.id) {
-          const url = await captureDataUrl(1).catch(() => null);
-          if (url) await saveTierListImage(result.id, url).catch(() => {});
-        }
-        if (result.share_id) {
-          router.push(`/tier-list-maker/shared/${result.share_id}`);
-        } else if (result.id) {
-          router.replace(`/tier-list-maker/${result.id}`);
-        }
-      } else if (result.id) {
-        // Editing an existing list: refresh the preview in the background and
-        // stay in the editor.
+      // Refresh the share/OG preview in the background — best-effort, and it
+      // doesn't interrupt editing.
+      if (result.id) {
         const id = result.id;
         captureDataUrl(1)
           .then((url) => (url ? saveTierListImage(id, url) : undefined))
           .catch(() => {});
       }
+      // Stay in the editor; canonical edit URL so reloads and later saves work.
+      // The Share box surfaces the public /shared/ link to copy.
+      if (result.id) router.replace(`/tier-list-maker/${result.id}`);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not save");
     } finally {
@@ -439,10 +429,16 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
             className="flex-1 min-w-[200px] rounded bg-neutral-800 px-2 py-1 text-sm text-neutral-200"
           />
           <button
-            onClick={() => navigator.clipboard?.writeText(shareUrl)}
-            className="rounded bg-neutral-700 px-3 py-1 text-sm text-white hover:bg-neutral-600"
+            onClick={() => {
+              navigator.clipboard?.writeText(shareUrl);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 1500);
+            }}
+            className={`rounded px-3 py-1 text-sm text-white ${
+              copied ? "bg-green-600" : "bg-neutral-700 hover:bg-neutral-600"
+            }`}
           >
-            Copy
+            {copied ? "Copied!" : "Copy"}
           </button>
         </div>
       )}

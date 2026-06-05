@@ -9,7 +9,11 @@ from fastapi import APIRouter, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
-from ..services.run_entity_stats import get_all_entity_scores, get_entity_stats
+from ..services.run_entity_stats import (
+    get_all_entity_scores,
+    get_entity_stats,
+    get_top_entities_for_character,
+)
 from ..metrics import (
     run_submissions,
     run_character,
@@ -669,6 +673,26 @@ def get_entity_scores(request: Request, entity_type: str):
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
     return get_all_entity_scores(entity_type)
+
+
+@router.get("/top/{entity_type}/{character}", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_top_for_character(
+    request: Request, entity_type: str, character: str, limit: int = 5
+):
+    """Most-picked entities of a type for one character, ranked by picks.
+
+    Powers the "Top 5 picked" sections on character pages. Returns a
+    list of {entity_id, picks, wins, win_rate, score}; empty while the
+    snapshot is cold or the character has no runs yet.
+    """
+    if entity_type not in _ENTITY_STATS_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
+        )
+    limit = max(1, min(limit, 20))
+    return get_top_entities_for_character(entity_type, character, limit)
 
 
 # Stats reads come from the materialized `stats_summary` collection,
