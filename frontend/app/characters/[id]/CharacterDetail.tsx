@@ -152,8 +152,11 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   // a cold stats snapshot never blocks the rest of the page.
   useEffect(() => {
     if (!id) return;
+    // Over-fetch: the starter deck, starting relic, and Ascender's Bane
+    // are in every run so they top the raw list, but they're filtered out
+    // below. Grab enough that 5 real picks remain after that.
     const top = (type: string) =>
-      cachedFetch<TopEntry[]>(`${API}/api/runs/top/${type}/${id}?limit=5`).catch(
+      cachedFetch<TopEntry[]>(`${API}/api/runs/top/${type}/${id}?limit=15`).catch(
         () => [] as TopEntry[],
       );
     Promise.all([
@@ -211,6 +214,22 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   }
 
   const style = colorStyles[char.color || ""] || { border: "border-[var(--border-subtle)]", accent: "text-gray-400", bg: "from-gray-900/20" };
+
+  // Strip out items that are in every run for this character anyway — the
+  // starter deck, the starting relic, and Ascender's Bane (added at high
+  // Ascension). They'd otherwise dominate the "most picked" lists while
+  // telling you nothing. Ids are compared in UPPER_SNAKE (the run-stat id
+  // shape); starter lists come through as PascalCase, hence toUpperSnake.
+  const excludedCards = new Set<string>([
+    ...char.starting_deck.map(toUpperSnake),
+    "ASCENDERS_BANE",
+  ]);
+  const excludedRelics = new Set<string>(char.starting_relics.map(toUpperSnake));
+  const filterTop = (items: TopEntry[], excluded: Set<string>) =>
+    items.filter((it) => !excluded.has(it.entity_id.toUpperCase())).slice(0, 5);
+  const topCardsFiltered = filterTop(topCards, excludedCards);
+  const topRelicsFiltered = filterTop(topRelics, excludedRelics);
+  const topPotionsFiltered = topPotions.slice(0, 5);
 
   // Group dialogues by ancient
   const dialoguesByAncient: Record<string, typeof char.dialogues> = {};
@@ -272,10 +291,18 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
       {/* Hero section */}
       <div className={`rounded-xl border-2 ${style.border} bg-gradient-to-br ${style.bg} to-transparent bg-[var(--bg-card)] p-6 mb-8`}>
         <div className="flex flex-col sm:flex-row items-center gap-6">
+          {/* Animated Spine idle when we've rendered one for this version,
+              otherwise the static combat portrait. The animation is a
+              looping webp, lazy-loaded so it only fetches when the page is
+              actually viewed. */}
           <img
-            src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
+            src={imageUrl(
+              char.animation_url ??
+                `/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
+            )}
             alt={`${char.name} - Slay the Spire 2 Character`}
             className="w-48 h-48 object-contain"
+            loading="lazy"
             crossOrigin="anonymous"
           />
           <div className="flex-1 text-center sm:text-left">
@@ -402,22 +429,22 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
           character's runs include them. */}
       <TopPicks
         title={`Top cards picked by ${char.name}`}
-        subtitle="Most-included cards across community-tracked runs, with win rate and Codex Score."
-        items={topCards}
+        subtitle="Most-included cards across community-tracked runs, excluding the starter deck."
+        items={topCardsFiltered}
         lookup={(eid) => cardByLower[eid.toLowerCase()]}
         hrefBase="/cards"
       />
       <TopPicks
         title={`Top relics picked by ${char.name}`}
-        subtitle="Relics that show up most often in this character's runs."
-        items={topRelics}
+        subtitle="Relics that show up most often in this character's runs, excluding the starting relic."
+        items={topRelicsFiltered}
         lookup={(eid) => relicByLower[eid.toLowerCase()]}
         hrefBase="/relics"
       />
       <TopPicks
         title={`Top potions picked by ${char.name}`}
         subtitle="Potions most commonly held in this character's runs."
-        items={topPotions}
+        items={topPotionsFiltered}
         lookup={(eid) => potionByLower[eid.toLowerCase()]}
         hrefBase="/potions"
       />
