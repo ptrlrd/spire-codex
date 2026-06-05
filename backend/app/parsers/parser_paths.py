@@ -125,3 +125,34 @@ def resolve_image_url(entity_type: str, name_stem: str) -> str | None:
         return f"/static/images/{entity_type}/{name_stem}.webp"
 
     return None
+
+
+def resolve_animation_url(entity_type: str, name_stem: str) -> str | None:
+    """Version-aware URL for an animated preview (a looping WebP).
+
+    Mirrors `resolve_image_url`, but animations ship as `.webp` only (no
+    `.png` source), so the on-disk existence check is the `.webp` itself.
+    Same beta-then-stable resolution order.
+    """
+    if BETA_VERSION:
+        per_version = (
+            STATIC_IMAGES_DIR
+            / "beta"
+            / BETA_VERSION
+            / entity_type
+            / f"{name_stem}.webp"
+        )
+        if per_version.exists():
+            if CDN_BASE_URL:
+                return (
+                    f"{CDN_BASE_URL}/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
+                )
+            return f"/static/images/beta/{BETA_VERSION}/{entity_type}/{name_stem}.webp"
+
+    stable = STATIC_IMAGES_DIR / entity_type / f"{name_stem}.webp"
+    if stable.exists():
+        if CDN_BASE_URL:
+            return f"{CDN_BASE_URL}/{entity_type}/{name_stem}.webp"
+        return f"/static/images/{entity_type}/{name_stem}.webp"
+
+    return None

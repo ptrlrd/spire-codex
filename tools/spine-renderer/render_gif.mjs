@@ -90,7 +90,11 @@ async function main() {
   console.log(`Rendering ${skelName} as GIF at ${outputWidth}x${outputHeight}, ${fps}fps...`);
   console.log(`  Textures: ${textureFiles.join(", ")}`);
 
-  const browser = await chromium.launch({ headless: true, channel: "chrome" });
+  // CHROME_GL_ARGS lets the caller hand Chrome GPU flags (e.g. on WSL:
+  // "--use-gl=angle --use-angle=gl-egl --ignore-gpu-blocklist" to render
+  // WebGL on the real GPU via Mesa's D3D12 driver instead of software).
+  const glArgs = (process.env.CHROME_GL_ARGS || "").split(" ").filter(Boolean);
+  const browser = await chromium.launch({ headless: true, channel: "chrome", args: glArgs });
   const page = await browser.newPage();
 
   // For WebP/APNG: stream frames to disk to avoid OOM
@@ -98,13 +102,14 @@ async function main() {
   const framesDir = outputPath + "_frames";
   if (isStreamFormat) {
     fs.mkdirSync(framesDir, { recursive: true });
-    await page.exposeFunction("__saveFrame", (idx, pixels) => {
-      const pngCanvas = createCanvas(outputWidth, outputHeight);
-      const pCtx = pngCanvas.getContext("2d");
-      const imgData = pCtx.createImageData(outputWidth, outputHeight);
-      imgData.data.set(new Uint8ClampedArray(pixels));
-      pCtx.putImageData(imgData, 0, 0);
-      fs.writeFileSync(path.join(framesDir, `frame_${String(idx).padStart(4, "0")}.png`), pngCanvas.toBuffer("image/png"));
+    await page.exposeFunction("__saveFrame", (idx, dataUrl) => {
+      // Frame arrives as a PNG data URL already encoded in-page; just
+      // decode the base64 payload and write it straight to disk.
+      const b64 = dataUrl.slice(dataUrl.indexOf(",") + 1);
+      fs.writeFileSync(
+        path.join(framesDir, `frame_${String(idx).padStart(4, "0")}.png`),
+        Buffer.from(b64, "base64"),
+      );
     });
   }
 
@@ -119,8 +124,8 @@ async function main() {
 
     // Setup WebGL
     const canvas = document.createElement("canvas");
-    canvas.width = outputSize;
-    canvas.height = outputSize;
+    canvas.width = outputWidth;
+    canvas.height = outputWidth;
     document.body.appendChild(canvas);
     const gl = canvas.getContext("webgl2", { alpha: true, premultipliedAlpha: false, preserveDrawingBuffer: true })
              || canvas.getContext("webgl", { alpha: true, premultipliedAlpha: false, preserveDrawingBuffer: true });
@@ -224,11 +229,11 @@ async function main() {
     const bw = maxX - minX, bh = maxY - minY;
     // 0.85 leaves a touch of breathing room around the widest extent so
     // the silhouette doesn't kiss the canvas edge.
-    const scale = Math.min(outputSize / bw, outputSize / bh) * 0.85;
+    const scale = Math.min(outputWidth / bw, outputWidth / bh) * 0.85;
     const cx = (minX + maxX) / 2, cy = (minY + maxY) / 2;
 
     const mvp = new spine.Matrix4();
-    mvp.ortho2d(cx - outputSize / 2 / scale, cy - outputSize / 2 / scale, outputSize / scale, outputSize / scale);
+    mvp.ortho2d(cx - outputWidth / 2 / scale, cy - outputWidth / 2 / scale, outputWidth / scale, outputWidth / scale);
 
     // Render frames
     const frames = [];
@@ -242,7 +247,7 @@ async function main() {
       state.apply(skeleton);
       skeleton.updateWorldTransform(spine.Physics.update);
 
-      gl.viewport(0, 0, outputSize, outputSize);
+      gl.viewport(0, 0, outputWidth, outputWidth);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.enable(gl.BLEND);
@@ -266,7 +271,7 @@ async function main() {
       batcher.end();
 
       const pixels = new Uint8Array(outputWidth * outputHeight * 4);
-      gl.readPixels(0, 0, outputSize, outputHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
+      gl.readPixels(0, 0, outputWidth, outputHeight, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
 
       // Flip vertically
       const flipped = new Uint8Array(outputWidth * outputHeight * 4);
@@ -287,8 +292,17 @@ async function main() {
       }
 
       if (streamFrames) {
-        // Stream mode: write frame to disk via exposed function, don't hold in memory
-        await window.__saveFrame(f, Array.from(flipped));
+        // Encode to a compact PNG data URL in-page before crossing the
+        // CDP bridge. Shipping the raw RGBA array (outputWidth^2 * 4
+        // numbers) per frame is ~100x larger and dominates wall-time —
+        // it's what made WSL renders appear to hang.
+        const cap = document.createElement("canvas");
+        cap.width = outputWidth; cap.height = outputWidth;
+        const cctx = cap.getContext("2d");
+        const idata = cctx.createImageData(outputWidth, outputWidth);
+        idata.data.set(flipped);
+        cctx.putImageData(idata, 0, 0);
+        await window.__saveFrame(f, cap.toDataURL("image/png"));
       } else {
         frames.push(Array.from(flipped));
       }
@@ -323,17 +337,31 @@ async function main() {
         fs.writeFileSync(path.join(tmpDir, `frame_${String(f).padStart(4, "0")}.png`), pngCanvas2.toBuffer("image/png"));
       }
     }
-    // Assemble via Python
+    // Assemble the animation from the per-frame PNGs.
     const { execSync } = await import("child_process");
     const delay = Math.round(1000 / fps);
-    const saveArgs = isWebP ? `lossless=True` : `disposal=2`;
-    execSync(`arch -arm64 python3 -c "
+    const frameFiles = fs.readdirSync(tmpDir)
+      .filter(f => f.startsWith("frame_") && f.endsWith(".png"))
+      .sort()
+      .map(f => path.join(tmpDir, f));
+    if (isWebP) {
+      // img2webp (libwebp) builds an animated WebP natively. -loop 0 loops
+      // forever, -d is the per-frame delay (ms), -q/-m trade size vs quality.
+      const webpQ = process.env.WEBP_Q || "88";
+      execSync(
+        `img2webp -loop 0 -d ${delay} -q ${webpQ} -m 6 ${frameFiles.map(f => JSON.stringify(f)).join(" ")} -o ${JSON.stringify(outputPath)}`,
+        { stdio: "inherit", shell: "/bin/bash" },
+      );
+    } else {
+      // APNG via Pillow on the host python3 (no macOS arch shim).
+      execSync(`python3 -c "
 from PIL import Image
 from pathlib import Path
 frames = sorted(Path('${tmpDir}').glob('frame_*.png'))
 imgs = [Image.open(f).convert('RGBA') for f in frames]
-imgs[0].save('${outputPath}', save_all=True, append_images=imgs[1:], duration=${delay}, loop=0, ${saveArgs})
+imgs[0].save('${outputPath}', save_all=True, append_images=imgs[1:], duration=${delay}, loop=0, disposal=2)
 "`, { stdio: "inherit" });
+    }
     // Cleanup
     for (const f of fs.readdirSync(tmpDir)) fs.unlinkSync(path.join(tmpDir, f));
     fs.rmdirSync(tmpDir);

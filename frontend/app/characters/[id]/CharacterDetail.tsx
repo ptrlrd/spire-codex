@@ -272,10 +272,18 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
       {/* Hero section */}
       <div className={`rounded-xl border-2 ${style.border} bg-gradient-to-br ${style.bg} to-transparent bg-[var(--bg-card)] p-6 mb-8`}>
         <div className="flex flex-col sm:flex-row items-center gap-6">
+          {/* Animated Spine idle when we've rendered one for this version,
+              otherwise the static combat portrait. The animation is a
+              looping webp, lazy-loaded so it only fetches when the page is
+              actually viewed. */}
           <img
-            src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
+            src={imageUrl(
+              char.animation_url ??
+                `/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
+            )}
             alt={`${char.name} - Slay the Spire 2 Character`}
             className="w-48 h-48 object-contain"
+            loading="lazy"
             crossOrigin="anonymous"
           />
           <div className="flex-1 text-center sm:text-left">

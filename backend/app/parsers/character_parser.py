@@ -4,7 +4,12 @@ import json
 import re
 from pathlib import Path
 
-from parser_paths import DECOMPILED, loc_dir as _loc_dir, data_dir as _data_dir
+from parser_paths import (
+    DECOMPILED,
+    loc_dir as _loc_dir,
+    data_dir as _data_dir,
+    resolve_animation_url,
+)
 
 CHARS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Characters"
 
@@ -179,6 +184,9 @@ def parse_character(
         "quotes": quotes if quotes else None,
         "dialogues": dialogues if dialogues else None,
         "image_url": f"/static/images/characters/char_select_{char_id.lower()}.webp",
+        # Looping animated portrait (Spine idle), rendered per beta version.
+        # Null when no animation has been rendered for this character.
+        "animation_url": resolve_animation_url("characters", char_id.lower()),
     }
 
 

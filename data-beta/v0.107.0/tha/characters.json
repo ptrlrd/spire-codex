@@ -47,7 +47,8 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_defect.webp"
+    "image_url": "/static/images/characters/char_select_defect.webp",
+    "animation_url": "/static/images/beta/v0.107.0/characters/defect.webp"
   },
   {
     "id": "IRONCLAD",
@@ -82,7 +83,8 @@
       "cards_modifier_description": "การ์ดนักรบเกราะเหล็กจะปรากฏในรางวัลและร้านค้าแล้ว"
     },
     "dialogues": null,
-    "image_url": "/static/images/characters/char_select_ironclad.webp"
+    "image_url": "/static/images/characters/char_select_ironclad.webp",
+    "animation_url": "/static/images/beta/v0.107.0/characters/ironclad.webp"
   },
   {
     "id": "NECROBINDER",
@@ -130,7 +132,8 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_necrobinder.webp"
+    "image_url": "/static/images/characters/char_select_necrobinder.webp",
+    "animation_url": "/static/images/beta/v0.107.0/characters/necrobinder.webp"
   },
   {
     "id": "REGENT",
@@ -178,7 +181,8 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_regent.webp"
+    "image_url": "/static/images/characters/char_select_regent.webp",
+    "animation_url": "/static/images/beta/v0.107.0/characters/regent.webp"
   },
   {
     "id": "SILENT",
@@ -262,6 +266,7 @@
         ]
       }
     ],
-    "image_url": "/static/images/characters/char_select_silent.webp"
+    "image_url": "/static/images/characters/char_select_silent.webp",
+    "animation_url": "/static/images/beta/v0.107.0/characters/silent.webp"
   }
 ]
