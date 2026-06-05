@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Alleskönner",
+    "description": "Beginne mit [blue]5[/blue] [gold]Farblosen Karten[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Großwildjäger",
+    "description": "Elitegegner schwärmen den Spire und hinterlassen bessere Belohnungen."
+  },
+  {
+    "id": "BINARY",
+    "name": "Binär",
+    "description": "[gold]Kartenbelohnungen[/gold] enthalten jetzt nur noch [blue]2[/blue] Karten."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Verflucht",
+    "description": "Nimm zu Beginn jedes Aktes einen zufälligen [red]Fluch[/red] in dein Deck ."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Tödliche Ereignisse",
+    "description": "In unbekannten Räumen können jetzt Elitegegner sein, aber dort findest du auch häufiger Schatzräume."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Draft",
+    "description": "Wähle [blue]10[/blue] [gold]Kartenbelohnungen[/gold], um dein Startdeck zu ersetzen."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Fliegen",
+    "description": "Du kannst Pfade ignorieren, wenn du entscheidest, zu welchem Raum du reist."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Sammler",
+    "description": "Immer wenn eine Karte in dein Deck nimmst, bekommst du [blue]2[/blue] weitere Exemplare. Du kannst beim Händler keine Karten mehr entfernen."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Wahnsinn",
+    "description": "Beginne mit einem zufälligen Deck aus [blue]30[/blue] Karten."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Gegner hinterlassen [blue]200%[/blue] mehr Gold, aber du kannst an [gold]Lagerfeuern[/gold] nicht schmieden."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Mörderisch",
+    "description": "Du beginnst jeden Kampf mit [blue]3[/blue] [gold]Stärke[/gold]. Alle Gegner beginnen den Kampf mit [blue]3[/blue] [gold]Stärke[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Nachtangst",
+    "description": "Ausruhen an [gold]Lagerfeuern[/gold] heilt alle deine TP, aber kostet [red]5[/red] max. TP."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Sealed-Deck",
+    "description": "Wähle [blue]10[/blue] aus [blue]30[/blue] Karten, die dein Startdeck ersetzen."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Spezialisiert",
+    "description": "Beginne mit [blue]5[/blue] Exemplaren einer einzelnen Karte."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Das Ende naht",
+    "description": "Wenn du einen neuen Raum betrittst, verliere [red]1[/red] max. TP. Beginne jeden Kampf mit [blue]5[/blue] [gold]Panzerung[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Gebrauchtwaren",
+    "description": "Normale Gegner hinterlassen Relikte anstatt Karten."
+  }
+]

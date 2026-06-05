@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Gwiazdor",
+    "description": "Zaczynasz z [blue]5[/blue] [gold]bezbarwnymi kartami[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Gruba zwierzyna",
+    "description": "W Iglicy roi się od Elitarnych przeciwników, którzy upuszczają lepsze nagrody."
+  },
+  {
+    "id": "BINARY",
+    "name": "Zero-jedynkowe łupy",
+    "description": "W [gold]łupach[/gold] dostępne są tylko [blue]2[/blue] karty do wyboru."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Przeklęta wyprawa",
+    "description": "Na początku każdego Aktu dodaj losową [red]Klątwę[/red] do talii."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Zabójcze wydarzenia",
+    "description": "W nieznanych pokojach mogą przebywać Elitarni przeciwnicy, ale masz też większą szansę na znalezienie skarbów."
+  },
+  {
+    "id": "DRAFT",
+    "name": "Plan",
+    "description": "Wybierz karty spośród [blue]10[/blue] [gold]łupów[/gold], które zastąpią twoją talię startową."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Lot",
+    "description": "Możesz ignorować ścieżki w podróży po Iglicy."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Syllogmania",
+    "description": "Za każdym razem gdy dodasz kartę do talii, dodaj jeszcze [blue]2[/blue] kopie. Nie możesz już usuwać kart u Handlarza."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Szaleństwo",
+    "description": "Rozpoczynasz z talią [blue]30[/blue] losowych kart."
+  },
+  {
+    "id": "MIDAS",
+    "name": "Midas",
+    "description": "Przeciwnicy upuszczają [blue]200%[/blue] więcej złota, ale nie można Ulepszać kart w [gold]Obozowiskach[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Mordercza walka",
+    "description": "Zaczynasz każdą walkę z [blue]3[/blue] pkt. [gold]Siły[/gold]. Twoi przeciwnicy również."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Koszmary",
+    "description": "Odpoczynek w [gold]Obozowiskach[/gold] przywraca wszystkie PŻ, ale tracisz [red]5[/red] maks. PŻ."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Zapieczętowana talia",
+    "description": "Stwórz talię startową, wybierając [blue]10[/blue] z [blue]30[/blue] losowych kart."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Specjalista",
+    "description": "Rozpoczynasz z [blue]5[/blue] kopiami jednej karty"
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Śmiertelna choroba",
+    "description": "Kiedykolwiek wejdziesz do nowego pomieszczenia, utrać [red]1[/red] maks. PŻ. Rozpoczynasz walkę z [blue]5[/blue] pkt. [gold]Pancerza[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Starocie",
+    "description": "Zwykli przeciwnicy upuszczają po sobie artefakty zamiast kart."
+  }
+]

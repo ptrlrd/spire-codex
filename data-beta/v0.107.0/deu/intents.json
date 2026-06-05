@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Aggressiv",
+    "description": "Dieser Gegner möchte {IsMultiplayer:alle |}{Repeat:plural:|[blue]{}[/blue] Mal }für [blue]{Damage}[/blue] Schaden [gold]angreifen[/gold].",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Ermächtigen",
+    "description": "Dieser Gegner möchte einen [gold]Buff[/gold] nutzen.",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Böswillig",
+    "description": "Dieser Gegner möchte auf deine Karten [gold]Störungen[/gold] anwenden.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Todesstoß",
+    "description": "Diese Kreatur möchte mit dir zusammen sterben. Sie wird dich für [blue]{Damage}[/blue] Schaden angreifen, bevor sie zerstört wird.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Strategisch",
+    "description": "Dieser Gegner möchte einen [gold]Debuff[/gold] auf dich anwenden.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Strategisch",
+    "description": "Dieser Gegner möchte einen mächtigen [gold]Debuff[/gold] auf dich anwenden.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defensiv",
+    "description": "Dieser Gegner möchte in seinem Zug [gold]blocken[/gold].",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Feige",
+    "description": "Dieser Gegner möchte [gold]entkommen[/gold].",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "Heilen",
+    "description": "Dieser Gegner möchte [gold]heilen[/gold].",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Schlafend",
+    "description": "Dieser Gegner macht in diesem Zug nichts.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Strategisch",
+    "description": "Dieser Gegner möchte dir [blue]{CardCount}[/blue] [gold]Status{CardCount:plural:karte|karten}[/gold] geben.",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Betäubt",
+    "description": "Dieser Gegner kann in seinem nächsten Zug nichts machen.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Herbeirufen",
+    "description": "Dieser Gegner möchte [gold]Monster[/gold] herbeirufen.",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Unbekannt",
+    "description": "Die Intention dieses Gegners ist [gold]unbekannt[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

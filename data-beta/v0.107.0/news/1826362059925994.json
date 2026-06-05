@@ -1,0 +1,16 @@
+{
+  "gid": "1826362059925994",
+  "title": "Hotfix Patch Notes - v0.98.2",
+  "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1826362059925994",
+  "is_external_url": true,
+  "author": "demileaf",
+  "contents": "Happy day-after-launch day, Slayers! We've got another hotfix for you all today which should resolve some more frequent issues that players have been reporting. Your feedback will continue to be invaluable throughout Early Access!\n\n[h3]WRITING:[/h3]\n\n[list]\n[*]Updated various translations\n[*]Fixed Russian and Turkish formatting errors\n[*]Fixed Spanish, Italian, Polish, Russian, and Chinese translation errors\n[/list]\n[h3]BUG FIXES:[/h3]\n\n[b]General:[/b]\n[list]\n[*]Fixed blackscreen on launch caused by Sentry crash reporter mishandling log messages. Affected players no longer need to delete the Sentry folder to launch the game.\n[*]Fixed softlock from [b]Whispering Earring[/b] relic trying to play ally-targeted cards on Osty\n[*]Fixed the Doormaker enemy's music not transitioning when the portal opens\n[/list]\n[b]Multiplayer:[/b]\n[list]\n[*]Fixed an issue where, after playing a multiplayer run, some players were unable to unlock Epochs in the Timeline or start new runs\n[*]Fixed two active [b]Beacon of Hope[/b] powers infinitely proccing each other\n[*]Fixed a state divergence related to [b]Pael's Wing[/b] relic timing\n[/list]",
+  "feedlabel": "Community Announcements",
+  "feedname": "steam_community_announcements",
+  "feed_type": 1,
+  "tags": [
+    "patchnotes"
+  ],
+  "date": 1772851665,
+  "appid": 2868840
+}

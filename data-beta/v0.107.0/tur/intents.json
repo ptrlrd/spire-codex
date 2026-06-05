@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ATTACK",
+    "name": "Saldırgan",
+    "description": "Bu düşman, {IsMultiplayer:herkese |}{Repeat:plural:|[blue]{}[/blue] kez }[blue]{Damage}[/blue] hasar vermek için [gold]Saldırmayı[/gold] amaçlıyor.",
+    "image_url": "/static/images/intents/attack.png"
+  },
+  {
+    "id": "BUFF",
+    "name": "Güçlendirme",
+    "description": "Bu düşman [gold]Güçlendirme[/gold] kullanmayı amaçlıyor.",
+    "image_url": "/static/images/intents/buff.png"
+  },
+  {
+    "id": "CARD_DEBUFF",
+    "name": "Art Niyetli",
+    "description": "Bu düşman, kartlarına [gold]Olumsuz Etki[/gold] uygulamayı amaçlıyor.",
+    "image_url": "/static/images/intents/card_debuff.png"
+  },
+  {
+    "id": "DEATH_BLOW",
+    "name": "Son Darbe",
+    "description": "Bu yaratık seni de beraberinde ölüme sürüklemeye çalışıyor. Yok olmadan önce sana saldırıp [blue]{Damage}[/blue] hasar verecek.",
+    "image_url": "/static/images/intents/death_blow.png"
+  },
+  {
+    "id": "DEBUFF",
+    "name": "Stratejik",
+    "description": "Bu düşman, sana bir [gold]Güçsüzleştirme[/gold] uygulamayı amaçlıyor.",
+    "image_url": "/static/images/intents/debuff.png"
+  },
+  {
+    "id": "DEBUFF_STRONG",
+    "name": "Stratejik",
+    "description": "Bu düşman, sana şiddetli bir [gold]Güçsüzleştirme[/gold] uygulamayı amaçlıyor.",
+    "image_url": "/static/images/intents/debuff_strong.png"
+  },
+  {
+    "id": "DEFEND",
+    "name": "Defansif",
+    "description": "Bu düşman turu geldiğinde [gold]Bloklamayı[/gold] amaçlıyor.",
+    "image_url": "/static/images/intents/defend.png"
+  },
+  {
+    "id": "ESCAPE",
+    "name": "Korkak",
+    "description": "Bu düşman [gold]Kaçmayı[/gold] amaçlıyor.",
+    "image_url": "/static/images/intents/escape.png"
+  },
+  {
+    "id": "HEAL",
+    "name": "İyileştirme",
+    "description": "Bu düşman [gold]İyileştirmeyi[/gold] amaçlıyor.",
+    "image_url": "/static/images/intents/heal.png"
+  },
+  {
+    "id": "SLEEP",
+    "name": "Uyuyor",
+    "description": "Bu düşman, bu turda hiçbir şey yapmıyor.",
+    "image_url": "/static/images/intents/sleep.png"
+  },
+  {
+    "id": "STATUS",
+    "name": "Stratejik",
+    "description": "Bu düşman sana [blue]{CardCount}[/blue] [gold]Durum[/gold] {CardCount:plural:kartı|kartı} vermeyi amaçlıyor.",
+    "image_url": "/static/images/intents/status.png"
+  },
+  {
+    "id": "STUN",
+    "name": "Sersemlemiş",
+    "description": "Bu düşman, bir sonraki turunda hareket edemez.",
+    "image_url": "/static/images/intents/stun.png"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Çağrı",
+    "description": "Bu düşman, [gold]Canavar[/gold] çağırmayı amaçlıyor.",
+    "image_url": "/static/images/intents/summon.png"
+  },
+  {
+    "id": "UNKNOWN",
+    "name": "Bilinmeyen",
+    "description": "Bu düşmanın amacı [gold]Bilinmiyor[/gold].",
+    "image_url": "/static/images/intents/unknown.png"
+  }
+]

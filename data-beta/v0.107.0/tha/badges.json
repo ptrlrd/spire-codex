@@ -1,0 +1,224 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "กองการ์ดใหญ่",
+    "description": "ชนะด้วยกองการ์ด [blue]40[/blue] ใบขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "กองการ์ดใหญ่",
+        "description": "ชนะด้วยกองการ์ด [blue]40[/blue] ใบขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "กองการ์ดมหึมา",
+        "description": "ชนะด้วยกองการ์ด [blue]60[/blue] ใบขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "กองการ์ดมหากาฬ",
+        "description": "ชนะด้วยกองการ์ด [blue]100[/blue] ใบขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "ค-ค-ค-คอมโบ",
+    "description": "เล่นการ์ด [blue]20[/blue] ใบในเทิร์นเดียว",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ค-ค-ค-คอมโบ",
+        "description": "เล่นการ์ด [blue]20[/blue] ใบในเทิร์นเดียว"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "เวรกรรม!",
+    "description": "ชนะด้วย[red]คำสาป[/red] [blue]5[/blue] ใบขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "เวรกรรม!",
+        "description": "ชนะด้วย[red]คำสาป[/red] [blue]5[/blue] ใบขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "งุกแกคู่",
+    "description": "ได้รับดวงตางุกแกทั้งของจริงและของปลอม",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "งุกแกคู่",
+        "description": "ได้รับดวงตางุกแกทั้งของจริงและของปลอม"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "นักล่าลูกพี่",
+    "description": "กำจัดลูกพี่ [blue]3[/blue] ตัวขึ้นไป",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "นักล่าลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]3[/blue] ตัวขึ้นไป"
+      },
+      {
+        "rarity": "silver",
+        "title": "นักฆ่าลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]6[/blue] ตัวขึ้นไป"
+      },
+      {
+        "rarity": "gold",
+        "title": "นักสังหารลูกพี่",
+        "description": "กำจัดลูกพี่ [blue]9[/blue] ตัวขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "หนึ่งเดียวเท่านั้น",
+    "description": "ชนะด้วยกองการ์ดที่ไม่มีการ์ดซ้ำเลย (ยกเว้นการ์ดเริ่มต้น)",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "หนึ่งเดียวเท่านั้น",
+        "description": "ชนะด้วยกองการ์ดที่ไม่มีการ์ดซ้ำเลย (ยกเว้นการ์ดเริ่มต้น)"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "มากวิชา",
+    "description": "ชนะด้วยกองการ์ดที่มีการ์ดเดียวกันซ้ำกัน [blue]5[/blue] ใบขึ้นไป (ยกเว้นการ์ดเริ่มต้น)",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "มากวิชา",
+        "description": "ชนะด้วยกองการ์ดที่มีการ์ดเดียวกันซ้ำกัน [blue]5[/blue] ใบขึ้นไป (ยกเว้นการ์ดเริ่มต้น)"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "ข้าชอบของแวววาว",
+    "description": "สะสมเครื่องราง [blue]25[/blue] ชิ้นขึ้นไป",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ข้าชอบของแวววาว",
+        "description": "สะสมเครื่องราง [blue]25[/blue] ชิ้นขึ้นไป"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "ไร้ที่ติ",
+    "description": "กำจัดบอสได้โดยไม่เสีย HP",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ไร้ที่ติ",
+        "description": "กำจัดบอสได้โดยไม่เสีย HP"
+      },
+      {
+        "rarity": "silver",
+        "title": "ปรมาจารย์",
+        "description": "กำจัดบอส [blue]2[/blue] ตัวได้โดยไม่เสีย HP"
+      },
+      {
+        "rarity": "gold",
+        "title": "สมบูรณ์แบบ",
+        "description": "กำจัดบอส [blue]3[/blue] ตัวได้โดยไม่เสีย HP"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "พักฉ่ำ",
+    "description": "ชนะการเดินทางโดยพักผ่อนที่จุดพักทุกจุด",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "พักฉ่ำ",
+        "description": "ชนะการเดินทางโดยพักผ่อนที่จุดพักทุกจุด"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "ร้อนใจ",
+    "description": "ชนะการเดินทางโดยไม่พักผ่อนเลย",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "ร้อนใจ",
+        "description": "ชนะการเดินทางโดยไม่พักผ่อนเลย"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "แผ่นจารึกแห่งความจริง",
+    "description": "ชนะด้วย HP เพียงแค่ [blue]1[/blue]",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "แผ่นจารึกแห่งความจริง",
+        "description": "ชนะด้วย HP เพียงแค่ [blue]1[/blue]"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  }
+]

@@ -1,0 +1,770 @@
+{
+  "app_id": 2868840,
+  "game_version": "v0.107.0",
+  "build_id": "",
+  "tag": "v0.107.0",
+  "date": "2026-06-04",
+  "title": "Beta v0.107.0",
+  "from_ref": "data-beta/v0.106.1/eng",
+  "to_ref": "data-beta/v0.107.0/eng",
+  "summary": {
+    "added": 0,
+    "removed": 1,
+    "changed": 41
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 577,
+      "new_count": 577,
+      "changed": [
+        {
+          "id": "GENETIC_ALGORITHM",
+          "name": "Genetic Algorithm",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain X [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold...",
+              "new": "Gain 1 [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold..."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain X [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold...",
+              "new": "Gain 1 [gold]Block[/gold].\nPermanently increase this card's [gold]Block[/gold..."
+            }
+          ]
+        },
+        {
+          "id": "JUGGERNAUT",
+          "name": "Juggernaut",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain [gold]Block[/gold], deal 5 damage to a random enemy.",
+              "new": "Whenever you gain [gold]Block[/gold], deal 6 damage to a random enemy."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "5",
+              "new": "6"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you gain [gold]Block[/gold], deal 7 damage to a random enemy.",
+              "new": "Whenever you gain [gold]Block[/gold], deal 8 damage to a random enemy."
+            },
+            {
+              "field": "vars.Juggernaut",
+              "old": "5",
+              "new": "6"
+            },
+            {
+              "field": "vars.JuggernautPower",
+              "old": "5",
+              "new": "6"
+            }
+          ]
+        },
+        {
+          "id": "MONARCHS_GAZE",
+          "name": "Monarch's Gaze",
+          "changes": [
+            {
+              "field": "cost",
+              "old": "3",
+              "new": "2"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "2",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "REFLECT",
+          "name": "Reflect",
+          "changes": [
+            {
+              "field": "block",
+              "old": "16",
+              "new": "15"
+            },
+            {
+              "field": "description",
+              "old": "Gain 16 [gold]Block[/gold].\nBlocked attack damage is reflected to your attack...",
+              "new": "Gain 15 [gold]Block[/gold].\nBlocked attack damage is reflected to your attack..."
+            },
+            {
+              "field": "upgrade.block",
+              "old": "+4",
+              "new": "+5"
+            },
+            {
+              "field": "vars.Block",
+              "old": "16",
+              "new": "15"
+            }
+          ]
+        },
+        {
+          "id": "SACRIFICE",
+          "name": "Sacrifice",
+          "changes": [
+            {
+              "field": "description_raw",
+              "old": "If [gold]Osty[/gold] is alive, he dies and you gain [gold]Block[/gold] equal ...",
+              "new": "If [gold]Osty[/gold] is alive, he dies and you gain [gold]Block[/gold] equal ..."
+            }
+          ]
+        },
+        {
+          "id": "SIC_EM",
+          "name": "Sic 'Em",
+          "changes": [
+            {
+              "field": "description",
+              "old": "[gold]Osty[/gold] deals 5 damage.\nWhenever [gold]Osty[/gold] hits this enemy ...",
+              "new": "[gold]Osty[/gold] deals 5 damage.\nWhenever [gold]Osty[/gold] hits this enemy ..."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "[gold]Osty[/gold] deals 6 damage.\nWhenever [gold]Osty[/gold] hits this enemy ...",
+              "new": "[gold]Osty[/gold] deals 6 damage.\nWhenever [gold]Osty[/gold] hits this enemy ..."
+            },
+            {
+              "field": "vars.SicEm",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.SicEmPower",
+              "old": "2",
+              "new": "3"
+            }
+          ]
+        },
+        {
+          "id": "THE_SCYTHE",
+          "name": "The Scythe",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Deal X damage.\nPermanently increase this card's damage by 3.",
+              "new": "Deal 13 damage.\nPermanently increase this card's damage by 4."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal X damage.\nPermanently increase this card's damage by 4.",
+              "new": "Deal 13 damage.\nPermanently increase this card's damage by 5."
+            },
+            {
+              "field": "vars.Increase",
+              "old": "3",
+              "new": "4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 296,
+      "new_count": 296,
+      "changed": [
+        {
+          "id": "BLACK_BLOOD",
+          "name": "Black Blood",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "shared",
+              "new": "ironclad"
+            }
+          ]
+        },
+        {
+          "id": "BONE_TEA",
+          "name": "Bone Tea",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of the next [blue]2[/blue] combats, [gold]Upgrade[/gold] your st...",
+              "new": "At the start of the next combat, [gold]Upgrade[/gold] your starting hand."
+            }
+          ]
+        },
+        {
+          "id": "DIVINE_DESTINY",
+          "name": "Divine Destiny",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "shared",
+              "new": "regent"
+            }
+          ]
+        },
+        {
+          "id": "EMBER_TEA",
+          "name": "Ember Tea",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of the next [blue]2[/blue] combats, gain [blue]2[/blue] [gold]St...",
+              "new": "At the start of the next [blue]5[/blue] combats, gain [blue]2[/blue] [gold]St..."
+            }
+          ]
+        },
+        {
+          "id": "INFUSED_CORE",
+          "name": "Infused Core",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "shared",
+              "new": "defect"
+            }
+          ]
+        },
+        {
+          "id": "PHYLACTERY_UNBOUND",
+          "name": "Phylactery Unbound",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "shared",
+              "new": "necrobinder"
+            }
+          ]
+        },
+        {
+          "id": "RING_OF_THE_DRAKE",
+          "name": "Ring of the Drake",
+          "changes": [
+            {
+              "field": "pool",
+              "old": "shared",
+              "new": "silent"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "changed": [
+        {
+          "id": "AEONGLASS",
+          "name": "Aeonglass",
+          "changes": [
+            {
+              "field": "block_values.IncreasingIntensity",
+              "old": "33",
+              "new": "none"
+            },
+            {
+              "field": "moves[EBB].intent",
+              "old": "Attack + Debuff",
+              "new": "Attack + Defend"
+            },
+            {
+              "field": "moves[INCREASING_INTENSITY].intent",
+              "old": "Status + Buff + Defend",
+              "new": "Status + Buff"
+            }
+          ]
+        },
+        {
+          "id": "AXE_RUBY_RAIDER",
+          "name": "Axe Raider",
+          "changes": [
+            {
+              "field": "moves[BIG_SWING].damage.ascension",
+              "old": "6",
+              "new": "13"
+            },
+            {
+              "field": "moves[BIG_SWING].damage.normal",
+              "old": "5",
+              "new": "12"
+            }
+          ]
+        },
+        {
+          "id": "GAS_BOMB",
+          "name": "Gas Bomb",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "Evil Gas",
+              "new": "Living Fog"
+            }
+          ]
+        },
+        {
+          "id": "LAGAVULIN_MATRIARCH",
+          "name": "Lagavulin Matriarch",
+          "changes": [
+            {
+              "field": "moves[SLASH2].damage.ascension",
+              "old": "21",
+              "new": "14"
+            },
+            {
+              "field": "moves[SLASH2].damage.normal",
+              "old": "19",
+              "new": "12"
+            }
+          ]
+        },
+        {
+          "id": "LIVING_FOG",
+          "name": "Living Fog",
+          "changes": [
+            {
+              "field": "encounters[0].encounter_name",
+              "old": "Evil Gas",
+              "new": "Living Fog"
+            }
+          ]
+        },
+        {
+          "id": "TORCH_HEAD_AMALGAM",
+          "name": "Torch Head Amalgam",
+          "changes": [
+            {
+              "field": "moves[TACKLE_3].damage.ascension",
+              "old": "19",
+              "new": "15"
+            },
+            {
+              "field": "moves[TACKLE_3].damage.normal",
+              "old": "18",
+              "new": "14"
+            },
+            {
+              "field": "moves[TACKLE_4].damage.ascension",
+              "old": "19",
+              "new": "15"
+            },
+            {
+              "field": "moves[TACKLE_4].damage.normal",
+              "old": "18",
+              "new": "14"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "enchantments",
+      "name": "Enchantments",
+      "old_count": 22,
+      "new_count": 22,
+      "changed": [
+        {
+          "id": "ADROIT",
+          "name": "Adroit",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Gain [blue]0[/blue] [gold]Block[/gold].",
+              "new": "Gain [blue]X[/blue] [gold]Block[/gold]."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Gain 0 [gold]Block[/gold].",
+              "new": "Gain X [gold]Block[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SOULS_POWER",
+          "name": "Soul's Power",
+          "changes": [
+            {
+              "field": "applicable_to",
+              "old": "cards with Exhaust",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "SOWN",
+          "name": "Sown",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you play this card each combat, gain [energy:1].",
+              "new": "The first time you play this card each combat, gain [energy:X]."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Gain [energy:1].",
+              "new": "Gain [energy:X]."
+            }
+          ]
+        },
+        {
+          "id": "SPIRAL",
+          "name": "Spiral",
+          "changes": [
+            {
+              "field": "applicable_to",
+              "old": "Basic",
+              "new": "Basic Strike, Defend cards"
+            }
+          ]
+        },
+        {
+          "id": "SWIFT",
+          "name": "Swift",
+          "changes": [
+            {
+              "field": "description",
+              "old": "The first time you play this card, draw [blue][Amount][/blue] cards.",
+              "new": "The first time you play this card, draw [blue]X[/blue] cards."
+            },
+            {
+              "field": "extra_card_text",
+              "old": "Draw [Amount] cards the first time this is played.",
+              "new": "Draw X cards the first time this is played."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "encounters",
+      "name": "Encounters",
+      "old_count": 87,
+      "new_count": 87,
+      "changed": [
+        {
+          "id": "LIVING_FOG_NORMAL",
+          "name": "Living Fog",
+          "changes": [
+            {
+              "field": "loss_text",
+              "old": "[b]The Adventurer[/b] couldn't bear the stench of some [gold]Evil Gas[/gold].",
+              "new": "[b]The Adventurer[/b] couldn't bear the stench of some [gold]Living Fog[/gold]."
+            },
+            {
+              "field": "name",
+              "old": "Evil Gas",
+              "new": "Living Fog"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "COLOSSAL_FLOWER",
+          "name": "Colossal Flower",
+          "changes": [
+            {
+              "field": "options[EXTRACT_CURRENT_PRIZE_1].description",
+              "old": "Gain [blue][Prize][/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]35[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[EXTRACT_CURRENT_PRIZE_1].description",
+              "old": "Gain [blue][Prize][/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]35[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[REACH_DEEPER_1].options[EXTRACT_CURRENT_PRIZE_2].description",
+              "old": "Gain [blue][Prize][/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]75[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[REACH_DEEPER_2].options[EXTRACT_INSTEAD].description",
+              "old": "Gain [blue][Prize][/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]135[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "CRYSTAL_SPHERE",
+          "name": "Crystal Sphere",
+          "changes": [
+            {
+              "field": "options[UNCOVER_FUTURE].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue] t...",
+              "new": "Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue..."
+            },
+            {
+              "field": "pages[INITIAL].options[UNCOVER_FUTURE].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue] t...",
+              "new": "Pay [red]51-99[/red] [gold]Gold[/gold]. [purple]Divine[/purple] [blue]3[/blue..."
+            }
+          ]
+        },
+        {
+          "id": "DENSE_VEGETATION",
+          "name": "Dense Vegetation",
+          "changes": [
+            {
+              "field": "options[TRUDGE_ON].description",
+              "old": "Gain [blue]0[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP.",
+              "new": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[TRUDGE_ON].description",
+              "old": "Gain [blue]0[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP.",
+              "new": "Gain [blue]61-99[/blue] [gold]Gold[/gold]. Lose [red]8[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANT",
+          "name": "The Merchant???",
+          "changes": [
+            {
+              "field": "preconditions[1]",
+              "old": "Requires 100+ gold or a Foul Potion",
+              "new": "Single player only"
+            }
+          ]
+        },
+        {
+          "id": "JUNGLE_MAZE_ADVENTURE",
+          "name": "Jungle Maze Adventure",
+          "changes": [
+            {
+              "field": "options[JOIN_FORCES].description",
+              "old": "Gain [blue]50[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]35-65[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "options[SOLO_QUEST].description",
+              "old": "Gain [blue]150[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.",
+              "new": "Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[JOIN_FORCES].description",
+              "old": "Gain [blue]50[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]35-65[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SOLO_QUEST].description",
+              "old": "Gain [blue]150[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP.",
+              "new": "Gain [blue]135-165[/blue] [gold]Gold[/gold]. Lose [red]18[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "LOST_WISP",
+          "name": "The Lost Wisp",
+          "changes": [
+            {
+              "field": "options[SEARCH].description",
+              "old": "Gain [blue]60[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]45-75[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SEARCH].description",
+              "old": "Gain [blue]60[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]45-75[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "LUMINOUS_CHOIR",
+          "name": "Luminous Choir",
+          "changes": [
+            {
+              "field": "options[OFFER_TRIBUTE].description",
+              "old": "Pay [red]149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold].",
+              "new": "Pay [red]100-149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold]."
+            },
+            {
+              "field": "options[OFFER_TRIBUTE_LOCKED].description",
+              "old": "Requires [blue]149[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]100-149[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[OFFER_TRIBUTE].description",
+              "old": "Pay [red]149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold].",
+              "new": "Pay [red]100-149[/red] [gold]Gold[/gold]. Obtain a random [gold]Relic[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[OFFER_TRIBUTE_LOCKED].description",
+              "old": "Requires [blue]149[/blue] [gold]Gold[/gold].",
+              "new": "Requires [blue]100-149[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "SPIRALING_WHIRLPOOL",
+          "name": "Spiraling Whirlpool",
+          "changes": [
+            {
+              "field": "options[DRINK].description",
+              "old": "Heal [green]0[/green] HP.",
+              "new": "Heal [green]33% Max[/green] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[DRINK].description",
+              "old": "Heal [green]0[/green] HP.",
+              "new": "Heal [green]33% Max[/green] HP."
+            }
+          ]
+        },
+        {
+          "id": "SUNKEN_STATUE",
+          "name": "The Sunken Statue",
+          "changes": [
+            {
+              "field": "options[DIVE_INTO_WATER].description",
+              "old": "Gain [blue]111[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP.",
+              "new": "Gain [blue]101-121[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP."
+            },
+            {
+              "field": "pages[INITIAL].options[DIVE_INTO_WATER].description",
+              "old": "Gain [blue]111[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP.",
+              "new": "Gain [blue]101-121[/blue] [gold]Gold[/gold]. Lose [red]7[/red] HP."
+            }
+          ]
+        },
+        {
+          "id": "SUNKEN_TREASURY",
+          "name": "Sunken Treasury",
+          "changes": [
+            {
+              "field": "options[FIRST_CHEST].description",
+              "old": "Gain [blue]60[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]52-67[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "options[SECOND_CHEST].description",
+              "old": "Gain [blue]333[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red].",
+              "new": "Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red]."
+            },
+            {
+              "field": "pages[INITIAL].options[FIRST_CHEST].description",
+              "old": "Gain [blue]60[/blue] [gold]Gold[/gold].",
+              "new": "Gain [blue]52-67[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[SECOND_CHEST].description",
+              "old": "Gain [blue]333[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red].",
+              "new": "Gain [blue]303-363[/blue] [gold]Gold[/gold]. Receive [red]Greed[/red]."
+            }
+          ]
+        },
+        {
+          "id": "TEA_MASTER",
+          "name": "Tea Master",
+          "changes": [
+            {
+              "field": "options[BONE_TEA].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue] ...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next combat, [gold]U..."
+            },
+            {
+              "field": "options[EMBER_TEA].description",
+              "old": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue]...",
+              "new": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]5[/blue]..."
+            },
+            {
+              "field": "pages[INITIAL].options[BONE_TEA].description",
+              "old": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue] ...",
+              "new": "Pay [red]50[/red] [gold]Gold[/gold]. At the start of the next combat, [gold]U..."
+            },
+            {
+              "field": "pages[INITIAL].options[EMBER_TEA].description",
+              "old": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]2[/blue]...",
+              "new": "Pay [red]150[/red] [gold]Gold[/gold]. At the start of the next [blue]5[/blue]..."
+            }
+          ]
+        },
+        {
+          "id": "THIS_OR_THAT",
+          "name": "This or That?",
+          "changes": [
+            {
+              "field": "options[PLAIN].description",
+              "old": "Lose [red]6[/red] HP. Gain [blue]0[/blue] [gold]Gold[/gold].",
+              "new": "Lose [red]6[/red] HP. Gain [blue]41-68[/blue] [gold]Gold[/gold]."
+            },
+            {
+              "field": "pages[INITIAL].options[PLAIN].description",
+              "old": "Lose [red]6[/red] HP. Gain [blue]0[/blue] [gold]Gold[/gold].",
+              "new": "Lose [red]6[/red] HP. Gain [blue]41-68[/blue] [gold]Gold[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "VAKUU",
+          "name": "Vakuu",
+          "changes": [
+            {
+              "field": "dialogue.Returning[1].text",
+              "old": "143. 143 times you’ve been here.",
+              "new": "{Visits}. {Visits} {Visits:plural:time|times} you’ve been here."
+            }
+          ]
+        },
+        {
+          "id": "WHISPERING_HOLLOW",
+          "name": "Whispering Hollow",
+          "changes": [
+            {
+              "field": "options[GOLD].description",
+              "old": "Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Pot...",
+              "new": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]..."
+            },
+            {
+              "field": "pages[INITIAL].options[GOLD].description",
+              "old": "Lose [red]35[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]Pot...",
+              "new": "Lose [red]26-44[/red] [gold]Gold[/gold]. Procure [blue]2[/blue] random [gold]..."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 258,
+      "new_count": 257,
+      "removed": [
+        {
+          "id": "EBB",
+          "name": "Ebb"
+        }
+      ],
+      "changed": [
+        {
+          "id": "JUGGERNAUT",
+          "name": "Juggernaut",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you gain [gold]Block[/gold], deal [blue]5[/blue] damage to a random ...",
+              "new": "Whenever you gain [gold]Block[/gold], deal [blue]6[/blue] damage to a random ..."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

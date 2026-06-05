@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Big Deck",
+    "description": "Won with a deck of [blue]40[/blue] or more cards.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Big Deck",
+        "description": "Won with a deck of [blue]40[/blue] or more cards."
+      },
+      {
+        "rarity": "silver",
+        "title": "Huge Deck",
+        "description": "Won with a deck of [blue]60[/blue] or more cards."
+      },
+      {
+        "rarity": "gold",
+        "title": "Monster Deck",
+        "description": "Won with a deck of [blue]100[/blue] or more cards."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "C-c-c-Combo",
+    "description": "Played [blue]20[/blue] cards in a single turn.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "C-c-c-Combo",
+        "description": "Played [blue]20[/blue] cards in a single turn."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Curses!",
+    "description": "Won with [blue]5[/blue] or more [red]Curses[/red].",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Curses!",
+        "description": "Won with [blue]5[/blue] or more [red]Curses[/red]."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Damage Leader",
+    "description": "Dealt the most damage to enemies in multiplayer.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Damage Leader",
+        "description": "Dealt the most damage to enemies in multiplayer."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Debuffer",
+    "description": "Applied the most Debuffs in multiplayer.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Debuffer",
+        "description": "Applied the most Debuffs in multiplayer."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Double Snecko",
+    "description": "Obtained both fake and real Snecko eyes.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Double Snecko",
+        "description": "Obtained both fake and real Snecko eyes."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Elite Hunter",
+    "description": "Killed [blue]3[/blue] or more Elites.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Elite Hunter",
+        "description": "Killed [blue]3[/blue] or more Elites."
+      },
+      {
+        "rarity": "silver",
+        "title": "Elite Killer",
+        "description": "Killed [blue]6[/blue] or more Elites."
+      },
+      {
+        "rarity": "gold",
+        "title": "Elite Slayer",
+        "description": "Killed [blue]9[/blue] or more Elites."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Famished",
+    "description": "Won with Max HP reduced to less than half of your starting HP.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Famished",
+        "description": "Won with Max HP reduced to less than half of your starting HP."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Favorite Card",
+    "description": "Won a run and played a single card more than [blue]100[/blue] times.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Favorite Card",
+        "description": "Won a run and played a single card more than [blue]100[/blue] times."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "Well Fed",
+    "description": "Won a run with your Max HP increased by [blue]15[/blue] or more.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Well Fed",
+        "description": "Won a run with your Max HP increased by [blue]15[/blue] or more."
+      },
+      {
+        "rarity": "silver",
+        "title": "Stuffed",
+        "description": "Won a run with your Max HP increased by [blue]30[/blue] or more."
+      },
+      {
+        "rarity": "gold",
+        "title": "Glutton",
+        "description": "Won a run with absurdly high Max HP (increased by [blue]50[/blue] or more)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "Mender",
+    "description": "Mended an ally once.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mender",
+        "description": "Mended an ally once."
+      },
+      {
+        "rarity": "silver",
+        "title": "Healer",
+        "description": "Mended an ally twice."
+      },
+      {
+        "rarity": "gold",
+        "title": "Doctor",
+        "description": "Mended allies over and over again (at least [blue]3[/blue] times)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Highlander",
+    "description": "Won with a deck where no two cards are the same (excludes Starters).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Highlander",
+        "description": "Won with a deck where no two cards are the same (excludes Starters)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Honed",
+    "description": "Won with a deck with [blue]5[/blue] or more of the same card (excludes Starters).",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Honed",
+        "description": "Won with a deck with [blue]5[/blue] or more of the same card (excludes Starters)."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "I Like Shiny",
+    "description": "Amassed [blue]25[/blue] or more relics.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "I Like Shiny",
+        "description": "Amassed [blue]25[/blue] or more relics."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Ka-Ching!",
+    "description": "Spent more than [blue]1,000[/blue] [gold]Gold[/gold] at the Merchant.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Ka-Ching!",
+        "description": "Spent more than [blue]1,000[/blue] [gold]Gold[/gold] at the Merchant."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Money Money",
+    "description": "Won with [blue]200[/blue] or more [gold]Gold[/gold].",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Money Money",
+        "description": "Won with [blue]200[/blue] or more [gold]Gold[/gold]."
+      },
+      {
+        "rarity": "silver",
+        "title": "Rainin' Money",
+        "description": "Won with [blue]400[/blue] or more [gold]Gold[/gold]."
+      },
+      {
+        "rarity": "gold",
+        "title": "I Like Gold",
+        "description": "Won with [blue]600[/blue] or more [gold]Gold[/gold]."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Mystery Machine",
+    "description": "Traveled to [blue]15[/blue] or more ? rooms.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mystery Machine",
+        "description": "Traveled to [blue]15[/blue] or more ? rooms."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Flawless",
+    "description": "Defeated a boss without losing HP.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Flawless",
+        "description": "Defeated a boss without losing HP."
+      },
+      {
+        "rarity": "silver",
+        "title": "Supreme",
+        "description": "Defeated [blue]2[/blue] bosses without losing HP."
+      },
+      {
+        "rarity": "gold",
+        "title": "Perfect",
+        "description": "Defeated [blue]3[/blue] bosses without losing HP."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Restful",
+    "description": "Won a run while resting at each Rest Site.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Restful",
+        "description": "Won a run while resting at each Rest Site."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Restless",
+    "description": "Won a run without ever resting.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Restless",
+        "description": "Won a run without ever resting."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Speedy",
+    "description": "Won a run in under [blue]50[/blue] minutes.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Speedy",
+        "description": "Won a run in under [blue]50[/blue] minutes."
+      },
+      {
+        "rarity": "silver",
+        "title": "Speedier",
+        "description": "Won a run in under [blue]40[/blue] minutes."
+      },
+      {
+        "rarity": "gold",
+        "title": "Speediest",
+        "description": "Won a run in under [blue]30[/blue] minutes."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Tablet of Truth",
+    "description": "Won with only [blue]1[/blue] Max HP.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Tablet of Truth",
+        "description": "Won with only [blue]1[/blue] Max HP."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Team Player",
+    "description": "Deck contained [blue]3[/blue] or more multiplayer-only cards.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Team Player",
+        "description": "Deck contained [blue]3[/blue] or more multiplayer-only cards."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Small Deck",
+    "description": "Won with a deck of [blue]20[/blue] or fewer cards.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Small Deck",
+        "description": "Won with a deck of [blue]20[/blue] or fewer cards."
+      },
+      {
+        "rarity": "silver",
+        "title": "Tiny Deck",
+        "description": "Won with a deck of [blue]10[/blue] or fewer cards."
+      },
+      {
+        "rarity": "gold",
+        "title": "Miniscule",
+        "description": "Won with a deck of [blue]5[/blue] or fewer cards."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Whomper",
+    "description": "Dealt more than [blue]100[/blue] damage with a single attack.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Whomper",
+        "description": "Dealt more than [blue]100[/blue] damage with a single attack."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

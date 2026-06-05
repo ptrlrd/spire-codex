@@ -1,0 +1,482 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "Büyük Deste",
+    "description": "[blue]40[/blue] veya daha fazla kartı içeren bir desteyle kazandın.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Büyük Deste",
+        "description": "[blue]40[/blue] veya daha fazla kartı içeren bir desteyle kazandın."
+      },
+      {
+        "rarity": "silver",
+        "title": "Devasa Deste",
+        "description": "[blue]60[/blue] veya daha fazla kartı içeren bir desteyle kazandın."
+      },
+      {
+        "rarity": "gold",
+        "title": "Canavar Deste",
+        "description": "[blue]100[/blue] veya daha fazla kartı içeren bir desteyle kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "K-k-k-Kombo",
+    "description": "Tek turda [blue]20[/blue] kart oynadın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "K-k-k-Kombo",
+        "description": "Tek turda [blue]20[/blue] kart oynadın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "Lanet Olası!",
+    "description": "[blue]5[/blue] veya daha fazla [red]Lanet[/red] ile kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Lanet Olası!",
+        "description": "[blue]5[/blue] veya daha fazla [red]Lanet[/red] ile kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "Hasar Lideri",
+    "description": "Çok oyunculuda düşmanlara en çok hasarı verdin.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Hasar Lideri",
+        "description": "Çok oyunculuda düşmanlara en çok hasarı verdin."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "Güçsüzleştirici",
+    "description": "Çok oyunculuda en çok güçsüzleştirmeyi uyguladın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Güçsüzleştirici",
+        "description": "Çok oyunculuda en çok güçsüzleştirmeyi uyguladın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "Çifte Snecko",
+    "description": "Hem sahte hem de gerçek Snecko gözlerini elde ettin.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Çifte Snecko",
+        "description": "Hem sahte hem de gerçek Snecko gözlerini elde ettin."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "Elit Avcısı",
+    "description": "[blue]3[/blue] veya daha fazla Elit öldürdün.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Elit Avcısı",
+        "description": "[blue]3[/blue] veya daha fazla Elit öldürdün."
+      },
+      {
+        "rarity": "silver",
+        "title": "Elit Katili",
+        "description": "[blue]6[/blue] veya daha fazla Elit öldürdün."
+      },
+      {
+        "rarity": "gold",
+        "title": "Elit Celladı",
+        "description": "[blue]9[/blue] veya daha fazla Elit öldürdün."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "Bitkin",
+    "description": "Maksimum CP değerin başlangıç CP'nin yarısından azken kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Bitkin",
+        "description": "Maksimum CP değerin başlangıç CP'nin yarısından azken kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "FAVORITE_CARD",
+    "name": "Favori Kartın",
+    "description": "Bir kartı [blue]100[/blue]'den fazla kez oynadın ve oyunu kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Favori Kartın",
+        "description": "Bir kartı [blue]100[/blue]'den fazla kez oynadın ve oyunu kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_favorite_card.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "İyi Beslenmiş",
+    "description": "Maksimum CP'ni [blue]15[/blue] veya daha fazla artırarak oyun kazandın.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "İyi Beslenmiş",
+        "description": "Maksimum CP'ni [blue]15[/blue] veya daha fazla artırarak oyun kazandın."
+      },
+      {
+        "rarity": "silver",
+        "title": "Tıkınmış",
+        "description": "Maksimum CP'ni [blue]30[/blue] veya daha fazla artırarak oyun kazandın."
+      },
+      {
+        "rarity": "gold",
+        "title": "Obur",
+        "description": "Absürt miktarda yüksek bir Maksimum CP ile oyun kazandın. ([blue]50[/blue] veya daha fazla artırılmış)"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "İyileştirici",
+    "description": "Bir kez bir oyuncu iyileştirdin.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "İyileştirici",
+        "description": "Bir kez bir oyuncu iyileştirdin."
+      },
+      {
+        "rarity": "silver",
+        "title": "Şifacı",
+        "description": "İki kez bir oyuncu iyileştirdin."
+      },
+      {
+        "rarity": "gold",
+        "title": "Doktor",
+        "description": "Diğer oyuncuları tekrar ve tekrar iyileştirdin. (En az [blue]3[/blue] kez)"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "Sade Yaşam",
+    "description": "Başlangıç kartları hariç, hiçbir kartın aynı olmadığı bir desteyle kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Sade Yaşam",
+        "description": "Başlangıç kartları hariç, hiçbir kartın aynı olmadığı bir desteyle kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "Mükemmelleştirilmiş",
+    "description": "Başlangıç kartları hariç, aynı karttan [blue]5[/blue] veya daha fazlasını içeren bir desteyle kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Mükemmelleştirilmiş",
+        "description": "Başlangıç kartları hariç, aynı karttan [blue]5[/blue] veya daha fazlasını içeren bir desteyle kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "Parlak Şeyleri Severim",
+    "description": "[blue]25[/blue] veya daha fazla kalıntı topladın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Parlak Şeyleri Severim",
+        "description": "[blue]25[/blue] veya daha fazla kalıntı topladın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "Şıngır Şıngır!",
+    "description": "Tüccar'da [blue]1000[/blue]'den daha fazla [gold]Altın[/gold] harcadın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Şıngır Şıngır!",
+        "description": "Tüccar'da [blue]1000[/blue]'den daha fazla [gold]Altın[/gold] harcadın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "Paracıklar Paracıklar",
+    "description": "[blue]200[/blue] veya daha fazla [gold]Altın[/gold] ile kazandın.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Paracıklar Paracıklar",
+        "description": "[blue]200[/blue] veya daha fazla [gold]Altın[/gold] ile kazandın."
+      },
+      {
+        "rarity": "silver",
+        "title": "Para Yağmuru",
+        "description": "[blue]400[/blue] veya daha fazla [gold]Altın[/gold] ile kazandın."
+      },
+      {
+        "rarity": "gold",
+        "title": "Altına Bayılırım",
+        "description": "[blue]600[/blue] veya daha fazla [gold]Altın[/gold] ile kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "Gizem Makinesi",
+    "description": "[blue]15[/blue] veya daha fazla ? odasına seyahat ettin.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Gizem Makinesi",
+        "description": "[blue]15[/blue] veya daha fazla ? odasına seyahat ettin."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "Kusursuz",
+    "description": "Bir Boss'u CP kaybetmeden yendin.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Kusursuz",
+        "description": "Bir Boss'u CP kaybetmeden yendin."
+      },
+      {
+        "rarity": "silver",
+        "title": "Yüce",
+        "description": "[blue]2[/blue] Boss'u CP kaybetmeden yendin."
+      },
+      {
+        "rarity": "gold",
+        "title": "Mükemmel",
+        "description": "[blue]3[/blue] Boss'u CP kaybetmeden yendin."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "Rahat",
+    "description": "Her Dinlenme Yeri'nde dinlenerek oyunu kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Rahat",
+        "description": "Her Dinlenme Yeri'nde dinlenerek oyunu kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "Rahatsız",
+    "description": "Hiç dinlenmeden bir oyun kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Rahatsız",
+        "description": "Hiç dinlenmeden bir oyun kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "Süratli",
+    "description": "[blue]50[/blue] dakikanın altında bir oyun kazandın.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Süratli",
+        "description": "[blue]50[/blue] dakikanın altında bir oyun kazandın."
+      },
+      {
+        "rarity": "silver",
+        "title": "Daha Da Süratli",
+        "description": "[blue]40[/blue] dakikanın altında bir oyun kazandın."
+      },
+      {
+        "rarity": "gold",
+        "title": "En Süratli",
+        "description": "[blue]30[/blue] dakikanın altında bir oyun kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "Doğruluğun Tableti",
+    "description": "Yalnızca [blue]1[/blue] Maksimum CP ile kazandın.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Doğruluğun Tableti",
+        "description": "Yalnızca [blue]1[/blue] Maksimum CP ile kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "Takım Oyuncusu",
+    "description": "Desten, çok oyunculuya özel [blue]3[/blue] veya daha fazla kart içeriyordu.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Takım Oyuncusu",
+        "description": "Desten, çok oyunculuya özel [blue]3[/blue] veya daha fazla kart içeriyordu."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "Küçük Deste",
+    "description": "[blue]20[/blue] veya daha az kartın olduğu bir desteyle kazandın.",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Küçük Deste",
+        "description": "[blue]20[/blue] veya daha az kartın olduğu bir desteyle kazandın."
+      },
+      {
+        "rarity": "silver",
+        "title": "Minik Deste",
+        "description": "[blue]10[/blue] veya daha az kartın olduğu bir desteyle kazandın."
+      },
+      {
+        "rarity": "gold",
+        "title": "Minicik",
+        "description": "[blue]5[/blue] veya daha az kartın olduğu bir desteyle kazandın."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  },
+  {
+    "id": "WHOMPER",
+    "name": "Şamarcı",
+    "description": "Tek bir saldırı ile [blue]100[/blue]'ün üzerinde hasar verdin.",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "Şamarcı",
+        "description": "Tek bir saldırı ile [blue]100[/blue]'ün üzerinde hasar verdin."
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_whomper.png"
+  }
+]

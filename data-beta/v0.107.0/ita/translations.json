@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "Attacco",
+    "Skill": "Abilità",
+    "Power": "Potere",
+    "Status": "Stato",
+    "Curse": "Maledizione",
+    "Quest": "Missione"
+  },
+  "card_rarities": {
+    "Basic": "Base",
+    "Common": "Comune",
+    "Uncommon": "Non comune",
+    "Rare": "Rara",
+    "Ancient": "Antica",
+    "Event": "Evento",
+    "Token": "Segnalino",
+    "Status": "Stato",
+    "Curse": "Maledizione",
+    "Quest": "Missione"
+  },
+  "relic_rarities": {
+    "Starter": "Reliquia iniziale",
+    "Common": "Reliquia comune",
+    "Uncommon": "Reliquia non comune",
+    "Rare": "Reliquia rara",
+    "Ancient": "Reliquia antica",
+    "Event": "Reliquia evento",
+    "Shop": "Reliquia del negozio"
+  },
+  "potion_rarities": {
+    "Common": "Comune",
+    "Uncommon": "Non comune",
+    "Rare": "Rara",
+    "Event": "Evento",
+    "Token": "Segnalino"
+  },
+  "keywords": {
+    "ETERNAL": "Eternità",
+    "ETHEREAL": "Evanescenza",
+    "EXHAUST": "Esaurimento",
+    "INNATE": "Innatismo",
+    "RETAIN": "Conservazione",
+    "SLY": "Astuzia",
+    "UNPLAYABLE": "Ingiocabilità"
+  },
+  "sections": {
+    "cards": "Collezione delle carte",
+    "characters": "Characters",
+    "relics": "Reliquiario",
+    "monsters": "Bestiario",
+    "potions": "Laboratorio delle pozioni",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "Cronologia",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "Vedi tutte le carte che hai incontrato nella Guglia.",
+    "relics": "Esamina i vari ninnoli e i manufatti che hai ottenuto nelle tue partite.",
+    "monsters": "Vedi tutti i nemici che hai incontrato nella Guglia.",
+    "potions": "Osserva le numerose pozioni che hai trovato nella Guglia."
+  },
+  "character_names": {
+    "ironclad": "Ironclad",
+    "silent": "Silent",
+    "defect": "Defect",
+    "necrobinder": "Necrobinder",
+    "regent": "Regent"
+  }
+}

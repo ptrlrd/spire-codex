@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "Superestrella",
+    "description": "Comienzas con [blue]5[/blue] [gold]cartas incoloras[/gold]."
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "Caza mayor",
+    "description": "Los enemigos élite abundan en la Torre y sueltan mejores recompensas."
+  },
+  {
+    "id": "BINARY",
+    "name": "Binario",
+    "description": "Las [gold]cartas recompensa[/gold] solo contienen [blue]2[/blue] cartas."
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "Partida maldita",
+    "description": "Al comienzo de cada acto, agregas una [red]maldición[/red] al azar a tu mazo."
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "Eventos mortales",
+    "description": "Las salas desconocidas ahora pueden contener enemigos élite, pero también hay mayor posibilidad de encontrar salas de tesoro."
+  },
+  {
+    "id": "DRAFT",
+    "name": "A elección",
+    "description": "Eliges [blue]10[/blue] [gold]cartas recompensa[/gold] para reemplazar tu mazo inicial."
+  },
+  {
+    "id": "FLIGHT",
+    "name": "Sobrevuelo",
+    "description": "Puedes ignorar ciertos puntos al elegir hacia qué sala dirigirte."
+  },
+  {
+    "id": "HOARDER",
+    "name": "Acumulación",
+    "description": "Al agregar una carta a tu mazo, agregas [blue]2[/blue] copias adicionales. Ya no puedes quitar cartas de tu mazo con el Comerciante."
+  },
+  {
+    "id": "INSANITY",
+    "name": "Locura",
+    "description": "Comienzas con un mazo de [blue]30[/blue] cartas al azar."
+  },
+  {
+    "id": "MIDAS",
+    "name": "El toque de Midas",
+    "description": "Los enemigos sueltan un [blue]200 %[/blue] más de oro, pero no podrás forjar en los [gold]puntos de descanso[/gold]."
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "Homicida",
+    "description": "Comienzas cada combate con [blue]3[/blue] de [gold]fuerza[/gold]. Todos los enemigos comienzan el combate con [blue]3[/blue] de [gold]fuerza[/gold]."
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "Terrores nocturnos",
+    "description": "Al descansar en los [gold]puntos de descanso[/gold], recuperas todos los PV, pero pierdes [red]5[/red] PV máx."
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "Mazo sellado",
+    "description": "Eliges [blue]10[/blue] de [blue]30[/blue] cartas para reemplazar tu mazo inicial."
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "Especialista",
+    "description": "Comienzas con [blue]5[/blue] copias de una misma carta."
+  },
+  {
+    "id": "TERMINAL",
+    "name": "Terminal",
+    "description": "Al entrar a una nueva sala, pierdes [red]1[/red] PV máx. Comienzas cada combate con [blue]5[/blue] puntos de [gold]revestimiento[/gold]."
+  },
+  {
+    "id": "VINTAGE",
+    "name": "Antiguo",
+    "description": "Los enemigos normales sueltan reliquias en lugar de cartas."
+  }
+]

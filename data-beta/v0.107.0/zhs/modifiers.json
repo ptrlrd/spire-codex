@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "全明星",
+    "description": "开始时拥有[blue]5[/blue]张[gold]无色牌[/gold]。"
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "精英猎手",
+    "description": "高塔中现在满是精英，且击败它们的奖励变得更好。"
+  },
+  {
+    "id": "BINARY",
+    "name": "两者择一",
+    "description": "[gold]卡牌奖励[/gold]只有[blue]2[/blue]张牌。"
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "诅咒局",
+    "description": "在每一阶段开始时，将一张随机[red]诅咒[/red]牌加入你的牌组。"
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "致命事件",
+    "description": "？房间现在可能会出现精英，但出现宝箱房的几率也会上升。"
+  },
+  {
+    "id": "DRAFT",
+    "name": "选牌",
+    "description": "进行[blue]10[/blue]次[gold]卡牌奖励[/gold]的选择来替换你的初始牌组。"
+  },
+  {
+    "id": "FLIGHT",
+    "name": "飞行",
+    "description": "在选择每一层房间时可以无视路线。"
+  },
+  {
+    "id": "HOARDER",
+    "name": "囤积癖",
+    "description": "每当你往牌组中添加牌时，都额外添加[blue]2[/blue]张相同牌。你不能在商人处移除卡牌。"
+  },
+  {
+    "id": "INSANITY",
+    "name": "精神错乱",
+    "description": "初始牌组将会是[blue]30[/blue]张随机卡牌。"
+  },
+  {
+    "id": "MIDAS",
+    "name": "点金手",
+    "description": "敌人掉落的金币增加[blue]200%[/blue]，但你不能在[gold]休息处[/gold]锻造升级卡牌。"
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "嗜杀成性",
+    "description": "你在每场战斗开始时获得[blue]3[/blue]点[gold]力量[/gold]，所有敌人在战斗开始时获得[blue]3[/blue]点[gold]力量[/gold]。"
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "暗夜惊魂",
+    "description": "在[gold]休息处[/gold]休息会恢复全部生命，但会失去[red]5[/red]点最大生命值。"
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "现开套牌",
+    "description": "从[blue]30[/blue]张随机牌中选择[blue]10[/blue]张来构筑你的初始牌组。"
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "专精",
+    "description": "游戏开始时获得[blue]5[/blue]张相同的牌。"
+  },
+  {
+    "id": "TERMINAL",
+    "name": "身患绝症",
+    "description": "你每进入一个新房间都会失去[red]1[/red]点最大生命值。你在每场战斗开始时获得[blue]5[/blue]层[gold]覆甲[/gold]。"
+  },
+  {
+    "id": "VINTAGE",
+    "name": "上等好货",
+    "description": "普通敌人不再掉落卡牌，而是掉落随机遗物。"
+  }
+]
