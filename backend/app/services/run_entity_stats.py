@@ -466,6 +466,41 @@ def get_all_entity_scores(entity_type: str) -> dict[str, dict[str, Any]]:
     return out
 
 
+def get_top_entities_for_character(
+    entity_type: str, character: str, limit: int = 5
+) -> list[dict[str, Any]]:
+    """Most-picked entities of one type for a single character.
+
+    Scans the per-entity `by_character` breakdown and ranks by that
+    character's pick count, e.g. the cards Ironclad runs include most
+    often. Score is the same Bayesian-shrunk metric, computed from the
+    character's own wins/picks against the type baseline.
+    """
+    _maybe_rebuild()
+    char = character.upper()
+    baseline = _type_baseline(entity_type)
+    rows: list[dict[str, Any]] = []
+    for (etype, eid), agg in _cache.items():
+        if etype != entity_type:
+            continue
+        cstats = agg["by_character"].get(char)
+        if not cstats or cstats["picks"] <= 0:
+            continue
+        picks = cstats["picks"]
+        wins = cstats["wins"]
+        rows.append(
+            {
+                "entity_id": eid,
+                "picks": picks,
+                "wins": wins,
+                "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
+                "score": _compute_score(wins, picks, baseline),
+            }
+        )
+    rows.sort(key=lambda r: r["picks"], reverse=True)
+    return rows[:limit]
+
+
 def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     """Public accessor — returns the aggregate for one entity or None.
 
