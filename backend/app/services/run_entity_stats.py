@@ -1061,10 +1061,9 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
                 )
             )
             continue
-        # All-runs view: split cards into base + "+" rows. Reward picks
-        # (Elo/Pick%/per-act) only exist for the base card, since reward
-        # screens never offer the upgraded version; the "+" row carries
-        # deck win rate / Codex Score only.
+        # All-runs view: split cards into base + "+" rows. Both rows share the
+        # card's reward metrics (Elo/Pick%/per-act); they differ in the
+        # deck-outcome columns (Codex Score / Win% / picks).
         if entity_type == "cards" and ("base" in agg or "upg" in agg):
             base = agg.get("base") or {"picks": 0, "wins": 0}
             rows.append(
@@ -1082,16 +1081,21 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
             )
             upg = agg.get("upg")
             if upg and upg.get("picks", 0) > 0:
+                # Reward picks (Elo/Pick%/per-act) are a property of the card,
+                # not its upgrade level: you pick the base card in the reward,
+                # then upgrade it later. So the "+" row carries the same
+                # card-level reward metrics as the base row and differs only in
+                # the deck-outcome columns (Codex Score / Win% / picks).
                 rows.append(
                     _row(
                         eid,
                         upg["picks"],
                         upg["wins"],
-                        elo=None,
-                        offered=0,
-                        picked=0,
-                        off_act=z3,
-                        pick_act=z3,
+                        elo=agg.get("elo"),
+                        offered=agg.get("offered", 0),
+                        picked=agg.get("picked", 0),
+                        off_act=agg.get("off_act") or z3,
+                        pick_act=agg.get("pick_act") or z3,
                         upgraded=True,
                     )
                 )
