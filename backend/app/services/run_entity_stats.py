@@ -131,6 +131,12 @@ _RUNS_DIR = (
 # walking the files itself — this is what stops N workers each pegging a
 # CPU rebuilding the same data. Mirrors the stats_summary pattern.
 SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
+# Bump whenever the snapshot shape changes (fields the readers depend on).
+# Guards against an out-of-date writer (e.g. a stale container sharing the
+# Mongo) clobbering the snapshot: loaders reject a mismatched version and
+# keep serving what they have, and the leader rebuilds right over it instead
+# of trusting its freshness. Version 2 = elo + base/upg + cohorts + community.
+SNAPSHOT_VERSION = 2
 # Leader rebuilds the heavy walk at most this often.
 _SNAPSHOT_REBUILD_SECONDS = 10 * 60
 # Workers reload the snapshot from Mongo this often (cheap read).
@@ -689,15 +695,21 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
             logger.warning("skipping unreadable run %s: %s", run_hash, e)
             continue
 
-        # Community / fun stats, accumulated from the same blob.
-        community_stats.accumulate(
-            community_acc,
-            blob,
-            run_hash=run_hash,
-            is_win=is_win,
-            character=character,
-            ascension=row.get("ascension") or 0,
-        )
+        # Community / fun stats, accumulated from the same blob. Guarded so
+        # one malformed blob can't abort the whole snapshot rebuild.
+        try:
+            community_stats.accumulate(
+                community_acc,
+                blob,
+                run_hash=run_hash,
+                is_win=is_win,
+                character=character,
+                ascension=row.get("ascension") or 0,
+            )
+        except Exception:
+            logger.warning(
+                "community-stats accumulate failed for %s", run_hash, exc_info=True
+            )
 
         # Dedupe per-run: a deck with 5 Strikes still only counts ONE
         # pick of "this run had Strike". We count run-level membership
@@ -767,13 +779,17 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
 
         # Rest-site Smith decisions: the upgraded card beats the other
         # eligible-but-unupgraded cards in the deck. Feeds the Upgrade Elo.
-        for winners, losers in _walk_rest_upgrade_choices(blob):
-            for winner in winners:
-                for loser in losers:
-                    if winner == loser:
-                        continue
-                    key = (winner, loser)
-                    upgrade_pair_wins[key] = upgrade_pair_wins.get(key, 0) + 1
+        # Guarded like the community walk: a weird blob skips, never aborts.
+        try:
+            for winners, losers in _walk_rest_upgrade_choices(blob):
+                for winner in winners:
+                    for loser in losers:
+                        if winner == loser:
+                            continue
+                        key = (winner, loser)
+                        upgrade_pair_wins[key] = upgrade_pair_wins.get(key, 0) + 1
+        except Exception:
+            logger.warning("smith-choice walk failed for %s", run_hash, exc_info=True)
 
         # Card-reward decisions: count offers/picks per act and record the
         # picked-beats-skipped head-to-heads for the Bradley-Terry fit, for
@@ -974,6 +990,7 @@ def _persist_snapshot(
             "community": cohort_meta.get("community", {}),
             "entity_types": list(by_type.keys()),
             "built_at": now,
+            "snapshot_version": SNAPSHOT_VERSION,
         },
         upsert=True,
     )
@@ -985,6 +1002,16 @@ def _load_snapshot() -> bool:
     coll = _snapshot_coll()
     meta = coll.find_one({"_id": "__meta__"})
     if not meta:
+        return False
+    if meta.get("snapshot_version") != SNAPSHOT_VERSION:
+        # Written by a different code version (e.g. a stale container sharing
+        # the Mongo). Keep whatever this worker already serves rather than
+        # regressing to a snapshot missing fields the readers depend on.
+        logger.warning(
+            "ignoring entity-stats snapshot with version %s (want %s)",
+            meta.get("snapshot_version"),
+            SNAPSHOT_VERSION,
+        )
         return False
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     for etype in meta.get("entity_types", []):
@@ -1035,8 +1062,15 @@ def refresh_entity_stats_snapshot() -> int:
     snapshot is younger than _SNAPSHOT_REBUILD_SECONDS. Returns the
     entity count written (0 if skipped)."""
     coll = _snapshot_coll()
-    meta = coll.find_one({"_id": "__meta__"}, {"built_at": 1})
-    if meta and meta.get("built_at"):
+    meta = coll.find_one({"_id": "__meta__"}, {"built_at": 1, "snapshot_version": 1})
+    # Only honor the freshness skip for a snapshot this code version wrote.
+    # A stale writer keeps built_at young forever, which would otherwise pin
+    # the leader on an old-shape snapshot it can never replace.
+    if (
+        meta
+        and meta.get("built_at")
+        and meta.get("snapshot_version") == SNAPSHOT_VERSION
+    ):
         built = meta["built_at"]
         if built.tzinfo is None:
             built = built.replace(tzinfo=timezone.utc)
