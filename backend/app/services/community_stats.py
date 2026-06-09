@@ -49,6 +49,18 @@ def _prettify(raw: str) -> str:
     return raw.replace("_", " ").title()
 
 
+def _merge_starter(cid: str | None) -> str | None:
+    """Collapse the per-character basics into one entry so most-removed shows
+    a single "Strike"/"Defend" instead of STRIKE_IRONCLAD, STRIKE_SILENT, etc."""
+    if not cid:
+        return cid
+    if cid.startswith("STRIKE_"):
+        return "STRIKE"
+    if cid.startswith("DEFEND_"):
+        return "DEFEND"
+    return cid
+
+
 def new_accumulator() -> dict[str, Any]:
     """A fresh, mutable accumulator for one full run-file walk."""
     return {
@@ -160,7 +172,7 @@ def accumulate(
                     raw = rem.get("id") if isinstance(rem, dict) else rem
                     if isinstance(rem, dict) and "card" in rem:
                         raw = (rem.get("card") or {}).get("id")
-                    cid = _bare(raw)
+                    cid = _merge_starter(_bare(raw))
                     if cid:
                         _bump(acc["removed"], cid)
 
@@ -195,6 +207,12 @@ def _name_maps() -> dict[str, dict[str, str]]:
     out["encounters"] = _index(data_service.load_encounters)
     out["relics"] = _index(data_service.load_relics)
     out["cards"] = _index(data_service.load_cards)
+    # The merged starter ids most-removed uses aren't real catalog cards, so
+    # name them here (and only when the catalog loaded, to keep the modded
+    # filter's empty-map fallback intact).
+    if out["cards"]:
+        out["cards"].setdefault("STRIKE", "Strike")
+        out["cards"].setdefault("DEFEND", "Defend")
     # Characters keyed lowercase so "necrobinder" resolves "NECROBINDER".
     out["characters"] = {
         k.lower(): v for k, v in _index(data_service.load_characters).items()
