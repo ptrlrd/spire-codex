@@ -1279,6 +1279,9 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
             )
             upg = agg.get("upg")
             if upg and upg.get("picks", 0) > 0:
+                # Reward screens never offer the upgraded card, so the "+" row
+                # has no reward Pick%/per-act; its Elo is the Upgrade Elo (which
+                # cards players choose to Smith), not the base card's reward Elo.
                 rows.append(
                     _row(
                         eid,
