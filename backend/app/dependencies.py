@@ -65,8 +65,23 @@ LANGUAGE_NAMES = {
 DEFAULT_LANG = "eng"
 
 
-def get_lang(lang: str = Query("eng", description="Language code")) -> str:
-    """Validate and return language code, falling back to English."""
+def get_lang(
+    lang: str = Query(
+        DEFAULT_LANG,
+        description=(
+            "Language code. One of the 14 supported codes; unknown values "
+            "fall back to English."
+        ),
+        json_schema_extra={"enum": sorted(VALID_LANGUAGES)},
+    )
+) -> str:
+    """Validate and return language code, falling back to English.
+
+    `json_schema_extra` surfaces the supported codes as an enum dropdown in
+    the OpenAPI docs (/docs) without making the param strict: an unknown
+    `lang` still falls back to English rather than 422-ing, so existing API
+    consumers (the bot, overlay, and desktop app) don't break.
+    """
     return lang if lang in VALID_LANGUAGES else DEFAULT_LANG
 
 
