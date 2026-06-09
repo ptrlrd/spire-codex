@@ -6,6 +6,7 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { cardOgImages } from "@/lib/image-url";
+import { enchantmentsForCard } from "@/lib/card-enchantments";
 
 export const dynamic = "force-dynamic";
 
@@ -86,7 +87,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail initialCard={card} />
+      <CardDetail initialCard={card} initialEnchantments={enchantmentsForCard(id)} />
     </>
   );
 }
