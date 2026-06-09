@@ -154,6 +154,9 @@ _type_baselines: dict[str, float] = {}
 # (solo/2p/3p/4p/a10/daily/custom). Keyed by cohort, then entity type.
 _cohort_baselines: dict[str, dict[str, float]] = {}
 _cohort_totals: dict[str, dict[str, int]] = {}
+# Community / fun stats (event decisions, deaths, headline numbers, records).
+# Built in the same run-file walk and carried through the snapshot meta doc.
+_community_stats: dict[str, Any] = {}
 _cache_built_at: float = 0.0
 _building: bool = False
 
@@ -605,6 +608,10 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     # Rest-site Smith decisions → Upgrade Elo for upgraded card variants.
     # All-runs only; the metrics table doesn't split base/upg per cohort.
     upgrade_pair_wins: dict[tuple[str, str], int] = {}
+    # Community / fun stats, folded in from the same blob read (no 2nd walk).
+    from . import community_stats
+
+    community_acc = community_stats.new_accumulator()
     # Parallel lightweight accumulators, one per non-"all" cohort.
     cohort_accs: dict[str, dict[str, Any]] = {
         k: _new_cohort_acc() for k in _COHORT_KEYS
@@ -685,6 +692,16 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         except (OSError, json.JSONDecodeError) as e:
             logger.warning("skipping unreadable run %s: %s", run_hash, e)
             continue
+
+        # Community / fun stats, accumulated from the same blob.
+        community_stats.accumulate(
+            community_acc,
+            blob,
+            run_hash=run_hash,
+            is_win=is_win,
+            character=character,
+            ascension=row.get("ascension") or 0,
+        )
 
         # Dedupe per-run: a deck with 5 Strikes still only counts ONE
         # pick of "this run had Strike". We count run-level membership
@@ -859,7 +876,11 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "pick_act": cagg.get("pick_act", [0] * _ACT_BUCKETS),
                 "elo": cagg.get("elo"),
             }
-    cohort_meta = {"baselines": cohort_baselines, "totals": cohort_totals}
+    cohort_meta = {
+        "baselines": cohort_baselines,
+        "totals": cohort_totals,
+        "community": community_stats.finalize(community_acc),
+    }
     return new_cache, new_totals, new_type_baselines, cohort_meta
 
 
@@ -868,13 +889,14 @@ def _apply_cache(
 ) -> None:
     """Swap freshly-built (or snapshot-loaded) data into module globals."""
     global _cache, _cache_built_at, _global_totals, _type_baselines
-    global _cohort_baselines, _cohort_totals
+    global _cohort_baselines, _cohort_totals, _community_stats
     _cache = cache
     _global_totals = totals
     _type_baselines = baselines
     cohort_meta = cohort_meta or {}
     _cohort_baselines = cohort_meta.get("baselines", {})
     _cohort_totals = cohort_meta.get("totals", {})
+    _community_stats = cohort_meta.get("community") or {}
     _cache_built_at = time.time()
 
 
@@ -953,6 +975,7 @@ def _persist_snapshot(
             "type_baselines": baselines,
             "cohort_baselines": cohort_meta.get("baselines", {}),
             "cohort_totals": cohort_meta.get("totals", {}),
+            "community": cohort_meta.get("community", {}),
             "entity_types": list(by_type.keys()),
             "built_at": now,
         },
@@ -1004,6 +1027,7 @@ def _load_snapshot() -> bool:
         {
             "baselines": meta.get("cohort_baselines", {}),
             "totals": meta.get("cohort_totals", {}),
+            "community": meta.get("community", {}),
         },
     )
     return True
@@ -1102,6 +1126,17 @@ def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
     delta = shrunk - baseline
     raw = (delta / _SCORE_SCALE_RANGE + 1) * 50
     return max(0, min(100, round(raw)))
+
+
+def get_community_stats() -> dict[str, Any]:
+    """Community / fun stats (event decisions, deaths, headline numbers,
+    records). Built in the same walk as the entity cache and carried through
+    the snapshot, so this is an O(1) read. Empty shape before the first
+    snapshot exists."""
+    _maybe_rebuild()
+    from . import community_stats
+
+    return _community_stats or community_stats.empty()
 
 
 def get_all_entity_scores(entity_type: str) -> dict[str, dict[str, Any]]:
