@@ -39,6 +39,8 @@ const UI: Record<string, Record<string, string>> = {
   "Characters":      { eng: "Characters", deu: "Charaktere", esp: "Personajes", fra: "Personnages", ita: "Personaggi", jpn: "キャラクター", kor: "캐릭터", pol: "Postacie", ptb: "Personagens", rus: "Персонажи", spa: "Personajes", tha: "ตัวละคร", tur: "Karakterler", zhs: "角色" },
   "Encounters":      { eng: "Encounters", deu: "Begegnungen", esp: "Encuentros", fra: "Rencontres", ita: "Incontri", jpn: "エンカウンター", kor: "조우", pol: "Spotkania", ptb: "Encontros", rus: "Встречи", spa: "Encuentros", tha: "การเผชิญหน้า", tur: "Karşılaşmalar", zhs: "遭遇" },
   "Enchantments":    { eng: "Enchantments", deu: "Verzauberungen", esp: "Encantamientos", fra: "Enchantements", ita: "Incantesimi", jpn: "エンチャント", kor: "인챈트", pol: "Zaklęcia", ptb: "Encantamentos", rus: "Зачарования", spa: "Encantamientos", tha: "มนตร์", tur: "Büyüler", zhs: "附魔" },
+  // Short label for the card-detail tab so the bar fits on mobile.
+  "Enchants":        { eng: "Enchants", deu: "Verzaub.", esp: "Encant.", fra: "Enchant.", ita: "Incant.", jpn: "エンチャント", kor: "인챈트", pol: "Zaklęcia", ptb: "Encant.", rus: "Чары", spa: "Encant.", tha: "มนตร์", tur: "Büyüler", zhs: "附魔" },
 
   // Sort
   "Compendium":      { eng: "Compendium", deu: "Kompendium", esp: "Compendio", fra: "Compendium", ita: "Compendio", jpn: "図鑑順", kor: "도감", pol: "Kompendium", ptb: "Compêndio", rus: "Компендиум", spa: "Compendio", tha: "สารานุกรม", tur: "Ansiklopedi", zhs: "图鉴" },

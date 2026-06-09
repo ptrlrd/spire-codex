@@ -6,6 +6,7 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, SUPPORTED_LANGS, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { imageUrl } from "@/lib/image-url";
+import { cardsForEnchantment } from "@/lib/card-enchantments";
 
 export const dynamic = "force-dynamic";
 
@@ -52,6 +53,7 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
+  const enchantmentCards = cardsForEnchantment(id);
   let jsonLd = null;
   let data = null;
   let apiUnreachable = false;
@@ -79,7 +81,11 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EnchantmentDetail initialEnchantment={data} />
+      <EnchantmentDetail
+        initialEnchantment={data}
+        cardIds={enchantmentCards.cardIds}
+        totalCards={enchantmentCards.total}
+      />
     </>
   );
 }

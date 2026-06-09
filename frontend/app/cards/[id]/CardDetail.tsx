@@ -305,7 +305,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
     { key: "details", label: t("Details", lang) },
     { key: "stats", label: t("Stats", lang) },
     ...(cardEnchantments.length > 0
-      ? [{ key: "enchantments" as Tab, label: t("Enchantments", lang) }]
+      ? [{ key: "enchantments" as Tab, label: t("Enchants", lang) }]
       : []),
     { key: "info", label: t("Info", lang) },
   ];
@@ -430,23 +430,27 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
           )}
 
           {/* Tabs */}
-          <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
-            {tabs.map((tb) => (
-              <button
-                key={tb.key}
-                onClick={() => setTab(tb.key)}
-                className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                  tab === tb.key
-                    ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                    : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                }`}
-              >
-                {tb.label}
-              </button>
-            ))}
+          <div className="flex items-center gap-1 mb-5 border-b border-[var(--border-subtle)]">
+            {/* Tabs scroll horizontally so the bar never runs off a narrow
+                screen; the toggle buttons stay pinned on the right. */}
+            <div className="flex gap-1 overflow-x-auto min-w-0 flex-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {tabs.map((tb) => (
+                <button
+                  key={tb.key}
+                  onClick={() => setTab(tb.key)}
+                  className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+                    tab === tb.key
+                      ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                      : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                  }`}
+                >
+                  {tb.label}
+                </button>
+              ))}
+            </div>
 
             {/* Toggle buttons in tab bar */}
-            <div className="ml-auto flex items-center gap-1.5">
+            <div className="shrink-0 flex items-center gap-1.5">
               <button
                 onClick={toggleCardMode}
                 className={`text-sm w-8 h-8 flex items-center justify-center rounded transition-colors ${

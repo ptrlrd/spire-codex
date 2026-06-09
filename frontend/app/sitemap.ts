@@ -99,7 +99,7 @@ const STATIC_PAGES = [
   { path: "/leaderboards", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/leaderboards/submit", priority: 0.6, changeFrequency: "monthly" as const },
   { path: "/leaderboards/stats", priority: 0.8, changeFrequency: "daily" as const },
-  { path: "/stats", priority: 0.7, changeFrequency: "daily" as const },
+  { path: "/community-stats", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/leaderboards/scoring", priority: 0.6, changeFrequency: "monthly" as const },
   // Tier list, high priority, daily changefreq because scores update
   // every 30 minutes as new runs arrive. Per-character variants are
@@ -225,7 +225,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/leaderboards",
     "/leaderboards/submit",
     "/leaderboards/stats",
-    "/stats",
+    "/community-stats",
     "/leaderboards/scoring",
     "/tier-list",
     "/tier-list/cards",

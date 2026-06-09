@@ -1,6 +1,6 @@
 "use client";
 
-// Client-island charts for the /stats page. The page itself stays a server
+// Client-island charts for the /community-stats page. The page itself stays a server
 // component (all numbers render in the HTML for SEO); these handle only the
 // visuals via Recharts, the same charting lib /meta already uses.
 
@@ -40,6 +40,16 @@ interface Datum {
   display: string;
 }
 
+// Tooltip body: the item's name + its value, no stray "name : value" colon.
+function TipBox({ label, value }: { label: string; value: string }) {
+  return (
+    <div style={TOOLTIP_STYLE}>
+      <span style={{ color: TEXT_SECONDARY }}>{label}</span>
+      <span style={{ color: "#e5e5e5", fontWeight: 600, marginLeft: 6 }}>{value}</span>
+    </div>
+  );
+}
+
 /** Horizontal bar chart for ranked lists and win-rate breakdowns. */
 export function RankBars({
   data,
@@ -65,10 +75,10 @@ export function RankBars({
         />
         <Tooltip
           cursor={{ fill: "rgba(255,255,255,0.04)" }}
-          contentStyle={TOOLTIP_STYLE}
-          itemStyle={{ color: "#e5e5e5" }}
-          labelStyle={{ color: TEXT_MUTED }}
-          formatter={(_v, _n, p) => [(p?.payload as Datum)?.display, ""]}
+          content={({ payload }) => {
+            const d = payload?.[0]?.payload as Datum | undefined;
+            return d ? <TipBox label={d.name} value={d.display} /> : null;
+          }}
         />
         <Bar dataKey="value" fill={color} radius={[0, 3, 3, 0]} background={{ fill: TRACK }}>
           <LabelList dataKey="display" position="right" style={{ fontSize: 11, fill: TEXT_MUTED }} />
@@ -113,9 +123,10 @@ export function EventDonut({
           ))}
         </Pie>
         <Tooltip
-          contentStyle={TOOLTIP_STYLE}
-          itemStyle={{ color: "#e5e5e5" }}
-          formatter={(v, n) => [`${v}%`, n]}
+          content={({ payload }) => {
+            const d = payload?.[0]?.payload as { name: string; value: number } | undefined;
+            return d ? <TipBox label={d.name} value={`${d.value}%`} /> : null;
+          }}
         />
       </PieChart>
       <span className="absolute inset-0 flex items-center justify-center text-sm font-bold tabular-nums text-[var(--text-primary)]">

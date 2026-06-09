@@ -673,9 +673,12 @@ def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
 def get_entity_scores(request: Request, entity_type: str):
     """All Codex Scores for one entity type, keyed by ID.
 
-    Used by list pages to render the score column / sort by tier
-    without N round-trips to /stats/{type}/{id}. Cached at the same
-    TTL as the per-entity stats since both derive from the same walk.
+    Each entry carries the 0-100 Codex Score plus picks/wins/win_rate, and
+    for cards the Codex Elo (null for entities without one). Cards that are
+    never a reward pick (curses, statuses, events, tokens, starters) are
+    excluded. Used by list pages to render the score column / sort by tier
+    without N round-trips to /stats/{type}/{id}. Cached at the same TTL as
+    the per-entity stats since both derive from the same walk.
     """
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
@@ -688,10 +691,11 @@ def get_entity_scores(request: Request, entity_type: str):
 @router.get("/community-stats", tags=["Runs"])
 @limiter.limit("60/minute")
 def community_stats(request: Request, response: Response):
-    """Community / fun stats for the /stats page: per-event player decision
-    breakdowns, deadliest encounters/events, headline totals by ascension and
-    character, and a few records and quirks. Built in the same walk as the
-    Codex Score cache, so this is an in-memory read."""
+    """Community / fun stats for the /community-stats page: per-event player
+    decision breakdowns, deadliest encounters/events, headline totals by
+    ascension and character, and a few records and quirks. Official game
+    content only (modded entities are filtered out). Built in the same walk
+    as the Codex Score cache, so this is an in-memory read."""
     response.headers["Cache-Control"] = "public, max-age=300"
     return get_community_fun_stats()
 

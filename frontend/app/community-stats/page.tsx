@@ -39,12 +39,12 @@ export const metadata: Metadata = {
   title: `Community Stats - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
   description:
     "Fun community stats for Slay the Spire 2 (sts2): how players vote at every event, what kills runs most, win rates by ascension and character, and run records, all from community-submitted runs.",
-  alternates: { canonical: `${SITE_URL}/stats`, languages: buildLanguageAlternates("/stats") },
+  alternates: { canonical: `${SITE_URL}/community-stats`, languages: buildLanguageAlternates("/community-stats") },
   openGraph: {
     title: `Slay the Spire 2 (sts2) Community Stats | ${SITE_NAME}`,
     description:
       "Player decision breakdowns, deadliest enemies, win rates, and records from community-submitted Slay the Spire 2 runs.",
-    url: `${SITE_URL}/stats`,
+    url: `${SITE_URL}/community-stats`,
     siteName: SITE_NAME,
     type: "website",
     images: [{ url: DEFAULT_OG_IMAGE }],
@@ -114,12 +114,12 @@ export default async function CommunityStatsPage() {
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: "Home", href: "/" },
-      { name: "Community Stats", href: "/stats" },
+      { name: "Community Stats", href: "/community-stats" },
     ]),
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Community Stats",
       description: "Player decision breakdowns, deadliest enemies, win rates, and records from community-submitted Slay the Spire 2 runs.",
-      path: "/stats",
+      path: "/community-stats",
       items: [],
     }),
   ];

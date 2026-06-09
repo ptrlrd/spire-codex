@@ -49,6 +49,18 @@ def _prettify(raw: str) -> str:
     return raw.replace("_", " ").title()
 
 
+def _merge_starter(cid: str | None) -> str | None:
+    """Collapse the per-character basics into one entry so most-removed shows
+    a single "Strike"/"Defend" instead of STRIKE_IRONCLAD, STRIKE_SILENT, etc."""
+    if not cid:
+        return cid
+    if cid.startswith("STRIKE_"):
+        return "STRIKE"
+    if cid.startswith("DEFEND_"):
+        return "DEFEND"
+    return cid
+
+
 def new_accumulator() -> dict[str, Any]:
     """A fresh, mutable accumulator for one full run-file walk."""
     return {
@@ -160,7 +172,7 @@ def accumulate(
                     raw = rem.get("id") if isinstance(rem, dict) else rem
                     if isinstance(rem, dict) and "card" in rem:
                         raw = (rem.get("card") or {}).get("id")
-                    cid = _bare(raw)
+                    cid = _merge_starter(_bare(raw))
                     if cid:
                         _bump(acc["removed"], cid)
 
@@ -195,6 +207,12 @@ def _name_maps() -> dict[str, dict[str, str]]:
     out["encounters"] = _index(data_service.load_encounters)
     out["relics"] = _index(data_service.load_relics)
     out["cards"] = _index(data_service.load_cards)
+    # The merged starter ids most-removed uses aren't real catalog cards, so
+    # name them here (and only when the catalog loaded, to keep the modded
+    # filter's empty-map fallback intact).
+    if out["cards"]:
+        out["cards"].setdefault("STRIKE", "Strike")
+        out["cards"].setdefault("DEFEND", "Defend")
     # Characters keyed lowercase so "necrobinder" resolves "NECROBINDER".
     out["characters"] = {
         k.lower(): v for k, v in _index(data_service.load_characters).items()
@@ -222,6 +240,11 @@ def _pct(part: int, whole: int) -> float:
 
 
 def _ranked(counts: dict[str, int], names: dict[str, str], limit: int) -> list[dict]:
+    # Only official catalog entries: modded ids aren't in `names`, so they get
+    # dropped. Skip the filter if the catalog failed to load (empty map) so a
+    # data hiccup doesn't blank the whole list.
+    if names:
+        counts = {k: v for k, v in counts.items() if k in names}
     total = sum(counts.values())
     rows = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:limit]
     return [
@@ -248,10 +271,11 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
         {"ascension": a, "runs": rw[0], "wins": rw[1], "win_rate": _pct(rw[1], rw[0])}
         for a, rw in sorted(acc["by_ascension"].items())
     ]
+    chars = names["characters"]
     by_character = [
         {
             "id": cid,
-            "name": names["characters"].get(cid) or _prettify(cid),
+            "name": chars.get(cid) or _prettify(cid),
             "runs": rw[0],
             "wins": rw[1],
             "win_rate": _pct(rw[1], rw[0]),
@@ -260,12 +284,17 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
         for cid, rw in sorted(
             acc["by_character"].items(), key=lambda kv: kv[1][0], reverse=True
         )
+        # Official characters only (modded character ids aren't in the catalog).
+        if not chars or cid in chars
     ]
 
     # Event decisions: every event with a real multi-option split, sorted by
     # how many players hit it. Options sorted by popularity.
     events = []
     for eid, opts in acc["events"].items():
+        # Skip modded events (not in the official events catalog).
+        if ev_names and eid not in ev_names:
+            continue
         total = sum(opts.values())
         if total <= 0:
             continue
