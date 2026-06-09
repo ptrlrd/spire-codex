@@ -13,7 +13,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
@@ -150,9 +150,9 @@ function getMerchantPriceRange(rarity: string, color: string): { min: number; ma
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
 }
 
-type Tab = "overview" | "details" | "stats" | "info";
+type Tab = "overview" | "details" | "stats" | "info" | "enchantments";
 
-export default function CardDetail({ initialCard }: { initialCard?: Card | null } = {}) {
+export default function CardDetail({ initialCard, initialEnchantments }: { initialCard?: Card | null; initialEnchantments?: string[] } = {}) {
   const params = useParams();
   const id = params.id as string;
   const { lang } = useLanguage();
@@ -185,6 +185,10 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [orbData, setOrbData] = useState<Record<string, { id: string; name: string; description: string }>>({});
+  // Enchantments this card can take (server-passed, from the render manifest)
+  // + their localized name/description for the Enchantments tab.
+  const cardEnchantments = initialEnchantments ?? [];
+  const [enchMeta, setEnchMeta] = useState<Record<string, { id: string; name: string; description: string; image_url: string | null }>>({});
 
   useEffect(() => {
     if (!id) return;
@@ -231,6 +235,13 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
         for (const o of orbs) m[o.name.toLowerCase()] = o;
         setOrbData(m);
       });
+    if (cardEnchantments.length > 0)
+      cachedFetch<{ id: string; name: string; description: string; image_url: string | null }[]>(`${API}/api/enchantments?lang=${lang}`)
+        .then((enchs) => {
+          const m: Record<string, typeof enchs[0]> = {};
+          for (const e of enchs) m[e.id.toLowerCase()] = e;
+          setEnchMeta(m);
+        });
   }, [lang]);
 
   if (loading) {
@@ -293,6 +304,9 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
     { key: "overview", label: t("Overview", lang) },
     { key: "details", label: t("Details", lang) },
     { key: "stats", label: t("Stats", lang) },
+    ...(cardEnchantments.length > 0
+      ? [{ key: "enchantments" as Tab, label: t("Enchantments", lang) }]
+      : []),
     { key: "info", label: t("Info", lang) },
   ];
 
@@ -629,6 +643,53 @@ export default function CardDetail({ initialCard }: { initialCard?: Card | null 
               <LocalizedNames entityType="cards" entityId={id} />
               <EntityHistory entityType="cards" entityId={id} />
             </>
+          )}
+
+          {/* ===== Enchantments Tab ===== */}
+          {tab === "enchantments" && (
+            <div>
+              <p className="text-sm text-[var(--text-muted)] mb-4">
+                Every enchantment {card.name} can take, rendered by the game.
+                {hasUpgrade ? " Toggle 🔨 to see the upgraded versions." : ""}
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {cardEnchantments.map((eid) => {
+                  const meta = enchMeta[eid];
+                  return (
+                    <Link
+                      key={eid}
+                      href={`${lp}/enchantments/${eid}`}
+                      className="group rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 hover:border-[var(--accent-gold)]/50 transition-colors"
+                    >
+                      <img
+                        src={enchantedCardUrl(card.id.toLowerCase(), eid, isUpgraded, "stable", lang)}
+                        alt={`${card.name}${isUpgraded ? "+" : ""} with ${meta?.name ?? eid} - Slay the Spire 2`}
+                        className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                        loading="lazy"
+                        crossOrigin="anonymous"
+                        onError={(e) => {
+                          // Upgraded-enchanted renders may not be uploaded yet;
+                          // fall back to the base-enchanted render once.
+                          const el = e.currentTarget;
+                          if (!el.dataset.fb) {
+                            el.dataset.fb = "1";
+                            el.src = enchantedCardUrl(card.id.toLowerCase(), eid, false, "stable", lang);
+                          }
+                        }}
+                      />
+                      <div className="mt-1.5 text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                        {meta?.name ?? eid}
+                      </div>
+                      {meta?.description ? (
+                        <div className="text-xs text-[var(--text-secondary)] leading-snug mt-0.5">
+                          <RichDescription text={meta.description} />
+                        </div>
+                      ) : null}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           )}
         </div>
       </div>
