@@ -5,6 +5,9 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { cardOgImages } from "@/lib/image-url";
+// Card -> valid enchantments (from the render manifest). Imported server-side
+// so the ~95KB map never ships to the client; only this card's list is passed.
+import cardEnchantmentsManifest from "@/lib/card-enchantments.json";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
 // cache even with async-params pages, without it, Next 15+ sees
@@ -105,7 +108,12 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail initialCard={card} />
+      <CardDetail
+        initialCard={card}
+        initialEnchantments={
+          (cardEnchantmentsManifest as Record<string, string[]>)[id.toLowerCase()] ?? []
+        }
+      />
     </>
   );
 }

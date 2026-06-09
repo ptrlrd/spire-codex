@@ -49,6 +49,19 @@ from ..metrics import db_operations, db_operation_duration
 OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 
 
+def _today_daily_seed_match() -> dict:
+    """Mongo match for runs of *today's* daily seed.
+
+    Daily seeds are prefixed with the UTC date as ``DD_MM_YYYY`` (e.g.
+    ``"09_06_2026_2P"``), so "today's daily" is a seed-prefix match on the
+    current UTC date. This is the correct key, NOT ``submitted_at``: that's
+    upload time, which is often null on freshly-tracked runs and gets stamped
+    in bulk when old runs are backfilled, so a March daily uploaded today
+    would otherwise rank as "today's daily"."""
+    date = datetime.now(timezone.utc).strftime("%d_%m_%Y")
+    return {"$regex": f"^{date}"}
+
+
 @contextmanager
 def _timed_op(operation: str, collection: str = "runs"):
     """Increment db_operations + observe latency for a Mongo op.
@@ -1569,10 +1582,7 @@ def list_runs(
         elif relics_f:
             q["relics.id"] = {"$all": relics_f}
     if today:
-        today_start = datetime.now(timezone.utc).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        q["submitted_at"] = {"$gte": today_start}
+        q["seed"] = _today_daily_seed_match()
 
     sort_map = {
         "time_asc": [("run_time", 1)],
@@ -1682,10 +1692,7 @@ def _leaderboard_live(
     if game_mode:
         q["game_mode"] = game_mode
     if today:
-        today_start = datetime.now(timezone.utc).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        q["submitted_at"] = {"$gte": today_start}
+        q["seed"] = _today_daily_seed_match()
 
     if category == "highest_ascension":
         sort_clause = [("ascension", -1), ("run_time", 1)]
@@ -1776,16 +1783,11 @@ def find_sibling_hashes(run_hash: str) -> list[str]:
 @_instrument("get_daily_leaderboard")
 def get_daily_leaderboard(username: str | None = None) -> dict:
     """Today's top daily climb wins, plus the requesting user's rank."""
-    from datetime import datetime, timezone
-
     coll = _get_collection()
-    today_start = datetime.now(timezone.utc).replace(
-        hour=0, minute=0, second=0, microsecond=0
-    )
     base = {
         "win": {"$in": [True, 1]},
         "game_mode": "daily",
-        "submitted_at": {"$gte": today_start},
+        "seed": _today_daily_seed_match(),
     }
 
     top_10 = list(coll.find(base, _projection_row()).sort("run_time", 1).limit(10))
@@ -1825,8 +1827,6 @@ def get_run_rank_scoped(
 ) -> dict:
     """Rank of a run within a scoped leaderboard. Extends get_run_rank
     with optional game_mode, players, and today-only filters."""
-    from datetime import datetime, timezone
-
     coll = _get_collection()
     row = coll.find_one(
         {"_id": run_hash},
@@ -1845,10 +1845,7 @@ def get_run_rank_scoped(
     elif players == "multi":
         scope["player_count"] = {"$gt": 1}
     if today_only:
-        today_start = datetime.now(timezone.utc).replace(
-            hour=0, minute=0, second=0, microsecond=0
-        )
-        scope["submitted_at"] = {"$gte": today_start}
+        scope["seed"] = _today_daily_seed_match()
 
     if category == "highest_ascension":
         ahead_q = {

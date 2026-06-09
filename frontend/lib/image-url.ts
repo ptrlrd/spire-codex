@@ -49,6 +49,29 @@ export function fullCardUrl(
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }
 
+/**
+ * Full game-rendered card image with an enchantment applied, exactly as the
+ * game's NEnchantPreview draws it. Lives alongside the plain renders under an
+ * ench/<enchantment>/ subfolder:
+ *   cards-full/<channel>/ench/<ench>/<id>.webp            (English)
+ *   cards-full/<channel>/<lang>/ench/<ench>/<id>.webp     (localized)
+ * `enchantment` is the lowercase enchantment id (e.g. "sown", "sharp"). Only
+ * valid card x enchantment combinations are rendered (the export uses the
+ * game's own CanEnchant gate), so only build URLs for enchantments a card can
+ * actually take.
+ */
+export function enchantedCardUrl(
+  id: string,
+  enchantment: string,
+  upgraded = false,
+  channel: "stable" | "beta" = "stable",
+  lang = "eng"
+): string {
+  const seg = channel === "beta" ? "beta/0.107.0" : "stable";
+  const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+  return `${CDN_BASE}/cards-full/${seg}/${langSeg}ench/${enchantment.toLowerCase()}/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
+}
+
 interface OgCard {
   id: string;
   name: string;

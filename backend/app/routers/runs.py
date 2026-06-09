@@ -11,6 +11,7 @@ from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services.run_entity_stats import (
     get_all_entity_scores,
+    get_community_stats as get_community_fun_stats,
     get_entity_metrics_table,
     get_entity_stats,
     get_top_entities_for_character,
@@ -286,6 +287,14 @@ def list_runs(
         if game_mode:
             conditions.append("game_mode = ?")
             params.append(game_mode)
+        if today:
+            # "Today's daily" = today's daily seed (prefixed DD_MM_YYYY), not
+            # submitted_at (upload time). Mirrors _today_daily_seed_match in the
+            # Mongo path.
+            from datetime import datetime, timezone
+
+            conditions.append("seed LIKE ?")
+            params.append(datetime.now(timezone.utc).strftime("%d_%m_%Y") + "%")
         where = ("WHERE " + " AND ".join(conditions)) if conditions else ""
 
         # Sort options
@@ -674,6 +683,17 @@ def get_entity_scores(request: Request, entity_type: str):
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
     return get_all_entity_scores(entity_type)
+
+
+@router.get("/community-stats", tags=["Runs"])
+@limiter.limit("60/minute")
+def community_stats(request: Request, response: Response):
+    """Community / fun stats for the /stats page: per-event player decision
+    breakdowns, deadliest encounters/events, headline totals by ascension and
+    character, and a few records and quirks. Built in the same walk as the
+    Codex Score cache, so this is an in-memory read."""
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return get_community_fun_stats()
 
 
 @router.get("/metrics/{entity_type}", tags=["Runs"])

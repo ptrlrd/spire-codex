@@ -11,7 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
-import { imageUrl } from "@/lib/image-url";
+import { imageUrl, enchantedCardUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -21,9 +21,17 @@ const cardTypeColors: Record<string, string> = {
   Power: "bg-purple-950/50 text-purple-300 border-purple-900/30",
 };
 
-type Tab = "overview" | "info";
+type Tab = "overview" | "cards" | "info";
 
-export default function EnchantmentDetail({ initialEnchantment }: { initialEnchantment?: Enchantment | null } = {}) {
+export default function EnchantmentDetail({
+  initialEnchantment,
+  cardIds = [],
+  totalCards = 0,
+}: {
+  initialEnchantment?: Enchantment | null;
+  cardIds?: string[];
+  totalCards?: number;
+} = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -62,6 +70,7 @@ export default function EnchantmentDetail({ initialEnchantment }: { initialEncha
 
   const tabs: { key: Tab; label: string }[] = [
     { key: "overview", label: t("Overview", lang) },
+    ...(cardIds.length > 0 ? [{ key: "cards" as Tab, label: t("Cards", lang) }] : []),
     { key: "info", label: t("Info", lang) },
   ];
 
@@ -151,6 +160,34 @@ export default function EnchantmentDetail({ initialEnchantment }: { initialEncha
               </div>
             )}
           </>
+        )}
+
+        {/* ===== Cards Tab ===== */}
+        {tab === "cards" && (
+          <div>
+            <p className="text-sm text-[var(--text-muted)] mb-4">
+              {enchantment.name} applied to {totalCards.toLocaleString()} card
+              {totalCards === 1 ? "" : "s"}
+              {cardIds.length < totalCards ? ` (showing ${cardIds.length})` : ""}.
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {cardIds.map((cid) => (
+                <Link
+                  key={cid}
+                  href={`${lp}/cards/${cid}`}
+                  className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 hover:border-[var(--accent-gold)]/50 transition-colors"
+                >
+                  <img
+                    src={enchantedCardUrl(cid, id, false, "stable", lang)}
+                    alt={`${cid} with ${enchantment.name} - Slay the Spire 2`}
+                    className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
+                    loading="lazy"
+                    crossOrigin="anonymous"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
         )}
 
         {/* ===== Info Tab ===== */}
