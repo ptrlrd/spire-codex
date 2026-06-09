@@ -5,6 +5,23 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { imageUrl } from "@/lib/image-url";
+// Card -> valid enchantments manifest (from the render export). Imported
+// server-side and inverted here so we can show example renders per enchantment.
+import cardEnchantmentsManifest from "@/lib/card-enchantments.json";
+
+const CARD_SAMPLE = 48;
+
+function cardsForEnchantment(enchId: string): { cardIds: string[]; total: number } {
+  const ench = enchId.toLowerCase();
+  const all: string[] = [];
+  for (const [cardId, enchs] of Object.entries(
+    cardEnchantmentsManifest as Record<string, string[]>,
+  )) {
+    if (enchs.includes(ench)) all.push(cardId);
+  }
+  all.sort();
+  return { cardIds: all.slice(0, CARD_SAMPLE), total: all.length };
+}
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -43,6 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { id } = await params;
+  const enchantmentCards = cardsForEnchantment(id);
   let jsonLd = null;
   let enchantment = null;
   let apiUnreachable = false;
@@ -77,7 +95,11 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EnchantmentDetail initialEnchantment={enchantment} />
+      <EnchantmentDetail
+        initialEnchantment={enchantment}
+        cardIds={enchantmentCards.cardIds}
+        totalCards={enchantmentCards.total}
+      />
     </>
   );
 }
