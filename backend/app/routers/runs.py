@@ -11,7 +11,7 @@ from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services.run_entity_stats import (
     get_all_entity_scores,
-    get_community_stats,
+    get_community_stats as get_community_fun_stats,
     get_entity_metrics_table,
     get_entity_stats,
     get_top_entities_for_character,
@@ -693,7 +693,7 @@ def community_stats(request: Request, response: Response):
     character, and a few records and quirks. Built in the same walk as the
     Codex Score cache, so this is an in-memory read."""
     response.headers["Cache-Control"] = "public, max-age=300"
-    return get_community_stats()
+    return get_community_fun_stats()
 
 
 @router.get("/metrics/{entity_type}", tags=["Runs"])

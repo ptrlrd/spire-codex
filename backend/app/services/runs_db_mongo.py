@@ -1827,8 +1827,6 @@ def get_run_rank_scoped(
 ) -> dict:
     """Rank of a run within a scoped leaderboard. Extends get_run_rank
     with optional game_mode, players, and today-only filters."""
-    from datetime import datetime, timezone
-
     coll = _get_collection()
     row = coll.find_one(
         {"_id": run_hash},

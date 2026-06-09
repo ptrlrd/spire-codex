@@ -73,7 +73,7 @@ def get_lang(
             "fall back to English."
         ),
         json_schema_extra={"enum": sorted(VALID_LANGUAGES)},
-    )
+    ),
 ) -> str:
     """Validate and return language code, falling back to English.
 

@@ -112,9 +112,7 @@ def accumulate(
     # Records.
     run_time = blob.get("run_time")
     if isinstance(run_time, (int, float)) and run_time > 0:
-        if is_win and (
-            acc["fastest_win"] is None or run_time < acc["fastest_win"][0]
-        ):
+        if is_win and (acc["fastest_win"] is None or run_time < acc["fastest_win"][0]):
             acc["fastest_win"] = (int(run_time), run_hash)
         if acc["longest_run"] is None or run_time > acc["longest_run"][0]:
             acc["longest_run"] = (int(run_time), run_hash)
@@ -187,9 +185,7 @@ def _name_maps() -> dict[str, dict[str, str]]:
     def _index(loader, key="id", name="name") -> dict[str, str]:
         try:
             return {
-                r[key]: r.get(name) or _prettify(r[key])
-                for r in loader()
-                if r.get(key)
+                r[key]: r.get(name) or _prettify(r[key]) for r in loader() if r.get(key)
             }
         except Exception:
             logger.warning("community-stats name load failed", exc_info=True)
@@ -200,7 +196,9 @@ def _name_maps() -> dict[str, dict[str, str]]:
     out["relics"] = _index(data_service.load_relics)
     out["cards"] = _index(data_service.load_cards)
     # Characters keyed lowercase so "necrobinder" resolves "NECROBINDER".
-    out["characters"] = {k.lower(): v for k, v in _index(data_service.load_characters).items()}
+    out["characters"] = {
+        k.lower(): v for k, v in _index(data_service.load_characters).items()
+    }
     # Per-event option id -> title ("TAKE" -> "Take the Egg").
     event_opts: dict[str, dict[str, str]] = {}
     try:
@@ -309,7 +307,12 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
             "events": _ranked(acc["deaths_event"], names["events"], _TOP_N),
         },
         "rest_sites": [
-            {"id": c, "label": _prettify(c), "count": n, "pct": _pct(n, sum(acc["rest"].values()))}
+            {
+                "id": c,
+                "label": _prettify(c),
+                "count": n,
+                "pct": _pct(n, sum(acc["rest"].values())),
+            }
             for c, n in sorted(acc["rest"].items(), key=lambda kv: kv[1], reverse=True)
         ],
         "ancient_picks": _ranked(acc["ancient"], names["relics"], _TOP_N),
