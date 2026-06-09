@@ -222,6 +222,11 @@ def _pct(part: int, whole: int) -> float:
 
 
 def _ranked(counts: dict[str, int], names: dict[str, str], limit: int) -> list[dict]:
+    # Only official catalog entries: modded ids aren't in `names`, so they get
+    # dropped. Skip the filter if the catalog failed to load (empty map) so a
+    # data hiccup doesn't blank the whole list.
+    if names:
+        counts = {k: v for k, v in counts.items() if k in names}
     total = sum(counts.values())
     rows = sorted(counts.items(), key=lambda kv: kv[1], reverse=True)[:limit]
     return [
@@ -248,10 +253,11 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
         {"ascension": a, "runs": rw[0], "wins": rw[1], "win_rate": _pct(rw[1], rw[0])}
         for a, rw in sorted(acc["by_ascension"].items())
     ]
+    chars = names["characters"]
     by_character = [
         {
             "id": cid,
-            "name": names["characters"].get(cid) or _prettify(cid),
+            "name": chars.get(cid) or _prettify(cid),
             "runs": rw[0],
             "wins": rw[1],
             "win_rate": _pct(rw[1], rw[0]),
@@ -260,12 +266,17 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
         for cid, rw in sorted(
             acc["by_character"].items(), key=lambda kv: kv[1][0], reverse=True
         )
+        # Official characters only (modded character ids aren't in the catalog).
+        if not chars or cid in chars
     ]
 
     # Event decisions: every event with a real multi-option split, sorted by
     # how many players hit it. Options sorted by popularity.
     events = []
     for eid, opts in acc["events"].items():
+        # Skip modded events (not in the official events catalog).
+        if ev_names and eid not in ev_names:
+            continue
         total = sum(opts.values())
         if total <= 0:
             continue
