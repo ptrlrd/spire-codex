@@ -253,9 +253,7 @@ def _upgradeable_card_ids() -> frozenset[str]:
             from .data_service import load_cards
 
             _upgradeable_card_ids_cache = frozenset(
-                c["id"]
-                for c in load_cards()
-                if c.get("id") and c.get("upgrade")
+                c["id"] for c in load_cards() if c.get("id") and c.get("upgrade")
             )
         except Exception:
             logger.warning(
@@ -400,9 +398,7 @@ def _walk_rest_upgrade_choices(blob: dict) -> Iterable[tuple[list[str], list[str
                             winners.append(stripped[1])
                     if not winners:
                         continue
-                    eligible = {
-                        cid for fa, cid in deck_cards if fa <= gfloor
-                    }
+                    eligible = {cid for fa, cid in deck_cards if fa <= gfloor}
                     losers = sorted(eligible - set(winners) - already)
                     already.update(winners)
                     if winners and losers:
