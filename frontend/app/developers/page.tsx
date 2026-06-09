@@ -251,7 +251,8 @@ export default function DevelopersPage() {
                 { method: "GET", path: "/api/runs/leaderboard", desc: "Run leaderboards (fastest, highest_ascension)" },
                 { method: "GET", path: "/api/runs/shared/{run_hash}", desc: "Single submitted run by hash (rate-limited)" },
                 { method: "GET", path: "/api/runs/stats", desc: "Aggregate community stats (filter by character, ascension, username)" },
-                { method: "GET", path: "/api/runs/scores/{type}", desc: "Codex Score + tier per entity (cards/relics/potions)" },
+                { method: "GET", path: "/api/runs/community-stats", desc: "Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records" },
+                { method: "GET", path: "/api/runs/scores/{type}", desc: "Codex Score + Codex Elo per entity (cards/relics/potions)" },
                 { method: "GET", path: "/api/runs/metrics/{type}", desc: "Dense metrics table: Codex Score, Codex Elo, win rate, pick rate, per-act splits" },
                 { method: "GET", path: "/api/runs/versions", desc: "Distinct game build IDs that have submitted runs" },
                 { method: "POST", path: "/api/feedback", desc: "Submit feedback (Discord webhook)" },
@@ -536,6 +537,49 @@ console.log(relics.map(r => r.name));`}</code>
   "image_url_card_upg": "https://cdn.spire-codex.com/cards-full/stable/bash_upg.webp"
 }`}</code>
           </pre>
+          <p className="text-sm text-[var(--text-muted)] mt-3">
+            Localized renders live under a language subfolder, e.g.{" "}
+            <code>cards-full/stable/jpn/bash.webp</code>. All 14 languages are
+            available.
+          </p>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mt-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Enchanted card renders
+          </h3>
+          <p className="text-[var(--text-secondary)] mb-3">
+            Every card is also rendered with each enchantment it can legally
+            take, exactly as the in-game enchant preview draws it (badge, amount,
+            and added card text). The URLs follow one pattern:
+          </p>
+          <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
+            <code>{`https://cdn.spire-codex.com/cards-full/stable/ench/{enchantment}/{card}.webp        // English, base
+https://cdn.spire-codex.com/cards-full/stable/ench/{enchantment}/{card}_upg.webp    // English, upgraded
+https://cdn.spire-codex.com/cards-full/stable/{lang}/ench/{enchantment}/{card}.webp // localized
+
+// e.g. Anger with Corrupted, in Japanese:
+https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</code>
+          </pre>
+          <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 mt-3">
+            <li>
+              <code className="text-[var(--accent-gold)]">{`{enchantment}`}</code> and{" "}
+              <code className="text-[var(--accent-gold)]">{`{card}`}</code> are
+              lowercase ids from <code>/api/enchantments</code> and{" "}
+              <code>/api/cards</code> (e.g. <code>sharp</code>,{" "}
+              <code>corrupted</code>, <code>sown</code>).
+            </li>
+            <li>
+              Only valid card and enchantment combinations exist (the export uses
+              the game&apos;s own applicability rules), so an invalid combo is a
+              404. The <code>card_type</code> / <code>applicable_to</code> fields
+              on <code>/api/enchantments</code> describe which cards qualify.
+            </li>
+            <li>
+              Base and upgraded variants exist for every combo, in all 14
+              languages, with the enchantment text fully localized.
+            </li>
+          </ul>
         </div>
       </section>
 

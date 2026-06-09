@@ -42,7 +42,7 @@ spire-codex/
         entity_history.py    # Per-entity version history from changelogs
         changelogs.py        # Changelog API
         guides.py            # Guides (list, detail, Discord webhook submission)
-        runs.py              # Run submission + community stats + shared runs + Codex Score (`/api/runs/scores/{type}`)
+        runs.py              # Run submission + community stats + shared runs + Codex Score/Elo (`/api/runs/scores/{type}`, `/api/runs/community-stats`)
         news.py              # Steam news passthrough — list + detail (`/api/news`, `/api/news/{gid}`)
         merchant.py          # Merchant pricing config (auto-extracted constants)
         unlocks.py versions.py
@@ -71,7 +71,7 @@ spire-codex/
       layout.tsx             # Root layout
       page.tsx               # Home page — WebSite + VideoGame JSON-LD
       cards/page.tsx         # Cards list with sort (A-Z, Z-A, Compendium)
-      cards/[id]/page.tsx    # Card detail — tabbed (Overview/Details/Info)
+      cards/[id]/page.tsx    # Card detail, tabbed (Overview/Details/Stats/Enchants/Info)
       cards/browse/          # 41 programmatic filter pages (rare-attacks, ironclad-skills, etc.)
       characters/page.tsx    # Characters with hub sections (all cards, all relics)
       monsters/page.tsx relics/page.tsx potions/page.tsx
@@ -90,6 +90,7 @@ spire-codex/
       leaderboards/submit/   # Drag-and-drop .run upload
       leaderboards/stats/    # Ranked-table stats (cards/relics/potions/encounters pick + win rates)
       leaderboards/scoring/  # Codex Score methodology page (Bayesian shrinkage explainer)
+      community-stats/       # Fun community datasets: event votes, deadliest encounters, records (Recharts)
       tier-list/page.tsx     # Codex Score tier-list hub (cards/relics/potions)
       tier-list/[type]/      # Visual S→F tier rows per entity type
       runs/[hash]/           # Shared-run detail — "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
@@ -197,7 +198,8 @@ spire-codex/
 - `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
 - `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
 - `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
-- `GET /api/runs/scores/{type}` — Bulk Codex Scores for cards/relics/potions (Bayesian-shrunk win rate → 0–100 → S/A/B/C/D/F; materialized to Mongo by a single leader)
+- `GET /api/runs/scores/{type}`: Bulk Codex Scores + Codex Elo for cards/relics/potions (Bayesian-shrunk win rate mapped 0-100 to S/A/B/C/D/F; non-reward cards + starters excluded; materialized to Mongo by a single leader)
+- `GET /api/runs/community-stats`: Fun community datasets for `/community-stats` (per-event decision splits, deadliest encounters/events, win rates by ascension/character, records; official content only)
 - `GET /api/runs/leaderboard/rank/{hash}` — rank of one winning run; `POST /api/runs/claim` — attach username to prior runs
 - `GET /api/runs/encounter-stats` — per-encounter aggregates (Mongo-only)
 - `GET /api/runs/versions` — distinct build_ids across submitted runs
