@@ -231,6 +231,7 @@ export default function DevelopersPage() {
                 { method: "GET", path: "/api/unlocks", desc: "Unlockable entities grouped by type with epoch context" },
                 { method: "GET", path: "/api/history/{entity_type}/{entity_id}", desc: "Per-entity version history from changelogs" },
                 { method: "GET", path: "/api/names/{entity_type}/{entity_id}", desc: "Cross-language name lookup for an entity" },
+                { method: "GET", path: "/api/search", desc: "Unified site search across entities, reference entries, mechanics, guides, and news (q, lang)" },
                 { method: "GET", path: "/api/changelogs", desc: "All changelogs" },
                 { method: "GET", path: "/api/changelogs/recent-additions", desc: "Newest entities surfaced for the homepage band" },
                 { method: "GET", path: "/api/changelogs/{tag}", desc: "Single changelog by tag (e.g. v1.0.20)" },

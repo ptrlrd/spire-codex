@@ -191,6 +191,7 @@ spire-codex/
 - `GET /api/keywords` / `GET /api/orbs` / `GET /api/afflictions` / `GET /api/intents`
 - `GET /api/modifiers` / `GET /api/achievements`
 - `GET /api/names/{entity_type}/{entity_id}` — Cross-language name lookup
+- `GET /api/search?q=&lang=`: Unified site search (entities, reference entries, mechanics pages, guides, news) powering the global cmd-K modal
 - `GET /api/exports/{lang}` — ZIP download of all entity JSON for a language
 - `GET /api/history/{entity_type}/{entity_id}` — Per-entity version history
 - `GET /api/changelogs` / `GET /api/changelogs/{tag}` — Version changelogs

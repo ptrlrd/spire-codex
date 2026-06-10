@@ -9,96 +9,22 @@ import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-interface SearchResult {
-  id: string;
+// One row in the results list. Entity/page/guide/etc. rows come from the
+// unified /api/search endpoint, which provides the path and subtitle
+// server-side; image rows come from /api/images/search and open externally
+// with a thumbnail preview.
+interface SearchItem {
   name: string;
-  [key: string]: unknown;
+  path: string;
+  subtitle?: string;
+  thumb?: string;
+  external?: boolean;
 }
 
-interface CategoryConfig {
+interface SearchSection {
   label: string;
-  endpoint: string;
-  linkFn: (item: SearchResult) => string;
-  subtitleFn?: (item: SearchResult) => string;
-  /** Absolute thumbnail URL, when present, the row renders it as a small preview. */
-  thumbFn?: (item: SearchResult) => string;
-  /** When true, activating the result opens it in a new tab instead of routing. */
-  openExternal?: boolean;
+  items: SearchItem[];
 }
-
-const CATEGORIES: CategoryConfig[] = [
-  {
-    label: "Characters",
-    endpoint: "/api/characters",
-    linkFn: (item) => `/characters/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => (item.color ? String(item.color) : ""),
-  },
-  {
-    label: "Cards",
-    endpoint: "/api/cards",
-    linkFn: (item) => `/cards/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => {
-      const parts: string[] = [];
-      if (item.color) parts.push(String(item.color));
-      if (item.type) parts.push(String(item.type));
-      if (item.rarity) parts.push(String(item.rarity));
-      return parts.join(" \u00b7 ");
-    },
-  },
-  {
-    label: "Relics",
-    endpoint: "/api/relics",
-    linkFn: (item) => `/relics/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => (item.rarity ? String(item.rarity) : ""),
-  },
-  {
-    label: "Monsters",
-    endpoint: "/api/monsters",
-    linkFn: (item) => `/monsters/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => (item.type ? String(item.type) : ""),
-  },
-  {
-    label: "Potions",
-    endpoint: "/api/potions",
-    linkFn: (item) => `/potions/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => (item.rarity ? String(item.rarity) : ""),
-  },
-  {
-    label: "Powers",
-    endpoint: "/api/powers",
-    linkFn: (item) => `/powers/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => {
-      const parts: string[] = [];
-      if (item.type) parts.push(String(item.type));
-      if (item.stack_type) parts.push(String(item.stack_type));
-      return parts.join(" \u00b7 ");
-    },
-  },
-  {
-    label: "Enchantments",
-    endpoint: "/api/enchantments",
-    linkFn: (item) => `/enchantments/${item.id.toLowerCase()}`,
-  },
-  {
-    label: "Events",
-    endpoint: "/api/events",
-    linkFn: (item) => `/events/${item.id.toLowerCase()}`,
-  },
-  {
-    label: "Encounters",
-    endpoint: "/api/encounters",
-    linkFn: (item) => `/encounters/${item.id.toLowerCase()}`,
-    subtitleFn: (item) => (item.room_type ? String(item.room_type) : ""),
-  },
-  {
-    label: "Images",
-    endpoint: "/api/images/search",
-    linkFn: (item) => imageUrl(item.url as string),
-    subtitleFn: (item) => (item.category_name ? String(item.category_name) : ""),
-    thumbFn: (item) => imageUrl(item.url as string),
-    openExternal: true,
-  },
-];
 
 const PAGES = [
   { name: "Cards", path: "/cards", keywords: ["card", "deck", "attack", "skill", "power"] },
@@ -117,6 +43,16 @@ const PAGES = [
   { name: "Compare Characters", path: "/compare", keywords: ["compare", "comparison", "versus", "vs"] },
   { name: "Custom Mode", path: "/modifiers", keywords: ["modifier", "custom", "mode", "mutator"] },
   { name: "Runs", path: "/runs", keywords: ["run", "upload", "submit", "history", "win", "loss"] },
+  { name: "Tier List", path: "/tier-list", keywords: ["tier", "tier list", "ranking", "best", "worst", "s tier"] },
+  { name: "Card Tier List", path: "/tier-list/cards", keywords: ["tier", "card tier", "best cards"] },
+  { name: "Relic Tier List", path: "/tier-list/relics", keywords: ["tier", "relic tier", "best relics"] },
+  { name: "Potion Tier List", path: "/tier-list/potions", keywords: ["tier", "potion tier", "best potions"] },
+  { name: "Leaderboards", path: "/leaderboards", keywords: ["leaderboard", "fastest", "ascension", "ladder", "ranking"] },
+  { name: "Card Metrics", path: "/leaderboards/metrics", keywords: ["metrics", "elo", "codex elo", "pick rate", "win rate", "table"] },
+  { name: "Codex Score", path: "/leaderboards/scoring", keywords: ["score", "codex score", "scoring", "methodology", "tier bands"] },
+  { name: "Community Stats", path: "/community-stats", keywords: ["community", "stats", "statistics", "event votes", "deadliest", "records"] },
+  { name: "Submit a Run", path: "/leaderboards/submit", keywords: ["submit", "upload", "run file"] },
+  { name: "Badges", path: "/badges", keywords: ["badge", "frame", "cosmetic"] },
   { name: "Mechanics", path: "/mechanics", keywords: ["mechanic", "formula", "odds", "chance", "drop rate", "probability", "rng"] },
   { name: "Guides", path: "/guides", keywords: ["guide", "strategy", "tip", "walkthrough", "tutorial"] },
   { name: "Submit Guide", path: "/guides/submit", keywords: ["submit", "write", "contribute", "guide"] },
@@ -138,7 +74,7 @@ const MAX_PER_CATEGORY = 5;
 export default function GlobalSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<Record<string, SearchResult[]>>({});
+  const [sections, setSections] = useState<SearchSection[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -159,17 +95,9 @@ export default function GlobalSearch() {
     : [];
 
   // Build flat list of all visible results for keyboard navigation
-  const flatResults = [
-    ...matchedPages.map((p) => ({
-      item: { id: p.path, name: p.name } as SearchResult,
-      category: { label: "Pages", endpoint: "", linkFn: () => p.path } as CategoryConfig,
-    })),
-    ...CATEGORIES.flatMap((cat) =>
-      (results[cat.label] ?? []).slice(0, MAX_PER_CATEGORY).map((item) => ({
-        item,
-        category: cat,
-      }))
-    ),
+  const flatResults: SearchItem[] = [
+    ...matchedPages.map((p) => ({ name: p.name, path: p.path })),
+    ...sections.flatMap((s) => s.items),
   ];
 
   // Open on "." key when not in an input
@@ -194,15 +122,17 @@ export default function GlobalSearch() {
       setTimeout(() => inputRef.current?.focus(), 0);
     } else {
       setQuery("");
-      setResults({});
+      setSections([]);
       setSelectedIndex(0);
     }
   }, [open]);
 
-  // Debounced search
+  // Debounced search: ONE request to the unified /api/search endpoint
+  // (everything with a page) plus one to the image search (thumbnails,
+  // opens externally) instead of the old one-request-per-entity-type fan.
   useEffect(() => {
     if (!query.trim()) {
-      setResults({});
+      setSections([]);
       setLoading(false);
       return;
     }
@@ -214,25 +144,36 @@ export default function GlobalSearch() {
       abortRef.current = controller;
 
       const encoded = encodeURIComponent(query.trim());
-      Promise.all(
-        CATEGORIES.map((cat) =>
-          fetch(buildApiUrl(`${API}${cat.endpoint}?search=${encoded}&lang=${lang}`), {
-            signal: controller.signal,
-          })
-            .then((r) => (r.ok ? r.json() : []))
-            .then((data: SearchResult[]) => ({
-              label: cat.label,
-              items: data.slice(0, MAX_PER_CATEGORY),
-            }))
-            .catch(() => ({ label: cat.label, items: [] as SearchResult[] }))
-        )
-      ).then((all) => {
+      Promise.all([
+        fetch(buildApiUrl(`${API}/api/search?q=${encoded}&lang=${lang}`), {
+          signal: controller.signal,
+        })
+          .then((r) => (r.ok ? r.json() : { categories: [] }))
+          .catch(() => ({ categories: [] })),
+        fetch(buildApiUrl(`${API}/api/images/search?search=${encoded}`), {
+          signal: controller.signal,
+        })
+          .then((r) => (r.ok ? r.json() : []))
+          .catch(() => []),
+      ]).then(([unified, images]) => {
         if (controller.signal.aborted) return;
-        const grouped: Record<string, SearchResult[]> = {};
-        for (const { label, items } of all) {
-          if (items.length > 0) grouped[label] = items;
-        }
-        setResults(grouped);
+        const next: SearchSection[] = (unified.categories ?? []).map(
+          (c: { label: string; items: SearchItem[] }) => ({
+            label: c.label,
+            items: c.items.slice(0, MAX_PER_CATEGORY),
+          })
+        );
+        const imageItems: SearchItem[] = (images as Record<string, unknown>[])
+          .slice(0, MAX_PER_CATEGORY)
+          .map((im) => ({
+            name: String(im.name ?? ""),
+            path: imageUrl(im.url as string),
+            subtitle: im.category_name ? String(im.category_name) : "",
+            thumb: imageUrl(im.url as string),
+            external: true,
+          }));
+        if (imageItems.length > 0) next.push({ label: "Images", items: imageItems });
+        setSections(next);
         setSelectedIndex(0);
         setLoading(false);
       });
@@ -243,13 +184,12 @@ export default function GlobalSearch() {
 
   // Navigate to result
   const navigate = useCallback(
-    (cat: CategoryConfig, item: SearchResult) => {
+    (item: SearchItem) => {
       setOpen(false);
-      const href = cat.linkFn(item);
-      if (cat.openExternal) {
-        window.open(href, "_blank", "noopener,noreferrer");
+      if (item.external) {
+        window.open(item.path, "_blank", "noopener,noreferrer");
       } else {
-        router.push(href);
+        router.push(item.path);
       }
     },
     [router]
@@ -275,7 +215,7 @@ export default function GlobalSearch() {
       if (e.key === "Enter" && flatResults.length > 0) {
         e.preventDefault();
         const selected = flatResults[selectedIndex];
-        if (selected) navigate(selected.category, selected.item);
+        if (selected) navigate(selected);
         return;
       }
     },
@@ -286,7 +226,7 @@ export default function GlobalSearch() {
 
   const totalResults =
     matchedPages.length +
-    Object.values(results).reduce((sum, arr) => sum + arr.length, 0);
+    sections.reduce((sum, s) => sum + s.items.length, 0);
 
   return (
     <div
@@ -383,34 +323,32 @@ export default function GlobalSearch() {
 
           {(() => {
             let runningIndex = matchedPages.length;
-            return CATEGORIES.map((cat) => {
-              const items = results[cat.label];
-              if (!items || items.length === 0) return null;
+            return sections.map((section) => {
+              if (section.items.length === 0) return null;
               const startIndex = runningIndex;
-              runningIndex += items.length;
+              runningIndex += section.items.length;
               return (
-                <div key={cat.label} className="py-2">
+                <div key={section.label} className="py-2">
                   <div className="px-4 py-1 text-xs uppercase tracking-wider text-[var(--text-muted)] font-medium">
-                    {cat.label}
+                    {section.label}
                   </div>
-                  {items.map((item, i) => {
+                  {section.items.map((item, i) => {
                     const globalIdx = startIndex + i;
                     const isSelected = globalIdx === selectedIndex;
-                    const thumb = cat.thumbFn?.(item);
                     return (
                       <button
-                        key={item.id}
+                        key={`${item.path}:${item.name}`}
                         className={`w-full text-left px-4 py-2 flex items-center gap-3 cursor-pointer transition-colors ${
                           isSelected
                             ? "bg-[var(--bg-card-hover)]"
                             : "hover:bg-[var(--bg-card-hover)]"
                         }`}
-                        onClick={() => navigate(cat, item)}
+                        onClick={() => navigate(item)}
                         onMouseEnter={() => setSelectedIndex(globalIdx)}
                       >
-                        {thumb && (
+                        {item.thumb && (
                           <img
-                            src={thumb}
+                            src={item.thumb}
                             alt=""
                             className="w-8 h-8 object-contain shrink-0 rounded bg-[var(--bg-primary)]"
                             crossOrigin="anonymous"
@@ -420,12 +358,12 @@ export default function GlobalSearch() {
                         <span className="text-sm text-[var(--text-primary)] truncate">
                           {item.name}
                         </span>
-                        {cat.subtitleFn && cat.subtitleFn(item) && (
+                        {item.subtitle && (
                           <span className="text-xs text-[var(--text-muted)] truncate shrink-0">
-                            {cat.subtitleFn(item)}
+                            {item.subtitle}
                           </span>
                         )}
-                        {cat.openExternal && (
+                        {item.external && (
                           <span className="ml-auto text-[10px] text-[var(--text-muted)] shrink-0">↗</span>
                         )}
                       </button>
