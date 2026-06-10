@@ -244,29 +244,26 @@ def list_runs(
     # Redis layer (60s TTL): the default landing view and any repeated or
     # shared search serve from cache; the long tail of unique filter combos
     # falls through to Mongo, which the bounded counts + indexes keep fast.
-    cache_key = (
-        "runs_list:"
-        + ":".join(
-            str(v if v is not None else "")
-            for v in (
-                character,
-                win,
-                username,
-                seed,
-                sort,
-                build_id,
-                build_ids,
-                players,
-                game_mode,
-                ascension,
-                ascension_min,
-                ascension_max,
-                card,
-                relic,
-                int(today),
-                page,
-                limit,
-            )
+    cache_key = "runs_list:" + ":".join(
+        str(v if v is not None else "")
+        for v in (
+            character,
+            win,
+            username,
+            seed,
+            sort,
+            build_id,
+            build_ids,
+            players,
+            game_mode,
+            ascension,
+            ascension_min,
+            ascension_max,
+            card,
+            relic,
+            int(today),
+            page,
+            limit,
         )
     )
     cached = app_cache.get_json(cache_key)
@@ -375,6 +372,7 @@ def list_runs(
 @limiter.limit("120/minute")
 def get_leaderboard(
     request: Request,
+    response: Response,
     category: str = "fastest",
     character: str | None = None,
     players: str | None = None,
@@ -394,6 +392,9 @@ def get_leaderboard(
     Single-player and multiplayer runs aren't directly comparable, so the
     frontend reads them as disjoint pools.
     """
+    # Edge/browser caching: 30s of ladder staleness is invisible and lets
+    # Cloudflare absorb repeat hits now that the frontend stopped cache-busting.
+    response.headers["Cache-Control"] = "public, max-age=30"
     # Redis layer (60s TTL, matching the refresher cycle): one cluster-wide
     # copy per filter combination instead of per-worker recomputation. Misses
     # fall straight through to the existing data paths.

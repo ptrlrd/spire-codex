@@ -204,7 +204,7 @@ export default function LeaderboardBrowseClient() {
     if (lbChar) params.set("character", lbChar);
     params.set("page", String(lbPage));
     params.set("limit", "20");
-    fetch(`${API}/api/runs/leaderboard?${params}&_t=${Date.now()}`)
+    fetch(`${API}/api/runs/leaderboard?${params}`)
       .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
       .then((data) => {
         // Backend returns the rows under `runs`; rank is computed client-side
@@ -245,7 +245,7 @@ export default function LeaderboardBrowseClient() {
     if (browseBuildId) params.set("build_id", browseBuildId);
     if (browseSort) params.set("sort", browseSort);
     params.set("page", String(browsePage));
-    fetch(`${API}/api/runs/list?${params}&_t=${Date.now()}`)
+    fetch(`${API}/api/runs/list?${params}`)
       .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
       .then((data) => {
         setRunList(data.runs || []);
