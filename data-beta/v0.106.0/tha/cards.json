@@ -16687,7 +16687,7 @@
   {
     "id": "SOVEREIGN_BLADE",
     "name": "พระแสงอาญาสิทธิ์",
-    "description": "สร้างความเสียหาย 10 ใส่ศัตรูทั้งหมด",
+    "description": "สร้างความเสียหาย 10",
     "description_raw": "สร้างความเสียหาย {Damage:diff()}{TargetType:choose(AllEnemies): ใส่ศัตรูทั้งหมด|}{Repeat:choose(1):| จำนวน {} ครั้ง}{GainsBlock:cond:\nได้รับ {CalculatedBlock:diff()} [gold]บล็อก[/gold]|}",
     "cost": 2,
     "is_x_cost": null,
@@ -17836,7 +17836,7 @@
   {
     "id": "SHIV",
     "name": "มีดสั้น",
-    "description": "สร้างความเสียหาย 4 ใส่ศัตรูทั้งหมด",
+    "description": "สร้างความเสียหาย 4",
     "description_raw": "สร้างความเสียหาย {Damage:diff()}{TargetType:choose(AllEnemies): ใส่ศัตรูทั้งหมด|}",
     "cost": 0,
     "is_x_cost": null,
@@ -17870,7 +17870,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "สร้างความเสียหาย 6 ใส่ศัตรูทั้งหมด",
+    "upgrade_description": "สร้างความเสียหาย 6",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

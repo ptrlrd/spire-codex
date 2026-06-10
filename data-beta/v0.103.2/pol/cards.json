@@ -8815,7 +8815,7 @@
   {
     "id": "SHIV",
     "name": "Nóż",
-    "description": "Zadaj 4 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "description": "Zadaj 4 pkt. obrażeń.",
     "description_raw": "Zadaj {Damage:diff()} pkt. obrażeń{TargetType:choose(AllEnemies): WSZYSTKIM przeciwnikom|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -8848,7 +8848,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Zadaj 6 pkt. obrażeń WSZYSTKIM przeciwnikom.",
+    "upgrade_description": "Zadaj 6 pkt. obrażeń.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

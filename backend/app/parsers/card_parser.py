@@ -380,8 +380,9 @@ def parse_single_card(
     # Character color from pool
     color = card_pools.get(class_name, "unknown")
 
-    # Add card type to vars temporarily so choose() conditionals can resolve
-    resolve_vars = {**all_vars, "CardType": card_type}
+    # Add card type and target temporarily so choose() conditionals can
+    # resolve ({CardType:...} on Mad Science, {TargetType:...} on Shiv).
+    resolve_vars = {**all_vars, "CardType": card_type, "TargetType": target}
     desc_rendered = shared_resolve_description(description, resolve_vars)
 
     upgrade_description = None

@@ -12840,7 +12840,7 @@
   {
     "id": "SOVEREIGN_BLADE",
     "name": "Lame souveraine",
-    "description": "Infligez 10 dégâts à TOUS les ennemis.",
+    "description": "Infligez 10 dégâts.",
     "description_raw": "Infligez {Damage:diff()} dégâts{TargetType:choose(AllEnemies): à TOUS les ennemis|}{Repeat:plural:| {} fois}.{GainsBlock:cond:\nGagnez{CalculatedBlock:diff()} d'[gold]Armure[/gold].|}",
     "cost": 2,
     "is_x_cost": null,
@@ -20705,7 +20705,7 @@
   {
     "id": "SHIV",
     "name": "Surin",
-    "description": "Infligez 4 dégâts à TOUS les ennemis.",
+    "description": "Infligez 4 dégâts.",
     "description_raw": "Infligez {Damage:diff()} dégâts{TargetType:choose(AllEnemies): à TOUS les ennemis|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -20739,7 +20739,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Infligez 6 dégâts à TOUS les ennemis.",
+    "upgrade_description": "Infligez 6 dégâts.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

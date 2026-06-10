@@ -8086,7 +8086,7 @@
   {
     "id": "SOVEREIGN_BLADE",
     "name": "Espada Soberana",
-    "description": "Cause 10 de dano a TODOS os inimigos.",
+    "description": "Cause 10 de dano.",
     "description_raw": "Cause {Damage:diff()} de dano{TargetType:choose(AllEnemies): a TODOS os inimigos|}{Repeat:plural:| {} vezes}.{GainsBlock:cond:\nReceba {CalculatedBlock:diff()} de [gold]Proteção[/gold].|}",
     "cost": 2,
     "is_x_cost": null,
@@ -14085,7 +14085,7 @@
   {
     "id": "SHIV",
     "name": "Lâmina",
-    "description": "Cause 4 de dano a TODOS os inimigos.",
+    "description": "Cause 4 de dano.",
     "description_raw": "Cause {Damage:diff()} de dano{TargetType:choose(AllEnemies): a TODOS os inimigos|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -14119,7 +14119,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 6 de dano a TODOS os inimigos.",
+    "upgrade_description": "Cause 6 de dano.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

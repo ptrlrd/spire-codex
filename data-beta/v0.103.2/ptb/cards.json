@@ -13663,7 +13663,7 @@
   {
     "id": "SHIV",
     "name": "Lâmina",
-    "description": "Cause 4 de dano a TODOS os inimigos.",
+    "description": "Cause 4 de dano.",
     "description_raw": "Cause {Damage:diff()} de dano{TargetType:choose(AllEnemies): a TODOS os inimigos|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -13696,7 +13696,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Cause 6 de dano a TODOS os inimigos.",
+    "upgrade_description": "Cause 6 de dano.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

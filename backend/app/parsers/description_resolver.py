@@ -74,7 +74,13 @@ def resolve_description(
                         result = branches[idx]
                         break
             if result is None and branches:
-                result = branches[0]  # fallback to first only if no match found
+                if len(branches) > len(options):
+                    # "{Var:choose(A):x|y}" carries a trailing else-branch:
+                    # an unlisted value (SHIV's AnyEnemy vs choose(AllEnemies))
+                    # renders that, not the first option's text.
+                    result = branches[len(options)]
+                else:
+                    result = branches[0]  # no else-branch: first as fallback
             text = text[:start] + (result or "") + text[i:]
         return text
 

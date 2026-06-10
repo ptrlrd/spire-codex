@@ -6465,7 +6465,7 @@
   {
     "id": "SHIV",
     "name": "小刀",
-    "description": "对所有敌人造成4点伤害。",
+    "description": "造成4点伤害。",
     "description_raw": "{TargetType:choose(AllEnemies):对所有敌人|}造成{Damage:diff()}点伤害。",
     "cost": 0,
     "is_x_cost": null,
@@ -6498,7 +6498,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "对所有敌人造成6点伤害。",
+    "upgrade_description": "造成6点伤害。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

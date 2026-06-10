@@ -4158,7 +4158,7 @@
   {
     "id": "SHIV",
     "name": "ナイフ",
-    "description": "すべての敵に4ダメージを与える。",
+    "description": "4ダメージを与える。",
     "description_raw": "{TargetType:choose(AllEnemies):すべての敵に|}{Damage:diff()}ダメージを与える。",
     "cost": 0,
     "is_x_cost": null,
@@ -4191,7 +4191,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "すべての敵に6ダメージを与える。",
+    "upgrade_description": "6ダメージを与える。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

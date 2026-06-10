@@ -18844,7 +18844,7 @@
   {
     "id": "SHIV",
     "name": "Shiv",
-    "description": "Deal 4 damage to ALL enemies.",
+    "description": "Deal 4 damage.",
     "description_raw": "Deal {Damage:diff()} damage{TargetType:choose(AllEnemies): to ALL enemies|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -18878,7 +18878,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Deal 6 damage to ALL enemies.",
+    "upgrade_description": "Deal 6 damage.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

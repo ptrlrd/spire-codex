@@ -20208,7 +20208,7 @@
   {
     "id": "SHIV",
     "name": "Surin",
-    "description": "Infligez 4 dégâts à TOUS les ennemis.",
+    "description": "Infligez 4 dégâts.",
     "description_raw": "Infligez {Damage:diff()} dégâts{TargetType:choose(AllEnemies): à TOUS les ennemis|}.",
     "cost": 0,
     "is_x_cost": null,
@@ -20241,7 +20241,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "Infligez 6 dégâts à TOUS les ennemis.",
+    "upgrade_description": "Infligez 6 dégâts.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

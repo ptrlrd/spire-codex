@@ -8379,7 +8379,7 @@
   {
     "id": "SHIV",
     "name": "Kama",
-    "description": "TÜM düşmanlara 4 hasar ver.",
+    "description": "4 hasar ver.",
     "description_raw": "{TargetType:choose(AllEnemies):TÜM düşmanlara |}{Damage:diff()} hasar ver.",
     "cost": 0,
     "is_x_cost": null,
@@ -8412,7 +8412,7 @@
     "image_url": "/static/images/cards/shiv.webp",
     "beta_image_url": null,
     "type_variants": null,
-    "upgrade_description": "TÜM düşmanlara 6 hasar ver.",
+    "upgrade_description": "6 hasar ver.",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [

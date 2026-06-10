@@ -3486,7 +3486,7 @@
   {
     "id": "SOVEREIGN_BLADE",
     "name": "ソヴリン・ブレード",
-    "description": "すべての敵に10ダメージを与える。",
+    "description": "10ダメージを与える。",
     "description_raw": "{TargetType:choose(AllEnemies):すべての敵に|}{Damage:diff()}ダメージを{Repeat:choose(1):|{}回}与える。{GainsBlock:cond:\n{CalculatedBlock:diff()}[gold]ブロック[/gold]を得る。|}",
     "cost": 2,
     "is_x_cost": null,
@@ -4254,7 +4254,7 @@
   {
     "id": "SHIV",
     "name": "ナイフ",
-    "description": "すべての敵に4ダメージを与える。",
+    "description": "4ダメージを与える。",
     "description_raw": "{TargetType:choose(AllEnemies):すべての敵に|}{Damage:diff()}ダメージを与える。",
     "cost": 0,
     "is_x_cost": null,
@@ -4288,7 +4288,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "すべての敵に6ダメージを与える。",
+    "upgrade_description": "6ダメージを与える。",
     "type_key": "Attack",
     "rarity_key": "Token",
     "keywords_key": [
