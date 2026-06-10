@@ -80,6 +80,31 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
           <RichDescription text={orb.description} />
         </div>
 
+        {[
+          { label: `Cards that Channel ${orb.name}`, items: orb.channeled_by_cards, route: "cards" },
+          { label: `Relics that Channel ${orb.name}`, items: orb.channeled_by_relics, route: "relics" },
+        ].map(({ label, items, route }) =>
+          items && items.length > 0 ? (
+            <div key={route} className="mt-5">
+              <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                {label}
+              </h2>
+              <ul className="space-y-1">
+                {items.map((it) => (
+                  <li key={it.id}>
+                    <Link
+                      href={`${lp}/${route}/${it.id.toLowerCase()}`}
+                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+                    >
+                      {it.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ) : null
+        )}
+
         <div className="mt-6">
           <LocalizedNames entityType="orbs" entityId={id} />
           <EntityHistory entityType="orbs" entityId={id} />

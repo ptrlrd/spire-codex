@@ -26,7 +26,9 @@ interface RelatedGroup {
 export default function RelatedCards({ currentId, keywords, tags, color }: RelatedCardsProps) {
   const { lang } = useLanguage();
   const lp = useLangPrefix();
-  const [groups, setGroups] = useState<RelatedGroup[]>([]);
+  // null while loading so a card with no relations at all renders nothing
+  // instead of a permanent "Loading" stub.
+  const [groups, setGroups] = useState<RelatedGroup[] | null>(null);
 
   // Fetch on mount (not on toggle) so the related-card <Link>s sit in
   // the rendered DOM at first paint. Googlebot doesn't click toggles,
@@ -36,6 +38,18 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
   // outbound crawl paths.
   useEffect(() => {
     const fetches: Promise<RelatedGroup>[] = [];
+
+    // Cards that create or reference this one (spawns_cards reverse lookup),
+    // so token pages like Soul lead with their generators. Fetched first so
+    // the group renders above the keyword/tag groups.
+    fetches.push(
+      cachedFetch<Card[]>(`${API}/api/cards?spawns=${encodeURIComponent(currentId.toUpperCase())}&lang=${lang}`).then(
+        (cards) => ({
+          label: "Created or used by",
+          cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 12),
+        })
+      )
+    );
 
     if (keywords?.length) {
       for (const kw of keywords) {
@@ -68,7 +82,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
     );
   }, [currentId, keywords, tags, color, lang]);
 
-  if (!keywords?.length && !tags?.length) return null;
+  if (groups !== null && groups.length === 0) return null;
 
   return (
     <details className="mt-6 group" open>
@@ -87,7 +101,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
         </svg>
         {t("Related Cards", lang)}
       </summary>
-      {groups.length > 0 ? (
+      {groups && groups.length > 0 ? (
         <div className="mt-3 space-y-4">
           {groups.map((group) => (
             <div key={group.label}>

@@ -339,6 +339,9 @@ export interface Orb {
   description: string;
   description_raw: string | null;
   image_url: string | null;
+  // Cards/relics whose text Channels this orb (single-orb endpoint only).
+  channeled_by_cards?: { id: string; name: string }[] | null;
+  channeled_by_relics?: { id: string; name: string }[] | null;
 }
 
 export interface Affliction {
