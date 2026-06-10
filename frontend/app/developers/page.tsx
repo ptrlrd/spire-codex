@@ -182,7 +182,7 @@ export default function DevelopersPage() {
                 { method: "GET", path: "/api/cards/{id}", desc: "Single card" },
                 { method: "GET", path: "/api/characters", desc: "All characters" },
                 { method: "GET", path: "/api/characters/{id}", desc: "Single character" },
-                { method: "GET", path: "/api/relics", desc: "All relics (filter: rarity, pool, search)" },
+                { method: "GET", path: "/api/relics", desc: "All relics (filter: rarity, pool, ancient, search)" },
                 { method: "GET", path: "/api/relics/{id}", desc: "Single relic" },
                 { method: "GET", path: "/api/potions", desc: "All potions (filter: rarity, pool, search)" },
                 { method: "GET", path: "/api/potions/{id}", desc: "Single potion" },

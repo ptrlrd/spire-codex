@@ -43,6 +43,17 @@ const poolOptions = [
   { label: "Regent", value: "regent" },
 ];
 
+const ancientOptions = [
+  { label: "Neow", value: "neow" },
+  { label: "Tezcatara", value: "tezcatara" },
+  { label: "Pael", value: "pael" },
+  { label: "Orobas", value: "orobas" },
+  { label: "Darv", value: "darv" },
+  { label: "Nonupeipe", value: "nonupeipe" },
+  { label: "Tanx", value: "tanx" },
+  { label: "Vakuu", value: "vakuu" },
+];
+
 const sortOptions = [
   { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
@@ -58,6 +69,7 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
   const [pool, setPool] = useState(searchParams.get("pool") || "");
+  const [ancient, setAncient] = useState(searchParams.get("ancient") || "");
   const [sort, setSort] = useState(searchParams.get("sort") || "az");
   const { lang } = useLanguage();
   const initialRender = useRef(true);
@@ -73,27 +85,28 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
 
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);
-    const current: Record<string, string> = { search, rarity, pool, sort };
+    const current: Record<string, string> = { search, rarity, pool, ancient, sort };
     current[key] = value;
     updateUrl(current);
-  }, [search, rarity, pool, sort, updateUrl]);
+  }, [search, rarity, pool, ancient, sort, updateUrl]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !rarity && !pool && !search && initialRelics.length > 0) {
+      if (lang === "eng" && !rarity && !pool && !ancient && !search && initialRelics.length > 0) {
         return;
       }
     }
     const params = new URLSearchParams();
     if (rarity) params.set("rarity", rarity);
     if (pool) params.set("pool", pool);
+    if (ancient) params.set("ancient", ancient);
     if (search) params.set("search", search);
     params.set("lang", lang);
     cachedFetch<Relic[]>(`${API}/api/relics?${params}`)
       .then(setRelics);
-  }, [rarity, pool, search, lang]);
+  }, [rarity, pool, ancient, search, lang]);
 
   const scores = useEntityScores("relics");
 
@@ -137,6 +150,12 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
             value: pool,
             options: poolOptions,
             onChange: (v) => setFilterAndUrl("pool", v, setPool),
+          },
+          {
+            label: "All Ancients",
+            value: ancient,
+            options: ancientOptions,
+            onChange: (v) => setFilterAndUrl("ancient", v, setAncient),
           },
         ]}
       />
