@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import Link from "next/link";
 import RichDescription from "@/app/components/RichDescription";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -82,17 +82,27 @@ export function CardPill({
         </>
       )}
       {show && (
-        // Pop the full rendered card (upgraded variant when upgraded) instead
-        // of the text tooltip. Falls back to the portrait art if there's no
-        // full render.
+        // Pop the full rendered card (enchanted and/or upgraded variant when
+        // the run says so) instead of the text tooltip. Falls back from the
+        // enchanted render to the plain one, then to the portrait art.
         <span className="pointer-events-none absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-40">
           <img
-            src={fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang)}
+            src={
+              enchantment
+                ? enchantedCardUrl(cardId.toLowerCase(), enchantment, upgraded, "stable", lang)
+                : fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang)
+            }
             alt=""
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
             crossOrigin="anonymous"
             onError={(e) => {
-              if (info?.image_url) (e.target as HTMLImageElement).src = imageUrl(info.image_url);
+              const el = e.target as HTMLImageElement;
+              const plain = fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang);
+              if (enchantment && el.src !== plain) {
+                el.src = plain;
+              } else if (info?.image_url) {
+                el.src = imageUrl(info.image_url);
+              }
             }}
           />
         </span>
