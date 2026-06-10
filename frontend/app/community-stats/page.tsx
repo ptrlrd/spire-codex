@@ -128,7 +128,10 @@ export default async function CommunityStatsPage() {
   if (!stats || stats.total_runs === 0) return <Empty jsonLd={jsonLd} />;
 
   const { records } = stats;
-  const rankPct = (rows: Ranked[]) => rows.map((r) => ({ name: r.name, value: r.count, display: `${r.pct}%` }));
+  const rankPct = (rows: Ranked[]) =>
+    rows.map((r) => ({ name: r.name, value: r.count, display: `${r.pct}%`, detail: `${r.count.toLocaleString()} · ${r.pct}%` }));
+  const rankCount = (rows: Ranked[]) =>
+    rows.map((r) => ({ name: r.name, value: r.count, display: r.count.toLocaleString(), detail: `${r.count.toLocaleString()} · ${r.pct}%` }));
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -158,16 +161,24 @@ export default async function CommunityStatsPage() {
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Win rate by character</h2>
           <RankBars
             color={EMERALD}
-            labelWidth={120}
-            data={stats.by_character.map((c) => ({ name: c.name, value: c.win_rate, display: `${c.win_rate}% · ${c.share}% played` }))}
+            data={stats.by_character.map((c) => ({
+              name: c.name,
+              value: c.win_rate,
+              display: `${c.win_rate}%`,
+              detail: `${c.win_rate}% win rate · ${c.share}% of runs`,
+            }))}
           />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Win rate by ascension</h2>
           <RankBars
             color={SKY}
-            labelWidth={48}
-            data={stats.by_ascension.map((a) => ({ name: `A${a.ascension}`, value: a.win_rate, display: `${a.win_rate}% · ${a.runs.toLocaleString()}` }))}
+            data={stats.by_ascension.map((a) => ({
+              name: `A${a.ascension}`,
+              value: a.win_rate,
+              display: `${a.win_rate}%`,
+              detail: `${a.win_rate}% win rate · ${a.runs.toLocaleString()} runs`,
+            }))}
           />
         </div>
       </section>
@@ -228,16 +239,24 @@ export default async function CommunityStatsPage() {
       <section className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Rest-site choices</h2>
-          <RankBars color={GOLD} data={stats.rest_sites.map((r) => ({ name: r.label, value: r.count, display: `${r.pct}%` }))} />
+          <RankBars
+            color={GOLD}
+            data={stats.rest_sites.map((r) => ({
+              name: r.label,
+              value: r.count,
+              display: `${r.pct}%`,
+              detail: `${r.count.toLocaleString()} · ${r.pct}%`,
+            }))}
+          />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Most-removed cards</h2>
-          <RankBars color={GOLD} data={stats.most_removed.map((r) => ({ name: r.name, value: r.count, display: r.count.toLocaleString() }))} />
+          <RankBars color={GOLD} data={rankCount(stats.most_removed)} />
         </div>
         {(stats.hopper_stolen?.length ?? 0) > 0 && (
           <div>
             <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Stolen by the Thieving Hopper</h2>
-            <RankBars color={ROSE} data={(stats.hopper_stolen ?? []).map((r) => ({ name: r.name, value: r.count, display: r.count.toLocaleString() }))} />
+            <RankBars color={ROSE} data={rankCount(stats.hopper_stolen ?? [])} />
           </div>
         )}
         <div>

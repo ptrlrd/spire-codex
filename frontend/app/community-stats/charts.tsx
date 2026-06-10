@@ -1,95 +1,145 @@
 "use client";
 
-// Client-island charts for the /community-stats page. The page itself stays a server
-// component (all numbers render in the HTML for SEO); these handle only the
-// visuals via Recharts, the same charting lib /meta already uses.
+// Client-island charts for the /community-stats page. The page itself stays a
+// server component (all numbers render in the HTML for SEO); these handle only
+// the visuals via Chart.js, the same library the Knowledge Demon dashboard
+// uses, styled to match it: rounded bars, hidden legends, muted ticks.
 
 import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
+  Chart as ChartJS,
+  BarElement,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
   Tooltip,
-  ResponsiveContainer,
-  Cell,
-  LabelList,
-  PieChart,
-  Pie,
-} from "recharts";
+  type ChartOptions,
+  type TooltipItem,
+} from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+import { Bar, Doughnut } from "react-chartjs-2";
 
-// Theme-ish hexes (SVG attributes don't reliably take CSS vars in Recharts).
+ChartJS.register(BarElement, ArcElement, CategoryScale, LinearScale, Tooltip);
+
+// Theme hexes (canvas rendering needs resolved colors, not CSS vars).
 const GOLD = "#d4a843";
 const TEXT_SECONDARY = "#a1a1aa";
 const TEXT_MUTED = "#8a8a93";
-const TRACK = "#26262b";
 
 // Per-option donut palette (matches the legend dots rendered on the page).
 export const OPTION_HEX = ["#f59e0b", "#38bdf8", "#34d399", "#fb7185"];
 
-const TOOLTIP_STYLE = {
-  background: "#15151a",
-  border: "1px solid #33333a",
-  borderRadius: 6,
-  fontSize: 12,
-  padding: "4px 8px",
+// Shared dark tooltip, matching the site's card surfaces.
+const TOOLTIP_BASE = {
+  backgroundColor: "#15151a",
+  borderColor: "#33333a",
+  borderWidth: 1,
+  cornerRadius: 6,
+  padding: 8,
+  titleColor: "#e5e5e5",
+  bodyColor: TEXT_SECONDARY,
+  displayColors: false,
+  titleFont: { size: 12 },
+  bodyFont: { size: 12 },
 } as const;
+
+// Longest y-axis label before it gets an ellipsis; the tooltip title always
+// carries the full name, so nothing is lost on hover.
+const MAX_LABEL = 24;
 
 interface Datum {
   name: string;
   value: number;
+  /** Short value shown at the end of the bar (e.g. "55.2%", "12,345"). */
   display: string;
-}
-
-// Tooltip body: the item's name + its value, no stray "name : value" colon.
-function TipBox({ label, value }: { label: string; value: string }) {
-  return (
-    <div style={TOOLTIP_STYLE}>
-      <span style={{ color: TEXT_SECONDARY }}>{label}</span>
-      <span style={{ color: "#e5e5e5", fontWeight: 600, marginLeft: 6 }}>{value}</span>
-    </div>
-  );
+  /** Optional longer hover text (e.g. "55.2% win rate · 31% of runs"). */
+  detail?: string;
 }
 
 /** Horizontal bar chart for ranked lists and win-rate breakdowns. */
 export function RankBars({
   data,
   color = GOLD,
-  labelWidth = 150,
 }: {
   data: Datum[];
   color?: string;
-  labelWidth?: number;
 }) {
-  const height = Math.max(96, data.length * 30);
+  const height = Math.max(96, data.length * 32);
+  const labels = data.map((d) => d.name);
+
+  const options: ChartOptions<"bar"> = {
+    indexAxis: "y",
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+    // Room for the value label drawn past the end of the longest bar.
+    layout: { padding: { right: 56 } },
+    scales: {
+      x: { display: false, beginAtZero: true },
+      y: {
+        grid: { display: false },
+        border: { display: false },
+        ticks: {
+          color: TEXT_SECONDARY,
+          font: { size: 12 },
+          autoSkip: false,
+          callback(value) {
+            const label = labels[Number(value)] ?? "";
+            return label.length > MAX_LABEL ? `${label.slice(0, MAX_LABEL - 1)}…` : label;
+          },
+        },
+      },
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        ...TOOLTIP_BASE,
+        callbacks: {
+          title: (items: TooltipItem<"bar">[]) => labels[items[0]?.dataIndex ?? 0],
+          label: (item: TooltipItem<"bar">) => {
+            const d = data[item.dataIndex];
+            return d?.detail ?? d?.display ?? "";
+          },
+        },
+      },
+      datalabels: {
+        anchor: "end",
+        align: "end",
+        offset: 4,
+        clamp: true,
+        color: TEXT_MUTED,
+        font: { size: 11 },
+        formatter: (_value: number, ctx: { dataIndex: number }) =>
+          data[ctx.dataIndex]?.display ?? "",
+      },
+    },
+  };
+
   return (
-    <ResponsiveContainer width="100%" height={height}>
-      <BarChart data={data} layout="vertical" margin={{ top: 0, right: 52, bottom: 0, left: 0 }}>
-        <XAxis type="number" hide domain={[0, "dataMax"]} />
-        <YAxis
-          type="category"
-          dataKey="name"
-          width={labelWidth}
-          tickLine={false}
-          axisLine={false}
-          tick={{ fontSize: 12, fill: TEXT_SECONDARY }}
-        />
-        <Tooltip
-          cursor={{ fill: "rgba(255,255,255,0.04)" }}
-          content={({ payload }) => {
-            const d = payload?.[0]?.payload as Datum | undefined;
-            return d ? <TipBox label={d.name} value={d.display} /> : null;
-          }}
-        />
-        <Bar dataKey="value" fill={color} radius={[0, 3, 3, 0]} background={{ fill: TRACK }}>
-          <LabelList dataKey="display" position="right" style={{ fontSize: 11, fill: TEXT_MUTED }} />
-        </Bar>
-      </BarChart>
-    </ResponsiveContainer>
+    <div style={{ height }}>
+      <Bar
+        plugins={[ChartDataLabels]}
+        data={{
+          labels,
+          datasets: [
+            {
+              data: data.map((d) => d.value),
+              backgroundColor: color,
+              borderRadius: 4,
+              barPercentage: 0.85,
+              categoryPercentage: 0.9,
+            },
+          ],
+        }}
+        options={options}
+      />
+    </div>
   );
 }
 
-/** Fixed-size donut for one event's option split. No ResponsiveContainer, so
- *  a wall of these doesn't spin up dozens of ResizeObservers. */
+/** Fixed-size donut for one event's option split. Non-responsive (a wall of
+ *  these shouldn't spin up dozens of ResizeObservers) and non-interactive:
+ *  the page renders a full legend with label + pct next to every donut, so a
+ *  canvas tooltip would only repeat it. */
 export function EventDonut({
   options,
   size = 96,
@@ -97,38 +147,30 @@ export function EventDonut({
   options: { id: string; label: string; pct: number }[];
   size?: number;
 }) {
-  const data = options.map((o, i) => ({
-    name: o.label,
-    value: o.pct,
-    fill: OPTION_HEX[i % OPTION_HEX.length],
-  }));
   return (
     <div className="relative shrink-0" style={{ width: size, height: size }}>
-      <PieChart width={size} height={size}>
-        <Pie
-          data={data}
-          dataKey="value"
-          nameKey="name"
-          cx="50%"
-          cy="50%"
-          innerRadius={size * 0.3}
-          outerRadius={size * 0.48}
-          startAngle={90}
-          endAngle={-270}
-          stroke="none"
-          isAnimationActive={false}
-        >
-          {data.map((d, i) => (
-            <Cell key={i} fill={d.fill} />
-          ))}
-        </Pie>
-        <Tooltip
-          content={({ payload }) => {
-            const d = payload?.[0]?.payload as { name: string; value: number } | undefined;
-            return d ? <TipBox label={d.name} value={`${d.value}%`} /> : null;
-          }}
-        />
-      </PieChart>
+      <Doughnut
+        width={size}
+        height={size}
+        data={{
+          labels: options.map((o) => o.label),
+          datasets: [
+            {
+              data: options.map((o) => o.pct),
+              backgroundColor: options.map((_, i) => OPTION_HEX[i % OPTION_HEX.length]),
+              borderWidth: 0,
+            },
+          ],
+        }}
+        options={{
+          responsive: false,
+          maintainAspectRatio: false,
+          animation: false,
+          cutout: "62%",
+          events: [],
+          plugins: { legend: { display: false }, tooltip: { enabled: false } },
+        }}
+      />
       <span className="absolute inset-0 flex items-center justify-center text-sm font-bold tabular-nums text-[var(--text-primary)]">
         {options[0]?.pct}%
       </span>
