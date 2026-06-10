@@ -356,12 +356,22 @@ class Intent(BaseModel):
     image_url: str | None = None
 
 
+class EntityRef(BaseModel):
+    """Minimal cross-entity link: just enough to render a named list item."""
+
+    id: str
+    name: str
+
+
 class Orb(BaseModel):
     id: str
     name: str
     description: str
     description_raw: str | None = None
     image_url: str | None = None
+    # Cards/relics whose text Channels this orb (single-orb endpoint only).
+    channeled_by_cards: list[EntityRef] | None = None
+    channeled_by_relics: list[EntityRef] | None = None
 
 
 class Affliction(BaseModel):

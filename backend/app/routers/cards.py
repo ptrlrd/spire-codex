@@ -28,6 +28,10 @@ def get_cards(
     tag: str | None = Query(
         None, description="Filter by tag (Strike, Defend, Minion, etc.)"
     ),
+    spawns: str | None = Query(
+        None,
+        description="Only cards that create or reference this card id (e.g. SOUL lists every Soul generator)",
+    ),
     search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
 ):
@@ -49,6 +53,9 @@ def get_cards(
         ]
     if tag:
         cards = [c for c in cards if c.get("tags") and tag in c["tags"]]
+    if spawns:
+        want = spawns.strip().upper()
+        cards = [c for c in cards if want in (c.get("spawns_cards") or [])]
     if search:
         cards = [
             c

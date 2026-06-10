@@ -178,7 +178,7 @@ export default function DevelopersPage() {
             {
               category: "Entities",
               endpoints: [
-                { method: "GET", path: "/api/cards", desc: "All cards (filter: color, type, rarity, keyword, tag, search)" },
+                { method: "GET", path: "/api/cards", desc: "All cards (filter: color, type, rarity, keyword, tag, spawns, search)" },
                 { method: "GET", path: "/api/cards/{id}", desc: "Single card" },
                 { method: "GET", path: "/api/characters", desc: "All characters" },
                 { method: "GET", path: "/api/characters/{id}", desc: "Single character" },
