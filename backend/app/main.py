@@ -149,6 +149,19 @@ app.add_middleware(SlowAPIMiddleware)
 def _warm_run_entity_stats() -> None:
     if IS_BETA_BACKEND:
         return
+    # On the Mongo path, skip the local walk entirely: the leader refresher
+    # builds ONE shared snapshot and every worker loads it. This pre-warm
+    # predates that design, and with 4 workers it meant five concurrent
+    # 216k-file walks on every deploy, which thrashed small boxes into
+    # near-hour warmups. Only the SQLite path still needs a local build.
+    if os.environ.get("MONGO_URL", "").strip():
+        try:
+            from .routers.runs import start_stats_refresher
+
+            start_stats_refresher()
+        except Exception:
+            pass
+        return
     import threading
 
     from .services.run_entity_stats import _build_cache
