@@ -13,8 +13,8 @@ const APP_DIR = join(FRONTEND, "app");
 const OUT = join(FRONTEND, "lib", "site-pages.json");
 
 // Routes that exist but don't belong in a search palette: post-action
-// landers, bare redirects, and sub-flows of another page.
-const EXCLUDE = new Set(["/thank-you", "/uninstall", "/meta", "/tier-list-maker/new"]);
+// landers, bare redirects, sub-flows of another page, and the operator panel.
+const EXCLUDE = new Set(["/thank-you", "/uninstall", "/meta", "/tier-list-maker/new", "/admin"]);
 
 function walk(dir, segments = []) {
   const routes = [];

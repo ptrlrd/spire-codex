@@ -130,3 +130,39 @@ def require_user(request: Request) -> dict:
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
     return user
+
+
+def _admin_ids() -> frozenset[str]:
+    """Allowlisted ids from ADMIN_IDS (comma-separated). Accepts site user
+    ids, Steam64 ids, or Discord ids so the operator can use whichever
+    login they have handy. Empty (the default) means nobody is an admin:
+    the panel fails closed on a missing env var."""
+    return frozenset(
+        x.strip() for x in os.environ.get("ADMIN_IDS", "").split(",") if x.strip()
+    )
+
+
+def is_admin(user: dict | None) -> bool:
+    if not user:
+        return False
+    ids = _admin_ids()
+    if not ids:
+        return False
+    candidates = (
+        str(user.get("_id") or ""),
+        str(user.get("steam_id") or ""),
+        str(user.get("discord_id") or ""),
+    )
+    return any(c and c in ids for c in candidates)
+
+
+def require_admin(request: Request) -> dict:
+    """Router-level guard for /api/admin. Checks the allowlist per request
+    (not as a JWT claim) so removing an id takes effect immediately.
+    Non-admins get a 404, not a 403: with the code public there is no point
+    confirming to a probe that the surface exists and they lack access."""
+    user = get_current_user(request)
+    if not user or not is_admin(user):
+        raise HTTPException(status_code=404, detail="Not found")
+    request.state.admin_user = user
+    return user
