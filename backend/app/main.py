@@ -45,6 +45,7 @@ from .routers import (
     entity_history,
     ancient_pools,
     runs,
+    charts,
     glossary,
     guides,
     versions,
@@ -513,6 +514,7 @@ app.include_router(exports.router)
 app.include_router(entity_history.router)
 app.include_router(ancient_pools.router)
 app.include_router(runs.router)
+app.include_router(charts.router)
 app.include_router(glossary.router)
 app.include_router(guides.router)
 app.include_router(versions.router)

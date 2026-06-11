@@ -253,6 +253,8 @@ export default function DevelopersPage() {
                 { method: "GET", path: "/api/runs/shared/{run_hash}", desc: "Single submitted run by hash (rate-limited)" },
                 { method: "GET", path: "/api/runs/stats", desc: "Aggregate community stats (filter by character, ascension, username)" },
                 { method: "GET", path: "/api/runs/community-stats", desc: "Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records" },
+                { method: "GET", path: "/api/charts/meta", desc: "Chart registry for the /charts explorer: available charts, filters, splits, and run stats" },
+                { method: "GET", path: "/api/charts/{chart}", desc: "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, plus per-chart params)" },
                 { method: "GET", path: "/api/runs/scores/{type}", desc: "Codex Score + Codex Elo per entity (cards/relics/potions); relics accept ?act=1|2|3 to rank by acquisition act" },
                 { method: "GET", path: "/api/runs/metrics/{type}", desc: "Dense metrics table: Codex Score, Codex Elo, win rate, pick rate, per-act splits" },
                 { method: "GET", path: "/api/runs/versions", desc: "Distinct game build IDs that have submitted runs" },
