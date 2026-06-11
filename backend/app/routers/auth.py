@@ -12,6 +12,7 @@ from slowapi import Limiter
 from ..dependencies import client_ip
 from ..services.auth_jwt import (
     get_current_user,
+    is_admin,
     require_user,
     clear_auth_cookie,
 )
@@ -36,6 +37,7 @@ async def me(request: Request):
         "discord_id": user.get("discord_id"),
         "created_at": user.get("created_at"),
         "needs_email": not user.get("email"),
+        "is_admin": is_admin(user),
     }
 
 

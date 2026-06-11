@@ -183,3 +183,33 @@ def delete_pattern(pattern: str) -> int:
             namespace=_namespace(pattern), operation="delete_pattern"
         ).inc()
     return deleted
+
+
+def info() -> dict:
+    """Operational snapshot for the admin overview. Fail-safe like the rest
+    of this module: never raises, reports disabled/down states honestly."""
+    if not _REDIS_URL:
+        return {"enabled": False, "ok": False}
+    client = _get_client()
+    if client is None:
+        return {"enabled": True, "ok": False}
+    try:
+        raw = client.info()
+        hits = raw.get("keyspace_hits") or 0
+        misses = raw.get("keyspace_misses") or 0
+        total = hits + misses
+        return {
+            "enabled": True,
+            "ok": True,
+            "used_memory_human": raw.get("used_memory_human"),
+            "maxmemory_human": raw.get("maxmemory_human"),
+            "keys": sum(
+                v.get("keys", 0)
+                for k, v in raw.items()
+                if k.startswith("db") and isinstance(v, dict)
+            ),
+            "hit_rate": round(hits / total * 100, 1) if total else None,
+            "uptime_days": round((raw.get("uptime_in_seconds") or 0) / 86400, 1),
+        }
+    except Exception:
+        return {"enabled": True, "ok": False}
