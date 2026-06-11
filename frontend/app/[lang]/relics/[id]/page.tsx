@@ -12,13 +12,20 @@ export const dynamic = "force-dynamic";
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
-type Props = { params: Promise<{ lang: string; id: string }> };
+type Props = { params: Promise<{ lang: string; id: string }>; searchParams: Promise<{ channel?: string }> };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+/** The /beta rewrites inject ?channel=beta; forward it to the API. */
+async function channelQS(searchParams: Props["searchParams"]): Promise<string> {
+  const { channel } = await searchParams;
+  return channel === "beta" ? "&channel=beta" : "";
+}
+
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { lang, id } = await params;
+  const qs = await channelQS(searchParams);
   if (!isValidLang(lang)) return {};
   try {
-    const res = await fetch(`${API_INTERNAL}/api/relics/${id}?lang=${lang}`);
+    const res = await fetch(`${API_INTERNAL}/api/relics/${id}?lang=${lang}${qs}`);
     if (!res.ok) return { title: "Relic Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const entity = await res.json();
     const desc = stripTagsFlat(entity.description || "");
@@ -48,15 +55,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({ params, searchParams }: Props) {
   const { lang, id } = await params;
+  const qs = await channelQS(searchParams);
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
   let jsonLd = null;
   let data = null;
   let apiUnreachable = false;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/relics/${id}?lang=${lang}`);
+    const res = await fetch(`${API_INTERNAL}/api/relics/${id}?lang=${lang}${qs}`);
     if (res.ok) {
       data = await res.json();
       const desc = stripTags(data.description || "");

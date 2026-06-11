@@ -1,10 +1,24 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
+const LANGS = "deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs";
+
 const nextConfig: NextConfig = {
   output: "standalone",
+  // The /beta section itself is wired up in middleware.ts, which rewrites
+  // /beta/cards/x to /cards/x?channel=beta. Only the SEO shielding lives
+  // here. Decision: /beta carries zero SEO risk, so every beta URL gets a
+  // header-level noindex without touching the shared pages.
   async headers() {
     return [
+      {
+        source: "/beta/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
+      {
+        source: `/:lang(${LANGS})/beta/:path*`,
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
       {
         source: "/widget/:path*",
         headers: [

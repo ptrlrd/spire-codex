@@ -43,7 +43,59 @@ function gidFromEncoded(seg: string): string | null {
   return null;
 }
 
+const LANG_CODES = new Set([
+  "deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs",
+]);
+
+// Entity types with a real /beta/<type>/[id] detail route (force-dynamic
+// pages under app/beta/), exempt from the rewrite below.
+const BETA_DETAIL_TYPES = new Set([
+  "cards", "relics", "monsters", "potions", "enchantments", "encounters",
+  "events", "powers", "keywords", "orbs",
+]);
+
+/** The beta section reuses the entire existing page tree: /beta/cards/x
+ * renders /cards/x with ?channel=beta injected (server components read it
+ * from searchParams; client fetches detect the /beta path). /beta itself is
+ * a real page (the what's-new landing); the localized /{lang}/beta falls
+ * back to it.
+ *
+ * This lives in middleware rather than next.config rewrites because a
+ * config rewrite's destination query never reaches `searchParams` on the
+ * client router's RSC refetch: the page re-renders channel-less, the API
+ * 404s for beta-only entities, and redirectMissingEntity bounces the
+ * browser to the hub. NextResponse.rewrite carries the query on both
+ * document and RSC requests. */
+function betaRewrite(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.split("/");
+  let lang = "";
+  let rest: string[];
+  if (parts[1] === "beta") {
+    rest = parts.slice(2);
+  } else if (LANG_CODES.has(parts[1]) && parts[2] === "beta") {
+    lang = parts[1];
+    rest = parts.slice(3);
+  } else {
+    return null;
+  }
+  // Real routes under /beta (the landing page and the force-dynamic
+  // detail pages, which can't share the stable pages because those are
+  // ISR-cached) are served as-is.
+  if (!lang && rest.length === 0) return null;
+  if (!lang && rest.length === 2 && BETA_DETAIL_TYPES.has(rest[0])) return null;
+  const url = req.nextUrl.clone();
+  if (rest.length === 0) {
+    url.pathname = "/beta";
+    return NextResponse.rewrite(url);
+  }
+  url.pathname = `${lang ? `/${lang}` : ""}/${rest.join("/")}`;
+  url.searchParams.set("channel", "beta");
+  return NextResponse.rewrite(url);
+}
+
 export function middleware(req: NextRequest) {
+  const beta = betaRewrite(req);
+  if (beta) return beta;
   const m = req.nextUrl.pathname.match(NEWS_PATH);
   if (!m) return NextResponse.next();
   const langPrefix = m[1] ?? "";
@@ -59,5 +111,10 @@ export function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/news/:slug*", "/:lang/news/:slug*"],
+  matcher: [
+    "/news/:slug*",
+    "/:lang/news/:slug*",
+    "/beta/:path*",
+    "/:lang/beta/:path*",
+  ],
 };

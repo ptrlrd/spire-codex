@@ -19,12 +19,32 @@ export function getBetaVersion(): string | null {
   return _betaVersion;
 }
 
+const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
+
+/** "beta" when the browser is on a /beta path (optionally language-prefixed,
+ *  e.g. /jpn/beta/cards). Server-side rendering returns null; server pages
+ *  forward the channel from their searchParams instead. */
+function pathChannel(): "beta" | null {
+  if (typeof window === "undefined") return null;
+  const parts = window.location.pathname.split("/");
+  if (parts[1] === "beta") return "beta";
+  if (LANG_CODES.has(parts[1]) && parts[2] === "beta") return "beta";
+  return null;
+}
+
 export function buildApiUrl(url: string): string {
+  let out = url;
   if (_betaVersion) {
-    const sep = url.includes("?") ? "&" : "?";
-    return `${url}${sep}version=${_betaVersion}`;
+    const sep = out.includes("?") ? "&" : "?";
+    out = `${out}${sep}version=${_betaVersion}`;
   }
-  return url;
+  // On a /beta page every API read should come from the beta channel; doing
+  // it here makes every cachedFetch caller channel-aware without edits.
+  if (pathChannel() === "beta" && out.includes("/api/") && !/[?&]channel=/.test(out)) {
+    const sep = out.includes("?") ? "&" : "?";
+    out = `${out}${sep}channel=beta`;
+  }
+  return out;
 }
 
 export function clearCache() {

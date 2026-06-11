@@ -109,7 +109,7 @@ export default async function BetaLandingPage() {
               items={t.added.map((id) => ({
                 id,
                 name: betaNames.get(id) ?? prettify(id),
-                href: null,
+                href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
                 note: null,
               }))}
             />
@@ -119,7 +119,7 @@ export default async function BetaLandingPage() {
               items={Object.entries(t.changed).map(([id, fields]) => ({
                 id,
                 name: stableNames.get(id) ?? prettify(id),
-                href: route ? `/${route}/${id.toLowerCase()}` : null,
+                href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
                 note: fields.join(", "),
               }))}
             />
