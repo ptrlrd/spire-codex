@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
   pull_request:
-    branches: [main, staging]
+    branches: [main]
 
 jobs:
   # ── Secrets check ──────────────────────────────────────
@@ -167,51 +167,6 @@ jobs:
           tags: |
             ptrlrd/spire-codex-frontend:beta
             ptrlrd/spire-codex-frontend:beta-${{ github.sha }}
-
-  # ── Build & Push staging (staging branch only) ─────────
-  build-staging:
-    name: Build & push staging images
-    runs-on: self-hosted
-    needs: [secrets-check, frontend-lint, backend-lint]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build & push backend (staging)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backend
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-staging
-          cache-to: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-staging,mode=max
-          tags: |
-            ptrlrd/spire-codex-backend:staging
-            ptrlrd/spire-codex-backend:staging-${{ github.sha }}
-
-      - name: Build & push frontend (staging)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-staging
-          cache-to: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-staging,mode=max
-          build-args: |
-            NEXT_PUBLIC_API_URL=
-            NEXT_PUBLIC_SITE_URL=https://staging.spire-codex.com
-            NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
-          tags: |
-            ptrlrd/spire-codex-frontend:staging
-            ptrlrd/spire-codex-frontend:staging-${{ github.sha }}
 
   # ── Deploy ──────────────────────────────────────────────
   # Deploys are intentionally MANUAL via Ansible until we wire the
