@@ -89,6 +89,7 @@ const NAV_GROUPS: NavGroup[] = [
     links: [
       { href: "/tier-list", label: "Tier List" },
       { href: "/community-stats", label: "Community Stats" },
+      { href: "/charts", label: "Charts" },
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/runs", label: "Browse Runs" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
