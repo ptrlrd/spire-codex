@@ -1,6 +1,7 @@
 """Run submission and community stats API endpoints."""
 
 import json
+import logging
 import os
 import time
 from functools import lru_cache
@@ -29,6 +30,8 @@ from ..metrics import (
 _data_dir = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
 )
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/runs", tags=["Runs"])
 limiter = Limiter(key_func=get_remote_address)
@@ -912,7 +915,10 @@ def start_stats_refresher() -> None:
                 )
 
                 if try_acquire_refresh_lease():
-                    refresh_stats_summary()
+                    try:
+                        refresh_stats_summary()
+                    except Exception:
+                        logger.warning("stats summary refresh failed", exc_info=True)
                     # Pre-compute the default (category, character) ladder
                     # views into leaderboard_summary. Reads for the common
                     # combos become O(1) find_one instead of a 500ms
@@ -920,7 +926,9 @@ def start_stats_refresher() -> None:
                     try:
                         refresh_leaderboard_summary()
                     except Exception:
-                        pass
+                        logger.warning(
+                            "leaderboard summary refresh failed", exc_info=True
+                        )
                     # Rebuild the shared entity-stats snapshot (tier-list
                     # / Codex Score source) on the same leader-only loop.
                     # Internally throttled, so this is a no-op find_one
@@ -929,7 +937,9 @@ def start_stats_refresher() -> None:
                     try:
                         refresh_entity_stats_snapshot()
                     except Exception:
-                        pass
+                        logger.warning(
+                            "entity-stats snapshot refresh failed", exc_info=True
+                        )
                     # Proactive warm of the entity-scores cache (in-memory
                     # reads, cheap every cycle) so tier pages serve straight
                     # from Redis cluster-wide instead of recomputing per
@@ -951,8 +961,10 @@ def start_stats_refresher() -> None:
                     except Exception:
                         pass
             except Exception:
-                # SQLite path or transient failure — sleep and retry.
-                pass
+                # Expected on the SQLite path (no Mongo to refresh); a real
+                # Mongo deployment failing here must be visible, not silent.
+                if os.environ.get("MONGO_URL", "").strip():
+                    logger.warning("stats refresher cycle failed", exc_info=True)
             time.sleep(_REFRESHER_INTERVAL_SECONDS)
 
     threading.Thread(target=_loop, daemon=True, name="stats-refresher").start()
