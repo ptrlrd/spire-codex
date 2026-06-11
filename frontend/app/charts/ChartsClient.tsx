@@ -258,7 +258,7 @@ export default function ChartsClient() {
         }
       });
     return () => ctrl.abort();
-  }, [spec, players, ascension, gameMode, username, stat, xStat, yStat]);
+  }, [spec, meta, players, ascension, gameMode, username, stat, xStat, yStat]);
 
   const groups = useMemo(() => {
     const g = new Map<string, ChartSpec[]>();
@@ -404,7 +404,7 @@ export default function ChartsClient() {
 function ExplorerChart({ spec, data }: { spec: ChartSpec; data: ChartResponse }) {
   if (spec.scatter) return <ScatterChart data={data} />;
   if (spec.bars) return <BarRanking data={data} />;
-  return <LineChart data={data} spec={spec} />;
+  return <LineChart data={data} />;
 }
 
 function baseOptions(data: ChartResponse): ChartOptions<"line"> {
@@ -445,7 +445,7 @@ function baseOptions(data: ChartResponse): ChartOptions<"line"> {
   };
 }
 
-function LineChart({ data, spec }: { data: ChartResponse; spec: ChartSpec }) {
+function LineChart({ data }: { data: ChartResponse }) {
   const numericX = data.series.every((s) => s.points.every((p) => typeof p.x === "number"));
   const options = baseOptions(data);
 
