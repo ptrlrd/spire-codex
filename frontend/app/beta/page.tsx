@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import BetaBanner from "@/app/components/BetaBanner";
+import DiffSection, { SummaryBadge, type DiffEntry } from "./DiffSection";
 
 // The beta landing page: what the current beta adds, changes, and removes,
 // straight from the diff index. Unindexed by design (decision: zero SEO
@@ -80,6 +80,38 @@ export default async function BetaLandingPage() {
 
   const live = sections.filter(Boolean) as NonNullable<(typeof sections)[number]>[];
 
+  // The same shape the changelog page renders: per-category collapsible
+  // sections under one overall summary line.
+  const rendered = live.map(({ key, label, route, t, betaNames, stableNames }) => ({
+    key,
+    label,
+    added: t.added.map((id): DiffEntry => ({
+      id,
+      name: betaNames.get(id) ?? prettify(id),
+      href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+    })),
+    changed: Object.entries(t.changed).map(([id, fields]): DiffEntry => ({
+      id,
+      name: stableNames.get(id) ?? prettify(id),
+      href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+      note: fields.join(", "),
+    })),
+    removed: t.removed.map((id): DiffEntry => ({
+      id,
+      name: stableNames.get(id) ?? prettify(id),
+      href: route ? `/${route}/${id.toLowerCase()}` : null,
+    })),
+  }));
+
+  const totals = rendered.reduce(
+    (acc, s) => ({
+      added: acc.added + s.added.length,
+      removed: acc.removed + s.removed.length,
+      changed: acc.changed + s.changed.length,
+    }),
+    { added: 0, removed: 0, changed: 0 },
+  );
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <BetaBanner />
@@ -87,94 +119,26 @@ export default async function BetaLandingPage() {
         <span className="text-emerald-300">Beta</span>{" "}
         <span className="text-[var(--accent-gold)]">{diff?.beta_version ?? ""}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-8">
+      <p className="text-sm text-[var(--text-muted)] mb-3">
         Everything the current beta branch adds, changes, or removes compared to main,
         straight from the game data. Presentation-only differences (art, ordering)
         are filtered out.
       </p>
+      <div className="mb-6">
+        <SummaryBadge {...totals} />
+      </div>
 
-      {live.length === 0 && (
+      {rendered.length === 0 && (
         <p className="text-sm text-[var(--text-muted)]">
           No differences detected between beta and main right now.
         </p>
       )}
 
-      {live.map(({ key, label, route, t, betaNames, stableNames }) => (
-        <section key={key} className="mb-10">
-          <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-3">{label}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <DiffList
-              title={`New in beta (${t.added.length})`}
-              tone="text-emerald-300"
-              items={t.added.map((id) => ({
-                id,
-                name: betaNames.get(id) ?? prettify(id),
-                href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
-                note: null,
-              }))}
-            />
-            <DiffList
-              title={`Changed (${Object.keys(t.changed).length})`}
-              tone="text-sky-300"
-              items={Object.entries(t.changed).map(([id, fields]) => ({
-                id,
-                name: stableNames.get(id) ?? prettify(id),
-                href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
-                note: fields.join(", "),
-              }))}
-            />
-            <DiffList
-              title={`Removed (${t.removed.length})`}
-              tone="text-rose-300"
-              items={t.removed.map((id) => ({
-                id,
-                name: stableNames.get(id) ?? prettify(id),
-                href: route ? `/${route}/${id.toLowerCase()}` : null,
-                note: null,
-              }))}
-            />
-          </div>
-        </section>
-      ))}
-    </div>
-  );
-}
-
-function DiffList({
-  title,
-  tone,
-  items,
-}: {
-  title: string;
-  tone: string;
-  items: { id: string; name: string; href: string | null; note: string | null }[];
-}) {
-  return (
-    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <h3 className={`text-xs font-semibold uppercase tracking-wider mb-2 ${tone}`}>{title}</h3>
-      {items.length === 0 ? (
-        <p className="text-xs text-[var(--text-muted)]">None</p>
-      ) : (
-        <ul className="space-y-1">
-          {items.map((it) => (
-            <li key={it.id} className="text-sm">
-              {it.href ? (
-                <Link
-                  href={it.href}
-                  className="text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-                >
-                  {it.name}
-                </Link>
-              ) : (
-                <span className="text-[var(--text-secondary)]">{it.name}</span>
-              )}
-              {it.note && (
-                <span className="text-xs text-[var(--text-muted)] ml-2">{it.note}</span>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+      <div className="space-y-3">
+        {rendered.map(({ key, label, added, changed, removed }) => (
+          <DiffSection key={key} label={label} added={added} changed={changed} removed={removed} />
+        ))}
+      </div>
     </div>
   );
 }
