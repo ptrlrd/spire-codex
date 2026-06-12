@@ -61,6 +61,8 @@ from .routers import (
     uninstall,
     qa_feedback,
     tierlists,
+    mod_meta,
+    presence,
 )
 from .services.data_service import (
     current_channel,
@@ -548,6 +550,8 @@ app.include_router(auth_steam.router)
 app.include_router(auth_discord.router)
 app.include_router(auth.router)
 app.include_router(tierlists.router)
+app.include_router(mod_meta.router)
+app.include_router(presence.router)
 # Overlay-direct OpenID flow uses /auth/steam-popup as Steam's return_to.
 # This is intentionally outside /api/* — it's a user-facing HTML page,
 # not a JSON API — so it's mounted at the app level rather than under
