@@ -8,8 +8,15 @@
 # /etc/cron.d/spire-codex-autodeploy. Manual run: just exec this script.
 #
 # Idempotent: same-HEAD ticks no-op and don't log unless DEBUG=1.
+# `--force` overrides that: full deploy (pull, prewarm, recreate, nginx
+# reload, CF purge) even with no new commit. Used for manual releases
+# right after a merge (./tools/startup.sh release) and for re-pulling a
+# rebuilt image on the same commit.
 
 set -euo pipefail
+
+FORCE=0
+[ "${1:-}" = "--force" ] && FORCE=1
 
 REPO="${SPIRE_REPO:-/var/www/spire-codex}"
 LOG="${SPIRE_AUTODEPLOY_LOG:-/var/log/spire-codex-autodeploy.log}"
@@ -31,38 +38,43 @@ git fetch origin main --quiet
 git reset --hard origin/main >> "$LOG" 2>&1
 AFTER=$(git rev-parse HEAD)
 
-if [ "$BEFORE" = "$AFTER" ]; then
+if [ "$BEFORE" = "$AFTER" ] && [ "$FORCE" != "1" ]; then
   [ "${DEBUG:-0}" = "1" ] && log "no change ($AFTER)"
   exit 0
 fi
 
-log "==== change detected: ${BEFORE:0:8} -> ${AFTER:0:8} ===="
-
-# Detect whether this update needs a container recreate at all. Two
-# classes don't:
-#
-#   data/news/*  : the compose file mounts ./data:/data and the news API
-#                  re-reads from disk on every request.
-#   data-beta/*  : the beta catalogs are cached keyed BY VERSION and the
-#                  `latest` pointer is re-read per request, so a new
-#                  beta ingest (the beta-watch auto-PR) starts serving
-#                  the moment the files land on disk. Exception: a
-#                  re-parse of an EXISTING version keeps its cache key;
-#                  bounce the backend manually after one of those.
-#
-# Skipping the recreate saves ~30s of downtime for the two most frequent
-# update classes. Anything else (code, stable data files cached
-# without a version key so they need the restart, images, frontend,
-# infra) still does the full recreate.
-CHANGED=$(git diff --name-only "$BEFORE..$AFTER")
-NON_HOT=$(echo "$CHANGED" | grep -v '^data/news/' | grep -v '^data-beta/' | grep -v '^$' || true)
-
-if [ -z "$NON_HOT" ]; then
-  log "hot-reloadable update ($(echo "$CHANGED" | wc -l | tr -d ' ') file(s), news/beta data only), skipping container recreate"
-  RECREATE=0
-else
-  log "full deploy ($(echo "$NON_HOT" | wc -l | tr -d ' ') file(s) outside the hot-reload classes)"
+if [ "$FORCE" = "1" ]; then
+  log "==== forced deploy at ${AFTER:0:8} ===="
   RECREATE=1
+else
+  log "==== change detected: ${BEFORE:0:8} -> ${AFTER:0:8} ===="
+
+  # Detect whether this update needs a container recreate at all. Two
+  # classes don't:
+  #
+  #   data/news/*  : the compose file mounts ./data:/data and the news API
+  #                  re-reads from disk on every request.
+  #   data-beta/*  : the beta catalogs are cached keyed BY VERSION and the
+  #                  `latest` pointer is re-read per request, so a new
+  #                  beta ingest (the beta-watch auto-PR) starts serving
+  #                  the moment the files land on disk. Exception: a
+  #                  re-parse of an EXISTING version keeps its cache key;
+  #                  bounce the backend manually after one of those.
+  #
+  # Skipping the recreate saves ~30s of downtime for the two most frequent
+  # update classes. Anything else (code, stable data files cached
+  # without a version key so they need the restart, images, frontend,
+  # infra) still does the full recreate.
+  CHANGED=$(git diff --name-only "$BEFORE..$AFTER")
+  NON_HOT=$(echo "$CHANGED" | grep -v '^data/news/' | grep -v '^data-beta/' | grep -v '^$' || true)
+
+  if [ -z "$NON_HOT" ]; then
+    log "hot-reloadable update ($(echo "$CHANGED" | wc -l | tr -d ' ') file(s), news/beta data only), skipping container recreate"
+    RECREATE=0
+  else
+    log "full deploy ($(echo "$NON_HOT" | wc -l | tr -d ' ') file(s) outside the hot-reload classes)"
+    RECREATE=1
+  fi
 fi
 
 if [ "$RECREATE" = "1" ]; then
@@ -98,6 +110,17 @@ if [ "$RECREATE" = "1" ]; then
 
   # Settle. 5s is enough for FastAPI startup; longer waits don't help.
   sleep 5
+
+  # Recreated containers get new IPs on the shared docker network, and
+  # nginx resolves upstream container names once at startup, so without
+  # a reload it keeps proxying to the dead addresses and the whole site
+  # 502s (bit us on 2026-06-11 and again on 2026-06-12). Reload is
+  # zero-downtime and re-resolves every upstream.
+  if docker exec web-server nginx -s reload >> "$LOG" 2>&1; then
+    log "✓ nginx reloaded"
+  else
+    log "⚠ nginx reload failed or web-server not on this host"
+  fi
 
   if docker compose -f "$COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
     log "✓ backend ready"
