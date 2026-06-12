@@ -11,6 +11,7 @@ interface User {
   steam_id: string | null;
   discord_id: string | null;
   needs_email: boolean;
+  is_admin?: boolean;
 }
 
 interface AuthContextType {
