@@ -276,6 +276,7 @@ export default function DonationBanner() {
   const [banner, setBanner] = useState<
     "none" | "announcement" | "patreon" | "rotating"
   >("none");
+  const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [announcement, setAnnouncement] = useState<Announcement | null>(null);
   const [rotatingIndex, setRotatingIndex] = useState(0);
 
@@ -300,7 +301,9 @@ export default function DonationBanner() {
     fetch(`${API}/api/announcements`)
       .then((r) => (r.ok ? r.json() : null))
       .then((d: { items?: Announcement[] } | null) => {
-        const fresh = (d?.items ?? []).find(
+        const items = d?.items ?? [];
+        setAnnouncements(items);
+        const fresh = items.find(
           (a) => !localStorage.getItem(`announce-dismissed-${a.id}`),
         );
         if (fresh) {
@@ -314,9 +317,19 @@ export default function DonationBanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Several announcements can be active at once; dismissing one slides the
+  // next undismissed one in, and only after the last does the banner fall
+  // through to the Patreon/rotating tiers.
   function dismissAnnouncement() {
     if (announcement) {
       localStorage.setItem(`announce-dismissed-${announcement.id}`, "1");
+    }
+    const next = announcements.find(
+      (a) => !localStorage.getItem(`announce-dismissed-${a.id}`),
+    );
+    if (next) {
+      setAnnouncement(next);
+      return;
     }
     fallthrough();
   }
