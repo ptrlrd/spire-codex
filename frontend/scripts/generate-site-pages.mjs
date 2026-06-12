@@ -17,6 +17,7 @@ const OUT = join(FRONTEND, "lib", "site-pages.json");
 const EXCLUDE = new Set([
   "/thank-you", "/uninstall", "/meta", "/tier-list-maker/new", "/beta",
   "/admin", "/admin/runs", "/admin/feedback", "/admin/guides", "/admin/cache",
+  "/admin/banners", "/admin/analytics",
 ]);
 
 function walk(dir, segments = []) {

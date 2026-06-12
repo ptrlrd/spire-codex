@@ -203,7 +203,47 @@ function AncientBanner({ banner, onDismiss }: { banner: RotatingBanner; onDismis
   );
 }
 
-function TierListBanner({ onDismiss }: { onDismiss: () => void }) {
+interface Announcement {
+  id: string;
+  message: string;
+}
+
+/** Inline [label](/href) links in an admin-entered announcement become real
+ * links; everything else renders as plain text, so banner content can never
+ * inject markup. */
+function renderAnnouncement(message: string): ReactNode[] {
+  const out: ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)\s]+)\)/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  const linkClass = "font-medium text-green-100 underline hover:text-white transition-colors";
+  while ((m = re.exec(message)) !== null) {
+    if (m.index > last) out.push(message.slice(last, m.index));
+    const [, label, href] = m;
+    out.push(
+      href.startsWith("/") ? (
+        <Link key={m.index} href={href} className={linkClass}>
+          {label}
+        </Link>
+      ) : (
+        <a key={m.index} href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          {label}
+        </a>
+      ),
+    );
+    last = m.index + m[0].length;
+  }
+  if (last < message.length) out.push(message.slice(last));
+  return out;
+}
+
+function AnnouncementBanner({
+  ann,
+  onDismiss,
+}: {
+  ann: Announcement;
+  onDismiss: () => void;
+}) {
   return (
     <div className="bg-green-900/40 border-b border-green-700/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
@@ -217,29 +257,7 @@ function TierListBanner({ onDismiss }: { onDismiss: () => void }) {
             <span className="mr-2 rounded bg-green-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               New
             </span>
-            The{" "}
-            <Link
-              href="/tier-list-maker"
-              className="font-medium text-green-100 underline hover:text-white transition-colors"
-            >
-              Tier List Maker
-            </Link>{" "}
-            is here, make your list and share it. Introducing the Codex Elo
-            system, check out our{" "}
-            <Link
-              href="/leaderboards/metrics"
-              className="font-medium text-green-100 underline hover:text-white transition-colors"
-            >
-              card metrics
-            </Link>{" "}
-            for an in-depth view of picks. Plus a new 1:1{" "}
-            <Link
-              href="/cards"
-              className="font-medium text-green-100 underline hover:text-white transition-colors"
-            >
-              card view
-            </Link>{" "}
-            is now available.
+            {renderAnnouncement(ann.message)}
           </p>
         </div>
         <button
@@ -256,27 +274,16 @@ function TierListBanner({ onDismiss }: { onDismiss: () => void }) {
 
 export default function DonationBanner() {
   const [banner, setBanner] = useState<
-    "none" | "tierlist" | "patreon" | "rotating"
+    "none" | "announcement" | "patreon" | "rotating"
   >("none");
+  const [announcement, setAnnouncement] = useState<Announcement | null>(null);
   const [rotatingIndex, setRotatingIndex] = useState(0);
 
-  useEffect(() => {
-    const tierlistDismissed = localStorage.getItem("announce-dismissed-v2");
-    const patreonDismissed = localStorage.getItem("donation-banner-dismissed");
-    const rotatingDismissed = sessionStorage.getItem("community-banner-dismissed");
-    if (!tierlistDismissed) {
-      setBanner("tierlist");
-    } else if (!patreonDismissed) {
-      setBanner("patreon");
-    } else if (!rotatingDismissed) {
-      // Pick a random banner for this session
-      setRotatingIndex(Math.floor(Math.random() * ROTATING_BANNERS.length));
-      setBanner("rotating");
-    }
-  }, []);
-
-  function dismissTierlist() {
-    localStorage.setItem("announce-dismissed-v2", "1");
+  // Priority: undismissed admin announcement, then the Patreon ask, then a
+  // random rotating ancient for the session. Announcement dismissals are
+  // keyed per announcement id, so publishing a new one from /admin reshows
+  // the banner for everyone without any code change.
+  function fallthrough(): void {
     const patreonDismissed = localStorage.getItem("donation-banner-dismissed");
     const rotatingDismissed = sessionStorage.getItem("community-banner-dismissed");
     if (!patreonDismissed) {
@@ -287,6 +294,31 @@ export default function DonationBanner() {
     } else {
       setBanner("none");
     }
+  }
+
+  useEffect(() => {
+    fetch(`${API}/api/announcements`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { items?: Announcement[] } | null) => {
+        const fresh = (d?.items ?? []).find(
+          (a) => !localStorage.getItem(`announce-dismissed-${a.id}`),
+        );
+        if (fresh) {
+          setAnnouncement(fresh);
+          setBanner("announcement");
+        } else {
+          fallthrough();
+        }
+      })
+      .catch(() => fallthrough());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function dismissAnnouncement() {
+    if (announcement) {
+      localStorage.setItem(`announce-dismissed-${announcement.id}`, "1");
+    }
+    fallthrough();
   }
 
   function dismissPatreon() {
@@ -305,8 +337,8 @@ export default function DonationBanner() {
     setBanner("none");
   }
 
-  if (banner === "tierlist")
-    return <TierListBanner onDismiss={dismissTierlist} />;
+  if (banner === "announcement" && announcement)
+    return <AnnouncementBanner ann={announcement} onDismiss={dismissAnnouncement} />;
   if (banner === "patreon") return <PatreonBanner onDismiss={dismissPatreon} />;
   if (banner === "rotating")
     return <AncientBanner banner={ROTATING_BANNERS[rotatingIndex]} onDismiss={dismissRotating} />;

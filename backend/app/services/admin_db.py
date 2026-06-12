@@ -153,3 +153,58 @@ def delete_run(run_hash: str, runs_dir: Path) -> dict[str, Any]:
     except OSError:
         logger.warning("run blob delete failed for %s", run_hash, exc_info=True)
     return {"deleted_docs": deleted_docs, "file_removed": file_removed}
+
+
+# ── Announcements (the site banner) ──────────────────────────
+
+
+_ANNOUNCEMENTS_COLLECTION = "announcements"
+
+
+def list_announcements(active_only: bool = False) -> list[dict]:
+    if not _enabled():
+        return []
+    query = {"active": True} if active_only else {}
+    rows = list(
+        _db()[_ANNOUNCEMENTS_COLLECTION].find(query).sort("created_at", -1).limit(50)
+    )
+    return [_shape(r) for r in rows]
+
+
+def create_announcement(message: str) -> dict:
+    """One banner message. Inline links use [label](/href) and the frontend
+    renders them as real links; everything else is plain text."""
+    doc = {
+        "message": message.strip(),
+        "active": True,
+        "created_at": datetime.now(timezone.utc),
+    }
+    res = _db()[_ANNOUNCEMENTS_COLLECTION].insert_one(doc)
+    doc["_id"] = res.inserted_id
+    return _shape(doc)
+
+
+def toggle_announcement(ann_id: str) -> bool:
+    if not _enabled():
+        return False
+    try:
+        oid = ObjectId(ann_id)
+    except InvalidId:
+        return False
+    doc = _db()[_ANNOUNCEMENTS_COLLECTION].find_one({"_id": oid}, {"active": 1})
+    if not doc:
+        return False
+    _db()[_ANNOUNCEMENTS_COLLECTION].update_one(
+        {"_id": oid}, {"$set": {"active": not doc.get("active", False)}}
+    )
+    return True
+
+
+def delete_announcement(ann_id: str) -> bool:
+    if not _enabled():
+        return False
+    try:
+        oid = ObjectId(ann_id)
+    except InvalidId:
+        return False
+    return _db()[_ANNOUNCEMENTS_COLLECTION].delete_one({"_id": oid}).deleted_count > 0

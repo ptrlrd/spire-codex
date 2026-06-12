@@ -50,8 +50,30 @@ export default function AdminClient() {
   const snap = data?.snapshot ?? {};
   const redis = data?.redis;
 
+  const QUICK_LINKS = [
+    { href: "https://analytics.spire-codex.com", label: "Umami" },
+    { href: "https://github.com/ptrlrd/spire-codex", label: "GitHub" },
+    { href: "https://dash.cloudflare.com", label: "Cloudflare" },
+    { href: "https://git.ptrlrd.com", label: "Forgejo" },
+    { href: "https://hub.docker.com/u/ptrlrd", label: "Docker Hub" },
+  ];
+
   return (
     <AdminShell title="Admin" subtitle={data?.environment}>
+      <div className="flex flex-wrap gap-2 mb-8">
+        {QUICK_LINKS.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 rounded-lg text-xs border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:border-[var(--accent-gold)]/40 transition-colors"
+          >
+            {l.label} ↗
+          </a>
+        ))}
+      </div>
+
       {error && <p className="text-sm text-rose-400 mb-4">{error}</p>}
       {!data && !error && (
         <p className="text-sm text-[var(--text-muted)]">Loading overview...</p>
