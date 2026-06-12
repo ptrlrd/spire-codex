@@ -1,23 +1,35 @@
 #!/bin/bash
 # Manual deploy entrypoint.
 #
-#   ./tools/startup.sh           defer to the installed autodeploy script
-#                                (no-op when there's no new commit on main)
-#   ./tools/startup.sh release   force a full deploy NOW: pull images,
-#                                snapshot prewarm, recreate backend+frontend,
-#                                nginx reload, Cloudflare purge - even when
-#                                the commit didn't change (rebuilt image,
-#                                post-incident recovery, ...)
+#   ./tools/startup.sh             defer to the installed autodeploy script
+#                                  (no-op when there's no new commit on main)
+#   ./tools/startup.sh release     force a full deploy NOW via autodeploy:
+#                                  pull images, snapshot prewarm, recreate
+#                                  backend+frontend, nginx reload, Cloudflare
+#                                  purge - even when the commit didn't change
+#   ./tools/startup.sh --bypass    release entirely by hand: skip the
+#                                  autodeploy script, leave git alone, and
+#                                  just pull images + recreate backend and
+#                                  frontend in place + reload nginx. No
+#                                  reset to origin/main, no prewarm, no CF
+#                                  purge - nothing automated touches the box
+#                                  beyond the three deploy steps.
 #
 # The autodeploy script (installed via
 # infrastructure/ansible/playbooks/install-autodeploy.yml) is the single
-# implementation; this wrapper only picks the mode. The fallback below is
-# the bare-minimum safe sequence for a box where it isn't installed yet.
+# implementation of the automated path; this wrapper only picks the mode.
 set -e
 
-MODE="${1:-}"
+MODE=""
+BYPASS=0
+for arg in "$@"; do
+    case "$arg" in
+        --bypass) BYPASS=1 ;;
+        release) MODE="release" ;;
+    esac
+done
 
-if [ -x /usr/local/bin/spire-codex-autodeploy ]; then
+if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
     if [ "$MODE" = "release" ]; then
         echo "forcing a full deploy via spire-codex-autodeploy --force"
         exec sudo /usr/local/bin/spire-codex-autodeploy --force
@@ -26,14 +38,18 @@ if [ -x /usr/local/bin/spire-codex-autodeploy ]; then
     exec sudo /usr/local/bin/spire-codex-autodeploy
 fi
 
-# Fallback (autodeploy not installed): always a full deploy.
-git pull
+# Bypass mode, or the autodeploy script isn't installed: the raw deploy.
+# In bypass the checkout is deliberately untouched - whatever you have
+# checked out stays checked out; only the images and containers move.
+if [ "$BYPASS" != "1" ]; then
+    git pull
+fi
 
 # pull + force-recreate, never `down && up`: down removes every container
 # including Redis, which wipes the response cache and serves a hard 502
 # window while nothing is running. force-recreate swaps backend and
 # frontend in place and leaves Redis (and its cache) untouched.
-docker compose -f docker-compose.prod.yml pull
+docker compose -f docker-compose.prod.yml pull backend frontend
 docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
 
 # Recreated containers get new IPs on the shared docker network, but nginx
@@ -45,3 +61,9 @@ docker compose -f docker-compose.prod.yml up -d --force-recreate backend fronten
 docker exec web-server nginx -s reload 2>/dev/null \
     && echo "nginx reloaded" \
     || echo "nginx reload skipped (web-server not running here)"
+
+if [ "$BYPASS" = "1" ]; then
+    echo "bypass deploy done: images pulled, containers recreated, nginx reloaded."
+    echo "skipped on purpose: git changes, snapshot prewarm, Cloudflare purge."
+    echo "if pages look stale, purge from /admin -> Cache or the CF dashboard."
+fi
