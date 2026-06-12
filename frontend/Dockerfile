@@ -2,7 +2,10 @@ ARG BUILDPLATFORM=linux/amd64
 FROM --platform=$BUILDPLATFORM node:20-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm ci
+# The cache mount keeps the npm download cache on the builder between
+# builds, so a lockfile change re-resolves from local cache instead of
+# re-downloading every package.
+RUN --mount=type=cache,target=/root/.npm npm ci
 
 ARG BUILDPLATFORM=linux/amd64
 FROM --platform=$BUILDPLATFORM node:20-alpine AS builder
@@ -20,7 +23,10 @@ ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
 ARG NEXT_PUBLIC_CDN_URL
 ENV NEXT_PUBLIC_CDN_URL=${NEXT_PUBLIC_CDN_URL}
-RUN npm run build
+# Persist Next's incremental compiler cache across builds. Source always
+# changes between releases so this stage never layer-caches; the mount is
+# what makes the rebuild incremental instead of from scratch.
+RUN --mount=type=cache,target=/app/.next/cache npm run build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
