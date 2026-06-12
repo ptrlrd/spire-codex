@@ -235,4 +235,9 @@ async def submit_guide(request: Request, body: GuideSubmission):
             raise HTTPException(status_code=502, detail="Failed to send submission")
 
     guide_submissions.labels(status="success").inc()
+    # Copy into the moderation queue so submissions are reviewable on
+    # /admin instead of only living in a Discord scrollback. Best effort.
+    from ..services.admin_db import record_guide_submission
+
+    record_guide_submission(body.model_dump())
     return {"ok": True}

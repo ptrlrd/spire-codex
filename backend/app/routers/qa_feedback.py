@@ -84,4 +84,7 @@ async def submit_qa_feedback(request: Request, body: QAFeedback):
             )
             raise HTTPException(status_code=502, detail="Failed to send feedback")
 
+    from ..services.admin_db import record_feedback
+
+    record_feedback("qa", body.model_dump())
     return {"ok": True}

@@ -59,6 +59,12 @@ async def submit_feedback(request: Request, body: FeedbackRequest):
         if resp.status_code >= 400:
             raise HTTPException(status_code=502, detail="Failed to send feedback")
 
+    # Copy into the admin inbox so feedback is reviewable on /admin, not
+    # just a Discord scrollback. Best effort by design.
+    from ..services.admin_db import record_feedback
+
+    record_feedback("feedback", body.model_dump())
+
     # ── GitHub issue (best-effort, non-blocking failure) ───────
     if github_issues.is_configured():
         try:

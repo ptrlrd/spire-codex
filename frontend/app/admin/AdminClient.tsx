@@ -1,17 +1,11 @@
 "use client";
 
-// Operator dashboard shell. Renders a 404-style screen unless /api/auth/me
-// says the signed-in user is on the admin allowlist; the data itself comes
-// from /api/admin/* which enforces the same allowlist server-side.
+// Operator overview: run volume, snapshot health, Redis. The shell handles
+// the gate and the section nav; the other surfaces live in their own
+// /admin/* routes.
 
 import { useEffect, useState } from "react";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-interface Me {
-  username: string | null;
-  is_admin?: boolean;
-}
+import { AdminShell, Card, adminFetch } from "./shared";
 
 interface Overview {
   runs: { total?: number; last_24h?: number; last_submission?: string | null };
@@ -35,34 +29,6 @@ interface Overview {
   environment: string;
 }
 
-function authHeaders(): Record<string, string> {
-  const headers: Record<string, string> = {};
-  if (typeof window !== "undefined") {
-    const token = localStorage.getItem("spire_token");
-    if (token) headers["Authorization"] = `Bearer ${token}`;
-  }
-  return headers;
-}
-
-function NotFound() {
-  return (
-    <div className="max-w-2xl mx-auto px-4 py-24 text-center">
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">404</h1>
-      <p className="text-sm text-[var(--text-muted)]">This page does not exist.</p>
-    </div>
-  );
-}
-
-function Card({ label, value, sub }: { label: string; value: string; sub?: string }) {
-  return (
-    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <div className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{value}</div>
-      <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mt-1">{label}</div>
-      {sub && <div className="text-xs text-[var(--text-secondary)] mt-1">{sub}</div>}
-    </div>
-  );
-}
-
 function fmtAge(seconds?: number | null): string {
   if (seconds == null) return "unknown";
   if (seconds < 90) return `${seconds}s ago`;
@@ -71,59 +37,42 @@ function fmtAge(seconds?: number | null): string {
 }
 
 export default function AdminClient() {
-  const [state, setState] = useState<"loading" | "denied" | "ok">("loading");
-  const [me, setMe] = useState<Me | null>(null);
   const [data, setData] = useState<Overview | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(`${API}/api/auth/me`, { credentials: "include", headers: authHeaders() })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((m: Me | null) => {
-        if (!m?.is_admin) {
-          setState("denied");
-          return;
-        }
-        setMe(m);
-        setState("ok");
-        return fetch(`${API}/api/admin/overview`, {
-          credentials: "include",
-          headers: authHeaders(),
-        })
-          .then((r) => {
-            if (!r.ok) throw new Error(`overview ${r.status}`);
-            return r.json();
-          })
-          .then(setData);
-      })
-      .catch((e) => {
-        if (state !== "denied") setError(String(e?.message || e));
-        setState((s) => (s === "loading" ? "denied" : s));
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    adminFetch<Overview>("/api/admin/overview")
+      .then(setData)
+      .catch((e) => setError(String(e?.message || e)));
   }, []);
-
-  if (state === "loading") {
-    return (
-      <div className="max-w-5xl mx-auto px-4 py-24 text-center text-sm text-[var(--text-muted)]">
-        Loading...
-      </div>
-    );
-  }
-  if (state === "denied") return <NotFound />;
 
   const r = data?.runs ?? {};
   const snap = data?.snapshot ?? {};
   const redis = data?.redis;
 
+  const QUICK_LINKS = [
+    { href: "https://analytics.spire-codex.com", label: "Umami" },
+    { href: "https://github.com/ptrlrd/spire-codex", label: "GitHub" },
+    { href: "https://dash.cloudflare.com", label: "Cloudflare" },
+    { href: "https://git.ptrlrd.com", label: "Forgejo" },
+    { href: "https://hub.docker.com/u/ptrlrd", label: "Docker Hub" },
+  ];
+
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold mb-1">
-        <span className="text-[var(--accent-gold)]">Admin</span>
-      </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-6">
-        Signed in as {me?.username ?? "?"} · {data?.environment ?? "..."}
-      </p>
+    <AdminShell title="Admin" subtitle={data?.environment}>
+      <div className="flex flex-wrap gap-2 mb-8">
+        {QUICK_LINKS.map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-3 py-1 rounded-lg text-xs border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--accent-gold)] hover:border-[var(--accent-gold)]/40 transition-colors"
+          >
+            {l.label} ↗
+          </a>
+        ))}
+      </div>
 
       {error && <p className="text-sm text-rose-400 mb-4">{error}</p>}
       {!data && !error && (
@@ -172,6 +121,6 @@ export default function AdminClient() {
           </div>
         </>
       )}
-    </div>
+    </AdminShell>
   );
 }
