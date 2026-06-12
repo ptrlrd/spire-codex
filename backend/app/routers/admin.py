@@ -322,7 +322,13 @@ async def _umami_get(client, url: str, params: dict) -> dict | None:
     """GET with the cached bearer token, re-logging-in once on a 401
     (self-hosted Umami tokens expire)."""
     global _umami_token
-    base = os.environ.get("UMAMI_URL", "https://analytics.spire-codex.com").rstrip("/")
+    # docker-compose templates this as `${UMAMI_URL:-}`, so an unset
+    # host-side var arrives as an EMPTY string, not a missing key; a
+    # plain .get() default never kicks in and httpx then explodes on a
+    # host-less URL. `or` past the empty string to the real default.
+    base = (
+        os.environ.get("UMAMI_URL", "").strip() or "https://analytics.spire-codex.com"
+    ).rstrip("/")
     username = os.environ.get("UMAMI_USERNAME", "").strip()
     password = os.environ.get("UMAMI_PASSWORD", "").strip()
     for attempt in (1, 2):
@@ -370,37 +376,48 @@ async def analytics(request: Request):
 
     import httpx
 
-    website = os.environ.get(
-        "UMAMI_WEBSITE_ID", "715a2b92-5064-4369-9d33-cdd1c0ea8f93"
-    ).strip()
+    website = (
+        os.environ.get("UMAMI_WEBSITE_ID", "").strip()
+        or "715a2b92-5064-4369-9d33-cdd1c0ea8f93"
+    )
     now_ms = int(_time.time() * 1000)
     day_ms = 24 * 3600 * 1000
-    async with httpx.AsyncClient(timeout=15) as client:
-        stats_24h = await _umami_get(
-            client,
-            f"/api/websites/{website}/stats",
-            {"startAt": now_ms - day_ms, "endAt": now_ms},
-        )
-        stats_7d = await _umami_get(
-            client,
-            f"/api/websites/{website}/stats",
-            {"startAt": now_ms - 7 * day_ms, "endAt": now_ms},
-        )
-        top_pages = await _umami_get(
-            client,
-            f"/api/websites/{website}/metrics",
-            {
-                "type": "url",
-                "startAt": now_ms - 7 * day_ms,
-                "endAt": now_ms,
-                "limit": 10,
-            },
-        )
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            stats_24h = await _umami_get(
+                client,
+                f"/api/websites/{website}/stats",
+                {"startAt": now_ms - day_ms, "endAt": now_ms},
+            )
+            stats_7d = await _umami_get(
+                client,
+                f"/api/websites/{website}/stats",
+                {"startAt": now_ms - 7 * day_ms, "endAt": now_ms},
+            )
+            top_pages = await _umami_get(
+                client,
+                f"/api/websites/{website}/metrics",
+                {
+                    "type": "url",
+                    "startAt": now_ms - 7 * day_ms,
+                    "endAt": now_ms,
+                    "limit": 10,
+                },
+            )
+    except httpx.HTTPError as exc:
+        # Bad UMAMI_URL, DNS failure, timeout: degrade to a labelled 502
+        # instead of an anonymous 500 so the admin UI says what to fix.
+        from fastapi import HTTPException
+
+        logger.warning("umami proxy failed: %s", exc, exc_info=True)
+        raise HTTPException(
+            status_code=502, detail=f"Umami unreachable: {type(exc).__name__}: {exc}"
+        ) from exc
     return {
         "last_24h": stats_24h,
         "last_7d": stats_7d,
         "top_pages": top_pages or [],
-        "dashboard_url": os.environ.get(
-            "UMAMI_URL", "https://analytics.spire-codex.com"
-        ),
+        # Always the public dashboard, never the container-internal
+        # UMAMI_URL (http://umami:3000) the proxy itself may use.
+        "dashboard_url": "https://analytics.spire-codex.com",
     }
