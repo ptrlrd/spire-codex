@@ -85,10 +85,12 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend and fronte
 `install-autodeploy.yml` installs `/usr/local/bin/spire-codex-autodeploy` + a cron entry at `/etc/cron.d/spire-codex-autodeploy` that fires every hour at :03. Each tick:
 
 1. `git pull` in `/var/www/spire-codex`
-2. If HEAD advanced and changes are not purely `data/news/*` or `data-beta/*` (both hot-reload without a restart): `docker compose pull` + `up -d --force-recreate` for `docker-compose.prod.yml`
+2. If HEAD advanced and changes are not purely `data/news/*` or `data-beta/*` (both hot-reload without a restart): `docker compose pull`, a stats snapshot prewarm with the new image when the backend image changed (so a snapshot version bump never serves empty stats), then `up -d --force-recreate` for `docker-compose.prod.yml` and an nginx reload (recreated containers get new IPs; without the reload the site 502s)
 3. CF cache purge (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
 
 News-only updates (`data/news/*.json`) skip the recreate — the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
+
+`--force` (what `./tools/startup.sh release` invokes) runs the full sequence even when HEAD didn't move: manual releases right after a merge, or re-pulling a rebuilt image on the same commit.
 
 ```bash
 # Run the cron manually (don't want to wait for :03)
