@@ -27,6 +27,11 @@ services:
     volumes:
       - ./data:/data
       - ./data-beta:/data-beta:ro
+      # The static tree (gallery PNG sources, ZIP downloads, audio) is
+      # bind-mounted instead of baked into the image; it arrives via git
+      # pull at deploy, exactly like data/. Image bytes themselves are
+      # served from the CDN (nginx 301s /static/images/*).
+      - ./backend/static:/app/static:ro
       - ./.secrets:/secrets:ro
     environment:
       - DATA_DIR=/data

@@ -5,11 +5,12 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# static/ is ~2.6 GB of PNG and audio that only changes on game updates;
-# app/ changes every release. Copy static/ first so a code-only change
-# reuses the cached static layer instead of rebuilding and re-uploading
-# 2.6 GB on every build (and re-downloading it on every deploy pull).
-COPY static/ static/
+# static/ (~2.6 GB of PNG/audio sources for the /images gallery and ZIP
+# downloads) deliberately never ships in the image: prod and dev both
+# bind-mount ./backend/static, the same pattern as data/. Image bytes
+# are served from the CDN anyway (nginx 301s /static/images/* to
+# cdn.spire-codex.com); the local tree only feeds directory listings
+# and ZIP building. main.py skips the /static mount if the dir is absent.
 COPY app/ app/
 
 EXPOSE 8000
