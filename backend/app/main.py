@@ -261,6 +261,12 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
                                              bypasses on cookie heuristics but
                                              the origin should declare intent
                                              explicitly.
+      /api/presence  no-store             - live "who is in a run now" feed:
+                                             30s heartbeats, 90s server TTL.
+                                             Any shared caching makes the
+                                             roster lie; the generic /api/*
+                                             hour froze the first-ever empty
+                                             response at the edge (2026-06-12).
       /api/runs/*  s-maxage=30             — user-submitted runs need to appear
                                              in lists/leaderboards within a
                                              minute, not an hour.
@@ -274,6 +280,13 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
                                              counters appear stuck and gauges
                                              rewind on cache refresh.
 
+    Endpoints that set Cache-Control themselves win: the middleware only
+    fills in a default when the handler didn't declare one. Several handlers
+    rely on that (snapshot-status at no-store, community-stats and metrics
+    flipping to no-store while the stats snapshot rebuilds) and were being
+    silently overwritten, which let the edge cache empty rebuild-window
+    responses despite their own guards.
+
     Cache headers are only applied to successful GETs. Caching 4xx/5xx on
     /static would prevent recovery by simply uploading the missing file.
     """
@@ -282,6 +295,10 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
         if request.method != "GET" or response.status_code >= 400:
+            return response
+        # A handler that declared its own Cache-Control knows better than
+        # these path-prefix defaults; never overwrite it.
+        if "cache-control" in response.headers:
             return response
         path = request.url.path
         if path.startswith("/static/"):
@@ -302,6 +319,11 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
             # tier lists to everyone (and stale them for an hour after a save).
             # The public /api/tierlists/shared/* reads fall through and cache.
             response.headers["Cache-Control"] = "private, no-store"
+        elif path.startswith("/api/presence"):
+            # Live "who is in a run now" feed: 30s heartbeats, 90s server TTL.
+            # Any shared caching makes the roster lie; the generic /api/* hour
+            # froze the first-ever empty response at the edge (2026-06-12).
+            response.headers["Cache-Control"] = "no-store"
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
         elif path.startswith("/api/"):
