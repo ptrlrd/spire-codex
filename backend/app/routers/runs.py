@@ -1,6 +1,7 @@
 """Run submission and community stats API endpoints."""
 
 import json
+import logging
 import os
 import time
 from functools import lru_cache
@@ -29,6 +30,8 @@ from ..metrics import (
 _data_dir = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
 )
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/runs", tags=["Runs"])
 limiter = Limiter(key_func=get_remote_address)
@@ -980,58 +983,87 @@ def start_stats_refresher() -> None:
         # imports below raise; we catch and back off).
         while True:
             try:
-                from ..services.runs_db_mongo import (
-                    refresh_leaderboard_summary,
-                    refresh_stats_summary,
-                    try_acquire_refresh_lease,
-                )
-                from ..services.run_entity_stats import (
-                    refresh_entity_stats_snapshot,
-                )
+                from ..services.runs_db_mongo import try_acquire_refresh_lease
 
                 if try_acquire_refresh_lease():
-                    refresh_stats_summary()
-                    # Pre-compute the default (category, character) ladder
-                    # views into leaderboard_summary. Reads for the common
-                    # combos become O(1) find_one instead of a 500ms
-                    # count+sort. Cheap (~600ms total) and idempotent.
+                    # The lease lasts 90s but the snapshot walk inside this
+                    # cycle can take 10+ minutes. Without renewal mid-cycle,
+                    # leadership rotates while the holder is still walking and
+                    # every worker ends up rebuilding concurrently (the
+                    # June 11 forty-minute stampede). Heartbeat keeps the
+                    # lease ours for as long as the cycle actually runs.
+                    hb_stop = threading.Event()
+
+                    def _heartbeat() -> None:
+                        while not hb_stop.wait(30):
+                            try:
+                                try_acquire_refresh_lease()
+                            except Exception:
+                                pass
+
+                    hb = threading.Thread(
+                        target=_heartbeat, daemon=True, name="lease-heartbeat"
+                    )
+                    hb.start()
                     try:
-                        refresh_leaderboard_summary()
-                    except Exception:
-                        pass
-                    # Rebuild the shared entity-stats snapshot (tier-list
-                    # / Codex Score source) on the same leader-only loop.
-                    # Internally throttled, so this is a no-op find_one
-                    # most cycles and only walks the run files every
-                    # ~10 min on one worker.
-                    try:
-                        refresh_entity_stats_snapshot()
-                    except Exception:
-                        pass
-                    # Proactive warm of the entity-scores cache (in-memory
-                    # reads, cheap every cycle) so tier pages serve straight
-                    # from Redis cluster-wide instead of recomputing per
-                    # worker. Includes the per-act relic views.
-                    try:
-                        if app_cache.enabled():
-                            for etype in ("cards", "relics", "potions"):
-                                app_cache.set_json(
-                                    app_cache.entity_scores_key(etype),
-                                    get_all_entity_scores(etype),
-                                    ttl_seconds=app_cache.WARM_TTL_SECONDS,
-                                )
-                            for warm_act in (1, 2, 3):
-                                app_cache.set_json(
-                                    app_cache.entity_scores_key("relics", act=warm_act),
-                                    get_all_entity_scores("relics", act=warm_act),
-                                    ttl_seconds=app_cache.WARM_TTL_SECONDS,
-                                )
-                    except Exception:
-                        pass
+                        _run_refresh_cycle()
+                    finally:
+                        hb_stop.set()
             except Exception:
-                # SQLite path or transient failure — sleep and retry.
-                pass
+                # Expected on the SQLite path (no Mongo to refresh); a real
+                # Mongo deployment failing here must be visible, not silent.
+                if os.environ.get("MONGO_URL", "").strip():
+                    logger.warning("stats refresher cycle failed", exc_info=True)
             time.sleep(_REFRESHER_INTERVAL_SECONDS)
+
+    def _run_refresh_cycle() -> None:
+        from ..services.runs_db_mongo import (
+            refresh_leaderboard_summary,
+            refresh_stats_summary,
+        )
+        from ..services.run_entity_stats import refresh_entity_stats_snapshot
+
+        try:
+            refresh_stats_summary()
+        except Exception:
+            logger.warning("stats summary refresh failed", exc_info=True)
+        # Pre-compute the default (category, character) ladder
+        # views into leaderboard_summary. Reads for the common
+        # combos become O(1) find_one instead of a 500ms
+        # count+sort. Cheap (~600ms total) and idempotent.
+        try:
+            refresh_leaderboard_summary()
+        except Exception:
+            logger.warning("leaderboard summary refresh failed", exc_info=True)
+        # Rebuild the shared entity-stats snapshot (tier-list
+        # / Codex Score source) on the same leader-only loop.
+        # Internally throttled, so this is a no-op find_one
+        # most cycles and only walks the run files every
+        # ~10 min on one worker.
+        try:
+            refresh_entity_stats_snapshot()
+        except Exception:
+            logger.warning("entity-stats snapshot refresh failed", exc_info=True)
+        # Proactive warm of the entity-scores cache (in-memory
+        # reads, cheap every cycle) so tier pages serve straight
+        # from Redis cluster-wide instead of recomputing per
+        # worker. Includes the per-act relic views.
+        try:
+            if app_cache.enabled():
+                for etype in ("cards", "relics", "potions"):
+                    app_cache.set_json(
+                        app_cache.entity_scores_key(etype),
+                        get_all_entity_scores(etype),
+                        ttl_seconds=app_cache.WARM_TTL_SECONDS,
+                    )
+                for warm_act in (1, 2, 3):
+                    app_cache.set_json(
+                        app_cache.entity_scores_key("relics", act=warm_act),
+                        get_all_entity_scores("relics", act=warm_act),
+                        ttl_seconds=app_cache.WARM_TTL_SECONDS,
+                    )
+        except Exception:
+            logger.warning("entity-scores cache warm failed", exc_info=True)
 
     threading.Thread(target=_loop, daemon=True, name="stats-refresher").start()
 

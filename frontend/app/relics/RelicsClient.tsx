@@ -8,8 +8,10 @@ import Link from "next/link";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "../components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -72,6 +74,8 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
   const [ancient, setAncient] = useState(searchParams.get("ancient") || "");
   const [sort, setSort] = useState(searchParams.get("sort") || "az");
   const { lang } = useLanguage();
+  const channel = useChannel();
+  const betaAdditions = useBetaAdditions<Relic>("relics", lang);
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -91,10 +95,12 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
   }, [search, rarity, pool, ancient, sort, updateUrl]);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
+    // Skip the first fetch if we have server data and lang is English with
+    // no filters. Never skip on the beta channel: the server data is the
+    // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !rarity && !pool && !ancient && !search && initialRelics.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !rarity && !pool && !ancient && !search && initialRelics.length > 0) {
         return;
       }
     }
@@ -106,12 +112,29 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
     params.set("lang", lang);
     cachedFetch<Relic[]>(`${API}/api/relics?${params}`)
       .then(setRelics);
-  }, [rarity, pool, ancient, search, lang]);
+  }, [rarity, pool, ancient, search, lang, channel]);
 
   const scores = useEntityScores("relics");
 
+  // Beta-only relics join the stable list (the regular filters run
+  // server-side, so apply them locally to the additions).
+  const withBeta = useMemo(() => {
+    if (betaAdditions.length === 0) return relics;
+    const ids = new Set(betaAdditions.map((r) => r.id));
+    const additions = betaAdditions
+      .filter(
+        (r) =>
+          (!rarity || r.rarity === rarity) &&
+          (!pool || r.pool === pool) &&
+          !ancient &&
+          (!search || r.name.toLowerCase().includes(search.toLowerCase())),
+      )
+      .map((r) => ({ ...r, beta: true }));
+    return [...relics.filter((r) => !ids.has(r.id)), ...additions];
+  }, [relics, betaAdditions, rarity, pool, ancient, search]);
+
   const sortedRelics = useMemo(() => {
-    const sorted = [...relics];
+    const sorted = [...withBeta];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
@@ -126,7 +149,7 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
       });
     }
     return sorted;
-  }, [relics, sort, scores]);
+  }, [withBeta, sort, scores]);
 
   return (
     <>
@@ -168,7 +191,11 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
           return (
             <Link
               key={relic.id}
-              href={`${lp}/relics/${relic.id.toLowerCase()}`}
+              href={
+                relic.beta
+                  ? `${lp}/beta/relics/${relic.id.toLowerCase()}`
+                  : `${lp}/relics/${relic.id.toLowerCase()}`
+              }
               className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block`}
             >
               <div className="flex gap-3">
@@ -183,8 +210,9 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
+                    <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
                       {relic.name}
+                      {relic.beta && <BetaBadge />}
                     </h3>
                   </div>
                   <div className="flex items-center gap-2 mb-3 text-xs">

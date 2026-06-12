@@ -8,6 +8,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import LocalizedNames from "@/app/components/LocalizedNames";
+import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -125,6 +126,8 @@ export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent
       >
         &larr; Back to Events
       </button>
+
+      <BetaDiffNotice entityType="events" entityId={event.id} />
 
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
         {/* Header */}

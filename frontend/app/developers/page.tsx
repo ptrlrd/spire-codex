@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildSoftwareApplicationJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
-import { IS_BETA, SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import TinyCard, { TINY_CARD_POOL_COLOR, TINY_CARD_BANNER_COLOR } from "@/app/components/TinyCard";
 
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
@@ -45,16 +45,6 @@ export default function DevelopersPage() {
       <p className="text-[var(--text-secondary)] mb-8">
         Build tools, bots, and content with Spire Codex data. Everything is free and open.
       </p>
-
-      {IS_BETA && (
-        <div className="bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 rounded-xl p-4 mb-8">
-          <p className="text-sm text-[var(--accent-gold)] font-medium mb-1">Beta API</p>
-          <p className="text-sm text-[var(--text-secondary)]">
-            This API serves data from the Steam beta branch and may include unreleased content.
-            For stable data, use <a href="https://spire-codex.com/developers" className="text-[var(--accent-gold)] hover:underline">spire-codex.com</a>.
-          </p>
-        </div>
-      )}
 
       {/* Tooltip Widget */}
       <section className="mb-12">
@@ -160,11 +150,14 @@ export default function DevelopersPage() {
             Base URL
           </h3>
           <code className="text-[var(--accent-gold)]">{API_URL}</code>
-          {!IS_BETA && (
-            <p className="text-xs text-[var(--text-muted)] mt-2">
-              Beta API (unreleased content from Steam beta branch): <code className="text-[var(--text-secondary)]">https://beta.spire-codex.com</code>
-            </p>
-          )}
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            Beta channel (unreleased content from the Steam beta branch): add{" "}
+            <code className="text-[var(--text-secondary)]">?channel=beta</code> to any entity
+            endpoint. The current beta version is at{" "}
+            <code className="text-[var(--text-secondary)]">/api/beta/version</code> and the
+            full diff against main at{" "}
+            <code className="text-[var(--text-secondary)]">/api/beta/diff</code>.
+          </p>
         </div>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -255,6 +248,8 @@ export default function DevelopersPage() {
                 { method: "GET", path: "/api/runs/community-stats", desc: "Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records" },
                 { method: "GET", path: "/api/charts/meta", desc: "Chart registry for the /charts explorer: available charts, filters, splits, and run stats" },
                 { method: "GET", path: "/api/charts/{chart}", desc: "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, plus per-chart params)" },
+                { method: "GET", path: "/api/beta/diff", desc: "What the current beta adds, changes, and removes per entity type; powers every BETA label" },
+                { method: "GET", path: "/api/beta/version", desc: "The current beta version" },
                 { method: "GET", path: "/api/runs/scores/{type}", desc: "Codex Score + Codex Elo per entity (cards/relics/potions); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)" },
                 { method: "GET", path: "/api/runs/leaderboard/seed-rank", desc: "Seed + global standing for one seed (?seed=&steam_id=); rank fields are null without a winning run" },
                 { method: "POST", path: "/api/auth/steam/ticket", desc: "Exchange a Steamworks web auth ticket for the site JWT (in-game silent sign-in); 503 until the server has a Steam key" },

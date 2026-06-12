@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { IS_BETA } from "@/lib/seo";
 import { buildApiUrl } from "@/lib/fetch-cache";
+import { useChannel } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -183,6 +183,9 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
 }
 
 export default function ChangelogPage() {
+  // On /beta/changelog the API serves the beta branch's own patch
+  // history (buildApiUrl appends channel=beta on /beta paths).
+  const isBeta = useChannel() === "beta";
   const [changelogs, setChangelogs] = useState<ChangelogSummary[]>([]);
   const [selected, setSelected] = useState<ChangelogDetail | null>(null);
   const [loading, setLoading] = useState(true);
@@ -237,7 +240,7 @@ export default function ChangelogPage() {
 
   function copyLink() {
     if (!selected) return;
-    const url = `${window.location.origin}/changelog#${selected.tag}`;
+    const url = `${window.location.origin}${window.location.pathname}#${selected.tag}`;
     navigator.clipboard.writeText(url).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
@@ -247,10 +250,10 @@ export default function ChangelogPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{IS_BETA ? "Beta Changelog" : "Changelog"}</span>
+        <span className="text-[var(--accent-gold)]">{isBeta ? "Beta Changelog" : "Changelog"}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
-        {IS_BETA
+        {isBeta
           ? "Track what changes between beta updates, compare patches and see what's new."
           : "Track what changes between game updates, new cards, balance tweaks, removed content, and more."}
       </p>

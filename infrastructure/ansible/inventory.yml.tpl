@@ -26,7 +26,6 @@ all:
       vars:
         spire_codex_dir: /var/www/spire-codex
         prod_compose_file: docker-compose.prod.yml
-        beta_compose_file: docker-compose.beta.yml
         staging_compose_file: docker-compose.staging.yml
 
     # Database origins — boxes that run MongoDB (no app containers).

@@ -8,7 +8,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -119,6 +119,7 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
   >({});
   const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
   const { lang } = useLanguage();
+  const channel = useChannel();
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -164,7 +165,7 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !type && !act && !search && initialEvents.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !type && !act && !search && initialEvents.length > 0) {
         return;
       }
     }
@@ -175,7 +176,7 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
     params.set("lang", lang);
     cachedFetch<GameEvent[]>(`${API}/api/events?${params}`)
       .then(setEvents);
-  }, [type, act, search, lang]);
+  }, [type, act, search, lang, channel]);
 
   return (
     <>

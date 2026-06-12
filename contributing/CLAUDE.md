@@ -202,6 +202,8 @@ spire-codex/
 - `GET /api/runs/scores/{type}`: Bulk Codex Scores + Codex Elo for cards/relics/potions (Bayesian-shrunk win rate mapped 0-100 to S/A/B/C/D/F; non-reward cards + starters excluded; relics accept `?act=1|2|3` for acquisition-act views graded per-act; materialized to Mongo by a single leader)
 - `GET /api/runs/community-stats`: Fun community datasets for `/community-stats` (per-event decision splits, deadliest encounters/events, win rates by ascension/character, records; official content only)
 - `GET /api/charts/meta` + `GET /api/charts/{chart}`: Pre-aggregated run charts for `/charts` (win rates by floor/time/stat/ascension, run curves, encounter damage, event outcomes, per-entity weekly stats; filters: players/ascension/game_mode/username, series splits)
+- Every data endpoint accepts `?channel=beta|stable` (or a `beta.*` Host header) to pick the content channel; `GET /api/beta/diff` + `/api/beta/version` describe the current beta branch (see BETA-MIGRATION-PLAN.md at the workspace root)
+- Every data endpoint accepts `?channel=beta|stable` (or a `beta.*` Host header) to pick the content channel; `GET /api/beta/diff` + `/api/beta/version` describe the current beta branch (see BETA-MIGRATION-PLAN.md)
 - `GET /api/runs/leaderboard/rank/{hash}` — rank of one winning run; `POST /api/runs/claim` — attach username to prior runs
 - `GET /api/runs/encounter-stats` — per-encounter aggregates (Mongo-only)
 - `GET /api/runs/versions` — distinct build_ids across submitted runs

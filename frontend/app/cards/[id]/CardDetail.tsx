@@ -16,7 +16,8 @@ import RelatedCards from "@/app/components/RelatedCards";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
+import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -158,6 +159,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
   const { lang } = useLanguage();
 
   const lp = useLangPrefix();
+  const channel = useChannel();
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
   const [spawnedCards, setSpawnedCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(!initialCard);
@@ -319,6 +321,8 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
         &larr; {t("Back to", lang)} {t("Cards", lang)}
       </Link>
 
+      <BetaDiffNotice entityType="cards" entityId={card.id} />
+
       <div
         className={`bg-[var(--bg-card)] rounded-2xl border-2 ${
           isUpgraded
@@ -335,7 +339,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
               src={
                 cardImgFailed
                   ? imageUrl(imgUrl)
-                  : fullCardUrl(card.id.toLowerCase(), isUpgraded, "stable", lang)
+                  : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang)
               }
               alt={`${card.name}${isUpgraded ? "+" : ""} - Slay the Spire 2`}
               className="w-[300px] max-w-full h-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.55)]"
@@ -666,7 +670,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
                       className="group rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 hover:border-[var(--accent-gold)]/50 transition-colors"
                     >
                       <img
-                        src={enchantedCardUrl(card.id.toLowerCase(), eid, isUpgraded, "stable", lang)}
+                        src={enchantedCardUrl(card.id.toLowerCase(), eid, isUpgraded, channel, lang)}
                         alt={`${card.name}${isUpgraded ? "+" : ""} with ${meta?.name ?? eid} - Slay the Spire 2`}
                         className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
                         loading="lazy"
@@ -677,7 +681,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
                           const el = e.currentTarget;
                           if (!el.dataset.fb) {
                             el.dataset.fb = "1";
-                            el.src = enchantedCardUrl(card.id.toLowerCase(), eid, false, "stable", lang);
+                            el.src = enchantedCardUrl(card.id.toLowerCase(), eid, false, channel, lang);
                           }
                         }}
                       />

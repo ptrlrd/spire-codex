@@ -15,7 +15,7 @@ import type {
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -51,17 +51,20 @@ function ReferenceSection<T extends { id: string }>({
   render,
 }: Section<T>) {
   const [data, setData] = useState<T[]>(initialData ?? []);
+  const channel = useChannel();
   const initialRender = useRef(true);
 
   useEffect(() => {
+    // Never skip on the beta channel: the server data is the stable
+    // catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && initialData && initialData.length > 0) {
+      if (channel !== "beta" && lang === "eng" && initialData && initialData.length > 0) {
         return;
       }
     }
     cachedFetch<T[]>(`${API}/api/${endpoint}?lang=${lang}`).then(setData);
-  }, [endpoint, lang]);
+  }, [endpoint, lang, channel]);
 
   const filtered = data.filter(
     (item) => !item.id.startsWith("MOCK_") && item.id !== "PERIOD"

@@ -17,10 +17,9 @@ remote_nginx_conf: /data/nginx/nginx/nginx.conf
 nginx_container: web-server
 backend_service: backend
 
-# Default compose file. Override per-invocation with:
-#   ansible-playbook playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
-# Inventory defines `prod_compose_file` + `beta_compose_file` separately so
-# both are available; this picks prod as the everyday default.
+# Default compose file. Override per-invocation with -e compose_file=...
+# (e.g. the staging compose). The beta stack is gone: the beta site
+# merged into the main deployment and serves at /beta.
 compose_file: "{{ prod_compose_file }}"
 
 # 1Password CLI integration. `op inject` reads a template containing

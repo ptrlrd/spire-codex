@@ -15,6 +15,7 @@ import EntityProse from "@/app/components/EntityProse";
 import EntityRunStats from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -96,6 +97,8 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
       >
         &larr; {t("Back to", lang)} {t("Relics", lang)}
       </button>
+
+      <BetaDiffNotice entityType="relics" entityId={relic.id} />
 
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
         {relic.image_url && (

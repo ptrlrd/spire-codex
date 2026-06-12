@@ -6,12 +6,25 @@ from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 
-from ..services.data_service import _resolve_base, _get_version
+from ..services.data_service import (
+    BETA_DATA_DIR,
+    _get_version,
+    _resolve_base,
+    get_beta_version,
+    get_channel,
+)
 
 router = APIRouter(prefix="/api/changelogs", tags=["Changelogs"])
 
 
 def _changelogs_dir() -> Path:
+    # On the beta channel, serve the beta-to-beta changelogs that
+    # beta-watch writes per ingest, so /beta/changelog shows the beta
+    # branch's own patch history.
+    if get_channel() == "beta":
+        beta_version = get_beta_version()
+        if beta_version:
+            return BETA_DATA_DIR / beta_version / "changelogs"
     return _resolve_base(_get_version()) / "changelogs"
 
 

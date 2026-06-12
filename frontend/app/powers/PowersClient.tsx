@@ -7,7 +7,9 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "../components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -35,13 +37,17 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
   const [type, setType] = useState("");
   const [stackType, setStackType] = useState("");
   const { lang } = useLanguage();
+  const channel = useChannel();
+  const betaAdditions = useBetaAdditions<Power>("powers", lang);
   const initialRender = useRef(true);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
+    // Skip the first fetch if we have server data and lang is English with
+    // no filters. Never skip on the beta channel: the server data is the
+    // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !type && !stackType && !search && initialPowers.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !type && !stackType && !search && initialPowers.length > 0) {
         return;
       }
     }
@@ -52,7 +58,20 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
     params.set("lang", lang);
     cachedFetch<Power[]>(`${API}/api/powers?${params}`)
       .then(setPowers);
-  }, [type, search, stackType, lang]);
+  }, [type, search, stackType, lang, channel]);
+
+  // Beta-only powers join the stable list (the regular filters run
+  // server-side, so apply them locally to the additions).
+  const betaIds = new Set(betaAdditions.map((p) => p.id));
+  const merged = [
+    ...powers.filter((p) => !betaIds.has(p.id)),
+    ...betaAdditions.filter(
+      (p) =>
+        (!type || p.type === type) &&
+        (!stackType || p.stack_type === stackType) &&
+        (!search || p.name.toLowerCase().includes(search.toLowerCase())),
+    ),
+  ];
 
   return (
     <>
@@ -60,7 +79,7 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
         search={search}
         onSearchChange={setSearch}
         placeholder="Search powers..."
-        resultCount={powers.length}
+        resultCount={merged.length}
         filters={[
           {
             label: "All Types",
@@ -78,14 +97,18 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
       />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-        {powers.map((power) => {
+        {merged.map((power) => {
           const style =
             typeColors[power.type] ||
             "border-[var(--border-subtle)] text-gray-400";
           return (
             <Link
               key={power.id}
-              href={`${lp}/powers/${power.id.toLowerCase()}`}
+              href={
+                betaIds.has(power.id)
+                  ? `${lp}/beta/powers/${power.id.toLowerCase()}`
+                  : `${lp}/powers/${power.id.toLowerCase()}`
+              }
               className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
             >
               <div className="flex items-start justify-between mb-2">
@@ -98,8 +121,9 @@ const [powers, setPowers] = useState<Power[]>(initialPowers);
                       crossOrigin="anonymous"
                     />
                   )}
-                  <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
+                  <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
                     {power.name}
+                    {betaIds.has(power.id) && <BetaBadge />}
                   </h3>
                 </div>
                 <div className="flex gap-1.5 flex-shrink-0 ml-2">

@@ -12,6 +12,15 @@ export function imageUrl(path: string | null | undefined): string {
 
 const CDN_BASE = CDN_URL || "https://cdn.spire-codex.com";
 
+// The current beta version for render paths ("0.107.0" shape, no leading v).
+// The literal here is only a first-paint fallback: SiteSwitcher refreshes it
+// from /api/beta/version on every page, so a new beta drop doesn't need a
+// code change to resolve its renders.
+let _betaRenderVersion = "0.107.0";
+export function setBetaRenderVersion(v: string | null | undefined) {
+  if (v) _betaRenderVersion = v.replace(/^v/, "").replace(/-beta$/, "");
+}
+
 /**
  * Languages we have generated full card renders for. The renders are baked
  * PNGs with the card text drawn by the game engine, so each language is a
@@ -42,7 +51,7 @@ export function fullCardUrl(
   channel: "stable" | "beta" = "stable",
   lang = "eng"
 ): string {
-  const seg = channel === "beta" ? "beta/0.107.0" : "stable";
+  const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   // Only route to a localized folder for languages we've actually rendered;
   // everything else uses the English base path.
   const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
@@ -67,7 +76,7 @@ export function enchantedCardUrl(
   channel: "stable" | "beta" = "stable",
   lang = "eng"
 ): string {
-  const seg = channel === "beta" ? "beta/0.107.0" : "stable";
+  const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}ench/${enchantment.toLowerCase()}/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }

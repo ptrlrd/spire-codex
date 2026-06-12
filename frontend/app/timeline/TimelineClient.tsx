@@ -7,6 +7,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
+import { useChannel } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -146,6 +147,7 @@ export default function TimelineClient({
   initialPotions,
 }: TimelineClientProps) {
   const { lang } = useLanguage();
+  const channel = useChannel();
   const [epochs, setEpochs] = useState<Epoch[]>(initialEpochs);
   const [stories, setStories] = useState<Story[]>(initialStories);
   const [cardMap, setCardMap] = useState<Record<string, Card>>(() => {
@@ -176,8 +178,10 @@ export default function TimelineClient({
 
   // Load reference data once for tooltips and epoch title lookups
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English
-    if (initialRender.current && lang === "eng") {
+    // Skip the first fetch if we have server data and lang is English.
+    // Never skip on the beta channel: the server data is the stable
+    // catalog, and cachedFetch appends channel=beta on /beta paths.
+    if (initialRender.current && lang === "eng" && channel !== "beta") {
       return;
     }
     Promise.all([
@@ -199,13 +203,13 @@ export default function TimelineClient({
       for (const e of allEpochs) em[e.id] = e.title;
       setEpochTitleMap(em);
     });
-  }, [lang]);
+  }, [lang, channel]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !storyFilter && !search && initialEpochs.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !storyFilter && !search && initialEpochs.length > 0) {
         return;
       }
     }
@@ -222,7 +226,7 @@ export default function TimelineClient({
         setStories(s);
       })
       .finally(() => setLoading(false));
-  }, [storyFilter, search, lang]);
+  }, [storyFilter, search, lang, channel]);
 
   // Group epochs by story, map story IDs case-insensitively
   const storyMap = new Map<string, Story>();

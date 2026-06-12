@@ -113,7 +113,9 @@ export default function ImagesPage() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [betaVersions, setBetaVersions] = useState<string[]>([]);
-  const [selectedBetaVersion, setSelectedBetaVersion] = useState<string>("");
+  // Land on the main game's art by default; the dropdown swaps to a beta
+  // ingest on demand.
+  const [selectedBetaVersion, setSelectedBetaVersion] = useState<string>("main");
 
   // Hydrate the version dropdown from /api/images/beta/versions, then
   // honor whatever's in the ?version= query string. Persisting selection
@@ -127,12 +129,13 @@ export default function ImagesPage() {
         const fromUrl = typeof window !== "undefined"
           ? new URLSearchParams(window.location.search).get("version")
           : null;
-        setSelectedBetaVersion(fromUrl && data.versions?.includes(fromUrl) ? fromUrl : (data.latest ?? ""));
+        if (fromUrl && data.versions?.includes(fromUrl)) {
+          setSelectedBetaVersion(fromUrl);
+        }
       })
       .catch(() => {
         // If versions endpoint isn't available yet (old backend), fall back gracefully.
         setBetaVersions([]);
-        setSelectedBetaVersion("");
       });
   }, []);
 
@@ -149,11 +152,12 @@ export default function ImagesPage() {
       .finally(() => setLoading(false));
   }, [selectedBetaVersion]);
 
-  // Reflect selection in URL so refresh / share-link works.
+  // Reflect selection in URL so refresh / share-link works. "main" is the
+  // default, so it stays out of the URL.
   useEffect(() => {
     if (typeof window === "undefined") return;
     const url = new URL(window.location.href);
-    if (selectedBetaVersion) {
+    if (selectedBetaVersion && selectedBetaVersion !== "main") {
       url.searchParams.set("version", selectedBetaVersion);
     } else {
       url.searchParams.delete("version");
@@ -179,14 +183,8 @@ export default function ImagesPage() {
         Browse and download game assets. Click a category to view, or download as a zip pack.
       </p>
 
-      {/* Version picker, only renders on the main site. Beta site
-          (beta.spire-codex.com) intentionally hides the dropdown so the
-          page reflects exactly what that branch ships; cross-version
-          browsing belongs on the main site. NEXT_PUBLIC_SITE_URL is
-          baked at build time (different per Docker image), so this
-          check resolves once at module-eval, not per-request. */}
-      {betaVersions.length > 0 &&
-        !(process.env.NEXT_PUBLIC_SITE_URL || "").includes("beta.spire-codex.com") && (
+      {/* Version picker: main by default, archived beta ingests on demand. */}
+      {betaVersions.length > 0 && (
         <div className="flex items-center gap-2 mb-8 text-sm">
           <label htmlFor="beta-version" className="text-[var(--text-muted)]">
             Game version:

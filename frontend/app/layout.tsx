@@ -3,6 +3,7 @@ import Script from "next/script";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
+import BetaChrome from "./components/BetaChrome";
 import DonationBanner from "./components/DonationBanner";
 import OverwolfBanner from "./components/OverwolfBanner";
 import Footer from "./components/Footer";
@@ -104,6 +105,7 @@ export default function RootLayout({
                     would otherwise paint a visible browser focus ring around
                     the entire content area, which read as a stray "tab" line
                     underneath the donation banner on every navigation. */}
+                <BetaChrome />
                 <main tabIndex={-1} className="outline-none">{children}</main>
               </div>
               <Footer />

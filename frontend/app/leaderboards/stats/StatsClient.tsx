@@ -11,8 +11,6 @@ import { fullCardUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const BETA_SITE = "https://beta.spire-codex.com";
-const BETA_API = BETA_SITE;
 
 const CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] as const;
 
@@ -123,7 +121,7 @@ function EntityRowPill({
   const [show, setShow] = useState(false);
   const { lang } = useLanguage();
   const href = isBeta
-    ? `${BETA_SITE}/${kind}s/${id.toLowerCase()}`
+    ? `${lp}/beta/${kind}s/${id.toLowerCase()}`
     : `${lp}/${kind}s/${id.toLowerCase()}`;
 
   const linkClass =
@@ -190,20 +188,6 @@ function EntityRowPill({
     </>
   );
 
-  if (isBeta) {
-    return (
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-        onMouseEnter={() => setShow(true)}
-        onMouseLeave={() => setShow(false)}
-      >
-        {content}
-      </a>
-    );
-  }
   return (
     <Link
       href={href}
@@ -343,9 +327,9 @@ export default function StatsClient() {
       // Merge beta-only entities
       try {
         const [betaCards, betaRelics, betaPotions] = await Promise.all([
-          cachedFetch<CardInfo[]>(`${BETA_API}/api/cards`),
-          cachedFetch<RelicInfo[]>(`${BETA_API}/api/relics`),
-          cachedFetch<PotionInfo[]>(`${BETA_API}/api/potions`),
+          cachedFetch<CardInfo[]>(`${API}/api/cards?channel=beta`),
+          cachedFetch<RelicInfo[]>(`${API}/api/relics?channel=beta`),
+          cachedFetch<PotionInfo[]>(`${API}/api/potions?channel=beta`),
         ]);
         const newBetaIds = new Set<string>();
         const cmMerged = { ...cm };
@@ -393,7 +377,9 @@ export default function StatsClient() {
       .finally(() => setLoading(false));
   }, [character, winFilter, ascension, players]);
 
-  const imgBaseFor = (id: string) => (betaIds.has(id) ? BETA_API : API);
+  // One API for both channels now: beta entities' art serves from the main
+  // backend/CDN since the beta site merged into the main deployment.
+  const imgBaseFor = (_id: string) => API;
 
   // Build combined card table
   const cardRows = useMemo(() => {

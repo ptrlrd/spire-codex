@@ -7,7 +7,9 @@ import type { Monster } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "../components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -41,6 +43,8 @@ const actOptions = [
 export default function MonstersClient({ initialMonsters }: { initialMonsters: Monster[] }) {
   const { lang } = useLanguage();
   const lp = useLangPrefix();
+  const channel = useChannel();
+  const betaAdditions = useBetaAdditions<Monster>("monsters", lang);
   const searchParams = useSearchParams();
   const router = useRouter();
   const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
@@ -66,10 +70,12 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
   }, [search, type, act, updateUrl]);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
+    // Skip the first fetch if we have server data and lang is English with
+    // no filters. Never skip on the beta channel: the server data is the
+    // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !type && !search && initialMonsters.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !type && !search && initialMonsters.length > 0) {
         return;
       }
     }
@@ -79,10 +85,22 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
     params.set("lang", lang);
     cachedFetch<Monster[]>(`${API}/api/monsters?${params}`)
       .then(setMonsters);
-  }, [type, search, lang]);
+  }, [type, search, lang, channel]);
+
+  // Beta-only monsters join the stable list (type/search are server-side
+  // filters, so apply them locally to the additions).
+  const betaIds = new Set(betaAdditions.map((m) => m.id));
+  const merged = [
+    ...monsters.filter((m) => !betaIds.has(m.id)),
+    ...betaAdditions.filter(
+      (m) =>
+        (!type || m.type === type) &&
+        (!search || m.name.toLowerCase().includes(search.toLowerCase())),
+    ),
+  ];
 
   // Client-side act filtering (encounter data is on each monster)
-  const filtered = monsters.filter((m) => {
+  const filtered = merged.filter((m) => {
     if (!act) return true;
     if (act === "weak") {
       return m.encounters?.some((e) => e.is_weak) ?? false;
@@ -117,7 +135,11 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
         {filtered.map((monster) => (
           <Link
             key={monster.id}
-            href={`${lp}/monsters/${monster.id.toLowerCase()}`}
+            href={
+              betaIds.has(monster.id)
+                ? `${lp}/beta/monsters/${monster.id.toLowerCase()}`
+                : `${lp}/monsters/${monster.id.toLowerCase()}`
+            }
             className={`bg-[var(--bg-card)] rounded-lg border ${
               typeColors[monster.type] || "border-[var(--border-subtle)]"
             } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}
@@ -134,8 +156,9 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
               </div>
             )}
             <div className="flex items-start justify-between mb-3">
-              <h3 className="font-semibold text-[var(--text-primary)]">
+              <h3 className="font-semibold text-[var(--text-primary)] flex items-center gap-2">
                 {monster.name}
+                {betaIds.has(monster.id) && <BetaBadge />}
               </h3>
               <span
                 className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${

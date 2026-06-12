@@ -15,7 +15,6 @@ REPO="${SPIRE_REPO:-/var/www/spire-codex}"
 LOG="${SPIRE_AUTODEPLOY_LOG:-/var/log/spire-codex-autodeploy.log}"
 CF_ENV="${SPIRE_CF_ENV:-/etc/spire-codex/cf-purge.env}"
 COMPOSE_FILE="${SPIRE_COMPOSE_FILE:-docker-compose.prod.yml}"
-BETA_COMPOSE_FILE="${SPIRE_BETA_COMPOSE_FILE:-docker-compose.beta.yml}"
 
 # Self-installing log file (cron runs as root the first time, so this
 # creates a root-owned file — subsequent appends just work).
@@ -39,51 +38,49 @@ fi
 
 log "==== change detected: ${BEFORE:0:8} -> ${AFTER:0:8} ===="
 
-# Detect whether this is a news-only update. The compose file mounts
-# ./data:/data into the backend, so the news API reads directly from the
-# host's data/news/*.json on each request — no rebuild, no restart
-# needed. Skipping the container recreate here saves ~30s of downtime
-# for a class of updates (Steam news mirror refreshes, beta-watch
-# ingests where only the news file changed) that happen frequently.
+# Detect whether this update needs a container recreate at all. Two
+# classes don't:
 #
-# Anything outside data/news/ — code, other data files, images,
-# frontend, infra — still needs the full recreate to take effect.
+#   data/news/*  : the compose file mounts ./data:/data and the news API
+#                  re-reads from disk on every request.
+#   data-beta/*  : the beta catalogs are cached keyed BY VERSION and the
+#                  `latest` pointer is re-read per request, so a new
+#                  beta ingest (the beta-watch auto-PR) starts serving
+#                  the moment the files land on disk. Exception: a
+#                  re-parse of an EXISTING version keeps its cache key;
+#                  bounce the backend manually after one of those.
+#
+# Skipping the recreate saves ~30s of downtime for the two most frequent
+# update classes. Anything else (code, stable data files cached
+# without a version key so they need the restart, images, frontend,
+# infra) still does the full recreate.
 CHANGED=$(git diff --name-only "$BEFORE..$AFTER")
-NON_NEWS=$(echo "$CHANGED" | grep -v '^data/news/' | grep -v '^$' || true)
+NON_HOT=$(echo "$CHANGED" | grep -v '^data/news/' | grep -v '^data-beta/' | grep -v '^$' || true)
 
-if [ -z "$NON_NEWS" ]; then
-  log "news-only update ($(echo "$CHANGED" | wc -l | tr -d ' ') file(s)) — skipping container recreate"
+if [ -z "$NON_HOT" ]; then
+  log "hot-reloadable update ($(echo "$CHANGED" | wc -l | tr -d ' ') file(s), news/beta data only), skipping container recreate"
   RECREATE=0
 else
-  log "full deploy ($(echo "$NON_NEWS" | wc -l | tr -d ' ') non-news file(s))"
+  log "full deploy ($(echo "$NON_HOT" | wc -l | tr -d ' ') file(s) outside the hot-reload classes)"
   RECREATE=1
 fi
 
 if [ "$RECREATE" = "1" ]; then
-  # Pull + restart both stable AND beta. `--force-recreate` ensures the
-  # container picks up the new image even if compose thinks the config
-  # is unchanged. Beta runs on the same box (separate containers via
-  # docker-compose.beta.yml) so a missed beta deploy was a recurring
-  # operational gap — folding it into autodeploy closes that loop.
-  for f in "$COMPOSE_FILE" "$BETA_COMPOSE_FILE"; do
-    [ -f "$REPO/$f" ] || { log "compose file $f missing, skipping"; continue; }
-    log "  deploying $f"
-    docker compose -f "$f" pull backend frontend >> "$LOG" 2>&1
-    docker compose -f "$f" up -d --force-recreate backend frontend >> "$LOG" 2>&1
-  done
+  # `--force-recreate` ensures the container picks up the new image even
+  # if compose thinks the config is unchanged. The beta site merged into
+  # this stack (served at /beta from the same containers), so the old
+  # second pass over docker-compose.beta.yml is gone.
+  log "  deploying $COMPOSE_FILE"
+  docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
 
   # Settle. 5s is enough for FastAPI startup; longer waits don't help.
   sleep 5
 
   if docker compose -f "$COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
-    log "✓ stable backend ready"
+    log "✓ backend ready"
   else
-    log "✗ stable backend did NOT log 'Spire Codex API ready' — manual check required"
-  fi
-  if docker compose -f "$BETA_COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
-    log "✓ beta backend ready"
-  else
-    log "✗ beta backend did NOT log 'Spire Codex API ready' — manual check required"
+    log "✗ backend did NOT log 'Spire Codex API ready', manual check required"
   fi
 fi
 

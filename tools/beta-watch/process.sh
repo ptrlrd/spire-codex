@@ -76,21 +76,60 @@ fi
 cp "$DLL" "$REPO/extraction/beta/archives/sts2-$VERSION.dll"
 cp "$PCK" "$REPO/extraction/beta/archives/sts2-$VERSION.pck"
 
-# --- 6. Parse all 14 languages into data-beta/$VERSION/ ---
+# --- 6. Sync new images into backend/static/images/beta/. The /images
+# page is a monetization surface, so dragging stale assets between
+# patches costs traffic + trust. sync-images mirrors every image
+# category and prunes anything Mega Crit cut.
+#
+# This MUST run before parse_all: resolve_image_url checks the
+# per-version beta tree first, so parsing against an empty tree made
+# beta-only entities (Aeonglass) fall through to main-tree image paths
+# that don't exist on the CDN until the beta promotes.
+"$REPO/tools/beta-watch/sync-images.sh"
+
+# The previous beta version, used for the R2 copy-forward below, the
+# changelog diff, and the render list.
+PREV=$(ls -1d "$REPO/data-beta"/v*/ 2>/dev/null | grep -v "/$VERSION/" \
+       | sort -V | tail -1 | sed 's:/$::' | xargs -n1 basename || true)
+
+# --- 6a. Push the per-version image tree to R2 so beta art serves from
+# the CDN (images don't belong in static; the catalogs' /static/images/
+# paths are rewritten to cdn.spire-codex.com by the frontend). Only the
+# .webp files upload - that's the format every served URL points at.
+# Uses the same aws r2 profile as GENERATING_CARD_RENDERS.md; skipped
+# loudly if it isn't configured so a local run still works end to end.
+#
+# Cost control: most art is identical between betas, so the previous
+# version's prefix is copied forward SERVER-SIDE first (no local
+# bandwidth), then the local sync uploads only real deltas. --size-only
+# because the freshly rsync'd local mtimes always look newer than the
+# copied objects, which would otherwise re-upload the whole tree every
+# beta; a changed webp with a byte-identical size is vanishingly rare.
+R2_ENDPOINT="${R2_ENDPOINT:-https://468b7c5ddc132dda4c2ac43391f06dfb.r2.cloudflarestorage.com}"
+if command -v aws >/dev/null 2>&1 && aws configure list --profile r2 >/dev/null 2>&1; then
+  if [ -n "$PREV" ]; then
+    echo "==> R2: copying beta/$PREV/ forward to beta/$VERSION/ (server-side)"
+    aws --profile r2 s3 sync "s3://spire-codex/beta/$PREV/" "s3://spire-codex/beta/$VERSION/" \
+      --endpoint-url "$R2_ENDPOINT" >/dev/null
+  fi
+  echo "==> R2: uploading the delta for beta/$VERSION/"
+  aws --profile r2 s3 sync "$REPO/backend/static/images/beta/$VERSION/" \
+    "s3://spire-codex/beta/$VERSION/" \
+    --endpoint-url "$R2_ENDPOINT" \
+    --exclude "*" --include "*.webp" \
+    --content-type image/webp \
+    --size-only --delete
+else
+  echo "WARN: aws r2 profile not configured; beta images NOT pushed to the CDN" >&2
+fi
+
+# --- 6b. Parse all 14 languages into data-beta/$VERSION/ ---
 (cd "$REPO/backend/app/parsers" && \
   EXTRACTION_DIR="$REPO/extraction/beta" \
   DATA_DIR="$DATA_OUT" \
   python3 parse_all.py)
 
-# --- 6a. Sync new images into backend/static/images/beta/. The /images
-# page is a monetization surface, so dragging stale assets between
-# patches costs traffic + trust. sync-images mirrors every image
-# category and prunes anything Mega Crit cut.
-"$REPO/tools/beta-watch/sync-images.sh"
-
 # --- 7. Diff against the previous beta to make a changelog ---
-PREV=$(ls -1d "$REPO/data-beta"/v*/ 2>/dev/null | grep -v "/$VERSION/" \
-       | sort -V | tail -1 | sed 's:/$::' | xargs -n1 basename || true)
 if [ -n "$PREV" ]; then
   python3 "$REPO/tools/diff_data.py" \
     "$REPO/data-beta/$PREV/eng" \
@@ -99,6 +138,31 @@ if [ -n "$PREV" ]; then
     --output-dir "$DATA_OUT/changelogs" \
     --game-version "${VERSION#v}" \
     --title "Beta $VERSION"
+fi
+
+# --- 7a. List the cards whose renders need regenerating (added or changed
+# vs the previous beta, ignoring image/url fields that move every version).
+# The injection export trigger (GENERATING_CARD_RENDERS.md) accepts this
+# list, so a render pass only redoes these instead of the full catalog x
+# 14 languages x enchant matrix. Unchanged renders copy forward on R2:
+#   aws --profile r2 s3 sync s3://spire-codex/cards-full/beta/<prev>/ \
+#     s3://spire-codex/cards-full/beta/<new>/ --endpoint-url "$R2_ENDPOINT"
+if [ -n "$PREV" ] && [ -f "$REPO/data-beta/$PREV/eng/cards.json" ]; then
+  python3 - "$REPO/data-beta/$PREV/eng/cards.json" "$DATA_OUT/eng/cards.json" \
+    > "$DATA_OUT/render-cards.txt" <<'PY'
+import json, re, sys
+
+NOISE = re.compile(r"image|url", re.I)
+
+def strip(card):
+    return {k: v for k, v in card.items() if not NOISE.search(k)}
+
+prev = {c["id"]: strip(c) for c in json.load(open(sys.argv[1]))}
+new = {c["id"]: strip(c) for c in json.load(open(sys.argv[2]))}
+ids = sorted(cid.lower() for cid, c in new.items() if prev.get(cid) != c)
+print(",".join(ids))
+PY
+  echo "==> cards needing new renders: $(cat "$DATA_OUT/render-cards.txt" | tr ',' '\n' | grep -c . || true) (list in data-beta/$VERSION/render-cards.txt)"
 fi
 
 # --- 8. Repoint the `latest` symlink ---

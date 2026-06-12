@@ -105,9 +105,9 @@ const ROTATING_BANNERS: RotatingBanner[] = [
     content: (
       <>
         The future is uncertain... preview it on the{" "}
-        <a href="https://beta.spire-codex.com" className="font-medium text-purple-100 underline hover:text-white transition-colors">
-          beta site
-        </a>
+        <Link href="/beta" className="font-medium text-purple-100 underline hover:text-white transition-colors">
+          beta
+        </Link>
         . Yes, I think we can help each other.
       </>
     ),

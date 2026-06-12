@@ -2,19 +2,47 @@ name: CI
 
 on:
   push:
-    branches: [main, staging]
+    branches: [main]
   pull_request:
-    branches: [main, staging]
+    branches: [main]
+
+# Supersede in-flight runs when a PR gets a new push; never cancel main
+# (a cancelled build job could leave :latest and :sha tags half-pushed).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 jobs:
+  # ── What changed? ──────────────────────────────────────
+  # Data-only pushes (beta-watch auto-PRs, news refreshes, game-data
+  # updates) skip lint and image builds entirely: data/ and data-beta/
+  # are volume-mounted on the server and arrive via git pull at deploy,
+  # so no image contains them.
+  changes:
+    name: Detect changed areas
+    runs-on: self-hosted
+    outputs:
+      frontend: ${{ steps.filter.outputs.frontend }}
+      backend: ${{ steps.filter.outputs.backend }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            frontend:
+              - 'frontend/**'
+            backend:
+              - 'backend/**'
+
   # ── Secrets check ──────────────────────────────────────
   secrets-check:
     name: Scan for secrets
     runs-on: self-hosted
     steps:
+      # Shallow checkout: trufflehog scans the working tree (filesystem
+      # mode), so full history only inflated the .git dir it walks.
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: TruffleHog secret scan
         run: |
@@ -25,6 +53,8 @@ jobs:
   frontend-lint:
     name: Frontend lint & type-check
     runs-on: self-hosted
+    needs: changes
+    if: needs.changes.outputs.frontend == 'true'
     defaults:
       run:
         working-directory: frontend
@@ -41,9 +71,8 @@ jobs:
           # we'd blow through the 500 MiB plan quota with one cache on
           # main and another on a feature branch). The runner has fast
           # internet — `npm ci` re-fetching costs ~30s vs paying for
-          # storage overage. If we ever need this back, store the
-          # cache on the runner host (persistent volume) instead of
-          # uploading it.
+          # storage overage, and the runner's own ~/.npm persists
+          # between runs anyway.
 
       - run: npm ci
 
@@ -57,6 +86,8 @@ jobs:
   backend-lint:
     name: Backend lint
     runs-on: self-hosted
+    needs: changes
+    if: needs.changes.outputs.backend == 'true'
     defaults:
       run:
         working-directory: backend
@@ -76,12 +107,24 @@ jobs:
       - name: Ruff format check
         run: ruff format --check app/
 
-  # ── Build & Push stable (main only) ─────────────────────
+  # ── Build & Push (main only) ─────────────────────────────
+  # One channel only: the beta site merged into the main deployment
+  # (served at /beta from the same containers), so the old build-beta
+  # job and its :beta image tags are retired.
   build-stable:
-    name: Build & push stable images
+    name: Build & push images
     runs-on: self-hosted
-    needs: [secrets-check, frontend-lint, backend-lint]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [changes, secrets-check, frontend-lint, backend-lint]
+    # Skipped lint jobs (data-only or single-sided changes) shouldn't
+    # block the build of the side that DID change, hence the explicit
+    # result checks instead of plain `needs` gating.
+    if: >
+      !cancelled() &&
+      github.event_name == 'push' && github.ref == 'refs/heads/main' &&
+      needs.secrets-check.result == 'success' &&
+      (needs.frontend-lint.result == 'success' || needs.frontend-lint.result == 'skipped') &&
+      (needs.backend-lint.result == 'success' || needs.backend-lint.result == 'skipped') &&
+      (needs.changes.outputs.frontend == 'true' || needs.changes.outputs.backend == 'true')
     steps:
       - uses: actions/checkout@v4
 
@@ -94,7 +137,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build & push backend (stable)
+      - name: Build & push backend
+        if: needs.changes.outputs.backend == 'true'
         uses: docker/build-push-action@v6
         with:
           context: ./backend
@@ -105,7 +149,8 @@ jobs:
             ptrlrd/spire-codex-backend:latest
             ptrlrd/spire-codex-backend:${{ github.sha }}
 
-      - name: Build & push frontend (stable)
+      - name: Build & push frontend
+        if: needs.changes.outputs.frontend == 'true'
         uses: docker/build-push-action@v6
         with:
           context: ./frontend
@@ -122,108 +167,17 @@ jobs:
             ptrlrd/spire-codex-frontend:latest
             ptrlrd/spire-codex-frontend:${{ github.sha }}
 
-  # ── Build & Push beta (main only) ──────────────────────
-  build-beta:
-    name: Build & push beta images
-    runs-on: self-hosted
-    needs: [secrets-check, frontend-lint, backend-lint]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build & push backend (beta)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backend
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-beta
-          cache-to: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-beta,mode=max
-          tags: |
-            ptrlrd/spire-codex-backend:beta
-            ptrlrd/spire-codex-backend:beta-${{ github.sha }}
-
-      - name: Build & push frontend (beta)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-beta
-          cache-to: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-beta,mode=max
-          build-args: |
-            NEXT_PUBLIC_API_URL=
-            NEXT_PUBLIC_SITE_URL=https://beta.spire-codex.com
-            NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.UMAMI_BETA_WEBSITE_ID }}
-            NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
-          tags: |
-            ptrlrd/spire-codex-frontend:beta
-            ptrlrd/spire-codex-frontend:beta-${{ github.sha }}
-
-  # ── Build & Push staging (staging branch only) ─────────
-  build-staging:
-    name: Build & push staging images
-    runs-on: self-hosted
-    needs: [secrets-check, frontend-lint, backend-lint]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/staging'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USER }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      - name: Build & push backend (staging)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./backend
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-staging
-          cache-to: type=registry,ref=ptrlrd/spire-codex-backend:buildcache-staging,mode=max
-          tags: |
-            ptrlrd/spire-codex-backend:staging
-            ptrlrd/spire-codex-backend:staging-${{ github.sha }}
-
-      - name: Build & push frontend (staging)
-        uses: docker/build-push-action@v6
-        with:
-          context: ./frontend
-          file: ./frontend/Dockerfile
-          push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-staging
-          cache-to: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache-staging,mode=max
-          build-args: |
-            NEXT_PUBLIC_API_URL=
-            NEXT_PUBLIC_SITE_URL=https://staging.spire-codex.com
-            NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
-          tags: |
-            ptrlrd/spire-codex-frontend:staging
-            ptrlrd/spire-codex-frontend:staging-${{ github.sha }}
-
   # ── Deploy ──────────────────────────────────────────────
   # Deploys are intentionally MANUAL via Ansible until we wire the
   # toolkit into CI properly (needs a runner with SSH key + 1Password
-  # access, which we don't have yet).
+  # access, which we don't have yet). The hourly autodeploy cron on the
+  # box also picks up merged changes on its own.
   #
-  # After this workflow's build jobs publish new images to Docker Hub,
+  # After this workflow's build job publishes new images to Docker Hub,
   # run from your laptop:
   #
   #   cd infrastructure/ansible
   #   ./bin/op-ansible playbooks/deploy.yml          # both prod origins
-  #   ./bin/op-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
   #
   # Ansible's deploy.yml hits BOTH origins (the old GHA step only hit
   # one), does a git pull so docker-compose.prod.yml stays in sync,

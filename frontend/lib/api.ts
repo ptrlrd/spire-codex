@@ -41,6 +41,9 @@ export interface CardTypeVariant {
 
 export interface Card {
   id: string;
+  // Client-side marker for beta-only cards merged into stable lists by
+  // useBetaAdditions; never set by the API.
+  beta?: boolean;
   name: string;
   description: string;
   description_raw: string | null;
@@ -122,6 +125,9 @@ export interface MerchantPrice {
 }
 
 export interface Relic {
+  // Client-side marker for beta-only relics merged into stable lists by
+  // useBetaAdditions; never set by the API.
+  beta?: boolean;
   id: string;
   name: string;
   description: string;

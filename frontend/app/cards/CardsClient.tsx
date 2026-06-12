@@ -8,8 +8,9 @@ import CardGrid from "../components/CardGrid";
 import FullCardGrid from "../components/FullCardGrid";
 import SearchFilter from "../components/SearchFilter";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -84,6 +85,8 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
     localStorage.setItem("cards-view-v2", v);
   };
   const { lang } = useLanguage();
+  const channel = useChannel();
+  const betaAdditions = useBetaAdditions<Card>("cards", lang);
   const initialRender = useRef(true);
 
   // Sync filter state to URL search params
@@ -121,10 +124,12 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
   }, [searchParams]);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
+    // Skip the first fetch if we have server data and lang is English with
+    // no filters. Never skip on the beta channel: the server data is the
+    // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !color && !type && !rarity && !keyword && !search && initialCards.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !color && !type && !rarity && !keyword && !search && initialCards.length > 0) {
         return;
       }
     }
@@ -137,12 +142,30 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
     params.set("lang", lang);
     cachedFetch<Card[]>(`${API}/api/cards?${params}`)
       .then(setCards);
-  }, [color, type, rarity, keyword, search, lang]);
+  }, [color, type, rarity, keyword, search, lang, channel]);
 
   const scores = useEntityScores("cards");
 
+  // Beta-only cards join the stable list, marked and filtered locally
+  // (the regular filters run server-side).
+  const withBeta = useMemo(() => {
+    if (betaAdditions.length === 0) return cards;
+    const ids = new Set(betaAdditions.map((c) => c.id));
+    const additions = betaAdditions
+      .filter(
+        (c) =>
+          (!color || c.color === color) &&
+          (!type || c.type === type) &&
+          (!rarity || c.rarity === rarity) &&
+          (!keyword || (c.keywords ?? []).some((k) => k.toLowerCase() === keyword.toLowerCase())) &&
+          (!search || c.name.toLowerCase().includes(search.toLowerCase())),
+      )
+      .map((c) => ({ ...c, beta: true }));
+    return [...cards.filter((c) => !ids.has(c.id)), ...additions];
+  }, [cards, betaAdditions, color, type, rarity, keyword, search]);
+
   const sortedCards = useMemo(() => {
-    const sorted = [...cards];
+    const sorted = [...withBeta];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
     else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
@@ -155,7 +178,7 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
       });
     }
     return sorted;
-  }, [cards, sort, scores]);
+  }, [withBeta, sort, scores]);
 
   return (
     <>

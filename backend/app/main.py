@@ -46,6 +46,7 @@ from .routers import (
     ancient_pools,
     runs,
     charts,
+    beta,
     admin,
     glossary,
     guides,
@@ -61,7 +62,12 @@ from .routers import (
     qa_feedback,
     tierlists,
 )
-from .services.data_service import get_stats, load_translation_maps, current_version
+from .services.data_service import (
+    current_channel,
+    current_version,
+    get_stats,
+    load_translation_maps,
+)
 from .dependencies import client_ip, get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
 from prometheus_fastapi_instrumentator import Instrumentator
 
@@ -193,7 +199,13 @@ _VERSION_RE = re.compile(r"^v?\d+\.\d+")
 
 
 class VersionMiddleware(BaseHTTPMiddleware):
-    """Extract ?version= from query params and set the contextvar for data_service."""
+    """Set the data_service contextvars for the request: the legacy
+    ?version= selector, and the content channel.
+
+    Channel resolution: an explicit ?channel=beta|stable wins; otherwise a
+    beta.* Host header means beta (so every client written against
+    beta.spire-codex.com/api keeps getting beta data through the unified
+    backend with zero changes); otherwise stable."""
 
     async def dispatch(self, request: Request, call_next):
         version = request.query_params.get("version")
@@ -201,10 +213,17 @@ class VersionMiddleware(BaseHTTPMiddleware):
             token = current_version.set(version)
         else:
             token = current_version.set(None)
+
+        channel = request.query_params.get("channel")
+        if channel not in ("beta", "stable"):
+            host = (request.headers.get("host") or "").split(":")[0].lower()
+            channel = "beta" if host.startswith("beta.") else "stable"
+        channel_token = current_channel.set(channel)
         try:
             response = await call_next(request)
         finally:
             current_version.reset(token)
+            current_channel.reset(channel_token)
         return response
 
 
@@ -516,6 +535,7 @@ app.include_router(entity_history.router)
 app.include_router(ancient_pools.router)
 app.include_router(runs.router)
 app.include_router(charts.router)
+app.include_router(beta.router)
 app.include_router(admin.router)
 app.include_router(glossary.router)
 app.include_router(guides.router)

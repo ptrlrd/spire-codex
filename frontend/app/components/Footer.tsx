@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { IS_BETA } from "@/lib/seo";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 
@@ -209,12 +208,12 @@ export default function Footer() {
           Terms
         </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
-        <a
-          href={IS_BETA ? "https://spire-codex.com" : "https://beta.spire-codex.com"}
+        <Link
+          href="/beta"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          {IS_BETA ? t("Stable Site", lang) : t("Beta Site", lang)}
-        </a>
+          {t("Beta Site", lang)}
+        </Link>
       </div>
       {showFeedback && <FeedbackModal onClose={closeFeedback} page={pathname} />}
     </footer>

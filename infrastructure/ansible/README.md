@@ -1,12 +1,12 @@
 # spire-codex Ansible
 
-Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). One-shot deploys, hourly auto-deploy installer, beta-site management, and the housekeeping toolkit.
+Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). One-shot deploys, hourly auto-deploy installer, and the housekeeping toolkit.
 
 Everything sensitive (SSH keys, usernames, IPs, third-party credentials) lives in 1Password and is fetched at runtime via the wrapper script. Nothing secret or identifying lands in git.
 
 ## Host
 
-Single DigitalOcean droplet (`primary`). Runs everything: stable + beta backend containers, stable + beta frontend containers, nginx, Litestream, and Mongo (co-located, talks to the backend over the private IP). Both `spire-codex.com` and `beta.spire-codex.com` DNS to this box. The Cloudflare load balancer was retired with the migration and the previous AWS Lightsail hosts are gone.
+Single DigitalOcean droplet (`primary`). Runs everything: the backend and frontend containers (one stack; the beta site merged into it and serves at `/beta`), nginx, Litestream, and Mongo (co-located, talks to the backend over the private IP). The Cloudflare load balancer was retired with the migration and the previous AWS Lightsail hosts are gone.
 
 ## Setup (one-time)
 
@@ -41,7 +41,7 @@ Single DigitalOcean droplet (`primary`). Runs everything: stable + beta backend 
 | Playbook | When |
 |---|---|
 | `ping.yml` | Connectivity smoke test |
-| `deploy.yml` | Pull latest stable images + recreate containers. `-e compose_file=docker-compose.beta.yml` for beta. |
+| `deploy.yml` | Pull latest images + recreate containers. |
 | `install-autodeploy.yml` | One-time setup of the hourly auto-deploy cron on the DO box. Re-run after any change to `files/autodeploy.sh`. |
 | `restart.yml` | Bounce a container without re-pulling |
 | `verify.yml` | Post-deploy smoke test |
@@ -85,7 +85,7 @@ Single DigitalOcean droplet (`primary`). Runs everything: stable + beta backend 
 `install-autodeploy.yml` installs `/usr/local/bin/spire-codex-autodeploy` + a cron entry at `/etc/cron.d/spire-codex-autodeploy` that fires every hour at :03. Each tick:
 
 1. `git pull` in `/var/www/spire-codex`
-2. If HEAD advanced and changes are not purely `data/news/*`: `docker compose pull` + `up -d --force-recreate` for both `docker-compose.prod.yml` and `docker-compose.beta.yml`
+2. If HEAD advanced and changes are not purely `data/news/*` or `data-beta/*` (both hot-reload without a restart): `docker compose pull` + `up -d --force-recreate` for `docker-compose.prod.yml`
 3. CF cache purge (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
 
 News-only updates (`data/news/*.json`) skip the recreate — the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
@@ -106,32 +106,28 @@ CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
 ./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
-## Stable vs beta
+## Main vs beta
 
-Both stacks run on the DO box. Stable uses `docker-compose.prod.yml`, beta uses `docker-compose.beta.yml`. Container names are namespaced (`spire-codex-backend` vs `spire-codex-beta-backend`).
+One stack. The beta site merged into the main deployment: the same containers serve `/beta` from the `data-beta/` volume, so there is no separate beta compose file, image tag, or deploy.
 
 ```bash
-# Stable deploy (default)
 ./bin/do-ansible playbooks/deploy.yml
-
-# Beta deploy
-./bin/do-ansible playbooks/deploy.yml -e compose_file=docker-compose.beta.yml
 ```
 
-The autodeploy cron handles both stacks on each tick — manual beta deploys are only needed when you want to force-pull immediately (right after a hand-built image push, etc.).
+The autodeploy cron picks up merged changes hourly; a manual deploy is only needed when you want to force-pull immediately (right after a hand-built image push, etc.).
 
 ## What this does NOT manage
 
 - **Cloudflare config** — Cache Rules, DNS records, page rules. Managed through the CF dashboard.
 - **Container image builds** — GitHub Actions / Docker Hub. Ansible only pulls pre-built images.
 - **Steam beta extraction** — `tools/beta-watch/` runs on your Mac via launchd. See that directory's README.
-- **Frontend Umami website ID injection** — baked at Docker build time from GitHub Actions secrets (`UMAMI_WEBSITE_ID` for stable, `UMAMI_BETA_WEBSITE_ID` for beta).
+- **Frontend Umami website ID injection**: baked at Docker build time from the GitHub Actions secret (`UMAMI_WEBSITE_ID`).
 
 ## Common gotchas
 
 - **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
-- **Container name conflict on beta deploy** — if a previous `up -d` was interrupted, you'll see `Container "/xxx_spire-codex-beta-backend" is already in use`. Fix with `docker rm -f spire-codex-beta-backend` on the box, then re-run the deploy.
-- **nginx Docker DNS gotcha** — the beta nginx block uses a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
+- **Container name conflict on deploy**: if a previous `up -d` was interrupted, you'll see `Container "/xxx" is already in use`. Fix with `docker rm -f <container>` on the box, then re-run the deploy.
+- **nginx Docker DNS gotcha**: the nginx blocks use a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
 
 ## Files
 

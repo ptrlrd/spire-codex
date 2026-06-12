@@ -8,7 +8,7 @@ import Link from "next/link";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { imageUrl } from "@/lib/image-url";
 
@@ -46,6 +46,7 @@ const sortOptions = [
 export default function PotionsClient({ initialPotions }: { initialPotions: Potion[] }) {
   const { lang } = useLanguage();
   const lp = useLangPrefix();
+  const channel = useChannel();
   const searchParams = useSearchParams();
   const router = useRouter();
   const [potions, setPotions] = useState<Potion[]>(initialPotions);
@@ -76,7 +77,7 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !rarity && !pool && !search && initialPotions.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !rarity && !pool && !search && initialPotions.length > 0) {
         return;
       }
     }
@@ -88,7 +89,7 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
     cachedFetch<Potion[]>(`${API}/api/potions?${params}`)
       .then(setPotions)
       .finally(() => setLoading(false));
-  }, [rarity, search, pool, lang]);
+  }, [rarity, search, pool, lang, channel]);
 
   const scores = useEntityScores("potions");
 

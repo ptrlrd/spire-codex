@@ -8,7 +8,9 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "../components/SearchFilter";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "../components/BetaBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -47,6 +49,8 @@ export default function EncountersClient({ initialEncounters }: { initialEncount
   const [roomType, setRoomType] = useState(searchParams.get("roomType") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
   const { lang } = useLanguage();
+  const channel = useChannel();
+  const betaAdditions = useBetaAdditions<Encounter>("encounters", lang);
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -66,10 +70,12 @@ export default function EncountersClient({ initialEncounters }: { initialEncount
   }, [search, roomType, act, updateUrl]);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English with no filters
+    // Skip the first fetch if we have server data and lang is English with
+    // no filters. Never skip on the beta channel: the server data is the
+    // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && !roomType && !act && !search && initialEncounters.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !roomType && !act && !search && initialEncounters.length > 0) {
         return;
       }
     }
@@ -80,11 +86,24 @@ export default function EncountersClient({ initialEncounters }: { initialEncount
     params.set("lang", lang);
     cachedFetch<Encounter[]>(`${API}/api/encounters?${params}`)
       .then(setEncounters);
-  }, [roomType, act, search, lang]);
+  }, [roomType, act, search, lang, channel]);
+
+  // Beta-only encounters join the stable list (the regular filters run
+  // server-side, so apply them locally to the additions).
+  const betaIds = new Set(betaAdditions.map((e) => e.id));
+  const merged = [
+    ...encounters.filter((e) => !betaIds.has(e.id)),
+    ...betaAdditions.filter(
+      (e) =>
+        (!roomType || roomType === "Weak" || e.room_type === roomType) &&
+        (!act || (e.act ?? "").toLowerCase().includes(act)) &&
+        (!search || e.name.toLowerCase().includes(search.toLowerCase())),
+    ),
+  ];
 
   const filtered = roomType === "Weak"
-    ? encounters.filter((e) => e.is_weak)
-    : encounters;
+    ? merged.filter((e) => e.is_weak)
+    : merged;
 
   return (
     <>
@@ -113,14 +132,19 @@ export default function EncountersClient({ initialEncounters }: { initialEncount
         {filtered.map((enc) => (
           <Link
             key={enc.id}
-            href={`${lp}/encounters/${enc.id.toLowerCase()}`}
+            href={
+              betaIds.has(enc.id)
+                ? `${lp}/beta/encounters/${enc.id.toLowerCase()}`
+                : `${lp}/encounters/${enc.id.toLowerCase()}`
+            }
             className={`bg-[var(--bg-card)] rounded-lg border ${
               roomTypeColors[enc.room_type] || "border-[var(--border-subtle)]"
             } p-4 hover:bg-[var(--bg-card-hover)] transition-all block`}
           >
             <div className="flex items-start justify-between mb-2">
-              <h3 className="font-semibold text-[var(--text-primary)]">
+              <h3 className="font-semibold text-[var(--text-primary)] flex items-center gap-1.5">
                 {enc.name}
+                {betaIds.has(enc.id) && <BetaBadge />}
               </h3>
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded border flex-shrink-0 ml-2 ${

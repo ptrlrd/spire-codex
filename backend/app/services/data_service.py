@@ -13,10 +13,40 @@ from ..metrics import data_load_duration
 DATA_DIR = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
 )
+# The beta branch's data trees (data-beta/<version>/<lang>/*.json plus a
+# `latest` pointer file naming the current beta version). Carried alongside
+# the stable tree so ONE deployment serves both channels.
+BETA_DATA_DIR = Path(
+    os.environ.get("BETA_DATA_DIR", Path(__file__).resolve().parents[3] / "data-beta")
+)
 DEFAULT_LANG = "eng"
 
 # ContextVar set by VersionMiddleware — allows version-aware loading without changing router signatures
 current_version: ContextVar[str | None] = ContextVar("current_version", default=None)
+# Channel set by the same middleware: "stable" (default) or "beta" (from an
+# explicit ?channel= param or a beta.* Host header). Background threads (the
+# stats refresher and snapshot walk) never have a request context, so they
+# always read stable, which is the correct catalog for run stats.
+current_channel: ContextVar[str] = ContextVar("current_channel", default="stable")
+
+
+def get_channel() -> str:
+    return current_channel.get("stable")
+
+
+def get_beta_version() -> str | None:
+    """The current beta version from the data-beta `latest` pointer file
+    (e.g. "v0.107.0"), or None when no beta data is present. Read fresh on
+    every call: it's a tiny file, and a new beta drop must take effect
+    without a restart."""
+    pointer = BETA_DATA_DIR / "latest"
+    try:
+        if pointer.is_symlink() or pointer.is_dir():
+            return Path(os.path.realpath(pointer)).name
+        text = pointer.read_text(encoding="utf-8").strip()
+        return text or None
+    except OSError:
+        return None
 
 
 def _resolve_base(version: str | None = None) -> Path:
@@ -58,8 +88,31 @@ def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[di
     return data
 
 
+@lru_cache(maxsize=2048)
+def _load_json_beta(lang: str, entity: str, beta_version: str) -> list[dict]:
+    """Beta-channel load, keyed by the actual beta version so a new beta drop
+    invalidates naturally. Falls back per file to the stable tree when the
+    beta tree lacks it (a beta drop that didn't change relics still serves
+    relics), and per language to English within the beta tree first."""
+    base = BETA_DATA_DIR / beta_version
+    filepath = base / lang / f"{entity}.json"
+    if not filepath.exists():
+        filepath = base / DEFAULT_LANG / f"{entity}.json"
+    if not filepath.exists():
+        return _load_json_versioned(lang, entity, None)
+    start = time.perf_counter()
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data_load_duration.labels(entity_type=entity).observe(time.perf_counter() - start)
+    return data
+
+
 def _load_json(lang: str, entity: str) -> list[dict]:
-    """Load JSON using the version from the current request context."""
+    """Load JSON using the channel + version from the current request context."""
+    if get_channel() == "beta":
+        beta_version = get_beta_version()
+        if beta_version:
+            return _load_json_beta(lang, entity, beta_version)
     return _load_json_versioned(lang, entity, _get_version())
 
 

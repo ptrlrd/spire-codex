@@ -6,7 +6,7 @@ import type { Character, Relic, Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
@@ -30,6 +30,7 @@ const colorStyles: Record<string, string> = {
 export default function CharactersClient({ initialCharacters }: { initialCharacters: Character[] }) {
   const { lang } = useLanguage();
     const lp = useLangPrefix();
+  const channel = useChannel();
 const [characters, setCharacters] = useState<Character[]>(initialCharacters);
   const [relicMap, setRelicMap] = useState<Record<string, Relic>>({});
   const [cardMap, setCardMap] = useState<Record<string, Card>>({});
@@ -37,10 +38,12 @@ const [characters, setCharacters] = useState<Character[]>(initialCharacters);
   const initialRender = useRef(true);
 
   useEffect(() => {
-    // Skip the first fetch if we have server data and lang is English
+    // Skip the first fetch if we have server data and lang is English.
+    // Never skip on the beta channel: the server data is the stable
+    // catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && initialCharacters.length > 0) {
+      if (channel !== "beta" && lang === "eng" && initialCharacters.length > 0) {
         // Still need relics and cards for tooltips on initial render
         Promise.all([
           cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
@@ -72,7 +75,7 @@ const [characters, setCharacters] = useState<Character[]>(initialCharacters);
         setCardMap(cm);
       })
       .finally(() => setLoading(false));
-  }, [lang]);
+  }, [lang, channel]);
 
   if (loading) {
     return (

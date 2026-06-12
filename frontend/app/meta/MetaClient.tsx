@@ -12,8 +12,6 @@ import {
 import { characterHex } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const BETA_SITE = "https://beta.spire-codex.com";
-const BETA_API = BETA_SITE;
 
 const CHART_COLORS = {
   gold: "#d4a843",
@@ -83,10 +81,10 @@ function CardPill({ cardId, cardData, lp, className, betaIds }: {
   const [show, setShow] = useState(false);
   const info = cardData[cardId];
   const isBeta = betaIds?.has(cardId);
-  const href = isBeta ? `${BETA_SITE}/cards/${cardId.toLowerCase()}` : `${lp}/cards/${cardId.toLowerCase()}`;
-  const imgBase = isBeta ? BETA_API : API;
-  const El = isBeta ? "a" as const : Link;
-  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
+  const href = isBeta ? `${lp}/beta/cards/${cardId.toLowerCase()}` : `${lp}/cards/${cardId.toLowerCase()}`;
+  const imgBase = API;
+  const El = Link;
+  const linkProps = { href };
   return (
     <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
@@ -113,10 +111,10 @@ function RelicPill({ relicId, relicData, lp, className, children, betaIds }: {
   const [show, setShow] = useState(false);
   const info = relicData[relicId];
   const isBeta = betaIds?.has(relicId);
-  const href = isBeta ? `${BETA_SITE}/relics/${relicId.toLowerCase()}` : `${lp}/relics/${relicId.toLowerCase()}`;
-  const imgBase = isBeta ? BETA_API : API;
-  const El = isBeta ? "a" as const : Link;
-  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
+  const href = isBeta ? `${lp}/beta/relics/${relicId.toLowerCase()}` : `${lp}/relics/${relicId.toLowerCase()}`;
+  const imgBase = API;
+  const El = Link;
+  const linkProps = { href };
   return (
     <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
@@ -143,10 +141,10 @@ function PotionPill({ potionId, potionData, lp, className, betaIds }: {
   const [show, setShow] = useState(false);
   const info = potionData[potionId];
   const isBeta = betaIds?.has(potionId);
-  const href = isBeta ? `${BETA_SITE}/potions/${potionId.toLowerCase()}` : `${lp}/potions/${potionId.toLowerCase()}`;
-  const imgBase = isBeta ? BETA_API : API;
-  const El = isBeta ? "a" as const : Link;
-  const linkProps = isBeta ? { href, target: "_blank" as const, rel: "noopener noreferrer" } : { href };
+  const href = isBeta ? `${lp}/beta/potions/${potionId.toLowerCase()}` : `${lp}/potions/${potionId.toLowerCase()}`;
+  const imgBase = API;
+  const El = Link;
+  const linkProps = { href };
   return (
     <El {...linkProps} className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
@@ -210,9 +208,9 @@ export default function MetaClient() {
       // Fetch beta data and merge items not in stable
       try {
         const [betaCards, betaRelics, betaPotions] = await Promise.all([
-          cachedFetch<CardInfo[]>(`${BETA_API}/api/cards`),
-          cachedFetch<RelicInfo[]>(`${BETA_API}/api/relics`),
-          cachedFetch<PotionInfo[]>(`${BETA_API}/api/potions`),
+          cachedFetch<CardInfo[]>(`${API}/api/cards?channel=beta`),
+          cachedFetch<RelicInfo[]>(`${API}/api/relics?channel=beta`),
+          cachedFetch<PotionInfo[]>(`${API}/api/potions?channel=beta`),
         ]);
         const newBetaIds = new Set<string>();
         const cmMerged = { ...cm };

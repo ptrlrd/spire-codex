@@ -6,6 +6,7 @@ import type { Card } from "@/lib/api";
 import { getCardDisplayModel } from "@/lib/card-display";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "./RichDescription";
+import BetaBadge from "./BetaBadge";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
@@ -66,7 +67,14 @@ function CardItem({ card }: { card: Card }) {
         isUpgraded ? "border-emerald-700/60 hover:border-emerald-500" : colorMap[card.color] || "border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
       } p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-black/20`}
     >
-      <Link href={`${lp}/cards/${card.id.toLowerCase()}`} className="absolute inset-0 z-10" />
+      <Link
+        href={
+          card.beta
+            ? `${lp}/beta/cards/${card.id.toLowerCase()}`
+            : `${lp}/cards/${card.id.toLowerCase()}`
+        }
+        className="absolute inset-0 z-10"
+      />
 
       {(() => {
         const imgUrl = betaArt && card.beta_image_url ? card.beta_image_url : (card.image_url || card.beta_image_url);
@@ -85,8 +93,9 @@ function CardItem({ card }: { card: Card }) {
 
       {/* Header */}
       <div className="flex items-start justify-between mb-2">
-        <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
+        <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
           {card.name}{isUpgraded && <span className="text-emerald-400">+</span>}
+          {card.beta && <BetaBadge />}
         </h3>
         <div className="ml-2 flex-shrink-0 flex items-center gap-1">
           <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
