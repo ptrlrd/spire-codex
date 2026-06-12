@@ -66,8 +66,12 @@ first, appended by each heartbeat:
 Kinds: `card` (played), `potion` (used), `combat` (fight started), `victory`,
 `buy` (shop purchase; `v` may be absent), `death` (the player died), `act` (entered a
 new act). `v` is a bare entity id for the usual name/image lookups. Render as a feed:
-"Turn 2 - played Whirlwind". The mod beats every ~12s during combat and ~30s outside
-it, so poll this endpoint at 10-15s for a live-feeling ticker.
+"Turn 2 - played Whirlwind".
+
+Heartbeats are event-driven with a 2s debounce: a card play reaches the server in
+~2-3s, with a 5s cadence floor during combat (enemy HP, turn) and 15s between rooms.
+Poll this endpoint at 3-5s for a live-feeling ticker; poll `/active` at 10-15s (the
+roster doesn't carry events, so it doesn't need to be hot).
 
 ### POST /api/presence
 
