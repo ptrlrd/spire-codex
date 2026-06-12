@@ -36,7 +36,9 @@ import {
   type MonsterMap,
 } from "./live-shared";
 
-const POLL_MS = 20_000;
+// The roster carries no ticker events, so the contract's 10-15s roster
+// guidance applies here rather than the hot 3-5s per-player cadence.
+const POLL_MS = 12_000;
 const RECENT_CARDS = 5;
 
 function PlayerCard({

@@ -2,9 +2,10 @@
 
 // One player's live run, spectator-lite: the full deck, relics, potions,
 // current fight, and the play-by-play ticker from the mod's heartbeats
-// (cards played, potions used, fights, purchases, acts, deaths). Polls
-// /api/presence/{steam_id} every 12s, matching the mod's combat beat.
-// Contract: markdown-docs/live-presence.md.
+// (cards played, potions used, fights, purchases, acts, deaths). The mod
+// beats event-driven with a 2s debounce (5s floor in combat), so polling
+// /api/presence/{steam_id} at 4s gives a near-live ticker per the
+// contract's 3-5s guidance. Contract: markdown-docs/live-presence.md.
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -39,7 +40,7 @@ import {
   type MonsterMap,
 } from "../live-shared";
 
-const POLL_MS = 12_000;
+const POLL_MS = 4_000;
 
 interface Catalogs {
   cards: Record<string, CardInfo>;

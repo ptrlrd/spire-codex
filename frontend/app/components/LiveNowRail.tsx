@@ -17,7 +17,7 @@ import {
   type LivePlayer,
 } from "@/app/live/live-shared";
 
-const POLL_MS = 30_000;
+const POLL_MS = 15_000;
 const MAX_SHOWN = 6;
 
 export default function LiveNowRail() {
