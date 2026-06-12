@@ -61,6 +61,9 @@ export interface TierEntity {
   /** Rarity key (Common, Uncommon, Rare, Shop, Event, Ancient, …) for the
    * tray's secondary rarity filter. Set wherever the API exposes one. */
   rarity?: string;
+  /** Beta-only entity (in the current beta but not main); shown with a
+   * Beta marker on its chip. */
+  beta?: boolean;
 }
 
 /** Canonical rarity ordering for the tray's rarity dropdown. Anything not

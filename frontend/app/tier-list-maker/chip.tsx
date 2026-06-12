@@ -63,6 +63,14 @@ export function Chip({
             className="absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-sky-400 ring-1 ring-black/60"
           />
         )}
+        {entity.beta && (
+          <span
+            aria-label="Beta-only"
+            className="absolute left-0.5 top-0.5 rounded bg-emerald-500/90 px-1 text-[8px] font-bold leading-tight text-black ring-1 ring-black/60"
+          >
+            β
+          </span>
+        )}
       </div>
 
       {commentText && !dragging && (

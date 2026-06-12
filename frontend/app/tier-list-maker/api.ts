@@ -81,30 +81,69 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
   ]);
   if (!res.ok) throw new Error(`Failed to load ${type}`);
   const raw: RawEntity[] = await res.json();
-  return raw
-    .slice()
+
+  const toEntity = (e: RawEntity, beta = false): TierEntity => ({
+    id: e.id,
+    name: e.name,
+    // Characters default to the char-select portrait; the tier list reads
+    // better with the compact round character icon instead.
+    image:
+      type === "characters"
+        ? imageUrl(`/static/images/characters/character_icon_${e.id.toLowerCase()}.webp`)
+        : type === "cards"
+          ? fullCardUrl(e.id.toLowerCase(), false, beta ? "beta" : "stable")
+          : imageUrl(e.image_url),
+    group:
+      type === "relics"
+        ? ancientMap[e.id.toUpperCase()] ?? e.pool ?? undefined
+        : type === "monsters"
+          ? monsterActGroup(e.encounters)
+          : e.color ?? undefined,
+    // "None" is the API's placeholder for the odd un-raritied entry; treat
+    // it as no rarity so it doesn't pollute the rarity dropdown.
+    rarity: e.rarity_key && e.rarity_key !== "None" ? e.rarity_key : undefined,
+    ...(beta && { beta: true }),
+  });
+
+  // Beta-only entities join the pool so tier lists can rank unreleased
+  // content; their chips carry a Beta marker. Best effort: a failed diff
+  // or entity fetch just means no additions.
+  const betaRaw = await fetchBetaAdditions(type);
+  const mainIds = new Set(raw.map((e) => e.id));
+
+  return [
+    ...raw,
+    ...betaRaw.filter((e) => !mainIds.has(e.id)),
+  ]
     .sort((a, b) => (a.compendium_order ?? 0) - (b.compendium_order ?? 0))
-    .map((e) => ({
-      id: e.id,
-      name: e.name,
-      // Characters default to the char-select portrait; the tier list reads
-      // better with the compact round character icon instead.
-      image:
-        type === "characters"
-          ? imageUrl(`/static/images/characters/character_icon_${e.id.toLowerCase()}.webp`)
-          : type === "cards"
-            ? fullCardUrl(e.id.toLowerCase())
-            : imageUrl(e.image_url),
-      group:
-        type === "relics"
-          ? ancientMap[e.id.toUpperCase()] ?? e.pool ?? undefined
-          : type === "monsters"
-            ? monsterActGroup(e.encounters)
-            : e.color ?? undefined,
-      // "None" is the API's placeholder for the odd un-raritied entry; treat
-      // it as no rarity so it doesn't pollute the rarity dropdown.
-      rarity: e.rarity_key && e.rarity_key !== "None" ? e.rarity_key : undefined,
-    }));
+    .map((e) => toEntity(e, !mainIds.has(e.id)));
+}
+
+/** The current beta's added entities for a type, fetched from the beta
+ * channel. Types the diff doesn't track (ancients, characters, badges,
+ * intents) come back empty. */
+async function fetchBetaAdditions(type: EntityType): Promise<RawEntity[]> {
+  try {
+    const res = await fetch(`${API}/api/beta/diff`);
+    if (!res.ok) return [];
+    const diff: { beta_version: string | null; types: Record<string, { added: string[] }> } =
+      await res.json();
+    const added = diff.beta_version ? (diff.types?.[type]?.added ?? []) : [];
+    if (added.length === 0) return [];
+    const fetched = await Promise.all(
+      added.map(async (id) => {
+        try {
+          const r = await fetch(`${API}/api/${type}/${id.toLowerCase()}?lang=eng&channel=beta`);
+          return r.ok ? ((await r.json()) as RawEntity) : null;
+        } catch {
+          return null;
+        }
+      }),
+    );
+    return fetched.filter((e): e is RawEntity => e !== null);
+  } catch {
+    return [];
+  }
 }
 
 function authHeaders(): Record<string, string> {
