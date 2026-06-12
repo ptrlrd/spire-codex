@@ -9,6 +9,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { fullCardUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
+import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -577,6 +578,7 @@ export default function StatsClient() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <StatsRebuildingNotice />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">{t("Stats", lang)}</span>
       </h1>

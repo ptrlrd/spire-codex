@@ -10,6 +10,7 @@ import {
   PieChart, Pie, Cell, Legend,
 } from "recharts";
 import { characterHex } from "@/lib/character-colors";
+import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -284,6 +285,7 @@ export default function MetaClient() {
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <StatsRebuildingNotice />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Community Meta</h1>
       <p className="text-[var(--text-secondary)] mb-4">
         Aggregated stats from {stats?.total_runs || 0} submitted runs.{" "}

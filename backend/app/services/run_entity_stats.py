@@ -140,6 +140,13 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Version 4 = community map_danger (per act/node-type damage + death rates),
 # rest-site win/HP-band stats, and ancient offer take rates for the mod.
 SNAPSHOT_VERSION = 4
+# The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
+# on every shape change; bump this floor ONLY when a change actually breaks
+# readers (a removed/retyped field). Everything in between is additive, and
+# serving a slightly-stale snapshot for the ~15 minutes a version-bump
+# rebuild takes beats serving nothing: to users an empty stats page is
+# indistinguishable from the site losing its data.
+SNAPSHOT_MIN_COMPAT = 3
 # Leader rebuilds the heavy walk at most this often.
 _SNAPSHOT_REBUILD_SECONDS = 10 * 60
 # Workers reload the snapshot from Mongo this often (cheap read).
@@ -171,6 +178,10 @@ _community_stats: dict[str, Any] = {}
 _charts_blob_stats: dict[str, Any] = {}
 _cache_built_at: float = 0.0
 _building: bool = False
+# The snapshot_version of whatever is currently loaded (None = nothing
+# loaded yet). Differs from SNAPSHOT_VERSION while serving a compatible
+# older snapshot during a post-deploy rebuild.
+_cache_snapshot_version: int | None = None
 
 
 def _strip_prefix(raw: str) -> tuple[str, str] | None:
@@ -983,8 +994,10 @@ def _build_cache() -> None:
 
     Only used when the Mongo snapshot is unavailable (SQLite path, or a
     cold start before the leader has written the first snapshot)."""
+    global _cache_snapshot_version
     cache, totals, baselines, cohort_meta = _build_cache_data()
     _apply_cache(cache, totals, baselines, cohort_meta)
+    _cache_snapshot_version = SNAPSHOT_VERSION
     logger.info(
         "run-entity-stats cache rebuilt (local): %d entities across %d runs",
         len(cache),
@@ -1008,6 +1021,18 @@ def _persist_snapshot(
     meta doc. Entities are stored as arrays (not dicts) so entity IDs
     never collide with Mongo field-name restrictions."""
     coll = _snapshot_coll()
+    # Never overwrite a snapshot written by NEWER code (a deploy-time
+    # prewarm, or the new containers mid rolling deploy). Without this, the
+    # outgoing leader's final rebuild can clobber the new version's snapshot
+    # and force a second full walk.
+    existing = coll.find_one({"_id": "__meta__"}, {"snapshot_version": 1})
+    if existing and (existing.get("snapshot_version") or 0) > SNAPSHOT_VERSION:
+        logger.warning(
+            "not overwriting entity-stats snapshot version %s with older version %s",
+            existing.get("snapshot_version"),
+            SNAPSHOT_VERSION,
+        )
+        return
     by_type: dict[str, list] = {}
     for (etype, eid), agg in cache.items():
         entry = {
@@ -1070,20 +1095,34 @@ def _persist_snapshot(
 def _load_snapshot() -> bool:
     """Load the shared snapshot from Mongo into module globals. Returns
     False if no snapshot exists yet (caller falls back to local build)."""
+    global _cache_snapshot_version
     coll = _snapshot_coll()
     meta = coll.find_one({"_id": "__meta__"})
     if not meta:
         return False
-    if meta.get("snapshot_version") != SNAPSHOT_VERSION:
-        # Written by a different code version (e.g. a stale container sharing
-        # the Mongo). Keep whatever this worker already serves rather than
-        # regressing to a snapshot missing fields the readers depend on.
+    meta_version = meta.get("snapshot_version") or 0
+    if meta_version < SNAPSHOT_MIN_COMPAT:
+        # Too old to read safely (a truly breaking shape change). Keep
+        # whatever this worker already serves rather than regressing to a
+        # snapshot missing fields the readers depend on.
         logger.warning(
-            "ignoring entity-stats snapshot with version %s (want %s)",
-            meta.get("snapshot_version"),
-            SNAPSHOT_VERSION,
+            "ignoring entity-stats snapshot with version %s (min compatible %s)",
+            meta_version,
+            SNAPSHOT_MIN_COMPAT,
         )
         return False
+    if meta_version != SNAPSHOT_VERSION:
+        # Compatible but not current: written by a different code version
+        # (a pre-bump snapshot right after a deploy, or a newer writer mid
+        # rolling deploy). Serve it anyway - the loader and readers default
+        # every version-specific field - and let the leader rebuild the
+        # current version over it. Stats stay populated instead of every
+        # surface going empty for the length of the rebuild.
+        logger.info(
+            "serving entity-stats snapshot version %s while %s rebuilds",
+            meta_version,
+            SNAPSHOT_VERSION,
+        )
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     for etype in meta.get("entity_types", []):
         doc = coll.find_one({"_id": etype})
@@ -1128,6 +1167,7 @@ def _load_snapshot() -> bool:
             "charts": meta.get("charts", {}),
         },
     )
+    _cache_snapshot_version = meta_version
     return True
 
 
@@ -1154,15 +1194,43 @@ def refresh_entity_stats_snapshot() -> int:
         ):
             return 0  # snapshot still fresh
 
+    global _cache_snapshot_version
     cache, totals, baselines, cohort_meta = _build_cache_data()
     _persist_snapshot(cache, totals, baselines, cohort_meta)
     _apply_cache(cache, totals, baselines, cohort_meta)
+    _cache_snapshot_version = SNAPSHOT_VERSION
     logger.info(
         "entity-stats snapshot rebuilt: %d entities across %d runs",
         len(cache),
         totals["total_runs"],
     )
     return len(cache)
+
+
+def snapshot_loaded() -> bool:
+    """True once any compatible snapshot (or local build) is in memory.
+    While False, snapshot-backed endpoints serve empty shells; callers use
+    this to keep those empties out of Redis and edge caches."""
+    return bool(_cache)
+
+
+def snapshot_status() -> dict[str, Any]:
+    """Cheap in-memory status so the UI can tell "no data" apart from
+    "warming up after a deploy". No Mongo round-trip: this gets hit by
+    every stats page while a rebuild runs."""
+    return {
+        # Nothing loaded yet: a rebuild or first snapshot load is pending,
+        # and snapshot-backed endpoints are serving empty in the meantime.
+        "building": not _cache,
+        # Serving an older-but-compatible snapshot while the current
+        # version rebuilds (post-deploy window).
+        "stale_version": bool(_cache)
+        and _cache_snapshot_version not in (None, SNAPSHOT_VERSION),
+        "version": _cache_snapshot_version,
+        "want_version": SNAPSHOT_VERSION,
+        "built_at": _cache_built_at or None,
+        "total_runs": (_global_totals or {}).get("total_runs", 0),
+    }
 
 
 def _maybe_rebuild() -> None:

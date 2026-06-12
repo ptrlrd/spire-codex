@@ -7,6 +7,7 @@ import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { colorTextClass } from "@/lib/character-colors";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 
 export interface MetricRow {
   id: string;
@@ -192,6 +193,7 @@ export default function MetricsClient({
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
+      <StatsRebuildingNotice />
       <header className="mb-5">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">
           Card Metrics

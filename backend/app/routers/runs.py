@@ -17,6 +17,8 @@ from ..services.run_entity_stats import (
     get_entity_metrics_table,
     get_entity_stats,
     get_top_entities_for_character,
+    snapshot_loaded,
+    snapshot_status,
 )
 from ..metrics import (
     run_submissions,
@@ -884,8 +886,22 @@ def get_entity_scores(
     if cached is not None:
         return cached
     result = get_all_entity_scores(entity_type, character=char, act=act)
-    app_cache.set_json(cache_key, result, ttl_seconds=5 * 60)
+    # While the snapshot is rebuilding (post-deploy), the result is an empty
+    # shell; caching it would extend the gap past the rebuild for everyone.
+    if snapshot_loaded():
+        app_cache.set_json(cache_key, result, ttl_seconds=5 * 60)
     return result
+
+
+@router.get("/snapshot-status", tags=["Runs"])
+@limiter.limit("120/minute")
+def runs_snapshot_status(request: Request, response: Response):
+    """Whether the stats snapshot is loaded, rebuilding after a deploy, or
+    serving a previous version while the current one builds. Lets the UI
+    show "stats are rebuilding" instead of rendering empty charts as if the
+    data were gone."""
+    response.headers["Cache-Control"] = "no-store"
+    return snapshot_status()
 
 
 @router.get("/community-stats", tags=["Runs"])
@@ -896,7 +912,11 @@ def community_stats(request: Request, response: Response):
     ascension and character, and a few records and quirks. Official game
     content only (modded entities are filtered out). Built in the same walk
     as the Codex Score cache, so this is an in-memory read."""
-    response.headers["Cache-Control"] = "public, max-age=300"
+    # An empty shell during a post-deploy rebuild must not stick in the
+    # edge cache for 5 minutes on top of the rebuild itself.
+    response.headers["Cache-Control"] = (
+        "public, max-age=300" if snapshot_loaded() else "no-store"
+    )
     return get_community_fun_stats()
 
 
@@ -924,8 +944,12 @@ def get_entity_metrics(
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
     # Snapshot refreshes at most every 10 min; let edges/clients cache it.
+    # Except while a post-deploy rebuild runs: an empty table cached at the
+    # edge would outlive the rebuild.
     response.headers["Cache-Control"] = (
         "public, max-age=300, stale-while-revalidate=600"
+        if snapshot_loaded()
+        else "no-store"
     )
     return get_entity_metrics_table(entity_type, cohort)
 
@@ -1049,7 +1073,9 @@ def start_stats_refresher() -> None:
         # from Redis cluster-wide instead of recomputing per
         # worker. Includes the per-act relic views.
         try:
-            if app_cache.enabled():
+            # Never warm Redis from an unloaded cache: that would push
+            # empty score maps cluster-wide with the warm TTL.
+            if app_cache.enabled() and snapshot_loaded():
                 for etype in ("cards", "relics", "potions"):
                     app_cache.set_json(
                         app_cache.entity_scores_key(etype),

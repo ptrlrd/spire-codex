@@ -72,6 +72,28 @@ if [ "$RECREATE" = "1" ]; then
   # second pass over docker-compose.beta.yml is gone.
   log "  deploying $COMPOSE_FILE"
   docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
+
+  # Pre-warm the stats snapshot with the NEW image before swapping
+  # containers. If the new code bumped SNAPSHOT_VERSION, this runs the
+  # full walk while the old containers keep serving the old snapshot, so
+  # the new workers boot with their snapshot already in Mongo and the
+  # stats surfaces never go empty during a deploy. When the version did
+  # not change, refresh_entity_stats_snapshot() sees a fresh same-version
+  # snapshot and returns immediately, so routine deploys pay one cheap
+  # find_one. Failures are non-fatal: serve-stale on the new code covers
+  # the gap.
+  RUNNING_IMG=$(docker inspect --format '{{.Image}}' spire-codex-backend 2>/dev/null || true)
+  PULLED_IMG=$(docker image inspect --format '{{.Id}}' ptrlrd/spire-codex-backend:latest 2>/dev/null || true)
+  if [ -n "$PULLED_IMG" ] && [ "$RUNNING_IMG" != "$PULLED_IMG" ]; then
+    log "  backend image changed; pre-warming stats snapshot with the new code"
+    if timeout 30m docker compose -f "$COMPOSE_FILE" run --rm --no-deps --entrypoint python backend -c \
+        "from app.services.run_entity_stats import refresh_entity_stats_snapshot as r; print('prewarm entities:', r())" >> "$LOG" 2>&1; then
+      log "  ✓ snapshot prewarm done"
+    else
+      log "  ⚠ snapshot prewarm failed or timed out; continuing (serve-stale covers the gap)"
+    fi
+  fi
+
   docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
 
   # Settle. 5s is enough for FastAPI startup; longer waits don't help.
