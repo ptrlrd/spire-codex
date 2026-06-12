@@ -27,7 +27,18 @@ COMPOSE_FILE="${SPIRE_COMPOSE_FILE:-docker-compose.prod.yml}"
 # creates a root-owned file — subsequent appends just work).
 touch "$LOG"
 
-log() { echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" >> "$LOG"; }
+# A human at a terminal sees everything live (docker pulls, the prewarm,
+# the health checks); cron runs keep writing only to the log. Decided
+# before the exec below swaps stdout for the tee pipe.
+INTERACTIVE=0
+[ -t 1 ] && INTERACTIVE=1
+if [ "$INTERACTIVE" = "1" ]; then
+  exec > >(tee -a "$LOG") 2>&1
+else
+  exec >> "$LOG" 2>&1
+fi
+
+log() { echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*"; }
 
 cd "$REPO"
 
@@ -35,11 +46,13 @@ BEFORE=$(git rev-parse HEAD)
 # Force-align with origin/main. Anyone hand-editing on the box should
 # commit to a branch first; this is documented behavior of deploy.yml too.
 git fetch origin main --quiet
-git reset --hard origin/main >> "$LOG" 2>&1
+git reset --hard origin/main
 AFTER=$(git rev-parse HEAD)
 
 if [ "$BEFORE" = "$AFTER" ] && [ "$FORCE" != "1" ]; then
-  [ "${DEBUG:-0}" = "1" ] && log "no change ($AFTER)"
+  if [ "$INTERACTIVE" = "1" ] || [ "${DEBUG:-0}" = "1" ]; then
+    log "no new commit on main (${AFTER:0:8}); nothing to deploy. Use --force (./tools/startup.sh release) to redeploy anyway."
+  fi
   exit 0
 fi
 
@@ -83,7 +96,7 @@ if [ "$RECREATE" = "1" ]; then
   # this stack (served at /beta from the same containers), so the old
   # second pass over docker-compose.beta.yml is gone.
   log "  deploying $COMPOSE_FILE"
-  docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" pull backend frontend
 
   # Pre-warm the stats snapshot with the NEW image before swapping
   # containers. If the new code bumped SNAPSHOT_VERSION, this runs the
@@ -98,15 +111,19 @@ if [ "$RECREATE" = "1" ]; then
   PULLED_IMG=$(docker image inspect --format '{{.Id}}' ptrlrd/spire-codex-backend:latest 2>/dev/null || true)
   if [ -n "$PULLED_IMG" ] && [ "$RUNNING_IMG" != "$PULLED_IMG" ]; then
     log "  backend image changed; pre-warming stats snapshot with the new code"
-    if timeout 30m docker compose -f "$COMPOSE_FILE" run --rm --no-deps --entrypoint python backend -c \
-        "from app.services.run_entity_stats import refresh_entity_stats_snapshot as r; print('prewarm entities:', r())" >> "$LOG" 2>&1; then
+    # The service's normal command creates PROMETHEUS_MULTIPROC_DIR before
+    # uvicorn starts; overriding the entrypoint skips that, and importing
+    # the app then crashes in prometheus_client (FileNotFoundError on the
+    # mmap files). Recreate the dir here the same way.
+    if timeout 30m docker compose -f "$COMPOSE_FILE" run --rm --no-deps --entrypoint sh backend -c \
+        'mkdir -p "${PROMETHEUS_MULTIPROC_DIR:-/tmp/prom_multiproc}" && python -c "from app.services.run_entity_stats import refresh_entity_stats_snapshot as r; print(\"prewarm entities:\", r())"'; then
       log "  ✓ snapshot prewarm done"
     else
       log "  ⚠ snapshot prewarm failed or timed out; continuing (serve-stale covers the gap)"
     fi
   fi
 
-  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend
 
   # Settle. 5s is enough for FastAPI startup; longer waits don't help.
   sleep 5
@@ -116,7 +133,7 @@ if [ "$RECREATE" = "1" ]; then
   # a reload it keeps proxying to the dead addresses and the whole site
   # 502s (bit us on 2026-06-11 and again on 2026-06-12). Reload is
   # zero-downtime and re-resolves every upstream.
-  if docker exec web-server nginx -s reload >> "$LOG" 2>&1; then
+  if docker exec web-server nginx -s reload; then
     log "✓ nginx reloaded"
   else
     log "⚠ nginx reload failed or web-server not on this host"
