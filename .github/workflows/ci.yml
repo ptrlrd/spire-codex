@@ -128,8 +128,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      # No setup-buildx-action on purpose: it boots a fresh ephemeral
+      # builder every run (and destroys it in post), which throws away
+      # all local layer cache and forces every build to round-trip
+      # gigabytes through the Docker Hub registry cache. The self-hosted
+      # runner's own daemon persists between runs, so building on the
+      # default builder gives us a warm local cache for free: the pip
+      # layer, the 2.6 GB backend static layer, npm's node_modules, and
+      # the cache mounts in the Dockerfiles all survive run to run.
+      # Housekeeping: the daemon's build cache grows over time; prune
+      # occasionally with `docker builder prune --filter until=336h`.
 
       - name: Login to Docker Hub
         uses: docker/login-action@v3
@@ -143,8 +151,6 @@ jobs:
         with:
           context: ./backend
           push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-backend:buildcache
-          cache-to: type=registry,ref=ptrlrd/spire-codex-backend:buildcache,mode=max
           tags: |
             ptrlrd/spire-codex-backend:latest
             ptrlrd/spire-codex-backend:${{ github.sha }}
@@ -156,8 +162,6 @@ jobs:
           context: ./frontend
           file: ./frontend/Dockerfile
           push: true
-          cache-from: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache
-          cache-to: type=registry,ref=ptrlrd/spire-codex-frontend:buildcache,mode=max
           build-args: |
             NEXT_PUBLIC_API_URL=
             NEXT_PUBLIC_SITE_URL=https://spire-codex.com
