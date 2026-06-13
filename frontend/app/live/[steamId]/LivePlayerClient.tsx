@@ -389,17 +389,27 @@ export default function LivePlayerClient() {
       </div>
     ) : null;
 
+  // Whether there's a current-screen panel (combat enemies / event / shop) to
+  // sit beside the player; when there isn't, the player spans the full width.
+  const hasContext = hasEnemies || !!p.event || !!p.shop;
+
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Link href="/live" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]">
         ← Live roster
       </Link>
 
-      {/* Row 1: the player on the left at ~50%, and what they're looking at
-          right now on the right (combat enemies, the event reader, the shop,
-          or the act map when idle). */}
-      <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      {/* Main content on the left; the act map gets a narrow rail on the right
+          sized to it, so it no longer leaves dead space in a half-width column.
+          The rail is dropped entirely when there's no map. */}
+      <div className={`mt-3 grid gap-4 items-start ${mapCard ? "lg:grid-cols-[1fr_260px]" : ""}`}>
+        <div className="space-y-4 min-w-0">
+          {/* The player, with the live context (combat enemies, event reader,
+              shop) beside it. The player spans the full width when idle. */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+            <div
+              className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 ${!hasContext ? "lg:col-span-2" : ""}`}
+            >
           <div className="flex items-center gap-3">
             <CharacterIcon character={p.character} className="w-16 h-16" />
             <div className="min-w-0 flex-1">
@@ -455,34 +465,27 @@ export default function LivePlayerClient() {
           )}
         </div>
 
-        {/* Context column. For now every panel with data shows at once (combat
-            enemies, the event reader, the shop, and the act map) instead of one
-            at a time, so we can see everything while settling the final layout.
-            Each is gated only on its own data, which the backend clears on
-            screen exit, so nothing lingers stale. */}
-        <div className="space-y-4">
-          {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
-          {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
-          {p.shop && (
-            <LiveShopPanel
-              shop={p.shop}
-              cards={cat.cards}
-              relics={cat.relics}
-              potions={cat.potions}
-              lp={lp}
-              lang={lang}
-            />
-          )}
-          {mapCard}
-          {!hasEnemies && !p.event && !p.shop && !mapCard && (
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 text-sm text-[var(--text-muted)]">
-              {p.screen ? `On the ${p.screen} screen.` : "No live detail for this screen."}
-            </div>
-          )}
-        </div>
-      </div>
+            {/* Current-screen panels (combat enemies, event reader, shop), each
+                gated on its own data, which the backend clears on screen exit. */}
+            {hasContext && (
+              <div className="space-y-4">
+                {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
+                {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
+                {p.shop && (
+                  <LiveShopPanel
+                    shop={p.shop}
+                    cards={cat.cards}
+                    relics={cat.relics}
+                    potions={cat.potions}
+                    lp={lp}
+                    lang={lang}
+                  />
+                )}
+              </div>
+            )}
+          </div>
 
-      <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
           <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Play-by-play</h2>
           {events.length === 0 ? (
@@ -625,6 +628,11 @@ export default function LivePlayerClient() {
             <p className="text-[10px] text-[var(--text-muted)]">{p.sts2_version}</p>
           )}
         </div>
+      </div>
+        </div>
+        {mapCard && (
+          <div className="lg:sticky lg:top-4 self-start">{mapCard}</div>
+        )}
       </div>
     </div>
   );
