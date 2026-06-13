@@ -329,9 +329,10 @@ function intentLabel(it: EnemyIntent): { text: string; cls: string } {
 /** The spectator combat panel: every living enemy with portrait, HP bar, block,
  * and its upcoming intent(s). Uses the rich `enemies` field when the mod sends
  * it, falling back to the bare `fighting` id list (portrait + name only) so it
- * still shows something on an older mod. Renders nothing off the combat screen. */
+ * still shows something on an older mod. Gated on enemy data, not the screen:
+ * the backend clears enemies/fighting when combat ends, so data presence is the
+ * correct gate and the panel naturally disappears after a fight. */
 export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: MonsterMap }) {
-  if (p.screen !== "combat") return null;
   const rich = (p.enemies ?? []).filter((e) => e && (e.id || e.name));
   const enemies: Enemy[] = rich.length
     ? rich
