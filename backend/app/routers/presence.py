@@ -191,35 +191,59 @@ def _clean_shop(raw) -> dict | None:
     return out or None
 
 
-# Live combat enemies for the spectator combat panel: each enemy's id, current
-# HP, and intent. `intent` is a kind string (attack, defend, buff, debuff, stun,
-# sleep, escape, unknown); intent_value/intent_hits describe an attack.
+# Live combat enemies for the spectator combat panel: per enemy hp/block plus the
+# upcoming intent(s). A move can carry several intents (e.g. attack + buff), so
+# `intents` is a list of {type, dmg?, hits?}; `type` is the codex intent category
+# (attack, defend, buff, debuff, heal, escape, summon, carddebuff, deathblow,
+# hidden, unknown), `dmg` the base per-hit damage and `hits` the strike count.
 _ENEMIES_CAP = 8
-_INTENT_CAP = 24
-_ENEMY_INT_FIELDS = ("hp", "max_hp", "block", "intent_value", "intent_hits")
+_INTENTS_CAP = 6
+
+
+def _clean_intent(o) -> dict | None:
+    if not isinstance(o, dict):
+        return None
+    t = o.get("type")
+    if not isinstance(t, str) or not t:
+        return None
+    out: dict = {"type": t[:24]}
+    for k in ("dmg", "hits"):
+        v = o.get(k)
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            out[k] = int(v)
+    return out
 
 
 def _clean_enemies(raw) -> list[dict] | None:
-    """The living enemies in the current fight, with HP and intent. Richer than
-    the bare `fighting` id list (which stays for the roster chip)."""
+    """The living enemies in the current fight, with hp/block and intents. Richer
+    than the bare `fighting` id list (which stays for the roster chip)."""
     if not isinstance(raw, list):
         return None
     out: list[dict] = []
     for o in raw[:_ENEMIES_CAP]:
         if not isinstance(o, dict):
             continue
+        en: dict = {}
+        # id flows into the enemy portrait URL, so guard it; an enemy with no safe
+        # id still renders from its name, so keep the entry either way.
         oid = o.get("id")
-        if not isinstance(oid, str) or not _safe_id(oid[:_MAX_STR]):
-            continue
-        item: dict = {"id": oid[:_MAX_STR]}
-        for k in _ENEMY_INT_FIELDS:
+        if isinstance(oid, str) and _safe_id(oid[:_MAX_STR]):
+            en["id"] = oid[:_MAX_STR]
+        if isinstance(o.get("name"), str) and o["name"]:
+            en["name"] = o["name"][:_MAX_STR]
+        for k in ("hp", "max_hp", "block"):
             v = o.get(k)
             if isinstance(v, (int, float)) and not isinstance(v, bool):
-                item[k] = int(v)
-        intent = o.get("intent")
-        if isinstance(intent, str) and intent:
-            item["intent"] = intent[:_INTENT_CAP]
-        out.append(item)
+                en[k] = int(v)
+        raw_intents = o.get("intents")
+        if isinstance(raw_intents, list):
+            en["intents"] = [
+                it
+                for it in (_clean_intent(i) for i in raw_intents[:_INTENTS_CAP])
+                if it
+            ]
+        if en:
+            out.append(en)
     return out or None
 
 
