@@ -34,6 +34,36 @@ export interface LiveMapData {
 }
 export type Coord = [number, number];
 
+// Live current-screen detail (v4). event: the room the player is reading, with
+// already-localized title/prompt and the options on offer. shop: the merchant
+// inventory with per-item cost/sale/stock. Both present only on their screen.
+export interface LiveEventOption {
+  key?: string;
+  text?: string;
+  locked?: boolean;
+  proceed?: boolean;
+  chosen?: boolean;
+}
+export interface LiveEventCtx {
+  id: string;
+  title?: string;
+  prompt?: string;
+  options?: LiveEventOption[];
+}
+export interface ShopItem {
+  id?: string;
+  cost?: number;
+  stocked?: boolean;
+  on_sale?: boolean;
+  slot?: string;
+}
+export interface LiveShop {
+  cards?: ShopItem[];
+  relics?: ShopItem[];
+  potions?: ShopItem[];
+  removal?: { cost?: number; stocked?: boolean };
+}
+
 export interface LivePlayer {
   steam_id: string;
   username?: string | null;
@@ -60,6 +90,8 @@ export interface LivePlayer {
   map?: LiveMapData | null;
   path?: Coord[];
   pos?: Coord | null;
+  event?: LiveEventCtx | null;
+  shop?: LiveShop | null;
 }
 
 export interface MonsterInfo {

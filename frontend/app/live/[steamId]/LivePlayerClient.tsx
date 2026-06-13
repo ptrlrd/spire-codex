@@ -15,6 +15,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
+import { LiveEventPanel, LiveShopPanel } from "../LiveEventShop";
 import {
   CardPill,
   PotionPill,
@@ -457,6 +458,26 @@ export default function LivePlayerClient() {
           </div>
         )}
       </div>
+
+      {/* Current-screen detail: what the player is looking at right now.
+          Screen-gated and mutually exclusive, so only one shows at a time. */}
+      {p.screen === "event" && p.event && (
+        <div className="mt-4">
+          <LiveEventPanel ev={p.event} lp={lp} />
+        </div>
+      )}
+      {p.screen === "merchant" && p.shop && (
+        <div className="mt-4">
+          <LiveShopPanel
+            shop={p.shop}
+            cards={cat.cards}
+            relics={cat.relics}
+            potions={cat.potions}
+            lp={lp}
+            lang={lang}
+          />
+        </div>
+      )}
 
       <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
