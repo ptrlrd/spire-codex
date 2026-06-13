@@ -50,7 +50,10 @@ EVENT_WINDOW = 50
 
 
 def heartbeat(
-    steam_id: str, fields: dict[str, Any], events: list[dict] | None = None
+    steam_id: str,
+    fields: dict[str, Any],
+    events: list[dict] | None = None,
+    unset: list[str] | None = None,
 ) -> None:
     now = datetime.now(timezone.utc)
     update: dict[str, Any] = {
@@ -59,6 +62,11 @@ def heartbeat(
     }
     if events:
         update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
+    # Clear transient fields the mod explicitly nulled (combat just ended), so the
+    # roster never shows a stale "Turn 7 vs Gremlin Nob" for someone now in a shop.
+    # unset keys never overlap $set (the router only unsets keys absent from fields).
+    if unset:
+        update["$unset"] = {k: "" for k in unset}
     _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
 
 

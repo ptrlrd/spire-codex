@@ -193,6 +193,12 @@ async def post_presence(request: Request):
     if (m := _clean_map(data.get("map"))) is not None:
         fields["map"] = m
 
+    # Transient combat context: when the mod sends these as explicit null (combat
+    # just ended), clear them rather than leaving the last fight's values stale.
+    # pos is NOT in this set on purpose: keeping the last node avoids a blinking
+    # map marker while the player travels between nodes.
+    unset = [k for k in ("turn", "fighting") if k in data and data[k] is None]
+
     # Display name: the verified user record outranks the client-sent username.
     try:
         from ..services.users_db import get_user_by_steam_id
@@ -203,7 +209,7 @@ async def post_presence(request: Request):
     except Exception:
         pass
 
-    presence_db.heartbeat(steam_id, fields, _clean_events(data.get("events")))
+    presence_db.heartbeat(steam_id, fields, _clean_events(data.get("events")), unset)
     return {"ok": True}
 
 
