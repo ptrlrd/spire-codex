@@ -1,0 +1,53 @@
+// Grafana Alloy: ship nginx access logs to Loki.
+//
+// The web-server (nginx:alpine) container writes the "combined" log format to
+// /var/log/nginx/access.log, which is the host dir /data/nginx/nginx/logs
+// bind-mounted read-only into this container (see docker-compose.monitoring.yml
+// and monitoring-install.yml). The Loki endpoint is behind Cloudflare Access,
+// so every push carries a CF Access service token.
+//
+// Env (from the .env next to the compose file, never committed):
+//   LOKI_URL, CF_ACCESS_CLIENT_ID, CF_ACCESS_CLIENT_SECRET
+//
+// Validate edits before deploy:
+//   docker run --rm -v "$PWD/alloy:/c" grafana/alloy fmt /c/config.alloy
+
+local.file_match "nginx" {
+  path_targets = [{
+    __path__ = "/var/log/nginx/access.log",
+    job      = "nginx",
+    host     = "spire-codex",
+  }]
+}
+
+loki.source.file "nginx" {
+  targets    = local.file_match.nginx.targets
+  forward_to = [loki.process.nginx.receiver]
+}
+
+loki.process "nginx" {
+  // nginx "combined": $remote_addr - $remote_user [$time_local] "$request"
+  //   $status $body_bytes_sent "$http_referer" "$http_user_agent"
+  // Pull method + status out as labels (both low-cardinality); the full line
+  // stays as the log body for ad-hoc querying.
+  stage.regex {
+    expression = `^(?P<remote_addr>\S+) \S+ \S+ \[[^\]]+\] "(?P<method>[A-Z]+) \S+ [^"]*" (?P<status>\d{3})`
+  }
+  stage.labels {
+    values = {
+      method = "",
+      status = "",
+    }
+  }
+  forward_to = [loki.write.default.receiver]
+}
+
+loki.write "default" {
+  endpoint {
+    url = sys.env("LOKI_URL")
+    http_headers = {
+      "CF-Access-Client-Id"     = [sys.env("CF_ACCESS_CLIENT_ID")],
+      "CF-Access-Client-Secret" = [sys.env("CF_ACCESS_CLIENT_SECRET")],
+    }
+  }
+}

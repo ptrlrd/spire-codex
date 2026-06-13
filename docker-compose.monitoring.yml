@@ -32,3 +32,32 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  # Ships nginx access logs to Loki. The web-server container writes the
+  # "combined" format to a real host file (monitoring-install.yml mounts
+  # /data/nginx/nginx/logs -> /var/log/nginx:rw on it), so Alloy reads that
+  # same host dir read-only. The Loki endpoint sits behind Cloudflare Access,
+  # so the config sends a service token on every push.
+  #
+  # Needs an .env next to this compose (NOT committed) with:
+  #   LOKI_URL=https://<loki-host>/loki/api/v1/push
+  #   CF_ACCESS_CLIENT_ID=<id>.access
+  #   CF_ACCESS_CLIENT_SECRET=<secret>
+  alloy:
+    image: grafana/alloy:latest
+    container_name: alloy
+    restart: unless-stopped
+    command: run --server.http.listen-addr=0.0.0.0:12345 /etc/alloy/config.alloy
+    volumes:
+      # The SAME host dir nginx writes its logs to (see monitoring-install.yml).
+      - /data/nginx/nginx/logs:/var/log/nginx:ro
+      - ./alloy/config.alloy:/etc/alloy/config.alloy:ro
+    environment:
+      LOKI_URL: "${LOKI_URL}"
+      CF_ACCESS_CLIENT_ID: "${CF_ACCESS_CLIENT_ID}"
+      CF_ACCESS_CLIENT_SECRET: "${CF_ACCESS_CLIENT_SECRET}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
