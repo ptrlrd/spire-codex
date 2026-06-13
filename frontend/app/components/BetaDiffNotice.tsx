@@ -61,37 +61,41 @@ export default function BetaDiffNotice({
       .catch(() => {});
   }, []);
 
-  const t = diff?.types?.[entityType];
-  if (!t || !diff?.beta_version) return null;
+  if (!diff?.beta_version) return null;
+  const t = diff.types?.[entityType];
   const id = entityId.toUpperCase();
-  const changedFields = t.changed[id];
-  const isAdded = t.added.includes(id);
-  const isRemoved = t.removed.includes(id);
-  if (!changedFields && !isAdded && !isRemoved) return null;
+  const changedFields = t?.changed[id];
+  const isAdded = !!t?.added.includes(id);
+  const isRemoved = !!t?.removed.includes(id);
 
   const counterpartPath =
     channel === "beta"
       ? pathname.replace(/^(\/[a-z]{3})?\/beta(?=\/)/, "$1")
       : pathname.replace(/^(\/[a-z]{3})?(?=\/)/, "$1/beta");
+  const noun = entityType.replace(/s$/, "");
 
-  let body: React.ReactNode = null;
+  let body: React.ReactNode;
   if (channel === "stable") {
+    // On main, only flag entities that differ from (or are gone in) beta; a
+    // matching entity needs no notice here.
     if (isRemoved) {
-      body = <>Removed in the current beta ({diff.beta_version}).</>;
+      body = <>Removed in the current beta.</>;
     } else if (changedFields) {
       body = (
         <>
-          This is different in the current beta ({diff.beta_version}): {summarize(changedFields)}{" "}
-          changed.{" "}
+          This is different in the current beta: {summarize(changedFields)} changed.{" "}
           <Link href={counterpartPath} className="text-emerald-300 hover:underline">
             View the beta version →
           </Link>
         </>
       );
     } else {
-      return null; // added entities have no stable page to show this on
+      return null; // matching/added entities need no notice on main
     }
   } else {
+    // On beta this is the page's only beta bar (the global banner is suppressed
+    // on these detail routes), so it always renders, carrying both the channel
+    // line and the per-entity status.
     if (isAdded) {
       body = <>New in this beta. There is no main version of this yet.</>;
     } else if (changedFields) {
@@ -104,13 +108,22 @@ export default function BetaDiffNotice({
         </>
       );
     } else {
-      return null;
+      body = (
+        <>
+          Viewing the beta version of this {noun}.{" "}
+          <Link href={counterpartPath} className="text-emerald-300 hover:underline">
+            Switch to main →
+          </Link>
+        </>
+      );
     }
   }
 
   return (
-    <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 px-4 py-2.5 my-4 text-sm text-[var(--text-secondary)]">
-      <span className="font-semibold text-emerald-300 mr-2">Beta</span>
+    <div className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 my-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs text-[var(--text-secondary)]">
+      <span className="font-semibold text-emerald-300">
+        Beta{diff.beta_version ? ` ${diff.beta_version}` : ""}
+      </span>
       {body}
     </div>
   );

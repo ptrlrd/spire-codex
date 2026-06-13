@@ -31,6 +31,10 @@ export default function BetaChrome() {
   if (channel !== "beta") return null;
   // The landing page renders its own banner inside its own container.
   if (pathname === "/beta" || /^\/[a-z]{3}\/beta$/.test(pathname)) return null;
+  // Card/relic/event detail pages render their own BetaDiffNotice, which now
+  // carries the version + channel line too, so the global banner would be a
+  // second redundant bar on those pages. Let the per-page one stand alone.
+  if (/^(\/[a-z]{3})?\/beta\/(cards|relics|events)\/[^/]+$/.test(pathname)) return null;
   // Strip the beta segment for the switch-to-stable link, preserving lang.
   let stablePath = pathname.replace(/^(\/[a-z]{3})?\/beta(?=\/|$)/, "$1") || "/";
   // A beta-only entity has no stable twin; clicking through to its stripped
