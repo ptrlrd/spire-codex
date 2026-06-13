@@ -378,6 +378,17 @@ export default function LivePlayerClient() {
     else deckGroups.push({ raw, count: 1 });
   }
 
+  const hasEnemies = (p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0;
+  const mapCard =
+    (p.map?.nodes?.length ?? 0) > 0 ? (
+      <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+        <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+          Map{p.map?.act != null ? ` · Act ${p.map.act}` : ""}
+        </h2>
+        <LiveMap map={p.map} path={p.path} pos={p.pos} />
+      </div>
+    ) : null;
+
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Link href="/live" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]">
@@ -444,16 +455,15 @@ export default function LivePlayerClient() {
           )}
         </div>
 
-        {/* The context panel: whatever the player is doing right now. Combat
-            enemies, the event reader, or the shop take priority; otherwise the
-            act map, then a plain screen note so the column is never blank. */}
-        <div>
-          {p.screen === "combat" &&
-          ((p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0) ? (
-            <LiveEnemiesPanel p={p} monsters={monsters} />
-          ) : p.screen === "event" && p.event ? (
-            <LiveEventPanel ev={p.event} lp={lp} />
-          ) : p.screen === "merchant" && p.shop ? (
+        {/* Context column. For now every panel with data shows at once (combat
+            enemies, the event reader, the shop, and the act map) instead of one
+            at a time, so we can see everything while settling the final layout.
+            Each is gated only on its own data, which the backend clears on
+            screen exit, so nothing lingers stale. */}
+        <div className="space-y-4">
+          {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
+          {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
+          {p.shop && (
             <LiveShopPanel
               shop={p.shop}
               cards={cat.cards}
@@ -462,14 +472,9 @@ export default function LivePlayerClient() {
               lp={lp}
               lang={lang}
             />
-          ) : (p.map?.nodes?.length ?? 0) > 0 ? (
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-              <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
-                Map{p.map?.act != null ? ` · Act ${p.map.act}` : ""}
-              </h2>
-              <LiveMap map={p.map} path={p.path} pos={p.pos} />
-            </div>
-          ) : (
+          )}
+          {mapCard}
+          {!hasEnemies && !p.event && !p.shop && !mapCard && (
             <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 text-sm text-[var(--text-muted)]">
               {p.screen ? `On the ${p.screen} screen.` : "No live detail for this screen."}
             </div>
