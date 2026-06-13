@@ -34,6 +34,54 @@ export interface LiveMapData {
 }
 export type Coord = [number, number];
 
+// Live current-screen detail (v4). event: the room the player is reading, with
+// already-localized title/prompt and the options on offer. shop: the merchant
+// inventory with per-item cost/sale/stock. Both present only on their screen.
+export interface LiveEventOption {
+  key?: string;
+  text?: string;
+  locked?: boolean;
+  proceed?: boolean;
+  chosen?: boolean;
+}
+export interface LiveEventCtx {
+  id: string;
+  title?: string;
+  prompt?: string;
+  options?: LiveEventOption[];
+}
+export interface ShopItem {
+  id?: string;
+  cost?: number;
+  stocked?: boolean;
+  on_sale?: boolean;
+  slot?: string;
+}
+export interface LiveShop {
+  cards?: ShopItem[];
+  relics?: ShopItem[];
+  potions?: ShopItem[];
+  removal?: { cost?: number; stocked?: boolean };
+}
+
+// Rich combat enemy (v5) for the spectator combat panel: hp/block plus the
+// upcoming intent(s). `intents` is a list because one move can do several things
+// (attack + buff). Each intent's `type` is a codex category; `dmg`/`hits`
+// describe an attack ("16 ×2"). id or name may be absent on a sparse beat.
+export interface EnemyIntent {
+  type: string;
+  dmg?: number;
+  hits?: number;
+}
+export interface Enemy {
+  id?: string;
+  name?: string;
+  hp?: number;
+  max_hp?: number;
+  block?: number;
+  intents?: EnemyIntent[];
+}
+
 export interface LivePlayer {
   steam_id: string;
   username?: string | null;
@@ -60,6 +108,9 @@ export interface LivePlayer {
   map?: LiveMapData | null;
   path?: Coord[];
   pos?: Coord | null;
+  event?: LiveEventCtx | null;
+  shop?: LiveShop | null;
+  enemies?: Enemy[] | null;
 }
 
 export interface MonsterInfo {
@@ -233,6 +284,125 @@ export function FightingChip({
         <span className="text-rose-400/80 whitespace-nowrap">· Turn {p.turn}</span>
       )}
     </span>
+  );
+}
+
+// One intent as a short colored label. `type` is the codex intent category;
+// for attacks `dmg`/`hits` give the incoming damage ("16 ×2").
+function intentLabel(it: EnemyIntent): { text: string; cls: string } {
+  const kind = (it.type || "").toLowerCase();
+  const hits = it.hits && it.hits > 1 ? `×${it.hits}` : "";
+  const dmg = it.dmg != null ? `${it.dmg}${hits}` : "";
+  const rose = "text-rose-200 bg-rose-950/50 border-rose-900/50";
+  const sky = "text-sky-200 bg-sky-950/50 border-sky-900/50";
+  const emerald = "text-emerald-200 bg-emerald-950/50 border-emerald-900/50";
+  const fuchsia = "text-fuchsia-200 bg-fuchsia-950/50 border-fuchsia-900/50";
+  const amber = "text-amber-200 bg-amber-950/50 border-amber-900/50";
+  const muted = "text-[var(--text-muted)] bg-[var(--bg-primary)] border-[var(--border-subtle)]";
+  switch (kind) {
+    case "attack":
+      return { text: dmg ? `ATK ${dmg}` : "ATK", cls: rose };
+    case "deathblow":
+      return { text: dmg ? `LETHAL ${dmg}` : "LETHAL", cls: "text-rose-100 bg-rose-900/60 border-rose-700/60" };
+    case "defend":
+      return { text: "BLOCK", cls: sky };
+    case "buff":
+      return { text: "BUFF", cls: emerald };
+    case "heal":
+      return { text: "HEAL", cls: emerald };
+    case "debuff":
+      return { text: "DEBUFF", cls: fuchsia };
+    case "carddebuff":
+      return { text: "CARD", cls: fuchsia };
+    case "escape":
+      return { text: "FLEE", cls: amber };
+    case "summon":
+      return { text: "SUMMON", cls: amber };
+    case "hidden":
+    case "unknown":
+      return { text: "?", cls: muted };
+    default:
+      return { text: kind.toUpperCase(), cls: muted };
+  }
+}
+
+/** The spectator combat panel: every living enemy with portrait, HP bar, block,
+ * and its upcoming intent(s). Uses the rich `enemies` field when the mod sends
+ * it, falling back to the bare `fighting` id list (portrait + name only) so it
+ * still shows something on an older mod. Renders nothing off the combat screen. */
+export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: MonsterMap }) {
+  if (p.screen !== "combat") return null;
+  const rich = (p.enemies ?? []).filter((e) => e && (e.id || e.name));
+  const enemies: Enemy[] = rich.length
+    ? rich
+    : (p.fighting ?? []).filter(Boolean).map((id) => ({ id }));
+  if (!enemies.length) return null;
+
+  return (
+    <div className="rounded-lg border border-rose-900/50 bg-rose-950/20 p-4">
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-rose-300">Fighting</span>
+        {p.turn != null && p.turn > 0 && (
+          <span className="ml-auto text-xs text-rose-300 tabular-nums">Turn {p.turn}</span>
+        )}
+      </div>
+      <ul className="space-y-2.5">
+        {withOrdinalKeys(enemies.map((e) => e.id || e.name || "?")).map(({ key }, i) => {
+          const e = enemies[i];
+          const name = e.name || (e.id ? monsterName(e.id, monsters) : "Enemy");
+          const hpPct =
+            e.hp != null && e.max_hp ? Math.max(0, Math.min(100, (e.hp / e.max_hp) * 100)) : null;
+          const intents = e.intents ?? [];
+          return (
+            <li key={key} className="flex items-center gap-2.5">
+              {e.id ? (
+                <EnemyCircle id={e.id} monsters={monsters} className="w-10 h-10" />
+              ) : (
+                <span className="inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-sm text-[var(--text-muted)]">
+                  {(name[0] || "?").toUpperCase()}
+                </span>
+              )}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="text-sm text-rose-100 truncate">{name}</span>
+                  {(e.block ?? 0) > 0 && (
+                    <span className="text-[10px] text-sky-300 tabular-nums shrink-0" title="block">
+                      [{e.block}]
+                    </span>
+                  )}
+                  <span className="ml-auto flex items-center gap-1 shrink-0">
+                    {intents.map((it, j) => {
+                      const l = intentLabel(it);
+                      return (
+                        <span
+                          key={`${it.type}-${j}`}
+                          className={`text-[10px] font-bold rounded border px-1.5 py-0.5 ${l.cls}`}
+                        >
+                          {l.text}
+                        </span>
+                      );
+                    })}
+                  </span>
+                </div>
+                {hpPct != null ? (
+                  <div className="mt-1">
+                    <div className="flex justify-between text-[9px] text-rose-300/70 tabular-nums">
+                      <span>HP</span>
+                      <span>
+                        {e.hp}/{e.max_hp}
+                      </span>
+                    </div>
+                    <div className="h-1.5 rounded bg-[var(--bg-primary)]">
+                      <div className="h-1.5 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+                    </div>
+                  </div>
+                ) : null}
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 

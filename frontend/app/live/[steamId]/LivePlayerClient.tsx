@@ -15,6 +15,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
+import { LiveEventPanel, LiveShopPanel } from "../LiveEventShop";
 import {
   CardPill,
   PotionPill,
@@ -28,8 +29,8 @@ import {
 import {
   API,
   CharacterIcon,
-  EnemyCircle,
   LiveDot,
+  LiveEnemiesPanel,
   ago,
   elapsed,
   monsterName,
@@ -383,79 +384,97 @@ export default function LivePlayerClient() {
         ← Live roster
       </Link>
 
-      <div className="mt-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-        <div className="flex items-center gap-3">
-          <CharacterIcon character={p.character} className="w-16 h-16" />
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 flex-wrap">
-              {status === "live" ? <LiveDot /> : null}
-              <h1 className="text-xl font-bold text-[var(--text-primary)] truncate">
-                {p.username || "Anonymous climber"}
-              </h1>
-              {p.ascension != null && p.ascension > 0 && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
-                  A{p.ascension}
-                </span>
-              )}
-              {(p.player_count ?? 1) > 1 && (
-                <span className="text-xs text-[var(--text-muted)]">co-op ×{p.player_count}</span>
-              )}
-              {status === "ended" && (
-                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
-                  run ended
-                </span>
-              )}
+      {/* Row 1: the player on the left at ~50%, and what they're looking at
+          right now on the right (combat enemies, the event reader, the shop,
+          or the act map when idle). */}
+      <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+          <div className="flex items-center gap-3">
+            <CharacterIcon character={p.character} className="w-16 h-16" />
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 flex-wrap">
+                {status === "live" ? <LiveDot /> : null}
+                <h1 className="text-xl font-bold text-[var(--text-primary)] truncate">
+                  {p.username || "Anonymous climber"}
+                </h1>
+                {p.ascension != null && p.ascension > 0 && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
+                    A{p.ascension}
+                  </span>
+                )}
+                {(p.player_count ?? 1) > 1 && (
+                  <span className="text-xs text-[var(--text-muted)]">co-op ×{p.player_count}</span>
+                )}
+                {status === "ended" && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
+                    run ended
+                  </span>
+                )}
+              </div>
+              <div className="text-sm text-[var(--text-muted)] truncate">
+                {displayName(`CHARACTER.${p.character ?? ""}`)}
+                {p.screen ? ` · ${p.screen}` : ""}
+                {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
+                {p.seed ? ` · seed ${p.seed}` : ""}
+              </div>
             </div>
-            <div className="text-sm text-[var(--text-muted)] truncate">
-              {displayName(`CHARACTER.${p.character ?? ""}`)}
-              {p.screen ? ` · ${p.screen}` : ""}
-              {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
-              {p.seed ? ` · seed ${p.seed}` : ""}
+            <div className="text-right shrink-0">
+              <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
+                {p.act != null ? `Act ${p.act}` : ""}
+                {p.total_floor != null ? ` · F${p.total_floor}` : ""}
+              </div>
+              <div className="text-sm text-[var(--text-muted)] tabular-nums">
+                {p.gold != null ? `${p.gold} gold` : ""}
+              </div>
             </div>
           </div>
-          <div className="text-right shrink-0">
-            <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
-              {p.act != null ? `Act ${p.act}` : ""}
-              {p.total_floor != null ? ` · F${p.total_floor}` : ""}
+
+          {hpPct != null && (
+            <div className="mt-3">
+              <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
+                <span>HP</span>
+                <span>
+                  {p.hp}/{p.max_hp}
+                </span>
+              </div>
+              <div className="h-2 rounded bg-[var(--bg-primary)]">
+                <div className="h-2 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+              </div>
             </div>
-            <div className="text-sm text-[var(--text-muted)] tabular-nums">
-              {p.gold != null ? `${p.gold} gold` : ""}
-            </div>
-          </div>
+          )}
         </div>
 
-        {hpPct != null && (
-          <div className="mt-3">
-            <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
-              <span>HP</span>
-              <span>
-                {p.hp}/{p.max_hp}
-              </span>
+        {/* The context panel: whatever the player is doing right now. Combat
+            enemies, the event reader, or the shop take priority; otherwise the
+            act map, then a plain screen note so the column is never blank. */}
+        <div>
+          {p.screen === "combat" &&
+          ((p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0) ? (
+            <LiveEnemiesPanel p={p} monsters={monsters} />
+          ) : p.screen === "event" && p.event ? (
+            <LiveEventPanel ev={p.event} lp={lp} />
+          ) : p.screen === "merchant" && p.shop ? (
+            <LiveShopPanel
+              shop={p.shop}
+              cards={cat.cards}
+              relics={cat.relics}
+              potions={cat.potions}
+              lp={lp}
+              lang={lang}
+            />
+          ) : (p.map?.nodes?.length ?? 0) > 0 ? (
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+              <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+                Map{p.map?.act != null ? ` · Act ${p.map.act}` : ""}
+              </h2>
+              <LiveMap map={p.map} path={p.path} pos={p.pos} />
             </div>
-            <div className="h-2 rounded bg-[var(--bg-primary)]">
-              <div className="h-2 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+          ) : (
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 text-sm text-[var(--text-muted)]">
+              {p.screen ? `On the ${p.screen} screen.` : "No live detail for this screen."}
             </div>
-          </div>
-        )}
-
-        {p.screen === "combat" && (p.fighting?.length ?? 0) > 0 && (
-          <div className="mt-4 rounded-lg border border-rose-900/50 bg-rose-950/30 p-3">
-            <div className="flex items-center gap-3 flex-wrap">
-              <span className="text-xs font-bold uppercase tracking-wider text-rose-300">
-                Fighting
-              </span>
-              {withOrdinalKeys(p.fighting ?? []).map(({ item: id, key }) => (
-                <span key={key} className="inline-flex items-center gap-1.5">
-                  <EnemyCircle id={id} monsters={monsters} className="w-9 h-9" />
-                  <span className="text-sm text-rose-100">{monsterName(id, monsters)}</span>
-                </span>
-              ))}
-              {p.turn != null && p.turn > 0 && (
-                <span className="ml-auto text-sm text-rose-300 tabular-nums">Turn {p.turn}</span>
-              )}
-            </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
 
       <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -476,15 +495,6 @@ export default function LivePlayerClient() {
         </div>
 
         <div className="space-y-4">
-          {(p.map?.nodes?.length ?? 0) > 0 && (
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-              <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
-                Map{p.map?.act != null ? ` · Act ${p.map.act}` : ""}
-              </h2>
-              <LiveMap map={p.map} path={p.path} pos={p.pos} />
-            </div>
-          )}
-
           <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
             <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
               Deck{p.deck ? ` (${p.deck.length})` : ""}
