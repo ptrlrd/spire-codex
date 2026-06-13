@@ -17,6 +17,8 @@ Document shape (one doc per live player):
         "turn": ..., "fighting": [...],        # combat context (absent between fights)
         "events": [{k, v, turn, t}, ...],      # rolling play-by-play window
         "map": {act, nodes, edges}, "path": [[col,row], ...], "pos": [col,row],
+        "event": {id, title, prompt, options}, # live event (only in an event room)
+        "shop": {cards, relics, potions, removal},  # shop inventory (only in a merchant)
         "started_at": ISODate(...),   # first heartbeat of this session
         "updated_at": ISODate(...),   # last heartbeat (TTL anchor)
     }
@@ -60,13 +62,13 @@ def heartbeat(
         "$set": {**fields, "updated_at": now},
         "$setOnInsert": {"started_at": now},
     }
-    if events:
-        update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
     # Clear transient fields the mod explicitly nulled (combat just ended), so the
     # roster never shows a stale "Turn 7 vs Gremlin Nob" for someone now in a shop.
-    # unset keys never overlap $set (the router only unsets keys absent from fields).
+    # unset keys never overlap $set (the router only unsets keys it left out of fields).
     if unset:
         update["$unset"] = {k: "" for k in unset}
+    if events:
+        update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
     _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
 
 
@@ -84,7 +86,15 @@ def active(limit: int = 50) -> list[dict]:
         _presence_coll()
         .find(
             {"updated_at": {"$gte": cutoff}},
-            {"deck": 0, "relics": 0, "potions": 0, "events": 0, "map": 0},
+            {
+                "deck": 0,
+                "relics": 0,
+                "potions": 0,
+                "events": 0,
+                "map": 0,
+                "event": 0,
+                "shop": 0,
+            },
         )
         .sort([("total_floor", -1), ("updated_at", -1)])
         .limit(limit)

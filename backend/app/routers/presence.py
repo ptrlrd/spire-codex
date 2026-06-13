@@ -104,6 +104,93 @@ def _clean_map(raw) -> dict | None:
     return out
 
 
+# Current-screen spectator detail: the live event (name/prompt/options) and the shop
+# (items/costs). Both are transient and cleared when the player leaves the screen.
+_EVENT_OPTIONS_CAP = 12
+_SHOP_ITEMS_CAP = 12
+_TITLE_CAP = 200
+_PROMPT_CAP = 2000
+_OPT_TEXT_CAP = 400
+
+
+def _clean_event_ctx(raw) -> dict | None:
+    """The live event the player is reading: id + resolved title/prompt + the options on
+    offer. The mod ships already-localized text, so the frontend renders it as-is."""
+    if not isinstance(raw, dict):
+        return None
+    eid = raw.get("id")
+    if not isinstance(eid, str) or not _safe_id(eid[:_MAX_STR]):
+        return None
+    out: dict = {"id": eid[:_MAX_STR]}
+    if isinstance(raw.get("title"), str) and raw["title"]:
+        out["title"] = raw["title"][:_TITLE_CAP]
+    if isinstance(raw.get("prompt"), str) and raw["prompt"]:
+        out["prompt"] = raw["prompt"][:_PROMPT_CAP]
+    options: list[dict] = []
+    raw_opts = raw.get("options")
+    if isinstance(raw_opts, list):
+        for o in raw_opts[:_EVENT_OPTIONS_CAP]:
+            if not isinstance(o, dict):
+                continue
+            opt: dict = {}
+            if isinstance(o.get("key"), str):
+                opt["key"] = o["key"][:_MAX_STR]
+            if isinstance(o.get("text"), str):
+                opt["text"] = o["text"][:_OPT_TEXT_CAP]
+            for flag in ("locked", "proceed", "chosen"):
+                if isinstance(o.get(flag), bool):
+                    opt[flag] = o[flag]
+            if opt:
+                options.append(opt)
+    out["options"] = options
+    return out
+
+
+def _shop_item(o) -> dict | None:
+    if not isinstance(o, dict):
+        return None
+    # A shop slot is only renderable with a resolvable item id, so require a
+    # safe one; this also drops any id carrying a path-traversal sequence
+    # (rather than leaving a costed orphan with no name or image).
+    oid = o.get("id")
+    if not isinstance(oid, str) or not _safe_id(oid[:_MAX_STR]):
+        return None
+    item: dict = {"id": oid[:_MAX_STR]}
+    if isinstance(o.get("cost"), (int, float)) and not isinstance(o.get("cost"), bool):
+        item["cost"] = int(o["cost"])
+    for flag in ("stocked", "on_sale"):
+        if isinstance(o.get(flag), bool):
+            item[flag] = o[flag]
+    if isinstance(o.get("slot"), str) and o["slot"]:
+        item["slot"] = o["slot"][:16]
+    return item or None
+
+
+def _clean_shop(raw) -> dict | None:
+    """The current merchant inventory: items (frontend resolves id -> name/image) + costs."""
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {}
+    for cat in ("cards", "relics", "potions"):
+        lst = raw.get(cat)
+        if isinstance(lst, list):
+            out[cat] = [
+                it for it in (_shop_item(o) for o in lst[:_SHOP_ITEMS_CAP]) if it
+            ]
+    rm = raw.get("removal")
+    if isinstance(rm, dict):
+        r: dict = {}
+        if isinstance(rm.get("cost"), (int, float)) and not isinstance(
+            rm.get("cost"), bool
+        ):
+            r["cost"] = int(rm["cost"])
+        if isinstance(rm.get("stocked"), bool):
+            r["stocked"] = rm["stocked"]
+        if r:
+            out["removal"] = r
+    return out or None
+
+
 def _clean_events(raw) -> list[dict]:
     events: list[dict] = []
     if not isinstance(raw, list):
@@ -193,11 +280,20 @@ async def post_presence(request: Request):
     if (m := _clean_map(data.get("map"))) is not None:
         fields["map"] = m
 
-    # Transient combat context: when the mod sends these as explicit null (combat
-    # just ended), clear them rather than leaving the last fight's values stale.
-    # pos is NOT in this set on purpose: keeping the last node avoids a blinking
-    # map marker while the player travels between nodes.
-    unset = [k for k in ("turn", "fighting") if k in data and data[k] is None]
+    # Current-screen detail: the live event and the shop. Present only on those screens.
+    if (ev := _clean_event_ctx(data.get("event"))) is not None:
+        fields["event"] = ev
+    if (shp := _clean_shop(data.get("shop"))) is not None:
+        fields["shop"] = shp
+
+    # Transient fields: when the mod sends these as explicit null (combat ended / left the
+    # screen), clear them rather than leaving stale values. pos is NOT in this set on
+    # purpose: keeping the last node avoids a blinking map marker between nodes.
+    unset = [
+        k
+        for k in ("turn", "fighting", "event", "shop")
+        if k in data and data[k] is None
+    ]
 
     # Display name: the verified user record outranks the client-sent username.
     try:

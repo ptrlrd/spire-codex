@@ -101,6 +101,56 @@ The per-player doc carries the current act's map graph and the route taken so fa
 - The bulky `map` graph is sent once per act (it's static) and omitted from `/active`;
   `path`/`pos` ride every beat and DO appear on `/active` for a roster progress hint.
 
+### Live event (v4, present only in an event room)
+
+When `screen == "event"`, the per-player doc carries the event the player is reading and
+the options on offer. The mod ships the ALREADY-LOCALIZED text the player sees, so render
+it directly (no need to resolve from the codex event data; the `id` is there if you want
+to link to the event page).
+
+```json
+"event": {
+  "id": "ABYSSAL_BATHS",
+  "title": "Abyssal Baths",
+  "prompt": "You come upon a hot spring rumored to wash away the past...",
+  "options": [
+    {"key": "BATHE", "text": "[Bathe] Lose all but 1 Max HP. Become Cleansed.", "locked": false, "proceed": false, "chosen": false},
+    {"key": "LEAVE", "text": "Leave", "locked": false, "proceed": true, "chosen": false}
+  ]
+}
+```
+
+- `title`/`prompt` are resolved localized strings (may be absent on a sparse beat).
+- each option: `key` (stable loc key), `text` (the localized button label), `locked` (greyed
+  out / requirement unmet), `proceed` (the leave/continue option), `chosen` (already picked).
+- Cleared when the player leaves the event (the mod sends `event: null` -> server `$unset`).
+  Omitted from `/active`.
+
+### Live shop (v4, present only in a merchant room)
+
+When `screen == "merchant"`, the doc carries the full inventory. Item ids are bare
+(`"FROZEN_EYE"`) -> resolve name/image via the usual card/relic/potion lookups, same as
+the deck. Costs are the live gold price.
+
+```json
+"shop": {
+  "cards":   [{"id": "WHIRLWIND", "cost": 75, "stocked": true, "on_sale": false, "slot": "character"}],
+  "relics":  [{"id": "FROZEN_EYE", "cost": 143, "stocked": true}],
+  "potions": [{"id": "FIRE_POTION", "cost": 50, "stocked": true}],
+  "removal": {"cost": 75, "stocked": true}
+}
+```
+
+- `stocked: false` means the slot was already bought (its `id` is then absent). Show it as
+  sold/empty so viewers see purchases happen live.
+- `on_sale` (cards only) is the 50%-off discount; relics/potions never have it.
+- `slot` tags a card `"character"` (one of the 5 typed slots) or `"colorless"`.
+- `removal` is the card-removal service (null if this shop has none). Cleared on leaving
+  the shop; omitted from `/active`.
+
+Note the singular `event`/`shop` objects are distinct from the plural `events` ticker
+array above.
+
 ### POST /api/presence
 
 Mod-only; requires the Steam JWT (`Authorization: Bearer`). The frontend never calls it.
