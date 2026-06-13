@@ -29,10 +29,79 @@ _INT_FIELDS = (
 _STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username")
 _LIST_CAPS = {"deck": 200, "relics": 100, "potions": 10, "fighting": 8}
 
+
+def _safe_id(s: str) -> bool:
+    """Entity ids (cards, relics, potions, monsters, events) flow straight
+    into image/CDN URLs and Link hrefs on the frontend, so reject anything
+    that could smuggle a path-traversal sequence through the heartbeat. Real
+    game ids are letters/digits/underscore with an optional `+` upgrade
+    suffix; a `/`, `\\`, or `..` never appears in one."""
+    return bool(s) and "/" not in s and "\\" not in s and ".." not in s
+
+
 # Play-by-play ticker events riding the heartbeat: {"k": kind, "v": entity id,
 # "turn": combat turn, "t": unix seconds}. Kinds today: card, potion, combat,
-# victory, buy, death, act. Appended server-side to a rolling window per player.
+# victory, buy, death, act, event, remove. Appended server-side to a rolling
+# window per player.
 _EVENTS_PER_BEAT = 40
+
+# Spectator map caps: nodes [col,row,type], edges [c,r,childC,childR],
+# path/pos coords [col,row]. An act map is ~50 nodes; caps are headroom.
+_MAP_NODES_CAP = 150
+_MAP_EDGES_CAP = 400
+_PATH_CAP = 64
+
+
+def _int_pair(v) -> list[int] | None:
+    if (
+        isinstance(v, list)
+        and len(v) == 2
+        and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in v)
+    ):
+        return [int(v[0]), int(v[1])]
+    return None
+
+
+def _clean_map(raw) -> dict | None:
+    """The static act graph the mod sends once per act: nodes/edges for the
+    spectator mini-map. Returns None when the payload has no usable map."""
+    if not isinstance(raw, dict):
+        return None
+    nodes = []
+    for n in (
+        raw.get("nodes", [])[:_MAP_NODES_CAP]
+        if isinstance(raw.get("nodes"), list)
+        else []
+    ):
+        if (
+            isinstance(n, list)
+            and len(n) == 3
+            and all(
+                isinstance(x, (int, float)) and not isinstance(x, bool) for x in n[:2]
+            )
+            and isinstance(n[2], str)
+        ):
+            nodes.append([int(n[0]), int(n[1]), n[2][:16]])
+    edges = []
+    for e in (
+        raw.get("edges", [])[:_MAP_EDGES_CAP]
+        if isinstance(raw.get("edges"), list)
+        else []
+    ):
+        if (
+            isinstance(e, list)
+            and len(e) == 4
+            and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in e)
+        ):
+            edges.append([int(x) for x in e])
+    if not nodes:
+        return None
+    out: dict = {"nodes": nodes, "edges": edges}
+    if isinstance(raw.get("act"), (int, float)) and not isinstance(
+        raw.get("act"), bool
+    ):
+        out["act"] = int(raw["act"])
+    return out
 
 
 def _clean_events(raw) -> list[dict]:
@@ -47,7 +116,12 @@ def _clean_events(raw) -> list[dict]:
             continue
         ev: dict = {"k": kind[:24]}
         if isinstance(e.get("v"), str) and e["v"]:
-            ev["v"] = e["v"][:_MAX_STR]
+            v = e["v"][:_MAX_STR]
+            # Same traversal guard as the id lists: an event's `v` is an entity
+            # id the frontend turns into an image/link. Drop only the unsafe
+            # value, keep the event (its kind/turn still render).
+            if _safe_id(v):
+                ev["v"] = v
         if isinstance(e.get("turn"), (int, float)) and not isinstance(
             e.get("turn"), bool
         ):
@@ -104,8 +178,26 @@ async def post_presence(request: Request):
         v = data.get(k)
         if isinstance(v, list):
             fields[k] = [
-                str(x)[:_MAX_STR] for x in v[:cap] if isinstance(x, (str, int))
+                s
+                for x in v[:cap]
+                if isinstance(x, (str, int)) and _safe_id(s := str(x)[:_MAX_STR])
             ]
+
+    # Spectator map: path + position ride every beat; the node/edge graph only
+    # arrives when the act changes (the $set keeps the stored one between beats).
+    if isinstance(data.get("path"), list):
+        path = [p for p in (_int_pair(x) for x in data["path"][:_PATH_CAP]) if p]
+        fields["path"] = path
+    if (pos := _int_pair(data.get("pos"))) is not None:
+        fields["pos"] = pos
+    if (m := _clean_map(data.get("map"))) is not None:
+        fields["map"] = m
+
+    # Transient combat context: when the mod sends these as explicit null (combat
+    # just ended), clear them rather than leaving the last fight's values stale.
+    # pos is NOT in this set on purpose: keeping the last node avoids a blinking
+    # map marker while the player travels between nodes.
+    unset = [k for k in ("turn", "fighting") if k in data and data[k] is None]
 
     # Display name: the verified user record outranks the client-sent username.
     try:
@@ -117,7 +209,7 @@ async def post_presence(request: Request):
     except Exception:
         pass
 
-    presence_db.heartbeat(steam_id, fields, _clean_events(data.get("events")))
+    presence_db.heartbeat(steam_id, fields, _clean_events(data.get("events")), unset)
     return {"ok": True}
 
 

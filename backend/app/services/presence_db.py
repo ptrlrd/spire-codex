@@ -14,6 +14,9 @@ Document shape (one doc per live player):
         "hp": ..., "max_hp": ..., "gold": ..., "screen": ..., "seed": ...,
         "player_count": ..., "sts2_version": ...,
         "deck": ["STRIKE+", ...], "relics": [...], "potions": [...],
+        "turn": ..., "fighting": [...],        # combat context (absent between fights)
+        "events": [{k, v, turn, t}, ...],      # rolling play-by-play window
+        "map": {act, nodes, edges}, "path": [[col,row], ...], "pos": [col,row],
         "started_at": ISODate(...),   # first heartbeat of this session
         "updated_at": ISODate(...),   # last heartbeat (TTL anchor)
     }
@@ -47,7 +50,10 @@ EVENT_WINDOW = 50
 
 
 def heartbeat(
-    steam_id: str, fields: dict[str, Any], events: list[dict] | None = None
+    steam_id: str,
+    fields: dict[str, Any],
+    events: list[dict] | None = None,
+    unset: list[str] | None = None,
 ) -> None:
     now = datetime.now(timezone.utc)
     update: dict[str, Any] = {
@@ -56,6 +62,11 @@ def heartbeat(
     }
     if events:
         update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
+    # Clear transient fields the mod explicitly nulled (combat just ended), so the
+    # roster never shows a stale "Turn 7 vs Gremlin Nob" for someone now in a shop.
+    # unset keys never overlap $set (the router only unsets keys absent from fields).
+    if unset:
+        update["$unset"] = {k: "" for k in unset}
     _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
 
 
@@ -64,14 +75,16 @@ def end(steam_id: str) -> None:
 
 
 def active(limit: int = 50) -> list[dict]:
-    """Fresh live players, deepest run first. Excludes deck/relic/potion detail —
-    the per-player endpoint serves those for the live run view."""
+    """Fresh live players, deepest run first. Excludes the heavy per-run detail
+    (deck/relics/potions, the event window, and the map node/edge graph): the
+    per-player endpoint serves those for the live run view. Keeps path/pos so the
+    roster can show a player's position on a mini progress indicator."""
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)
     docs = (
         _presence_coll()
         .find(
             {"updated_at": {"$gte": cutoff}},
-            {"deck": 0, "relics": 0, "potions": 0, "events": 0},
+            {"deck": 0, "relics": 0, "potions": 0, "events": 0, "map": 0},
         )
         .sort([("total_floor", -1), ("updated_at", -1)])
         .limit(limit)
