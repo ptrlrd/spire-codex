@@ -35,6 +35,7 @@ import {
   parseDeckId,
   useMonsterMap,
   usePoll,
+  withOrdinalKeys,
   type LiveEvent,
   type LivePlayer,
   type MonsterMap,
@@ -72,7 +73,11 @@ function TickerRow({
 
   switch (e.k) {
     case "card": {
-      const { id, upgraded } = parseDeckId(e.v ?? "");
+      if (!e.v) {
+        body = <span className="text-[var(--text-secondary)]">Played a card</span>;
+        break;
+      }
+      const { id, upgraded } = parseDeckId(e.v);
       const info = cat.cards[id];
       if (info?.image_url) {
         icon = (
@@ -210,6 +215,10 @@ function TickerRow({
       );
   }
 
+  // Join only the parts that exist, so a missing timestamp or turn never
+  // leaves a dangling "T2 · " with nothing after it.
+  const meta = [e.turn != null ? `T${e.turn}` : "", ago(e.t)].filter(Boolean).join(" · ");
+
   return (
     <li className="flex items-center gap-2.5 py-1.5 border-b border-[var(--border-subtle)] last:border-0">
       {/* No truncate/overflow-hidden here: the pill hover popups (full
@@ -217,10 +226,11 @@ function TickerRow({
           get clipped by an overflow-hidden ancestor. */}
       <span className="w-6 h-6 flex items-center justify-center shrink-0">{icon}</span>
       <span className="text-sm text-[var(--text-secondary)] min-w-0 flex-1 break-words">{body}</span>
-      <span className="text-[10px] text-[var(--text-muted)] tabular-nums whitespace-nowrap shrink-0">
-        {e.turn != null ? `T${e.turn} · ` : ""}
-        {ago(e.t)}
-      </span>
+      {meta && (
+        <span className="text-[10px] text-[var(--text-muted)] tabular-nums whitespace-nowrap shrink-0">
+          {meta}
+        </span>
+      )}
     </li>
   );
 }
@@ -315,7 +325,18 @@ export default function LivePlayerClient() {
   const p = player;
   const hpPct =
     p.hp != null && p.max_hp ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100)) : null;
-  const events = [...(p.events ?? [])].reverse();
+  // Stable per-event keys: ordinals computed over the original (append-order)
+  // array, so a new beat appending at the end and the 50-window rolling off the
+  // front both leave surviving rows' keys unchanged. Index keys would shift
+  // every key on each new event, remounting every row and dropping open hover
+  // popups. Display is newest-first.
+  const rawEvents = p.events ?? [];
+  const eventKeys = withOrdinalKeys(
+    rawEvents.map((e) => `${e.k}|${e.v ?? ""}|${e.turn ?? ""}|${e.t ?? 0}`),
+  );
+  const events = rawEvents
+    .map((e, i) => ({ e, key: eventKeys[i].key }))
+    .reverse();
   // Group identical deck entries (STRIKE vs STRIKE+ stay distinct) in
   // acquisition order of first appearance.
   const deckGroups: { raw: string; count: number }[] = [];
@@ -392,8 +413,8 @@ export default function LivePlayerClient() {
               <span className="text-xs font-bold uppercase tracking-wider text-rose-300">
                 Fighting
               </span>
-              {(p.fighting ?? []).map((id, i) => (
-                <span key={`${id}-${i}`} className="inline-flex items-center gap-1.5">
+              {withOrdinalKeys(p.fighting ?? []).map(({ item: id, key }) => (
+                <span key={key} className="inline-flex items-center gap-1.5">
                   <EnemyCircle id={id} monsters={monsters} className="w-9 h-9" />
                   <span className="text-sm text-rose-100">{monsterName(id, monsters)}</span>
                 </span>
@@ -416,8 +437,8 @@ export default function LivePlayerClient() {
             </p>
           ) : (
             <ul>
-              {events.map((e, i) => (
-                <TickerRow key={`${e.t ?? 0}-${e.k}-${i}`} e={e} cat={cat} monsters={monsters} lp={lp} />
+              {events.map(({ e, key }) => (
+                <TickerRow key={key} e={e} cat={cat} monsters={monsters} lp={lp} />
               ))}
             </ul>
           )}
@@ -476,7 +497,7 @@ export default function LivePlayerClient() {
               <p className="text-sm text-[var(--text-muted)]">No relic data on this beat.</p>
             ) : (
               <div className="flex flex-wrap gap-1.5">
-                {(p.relics ?? []).map((raw, i) => {
+                {(p.relics ?? []).map((raw) => {
                   const rid = cleanId(raw);
                   const info = cat.relics[rid];
                   const src = info?.image_url
@@ -484,7 +505,7 @@ export default function LivePlayerClient() {
                     : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
                   return (
                     <RelicPill
-                      key={`${raw}-${i}`}
+                      key={raw}
                       relicId={rid}
                       relicData={cat.relics}
                       lp={lp}
@@ -511,12 +532,12 @@ export default function LivePlayerClient() {
             <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
               <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Potions</h2>
               <div className="flex flex-wrap gap-1.5">
-                {(p.potions ?? []).map((raw, i) => {
+                {withOrdinalKeys(p.potions ?? []).map(({ item: raw, key }) => {
                   const pid = cleanId(raw);
                   const info = cat.potions[pid];
                   return (
                     <PotionPill
-                      key={`${raw}-${i}`}
+                      key={key}
                       potionId={pid}
                       potionData={cat.potions}
                       lp={lp}

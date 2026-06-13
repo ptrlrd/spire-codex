@@ -37,6 +37,7 @@ export interface LivePlayer {
   player_count?: number | null;
   sts2_version?: string | null;
   started_at?: string | null;
+  updated_at?: string | null;
   turn?: number | null;
   fighting?: string[];
   deck?: string[];
@@ -64,7 +65,8 @@ export function elapsed(startedAt?: string | null): string {
 }
 
 export function ago(unixSeconds?: number): string {
-  if (!unixSeconds) return "";
+  // `== null` not `!unixSeconds`: a legitimate t of 0 is falsy but valid.
+  if (unixSeconds == null) return "";
   const s = Math.floor(Date.now() / 1000 - unixSeconds);
   if (s < 5) return "now";
   if (s < 60) return `${s}s ago`;
@@ -77,6 +79,28 @@ export function ago(unixSeconds?: number): string {
 export function parseDeckId(raw: string): { id: string; upgraded: boolean } {
   const upgraded = raw.endsWith("+");
   return { id: cleanId(upgraded ? raw.slice(0, -1) : raw), upgraded };
+}
+
+// Entity ids reach us from the presence API (a game mod) and get spliced
+// straight into image URLs and Link hrefs. The backend rejects path-traversal
+// ids at the source, but guard here too so a stale backend or a future caller
+// can never build a traversal URL.
+export function safeId(id: string): boolean {
+  return !!id && !id.includes("/") && !id.includes("\\") && !id.includes("..");
+}
+
+/** Stable React keys for a list that may hold duplicate ids and that grows or
+ * shrinks between polls (deck cards, potions, enemies). Keys by id plus a
+ * per-id occurrence ordinal, so appending or removing one item does not
+ * reshuffle the keys of the items before it. Plain array-index keys do, which
+ * remounts rows on every poll and drops open hover tooltips. */
+export function withOrdinalKeys(items: string[]): { item: string; key: string }[] {
+  const seen: Record<string, number> = {};
+  return items.map((item) => {
+    const n = seen[item] ?? 0;
+    seen[item] = n + 1;
+    return { item, key: `${item}#${n}` };
+  });
 }
 
 export function LiveDot() {
@@ -142,9 +166,10 @@ export function EnemyCircle({
 }) {
   const mid = cleanId(id);
   const info = monsters[mid];
-  const src = info?.image_url
-    ? imageUrl(info.image_url)
-    : imageUrl(`/static/images/monsters/${mid.toLowerCase()}.webp`);
+  const fallback = safeId(mid)
+    ? imageUrl(`/static/images/monsters/${mid.toLowerCase()}.webp`)
+    : "";
+  const src = info?.image_url ? imageUrl(info.image_url) : fallback;
   return (
     <span
       className={`relative inline-flex ${className} shrink-0 rounded-full overflow-hidden border border-[var(--border-subtle)] bg-[var(--bg-primary)]`}
@@ -183,8 +208,8 @@ export function FightingChip({
   return (
     <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-950/50 border border-rose-900/50 text-xs text-rose-200">
       <span className="flex -space-x-2">
-        {p.fighting.slice(0, 3).map((id, i) => (
-          <EnemyCircle key={`${id}-${i}`} id={id} monsters={monsters} className={circle} />
+        {withOrdinalKeys(p.fighting.slice(0, 3)).map(({ item, key }) => (
+          <EnemyCircle key={key} id={item} monsters={monsters} className={circle} />
         ))}
       </span>
       <span className="truncate">Fighting {label}</span>
@@ -203,7 +228,7 @@ export function CharacterIcon({
   className?: string;
 }) {
   const slug = cleanId(character || "").toLowerCase();
-  if (!slug) return null;
+  if (!slug || !safeId(slug)) return null;
   return (
     <img
       src={imageUrl(`/static/images/characters/character_icon_${slug}.webp`)}

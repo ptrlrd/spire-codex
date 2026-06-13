@@ -32,6 +32,7 @@ import {
   parseDeckId,
   useMonsterMap,
   usePoll,
+  withOrdinalKeys,
   type LivePlayer,
   type MonsterMap,
 } from "./live-shared";
@@ -40,6 +41,8 @@ import {
 // guidance applies here rather than the hot 3-5s per-player cadence.
 const POLL_MS = 12_000;
 const RECENT_CARDS = 5;
+// Bounds the per-player detail fan-out (see the poll below).
+const ROSTER_LIMIT = 24;
 
 function PlayerCard({
   p,
@@ -132,14 +135,14 @@ function PlayerCard({
             Latest cards
           </div>
           <div className="flex gap-1.5">
-            {recent.map((raw, i) => {
+            {withOrdinalKeys(recent).map(({ item: raw, key }) => {
               const { id, upgraded } = parseDeckId(raw);
               const fallback = cardData[id]?.image_url
                 ? imageUrl(cardData[id].image_url as string)
                 : "";
               return (
                 <CardPill
-                  key={`${raw}-${i}`}
+                  key={key}
                   cardId={id}
                   upgraded={upgraded}
                   cardData={cardData}
@@ -171,7 +174,7 @@ function PlayerCard({
             Relics
           </div>
           <div className="flex flex-wrap gap-1">
-            {(p.relics ?? []).map((raw, i) => {
+            {(p.relics ?? []).map((raw) => {
               const rid = cleanId(raw);
               const info = relicData[rid];
               const src = info?.image_url
@@ -179,7 +182,7 @@ function PlayerCard({
                 : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
               return (
                 <RelicPill
-                  key={`${raw}-${i}`}
+                  key={raw}
                   relicId={rid}
                   relicData={relicData}
                   lp={lp}
@@ -239,13 +242,17 @@ export default function LiveClient() {
 
   usePoll(async () => {
     try {
-      const r = await fetch(`${API}/api/presence/active`);
+      // Cap the roster: the page shows recent cards + relics per player, which
+      // means one detail fetch each (an N+1). Capping the roster bounds that
+      // fan-out; a live count beyond this is vanishingly rare and the deepest
+      // runs sort first anyway.
+      const r = await fetch(`${API}/api/presence/active?limit=${ROSTER_LIMIT}`);
       if (!r.ok) throw new Error(`active ${r.status}`);
       const data: { players?: LivePlayer[] } = await r.json();
       const roster = data.players ?? [];
-      // The roster is identity + progress only; deck/relics live on the
-      // per-player doc. The list is small, so fetch them all in parallel
-      // and fall back to the roster entry if one fetch fails.
+      // The roster carries identity + progress only; deck/relics live on the
+      // per-player doc, so fetch those in parallel and fall back to the roster
+      // entry if one fetch fails.
       const detailed = await Promise.all(
         roster.map(async (p) => {
           try {
