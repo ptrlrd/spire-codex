@@ -64,6 +64,7 @@ from .routers import (
     mod_meta,
     presence,
     announcements,
+    telemetry,
 )
 from .services.data_service import (
     current_channel,
@@ -576,6 +577,9 @@ app.include_router(tierlists.router)
 app.include_router(mod_meta.router)
 app.include_router(presence.router)
 app.include_router(announcements.router)
+# Hidden from the OpenAPI schema (/docs): the mod's DAU ping is an internal
+# endpoint, not part of the public API surface.
+app.include_router(telemetry.router, include_in_schema=False)
 # Overlay-direct OpenID flow uses /auth/steam-popup as Steam's return_to.
 # This is intentionally outside /api/* — it's a user-facing HTML page,
 # not a JSON API — so it's mounted at the app level rather than under

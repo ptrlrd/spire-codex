@@ -26,6 +26,12 @@ interface Overview {
     hit_rate?: number | null;
     uptime_days?: number;
   };
+  dau?: {
+    today?: number;
+    wau?: number;
+    mau?: number;
+    series?: { day: string; count: number }[];
+  };
   environment: string;
 }
 
@@ -102,7 +108,7 @@ export default function AdminClient() {
           </div>
 
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Redis</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             <Card
               label="Status"
               value={!redis?.enabled ? "disabled" : redis.ok ? "up" : "down"}
@@ -119,6 +125,44 @@ export default function AdminClient() {
               sub={redis?.uptime_days != null ? `up ${redis.uptime_days}d` : undefined}
             />
           </div>
+
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Mod usage
+          </h2>
+          <div className="grid grid-cols-3 gap-3 mb-4">
+            <Card label="Active today" value={(data.dau?.today ?? 0).toLocaleString()} />
+            <Card
+              label="Last 7 days"
+              value={(data.dau?.wau ?? 0).toLocaleString()}
+              sub="distinct players"
+            />
+            <Card
+              label="Last 30 days"
+              value={(data.dau?.mau ?? 0).toLocaleString()}
+              sub="distinct players"
+            />
+          </div>
+          {(data.dau?.series?.length ?? 0) > 0 && (
+            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+              <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-2">
+                Daily active, last {data.dau!.series!.length} days
+              </div>
+              <div className="flex items-end gap-1 h-20">
+                {(() => {
+                  const series = data.dau!.series!;
+                  const max = Math.max(1, ...series.map((d) => d.count));
+                  return series.map((d) => (
+                    <div
+                      key={d.day}
+                      title={`${d.day}: ${d.count}`}
+                      className="flex-1 rounded-t bg-[var(--accent-gold)]/60"
+                      style={{ height: `${Math.max(4, Math.round((d.count / max) * 100))}%` }}
+                    />
+                  ));
+                })()}
+              </div>
+            </div>
+          )}
         </>
       )}
     </AdminShell>

@@ -114,15 +114,66 @@ def _snapshot_info() -> dict:
         return {}
 
 
+def _dau_info() -> dict:
+    """Mod usage from the telemetry_dau collection (distinct salted steam-id
+    hashes per day): today's count, 7- and 30-day distinct accounts, and a
+    14-day daily series. Empty without Mongo."""
+    try:
+        if not os.environ.get("MONGO_URL", "").strip():
+            return {}
+        from ..services.runs_db_mongo import get_database
+
+        coll = get_database().telemetry_dau
+        rows = list(
+            coll.aggregate(
+                [
+                    {"$group": {"_id": "$day", "count": {"$sum": 1}}},
+                    {"$sort": {"_id": -1}},
+                    {"$limit": 14},
+                ]
+            )
+        )
+        series = [{"day": r["_id"], "count": r["count"]} for r in reversed(rows)]
+        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        today_count = next((r["count"] for r in series if r["day"] == today), 0)
+
+        def _distinct_since(days: int) -> int:
+            cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime(
+                "%Y-%m-%d"
+            )
+            res = list(
+                coll.aggregate(
+                    [
+                        {"$match": {"day": {"$gte": cutoff}}},
+                        {"$group": {"_id": "$uid"}},
+                        {"$count": "n"},
+                    ]
+                )
+            )
+            return res[0]["n"] if res else 0
+
+        return {
+            "today": today_count,
+            "wau": _distinct_since(7),
+            "mau": _distinct_since(30),
+            "series": series,
+        }
+    except Exception:
+        logger.warning("admin dau info failed", exc_info=True)
+        return {}
+
+
 @router.get("/overview")
 def overview(request: Request):
-    """Operational vitals: run volume, users, snapshot freshness, Redis."""
+    """Operational vitals: run volume, users, snapshot freshness, Redis, and
+    the mod's daily-active-user counts."""
     _audit(request)
     return {
         "runs": _runs_info(),
         "users": _users_info(),
         "snapshot": _snapshot_info(),
         "redis": app_cache.info(),
+        "dau": _dau_info(),
         "environment": os.environ.get("ENVIRONMENT", "development"),
     }
 

@@ -57,6 +57,10 @@ services:
       - R2_PUBLIC_BASE_URL=${R2_PUBLIC_BASE_URL:-}
       - SENTRY_DSN=${SENTRY_DSN:-}
       - ADMIN_IDS=${ADMIN_IDS:-}
+      # Server-side secret (in neither repo) so the stored daily DAU hashes
+      # aren't brute-forceable back to steam ids. The count works without it,
+      # but set it. See routers/telemetry.py.
+      - TELEMETRY_SALT=${TELEMETRY_SALT:-}
       - STEAM_WEB_API_KEY=${STEAM_WEB_API_KEY:-}
       - GITHUB_APP_ID=${GITHUB_APP_ID:-}
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}
