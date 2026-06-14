@@ -12,6 +12,7 @@ interface UmamiStat {
   prev?: number;
 }
 interface Analytics {
+  active?: number;
   last_24h?: { pageviews?: UmamiStat; visitors?: UmamiStat; visits?: UmamiStat } | null;
   last_7d?: { pageviews?: UmamiStat; visitors?: UmamiStat; visits?: UmamiStat } | null;
   top_pages?: { x: string; y: number }[];
@@ -27,16 +28,30 @@ export default function AnalyticsClient() {
   const [note, setNote] = useState<string | null>(null);
 
   useEffect(() => {
-    adminFetch<Analytics>("/api/admin/analytics")
-      .then(setData)
-      .catch((e) => {
-        const msg = String((e as Error)?.message || e);
-        setNote(
-          msg.includes("503")
-            ? "Umami isn't wired up yet: set UMAMI_USERNAME and UMAMI_PASSWORD in the box .env (UMAMI_URL and UMAMI_WEBSITE_ID optional) and redeploy."
-            : msg,
-        );
-      });
+    let alive = true;
+    const load = () =>
+      adminFetch<Analytics>("/api/admin/analytics")
+        .then((d) => {
+          if (!alive) return;
+          setData(d);
+          setNote(null);
+        })
+        .catch((e) => {
+          if (!alive) return;
+          const msg = String((e as Error)?.message || e);
+          setNote(
+            msg.includes("503")
+              ? "Umami isn't wired up yet: set UMAMI_USERNAME and UMAMI_PASSWORD in the box .env (UMAMI_URL defaults to http://umami:3000) and redeploy."
+              : msg,
+          );
+        });
+    load();
+    // Re-poll so the active-now figure stays realtime.
+    const id = setInterval(load, 30000);
+    return () => {
+      alive = false;
+      clearInterval(id);
+    };
   }, []);
 
   return (
@@ -54,6 +69,26 @@ export default function AnalyticsClient() {
             >
               Open the full Umami dashboard →
             </a>
+          </div>
+
+          <div className="mb-8 flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-5 py-4">
+              <span className="relative flex h-3 w-3">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+              </span>
+              <div>
+                <div className="text-2xl font-bold tabular-nums text-emerald-400">
+                  {(data.active ?? 0).toLocaleString()}
+                </div>
+                <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                  Active now
+                </div>
+              </div>
+            </div>
+            <span className="text-xs text-[var(--text-muted)]">
+              visitors in the last 5 min · refreshes every 30s
+            </span>
           </div>
 
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Last 24 hours</h2>

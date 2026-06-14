@@ -27,7 +27,18 @@ export async function adminFetch<T>(path: string, init: RequestInit = {}): Promi
     ...init,
     headers: { ...authHeaders(), ...(init.headers as Record<string, string>) },
   });
-  if (!res.ok) throw new Error(`${path} -> ${res.status}`);
+  if (!res.ok) {
+    // Surface the backend's `detail` (e.g. the Umami misconfig hint), not just
+    // a bare status code, so the operator pages can show what to actually fix.
+    let detail = "";
+    try {
+      const body = await res.json();
+      if (body?.detail) detail = `: ${body.detail}`;
+    } catch {
+      /* non-JSON error body */
+    }
+    throw new Error(`${path} -> ${res.status}${detail}`);
+  }
   return res.json();
 }
 

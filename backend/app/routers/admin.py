@@ -377,9 +377,13 @@ async def _umami_get(client, url: str, params: dict) -> dict | None:
     # host-side var arrives as an EMPTY string, not a missing key; a
     # plain .get() default never kicks in and httpx then explodes on a
     # host-less URL. `or` past the empty string to the real default.
-    base = (
-        os.environ.get("UMAMI_URL", "").strip() or "https://analytics.spire-codex.com"
-    ).rstrip("/")
+    #
+    # Default to the container next door over the shared docker network, NOT
+    # the public host. analytics.spire-codex.com sits behind Cloudflare
+    # Access, so a server-side login POST there gets the CF challenge page
+    # instead of the API and every call silently returns None - blank cards
+    # that look like zero traffic. umami:3000 is the same box, no edge.
+    base = (os.environ.get("UMAMI_URL", "").strip() or "http://umami:3000").rstrip("/")
     username = os.environ.get("UMAMI_USERNAME", "").strip()
     password = os.environ.get("UMAMI_PASSWORD", "").strip()
     for attempt in (1, 2):
@@ -407,11 +411,41 @@ async def _umami_get(client, url: str, params: dict) -> dict | None:
     return None
 
 
+def _active_count(raw) -> int:
+    """Umami's /active endpoint has shipped two shapes across versions:
+    `[{"x": N}]` (older) and `{"visitors": N}` (current). Accept either, and
+    None (the call failed) as 0."""
+    if isinstance(raw, list):
+        return int(raw[0].get("x", 0)) if raw and isinstance(raw[0], dict) else 0
+    if isinstance(raw, dict):
+        return int(raw.get("visitors", raw.get("x", 0)) or 0)
+    return 0
+
+
+def _norm_stats(raw) -> dict | None:
+    """Umami's /stats shape changed across versions. Current builds return flat
+    numbers with the previous period under `comparison`:
+        {"pageviews": 4938, "visitors": 1302, ..., "comparison": {"pageviews": 4891, ...}}
+    older builds nested each metric as {"value": N, "prev": M}. Normalise both
+    to {metric: {value, prev}} so the admin UI has one stable contract."""
+    if not isinstance(raw, dict):
+        return None
+    comp = raw.get("comparison") or {}
+    out: dict = {}
+    for k in ("pageviews", "visitors", "visits", "bounces", "totaltime"):
+        v = raw.get(k)
+        if isinstance(v, dict):  # already {value, prev}
+            out[k] = {"value": v.get("value"), "prev": v.get("prev")}
+        elif v is not None:
+            out[k] = {"value": v, "prev": comp.get(k)}
+    return out or None
+
+
 @router.get("/analytics")
 async def analytics(request: Request):
-    """Umami headline numbers: visitors and pageviews for the last 24h and
-    7d, plus the top pages, proxied server-side. 503 until UMAMI_USERNAME
-    and UMAMI_PASSWORD are configured."""
+    """Umami headline numbers: active visitors right now, plus visitors and
+    pageviews for the last 24h and 7d and the top pages, proxied server-side.
+    503 until UMAMI_USERNAME and UMAMI_PASSWORD are configured."""
     _audit(request)
     if not (
         os.environ.get("UMAMI_USERNAME", "").strip()
@@ -435,6 +469,8 @@ async def analytics(request: Request):
     day_ms = 24 * 3600 * 1000
     try:
         async with httpx.AsyncClient(timeout=15) as client:
+            # Visitors active in the last ~5 min: the realtime figure.
+            active_raw = await _umami_get(client, f"/api/websites/{website}/active", {})
             stats_24h = await _umami_get(
                 client,
                 f"/api/websites/{website}/stats",
@@ -445,16 +481,24 @@ async def analytics(request: Request):
                 f"/api/websites/{website}/stats",
                 {"startAt": now_ms - 7 * day_ms, "endAt": now_ms},
             )
+            # Current Umami calls the page-URL metric "path"; older builds
+            # called it "url" (and reject "path"), so fall back once.
+            page_params = {
+                "startAt": now_ms - 7 * day_ms,
+                "endAt": now_ms,
+                "limit": 10,
+            }
             top_pages = await _umami_get(
                 client,
                 f"/api/websites/{website}/metrics",
-                {
-                    "type": "url",
-                    "startAt": now_ms - 7 * day_ms,
-                    "endAt": now_ms,
-                    "limit": 10,
-                },
+                {"type": "path", **page_params},
             )
+            if top_pages is None:
+                top_pages = await _umami_get(
+                    client,
+                    f"/api/websites/{website}/metrics",
+                    {"type": "url", **page_params},
+                )
     except httpx.HTTPError as exc:
         # Bad UMAMI_URL, DNS failure, timeout: degrade to a labelled 502
         # instead of an anonymous 500 so the admin UI says what to fix.
@@ -464,9 +508,24 @@ async def analytics(request: Request):
         raise HTTPException(
             status_code=502, detail=f"Umami unreachable: {type(exc).__name__}: {exc}"
         ) from exc
+    # Every call comes back None when login itself failed (wrong creds, or
+    # UMAMI_URL pointing at the Cloudflare-gated public host). Say so loudly
+    # instead of returning a payload of blanks that reads as zero traffic.
+    if stats_24h is None and stats_7d is None and active_raw is None:
+        from fastapi import HTTPException
+
+        raise HTTPException(
+            status_code=502,
+            detail=(
+                "Umami login/website lookup failed. Check UMAMI_URL points at the "
+                "internal http://umami:3000 (not the Cloudflare-gated public host), "
+                "the credentials, and UMAMI_WEBSITE_ID."
+            ),
+        )
     return {
-        "last_24h": stats_24h,
-        "last_7d": stats_7d,
+        "active": _active_count(active_raw),
+        "last_24h": _norm_stats(stats_24h),
+        "last_7d": _norm_stats(stats_7d),
         "top_pages": top_pages or [],
         # Always the public dashboard, never the container-internal
         # UMAMI_URL (http://umami:3000) the proxy itself may use.
