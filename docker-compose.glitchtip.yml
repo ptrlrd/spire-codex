@@ -1,0 +1,152 @@
+name: spire-codex-glitchtip
+
+# Self-hosted GlitchTip - Sentry-API-compatible error tracking, the
+# self-hosted replacement for sentry.io. Every project keeps its existing
+# sentry-sdk and just repoints SENTRY_DSN at a project created here.
+#
+# Chosen over getsentry/self-hosted because that needs ~16 GB RAM and ~30
+# containers; GlitchTip is a Django web + Celery worker + its own Postgres
+# and Redis. Memory is capped per service; raise the caps if the home box
+# has room to spare.
+#
+# Runs on a home server (not the spire-codex DO box, which is only 8 GB). It
+# is fully self-contained: a single private network, with the web UI and
+# event ingest published on host port 8080. Put it behind something that
+# gives it a public HTTPS URL so the DO backend and the player-side SDKs
+# (overlay, desktop app) can reach it - a Cloudflare Tunnel pointed at
+# 127.0.0.1:8080 is the cleanest (no port-forwarding); a reverse proxy works
+# too. Setup, secrets, first account, and the DSN repoint are in
+# README.glitchtip.md.
+
+x-glitchtip-env: &glitchtip-env
+  DATABASE_URL: "postgres://glitchtip:${GLITCHTIP_DB_PASSWORD}@glitchtip-postgres:5432/glitchtip"
+  REDIS_URL: "redis://glitchtip-redis:6379/0"
+  SECRET_KEY: "${GLITCHTIP_SECRET_KEY}"
+  PORT: "8080"
+  GLITCHTIP_DOMAIN: "${GLITCHTIP_DOMAIN:-https://glitchtip.spire-codex.com}"
+  DEFAULT_FROM_EMAIL: "${GLITCHTIP_FROM_EMAIL:-glitchtip@spire-codex.com}"
+  # consolemail:// just logs emails to the worker's stdout. Swap to an
+  # smtp+tls://user:pass@host:port URL in .env to send real invites/alerts.
+  EMAIL_URL: "${GLITCHTIP_EMAIL_URL:-consolemail://}"
+  # Closed by default. For the very first account, set this true in .env,
+  # `up -d`, register, then set it back to false and `up -d` again.
+  ENABLE_OPEN_USER_REGISTRATION: "${GLITCHTIP_OPEN_REGISTRATION:-false}"
+  # Bound worker memory and event retention so the small box stays healthy.
+  CELERY_WORKER_AUTOSCALE: "1,3"
+  CELERY_WORKER_MAX_TASKS_PER_CHILD: "10000"
+  GLITCHTIP_MAX_EVENT_LIFE_DAYS: "${GLITCHTIP_RETENTION_DAYS:-90}"
+
+services:
+  glitchtip-web:
+    image: glitchtip/glitchtip:latest
+    container_name: glitchtip-web
+    restart: unless-stopped
+    depends_on:
+      glitchtip-postgres:
+        condition: service_healthy
+      glitchtip-migrate:
+        condition: service_completed_successfully
+    environment: *glitchtip-env
+    mem_limit: 1g
+    ports:
+      # Bound to localhost: front this with a Cloudflare Tunnel or reverse
+      # proxy for public HTTPS rather than exposing it on the LAN directly.
+      - "127.0.0.1:8080:8080"
+    networks:
+      - glitchtip-db
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  glitchtip-worker:
+    image: glitchtip/glitchtip:latest
+    container_name: glitchtip-worker
+    restart: unless-stopped
+    command: ./bin/run-celery-with-beat.sh
+    depends_on:
+      glitchtip-postgres:
+        condition: service_healthy
+      glitchtip-migrate:
+        condition: service_completed_successfully
+    environment: *glitchtip-env
+    mem_limit: 768m
+    networks:
+      - glitchtip-db
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # One-shot DB migrations. Runs to completion on every `up`; web/worker wait
+  # for it via condition: service_completed_successfully.
+  glitchtip-migrate:
+    image: glitchtip/glitchtip:latest
+    container_name: glitchtip-migrate
+    command: ./manage.py migrate
+    restart: "no"
+    depends_on:
+      glitchtip-postgres:
+        condition: service_healthy
+    environment: *glitchtip-env
+    networks:
+      - glitchtip-db
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  glitchtip-postgres:
+    image: postgres:16-alpine
+    container_name: glitchtip-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: glitchtip
+      POSTGRES_USER: glitchtip
+      POSTGRES_PASSWORD: "${GLITCHTIP_DB_PASSWORD}"
+    volumes:
+      - ./glitchtip-data:/var/lib/postgresql/data
+    mem_limit: 512m
+    # Private network only; the DB never touches nginx_web-network.
+    networks:
+      - glitchtip-db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U glitchtip -d glitchtip"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  glitchtip-redis:
+    image: redis:7-alpine
+    container_name: glitchtip-redis
+    restart: unless-stopped
+    # Celery broker/cache only; nothing here needs to survive a restart, so
+    # no persistence. Hard memory cap with LRU so it can't balloon.
+    command: redis-server --maxmemory 192mb --maxmemory-policy allkeys-lru --appendonly no --save ""
+    mem_limit: 256m
+    networks:
+      - glitchtip-db
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  # Self-contained; nothing here joins the DO box's app network.
+  glitchtip-db:
+    driver: bridge
