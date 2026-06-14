@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
+import LiveNavButton from "./LiveNavButton";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
@@ -219,6 +220,9 @@ export default function Navbar() {
             </span>
           </Link>
 
+          {/* Live indicator, between the logo and the nav groups. Shows only
+              when players are in a run; lights up red and links to /live. */}
+          <LiveNavButton />
 
           {/* Desktop nav, lg+ only. Single-row mega-menu pattern: each
               group button opens a multi-column panel below the row. Pure
@@ -491,7 +495,7 @@ export default function Navbar() {
                 ref={menuRef}
                 className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 max-h-[calc(100vh-5rem)] overflow-y-auto"
               >
-                {/* Home link */}
+                {/* Home link, with the live indicator right under it. */}
                 <div className="py-1">
                   <Link
                     href={`${langPrefix}/`}
@@ -503,6 +507,7 @@ export default function Navbar() {
                   >
                     {t("Home", lang)}
                   </Link>
+                  <LiveNavButton variant="mobile" />
                 </div>
 
                 {/* Collapsible groups */}
