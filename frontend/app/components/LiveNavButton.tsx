@@ -80,7 +80,11 @@ export default function LiveNavButton({
       className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full text-xs font-semibold text-red-300 border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 transition-colors shrink-0 shadow-[0_0_12px_rgba(239,68,68,0.35)]"
     >
       <LiveCircle />
-      {label}
+      {/* Compact (count only) from lg to xl, where the full nav row is
+          tight and the long label would shove the profile menu off-screen;
+          the full label appears at xl+ once there's room. */}
+      <span className="tabular-nums xl:hidden">{count}</span>
+      <span className="hidden xl:inline">{label}</span>
     </Link>
   );
 }
