@@ -159,18 +159,32 @@ function entityHref(id: string, lp: string): string | null {
 }
 
 /** Resolve the icon filename for a map point. */
-function iconFor(mp: MapPoint): { src: string; tier: string; label: string } {
+function iconFor(
+  mp: MapPoint,
+  buildId?: string,
+): { src: string; betaSrc?: string; tier: string; label: string } {
   const room = mp.rooms?.[0];
   const modelId = room?.model_id || "";
   const tier = encounterTier(modelId, mp.map_point_type);
 
+  // Main run_history path plus a beta-versioned fallback. Beta-only content
+  // (e.g. the AEONGLASS boss) only has its map icon under the beta tree, so a
+  // beta build's run must fall back to /beta/<build_id>/... when the main path
+  // 404s. Known main icons never 404, so the fallback only fires when needed.
+  const resolve = (slug: string) => ({
+    src: `${ICON_BASE}/${slug}.webp`,
+    betaSrc: buildId
+      ? imageUrl(`/static/images/beta/${buildId}/ui/run_history/${slug}.webp`)
+      : undefined,
+  });
+
   if (mp.map_point_type === "boss" && modelId.endsWith("_BOSS")) {
     const slug = cleanId(modelId).toLowerCase();
-    return { src: `${ICON_BASE}/${slug}.webp`, tier, label: displayName(modelId) };
+    return { ...resolve(slug), tier, label: displayName(modelId) };
   }
   if (mp.map_point_type === "ancient" && modelId.startsWith("EVENT.")) {
     const slug = cleanId(modelId).toLowerCase();
-    return { src: `${ICON_BASE}/${slug}.webp`, tier: "", label: displayName(modelId) };
+    return { ...resolve(slug), tier: "", label: displayName(modelId) };
   }
   const typeMap: Record<string, string> = {
     monster: "monster",
@@ -183,7 +197,7 @@ function iconFor(mp: MapPoint): { src: string; tier: string; label: string } {
   };
   const slug = typeMap[mp.map_point_type] ?? "monster";
   const label = modelId ? displayName(modelId) : displayName(mp.map_point_type);
-  return { src: `${ICON_BASE}/${slug}.webp`, tier, label };
+  return { ...resolve(slug), tier, label };
 }
 
 interface Props {
@@ -282,7 +296,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
               <div className="w-20 sm:w-24 text-xs font-medium text-[var(--text-secondary)] flex-shrink-0">{actName}</div>
               <div className="flex flex-wrap items-center gap-1 flex-1">
                 {act.map((mp, j) => (
-                  <MapNode key={j} mp={mp} floorNum={actStartFloor + j} lp={lp} />
+                  <MapNode key={j} mp={mp} floorNum={actStartFloor + j} lp={lp} buildId={run.build_id} />
                 ))}
               </div>
             </div>
@@ -363,13 +377,15 @@ function MapNode({
   mp,
   floorNum,
   lp,
+  buildId,
 }: {
   mp: MapPoint;
   floorNum: number;
   lp: string;
+  buildId?: string;
 }) {
   const [show, setShow] = useState(false);
-  const { src, tier, label } = iconFor(mp);
+  const { src, betaSrc, tier, label } = iconFor(mp, buildId);
   const room = mp.rooms?.[0];
   const ps = mp.player_stats?.[0];
 
@@ -383,7 +399,15 @@ function MapNode({
       className="w-full h-full object-contain p-0.5"
       crossOrigin="anonymous"
       onError={(e) => {
-        (e.currentTarget as HTMLImageElement).style.display = "none";
+        const img = e.currentTarget as HTMLImageElement;
+        // Beta-only map icons (e.g. AEONGLASS) live only in the beta tree;
+        // try the beta-versioned path once before giving up.
+        if (betaSrc && img.dataset.triedBeta !== "1") {
+          img.dataset.triedBeta = "1";
+          img.src = betaSrc;
+          return;
+        }
+        img.style.display = "none";
       }}
     />
   );
