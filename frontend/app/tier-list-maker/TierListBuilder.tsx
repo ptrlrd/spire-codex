@@ -38,6 +38,10 @@ import type { EntityType, Tier, TierEntity, TierList } from "./types";
 
 type Containers = Record<string, string[]>;
 
+// Synthetic tray filter that matches beta-only entities by their `beta` flag
+// instead of their color/pool group, so beta content has a one-click pill.
+const BETA_GROUP = "__beta__";
+
 interface Props {
   entityType: EntityType;
   entities: TierEntity[];
@@ -391,7 +395,12 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   // the loaded pool, so we never render an empty pill.
   const trayGroups = useMemo(() => {
     const defs = GROUPS_BY_TYPE[entityType] ?? [];
-    return defs.filter((g) => entities.some((e) => e.group === g.value));
+    const present = defs.filter((g) => entities.some((e) => e.group === g.value));
+    // Lead with a Beta pill whenever the pool has beta-only entities, so the
+    // new content is one click away no matter how it groups by color or pool.
+    return entities.some((e) => e.beta)
+      ? [{ value: BETA_GROUP, label: "Beta" }, ...present]
+      : present;
   }, [entities, entityType]);
 
   // Rarities present in this pool, in canonical order, for the rarity
@@ -411,7 +420,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     return trayItems.filter((id) => {
       const e = entityMap.get(id);
       if (!e) return false;
-      if (groupFilter && e.group !== groupFilter) return false;
+      if (groupFilter === BETA_GROUP) {
+        if (!e.beta) return false;
+      } else if (groupFilter && e.group !== groupFilter) return false;
       if (rarityFilter && e.rarity !== rarityFilter) return false;
       if (q && !e.name.toLowerCase().includes(q)) return false;
       return true;
