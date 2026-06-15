@@ -110,13 +110,20 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
   // or entity fetch just means no additions.
   const betaRaw = await fetchBetaAdditions(type);
   const mainIds = new Set(raw.map((e) => e.id));
+  const isBeta = (e: RawEntity) => !mainIds.has(e.id);
 
-  return [
-    ...raw,
-    ...betaRaw.filter((e) => !mainIds.has(e.id)),
-  ]
-    .sort((a, b) => (a.compendium_order ?? 0) - (b.compendium_order ?? 0))
-    .map((e) => toEntity(e, !mainIds.has(e.id)));
+  return [...raw, ...betaRaw.filter(isBeta)]
+    // Float beta-only entities to the top of the tray (and so to the top of
+    // whatever group filter is active) instead of letting their compendium
+    // order bury them mid-list among hundreds of cards/relics. Otherwise the
+    // only beta entity people notice is the one that happens to lack an order
+    // and sorts first by accident. Ties fall back to compendium order.
+    .sort((a, b) => {
+      const ra = isBeta(a) ? 0 : 1;
+      const rb = isBeta(b) ? 0 : 1;
+      return ra - rb || (a.compendium_order ?? 0) - (b.compendium_order ?? 0);
+    })
+    .map((e) => toEntity(e, isBeta(e)));
 }
 
 /** The current beta's added entities for a type, fetched from the beta
