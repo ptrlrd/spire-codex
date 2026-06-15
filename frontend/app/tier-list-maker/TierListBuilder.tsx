@@ -384,8 +384,12 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   const groupCounts = useMemo(() => {
     const m: Record<string, number> = {};
     for (const id of trayItems) {
-      const g = entityMap.get(id)?.group;
-      if (g) m[g] = (m[g] ?? 0) + 1;
+      const e = entityMap.get(id);
+      if (!e) continue;
+      if (e.group) m[e.group] = (m[e.group] ?? 0) + 1;
+      // The Beta pill matches on the beta flag, not a group key, so tally it
+      // separately or its count would always read 0.
+      if (e.beta) m[BETA_GROUP] = (m[BETA_GROUP] ?? 0) + 1;
     }
     return m;
   }, [trayItems, entityMap]);
