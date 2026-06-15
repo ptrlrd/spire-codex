@@ -2008,6 +2008,74 @@ def distinct_build_ids() -> list[str]:
     return sorted([v for v in coll.distinct("build_id") if v], reverse=True)
 
 
+@_instrument("get_user_picks")
+def get_user_picks(steam_id: str) -> dict[str, dict]:
+    """One player's own pick rates (by steam_id), no min-sample gate:
+      - cards:    card-reward keep rate, from the flat card_choices array
+                  (already scoped to the submitter at write time).
+      - ancients: relic take rate at the 3-relic ancient offers, from
+                  ancient_choice nested in map_point_history.
+    Keyed by entity id (uppercase bare, as stored)."""
+    coll = _get_collection()
+
+    def tally(rows) -> dict[str, dict]:
+        return {
+            r["_id"]: {"picked": r["picked"], "offered": r["offered"]}
+            for r in rows
+            if r.get("_id")
+        }
+
+    cards = coll.aggregate(
+        [
+            {"$match": {"steam_id": steam_id}},
+            {"$unwind": "$card_choices"},
+            {
+                "$group": {
+                    "_id": "$card_choices.card_id",
+                    "offered": {"$sum": 1},
+                    "picked": {"$sum": {"$cond": ["$card_choices.was_picked", 1, 0]}},
+                }
+            },
+        ],
+        allowDiskUse=True,
+    )
+
+    # ancient_choice isn't a flat field - it's nested in map_point_history
+    # (acts -> floors -> player_stats -> ancient_choice), so unwind down to it.
+    # Bounded to one user's runs, so the nested unwind stays cheap. Mirrors the
+    # community accumulation in community_stats.py: +1 offered per relic, +1
+    # picked when was_chosen. Single-player accurate; in multiplayer this counts
+    # every seat's offers in the run (map_point_history holds all players).
+    A = "$map_point_history"
+    ancients = coll.aggregate(
+        [
+            {"$match": {"steam_id": steam_id}},
+            {"$unwind": A},  # acts -> one act (a list of floors)
+            {"$unwind": A},  # floors -> one floor (a dict)
+            {"$unwind": f"{A}.player_stats"},
+            {"$unwind": f"{A}.player_stats.ancient_choice"},
+            {
+                "$group": {
+                    "_id": f"{A}.player_stats.ancient_choice.TextKey",
+                    "offered": {"$sum": 1},
+                    "picked": {
+                        "$sum": {
+                            "$cond": [
+                                f"{A}.player_stats.ancient_choice.was_chosen",
+                                1,
+                                0,
+                            ]
+                        }
+                    },
+                }
+            },
+        ],
+        allowDiskUse=True,
+    )
+
+    return {"cards": tally(cards), "ancients": tally(ancients)}
+
+
 @_instrument("get_username_for_hash")
 def get_username_for_hash(run_hash: str) -> str | None:
     """Look up the username associated with a single run hash."""

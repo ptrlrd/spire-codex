@@ -15,6 +15,7 @@ the aggregation + display-name resolution; it must not import
 from __future__ import annotations
 
 import logging
+import os
 from typing import Any
 
 logger = logging.getLogger(__name__)
@@ -27,6 +28,14 @@ _NAMESPACES = frozenset(
 _SMITH = "SMITH"
 # How many rows to keep in each ranked list (events keeps all, they're finite).
 _TOP_N = 15
+# Minimum times a relic must have been offered at Ancient screens before its
+# take rate is published. Each of the eight ancients draws from its own relic
+# pool, so any one relic's offered-count climbs slowly; the default keeps thin
+# beta samples out of the in-game tip, but the beta env sets it to 1 so take
+# rates show from the first offers (the tip prints "(N offers)" for context).
+# `.strip() or "20"` so a docker-compose `${VAR:-}` passthrough (empty string,
+# not an absent key) still falls back to the default instead of crashing int("").
+MIN_ANCIENT_OFFERS = int(os.getenv("COMMUNITY_ANCIENT_MIN_OFFERS", "").strip() or "20")
 
 
 def _bare(raw: str | None) -> str | None:
@@ -512,7 +521,7 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
                 "take_rate": _pct(rec[0], rec[1]),
             }
             for rid, rec in acc["ancient"].items()
-            if rec[1] >= 20
+            if rec[1] >= MIN_ANCIENT_OFFERS
         },
         "most_removed": _ranked(removed, names["cards"], _TOP_N),
         "hopper_stolen": _ranked(acc.get("stolen") or {}, names["cards"], 10),

@@ -61,6 +61,11 @@ services:
       # aren't brute-forceable back to steam ids. The count works without it,
       # but set it. See routers/telemetry.py.
       - TELEMETRY_SALT=${TELEMETRY_SALT:-}
+      # Min times a relic must be offered at an Ancient screen before its
+      # community take-rate is published to the in-game tip. Empty here ->
+      # the code default (20); the beta .env sets it to 1 so take-rates show
+      # on a small corpus. See services/community_stats.py.
+      - COMMUNITY_ANCIENT_MIN_OFFERS=${COMMUNITY_ANCIENT_MIN_OFFERS:-}
       - STEAM_WEB_API_KEY=${STEAM_WEB_API_KEY:-}
       - GITHUB_APP_ID=${GITHUB_APP_ID:-}
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}

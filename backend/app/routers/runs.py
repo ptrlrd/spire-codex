@@ -920,6 +920,27 @@ def community_stats(request: Request, response: Response):
     return get_community_fun_stats()
 
 
+@router.get("/me/picks", tags=["Runs"])
+@limiter.limit("60/minute")
+def my_picks(request: Request, response: Response):
+    """The signed-in player's own pick rates across decision surfaces (card
+    rewards + ancient 3-relic offers for now). Scoped to the JWT's verified
+    steam_id; never accepts an arbitrary steam_id param (self-only)."""
+    auth_header = request.headers.get("authorization") or ""
+    if not auth_header.lower().startswith("bearer "):
+        raise HTTPException(status_code=401, detail="auth required")
+    from ..services.auth_jwt import decode_token
+    from ..services.runs_db_mongo import get_user_picks
+
+    claims = decode_token(auth_header[7:].strip())
+    steam_id = str((claims or {}).get("steam_id") or "")
+    if not steam_id.isdigit():
+        raise HTTPException(status_code=401, detail="invalid token")
+
+    response.headers["Cache-Control"] = "private, max-age=60"
+    return get_user_picks(steam_id)
+
+
 @router.get("/metrics/{entity_type}", tags=["Runs"])
 @limiter.limit("60/minute")
 def get_entity_metrics(
