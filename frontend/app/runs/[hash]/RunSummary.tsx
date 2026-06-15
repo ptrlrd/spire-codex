@@ -441,11 +441,15 @@ function MapNode({
           + {ps.relic_choices.filter((r) => r.was_picked).map((r) => displayName(r.choice)).join(", ")}
         </div>
       )}
-      {ps?.event_choices?.[0]?.title?.key && (
-        <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
-          chose {humanizeChoiceKey(ps.event_choices[0].title.key)}
-        </div>
-      )}
+      {(() => {
+        const choiceKey = ps?.event_choices?.[0]?.title?.key;
+        const choice = choiceKey ? humanizeChoiceKey(choiceKey) : "";
+        return choice ? (
+          <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
+            chose {choice}
+          </div>
+        ) : null;
+      })()}
       <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
     </div>
   );
@@ -479,13 +483,20 @@ function MapNode({
 }
 
 function humanizeChoiceKey(key: string): string {
-  // e.g. "MORPHIC_GROVE.pages.INITIAL.options.LONER.title" → "Loner"
+  // Event choices are stored as the game's localization key, e.g.
+  // "MORPHIC_GROVE.pages.INITIAL.options.LONER.title" → "Loner". Pull the
+  // segment after "options" when the event had a branching choice.
   const parts = key.split(".");
   const idx = parts.findIndex((p) => p === "options");
   if (idx >= 0 && parts[idx + 1]) {
     return parts[idx + 1].replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   }
-  return key;
+  // No "options" segment means there was no real choice: ancients and other
+  // single-outcome events record a page key like
+  // "ancients.NONUPEIPE.pages.DONE.description". Returning the raw dotted key
+  // would leak it onto the page, so drop it (the caller skips the line). A
+  // plain, dot-free label is already human and passes through.
+  return key.includes(".") ? "" : key;
 }
 
 function IconStat({ icon, alt, value, color }: { icon: string; alt: string; value: ReactNode; color?: string }) {
