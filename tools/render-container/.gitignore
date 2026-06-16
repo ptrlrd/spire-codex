@@ -1,0 +1,4 @@
+# Runtime only: staged mods (third-party binaries) and render outputs.
+mods/
+out/
+out_webp/
