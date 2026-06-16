@@ -13,7 +13,7 @@ namespace RenderExporter;
 // Renders every queued card with the game's own NCard renderer into PNGs, one
 // per language. A typed reimplementation of spire-compendium/payload/Payload.cs's
 // card export: same algorithm, but as a loaded mod it calls the game API directly
-// (no assembly scanning, no main-thread marshalling — a Node already ticks on the
+// (no assembly scanning, no main-thread marshalling - a Node already ticks on the
 // main thread). Driven by env vars set by the render container:
 //   STS2_RENDER_OUT     output base dir (required; arms the exporter)
 //   STS2_RENDER_CARDS   "all" or a comma list of card ids (default "all")
@@ -153,7 +153,7 @@ public partial class CardExporter : Node
         CardModel cm = model;
         // Upgrade / enchant mutate the model, so work on a clone.
         if (upg || ench != null) cm = model.ToMutable();
-        // Upgrade but do NOT FinalizeUpgradeInternal — finalizing clears the
+        // Upgrade but do NOT FinalizeUpgradeInternal - finalizing clears the
         // per-var "just upgraded" flag that makes changed values render green.
         if (upg) cm.UpgradeInternal();
         if (ench != null && _ench.TryGetValue(ench, out var enchCanonical))

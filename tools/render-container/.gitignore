@@ -1,4 +1,5 @@
-# Runtime only: staged mods (third-party binaries) and render outputs.
+# Real credentials and runtime dirs (never commit). .env.example is the template.
+.env
 mods/
 out/
 out_webp/

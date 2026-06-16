@@ -1,5 +1,5 @@
 # Headless mod-card render. Build the image, then run with the env + volumes below.
-# The image bundles a licensed game install at runtime — keep it private.
+# The image bundles a licensed game install at runtime - keep it private.
 services:
   render:
     build:
