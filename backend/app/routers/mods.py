@@ -12,12 +12,17 @@ import json
 import os
 from pathlib import Path
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, HTTPException, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
 
+from ..services.data_service import DEFAULT_LANG, load_mod_entities
+
 router = APIRouter(prefix="/api/mods", tags=["Mods"])
 limiter = Limiter(key_func=get_remote_address)
+
+# Entity catalogs a mod can supply (parsed into data-mod/<key>/<lang>/).
+_MOD_ENTITIES = {"cards", "relics", "potions"}
 
 _DATA_DIR = Path(
     os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data")
@@ -42,3 +47,17 @@ def list_mods(request: Request):
     """The curated mod directory: each mod's repo art base and per-type
     subpaths, so clients can fall back to modded entity art by id."""
     return {"mods": _load_mods()}
+
+
+@router.get("/{key}/{entity}", tags=["Mods"])
+@limiter.limit("120/minute")
+def mod_entities(request: Request, key: str, entity: str, lang: str = DEFAULT_LANG):
+    """A mod's catalog for one entity type (cards/relics/potions) in the given
+    language, so clients can resolve modded entities as the third fallback
+    after stable and beta. Returns the same per-entity shape the stable
+    /api/<entity> endpoints return."""
+    if entity not in _MOD_ENTITIES:
+        raise HTTPException(status_code=404, detail="unknown entity")
+    if not any(m.get("key") == key for m in _load_mods()):
+        raise HTTPException(status_code=404, detail="unknown mod")
+    return {entity: load_mod_entities(key, entity, lang)}

@@ -19,6 +19,13 @@ DATA_DIR = Path(
 BETA_DATA_DIR = Path(
     os.environ.get("BETA_DATA_DIR", Path(__file__).resolve().parents[3] / "data-beta")
 )
+# Community mod catalogs (data-mod/<key>/<lang>/*.json), produced by
+# tools/parse_mod.py. Served as the third entity source after stable and beta,
+# keyed by mod, so the run/live pages can resolve modded card/relic/potion
+# metadata that exists in neither the stable nor beta tree.
+MOD_DATA_DIR = Path(
+    os.environ.get("MOD_DATA_DIR", Path(__file__).resolve().parents[3] / "data-mod")
+)
 DEFAULT_LANG = "eng"
 
 # ContextVar set by VersionMiddleware — allows version-aware loading without changing router signatures
@@ -105,6 +112,30 @@ def _load_json_beta(lang: str, entity: str, beta_version: str) -> list[dict]:
         data = json.load(f)
     data_load_duration.labels(entity_type=entity).observe(time.perf_counter() - start)
     return data
+
+
+@lru_cache(maxsize=512)
+def _load_json_mod(key: str, lang: str, entity: str) -> list[dict]:
+    """Load a mod catalog file (data-mod/<key>/<lang>/<entity>.json), per-language
+    fallback to English. Unlike beta, there is no stable fallback: modded
+    entities exist only in the mod tree. Returns [] when the mod or file is
+    absent so callers degrade to placeholder art."""
+    base = MOD_DATA_DIR / key
+    filepath = base / lang / f"{entity}.json"
+    if not filepath.exists():
+        filepath = base / DEFAULT_LANG / f"{entity}.json"
+    if not filepath.exists():
+        return []
+    start = time.perf_counter()
+    with open(filepath, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    data_load_duration.labels(entity_type=entity).observe(time.perf_counter() - start)
+    return data
+
+
+def load_mod_entities(key: str, entity: str, lang: str = DEFAULT_LANG) -> list[dict]:
+    """The mod's catalog for one entity type (cards/relics/potions)."""
+    return _load_json_mod(key, lang, entity)
 
 
 def _load_json(lang: str, entity: str) -> list[dict]:
