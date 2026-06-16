@@ -57,7 +57,8 @@ _RUNS_DIR = _DATA_DIR / "runs"
     ABANDONED,
     ACTS,
     DAILY,
-) = range(14)
+    BUILD,
+) = range(15)
 
 _FRAME: list[tuple] = []
 _FRAME_TS: float = 0.0
@@ -147,6 +148,7 @@ def _load_frame() -> list[tuple]:
                 "was_abandoned": 1,
                 "acts_completed": 1,
                 "seed": 1,
+                "build_id": 1,
             },
         )
         for d in cursor:
@@ -167,6 +169,7 @@ def _load_frame() -> list[tuple]:
                     1 if d.get("was_abandoned") else 0,
                     int(d.get("acts_completed") or 0),
                     _daily_date(d.get("seed"), mode),
+                    (d.get("build_id") or ""),
                 )
             )
     else:
@@ -176,7 +179,8 @@ def _load_frame() -> list[tuple]:
             for d in conn.execute(
                 "SELECT character, win, ascension, game_mode, player_count,"
                 " run_time, floors_reached, deck_size, relic_count,"
-                " submitted_at, username, was_abandoned, acts_completed, seed"
+                " submitted_at, username, was_abandoned, acts_completed, seed,"
+                " build_id"
                 " FROM runs"
             ):
                 mode = (d["game_mode"] or "standard").lower()
@@ -196,6 +200,7 @@ def _load_frame() -> list[tuple]:
                         1 if d["was_abandoned"] else 0,
                         int(d["acts_completed"] or 0),
                         _daily_date(d["seed"], mode),
+                        (d["build_id"] or ""),
                     )
                 )
     return rows
@@ -238,14 +243,52 @@ def _official_characters() -> dict[str, str]:
         return {}
 
 
+# Smallest run count before a player's win rate is trusted by the skill filter,
+# so a 1-win-1-run player doesn't read as a 100% god.
+_WR_MIN_GAMES = 5
+
+
+def _player_wr_counts(rows: list[tuple]) -> dict[str, list[int]]:
+    """{username: [wins, total]} over the rows, anonymous excluded. Feeds the
+    player win-rate (skill) filter."""
+    counts: dict[str, list[int]] = {}
+    for r in rows:
+        user = r[USER]
+        if not user:
+            continue
+        c = counts.setdefault(user, [0, 0])
+        c[0] += r[WIN]
+        c[1] += 1
+    return counts
+
+
+def _high_wr_users(rows: list[tuple], min_wr: int) -> set[str]:
+    """Usernames whose overall win rate is >= min_wr% over a real sample."""
+    return {
+        user
+        for user, (wins, total) in _player_wr_counts(rows).items()
+        if total >= _WR_MIN_GAMES and wins * 100 >= min_wr * total
+    }
+
+
 def filter_rows(
     rows: list[tuple],
     players: int | None,
     ascension: int | None,
     game_mode: str | None,
     username: str | None,
+    *,
+    exclude_a10: bool = False,
+    min_wr: int | None = None,
+    exclude_mods: bool = False,
+    build_id: str | None = None,
 ) -> list[tuple]:
     u = (username or "").lower().strip()
+    bid = (build_id or "").strip()
+    # Player-skill filter: keep only runs by players above the win-rate
+    # threshold (computed over their full history). Anonymous runs can't be
+    # scored, so they fall out when the filter is on.
+    wr_ok = _high_wr_users(rows, min_wr) if min_wr is not None else None
     out = []
     for r in rows:
         if players is not None and r[PLAYERS] != players:
@@ -255,6 +298,14 @@ def filter_rows(
         if game_mode is not None and r[MODE] != game_mode:
             continue
         if u and r[USER] != u:
+            continue
+        if exclude_a10 and r[ASC] == 10:
+            continue
+        if exclude_mods and r[MODE] == "custom":
+            continue
+        if bid and r[BUILD] != bid:
+            continue
+        if wr_ok is not None and r[USER] not in wr_ok:
             continue
         out.append(r)
     return out
@@ -1217,6 +1268,115 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
 
     acc = new_accumulator()
     for row in rows:
+        path = _RUNS_DIR / f"{row['run_hash']}.json"
+        if not path.exists():
+            continue
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                blob = json.load(f)
+            accumulate(
+                acc,
+                blob,
+                is_win=bool(row["win"]),
+                character=row["character"],
+                player_count=row["player_count"],
+                submitted=row.get("submitted_at"),
+            )
+        except Exception:
+            continue
+    return finalize(acc)
+
+
+# Most-recent matching runs walked for a filtered blob chart. The unfiltered
+# case uses the precomputed snapshot, so this only bounds the filtered path.
+_FILTERED_BLOB_CAP = 8000
+
+
+def _blob_candidate_rows(limit: int = 60000) -> list[dict]:
+    """Run metadata (newest first), with enough fields to apply the chart
+    filters before deciding which blobs to read."""
+    if os.environ.get("MONGO_URL", "").strip():
+        from .runs_db_mongo import _get_collection
+
+        cursor = (
+            _get_collection()
+            .find(
+                {},
+                {
+                    "_id": 1,
+                    "character": 1,
+                    "win": 1,
+                    "player_count": 1,
+                    "submitted_at": 1,
+                    "ascension": 1,
+                    "game_mode": 1,
+                    "build_id": 1,
+                    "username": 1,
+                },
+            )
+            .sort("submitted_at", -1)
+            .limit(limit)
+        )
+        return [
+            {
+                "run_hash": d["_id"],
+                "character": d.get("character") or "",
+                "win": bool(d.get("win")),
+                "player_count": d.get("player_count") or 1,
+                "submitted_at": d.get("submitted_at"),
+                "ascension": int(d.get("ascension") or 0),
+                "game_mode": (d.get("game_mode") or "standard").lower(),
+                "build_id": d.get("build_id") or "",
+                "username": (d.get("username") or "").lower(),
+            }
+            for d in cursor
+        ]
+    from .runs_db import get_conn
+
+    with get_conn() as conn:
+        out: list[dict] = []
+        for r in conn.execute(
+            "SELECT run_hash, character, win, player_count, submitted_at,"
+            " ascension, game_mode, build_id, username"
+            " FROM runs ORDER BY id DESC LIMIT ?",
+            (limit,),
+        ):
+            d = dict(r)
+            d["game_mode"] = (d.get("game_mode") or "standard").lower()
+            d["username"] = (d.get("username") or "").lower()
+            d["ascension"] = int(d.get("ascension") or 0)
+            d["build_id"] = d.get("build_id") or ""
+            out.append(d)
+        return out
+
+
+def build_filtered_blob_stats(
+    exclude_a10: bool = False,
+    min_wr: int | None = None,
+    exclude_mods: bool = False,
+    build_id: str | None = None,
+) -> dict[str, Any]:
+    """Blob stats over runs matching the chart filters, walked on demand from
+    the same on-disk blobs the snapshot uses. Capped at the most-recent
+    _FILTERED_BLOB_CAP matches so latency stays bounded; the chart notes it's a
+    recent sample. The unfiltered case uses the precomputed snapshot instead."""
+    bid = (build_id or "").strip()
+    wr_ok = _high_wr_users(get_frame(), min_wr) if min_wr is not None else None
+    picked: list[dict] = []
+    for row in _blob_candidate_rows():
+        if exclude_a10 and row["ascension"] == 10:
+            continue
+        if exclude_mods and row["game_mode"] == "custom":
+            continue
+        if bid and row["build_id"] != bid:
+            continue
+        if wr_ok is not None and row["username"] not in wr_ok:
+            continue
+        picked.append(row)
+        if len(picked) >= _FILTERED_BLOB_CAP:
+            break
+    acc = new_accumulator()
+    for row in picked:
         path = _RUNS_DIR / f"{row['run_hash']}.json"
         if not path.exists():
             continue
