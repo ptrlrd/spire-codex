@@ -28,8 +28,11 @@ services:
       # (e.g. WatcherMod/). The RenderExporter mod is baked into the image.
       - ./mods:/mods:ro
       # Persist Steam auth (Steam Guard sentry) so reruns don't re-prompt.
+      # (~/.steam is intentionally NOT a volume: a named volume would be
+      # root-owned and the non-root steam user couldn't create ~/.steam/sdk64
+      # for steamclient.so. It lives in the steam-owned home and is rebuilt each
+      # run; the login sentry that matters persists in ~/Steam above.)
       - steam-data:/home/steam/Steam
-      - steam-config:/home/steam/.steam
       # Persist the game install (~3GB) so it is not re-downloaded every run.
       - game-data:/game
       # Render outputs.
@@ -42,5 +45,4 @@ services:
 
 volumes:
   steam-data:
-  steam-config:
   game-data:
