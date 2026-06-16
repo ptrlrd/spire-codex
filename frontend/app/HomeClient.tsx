@@ -232,7 +232,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       </section>
 
       {/* Get started: one card, a gold CTA header, then a single row of
-          the sign-in cell (signed out only) plus the 4 action tiles. */}
+          the sign-in cell (signed out only) plus the 5 action tiles. */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
         <div className="flex flex-col gap-px overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--border-subtle)]">
           {/* Row 1: full-width CTA header, gold so it reads as subtext
@@ -248,10 +248,10 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
               </p>
             </div>
           </div>
-          {/* Row 2: sign-in cell (signed out only) + the 4 action tiles. */}
+          {/* Row 2: sign-in cell (signed out only) + the 5 action tiles. */}
           <div
             className={`relative grid grid-cols-1 gap-px bg-[var(--border-subtle)] sm:grid-cols-2 ${
-              user ? "lg:grid-cols-4" : "lg:grid-cols-5"
+              user ? "lg:grid-cols-5" : "lg:grid-cols-6"
             }`}
           >
             {!user && (
