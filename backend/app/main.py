@@ -31,6 +31,7 @@ from .routers import (
     orbs,
     afflictions,
     modifiers,
+    mods,
     achievements,
     badges,
     epochs,
@@ -544,6 +545,7 @@ app.include_router(intents.router)
 app.include_router(orbs.router)
 app.include_router(afflictions.router)
 app.include_router(modifiers.router)
+app.include_router(mods.router)
 app.include_router(achievements.router)
 app.include_router(badges.router)
 app.include_router(epochs.router)
