@@ -12,6 +12,22 @@ export function imageUrl(path: string | null | undefined): string {
 
 const CDN_BASE = CDN_URL || "https://cdn.spire-codex.com";
 
+// Mod id prefixes (e.g. "WATCHER"), registered from /api/mods at runtime. A
+// modded entity id is "<PREFIX>-<ENTRY>" (WATCHER-ERUPTION); base and beta ids
+// never carry a registered prefix, so this cleanly tells a mod card apart and
+// lets fullCardUrl route it to the mod render tree on the CDN.
+const _modPrefixes = new Set<string>();
+export function setModPrefixes(prefixes: string[]) {
+  for (const p of prefixes) if (p) _modPrefixes.add(p.toUpperCase());
+}
+export function modPrefixForId(id: string | null | undefined): string | null {
+  if (!id) return null;
+  const dash = id.indexOf("-");
+  if (dash <= 0) return null;
+  const prefix = id.slice(0, dash).toUpperCase();
+  return _modPrefixes.has(prefix) ? prefix : null;
+}
+
 // The current beta version for render paths ("0.107.0" shape, no leading v).
 // The literal here is only a first-paint fallback: SiteSwitcher refreshes it
 // from /api/beta/version on every page, so a new beta drop doesn't need a
@@ -51,6 +67,12 @@ export function fullCardUrl(
   channel: "stable" | "beta" = "stable",
   lang = "eng"
 ): string {
+  // Modded cards are baked into a single cards-full/mods/ tree (no channel or
+  // localized renders), keyed by the full namespaced id so they never collide
+  // with base/beta ids.
+  if (modPrefixForId(id)) {
+    return `${CDN_BASE}/cards-full/mods/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
+  }
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   // Only route to a localized folder for languages we've actually rendered;
   // everything else uses the English base path.

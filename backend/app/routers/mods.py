@@ -54,10 +54,10 @@ def list_mods(request: Request):
 def mod_entities(request: Request, key: str, entity: str, lang: str = DEFAULT_LANG):
     """A mod's catalog for one entity type (cards/relics/potions) in the given
     language, so clients can resolve modded entities as the third fallback
-    after stable and beta. Returns the same per-entity shape the stable
+    after stable and beta. Returns a bare list, the same shape the stable
     /api/<entity> endpoints return."""
     if entity not in _MOD_ENTITIES:
         raise HTTPException(status_code=404, detail="unknown entity")
     if not any(m.get("key") == key for m in _load_mods()):
         raise HTTPException(status_code=404, detail="unknown mod")
-    return {entity: load_mod_entities(key, entity, lang)}
+    return load_mod_entities(key, entity, lang)

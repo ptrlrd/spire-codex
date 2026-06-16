@@ -7,6 +7,7 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { setModPrefixes } from "@/lib/image-url";
 import RunSummary, { type PotionInfo } from "./RunSummary";
 import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
 
@@ -121,6 +122,53 @@ export default function SharedRunClient() {
       cancelled = true;
     };
   }, [run?.is_beta, lang]);
+
+  // Modded runs reference cards/relics/potions that exist only in a community
+  // mod's catalog. Detect which mods the run uses (by id prefix), register
+  // those prefixes so fullCardUrl routes to the mod renders, and merge each
+  // mod's catalog into the maps so modded entities resolve (name + art).
+  // Runs after the beta merge, gap-fill only: precedence main > beta > mod.
+  useEffect(() => {
+    if (!run) return;
+    let cancelled = false;
+    cachedFetch<{ mods: { key: string; id_prefix?: string }[] }>(
+      `${API}/api/mods`,
+    ).then(({ mods }) => {
+      if (cancelled || !mods?.length) return;
+      setModPrefixes(mods.map((m) => m.id_prefix || "").filter(Boolean));
+      const runStr = JSON.stringify(run);
+      const used = mods.filter((m) => m.id_prefix && runStr.includes(`${m.id_prefix}-`));
+      for (const mod of used) {
+        cachedFetch<CardInfo[]>(`${API}/api/mods/${mod.key}/cards?lang=${lang}`).then((cards) => {
+          if (cancelled) return;
+          setCardData((prev) => {
+            const m = { ...prev };
+            for (const c of cards) if (!(c.id in m)) m[c.id] = c;
+            return m;
+          });
+        });
+        cachedFetch<RelicInfo[]>(`${API}/api/mods/${mod.key}/relics?lang=${lang}`).then((relics) => {
+          if (cancelled) return;
+          setRelicData((prev) => {
+            const m = { ...prev };
+            for (const r of relics) if (!(r.id in m)) m[r.id] = r;
+            return m;
+          });
+        });
+        cachedFetch<PotionInfo[]>(`${API}/api/mods/${mod.key}/potions?lang=${lang}`).then((potions) => {
+          if (cancelled) return;
+          setPotionData((prev) => {
+            const m = { ...prev };
+            for (const p of potions) if (!(p.id in m)) m[p.id] = p;
+            return m;
+          });
+        });
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [run, lang]);
 
   function localizedCharName(id: string): string {
     const key = cleanId(id).toUpperCase();
