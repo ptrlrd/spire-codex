@@ -728,6 +728,13 @@ def get_shared_run(run_hash: str, request: Request):
         return redis_cached
 
     def _attach_username(blob: dict) -> dict:
+        # Flag beta-build runs so the client merges the beta catalog when it
+        # resolves deck/relic/potion entities that only exist in the beta data
+        # tree. build_id like "v0.107.0" with a matching data-beta dir = beta.
+        from ..services.data_service import BETA_DATA_DIR
+
+        bid = (blob.get("build_id") or "").strip()
+        blob["is_beta"] = bool(bid) and (BETA_DATA_DIR / bid).exists()
         if using_mongo:
             from ..services.runs_db_mongo import get_username_for_hash
 

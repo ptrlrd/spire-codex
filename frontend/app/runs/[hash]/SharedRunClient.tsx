@@ -73,6 +73,55 @@ export default function SharedRunClient() {
     });
   }, [hash, lang]);
 
+  // Beta-build runs reference cards/relics/potions that only exist in the beta
+  // data tree. Merge the beta catalog over the main maps so those resolve (name
+  // + image); main wins for shared ids, and entities in neither channel still
+  // show nothing. is_beta is flagged server-side from the run's build_id.
+  useEffect(() => {
+    if (!run?.is_beta) return;
+    let cancelled = false;
+    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}&channel=beta`).then((cards) => {
+      if (cancelled) return;
+      setCardData((prev) => {
+        const m = { ...prev };
+        for (const c of cards) if (!(c.id in m)) m[c.id] = c;
+        return m;
+      });
+    });
+    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}&channel=beta`).then((relics) => {
+      if (cancelled) return;
+      setRelicData((prev) => {
+        const m = { ...prev };
+        for (const r of relics) if (!(r.id in m)) m[r.id] = r;
+        return m;
+      });
+    });
+    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}&channel=beta`).then((potions) => {
+      if (cancelled) return;
+      setPotionData((prev) => {
+        const m = { ...prev };
+        for (const p of potions) if (!(p.id in m)) m[p.id] = p;
+        return m;
+      });
+    });
+    cachedFetch<{ id: string; name: string }[]>(
+      `${API}/api/encounters?lang=${lang}&channel=beta`,
+    ).then((encs) => {
+      if (cancelled) return;
+      setEncounterNames((prev) => {
+        const m = { ...prev };
+        for (const e of encs) {
+          const k = e.id.toUpperCase();
+          if (!(k in m)) m[k] = e.name;
+        }
+        return m;
+      });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [run?.is_beta, lang]);
+
   function localizedCharName(id: string): string {
     const key = cleanId(id).toUpperCase();
     return charNames[key] ?? displayName(id);
