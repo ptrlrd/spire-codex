@@ -1,0 +1,18 @@
+{
+  "_comment": "Curated directory of community mods whose asset repos supply entity art as the third fallback after main and beta. Each entry's images must be named by the in-game entity id, lowercased (e.g. relic DAMARU -> relics/damaru.png), matching the official convention. Only add vetted repos. The frontend builds <raw_base>/<paths[type]>/<id>.<ext>.",
+  "mods": [
+    {
+      "key": "watcher",
+      "name": "Watcher",
+      "author": "lamali292",
+      "url": "https://github.com/lamali292/WatcherMod",
+      "raw_base": "https://raw.githubusercontent.com/lamali292/WatcherMod/main/Watcher/images",
+      "ext": "png",
+      "paths": {
+        "cards": "card_portraits",
+        "relics": "relics",
+        "potions": "potions"
+      }
+    }
+  ]
+}
