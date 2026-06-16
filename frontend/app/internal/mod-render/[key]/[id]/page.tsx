@@ -49,8 +49,8 @@ export default async function ModRenderPage({
         zIndex: 2147483647,
         background: "#ff00ff",
         display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "flex-start",
+        alignItems: "center",
+        justifyContent: "center",
       }}
     >
       <CardRender card={card} width={width} upgraded={upgraded} />

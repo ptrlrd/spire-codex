@@ -8,8 +8,11 @@ headless Chrome against the bake route (frontend/app/internal/mod-render) to
 screenshot every modded card into a transparent webp, ready to upload to the
 CDN under cards-full/mods/ where fullCardUrl(id) resolves it.
 
-It needs a running frontend that exposes the bake route:
-  cd frontend && ENABLE_MOD_RENDER=1 NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com npm run dev
+It needs a running frontend that exposes the bake route. Use a PRODUCTION
+build, not `npm run dev` - the dev server paints a Next.js dev indicator that
+would otherwise end up baked into the corner of every card:
+  cd frontend && npm run build
+  ENABLE_MOD_RENDER=1 NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com npm run start
 (point NEXT_PUBLIC_CDN_URL at wherever the frame textures and the mod portraits
 are already served, so the render is complete.)
 
@@ -65,11 +68,15 @@ def chroma_key(png: Path, out: Path) -> None:
 
 
 def shoot(chrome: str, url: str, width: int, tmp: Path) -> None:
-    height = round(width * CARD_ASPECT)
+    # The cost orb overhangs the card's top-left corner, so the window carries a
+    # margin all round to capture it; chroma_key crops back to the real bounds.
+    margin = round(width * 0.12)
+    win_w = width + 2 * margin
+    win_h = round(width * CARD_ASPECT) + 2 * margin
     subprocess.run(
         [
             chrome, "--headless=new", "--disable-gpu", "--no-sandbox",
-            "--hide-scrollbars", f"--window-size={width},{height}",
+            "--hide-scrollbars", f"--window-size={win_w},{win_h}",
             "--force-device-scale-factor=2", "--virtual-time-budget=8000",
             f"--screenshot={tmp}", url,
         ],
