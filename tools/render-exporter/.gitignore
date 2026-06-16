@@ -1,0 +1,5 @@
+# Build output and Godot/.NET cruft (never commit; includes publicized proprietary DLLs).
+.godot/
+bin/
+obj/
+*.user

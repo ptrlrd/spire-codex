@@ -12,20 +12,20 @@ export function imageUrl(path: string | null | undefined): string {
 
 const CDN_BASE = CDN_URL || "https://cdn.spire-codex.com";
 
-// Mod id prefixes (e.g. "WATCHER"), registered from /api/mods at runtime. A
-// modded entity id is "<PREFIX>-<ENTRY>" (WATCHER-ERUPTION); base and beta ids
-// never carry a registered prefix, so this cleanly tells a mod card apart and
-// lets fullCardUrl route it to the mod render tree on the CDN.
-const _modPrefixes = new Set<string>();
-export function setModPrefixes(prefixes: string[]) {
-  for (const p of prefixes) if (p) _modPrefixes.add(p.toUpperCase());
+// Mod entities are namespaced "<PREFIX>-<ENTRY>" (e.g. WATCHER-ERUPTION). The
+// prefix->mod-key map is registered from /api/mods at runtime so fullCardUrl can
+// route a modded id to that mod's engine-rendered tree on the CDN
+// (cards-full/mods/<key>/). Base and beta ids never carry a registered prefix.
+const _modPrefixKey = new Map<string, string>();
+export function setMods(mods: { key: string; id_prefix?: string | null }[]) {
+  for (const m of mods)
+    if (m.id_prefix && m.key) _modPrefixKey.set(m.id_prefix.toUpperCase(), m.key);
 }
-export function modPrefixForId(id: string | null | undefined): string | null {
+export function modKeyForId(id: string | null | undefined): string | null {
   if (!id) return null;
   const dash = id.indexOf("-");
   if (dash <= 0) return null;
-  const prefix = id.slice(0, dash).toUpperCase();
-  return _modPrefixes.has(prefix) ? prefix : null;
+  return _modPrefixKey.get(id.slice(0, dash).toUpperCase()) ?? null;
 }
 
 // The current beta version for render paths ("0.107.0" shape, no leading v).
@@ -67,11 +67,13 @@ export function fullCardUrl(
   channel: "stable" | "beta" = "stable",
   lang = "eng"
 ): string {
-  // Modded cards are baked into a single cards-full/mods/ tree (no channel or
-  // localized renders), keyed by the full namespaced id so they never collide
-  // with base/beta ids.
-  if (modPrefixForId(id)) {
-    return `${CDN_BASE}/cards-full/mods/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
+  // Modded cards live under their mod's own engine-rendered tree
+  // (cards-full/mods/<key>/), keyed by the full namespaced id so they never
+  // collide with base/beta ids. The render container produces this tree per mod.
+  const modKey = modKeyForId(id);
+  if (modKey) {
+    const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+    return `${CDN_BASE}/cards-full/mods/${modKey}/${langSeg}${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
   }
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   // Only route to a localized folder for languages we've actually rendered;

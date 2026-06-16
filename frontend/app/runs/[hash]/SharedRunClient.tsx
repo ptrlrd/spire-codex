@@ -7,7 +7,7 @@ import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { setModPrefixes } from "@/lib/image-url";
+import { setMods } from "@/lib/image-url";
 import RunSummary, { type PotionInfo } from "./RunSummary";
 import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
 
@@ -135,7 +135,7 @@ export default function SharedRunClient() {
       `${API}/api/mods`,
     ).then(({ mods }) => {
       if (cancelled || !mods?.length) return;
-      setModPrefixes(mods.map((m) => m.id_prefix || "").filter(Boolean));
+      setMods(mods);
       const runStr = JSON.stringify(run);
       const used = mods.filter((m) => m.id_prefix && runStr.includes(`${m.id_prefix}-`));
       for (const mod of used) {

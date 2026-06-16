@@ -1,0 +1,43 @@
+# Headless mod-card render. Build the image, then run with the env + volumes below.
+# The image bundles a licensed game install at runtime — keep it private.
+services:
+  render:
+    build:
+      context: ..
+      dockerfile: render-container/Dockerfile
+    image: spire-codex/mod-render:local
+    environment:
+      # Steam account that OWNS the game (use a dedicated throwaway, never the main).
+      STEAM_USER: "${STEAM_USER}"
+      STEAM_PASS: "${STEAM_PASS}"
+      STEAM_GUARD: "${STEAM_GUARD:-}"        # one-time 2FA code on first run
+      STEAM_BETA: "${STEAM_BETA:-public-beta}"
+      # Which mod + which cards.
+      MOD_ID: "${MOD_ID:-watcher}"           # content mod id; CDN prefix cards-full/mods/<MOD_ID>/
+      RENDER_PREFIX: "${RENDER_PREFIX:-WATCHER-}"  # render ONLY ids with this prefix (the mod's cards)
+      RENDER_CARDS: "${RENDER_CARDS:-all}"
+      RENDER_LANGS: "${RENDER_LANGS:-}"       # empty = English only
+      RENDER_ENCH: "${RENDER_ENCH:-0}"
+      RENDER_TIMEOUT: "${RENDER_TIMEOUT:-3600}"
+      # Upload (off by default; produces the local webp tree otherwise).
+      DO_UPLOAD: "${DO_UPLOAD:-0}"
+      R2_BUCKET: "${R2_BUCKET:-spire-codex}"
+      AWS_PROFILE_NAME: "${AWS_PROFILE_NAME:-r2}"
+    volumes:
+      # Prebuilt content mods to load: must include BaseLib/ and the content mod
+      # (e.g. WatcherMod/). The RenderExporter mod is baked into the image.
+      - ./mods:/mods:ro
+      # Persist Steam auth (Steam Guard sentry) so reruns don't re-prompt.
+      - steam-data:/home/steam/Steam
+      - steam-config:/home/steam/.steam
+      # Render outputs.
+      - ./out:/out
+      - ./out_webp:/out_webp
+      # R2 creds for the upload (an [r2] profile). Only needed when DO_UPLOAD=1.
+      - ${HOME}/.aws:/home/steam/.aws:ro
+    # Software rendering is CPU-heavy; give it cores + memory.
+    shm_size: "1gb"
+
+volumes:
+  steam-data:
+  steam-config:

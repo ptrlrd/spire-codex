@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl, setModPrefixes } from "@/lib/image-url";
+import { imageUrl, fullCardUrl, setMods } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import { LiveEventPanel, LiveShopPanel } from "../LiveEventShop";
 import {
@@ -307,7 +307,7 @@ export default function LivePlayerClient() {
         `${API}/api/mods`,
       ).catch(() => ({ mods: [] as { key: string; id_prefix?: string }[] }));
       if (mods?.length) {
-        setModPrefixes(mods.map((m) => m.id_prefix || "").filter(Boolean));
+        setMods(mods);
         await Promise.all(
           mods.map(async (mod) => {
             const [mc, mr, mp] = await Promise.all([

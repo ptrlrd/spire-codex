@@ -9,7 +9,7 @@
       "raw_base": "https://raw.githubusercontent.com/lamali292/WatcherMod/main/Watcher/images",
       "ext": "png",
       "id_prefix": "WATCHER",
-      "color": "necrobinder",
+      "color": "colorless",
       "langs": ["eng", "deu", "ita", "jpn", "kor", "rus", "zhs"],
       "paths": {
         "cards": "card_portraits",

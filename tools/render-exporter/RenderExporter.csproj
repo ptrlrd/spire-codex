@@ -1,0 +1,45 @@
+<Project Sdk="Godot.NET.Sdk/4.5.1">
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <ImplicitUsings>true</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GodotDisabledSourceGenerators>GodotPluginsInitializer</GodotDisabledSourceGenerators>
+        <RootNamespace>RenderExporter</RootNamespace>
+        <!-- MSB3270: mods build MSIL for all platforms. -->
+        <NoWarn>$(NoWarn);MSB3270</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- StS2 + Harmony reference assemblies, so the mod compiles with no local
+             game install. The game supplies the real assemblies at runtime; nothing
+             here is bundled into the mod dll. -->
+        <PackageReference Include="Book.StS2.RefLib" Version="*" GeneratePathProperty="true">
+            <ExcludeAssets>all</ExcludeAssets>
+            <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <Reference Include="sts2">
+            <HintPath>$(PkgBook_StS2_RefLib)/ref/net9.0/sts2.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>$(PkgBook_StS2_RefLib)/ref/net9.0/0Harmony.dll</HintPath>
+            <Private>false</Private>
+        </Reference>
+        <!-- The card upgrade/enchant mutators (UpgradeInternal / EnchantInternal /
+             EnchantmentModel.ModifyCard) are internal; publicize the game assembly so
+             the exporter can call them directly, the same way the Watcher mod does. -->
+        <PackageReference Include="Krafs.Publicizer" Version="2.2.1" PrivateAssets="all" />
+        <Publicize Include="sts2" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <!-- Pinned, not floating: .NET refuses to load a BaseLib older than the one
+             compiled against, so compile against the lowest BaseLib we support. -->
+        <PackageReference Include="Alchyr.Sts2.BaseLib" Version="[3.2.0]" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="RenderExporter.json" />
+    </ItemGroup>
+</Project>

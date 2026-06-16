@@ -7,7 +7,7 @@
     "rarity": "Rare",
     "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
     "rarity_key": "Rare",
-    "pool": "necrobinder",
+    "pool": "colorless",
     "compendium_order": 0
   },
   {
@@ -18,7 +18,7 @@
     "rarity": "Uncommon",
     "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
     "rarity_key": "Uncommon",
-    "pool": "necrobinder",
+    "pool": "colorless",
     "compendium_order": 1
   },
   {
@@ -29,7 +29,7 @@
     "rarity": "Common",
     "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
     "rarity_key": "Common",
-    "pool": "necrobinder",
+    "pool": "colorless",
     "compendium_order": 2
   },
   {
@@ -40,7 +40,7 @@
     "rarity": "Uncommon",
     "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
     "rarity_key": "Uncommon",
-    "pool": "necrobinder",
+    "pool": "colorless",
     "compendium_order": 3
   }
 ]
