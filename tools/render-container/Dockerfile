@@ -36,7 +36,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # steamcmd lives in the non-free/i386 world; enable i386 for its bootstrap libs.
 RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates curl tar lib32gcc-s1 \
-        xvfb \
+        xvfb xauth \
         libgl1-mesa-dri mesa-vulkan-drivers libglu1-mesa \
         libfontconfig1 libxi6 libxcursor1 libxrandr2 libxinerama1 libasound2 \
         webp \
