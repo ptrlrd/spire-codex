@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "仙馔密酒",
+    "description": "进入[gold]神格[/gold]姿态。",
+    "description_raw": "进入[gold]神格[/gold]姿态。",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "平静药水",
+    "description": "进入[gold]平静[/gold]姿态。",
+    "description_raw": "进入[gold]平静[/gold]姿态。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "愤怒药水",
+    "description": "进入[gold]愤怒[/gold]姿态。",
+    "description_raw": "进入[gold]愤怒[/gold]姿态。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "瓶装奇迹",
+    "description": "将[blue]X[/blue]张[gold]奇迹[/gold]加入手牌。",
+    "description_raw": "将[blue]{Cards:diff()}[/blue]张[gold]奇迹[/gold]加入手牌。",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "병에 담긴 기적",
+    "description": "X장의 [blue]기적[/blue]을 손에 추가한다.",
+    "description_raw": "{Cards:diff()}장의 [blue]기적[/blue]을 손에 추가한다.",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "병에 담긴 기적 ",
+    "description": "[blue]명상[/blue]합니다。",
+    "description_raw": "[blue]명상[/blue]합니다。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "암브로시아",
+    "description": "[blue]강림[/blue]에 진입한다。",
+    "description_raw": "[blue]강림[/blue]에 진입한다。",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "진노의 물약 ",
+    "description": "[blue]진노[/blue]에 진입한다。",
+    "description_raw": "[blue]진노[/blue]에 진입한다。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

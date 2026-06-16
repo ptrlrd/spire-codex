@@ -1,0 +1,3860 @@
+[
+  {
+    "id": "WATCHER-FEAR_NO_EVIL",
+    "name": "不惧妖邪",
+    "description": "造成8点伤害。\n如果目标敌人的意图是攻击，则进入[gold]平静[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果目标敌人的意图是攻击，则进入[gold]平静[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fear_no_evil.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成11点伤害。\n如果目标敌人的意图是攻击，则进入[gold]平静[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 30
+  },
+  {
+    "id": "WATCHER-INDIGNATION",
+    "name": "义愤填膺",
+    "description": "如果你处于[gold]愤怒[/gold]，给予所有敌人3层[gold]易伤[/gold]，否则进入[gold]愤怒[/gold]。",
+    "description_raw": "如果你处于[gold]愤怒[/gold]，给予所有敌人{VulnerablePower:diff()}层[gold]易伤[/gold]，否则进入[gold]愤怒[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 3,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VulnerablePower": 3,
+      "Vulnerable": 3
+    },
+    "upgrade": {
+      "vulnerable": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/indignation.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "如果你处于[gold]愤怒[/gold]，给予所有敌人5层[gold]易伤[/gold]，否则进入[gold]愤怒[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 33
+  },
+  {
+    "id": "WATCHER-PROSTRATE",
+    "name": "五体投地",
+    "description": "获得2层[gold]真言[/gold]。\n获得4点[gold]格挡[/gold]。",
+    "description_raw": "获得{MantraPower:diff()}层[gold]真言[/gold]。\n获得{Block:diff()}点[gold]格挡[/gold]。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 2,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4,
+      "MantraPower": 2,
+      "Mantra": 2
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/prostrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得3层[gold]真言[/gold]。\n获得4点[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 18
+  },
+  {
+    "id": "WATCHER-FOREIGN_INFLUENCE",
+    "name": "他山之石",
+    "description": "从3张任意颜色的攻击牌中选择1张加入你的手牌。",
+    "description_raw": "从3张任意颜色的攻击牌中选择1张加入你的手牌。{IfUpgraded:show:\n这张牌在本回合耗能变为0{energyPrefix:energyIcons(1)}。|}",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/foreign_influence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "从3张任意颜色的攻击牌中选择1张加入你的手牌。\n这张牌在本回合耗能变为0[energy:1]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 31
+  },
+  {
+    "id": "WATCHER-TALK_TO_THE_HAND",
+    "name": "以手拒之",
+    "description": "造成5点伤害。\n每当目标敌人受到攻击时，你获得2点[gold]格挡[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n每当目标敌人受到攻击时，你获得{BlockReturnPower:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BlockReturn",
+        "amount": 2,
+        "power_key": "BlockReturn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5,
+      "BlockReturnPower": 2,
+      "BlockReturn": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "blockreturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/talk_to_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成7点伤害。\n每当目标敌人受到攻击时，你获得3点[gold]格挡[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 50
+  },
+  {
+    "id": "WATCHER-THROUGH_VIOLENCE",
+    "name": "以暴易暴",
+    "description": "造成20点伤害。",
+    "description_raw": "造成{Damage:diff()}点伤害。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/through_violence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成30点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 89
+  },
+  {
+    "id": "WATCHER-CONSECRATE",
+    "name": "供奉",
+    "description": "对所有敌人造成5点伤害。",
+    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/consecrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "对所有敌人造成8点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 5
+  },
+  {
+    "id": "WATCHER-HALT",
+    "name": "停顿",
+    "description": "获得3点[gold]格挡[/gold]。\n如果你处于[gold]愤怒[/gold]，\n获得9点额外[gold]格挡[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果你处于[gold]愤怒[/gold]，\n获得{WrathBlock:diff()}点额外[gold]格挡[/gold]。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WrathBlock": 9,
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1",
+      "wrathblock": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/halt.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得4点[gold]格挡[/gold]。\n如果你处于[gold]愤怒[/gold]，\n获得14点额外[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 15
+  },
+  {
+    "id": "WATCHER-FORESIGHT",
+    "name": "先见之明",
+    "description": "在你的回合开始时，[gold]预见[/gold]3。",
+    "description_raw": "在你的回合开始时，[gold]预见[/gold]{ForesightPower:diff()}。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Foresight",
+        "amount": 3,
+        "power_key": "Foresight"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "ForesightPower": 3,
+      "Foresight": 3
+    },
+    "upgrade": {
+      "foresight": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/foresight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的回合开始时，[gold]预见[/gold]4。",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 32
+  },
+  {
+    "id": "WATCHER-BRILLIANCE",
+    "name": "光辉",
+    "description": "造成12点伤害。\n额外造成本场战斗中获得的[gold]真言[/gold]总层数的伤害。",
+    "description_raw": "造成{CalculatedDamage:diff()}点伤害。\n额外造成本场战斗中获得的[gold]真言[/gold]总层数的伤害。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12,
+      "CalculatedDamage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/brilliance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 61
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_RARE",
+    "name": "共享智慧",
+    "description": "另一名玩家进入[gold]神格[/gold]。",
+    "description_raw": "另一名玩家进入[gold]神格[/gold]。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyAlly",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_rare.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "compendium_order": 70
+  },
+  {
+    "id": "WATCHER-INNER_PEACE",
+    "name": "内心宁静",
+    "description": "如果你处于[gold]平静[/gold]，抽3张牌，否则进入[gold]平静[/gold]。",
+    "description_raw": "如果你处于[gold]平静[/gold]，抽{Cards:diff()}张牌，否则进入[gold]平静[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 3
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/inner_peace.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "如果你处于[gold]平静[/gold]，抽4张牌，否则进入[gold]平静[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 34
+  },
+  {
+    "id": "WATCHER-MEDITATE",
+    "name": "冥想",
+    "description": "将[gold]弃牌堆[/gold]中的1张牌放入你的手牌，并将其[gold]保留[/gold]。\n进入[gold]平静[/gold]。\n结束你的回合。",
+    "description_raw": "将[gold]弃牌堆[/gold]中的{Cards:diff()}张牌放入你的手牌，并将其[gold]保留[/gold]。\n进入[gold]平静[/gold]。\n结束你的回合。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 1
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/meditate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "将[gold]弃牌堆[/gold]中的2张牌放入你的手牌，并将其[gold]保留[/gold]。\n进入[gold]平静[/gold]。\n结束你的回合。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 36
+  },
+  {
+    "id": "WATCHER-LESSON_LEARNED",
+    "name": "勤学精进",
+    "description": "造成10点伤害。\n[gold]斩杀[/gold]时，[gold]升级[/gold]你牌组中的一张随机牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n[gold]斩杀[/gold]时，[gold]升级[/gold]你牌组中的一张随机牌。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/lesson_learned.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成13点伤害。\n[gold]斩杀[/gold]时，[gold]升级[/gold]你牌组中的一张随机牌。",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 68
+  },
+  {
+    "id": "WATCHER-EMPTY_BODY",
+    "name": "化体为空",
+    "description": "获得7点[gold]格挡[/gold]。\n退出当前[gold]姿态[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n退出当前[gold]姿态[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_body.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n退出当前[gold]姿态[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 9
+  },
+  {
+    "id": "WATCHER-EMPTY_FIST",
+    "name": "化拳为空",
+    "description": "造成9点伤害。\n退出当前[gold]姿态[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n退出当前[gold]姿态[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_fist.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成14点伤害。\n退出当前[gold]姿态[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 10
+  },
+  {
+    "id": "WATCHER-EMPTY_MIND",
+    "name": "化智为空",
+    "description": "抽2张牌。\n退出当前[gold]姿态[/gold]。",
+    "description_raw": "抽{Cards:diff()}张牌。\n退出当前[gold]姿态[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_mind.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "抽3张牌。\n退出当前[gold]姿态[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 28
+  },
+  {
+    "id": "WATCHER-TANTRUM",
+    "name": "发泄",
+    "description": "造成3点伤害3次。\n进入[gold]愤怒[/gold]。\n将这张牌放入你的[gold]抽牌堆[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害{Repeat:diff()}次。\n进入[gold]愤怒[/gold]。\n将这张牌放入你的[gold]抽牌堆[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 3,
+      "Damage": 3
+    },
+    "upgrade": {
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/tantrum.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成3点伤害4次。\n进入[gold]愤怒[/gold]。\n将这张牌放入你的[gold]抽牌堆[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 51
+  },
+  {
+    "id": "WATCHER-FAME_AND_FORTUNE",
+    "name": "名利双收",
+    "description": "获得25[gold]金币[/gold]。",
+    "description_raw": "获得{Gold:diff()}[gold]金币[/gold]。",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25
+    },
+    "upgrade": {
+      "gold": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fame_and_fortune.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得30[gold]金币[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "compendium_order": 82
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD2",
+    "name": "启示",
+    "description": "造成12点伤害。\n进入[gold]神格[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n进入[gold]神格[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Ancient",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card2.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 78
+  },
+  {
+    "id": "WATCHER-WHEEL_KICK",
+    "name": "回环踢",
+    "description": "造成15点伤害。\n抽2张牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n抽{Cards:diff()}张牌。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 15,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 15,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wheel_kick.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成20点伤害。\n抽2张牌。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 55
+  },
+  {
+    "id": "WATCHER-SANCTITY",
+    "name": "圣洁",
+    "description": "获得6点[gold]格挡[/gold]。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，抽2张牌。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，抽2张牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6,
+      "Cards": 2
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sanctity.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，抽2张牌。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 44
+  },
+  {
+    "id": "WATCHER-PERSEVERANCE",
+    "name": "坚韧",
+    "description": "获得5点[gold]格挡[/gold]。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的[gold]格挡[/gold]增加2点。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的[gold]格挡[/gold]增加{Increase:diff()}点。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5,
+      "Increase": 2
+    },
+    "upgrade": {
+      "block": "+2",
+      "increase": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/perseverance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的[gold]格挡[/gold]增加3点。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 40
+  },
+  {
+    "id": "WATCHER-DEVA_FORM",
+    "name": "天人形态",
+    "description": "在你的回合开始时获得{energyPrefix:energyIcons(1),每回合增加1。",
+    "description_raw": "在你的回合开始时获得{energyPrefix:energyIcons(1),每回合增加1。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Deva",
+        "amount": 1,
+        "power_key": "Deva"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1,
+      "DevaPower": 1,
+      "Deva": 1
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/deva_form.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 64
+  },
+  {
+    "id": "WATCHER-THIRD_EYE",
+    "name": "天眼",
+    "description": "获得7点[gold]格挡[/gold]。\n[gold]预见[/gold]3。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n[gold]预见[/gold]{Cards:diff()}。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7,
+      "Cards": 3
+    },
+    "upgrade": {
+      "block": "+2",
+      "cards": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/third_eye.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得9点[gold]格挡[/gold]。\n[gold]预见[/gold]5。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 21
+  },
+  {
+    "id": "WATCHER-MIRACLE",
+    "name": "奇迹",
+    "description": "获得[energy:1]。",
+    "description_raw": "获得{Energy:energyIcons()}。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1
+    },
+    "upgrade": {
+      "energy": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/miracle.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得[energy:2]。",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 85
+  },
+  {
+    "id": "WATCHER-LIKE_WATER",
+    "name": "如水",
+    "description": "在你的回合结束时，如果你处于[gold]平静[/gold]，获得5点[gold]格挡[/gold]。",
+    "description_raw": "在你的回合结束时，如果你处于[gold]平静[/gold]，获得{LikeWaterPower:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "LikeWater",
+        "amount": 5,
+        "power_key": "LikeWater"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "LikeWaterPower": 5,
+      "LikeWater": 5
+    },
+    "upgrade": {
+      "likewater": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/like_water.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的回合结束时，如果你处于[gold]平静[/gold]，获得7点[gold]格挡[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 35
+  },
+  {
+    "id": "WATCHER-TRANQUILITY",
+    "name": "安宁",
+    "description": "进入[gold]平静[/gold]。",
+    "description_raw": "进入[gold]平静[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/tranquility.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 22
+  },
+  {
+    "id": "WATCHER-JUDGMENT",
+    "name": "审判",
+    "description": "如果目标敌人的生命值小于等于30点，设置其生命值为0。",
+    "description_raw": "如果目标敌人的生命值小于等于{DamageThreshold:diff()}点，设置其生命值为0。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DamageThreshold": 30
+    },
+    "upgrade": {
+      "damagethreshold": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/judgment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "如果目标敌人的生命值小于等于40点，设置其生命值为0。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 67
+  },
+  {
+    "id": "WATCHER-SAFETY",
+    "name": "平安",
+    "description": "获得12点[gold]格挡[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/safety.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得16点[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 87
+  },
+  {
+    "id": "WATCHER-JUST_LUCKY",
+    "name": "幸运一击",
+    "description": "[gold]预见[/gold]1。\n获得2点[gold]格挡[/gold]。\n造成3点伤害。",
+    "description_raw": "[gold]预见[/gold]{Cards:diff()}。\n获得{Block:diff()}点[gold]格挡[/gold]。\n造成{Damage:diff()}点伤害。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": 2,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 3,
+      "Block": 2,
+      "Cards": 1
+    },
+    "upgrade": {
+      "damage": "+1",
+      "block": "+1",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/just_lucky.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]预见[/gold]2。\n获得3点[gold]格挡[/gold]。\n造成4点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 16
+  },
+  {
+    "id": "WATCHER-WALLOP",
+    "name": "当头棒喝",
+    "description": "造成9点伤害。\n获得与所造成的未被格挡的伤害相等的[gold]格挡[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n获得与所造成的未被格挡的伤害相等的[gold]格挡[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wallop.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成12点伤害。\n获得与所造成的未被格挡的伤害相等的[gold]格挡[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 52
+  },
+  {
+    "id": "WATCHER-MENTAL_FORTRESS",
+    "name": "心灵堡垒",
+    "description": "每当你转换[gold]姿态[/gold]时，获得4点[gold]格挡[/gold]。",
+    "description_raw": "每当你转换[gold]姿态[/gold]时，获得{MentalFortressPower:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MentalFortress",
+        "amount": 4,
+        "power_key": "MentalFortress"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MentalFortressPower": 4,
+      "MentalFortress": 4
+    },
+    "upgrade": {
+      "mentalfortress": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/mental_fortress.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "每当你转换[gold]姿态[/gold]时，获得6点[gold]格挡[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 37
+  },
+  {
+    "id": "WATCHER-SIMMERING_FURY",
+    "name": "怒火中烧",
+    "description": "在你的下个回合开始时，进入[gold]愤怒[/gold]并抽2张牌。",
+    "description_raw": "在你的下个回合开始时，进入[gold]愤怒[/gold]并抽{DrawCardsNextTurnPower:diff()}张牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "DrawCardsNextTurn",
+        "amount": 2,
+        "power_key": "DrawCardsNextTurn"
+      },
+      {
+        "power": "SimmeringRage",
+        "amount": 1,
+        "power_key": "SimmeringRage"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DrawCardsNextTurnPower": 2,
+      "DrawCardsNextTurn": 2,
+      "SimmeringRagePower": 1,
+      "SimmeringRage": 1
+    },
+    "upgrade": {
+      "drawcardsnextturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/simmering_fury.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的下个回合开始时，进入[gold]愤怒[/gold]并抽3张牌。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 47
+  },
+  {
+    "id": "WATCHER-SMITE",
+    "name": "惩恶",
+    "description": "造成12点伤害。",
+    "description_raw": "造成{Damage:diff()}点伤害。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/smite.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成16点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 88
+  },
+  {
+    "id": "WATCHER-BATTLE_HYMN",
+    "name": "战歌",
+    "description": "在每回合开始时，将一张[gold]惩恶[/gold]加入你的手牌。",
+    "description_raw": "在每回合开始时，将一张[gold]惩恶[/gold]加入你的手牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BattleHymn",
+        "amount": 1,
+        "power_key": "BattleHymn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BattleHymnPower": 1,
+      "BattleHymn": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/battle_hymn.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 23
+  },
+  {
+    "id": "WATCHER-STRIKE_WATCHER",
+    "name": "打击",
+    "description": "造成6点伤害。",
+    "description_raw": "造成{Damage:diff()}点伤害。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/strike_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成9点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-PROTECT",
+    "name": "护身",
+    "description": "获得12点[gold]格挡[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/protect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得16点[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 19
+  },
+  {
+    "id": "WATCHER-SIGNATURE_MOVE",
+    "name": "招牌技",
+    "description": "只有当这张牌是你手中唯一的一张攻击牌时才可以被打出。\n造成30点伤害。",
+    "description_raw": "只有当这张牌是你手中唯一的一张攻击牌时才可以被打出。\n造成{Damage:diff()}点伤害。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 30,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 30
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/signature_move.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "只有当这张牌是你手中唯一的一张攻击牌时才可以被打出。\n造成40点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 46
+  },
+  {
+    "id": "WATCHER-WAVE_OF_THE_HAND",
+    "name": "摆手",
+    "description": "在本回合，你每次获得[gold]格挡[/gold]时，给予所有敌人1层[gold]虚弱[/gold]。",
+    "description_raw": "在本回合，你每次获得[gold]格挡[/gold]时，给予所有敌人{WaveOfTheHandPower:diff()}层[gold]虚弱[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "WaveOfTheHand",
+        "amount": 1,
+        "power_key": "WaveOfTheHand"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WaveOfTheHandPower": 1,
+      "WaveOfTheHand": 1
+    },
+    "upgrade": {
+      "waveofthehand": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wave_of_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在本回合，你每次获得[gold]格挡[/gold]时，给予所有敌人2层[gold]虚弱[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 53
+  },
+  {
+    "id": "WATCHER-MASTER_REALITY",
+    "name": "操控现实",
+    "description": "所有在战斗中临时增加的牌将被[gold]升级[/gold]。",
+    "description_raw": "所有在战斗中临时增加的牌将被[gold]升级[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MasterReality",
+        "amount": 1,
+        "power_key": "MasterReality"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MasterRealityPower": 1,
+      "MasterReality": 1
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/master_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 69
+  },
+  {
+    "id": "WATCHER-COLLECT",
+    "name": "收集",
+    "description": "在你的下X个回合开始时，\n增加一张[gold]奇迹+[/gold]到你的手牌。",
+    "description_raw": "在你的下{IfUpgraded:show:X+1|X}个回合开始时，\n增加一张[gold]奇迹+[/gold]到你的手牌。",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/collect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的下X+1个回合开始时，\n增加一张[gold]奇迹+[/gold]到你的手牌。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 25
+  },
+  {
+    "id": "WATCHER-CARVE_REALITY",
+    "name": "改造现实",
+    "description": "造成6点伤害。\n将一张[gold]惩恶[/gold]加入你的手牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n将一张[gold]惩恶[/gold]加入你的手牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/carve_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成10点伤害。\n将一张[gold]惩恶[/gold]加入你的手牌。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 24
+  },
+  {
+    "id": "WATCHER-WORSHIP",
+    "name": "敬拜",
+    "description": "获得5层[gold]真言[/gold]。",
+    "description_raw": "获得5层[gold]真言[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 5,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 5,
+      "Mantra": 5
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/worship.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 57
+  },
+  {
+    "id": "WATCHER-FASTING",
+    "name": "斋戒",
+    "description": "获得3点[gold]力量[/gold]，\n获得3点[gold]敏捷[/gold]，\n每回合开始时少获得[energy:1]。",
+    "description_raw": "获得{StrengthPower:diff()}点[gold]力量[/gold]，\n获得{DexterityPower:diff()}点[gold]敏捷[/gold]，\n每回合开始时少获得{energyPrefix:energyIcons(1)}。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "Dexterity",
+        "amount": 3,
+        "power_key": "Dexterity"
+      },
+      {
+        "power": "Fasting",
+        "amount": 1,
+        "power_key": "Fasting"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3,
+      "DexterityPower": 3,
+      "Dexterity": 3,
+      "FastingPower": 1,
+      "Fasting": 1
+    },
+    "upgrade": {
+      "strength": "+1",
+      "dexterity": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fasting.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得4点[gold]力量[/gold]，\n获得4点[gold]敏捷[/gold]，\n每回合开始时少获得[energy:1]。",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 29
+  },
+  {
+    "id": "WATCHER-CUT_THROUGH_FATE",
+    "name": "斩破命运",
+    "description": "造成7点伤害。\n[gold]预见[/gold]2。\n抽1张牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n[gold]预见[/gold]{Cards:diff()}。\n抽1张牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/cut_through_fate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成9点伤害。\n[gold]预见[/gold]3。\n抽1张牌。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 8
+  },
+  {
+    "id": "WATCHER-SWIVEL",
+    "name": "旋身",
+    "description": "获得8点[gold]格挡[/gold]。\n你打出的下一张攻击牌耗能变为0[energy:1]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n你打出的下一张攻击牌耗能变为0{energyPrefix:energyIcons(1)}。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "FreeAttack",
+        "amount": 1,
+        "power_key": "FreeAttack"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8,
+      "FreeAttackPower": 1,
+      "FreeAttack": 1
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/swivel.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得11点[gold]格挡[/gold]。\n你打出的下一张攻击牌耗能变为0[energy:1]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 49
+  },
+  {
+    "id": "WATCHER-WINDMILL_STRIKE",
+    "name": "旋转打击",
+    "description": "造成7点伤害。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的伤害增加4点。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的伤害增加{RetainIncrease:diff()}点。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "RetainIncrease": 4
+    },
+    "upgrade": {
+      "damage": "+3",
+      "retainincrease": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/windmill_strike.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成10点伤害。\n每当这张牌被[gold]保留[/gold]时，将其在本场战斗的伤害增加5点。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 56
+  },
+  {
+    "id": "WATCHER-BECOME_ALMIGHTY",
+    "name": "无所不能",
+    "description": "获得3点[gold]力量[/gold]。",
+    "description_raw": "获得{StrengthPower:diff()}点[gold]力量[/gold]。",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3
+    },
+    "upgrade": {
+      "strength": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/become_almighty.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得4点[gold]力量[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 79
+  },
+  {
+    "id": "WATCHER-SANDS_OF_TIME",
+    "name": "时之沙",
+    "description": "造成20点伤害。\n当这张牌被[gold]保留[/gold]时，将其在本场战斗的耗能减少1[energy:1]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n当这张牌被[gold]保留[/gold]时，将其在本场战斗的耗能减少1{energyPrefix:energyIcons(1)}。",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sands_of_time.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成26点伤害。\n当这张牌被[gold]保留[/gold]时，将其在本场战斗的耗能减少1[energy:1]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 45
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_UNCOMMON",
+    "name": "昙花一悟",
+    "description": "所有盟友进入[gold]平静[/gold]。\n他们在下一回合开始时退出[gold]平静[/gold]。",
+    "description_raw": "所有盟友进入[gold]平静[/gold]。\n他们在下一回合开始时退出[gold]平静[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllAllies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MultiplayerCardUncommon",
+        "amount": 1,
+        "power_key": "MultiplayerCardUncommon"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MultiplayerCardUncommonPower": 1,
+      "MultiplayerCardUncommon": 1
+    },
+    "upgrade": {
+      "remove_exhaust": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_uncommon.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 38
+  },
+  {
+    "id": "WATCHER-ERUPTION",
+    "name": "暴怒",
+    "description": "造成9点伤害。\n进入[gold]愤怒[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n进入[gold]愤怒[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/eruption.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-DEUS_EX_MACHINA",
+    "name": "机械降神",
+    "description": "当你抽到这张牌时，在你的手牌中加入2张[gold]奇迹[/gold]并[gold]消耗[/gold]。",
+    "description_raw": "当你抽到这张牌时，在你的手牌中加入{Cards:diff()}张[gold]奇迹[/gold]并[gold]消耗[/gold]。",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unplayable"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deus_ex_machina.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "当你抽到这张牌时，在你的手牌中加入3张[gold]奇迹[/gold]并[gold]消耗[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 63
+  },
+  {
+    "id": "WATCHER-OMEGA",
+    "name": "欧米伽",
+    "description": "在你的回合结束时，对所有敌人造成50点伤害。",
+    "description_raw": "在你的回合结束时，对所有敌人造成{OmegaPower:diff()}点伤害。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Omega",
+        "amount": 50,
+        "power_key": "Omega"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "OmegaPower": 50,
+      "Omega": 50
+    },
+    "upgrade": {
+      "omega": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/omega.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的回合结束时，对所有敌人造成60点伤害。",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 86
+  },
+  {
+    "id": "WATCHER-DECEIVE_REALITY",
+    "name": "欺瞒现实",
+    "description": "获得4点[gold]格挡[/gold]。\n将一张[gold]平安[/gold]加入你的手牌。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n将一张[gold]平安[/gold]加入你的手牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deceive_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得7点[gold]格挡[/gold]。\n将一张[gold]平安[/gold]加入你的手牌。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 27
+  },
+  {
+    "id": "WATCHER-INSIGHT",
+    "name": "洞见",
+    "description": "抽2张牌。",
+    "description_raw": "抽{Cards:diff()}张牌。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/insight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "抽3张牌。",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 83
+  },
+  {
+    "id": "WATCHER-FLYING_SLEEVES",
+    "name": "流云飞袖",
+    "description": "造成4点伤害两次。",
+    "description_raw": "造成{Damage:diff()}点伤害两次。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": 2,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flying_sleeves.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成6点伤害两次。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 13
+  },
+  {
+    "id": "WATCHER-NIRVANA",
+    "name": "涅槃",
+    "description": "你每次[gold]预见[/gold]时，获得3点[gold]格挡[/gold]。",
+    "description_raw": "你每次[gold]预见[/gold]时，获得{NirvanaPower:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Nirvana",
+        "amount": 3,
+        "power_key": "Nirvana"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "NirvanaPower": 3,
+      "Nirvana": 3
+    },
+    "upgrade": {
+      "nirvana": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/nirvana.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "你每次[gold]预见[/gold]时，获得4点[gold]格挡[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 39
+  },
+  {
+    "id": "WATCHER-BLASPHEMY",
+    "name": "渎神",
+    "description": "进入[gold]神格[/gold]。\n在下回合死亡。",
+    "description_raw": "进入[gold]神格[/gold]。\n在下回合死亡。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Blasphemer",
+        "amount": 1,
+        "power_key": "Blasphemer"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BlasphemerPower": 1,
+      "Blasphemer": 1
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/blasphemy.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 60
+  },
+  {
+    "id": "WATCHER-CRESCENDO",
+    "name": "渐强",
+    "description": "进入[gold]愤怒[/gold]。",
+    "description_raw": "进入[gold]愤怒[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/crescendo.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 6
+  },
+  {
+    "id": "WATCHER-SCRAWL_WATCHER",
+    "name": "潦草急就",
+    "description": "抽牌直到将手牌抽满。",
+    "description_raw": "抽牌直到将手牌抽满。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/scrawl_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 73
+  },
+  {
+    "id": "WATCHER-WREATH_OF_FLAME",
+    "name": "火焰纹",
+    "description": "你的下一张攻击牌额外造成5点伤害。",
+    "description_raw": "你的下一张攻击牌额外造成{VigorPower:diff()}点伤害。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vigor",
+        "amount": 5,
+        "power_key": "Vigor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VigorPower": 5,
+      "Vigor": 5
+    },
+    "upgrade": {
+      "vigor": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wreath_of_flame.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "你的下一张攻击牌额外造成8点伤害。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 58
+  },
+  {
+    "id": "WATCHER-EXPUNGER",
+    "name": "灭除之刃",
+    "description": "造成9点伤害X次。",
+    "description_raw": "造成{Damage:diff()}点伤害{Repeat:cond:<0?X|{Repeat:diff()}}次。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/expunger.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成15点伤害X次。",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "compendium_order": 81
+  },
+  {
+    "id": "WATCHER-PRESSURE_POINTS",
+    "name": "点穴",
+    "description": "给予8层[gold]印记[/gold]。\n所有敌人失去与[gold]印记[/gold]\n层数相等的生命。",
+    "description_raw": "给予{MarkPower:diff()}层[gold]印记[/gold]。\n所有敌人失去与[gold]印记[/gold]\n层数相等的生命。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mark",
+        "amount": 8,
+        "power_key": "Mark"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MarkPower": 8,
+      "Mark": 8
+    },
+    "upgrade": {
+      "mark": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pressure_points.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "给予11层[gold]印记[/gold]。\n所有敌人失去与[gold]印记[/gold]\n层数相等的生命。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 17
+  },
+  {
+    "id": "WATCHER-RUSHDOWN",
+    "name": "猛虎下山",
+    "description": "每当你进入[gold]愤怒[/gold]时，抽2张牌。",
+    "description_raw": "每当你进入[gold]愤怒[/gold]时，抽2张牌。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Rushdown",
+        "amount": 2,
+        "power_key": "Rushdown"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "RushdownPower": 2,
+      "Rushdown": 2
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/rushdown.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 43
+  },
+  {
+    "id": "WATCHER-FLURRY_OF_BLOWS",
+    "name": "疾风连击",
+    "description": "造成4点伤害。\n你每次转换[gold]姿态[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的[gold]手牌[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n你每次转换[gold]姿态[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的[gold]手牌[/gold]。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flurry_of_blows.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成6点伤害。\n你每次转换[gold]姿态[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的[gold]手牌[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 12
+  },
+  {
+    "id": "WATCHER-STUDY",
+    "name": "研习",
+    "description": "在你的回合结束时，在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "description_raw": "在你的回合结束时，在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Study",
+        "amount": 1,
+        "power_key": "Study"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StudyPower": 1,
+      "Study": 1
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/study.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
+  },
+  {
+    "id": "WATCHER-ESTABLISHMENT",
+    "name": "确立基础",
+    "description": "每当有卡牌被[gold]保留[/gold]时，将其在本场战斗的耗能减少1[energy:1]。",
+    "description_raw": "每当有卡牌被[gold]保留[/gold]时，将其在本场战斗的耗能减少1{energyPrefix:energyIcons(1)}。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Establishment",
+        "amount": 1,
+        "power_key": "Establishment"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "EstablishmentPower": 1,
+      "Establishment": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/establishment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 66
+  },
+  {
+    "id": "WATCHER-BOWLING_BASH",
+    "name": "碰撞连击",
+    "description": "当前每有一名敌人，造成7点伤害。",
+    "description_raw": "当前每有一名敌人，造成{Damage:diff()}点伤害。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/bowling_bash.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "当前每有一名敌人，造成10点伤害。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 4
+  },
+  {
+    "id": "WATCHER-PRAY",
+    "name": "祈祷",
+    "description": "获得3层[gold]真言[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "description_raw": "获得{MantraPower:diff()}层[gold]真言[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 3,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 3,
+      "Mantra": 3
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pray.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得4层[gold]真言[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 41
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD",
+    "name": "积累",
+    "description": "处于[gold]愤怒[/gold]时，伤害额外提高50%。",
+    "description_raw": "处于[gold]愤怒[/gold]时，伤害额外提高50%。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Ancient",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "AncientCard",
+        "amount": 50,
+        "power_key": "AncientCard"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "AncientCardPower": 50,
+      "AncientCard": 50
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 77
+  },
+  {
+    "id": "WATCHER-REACH_HEAVEN",
+    "name": "立地升天",
+    "description": "造成10点伤害。\n在你的[gold]抽牌堆[/gold]中加入1张[gold]以暴易暴[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n在你的[gold]抽牌堆[/gold]中加入1张[gold]以暴易暴[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/reach_heaven.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成15点伤害。\n在你的[gold]抽牌堆[/gold]中加入1张[gold]以暴易暴[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 42
+  },
+  {
+    "id": "WATCHER-CRUSH_JOINTS",
+    "name": "粉碎关节",
+    "description": "造成8点伤害。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，给予1层[gold]易伤[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，给予{VulnerablePower:diff()}层[gold]易伤[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "vulnerable": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/crush_joints.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成10点伤害。\n如果本场战斗中打出的上一张牌是[gold]技能牌[/gold]，给予2层[gold]易伤[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 7
+  },
+  {
+    "id": "WATCHER-SPIRIT_SHIELD",
+    "name": "精神护盾",
+    "description": "你每有一张手牌，获得3点[gold]格挡[/gold]。",
+    "description_raw": "你每有一张手牌，获得{Block:diff()}点[gold]格挡[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/spirit_shield.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "你每有一张手牌，获得4点[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 74
+  },
+  {
+    "id": "WATCHER-CONCLUDE",
+    "name": "结末",
+    "description": "对所有敌人造成12点伤害。\n结束你的回合。",
+    "description_raw": "对所有敌人造成{Damage:diff()}点伤害。\n结束你的回合。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/conclude.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "对所有敌人造成16点伤害。\n结束你的回合。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 26
+  },
+  {
+    "id": "WATCHER-CONJURE_BLADE",
+    "name": "聚能成刃",
+    "description": "将一张[gold]灭除之刃[/gold]放入你的抽牌堆中。",
+    "description_raw": "将一张{IfUpgraded:show:X数值+1的|}[gold]灭除之刃[/gold]放入你的抽牌堆中。",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/conjure_blade.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "将一张X数值+1的[gold]灭除之刃[/gold]放入你的抽牌堆中。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 62
+  },
+  {
+    "id": "WATCHER-SASH_WHIP",
+    "name": "腰带抽打",
+    "description": "造成8点伤害。\n如果本场战斗中打出的\n上一张牌是攻击牌，\n给予1层[gold]虚弱[/gold]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果本场战斗中打出的\n上一张牌是攻击牌，\n给予{WeakPower:diff()}层[gold]虚弱[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Weak",
+        "amount": 1,
+        "power_key": "Weak"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "WeakPower": 1,
+      "Weak": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "weak": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sash_whip.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成10点伤害。\n如果本场战斗中打出的\n上一张牌是攻击牌，\n给予2层[gold]虚弱[/gold]。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 20
+  },
+  {
+    "id": "WATCHER-VAULT",
+    "name": "腾跃",
+    "description": "在本回合结束后，额外获得一回合。\n结束你的回合。",
+    "description_raw": "在本回合结束后，额外获得一回合。\n结束你的回合。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vault",
+        "amount": 1,
+        "power_key": "Vault"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VaultPower": 1,
+      "Vault": 1
+    },
+    "upgrade": {
+      "cost": 2
+    },
+    "image_url": "/static/images/mods/watcher/cards/vault.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 75
+  },
+  {
+    "id": "WATCHER-DEVOTION",
+    "name": "虔信",
+    "description": "在你的回合开始时，获得2层[gold]真言[/gold]。",
+    "description_raw": "在你的回合开始时，获得{DevotionPower:diff()}层[gold]真言[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Devotion",
+        "amount": 2,
+        "power_key": "Devotion"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DevotionPower": 2,
+      "Devotion": 2
+    },
+    "upgrade": {
+      "devotion": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/devotion.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "在你的回合开始时，获得3层[gold]真言[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 65
+  },
+  {
+    "id": "WATCHER-VIGILANCE",
+    "name": "警惕",
+    "description": "获得8点[gold]格挡[/gold]。\n进入[gold]平静[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n进入[gold]平静[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/vigilance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得12点[gold]格挡[/gold]。\n进入[gold]平静[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 3
+  },
+  {
+    "id": "WATCHER-WISH_WATCHER",
+    "name": "许愿",
+    "description": "选择：\n获得6层[gold]覆甲[/gold]，\n3点[gold]力量[/gold]或25[gold]金币[/gold]。",
+    "description_raw": "选择：\n获得{PlatedArmorPower:diff()}层[gold]覆甲[/gold]，\n{StrengthPower:diff()}点[gold]力量[/gold]或{Gold:diff()}[gold]金币[/gold]。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25,
+      "StrengthPower": 3,
+      "Strength": 3,
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "gold": "+5",
+      "strength": "+1",
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wish_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "选择：\n获得8层[gold]覆甲[/gold]，\n4点[gold]力量[/gold]或30[gold]金币[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 76
+  },
+  {
+    "id": "WATCHER-EVALUATE",
+    "name": "评估",
+    "description": "获得6点[gold]格挡[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/evaluate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得10点[gold]格挡[/gold]。\n在你的抽牌堆中加入一张[gold]洞见[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 11
+  },
+  {
+    "id": "WATCHER-RAGNAROK",
+    "name": "诸神之黄昏",
+    "description": "随机对敌人造成5点伤害5次。",
+    "description_raw": "随机对敌人造成{Damage:diff()}点伤害{Repeat:diff()}次。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "RandomEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 5,
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+1",
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/ragnarok.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "随机对敌人造成6点伤害6次。",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 72
+  },
+  {
+    "id": "WATCHER-BETA",
+    "name": "贝塔",
+    "description": "在你的抽牌堆中加入一张[gold]欧米伽[/gold]。",
+    "description_raw": "在你的抽牌堆中加入一张[gold]欧米伽[/gold]。",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/beta.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 80
+  },
+  {
+    "id": "WATCHER-WEAVE",
+    "name": "迂回",
+    "description": "造成4点伤害。\n每当你[gold]预见[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的手牌。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n每当你[gold]预见[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的手牌。",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/weave.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成6点伤害。\n每当你[gold]预见[/gold]时，将这张牌从[gold]弃牌堆[/gold]放回你的手牌。",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 54
+  },
+  {
+    "id": "WATCHER-FOLLOW_UP",
+    "name": "追击",
+    "description": "造成7点伤害。\n如果打出的上一张牌是攻击牌，获得[energy:1]。",
+    "description_raw": "造成{Damage:diff()}点伤害。\n如果打出的上一张牌是攻击牌，获得{energyPrefix:energyIcons(1)}。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Energy": 1
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/follow_up.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "造成11点伤害。\n如果打出的上一张牌是攻击牌，获得[energy:1]。",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 14
+  },
+  {
+    "id": "WATCHER-OMNISCIENCE",
+    "name": "通晓万物",
+    "description": "选择你抽牌堆中的一张牌。将这张牌打出两次然后将其[gold]消耗[/gold]。",
+    "description_raw": "选择你抽牌堆中的一张牌。将这张牌打出两次然后将其[gold]消耗[/gold]。",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 3
+    },
+    "image_url": "/static/images/mods/watcher/cards/omniscience.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 71
+  },
+  {
+    "id": "WATCHER-LIVE_FOREVER",
+    "name": "长生不老",
+    "description": "获得6层[gold]覆甲[/gold]。",
+    "description_raw": "获得{PlatedArmorPower:diff()}层[gold]覆甲[/gold]。",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/live_forever.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得8层[gold]覆甲[/gold]。",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 84
+  },
+  {
+    "id": "WATCHER-DEFEND_WATCHER",
+    "name": "防御",
+    "description": "获得5点[gold]格挡[/gold]。",
+    "description_raw": "获得{Block:diff()}点[gold]格挡[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Defend"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/defend_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "获得8点[gold]格挡[/gold]。",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-ALPHA",
+    "name": "阿尔法",
+    "description": "在你的抽牌堆中加入一张[gold]贝塔[/gold]。",
+    "description_raw": "在你的抽牌堆中加入一张[gold]贝塔[/gold]。",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/alpha.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 59
+  }
+]
