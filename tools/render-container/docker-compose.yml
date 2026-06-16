@@ -30,6 +30,8 @@ services:
       # Persist Steam auth (Steam Guard sentry) so reruns don't re-prompt.
       - steam-data:/home/steam/Steam
       - steam-config:/home/steam/.steam
+      # Persist the game install (~3GB) so it is not re-downloaded every run.
+      - game-data:/game
       # Render outputs.
       - ./out:/out
       - ./out_webp:/out_webp
@@ -41,3 +43,4 @@ services:
 volumes:
   steam-data:
   steam-config:
+  game-data:

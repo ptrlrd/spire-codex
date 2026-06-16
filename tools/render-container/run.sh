@@ -17,5 +17,5 @@ if [ ! -d mods/BaseLib ]; then
   echo "NOTE: ./mods/BaseLib not found. Stage BaseLib/ and the content mod (e.g. Watcher/) into ./mods/."
 fi
 
-docker compose run --rm render
+docker compose run --build --rm render
 echo "Output: ./out (png) and ./out_webp (webp)."

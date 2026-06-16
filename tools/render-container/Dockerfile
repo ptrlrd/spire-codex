@@ -44,8 +44,11 @@ RUN dpkg --add-architecture i386 && apt-get update && apt-get install -y --no-in
         procps \
     && rm -rf /var/lib/apt/lists/*
 
-# Non-root user; steamcmd refuses to run as root.
-RUN useradd -m -u 1000 steam
+# Non-root user; steamcmd refuses to run as root. Pre-create the game install
+# dir owned by steam (it lives at /game, under root-owned /, which the non-root
+# user otherwise can't create -> "Disk write failure"). A named volume mounted
+# at /game inherits this ownership, so the ~3GB install persists across runs.
+RUN useradd -m -u 1000 steam && mkdir -p /game && chown steam:steam /game
 USER steam
 WORKDIR /home/steam
 
