@@ -52,8 +52,14 @@ GAME_BIN="$(find "$GAME" -maxdepth 1 -type f \( -name '*.x86_64' -o -name 'SlayT
 chmod +x "$GAME_BIN"
 echo "==> game binary: $GAME_BIN"
 
-# Steamworks DRM: a steam_appid.txt lets the build init without a running client.
+# Steamworks init: the game errors into TryErrorInit without these. A
+# steam_appid.txt next to the binary identifies the app, and steamclient.so must
+# be where the SDK looks (~/.steam/sdk{64,32}/). steamcmd already shipped a copy;
+# symlink it. SteamAPI_Init then bootstraps using the cached steamcmd login.
 echo "$APP_ID" > "$(dirname "$GAME_BIN")/steam_appid.txt"
+mkdir -p "$HOME/.steam/sdk64" "$HOME/.steam/sdk32"
+ln -sf /home/steam/steamcmd/linux64/steamclient.so "$HOME/.steam/sdk64/steamclient.so"
+ln -sf /home/steam/steamcmd/linux32/steamclient.so "$HOME/.steam/sdk32/steamclient.so"
 
 MODS_DIR="$GAME/mods"
 mkdir -p "$MODS_DIR"
@@ -68,6 +74,8 @@ echo "==> mods present:"; ls -1 "$MODS_DIR"
 [ -d "$MODS_DIR/BaseLib" ] || echo "WARN: BaseLib not found in $MODS_DIR; mods will not load. Mount it via $MODS_IN/BaseLib."
 
 # ---- 3. launch under Xvfb; the exporter reads STS2_RENDER_* from env ---------
+export SteamAppId="$APP_ID"
+export SteamGameId="$APP_ID"
 export STS2_RENDER_OUT="$OUT"
 export STS2_RENDER_CARDS="$RENDER_CARDS"
 export STS2_RENDER_PREFIX="$RENDER_PREFIX"
