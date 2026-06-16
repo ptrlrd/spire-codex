@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Models;
@@ -28,7 +29,7 @@ public partial class MainFile : Node
 
     public static void Initialize()
     {
-        var outDir = Environment.GetEnvironmentVariable("STS2_RENDER_OUT");
+        var outDir = System.Environment.GetEnvironmentVariable("STS2_RENDER_OUT");
         if (string.IsNullOrWhiteSpace(outDir))
         {
             Logger.Info("STS2_RENDER_OUT not set; render exporter idle.");
@@ -53,7 +54,7 @@ public partial class MainFile : Node
             var node = new CardExporter { Name = "RenderExporter" };
             // Defer: adding children directly during InitIds is unsafe.
             tree.Root.CallDeferred(Node.MethodName.AddChild, node);
-            Logger.Info($"attached exporter ({ModelDb.AllCards.Count} cards in pool)");
+            Logger.Info($"attached exporter ({ModelDb.AllCards.Count()} cards in pool)");
         }
     }
 }

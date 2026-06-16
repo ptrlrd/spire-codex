@@ -6,6 +6,7 @@ using Godot;
 using MegaCrit.Sts2.Core.Models;
 using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Entities.Cards;
+using MegaCrit.Sts2.Core.Entities.UI;
 using MegaCrit.Sts2.Core.Localization;
 
 namespace RenderExporter;
@@ -47,7 +48,7 @@ public partial class CardExporter : Node
 
     private void Build()
     {
-        _baseOut = Environment.GetEnvironmentVariable("STS2_RENDER_OUT") ?? "";
+        _baseOut = System.Environment.GetEnvironmentVariable("STS2_RENDER_OUT") ?? "";
         Directory.CreateDirectory(_baseOut);
 
         foreach (var cm in ModelDb.AllCards)
@@ -65,8 +66,8 @@ public partial class CardExporter : Node
 
         BuildLangs();
 
-        var prefix = (Environment.GetEnvironmentVariable("STS2_RENDER_PREFIX") ?? "").ToLowerInvariant();
-        var spec = (Environment.GetEnvironmentVariable("STS2_RENDER_CARDS") ?? "all").Trim();
+        var prefix = (System.Environment.GetEnvironmentVariable("STS2_RENDER_PREFIX") ?? "").ToLowerInvariant();
+        var spec = (System.Environment.GetEnvironmentVariable("STS2_RENDER_CARDS") ?? "all").Trim();
         IEnumerable<string> ids = spec.Equals("all", StringComparison.OrdinalIgnoreCase)
             ? _models.Keys
             : spec.Split(new[] { ',', ' ', '\n' }, StringSplitOptions.RemoveEmptyEntries)
@@ -74,7 +75,7 @@ public partial class CardExporter : Node
         if (prefix.Length > 0) ids = ids.Where(i => i.StartsWith(prefix));
         var idList = ids.Where(_models.ContainsKey).Distinct().OrderBy(s => s).ToList();
 
-        bool doEnch = Environment.GetEnvironmentVariable("STS2_RENDER_ENCH") == "1";
+        bool doEnch = System.Environment.GetEnvironmentVariable("STS2_RENDER_ENCH") == "1";
         foreach (var id in idList)
         {
             var m = _models[id];
@@ -207,7 +208,7 @@ public partial class CardExporter : Node
             var fire = FindFire(card);
             if (fire != null)
             {
-                fire.Playing = false;
+                fire.Stop();
                 var n = fire.SpriteFrames?.GetFrameCount("default") ?? 1;
                 if (n > 1) { _pendingFire = fire; _pendingFrames = n; fire.Frame = 0; }
             }
@@ -245,7 +246,7 @@ public partial class CardExporter : Node
     private void BuildLangs()
     {
         _langs.Clear();
-        var spec = Environment.GetEnvironmentVariable("STS2_RENDER_LANGS");
+        var spec = System.Environment.GetEnvironmentVariable("STS2_RENDER_LANGS");
         if (!string.IsNullOrWhiteSpace(spec))
         {
             foreach (var raw in spec.Split(new[] { ',', '\n' }, StringSplitOptions.RemoveEmptyEntries))

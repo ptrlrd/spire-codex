@@ -13,8 +13,10 @@
     <ItemGroup>
         <!-- StS2 + Harmony reference assemblies, so the mod compiles with no local
              game install. The game supplies the real assemblies at runtime; nothing
-             here is bundled into the mod dll. -->
-        <PackageReference Include="Book.StS2.RefLib" Version="*" GeneratePathProperty="true">
+             here is bundled into the mod dll. "*-*" tracks the latest build INCLUDING
+             prerelease: the live game (0.107) only ships beta-tagged ref builds, so a
+             plain "*" would resolve the stale 0.103 stable and miss 0.107 APIs. -->
+        <PackageReference Include="Book.StS2.RefLib" Version="*-*" GeneratePathProperty="true">
             <ExcludeAssets>all</ExcludeAssets>
             <PrivateAssets>all</PrivateAssets>
         </PackageReference>
