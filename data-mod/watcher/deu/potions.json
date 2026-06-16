@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "Abgefülltes Wunder",
+    "description": "Nimm X [gold]Wunder[/gold] auf die [gold]Hand[/gold].",
+    "description_raw": "Nimm {Cards:diff()} [gold]Wunder[/gold] auf die [gold]Hand[/gold].",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "Ambrosia",
+    "description": "Nimm [gold]Göttlichkeit[/gold] an.",
+    "description_raw": "Nimm [gold]Göttlichkeit[/gold] an.",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "Ruhetrank",
+    "description": "Nimm [gold]Ruhe[/gold] an.",
+    "description_raw": "Nimm [gold]Ruhe[/gold] an.",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "Zorntrank",
+    "description": "Nimm [gold]Zorn[/gold] an.",
+    "description_raw": "Nimm [gold]Zorn[/gold] an.",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

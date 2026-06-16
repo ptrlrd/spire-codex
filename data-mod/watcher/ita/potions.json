@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "Ambrosia",
+    "description": "Enteri in [blue]Divinità[/blue].",
+    "description_raw": "Enteri in [blue]Divinità[/blue].",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "Miracolo in bottiglia",
+    "description": "Aggiungi X [blue]Miracoli[/blue] alla tua mano.",
+    "description_raw": "Aggiungi {Cards:diff()} [blue]Miracoli[/blue] alla tua mano.",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "Pozione Calmante",
+    "description": "Entri in [blue]Calma[/blue].",
+    "description_raw": "Entri in [blue]Calma[/blue].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "Pozione Iraconda",
+    "description": "Entri in [blue]Ira[/blue].",
+    "description_raw": "Entri in [blue]Ira[/blue].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

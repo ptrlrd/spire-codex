@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "Амброзия",
+    "description": "Вы переходите в [gold]Божественность[/gold].",
+    "description_raw": "Вы переходите в [gold]Божественность[/gold].",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "Закупоренное чудо",
+    "description": "Добавляет в [gold]руку[/gold] [blue]X[/blue] [gold]«Чуда»[/gold].",
+    "description_raw": "Добавляет в [gold]руку[/gold] [blue]{Cards:diff()}[/blue] [gold]«Чуда»[/gold].",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "Зелье гнева",
+    "description": "Вы переходите в [gold]Гнев[/gold].",
+    "description_raw": "Вы переходите в [gold]Гнев[/gold].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "Зелье спокойствия",
+    "description": "Вы переходите в [gold]Спокойствие[/gold].",
+    "description_raw": "Вы переходите в [gold]Спокойствие[/gold].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

@@ -1,0 +1,3860 @@
+[
+  {
+    "id": "WATCHER-ALPHA",
+    "name": "Альфа",
+    "description": "Замешивает [gold]«Бету»[/gold] в [gold]стопку добора[/gold].",
+    "description_raw": "Замешивает [gold]«Бету»[/gold] в [gold]стопку добора[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/alpha.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 59
+  },
+  {
+    "id": "WATCHER-CONCLUDE",
+    "name": "Аминь",
+    "description": "Наносит 12 урона ВСЕМ врагам.\nВаш ход завершается.",
+    "description_raw": "Наносит {Damage:diff()} урона ВСЕМ врагам.\nВаш ход завершается.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/conclude.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 16 урона ВСЕМ врагам.\nВаш ход завершается.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 26
+  },
+  {
+    "id": "WATCHER-VIGILANCE",
+    "name": "Бдительность",
+    "description": "Дает 8 [gold]защиты[/gold].\nВы переходите в [gold]Спокойствие[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nВы переходите в [gold]Спокойствие[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/vigilance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 12 [gold]защиты[/gold].\nВы переходите в [gold]Спокойствие[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 3
+  },
+  {
+    "id": "WATCHER-BETA",
+    "name": "Бета",
+    "description": "Замешивает [gold]«Омегу»[/gold] в [gold]стопку добора[/gold].",
+    "description_raw": "Замешивает [gold]«Омегу»[/gold] в [gold]стопку добора[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/beta.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 80
+  },
+  {
+    "id": "WATCHER-DEUS_EX_MACHINA",
+    "name": "Бог из машины",
+    "description": "Когда добирается,\nдобавляет в [gold]руку[/gold] 2 [gold]«Чуда»[/gold],\nзатем [gold]сжигается[/gold].",
+    "description_raw": "Когда добирается,\nдобавляет в [gold]руку[/gold] {Cards:diff()} [gold]«Чуда»[/gold],\nзатем [gold]сжигается[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unplayable"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deus_ex_machina.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Когда добирается,\nдобавляет в [gold]руку[/gold] 3 [gold]«Чуда»[/gold],\nзатем [gold]сжигается[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 63
+  },
+  {
+    "id": "WATCHER-BATTLE_HYMN",
+    "name": "Боевой псалом",
+    "description": "Добавляет в [gold]руку[/gold] [gold]«Кару»[/gold] в начале хода.",
+    "description_raw": "Добавляет в [gold]руку[/gold] [gold]«Кару»[/gold] в начале хода.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BattleHymn",
+        "amount": 1,
+        "power_key": "BattleHymn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BattleHymnPower": 1,
+      "BattleHymn": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/battle_hymn.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 23
+  },
+  {
+    "id": "WATCHER-PRESSURE_POINTS",
+    "name": "Болевые точки",
+    "description": "Накладывает 8 [gold]Меток[/gold].\nВСЕ враги теряют ОЗ,\nравные количеству [gold]Меток[/gold] на них.",
+    "description_raw": "Накладывает {MarkPower:diff()} [gold]Меток[/gold].\nВСЕ враги теряют ОЗ,\nравные количеству [gold]Меток[/gold] на них.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mark",
+        "amount": 8,
+        "power_key": "Mark"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MarkPower": 8,
+      "Mark": 8
+    },
+    "upgrade": {
+      "mark": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pressure_points.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Накладывает 11 [gold]Меток[/gold].\nВСЕ враги теряют ОЗ,\nравные количеству [gold]Меток[/gold] на них.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 17
+  },
+  {
+    "id": "WATCHER-BRILLIANCE",
+    "name": "Великолепие",
+    "description": "Наносит 12 урона.\nНаносит дополнительный урон, равный количеству [gold]Мантры[/gold], полученной в этом бою.",
+    "description_raw": "Наносит {CalculatedDamage:diff()} урона.\nНаносит дополнительный урон, равный количеству [gold]Мантры[/gold], полученной в этом бою.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12,
+      "CalculatedDamage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/brilliance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 61
+  },
+  {
+    "id": "WATCHER-WREATH_OF_FLAME",
+    "name": "Венец пламени",
+    "description": "Следующая атака нанесет на 5 урона больше.",
+    "description_raw": "Следующая атака нанесет на {VigorPower:diff()} урона больше.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vigor",
+        "amount": 5,
+        "power_key": "Vigor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VigorPower": 5,
+      "Vigor": 5
+    },
+    "upgrade": {
+      "vigor": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wreath_of_flame.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Следующая атака нанесет на 8 урона больше.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 58
+  },
+  {
+    "id": "WATCHER-LIVE_FOREVER",
+    "name": "Вечная жизнь",
+    "description": "Дает 6 [gold]Пластинчатой брони[/gold].",
+    "description_raw": "Дает {PlatedArmorPower:diff()} [gold]Пластинчатой брони[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/live_forever.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 8 [gold]Пластинчатой брони[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 84
+  },
+  {
+    "id": "WATCHER-FOREIGN_INFLUENCE",
+    "name": "Внешние веяния",
+    "description": "Добавляет в [gold]руку[/gold] 1 из 3 случайных Атак другого персонажа на выбор.",
+    "description_raw": "Добавляет в [gold]руку[/gold] 1 из 3 случайных Атак другого персонажа на выбор.{IfUpgraded:show:\nВ этом ходу она бесплатная.|}",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/foreign_influence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Добавляет в [gold]руку[/gold] 1 из 3 случайных Атак другого персонажа на выбор.\nВ этом ходу она бесплатная.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 31
+  },
+  {
+    "id": "WATCHER-INNER_PEACE",
+    "name": "Внутренний покой",
+    "description": "Вы переходите в [gold]Спокойствие[/gold].\nЕсли уже в [gold]Спокойствии[/gold],\nвы добираете 3 карты.",
+    "description_raw": "Вы переходите в [gold]Спокойствие[/gold].\nЕсли уже в [gold]Спокойствии[/gold],\nвы добираете {Cards:diff()} карты.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 3
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/inner_peace.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы переходите в [gold]Спокойствие[/gold].\nЕсли уже в [gold]Спокойствии[/gold],\nвы добираете 4 карты.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 34
+  },
+  {
+    "id": "WATCHER-COLLECT",
+    "name": "Вобрать",
+    "description": "Добавляет в [gold]руку[/gold] [gold]«Чудо+»[/gold]\nв начале следующих X ходов.",
+    "description_raw": "Добавляет в [gold]руку[/gold] [gold]«Чудо+»[/gold]\nв начале следующих {IfUpgraded:show:X+1|X} ходов.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/collect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Добавляет в [gold]руку[/gold] [gold]«Чудо+»[/gold]\nв начале следующих X+1 ходов.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 25
+  },
+  {
+    "id": "WATCHER-SWIVEL",
+    "name": "Вполоборота",
+    "description": "Дает 8 [gold]защиты[/gold].\nСледующая Атака разыгрывается бесплатно.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nСледующая Атака разыгрывается бесплатно.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "FreeAttack",
+        "amount": 1,
+        "power_key": "FreeAttack"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8,
+      "FreeAttackPower": 1,
+      "FreeAttack": 1
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/swivel.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 11 [gold]защиты[/gold].\nСледующая Атака разыгрывается бесплатно.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 49
+  },
+  {
+    "id": "WATCHER-WALLOP",
+    "name": "Врезать",
+    "description": "Наносит 9 урона.\nДает [gold]защиту[/gold], равную незаблокированному урону по врагу.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nДает [gold]защиту[/gold], равную незаблокированному урону по врагу.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wallop.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 12 урона.\nДает [gold]защиту[/gold], равную незаблокированному урону по врагу.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 52
+  },
+  {
+    "id": "WATCHER-OMNISCIENCE",
+    "name": "Всеведение",
+    "description": "Выберите карту из [gold]стопки добора[/gold]. Разыграйте ее дважды, затем [gold]сожгите[/gold] ее.",
+    "description_raw": "Выберите карту из [gold]стопки добора[/gold]. Разыграйте ее дважды, затем [gold]сожгите[/gold] ее.",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 3
+    },
+    "image_url": "/static/images/mods/watcher/cards/omniscience.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 71
+  },
+  {
+    "id": "WATCHER-BECOME_ALMIGHTY",
+    "name": "Всемогущество",
+    "description": "Дает 3 [gold]силы[/gold].",
+    "description_raw": "Дает {StrengthPower:diff()} [gold]силы[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3
+    },
+    "upgrade": {
+      "strength": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/become_almighty.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]силы[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 79
+  },
+  {
+    "id": "WATCHER-ERUPTION",
+    "name": "Вспышка",
+    "description": "Наносит 9 урона.\nВы переходите в [gold]Гнев[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы переходите в [gold]Гнев[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/eruption.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-INDIGNATION",
+    "name": "Выйти из себя",
+    "description": "Вы переходите в [gold]Гнев[/gold].\nЕсли уже в [gold]Гневе[/gold], накладывает 3 [gold]уязвимости[/gold] на ВСЕХ врагов.",
+    "description_raw": "Вы переходите в [gold]Гнев[/gold].\nЕсли уже в [gold]Гневе[/gold], накладывает {VulnerablePower:diff()} [gold]уязвимости[/gold] на ВСЕХ врагов.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 3,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VulnerablePower": 3,
+      "Vulnerable": 3
+    },
+    "upgrade": {
+      "vulnerable": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/indignation.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы переходите в [gold]Гнев[/gold].\nЕсли уже в [gold]Гневе[/gold], накладывает 5 [gold]уязвимости[/gold] на ВСЕХ врагов.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 33
+  },
+  {
+    "id": "WATCHER-REACH_HEAVEN",
+    "name": "Достичь небес",
+    "description": "Наносит 10 урона.\nЗамешивает [gold]«Путем насилия»[/gold] в [gold]стопку добора[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nЗамешивает [gold]«Путем насилия»[/gold] в [gold]стопку добора[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/reach_heaven.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 15 урона.\nЗамешивает [gold]«Путем насилия»[/gold] в [gold]стопку добора[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 42
+  },
+  {
+    "id": "WATCHER-SPIRIT_SHIELD",
+    "name": "Духовный щит",
+    "description": "Дает 3 [gold]защиты[/gold] за каждую карту в руке.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold] за каждую карту в руке.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/spirit_shield.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold] за каждую карту в руке.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 74
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_RARE",
+    "name": "Единство разума",
+    "description": "Другой игрок переходит в [gold]Божественность[/gold].",
+    "description_raw": "Другой игрок переходит в [gold]Божественность[/gold].",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyAlly",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_rare.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "compendium_order": 70
+  },
+  {
+    "id": "WATCHER-WISH_WATCHER",
+    "name": "Желание",
+    "description": "Выберите и получите одно:\n6 [gold]Пластинчатой брони[/gold],\n3 [gold]силы[/gold] или 25 [gold]золота[/gold].",
+    "description_raw": "Выберите и получите одно:\n{PlatedArmorPower:diff()} [gold]Пластинчатой брони[/gold],\n{StrengthPower:diff()} [gold]силы[/gold] или {Gold:diff()} [gold]золота[/gold].",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25,
+      "StrengthPower": 3,
+      "Strength": 3,
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "gold": "+5",
+      "strength": "+1",
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wish_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Выберите и получите одно:\n8 [gold]Пластинчатой брони[/gold],\n4 [gold]силы[/gold] или 30 [gold]золота[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 76
+  },
+  {
+    "id": "WATCHER-SIMMERING_FURY",
+    "name": "Закипающий гнев",
+    "description": "Вы возьмете 2 карты и перейдете в [gold]Гнев[/gold] в начале следующего хода.",
+    "description_raw": "Вы возьмете {DrawCardsNextTurnPower:diff()} карты и перейдете в [gold]Гнев[/gold] в начале следующего хода.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "DrawCardsNextTurn",
+        "amount": 2,
+        "power_key": "DrawCardsNextTurn"
+      },
+      {
+        "power": "SimmeringRage",
+        "amount": 1,
+        "power_key": "SimmeringRage"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DrawCardsNextTurnPower": 2,
+      "DrawCardsNextTurn": 2,
+      "SimmeringRagePower": 1,
+      "SimmeringRage": 1
+    },
+    "upgrade": {
+      "drawcardsnextturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/simmering_fury.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы возьмете 3 карты и перейдете в [gold]Гнев[/gold] в начале следующего хода.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 47
+  },
+  {
+    "id": "WATCHER-PROTECT",
+    "name": "Защититься",
+    "description": "Дает 12 [gold]защиты[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/protect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 16 [gold]защиты[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 19
+  },
+  {
+    "id": "WATCHER-CARVE_REALITY",
+    "name": "Изваять реальность",
+    "description": "Наносит 6 урона.\nДобавляет в [gold]руку[/gold] [gold]«Кару»[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nДобавляет в [gold]руку[/gold] [gold]«Кару»[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/carve_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 10 урона.\nДобавляет в [gold]руку[/gold] [gold]«Кару»[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 24
+  },
+  {
+    "id": "WATCHER-EXPUNGER",
+    "name": "Изничтожитель",
+    "description": "Наносит 9 урона X раза.",
+    "description_raw": "Наносит {Damage:diff()} урона {Repeat:cond:<0?X|{Repeat:diff()}} {Repeat:plural(ru):раз|раза|раз}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/expunger.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 15 урона X раза.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "compendium_order": 81
+  },
+  {
+    "id": "WATCHER-STUDY",
+    "name": "Изыскания",
+    "description": "Добавляет [gold]«Озарение»[/gold] в [gold]стопку добора[/gold] в конце хода.",
+    "description_raw": "Добавляет [gold]«Озарение»[/gold] в [gold]стопку добора[/gold] в конце хода.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Study",
+        "amount": 1,
+        "power_key": "Study"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StudyPower": 1,
+      "Study": 1
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/study.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
+  },
+  {
+    "id": "WATCHER-SCRAWL_WATCHER",
+    "name": "Испещрить",
+    "description": "Вы добираете карты, пока [gold]рука[/gold] не заполнится.",
+    "description_raw": "Вы добираете карты, пока [gold]рука[/gold] не заполнится.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/scrawl_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 73
+  },
+  {
+    "id": "WATCHER-TANTRUM",
+    "name": "Истерика",
+    "description": "Наносит 3 урона 3 раза.\nВы переходите в [gold]Гнев[/gold].\nЗамешивается в [gold]стопку добора[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона {Repeat:diff()} раза.\nВы переходите в [gold]Гнев[/gold].\nЗамешивается в [gold]стопку добора[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 3,
+      "Damage": 3
+    },
+    "upgrade": {
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/tantrum.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 3 урона 4 раза.\nВы переходите в [gold]Гнев[/gold].\nЗамешивается в [gold]стопку добора[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 51
+  },
+  {
+    "id": "WATCHER-SMITE",
+    "name": "Кара",
+    "description": "Наносит 12 урона.",
+    "description_raw": "Наносит {Damage:diff()} урона.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/smite.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 16 урона.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 88
+  },
+  {
+    "id": "WATCHER-SIGNATURE_MOVE",
+    "name": "Коронный прием",
+    "description": "Можно разыграть, только если в [gold]руке[/gold] нет Атак.\nНаносит 30 урона.",
+    "description_raw": "Можно разыграть, только если в [gold]руке[/gold] нет Атак.\nНаносит {Damage:diff()} урона.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 30,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 30
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/signature_move.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Можно разыграть, только если в [gold]руке[/gold] нет Атак.\nНаносит 40 урона.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 46
+  },
+  {
+    "id": "WATCHER-CRESCENDO",
+    "name": "Крещендо",
+    "description": "Вы переходите в [gold]Гнев[/gold].",
+    "description_raw": "Вы переходите в [gold]Гнев[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/crescendo.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 6
+  },
+  {
+    "id": "WATCHER-MEDITATE",
+    "name": "Медитировать",
+    "description": "Вы кладете в [gold]руку[/gold] 1 карту из [gold]стопки сброса[/gold], она [gold]оставляется[/gold].\nВы переходите в [gold]Спокойствие[/gold].\nВаш ход завершается.",
+    "description_raw": "Вы кладете в [gold]руку[/gold] {Cards:diff()} {Cards:plural:карту|карты} из [gold]стопки сброса[/gold], {Cards:plural:она [gold]оставляется[/gold]|они [gold]оставляются[/gold]}.\nВы переходите в [gold]Спокойствие[/gold].\nВаш ход завершается.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 1
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/meditate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы кладете в [gold]руку[/gold] 2 карты из [gold]стопки сброса[/gold], они [gold]оставляются[/gold].\nВы переходите в [gold]Спокойствие[/gold].\nВаш ход завершается.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 36
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_UNCOMMON",
+    "name": "Мимолетная ясность",
+    "description": "Другие игроки переходят в [gold]Спокойствие[/gold].\nОни выходят из [gold]Стойки[/gold] в начале следующего хода.",
+    "description_raw": "Другие игроки переходят в [gold]Спокойствие[/gold].\nОни выходят из [gold]Стойки[/gold] в начале следующего хода.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllAllies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MultiplayerCardUncommon",
+        "amount": 1,
+        "power_key": "MultiplayerCardUncommon"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MultiplayerCardUncommonPower": 1,
+      "MultiplayerCardUncommon": 1
+    },
+    "upgrade": {
+      "remove_exhaust": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_uncommon.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 38
+  },
+  {
+    "id": "WATCHER-PRAY",
+    "name": "Молиться",
+    "description": "Дает 3 [gold]Мантры[/gold].\nДобавляет [gold]«Озарение»[/gold] в [gold]стопку добора[/gold].",
+    "description_raw": "Дает {MantraPower:diff()} [gold]Мантры[/gold].\nДобавляет [gold]«Озарение»[/gold] в [gold]стопку добора[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 3,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 3,
+      "Mantra": 3
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pray.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]Мантры[/gold].\nДобавляет [gold]«Озарение»[/gold] в [gold]стопку добора[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 41
+  },
+  {
+    "id": "WATCHER-WINDMILL_STRIKE",
+    "name": "Молотящий удар",
+    "description": "Наносит 7 урона.\nКогда [gold]оставляется[/gold], повышает свой урон на 4 до конца боя.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nКогда [gold]оставляется[/gold], повышает свой урон на {RetainIncrease:diff()} до конца боя.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "RetainIncrease": 4
+    },
+    "upgrade": {
+      "damage": "+3",
+      "retainincrease": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/windmill_strike.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 10 урона.\nКогда [gold]оставляется[/gold], повышает свой урон на 5 до конца боя.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 56
+  },
+  {
+    "id": "WATCHER-RUSHDOWN",
+    "name": "Наброситься",
+    "description": "Вы добираете 2 карты,\nкогда переходите в [gold]Гнев[/gold].",
+    "description_raw": "Вы добираете 2 карты,\nкогда переходите в [gold]Гнев[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Rushdown",
+        "amount": 2,
+        "power_key": "Rushdown"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "RushdownPower": 2,
+      "Rushdown": 2
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/rushdown.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 43
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD",
+    "name": "Накопление",
+    "description": "Наносимый урон повышается на 50%, если вы в [gold]Гневе[/gold].",
+    "description_raw": "Наносимый урон повышается на 50%, если вы в [gold]Гневе[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Ancient",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "AncientCard",
+        "amount": 50,
+        "power_key": "AncientCard"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "AncientCardPower": 50,
+      "AncientCard": 50
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 77
+  },
+  {
+    "id": "WATCHER-FLURRY_OF_BLOWS",
+    "name": "Натиск",
+    "description": "Наносит 4 урона.\nВозвращается в руку из [gold]стопки сброса[/gold] при смене [gold]Стойки[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВозвращается в руку из [gold]стопки сброса[/gold] при смене [gold]Стойки[/gold].",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flurry_of_blows.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 6 урона.\nВозвращается в руку из [gold]стопки сброса[/gold] при смене [gold]Стойки[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 12
+  },
+  {
+    "id": "WATCHER-FEAR_NO_EVIL",
+    "name": "Не убоись зла",
+    "description": "Наносит 8 урона.\nВы переходите в [gold]Спокойствие[/gold], если враг планирует атаковать.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы переходите в [gold]Спокойствие[/gold], если враг планирует атаковать.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fear_no_evil.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 11 урона.\nВы переходите в [gold]Спокойствие[/gold], если враг планирует атаковать.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 30
+  },
+  {
+    "id": "WATCHER-MENTAL_FORTRESS",
+    "name": "Непоколебимость",
+    "description": "Дает 4 [gold]защиты[/gold] при смене [gold]Стойки[/gold].",
+    "description_raw": "Дает {MentalFortressPower:diff()} [gold]защиты[/gold] при смене [gold]Стойки[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MentalFortress",
+        "amount": 4,
+        "power_key": "MentalFortress"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MentalFortressPower": 4,
+      "MentalFortress": 4
+    },
+    "upgrade": {
+      "mentalfortress": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/mental_fortress.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 6 [gold]защиты[/gold] при смене [gold]Стойки[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 37
+  },
+  {
+    "id": "WATCHER-NIRVANA",
+    "name": "Нирвана",
+    "description": "Дает 3 [gold]защиты[/gold], когда вы [gold]Предсказываете[/gold].",
+    "description_raw": "Дает {NirvanaPower:diff()} [gold]защиты[/gold], когда вы [gold]Предсказываете[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Nirvana",
+        "amount": 3,
+        "power_key": "Nirvana"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "NirvanaPower": 3,
+      "Nirvana": 3
+    },
+    "upgrade": {
+      "nirvana": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/nirvana.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold], когда вы [gold]Предсказываете[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 39
+  },
+  {
+    "id": "WATCHER-WHEEL_KICK",
+    "name": "Ногой с разворота",
+    "description": "Наносит 15 урона.\nВы добираете 2 карты.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы добираете {Cards:diff()} карты.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 15,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 15,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wheel_kick.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 20 урона.\nВы добираете 2 карты.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 55
+  },
+  {
+    "id": "WATCHER-DEVA_FORM",
+    "name": "Облик дэвы",
+    "description": "Дает [energy:1] в начале хода и повышает даваемое количество [gold]энергии[/gold] на 1.",
+    "description_raw": "Дает {energyPrefix:energyIcons(1)} в начале хода и повышает даваемое количество [gold]энергии[/gold] на 1.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Deva",
+        "amount": 1,
+        "power_key": "Deva"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1,
+      "DevaPower": 1,
+      "Deva": 1
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/deva_form.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 64
+  },
+  {
+    "id": "WATCHER-DECEIVE_REALITY",
+    "name": "Обмануть реальность",
+    "description": "Дает 4 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] [gold]«Пристанище»[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] [gold]«Пристанище»[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deceive_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nДобавляет в [gold]руку[/gold] [gold]«Пристанище»[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 27
+  },
+  {
+    "id": "WATCHER-DEFEND_WATCHER",
+    "name": "Оборона",
+    "description": "Дает 5 [gold]защиты[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Defend"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/defend_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 8 [gold]защиты[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-INSIGHT",
+    "name": "Озарение",
+    "description": "Вы добираете 2 карты.",
+    "description_raw": "Вы добираете {Cards:diff()} карты.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/insight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы добираете 3 карты.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 83
+  },
+  {
+    "id": "WATCHER-OMEGA",
+    "name": "Омега",
+    "description": "Наносит 50 урона ВСЕМ врагам в конце вашего хода.",
+    "description_raw": "Наносит {OmegaPower:diff()} урона ВСЕМ врагам в конце вашего хода.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Omega",
+        "amount": 50,
+        "power_key": "Omega"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "OmegaPower": 50,
+      "Omega": 50
+    },
+    "upgrade": {
+      "omega": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/omega.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 60 урона ВСЕМ врагам в конце вашего хода.",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 86
+  },
+  {
+    "id": "WATCHER-CONSECRATE",
+    "name": "Освятить",
+    "description": "Наносит 5 урона ВСЕМ врагам.",
+    "description_raw": "Наносит {Damage:diff()} урона ВСЕМ врагам.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/consecrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 8 урона ВСЕМ врагам.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 5
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD2",
+    "name": "Откровение",
+    "description": "Наносит 12 урона.\nВы переходите в [gold]Божественность[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы переходите в [gold]Божественность[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Ancient",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card2.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 78
+  },
+  {
+    "id": "WATCHER-EVALUATE",
+    "name": "Оценить",
+    "description": "Дает 6 [gold]защиты[/gold].\nДобавляет [gold]«Озарение»[/gold] в стопку добора.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nДобавляет [gold]«Озарение»[/gold] в стопку добора.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/evaluate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nДобавляет [gold]«Озарение»[/gold] в стопку добора.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 11
+  },
+  {
+    "id": "WATCHER-FLYING_SLEEVES",
+    "name": "Парящие рукава",
+    "description": "Наносит 4 урона дважды.",
+    "description_raw": "Наносит {Damage:diff()} урона дважды.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": 2,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flying_sleeves.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 6 урона дважды.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 13
+  },
+  {
+    "id": "WATCHER-SANDS_OF_TIME",
+    "name": "Пески времени",
+    "description": "Наносит 20 урона.\nКогда [gold]оставляется[/gold], стоимость снижается на 1 в этом бою.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nКогда [gold]оставляется[/gold], стоимость снижается на 1 в этом бою.",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sands_of_time.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 26 урона.\nКогда [gold]оставляется[/gold], стоимость снижается на 1 в этом бою.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 45
+  },
+  {
+    "id": "WATCHER-FOLLOW_UP",
+    "name": "Пинок вдогонку",
+    "description": "Наносит 7 урона.\nЕсли последняя разыгранная в бою карта — Атака, дает [energy:1].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nЕсли последняя разыгранная в бою карта — Атака, дает {energyPrefix:energyIcons(1)}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Energy": 1
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/follow_up.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 11 урона.\nЕсли последняя разыгранная в бою карта — Атака, дает [energy:1].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 14
+  },
+  {
+    "id": "WATCHER-VAULT",
+    "name": "Пируэт",
+    "description": "Вы получаете дополнительный ход.\nВаш ход завершается.",
+    "description_raw": "Вы получаете дополнительный ход.\nВаш ход завершается.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vault",
+        "amount": 1,
+        "power_key": "Vault"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VaultPower": 1,
+      "Vault": 1
+    },
+    "upgrade": {
+      "cost": 2
+    },
+    "image_url": "/static/images/mods/watcher/cards/vault.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 75
+  },
+  {
+    "id": "WATCHER-WAVE_OF_THE_HAND",
+    "name": "По мановению руки",
+    "description": "Когда вы получаете [gold]защиту[/gold] в этот ход, накладывает 1 [gold]слабости[/gold] на ВСЕХ врагов.",
+    "description_raw": "Когда вы получаете [gold]защиту[/gold] в этот ход, накладывает {WaveOfTheHandPower:diff()} [gold]слабости[/gold] на ВСЕХ врагов.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "WaveOfTheHand",
+        "amount": 1,
+        "power_key": "WaveOfTheHand"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WaveOfTheHandPower": 1,
+      "WaveOfTheHand": 1
+    },
+    "upgrade": {
+      "waveofthehand": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wave_of_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Когда вы получаете [gold]защиту[/gold] в этот ход, накладывает 2 [gold]слабости[/gold] на ВСЕХ врагов.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 53
+  },
+  {
+    "id": "WATCHER-TALK_TO_THE_HAND",
+    "name": "Поговори с рукой",
+    "description": "Наносит 5 урона.\nДает 2 [gold]защиты[/gold], когда вы атакуете этого врага.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nДает {BlockReturnPower:diff()} [gold]защиты[/gold], когда вы атакуете этого врага.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BlockReturn",
+        "amount": 2,
+        "power_key": "BlockReturn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5,
+      "BlockReturnPower": 2,
+      "BlockReturn": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "blockreturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/talk_to_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 7 урона.\nДает 3 [gold]защиты[/gold], когда вы атакуете этого врага.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 50
+  },
+  {
+    "id": "WATCHER-MASTER_REALITY",
+    "name": "Подчинить реальность",
+    "description": "Карты, созданные в этом бою, [gold]улучшаются[/gold].",
+    "description_raw": "Карты, созданные в этом бою, [gold]улучшаются[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MasterReality",
+        "amount": 1,
+        "power_key": "MasterReality"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MasterRealityPower": 1,
+      "MasterReality": 1
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/master_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 69
+  },
+  {
+    "id": "WATCHER-WORSHIP",
+    "name": "Поклонение",
+    "description": "Дает 5 [gold]Мантры[/gold].",
+    "description_raw": "Дает 5 [gold]Мантры[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 5,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 5,
+      "Mantra": 5
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/worship.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 57
+  },
+  {
+    "id": "WATCHER-DEVOTION",
+    "name": "Покорность",
+    "description": "Дает 2 [gold]Мантры[/gold] в начале хода.",
+    "description_raw": "Дает {DevotionPower:diff()} [gold]Мантры[/gold] в начале хода.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Devotion",
+        "amount": 2,
+        "power_key": "Devotion"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DevotionPower": 2,
+      "Devotion": 2
+    },
+    "upgrade": {
+      "devotion": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/devotion.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 3 [gold]Мантры[/gold] в начале хода.",
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 65
+  },
+  {
+    "id": "WATCHER-FASTING",
+    "name": "Пост",
+    "description": "Дает 3 [gold]силы[/gold].\nДает 3 [gold]ловкости[/gold].\nВы теряете [energy:1] в начале хода.",
+    "description_raw": "Дает {StrengthPower:diff()} [gold]силы[/gold].\nДает {DexterityPower:diff()} [gold]ловкости[/gold].\nВы теряете {energyPrefix:energyIcons(1)} в начале хода.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "Dexterity",
+        "amount": 3,
+        "power_key": "Dexterity"
+      },
+      {
+        "power": "Fasting",
+        "amount": 1,
+        "power_key": "Fasting"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3,
+      "DexterityPower": 3,
+      "Dexterity": 3,
+      "FastingPower": 1,
+      "Fasting": 1
+    },
+    "upgrade": {
+      "strength": "+1",
+      "dexterity": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fasting.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]силы[/gold].\nДает 4 [gold]ловкости[/gold].\nВы теряете [energy:1] в начале хода.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 29
+  },
+  {
+    "id": "WATCHER-HALT",
+    "name": "Прервать",
+    "description": "Дает 3 [gold]защиты[/gold].\nДает еще 9 [gold]защиты[/gold],\nесли вы в [gold]Гневе[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nДает еще {WrathBlock:diff()} [gold]защиты[/gold],\nесли вы в [gold]Гневе[/gold].",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WrathBlock": 9,
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1",
+      "wrathblock": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/halt.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 4 [gold]защиты[/gold].\nДает еще 14 [gold]защиты[/gold],\nесли вы в [gold]Гневе[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 15
+  },
+  {
+    "id": "WATCHER-JUDGMENT",
+    "name": "Приговор",
+    "description": "Если ОЗ врага меньше или равны 30, снижает их до 0.",
+    "description_raw": "Если ОЗ врага меньше или равны {DamageThreshold:diff()}, снижает их до 0.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DamageThreshold": 30
+    },
+    "upgrade": {
+      "damagethreshold": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/judgment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Если ОЗ врага меньше или равны 40, снижает их до 0.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 67
+  },
+  {
+    "id": "WATCHER-CONJURE_BLADE",
+    "name": "Призвать меч",
+    "description": "Добавляет [gold]«Изничтожитель»[/gold] в стопку добора.",
+    "description_raw": "Добавляет [gold]«Изничтожитель»[/gold]{IfUpgraded:show: с X+1|} в стопку добора.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/conjure_blade.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Добавляет [gold]«Изничтожитель»[/gold] с X+1 в стопку добора.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 62
+  },
+  {
+    "id": "WATCHER-SAFETY",
+    "name": "Пристанище",
+    "description": "Дает 12 [gold]защиты[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/safety.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 16 [gold]защиты[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 87
+  },
+  {
+    "id": "WATCHER-FORESIGHT",
+    "name": "Прозрение",
+    "description": "Вы [gold]Предсказываете[/gold] 3 карты в начале хода.",
+    "description_raw": "Вы [gold]Предсказываете[/gold] {ForesightPower:diff()} карты в начале хода.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Foresight",
+        "amount": 3,
+        "power_key": "Foresight"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "ForesightPower": 3,
+      "Foresight": 3
+    },
+    "upgrade": {
+      "foresight": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/foresight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы [gold]Предсказываете[/gold] 4 карты в начале хода.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 32
+  },
+  {
+    "id": "WATCHER-EMPTY_BODY",
+    "name": "Пустое тело",
+    "description": "Дает 7 [gold]защиты[/gold].\nВы выходите из [gold]Стойки[/gold].",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nВы выходите из [gold]Стойки[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_body.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 10 [gold]защиты[/gold].\nВы выходите из [gold]Стойки[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 9
+  },
+  {
+    "id": "WATCHER-EMPTY_FIST",
+    "name": "Пустой кулак",
+    "description": "Наносит 9 урона.\nВы выходите из [gold]Стойки[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы выходите из [gold]Стойки[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_fist.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 14 урона.\nВы выходите из [gold]Стойки[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 10
+  },
+  {
+    "id": "WATCHER-EMPTY_MIND",
+    "name": "Пустой разум",
+    "description": "Вы добираете 2 карты.\nВы выходите из [gold]Стойки[/gold].",
+    "description_raw": "Вы добираете {Cards:diff()} карты.\nВы выходите из [gold]Стойки[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_mind.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы добираете 3 карты.\nВы выходите из [gold]Стойки[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 28
+  },
+  {
+    "id": "WATCHER-THROUGH_VIOLENCE",
+    "name": "Путем насилия",
+    "description": "Наносит 20 урона.",
+    "description_raw": "Наносит {Damage:diff()} урона.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/through_violence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 30 урона.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 89
+  },
+  {
+    "id": "WATCHER-RAGNAROK",
+    "name": "Рагнарек",
+    "description": "Наносит 5 урона случайному врагу 5 раз.",
+    "description_raw": "Наносит {Damage:diff()} урона случайному врагу {Repeat:diff()} раз.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "RandomEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 5,
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+1",
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/ragnarok.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 6 урона случайному врагу 6 раз.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 72
+  },
+  {
+    "id": "WATCHER-CUT_THROUGH_FATE",
+    "name": "Разрезать судьбу",
+    "description": "Наносит 7 урона.\nВы [gold]Предсказываете[/gold] 2 карты.\nВы добираете 1 карту.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nВы [gold]Предсказываете[/gold] {Cards:diff()} карты.\nВы добираете 1 карту.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/cut_through_fate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 9 урона.\nВы [gold]Предсказываете[/gold] 3 карты.\nВы добираете 1 карту.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 8
+  },
+  {
+    "id": "WATCHER-BOWLING_BASH",
+    "name": "Раскатать",
+    "description": "Наносит 7 урона за каждого врага в бою.",
+    "description_raw": "Наносит {Damage:diff()} урона за каждого врага в бою.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/bowling_bash.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 10 урона за каждого врага в бою.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 4
+  },
+  {
+    "id": "WATCHER-ESTABLISHMENT",
+    "name": "Самообладание",
+    "description": "Когда карта [gold]оставляется[/gold], ее стоимость снижается на 1 в этом бою.",
+    "description_raw": "Когда карта [gold]оставляется[/gold], ее стоимость снижается на 1 в этом бою.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Establishment",
+        "amount": 1,
+        "power_key": "Establishment"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "EstablishmentPower": 1,
+      "Establishment": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/establishment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 66
+  },
+  {
+    "id": "WATCHER-SANCTITY",
+    "name": "Святость",
+    "description": "Дает 6 [gold]защиты[/gold].\nЕсли последняя разыгранная в бою карта — Навык, вы добираете 2 карты.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nЕсли последняя разыгранная в бою карта — Навык, вы добираете 2 карты.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6,
+      "Cards": 2
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sanctity.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\nЕсли последняя разыгранная в бою карта — Навык, вы добираете 2 карты.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 44
+  },
+  {
+    "id": "WATCHER-BLASPHEMY",
+    "name": "Святотатство",
+    "description": "Вы переходите в [gold]Божественность[/gold].\nВы умрете в начале следующего хода.",
+    "description_raw": "Вы переходите в [gold]Божественность[/gold].\nВы умрете в начале следующего хода.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Blasphemer",
+        "amount": 1,
+        "power_key": "Blasphemer"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BlasphemerPower": 1,
+      "Blasphemer": 1
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/blasphemy.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 60
+  },
+  {
+    "id": "WATCHER-PROSTRATE",
+    "name": "Склониться",
+    "description": "Дает 2 [gold]Мантры[/gold].\nДает 4 [gold]защиты[/gold].",
+    "description_raw": "Дает {MantraPower:diff()} [gold]Мантры[/gold].\nДает {Block:diff()} [gold]защиты[/gold].",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 2,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4,
+      "MantraPower": 2,
+      "Mantra": 2
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/prostrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 3 [gold]Мантры[/gold].\nДает 4 [gold]защиты[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 18
+  },
+  {
+    "id": "WATCHER-FAME_AND_FORTUNE",
+    "name": "Слава и богатство",
+    "description": "Дает 25 [gold]золота[/gold].",
+    "description_raw": "Дает {Gold:diff()} [gold]золота[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25
+    },
+    "upgrade": {
+      "gold": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fame_and_fortune.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 30 [gold]золота[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "compendium_order": 82
+  },
+  {
+    "id": "WATCHER-JUST_LUCKY",
+    "name": "Слепая удача",
+    "description": "Вы [gold]Предсказываете[/gold] 1 plural(ru):карту.\nДает 2 [gold]защиты[/gold].\nНаносит 3 урона.",
+    "description_raw": "Вы [gold]Предсказываете[/gold] {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.\nДает {Block:diff()} [gold]защиты[/gold].\nНаносит {Damage:diff()} урона.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": 2,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 3,
+      "Block": 2,
+      "Cards": 1
+    },
+    "upgrade": {
+      "damage": "+1",
+      "block": "+1",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/just_lucky.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Вы [gold]Предсказываете[/gold] 2 plural(ru):карту.\nДает 3 [gold]защиты[/gold].\nНаносит 4 урона.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 16
+  },
+  {
+    "id": "WATCHER-LIKE_WATER",
+    "name": "Словно вода",
+    "description": "Если в конце хода вы в [gold]Спокойствии[/gold], дает 5 [gold]защиты[/gold].",
+    "description_raw": "Если в конце хода вы в [gold]Спокойствии[/gold], дает {LikeWaterPower:diff()} [gold]защиты[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "LikeWater",
+        "amount": 5,
+        "power_key": "LikeWater"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "LikeWaterPower": 5,
+      "LikeWater": 5
+    },
+    "upgrade": {
+      "likewater": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/like_water.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Если в конце хода вы в [gold]Спокойствии[/gold], дает 7 [gold]защиты[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 35
+  },
+  {
+    "id": "WATCHER-CRUSH_JOINTS",
+    "name": "Сокрушить суставы",
+    "description": "Наносит 8 урона.\nЕсли последняя разыгранная в бою карта — [gold]Навык[/gold], накладывает 1 [gold]уязвимости[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nЕсли последняя разыгранная в бою карта — [gold]Навык[/gold], накладывает {VulnerablePower:diff()} [gold]уязвимости[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "vulnerable": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/crush_joints.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 10 урона.\nЕсли последняя разыгранная в бою карта — [gold]Навык[/gold], накладывает 2 [gold]уязвимости[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 7
+  },
+  {
+    "id": "WATCHER-WEAVE",
+    "name": "Сплести",
+    "description": "Наносит 4 урона. Возвращается в [gold]руку[/gold] из [gold]стопки сброса[/gold], когда вы [gold]Предсказываете[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона. Возвращается в [gold]руку[/gold] из [gold]стопки сброса[/gold], когда вы [gold]Предсказываете[/gold].",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/weave.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 6 урона. Возвращается в [gold]руку[/gold] из [gold]стопки сброса[/gold], когда вы [gold]Предсказываете[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 54
+  },
+  {
+    "id": "WATCHER-PERSEVERANCE",
+    "name": "Стойкость",
+    "description": "Дает 5 [gold]защиты[/gold].\nКогда [gold]оставляется[/gold], даваемая [gold]защита[/gold] повышается на 2\nдо конца боя.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nКогда [gold]оставляется[/gold], даваемая [gold]защита[/gold] повышается на {Increase:diff()}\nдо конца боя.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5,
+      "Increase": 2
+    },
+    "upgrade": {
+      "block": "+2",
+      "increase": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/perseverance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 7 [gold]защиты[/gold].\nКогда [gold]оставляется[/gold], даваемая [gold]защита[/gold] повышается на 3\nдо конца боя.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 40
+  },
+  {
+    "id": "WATCHER-THIRD_EYE",
+    "name": "Третий глаз",
+    "description": "Дает 7 [gold]защиты[/gold].\nВы [gold]Предсказываете[/gold] 3 plural(ru):карту.",
+    "description_raw": "Дает {Block:diff()} [gold]защиты[/gold].\nВы [gold]Предсказываете[/gold] {Cards:diff()} {Cards:plural(ru):карту|карты|карт}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7,
+      "Cards": 3
+    },
+    "upgrade": {
+      "block": "+2",
+      "cards": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/third_eye.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает 9 [gold]защиты[/gold].\nВы [gold]Предсказываете[/gold] 5 plural(ru):карту.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 21
+  },
+  {
+    "id": "WATCHER-STRIKE_WATCHER",
+    "name": "Удар",
+    "description": "Наносит 6 урона.",
+    "description_raw": "Наносит {Damage:diff()} урона.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/strike_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 9 урона.",
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-TRANQUILITY",
+    "name": "Умиротворенность",
+    "description": "Вы переходите в [gold]Спокойствие[/gold].",
+    "description_raw": "Вы переходите в [gold]Спокойствие[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/tranquility.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 22
+  },
+  {
+    "id": "WATCHER-LESSON_LEARNED",
+    "name": "Усвоенный урок",
+    "description": "Наносит 10 урона.\nЕсли [gold]казнит[/gold] врага, [gold]улучшает[/gold] случайную карту в колоде.",
+    "description_raw": "Наносит {Damage:diff()} урона.\nЕсли [gold]казнит[/gold] врага, [gold]улучшает[/gold] случайную карту в колоде.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/lesson_learned.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 13 урона.\nЕсли [gold]казнит[/gold] врага, [gold]улучшает[/gold] случайную карту в колоде.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 68
+  },
+  {
+    "id": "WATCHER-SASH_WHIP",
+    "name": "Хлестнуть поясом",
+    "description": "Наносит 8 урона.\nЕсли последняя разыгранная в бою карта — Атака, накладывает 1 [gold]слабости[/gold].",
+    "description_raw": "Наносит {Damage:diff()} урона.\nЕсли последняя разыгранная в бою карта — Атака, накладывает {WeakPower:diff()} [gold]слабости[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Weak",
+        "amount": 1,
+        "power_key": "Weak"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "WeakPower": 1,
+      "Weak": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "weak": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sash_whip.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Наносит 10 урона.\nЕсли последняя разыгранная в бою карта — Атака, накладывает 2 [gold]слабости[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 20
+  },
+  {
+    "id": "WATCHER-MIRACLE",
+    "name": "Чудо",
+    "description": "Дает [energy:1].",
+    "description_raw": "Дает {Energy:energyIcons()}.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1
+    },
+    "upgrade": {
+      "energy": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/miracle.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Дает [energy:2].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 85
+  }
+]

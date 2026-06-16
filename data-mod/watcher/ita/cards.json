@@ -1,0 +1,3860 @@
+[
+  {
+    "id": "WATCHER-ANCIENT_CARD",
+    "name": "Accumula",
+    "description": "Quando sei in [gold]Furia[/gold], infliggi il 50% di danni in più.",
+    "description_raw": "Quando sei in [gold]Furia[/gold], infliggi il 50% di danni in più.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Ancient",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "AncientCard",
+        "amount": 50,
+        "power_key": "AncientCard"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "AncientCardPower": 50,
+      "AncientCard": 50
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 77
+  },
+  {
+    "id": "WATCHER-WORSHIP",
+    "name": "Adorazione",
+    "description": "Ottieni [blue]5[/blue] [gold]Mantra[/gold].",
+    "description_raw": "Ottieni [blue]5[/blue] [gold]Mantra[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 5,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 5,
+      "Mantra": 5
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/worship.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 57
+  },
+  {
+    "id": "WATCHER-ALPHA",
+    "name": "Alpha",
+    "description": "Mescola un [gold]Beta[/gold] nel tuo mazzo.",
+    "description_raw": "Mescola un [gold]Beta[/gold] nel tuo mazzo.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/alpha.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 59
+  },
+  {
+    "id": "WATCHER-HALT",
+    "name": "Alt",
+    "description": "Ottieni 3 [gold]Blocco[/gold].\nSe sei in [gold]Furia[/gold], Ottieni 9 [gold]Blocco[/gold] aggiuntivo.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nSe sei in [gold]Furia[/gold], Ottieni {WrathBlock:diff()} [gold]Blocco[/gold] aggiuntivo.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WrathBlock": 9,
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1",
+      "wrathblock": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/halt.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 4 [gold]Blocco[/gold].\nSe sei in [gold]Furia[/gold], Ottieni 14 [gold]Blocco[/gold] aggiuntivo.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 15
+  },
+  {
+    "id": "WATCHER-RUSHDOWN",
+    "name": "Assalto",
+    "description": "Ogni volta che entri in [gold]Furia[/gold], peschi [blue]2[/blue] carte.",
+    "description_raw": "Ogni volta che entri in [gold]Furia[/gold], peschi [blue]2[/blue] carte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Rushdown",
+        "amount": 2,
+        "power_key": "Rushdown"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "RushdownPower": 2,
+      "Rushdown": 2
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/rushdown.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 43
+  },
+  {
+    "id": "WATCHER-THROUGH_VIOLENCE",
+    "name": "Attraverso la Violenza",
+    "description": "Infliggi 20 danni.",
+    "description_raw": "Infliggi {Damage:diff()} danni.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/through_violence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 30 danni.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 89
+  },
+  {
+    "id": "WATCHER-BRILLIANCE",
+    "name": "Bagliore",
+    "description": "Infliggi 12 danni.\nInfligge danni aggiuntivi pari al [gold]Mantra[/gold] ottenuto in questo combattimento.",
+    "description_raw": "Infliggi {CalculatedDamage:diff()} danni.\nInfligge danni aggiuntivi pari al [gold]Mantra[/gold] ottenuto in questo combattimento.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12,
+      "CalculatedDamage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/brilliance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 61
+  },
+  {
+    "id": "WATCHER-VAULT",
+    "name": "Balzo",
+    "description": "Esegui un turno extra dopo questo.\nTermina il tuo turno.",
+    "description_raw": "Esegui un turno extra dopo questo.\nTermina il tuo turno.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vault",
+        "amount": 1,
+        "power_key": "Vault"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VaultPower": 1,
+      "Vault": 1
+    },
+    "upgrade": {
+      "cost": 2
+    },
+    "image_url": "/static/images/mods/watcher/cards/vault.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 75
+  },
+  {
+    "id": "WATCHER-BETA",
+    "name": "Beta",
+    "description": "Mescola un [gold]Omega[/gold] nel tuo mazzo.",
+    "description_raw": "Mescola un [gold]Omega[/gold] nel tuo mazzo.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/beta.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 80
+  },
+  {
+    "id": "WATCHER-BLASPHEMY",
+    "name": "Blasfemia",
+    "description": "Entra in [gold]Divinità[/gold].\nMuori al prossimo turno.",
+    "description_raw": "Entra in [gold]Divinità[/gold].\nMuori al prossimo turno.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Blasphemer",
+        "amount": 1,
+        "power_key": "Blasphemer"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BlasphemerPower": 1,
+      "Blasphemer": 1
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/blasphemy.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 60
+  },
+  {
+    "id": "WATCHER-WALLOP",
+    "name": "Botta",
+    "description": "Infliggi 9 danni.\nOttieni [gold]Blocco[/gold] pari ai danni non bloccati inflitti.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nOttieni [gold]Blocco[/gold] pari ai danni non bloccati inflitti.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wallop.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 12 danni.\nOttieni [gold]Blocco[/gold] pari ai danni non bloccati inflitti.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 52
+  },
+  {
+    "id": "WATCHER-WHEEL_KICK",
+    "name": "Calcio Rotante",
+    "description": "Infliggi 15 danni.\nPeschi 2 carte.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nPeschi {Cards:diff()} carte.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 15,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 15,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wheel_kick.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 20 danni.\nPeschi 2 carte.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 55
+  },
+  {
+    "id": "WATCHER-TANTRUM",
+    "name": "Capriccio",
+    "description": "Infliggi 3 danni 3 volte.\nEntra in [gold]Furia[/gold].\nMescola questa carta nel tuo mazzo.",
+    "description_raw": "Infliggi {Damage:diff()} danni {Repeat:diff()} volte.\nEntra in [gold]Furia[/gold].\nMescola questa carta nel tuo mazzo.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 3,
+      "Damage": 3
+    },
+    "upgrade": {
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/tantrum.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 3 danni 4 volte.\nEntra in [gold]Furia[/gold].\nMescola questa carta nel tuo mazzo.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 51
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_UNCOMMON",
+    "name": "Chiarezza Fugace",
+    "description": "TUTTI gli alleati entrano in [gold]Calma[/gold].\nEscono dalla [gold]Calma[/gold] all'inizio del loro prossimo turno.",
+    "description_raw": "TUTTI gli alleati entrano in [gold]Calma[/gold].\nEscono dalla [gold]Calma[/gold] all'inizio del loro prossimo turno.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllAllies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MultiplayerCardUncommon",
+        "amount": 1,
+        "power_key": "MultiplayerCardUncommon"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MultiplayerCardUncommonPower": 1,
+      "MultiplayerCardUncommon": 1
+    },
+    "upgrade": {
+      "remove_exhaust": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_uncommon.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 38
+  },
+  {
+    "id": "WATCHER-STRIKE_WATCHER",
+    "name": "Colpo",
+    "description": "Infliggi 6 danni.",
+    "description_raw": "Infliggi {Damage:diff()} danni.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/strike_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 9 danni.",
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-WINDMILL_STRIKE",
+    "name": "Colpo del Mulino",
+    "description": "Infliggi 7 danni.\nQuando questa carta viene [gold]Trattenuta[/gold], aumenta i suoi danni di 4.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nQuando questa carta viene [gold]Trattenuta[/gold], aumenta i suoi danni di {RetainIncrease:diff()}.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "RetainIncrease": 4
+    },
+    "upgrade": {
+      "damage": "+3",
+      "retainincrease": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/windmill_strike.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 10 danni.\nQuando questa carta viene [gold]Trattenuta[/gold], aumenta i suoi danni di 5.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 56
+  },
+  {
+    "id": "WATCHER-LIKE_WATER",
+    "name": "Come l'Acqua",
+    "description": "Alla fine del tuo turno, se sei in [gold]Calma[/gold], ottieni 5 [gold]Blocco[/gold].",
+    "description_raw": "Alla fine del tuo turno, se sei in [gold]Calma[/gold], ottieni {LikeWaterPower:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "LikeWater",
+        "amount": 5,
+        "power_key": "LikeWater"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "LikeWaterPower": 5,
+      "LikeWater": 5
+    },
+    "upgrade": {
+      "likewater": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/like_water.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Alla fine del tuo turno, se sei in [gold]Calma[/gold], ottieni 7 [gold]Blocco[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 35
+  },
+  {
+    "id": "WATCHER-CONCLUDE",
+    "name": "Concludi",
+    "description": "Infliggi 12 danni a TUTTI i nemici.\nTermina il tuo turno.",
+    "description_raw": "Infliggi {Damage:diff()} danni a TUTTI i nemici.\nTermina il tuo turno.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/conclude.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 16 danni a TUTTI i nemici.\nTermina il tuo turno.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 26
+  },
+  {
+    "id": "WATCHER-CONSECRATE",
+    "name": "Consacra",
+    "description": "Infliggi 5 danni a TUTTI i nemici.",
+    "description_raw": "Infliggi {Damage:diff()} danni a TUTTI i nemici.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/consecrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 8 danni a TUTTI i nemici.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 5
+  },
+  {
+    "id": "WATCHER-ESTABLISHMENT",
+    "name": "Consolidamento",
+    "description": "Ogni volta che una carta viene [gold]Trattenuta[/gold], riduci il suo costo di 1 in questo combattimento.",
+    "description_raw": "Ogni volta che una carta viene [gold]Trattenuta[/gold], riduci il suo costo di 1 in questo combattimento.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Establishment",
+        "amount": 1,
+        "power_key": "Establishment"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "EstablishmentPower": 1,
+      "Establishment": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/establishment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 66
+  },
+  {
+    "id": "WATCHER-WREATH_OF_FLAME",
+    "name": "Corona di Fiamme",
+    "description": "Il tuo prossimo Attacco infligge 5 danni aggiuntivi.",
+    "description_raw": "Il tuo prossimo Attacco infligge {VigorPower:diff()} danni aggiuntivi.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vigor",
+        "amount": 5,
+        "power_key": "Vigor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VigorPower": 5,
+      "Vigor": 5
+    },
+    "upgrade": {
+      "vigor": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wreath_of_flame.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Il tuo prossimo Attacco infligge 8 danni aggiuntivi.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 58
+  },
+  {
+    "id": "WATCHER-EMPTY_BODY",
+    "name": "Corpo Vuoto",
+    "description": "Ottieni 7 [gold]Blocco[/gold].\nEsci dalla tua [gold]Posa[/gold].",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nEsci dalla tua [gold]Posa[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_body.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 10 [gold]Blocco[/gold].\nEsci dalla tua [gold]Posa[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 9
+  },
+  {
+    "id": "WATCHER-CRESCENDO",
+    "name": "Crescendo",
+    "description": "Entri in [gold]Furia[/gold].",
+    "description_raw": "Entri in [gold]Furia[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/crescendo.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 6
+  },
+  {
+    "id": "WATCHER-WISH_WATCHER",
+    "name": "Desiderio",
+    "description": "Scegli uno:\nOttieni 6 [gold]Armatura a Placche[/gold],\n3 [gold]Forza[/gold], oppure 25 [gold]Oro[/gold].",
+    "description_raw": "Scegli uno:\nOttieni {PlatedArmorPower:diff()} [gold]Armatura a Placche[/gold],\n{StrengthPower:diff()} [gold]Forza[/gold], oppure {Gold:diff()} [gold]Oro[/gold].",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25,
+      "StrengthPower": 3,
+      "Strength": 3,
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "gold": "+5",
+      "strength": "+1",
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wish_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Scegli uno:\nOttieni 8 [gold]Armatura a Placche[/gold],\n4 [gold]Forza[/gold], oppure 30 [gold]Oro[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 76
+  },
+  {
+    "id": "WATCHER-DEUS_EX_MACHINA",
+    "name": "Deus Ex Machina",
+    "description": "Quando peschi questa carta, aggiungi 2 [gold]Miracoli[/gold] alla tua mano ed [gold]Esaurisci[/gold].",
+    "description_raw": "Quando peschi questa carta, aggiungi {Cards:diff()} [gold]Miracoli[/gold] alla tua mano ed [gold]Esaurisci[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unplayable"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deus_ex_machina.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Quando peschi questa carta, aggiungi 3 [gold]Miracoli[/gold] alla tua mano ed [gold]Esaurisci[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 63
+  },
+  {
+    "id": "WATCHER-DEVOTION",
+    "name": "Devozione",
+    "description": "All'inizio del tuo turno, Ottieni 2 [gold]Mantra[/gold].",
+    "description_raw": "All'inizio del tuo turno, Ottieni {DevotionPower:diff()} [gold]Mantra[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Devotion",
+        "amount": 2,
+        "power_key": "Devotion"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DevotionPower": 2,
+      "Devotion": 2
+    },
+    "upgrade": {
+      "devotion": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/devotion.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "All'inizio del tuo turno, Ottieni 3 [gold]Mantra[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 65
+  },
+  {
+    "id": "WATCHER-DEFEND_WATCHER",
+    "name": "Difesa",
+    "description": "Ottieni 5 [gold]Blocco[/gold].",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Defend"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/defend_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 8 [gold]Blocco[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-FASTING",
+    "name": "Digiuno",
+    "description": "Ottieni 3 [gold]Forza[/gold].\nOttieni 3 [gold]Destrezza[/gold].\nOttieni 1 [energy:1] in meno all'inizio di ogni turno.",
+    "description_raw": "Ottieni {StrengthPower:diff()} [gold]Forza[/gold].\nOttieni {DexterityPower:diff()} [gold]Destrezza[/gold].\nOttieni 1 {energyPrefix:energyIcons(1)} in meno all'inizio di ogni turno.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "Dexterity",
+        "amount": 3,
+        "power_key": "Dexterity"
+      },
+      {
+        "power": "Fasting",
+        "amount": 1,
+        "power_key": "Fasting"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3,
+      "DexterityPower": 3,
+      "Dexterity": 3,
+      "FastingPower": 1,
+      "Fasting": 1
+    },
+    "upgrade": {
+      "strength": "+1",
+      "dexterity": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fasting.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 4 [gold]Forza[/gold].\nOttieni 4 [gold]Destrezza[/gold].\nOttieni 1 [energy:1] in meno all'inizio di ogni turno.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 29
+  },
+  {
+    "id": "WATCHER-BECOME_ALMIGHTY",
+    "name": "Diventa Onnipotente",
+    "description": "Ottieni 3 [gold]Forza[/gold].",
+    "description_raw": "Ottieni {StrengthPower:diff()} [gold]Forza[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3
+    },
+    "upgrade": {
+      "strength": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/become_almighty.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 4 [gold]Forza[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 79
+  },
+  {
+    "id": "WATCHER-MASTER_REALITY",
+    "name": "Dominio della Realtà",
+    "description": "Ogni volta che una carta viene creata durante il combattimento, [gold]Potenziala[/gold].",
+    "description_raw": "Ogni volta che una carta viene creata durante il combattimento, [gold]Potenziala[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MasterReality",
+        "amount": 1,
+        "power_key": "MasterReality"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MasterRealityPower": 1,
+      "MasterReality": 1
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/master_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 69
+  },
+  {
+    "id": "WATCHER-ERUPTION",
+    "name": "Eruzione",
+    "description": "Infliggi 9 danni.\nEntri in [gold]Furia[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nEntri in [gold]Furia[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/eruption.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-CONJURE_BLADE",
+    "name": "Evoca la Lama",
+    "description": "Mescola [gold]Sterminatore[/gold]  nel tuo mazzo.",
+    "description_raw": "Mescola [gold]Sterminatore[/gold] {IfUpgraded:show:con X+1 |} nel tuo mazzo.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/conjure_blade.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Mescola [gold]Sterminatore[/gold] con X+1  nel tuo mazzo.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 62
+  },
+  {
+    "id": "WATCHER-FAME_AND_FORTUNE",
+    "name": "Fama e Fortuna",
+    "description": "Ottieni 25 [gold]Oro[/gold].",
+    "description_raw": "Ottieni {Gold:diff()} [gold]Oro[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25
+    },
+    "upgrade": {
+      "gold": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fame_and_fortune.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 30 [gold]Oro[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "compendium_order": 82
+  },
+  {
+    "id": "WATCHER-DEVA_FORM",
+    "name": "Forma Deva",
+    "description": "All'inizio del tuo turno, Ottieni [energy:1] e aumenta questo guadagno di 1.",
+    "description_raw": "All'inizio del tuo turno, Ottieni {energyPrefix:energyIcons(1)} e aumenta questo guadagno di 1.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Deva",
+        "amount": 1,
+        "power_key": "Deva"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1,
+      "DevaPower": 1,
+      "Deva": 1
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/deva_form.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 64
+  },
+  {
+    "id": "WATCHER-MENTAL_FORTRESS",
+    "name": "Fortezza Mentale",
+    "description": "Ogni volta che cambi [gold]Posa[/gold], Ottieni 4 [gold]Blocco[/gold].",
+    "description_raw": "Ogni volta che cambi [gold]Posa[/gold], Ottieni {MentalFortressPower:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MentalFortress",
+        "amount": 4,
+        "power_key": "MentalFortress"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MentalFortressPower": 4,
+      "MentalFortress": 4
+    },
+    "upgrade": {
+      "mentalfortress": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/mental_fortress.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ogni volta che cambi [gold]Posa[/gold], Ottieni 6 [gold]Blocco[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 37
+  },
+  {
+    "id": "WATCHER-CRUSH_JOINTS",
+    "name": "Frantuma le Giunture",
+    "description": "Infliggi 8 danni.\nSe l'ultima carta giocata in questo combattimento era un'[gold]Abilità[/gold], applica 1 [gold]Vulnerabilità[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe l'ultima carta giocata in questo combattimento era un'[gold]Abilità[/gold], applica {VulnerablePower:diff()} [gold]Vulnerabilità[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "vulnerable": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/crush_joints.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 10 danni.\nSe l'ultima carta giocata in questo combattimento era un'[gold]Abilità[/gold], applica 2 [gold]Vulnerabilità[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 7
+  },
+  {
+    "id": "WATCHER-SASH_WHIP",
+    "name": "Frusta di Seta",
+    "description": "Infliggi 8 danni.\nSe l'ultima carta giocata in questo combattimento era un Attacco, applica 1 [gold]Debolezza[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe l'ultima carta giocata in questo combattimento era un Attacco, applica {WeakPower:diff()} [gold]Debolezza[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Weak",
+        "amount": 1,
+        "power_key": "Weak"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "WeakPower": 1,
+      "Weak": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "weak": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sash_whip.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 10 danni.\nSe l'ultima carta giocata in questo combattimento era un Attacco, applica 2 [gold]Debolezza[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 20
+  },
+  {
+    "id": "WATCHER-SIMMERING_FURY",
+    "name": "Furia Covante",
+    "description": "All'inizio del tuo prossimo turno, entri in [gold]Furia[/gold] e peschi 2 carte.",
+    "description_raw": "All'inizio del tuo prossimo turno, entri in [gold]Furia[/gold] e peschi {DrawCardsNextTurnPower:diff()} carte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "DrawCardsNextTurn",
+        "amount": 2,
+        "power_key": "DrawCardsNextTurn"
+      },
+      {
+        "power": "SimmeringRage",
+        "amount": 1,
+        "power_key": "SimmeringRage"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DrawCardsNextTurnPower": 2,
+      "DrawCardsNextTurn": 2,
+      "SimmeringRagePower": 1,
+      "SimmeringRage": 1
+    },
+    "upgrade": {
+      "drawcardsnextturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/simmering_fury.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "All'inizio del tuo prossimo turno, entri in [gold]Furia[/gold] e peschi 3 carte.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 47
+  },
+  {
+    "id": "WATCHER-WAVE_OF_THE_HAND",
+    "name": "Gesto della Mano",
+    "description": "Ogni volta che ottieni [gold]Blocco[/gold] questo turno, applichi 1 [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "description_raw": "Ogni volta che ottieni [gold]Blocco[/gold] questo turno, applichi {WaveOfTheHandPower:diff()} [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "WaveOfTheHand",
+        "amount": 1,
+        "power_key": "WaveOfTheHand"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WaveOfTheHandPower": 1,
+      "WaveOfTheHand": 1
+    },
+    "upgrade": {
+      "waveofthehand": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wave_of_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ogni volta che ottieni [gold]Blocco[/gold] questo turno, applichi 2 [gold]Debolezza[/gold] a TUTTI i nemici.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 53
+  },
+  {
+    "id": "WATCHER-JUDGMENT",
+    "name": "Giudizio",
+    "description": "Se il nemico ha 30 HP o meno, azzera i suoi HP.",
+    "description_raw": "Se il nemico ha {DamageThreshold:diff()} HP o meno, azzera i suoi HP.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DamageThreshold": 30
+    },
+    "upgrade": {
+      "damagethreshold": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/judgment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Se il nemico ha 40 HP o meno, azzera i suoi HP.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 67
+  },
+  {
+    "id": "WATCHER-CARVE_REALITY",
+    "name": "Incidi la Realtà",
+    "description": "Infliggi 6 danni.\nAggiungi una [gold]Punizione[/gold] nella tua mano.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nAggiungi una [gold]Punizione[/gold] nella tua mano.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/carve_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 10 danni.\nAggiungi una [gold]Punizione[/gold] nella tua mano.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 24
+  },
+  {
+    "id": "WATCHER-INDIGNATION",
+    "name": "Indignazione",
+    "description": "Se sei in [gold]Furia[/gold], applichi 3 [gold]Vulnerabilità[/gold] a TUTTI i nemici. Altrimenti, entri in [gold]Furia[/gold].",
+    "description_raw": "Se sei in [gold]Furia[/gold], applichi {VulnerablePower:diff()} [gold]Vulnerabilità[/gold] a TUTTI i nemici. Altrimenti, entri in [gold]Furia[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 3,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VulnerablePower": 3,
+      "Vulnerable": 3
+    },
+    "upgrade": {
+      "vulnerable": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/indignation.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Se sei in [gold]Furia[/gold], applichi 5 [gold]Vulnerabilità[/gold] a TUTTI i nemici. Altrimenti, entri in [gold]Furia[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 33
+  },
+  {
+    "id": "WATCHER-FOREIGN_INFLUENCE",
+    "name": "Influenza Straniera",
+    "description": "Scegli 1 di 3 Attacchi di qualsiasi colore da aggiungere alla tua mano.",
+    "description_raw": "Scegli 1 di 3 Attacchi di qualsiasi colore da aggiungere alla tua mano.{IfUpgraded:show:\nCosta 0 questo turno.|}",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/foreign_influence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Scegli 1 di 3 Attacchi di qualsiasi colore da aggiungere alla tua mano.\nCosta 0 questo turno.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 31
+  },
+  {
+    "id": "WATCHER-DECEIVE_REALITY",
+    "name": "Inganna la Realtà",
+    "description": "Ottieni 4 [gold]Blocco[/gold].\nAggiungi una [gold]Salvezza[/gold] nella tua mano.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nAggiungi una [gold]Salvezza[/gold] nella tua mano.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deceive_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 7 [gold]Blocco[/gold].\nAggiungi una [gold]Salvezza[/gold] nella tua mano.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 27
+  },
+  {
+    "id": "WATCHER-BATTLE_HYMN",
+    "name": "Inno di Battaglia",
+    "description": "All'inizio di ogni turno, aggiungi una [gold]Punizione[/gold] nella tua mano.",
+    "description_raw": "All'inizio di ogni turno, aggiungi una [gold]Punizione[/gold] nella tua mano.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BattleHymn",
+        "amount": 1,
+        "power_key": "BattleHymn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BattleHymnPower": 1,
+      "BattleHymn": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/battle_hymn.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 23
+  },
+  {
+    "id": "WATCHER-WEAVE",
+    "name": "Intreccio",
+    "description": "Infliggi 4 danni. Ogni volta che [gold]Scruti[/gold], ritorna dal cimitero alla tua mano.",
+    "description_raw": "Infliggi {Damage:diff()} danni. Ogni volta che [gold]Scruti[/gold], ritorna dal cimitero alla tua mano.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/weave.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 6 danni. Ogni volta che [gold]Scruti[/gold], ritorna dal cimitero alla tua mano.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 54
+  },
+  {
+    "id": "WATCHER-INSIGHT",
+    "name": "Intuizione",
+    "description": "Peschi 2 carte.",
+    "description_raw": "Peschi {Cards:diff()} carte.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/insight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Peschi 3 carte.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 83
+  },
+  {
+    "id": "WATCHER-LESSON_LEARNED",
+    "name": "Lezione Appresa",
+    "description": "Infliggi 10 danni.\nSe [gold]Fatale[/gold], [gold]Potenzia[/gold] una carta casuale nel tuo mazzo.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe [gold]Fatale[/gold], [gold]Potenzia[/gold] una carta casuale nel tuo mazzo.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/lesson_learned.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 13 danni.\nSe [gold]Fatale[/gold], [gold]Potenzia[/gold] una carta casuale nel tuo mazzo.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 68
+  },
+  {
+    "id": "WATCHER-FLYING_SLEEVES",
+    "name": "Maniche Volanti",
+    "description": "Infliggi 4 danni due volte.",
+    "description_raw": "Infliggi {Damage:diff()} danni due volte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": 2,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flying_sleeves.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 6 danni due volte.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 13
+  },
+  {
+    "id": "WATCHER-MEDITATE",
+    "name": "Medita",
+    "description": "Prendi 1 carta dal tuo cimitero e mettile in mano, [gold]Conservale[/gold].\nEntri in [gold]Calma[/gold].\nTermina il tuo turno.",
+    "description_raw": "Prendi {Cards:diff()} {Cards:plural:carta|carte} dal tuo cimitero e mettile in mano, [gold]Conservale[/gold].\nEntri in [gold]Calma[/gold].\nTermina il tuo turno.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 1
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/meditate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Prendi 2 carte dal tuo cimitero e mettile in mano, [gold]Conservale[/gold].\nEntri in [gold]Calma[/gold].\nTermina il tuo turno.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 36
+  },
+  {
+    "id": "WATCHER-EMPTY_MIND",
+    "name": "Mente Vuota",
+    "description": "Peschi 2 carte.\nEsci dalla tua [gold]Posa[/gold].",
+    "description_raw": "Peschi {Cards:diff()} carte.\nEsci dalla tua [gold]Posa[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_mind.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Peschi 3 carte.\nEsci dalla tua [gold]Posa[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 28
+  },
+  {
+    "id": "WATCHER-MIRACLE",
+    "name": "Miracolo",
+    "description": "Ottieni [energy:1].",
+    "description_raw": "Ottieni {Energy:energyIcons()}.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1
+    },
+    "upgrade": {
+      "energy": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/miracle.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni [energy:2].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 85
+  },
+  {
+    "id": "WATCHER-SIGNATURE_MOVE",
+    "name": "Mossa Distintiva",
+    "description": "Può essere giocata solo se è l'unico Attacco nella tua mano.\nInfliggi 30 danni.",
+    "description_raw": "Può essere giocata solo se è l'unico Attacco nella tua mano.\nInfliggi {Damage:diff()} danni.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 30,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 30
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/signature_move.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Può essere giocata solo se è l'unico Attacco nella tua mano.\nInfliggi 40 danni.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 46
+  },
+  {
+    "id": "WATCHER-NIRVANA",
+    "name": "Nirvana",
+    "description": "Ogni volta che [gold]Scruti[/gold], Ottieni 3 [gold]Blocco[/gold].",
+    "description_raw": "Ogni volta che [gold]Scruti[/gold], Ottieni {NirvanaPower:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Nirvana",
+        "amount": 3,
+        "power_key": "Nirvana"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "NirvanaPower": 3,
+      "Nirvana": 3
+    },
+    "upgrade": {
+      "nirvana": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/nirvana.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ogni volta che [gold]Scruti[/gold], Ottieni 4 [gold]Blocco[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 39
+  },
+  {
+    "id": "WATCHER-FEAR_NO_EVIL",
+    "name": "Non Temere il Male",
+    "description": "Infliggi 8 danni.\nSe il nemico intende attaccare, entri in [gold]Calma[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe il nemico intende attaccare, entri in [gold]Calma[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fear_no_evil.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 11 danni.\nSe il nemico intende attaccare, entri in [gold]Calma[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 30
+  },
+  {
+    "id": "WATCHER-OMEGA",
+    "name": "Omega",
+    "description": "Alla fine del tuo turno, infliggi 50 danni a TUTTI i nemici.",
+    "description_raw": "Alla fine del tuo turno, infliggi {OmegaPower:diff()} danni a TUTTI i nemici.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Omega",
+        "amount": 50,
+        "power_key": "Omega"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "OmegaPower": 50,
+      "Omega": 50
+    },
+    "upgrade": {
+      "omega": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/omega.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Alla fine del tuo turno, infliggi 60 danni a TUTTI i nemici.",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 86
+  },
+  {
+    "id": "WATCHER-OMNISCIENCE",
+    "name": "Onniscienza",
+    "description": "Scegli una carta nel tuo mazzo. Gioca la carta scelta due volte ed [gold]Esauriscila[/gold].",
+    "description_raw": "Scegli una carta nel tuo mazzo. Gioca la carta scelta due volte ed [gold]Esauriscila[/gold].",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 3
+    },
+    "image_url": "/static/images/mods/watcher/cards/omniscience.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 71
+  },
+  {
+    "id": "WATCHER-INNER_PEACE",
+    "name": "Pace Interiore",
+    "description": "Se sei in [gold]Calma[/gold], peschi 3 carte. Altrimenti, entri in [gold]Calma[/gold].",
+    "description_raw": "Se sei in [gold]Calma[/gold], peschi {Cards:diff()} carte. Altrimenti, entri in [gold]Calma[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 3
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/inner_peace.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Se sei in [gold]Calma[/gold], peschi 4 carte. Altrimenti, entri in [gold]Calma[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 34
+  },
+  {
+    "id": "WATCHER-TALK_TO_THE_HAND",
+    "name": "Parla con la Mano",
+    "description": "Infliggi 5 danni.\nOgni volta che attacchi questo nemico, Ottieni 2 [gold]Blocco[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nOgni volta che attacchi questo nemico, Ottieni {BlockReturnPower:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BlockReturn",
+        "amount": 2,
+        "power_key": "BlockReturn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5,
+      "BlockReturnPower": 2,
+      "BlockReturn": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "blockreturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/talk_to_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 7 danni.\nOgni volta che attacchi questo nemico, Ottieni 3 [gold]Blocco[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 50
+  },
+  {
+    "id": "WATCHER-SWIVEL",
+    "name": "Perno",
+    "description": "Ottieni 8 [gold]Blocco[/gold].\nIl prossimo Attacco che giochi costa 0.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nIl prossimo Attacco che giochi costa 0.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "FreeAttack",
+        "amount": 1,
+        "power_key": "FreeAttack"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8,
+      "FreeAttackPower": 1,
+      "FreeAttack": 1
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/swivel.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 11 [gold]Blocco[/gold].\nIl prossimo Attacco che giochi costa 0.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 49
+  },
+  {
+    "id": "WATCHER-PERSEVERANCE",
+    "name": "Perseveranza",
+    "description": "Ottieni 5 [gold]Blocco[/gold].\nOgni volta che questa carta viene [gold]Conservata[/gold], aumenta il suo [gold]Blocco[/gold] di 2.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nOgni volta che questa carta viene [gold]Conservata[/gold], aumenta il suo [gold]Blocco[/gold] di {Increase:diff()}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5,
+      "Increase": 2
+    },
+    "upgrade": {
+      "block": "+2",
+      "increase": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/perseverance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 7 [gold]Blocco[/gold].\nOgni volta che questa carta viene [gold]Conservata[/gold], aumenta il suo [gold]Blocco[/gold] di 3.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 40
+  },
+  {
+    "id": "WATCHER-PRAY",
+    "name": "Prega",
+    "description": "Ottieni 3 [gold]Mantra[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "description_raw": "Ottieni {MantraPower:diff()} [gold]Mantra[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 3,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 3,
+      "Mantra": 3
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pray.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 4 [gold]Mantra[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 41
+  },
+  {
+    "id": "WATCHER-FORESIGHT",
+    "name": "Preveggenza",
+    "description": "All'inizio del tuo turno, [gold]Scruta[/gold] 3 carte.",
+    "description_raw": "All'inizio del tuo turno, [gold]Scruta[/gold] {ForesightPower:diff()} carte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Foresight",
+        "amount": 3,
+        "power_key": "Foresight"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "ForesightPower": 3,
+      "Foresight": 3
+    },
+    "upgrade": {
+      "foresight": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/foresight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "All'inizio del tuo turno, [gold]Scruta[/gold] 4 carte.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 32
+  },
+  {
+    "id": "WATCHER-PROSTRATE",
+    "name": "Prostrare",
+    "description": "Ottieni 2 [gold]Mantra[/gold].\nOttieni 4 [gold]Blocco[/gold].",
+    "description_raw": "Ottieni {MantraPower:diff()} [gold]Mantra[/gold].\nOttieni {Block:diff()} [gold]Blocco[/gold].",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 2,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4,
+      "MantraPower": 2,
+      "Mantra": 2
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/prostrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 3 [gold]Mantra[/gold].\nOttieni 4 [gold]Blocco[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 18
+  },
+  {
+    "id": "WATCHER-PROTECT",
+    "name": "Proteggi",
+    "description": "Ottieni 12 [gold]Blocco[/gold].",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/protect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 16 [gold]Blocco[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 19
+  },
+  {
+    "id": "WATCHER-EMPTY_FIST",
+    "name": "Pugno Vuoto",
+    "description": "Infliggi 9 danni.\nEsci dalla tua [gold]Posa[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nEsci dalla tua [gold]Posa[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_fist.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 14 danni.\nEsci dalla tua [gold]Posa[/gold].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 10
+  },
+  {
+    "id": "WATCHER-SMITE",
+    "name": "Punizione",
+    "description": "Infliggi 12 danni.",
+    "description_raw": "Infliggi {Damage:diff()} danni.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/smite.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 16 danni.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 88
+  },
+  {
+    "id": "WATCHER-PRESSURE_POINTS",
+    "name": "Punti di Pressione",
+    "description": "Applica 8 [gold]Marchio[/gold].\nTUTTI i nemici perdono HP pari al loro [gold]Marchio[/gold].",
+    "description_raw": "Applica {MarkPower:diff()} [gold]Marchio[/gold].\nTUTTI i nemici perdono HP pari al loro [gold]Marchio[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mark",
+        "amount": 8,
+        "power_key": "Mark"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MarkPower": 8,
+      "Mark": 8
+    },
+    "upgrade": {
+      "mark": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pressure_points.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Applica 11 [gold]Marchio[/gold].\nTUTTI i nemici perdono HP pari al loro [gold]Marchio[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 17
+  },
+  {
+    "id": "WATCHER-COLLECT",
+    "name": "Raccogli",
+    "description": "Metti un [gold]Miracolo+[/gold] nella tua mano all'inizio dei tuoi prossimi X turni.",
+    "description_raw": "Metti un [gold]Miracolo+[/gold] nella tua mano all'inizio dei tuoi prossimi {IfUpgraded:show:X+1|X} turni.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/collect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Metti un [gold]Miracolo+[/gold] nella tua mano all'inizio dei tuoi prossimi X+1 turni.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 25
+  },
+  {
+    "id": "WATCHER-FLURRY_OF_BLOWS",
+    "name": "Raffica di Colpi",
+    "description": "Infliggi 4 danni.\nOgni volta che cambi Posa, rimettila dalla pila degli scarti alla tua mano.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nOgni volta che cambi Posa, rimettila dalla pila degli scarti alla tua mano.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flurry_of_blows.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 6 danni.\nOgni volta che cambi Posa, rimettila dalla pila degli scarti alla tua mano.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 12
+  },
+  {
+    "id": "WATCHER-RAGNAROK",
+    "name": "Ragnarok",
+    "description": "Infliggi 5 danni a un nemico casuale 5 volte.",
+    "description_raw": "Infliggi {Damage:diff()} danni a un nemico casuale {Repeat:diff()} volte.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "RandomEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 5,
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+1",
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/ragnarok.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 6 danni a un nemico casuale 6 volte.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 72
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD2",
+    "name": "Rivelazione",
+    "description": "Infliggi 12 danni.\nEntra in [gold]Divinità[/gold].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nEntra in [gold]Divinità[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Ancient",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card2.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 78
+  },
+  {
+    "id": "WATCHER-SANDS_OF_TIME",
+    "name": "Sabbie del Tempo",
+    "description": "Infliggi 20 danni.\nSe [gold]Conservata[/gold], riduce il suo costo di 1 in questo combattimento.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe [gold]Conservata[/gold], riduce il suo costo di 1 in questo combattimento.",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sands_of_time.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 26 danni.\nSe [gold]Conservata[/gold], riduce il suo costo di 1 in questo combattimento.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 45
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_RARE",
+    "name": "Saggezza Condivisa",
+    "description": "Un altro giocatore entra in [gold]Divinità[/gold].",
+    "description_raw": "Un altro giocatore entra in [gold]Divinità[/gold].",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyAlly",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_rare.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "compendium_order": 70
+  },
+  {
+    "id": "WATCHER-SAFETY",
+    "name": "Salvezza",
+    "description": "Ottieni 12 [gold]Blocco[/gold].",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/safety.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 16 [gold]Blocco[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 87
+  },
+  {
+    "id": "WATCHER-SANCTITY",
+    "name": "Santità",
+    "description": "Ottieni 6 [gold]Blocco[/gold].\nSe l'ultima carta giocata in questo combattimento era un'Abilità, peschi 2 carte.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nSe l'ultima carta giocata in questo combattimento era un'Abilità, peschi 2 carte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6,
+      "Cards": 2
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sanctity.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 9 [gold]Blocco[/gold].\nSe l'ultima carta giocata in questo combattimento era un'Abilità, peschi 2 carte.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 44
+  },
+  {
+    "id": "WATCHER-SCRAWL_WATCHER",
+    "name": "Scarabocchio",
+    "description": "peschi carte finché la tua mano non è piena.",
+    "description_raw": "peschi carte finché la tua mano non è piena.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/scrawl_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 73
+  },
+  {
+    "id": "WATCHER-SPIRIT_SHIELD",
+    "name": "Scudo Spirituale",
+    "description": "Ottieni 3 [gold]Blocco[/gold] per ogni carta nella tua mano.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold] per ogni carta nella tua mano.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/spirit_shield.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 4 [gold]Blocco[/gold] per ogni carta nella tua mano.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 74
+  },
+  {
+    "id": "WATCHER-FOLLOW_UP",
+    "name": "Seguito",
+    "description": "Infliggi 7 danni.\nSe l'ultima carta giocata era un Attacco, Ottieni [blue]1[/blue] [energy:1].",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nSe l'ultima carta giocata era un Attacco, Ottieni [blue]1[/blue] {energyPrefix:energyIcons(1)}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Energy": 1
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/follow_up.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 11 danni.\nSe l'ultima carta giocata era un Attacco, Ottieni [blue]1[/blue] [energy:1].",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 14
+  },
+  {
+    "id": "WATCHER-BOWLING_BASH",
+    "name": "Sfondamento",
+    "description": "Infliggi 7 danni per ogni nemico in combattimento.",
+    "description_raw": "Infliggi {Damage:diff()} danni per ogni nemico in combattimento.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/bowling_bash.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 10 danni per ogni nemico in combattimento.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 4
+  },
+  {
+    "id": "WATCHER-JUST_LUCKY",
+    "name": "Solo Fortuna",
+    "description": "[gold]Scruta[/gold] 1 carte.\nOttieni 2 [gold]Blocco[/gold].\nInfliggi 3 danni.",
+    "description_raw": "[gold]Scruta[/gold] {Cards:diff()} carte.\nOttieni {Block:diff()} [gold]Blocco[/gold].\nInfliggi {Damage:diff()} danni.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": 2,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 3,
+      "Block": 2,
+      "Cards": 1
+    },
+    "upgrade": {
+      "damage": "+1",
+      "block": "+1",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/just_lucky.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]Scruta[/gold] 2 carte.\nOttieni 3 [gold]Blocco[/gold].\nInfliggi 4 danni.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 16
+  },
+  {
+    "id": "WATCHER-EXPUNGER",
+    "name": "Sterminatore",
+    "description": "Infliggi 9 danni X volte.",
+    "description_raw": "Infliggi {Damage:diff()} danni {Repeat:cond:<0?X|{Repeat:diff()}} volte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/expunger.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 15 danni X volte.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "compendium_order": 81
+  },
+  {
+    "id": "WATCHER-STUDY",
+    "name": "Studia",
+    "description": "Alla fine del tuo turno, mescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "description_raw": "Alla fine del tuo turno, mescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Study",
+        "amount": 1,
+        "power_key": "Study"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StudyPower": 1,
+      "Study": 1
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/study.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
+  },
+  {
+    "id": "WATCHER-CUT_THROUGH_FATE",
+    "name": "Taglia il Destino",
+    "description": "Infliggi 7 danni.\n[gold]Scruta[/gold] 2 carte.\npeschi [blue]1[/blue] carta.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\n[gold]Scruta[/gold] {Cards:diff()} carte.\npeschi [blue]1[/blue] carta.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/cut_through_fate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 9 danni.\n[gold]Scruta[/gold] 3 carte.\npeschi [blue]1[/blue] carta.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 8
+  },
+  {
+    "id": "WATCHER-THIRD_EYE",
+    "name": "Terzo Occhio",
+    "description": "Ottieni 7 [gold]Blocco[/gold].\n[gold]Scruta[/gold] 3 carte.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\n[gold]Scruta[/gold] {Cards:diff()} carte.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7,
+      "Cards": 3
+    },
+    "upgrade": {
+      "block": "+2",
+      "cards": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/third_eye.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 9 [gold]Blocco[/gold].\n[gold]Scruta[/gold] 5 carte.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 21
+  },
+  {
+    "id": "WATCHER-REACH_HEAVEN",
+    "name": "Tocca il Cielo",
+    "description": "Infliggi 10 danni.\nMescola [gold]Attraverso la Violenza[/gold] nel tuo mazzo.",
+    "description_raw": "Infliggi {Damage:diff()} danni.\nMescola [gold]Attraverso la Violenza[/gold] nel tuo mazzo.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/reach_heaven.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Infliggi 15 danni.\nMescola [gold]Attraverso la Violenza[/gold] nel tuo mazzo.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 42
+  },
+  {
+    "id": "WATCHER-TRANQUILITY",
+    "name": "Tranquillità",
+    "description": "Entra in [gold]Calma[/gold].",
+    "description_raw": "Entra in [gold]Calma[/gold].",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/tranquility.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 22
+  },
+  {
+    "id": "WATCHER-EVALUATE",
+    "name": "Valuta",
+    "description": "Ottieni 6 [gold]Blocco[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/evaluate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 10 [gold]Blocco[/gold].\nMescola un'[gold]Intuizione[/gold] nel tuo mazzo.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 11
+  },
+  {
+    "id": "WATCHER-VIGILANCE",
+    "name": "Vigilanza",
+    "description": "Ottieni 8 [gold]Blocco[/gold].\nEntri in [gold]Serenità[/gold].",
+    "description_raw": "Ottieni {Block:diff()} [gold]Blocco[/gold].\nEntri in [gold]Serenità[/gold].",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/vigilance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 12 [gold]Blocco[/gold].\nEntri in [gold]Serenità[/gold].",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 3
+  },
+  {
+    "id": "WATCHER-LIVE_FOREVER",
+    "name": "Vivi per Sempre",
+    "description": "Ottieni 6 [gold]Armatura a Placche[/gold].",
+    "description_raw": "Ottieni {PlatedArmorPower:diff()} [gold]Armatura a Placche[/gold].",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/live_forever.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "Ottieni 8 [gold]Armatura a Placche[/gold].",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 84
+  }
+]
