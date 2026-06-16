@@ -11,6 +11,8 @@ regular stats walk, or walk a single user's blobs on demand when `username`
 is set.
 """
 
+import logging
+
 from fastapi import APIRouter, HTTPException, Query, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -21,6 +23,7 @@ from ..services.run_entity_stats import get_charts_blob_stats
 
 router = APIRouter(prefix="/api/charts", tags=["Charts"])
 limiter = Limiter(key_func=get_remote_address)
+logger = logging.getLogger(__name__)
 
 _CACHE_TTL = 300
 
@@ -354,6 +357,157 @@ def _build_blob_chart(
     raise HTTPException(status_code=404, detail="Unknown chart")
 
 
+def _chart_cache_key(
+    chart_key,
+    players,
+    ascension,
+    game_mode,
+    username,
+    split,
+    stat,
+    x,
+    y,
+    encounter,
+    event,
+    etype,
+    entity,
+) -> str:
+    """Redis key for one chart + filter combo. Shared by the live endpoint and
+    the prewarmer so a warmed entry is a byte-for-byte hit on a real request."""
+    return (
+        f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
+        f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
+        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}"
+    )
+
+
+def _compute_chart(
+    chart_key,
+    spec,
+    players,
+    ascension,
+    game_mode,
+    username,
+    split,
+    stat,
+    x,
+    y,
+    encounter,
+    event,
+    etype,
+    entity,
+) -> dict:
+    """Build one chart payload (no caching). Raises HTTPException for invalid
+    blob filters, same as the endpoint."""
+    building = False
+    if spec["kind"] == "frame":
+        mode = "daily" if spec.get("daily") else game_mode
+        rows = cs.filter_rows(cs.get_frame(), players, ascension, mode, username)
+        series = _build_frame_chart(chart_key, rows, stat, x, y, split)
+        total = len(rows)
+    else:
+        # Blob charts: snapshot rollup, or a per-user walk when username set.
+        if ascension is not None or game_mode:
+            raise HTTPException(
+                status_code=400,
+                detail="This chart covers all ascensions and modes; drop those filters.",
+            )
+        stats = (
+            cs.build_user_blob_stats(username) if username else get_charts_blob_stats()
+        )
+        series = _build_blob_chart(
+            chart_key, stats, spec, players, encounter, event, etype, entity
+        )
+        total = sum(n for _wk, n, _w in stats.get("week_totals") or [])
+        # Blob stats land with the first snapshot rebuild after a deploy;
+        # until then the cells are missing entirely, which is different from
+        # a filter matching nothing. Surface that so the page can say so.
+        if not username and not stats.get("week_totals"):
+            building = True
+
+    return {
+        "chart": chart_key,
+        "label": spec["label"],
+        "axis": spec["axis"],
+        "desc": spec["desc"],
+        "params": {
+            "players": players,
+            "ascension": ascension,
+            "game_mode": game_mode,
+            "username": username,
+            "split": split,
+            "stat": stat,
+            "x": x,
+            "y": y,
+            "encounter": encounter,
+            "event": event,
+            "etype": etype,
+            "entity": entity,
+        },
+        "series": series,
+        "total_runs": total,
+        "building": building,
+    }
+
+
+def prewarm_charts() -> int:
+    """Precompute the default (no-filter) payload for every chart that doesn't
+    wait on a user-picked entity, encounter, or event, and warm the shared
+    cache so the /charts page and chart switches serve from Redis instead of
+    aggregating live. Stat / scatter charts warm with the same defaults the UI
+    sends. Called from the stats refresher cycle; returns how many warmed."""
+    warmed = 0
+    for chart_key, spec in CHARTS.items():
+        needs = spec.get("needs", [])
+        # These charts have no sensible default until the user picks one.
+        if any(n in ("entity", "encounter", "event") for n in needs):
+            continue
+        stat = "deck_size" if "stat" in needs else None
+        x = "floors_reached" if "x" in needs else None
+        y = "deck_size" if "x" in needs else None
+        split = "character"
+        try:
+            payload = _compute_chart(
+                chart_key,
+                spec,
+                None,
+                None,
+                None,
+                None,
+                split,
+                stat,
+                x,
+                y,
+                None,
+                None,
+                None,
+                None,
+            )
+        except Exception:
+            logger.warning("chart prewarm failed for %s", chart_key, exc_info=True)
+            continue
+        key = _chart_cache_key(
+            chart_key,
+            None,
+            None,
+            None,
+            None,
+            split,
+            stat,
+            x,
+            y,
+            None,
+            None,
+            None,
+            None,
+        )
+        # Mirror the endpoint: a still-building blob chart caches briefly so it
+        # re-warms once the snapshot lands, not for the full TTL.
+        app_cache.set_json(key, payload, 30 if payload["building"] else _CACHE_TTL)
+        warmed += 1
+    return warmed
+
+
 @router.get("/{chart_key}")
 @limiter.limit("120/minute")
 def get_chart(
@@ -398,65 +552,42 @@ def get_chart(
     username = (username or "").strip() or None
     split = split or "character"
 
-    cache_key = (
-        f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
-        f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
-        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}"
+    cache_key = _chart_cache_key(
+        chart_key,
+        players,
+        ascension,
+        game_mode,
+        username,
+        split,
+        stat,
+        x,
+        y,
+        encounter,
+        event,
+        etype,
+        entity,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         return cached
 
-    building = False
-    if spec["kind"] == "frame":
-        mode = "daily" if spec.get("daily") else game_mode
-        rows = cs.filter_rows(cs.get_frame(), players, ascension, mode, username)
-        series = _build_frame_chart(chart_key, rows, stat, x, y, split)
-        total = len(rows)
-    else:
-        # Blob charts: snapshot rollup, or a per-user walk when username set.
-        if ascension is not None or game_mode:
-            raise HTTPException(
-                status_code=400,
-                detail="This chart covers all ascensions and modes; drop those filters.",
-            )
-        stats = (
-            cs.build_user_blob_stats(username) if username else get_charts_blob_stats()
-        )
-        series = _build_blob_chart(
-            chart_key, stats, spec, players, encounter, event, etype, entity
-        )
-        total = sum(n for _wk, n, _w in stats.get("week_totals") or [])
-        # Blob stats land with the first snapshot rebuild after a deploy;
-        # until then the cells are missing entirely, which is different from
-        # a filter matching nothing. Surface that so the page can say so.
-        if not username and not stats.get("week_totals"):
-            building = True
-
-    payload = {
-        "chart": chart_key,
-        "label": spec["label"],
-        "axis": spec["axis"],
-        "desc": spec["desc"],
-        "params": {
-            "players": players,
-            "ascension": ascension,
-            "game_mode": game_mode,
-            "username": username,
-            "split": split,
-            "stat": stat,
-            "x": x,
-            "y": y,
-            "encounter": encounter,
-            "event": event,
-            "etype": etype,
-            "entity": entity,
-        },
-        "series": series,
-        "total_runs": total,
-        "building": building,
-    }
+    payload = _compute_chart(
+        chart_key,
+        spec,
+        players,
+        ascension,
+        game_mode,
+        username,
+        split,
+        stat,
+        x,
+        y,
+        encounter,
+        event,
+        etype,
+        entity,
+    )
     # A still-building snapshot resolves within minutes; don't pin the empty
     # answer for the full TTL.
-    app_cache.set_json(cache_key, payload, 30 if building else _CACHE_TTL)
+    app_cache.set_json(cache_key, payload, 30 if payload["building"] else _CACHE_TTL)
     return payload
