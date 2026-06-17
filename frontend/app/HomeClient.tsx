@@ -250,12 +250,12 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
           </div>
           {/* Row 2: sign-in cell (signed out only) + the 5 action tiles. */}
           <div
-            className={`relative grid grid-cols-1 gap-px bg-[var(--border-subtle)] sm:grid-cols-2 ${
+            className={`relative grid grid-cols-1 gap-0 bg-[var(--border-subtle)] sm:grid-cols-2 ${
               user ? "lg:grid-cols-5" : "lg:grid-cols-6"
             }`}
           >
             {!user && (
-              <div className="flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center">
+              <div className="flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center shadow-[inset_-1px_0_0_0_var(--border-subtle),inset_0_-1px_0_0_var(--border-subtle)]">
                 <span className="text-[var(--accent-gold)]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-9 w-9">
                     <circle cx="12" cy="8" r="4" />
@@ -352,7 +352,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
             },
           ].map((c) => {
             const cls =
-              "group flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center transition-colors hover:bg-[var(--bg-card-hover)]";
+              "group flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center transition-colors hover:bg-[var(--bg-card-hover)] shadow-[inset_-1px_0_0_0_var(--border-subtle),inset_0_-1px_0_0_var(--border-subtle)]";
             const inner = (
               <>
                 <span className="text-[var(--accent-gold)]">{c.icon}</span>

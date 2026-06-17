@@ -112,12 +112,18 @@ async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | 
     const data = (await res.json()) as { runs: RunRow[] };
     const wins = (data.runs || []).filter((r) => r.win === 1);
     if (wins.length === 0) return { runs: [], ascension: null };
+    // Lead with A10+ wins (the showcase tier), then top up with the next
+    // fastest wins (any ascension) so the card always shows a full 5 instead
+    // of just however many A10 wins happen to exist. `wins` is already sorted
+    // fastest-first, so the filters preserve that order.
     const a10 = wins.filter((r) => r.ascension >= TARGET_ASCENSION);
-    if (a10.length > 0) return { runs: a10.slice(0, 5), ascension: TARGET_ASCENSION };
-    // No A10+ wins yet, show fastest at the highest tier we do have.
-    const maxAsc = wins.reduce((m, r) => Math.max(m, r.ascension), 0);
-    const top = wins.filter((r) => r.ascension === maxAsc).slice(0, 5);
-    return { runs: top, ascension: maxAsc };
+    const rest = wins.filter((r) => r.ascension < TARGET_ASCENSION);
+    const runs = [...a10, ...rest].slice(0, 5);
+    const ascension =
+      a10.length > 0
+        ? TARGET_ASCENSION
+        : runs.reduce((m, r) => Math.max(m, r.ascension), 0);
+    return { runs, ascension };
   } catch {
     return { runs: [], ascension: null };
   }
