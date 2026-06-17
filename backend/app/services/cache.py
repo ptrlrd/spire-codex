@@ -77,10 +77,11 @@ def leaderboard_key(
     today: bool = False,
     page: int = 1,
     limit: int = 50,
+    ascension_min: int | None = None,
 ) -> str:
     return (
         f"leaderboard:{category}:{(character or '').upper()}:{players or ''}:"
-        f"{game_mode or ''}:{int(today)}:{page}:{limit}"
+        f"{game_mode or ''}:{int(today)}:{page}:{limit}:{ascension_min if ascension_min is not None else ''}"
     )
 
 

@@ -100,24 +100,19 @@ function killedByLabel(killedBy: string | null): string | null {
 }
 
 async function loadFastestWins(): Promise<{ runs: RunRow[]; ascension: number | null }> {
-  // No server-side ascension filter, pull a page of fastest wins, then
-  // pick the highest ascension tier that has at least one entry. Falls
-  // back to "any ascension" so the section never renders empty when wins
-  // exist at all.
+  // Ask the server for the fastest A10+ wins directly. Filtering client-side
+  // off a global fastest page didn't work: low-ascension speedruns dominate the
+  // global fastest list, so only a few A10 wins survived the filter (the card
+  // showed 3, not 5). ascension_min keeps it to the A10 board the badge claims.
   try {
-    const res = await fetch(`${RUNS_API}/api/runs/leaderboard?category=fastest&limit=50`, {
-      next: { revalidate: REVALIDATE },
-    });
+    const res = await fetch(
+      `${RUNS_API}/api/runs/leaderboard?category=fastest&ascension_min=${TARGET_ASCENSION}&limit=5`,
+      { next: { revalidate: REVALIDATE } },
+    );
     if (!res.ok) return { runs: [], ascension: null };
     const data = (await res.json()) as { runs: RunRow[] };
-    const wins = (data.runs || []).filter((r) => r.win === 1);
-    if (wins.length === 0) return { runs: [], ascension: null };
-    const a10 = wins.filter((r) => r.ascension >= TARGET_ASCENSION);
-    if (a10.length > 0) return { runs: a10.slice(0, 5), ascension: TARGET_ASCENSION };
-    // No A10+ wins yet, show fastest at the highest tier we do have.
-    const maxAsc = wins.reduce((m, r) => Math.max(m, r.ascension), 0);
-    const top = wins.filter((r) => r.ascension === maxAsc).slice(0, 5);
-    return { runs: top, ascension: maxAsc };
+    const runs = (data.runs || []).filter((r) => r.win === 1).slice(0, 5);
+    return { runs, ascension: runs.length ? TARGET_ASCENSION : null };
   } catch {
     return { runs: [], ascension: null };
   }

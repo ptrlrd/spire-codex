@@ -1789,6 +1789,7 @@ def leaderboard(
     today: bool = False,
     page: int = 1,
     limit: int = 50,
+    ascension_min: int | None = None,
 ) -> dict:
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
 
@@ -1804,7 +1805,8 @@ def leaderboard(
     # Fast path: serve from the materialized summary when the combo is one
     # we materialize (find_one misses otherwise and we fall to live). Docs
     # store 50 rows, so any page-1 request up to that size can be sliced.
-    if not today and page == 1 and limit <= 50:
+    # An ascension_min filter isn't materialized, so skip straight to live.
+    if ascension_min is None and not today and page == 1 and limit <= 50:
         try:
             key = _leaderboard_key(
                 category=category,
@@ -1832,6 +1834,7 @@ def leaderboard(
         today=today,
         page=page,
         limit=limit,
+        ascension_min=ascension_min,
     )
 
 
@@ -1843,6 +1846,7 @@ def _leaderboard_live(
     today: bool = False,
     page: int = 1,
     limit: int = 50,
+    ascension_min: int | None = None,
 ) -> dict:
     """Live leaderboard query -- the original implementation, used directly
     by refresh_leaderboard_summary and as the fallback when the summary
@@ -1866,6 +1870,8 @@ def _leaderboard_live(
         q["player_count"] = {"$gt": 1}
     if game_mode:
         q["game_mode"] = game_mode
+    if ascension_min is not None:
+        q["ascension"] = {"$gte": ascension_min}
     if today:
         q["seed"] = _today_daily_seed_match()
 

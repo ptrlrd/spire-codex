@@ -444,10 +444,14 @@ def get_leaderboard(
     today: bool = False,
     page: int = 1,
     limit: int = 50,
+    ascension_min: int | None = None,
 ):
     """Leaderboard for winning runs.
 
     Categories: `fastest`, `highest_ascension`.
+    `ascension_min`: only runs at this ascension or higher (e.g. 10 for the
+    A10 fastest-wins board); without it the board spans every ascension, so a
+    low-ascension speedrun can outrank an A10 win.
     `players`: `single` (player_count == 1) or `multi` (player_count > 1).
     `game_mode`: `standard`, `daily`, or `custom`. Custom runs ride on
     custom seeds so their times aren't comparable to the standard
@@ -470,6 +474,7 @@ def get_leaderboard(
         today=today,
         page=page,
         limit=limit,
+        ascension_min=ascension_min,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -485,6 +490,7 @@ def get_leaderboard(
             today=today,
             page=page,
             limit=limit,
+            ascension_min=ascension_min,
         )
         app_cache.set_json(cache_key, result, ttl_seconds=60)
         return result
@@ -507,6 +513,9 @@ def get_leaderboard(
         if game_mode:
             conditions.append("game_mode = ?")
             params.append(game_mode)
+        if ascension_min is not None:
+            conditions.append("ascension >= ?")
+            params.append(ascension_min)
         where = "WHERE " + " AND ".join(conditions)
 
         if category == "highest_ascension":

@@ -91,11 +91,8 @@ export default async function HomeShowcaseSection({
               rel="noopener noreferrer"
               className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/30 transition-all flex flex-col p-5 gap-2"
             >
-              <div className="flex items-center justify-between gap-2 text-[10px] uppercase tracking-wider">
+              <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider">
                 <span className={`px-2 py-0.5 rounded border ${badge}`}>{p.category}</span>
-                <span aria-hidden className="text-[var(--text-muted)] group-hover:text-[var(--accent-gold)] transition-colors">
-                  ↗
-                </span>
               </div>
               <h3 className="text-lg font-semibold text-[var(--text-primary)] leading-tight group-hover:text-[var(--accent-gold)] transition-colors">
                 {p.name}
