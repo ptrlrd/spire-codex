@@ -12,6 +12,7 @@ is set.
 """
 
 import logging
+import os
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from slowapi import Limiter
@@ -277,7 +278,32 @@ def charts_meta(request: Request):
         "stats": [{"key": k, "label": v["label"]} for k, v in cs.STATS.items()],
         "characters": [{"id": cid, "name": name} for cid, name in chars.items()],
         "events": cs.event_list(get_charts_blob_stats()),
+        "versions": _build_versions(),
     }
+
+
+def _build_versions() -> list[str]:
+    """Distinct game build_ids present in the data, newest first, for the
+    version filter. Best-effort: empty list on any error."""
+    try:
+        if os.environ.get("MONGO_URL", "").strip():
+            from ..services.runs_db_mongo import distinct_build_ids
+
+            return distinct_build_ids()
+        from ..services.runs_db import get_conn
+
+        with get_conn() as conn:
+            return [
+                r["build_id"]
+                for r in conn.execute(
+                    "SELECT DISTINCT build_id FROM runs"
+                    " WHERE build_id IS NOT NULL AND build_id != ''"
+                    " ORDER BY build_id DESC"
+                )
+            ]
+    except Exception:
+        logger.warning("charts version list failed", exc_info=True)
+        return []
 
 
 def _build_frame_chart(
@@ -371,13 +397,20 @@ def _chart_cache_key(
     event,
     etype,
     entity,
+    *,
+    exclude_a10=False,
+    min_wr=None,
+    exclude_mods=False,
+    version=None,
 ) -> str:
     """Redis key for one chart + filter combo. Shared by the live endpoint and
     the prewarmer so a warmed entry is a byte-for-byte hit on a real request."""
     return (
         f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
         f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
-        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}"
+        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}:"
+        f"{int(bool(exclude_a10))}:{min_wr if min_wr is not None else ''}:"
+        f"{int(bool(exclude_mods))}:{(version or '').strip()}"
     )
 
 
@@ -396,33 +429,62 @@ def _compute_chart(
     event,
     etype,
     entity,
+    *,
+    exclude_a10=False,
+    min_wr=None,
+    exclude_mods=False,
+    version=None,
 ) -> dict:
     """Build one chart payload (no caching). Raises HTTPException for invalid
     blob filters, same as the endpoint."""
     building = False
+    # The four cross-cutting filters apply to both frame and blob charts.
+    filters_active = bool(
+        exclude_a10 or exclude_mods or (version or "").strip() or min_wr is not None
+    )
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
-        rows = cs.filter_rows(cs.get_frame(), players, ascension, mode, username)
+        rows = cs.filter_rows(
+            cs.get_frame(),
+            players,
+            ascension,
+            mode,
+            username,
+            exclude_a10=exclude_a10,
+            min_wr=min_wr,
+            exclude_mods=exclude_mods,
+            build_id=version,
+        )
         series = _build_frame_chart(chart_key, rows, stat, x, y, split)
         total = len(rows)
     else:
-        # Blob charts: snapshot rollup, or a per-user walk when username set.
+        # Blob charts: the precomputed snapshot for the unfiltered all-data view,
+        # a per-user walk when username is set, or a capped on-demand walk over
+        # the matching blobs when any cross-cutting filter is on.
         if ascension is not None or game_mode:
             raise HTTPException(
                 status_code=400,
-                detail="This chart covers all ascensions and modes; drop those filters.",
+                detail="This chart uses an exact ascension/mode via the dedicated"
+                " filters; use Exclude A10 / Exclude mods instead here.",
             )
-        stats = (
-            cs.build_user_blob_stats(username) if username else get_charts_blob_stats()
-        )
+        if username:
+            stats = cs.build_user_blob_stats(username)
+        elif filters_active:
+            stats = cs.build_filtered_blob_stats(
+                exclude_a10=exclude_a10,
+                min_wr=min_wr,
+                exclude_mods=exclude_mods,
+                build_id=version,
+            )
+        else:
+            stats = get_charts_blob_stats()
         series = _build_blob_chart(
             chart_key, stats, spec, players, encounter, event, etype, entity
         )
         total = sum(n for _wk, n, _w in stats.get("week_totals") or [])
-        # Blob stats land with the first snapshot rebuild after a deploy;
-        # until then the cells are missing entirely, which is different from
-        # a filter matching nothing. Surface that so the page can say so.
-        if not username and not stats.get("week_totals"):
+        # Only the unfiltered snapshot path can be "still building"; a filtered
+        # or per-user walk that comes back empty just means no matching runs.
+        if not username and not filters_active and not stats.get("week_totals"):
             building = True
 
     return {
@@ -443,6 +505,10 @@ def _compute_chart(
             "event": event,
             "etype": etype,
             "entity": entity,
+            "exclude_a10": exclude_a10,
+            "min_wr": min_wr,
+            "exclude_mods": exclude_mods,
+            "version": version,
         },
         "series": series,
         "total_runs": total,
@@ -533,6 +599,19 @@ def get_chart(
     event: str | None = Query(None, max_length=80, description="Event id"),
     etype: str | None = Query(None, description="cards | relics | potions"),
     entity: str | None = Query(None, max_length=80, description="Entity id"),
+    exclude_a10: bool = Query(False, description="Drop A10 (ascension cap) runs"),
+    min_wr: int | None = Query(
+        None,
+        ge=0,
+        le=100,
+        description="Only runs by players whose overall win rate is >= this %",
+    ),
+    exclude_mods: bool = Query(
+        False, description="Drop custom / gameplay-modifier runs"
+    ),
+    version: str | None = Query(
+        None, max_length=40, description="Game build_id to filter to"
+    ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
     charts, their filters, splits, and the run stats usable for stat/x/y."""
@@ -566,6 +645,10 @@ def get_chart(
         event,
         etype,
         entity,
+        exclude_a10=exclude_a10,
+        min_wr=min_wr,
+        exclude_mods=exclude_mods,
+        version=version,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -586,6 +669,10 @@ def get_chart(
         event,
         etype,
         entity,
+        exclude_a10=exclude_a10,
+        min_wr=min_wr,
+        exclude_mods=exclude_mods,
+        version=version,
     )
     # A still-building snapshot resolves within minutes; don't pin the empty
     # answer for the full TTL.

@@ -144,6 +144,7 @@ interface Meta {
   stats: StatOpt[];
   characters: NamedOpt[];
   events: NamedOpt[];
+  versions: string[];
 }
 
 const PLAYER_OPTS = [
@@ -226,6 +227,11 @@ export default function ChartsClient() {
   const [event, setEvent] = useState(searchParams.get("event") || "");
   const [etype, setEtype] = useState(searchParams.get("etype") || "cards");
   const [entity, setEntity] = useState(searchParams.get("entity") || "");
+  // Cross-cutting filters (apply to every chart).
+  const [excludeA10, setExcludeA10] = useState(searchParams.get("a10") === "1");
+  const [minWr, setMinWr] = useState(searchParams.get("minwr") || "");
+  const [excludeMods, setExcludeMods] = useState(searchParams.get("nomods") === "1");
+  const [version, setVersion] = useState(searchParams.get("version") || "");
 
   const [encounters, setEncounters] = useState<NamedOpt[]>([]);
   const [entityLists, setEntityLists] = useState<Record<string, NamedOpt[]>>({});
@@ -318,9 +324,13 @@ export default function ChartsClient() {
       if (!spec?.etype_fixed) p.set("etype", etype);
       p.set("entity", entity);
     }
+    if (excludeA10) p.set("a10", "1");
+    if (minWr) p.set("minwr", minWr);
+    if (excludeMods) p.set("nomods", "1");
+    if (version) p.set("version", version);
     const qs = p.toString();
     router.replace(`/charts${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [chart, players, ascension, gameMode, username, split, stat, xStat, yStat, encounter, event, etype, entity, needsEntity, spec, router]);
+  }, [chart, players, ascension, gameMode, username, split, stat, xStat, yStat, encounter, event, etype, entity, needsEntity, spec, router, excludeA10, minWr, excludeMods, version]);
 
   // Fetch the chart itself.
   useEffect(() => {
@@ -345,6 +355,11 @@ export default function ChartsClient() {
       p.set("etype", effEtype);
       p.set("entity", entity);
     }
+    // Cross-cutting filters: sent for every chart, frame and blob.
+    if (excludeA10) p.set("exclude_a10", "true");
+    if (minWr) p.set("min_wr", minWr);
+    if (excludeMods) p.set("exclude_mods", "true");
+    if (version) p.set("version", version);
     setLoading(true);
     setError(null);
     const ctrl = new AbortController();
@@ -368,7 +383,7 @@ export default function ChartsClient() {
         }
       });
     return () => ctrl.abort();
-  }, [spec, meta, players, ascension, gameMode, username, split, stat, xStat, yStat, encounter, event, effEtype, entity, needsEntity]);
+  }, [spec, meta, players, ascension, gameMode, username, split, stat, xStat, yStat, encounter, event, effEtype, entity, needsEntity, excludeA10, minWr, excludeMods, version]);
 
   const groups = useMemo(() => {
     const g = new Map<string, ChartSpec[]>();
@@ -516,6 +531,54 @@ export default function ChartsClient() {
           )}
           {spec?.daily && (
             <span className="text-xs text-[var(--text-muted)]">Daily runs only.</span>
+          )}
+        </div>
+
+        {/* Cross-cutting filters: apply to every chart, frame and blob. */}
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <label className="flex items-center gap-2 text-sm text-[var(--text-secondary)] cursor-pointer">
+            <input
+              type="checkbox"
+              checked={excludeA10}
+              onChange={(e) => setExcludeA10(e.target.checked)}
+              className="accent-[var(--accent-gold)]"
+            />
+            Exclude A10
+          </label>
+          <label className="flex items-center gap-2 text-sm text-[var(--text-secondary)] cursor-pointer">
+            <input
+              type="checkbox"
+              checked={excludeMods}
+              onChange={(e) => setExcludeMods(e.target.checked)}
+              className="accent-[var(--accent-gold)]"
+            />
+            Exclude mods
+          </label>
+          <select
+            className={selectCls}
+            value={minWr}
+            onChange={(e) => setMinWr(e.target.value)}
+            aria-label="Minimum player win rate"
+          >
+            <option value="">Any win rate</option>
+            <option value="50">Players 50%+ WR</option>
+            <option value="60">Players 60%+ WR</option>
+            <option value="70">Players 70%+ WR</option>
+          </select>
+          {(meta?.versions?.length ?? 0) > 0 && (
+            <select
+              className={selectCls}
+              value={version}
+              onChange={(e) => setVersion(e.target.value)}
+              aria-label="Game version"
+            >
+              <option value="">All versions</option>
+              {meta!.versions.map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
           )}
         </div>
       </div>
