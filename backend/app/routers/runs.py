@@ -1127,6 +1127,16 @@ def start_stats_refresher() -> None:
                     )
         except Exception:
             logger.warning("entity-scores cache warm failed", exc_info=True)
+        # Warm the /charts page: precompute the default no-filter view of each
+        # chart so the page and chart switches serve from Redis instead of
+        # aggregating live on the first hit. One worker, shared cache, cheap.
+        try:
+            if app_cache.enabled():
+                from .charts import prewarm_charts
+
+                prewarm_charts()
+        except Exception:
+            logger.warning("charts prewarm failed", exc_info=True)
 
     threading.Thread(target=_loop, daemon=True, name="stats-refresher").start()
 
