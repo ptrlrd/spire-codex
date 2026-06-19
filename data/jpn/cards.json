@@ -14062,7 +14062,7 @@
     "upgrade": {
       "remove_exhaust": true
     },
-    "image_url": null,
+    "image_url": "/static/images/cards/scare.webp",
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
