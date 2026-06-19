@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "Eterna",
+    "description": "No se puede transformar ni eliminar de tu [gold]Mazo[/gold]."
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "Etérea",
+    "description": "Si esta carta está en tu [gold]Mano[/gold] al final del turno, se [gold]Agota[/gold]."
+  },
+  {
+    "id": "EXHAUST",
+    "name": "Agotamiento",
+    "description": "Elimina esta carta hasta el final del combate."
+  },
+  {
+    "id": "INNATE",
+    "name": "Innata",
+    "description": "Comienza cada combate con esta carta en tu [gold]Mano[/gold]."
+  },
+  {
+    "id": "PERIOD",
+    "name": "Period",
+    "description": ""
+  },
+  {
+    "id": "RETAIN",
+    "name": "Retención",
+    "description": "Las cartas retenidas no se descartan al final del turno."
+  },
+  {
+    "id": "SLY",
+    "name": "Astucia",
+    "description": "Si esta carta es descartada de tu [gold]Mano[/gold] antes de que acabe tu turno, juégala gratis."
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "Injugable",
+    "description": "Las cartas injugables no pueden jugarse."
+  }
+]

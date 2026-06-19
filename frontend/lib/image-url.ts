@@ -16,7 +16,7 @@ const CDN_BASE = CDN_URL || "https://cdn.spire-codex.com";
 // The literal here is only a first-paint fallback: SiteSwitcher refreshes it
 // from /api/beta/version on every page, so a new beta drop doesn't need a
 // code change to resolve its renders.
-let _betaRenderVersion = "0.107.0";
+let _betaRenderVersion = "0.107.1";
 export function setBetaRenderVersion(v: string | null | undefined) {
   if (v) _betaRenderVersion = v.replace(/^v/, "").replace(/-beta$/, "");
 }

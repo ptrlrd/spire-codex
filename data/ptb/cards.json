@@ -84,7 +84,7 @@
   {
     "id": "THE_SCYTHE",
     "name": "A Foice",
-    "description": "Cause 13 de dano.\nAumente permanentemente o dano desta carta em 3.",
+    "description": "Cause 13 de dano.\nAumente permanentemente o dano desta carta em 4.",
     "description_raw": "Cause {Damage:diff()} de dano.\nAumente permanentemente o dano desta carta em {Increase:diff()}.",
     "cost": 2,
     "is_x_cost": null,
@@ -107,7 +107,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Increase": 3,
+      "Increase": 4,
       "Damage": 13,
       "baseDamage": 13
     },
@@ -115,10 +115,10 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/the_scythe.webp",
-    "beta_image_url": "/static/images/cards/beta/the_scythe.webp",
+    "beta_image_url": "/static/images/cards/beta/the_scythe.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 13 de dano.\nAumente permanentemente o dano desta carta em 4.",
+    "upgrade_description": "Cause 13 de dano.\nAumente permanentemente o dano desta carta em 5.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "keywords_key": [
@@ -212,7 +212,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/abrasive.webp",
-    "beta_image_url": "/static/images/cards/beta/abrasive.webp",
+    "beta_image_url": "/static/images/cards/beta/abrasive.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 1 de [gold]Destreza[/gold].\nReceba 6 de [gold]Espinhos[/gold].",
@@ -413,7 +413,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/gather_light.webp",
-    "beta_image_url": "/static/images/cards/beta/gather_light.webp",
+    "beta_image_url": "/static/images/cards/beta/gather_light.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 11 de [gold]Proteção[/gold].\nReceba [star:1].",
@@ -460,7 +460,7 @@
     "upgrade_description": "Descarte 2 cartas.\nAdicione 2 [gold]Lâminas+[/gold] na sua [gold]Mão[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
-    "compendium_order": 129
+    "compendium_order": 128
   },
   {
     "id": "ADRENALINE",
@@ -652,7 +652,7 @@
       "heal": "+3"
     },
     "image_url": "/static/images/cards/not_yet.webp",
-    "beta_image_url": "/static/images/cards/beta/not_yet.webp",
+    "beta_image_url": "/static/images/cards/beta/not_yet.png",
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "Cure 13 PV.",
@@ -702,7 +702,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/hotfix.webp",
-    "beta_image_url": "/static/images/cards/beta/hotfix.webp",
+    "beta_image_url": "/static/images/cards/beta/hotfix.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -788,7 +788,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/alignment.webp",
-    "beta_image_url": "/static/images/cards/beta/alignment.webp",
+    "beta_image_url": "/static/images/cards/beta/alignment.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [energy:3].",
@@ -837,7 +837,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 572
+    "compendium_order": 573
   },
   {
     "id": "ALCHEMIZE",
@@ -923,7 +923,7 @@
   {
     "id": "UPROAR",
     "name": "Alvoroço",
-    "description": "Cause 5 de dano duas vezes.\nJogue um Ataque aleatório da sua [gold]Pilha de Compra[/gold].",
+    "description": "Cause 6 de dano duas vezes.\nJogue um Ataque aleatório da sua [gold]Pilha de Compra[/gold].",
     "description_raw": "Cause {Damage:diff()} de dano duas vezes.\nJogue um Ataque aleatório da sua [gold]Pilha de Compra[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -933,7 +933,7 @@
     "rarity": "Comum",
     "target": "AnyEnemy",
     "color": "defect",
-    "damage": 5,
+    "damage": 6,
     "block": null,
     "hit_count": 2,
     "powers_applied": null,
@@ -944,19 +944,60 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 5
+      "Damage": 6
     },
     "upgrade": {
       "damage": "+2"
     },
     "image_url": "/static/images/cards/uproar.webp",
-    "beta_image_url": "/static/images/cards/beta/uproar.webp",
+    "beta_image_url": "/static/images/cards/beta/uproar.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 7 de dano duas vezes.\nJogue um Ataque aleatório da sua [gold]Pilha de Compra[/gold].",
+    "upgrade_description": "Cause 8 de dano duas vezes.\nJogue um Ataque aleatório da sua [gold]Pilha de Compra[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 435
+  },
+  {
+    "id": "SCARE",
+    "name": "Amedrontar",
+    "description": "Aplique 1 de [gold]Fraqueza[/gold] a TODOS os inimigos.",
+    "description_raw": "Aplique 1 de [gold]Fraqueza[/gold] a TODOS os inimigos.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Técnica",
+    "rarity": "Incomum",
+    "target": "AllEnemies",
+    "color": "silent",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exaurir"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "remove_exhaust": true
+    },
+    "image_url": "/static/images/cards/scare.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 152
   },
   {
     "id": "FRIENDSHIP",
@@ -1190,8 +1231,8 @@
   {
     "id": "PARRY",
     "name": "Aparar",
-    "description": "Sempre que você jogar [gold]Espada Soberana[/gold], receba 10 de [gold]Proteção[/gold].",
-    "description_raw": "Sempre que você jogar [gold]Espada Soberana[/gold], receba {ParryPower:diff()} de [gold]Proteção[/gold].",
+    "description": "[gold]Espada Soberana[/gold] agora concede 10 de [gold]Proteção[/gold].",
+    "description_raw": "[gold]Espada Soberana[/gold] agora concede {ParryPower:diff()} de [gold]Proteção[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -1226,10 +1267,10 @@
       "parrypower": "+4"
     },
     "image_url": "/static/images/cards/parry.webp",
-    "beta_image_url": "/static/images/cards/beta/parry.webp",
+    "beta_image_url": "/static/images/cards/beta/parry.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Sempre que você jogar [gold]Espada Soberana[/gold], receba 14 de [gold]Proteção[/gold].",
+    "upgrade_description": "[gold]Espada Soberana[/gold] agora concede 14 de [gold]Proteção[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 232
@@ -1264,7 +1305,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/eidolon.webp",
-    "beta_image_url": "/static/images/cards/beta/eidolon.webp",
+    "beta_image_url": "/static/images/cards/beta/eidolon.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1312,7 +1353,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/apparition.webp",
-    "beta_image_url": "/static/images/cards/beta/apparition.webp",
+    "beta_image_url": "/static/images/cards/beta/apparition.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1356,7 +1397,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/whistle.webp",
-    "beta_image_url": "/static/images/cards/beta/whistle.webp",
+    "beta_image_url": "/static/images/cards/beta/whistle.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 44 de dano.\n[gold]Atordoe[/gold] o inimigo.",
@@ -1408,7 +1449,7 @@
     "upgrade_description": null,
     "type_key": "Status",
     "rarity_key": "Status",
-    "compendium_order": 566
+    "compendium_order": 567
   },
   {
     "id": "RALLY",
@@ -1440,7 +1481,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/rally.webp",
-    "beta_image_url": "/static/images/cards/beta/rally.webp",
+    "beta_image_url": "/static/images/cards/beta/rally.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "TODOS os jogadores recebem 17 de [gold]Proteção[/gold].",
@@ -1522,7 +1563,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/royal_gamble.webp",
-    "beta_image_url": "/static/images/cards/beta/royal_gamble.webp",
+    "beta_image_url": "/static/images/cards/beta/royal_gamble.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -1699,7 +1740,7 @@
     "upgrade_description": "[gold]Aprimore[/gold] e jogue cada [gold]Lâmina[/gold] na sua pilha de [gold]Cartas Exauridas[/gold] contra o inimigo.",
     "type_key": "Skill",
     "rarity_key": "Rare",
-    "compendium_order": 131
+    "compendium_order": 130
   },
   {
     "id": "ETERNAL_ARMOR",
@@ -1983,7 +2024,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/arsenal.webp",
-    "beta_image_url": "/static/images/cards/beta/arsenal.webp",
+    "beta_image_url": "/static/images/cards/beta/arsenal.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2023,7 +2064,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/flak_cannon.webp",
-    "beta_image_url": "/static/images/cards/beta/flak_cannon.webp",
+    "beta_image_url": "/static/images/cards/beta/flak_cannon.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Exaure[/gold] TODAS as suas cartas de Condição.\nCause 11 de dano a um inimigo aleatório por cada carta [gold]Exaurida[/gold].",
@@ -2117,7 +2158,7 @@
       "hploss": "+2"
     },
     "image_url": "/static/images/cards/haunt.webp",
-    "beta_image_url": "/static/images/cards/beta/haunt.webp",
+    "beta_image_url": "/static/images/cards/beta/haunt.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você jogar uma [gold]Alma[/gold], um inimigo aleatório perde 8 PV.",
@@ -2193,7 +2234,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/automation.webp",
-    "beta_image_url": "/static/images/cards/beta/automation.webp",
+    "beta_image_url": "/static/images/cards/beta/automation.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2204,7 +2245,7 @@
   {
     "id": "SIC_EM",
     "name": "Avance!",
-    "description": "[gold]Ostheo[/gold] causa 5 de dano.\nSempre que [gold]Ostheo[/gold] golpear um inimigo neste turno, [gold]Vincule[/gold] 2.",
+    "description": "[gold]Ostheo[/gold] causa 5 de dano.\nSempre que [gold]Ostheo[/gold] golpear um inimigo neste turno, [gold]Vincule[/gold] 3.",
     "description_raw": "[gold]Ostheo[/gold] causa {OstyDamage:diff()} de dano.\nSempre que [gold]Ostheo[/gold] golpear um inimigo neste turno, [gold]Vincule[/gold] {SicEmPower:diff()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -2220,7 +2261,7 @@
     "powers_applied": [
       {
         "power": "Avance!",
-        "amount": 2,
+        "amount": 3,
         "power_key": "SicEm"
       }
     ],
@@ -2234,8 +2275,8 @@
     "spawns_cards": null,
     "vars": {
       "OstyDamage": 5,
-      "SicEmPower": 2,
-      "SicEm": 2,
+      "SicEmPower": 3,
+      "SicEm": 3,
       "Damage": 5
     },
     "upgrade": {
@@ -2243,10 +2284,10 @@
       "sicempower": "+1"
     },
     "image_url": "/static/images/cards/sic_em.webp",
-    "beta_image_url": "/static/images/cards/beta/sic_em.webp",
+    "beta_image_url": "/static/images/cards/beta/sic_em.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "[gold]Ostheo[/gold] causa 6 de dano.\nSempre que [gold]Ostheo[/gold] golpear um inimigo neste turno, [gold]Vincule[/gold] 3.",
+    "upgrade_description": "[gold]Ostheo[/gold] causa 6 de dano.\nSempre que [gold]Ostheo[/gold] golpear um inimigo neste turno, [gold]Vincule[/gold] 4.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 335
@@ -2357,7 +2398,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/bad_luck.webp",
-    "beta_image_url": "/static/images/cards/beta/bad_luck.webp",
+    "beta_image_url": "/static/images/cards/beta/bad_luck.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2372,7 +2413,7 @@
   {
     "id": "BULWARK",
     "name": "Baluarte",
-    "description": "Receba 13 de [gold]Proteção[/gold].\n[gold]Forje[/gold] 10.",
+    "description": "Receba 12 de [gold]Proteção[/gold].\n[gold]Forje[/gold] 10.",
     "description_raw": "Receba {Block:diff()} de [gold]Proteção[/gold].\n[gold]Forje[/gold] {Forge:diff()}.",
     "cost": 2,
     "is_x_cost": null,
@@ -2383,7 +2424,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 13,
+    "block": 12,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -2393,7 +2434,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 13,
+      "Block": 12,
       "Forge": 10
     },
     "upgrade": {
@@ -2401,10 +2442,10 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/bulwark.webp",
-    "beta_image_url": "/static/images/cards/beta/bulwark.webp",
+    "beta_image_url": "/static/images/cards/beta/bulwark.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 16 de [gold]Proteção[/gold].\n[gold]Forje[/gold] 13.",
+    "upgrade_description": "Receba 15 de [gold]Proteção[/gold].\n[gold]Forje[/gold] 13.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 183
@@ -2559,7 +2600,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/big_bang.webp",
-    "beta_image_url": "/static/images/cards/beta/big_bang.webp",
+    "beta_image_url": "/static/images/cards/beta/big_bang.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -2574,7 +2615,7 @@
     "id": "TESLA_COIL",
     "name": "Bobina de Tesla",
     "description": "Cause 3 de dano.\nAtive todos os [gold]Relâmpagos[/gold] contra o inimigo.",
-    "description_raw": "Cause {Damage:diff()} de dano.\nAtive todos os [gold]Relâmpagos[/gold] contra o inimigo.",
+    "description_raw": "Cause {Damage:diff()} de dano.\nAtive todos os [gold]Relâmpagos[/gold] contra o inimigo{IfUpgraded:show: duas vezes|}.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -2597,13 +2638,13 @@
       "Damage": 3
     },
     "upgrade": {
-      "damage": "+3"
+      "damage": "+1"
     },
     "image_url": "/static/images/cards/tesla_coil.webp",
-    "beta_image_url": "/static/images/cards/beta/tesla_coil.webp",
+    "beta_image_url": "/static/images/cards/beta/tesla_coil.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 6 de dano.\nAtive todos os [gold]Relâmpagos[/gold] contra o inimigo.",
+    "upgrade_description": "Cause 4 de dano.\nAtive todos os [gold]Relâmpagos[/gold] contra o inimigo duas vezes.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 431
@@ -2678,7 +2719,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/bombardment.webp",
-    "beta_image_url": "/static/images/cards/beta/bombardment.webp",
+    "beta_image_url": "/static/images/cards/beta/bombardment.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 24 de dano.\nNo início do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
@@ -2732,7 +2773,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 567
+    "compendium_order": 568
   },
   {
     "id": "BUBBLE_BUBBLE",
@@ -2771,7 +2812,7 @@
       "poison": "+3"
     },
     "image_url": "/static/images/cards/bubble_bubble.webp",
-    "beta_image_url": "/static/images/cards/beta/bubble_bubble.webp",
+    "beta_image_url": "/static/images/cards/beta/bubble_bubble.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Se o inimigo estiver [gold]Envenenado[/gold], aplique 12 de [gold]Veneno[/gold].",
@@ -2854,7 +2895,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/glow.webp",
-    "beta_image_url": "/static/images/cards/beta/glow.webp",
+    "beta_image_url": "/static/images/cards/beta/glow.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [star:2].\nCompre 1 carta.\nNo próximo turno, compre 1 carta.",
@@ -2894,7 +2935,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/helix_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/helix_drill.webp",
+    "beta_image_url": "/static/images/cards/beta/helix_drill.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 5 de dano por cada [energy:1] gasta anteriormente neste turno.",
@@ -2950,7 +2991,7 @@
     "keywords_key": [
       "Sly"
     ],
-    "compendium_order": 128
+    "compendium_order": 127
   },
   {
     "id": "VICIOUS",
@@ -2982,7 +3023,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/vicious.webp",
-    "beta_image_url": "/static/images/cards/beta/vicious.webp",
+    "beta_image_url": "/static/images/cards/beta/vicious.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você aplicar [gold]Vulnerável[/gold], compre 2 cartas.",
@@ -3027,7 +3068,7 @@
       "blackholepower": "+1"
     },
     "image_url": "/static/images/cards/black_hole.webp",
-    "beta_image_url": "/static/images/cards/beta/black_hole.webp",
+    "beta_image_url": "/static/images/cards/beta/black_hole.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você gastar ou receber [star:1], cause 4 de dano a TODOS os inimigos.",
@@ -3143,7 +3184,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/calamity.webp",
-    "beta_image_url": "/static/images/cards/beta/calamity.webp",
+    "beta_image_url": "/static/images/cards/beta/calamity.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3381,7 +3422,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/cascade.webp",
-    "beta_image_url": "/static/images/cards/beta/cascade.webp",
+    "beta_image_url": "/static/images/cards/beta/cascade.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Jogue as X+1 cartas do topo da sua [gold]Pilha de Compra[/gold].",
@@ -3419,7 +3460,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/catastrophe.webp",
-    "beta_image_url": "/static/images/cards/beta/catastrophe.webp",
+    "beta_image_url": "/static/images/cards/beta/catastrophe.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Jogue 3 cartas aleatórias da sua [gold]Pilha de Compra[/gold].",
@@ -3511,7 +3552,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/reap.webp",
-    "beta_image_url": "/static/images/cards/beta/reap.webp",
+    "beta_image_url": "/static/images/cards/beta/reap.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 33 de dano.",
@@ -3555,7 +3596,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/brightest_flame.webp",
-    "beta_image_url": "/static/images/cards/beta/brightest_flame.webp",
+    "beta_image_url": "/static/images/cards/beta/brightest_flame.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [energy:3].\nCompre 3 cartas.\nPerca 1 PV Máximo.",
@@ -3593,7 +3634,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/call_of_the_void.webp",
-    "beta_image_url": "/static/images/cards/beta/call_of_the_void.webp",
+    "beta_image_url": "/static/images/cards/beta/call_of_the_void.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3678,7 +3719,7 @@
       "smokestackpower": "+2"
     },
     "image_url": "/static/images/cards/smokestack.webp",
-    "beta_image_url": "/static/images/cards/beta/smokestack.webp",
+    "beta_image_url": "/static/images/cards/beta/smokestack.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você criar uma carta de Condição, cause 7 de dano a TODOS os inimigos.",
@@ -3716,7 +3757,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/lantern_key.webp",
-    "beta_image_url": "/static/images/cards/beta/lantern_key.webp",
+    "beta_image_url": "/static/images/cards/beta/lantern_key.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -3802,7 +3843,7 @@
       "hailstormpower": "+2"
     },
     "image_url": "/static/images/cards/hailstorm.webp",
-    "beta_image_url": "/static/images/cards/beta/hailstorm.webp",
+    "beta_image_url": "/static/images/cards/beta/hailstorm.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No final do seu turno, se você possuir [gold]Gelo[/gold], cause 8 de dano a TODOS os inimigos.",
@@ -3983,7 +4024,7 @@
     "id": "MAD_SCIENCE",
     "name": "Ciência Profana",
     "description": "Cause 12 de dano.",
-    "description_raw": "{CardType:choose(Attack|Skill|Power):Cause {Damage:diff()} de dano{Violence: {ViolenceHits:diff()} vezes|}.|Receba {Block:diff()} de [gold]Proteção[/gold].|}{HasRider:{Sapping:\nAplique {SappingWeak:diff()} de [gold]Fraqueza[/gold].\nAplique {SappingVulnerable:diff()} de [gold]Vulnerável[/gold].|}{Choking:\nSempre que você jogar uma carta neste turno, o inimigo perde {ChokingDamage:diff()} PV.|}{Energized:\nReceba {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nCompre {WisdomCards:diff()} cartas.|}{Chaos:\nAdicione uma carta aleatória na sua [gold]Mão[/gold]. Ela não tem custo neste turno.|}{Expertise:Receba {ExpertiseStrength:diff()} de [gold]Força[/gold].\nReceba {ExpertiseDexterity:diff()} de [gold]Destreza[/gold].|}{Curious:Poderes custam {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} a menos.|}{Improvement:No final do combate, [gold]Aprimore[/gold] uma carta aleatória.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???}}",
+    "description_raw": "{CardType:choose(Attack|Skill|Power):Cause {Damage:diff()} de dano{Violence: {ViolenceHits:diff()} vezes|}.|Receba {Block:diff()} de [gold]Proteção[/gold].||???}{HasRider:{Sapping:\nAplique {SappingWeak:diff()} de [gold]Fraqueza[/gold].\nAplique {SappingVulnerable:diff()} de [gold]Vulnerável[/gold].|}{Choking:\nSempre que você jogar uma carta neste turno, o inimigo perde {ChokingDamage:diff()} PV.|}{Energized:\nReceba {EnergizedEnergy:energyIcons()}.|}{Wisdom:\nCompre {WisdomCards:diff()} cartas.|}{Chaos:\nAdicione uma carta aleatória na sua [gold]Mão[/gold]. Ela não tem custo neste turno.|}{Expertise:Receba {ExpertiseStrength:diff()} de [gold]Força[/gold].\nReceba {ExpertiseDexterity:diff()} de [gold]Destreza[/gold].|}{Curious:Poderes custam {CuriousReduction:diff()} {energyPrefix:energyIcons(1)} a menos.|}{Improvement:No final do combate, [gold]Aprimore[/gold] uma carta aleatória.|}|{CardType:choose(Attack|Skill|Power):\n???|\n???|???|???}}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4179,7 +4220,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/colossus.webp",
-    "beta_image_url": "/static/images/cards/beta/colossus.webp",
+    "beta_image_url": "/static/images/cards/beta/colossus.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 8 de [gold]Proteção[/gold].\nVocê sofre 50% menos dano de inimigos [gold]Vulneráveis[/gold] neste turno.",
@@ -4229,7 +4270,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 563
+    "compendium_order": 564
   },
   {
     "id": "COMET",
@@ -4277,7 +4318,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/comet.webp",
-    "beta_image_url": "/static/images/cards/beta/comet.webp",
+    "beta_image_url": "/static/images/cards/beta/comet.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 44 de dano.\nAplique 3 de [gold]Fraqueza[/gold].\nAplique 3 de [gold]Vulnerável[/gold].",
@@ -4357,7 +4398,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/compact.webp",
-    "beta_image_url": "/static/images/cards/beta/compact.webp",
+    "beta_image_url": "/static/images/cards/beta/compact.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 7 de [gold]Proteção[/gold].\n[gold]Transforme[/gold] todas as cartas de Condição na sua [gold]Mão[/gold] em [gold]Combustível+[/gold].",
@@ -4395,7 +4436,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/foregone_conclusion.webp",
-    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.webp",
+    "beta_image_url": "/static/images/cards/beta/foregone_conclusion.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No próximo turno, coloque 3 cartas da sua [gold]Pilha de Compra[/gold] na sua [gold]Mão[/gold].",
@@ -4433,7 +4474,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/believe_in_you.webp",
-    "beta_image_url": "/static/images/cards/beta/believe_in_you.webp",
+    "beta_image_url": "/static/images/cards/beta/believe_in_you.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Outro jogador recebe [energy:3].",
@@ -4444,8 +4485,8 @@
   {
     "id": "CONFLAGRATION",
     "name": "Conflagração",
-    "description": "Cause 8 de dano a TODOS os inimigos.\nCausa 2 de dano adicional por cada outro Ataque que você jogou neste turno.",
-    "description_raw": "Cause {CalculatedDamage:diff()} de dano a TODOS os inimigos.\nCausa {ExtraDamage:diff()} de dano adicional por cada outro Ataque que você jogou neste turno.",
+    "description": "Cause 2 de dano a TODOS os inimigos 4 vezes.",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos {Repeat:diff()} {Repeat:plural:vez|vezes}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4454,9 +4495,9 @@
     "rarity": "Rara",
     "target": "AllEnemies",
     "color": "ironclad",
-    "damage": 8,
+    "damage": 2,
     "block": null,
-    "hit_count": null,
+    "hit_count": 4,
     "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
@@ -4465,19 +4506,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 8,
-      "ExtraDamage": 2,
-      "CalculatedDamage": 8
+      "Damage": 2,
+      "Repeat": 4
     },
     "upgrade": {
-      "calculationbase": "+1",
-      "extradamage": "+1"
+      "repeat": "+1"
     },
     "image_url": "/static/images/cards/conflagration.webp",
-    "beta_image_url": "/static/images/cards/beta/conflagration.webp",
+    "beta_image_url": "/static/images/cards/beta/conflagration.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 8 de dano a TODOS os inimigos.\nCausa 3 de dano adicional por cada outro Ataque que você jogou neste turno.",
+    "upgrade_description": "Cause 2 de dano a TODOS os inimigos 5 vezes.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 19
@@ -4512,7 +4551,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/conqueror.webp",
-    "beta_image_url": "/static/images/cards/beta/conqueror.webp",
+    "beta_image_url": "/static/images/cards/beta/conqueror.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Forje[/gold] 5.\n[gold]Espada Soberana[/gold] causa o dobro de dano ao inimigo neste turno.",
@@ -4645,7 +4684,7 @@
       "devourlifepower": "+1"
     },
     "image_url": "/static/images/cards/devour_life.webp",
-    "beta_image_url": "/static/images/cards/beta/devour_life.webp",
+    "beta_image_url": "/static/images/cards/beta/devour_life.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você jogar uma [gold]Alma[/gold], [gold]Vincule[/gold] 2.",
@@ -4729,7 +4768,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/convergence.webp",
-    "beta_image_url": "/static/images/cards/beta/convergence.webp",
+    "beta_image_url": "/static/images/cards/beta/convergence.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No próximo turno,\nreceba [energy:1] e [star:2].\n[gold]Mantenha[/gold] a sua [gold]Mão[/gold] neste turno.",
@@ -4740,8 +4779,8 @@
   {
     "id": "SUMMON_FORTH",
     "name": "Convocar à Frente",
-    "description": "[gold]Forje[/gold] 8.\nColoque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].",
-    "description_raw": "[gold]Forje[/gold] {Forge:diff()}.\nColoque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].",
+    "description": "Coloque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].\n[gold]Forje[/gold] 8.",
+    "description_raw": "Coloque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].\n[gold]Forje[/gold] {Forge:diff()}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -4769,10 +4808,10 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/summon_forth.webp",
-    "beta_image_url": "/static/images/cards/beta/summon_forth.webp",
+    "beta_image_url": "/static/images/cards/beta/summon_forth.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "[gold]Forje[/gold] 11.\nColoque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].",
+    "upgrade_description": "Coloque [gold]Espada Soberana[/gold] na sua [gold]Mão[/gold].\n[gold]Forje[/gold] 11.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 253
@@ -4814,7 +4853,7 @@
       "strength": "+3"
     },
     "image_url": "/static/images/cards/coordinate.webp",
-    "beta_image_url": "/static/images/cards/beta/coordinate.webp",
+    "beta_image_url": "/static/images/cards/beta/coordinate.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Conceda a outro jogador 8 de [gold]Força[/gold] neste turno.",
@@ -4936,7 +4975,7 @@
     "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 148
+    "compendium_order": 147
   },
   {
     "id": "PHOTON_CUT",
@@ -4971,7 +5010,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/photon_cut.webp",
-    "beta_image_url": "/static/images/cards/beta/photon_cut.webp",
+    "beta_image_url": "/static/images/cards/beta/photon_cut.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 13 de dano.\nCompre 2 cartas.\nColoque 1 carta da sua [gold]Mão[/gold] no topo da sua [gold]Pilha de Compra[/gold].",
@@ -5015,7 +5054,7 @@
     "upgrade_description": "Cause 19 de dano.\nCusta 1 [energy:1] a menos por cada Técnica jogada neste turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 145
+    "compendium_order": 144
   },
   {
     "id": "GLASSWORK",
@@ -5047,7 +5086,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/glasswork.webp",
-    "beta_image_url": "/static/images/cards/beta/glasswork.webp",
+    "beta_image_url": "/static/images/cards/beta/glasswork.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 8 de [gold]Proteção[/gold].\n[gold]Canalize[/gold] 1 [gold]Vidro[/gold].",
@@ -5220,7 +5259,7 @@
       "dansemacabrepower": "+2"
     },
     "image_url": "/static/images/cards/danse_macabre.webp",
-    "beta_image_url": "/static/images/cards/beta/danse_macabre.webp",
+    "beta_image_url": "/static/images/cards/beta/danse_macabre.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você jogar uma carta que custe [energy:2] ou mais, receba 6 de [gold]Proteção[/gold].",
@@ -5316,8 +5355,8 @@
   {
     "id": "DEBILITATE",
     "name": "Debilitar",
-    "description": "Cause 10 de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra inimigos pelos próximos 3 turnos.",
-    "description_raw": "Cause {Damage:diff()} de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra inimigos {DebilitatePower:plural:pelo próximo|pelos próximos} {DebilitatePower:diff()} {DebilitatePower:plural:turno|turnos}.",
+    "description": "Cause 10 de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra o inimigo pelos próximos 2 turnos.",
+    "description_raw": "Cause {Damage:diff()} de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra o inimigo {DebilitatePower:plural:pelo próximo|pelos próximos} {DebilitatePower:diff()} {DebilitatePower:plural:turno|turnos}.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5332,7 +5371,7 @@
     "powers_applied": [
       {
         "power": "Debilitar",
-        "amount": 3,
+        "amount": 2,
         "power_key": "Debilitate"
       }
     ],
@@ -5344,18 +5383,18 @@
     "spawns_cards": null,
     "vars": {
       "Damage": 10,
-      "DebilitatePower": 3,
-      "Debilitate": 3
+      "DebilitatePower": 2,
+      "Debilitate": 2
     },
     "upgrade": {
       "damage": "+2",
       "debilitatepower": "+1"
     },
     "image_url": "/static/images/cards/debilitate.webp",
-    "beta_image_url": "/static/images/cards/beta/debilitate.webp",
+    "beta_image_url": "/static/images/cards/beta/debilitate.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 12 de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra inimigos pelos próximos 4 turnos.",
+    "upgrade_description": "Cause 12 de dano.\n[gold]Vulnerável[/gold] e [gold]Fraqueza[/gold] possuem o dobro de efetividade contra o inimigo pelos próximos 3 turnos.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 279
@@ -5394,7 +5433,7 @@
       "cards": "+2"
     },
     "image_url": "/static/images/cards/decisions_decisions.webp",
-    "beta_image_url": "/static/images/cards/beta/decisions_decisions.webp",
+    "beta_image_url": "/static/images/cards/beta/decisions_decisions.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Compre 5 cartas.\nEscolha uma Técnica na sua [gold]Mão[/gold] e a jogue 3 vezes.",
@@ -5637,7 +5676,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/ultimate_defend.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_defend.webp",
+    "beta_image_url": "/static/images/cards/beta/ultimate_defend.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 15 de [gold]Proteção[/gold].",
@@ -5646,10 +5685,10 @@
     "compendium_order": 500
   },
   {
-    "id": "WASTE_AWAY",
+    "id": "WITHER",
     "name": "Definhar",
-    "description": "Receba 1 [energy:1] a menos por turno.",
-    "description_raw": "Receba {WasteAwayPower:diff()} {energyPrefix:energyIcons(1)} a menos por turno.",
+    "description": "No final do seu turno, se esta carta estiver na sua [gold]Mão[/gold], sofra 3 de dano.",
+    "description_raw": "No final do seu turno, se esta carta estiver na sua [gold]Mão[/gold], sofra {Damage:diff()} de dano.",
     "cost": -1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -5657,36 +5696,36 @@
     "type": "Condição",
     "rarity": "Condição",
     "target": "None",
-    "color": "token",
-    "damage": null,
+    "color": "status",
+    "damage": 3,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Definhar",
-        "amount": 1,
-        "power_key": "WasteAway"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Injogável"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "WasteAwayPower": 1,
-      "WasteAway": 1
+      "Damage": 3
     },
-    "upgrade": null,
-    "image_url": "/static/images/cards/waste_away.webp",
-    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": null,
+    "beta_image_url": "/static/images/cards/beta/wither.webp",
     "type_variants": null,
-    "can_be_generated_in_combat": false,
-    "upgrade_description": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "No final do seu turno, se esta carta estiver na sua [gold]Mão[/gold], sofra 6 de dano.",
     "type_key": "Status",
     "rarity_key": "Status",
-    "compendium_order": 575
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 561
   },
   {
     "id": "DEFLECT",
@@ -5765,7 +5804,7 @@
       "knockdownpower": "+1"
     },
     "image_url": "/static/images/cards/knockdown.webp",
-    "beta_image_url": "/static/images/cards/beta/knockdown.webp",
+    "beta_image_url": "/static/images/cards/beta/knockdown.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 14 de dano.\nO inimigo sofre o triplo de dano de outros jogadores neste turno.",
@@ -6112,7 +6151,7 @@
     "upgrade_description": null,
     "type_key": "Status",
     "rarity_key": "Status",
-    "compendium_order": 562
+    "compendium_order": 563
   },
   {
     "id": "DISMANTLE",
@@ -6386,7 +6425,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/severance.webp",
-    "beta_image_url": "/static/images/cards/beta/severance.webp",
+    "beta_image_url": "/static/images/cards/beta/severance.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 18 de dano.\nAdicione uma [gold]Alma[/gold] na sua [gold]Pilha de Compra[/gold], na sua [gold]Mão[/gold] e na sua [gold]Pilha de Descarte[/gold].",
@@ -6424,7 +6463,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/spectrum_shift.webp",
-    "beta_image_url": "/static/images/cards/beta/spectrum_shift.webp",
+    "beta_image_url": "/static/images/cards/beta/spectrum_shift.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -6504,7 +6543,7 @@
       "damage": "+10"
     },
     "image_url": "/static/images/cards/devastate.webp",
-    "beta_image_url": "/static/images/cards/beta/devastate.webp",
+    "beta_image_url": "/static/images/cards/beta/devastate.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 40 de dano.",
@@ -6544,7 +6583,7 @@
       "increase": "+1"
     },
     "image_url": "/static/images/cards/maul.webp",
-    "beta_image_url": "/static/images/cards/beta/maul.webp",
+    "beta_image_url": "/static/images/cards/beta/maul.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 6 de dano duas vezes.\nAumenta o dano de TODAS as cartas de Dilacerar 2 neste combate.",
@@ -6582,7 +6621,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/pagestorm.webp",
-    "beta_image_url": "/static/images/cards/beta/pagestorm.webp",
+    "beta_image_url": "/static/images/cards/beta/pagestorm.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -6676,7 +6715,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/gamma_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/gamma_blast.webp",
+    "beta_image_url": "/static/images/cards/beta/gamma_blast.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 18 de dano.\nAplique 2 de [gold]Fraqueza[/gold].\nAplique 2 de [gold]Vulnerável[/gold].",
@@ -6716,7 +6755,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/lunar_blast.webp",
-    "beta_image_url": "/static/images/cards/beta/lunar_blast.webp",
+    "beta_image_url": "/static/images/cards/beta/lunar_blast.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 5 de dano por cada Técnica jogada neste turno.",
@@ -6802,7 +6841,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/graveblast.webp",
-    "beta_image_url": "/static/images/cards/beta/graveblast.webp",
+    "beta_image_url": "/static/images/cards/beta/graveblast.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 6 de dano.\nColoque uma carta da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
@@ -6843,7 +6882,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/distraction.webp",
-    "beta_image_url": "/static/images/cards/beta/distraction.webp",
+    "beta_image_url": "/static/images/cards/beta/distraction.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -6938,7 +6977,7 @@
       "cost": 2
     },
     "image_url": "/static/images/cards/demesne.webp",
-    "beta_image_url": "/static/images/cards/beta/demesne.webp",
+    "beta_image_url": "/static/images/cards/beta/demesne.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -6981,7 +7020,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/dredge.webp",
-    "beta_image_url": "/static/images/cards/beta/dredge.webp",
+    "beta_image_url": "/static/images/cards/beta/dredge.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7062,7 +7101,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/dual_wield.webp",
-    "beta_image_url": "/static/images/cards/beta/dual_wield.webp",
+    "beta_image_url": "/static/images/cards/beta/dual_wield.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Escolha uma carta de Ataque ou Poder. Adicione 2 cópias desta carta na sua [gold]Mão[/gold].",
@@ -7266,7 +7305,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/clash.webp",
-    "beta_image_url": "/static/images/cards/beta/clash.webp",
+    "beta_image_url": "/static/images/cards/beta/clash.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Pode ser jogada apenas se todas as cartas na sua [gold]Mão[/gold] forem Ataques.\nCause 18 de dano.",
@@ -7305,7 +7344,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/stack.webp",
-    "beta_image_url": "/static/images/cards/beta/stack.webp",
+    "beta_image_url": "/static/images/cards/beta/stack.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [gold]Proteção[/gold] equivalente à quantidade de cartas na sua [gold]Pilha de Descarte[/gold] +3.",
@@ -7343,7 +7382,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/hang.webp",
-    "beta_image_url": "/static/images/cards/beta/hang.webp",
+    "beta_image_url": "/static/images/cards/beta/hang.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 13 de dano.\nDobre o dano que TODAS as cartas de Enforcar causam neste inimigo.",
@@ -7381,7 +7420,7 @@
       "damage": "+11"
     },
     "image_url": "/static/images/cards/bury.webp",
-    "beta_image_url": "/static/images/cards/beta/bury.webp",
+    "beta_image_url": "/static/images/cards/beta/bury.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Causa 63 de dano.",
@@ -7462,7 +7501,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/entrench.webp",
-    "beta_image_url": "/static/images/cards/beta/entrench.webp",
+    "beta_image_url": "/static/images/cards/beta/entrench.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7500,7 +7539,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/entropy.webp",
-    "beta_image_url": "/static/images/cards/beta/entropy.webp",
+    "beta_image_url": "/static/images/cards/beta/entropy.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7583,7 +7622,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/volley.webp",
-    "beta_image_url": "/static/images/cards/beta/volley.webp",
+    "beta_image_url": "/static/images/cards/beta/volley.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 14 de dano a um inimigo aleatório X vezes.",
@@ -7594,8 +7633,8 @@
   {
     "id": "OUTBREAK",
     "name": "Epidemia",
-    "description": "Cada 3 vezes que você aplicar [gold]Veneno[/gold], cause 11 de dano a TODOS os inimigos.",
-    "description_raw": "Cada {Repeat:plural:vez|{Repeat:diff()} vezes} que você aplicar [gold]Veneno[/gold], cause {OutbreakPower:diff()} de dano a TODOS os inimigos.",
+    "description": "A cada 3 vezes que você aplicar [gold]Veneno[/gold], cause 11 de dano a TODOS os inimigos.",
+    "description_raw": "A cada {Repeat:plural:vez|{Repeat:diff()} vezes} que você aplicar [gold]Veneno[/gold], cause {OutbreakPower:diff()} de dano a TODOS os inimigos.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -7632,10 +7671,10 @@
     "beta_image_url": "/static/images/cards/beta/outbreak.webp",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cada 3 vezes que você aplicar [gold]Veneno[/gold], cause 15 de dano a TODOS os inimigos.",
+    "upgrade_description": "A cada 3 vezes que você aplicar [gold]Veneno[/gold], cause 15 de dano a TODOS os inimigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 142
+    "compendium_order": 141
   },
   {
     "id": "EQUILIBRIUM",
@@ -7792,7 +7831,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/demonic_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/demonic_shield.webp",
+    "beta_image_url": "/static/images/cards/beta/demonic_shield.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -7833,7 +7872,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/shadow_shield.webp",
-    "beta_image_url": "/static/images/cards/beta/shadow_shield.webp",
+    "beta_image_url": "/static/images/cards/beta/shadow_shield.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 15 de [gold]Proteção[/gold].\n[gold]Canalize[/gold] 1 [gold]Trevas[/gold].",
@@ -7963,6 +8002,49 @@
     "compendium_order": 5
   },
   {
+    "id": "WASTE_AWAY",
+    "name": "Esmorecer",
+    "description": "Receba 1 [energy:1] a menos por turno.",
+    "description_raw": "Receba {WasteAwayPower:diff()} {energyPrefix:energyIcons(1)} a menos por turno.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Condição",
+    "rarity": "Condição",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Esmorecer",
+        "amount": 1,
+        "power_key": "WasteAway"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WasteAwayPower": 1,
+      "WasteAway": 1
+    },
+    "upgrade": null,
+    "image_url": "/static/images/cards/waste_away.webp",
+    "beta_image_url": "/static/images/cards/beta/waste_away.webp",
+    "type_variants": null,
+    "can_be_generated_in_combat": false,
+    "upgrade_description": null,
+    "type_key": "Status",
+    "rarity_key": "Status",
+    "compendium_order": 576
+  },
+  {
     "id": "SWORD_BOOMERANG",
     "name": "Espada Bumerangue",
     "description": "Cause 3 de dano a um inimigo aleatório 3 vezes.",
@@ -8005,7 +8087,7 @@
     "id": "SOVEREIGN_BLADE",
     "name": "Espada Soberana",
     "description": "Cause 10 de dano.",
-    "description_raw": "Cause {Damage:diff()} de dano{SeekingEdgeAmount:cond:>0? a TODOS os inimigos|}{Repeat:plural:| {} vezes}.",
+    "description_raw": "Cause {Damage:diff()} de dano{TargetType:choose(AllEnemies): a TODOS os inimigos|}{Repeat:plural:| {} vezes}.{GainsBlock:cond:\nReceba {CalculatedBlock:diff()} de [gold]Proteção[/gold].|}",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8046,7 +8128,7 @@
     "keywords_key": [
       "Retain"
     ],
-    "compendium_order": 573
+    "compendium_order": 574
   },
   {
     "id": "THRASH",
@@ -8159,7 +8241,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/squeeze.webp",
-    "beta_image_url": "/static/images/cards/beta/squeeze.webp",
+    "beta_image_url": "/static/images/cards/beta/squeeze.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Ostheo[/gold] causa 25 de dano.\nCausa 6 de dano adicional por TODOS os seus outros Ataques do [gold]Ostheo[/gold].",
@@ -8197,7 +8279,7 @@
       "blockonexhaust": "+1"
     },
     "image_url": "/static/images/cards/spirit_of_ash.webp",
-    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.webp",
+    "beta_image_url": "/static/images/cards/beta/spirit_of_ash.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você jogar uma carta [gold]Etérea[/gold], receba 5 de [gold]Proteção[/gold].",
@@ -8236,7 +8318,7 @@
       "forge": "+3"
     },
     "image_url": "/static/images/cards/spoils_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.webp",
+    "beta_image_url": "/static/images/cards/beta/spoils_of_battle.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Forje[/gold] 8.\nCompre 2 cartas.",
@@ -8358,7 +8440,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/snap.webp",
-    "beta_image_url": "/static/images/cards/beta/snap.webp",
+    "beta_image_url": "/static/images/cards/beta/snap.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Ostheo[/gold] causa 10 de dano.\nAdicione [gold]Manter[/gold] a uma carta na sua [gold]Mão[/gold].",
@@ -8369,8 +8451,8 @@
   {
     "id": "SHATTER",
     "name": "Estilhaçar",
-    "description": "Cause 11 de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes.",
-    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes.",
+    "description": "Cause 7 de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes duas vezes.",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes duas vezes.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -8379,7 +8461,7 @@
     "rarity": "Rara",
     "target": "AllEnemies",
     "color": "defect",
-    "damage": 11,
+    "damage": 7,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -8390,16 +8472,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 11
+      "Damage": 7
     },
     "upgrade": {
       "damage": "+4"
     },
     "image_url": "/static/images/cards/shatter.webp",
-    "beta_image_url": "/static/images/cards/beta/shatter.webp",
+    "beta_image_url": "/static/images/cards/beta/shatter.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 15 de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes.",
+    "upgrade_description": "Cause 11 de dano a TODOS os inimigos.\n[gold]Evoque[/gold] todas as suas Orbes duas vezes.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 417
@@ -8449,7 +8531,7 @@
     "upgrade_description": "Cause 8 de dano.\nAplique 4 de [gold]Veneno[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 146
+    "compendium_order": 145
   },
   {
     "id": "STAMPEDE",
@@ -8564,7 +8646,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/stratagem.webp",
-    "beta_image_url": "/static/images/cards/beta/stratagem.webp",
+    "beta_image_url": "/static/images/cards/beta/stratagem.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -8661,7 +8743,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/falling_star.webp",
-    "beta_image_url": "/static/images/cards/beta/falling_star.webp",
+    "beta_image_url": "/static/images/cards/beta/falling_star.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 12 de dano.\nAplique 1 de [gold]Fraqueza[/gold].\nAplique 1 de [gold]Vulnerável[/gold].",
@@ -8702,7 +8784,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/guiding_star.webp",
-    "beta_image_url": "/static/images/cards/beta/guiding_star.webp",
+    "beta_image_url": "/static/images/cards/beta/guiding_star.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 13 de dano.\nCompre 3 cartas.",
@@ -8745,7 +8827,7 @@
       "strengthloss": "+2"
     },
     "image_url": "/static/images/cards/dying_star.webp",
-    "beta_image_url": "/static/images/cards/beta/dying_star.webp",
+    "beta_image_url": "/static/images/cards/beta/dying_star.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 11 de dano a TODOS os inimigos. TODOS os inimigos perdem 11 de [gold]Força[/gold] neste turno.",
@@ -8843,7 +8925,7 @@
       "thornspower": "+2"
     },
     "image_url": "/static/images/cards/caltrops.webp",
-    "beta_image_url": "/static/images/cards/beta/caltrops.webp",
+    "beta_image_url": "/static/images/cards/beta/caltrops.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você for atacado, cause 5 de dano em retaliação.",
@@ -8972,7 +9054,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/quadcast.webp",
-    "beta_image_url": "/static/images/cards/beta/quadcast.webp",
+    "beta_image_url": "/static/images/cards/beta/quadcast.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -9026,8 +9108,8 @@
   {
     "id": "EXTERMINATE",
     "name": "Exterminar",
-    "description": "Cause 3 de dano 4 vezes a TODOS os inimigos.",
-    "description_raw": "Cause {Damage:diff()} de dano {Repeat:diff()} vezes a TODOS os inimigos.",
+    "description": "Cause 3 de dano a TODOS os inimigos 4 vezes.",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos {Repeat:diff()} vezes.",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9057,7 +9139,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 4 de dano 4 vezes a TODOS os inimigos.",
+    "upgrade_description": "Cause 4 de dano a TODOS os inimigos 4 vezes.",
     "type_key": "Attack",
     "rarity_key": "Event",
     "compendium_order": 531
@@ -9126,7 +9208,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/beacon_of_hope.webp",
-    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.webp",
+    "beta_image_url": "/static/images/cards/beta/beacon_of_hope.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -9162,7 +9244,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/enthralled.webp",
-    "beta_image_url": "/static/images/cards/beta/enthralled.webp",
+    "beta_image_url": "/static/images/cards/beta/enthralled.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -9334,7 +9416,7 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 562
   },
   {
     "id": "TOOLS_OF_THE_TRADE",
@@ -9402,7 +9484,7 @@
       "blockforstars": "+1"
     },
     "image_url": "/static/images/cards/child_of_the_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.webp",
+    "beta_image_url": "/static/images/cards/beta/child_of_the_stars.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você gastar [star:1], receba 3 [gold]Proteção[/gold] por cada [star:1] gasta.",
@@ -9458,7 +9540,7 @@
   {
     "id": "FASTEN",
     "name": "Fixar",
-    "description": "Receba 5 de [gold]Proteção[/gold] adicional das cartas de Defesa.",
+    "description": "Receba 4 de [gold]Proteção[/gold] adicional das cartas de Defesa.",
     "description_raw": "Receba {ExtraBlock:diff()} de [gold]Proteção[/gold] adicional das cartas de Defesa.",
     "cost": 1,
     "is_x_cost": null,
@@ -9481,16 +9563,16 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "ExtraBlock": 5
+      "ExtraBlock": 4
     },
     "upgrade": {
       "extrablock": "+2"
     },
     "image_url": "/static/images/cards/fasten.webp",
-    "beta_image_url": "/static/images/cards/beta/fasten.webp",
+    "beta_image_url": "/static/images/cards/beta/fasten.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 7 de [gold]Proteção[/gold] adicional das cartas de Defesa.",
+    "upgrade_description": "Receba 6 de [gold]Proteção[/gold] adicional das cartas de Defesa.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 455
@@ -9693,7 +9775,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/wisp.webp",
-    "beta_image_url": "/static/images/cards/beta/wisp.webp",
+    "beta_image_url": "/static/images/cards/beta/wisp.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -9736,7 +9818,7 @@
       "forge": "+2"
     },
     "image_url": "/static/images/cards/wrought_in_war.webp",
-    "beta_image_url": "/static/images/cards/beta/wrought_in_war.webp",
+    "beta_image_url": "/static/images/cards/beta/wrought_in_war.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\n[gold]Forje[/gold] 9.",
@@ -9747,8 +9829,8 @@
   {
     "id": "REAPER_FORM",
     "name": "Forma Ceifadora",
-    "description": "Sempre que Ataques causarem dano, eles também aplicam uma quantidade equivalente de [gold]Ruína[/gold].",
-    "description_raw": "Sempre que Ataques causarem dano, eles também aplicam uma quantidade equivalente de [gold]Ruína[/gold].",
+    "description": "Sempre que Ataques causarem dano, aplique uma quantidade equivalente de [gold]Ruína[/gold].",
+    "description_raw": "Sempre que Ataques causarem dano, aplique uma quantidade equivalente de [gold]Ruína[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -9772,7 +9854,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/reaper_form.webp",
-    "beta_image_url": "/static/images/cards/beta/reaper_form.webp",
+    "beta_image_url": "/static/images/cards/beta/reaper_form.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -10004,7 +10086,7 @@
       "remove_ethereal": true
     },
     "image_url": "/static/images/cards/void_form.webp",
-    "beta_image_url": "/static/images/cards/beta/void_form.webp",
+    "beta_image_url": "/static/images/cards/beta/void_form.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -10018,7 +10100,7 @@
   {
     "id": "FURNACE",
     "name": "Fornalha",
-    "description": "No início do seu turno, [gold]Forje[/gold] 4.",
+    "description": "No início do seu turno, [gold]Forje[/gold] 5.",
     "description_raw": "No início do seu turno, [gold]Forje[/gold] {Forge:diff()}.",
     "cost": 1,
     "is_x_cost": null,
@@ -10039,16 +10121,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Forge": 4
+      "Forge": 5
     },
     "upgrade": {
       "forge": "+2"
     },
     "image_url": "/static/images/cards/furnace.webp",
-    "beta_image_url": "/static/images/cards/beta/furnace.webp",
+    "beta_image_url": "/static/images/cards/beta/furnace.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "No início do seu turno, [gold]Forje[/gold] 6.",
+    "upgrade_description": "No início do seu turno, [gold]Forje[/gold] 7.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
     "compendium_order": 203
@@ -10099,7 +10181,7 @@
       "dexterity": "+1"
     },
     "image_url": "/static/images/cards/bulk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/bulk_up.webp",
+    "beta_image_url": "/static/images/cards/beta/bulk_up.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Perca 1 Espaço de Orbe.\nReceba 3 de [gold]Força[/gold].\nReceba 3 de [gold]Destreza[/gold].",
@@ -10180,7 +10262,7 @@
       "ostydamage": "+3"
     },
     "image_url": "/static/images/cards/bone_shards.webp",
-    "beta_image_url": "/static/images/cards/beta/bone_shards.webp",
+    "beta_image_url": "/static/images/cards/beta/bone_shards.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Se [gold]Ostheo[/gold] estiver vivo, ele causa 12 de dano a TODOS os inimigos e você recebe 12 de [gold]Proteção[/gold].\n[gold]Ostheo[/gold] é sacrificado.",
@@ -10271,7 +10353,7 @@
       "strength": "+2"
     },
     "image_url": "/static/images/cards/feeding_frenzy.webp",
-    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.webp",
+    "beta_image_url": "/static/images/cards/beta/feeding_frenzy.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 7 de [gold]Força[/gold] neste turno.",
@@ -10407,7 +10489,7 @@
     "name": "Fusão",
     "description": "[gold]Canalize[/gold] 1 [gold]Plasma[/gold].",
     "description_raw": "[gold]Canalize[/gold] 1 [gold]Plasma[/gold].",
-    "cost": 2,
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -10422,12 +10504,14 @@
     "cards_draw": null,
     "energy_gain": null,
     "hp_loss": null,
-    "keywords": null,
+    "keywords": [
+      "Exaurir"
+    ],
     "tags": null,
     "spawns_cards": null,
     "vars": null,
     "upgrade": {
-      "cost": 1
+      "remove_exhaust": true
     },
     "image_url": "/static/images/cards/fusion.webp",
     "beta_image_url": null,
@@ -10436,6 +10520,9 @@
     "upgrade_description": null,
     "type_key": "Skill",
     "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
     "compendium_order": 385
   },
   {
@@ -10524,8 +10611,8 @@
   {
     "id": "NEOWS_FURY",
     "name": "Fúria de Neow",
-    "description": "Cause 10 de dano.\nColoque 2 cartas aleatórias da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
-    "description_raw": "Cause {Damage:diff()} de dano.\nColoque {Cards:plural:uma carta aleatória|{:diff()} cartas aleatórias} da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
+    "description": "Cause 10 de dano.\nColoque até 2 cartas da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
+    "description_raw": "Cause {Damage:diff()} de dano.\nColoque até {Cards:diff()} {Cards:plural:carta|cartas} da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -10558,7 +10645,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": false,
-    "upgrade_description": "Cause 14 de dano.\nColoque 3 cartas aleatórias da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
+    "upgrade_description": "Cause 14 de dano.\nColoque até 3 cartas da sua [gold]Pilha de Descarte[/gold] na sua [gold]Mão[/gold].",
     "type_key": "Attack",
     "rarity_key": "Ancient",
     "keywords_key": [
@@ -10638,7 +10725,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/greed.webp",
-    "beta_image_url": "/static/images/cards/beta/greed.webp",
+    "beta_image_url": "/static/images/cards/beta/greed.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -10724,7 +10811,7 @@
     "upgrade_description": "No início do seu turno, aplique 3 de [gold]Veneno[/gold] a TODOS os inimigos.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 141
+    "compendium_order": 140
   },
   {
     "id": "GLACIER",
@@ -10794,7 +10881,7 @@
       "replay": "+1"
     },
     "image_url": "/static/images/cards/hidden_gem.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_gem.webp",
+    "beta_image_url": "/static/images/cards/beta/hidden_gem.png",
     "type_variants": null,
     "can_be_generated_in_combat": false,
     "upgrade_description": "Uma carta aleatória que não possua [gold]Repetir[/gold] na sua [gold]Pilha de Compra[/gold] recebe [gold]Repetir[/gold] 3.",
@@ -10830,7 +10917,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/largesse.webp",
-    "beta_image_url": "/static/images/cards/beta/largesse.webp",
+    "beta_image_url": "/static/images/cards/beta/largesse.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Outro jogador adiciona 1 carta Incolor aleatória  [gold]Aprimorada[/gold] na própria [gold]Mão[/gold].",
@@ -11070,7 +11157,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/adaptive_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/adaptive_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/adaptive_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 23 de dano.\nAdicione uma cópia de custo 0[energy:1] desta carta na sua [gold]Pilha de Descarte[/gold].",
@@ -11193,7 +11280,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/shining_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/shining_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/shining_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 11 de dano.\nReceba [star:2].\nColoque esta carta no topo da sua [gold]Pilha de Compra[/gold].",
@@ -11315,7 +11402,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sculpting_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/sculpting_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/sculpting_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 12 de dano.\nAdicione [gold]Etérea[/gold] a uma carta na sua [gold]Mão[/gold].",
@@ -11364,7 +11451,7 @@
       "focuspower": "+1"
     },
     "image_url": "/static/images/cards/focused_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/focused_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/focused_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 11 de dano.\nReceba 2 de [gold]Foco[/gold] neste turno.",
@@ -11453,7 +11540,7 @@
     "upgrade_description": "Cause 6 de dano.\nAdicione 2 [gold]Lâminas[/gold] na sua [gold]Mão[/gold].",
     "type_key": "Attack",
     "rarity_key": "Common",
-    "compendium_order": 132
+    "compendium_order": 131
   },
   {
     "id": "METEOR_STRIKE",
@@ -11528,7 +11615,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/seeker_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/seeker_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/seeker_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 12 de dano.\nEscolha 1 entre 3 cartas da sua [gold]Pilha de Compra[/gold] para adicionar na sua [gold]Mão[/gold].",
@@ -11610,7 +11697,7 @@
       "damage": "+6"
     },
     "image_url": "/static/images/cards/ultimate_strike.webp",
-    "beta_image_url": "/static/images/cards/beta/ultimate_strike.webp",
+    "beta_image_url": "/static/images/cards/beta/ultimate_strike.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 20 de dano.",
@@ -11754,7 +11841,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 569
+    "compendium_order": 570
   },
   {
     "id": "SLIMED",
@@ -11833,7 +11920,7 @@
     "upgrade_description": "Somente pode ser jogada se não houver cartas na sua [gold]Pilha de Compra[/gold]. Cause 75 de dano a TODOS os inimigos.",
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 126
+    "compendium_order": 125
   },
   {
     "id": "CELESTIAL_MIGHT",
@@ -11947,7 +12034,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/forbidden_grimoire.webp",
-    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.webp",
+    "beta_image_url": "/static/images/cards/beta/forbidden_grimoire.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -11989,7 +12076,7 @@
       "cost": 7
     },
     "image_url": "/static/images/cards/banshees_cry.webp",
-    "beta_image_url": "/static/images/cards/beta/banshees_cry.webp",
+    "beta_image_url": "/static/images/cards/beta/banshees_cry.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12027,7 +12114,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/bodyguard.webp",
-    "beta_image_url": "/static/images/cards/beta/bodyguard.webp",
+    "beta_image_url": "/static/images/cards/beta/bodyguard.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Vincule[/gold] 7.",
@@ -12106,7 +12193,7 @@
       "starsperturn": "+1"
     },
     "image_url": "/static/images/cards/genesis.webp",
-    "beta_image_url": "/static/images/cards/beta/genesis.webp",
+    "beta_image_url": "/static/images/cards/beta/genesis.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No início do seu turno, receba [star:3].",
@@ -12187,7 +12274,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/hegemony.webp",
-    "beta_image_url": "/static/images/cards/beta/hegemony.webp",
+    "beta_image_url": "/static/images/cards/beta/hegemony.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 18 de dano.\nNo próximo turno, receba [energy:3].",
@@ -12237,7 +12324,7 @@
   {
     "id": "HYPERBEAM",
     "name": "Hiper Raio",
-    "description": "Cause 26 de dano a TODOS os inimigos.\nPerca 3 de [gold]Foco[/gold].",
+    "description": "Cause 28 de dano a TODOS os inimigos.\nPerca 3 de [gold]Foco[/gold].",
     "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.\nPerca {FocusPower:diff()} de [gold]Foco[/gold].",
     "cost": 2,
     "is_x_cost": null,
@@ -12247,7 +12334,7 @@
     "rarity": "Rara",
     "target": "AllEnemies",
     "color": "defect",
-    "damage": 26,
+    "damage": 28,
     "block": null,
     "hit_count": null,
     "powers_applied": [
@@ -12264,7 +12351,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 26,
+      "Damage": 28,
       "FocusPower": 3,
       "Focus": 3
     },
@@ -12275,7 +12362,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 34 de dano a TODOS os inimigos.\nPerca 3 de [gold]Foco[/gold].",
+    "upgrade_description": "Cause 36 de dano a TODOS os inimigos.\nPerca 3 de [gold]Foco[/gold].",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 395
@@ -12362,7 +12449,7 @@
     "upgrade_description": null,
     "type_key": "Attack",
     "rarity_key": "Rare",
-    "compendium_order": 138
+    "compendium_order": 137
   },
   {
     "id": "CREATIVE_AI",
@@ -12432,7 +12519,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/ignition.webp",
-    "beta_image_url": "/static/images/cards/beta/ignition.webp",
+    "beta_image_url": "/static/images/cards/beta/ignition.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12562,7 +12649,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/mimic.webp",
-    "beta_image_url": "/static/images/cards/beta/mimic.webp",
+    "beta_image_url": "/static/images/cards/beta/mimic.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12657,7 +12744,7 @@
   {
     "id": "UNRELENTING",
     "name": "Implacável",
-    "description": "Cause 12 de dano.\nO próximo Ataque que você jogar custa 0 [energy:1].",
+    "description": "Cause 14 de dano.\nO próximo Ataque que você jogar custa 0 [energy:1].",
     "description_raw": "Cause {Damage:diff()} de dano.\nO próximo Ataque que você jogar custa 0 {energyPrefix:energyIcons(1)}.",
     "cost": 2,
     "is_x_cost": null,
@@ -12667,7 +12754,7 @@
     "rarity": "Incomum",
     "target": "AnyEnemy",
     "color": "ironclad",
-    "damage": 12,
+    "damage": 14,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -12678,7 +12765,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 12
+      "Damage": 14
     },
     "upgrade": {
       "damage": "+6"
@@ -12687,7 +12774,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 18 de dano.\nO próximo Ataque que você jogar custa 0 [energy:1].",
+    "upgrade_description": "Cause 20 de dano.\nO próximo Ataque que você jogar custa 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 83
@@ -12719,13 +12806,13 @@
       "Gold": 30
     },
     "upgrade": {
-      "gold": "+5"
+      "gold": "+10"
     },
     "image_url": "/static/images/cards/royalties.webp",
-    "beta_image_url": "/static/images/cards/beta/royalties.webp",
+    "beta_image_url": "/static/images/cards/beta/royalties.png",
     "type_variants": null,
     "can_be_generated_in_combat": false,
-    "upgrade_description": "No final do combate, receba 35 de [gold]Ouro[/gold].",
+    "upgrade_description": "No final do combate, receba 40 de [gold]Ouro[/gold].",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 243
@@ -12762,7 +12849,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/boost_away.webp",
-    "beta_image_url": "/static/images/cards/beta/boost_away.webp",
+    "beta_image_url": "/static/images/cards/beta/boost_away.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 9 de [gold]Proteção[/gold].\nAdicione uma [gold]Desorientação[/gold] na sua [gold]Pilha de Descarte[/gold].",
@@ -12798,7 +12885,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/unmovable.webp",
-    "beta_image_url": "/static/images/cards/beta/unmovable.webp",
+    "beta_image_url": "/static/images/cards/beta/unmovable.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -12836,7 +12923,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/cosmic_indifference.webp",
-    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.webp",
+    "beta_image_url": "/static/images/cards/beta/cosmic_indifference.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 9 de [gold]Proteção[/gold].\nColoque uma carta da sua [gold]Pilha de Descarte[/gold] no topo da sua [gold]Pilha de Compra[/gold].",
@@ -12883,7 +12970,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 134
+    "compendium_order": 133
   },
   {
     "id": "INFERNO",
@@ -13125,7 +13212,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/beckon.webp",
-    "beta_image_url": "/static/images/cards/beta/beckon.webp",
+    "beta_image_url": "/static/images/cards/beta/beckon.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -13162,7 +13249,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/poor_sleep.webp",
-    "beta_image_url": "/static/images/cards/beta/poor_sleep.webp",
+    "beta_image_url": "/static/images/cards/beta/poor_sleep.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -13204,7 +13291,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/intercept.webp",
-    "beta_image_url": "/static/images/cards/beta/intercept.webp",
+    "beta_image_url": "/static/images/cards/beta/intercept.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 13 de [gold]Proteção[/gold].\nRedirecione para você todos os ataques que tenham outro jogador como alvo neste turno.",
@@ -13241,13 +13328,13 @@
       "Block": 6
     },
     "upgrade": {
-      "block": "+2"
+      "block": "+3"
     },
     "image_url": "/static/images/cards/untouchable.webp",
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 8 de [gold]Proteção[/gold].",
+    "upgrade_description": "Receba 9 de [gold]Proteção[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "keywords_key": [
@@ -13327,7 +13414,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/invoke.webp",
-    "beta_image_url": "/static/images/cards/beta/invoke.webp",
+    "beta_image_url": "/static/images/cards/beta/invoke.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No próximo turno, [gold]Vincule[/gold] 3 e receba [energy:3].",
@@ -13493,7 +13580,7 @@
       "iterationpower": "+1"
     },
     "image_url": "/static/images/cards/iteration.webp",
-    "beta_image_url": "/static/images/cards/beta/iteration.webp",
+    "beta_image_url": "/static/images/cards/beta/iteration.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Na primeira vez que você comprar uma carta de Condição a cada turno, compre 3 cartas.",
@@ -13580,7 +13667,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 144
+    "compendium_order": 143
   },
   {
     "id": "FLASH_OF_STEEL",
@@ -13624,7 +13711,7 @@
   {
     "id": "CRESCENT_SPEAR",
     "name": "Lança Crescente",
-    "description": "Cause 6 de dano.\nCausa 2 de dano adicional por TODAS as suas cartas que possuam um custo de [star:1].",
+    "description": "Cause 8 de dano.\nCausa 2 de dano adicional por TODAS as suas cartas que possuam um custo de [star:1].",
     "description_raw": "Cause {CalculatedDamage:diff()} de dano.\nCausa {ExtraDamage:diff()} de dano adicional por TODAS as suas cartas que possuam um custo de {singleStarIcon}.",
     "cost": 1,
     "is_x_cost": null,
@@ -13634,7 +13721,7 @@
     "rarity": "Comum",
     "target": "AnyEnemy",
     "color": "regent",
-    "damage": 6,
+    "damage": 8,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -13645,9 +13732,9 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "CalculationBase": 6,
+      "CalculationBase": 8,
       "ExtraDamage": 2,
-      "CalculatedDamage": 6,
+      "CalculatedDamage": 8,
       "StarCost": 1
     },
     "upgrade": {
@@ -13657,7 +13744,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 6 de dano.\nCausa 3 de dano adicional por TODAS as suas cartas que possuam um custo de [star:1].",
+    "upgrade_description": "Cause 8 de dano.\nCausa 3 de dano adicional por TODAS as suas cartas que possuam um custo de [star:1].",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 195
@@ -13693,7 +13780,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/ice_lance.webp",
-    "beta_image_url": "/static/images/cards/beta/ice_lance.webp",
+    "beta_image_url": "/static/images/cards/beta/ice_lance.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 24 de dano.\n[gold]Canalize[/gold] 3 [gold]Gelo[/gold].",
@@ -13733,7 +13820,7 @@
       "summon": "+2"
     },
     "image_url": "/static/images/cards/legion_of_bone.webp",
-    "beta_image_url": "/static/images/cards/beta/legion_of_bone.webp",
+    "beta_image_url": "/static/images/cards/beta/legion_of_bone.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "TODOS os jogadores [gold]Vinculam[/gold] 8.",
@@ -13862,7 +13949,7 @@
       "lethalitypower": "+25"
     },
     "image_url": "/static/images/cards/lethality.webp",
-    "beta_image_url": "/static/images/cards/beta/lethality.webp",
+    "beta_image_url": "/static/images/cards/beta/lethality.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "O primeiro Ataque de cada turno causa 75% de dano adicional.",
@@ -13903,7 +13990,7 @@
       "block": "+5"
     },
     "image_url": "/static/images/cards/lift.webp",
-    "beta_image_url": "/static/images/cards/beta/lift.webp",
+    "beta_image_url": "/static/images/cards/beta/lift.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Conceda 16 de [gold]Proteção[/gold] a outro jogador.",
@@ -13942,7 +14029,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/deaths_door.webp",
-    "beta_image_url": "/static/images/cards/beta/deaths_door.webp",
+    "beta_image_url": "/static/images/cards/beta/deaths_door.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 7 de [gold]Proteção[/gold].\nSe você aplicou [gold]Ruína[/gold] neste turno, receba [gold]Proteção[/gold] 2 vezes adicionais.",
@@ -13993,7 +14080,7 @@
       "Exhaust",
       "Retain"
     ],
-    "compendium_order": 565
+    "compendium_order": 566
   },
   {
     "id": "SHIV",
@@ -14038,7 +14125,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 570
+    "compendium_order": 571
   },
   {
     "id": "INFERNAL_BLADE",
@@ -14113,7 +14200,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/blade_of_ink.webp",
-    "beta_image_url": "/static/images/cards/beta/blade_of_ink.webp",
+    "beta_image_url": "/static/images/cards/beta/blade_of_ink.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Adicione 3 [gold]Lâminas[/gold] com [purple]Nanquim[/purple] na sua [gold]Mão[/gold].",
@@ -14151,7 +14238,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/seeking_edge.webp",
-    "beta_image_url": "/static/images/cards/beta/seeking_edge.webp",
+    "beta_image_url": "/static/images/cards/beta/seeking_edge.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Forje[/gold] 11.\n[gold]Espada Soberana[/gold] agora causa dano a TODOS os inimigos.",
@@ -14204,7 +14291,7 @@
     "upgrade_description": "[gold]Lâminas[/gold] recebem [gold]Manter[/gold].\nA primeira [gold]Lâmina[/gold] que você jogar a cada turno causa 12 de dano adicional.",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 143
+    "compendium_order": 142
   },
   {
     "id": "INFINITE_BLADES",
@@ -14242,7 +14329,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 130
+    "compendium_order": 129
   },
   {
     "id": "THRUMMING_HATCHET",
@@ -14350,7 +14437,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/juggling.webp",
-    "beta_image_url": "/static/images/cards/beta/juggling.webp",
+    "beta_image_url": "/static/images/cards/beta/juggling.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -14429,7 +14516,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/manifest_authority.webp",
-    "beta_image_url": "/static/images/cards/beta/manifest_authority.webp",
+    "beta_image_url": "/static/images/cards/beta/manifest_authority.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 8 de [gold]Proteção[/gold].\nAdicione 1 carta Incolor [gold]Aprimorada[/gold] aleatória na sua [gold]Mão[/gold].",
@@ -14474,7 +14561,7 @@
       "sleightoffleshpower": "+4"
     },
     "image_url": "/static/images/cards/sleight_of_flesh.webp",
-    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.webp",
+    "beta_image_url": "/static/images/cards/beta/sleight_of_flesh.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você aplicar um efeito negativo a um inimigo, cause 13 de dano.",
@@ -14519,7 +14606,7 @@
       "crimsonmantlepower": "+2"
     },
     "image_url": "/static/images/cards/crimson_mantle.webp",
-    "beta_image_url": "/static/images/cards/beta/crimson_mantle.webp",
+    "beta_image_url": "/static/images/cards/beta/crimson_mantle.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No início do seu turno, perca 1 PV e receba 10 de [gold]Proteção[/gold].",
@@ -14637,7 +14724,7 @@
     },
     "upgrade": null,
     "image_url": "/static/images/cards/spoils_map.webp",
-    "beta_image_url": "/static/images/cards/beta/spoils_map.webp",
+    "beta_image_url": "/static/images/cards/beta/spoils_map.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -14697,7 +14784,7 @@
   {
     "id": "DEATH_MARCH",
     "name": "Marcha Fúnebre",
-    "description": "Cause 8 de dano.\nCausa 3 de dano adicional por cada carta comprada neste turno.",
+    "description": "Cause 8 de dano.\nCausa 4 de dano adicional por cada carta comprada neste turno.",
     "description_raw": "Cause {CalculatedDamage:diff()} de dano.\nCausa {ExtraDamage:diff()} de dano adicional por cada carta comprada neste turno.",
     "cost": 1,
     "is_x_cost": null,
@@ -14719,18 +14806,18 @@
     "spawns_cards": null,
     "vars": {
       "CalculationBase": 8,
-      "ExtraDamage": 3,
+      "ExtraDamage": 4,
       "CalculatedDamage": 8
     },
     "upgrade": {
       "calculationbase": "+1",
-      "extradamage": "+1"
+      "extradamage": "+2"
     },
     "image_url": "/static/images/cards/death_march.webp",
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 8 de dano.\nCausa 4 de dano adicional por cada carta comprada neste turno.",
+    "upgrade_description": "Cause 8 de dano.\nCausa 6 de dano adicional por cada carta comprada neste turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 278
@@ -14766,7 +14853,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/heirloom_hammer.webp",
-    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.webp",
+    "beta_image_url": "/static/images/cards/beta/heirloom_hammer.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 25 de dano.\nEscolha uma carta Incolor na sua [gold]Mão[/gold]. Adicione uma cópia desta carta na sua [gold]Mão[/gold].",
@@ -14847,7 +14934,7 @@
       "summon": "+1"
     },
     "image_url": "/static/images/cards/dirge.webp",
-    "beta_image_url": "/static/images/cards/beta/dirge.webp",
+    "beta_image_url": "/static/images/cards/beta/dirge.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Vincule[/gold] 4 X vezes.\nAdicione X [gold]Almas+[/gold] na sua [gold]Pilha de Compra[/gold].",
@@ -14897,7 +14984,7 @@
     "upgrade_description": "Cause 9 de dano.\nCausa 5 de dano adicional por cada carta descartada neste turno.",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 136
+    "compendium_order": 135
   },
   {
     "id": "SHRUG_IT_OFF",
@@ -15004,7 +15091,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/spore_mind.webp",
-    "beta_image_url": "/static/images/cards/beta/spore_mind.webp",
+    "beta_image_url": "/static/images/cards/beta/spore_mind.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15056,8 +15143,8 @@
   {
     "id": "SWORD_SAGE",
     "name": "Mestre Espadachim",
-    "description": "[gold]Espada Soberana[/gold] agora golpeia uma vez adicional.",
-    "description_raw": "[gold]Espada Soberana[/gold] agora golpeia uma vez adicional.",
+    "description": "[gold]Espada Soberana[/gold] recebe [gold]Repetir[/gold] 1.",
+    "description_raw": "[gold]Espada Soberana[/gold] recebe [gold]Repetir[/gold] {SwordSagePower:diff()}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -15092,7 +15179,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/sword_sage.webp",
-    "beta_image_url": "/static/images/cards/beta/sword_sage.webp",
+    "beta_image_url": "/static/images/cards/beta/sword_sage.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15228,7 +15315,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 137
+    "compendium_order": 136
   },
   {
     "id": "GO_FOR_THE_EYES",
@@ -15308,7 +15395,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/modded.webp",
-    "beta_image_url": "/static/images/cards/beta/modded.webp",
+    "beta_image_url": "/static/images/cards/beta/modded.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 1 Espaço de Orbe.\nCompre 2 cartas. Aumente o custo desta carta em 1.",
@@ -15397,7 +15484,7 @@
       "calculationextra": "+2"
     },
     "image_url": "/static/images/cards/beat_into_shape.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_into_shape.webp",
+    "beta_image_url": "/static/images/cards/beta/beat_into_shape.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 7 de dano.\n[gold]Forje[/gold] X.\n[gold]Forje[/gold] mais 7 por cada outra vez que você golpeou o inimigo neste turno.",
@@ -15435,7 +15522,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/monologue.webp",
-    "beta_image_url": "/static/images/cards/beta/monologue.webp",
+    "beta_image_url": "/static/images/cards/beta/monologue.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15523,7 +15610,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/shroud.webp",
-    "beta_image_url": "/static/images/cards/beta/shroud.webp",
+    "beta_image_url": "/static/images/cards/beta/shroud.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você aplicar [gold]Ruína[/gold], receba 3 de [gold]Proteção[/gold].",
@@ -15561,7 +15648,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/undeath.webp",
-    "beta_image_url": "/static/images/cards/beta/undeath.webp",
+    "beta_image_url": "/static/images/cards/beta/undeath.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 9 de [gold]Proteção[/gold].\nAdicione uma cópia desta carta na sua [gold]Pilha de Descarte[/gold].",
@@ -15678,7 +15765,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/right_hand_hand.webp",
-    "beta_image_url": "/static/images/cards/beta/right_hand_hand.webp",
+    "beta_image_url": "/static/images/cards/beta/right_hand_hand.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Ostheo[/gold] causa 6 de dano.\nSempre que você jogar uma carta de custo [energy:2] ou mais, retorne esta carta da sua [gold]Pilha de Descarte[/gold] para a sua [gold]Mão[/gold].",
@@ -15754,7 +15841,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/hammer_time.webp",
-    "beta_image_url": "/static/images/cards/beta/hammer_time.webp",
+    "beta_image_url": "/static/images/cards/beta/hammer_time.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -15792,7 +15879,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/necro_mastery.webp",
-    "beta_image_url": "/static/images/cards/beta/necro_mastery.webp",
+    "beta_image_url": "/static/images/cards/beta/necro_mastery.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Vincule[/gold] 8.\nSempre que [gold]Ostheo[/gold] perder PV,\nTODOS os inimigos perdem a mesma quantidade de PV.",
@@ -15845,7 +15932,7 @@
     "upgrade_description": "Cause 4 de dano.\nAplique 2 de [gold]Fraqueza[/gold].",
     "type_key": "Attack",
     "rarity_key": "Basic",
-    "compendium_order": 139
+    "compendium_order": 138
   },
   {
     "id": "NORMALITY",
@@ -15961,7 +16048,7 @@
       "damage": "+8"
     },
     "image_url": "/static/images/cards/knockout_blow.webp",
-    "beta_image_url": "/static/images/cards/beta/knockout_blow.webp",
+    "beta_image_url": "/static/images/cards/beta/knockout_blow.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 38 de dano.\nSe esta carta derrotar um inimigo, receba [star:5].",
@@ -15997,7 +16084,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/nostalgia.webp",
-    "beta_image_url": "/static/images/cards/beta/nostalgia.webp",
+    "beta_image_url": "/static/images/cards/beta/nostalgia.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -16156,10 +16243,10 @@
       "StarCost": 3
     },
     "upgrade": {
-      "add_innate": true
+      "cost": 0
     },
     "image_url": "/static/images/cards/the_sealed_throne.webp",
-    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.webp",
+    "beta_image_url": "/static/images/cards/beta/the_sealed_throne.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -16283,7 +16370,7 @@
       "damage": "+1"
     },
     "image_url": "/static/images/cards/gunk_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gunk_up.webp",
+    "beta_image_url": "/static/images/cards/beta/gunk_up.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Causa 5 de dano 3 vezes.\nAdicione uma [gold]Gosma[/gold] na sua [gold]Pilha de Descarte[/gold].",
@@ -16341,7 +16428,7 @@
     "name": "Olhar do Monarca",
     "description": "Sempre que você atacar um inimigo, ele perde 1 de [gold]Força[/gold] neste turno.",
     "description_raw": "Sempre que você atacar um inimigo, ele perde {StrengthLoss:diff()} de [gold]Força[/gold] neste turno.",
-    "cost": 3,
+    "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
@@ -16363,7 +16450,7 @@
       "StrengthLoss": 1
     },
     "upgrade": {
-      "cost": 2
+      "cost": 1
     },
     "image_url": "/static/images/cards/monarchs_gaze.webp",
     "beta_image_url": null,
@@ -16440,7 +16527,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/hello_world.webp",
-    "beta_image_url": "/static/images/cards/beta/hello_world.webp",
+    "beta_image_url": "/static/images/cards/beta/hello_world.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -16478,7 +16565,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/omnislice.webp",
-    "beta_image_url": "/static/images/cards/beta/omnislice.webp",
+    "beta_image_url": "/static/images/cards/beta/omnislice.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 11 de dano.\nCausa dano equivalente a TODOS os inimigos.",
@@ -16516,7 +16603,7 @@
       "corrosivewave": "+1"
     },
     "image_url": "/static/images/cards/corrosive_wave.webp",
-    "beta_image_url": "/static/images/cards/beta/corrosive_wave.webp",
+    "beta_image_url": "/static/images/cards/beta/corrosive_wave.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você comprar uma carta neste turno, aplique 3 de [gold]Veneno[/gold] a TODOS os inimigos.",
@@ -16596,7 +16683,7 @@
       "power": "+2"
     },
     "image_url": "/static/images/cards/shockwave.webp",
-    "beta_image_url": "/static/images/cards/beta/shockwave.webp",
+    "beta_image_url": "/static/images/cards/beta/shockwave.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Aplique 5 de [gold]Fraqueza[/gold] e [gold]Vulnerável[/gold] a TODOS os inimigos.",
@@ -16725,8 +16812,8 @@
   {
     "id": "PACTS_END",
     "name": "Pacto Encerrado",
-    "description": "Somente pode ser jogada se você possuir 3 ou mais cartas na sua pilha de [gold]Cartas Exauridas[/gold].\nCause 17 de dano a TODOS os inimigos.",
-    "description_raw": "Somente pode ser jogada se você possuir {Cards:diff()} ou mais {Cards:plural:carta|cartas} na sua pilha de [gold]Cartas Exauridas[/gold].\nCause {Damage:diff()} de dano a TODOS os inimigos.",
+    "description": "Se você possuir 3 ou mais cartas na sua pilha de [gold]Cartas Exauridas[/gold],\ncause 17 de dano a TODOS os inimigos.",
+    "description_raw": "Se você possuir {Cards:diff()} ou mais {Cards:plural:carta|cartas} na sua pilha de [gold]Cartas Exauridas[/gold],\ncause {Damage:diff()} de dano a TODOS os inimigos.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -16756,7 +16843,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Somente pode ser jogada se você possuir 3 ou mais cartas na sua pilha de [gold]Cartas Exauridas[/gold].\nCause 23 de dano a TODOS os inimigos.",
+    "upgrade_description": "Se você possuir 3 ou mais cartas na sua pilha de [gold]Cartas Exauridas[/gold],\ncause 23 de dano a TODOS os inimigos.",
     "type_key": "Attack",
     "rarity_key": "Rare",
     "compendium_order": 55
@@ -16829,7 +16916,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/fisticuffs.webp",
-    "beta_image_url": "/static/images/cards/beta/fisticuffs.webp",
+    "beta_image_url": "/static/images/cards/beta/fisticuffs.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\nReceba [gold]Proteção[/gold] equivalente ao dano causado.",
@@ -16875,7 +16962,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/lightning_rod.webp",
-    "beta_image_url": "/static/images/cards/beta/lightning_rod.webp",
+    "beta_image_url": "/static/images/cards/beta/lightning_rod.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 7 de [gold]Proteção[/gold].\nNo início dos seus próximos 2 turnos, [gold]Canalize[/gold] 1 [gold]Relâmpago[/gold].",
@@ -17035,7 +17122,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/bundle_of_joy.webp",
-    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.webp",
+    "beta_image_url": "/static/images/cards/beta/bundle_of_joy.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Adicione 4 cartas Incolores aleatórias na sua [gold]Mão[/gold].",
@@ -17076,7 +17163,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/veilpiercer.webp",
-    "beta_image_url": "/static/images/cards/beta/veilpiercer.webp",
+    "beta_image_url": "/static/images/cards/beta/veilpiercer.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 13 de dano.\nA próxima carta [gold]Etérea[/gold] que você jogar custa 0 [energy:1].",
@@ -17115,7 +17202,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/heavenly_drill.webp",
-    "beta_image_url": "/static/images/cards/beta/heavenly_drill.webp",
+    "beta_image_url": "/static/images/cards/beta/heavenly_drill.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 10 de dano X vezes.\nSe X for 4 ou mais, dobre X.",
@@ -17155,7 +17242,7 @@
       "block": "+4"
     },
     "image_url": "/static/images/cards/fight_through.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_through.webp",
+    "beta_image_url": "/static/images/cards/beta/fight_through.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 17 de [gold]Proteção[/gold].\nAdicione 2 [gold]Ferimentos[/gold] na sua [gold]Pilha de Descarte[/gold].",
@@ -17240,7 +17327,7 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 140
+    "compendium_order": 139
   },
   {
     "id": "PILLAR_OF_CREATION",
@@ -17272,7 +17359,7 @@
       "block": "+1"
     },
     "image_url": "/static/images/cards/pillar_of_creation.webp",
-    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.webp",
+    "beta_image_url": "/static/images/cards/beta/pillar_of_creation.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você criar uma carta, receba 4 de [gold]Proteção[/gold].",
@@ -17390,7 +17477,7 @@
     "upgrade_description": null,
     "type_key": "Power",
     "rarity_key": "Rare",
-    "compendium_order": 135
+    "compendium_order": 134
   },
   {
     "id": "ESCAPE_PLAN",
@@ -17585,7 +17672,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/delay.webp",
-    "beta_image_url": "/static/images/cards/beta/delay.webp",
+    "beta_image_url": "/static/images/cards/beta/delay.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 13 de [gold]Proteção[/gold].\nNo próximo turno,\nreceba [energy:2].",
@@ -17636,7 +17723,7 @@
     "upgrade_description": "Receba 3 de [gold]Destreza[/gold].",
     "type_key": "Power",
     "rarity_key": "Uncommon",
-    "compendium_order": 125
+    "compendium_order": 124
   },
   {
     "id": "CRASH_LANDING",
@@ -17670,7 +17757,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/crash_landing.webp",
-    "beta_image_url": "/static/images/cards/beta/crash_landing.webp",
+    "beta_image_url": "/static/images/cards/beta/crash_landing.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 26 de dano a TODOS os inimigos.\nPreencha sua [gold]Mão[/gold] com [gold]Escombros[/gold].",
@@ -17688,7 +17775,7 @@
     "is_x_star_cost": null,
     "star_cost": null,
     "type": "Ataque",
-    "rarity": "Incomum",
+    "rarity": "Comum",
     "target": "AnyEnemy",
     "color": "silent",
     "damage": 15,
@@ -17713,8 +17800,8 @@
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 20 de dano.\nNo próximo turno, compre 2 cartas.",
     "type_key": "Attack",
-    "rarity_key": "Uncommon",
-    "compendium_order": 149
+    "rarity_key": "Common",
+    "compendium_order": 148
   },
   {
     "id": "SLOTH",
@@ -17757,7 +17844,7 @@
     "upgrade_description": null,
     "type_key": "Status",
     "rarity_key": "Status",
-    "compendium_order": 571
+    "compendium_order": 572
   },
   {
     "id": "PREP_TIME",
@@ -17796,7 +17883,7 @@
       "preptimepower": "+2"
     },
     "image_url": "/static/images/cards/prep_time.webp",
-    "beta_image_url": "/static/images/cards/beta/prep_time.webp",
+    "beta_image_url": "/static/images/cards/beta/prep_time.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No início do seu turno, receba 6 de [gold]Vigor[/gold].",
@@ -17840,7 +17927,7 @@
     "upgrade_description": "Compre 2 cartas.\nDescarte 2 cartas.",
     "type_key": "Skill",
     "rarity_key": "Common",
-    "compendium_order": 150
+    "compendium_order": 149
   },
   {
     "id": "EXPECT_A_FIGHT",
@@ -17914,7 +18001,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/production.webp",
-    "beta_image_url": "/static/images/cards/beta/production.webp",
+    "beta_image_url": "/static/images/cards/beta/production.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [energy:3].",
@@ -17970,7 +18057,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/prowess.webp",
-    "beta_image_url": "/static/images/cards/beta/prowess.webp",
+    "beta_image_url": "/static/images/cards/beta/prowess.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 2 de [gold]Força[/gold].\nReceba 2 de [gold]Destreza[/gold].",
@@ -18010,7 +18097,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/defile.webp",
-    "beta_image_url": "/static/images/cards/beta/defile.webp",
+    "beta_image_url": "/static/images/cards/beta/defile.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 17 de dano.",
@@ -18193,8 +18280,8 @@
   {
     "id": "ASTRAL_PULSE",
     "name": "Pulso Astral",
-    "description": "Cause 14 de dano a TODOS os inimigos.",
-    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.",
+    "description": "Cause 6 de dano a TODOS os inimigos duas vezes.",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos duas vezes.",
     "cost": 0,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -18203,9 +18290,9 @@
     "rarity": "Comum",
     "target": "AllEnemies",
     "color": "regent",
-    "damage": 14,
+    "damage": 6,
     "block": null,
-    "hit_count": null,
+    "hit_count": 2,
     "powers_applied": null,
     "cards_draw": null,
     "energy_gain": null,
@@ -18214,17 +18301,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 14,
+      "Damage": 6,
       "StarCost": 3
     },
     "upgrade": {
-      "damage": "+4"
+      "damage": "+2"
     },
     "image_url": "/static/images/cards/astral_pulse.webp",
-    "beta_image_url": "/static/images/cards/beta/astral_pulse.webp",
+    "beta_image_url": "/static/images/cards/beta/astral_pulse.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 18 de dano a TODOS os inimigos.",
+    "upgrade_description": "Cause 8 de dano a TODOS os inimigos duas vezes.",
     "type_key": "Attack",
     "rarity_key": "Common",
     "compendium_order": 177
@@ -18522,7 +18609,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/pull_from_below.webp",
-    "beta_image_url": "/static/images/cards/beta/pull_from_below.webp",
+    "beta_image_url": "/static/images/cards/beta/pull_from_below.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 7 de dano por cada carta [gold]Etérea[/gold] jogada neste combate.",
@@ -18561,7 +18648,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/pale_blue_dot.webp",
-    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.webp",
+    "beta_image_url": "/static/images/cards/beta/pale_blue_dot.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Se você jogar 5 ou mais cartas em um turno, compre 2 cartas no início do seu próximo turno.",
@@ -18601,7 +18688,7 @@
       "summon": "+3"
     },
     "image_url": "/static/images/cards/afterlife.webp",
-    "beta_image_url": "/static/images/cards/beta/afterlife.webp",
+    "beta_image_url": "/static/images/cards/beta/afterlife.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Vincule[/gold] 9.",
@@ -18642,7 +18729,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/quasar.webp",
-    "beta_image_url": "/static/images/cards/beta/quasar.webp",
+    "beta_image_url": "/static/images/cards/beta/quasar.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Escolha 1 entre 3 cartas Incolores [gold]Aprimoradas[/gold] para adicionar na sua [gold]Mão[/gold].",
@@ -18681,7 +18768,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/make_it_so.webp",
-    "beta_image_url": "/static/images/cards/beta/make_it_so.webp",
+    "beta_image_url": "/static/images/cards/beta/make_it_so.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\nA cada 3 Técnicas que você jogar em um turno, coloque esta carta na sua [gold]Mão[/gold].",
@@ -18807,7 +18894,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/begone.webp",
-    "beta_image_url": "/static/images/cards/beta/begone.webp",
+    "beta_image_url": "/static/images/cards/beta/begone.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Escolha uma carta na sua [gold]Mão[/gold] para [gold]Transformá-la[/gold] em [gold]Golpe de Lacaio+[/gold].",
@@ -18845,7 +18932,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/scrawl.webp",
-    "beta_image_url": "/static/images/cards/beta/scrawl.webp",
+    "beta_image_url": "/static/images/cards/beta/scrawl.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -18888,7 +18975,7 @@
       "damage": "+2"
     },
     "image_url": "/static/images/cards/barrage.webp",
-    "beta_image_url": "/static/images/cards/beta/barrage.webp",
+    "beta_image_url": "/static/images/cards/beta/barrage.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 7 de dano por cada Orbe [gold]Canalizada[/gold].",
@@ -18965,7 +19052,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/spite.webp",
-    "beta_image_url": "/static/images/cards/beta/spite.webp",
+    "beta_image_url": "/static/images/cards/beta/spite.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 5 de dano.\nSe você perdeu PV neste turno,\ngolpeie 3 vezes.",
@@ -19044,7 +19131,7 @@
       "calculationbase": "+3"
     },
     "image_url": "/static/images/cards/rend.webp",
-    "beta_image_url": "/static/images/cards/beta/rend.webp",
+    "beta_image_url": "/static/images/cards/beta/rend.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 15 de dano.\nCausa 8 de dano adicional por cada tipo de efeito negativo no inimigo.",
@@ -19175,7 +19262,7 @@
     "upgrade_description": "Aplique 3 de [gold]Fraqueza[/gold].\nReceba 14 de [gold]Proteção[/gold].",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
-    "compendium_order": 133
+    "compendium_order": 132
   },
   {
     "id": "TRACKING",
@@ -19286,7 +19373,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/rebound.webp",
-    "beta_image_url": "/static/images/cards/beta/rebound.webp",
+    "beta_image_url": "/static/images/cards/beta/rebound.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 12 de dano.\nColoque a próxima carta que você jogar neste turno no topo da sua [gold]Pilha de Compra[/gold].",
@@ -19401,7 +19488,7 @@
       "forge": "+4"
     },
     "image_url": "/static/images/cards/refine_blade.webp",
-    "beta_image_url": "/static/images/cards/beta/refine_blade.webp",
+    "beta_image_url": "/static/images/cards/beta/refine_blade.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Forje[/gold] 13.\nNo próximo turno, receba [energy:1].",
@@ -19412,7 +19499,7 @@
   {
     "id": "REFLECT",
     "name": "Refletir",
-    "description": "Receba 17 de [gold]Proteção[/gold].\nO dano bloqueado de ataques é refletido ao seu atacante neste turno.",
+    "description": "Receba 15 de [gold]Proteção[/gold].\nO dano bloqueado de ataques é refletido ao seu atacante neste turno.",
     "description_raw": "Receba {Block:diff()} de [gold]Proteção[/gold].\nO dano bloqueado de ataques é refletido ao seu atacante neste turno.",
     "cost": 1,
     "is_x_cost": null,
@@ -19423,7 +19510,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 17,
+    "block": 15,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -19433,17 +19520,17 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 17,
+      "Block": 15,
       "StarCost": 3
     },
     "upgrade": {
-      "block": "+4"
+      "block": "+5"
     },
     "image_url": "/static/images/cards/reflect.webp",
-    "beta_image_url": "/static/images/cards/beta/reflect.webp",
+    "beta_image_url": "/static/images/cards/beta/reflect.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 21 de [gold]Proteção[/gold].\nO dano bloqueado de ataques é refletido ao seu atacante neste turno.",
+    "upgrade_description": "Receba 20 de [gold]Proteção[/gold].\nO dano bloqueado de ataques é refletido ao seu atacante neste turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 241
@@ -19489,7 +19576,7 @@
     "keywords_key": [
       "Sly"
     ],
-    "compendium_order": 151
+    "compendium_order": 150
   },
   {
     "id": "REFRACT",
@@ -19522,7 +19609,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/refract.webp",
-    "beta_image_url": "/static/images/cards/beta/refract.webp",
+    "beta_image_url": "/static/images/cards/beta/refract.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 12 de dano duas vezes.\n[gold]Canalize[/gold] 2 [gold]Vidro[/gold].",
@@ -19650,7 +19737,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/relax.webp",
-    "beta_image_url": "/static/images/cards/beta/relax.webp",
+    "beta_image_url": "/static/images/cards/beta/relax.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 17 de [gold]Proteção[/gold].\nNo próximo turno, compre 3 cartas e receba [energy:3].",
@@ -19775,7 +19862,7 @@
       "block": "+2"
     },
     "image_url": "/static/images/cards/toric_toughness.webp",
-    "beta_image_url": "/static/images/cards/beta/toric_toughness.webp",
+    "beta_image_url": "/static/images/cards/beta/toric_toughness.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 7 de [gold]Proteção[/gold].\nReceba 7 de [gold]Proteção[/gold] no início dos próximos 2 turnos.",
@@ -19811,7 +19898,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/splash.webp",
-    "beta_image_url": "/static/images/cards/beta/splash.webp",
+    "beta_image_url": "/static/images/cards/beta/splash.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Escolha 1 entre 3 Ataques aleatórios [gold]Aprimorados[/gold] de outro personagem para adicionar na sua [gold]Mão[/gold]. Ele não tem custo neste turno.",
@@ -19857,7 +19944,7 @@
       "strengthpower": "+1"
     },
     "image_url": "/static/images/cards/resonance.webp",
-    "beta_image_url": "/static/images/cards/beta/resonance.webp",
+    "beta_image_url": "/static/images/cards/beta/resonance.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 2 de [gold]Força[/gold]. TODOS os inimigos perdem 1 de [gold]Força[/gold].",
@@ -19897,7 +19984,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/huddle_up.webp",
-    "beta_image_url": "/static/images/cards/beta/huddle_up.webp",
+    "beta_image_url": "/static/images/cards/beta/huddle_up.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "TODOS os jogadores compram 3 cartas.",
@@ -19949,7 +20036,7 @@
       "strength": "+1"
     },
     "image_url": "/static/images/cards/fight_me.webp",
-    "beta_image_url": "/static/images/cards/beta/fight_me.webp",
+    "beta_image_url": "/static/images/cards/beta/fight_me.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 6 de dano duas vezes.\nReceba 4 de [gold]Força[/gold].\nO inimigo recebe 1 de [gold]Força[/gold].",
@@ -19999,7 +20086,7 @@
     "keywords_key": [
       "Sly"
     ],
-    "compendium_order": 152
+    "compendium_order": 151
   },
   {
     "id": "SEANCE",
@@ -20035,7 +20122,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/seance.webp",
-    "beta_image_url": "/static/images/cards/beta/seance.webp",
+    "beta_image_url": "/static/images/cards/beta/seance.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20125,7 +20212,7 @@
     "upgrade_description": "Cause 20 de dano.",
     "type_key": "Attack",
     "rarity_key": "Token",
-    "compendium_order": 564
+    "compendium_order": 565
   },
   {
     "id": "ROLLING_BOULDER",
@@ -20165,7 +20252,7 @@
       "rollingboulderpower": "+5"
     },
     "image_url": "/static/images/cards/rolling_boulder.webp",
-    "beta_image_url": "/static/images/cards/beta/rolling_boulder.webp",
+    "beta_image_url": "/static/images/cards/beta/rolling_boulder.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No início do seu turno, cause 10 de dano a TODOS os inimigos e aumente este dano em 5.",
@@ -20280,7 +20367,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/collision_course.webp",
-    "beta_image_url": "/static/images/cards/beta/collision_course.webp",
+    "beta_image_url": "/static/images/cards/beta/collision_course.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 15 de dano.\nAdicione um [gold]Escombros[/gold] na sua [gold]Mão[/gold].",
@@ -20377,7 +20464,7 @@
   {
     "id": "PATTER",
     "name": "Ruído Distrator",
-    "description": "Receba 9 de [gold]Proteção[/gold].\nReceba 2 de [gold]Vigor[/gold].",
+    "description": "Receba 8 de [gold]Proteção[/gold].\nReceba 2 de [gold]Vigor[/gold].",
     "description_raw": "Receba {Block:diff()} de [gold]Proteção[/gold].\nReceba {VigorPower:diff()} de [gold]Vigor[/gold].",
     "cost": 1,
     "is_x_cost": null,
@@ -20388,7 +20475,7 @@
     "target": "Self",
     "color": "regent",
     "damage": null,
-    "block": 9,
+    "block": 8,
     "hit_count": null,
     "powers_applied": [
       {
@@ -20404,7 +20491,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Block": 9,
+      "Block": 8,
       "VigorPower": 2,
       "Vigor": 2
     },
@@ -20413,10 +20500,10 @@
       "vigorpower": "+1"
     },
     "image_url": "/static/images/cards/patter.webp",
-    "beta_image_url": "/static/images/cards/beta/patter.webp",
+    "beta_image_url": "/static/images/cards/beta/patter.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 11 de [gold]Proteção[/gold].\nReceba 3 de [gold]Vigor[/gold].",
+    "upgrade_description": "Receba 10 de [gold]Proteção[/gold].\nReceba 3 de [gold]Vigor[/gold].",
     "type_key": "Skill",
     "rarity_key": "Common",
     "compendium_order": 234
@@ -20451,7 +20538,7 @@
     "vars": null,
     "upgrade": null,
     "image_url": "/static/images/cards/ascenders_bane.webp",
-    "beta_image_url": "/static/images/cards/beta/ascenders_bane.webp",
+    "beta_image_url": "/static/images/cards/beta/ascenders_bane.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20468,7 +20555,7 @@
     "id": "SACRIFICE",
     "name": "Sacrifício",
     "description": "Se [gold]Ostheo[/gold] estiver vivo, ele é sacrificado e você recebe [gold]Proteção[/gold] equivalente ao dobro dos PV Máximos dele.",
-    "description_raw": "Se [gold]Ostheo[/gold] estiver vivo, ele é sacrificado e você recebe [gold]Proteção[/gold] equivalente ao dobro dos PV Máximos dele.",
+    "description_raw": "Se [gold]Ostheo[/gold] estiver vivo, ele é sacrificado e você recebe [gold]Proteção[/gold] equivalente ao dobro dos PV Máximos dele.{InCombat:\n(Receba {IsOstyAlive:{CalculatedBlock:diff()}|0} de [gold]Proteção[/gold])|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -20477,7 +20564,7 @@
     "rarity": "Rara",
     "target": "Self",
     "color": "necrobinder",
-    "damage": null,
+    "damage": 0,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -20489,7 +20576,10 @@
     ],
     "tags": null,
     "spawns_cards": null,
-    "vars": null,
+    "vars": {
+      "CalculationBase": 0,
+      "CalculationExtra": 1
+    },
     "upgrade": {
       "cost": 0
     },
@@ -20508,7 +20598,7 @@
   {
     "id": "MINION_SACRIFICE",
     "name": "Sacrifício de Lacaio",
-    "description": "Receba 9 de [gold]Proteção[/gold].",
+    "description": "Receba 8 de [gold]Proteção[/gold].",
     "description_raw": "Receba {Block:diff()} de [gold]Proteção[/gold].",
     "cost": 0,
     "is_x_cost": null,
@@ -20519,7 +20609,7 @@
     "target": "Self",
     "color": "token",
     "damage": null,
-    "block": 9,
+    "block": 8,
     "hit_count": null,
     "powers_applied": null,
     "cards_draw": null,
@@ -20533,7 +20623,7 @@
     ],
     "spawns_cards": null,
     "vars": {
-      "Block": 9
+      "Block": 8
     },
     "upgrade": {
       "block": "+3"
@@ -20542,13 +20632,13 @@
     "beta_image_url": "/static/images/cards/beta/minion_sacrifice.webp",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Receba 12 de [gold]Proteção[/gold].",
+    "upgrade_description": "Receba 11 de [gold]Proteção[/gold].",
     "type_key": "Skill",
     "rarity_key": "Token",
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 568
+    "compendium_order": 569
   },
   {
     "id": "RATTLE",
@@ -20585,7 +20675,7 @@
       "ostydamage": "+2"
     },
     "image_url": "/static/images/cards/rattle.webp",
-    "beta_image_url": "/static/images/cards/beta/rattle.webp",
+    "beta_image_url": "/static/images/cards/beta/rattle.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Ostheo[/gold] causa 9 de dano.\nGolpeia uma vez adicional para cada outra vez que ele atacou neste turno.",
@@ -20639,7 +20729,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/know_thy_place.webp",
-    "beta_image_url": "/static/images/cards/beta/know_thy_place.webp",
+    "beta_image_url": "/static/images/cards/beta/know_thy_place.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -20773,7 +20863,7 @@
   {
     "id": "POUNCE",
     "name": "Salto Predador",
-    "description": "Cause 12 de dano.\nA próxima Técnica que você jogar custa 0 [energy:1].",
+    "description": "Cause 14 de dano.\nA próxima Técnica que você jogar custa 0 [energy:1].",
     "description_raw": "Cause {Damage:diff()} de dano.\nA próxima Técnica que você jogar custa 0 {energyPrefix:energyIcons(1)}.",
     "cost": 2,
     "is_x_cost": null,
@@ -20783,7 +20873,7 @@
     "rarity": "Incomum",
     "target": "AnyEnemy",
     "color": "silent",
-    "damage": 12,
+    "damage": 14,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -20794,7 +20884,7 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 12
+      "Damage": 14
     },
     "upgrade": {
       "damage": "+6"
@@ -20803,10 +20893,10 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 18 de dano.\nA próxima Técnica que você jogar custa 0 [energy:1].",
+    "upgrade_description": "Cause 20 de dano.\nA próxima Técnica que você jogar custa 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
-    "compendium_order": 147
+    "compendium_order": 146
   },
   {
     "id": "BLOODLETTING",
@@ -20877,7 +20967,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/pillage.webp",
-    "beta_image_url": "/static/images/cards/beta/pillage.webp",
+    "beta_image_url": "/static/images/cards/beta/pillage.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\nCompre cartas até você comprar uma carta que não seja um Ataque.",
@@ -20956,7 +21046,7 @@
       "damage": "+4"
     },
     "image_url": "/static/images/cards/salvo.webp",
-    "beta_image_url": "/static/images/cards/beta/salvo.webp",
+    "beta_image_url": "/static/images/cards/beta/salvo.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 16 de dano.\n[gold]Mantenha[/gold] sua [gold]Mão[/gold] neste turno.",
@@ -21001,7 +21091,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/feral.webp",
-    "beta_image_url": "/static/images/cards/beta/feral.webp",
+    "beta_image_url": "/static/images/cards/beta/feral.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21012,8 +21102,8 @@
   {
     "id": "NO_ESCAPE",
     "name": "Sem Escapatória",
-    "description": "Aplique 10 de [gold]Ruína[/gold], mais 5 de [gold]Ruína[/gold] adicional para cada 10 [gold]Ruína[/gold] já aplicada neste inimigo.",
-    "description_raw": "Aplique {CalculationBase:diff()} de [gold]Ruína[/gold], mais {CalculationExtra:diff()} de [gold]Ruína[/gold] adicional para cada {DoomThreshold:diff()} [gold]Ruína[/gold] já aplicada neste inimigo.{IsTargeting:\n(Aplique {CalculatedDoom:diff()} de [gold]Ruína[/gold])|}",
+    "description": "Aplique 10 de [gold]Ruína[/gold], mais 5 de [gold]Ruína[/gold] adicional para cada 10 de [gold]Ruína[/gold] já aplicada neste inimigo.",
+    "description_raw": "Aplique {CalculationBase:diff()} de [gold]Ruína[/gold], mais {CalculationExtra:diff()} de [gold]Ruína[/gold] adicional para cada {DoomThreshold:diff()} de [gold]Ruína[/gold] já aplicada neste inimigo.{IsTargeting:\n(Aplique {CalculatedDoom:diff()} de [gold]Ruína[/gold])|}",
     "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21044,7 +21134,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Aplique 15 de [gold]Ruína[/gold], mais 5 de [gold]Ruína[/gold] adicional para cada 10 [gold]Ruína[/gold] já aplicada neste inimigo.",
+    "upgrade_description": "Aplique 15 de [gold]Ruína[/gold], mais 5 de [gold]Ruína[/gold] adicional para cada 10 de [gold]Ruína[/gold] já aplicada neste inimigo.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 312
@@ -21081,7 +21171,7 @@
       "damage": "+3"
     },
     "image_url": "/static/images/cards/sow.webp",
-    "beta_image_url": "/static/images/cards/beta/sow.webp",
+    "beta_image_url": "/static/images/cards/beta/sow.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 11 de dano a TODOS os inimigos.",
@@ -21091,45 +21181,6 @@
       "Retain"
     ],
     "compendium_order": 339
-  },
-  {
-    "id": "FOLLOW_THROUGH",
-    "name": "Sequência Ofensiva",
-    "description": "Cause 7 de dano.\nSe você possuir 5 outras cartas ou mais na sua [gold]Mão[/gold], golpeie uma vez adicional.",
-    "description_raw": "Cause {Damage:diff()} de dano.\nSe você possuir {CardCount} {CardCount:plural:outra carta|outras cartas} ou mais na sua [gold]Mão[/gold], golpeie uma vez adicional.",
-    "cost": 1,
-    "is_x_cost": null,
-    "is_x_star_cost": null,
-    "star_cost": null,
-    "type": "Ataque",
-    "rarity": "Comum",
-    "target": "AnyEnemy",
-    "color": "silent",
-    "damage": 7,
-    "block": null,
-    "hit_count": null,
-    "powers_applied": null,
-    "cards_draw": null,
-    "energy_gain": null,
-    "hp_loss": null,
-    "keywords": null,
-    "tags": null,
-    "spawns_cards": null,
-    "vars": {
-      "CardCount": 5,
-      "Damage": 7
-    },
-    "upgrade": {
-      "damage": "+2"
-    },
-    "image_url": "/static/images/cards/follow_through.webp",
-    "beta_image_url": null,
-    "type_variants": null,
-    "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 9 de dano.\nSe você possuir 5 outras cartas ou mais na sua [gold]Mão[/gold], golpeie uma vez adicional.",
-    "type_key": "Attack",
-    "rarity_key": "Common",
-    "compendium_order": 124
   },
   {
     "id": "BOOT_SEQUENCE",
@@ -21180,7 +21231,7 @@
     "id": "SEVEN_STARS",
     "name": "Sete Estrelas",
     "description": "Cause 7 de dano a TODOS os inimigos 7 vezes.",
-    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos {Repeat:plural:{} vez|{} vezes}.",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos {Repeat:diff()} {Repeat:plural:vez|vezes}.",
     "cost": 2,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -21208,7 +21259,7 @@
       "cost": 1
     },
     "image_url": "/static/images/cards/seven_stars.webp",
-    "beta_image_url": "/static/images/cards/beta/seven_stars.webp",
+    "beta_image_url": "/static/images/cards/beta/seven_stars.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21249,7 +21300,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/synchronize.webp",
-    "beta_image_url": "/static/images/cards/beta/synchronize.webp",
+    "beta_image_url": "/static/images/cards/beta/synchronize.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21337,7 +21388,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/neurosurge.webp",
-    "beta_image_url": "/static/images/cards/beta/neurosurge.webp",
+    "beta_image_url": "/static/images/cards/beta/neurosurge.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [energy:4].\nCompre 2 cartas.\nNo início do seu turno, aplique 3 de [gold]Ruína[/gold] a você.",
@@ -21492,7 +21543,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/rocket_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/rocket_punch.webp",
+    "beta_image_url": "/static/images/cards/beta/rocket_punch.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 14 de dano.\nCompre 2 cartas.\nQuando você criar uma carta de Condição, reduza o custo desta carta para 0 [energy:1] até que seja jogada.",
@@ -21579,7 +21630,7 @@
       "increase": "+2"
     },
     "image_url": "/static/images/cards/kingly_punch.webp",
-    "beta_image_url": "/static/images/cards/beta/kingly_punch.webp",
+    "beta_image_url": "/static/images/cards/beta/kingly_punch.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 10 de dano.\nSempre que você comprar estar carta, aumente seu dano em 6 neste combate.",
@@ -21618,7 +21669,7 @@
       "add_retain": true
     },
     "image_url": "/static/images/cards/misery.webp",
-    "beta_image_url": "/static/images/cards/beta/misery.webp",
+    "beta_image_url": "/static/images/cards/beta/misery.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\nAplique qualquer efeito negativo de um inimigo a TODOS os outros inimigos.",
@@ -21664,7 +21715,7 @@
       "repeat": "+1"
     },
     "image_url": "/static/images/cards/consuming_shadow.webp",
-    "beta_image_url": "/static/images/cards/beta/consuming_shadow.webp",
+    "beta_image_url": "/static/images/cards/beta/consuming_shadow.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Canalize[/gold] 3 [gold]Trevas[/gold].\nNo final do seu turno, [gold]Evoque[/gold] sua Orbe mais à esquerda.",
@@ -21703,7 +21754,7 @@
       "damage": "+5"
     },
     "image_url": "/static/images/cards/jackpot.webp",
-    "beta_image_url": "/static/images/cards/beta/jackpot.webp",
+    "beta_image_url": "/static/images/cards/beta/jackpot.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 30 de dano.\nAdicione 3 cartas aleatórias [gold]Aprimoradas[/gold] de custo 0[energy:1] na sua [gold]Mão[/gold].",
@@ -21741,7 +21792,7 @@
       "block": "+3"
     },
     "image_url": "/static/images/cards/i_am_invincible.webp",
-    "beta_image_url": "/static/images/cards/beta/i_am_invincible.webp",
+    "beta_image_url": "/static/images/cards/beta/i_am_invincible.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 13 de [gold]Proteção[/gold].\nNo final do seu turno, se esta carta estiver no topo da sua [gold]Pilha de Compra[/gold], jogue-a.",
@@ -21777,7 +21828,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/subroutine.webp",
-    "beta_image_url": "/static/images/cards/beta/subroutine.webp",
+    "beta_image_url": "/static/images/cards/beta/subroutine.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -21817,7 +21868,7 @@
       "strengthloss": "+1"
     },
     "image_url": "/static/images/cards/crush_under.webp",
-    "beta_image_url": "/static/images/cards/beta/crush_under.webp",
+    "beta_image_url": "/static/images/cards/beta/crush_under.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 8 de dano a TODOS os inimigos. Todos os inimigos perdem 2 de [gold]Força[/gold] neste turno.",
@@ -21898,7 +21949,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/supermassive.webp",
-    "beta_image_url": "/static/images/cards/beta/supermassive.webp",
+    "beta_image_url": "/static/images/cards/beta/supermassive.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 5 de dano.\nCausa 4 de dano adicional por cada carta que você criou neste combate.",
@@ -21988,7 +22039,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/beat_down.webp",
-    "beta_image_url": "/static/images/cards/beta/beat_down.webp",
+    "beta_image_url": "/static/images/cards/beta/beat_down.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Jogue 4 Ataques aleatórios da sua [gold]Pilha de Descarte[/gold].",
@@ -22066,7 +22117,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/energy_surge.webp",
-    "beta_image_url": "/static/images/cards/beta/energy_surge.webp",
+    "beta_image_url": "/static/images/cards/beta/energy_surge.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "TODOS os jogadores recebem [energy:3].",
@@ -22119,7 +22170,7 @@
   {
     "id": "SYNTHESIS",
     "name": "Síntese",
-    "description": "Cause 12 de dano.\nO próximo Poder que você jogar custa 0 [energy:1].",
+    "description": "Cause 14 de dano.\nO próximo Poder que você jogar custa 0 [energy:1].",
     "description_raw": "Cause {Damage:diff()} de dano.\nO próximo Poder que você jogar custa 0 {energyPrefix:energyIcons(1)}.",
     "cost": 2,
     "is_x_cost": null,
@@ -22129,7 +22180,7 @@
     "rarity": "Incomum",
     "target": "AnyEnemy",
     "color": "defect",
-    "damage": 12,
+    "damage": 14,
     "block": null,
     "hit_count": null,
     "powers_applied": null,
@@ -22140,16 +22191,16 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "Damage": 12
+      "Damage": 14
     },
     "upgrade": {
       "damage": "+6"
     },
     "image_url": "/static/images/cards/synthesis.webp",
-    "beta_image_url": "/static/images/cards/beta/synthesis.webp",
+    "beta_image_url": "/static/images/cards/beta/synthesis.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 18 de dano.\nO próximo Poder que você jogar custa 0 [energy:1].",
+    "upgrade_description": "Cause 20 de dano.\nO próximo Poder que você jogar custa 0 [energy:1].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 429
@@ -22186,7 +22237,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/turbo.webp",
-    "beta_image_url": "/static/images/cards/beta/turbo.webp",
+    "beta_image_url": "/static/images/cards/beta/turbo.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [energy:3].\nAdicione um [gold]Vácuo[/gold] na sua [gold]Pilha de Descarte[/gold].",
@@ -22197,46 +22248,39 @@
   {
     "id": "DRUM_OF_BATTLE",
     "name": "Tambores de Guerra",
-    "description": "Compre 2 cartas.\nNo início do seu turno, [gold]Exaure[/gold] a carta no topo da sua [gold]Pilha de Compra[/gold].",
-    "description_raw": "Compre {Cards:diff()} cartas.\nNo início do seu turno, [gold]Exaure[/gold] a carta no topo da sua [gold]Pilha de Compra[/gold].",
-    "cost": 0,
+    "description": "Compre 2 cartas.\nQuando esta carta for [gold]Exaurida[/gold], receba [energy:2].",
+    "description_raw": "Compre {Cards:diff()} {Cards:plural:carta|cartas}.\nQuando esta carta for [gold]Exaurida[/gold], receba {Energy:energyIcons()}.",
+    "cost": 1,
     "is_x_cost": null,
     "is_x_star_cost": null,
     "star_cost": null,
-    "type": "Poder",
+    "type": "Técnica",
     "rarity": "Incomum",
     "target": "Self",
     "color": "ironclad",
     "damage": null,
     "block": null,
     "hit_count": null,
-    "powers_applied": [
-      {
-        "power": "Tambores de Guerra",
-        "amount": 1,
-        "power_key": "DrumOfBattle"
-      }
-    ],
+    "powers_applied": null,
     "cards_draw": 2,
-    "energy_gain": null,
+    "energy_gain": 2,
     "hp_loss": null,
     "keywords": null,
     "tags": null,
     "spawns_cards": null,
     "vars": {
       "Cards": 2,
-      "DrumOfBattlePower": 1,
-      "DrumOfBattle": 1
+      "Energy": 2
     },
     "upgrade": {
-      "cards": "+1"
+      "energy": "+1"
     },
     "image_url": "/static/images/cards/drum_of_battle.webp",
-    "beta_image_url": "/static/images/cards/beta/drum_of_battle.webp",
+    "beta_image_url": "/static/images/cards/beta/drum_of_battle.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Compre 3 cartas.\nNo início do seu turno, [gold]Exaure[/gold] a carta no topo da sua [gold]Pilha de Compra[/gold].",
-    "type_key": "Power",
+    "upgrade_description": "Compre 2 cartas.\nQuando esta carta for [gold]Exaurida[/gold], receba [energy:3].",
+    "type_key": "Skill",
     "rarity_key": "Uncommon",
     "compendium_order": 29
   },
@@ -22268,7 +22312,7 @@
       "cost": 0
     },
     "image_url": "/static/images/cards/tank.webp",
-    "beta_image_url": "/static/images/cards/beta/tank.webp",
+    "beta_image_url": "/static/images/cards/beta/tank.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -22346,7 +22390,7 @@
       "extradamage": "+1"
     },
     "image_url": "/static/images/cards/soul_storm.webp",
-    "beta_image_url": "/static/images/cards/beta/soul_storm.webp",
+    "beta_image_url": "/static/images/cards/beta/soul_storm.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 9 de dano.\nCausa 3 de dano adicional por cada [gold]Alma[/gold] na sua pilha de [gold]Cartas Exauridas[/gold].",
@@ -22549,7 +22593,7 @@
       "vigorpower": "+2"
     },
     "image_url": "/static/images/cards/terraforming.webp",
-    "beta_image_url": "/static/images/cards/beta/terraforming.webp",
+    "beta_image_url": "/static/images/cards/beta/terraforming.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 8 de [gold]Vigor[/gold].",
@@ -22647,7 +22691,7 @@
       "starnextturnpower": "+1"
     },
     "image_url": "/static/images/cards/hidden_cache.webp",
-    "beta_image_url": "/static/images/cards/beta/hidden_cache.webp",
+    "beta_image_url": "/static/images/cards/beta/hidden_cache.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [star:1].\nNo próximo turno, receba [star:4].",
@@ -22685,7 +22729,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/tyranny.webp",
-    "beta_image_url": "/static/images/cards/beta/tyranny.webp",
+    "beta_image_url": "/static/images/cards/beta/tyranny.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -22699,7 +22743,7 @@
   {
     "id": "JUGGERNAUT",
     "name": "Titã Couraçado",
-    "description": "Sempre que você receber [gold]Proteção[/gold], cause 5 de dano a um inimigo aleatório.",
+    "description": "Sempre que você receber [gold]Proteção[/gold], cause 6 de dano a um inimigo aleatório.",
     "description_raw": "Sempre que você receber [gold]Proteção[/gold], cause {JuggernautPower:diff()} de dano a um inimigo aleatório.",
     "cost": 2,
     "is_x_cost": null,
@@ -22715,7 +22759,7 @@
     "powers_applied": [
       {
         "power": "Titã Couraçado",
-        "amount": 5,
+        "amount": 6,
         "power_key": "Juggernaut"
       }
     ],
@@ -22726,8 +22770,8 @@
     "tags": null,
     "spawns_cards": null,
     "vars": {
-      "JuggernautPower": 5,
-      "Juggernaut": 5
+      "JuggernautPower": 6,
+      "Juggernaut": 6
     },
     "upgrade": {
       "juggernautpower": "+2"
@@ -22736,7 +22780,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Sempre que você receber [gold]Proteção[/gold], cause 7 de dano a um inimigo aleatório.",
+    "upgrade_description": "Sempre que você receber [gold]Proteção[/gold], cause 8 de dano a um inimigo aleatório.",
     "type_key": "Power",
     "rarity_key": "Rare",
     "compendium_order": 48
@@ -22861,7 +22905,7 @@
       "strengthloss": "+3"
     },
     "image_url": "/static/images/cards/enfeebling_touch.webp",
-    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.webp",
+    "beta_image_url": "/static/images/cards/beta/enfeebling_touch.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "O inimigo perde 11 de [gold]Força[/gold] neste turno.",
@@ -23031,7 +23075,7 @@
       "extradamage": "+2"
     },
     "image_url": "/static/images/cards/gang_up.webp",
-    "beta_image_url": "/static/images/cards/beta/gang_up.webp",
+    "beta_image_url": "/static/images/cards/beta/gang_up.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Cause 5 de dano.\nCausa 7 de dano adicional por cada vez que outro jogador atacou o inimigo neste turno.",
@@ -23071,7 +23115,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/transfigure.webp",
-    "beta_image_url": "/static/images/cards/beta/transfigure.webp",
+    "beta_image_url": "/static/images/cards/beta/transfigure.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23110,7 +23154,7 @@
       "add_innate": true
     },
     "image_url": "/static/images/cards/trash_to_treasure.webp",
-    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.webp",
+    "beta_image_url": "/static/images/cards/beta/trash_to_treasure.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23155,7 +23199,7 @@
       "thunderpower": "+2"
     },
     "image_url": "/static/images/cards/thunder.webp",
-    "beta_image_url": "/static/images/cards/beta/thunder.webp",
+    "beta_image_url": "/static/images/cards/beta/thunder.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Sempre que você [gold]Evocar Relâmpago[/gold], cause 8 de dano a cada inimigo golpeado.",
@@ -23199,7 +23243,7 @@
     "upgrade_description": "Receba 10 de [gold]Proteção[/gold].\nAdicione [gold]Sagaz[/gold] a uma Técnica na sua [gold]Mão[/gold] neste turno.",
     "type_key": "Skill",
     "rarity_key": "Uncommon",
-    "compendium_order": 127
+    "compendium_order": 126
   },
   {
     "id": "UP_MY_SLEEVE",
@@ -23244,8 +23288,8 @@
   {
     "id": "HOWL_FROM_BEYOND",
     "name": "Uivo do Além",
-    "description": "Cause 16 de dano a TODOS os inimigos.\nNo início do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
-    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.\nNo início do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
+    "description": "Cause 16 de dano a TODOS os inimigos.\nNo final do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
+    "description_raw": "Cause {Damage:diff()} de dano a TODOS os inimigos.\nNo final do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
     "cost": 3,
     "is_x_cost": null,
     "is_x_star_cost": null,
@@ -23274,7 +23318,7 @@
     "beta_image_url": null,
     "type_variants": null,
     "can_be_generated_in_combat": null,
-    "upgrade_description": "Cause 21 de dano a TODOS os inimigos.\nNo início do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
+    "upgrade_description": "Cause 21 de dano a TODOS os inimigos.\nNo final do seu turno, esta carta é jogada se estiver na sua pilha de [gold]Cartas Exauridas[/gold].",
     "type_key": "Attack",
     "rarity_key": "Uncommon",
     "compendium_order": 42
@@ -23309,7 +23353,7 @@
       "energy": "+1"
     },
     "image_url": "/static/images/cards/outmaneuver.webp",
-    "beta_image_url": "/static/images/cards/beta/outmaneuver.webp",
+    "beta_image_url": "/static/images/cards/beta/outmaneuver.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "No próximo turno, receba [energy:3].",
@@ -23363,7 +23407,7 @@
       "Exhaust",
       "Ethereal"
     ],
-    "compendium_order": 574
+    "compendium_order": 575
   },
   {
     "id": "SPEEDSTER",
@@ -23485,7 +23529,7 @@
       "stars": "+1"
     },
     "image_url": "/static/images/cards/venerate.webp",
-    "beta_image_url": "/static/images/cards/beta/venerate.webp",
+    "beta_image_url": "/static/images/cards/beta/venerate.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba [star:3].",
@@ -23611,7 +23655,7 @@
       "cards": "+1"
     },
     "image_url": "/static/images/cards/glimpse_beyond.webp",
-    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.webp",
+    "beta_image_url": "/static/images/cards/beta/glimpse_beyond.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "TODOS os jogadores adicionam 4 [gold]Almas[/gold] nas suas [gold]Pilhas de Descarte[/gold].",
@@ -23659,7 +23703,7 @@
       "description_changed": true
     },
     "image_url": "/static/images/cards/spinner.webp",
-    "beta_image_url": "/static/images/cards/beta/spinner.webp",
+    "beta_image_url": "/static/images/cards/beta/spinner.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "[gold]Canalize[/gold] 1 [gold]Vidro[/gold].\nNo início do seu turno, [gold]Canalize[/gold] 1 [gold]Vidro[/gold].",
@@ -23700,7 +23744,7 @@
       "remove_exhaust": true
     },
     "image_url": "/static/images/cards/voltaic.webp",
-    "beta_image_url": "/static/images/cards/beta/voltaic.webp",
+    "beta_image_url": "/static/images/cards/beta/voltaic.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": null,
@@ -23831,7 +23875,7 @@
       "platingpower": "+3"
     },
     "image_url": "/static/images/cards/neutron_aegis.webp",
-    "beta_image_url": "/static/images/cards/beta/neutron_aegis.webp",
+    "beta_image_url": "/static/images/cards/beta/neutron_aegis.png",
     "type_variants": null,
     "can_be_generated_in_combat": null,
     "upgrade_description": "Receba 11 de [gold]Blindagem[/gold].",
