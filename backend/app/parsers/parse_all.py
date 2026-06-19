@@ -88,10 +88,11 @@ if __name__ == "__main__":
     # Steam news is language-agnostic — fetch once after the per-lang sweep.
     parse_news()
 
-    # Ancient relic pools — language-agnostic. Validates the hand-coded
-    # `data/ancient_pools.json` against the C# event source so additions
-    # / removals show up immediately instead of weeks later via a user
-    # bug report (see PR #170).
+    # Ancient relic pools — language-agnostic. GENERATES
+    # `data/ancient_pools.json` straight from the C# event sources so relic
+    # additions/moves can never silently drift the /ancients page (the recurring
+    # bug behind PR #170 and the v0.107.1 follow-up). Conditions/descriptions
+    # are carried forward from the previous file; membership comes from the C#.
     from ancient_pool_parser import main as parse_ancient_pools
 
     parse_ancient_pools()

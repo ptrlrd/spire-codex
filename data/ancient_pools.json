@@ -1,5 +1,73 @@
 [
   {
+    "id": "DARV",
+    "name": "Darv",
+    "description": "Has a large pool of powerful relics. 50% chance to get 3 options from the pool, 50% chance to get 2 options plus Dusty Tome.",
+    "selection": "50% chance: 3 from pool OR 2 from pool + Dusty Tome",
+    "pools": [
+      {
+        "name": "Relic Pool",
+        "description": "Each set has one relic chosen at random. Sets with act conditions are only included if the condition is met.",
+        "relics": [
+          {
+            "id": "ASTROLABE",
+            "condition": null
+          },
+          {
+            "id": "BLACK_STAR",
+            "condition": null
+          },
+          {
+            "id": "CALLING_BELL",
+            "condition": null
+          },
+          {
+            "id": "EMPTY_CAGE",
+            "condition": null
+          },
+          {
+            "id": "PANDORAS_BOX",
+            "condition": "Excluded with Draft, Sealed Deck, or Insanity modifiers"
+          },
+          {
+            "id": "RUNIC_PYRAMID",
+            "condition": null
+          },
+          {
+            "id": "SNECKO_EYE",
+            "condition": null
+          },
+          {
+            "id": "ECTOPLASM",
+            "condition": "Act 2 only; 50% chance (vs Sozu)"
+          },
+          {
+            "id": "SOZU",
+            "condition": "Act 2 only; 50% chance (vs Ectoplasm)"
+          },
+          {
+            "id": "PHILOSOPHERS_STONE",
+            "condition": "Act 3 only; 50% chance (vs Velvet Choker)"
+          },
+          {
+            "id": "VELVET_CHOKER",
+            "condition": "Act 3 only; 50% chance (vs Philosopher's Stone)"
+          }
+        ]
+      },
+      {
+        "name": "Dusty Tome",
+        "description": "50% chance to replace one of the three options.",
+        "relics": [
+          {
+            "id": "DUSTY_TOME",
+            "condition": "50% chance to appear as the third option"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "NEOW",
     "name": "Neow",
     "description": "Presents 2 positive options and 1 curse option. The curse pool is built first, then excluded relics are removed from the positive pool.",
@@ -9,107 +77,177 @@
         "name": "Curse Pool",
         "description": "One relic is chosen at random from this pool as the curse option.",
         "relics": [
-          { "id": "CURSED_PEARL", "condition": null },
-          { "id": "HEFTY_TABLET", "condition": null },
-          { "id": "LARGE_CAPSULE", "condition": null },
-          { "id": "LEAFY_POULTICE", "condition": null },
-          { "id": "NEOWS_BONES", "condition": null },
-          { "id": "PRECARIOUS_SHEARS", "condition": null },
-          { "id": "SILKEN_TRESS", "condition": null },
-          { "id": "SILVER_CRUCIBLE", "condition": "Single player only" }
+          {
+            "id": "CURSED_PEARL",
+            "condition": null
+          },
+          {
+            "id": "HEFTY_TABLET",
+            "condition": null
+          },
+          {
+            "id": "LARGE_CAPSULE",
+            "condition": null
+          },
+          {
+            "id": "LEAFY_POULTICE",
+            "condition": null
+          },
+          {
+            "id": "NEOWS_BONES",
+            "condition": null
+          },
+          {
+            "id": "PRECARIOUS_SHEARS",
+            "condition": null
+          },
+          {
+            "id": "SILKEN_TRESS",
+            "condition": null
+          },
+          {
+            "id": "SILVER_CRUCIBLE",
+            "condition": "Single player only"
+          }
         ]
       },
       {
         "name": "Positive Pool",
         "description": "Two relics are chosen at random. Some relics are excluded based on which curse was selected.",
         "relics": [
-          { "id": "ARCANE_SCROLL", "condition": "Excluded if Hefty Tablet is the curse option" },
-          { "id": "BOOMING_CONCH", "condition": null },
-          { "id": "FISHING_ROD", "condition": null },
-          { "id": "KALEIDOSCOPE", "condition": null },
-          { "id": "POMANDER", "condition": "50% chance (vs Neow's Talisman)" },
-          { "id": "LEAD_PAPERWEIGHT", "condition": null },
-          { "id": "NEOWS_TALISMAN", "condition": "50% chance (vs Pomander)" },
-          { "id": "NEOWS_TORMENT", "condition": null },
-          { "id": "LOST_COFFER", "condition": null },
-          { "id": "GOLDEN_PEARL", "condition": "Excluded if Cursed Pearl is the curse option" },
-          { "id": "PHIAL_HOLSTER", "condition": null },
-          { "id": "PRECISE_SCISSORS", "condition": "Excluded if Precarious Shears is the curse option" },
-          { "id": "WINGED_BOOTS", "condition": null },
-          { "id": "NEW_LEAF", "condition": "Excluded if Leafy Poultice is the curse option" },
-          { "id": "NUTRITIOUS_OYSTER", "condition": "50% chance (vs Stone Humidifier)" },
-          { "id": "STONE_HUMIDIFIER", "condition": "50% chance (vs Nutritious Oyster)" },
-          { "id": "LAVA_ROCK", "condition": "50% chance (vs Small Capsule); excluded if Large Capsule is the curse option" },
-          { "id": "SMALL_CAPSULE", "condition": "50% chance (vs Lava Rock); excluded if Large Capsule is the curse option" },
-          { "id": "MASSIVE_SCROLL", "condition": "Multiplayer only" },
-          { "id": "SCROLL_BOXES", "condition": "Player has cards that can form bundles" }
+          {
+            "id": "ARCANE_SCROLL",
+            "condition": "Excluded if Hefty Tablet is the curse option"
+          },
+          {
+            "id": "BOOMING_CONCH",
+            "condition": null
+          },
+          {
+            "id": "FISHING_ROD",
+            "condition": null
+          },
+          {
+            "id": "GOLDEN_PEARL",
+            "condition": "Excluded if Cursed Pearl is the curse option"
+          },
+          {
+            "id": "KALEIDOSCOPE",
+            "condition": null
+          },
+          {
+            "id": "LEAD_PAPERWEIGHT",
+            "condition": null
+          },
+          {
+            "id": "LOST_COFFER",
+            "condition": null
+          },
+          {
+            "id": "MASSIVE_SCROLL",
+            "condition": "Multiplayer only"
+          },
+          {
+            "id": "NEOWS_TORMENT",
+            "condition": null
+          },
+          {
+            "id": "NEW_LEAF",
+            "condition": "Excluded if Leafy Poultice is the curse option"
+          },
+          {
+            "id": "PHIAL_HOLSTER",
+            "condition": null
+          },
+          {
+            "id": "PRECISE_SCISSORS",
+            "condition": "Excluded if Precarious Shears is the curse option"
+          },
+          {
+            "id": "SCROLL_BOXES",
+            "condition": "Player has cards that can form bundles"
+          },
+          {
+            "id": "WINGED_BOOTS",
+            "condition": null
+          },
+          {
+            "id": "LAVA_ROCK",
+            "condition": "50% chance (vs Small Capsule); excluded if Large Capsule is the curse option"
+          },
+          {
+            "id": "NEOWS_TALISMAN",
+            "condition": "50% chance (vs Pomander)"
+          },
+          {
+            "id": "NUTRITIOUS_OYSTER",
+            "condition": "50% chance (vs Stone Humidifier)"
+          },
+          {
+            "id": "POMANDER",
+            "condition": "50% chance (vs Neow's Talisman)"
+          },
+          {
+            "id": "SMALL_CAPSULE",
+            "condition": "50% chance (vs Lava Rock); excluded if Large Capsule is the curse option"
+          },
+          {
+            "id": "STONE_HUMIDIFIER",
+            "condition": "50% chance (vs Nutritious Oyster)"
+          }
         ]
       }
     ]
   },
   {
-    "id": "TEZCATARA",
-    "name": "Tezcatara",
-    "description": "Offers one relic from each of three pools, chosen at random.",
-    "selection": "1 from each pool (3 total)",
+    "id": "NONUPEIPE",
+    "name": "Nonupeipe",
+    "description": "Has a single large pool. Three relics are chosen at random.",
+    "selection": "3 from pool",
     "pools": [
       {
-        "name": "Pool 1",
+        "name": "Relic Pool",
         "relics": [
-          { "id": "NUTRITIOUS_SOUP", "condition": null },
-          { "id": "VERY_HOT_COCOA", "condition": null },
-          { "id": "YUMMY_COOKIE", "condition": null }
-        ]
-      },
-      {
-        "name": "Pool 2",
-        "relics": [
-          { "id": "BIIIG_HUG", "condition": null },
-          { "id": "STORYBOOK", "condition": null },
-          { "id": "TOASTY_MITTENS", "condition": null }
-        ]
-      },
-      {
-        "name": "Pool 3",
-        "relics": [
-          { "id": "GOLDEN_COMPASS", "condition": null },
-          { "id": "PUMPKIN_CANDLE", "condition": null },
-          { "id": "TOY_BOX", "condition": null },
-          { "id": "SEAL_OF_GOLD", "condition": null }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "PAEL",
-    "name": "Pael",
-    "description": "Offers one relic from each of three pools. Pool 2 has conditional additions and Pael's Growth has a reduced chance.",
-    "selection": "1 from each pool (3 total)",
-    "pools": [
-      {
-        "name": "Pool 1",
-        "relics": [
-          { "id": "PAELS_FLESH", "condition": null },
-          { "id": "PAELS_HORN", "condition": null },
-          { "id": "PAELS_TEARS", "condition": null }
-        ]
-      },
-      {
-        "name": "Pool 2",
-        "description": "The pool is doubled before adding Pael's Growth, giving Growth a reduced chance.",
-        "relics": [
-          { "id": "PAELS_WING", "condition": null },
-          { "id": "PAELS_CLAW", "condition": "Deck has 3+ cards that can be enchanted with Goopy" },
-          { "id": "PAELS_TOOTH", "condition": "Deck has 5+ removable cards" },
-          { "id": "PAELS_GROWTH", "condition": "Always in pool but at reduced odds (pool is doubled before adding)" }
-        ]
-      },
-      {
-        "name": "Pool 3",
-        "relics": [
-          { "id": "PAELS_EYE", "condition": null },
-          { "id": "PAELS_BLOOD", "condition": null },
-          { "id": "PAELS_LEGION", "condition": "Player does not have an event pet (Byrdpip relic or Byrdonis Egg card)" }
+          {
+            "id": "BLESSED_ANTLER",
+            "condition": null
+          },
+          {
+            "id": "BRILLIANT_SCARF",
+            "condition": null
+          },
+          {
+            "id": "DELICATE_FROND",
+            "condition": null
+          },
+          {
+            "id": "DIAMOND_DIADEM",
+            "condition": null
+          },
+          {
+            "id": "FUR_COAT",
+            "condition": null
+          },
+          {
+            "id": "GLITTER",
+            "condition": null
+          },
+          {
+            "id": "JEWELRY_BOX",
+            "condition": null
+          },
+          {
+            "id": "LOOMING_FRUIT",
+            "condition": null
+          },
+          {
+            "id": "SIGNET_RING",
+            "condition": null
+          },
+          {
+            "id": "BEAUTIFUL_BRACELET",
+            "condition": "Deck has 4+ cards that can be enchanted with Swift"
+          }
         ]
       }
     ]
@@ -124,82 +262,121 @@
         "name": "Pool 1",
         "description": "Includes either Prismatic Gem (33% chance) or Sea Glass (67% chance). Sea Glass picks from a random unlocked character other than the current one.",
         "relics": [
-          { "id": "ELECTRIC_SHRYMP", "condition": null },
-          { "id": "GLASS_EYE", "condition": null },
-          { "id": "SAND_CASTLE", "condition": null },
-          { "id": "PRISMATIC_GEM", "condition": "33% chance (vs Sea Glass)" },
-          { "id": "SEA_GLASS", "condition": "67% chance (vs Prismatic Gem); character is random unlocked non-current" }
+          {
+            "id": "ELECTRIC_SHRYMP",
+            "condition": null
+          },
+          {
+            "id": "GLASS_EYE",
+            "condition": null
+          },
+          {
+            "id": "SAND_CASTLE",
+            "condition": null
+          },
+          {
+            "id": "PRISMATIC_GEM",
+            "condition": "33% chance (vs Sea Glass)"
+          },
+          {
+            "id": "SEA_GLASS",
+            "condition": "67% chance (vs Prismatic Gem); character is random unlocked non-current"
+          }
         ]
       },
       {
         "name": "Pool 2",
         "relics": [
-          { "id": "ALCHEMICAL_COFFER", "condition": null },
-          { "id": "DRIFTWOOD", "condition": null },
-          { "id": "RADIANT_PEARL", "condition": null }
+          {
+            "id": "ALCHEMICAL_COFFER",
+            "condition": null
+          },
+          {
+            "id": "DRIFTWOOD",
+            "condition": null
+          },
+          {
+            "id": "RADIANT_PEARL",
+            "condition": null
+          }
         ]
       },
       {
         "name": "Pool 3",
         "description": "Both relics require player setup. If neither is available, a locked option is shown.",
         "relics": [
-          { "id": "TOUCH_OF_OROBAS", "condition": "Requires player setup (starter relic upgrade)" },
-          { "id": "ARCHAIC_TOOTH", "condition": "Requires player setup" }
+          {
+            "id": "TOUCH_OF_OROBAS",
+            "condition": "Requires player setup (starter relic upgrade)"
+          },
+          {
+            "id": "ARCHAIC_TOOTH",
+            "condition": "Requires player setup"
+          }
         ]
       }
     ]
   },
   {
-    "id": "DARV",
-    "name": "Darv",
-    "description": "Has a large pool of powerful relics. 50% chance to get 3 options from the pool, 50% chance to get 2 options plus Dusty Tome.",
-    "selection": "50% chance: 3 from pool OR 2 from pool + Dusty Tome",
+    "id": "PAEL",
+    "name": "Pael",
+    "description": "Offers one relic from each of three pools. Pool 2 has conditional additions and Pael's Growth has a reduced chance.",
+    "selection": "1 from each pool (3 total)",
     "pools": [
       {
-        "name": "Relic Pool",
-        "description": "Each set has one relic chosen at random. Sets with act conditions are only included if the condition is met.",
+        "name": "Pool 1",
         "relics": [
-          { "id": "ASTROLABE", "condition": null },
-          { "id": "BLACK_STAR", "condition": null },
-          { "id": "CALLING_BELL", "condition": null },
-          { "id": "EMPTY_CAGE", "condition": null },
-          { "id": "PANDORAS_BOX", "condition": "Excluded with Draft, Sealed Deck, or Insanity modifiers" },
-          { "id": "RUNIC_PYRAMID", "condition": null },
-          { "id": "SNECKO_EYE", "condition": null },
-          { "id": "ECTOPLASM", "condition": "Act 2 only; 50% chance (vs Sozu)" },
-          { "id": "SOZU", "condition": "Act 2 only; 50% chance (vs Ectoplasm)" },
-          { "id": "PHILOSOPHERS_STONE", "condition": "Act 3 only; 50% chance (vs Velvet Choker)" },
-          { "id": "VELVET_CHOKER", "condition": "Act 3 only; 50% chance (vs Philosopher's Stone)" }
+          {
+            "id": "PAELS_FLESH",
+            "condition": null
+          },
+          {
+            "id": "PAELS_HORN",
+            "condition": null
+          },
+          {
+            "id": "PAELS_TEARS",
+            "condition": null
+          }
         ]
       },
       {
-        "name": "Dusty Tome",
-        "description": "50% chance to replace one of the three options.",
+        "name": "Pool 2",
+        "description": "The pool is doubled before adding Pael's Growth, giving Growth a reduced chance.",
         "relics": [
-          { "id": "DUSTY_TOME", "condition": "50% chance to appear as the third option" }
+          {
+            "id": "PAELS_WING",
+            "condition": null
+          },
+          {
+            "id": "PAELS_CLAW",
+            "condition": "Deck has 3+ cards that can be enchanted with Goopy"
+          },
+          {
+            "id": "PAELS_TOOTH",
+            "condition": "Deck has 5+ removable cards"
+          },
+          {
+            "id": "PAELS_GROWTH",
+            "condition": "Always in pool but at reduced odds (pool is doubled before adding)"
+          }
         ]
-      }
-    ]
-  },
-  {
-    "id": "NONUPEIPE",
-    "name": "Nonupeipe",
-    "description": "Has a single large pool. Three relics are chosen at random.",
-    "selection": "3 from pool",
-    "pools": [
+      },
       {
-        "name": "Relic Pool",
+        "name": "Pool 3",
         "relics": [
-          { "id": "BLESSED_ANTLER", "condition": null },
-          { "id": "BRILLIANT_SCARF", "condition": null },
-          { "id": "DELICATE_FROND", "condition": null },
-          { "id": "DIAMOND_DIADEM", "condition": null },
-          { "id": "FUR_COAT", "condition": null },
-          { "id": "GLITTER", "condition": null },
-          { "id": "JEWELRY_BOX", "condition": null },
-          { "id": "LOOMING_FRUIT", "condition": null },
-          { "id": "SIGNET_RING", "condition": null },
-          { "id": "BEAUTIFUL_BRACELET", "condition": "Deck has 4+ cards that can be enchanted with Swift" }
+          {
+            "id": "PAELS_EYE",
+            "condition": null
+          },
+          {
+            "id": "PAELS_BLOOD",
+            "condition": null
+          },
+          {
+            "id": "PAELS_LEGION",
+            "condition": "Player does not have an event pet (Byrdpip relic or Byrdonis Egg card)"
+          }
         ]
       }
     ]
@@ -213,16 +390,109 @@
       {
         "name": "Relic Pool",
         "relics": [
-          { "id": "CLAWS", "condition": null },
-          { "id": "CROSSBOW", "condition": null },
-          { "id": "IRON_CLUB", "condition": null },
-          { "id": "MEAT_CLEAVER", "condition": null },
-          { "id": "SAI", "condition": null },
-          { "id": "SPIKED_GAUNTLETS", "condition": null },
-          { "id": "TANXS_WHISTLE", "condition": null },
-          { "id": "THROWING_AXE", "condition": null },
-          { "id": "WAR_HAMMER", "condition": null },
-          { "id": "TRI_BOOMERANG", "condition": "Deck has 3+ Attack cards (the type filter Instinct enforces)" }
+          {
+            "id": "CLAWS",
+            "condition": null
+          },
+          {
+            "id": "CROSSBOW",
+            "condition": null
+          },
+          {
+            "id": "IRON_CLUB",
+            "condition": null
+          },
+          {
+            "id": "MEAT_CLEAVER",
+            "condition": null
+          },
+          {
+            "id": "SAI",
+            "condition": null
+          },
+          {
+            "id": "SPIKED_GAUNTLETS",
+            "condition": null
+          },
+          {
+            "id": "TANXS_WHISTLE",
+            "condition": null
+          },
+          {
+            "id": "THROWING_AXE",
+            "condition": null
+          },
+          {
+            "id": "WAR_HAMMER",
+            "condition": null
+          },
+          {
+            "id": "TRI_BOOMERANG",
+            "condition": "Deck has 3+ Attack cards (the type filter Instinct enforces)"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TEZCATARA",
+    "name": "Tezcatara",
+    "description": "Offers one relic from each of three pools, chosen at random.",
+    "selection": "1 from each pool (3 total)",
+    "pools": [
+      {
+        "name": "Pool 1",
+        "relics": [
+          {
+            "id": "VERY_HOT_COCOA",
+            "condition": null
+          },
+          {
+            "id": "YUMMY_COOKIE",
+            "condition": null
+          },
+          {
+            "id": "NUTRITIOUS_SOUP",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 2",
+        "relics": [
+          {
+            "id": "BIIIG_HUG",
+            "condition": null
+          },
+          {
+            "id": "STORYBOOK",
+            "condition": null
+          },
+          {
+            "id": "TOASTY_MITTENS",
+            "condition": null
+          }
+        ]
+      },
+      {
+        "name": "Pool 3",
+        "relics": [
+          {
+            "id": "GOLDEN_COMPASS",
+            "condition": null
+          },
+          {
+            "id": "PUMPKIN_CANDLE",
+            "condition": null
+          },
+          {
+            "id": "TOY_BOX",
+            "condition": null
+          },
+          {
+            "id": "SEAL_OF_GOLD",
+            "condition": null
+          }
         ]
       }
     ]
@@ -236,26 +506,56 @@
       {
         "name": "Pool 1",
         "relics": [
-          { "id": "BLOOD_SOAKED_ROSE", "condition": null },
-          { "id": "WHISPERING_EARRING", "condition": null },
-          { "id": "FIDDLE", "condition": null }
+          {
+            "id": "BLOOD_SOAKED_ROSE",
+            "condition": null
+          },
+          {
+            "id": "WHISPERING_EARRING",
+            "condition": null
+          },
+          {
+            "id": "FIDDLE",
+            "condition": null
+          }
         ]
       },
       {
         "name": "Pool 2",
         "relics": [
-          { "id": "PRESERVED_FOG", "condition": null },
-          { "id": "SERE_TALON", "condition": null },
-          { "id": "DISTINGUISHED_CAPE", "condition": null }
+          {
+            "id": "PRESERVED_FOG",
+            "condition": null
+          },
+          {
+            "id": "SERE_TALON",
+            "condition": null
+          },
+          {
+            "id": "DISTINGUISHED_CAPE",
+            "condition": null
+          }
         ]
       },
       {
         "name": "Pool 3",
         "relics": [
-          { "id": "CHOICES_PARADOX", "condition": null },
-          { "id": "LORDS_PARASOL", "condition": null },
-          { "id": "JEWELED_MASK", "condition": null },
-          { "id": "MUSIC_BOX", "condition": null }
+          {
+            "id": "CHOICES_PARADOX",
+            "condition": null
+          },
+          {
+            "id": "MUSIC_BOX",
+            "condition": null
+          },
+          {
+            "id": "LORDS_PARASOL",
+            "condition": null
+          },
+          {
+            "id": "JEWELED_MASK",
+            "condition": null
+          }
         ]
       }
     ]
