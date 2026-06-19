@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "アンブロシア",
+    "description": "[blue]神聖[/blue]に入る。",
+    "description_raw": "[blue]神聖[/blue]に入る。",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "憤怒のポーション",
+    "description": "[blue]憤怒[/blue]に入る。",
+    "description_raw": "[blue]憤怒[/blue]に入る。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "瓶詰めの奇跡",
+    "description": "X 枚の[blue]奇跡[/blue]を手札に加える。",
+    "description_raw": "{Cards:diff()} 枚の[blue]奇跡[/blue]を手札に加える。",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "瓶詰めの奇跡",
+    "description": "[blue]平静[/blue]の[blue]スタンス[/blue]に入る。",
+    "description_raw": "[blue]平静[/blue]の[blue]スタンス[/blue]に入る。",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

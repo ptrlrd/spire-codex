@@ -1,0 +1,3858 @@
+[
+  {
+    "id": "WATCHER-SIGNATURE_MOVE",
+    "name": "개인기",
+    "description": "이 카드가 손에 있는 유일한 공격 카드일 경우에만 사용 가능합니다.\n피해를 30 줍니다.",
+    "description_raw": "이 카드가 손에 있는 유일한 공격 카드일 경우에만 사용 가능합니다.\n피해를 {Damage:diff()} 줍니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 30,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 30
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/signature_move.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "이 카드가 손에 있는 유일한 공격 카드일 경우에만 사용 가능합니다.\n피해를 40 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 46
+  },
+  {
+    "id": "WATCHER-TANTRUM",
+    "name": "격분",
+    "description": "피해를 3 만큼 3 번 줍니다.\n[gold]진노[/gold]합니다.\n이 카드를 뽑을 카드 더미에 섞어 넣습니다.",
+    "description_raw": "피해를 {Damage:diff()} 만큼 {Repeat:diff()} 번 줍니다.\n[gold]진노[/gold]합니다.\n이 카드를 뽑을 카드 더미에 섞어 넣습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 3,
+      "Damage": 3
+    },
+    "upgrade": {
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/tantrum.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 3 만큼 4 번 줍니다.\n[gold]진노[/gold]합니다.\n이 카드를 뽑을 카드 더미에 섞어 넣습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 51
+  },
+  {
+    "id": "WATCHER-CONCLUDE",
+    "name": "결론",
+    "description": "모든 적에게 피해를 12 줍니다.\n턴을 종료합니다.",
+    "description_raw": "모든 적에게 피해를 {Damage:diff()} 줍니다.\n턴을 종료합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/conclude.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "모든 적에게 피해를 16 줍니다.\n턴을 종료합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 26
+  },
+  {
+    "id": "WATCHER-VIGILANCE",
+    "name": "경각",
+    "description": "[gold]방어도[/gold]를 8 얻습니다.\n[gold]명상[/gold]합니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]명상[/gold]합니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/vigilance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 12 얻습니다.\n[gold]명상[/gold]합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 3
+  },
+  {
+    "id": "WATCHER-TRANQUILITY",
+    "name": "고요함",
+    "description": "[gold]명상[/gold]합니다.",
+    "description_raw": "[gold]명상[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/tranquility.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 22
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_RARE",
+    "name": "공유된 지혜",
+    "description": "다른 플레이어가 [gold]강림[/gold]에 진입한다。",
+    "description_raw": "다른 플레이어가 [gold]강림[/gold]에 진입한다。",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyAlly",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_rare.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal",
+      "Exhaust"
+    ],
+    "compendium_order": 70
+  },
+  {
+    "id": "WATCHER-CRUSH_JOINTS",
+    "name": "관절 부수기",
+    "description": "피해를 8 줍니다.\n가장 최근에 사용한 카드가 [gold]스킬[/gold] 카드라면, [gold]취약[/gold]을 1 부여합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n가장 최근에 사용한 카드가 [gold]스킬[/gold] 카드라면, [gold]취약[/gold]을 {VulnerablePower:diff()} 부여합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 1,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "VulnerablePower": 1,
+      "Vulnerable": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "vulnerable": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/crush_joints.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 10 줍니다.\n가장 최근에 사용한 카드가 [gold]스킬[/gold] 카드라면, [gold]취약[/gold]을 2 부여합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 7
+  },
+  {
+    "id": "WATCHER-BRILLIANCE",
+    "name": "광휘",
+    "description": "피해를 12 줍니다.\n이번 전투에서 얻었던 [gold]만트라[/gold]만큼 추가 피해를 줍니다.",
+    "description_raw": "피해를 {CalculatedDamage:diff()} 줍니다.\n이번 전투에서 얻었던 [gold]만트라[/gold]만큼 추가 피해를 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12,
+      "CalculatedDamage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/brilliance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 61
+  },
+  {
+    "id": "WATCHER-LESSON_LEARNED",
+    "name": "교훈",
+    "description": "피해를 10 줍니다.\n[gold]치명타[/gold]라면, 덱에 있는 무작위 카드를 영구히 [gold]강화[/gold]합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]치명타[/gold]라면, 덱에 있는 무작위 카드를 영구히 [gold]강화[/gold]합니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/lesson_learned.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 13 줍니다.\n[gold]치명타[/gold]라면, 덱에 있는 무작위 카드를 영구히 [gold]강화[/gold]합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 68
+  },
+  {
+    "id": "WATCHER-PRESSURE_POINTS",
+    "name": "급소",
+    "description": "[gold]표식[/gold]을 8 부여합니다.\n모든 적의 체력을 대상에게 부여된 [gold]표식[/gold] 만큼 감소시킵니다.",
+    "description_raw": "[gold]표식[/gold]을 {MarkPower:diff()} 부여합니다.\n모든 적의 체력을 대상에게 부여된 [gold]표식[/gold] 만큼 감소시킵니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mark",
+        "amount": 8,
+        "power_key": "Mark"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MarkPower": 8,
+      "Mark": 8
+    },
+    "upgrade": {
+      "mark": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pressure_points.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]표식[/gold]을 11 부여합니다.\n모든 적의 체력을 대상에게 부여된 [gold]표식[/gold] 만큼 감소시킵니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 17
+  },
+  {
+    "id": "WATCHER-PRAY",
+    "name": "기도",
+    "description": "[gold]만트라[/gold]를 3 얻습니다.\n뽑을 카드 더미에 [gold]통찰[/gold]을 섞어 넣습니다.",
+    "description_raw": "[gold]만트라[/gold]를 {MantraPower:diff()} 얻습니다.\n뽑을 카드 더미에 [gold]통찰[/gold]을 섞어 넣습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 3,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 3,
+      "Mantra": 3
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/pray.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]만트라[/gold]를 4 얻습니다.\n뽑을 카드 더미에 [gold]통찰[/gold]을 섞어 넣습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 41
+  },
+  {
+    "id": "WATCHER-MIRACLE",
+    "name": "기적",
+    "description": "[energy:1] 를 얻습니다.",
+    "description_raw": "{Energy:energyIcons()} 를 얻습니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1
+    },
+    "upgrade": {
+      "energy": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/miracle.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[energy:2] 를 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 85
+  },
+  {
+    "id": "WATCHER-INNER_PEACE",
+    "name": "내면의 평화",
+    "description": "[gold]명상[/gold] 중이라면, 카드를 3 장 뽑습니다. 그렇지 않다면 [gold]명상[/gold]합니다.",
+    "description_raw": "[gold]명상[/gold] 중이라면, 카드를 {Cards:diff()} 장 뽑습니다. 그렇지 않다면 [gold]명상[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 3
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/inner_peace.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]명상[/gold] 중이라면, 카드를 4 장 뽑습니다. 그렇지 않다면 [gold]명상[/gold]합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 34
+  },
+  {
+    "id": "WATCHER-FASTING",
+    "name": "단식",
+    "description": "[gold]힘[/gold]을 3 얻습니다.\n[gold]민첩[/gold]을 3 얻습니다.\n매 턴 시작 시 [energy:1]를 1 적게 얻습니다.",
+    "description_raw": "[gold]힘[/gold]을 {StrengthPower:diff()} 얻습니다.\n[gold]민첩[/gold]을 {DexterityPower:diff()} 얻습니다.\n매 턴 시작 시 {energyPrefix:energyIcons(1)}를 1 적게 얻습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "Dexterity",
+        "amount": 3,
+        "power_key": "Dexterity"
+      },
+      {
+        "power": "Fasting",
+        "amount": 1,
+        "power_key": "Fasting"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3,
+      "DexterityPower": 3,
+      "Dexterity": 3,
+      "FastingPower": 1,
+      "Fasting": 1
+    },
+    "upgrade": {
+      "strength": "+1",
+      "dexterity": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fasting.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]힘[/gold]을 4 얻습니다.\n[gold]민첩[/gold]을 4 얻습니다.\n매 턴 시작 시 [energy:1]를 1 적게 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 29
+  },
+  {
+    "id": "WATCHER-DEUS_EX_MACHINA",
+    "name": "데우스 엑스 마키나",
+    "description": "이 카드를 뽑으면 소멸하면서 [gold]기적[/gold]을 2 장 손으로 가져옵니다.",
+    "description_raw": "이 카드를 뽑으면 소멸하면서 [gold]기적[/gold]을 {Cards:diff()} 장 손으로 가져옵니다.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Unplayable"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deus_ex_machina.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "이 카드를 뽑으면 소멸하면서 [gold]기적[/gold]을 3 장 손으로 가져옵니다.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Unplayable"
+    ],
+    "compendium_order": 63
+  },
+  {
+    "id": "WATCHER-WHEEL_KICK",
+    "name": "돌려차기",
+    "description": "피해를 15 줍니다.\n카드를 2 장 뽑습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n카드를 {Cards:diff()} 장 뽑습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 15,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 15,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wheel_kick.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 20 줍니다.\n카드를 2 장 뽑습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 55
+  },
+  {
+    "id": "WATCHER-FOLLOW_UP",
+    "name": "뒤처리",
+    "description": "피해를 7 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, [energy:1] [blue]1[/blue] 를 얻습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, {energyPrefix:energyIcons(1)} [blue]1[/blue] 를 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Energy": 1
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/follow_up.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 11 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, [energy:1] [blue]1[/blue] 를 얻습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 14
+  },
+  {
+    "id": "WATCHER-SIMMERING_FURY",
+    "name": "들끓는 울화",
+    "description": "다음 턴 시작 시, [gold]진노[/gold]하고 카드를 2 장 뽑습니다.",
+    "description_raw": "다음 턴 시작 시, [gold]진노[/gold]하고 카드를 {DrawCardsNextTurnPower:diff()} 장 뽑습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "DrawCardsNextTurn",
+        "amount": 2,
+        "power_key": "DrawCardsNextTurn"
+      },
+      {
+        "power": "SimmeringRage",
+        "amount": 1,
+        "power_key": "SimmeringRage"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DrawCardsNextTurnPower": 2,
+      "DrawCardsNextTurn": 2,
+      "SimmeringRagePower": 1,
+      "SimmeringRage": 1
+    },
+    "upgrade": {
+      "drawcardsnextturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/simmering_fury.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "다음 턴 시작 시, [gold]진노[/gold]하고 카드를 3 장 뽑습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 47
+  },
+  {
+    "id": "WATCHER-RAGNAROK",
+    "name": "라그나로크",
+    "description": "무작위 적에게 피해를 5 줍니다 만큼 5 번 줍니다.",
+    "description_raw": "무작위 적에게 피해를 {Damage:diff()} 줍니다 만큼 {Repeat:diff()} 번 줍니다.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Rare",
+    "target": "RandomEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Repeat": 5,
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+1",
+      "repeat": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/ragnarok.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "무작위 적에게 피해를 6 줍니다 만큼 6 번 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Rare",
+    "compendium_order": 72
+  },
+  {
+    "id": "WATCHER-CONJURE_BLADE",
+    "name": "마술 칼날",
+    "description": "뽑을 카드 더미에 [gold]말살검[/gold]을 섞어 넣습니다.",
+    "description_raw": "뽑을 카드 더미에 [gold]말살검[/gold]을 섞어 넣습니다.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": null,
+    "image_url": "/static/images/mods/watcher/cards/conjure_blade.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 62
+  },
+  {
+    "id": "WATCHER-MENTAL_FORTRESS",
+    "name": "마음의 요새",
+    "description": "[gold]경지[/gold]를 바꿀 때마다, [gold]방어도[/gold]를 4 얻습니다.",
+    "description_raw": "[gold]경지[/gold]를 바꿀 때마다, [gold]방어도[/gold]를 {MentalFortressPower:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MentalFortress",
+        "amount": 4,
+        "power_key": "MentalFortress"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MentalFortressPower": 4,
+      "MentalFortress": 4
+    },
+    "upgrade": {
+      "mentalfortress": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/mental_fortress.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]경지[/gold]를 바꿀 때마다, [gold]방어도[/gold]를 6 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 37
+  },
+  {
+    "id": "WATCHER-EXPUNGER",
+    "name": "말살검",
+    "description": "피해를 9 만큼 X 번 줍니다.",
+    "description_raw": "피해를 {Damage:diff()} 만큼 {Repeat:cond:<0?X|{Repeat:diff()}} 번 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/expunger.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 15 만큼 X 번 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "compendium_order": 81
+  },
+  {
+    "id": "WATCHER-WALLOP",
+    "name": "맹공",
+    "description": "피해를 9 줍니다.\n막히지 않은 피해만큼 [gold]방어도[/gold]를 얻습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n막히지 않은 피해만큼 [gold]방어도[/gold]를 얻습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wallop.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 12 줍니다.\n막히지 않은 피해만큼 [gold]방어도[/gold]를 얻습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 52
+  },
+  {
+    "id": "WATCHER-THROUGH_VIOLENCE",
+    "name": "무력 돌파",
+    "description": "피해를 20 줍니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/through_violence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 30 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 89
+  },
+  {
+    "id": "WATCHER-FEAR_NO_EVIL",
+    "name": "무외",
+    "description": "피해를 8 줍니다.\n적이 공격할 의도가 있다면, [gold]명상[/gold]합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n적이 공격할 의도가 있다면, [gold]명상[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fear_no_evil.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 11 줍니다.\n적이 공격할 의도가 있다면, [gold]명상[/gold]합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 30
+  },
+  {
+    "id": "WATCHER-CRESCENDO",
+    "name": "백열",
+    "description": "[gold]진노[/gold]합니다.",
+    "description_raw": "[gold]진노[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/crescendo.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 6
+  },
+  {
+    "id": "WATCHER-BETA",
+    "name": "베타",
+    "description": "뽑을 카드 더미에 [gold]오메가[/gold]를 섞어 넣습니다.",
+    "description_raw": "뽑을 카드 더미에 [gold]오메가[/gold]를 섞어 넣습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/beta.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 80
+  },
+  {
+    "id": "WATCHER-SASH_WHIP",
+    "name": "벨트 휘두르기",
+    "description": "피해를 8 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, [gold]약화[/gold]를 1 부여합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, [gold]약화[/gold]를 {WeakPower:diff()} 부여합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 8,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Weak",
+        "amount": 1,
+        "power_key": "Weak"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 8,
+      "WeakPower": 1,
+      "Weak": 1
+    },
+    "upgrade": {
+      "damage": "+2",
+      "weak": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sash_whip.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 10 줍니다.\n가장 최근에 사용한 카드가 공격 카드라면, [gold]약화[/gold]를 2 부여합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 20
+  },
+  {
+    "id": "WATCHER-PROTECT",
+    "name": "보호",
+    "description": "[gold]방어도[/gold]를 12 얻습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/protect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 16 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 19
+  },
+  {
+    "id": "WATCHER-PROSTRATE",
+    "name": "부복",
+    "description": "[gold]만트라[/gold]를 2 얻습니다.\n[gold]방어도[/gold]를 4 얻습니다.",
+    "description_raw": "[gold]만트라[/gold]를 {MantraPower:diff()} 얻습니다.\n[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 2,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4,
+      "MantraPower": 2,
+      "Mantra": 2
+    },
+    "upgrade": {
+      "mantra": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/prostrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]만트라[/gold]를 3 얻습니다.\n[gold]방어도[/gold]를 4 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 18
+  },
+  {
+    "id": "WATCHER-FAME_AND_FORTUNE",
+    "name": "부와 명예",
+    "description": "[gold]골드[/gold]를 25 얻습니다.",
+    "description_raw": "[gold]골드[/gold]를 {Gold:diff()} 얻습니다.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25
+    },
+    "upgrade": {
+      "gold": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/fame_and_fortune.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]골드[/gold]를 30 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "compendium_order": 82
+  },
+  {
+    "id": "WATCHER-INDIGNATION",
+    "name": "분개",
+    "description": "[gold]진노[/gold] 중이라면, 모든 적에게 [gold]취약[/gold]을 3 부여합니다. 그렇지 않으면 [gold]진노[/gold]합니다.",
+    "description_raw": "[gold]진노[/gold] 중이라면, 모든 적에게 [gold]취약[/gold]을 {VulnerablePower:diff()} 부여합니다. 그렇지 않으면 [gold]진노[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vulnerable",
+        "amount": 3,
+        "power_key": "Vulnerable"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VulnerablePower": 3,
+      "Vulnerable": 3
+    },
+    "upgrade": {
+      "vulnerable": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/indignation.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]진노[/gold] 중이라면, 모든 적에게 [gold]취약[/gold]을 5 부여합니다. 그렇지 않으면 [gold]진노[/gold]합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 33
+  },
+  {
+    "id": "WATCHER-ERUPTION",
+    "name": "분화",
+    "description": "피해를 9 줍니다.\n[gold]진노[/gold]합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]진노[/gold]합니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/eruption.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-WREATH_OF_FLAME",
+    "name": "불의 고리",
+    "description": "다음에 사용하는 공격 카드의 피해량이 5 증가합니다.",
+    "description_raw": "다음에 사용하는 공격 카드의 피해량이 {VigorPower:diff()} 증가합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vigor",
+        "amount": 5,
+        "power_key": "Vigor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VigorPower": 5,
+      "Vigor": 5
+    },
+    "upgrade": {
+      "vigor": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wreath_of_flame.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "다음에 사용하는 공격 카드의 피해량이 8 증가합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 58
+  },
+  {
+    "id": "WATCHER-MEDITATE",
+    "name": "사색",
+    "description": "버린 카드 더미에서 카드 1 장 을 손으로 들고 온 뒤 [gold]보존[/gold]합니다. .\n[gold]명상[/gold]합니다.\n턴을 종료합니다.",
+    "description_raw": "버린 카드 더미에서 카드 {Cards:diff()} {Cards:plural:장|장} 을 손으로 들고 온 뒤 [gold]보존[/gold]합니다. {Cards:plural:|}.\n[gold]명상[/gold]합니다.\n턴을 종료합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 1
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/meditate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "버린 카드 더미에서 카드 2 장 을 손으로 들고 온 뒤 [gold]보존[/gold]합니다. .\n[gold]명상[/gold]합니다.\n턴을 종료합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 36
+  },
+  {
+    "id": "WATCHER-FORESIGHT",
+    "name": "선견지명",
+    "description": "턴 시작 시, [gold]예지[/gold] 3",
+    "description_raw": "턴 시작 시, [gold]예지[/gold] {ForesightPower:diff()}",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Foresight",
+        "amount": 3,
+        "power_key": "Foresight"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "ForesightPower": 3,
+      "Foresight": 3
+    },
+    "upgrade": {
+      "foresight": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/foresight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "턴 시작 시, [gold]예지[/gold] 4",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 32
+  },
+  {
+    "id": "WATCHER-TALK_TO_THE_HAND",
+    "name": "손절",
+    "description": "피해를 5 줍니다.\n이 적을 공격할 때마다, [gold]방어도[/gold]를 2 얻습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n이 적을 공격할 때마다, [gold]방어도[/gold]를 {BlockReturnPower:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BlockReturn",
+        "amount": 2,
+        "power_key": "BlockReturn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5,
+      "BlockReturnPower": 2,
+      "BlockReturn": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "blockreturn": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/talk_to_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 7 줍니다.\n이 적을 공격할 때마다, [gold]방어도[/gold]를 3 얻습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 50
+  },
+  {
+    "id": "WATCHER-DEFEND_WATCHER",
+    "name": "수비",
+    "description": "[gold]방어도[/gold]를 5 얻습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Basic",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Defend"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/defend_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 8 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Basic",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-COLLECT",
+    "name": "수집",
+    "description": "다음 X 턴 동안 턴 시작 시 손으로 [gold]기적+[/gold]을 가져옵니다.",
+    "description_raw": "다음 {IfUpgraded:show:X+1|X} 턴 동안 턴 시작 시 손으로 [gold]기적+[/gold]을 가져옵니다.",
+    "cost": 0,
+    "is_x_cost": true,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/collect.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "다음 X+1 턴 동안 턴 시작 시 손으로 [gold]기적+[/gold]을 가져옵니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 25
+  },
+  {
+    "id": "WATCHER-MULTIPLAYER_CARD_UNCOMMON",
+    "name": "순간의 명료함",
+    "description": "모든 아군이 [gold]명상[/gold]합니다. \n다음 턴 시작 시 [gold]명상[/gold]에서 벗어납니다.",
+    "description_raw": "모든 아군이 [gold]명상[/gold]합니다. \n다음 턴 시작 시 [gold]명상[/gold]에서 벗어납니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "AllAllies",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MultiplayerCardUncommon",
+        "amount": 1,
+        "power_key": "MultiplayerCardUncommon"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MultiplayerCardUncommonPower": 1,
+      "MultiplayerCardUncommon": 1
+    },
+    "upgrade": {
+      "remove_exhaust": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/multiplayer_card_uncommon.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 38
+  },
+  {
+    "id": "WATCHER-WORSHIP",
+    "name": "숭배",
+    "description": "[gold]만트라[/gold]를 [blue]5[/blue] 얻습니다.",
+    "description_raw": "[gold]만트라[/gold]를 [blue]5[/blue] 얻습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Mantra",
+        "amount": 5,
+        "power_key": "Mantra"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MantraPower": 5,
+      "Mantra": 5
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/worship.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 57
+  },
+  {
+    "id": "WATCHER-SANDS_OF_TIME",
+    "name": "시간의 모래",
+    "description": "피해를 20 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 비용이 1 줄어듭니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 비용이 1 줄어듭니다.",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 20,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 20
+    },
+    "upgrade": {
+      "damage": "+6"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sands_of_time.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 26 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 비용이 1 줄어듭니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 45
+  },
+  {
+    "id": "WATCHER-BLASPHEMY",
+    "name": "신성 모독",
+    "description": "[gold]강림[/gold]합니다.\n다음 턴에 죽습니다.",
+    "description_raw": "[gold]강림[/gold]합니다.\n다음 턴에 죽습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Blasphemer",
+        "amount": 1,
+        "power_key": "Blasphemer"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BlasphemerPower": 1,
+      "Blasphemer": 1
+    },
+    "upgrade": {
+      "add_retain": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/blasphemy.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 60
+  },
+  {
+    "id": "WATCHER-JUDGMENT",
+    "name": "심판",
+    "description": "적의 체력이 30 이하일 경우, 체력을 0으로 만듭니다.",
+    "description_raw": "적의 체력이 {DamageThreshold:diff()} 이하일 경우, 체력을 0으로 만듭니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DamageThreshold": 30
+    },
+    "upgrade": {
+      "damagethreshold": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/judgment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "적의 체력이 40 이하일 경우, 체력을 0으로 만듭니다.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 67
+  },
+  {
+    "id": "WATCHER-SAFETY",
+    "name": "안전",
+    "description": "[gold]방어도[/gold]를 12 얻습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "Self",
+    "color": "token",
+    "damage": null,
+    "block": 12,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 12
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/safety.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 16 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 87
+  },
+  {
+    "id": "WATCHER-ALPHA",
+    "name": "알파",
+    "description": "뽑을 카드 더미에 [gold]베타[/gold]를 섞어 넣습니다.",
+    "description_raw": "뽑을 카드 더미에 [gold]베타[/gold]를 섞어 넣습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/alpha.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 59
+  },
+  {
+    "id": "WATCHER-SMITE",
+    "name": "엄벌",
+    "description": "피해를 12 줍니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Token",
+    "target": "AnyEnemy",
+    "color": "token",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/smite.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 16 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 88
+  },
+  {
+    "id": "WATCHER-LIKE_WATER",
+    "name": "여류",
+    "description": "턴 종료 시 [gold]명상[/gold] 중이라면, [gold]방어도[/gold]를 5 얻습니다.",
+    "description_raw": "턴 종료 시 [gold]명상[/gold] 중이라면, [gold]방어도[/gold]를 {LikeWaterPower:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "LikeWater",
+        "amount": 5,
+        "power_key": "LikeWater"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "LikeWaterPower": 5,
+      "LikeWater": 5
+    },
+    "upgrade": {
+      "likewater": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/like_water.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "턴 종료 시 [gold]명상[/gold] 중이라면, [gold]방어도[/gold]를 7 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 35
+  },
+  {
+    "id": "WATCHER-NIRVANA",
+    "name": "열반",
+    "description": "[gold]예지[/gold]할 때마다, [gold]방어도[/gold]를 3 얻습니다.",
+    "description_raw": "[gold]예지[/gold]할 때마다, [gold]방어도[/gold]를 {NirvanaPower:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Nirvana",
+        "amount": 3,
+        "power_key": "Nirvana"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "NirvanaPower": 3,
+      "Nirvana": 3
+    },
+    "upgrade": {
+      "nirvana": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/nirvana.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]예지[/gold]할 때마다, [gold]방어도[/gold]를 4 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 39
+  },
+  {
+    "id": "WATCHER-WISH_WATCHER",
+    "name": "염원",
+    "description": "하나 선택:\n판금 갑옷을 6 얻거나,\n[gold]힘[/gold]을 3 얻거나, [gold]골드[/gold]를 25 얻습니다.",
+    "description_raw": "하나 선택:\n판금 갑옷을 {PlatedArmorPower:diff()} 얻거나,\n[gold]힘[/gold]을 {StrengthPower:diff()} 얻거나, [gold]골드[/gold]를 {Gold:diff()} 얻습니다.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      },
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Gold": 25,
+      "StrengthPower": 3,
+      "Strength": 3,
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "gold": "+5",
+      "strength": "+1",
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wish_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "하나 선택:\n판금 갑옷을 8 얻거나,\n[gold]힘[/gold]을 4 얻거나, [gold]골드[/gold]를 30 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 76
+  },
+  {
+    "id": "WATCHER-LIVE_FOREVER",
+    "name": "영생",
+    "description": "[gold]판금 갑옷[/gold]을 X 얻습니다.",
+    "description_raw": "[gold]판금 갑옷[/gold]을 {PlatingPower:diff()} 얻습니다.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "PlatedArmor",
+        "amount": 6,
+        "power_key": "PlatedArmor"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "PlatedArmorPower": 6,
+      "PlatedArmor": 6
+    },
+    "upgrade": {
+      "platedarmor": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/live_forever.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 84
+  },
+  {
+    "id": "WATCHER-SPIRIT_SHIELD",
+    "name": "영혼 방패",
+    "description": "손에 있는 카드 한 장 당 [gold]방어도[/gold]를 3 얻습니다.",
+    "description_raw": "손에 있는 카드 한 장 당 [gold]방어도[/gold]를 {Block:diff()} 얻습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/spirit_shield.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "손에 있는 카드 한 장 당 [gold]방어도[/gold]를 4 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "compendium_order": 74
+  },
+  {
+    "id": "WATCHER-OMEGA",
+    "name": "오메가",
+    "description": "턴 종료 시, 모든 적에게 피해를 50 줍니다.",
+    "description_raw": "턴 종료 시, 모든 적에게 피해를 {OmegaPower:diff()} 줍니다.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Omega",
+        "amount": 50,
+        "power_key": "Omega"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "OmegaPower": 50,
+      "Omega": 50
+    },
+    "upgrade": {
+      "omega": "+10"
+    },
+    "image_url": "/static/images/mods/watcher/cards/omega.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "턴 종료 시, 모든 적에게 피해를 60 줍니다.",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 86
+  },
+  {
+    "id": "WATCHER-FOREIGN_INFLUENCE",
+    "name": "외세",
+    "description": "모든 직업의 공격 카드 3장 중 1장을 선택해 손으로 가져옵니다.",
+    "description_raw": "모든 직업의 공격 카드 3장 중 1장을 선택해 손으로 가져옵니다. {IfUpgraded:show:\n이번 턴에 비용이 0이 됩니다.|}",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "description_changed": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/foreign_influence.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "모든 직업의 공격 카드 3장 중 1장을 선택해 손으로 가져옵니다. \n이번 턴에 비용이 0이 됩니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 31
+  },
+  {
+    "id": "WATCHER-JUST_LUCKY",
+    "name": "요행",
+    "description": "[gold]예지[/gold] 1\n[gold]방어도[/gold]를 2 얻습니다\n피해를 3 줍니다.",
+    "description_raw": "[gold]예지[/gold] {Cards:diff()}\n[gold]방어도[/gold]를 {Block:diff()} 얻습니다\n피해를 {Damage:diff()} 줍니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 3,
+    "block": 2,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 1,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 3,
+      "Block": 2,
+      "Cards": 1
+    },
+    "upgrade": {
+      "damage": "+1",
+      "block": "+1",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/just_lucky.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]예지[/gold] 2\n[gold]방어도[/gold]를 3 얻습니다\n피해를 4 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 16
+  },
+  {
+    "id": "WATCHER-CUT_THROUGH_FATE",
+    "name": "운명 가르기",
+    "description": "피해를 7 줍니다.\n[gold]예지[/gold] 2\n카드를 [blue]1[/blue] 장 뽑습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]예지[/gold] {Cards:diff()}\n카드를 [blue]1[/blue] 장 뽑습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "Cards": 2
+    },
+    "upgrade": {
+      "damage": "+2",
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/cut_through_fate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 9 줍니다.\n[gold]예지[/gold] 3\n카드를 [blue]1[/blue] 장 뽑습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 8
+  },
+  {
+    "id": "WATCHER-EMPTY_BODY",
+    "name": "육체 수양",
+    "description": "[gold]방어도[/gold]를 7 얻습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_body.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 9
+  },
+  {
+    "id": "WATCHER-PERSEVERANCE",
+    "name": "인내",
+    "description": "[gold]방어도[/gold]를 5 얻습니다.\n [gold]보존[/gold]될 떄마다, 이번 전투 동안 이 카드의 [gold]방어도[/gold]가 2 증가합니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n [gold]보존[/gold]될 떄마다, 이번 전투 동안 이 카드의 [gold]방어도[/gold]가 {Increase:diff()} 증가합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 5,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 5,
+      "Increase": 2
+    },
+    "upgrade": {
+      "block": "+2",
+      "increase": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/perseverance.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n [gold]보존[/gold]될 떄마다, 이번 전투 동안 이 카드의 [gold]방어도[/gold]가 3 증가합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 40
+  },
+  {
+    "id": "WATCHER-FLURRY_OF_BLOWS",
+    "name": "일진광풍",
+    "description": "피해를 4 줍니다.\n경지를 바꿀 때마다 버린 카드 더미에서 손으로 가져옵니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n경지를 바꿀 때마다 버린 카드 더미에서 손으로 가져옵니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flurry_of_blows.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 6 줍니다.\n경지를 바꿀 때마다 버린 카드 더미에서 손으로 가져옵니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 12
+  },
+  {
+    "id": "WATCHER-WAVE_OF_THE_HAND",
+    "name": "장법",
+    "description": "이번 턴에 [gold]방어도[/gold]를 얻을 때마다, 모든 적에게 [gold]약화[/gold]를 1 부여합니다.",
+    "description_raw": "이번 턴에 [gold]방어도[/gold]를 얻을 때마다, 모든 적에게 [gold]약화[/gold]를 {WaveOfTheHandPower:diff()} 부여합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "WaveOfTheHand",
+        "amount": 1,
+        "power_key": "WaveOfTheHand"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WaveOfTheHandPower": 1,
+      "WaveOfTheHand": 1
+    },
+    "upgrade": {
+      "waveofthehand": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/wave_of_the_hand.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "이번 턴에 [gold]방어도[/gold]를 얻을 때마다, 모든 적에게 [gold]약화[/gold]를 2 부여합니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 53
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD2",
+    "name": "재계시 ",
+    "description": "12 피해를 입힌다.\n [gold]강림[/gold]에 진입한다.",
+    "description_raw": "{Damage:diff()} 피해를 입힌다.\n [gold]강림[/gold]에 진입한다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Ancient",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 12,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 12
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card2.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Attack",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 78
+  },
+  {
+    "id": "WATCHER-HALT",
+    "name": "저지",
+    "description": "[gold]방어도[/gold]를 3 얻습니다.\n[gold]진노[/gold] 중일 경우,\n[gold]방어도[/gold]를 추가로 9 얻습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]진노[/gold] 중일 경우,\n[gold]방어도[/gold]를 추가로 {WrathBlock:diff()} 얻습니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 3,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "WrathBlock": 9,
+      "Block": 3
+    },
+    "upgrade": {
+      "block": "+1",
+      "wrathblock": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/halt.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 4 얻습니다.\n[gold]진노[/gold] 중일 경우,\n[gold]방어도[/gold]를 추가로 14 얻습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 15
+  },
+  {
+    "id": "WATCHER-BECOME_ALMIGHTY",
+    "name": "전능",
+    "description": "[gold]힘[/gold]을 3 얻습니다.",
+    "description_raw": "[gold]힘[/gold]을 {StrengthPower:diff()} 얻습니다.",
+    "cost": -1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Strength",
+        "amount": 3,
+        "power_key": "Strength"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StrengthPower": 3,
+      "Strength": 3
+    },
+    "upgrade": {
+      "strength": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/become_almighty.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]힘[/gold]을 4 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Token",
+    "compendium_order": 79
+  },
+  {
+    "id": "WATCHER-OMNISCIENCE",
+    "name": "전지",
+    "description": "뽑을 카드 더미에서 카드를 선택합니다. 선택한 카드를 두 번 사용하고 [gold]소멸[/gold]시킵니다.",
+    "description_raw": "뽑을 카드 더미에서 카드를 선택합니다. 선택한 카드를 두 번 사용하고 [gold]소멸[/gold]시킵니다.",
+    "cost": 4,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 3
+    },
+    "image_url": "/static/images/mods/watcher/cards/omniscience.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 71
+  },
+  {
+    "id": "WATCHER-BATTLE_HYMN",
+    "name": "전투 찬가",
+    "description": "매 턴 시작 시, [gold]엄벌[/gold]을 손으로 가져옵니다.",
+    "description_raw": "매 턴 시작 시, [gold]엄벌[/gold]을 손으로 가져옵니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "BattleHymn",
+        "amount": 1,
+        "power_key": "BattleHymn"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "BattleHymnPower": 1,
+      "BattleHymn": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/battle_hymn.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 23
+  },
+  {
+    "id": "WATCHER-EMPTY_FIST",
+    "name": "정권 수양",
+    "description": "피해를 9 줍니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 9,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 9
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_fist.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 14 줍니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 10
+  },
+  {
+    "id": "WATCHER-EMPTY_MIND",
+    "name": "정신 수양",
+    "description": "카드를 2 장 뽑습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "description_raw": "카드를 {Cards:diff()} 장 뽑습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/empty_mind.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "카드를 3 장 뽑습니다.\n현재 [gold]경지[/gold]에서 벗어납니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 28
+  },
+  {
+    "id": "WATCHER-THIRD_EYE",
+    "name": "제 3의 눈",
+    "description": "[gold]방어도[/gold]를 7 얻습니다.\n[gold]예지[/gold] 3.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]예지[/gold] {Cards:diff()}.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 7,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 3,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 7,
+      "Cards": 3
+    },
+    "upgrade": {
+      "block": "+2",
+      "cards": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/third_eye.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n[gold]예지[/gold] 5.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 21
+  },
+  {
+    "id": "WATCHER-SANCTITY",
+    "name": "존엄",
+    "description": "[gold]방어도[/gold]를 6 얻습니다.\n가장 최근에 사용한 카드가 스킬 카드라면 카드를 2 장 뽑습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n가장 최근에 사용한 카드가 스킬 카드라면 카드를 2 장 뽑습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6,
+      "Cards": 2
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/sanctity.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 9 얻습니다.\n가장 최근에 사용한 카드가 스킬 카드라면 카드를 2 장 뽑습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 44
+  },
+  {
+    "id": "WATCHER-ESTABLISHMENT",
+    "name": "지배",
+    "description": "카드가 [gold]보존[/gold]될 때마다, 그 카드의 비용을 이번 전투 동안 1 낮춥니다.",
+    "description_raw": "카드가 [gold]보존[/gold]될 때마다, 그 카드의 비용을 이번 전투 동안 1 낮춥니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Establishment",
+        "amount": 1,
+        "power_key": "Establishment"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "EstablishmentPower": 1,
+      "Establishment": 1
+    },
+    "upgrade": {
+      "add_innate": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/establishment.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 66
+  },
+  {
+    "id": "WATCHER-REACH_HEAVEN",
+    "name": "천국의 계단",
+    "description": "피해를 10 줍니다.\n뽑을 카드 더미에 [gold]무력 돌파[/gold]를 섞어 넣습니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n뽑을 카드 더미에 [gold]무력 돌파[/gold]를 섞어 넣습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 10,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 10
+    },
+    "upgrade": {
+      "damage": "+5"
+    },
+    "image_url": "/static/images/mods/watcher/cards/reach_heaven.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 15 줍니다.\n뽑을 카드 더미에 [gold]무력 돌파[/gold]를 섞어 넣습니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 42
+  },
+  {
+    "id": "WATCHER-DEVA_FORM",
+    "name": "천신의 형상",
+    "description": "턴 시작 시, [energy:1] 를 얻습니다. 얻는 에너지는 매 턴 1 만큼 증가합니다.",
+    "description_raw": "턴 시작 시, {energyPrefix:energyIcons(1)} 를 얻습니다. 얻는 에너지는 매 턴 1 만큼 증가합니다.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Deva",
+        "amount": 1,
+        "power_key": "Deva"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": 1,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Energy": 1,
+      "DevaPower": 1,
+      "Deva": 1
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/deva_form.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 64
+  },
+  {
+    "id": "WATCHER-RUSHDOWN",
+    "name": "추월",
+    "description": "[gold]진노[/gold]할 때마다, 카드를 [blue]2[/blue] 장 뽑습니다.",
+    "description_raw": "[gold]진노[/gold]할 때마다, 카드를 [blue]2[/blue] 장 뽑습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Rushdown",
+        "amount": 2,
+        "power_key": "Rushdown"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "RushdownPower": 2,
+      "Rushdown": 2
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/rushdown.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 43
+  },
+  {
+    "id": "WATCHER-CONSECRATE",
+    "name": "축성",
+    "description": "모든 적에게 피해를 5 줍니다.",
+    "description_raw": "모든 적에게 피해를 {Damage:diff()} 줍니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AllEnemies",
+    "color": "colorless",
+    "damage": 5,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 5
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/consecrate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "모든 적에게 피해를 8 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 5
+  },
+  {
+    "id": "WATCHER-ANCIENT_CARD",
+    "name": "축적",
+    "description": "[gold]진노[/gold] 상태일 때, 피해가 +50% 증가한다.",
+    "description_raw": "[gold]진노[/gold] 상태일 때, 피해가 +50% 증가한다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Ancient",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "AncientCard",
+        "amount": 50,
+        "power_key": "AncientCard"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Ethereal"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "AncientCardPower": 50,
+      "AncientCard": 50
+    },
+    "upgrade": {
+      "remove_ethereal": true
+    },
+    "image_url": "/static/images/mods/watcher/cards/ancient_card.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Ancient",
+    "keywords_key": [
+      "Ethereal"
+    ],
+    "compendium_order": 77
+  },
+  {
+    "id": "WATCHER-BOWLING_BASH",
+    "name": "충돌 강타",
+    "description": "적 하나당 피해를 7 줍니다.",
+    "description_raw": "적 하나당 피해를 {Damage:diff()} 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/bowling_bash.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "적 하나당 피해를 10 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "compendium_order": 4
+  },
+  {
+    "id": "WATCHER-STRIKE_WATCHER",
+    "name": "타격",
+    "description": "피해를 6 줍니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Basic",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/strike_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 9 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Basic",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-INSIGHT",
+    "name": "통찰",
+    "description": "카드를 2 장 뽑습니다.",
+    "description_raw": "카드를 {Cards:diff()} 장 뽑습니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Token",
+    "target": "None",
+    "color": "token",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": 2,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain",
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Cards": 2
+    },
+    "upgrade": {
+      "cards": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/insight.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "카드를 3 장 뽑습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Token",
+    "keywords_key": [
+      "Retain",
+      "Exhaust"
+    ],
+    "compendium_order": 83
+  },
+  {
+    "id": "WATCHER-EVALUATE",
+    "name": "평가",
+    "description": "[gold]방어도[/gold]를 6 얻습니다.\n[gold]통찰[/gold]을 뽑을 카드 더미에 섞어 넣습니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]통찰[/gold]을 뽑을 카드 더미에 섞어 넣습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Common",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 6,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 6
+    },
+    "upgrade": {
+      "block": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/evaluate.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 10 얻습니다.\n[gold]통찰[/gold]을 뽑을 카드 더미에 섞어 넣습니다.",
+    "type_key": "Skill",
+    "rarity_key": "Common",
+    "compendium_order": 11
+  },
+  {
+    "id": "WATCHER-STUDY",
+    "name": "학습",
+    "description": "턴 종료 시, [gold]통찰[/gold]을 뽑을 카드 더미에 섞어 넣습니다.",
+    "description_raw": "턴 종료 시, [gold]통찰[/gold]을 뽑을 카드 더미에 섞어 넣습니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Uncommon",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Study",
+        "amount": 1,
+        "power_key": "Study"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "StudyPower": 1,
+      "Study": 1
+    },
+    "upgrade": {
+      "cost": 1
+    },
+    "image_url": "/static/images/mods/watcher/cards/study.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Uncommon",
+    "compendium_order": 48
+  },
+  {
+    "id": "WATCHER-DEVOTION",
+    "name": "헌신",
+    "description": "턴 시작 시, [gold]만트라[/gold]를 2 얻습니다.",
+    "description_raw": "턴 시작 시, [gold]만트라[/gold]를 {DevotionPower:diff()} 얻습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Devotion",
+        "amount": 2,
+        "power_key": "Devotion"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "DevotionPower": 2,
+      "Devotion": 2
+    },
+    "upgrade": {
+      "devotion": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/devotion.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "턴 시작 시, [gold]만트라[/gold]를 3 얻습니다.",
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 65
+  },
+  {
+    "id": "WATCHER-CARVE_REALITY",
+    "name": "현실 개척",
+    "description": "피해를 6 줍니다.\n[gold]엄벌[/gold]을 손으로 가져옵니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]엄벌[/gold]을 손으로 가져옵니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 6,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 6
+    },
+    "upgrade": {
+      "damage": "+4"
+    },
+    "image_url": "/static/images/mods/watcher/cards/carve_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 10 줍니다.\n[gold]엄벌[/gold]을 손으로 가져옵니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 24
+  },
+  {
+    "id": "WATCHER-DECEIVE_REALITY",
+    "name": "현실 속이기",
+    "description": "[gold]방어도[/gold]를 4 얻습니다.\n[gold]안전[/gold]을 손으로 가져옵니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n[gold]안전[/gold]을 손으로 가져옵니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 4,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 4
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/deceive_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 7 얻습니다.\n[gold]안전[/gold]을 손으로 가져옵니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 27
+  },
+  {
+    "id": "WATCHER-MASTER_REALITY",
+    "name": "현실 지배",
+    "description": "전투 중에 카드를 생성할 때마다 그 카드를 [gold]강화[/gold]합니다.",
+    "description_raw": "전투 중에 카드를 생성할 때마다 그 카드를 [gold]강화[/gold]합니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Power",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "MasterReality",
+        "amount": 1,
+        "power_key": "MasterReality"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "MasterRealityPower": 1,
+      "MasterReality": 1
+    },
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/master_reality.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Power",
+    "rarity_key": "Rare",
+    "compendium_order": 69
+  },
+  {
+    "id": "WATCHER-WINDMILL_STRIKE",
+    "name": "회오리 타격",
+    "description": "피해를 7 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 피해량이 4 만큼 증가합니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 피해량이 {RetainIncrease:diff()} 만큼 증가합니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 7,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": [
+      "Strike"
+    ],
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 7,
+      "RetainIncrease": 4
+    },
+    "upgrade": {
+      "damage": "+3",
+      "retainincrease": "+1"
+    },
+    "image_url": "/static/images/mods/watcher/cards/windmill_strike.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 10 줍니다.\n[gold]보존[/gold]될 때마다, 이번 전투 동안 이 카드의 피해량이 5 만큼 증가합니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 56
+  },
+  {
+    "id": "WATCHER-SWIVEL",
+    "name": "회전",
+    "description": "[gold]방어도[/gold]를 8 얻습니다.\n다음으로 사용하는 공격 카드의 비용이 0이 됩니다.",
+    "description_raw": "[gold]방어도[/gold]를 {Block:diff()} 얻습니다.\n다음으로 사용하는 공격 카드의 비용이 0이 됩니다.",
+    "cost": 2,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Uncommon",
+    "target": "Self",
+    "color": "colorless",
+    "damage": null,
+    "block": 8,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "FreeAttack",
+        "amount": 1,
+        "power_key": "FreeAttack"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Block": 8,
+      "FreeAttackPower": 1,
+      "FreeAttack": 1
+    },
+    "upgrade": {
+      "block": "+3"
+    },
+    "image_url": "/static/images/mods/watcher/cards/swivel.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "[gold]방어도[/gold]를 11 얻습니다.\n다음으로 사용하는 공격 카드의 비용이 0이 됩니다.",
+    "type_key": "Skill",
+    "rarity_key": "Uncommon",
+    "compendium_order": 49
+  },
+  {
+    "id": "WATCHER-VAULT",
+    "name": "회피 도약",
+    "description": "이번 턴 후에 내 턴을 추가로 진행합니다.\n턴을 종료합니다.",
+    "description_raw": "이번 턴 후에 내 턴을 추가로 진행합니다.\n턴을 종료합니다.",
+    "cost": 3,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": [
+      {
+        "power": "Vault",
+        "amount": 1,
+        "power_key": "Vault"
+      }
+    ],
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "VaultPower": 1,
+      "Vault": 1
+    },
+    "upgrade": {
+      "cost": 2
+    },
+    "image_url": "/static/images/mods/watcher/cards/vault.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 75
+  },
+  {
+    "id": "WATCHER-WEAVE",
+    "name": "횡행",
+    "description": "피해를 4 줍니다. [gold]예지[/gold]할 때마다 이 카드를 버린 카드 더미에서 손으로 들고 옵니다.",
+    "description_raw": "피해를 {Damage:diff()} 줍니다. [gold]예지[/gold]할 때마다 이 카드를 버린 카드 더미에서 손으로 들고 옵니다.",
+    "cost": 0,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Uncommon",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": null,
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/weave.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 6 줍니다. [gold]예지[/gold]할 때마다 이 카드를 버린 카드 더미에서 손으로 들고 옵니다.",
+    "type_key": "Attack",
+    "rarity_key": "Uncommon",
+    "compendium_order": 54
+  },
+  {
+    "id": "WATCHER-SCRAWL_WATCHER",
+    "name": "휘갈김",
+    "description": "손이 가득 찰 때까지 카드를 뽑습니다.",
+    "description_raw": "손이 가득 찰 때까지 카드를 뽑습니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Skill",
+    "rarity": "Rare",
+    "target": "None",
+    "color": "colorless",
+    "damage": null,
+    "block": null,
+    "hit_count": null,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Exhaust"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": null,
+    "upgrade": {
+      "cost": 0
+    },
+    "image_url": "/static/images/mods/watcher/cards/scrawl_watcher.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": null,
+    "type_key": "Skill",
+    "rarity_key": "Rare",
+    "keywords_key": [
+      "Exhaust"
+    ],
+    "compendium_order": 73
+  },
+  {
+    "id": "WATCHER-FLYING_SLEEVES",
+    "name": "흩날리는 소매",
+    "description": "피해를 4 만큼 두 번 줍니다.",
+    "description_raw": "피해를 {Damage:diff()} 만큼 두 번 줍니다.",
+    "cost": 1,
+    "is_x_cost": null,
+    "is_x_star_cost": null,
+    "star_cost": null,
+    "type": "Attack",
+    "rarity": "Common",
+    "target": "AnyEnemy",
+    "color": "colorless",
+    "damage": 4,
+    "block": null,
+    "hit_count": 2,
+    "powers_applied": null,
+    "cards_draw": null,
+    "energy_gain": null,
+    "hp_loss": null,
+    "keywords": [
+      "Retain"
+    ],
+    "tags": null,
+    "spawns_cards": null,
+    "vars": {
+      "Damage": 4
+    },
+    "upgrade": {
+      "damage": "+2"
+    },
+    "image_url": "/static/images/mods/watcher/cards/flying_sleeves.webp",
+    "beta_image_url": null,
+    "type_variants": null,
+    "can_be_generated_in_combat": null,
+    "upgrade_description": "피해를 6 만큼 두 번 줍니다.",
+    "type_key": "Attack",
+    "rarity_key": "Common",
+    "keywords_key": [
+      "Retain"
+    ],
+    "compendium_order": 13
+  }
+]

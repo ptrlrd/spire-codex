@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl, fullCardUrl, setMods } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import { LiveEventPanel, LiveShopPanel } from "../LiveEventShop";
 import {
@@ -281,34 +281,52 @@ export default function LivePlayerClient() {
   const monsters = useMonsterMap(true);
 
   useEffect(() => {
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`)
-      .then((cards) => {
-        const m: Record<string, CardInfo> = {};
-        for (const c of cards) m[c.id] = c;
-        setCat((prev) => ({ ...prev, cards: m }));
-      })
-      .catch(() => {});
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`)
-      .then((relics) => {
-        const m: Record<string, RelicInfo> = {};
-        for (const r of relics) m[r.id] = r;
-        setCat((prev) => ({ ...prev, relics: m }));
-      })
-      .catch(() => {});
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`)
-      .then((potions) => {
-        const m: Record<string, PotionInfo> = {};
-        for (const p of potions) m[p.id] = p;
-        setCat((prev) => ({ ...prev, potions: m }));
-      })
-      .catch(() => {});
-    cachedFetch<EventInfo[]>(`${API}/api/events?lang=${lang}`)
-      .then((events) => {
-        const m: Record<string, EventInfo> = {};
-        for (const ev of events) m[ev.id] = ev;
-        setCat((prev) => ({ ...prev, events: m }));
-      })
-      .catch(() => {});
+    let cancelled = false;
+    (async () => {
+      const [cards, relics, potions, events] = await Promise.all([
+        cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).catch(() => [] as CardInfo[]),
+        cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).catch(() => [] as RelicInfo[]),
+        cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).catch(() => [] as PotionInfo[]),
+        cachedFetch<EventInfo[]>(`${API}/api/events?lang=${lang}`).catch(() => [] as EventInfo[]),
+      ]);
+      if (cancelled) return;
+      const cardMap: Record<string, CardInfo> = {};
+      for (const c of cards) cardMap[c.id] = c;
+      const relicMap: Record<string, RelicInfo> = {};
+      for (const r of relics) relicMap[r.id] = r;
+      const potionMap: Record<string, PotionInfo> = {};
+      for (const p of potions) potionMap[p.id] = p;
+      const eventMap: Record<string, EventInfo> = {};
+      for (const ev of events) eventMap[ev.id] = ev;
+
+      // Community mods supply card/relic/potion entities that exist in neither
+      // the stable nor beta tree (lots of live players run mods). Register the
+      // mod id prefixes so fullCardUrl routes to the mod renders, then gap-fill
+      // the maps so modded entities resolve their name + art. Main wins.
+      const { mods } = await cachedFetch<{ mods: { key: string; id_prefix?: string }[] }>(
+        `${API}/api/mods`,
+      ).catch(() => ({ mods: [] as { key: string; id_prefix?: string }[] }));
+      if (mods?.length) {
+        setMods(mods);
+        await Promise.all(
+          mods.map(async (mod) => {
+            const [mc, mr, mp] = await Promise.all([
+              cachedFetch<CardInfo[]>(`${API}/api/mods/${mod.key}/cards?lang=${lang}`).catch(() => [] as CardInfo[]),
+              cachedFetch<RelicInfo[]>(`${API}/api/mods/${mod.key}/relics?lang=${lang}`).catch(() => [] as RelicInfo[]),
+              cachedFetch<PotionInfo[]>(`${API}/api/mods/${mod.key}/potions?lang=${lang}`).catch(() => [] as PotionInfo[]),
+            ]);
+            for (const c of mc) if (!(c.id in cardMap)) cardMap[c.id] = c;
+            for (const r of mr) if (!(r.id in relicMap)) relicMap[r.id] = r;
+            for (const p of mp) if (!(p.id in potionMap)) potionMap[p.id] = p;
+          }),
+        );
+      }
+      if (cancelled) return;
+      setCat({ cards: cardMap, relics: relicMap, potions: potionMap, events: eventMap });
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, [lang]);
 
   usePoll(async () => {

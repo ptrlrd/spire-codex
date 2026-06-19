@@ -1,0 +1,46 @@
+[
+  {
+    "id": "WATCHER-AMBROSIA",
+    "name": "Ambrosia",
+    "description": "Enter [gold]Divinity[/gold].",
+    "description_raw": "Enter [gold]Divinity[/gold].",
+    "rarity": "Rare",
+    "image_url": "/static/images/mods/watcher/potions/ambrosia.webp",
+    "rarity_key": "Rare",
+    "pool": "colorless",
+    "compendium_order": 0
+  },
+  {
+    "id": "WATCHER-BOTTLED_MIRACLE",
+    "name": "Bottled Miracle",
+    "description": "Add X [gold]Miracles[/gold] to your [gold]Hand[/gold].",
+    "description_raw": "Add {Cards:diff()} [gold]Miracles[/gold] to your [gold]Hand[/gold].",
+    "rarity": "Common",
+    "image_url": "/static/images/mods/watcher/potions/bottled_miracle.webp",
+    "rarity_key": "Common",
+    "pool": "colorless",
+    "compendium_order": 1
+  },
+  {
+    "id": "WATCHER-CALM_POTION",
+    "name": "Calm Potion",
+    "description": "Enter [gold]Calm[/gold].",
+    "description_raw": "Enter [gold]Calm[/gold].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/calm_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 2
+  },
+  {
+    "id": "WATCHER-WRATH_POTION",
+    "name": "Wrath Potion",
+    "description": "Enter [gold]Wrath[/gold].",
+    "description_raw": "Enter [gold]Wrath[/gold].",
+    "rarity": "Uncommon",
+    "image_url": "/static/images/mods/watcher/potions/wrath_potion.webp",
+    "rarity_key": "Uncommon",
+    "pool": "colorless",
+    "compendium_order": 3
+  }
+]

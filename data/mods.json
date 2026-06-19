@@ -1,0 +1,25 @@
+{
+  "_comment": "Curated directory of community mods whose asset repos supply entity art and metadata as the third fallback after main and beta. Each entry's images must be named by the in-game entity id with the mod prefix stripped, lowercased (e.g. relic WATCHER-DAMARU -> relics/damaru.png), matching the official convention. The frontend builds <raw_base>/<paths[type]>/<id>.<ext>. The 'parse' block drives tools/parse_mod.py, which turns the mod's C# entity classes + localization into a data-mod/<key>/<lang> catalog the site renders. Only add vetted repos.",
+  "mods": [
+    {
+      "key": "watcher",
+      "name": "Watcher",
+      "author": "lamali292",
+      "url": "https://github.com/lamali292/WatcherMod",
+      "raw_base": "https://raw.githubusercontent.com/lamali292/WatcherMod/main/Watcher/images",
+      "ext": "png",
+      "id_prefix": "WATCHER",
+      "color": "colorless",
+      "langs": ["eng", "deu", "ita", "jpn", "kor", "rus", "zhs"],
+      "paths": {
+        "cards": "card_portraits",
+        "relics": "relics",
+        "potions": "potions"
+      },
+      "parse": {
+        "cards_dir": "Code/Cards",
+        "loc_dir": "Watcher/localization"
+      }
+    }
+  ]
+}

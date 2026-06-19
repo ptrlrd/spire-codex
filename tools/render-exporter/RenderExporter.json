@@ -1,0 +1,12 @@
+{
+  "id": "RenderExporter",
+  "name": "Spire Codex Render Exporter",
+  "author": "ptrlrd",
+  "description": "Dev tool. When STS2_RENDER_OUT is set, renders every card in ModelDb.AllCards (base + upgraded + valid enchantments, every language) to PNG using the game's own card renderer, then exits. Loaded alongside a content mod so its cards render 1:1. Does nothing during normal play.",
+  "version": "0.1.0",
+  "min_game_version": "0.107.0",
+  "has_pck": false,
+  "has_dll": true,
+  "dependencies": ["BaseLib"],
+  "affects_gameplay": false
+}
