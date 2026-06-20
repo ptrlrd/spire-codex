@@ -651,7 +651,14 @@ def get_encounter_stats_endpoint(
     page: int = 1,
     limit: int = 50,
 ):
-    """Per-encounter aggregation over submitted runs.
+    """Per-encounter combat stats over submitted runs.
+
+    Served from the precomputed run-entity-stats snapshot (built in the
+    same all-runs walk as the entity / community / charts stats), so this
+    is an O(rows) slice rather than a per-request walk over every run's
+    `map_point_history`. Counts official runs only — Ascension 11+ and
+    non-official-character (modded) runs are excluded at snapshot build
+    time, matching the rest of the stats.
 
     Query params:
       * `act` — comma-separated list of acts to include (e.g. `1,2`).
@@ -661,7 +668,7 @@ def get_encounter_stats_endpoint(
       * `multiplayer` — `only` returns multiplayer-only runs,
         `exclude` removes multiplayer runs, omit for both.
       * `page` (default 1) + `limit` (default 50, max 200) — pagination
-        applied after aggregation, sorted by sample size descending.
+        applied after grouping, sorted by sample size descending.
 
     Each row contains the encounter's total appearances, fatal count,
     avg damage taken, avg turns, plus a `characters` array with the
@@ -678,7 +685,9 @@ def get_encounter_stats_endpoint(
             "has_next": False,
         }
 
-    from ..services.runs_db_mongo import get_encounter_stats as _get_encounter_stats
+    from ..services.run_entity_stats import (
+        get_encounter_stats as _get_encounter_stats,
+    )
 
     acts = [int(a) for a in act.split(",") if a.strip().isdigit()] if act else None
     room_types = (
