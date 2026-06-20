@@ -202,6 +202,30 @@ def _strip_character_prefix(raw: str | None) -> str:
     return raw.split(".", 1)[1] if raw.startswith("CHARACTER.") else raw
 
 
+_official_characters_cache: frozenset[str] | None = None
+
+
+def _official_character_ids() -> frozenset[str]:
+    """Uppercase ids of the official playable characters (the real cast).
+
+    A run played as a modded character carries an id outside this set, so the
+    stats exclude it (a modded character means a modded run). Loaded once from
+    the character catalog; an empty set (catalog unreadable) means "don't
+    filter" so a transient read failure can't blank every stat.
+    """
+    global _official_characters_cache
+    if _official_characters_cache is None:
+        try:
+            from .data_service import load_characters
+
+            _official_characters_cache = frozenset(
+                (c.get("id") or "").upper() for c in load_characters() if c.get("id")
+            )
+        except Exception:
+            _official_characters_cache = frozenset()
+    return _official_characters_cache
+
+
 # Card colors that are never a real card-reward choice: curses and status
 # cards are forced into the deck, event/quest cards come from events, and
 # tokens are generated mid-combat. A forced grant isn't a revealed
@@ -680,17 +704,22 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
             ).fetchall()
             rows = [dict(r) for r in rows]
 
+    official_chars = _official_character_ids()
     for row in rows:
         # Official runs only: A11-A99 are modded (the game caps at Ascension
         # 10), so skip them from entity scores and the community stats
         # accumulated in this same walk.
         if (row.get("ascension") or 0) > 10:
             continue
+        # A run played as a non-official character is a modded run too, so the
+        # per-entity "Picks by character" table only shows the real cast.
+        character = _strip_character_prefix(row["character"])
+        if official_chars and character.upper() not in official_chars:
+            continue
         new_totals["total_runs"] += 1
         if row["win"]:
             new_totals["total_wins"] += 1
         run_hash = row["run_hash"]
-        character = _strip_character_prefix(row["character"])
         is_win = bool(row["win"])
         extra_cohorts = _run_extra_cohorts(
             row.get("player_count") or 1,
