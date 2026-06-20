@@ -139,7 +139,9 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Version 3 adds per-act relic pickup splits (act_picks / act_wins).
 # Version 4 = community map_danger (per act/node-type damage + death rates),
 # rest-site win/HP-band stats, and ancient offer take rates for the mod.
-SNAPSHOT_VERSION = 4
+# Version 5 adds precomputed per-encounter combat cells for
+# /api/runs/encounter-stats (folds the old per-request aggregation in).
+SNAPSHOT_VERSION = 5
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -176,6 +178,9 @@ _community_stats: dict[str, Any] = {}
 # Blob-derived chart cells (per-floor damage, encounter damage, death rooms)
 # for /api/charts, accumulated in the same walk and carried the same way.
 _charts_blob_stats: dict[str, Any] = {}
+# Per-encounter combat cells for /api/runs/encounter-stats, accumulated in
+# the same walk and carried through the snapshot, rolled up per request.
+_encounter_blob_stats: dict[str, Any] = {}
 _cache_built_at: float = 0.0
 _building: bool = False
 # The snapshot_version of whatever is currently loaded (None = nothing
@@ -652,10 +657,11 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     # All-runs only; the metrics table doesn't split base/upg per cohort.
     upgrade_pair_wins: dict[tuple[str, str], int] = {}
     # Community / fun stats, folded in from the same blob read (no 2nd walk).
-    from . import charts_stats, community_stats
+    from . import charts_stats, community_stats, encounter_stats
 
     community_acc = community_stats.new_accumulator()
     charts_acc = charts_stats.new_accumulator()
+    encounter_acc = encounter_stats.new_accumulator()
     # Parallel lightweight accumulators, one per non-"all" cohort.
     cohort_accs: dict[str, dict[str, Any]] = {
         k: _new_cohort_acc() for k in _COHORT_KEYS
@@ -679,6 +685,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                     "player_count": 1,
                     "ascension": 1,
                     "game_mode": 1,
+                    "killed_by": 1,
                 },
             )
         )
@@ -693,6 +700,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "player_count": d.get("player_count") or 1,
                 "ascension": d.get("ascension") or 0,
                 "game_mode": d.get("game_mode") or "standard",
+                "killed_by": d.get("killed_by"),
             }
             for d in rows
         ]
@@ -700,7 +708,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         with get_conn() as conn:
             rows = conn.execute(
                 "SELECT run_hash, character, win, submitted_at, "
-                "player_count, ascension, game_mode FROM runs"
+                "player_count, ascension, game_mode, killed_by FROM runs"
             ).fetchall()
             rows = [dict(r) for r in rows]
 
@@ -776,6 +784,23 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         except Exception:
             logger.warning(
                 "charts-stats accumulate failed for %s", run_hash, exc_info=True
+            )
+
+        # Per-encounter combat stats for /api/runs/encounter-stats, folded
+        # into the same blob read so the endpoint serves a precomputed
+        # snapshot instead of a per-request triple-$unwind over every run.
+        try:
+            encounter_stats.accumulate(
+                encounter_acc,
+                blob,
+                character=character,
+                is_win=is_win,
+                player_count=row.get("player_count") or 1,
+                killed_by=row.get("killed_by"),
+            )
+        except Exception:
+            logger.warning(
+                "encounter-stats accumulate failed for %s", run_hash, exc_info=True
             )
 
         # Dedupe per-run: a deck with 5 Strikes still only counts ONE
@@ -1002,6 +1027,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         "totals": cohort_totals,
         "community": community_stats.finalize(community_acc),
         "charts": charts_stats.finalize(charts_acc),
+        "encounters": encounter_stats.finalize(encounter_acc),
     }
     return new_cache, new_totals, new_type_baselines, cohort_meta
 
@@ -1012,6 +1038,7 @@ def _apply_cache(
     """Swap freshly-built (or snapshot-loaded) data into module globals."""
     global _cache, _cache_built_at, _global_totals, _type_baselines
     global _cohort_baselines, _cohort_totals, _community_stats, _charts_blob_stats
+    global _encounter_blob_stats
     _cache = cache
     _global_totals = totals
     _type_baselines = baselines
@@ -1020,6 +1047,7 @@ def _apply_cache(
     _cohort_totals = cohort_meta.get("totals", {})
     _community_stats = cohort_meta.get("community") or {}
     _charts_blob_stats = cohort_meta.get("charts") or {}
+    _encounter_blob_stats = cohort_meta.get("encounters") or {}
     _cache_built_at = time.time()
 
 
@@ -1118,6 +1146,7 @@ def _persist_snapshot(
             "cohort_totals": cohort_meta.get("totals", {}),
             "community": cohort_meta.get("community", {}),
             "charts": cohort_meta.get("charts", {}),
+            "encounters": cohort_meta.get("encounters", {}),
             "entity_types": list(by_type.keys()),
             "built_at": now,
             "snapshot_version": SNAPSHOT_VERSION,
@@ -1199,6 +1228,7 @@ def _load_snapshot() -> bool:
             "totals": meta.get("cohort_totals", {}),
             "community": meta.get("community", {}),
             "charts": meta.get("charts", {}),
+            "encounters": meta.get("encounters", {}),
         },
     )
     _cache_snapshot_version = meta_version
@@ -1354,6 +1384,30 @@ def get_charts_blob_stats() -> dict[str, Any]:
     from . import charts_stats
 
     return _charts_blob_stats or charts_stats.empty()
+
+
+def get_encounter_stats(
+    acts: list[int] | None = None,
+    room_types: list[str] | None = None,
+    multiplayer: str | None = None,
+    page: int = 1,
+    limit: int = 50,
+) -> dict[str, Any]:
+    """Per-encounter combat stats for /api/runs/encounter-stats, rolled up
+    from the precomputed snapshot cells. Same lifecycle as the community /
+    charts stats: built in the walk, carried through the snapshot, O(rows)
+    to slice — no per-request walk over every run's map_point_history."""
+    _maybe_rebuild()
+    from . import encounter_stats
+
+    return encounter_stats.rollup(
+        _encounter_blob_stats or encounter_stats.empty(),
+        acts=acts,
+        room_types=room_types,
+        multiplayer=multiplayer,
+        page=page,
+        limit=limit,
+    )
 
 
 def get_all_entity_scores(
