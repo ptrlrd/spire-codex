@@ -78,6 +78,7 @@ function NotFound() {
 const SECTIONS = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/runs", label: "Runs" },
+  { href: "/admin/users", label: "Users" },
   { href: "/admin/feedback", label: "Feedback" },
   { href: "/admin/guides", label: "Guides" },
   { href: "/admin/banners", label: "Banners" },

@@ -236,6 +236,96 @@ def runs_delete(request: Request, run_hash: str):
     return {"run_hash": run_hash, **result}
 
 
+# ── Users ───────────────────────────────────────────────────────────────
+
+
+def _require_mongo_users() -> None:
+    if not os.environ.get("MONGO_URL", "").strip():
+        from fastapi import HTTPException
+
+        raise HTTPException(status_code=503, detail="user management needs MongoDB")
+
+
+@router.get("/users")
+def users_list(request: Request, q: str | None = None, page: int = 1, limit: int = 50):
+    """Every registered account, newest first, with linked identities and run
+    counts. `q` filters by username, email, or any identity id (Steam/Discord/
+    Twitch/account id)."""
+    _audit(request)
+    _require_mongo_users()
+    from ..services.users_db import admin_list_users
+
+    return admin_list_users(q=q, page=page, limit=limit)
+
+
+@router.patch("/users/{user_id}")
+async def users_rename(request: Request, user_id: str):
+    """Admin rename: bypasses the 3/day self-service cap but still enforces
+    sanitization + uniqueness, and re-stamps the name on the account's runs."""
+    _audit(request)
+    _require_mongo_users()
+    from fastapi import HTTPException
+
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    username = (body.get("username") or "").strip()
+    if not username:
+        raise HTTPException(status_code=422, detail="username required")
+    from ..services.users_db import admin_set_username
+
+    result = admin_set_username(user_id, username)
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    logger.info("admin renamed user %s -> %s", user_id, result.get("username"))
+    return result
+
+
+@router.delete("/users/{user_id}")
+def users_delete(request: Request, user_id: str):
+    """Delete an account. Its runs are kept but unlinked (user_id cleared), so
+    nothing is lost; merge instead when you want to keep the attribution."""
+    _audit(request)
+    _require_mongo_users()
+    from fastapi import HTTPException
+
+    from ..services.users_db import admin_delete_user
+
+    result = admin_delete_user(user_id)
+    if result.get("error"):
+        raise HTTPException(status_code=404, detail=result["error"])
+    logger.info("admin deleted user %s: %s", user_id, result)
+    return result
+
+
+@router.post("/users/merge")
+async def users_merge(request: Request):
+    """Merge one account into another: body {"source_id", "target_id"}. Moves
+    the source's runs onto the target, lifts any identities the target lacks
+    (Steam / Discord / Twitch / email / partner) from the source, then deletes
+    the source."""
+    _audit(request)
+    _require_mongo_users()
+    from fastapi import HTTPException
+
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    source_id = (body.get("source_id") or "").strip()
+    target_id = (body.get("target_id") or "").strip()
+    if not source_id or not target_id:
+        raise HTTPException(status_code=422, detail="source_id and target_id required")
+    from ..services.users_db import admin_merge_users
+
+    result = admin_merge_users(source_id, target_id)
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    logger.info("admin merged user %s into %s: %s", source_id, target_id, result)
+    return result
+
+
 @router.get("/feedback")
 def feedback_inbox(request: Request, include_resolved: bool = False, limit: int = 50):
     """The feedback inbox: site feedback and QA card reports, newest first.

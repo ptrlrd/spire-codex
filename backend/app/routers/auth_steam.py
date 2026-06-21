@@ -102,6 +102,10 @@ async def start(request: Request) -> dict:
 async def redirect_to_steam(request: Request):
     """Direct browser redirect to Steam login. For mobile and popup-blocked flows."""
     sid = auth_session_store.create_session()
+    # Mark this as the website flow so the callback may link Steam to an already
+    # signed-in account (the cookie rides along on the top-level return). The
+    # overlay's /start flow leaves this unset, so its callback never links.
+    auth_session_store.update_session(sid, web=True)
     base = _public_base(request)
     return_to = f"{base}/api/auth/steam/callback?session={sid}"
     realm = base + "/"
@@ -186,13 +190,40 @@ async def callback(request: Request) -> HTMLResponse:
     user_id = None
     token = None
     needs_email = False
+    linked_existing = False
     try:
-        from ..services.users_db import find_or_create_by_steam
-        from ..services.auth_jwt import create_token
+        from ..services.users_db import find_or_create_by_steam, link_steam
+        from ..services.auth_jwt import create_token, get_current_user
 
-        user = find_or_create_by_steam(steamid, persona)
+        # When this came from the website (the /redirect flow) and the browser
+        # still carries a valid session cookie for an account without a Steam id
+        # yet, link Steam to THAT account rather than creating a second,
+        # Steam-only one. The Discord connector already links this way; the Steam
+        # side used to always create-or-find, which is exactly how a Discord-first
+        # user ended up with a duplicate Steam-only account.
+        existing_user = get_current_user(request) if session.get("web") else None
+        if existing_user and not existing_user.get("steam_id"):
+            result = link_steam(existing_user["_id"], steamid)
+            if result.get("error"):
+                # The Steam id already belongs to a different account, so we
+                # can't silently merge. Send them back to settings with why.
+                frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(
+                    request
+                )
+                auth_session_store.pop_session(session_id)
+                return RedirectResponse(f"{frontend}/settings?error=steam_in_use")
+            user = existing_user
+            user["steam_id"] = steamid
+            linked_existing = True
+        else:
+            user = find_or_create_by_steam(steamid, persona)
+
         user_id = user["_id"]
-        token = create_token(user_id=user["_id"], steam_id=steamid)
+        token = create_token(
+            user_id=user["_id"],
+            steam_id=steamid,
+            discord_id=user.get("discord_id"),
+        )
         needs_email = not user.get("email")
 
         # Link any runs the overlay / Compendium submitted under this Steam
@@ -245,7 +276,14 @@ async def callback(request: Request) -> HTMLResponse:
     if token:
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
         auth_session_store.pop_session(session_id)
-        response = RedirectResponse(f"{frontend}/profile?auth=steam&token={token}")
+        # A link lands back on settings (where the connect button lives); a
+        # fresh sign-in lands on the profile, as before.
+        dest = (
+            f"{frontend}/settings?linked=steam&token={token}"
+            if linked_existing
+            else f"{frontend}/profile?auth=steam&token={token}"
+        )
+        response = RedirectResponse(dest)
         response.headers["Cache-Control"] = "no-store, no-cache"
         response.headers["Pragma"] = "no-cache"
         return response
