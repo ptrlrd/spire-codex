@@ -370,3 +370,244 @@ def _deduplicate_username(coll, username: str, username_lower: str) -> tuple[str
     suffix = secrets.token_hex(3)
     fallback = f"{username[: _USERNAME_MAX - 7]}_{suffix}"
     return fallback, fallback.lower()
+
+
+# ── Admin user management ────────────────────────────────────────────────
+#
+# Backs the /admin/users panel: list/search every account, rename (admin
+# override of the 3/day limit), delete (keeps the runs, just unlinks them),
+# and merge (fold one account into another, moving runs and lifting any
+# identities the target lacks). All Mongo-only; the admin router gates access.
+
+_ADMIN_USER_FIELDS = {
+    "username": 1,
+    "email": 1,
+    "steam_id": 1,
+    "discord_id": 1,
+    "twitch_id": 1,
+    "twitch_login": 1,
+    "is_partner": 1,
+    "created_at": 1,
+}
+
+# Identity fields a merge lifts from the source onto the target when the
+# target doesn't already have them. steam_id/discord_id/twitch_id are the
+# partial-unique ones, freed automatically when the source doc is deleted.
+_IDENTITY_FIELDS = (
+    "steam_id",
+    "discord_id",
+    "twitch_id",
+    "twitch_login",
+    "twitch_display_name",
+    "email",
+)
+
+
+def _public_admin_user(d: dict) -> dict:
+    return {
+        "_id": str(d["_id"]),
+        "username": d.get("username"),
+        "email": d.get("email"),
+        "steam_id": d.get("steam_id"),
+        "discord_id": d.get("discord_id"),
+        "twitch_id": d.get("twitch_id"),
+        "twitch_login": d.get("twitch_login"),
+        "is_partner": bool(d.get("is_partner")),
+        "created_at": (
+            d["created_at"].isoformat()
+            if isinstance(d.get("created_at"), datetime)
+            else d.get("created_at")
+        ),
+        "run_count": d.get("run_count", 0),
+    }
+
+
+def _runs_collection():
+    """The runs collection, imported lazily to avoid a circular import
+    (runs_db_mongo imports this module)."""
+    from .runs_db_mongo import get_database
+
+    return get_database()["runs"]
+
+
+def _attach_run_counts(users: list[dict]) -> None:
+    oids = []
+    for u in users:
+        try:
+            oids.append(ObjectId(u["_id"]))
+        except Exception:
+            pass
+    counts: dict[str, int] = {}
+    if oids:
+        try:
+            for row in _runs_collection().aggregate(
+                [
+                    {"$match": {"user_id": {"$in": oids}}},
+                    {"$group": {"_id": "$user_id", "n": {"$sum": 1}}},
+                ]
+            ):
+                counts[str(row["_id"])] = row["n"]
+        except Exception:
+            pass
+    for u in users:
+        u["run_count"] = counts.get(u["_id"], 0)
+
+
+def admin_list_users(q: str | None = None, page: int = 1, limit: int = 50) -> dict:
+    coll = _get_collection()
+    page = max(1, page)
+    limit = max(1, min(limit, 100))
+
+    query: dict = {}
+    if q and q.strip():
+        term = q.strip()
+        ors: list[dict] = [
+            {"username_lower": {"$regex": re.escape(term.lower())}},
+            {"steam_id": term},
+            {"discord_id": term},
+            {"twitch_login": term.lower()},
+            {"email": term.lower()},
+        ]
+        try:
+            ors.append({"_id": ObjectId(term)})
+        except Exception:
+            pass
+        query = {"$or": ors}
+
+    total = coll.count_documents(query)
+    cursor = (
+        coll.find(query, _ADMIN_USER_FIELDS)
+        .sort([("created_at", -1)])
+        .skip((page - 1) * limit)
+        .limit(limit)
+    )
+    users = []
+    for d in cursor:
+        d["_id"] = str(d["_id"])
+        users.append(d)
+    _attach_run_counts(users)
+    return {
+        "users": [_public_admin_user(u) for u in users],
+        "total": total,
+        "page": page,
+        "limit": limit,
+    }
+
+
+def admin_set_username(user_id: str, new_name: str) -> dict:
+    """Rename an account as an admin: enforces sanitization and uniqueness but
+    skips the per-day self-service cap, and re-stamps the name on the runs."""
+    coll = _get_collection()
+    try:
+        oid = ObjectId(user_id)
+    except Exception:
+        return {"error": "Invalid user id"}
+
+    cleaned = sanitize_username(new_name)
+    if not cleaned:
+        return {"error": "Username is empty after sanitization"}
+    lower = cleaned.lower()
+
+    conflict = coll.find_one({"username_lower": lower, "_id": {"$ne": oid}}, {"_id": 1})
+    if conflict:
+        return {"error": "Username is already taken"}
+
+    result = coll.update_one(
+        {"_id": oid},
+        {
+            "$set": {
+                "username": cleaned,
+                "username_lower": lower,
+                "updated_at": datetime.now(timezone.utc),
+            }
+        },
+    )
+    if result.matched_count == 0:
+        return {"error": "User not found"}
+
+    try:
+        _runs_collection().update_many(
+            {"user_id": oid}, {"$set": {"username": cleaned}}
+        )
+    except Exception:
+        pass
+    return {"success": True, "username": cleaned}
+
+
+def admin_delete_user(user_id: str) -> dict:
+    """Delete an account. Its runs are kept but unlinked (user_id cleared) so
+    nothing is lost; use merge when you want to keep the run attribution."""
+    coll = _get_collection()
+    try:
+        oid = ObjectId(user_id)
+    except Exception:
+        return {"error": "Invalid user id"}
+
+    if not coll.find_one({"_id": oid}, {"_id": 1}):
+        return {"error": "User not found"}
+
+    unlinked = 0
+    try:
+        res = _runs_collection().update_many(
+            {"user_id": oid}, {"$set": {"user_id": None}}
+        )
+        unlinked = res.modified_count
+    except Exception:
+        pass
+    coll.delete_one({"_id": oid})
+    return {"success": True, "runs_unlinked": unlinked}
+
+
+def admin_merge_users(source_id: str, target_id: str) -> dict:
+    """Fold the source account into the target: move the source's runs onto the
+    target, lift any identities the target lacks from the source, then delete
+    the source."""
+    coll = _get_collection()
+    if source_id == target_id:
+        return {"error": "Source and target are the same account"}
+    try:
+        s_oid = ObjectId(source_id)
+        t_oid = ObjectId(target_id)
+    except Exception:
+        return {"error": "Invalid user id"}
+
+    source = coll.find_one({"_id": s_oid})
+    target = coll.find_one({"_id": t_oid})
+    if not source:
+        return {"error": "Source account not found"}
+    if not target:
+        return {"error": "Target account not found"}
+
+    copy_fields: dict = {}
+    for f in _IDENTITY_FIELDS:
+        if not target.get(f) and source.get(f):
+            copy_fields[f] = source.get(f)
+    if source.get("is_partner") and not target.get("is_partner"):
+        copy_fields["is_partner"] = True
+
+    # Move runs first (source still exists), then delete the source so its
+    # partial-unique identity values are free, then graft them onto the target.
+    moved = 0
+    try:
+        res = _runs_collection().update_many(
+            {"user_id": s_oid},
+            {"$set": {"user_id": t_oid, "username": target.get("username")}},
+        )
+        moved = res.modified_count
+    except Exception:
+        pass
+
+    coll.delete_one({"_id": s_oid})
+
+    if copy_fields:
+        copy_fields["updated_at"] = datetime.now(timezone.utc)
+        try:
+            coll.update_one({"_id": t_oid}, {"$set": copy_fields})
+        except DuplicateKeyError:
+            return {"error": "Identity conflict while merging onto the target"}
+
+    return {
+        "success": True,
+        "runs_moved": moved,
+        "copied": [k for k in copy_fields if k != "updated_at"],
+    }
