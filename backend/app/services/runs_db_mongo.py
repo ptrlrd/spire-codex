@@ -622,13 +622,17 @@ def _build_match(
         m["was_abandoned"] = {"$in": [False, 0]}
     elif win == "abandoned":
         m["was_abandoned"] = {"$in": [True, 1]}
+    # Official runs only: the game's ascensions are A0-A10. Anything outside
+    # that (A11+ from mods, or a negative/placeholder like A-1 from bad data)
+    # must never show in the stats. Constrain every breakdown to the official
+    # range, and ignore a stray ?ascension= that asks for a non-official level
+    # rather than surfacing it.
+    official = {"$gte": 0, "$lte": 10}
     if ascension is not None and ascension != "":
-        m["ascension"] = int(ascension)
+        asc = int(ascension)
+        m["ascension"] = asc if 0 <= asc <= 10 else official
     else:
-        # Official runs only: the game caps at Ascension 10, so A11-A99 come
-        # from mods. Exclude them from every stats breakdown (and the
-        # by-ascension grouping) so the stats reflect the real game.
-        m["ascension"] = {"$lte": 10}
+        m["ascension"] = official
     if game_mode:
         m["game_mode"] = game_mode
     if players == "single":

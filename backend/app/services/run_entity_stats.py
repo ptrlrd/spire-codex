@@ -714,10 +714,11 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
 
     official_chars = _official_character_ids()
     for row in rows:
-        # Official runs only: A11-A99 are modded (the game caps at Ascension
-        # 10), so skip them from entity scores and the community stats
-        # accumulated in this same walk.
-        if (row.get("ascension") or 0) > 10:
+        # Official runs only: the game's ascensions are A0-A10. A11+ are modded
+        # and a negative/placeholder like A-1 is bad data; both must be skipped
+        # from entity scores and the community stats accumulated in this walk.
+        _asc = row.get("ascension") or 0
+        if _asc < 0 or _asc > 10:
             continue
         # A run played as a non-official character is a modded run too, so the
         # per-entity "Picks by character" table only shows the real cast.
