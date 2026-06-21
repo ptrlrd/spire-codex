@@ -44,6 +44,30 @@ async def me(request: Request):
     }
 
 
+@router.post("/steam/disconnect")
+@limiter.limit("10/minute")
+async def disconnect_steam(request: Request):
+    user = require_user(request)
+    from ..services.users_db import unlink_steam
+
+    result = unlink_steam(user["_id"])
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+
+@router.post("/discord/disconnect")
+@limiter.limit("10/minute")
+async def disconnect_discord(request: Request):
+    user = require_user(request)
+    from ..services.users_db import unlink_discord
+
+    result = unlink_discord(user["_id"])
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
+
+
 @router.post("/twitch/disconnect")
 @limiter.limit("10/minute")
 async def disconnect_twitch(request: Request):

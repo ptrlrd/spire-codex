@@ -455,24 +455,60 @@ def link_twitch(
     return {"success": True}
 
 
-def unlink_twitch(user_id: str) -> dict:
-    """Disconnect Twitch from an account, clearing the partner flag with it."""
+_SIGNIN_FIELDS = ("steam_id", "discord_id", "twitch_id")
+
+
+def _signin_count(user: dict) -> int:
+    """How many sign-in identities the account has. A disconnect must never drop
+    this to zero, or the user could never sign back in."""
+    return sum(1 for f in _SIGNIN_FIELDS if user.get(f))
+
+
+def _unlink_identity(
+    user_id: str, *, present: str, fields: list[str], label: str
+) -> dict:
     coll = _get_collection()
-    result = coll.update_one(
-        {"_id": ObjectId(user_id)},
+    try:
+        oid = ObjectId(user_id)
+    except Exception:
+        return {"error": "Invalid user id"}
+    user = coll.find_one({"_id": oid})
+    if not user:
+        return {"error": "User not found"}
+    if not user.get(present):
+        return {"error": f"No {label} account linked"}
+    if _signin_count(user) <= 1:
+        return {"error": f"Cannot disconnect your only sign-in method ({label})"}
+    coll.update_one(
+        {"_id": oid},
         {
-            "$unset": {
-                "twitch_id": "",
-                "twitch_login": "",
-                "twitch_display_name": "",
-                "is_partner": "",
-            },
+            "$unset": {f: "" for f in fields},
             "$set": {"updated_at": datetime.now(timezone.utc)},
         },
     )
-    if result.matched_count == 0:
-        return {"error": "User not found"}
     return {"success": True}
+
+
+def unlink_steam(user_id: str) -> dict:
+    return _unlink_identity(
+        user_id, present="steam_id", fields=["steam_id"], label="Steam"
+    )
+
+
+def unlink_discord(user_id: str) -> dict:
+    return _unlink_identity(
+        user_id, present="discord_id", fields=["discord_id"], label="Discord"
+    )
+
+
+def unlink_twitch(user_id: str) -> dict:
+    """Disconnect Twitch from an account, clearing the partner flag with it."""
+    return _unlink_identity(
+        user_id,
+        present="twitch_id",
+        fields=["twitch_id", "twitch_login", "twitch_display_name", "is_partner"],
+        label="Twitch",
+    )
 
 
 def set_partner(user_id: str, is_partner: bool) -> dict:

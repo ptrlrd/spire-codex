@@ -14,7 +14,9 @@ export default function SettingsClient() {
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [disconnecting, setDisconnecting] = useState(false);
+  const [disconnecting, setDisconnecting] = useState<"steam" | "discord" | "twitch" | null>(
+    null,
+  );
   const [changesRemaining, setChangesRemaining] = useState(3);
   const [saving, setSaving] = useState<"username" | "email" | null>(null);
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(null);
@@ -103,24 +105,25 @@ export default function SettingsClient() {
     }
   };
 
-  const disconnectTwitch = async () => {
-    setDisconnecting(true);
+  const disconnect = async (provider: "steam" | "discord" | "twitch") => {
+    const label = provider.charAt(0).toUpperCase() + provider.slice(1);
+    setDisconnecting(provider);
     try {
-      const res = await fetch(`${API_BASE}/api/auth/twitch/disconnect`, {
+      const res = await fetch(`${API_BASE}/api/auth/${provider}/disconnect`, {
         method: "POST",
         credentials: "include",
       });
       if (res.ok) {
-        toast("Twitch disconnected", "success");
+        toast(`${label} disconnected`, "success");
         refresh();
       } else {
         const err = await res.json().catch(() => null);
-        toast(err?.detail || "Failed to disconnect Twitch", "error");
+        toast(err?.detail || `Failed to disconnect ${label}`, "error");
       }
     } catch {
       toast("Network error", "error");
     } finally {
-      setDisconnecting(false);
+      setDisconnecting(null);
     }
   };
 
@@ -220,7 +223,16 @@ export default function SettingsClient() {
                 <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
                 <span className="text-sm text-[var(--text-primary)]">Steam</span>
               </div>
-              <span className="text-xs text-green-400">Connected</span>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-xs text-[var(--text-muted)]">Connected</span>
+                <button
+                  onClick={() => disconnect("steam")}
+                  disabled={disconnecting === "steam"}
+                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                >
+                  {disconnecting === "steam" ? "..." : "Disconnect"}
+                </button>
+              </div>
             </div>
           ) : (
             <button
@@ -240,7 +252,16 @@ export default function SettingsClient() {
                 <DiscordIcon className="w-4 h-4 text-[var(--text-secondary)]" />
                 <span className="text-sm text-[var(--text-primary)]">Discord</span>
               </div>
-              <span className="text-xs text-green-400">Connected</span>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-xs text-[var(--text-muted)]">Connected</span>
+                <button
+                  onClick={() => disconnect("discord")}
+                  disabled={disconnecting === "discord"}
+                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                >
+                  {disconnecting === "discord" ? "..." : "Disconnect"}
+                </button>
+              </div>
             </div>
           ) : (
             <button
@@ -275,13 +296,16 @@ export default function SettingsClient() {
                   </span>
                 )}
               </div>
-              <button
-                onClick={disconnectTwitch}
-                disabled={disconnecting}
-                className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40 shrink-0"
-              >
-                {disconnecting ? "..." : "Disconnect"}
-              </button>
+              <div className="flex items-center gap-3 shrink-0">
+                <span className="text-xs text-[var(--text-muted)]">Connected</span>
+                <button
+                  onClick={() => disconnect("twitch")}
+                  disabled={disconnecting === "twitch"}
+                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                >
+                  {disconnecting === "twitch" ? "..." : "Disconnect"}
+                </button>
+              </div>
             </div>
           ) : (
             <button
