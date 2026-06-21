@@ -54,11 +54,17 @@ def _frontend_url(request: Request) -> str:
 @router.get("/start")
 @limiter.limit("20/minute")
 async def start(request: Request):
-    client_id, _ = _get_twitch_config()
+    base = _frontend_url(request)
+    try:
+        client_id, _ = _get_twitch_config()
+    except RuntimeError:
+        # Creds not configured in this environment: send the user back to
+        # settings with a clear reason instead of a raw 500.
+        logger.warning("twitch start: TWITCH_CLIENT_ID / TWITCH_CLIENT_SECRET unset")
+        return RedirectResponse(f"{base}/settings?error=twitch_unconfigured")
 
     state = create_oauth_state()
 
-    base = _frontend_url(request)
     redirect_uri = f"{base}/api/auth/twitch/callback"
 
     params = {

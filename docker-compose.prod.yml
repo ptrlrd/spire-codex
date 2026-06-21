@@ -91,11 +91,13 @@ services:
       # the external nginx_web-network and a bare "redis" alias would be
       # ambiguous between the two stacks.
       - REDIS_URL=${REDIS_URL:-redis://spire-codex-redis:6379/0}
-      # User accounts (Steam/Discord OAuth + JWT sessions). Values live
+      # User accounts (Steam/Discord/Twitch OAuth + JWT sessions). Values live
       # in the host .env; passed through so the auth endpoints work.
       - JWT_SECRET=${JWT_SECRET:-}
       - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID:-}
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
+      - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID:-}
+      - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET:-}
       - FRONTEND_URL=${FRONTEND_URL:-https://spire-codex.com}
       - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://spire-codex.com}
       - ENVIRONMENT=${ENVIRONMENT:-production}
