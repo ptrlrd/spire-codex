@@ -430,6 +430,21 @@ def _runs_collection():
     return get_database()["runs"]
 
 
+def _bust_run_cache(hashes) -> None:
+    """Drop the given runs from the Redis run-detail cache (15 min TTL) so a
+    rename or merge shows the new attribution immediately instead of serving a
+    stale username. Fail-safe: a no-op when Redis is unset or unreachable."""
+    if not hashes:
+        return
+    try:
+        from . import cache as app_cache
+
+        for h in hashes:
+            app_cache.delete(f"run:{h}")
+    except Exception:
+        pass
+
+
 def _attach_run_counts(users: list[dict]) -> None:
     oids = []
     for u in users:
@@ -526,9 +541,10 @@ def admin_set_username(user_id: str, new_name: str) -> dict:
         return {"error": "User not found"}
 
     try:
-        _runs_collection().update_many(
-            {"user_id": oid}, {"$set": {"username": cleaned}}
-        )
+        runs = _runs_collection()
+        hashes = [d["_id"] for d in runs.find({"user_id": oid}, {"_id": 1})]
+        runs.update_many({"user_id": oid}, {"$set": {"username": cleaned}})
+        _bust_run_cache(hashes)
     except Exception:
         pass
     return {"success": True, "username": cleaned}
@@ -588,8 +604,11 @@ def admin_merge_users(source_id: str, target_id: str) -> dict:
     # Move runs first (source still exists), then delete the source so its
     # partial-unique identity values are free, then graft them onto the target.
     moved = 0
+    moved_hashes: list = []
     try:
-        res = _runs_collection().update_many(
+        runs = _runs_collection()
+        moved_hashes = [d["_id"] for d in runs.find({"user_id": s_oid}, {"_id": 1})]
+        res = runs.update_many(
             {"user_id": s_oid},
             {"$set": {"user_id": t_oid, "username": target.get("username")}},
         )
@@ -598,6 +617,7 @@ def admin_merge_users(source_id: str, target_id: str) -> dict:
         pass
 
     coll.delete_one({"_id": s_oid})
+    _bust_run_cache(moved_hashes)
 
     if copy_fields:
         copy_fields["updated_at"] = datetime.now(timezone.utc)
