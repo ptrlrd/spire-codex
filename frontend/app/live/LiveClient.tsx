@@ -28,6 +28,8 @@ import {
   CharacterIcon,
   FightingChip,
   LiveDot,
+  PartnerBadge,
+  WatchOnTwitch,
   elapsed,
   parseDeckId,
   useMonsterMap,
@@ -87,6 +89,7 @@ function PlayerCard({
             {(p.player_count ?? 1) > 1 && (
               <span className="text-[10px] text-[var(--text-muted)]">co-op ×{p.player_count}</span>
             )}
+            {p.is_partner && <PartnerBadge />}
           </div>
           <div className="text-xs text-[var(--text-muted)] truncate">
             {displayName(`CHARACTER.${p.character ?? ""}`)}
@@ -107,9 +110,18 @@ function PlayerCard({
 
       <div className="mt-2 flex items-center gap-2">
         <FightingChip p={p} monsters={monsters} />
+        {p.twitch_live && p.twitch_login && (
+          <WatchOnTwitch
+            login={p.twitch_login}
+            viewers={p.twitch_viewers}
+            className="ml-auto"
+          />
+        )}
         <Link
           href={`/live/${p.steam_id}`}
-          className="ml-auto text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap"
+          className={`text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap ${
+            p.twitch_live && p.twitch_login ? "" : "ml-auto"
+          }`}
         >
           Watch live →
         </Link>

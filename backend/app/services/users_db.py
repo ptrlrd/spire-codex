@@ -6,6 +6,10 @@ Document shape:
         "_id": ObjectId,
         "steam_id": "76561198...",   # unique when set (partial index)
         "discord_id": "123456...",   # unique when set (partial index)
+        "twitch_id": "1234567",      # unique when set (partial index)
+        "twitch_login": "somechannel",       # lowercase login = twitch.tv/<login>
+        "twitch_display_name": "SomeChannel",
+        "is_partner": True,          # curated; live partners float to the top of /live
         "username": "SomeName",
         "username_lower": "somename",  # unique when set (partial index)
         "email": "user@example.com",
@@ -66,6 +70,7 @@ def _ensure_indexes(coll) -> None:
     # $type:"string" indexes only set values, exempting null/missing.
     _ensure_partial_unique(coll, "steam_id")
     _ensure_partial_unique(coll, "discord_id")
+    _ensure_partial_unique(coll, "twitch_id")
     _ensure_partial_unique(coll, "username_lower")
 
 
@@ -120,6 +125,18 @@ def get_user_by_discord_id(discord_id: str) -> dict | None:
         return None
     coll = _get_collection()
     existing = coll.find_one({"discord_id": discord_id})
+    if existing:
+        existing["_id"] = str(existing["_id"])
+        return existing
+    return None
+
+
+def get_user_by_twitch_id(twitch_id: str) -> dict | None:
+    """Look up a user by Twitch ID without creating one."""
+    if not twitch_id:
+        return None
+    coll = _get_collection()
+    existing = coll.find_one({"twitch_id": twitch_id})
     if existing:
         existing["_id"] = str(existing["_id"])
         return existing
@@ -204,6 +221,75 @@ def find_or_create_by_discord(
         doc["_id"] = str(result.inserted_id)
     except DuplicateKeyError:
         existing = coll.find_one({"discord_id": discord_id})
+        if existing:
+            existing["_id"] = str(existing["_id"])
+            return existing
+        raise
+
+    return doc
+
+
+def find_or_create_by_twitch(
+    twitch_id: str,
+    twitch_login: str,
+    twitch_display_name: str | None = None,
+    email: str | None = None,
+) -> dict:
+    coll = _get_collection()
+    now = datetime.now(timezone.utc)
+
+    login = (twitch_login or "").lower()
+    display = twitch_display_name or twitch_login
+
+    existing = coll.find_one({"twitch_id": twitch_id})
+    if existing:
+        # A Twitch login can change; keep the stored one current so the
+        # twitch.tv/<login> URL on /live stays correct.
+        if existing.get("twitch_login") != login or (
+            display and existing.get("twitch_display_name") != display
+        ):
+            coll.update_one(
+                {"_id": existing["_id"]},
+                {
+                    "$set": {
+                        "twitch_login": login,
+                        "twitch_display_name": display,
+                        "updated_at": now,
+                    }
+                },
+            )
+            existing["twitch_login"] = login
+            existing["twitch_display_name"] = display
+        existing["_id"] = str(existing["_id"])
+        return existing
+
+    username = sanitize_username(display) if display else None
+    username_lower = username.lower() if username else None
+
+    if username_lower:
+        username, username_lower = _deduplicate_username(coll, username, username_lower)
+
+    clean_email = email.strip() if email and validate_email(email) else None
+
+    doc = {
+        "steam_id": None,
+        "discord_id": None,
+        "twitch_id": twitch_id,
+        "twitch_login": login,
+        "twitch_display_name": display,
+        "username": username,
+        "username_lower": username_lower,
+        "email": clean_email,
+        "username_changes": [],
+        "created_at": now,
+        "updated_at": now,
+    }
+
+    try:
+        result = coll.insert_one(doc)
+        doc["_id"] = str(result.inserted_id)
+    except DuplicateKeyError:
+        existing = coll.find_one({"twitch_id": twitch_id})
         if existing:
             existing["_id"] = str(existing["_id"])
             return existing
@@ -334,6 +420,120 @@ def link_discord(user_id: str, discord_id: str) -> dict:
     if result.matched_count == 0:
         return {"error": "User not found"}
     return {"success": True}
+
+
+def link_twitch(
+    user_id: str,
+    twitch_id: str,
+    twitch_login: str,
+    twitch_display_name: str | None = None,
+) -> dict:
+    coll = _get_collection()
+    conflict = coll.find_one(
+        {"twitch_id": twitch_id, "_id": {"$ne": ObjectId(user_id)}}
+    )
+    if conflict:
+        return {"error": "This Twitch account is already linked to another user"}
+
+    try:
+        result = coll.update_one(
+            {"_id": ObjectId(user_id)},
+            {
+                "$set": {
+                    "twitch_id": twitch_id,
+                    "twitch_login": (twitch_login or "").lower(),
+                    "twitch_display_name": twitch_display_name or twitch_login,
+                    "updated_at": datetime.now(timezone.utc),
+                }
+            },
+        )
+    except DuplicateKeyError:
+        return {"error": "This Twitch account is already linked to another user"}
+
+    if result.matched_count == 0:
+        return {"error": "User not found"}
+    return {"success": True}
+
+
+def unlink_twitch(user_id: str) -> dict:
+    """Disconnect Twitch from an account, clearing the partner flag with it."""
+    coll = _get_collection()
+    result = coll.update_one(
+        {"_id": ObjectId(user_id)},
+        {
+            "$unset": {
+                "twitch_id": "",
+                "twitch_login": "",
+                "twitch_display_name": "",
+                "is_partner": "",
+            },
+            "$set": {"updated_at": datetime.now(timezone.utc)},
+        },
+    )
+    if result.matched_count == 0:
+        return {"error": "User not found"}
+    return {"success": True}
+
+
+def set_partner(user_id: str, is_partner: bool) -> dict:
+    """Curated partner flag (admin only). A partner who is both live in the mod
+    and streaming on Twitch sorts to the top of the /live roster."""
+    coll = _get_collection()
+    try:
+        oid = ObjectId(user_id)
+    except Exception:
+        return {"error": "Invalid user id"}
+
+    user = coll.find_one({"_id": oid}, {"twitch_id": 1})
+    if not user:
+        return {"error": "User not found"}
+    if is_partner and not user.get("twitch_id"):
+        return {"error": "User has no Twitch account linked"}
+
+    update = (
+        {"$set": {"is_partner": True, "updated_at": datetime.now(timezone.utc)}}
+        if is_partner
+        else {
+            "$unset": {"is_partner": ""},
+            "$set": {"updated_at": datetime.now(timezone.utc)},
+        }
+    )
+    coll.update_one({"_id": oid}, update)
+    return {"success": True, "is_partner": is_partner}
+
+
+def list_partners() -> list[dict]:
+    """All curated partners, for the admin panel."""
+    coll = _get_collection()
+    docs = coll.find(
+        {"is_partner": True},
+        {"username": 1, "twitch_login": 1, "steam_id": 1, "discord_id": 1},
+    )
+    out = []
+    for d in docs:
+        d["_id"] = str(d["_id"])
+        out.append(d)
+    return out
+
+
+def twitch_info_by_steam_ids(steam_ids: list[str]) -> dict[str, dict]:
+    """Map steam_id -> {twitch_login, is_partner} for the given ids, used to
+    enrich the live roster (which is keyed by steam_id) with each player's
+    Twitch channel and partner status in one query."""
+    if not steam_ids:
+        return {}
+    coll = _get_collection()
+    docs = coll.find(
+        {"steam_id": {"$in": steam_ids}, "twitch_login": {"$type": "string"}},
+        {"steam_id": 1, "twitch_login": 1, "is_partner": 1},
+    )
+    out: dict[str, dict] = {}
+    for d in docs:
+        out[d["steam_id"]] = {
+            "twitch_login": d.get("twitch_login"),
+            "is_partner": bool(d.get("is_partner")),
+        }
+    return out
 
 
 def get_username_changes_remaining(user_id: str) -> int:

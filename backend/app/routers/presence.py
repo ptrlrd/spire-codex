@@ -368,12 +368,53 @@ async def post_presence(request: Request):
     return {"ok": True}
 
 
+def _enrich_twitch(players: list[dict]) -> None:
+    """Attach each present player's Twitch channel + partner flag (joined from
+    the user record by steam_id), mark who is streaming right now via Helix, and
+    float live partners to the top. Best-effort: any failure leaves the roster
+    untouched, so Twitch never breaks the live page."""
+    if not players:
+        return
+    try:
+        from ..services import twitch_live
+        from ..services.users_db import twitch_info_by_steam_ids
+
+        steam_ids = [p["steam_id"] for p in players if p.get("steam_id")]
+        info = twitch_info_by_steam_ids(steam_ids)
+        if not info:
+            return
+        logins = {v["twitch_login"] for v in info.values() if v.get("twitch_login")}
+        live = twitch_live.live_logins(logins)
+        for p in players:
+            meta = info.get(p.get("steam_id"))
+            if not meta:
+                continue
+            login = meta.get("twitch_login")
+            if login:
+                p["twitch_login"] = login
+            if meta.get("is_partner"):
+                p["is_partner"] = True
+            stream = live.get(login) if login else None
+            if stream:
+                p["twitch_live"] = True
+                if stream.get("viewer_count") is not None:
+                    p["twitch_viewers"] = stream["viewer_count"]
+        # Stable sort: a partner who is live-streaming sorts first; everyone
+        # else keeps the deepest-floor order presence_db already returned.
+        players.sort(
+            key=lambda p: 0 if (p.get("is_partner") and p.get("twitch_live")) else 1
+        )
+    except Exception:
+        pass
+
+
 @router.get("/active")
 def get_active(limit: int = 50):
     _require_mongo()
     from ..services import presence_db
 
     players = presence_db.active(max(1, min(limit, 100)))
+    _enrich_twitch(players)
     return {"count": len(players), "players": players}
 
 
@@ -388,4 +429,5 @@ def get_player(steam_id: str):
     doc = presence_db.get(digits)
     if not doc:
         raise HTTPException(status_code=404, detail="not live")
+    _enrich_twitch([doc])
     return doc

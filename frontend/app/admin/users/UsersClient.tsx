@@ -141,6 +141,27 @@ export default function UsersClient() {
     }
   }
 
+  async function togglePartner(u: UserRow) {
+    const next = !u.is_partner;
+    try {
+      await adminFetch(`/api/admin/users/${u._id}/partner`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ is_partner: next }),
+      });
+      setRows((prev) =>
+        prev.map((r) => (r._id === u._id ? { ...r, is_partner: next } : r)),
+      );
+      setNote(
+        next
+          ? `"${u.username ?? u._id}" is now a partner.`
+          : `Removed partner from "${u.username ?? u._id}".`,
+      );
+    } catch (e) {
+      setNote(String((e as Error)?.message || e));
+    }
+  }
+
   async function mergeInto(target: UserRow) {
     const src = mergeSource;
     if (!src) return;
@@ -286,6 +307,23 @@ export default function UsersClient() {
                             >
                               Merge
                             </button>
+                            {u.twitch_id && (
+                              <button
+                                onClick={() => togglePartner(u)}
+                                className={
+                                  u.is_partner
+                                    ? "px-2.5 py-1 rounded text-xs font-semibold bg-[#9146FF]/20 text-[#b794ff] border border-[#9146FF]/40 hover:bg-[#9146FF]/30"
+                                    : actionBtn
+                                }
+                                title={
+                                  u.is_partner
+                                    ? "Remove curated-partner status"
+                                    : "Mark as a curated partner (floats to the top of /live when live + streaming)"
+                                }
+                              >
+                                {u.is_partner ? "Unpartner" : "Partner"}
+                              </button>
+                            )}
                             <button
                               onClick={() => remove(u)}
                               className="px-2.5 py-1 rounded text-xs font-semibold bg-rose-950/60 text-rose-300 border border-rose-900/40 hover:bg-rose-900/60"

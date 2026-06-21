@@ -4,15 +4,17 @@ import { useState, useEffect } from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import DiscordIcon from "@/app/components/DiscordIcon";
+import TwitchIcon from "@/app/components/TwitchIcon";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function SettingsClient() {
-  const { user, loading, refresh, loginSteam, loginDiscord } = useAuth();
+  const { user, loading, refresh, loginSteam, loginDiscord, loginTwitch } = useAuth();
   const { toast } = useToast();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+  const [disconnecting, setDisconnecting] = useState(false);
   const [changesRemaining, setChangesRemaining] = useState(3);
   const [saving, setSaving] = useState<"username" | "email" | null>(null);
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(null);
@@ -98,6 +100,27 @@ export default function SettingsClient() {
       toast("Network error", "error");
     } finally {
       setSaving(null);
+    }
+  };
+
+  const disconnectTwitch = async () => {
+    setDisconnecting(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/twitch/disconnect`, {
+        method: "POST",
+        credentials: "include",
+      });
+      if (res.ok) {
+        toast("Twitch disconnected", "success");
+        refresh();
+      } else {
+        const err = await res.json().catch(() => null);
+        toast(err?.detail || "Failed to disconnect Twitch", "error");
+      }
+    } catch {
+      toast("Network error", "error");
+    } finally {
+      setDisconnecting(false);
     }
   };
 
@@ -231,7 +254,52 @@ export default function SettingsClient() {
               <span className="text-xs text-[var(--text-secondary)]">Connect</span>
             </button>
           )}
+          {user.twitch_id ? (
+            <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+              <div className="flex items-center gap-2 min-w-0">
+                <TwitchIcon className="w-4 h-4 text-[#9146FF]" />
+                <span className="text-sm text-[var(--text-primary)] shrink-0">Twitch</span>
+                {user.twitch_login && (
+                  <a
+                    href={`https://twitch.tv/${user.twitch_login}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs text-[var(--text-muted)] truncate hover:text-[#9146FF]"
+                  >
+                    @{user.twitch_login}
+                  </a>
+                )}
+                {user.is_partner && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#9146FF]/15 text-[#9146FF] border border-[#9146FF]/30 shrink-0">
+                    Partner
+                  </span>
+                )}
+              </div>
+              <button
+                onClick={disconnectTwitch}
+                disabled={disconnecting}
+                className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40 shrink-0"
+              >
+                {disconnecting ? "..." : "Disconnect"}
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={loginTwitch}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
+            >
+              <div className="flex items-center gap-2">
+                <TwitchIcon className="w-4 h-4 text-[var(--text-secondary)]" />
+                <span className="text-sm text-[var(--text-primary)]">Twitch</span>
+              </div>
+              <span className="text-xs text-[var(--text-secondary)]">Connect</span>
+            </button>
+          )}
         </div>
+        <p className="text-xs text-[var(--text-tertiary)]">
+          Connect Twitch to show a &ldquo;Watch on Twitch&rdquo; link on your live run when you
+          are streaming.
+        </p>
       </section>
     </div>
   );

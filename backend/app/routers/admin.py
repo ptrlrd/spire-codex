@@ -326,6 +326,29 @@ async def users_merge(request: Request):
     return result
 
 
+@router.post("/users/{user_id}/partner")
+async def users_set_partner(request: Request, user_id: str):
+    """Mark or unmark a curated partner: body {"is_partner": bool}. A partner
+    who is both live in the mod and streaming on Twitch floats to the top of the
+    /live roster. Requires the account to have a Twitch login linked."""
+    _audit(request)
+    _require_mongo_users()
+    from fastapi import HTTPException
+
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    is_partner = bool(body.get("is_partner"))
+    from ..services.users_db import set_partner
+
+    result = set_partner(user_id, is_partner)
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    logger.info("admin set partner=%s on user %s", is_partner, user_id)
+    return result
+
+
 @router.get("/feedback")
 def feedback_inbox(request: Request, include_resolved: bool = False, limit: int = 50):
     """The feedback inbox: site feedback and QA card reports, newest first.

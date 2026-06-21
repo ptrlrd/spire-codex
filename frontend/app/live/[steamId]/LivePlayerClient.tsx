@@ -31,6 +31,8 @@ import {
   CharacterIcon,
   LiveDot,
   LiveEnemiesPanel,
+  PartnerBadge,
+  WatchOnTwitch,
   ago,
   elapsed,
   monsterName,
@@ -426,6 +428,7 @@ export default function LivePlayerClient() {
                 {(p.player_count ?? 1) > 1 && (
                   <span className="text-xs text-[var(--text-muted)]">co-op ×{p.player_count}</span>
                 )}
+                {p.is_partner && <PartnerBadge />}
                 {status === "ended" && (
                   <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
                     run ended
@@ -438,6 +441,11 @@ export default function LivePlayerClient() {
                 {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
                 {p.seed ? ` · seed ${p.seed}` : ""}
               </div>
+              {p.twitch_live && p.twitch_login && (
+                <div className="mt-2">
+                  <WatchOnTwitch login={p.twitch_login} viewers={p.twitch_viewers} />
+                </div>
+              )}
             </div>
             <div className="text-right shrink-0">
               <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">

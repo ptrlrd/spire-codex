@@ -35,10 +35,25 @@ async def me(request: Request):
         "email": user.get("email"),
         "steam_id": user.get("steam_id"),
         "discord_id": user.get("discord_id"),
+        "twitch_id": user.get("twitch_id"),
+        "twitch_login": user.get("twitch_login"),
+        "is_partner": bool(user.get("is_partner")),
         "created_at": user.get("created_at"),
         "needs_email": not user.get("email"),
         "is_admin": is_admin(user),
     }
+
+
+@router.post("/twitch/disconnect")
+@limiter.limit("10/minute")
+async def disconnect_twitch(request: Request):
+    user = require_user(request)
+    from ..services.users_db import unlink_twitch
+
+    result = unlink_twitch(user["_id"])
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
 
 
 @router.post("/logout")

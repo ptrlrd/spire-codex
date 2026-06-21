@@ -11,6 +11,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import { cleanId, displayName } from "../runs/[hash]/RunPills";
+import TwitchIcon from "@/app/components/TwitchIcon";
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -111,6 +112,13 @@ export interface LivePlayer {
   event?: LiveEventCtx | null;
   shop?: LiveShop | null;
   enemies?: Enemy[] | null;
+  // Twitch enrichment from /api/presence (only when the player linked Twitch):
+  // their channel, whether they are streaming right now, viewer count, and the
+  // curated-partner flag. All optional and absent until the backend attaches them.
+  twitch_login?: string | null;
+  twitch_live?: boolean;
+  twitch_viewers?: number;
+  is_partner?: boolean;
 }
 
 export interface MonsterInfo {
@@ -176,6 +184,42 @@ export function LiveDot() {
       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
     </span>
+  );
+}
+
+/** Curated-partner badge, shown next to a player's name on the live views. */
+export function PartnerBadge() {
+  return (
+    <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#9146FF]/15 text-[#b794ff] border border-[#9146FF]/40">
+      Partner
+    </span>
+  );
+}
+
+/** "Watch on Twitch" link, shown when a present player is streaming right now.
+ * Twitch purple, opens the channel in a new tab; viewer count when known. */
+export function WatchOnTwitch({
+  login,
+  viewers,
+  className = "",
+}: {
+  login: string;
+  viewers?: number;
+  className?: string;
+}) {
+  return (
+    <a
+      href={`https://twitch.tv/${login}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#9146FF] text-white text-xs font-semibold hover:bg-[#7d2ff5] transition-colors ${className}`}
+    >
+      <TwitchIcon className="w-3.5 h-3.5" />
+      Watch on Twitch
+      {viewers != null && (
+        <span className="font-normal opacity-80">· {viewers.toLocaleString()}</span>
+      )}
+    </a>
   );
 }
 
