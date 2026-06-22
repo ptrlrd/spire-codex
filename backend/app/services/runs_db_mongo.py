@@ -23,11 +23,15 @@ Indexes (created on import — idempotent):
     {character: 1}
     {username: 1, submitted_at: -1}
     {submitted_at: -1}
+    {submitted_at: 1, _id: 1}   (keyset-paginated run export)
     {character: 1, win: 1, ascension: 1}
     {build_id: 1}
     {"deck.id": 1}            (multikey)
     {relics.id: 1}            (multikey)
     {killed_by: 1}
+
+Schema validation (applied on import — idempotent, level "moderate"):
+    submitted_at must be a BSON date — see _ensure_run_validator.
 """
 
 from __future__ import annotations
@@ -140,6 +144,7 @@ def _get_collection():
     # Database name comes from the connection string's default db.
     _coll = _client.get_default_database().runs
     _ensure_indexes(_coll)
+    _ensure_run_validator(_coll)
     return _coll
 
 
@@ -155,6 +160,11 @@ def _ensure_indexes(coll) -> None:
     # that don't normalize (claim, username-for-hash).
     coll.create_index([("username_lower", ASCENDING), ("submitted_at", DESCENDING)])
     coll.create_index([("submitted_at", DESCENDING)])
+    # Ascending (submitted_at, _id) backs the keyset-paginated run export
+    # (GET /api/exports/runs ordered by (submitted_at, _id)). The {submitted_at: -1}
+    # index above is descending and lacks the _id tiebreaker, so it can't serve
+    # the ordered scan the cursor walks.
+    coll.create_index([("submitted_at", ASCENDING), ("_id", ASCENDING)])
     coll.create_index(
         [("character", ASCENDING), ("win", ASCENDING), ("ascension", ASCENDING)]
     )
@@ -255,6 +265,59 @@ def _ensure_indexes(coll) -> None:
         [("game_mode", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
         name="mode_win_runtime",
     )
+
+
+def _ensure_run_validator(coll) -> None:
+    """Require every run doc to carry a BSON-date ``submitted_at``. Idempotent;
+    applied on first collection access alongside the indexes, so a deploy turns
+    it on with no manual step.
+
+    Why: the keyset run export (GET /api/exports/runs) orders by
+    ``(submitted_at, _id)``, and a forward pager only reliably sees new runs
+    because every new run sorts at the *end* — i.e. is stamped with a real
+    ``submitted_at`` (submit_run always sets ``now()``). A run inserted *without*
+    one would sort into the leading null block and be silently dropped from the
+    export for any pager that had already advanced past it. This makes that
+    invariant enforced rather than assumed: a future code path that tried to
+    insert a run with a missing / null / non-date ``submitted_at`` fails loudly
+    here instead of quietly corrupting the export.
+
+    ``validationLevel="moderate"`` so the rule gates all new inserts but spares
+    *updates* to any pre-existing legacy doc whose ``submitted_at`` is null /
+    missing (the duplicate-key linking ``$set``, backfill_user_runs, claim_runs
+    keep working). Best-effort: if collMod can't run (permissions, or a
+    deliberate bulk-import window) it logs and continues — the export stays
+    correct as long as the submit path keeps stamping ``submitted_at``, which it
+    does; this is defense in depth, not a load-bearing dependency.
+
+    NB for a bulk re-import of untimestamped legacy runs: ``moderate`` still
+    validates *inserts*, so such an import would now be rejected. Stamp
+    ``submitted_at`` in the import, or temporarily set ``validationAction``
+    to ``"warn"`` for that window.
+    """
+    try:
+        coll.database.command(
+            "collMod",
+            coll.name,
+            validator={
+                "$jsonSchema": {
+                    "required": ["submitted_at"],
+                    "properties": {
+                        "submitted_at": {
+                            "bsonType": "date",
+                            "description": (
+                                "must be a BSON date; keyset export ordering "
+                                "depends on it"
+                            ),
+                        }
+                    },
+                }
+            },
+            validationLevel="moderate",
+            validationAction="error",
+        )
+    except Exception as e:
+        print(f"Warning: could not apply runs submitted_at validator: {e}")
 
 
 # ── helpers (mirrors of the sqlite module) ──────────────────────────────

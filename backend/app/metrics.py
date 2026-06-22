@@ -130,7 +130,12 @@ data_exports = Counter(
 
 run_exports = Counter(
     "spire_codex_run_exports_total",
-    "Bulk run data export downloads",
+    "Bulk run data export downloads (unbounded full dumps)",
+)
+
+run_export_pages = Counter(
+    "spire_codex_run_export_pages_total",
+    "Paginated run export page fetches (a bounded ?limit= request)",
 )
 
 # ── Auth ────────────────────────────────────────────────────
