@@ -160,7 +160,8 @@ const MODE_OPTS = [
   { value: "daily", label: "Daily" },
   { value: "custom", label: "Custom" },
 ];
-// Content brackets (frame charts only). "all" sends no param.
+// Content brackets (apply to frame and blob charts; only the daily chart opts
+// out). "all" sends no param.
 const BRACKET_OPTS = CONTENT_BRACKETS.map((b) => ({ value: b.key, label: b.label }));
 const SPLIT_LABELS: Record<string, string> = {
   character: "By character",
