@@ -12,6 +12,7 @@ from slowapi.util import get_remote_address
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
+    _BRACKET_KEYS,
     get_all_entity_scores,
     get_community_stats as get_community_fun_stats,
     get_entity_metrics_table,
@@ -39,6 +40,15 @@ router = APIRouter(prefix="/api/runs", tags=["Runs"])
 limiter = Limiter(key_func=get_remote_address)
 
 MAX_BODY_SIZE = 512 * 1024  # 512 KB
+
+# Maps the in-game mod's StatBracket query values (?stat_filter=) onto the
+# website's bracket keys. "all" is the default (no entry -> no bracket).
+_STAT_FILTER_TO_BRACKET = {
+    "a10": "a10",
+    "a10_wr30": "wr30",
+    "a10_wr50": "wr50",
+    "a10_wr75": "wr75",
+}
 
 
 @lru_cache(maxsize=256)
@@ -445,6 +455,7 @@ def get_leaderboard(
     page: int = 1,
     limit: int = 50,
     ascension_min: int | None = None,
+    winrate_min: float | None = None,
 ):
     """Leaderboard for winning runs.
 
@@ -475,6 +486,7 @@ def get_leaderboard(
         page=page,
         limit=limit,
         ascension_min=ascension_min,
+        winrate_min=winrate_min,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -491,6 +503,7 @@ def get_leaderboard(
             page=page,
             limit=limit,
             ascension_min=ascension_min,
+            winrate_min=winrate_min,
         )
         app_cache.set_json(cache_key, result, ttl_seconds=60)
         return result
@@ -753,6 +766,11 @@ def get_shared_run(run_hash: str, request: Request):
 
         bid = (blob.get("build_id") or "").strip()
         blob["is_beta"] = bool(bid) and (BETA_DATA_DIR / bid).exists()
+        # Normalize the optional DPS payload (raw client data) into a validated
+        # `damage` field and drop the raw key, so the run page reads one shape.
+        from ..services.runs_db_mongo import clean_damage
+
+        blob["damage"] = clean_damage(blob.pop("_spirecodex_damage", None))
         if using_mongo:
             from ..services.runs_db_mongo import get_username_for_hash
 
@@ -854,6 +872,8 @@ def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
             "total_runs": 0,
             "baseline_win_rate": 0.0,
             "score": None,
+            "elo": None,
+            "brackets": {},
             "by_character": [],
             "last_submitted_at": None,
             "last_run_hash": None,
@@ -876,6 +896,25 @@ def get_entity_scores(
             "(3 includes later acts). Scores are graded against a per-act "
             "baseline so survivorship into later acts doesn't inflate them."
         ),
+    ),
+    bracket: str | None = Query(
+        None,
+        description=(
+            "Content bracket: grade scores within one run bracket instead of all "
+            "runs. a10 = Ascension 10; wr30/wr50/wr75 = A10 runs from players "
+            "above that overall win rate. Does not combine with act or character."
+        ),
+    ),
+    stat_filter: str | None = Query(
+        None,
+        description=(
+            "Alias for bracket using the in-game mod's bracket names: a10, "
+            "a10_wr30, a10_wr50, a10_wr75 (map to a10/wr30/wr50/wr75). 'all' is "
+            "the default and need not be sent. Takes precedence over bracket."
+        ),
+    ),
+    cohort: str | None = Query(
+        None, description="Deprecated alias for `bracket` (the param was renamed)."
     ),
 ):
     """All Codex Scores for one entity type, keyed by ID.
@@ -904,13 +943,26 @@ def get_entity_scores(
             status_code=400, detail="act filtering is only available for relics"
         )
     char = character.strip().upper() if character else None
+    # Back-compat: ?cohort= was renamed to ?bracket=; honor the old name when the
+    # new one isn't supplied.
+    if cohort and not bracket:
+        bracket = cohort
+    # The in-game mod sends ?stat_filter= with its StatBracket names; fold those
+    # onto the bracket dimension (the website uses ?bracket= directly).
+    if stat_filter:
+        bracket = _STAT_FILTER_TO_BRACKET.get(stat_filter.strip().lower(), bracket)
+    # Unknown bracket -> None so it grades against all runs (and shares that
+    # cache slot) rather than 400ing.
+    brk = bracket if bracket in _BRACKET_KEYS else None
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
-    cache_key = app_cache.entity_scores_key(entity_type, act=act, character=char)
+    cache_key = app_cache.entity_scores_key(
+        entity_type, act=act, character=char, bracket=brk
+    )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         return cached
-    result = get_all_entity_scores(entity_type, character=char, act=act)
+    result = get_all_entity_scores(entity_type, character=char, act=act, bracket=brk)
     # While the snapshot is rebuilding (post-deploy), the result is an empty
     # shell; caching it would extend the gap past the rebuild for everyone.
     if snapshot_loaded():
@@ -969,7 +1021,11 @@ def my_picks(request: Request, response: Response):
 @router.get("/metrics/{entity_type}", tags=["Runs"])
 @limiter.limit("60/minute")
 def get_entity_metrics(
-    request: Request, response: Response, entity_type: str, cohort: str = "all"
+    request: Request,
+    response: Response,
+    entity_type: str,
+    bracket: str = "all",
+    cohort: str | None = None,
 ):
     """Dense metrics table for one entity type, powers /leaderboards/metrics.
 
@@ -980,10 +1036,15 @@ def get_entity_metrics(
     and filters the whole table locally. Cards carry Elo/Pick%; relics and
     potions only the win-outcome columns (rewards don't offer them this way).
 
-    `cohort` slices to a pre-built run cohort: `all` (default), `solo`,
-    `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`. Every cohort
-    is materialized in the same snapshot, so this stays a single cached read.
+    `bracket` slices to a pre-built run bracket: `all` (default), `solo`,
+    `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`, plus the
+    win-rate skill tiers `wr30`/`wr50`/`wr75`. Every bracket is materialized
+    in the same snapshot, so this stays a single cached read. `cohort` is a
+    deprecated alias for `bracket` (the param was renamed).
     """
+    # Back-compat: ?cohort= was renamed to ?bracket=; honor the old name.
+    if cohort is not None and bracket == "all":
+        bracket = cohort
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
@@ -997,7 +1058,7 @@ def get_entity_metrics(
         if snapshot_loaded()
         else "no-store"
     )
-    return get_entity_metrics_table(entity_type, cohort)
+    return get_entity_metrics_table(entity_type, bracket)
 
 
 @router.get("/top/{entity_type}/{character}", tags=["Runs"])

@@ -371,13 +371,15 @@ def _chart_cache_key(
     event,
     etype,
     entity,
+    bracket=None,
 ) -> str:
     """Redis key for one chart + filter combo. Shared by the live endpoint and
     the prewarmer so a warmed entry is a byte-for-byte hit on a real request."""
     return (
         f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
         f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
-        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}"
+        f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}:"
+        f"{bracket or ''}"
     )
 
 
@@ -396,25 +398,32 @@ def _compute_chart(
     event,
     etype,
     entity,
+    bracket=None,
 ) -> dict:
     """Build one chart payload (no caching). Raises HTTPException for invalid
     blob filters, same as the endpoint."""
     building = False
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
-        rows = cs.filter_rows(cs.get_frame(), players, ascension, mode, username)
+        rows = cs.filter_rows(
+            cs.get_frame(), players, ascension, mode, username, bracket
+        )
         series = _build_frame_chart(chart_key, rows, stat, x, y, split)
         total = len(rows)
     else:
-        # Blob charts: snapshot rollup, or a per-user walk when username set.
+        # Blob charts: snapshot rollup (sliced to the requested content bracket),
+        # or a per-user walk when username set (username is the filter; the
+        # bracket doesn't apply there).
         if ascension is not None or game_mode:
             raise HTTPException(
                 status_code=400,
                 detail="This chart covers all ascensions and modes; drop those filters.",
             )
-        stats = (
-            cs.build_user_blob_stats(username) if username else get_charts_blob_stats()
-        )
+        if username:
+            stats = cs.build_user_blob_stats(username)
+        else:
+            blob = get_charts_blob_stats()
+            stats = blob.get(bracket or "all") or blob.get("all") or cs.empty_one()
         series = _build_blob_chart(
             chart_key, stats, spec, players, encounter, event, etype, entity
         )
@@ -533,12 +542,20 @@ def get_chart(
     event: str | None = Query(None, max_length=80, description="Event id"),
     etype: str | None = Query(None, description="cards | relics | potions"),
     entity: str | None = Query(None, max_length=80, description="Entity id"),
+    bracket: str | None = Query(
+        None,
+        description="Content bracket: a10 | wr30 | wr50 | wr75 (frame charts only)",
+    ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
     charts, their filters, splits, and the run stats usable for stat/x/y."""
     spec = CHARTS.get(chart_key)
     if not spec:
         raise HTTPException(status_code=404, detail=f"Unknown chart '{chart_key}'")
+    # Brackets now apply to both frame and blob charts (the blob is accumulated
+    # per bracket in the snapshot).
+    if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
+        raise HTTPException(status_code=400, detail="bad bracket")
     if game_mode and game_mode not in ("standard", "daily", "custom"):
         raise HTTPException(status_code=400, detail="bad game_mode")
     for name, value in (("stat", stat), ("x", x), ("y", y)):
@@ -566,6 +583,7 @@ def get_chart(
         event,
         etype,
         entity,
+        bracket,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -586,6 +604,7 @@ def get_chart(
         event,
         etype,
         entity,
+        bracket,
     )
     # A still-building snapshot resolves within minutes; don't pin the empty
     # answer for the full TTL.

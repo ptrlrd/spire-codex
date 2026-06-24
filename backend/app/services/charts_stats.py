@@ -238,14 +238,57 @@ def _official_characters() -> dict[str, str]:
         return {}
 
 
+_WINRATE_MIN_RUNS = 5  # mirror runs_db_mongo.WINRATE_MIN_RUNS
+_FRAME_WR: dict[str, float] = {}
+_FRAME_WR_TS: float = -1.0
+
+
+def _frame_winrate_map() -> dict[str, float]:
+    """username -> overall win rate (0-100, 5-run floor) from the frame's USER +
+    WIN columns. DB-agnostic (works on the SQLite fallback) and cached per frame
+    reload. Matches the get_user_winrates definition used by the other brackets."""
+    global _FRAME_WR, _FRAME_WR_TS
+    if _FRAME_WR_TS == _FRAME_TS and _FRAME_WR:
+        return _FRAME_WR
+    counts: dict[str, list[int]] = {}
+    for r in _FRAME:
+        u = r[USER]
+        if not u:
+            continue
+        c = counts.setdefault(u, [0, 0])
+        c[0] += 1
+        if r[WIN]:
+            c[1] += 1
+    _FRAME_WR = {
+        u: (w / t * 100.0)
+        for u, (t, w) in counts.items()
+        if t >= _WINRATE_MIN_RUNS and t > 0
+    }
+    _FRAME_WR_TS = _FRAME_TS
+    return _FRAME_WR
+
+
+# Content brackets -> (ascension floor, win-rate floor %). A10-gated, matching
+# the run-entity-stats brackets. None / "all" means no bracket filter.
+_BRACKET_FILTERS: dict[str, tuple[int, float | None]] = {
+    "a10": (10, None),
+    "wr30": (10, 30.0),
+    "wr50": (10, 50.0),
+    "wr75": (10, 75.0),
+}
+
+
 def filter_rows(
     rows: list[tuple],
     players: int | None,
     ascension: int | None,
     game_mode: str | None,
     username: str | None,
+    bracket: str | None = None,
 ) -> list[tuple]:
     u = (username or "").lower().strip()
+    asc_floor, wr_floor = _BRACKET_FILTERS.get(bracket or "", (None, None))
+    wr_map = _frame_winrate_map() if wr_floor is not None else None
     out = []
     for r in rows:
         if players is not None and r[PLAYERS] != players:
@@ -255,6 +298,12 @@ def filter_rows(
         if game_mode is not None and r[MODE] != game_mode:
             continue
         if u and r[USER] != u:
+            continue
+        # Content bracket: A10 floor and (for wr tiers) the submitter's overall
+        # win rate must exceed the threshold. Strict >, matching the brackets.
+        if asc_floor is not None and r[ASC] < asc_floor:
+            continue
+        if wr_floor is not None and (wr_map or {}).get(r[USER], -1.0) <= wr_floor:
             continue
         out.append(r)
     return out
@@ -547,10 +596,14 @@ _COMBAT_ROOMS = frozenset({"monster", "elite", "boss"})
 _MAX_FLOOR = 60
 _HIST_BUCKET = 5  # % of max HP per histogram bucket
 _HIST_CAP = 100  # damage >= 100% of max HP folds into the top bucket
-BLOB_VERSION = 2
+BLOB_VERSION = 3
+# Content brackets the blob is accumulated per (mirrors the run_entity_stats
+# brackets): "all" plus the A10-gated win-rate ladder. A run feeds every bracket
+# it matches, so the blob charts can re-slice by skill just like the frame ones.
+_BLOB_BRACKETS = ["all", "a10", "wr30", "wr50", "wr75"]
 
 
-def new_accumulator() -> dict[str, Any]:
+def _new_acc_one() -> dict[str, Any]:
     return {
         # (char, players, floor) -> [sum_hp_pct, n]   combat damage only
         "hp_floor": {},
@@ -579,6 +632,12 @@ def new_accumulator() -> dict[str, Any]:
     }
 
 
+def new_accumulator() -> dict[str, Any]:
+    """Per-bracket blob accumulators; accumulate() folds each run into the
+    sub-accumulator for every content bracket it belongs to."""
+    return {b: _new_acc_one() for b in _BLOB_BRACKETS}
+
+
 def _bump2(d: dict, key: Any, win: bool) -> None:
     cell = d.setdefault(key, [0, 0])
     cell[0] += 1
@@ -590,12 +649,37 @@ def accumulate(
     acc: dict[str, Any],
     blob: dict,
     *,
+    brackets,
     is_win: bool,
     character: str,
     player_count: int,
     submitted: Any = None,
 ) -> None:
-    """Fold one run blob into the blob-stats accumulator. Defensive like the
+    """Fold one run into the sub-accumulator of every content bracket it belongs
+    to (`brackets` always includes 'all')."""
+    for b in brackets:
+        sub = acc.get(b)
+        if sub is not None:
+            _accumulate_one(
+                sub,
+                blob,
+                is_win=is_win,
+                character=character,
+                player_count=player_count,
+                submitted=submitted,
+            )
+
+
+def _accumulate_one(
+    acc: dict[str, Any],
+    blob: dict,
+    *,
+    is_win: bool,
+    character: str,
+    player_count: int,
+    submitted: Any = None,
+) -> None:
+    """Fold one run blob into ONE bracket's accumulator. Defensive like the
     community walk: missing keys skip quietly, never raise."""
     char = _norm_char(character)
     players = min(max(int(player_count or 1), 1), 4)
@@ -763,7 +847,12 @@ def accumulate(
 
 
 def finalize(acc: dict[str, Any]) -> dict[str, Any]:
-    """JSON-able cell lists for the snapshot. Rollups happen per request."""
+    """Per-bracket JSON-able blob for the snapshot: {bracket: <cell lists>}."""
+    return {b: _finalize_one(sub) for b, sub in acc.items()}
+
+
+def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
+    """JSON-able cell lists for one bracket. Rollups happen per request."""
     return {
         "version": BLOB_VERSION,
         "hp_floor": [
@@ -792,7 +881,13 @@ def finalize(acc: dict[str, Any]) -> dict[str, Any]:
 
 
 def empty() -> dict[str, Any]:
+    """Per-bracket empty blob ({bracket: <empty cells>})."""
     return finalize(new_accumulator())
+
+
+def empty_one() -> dict[str, Any]:
+    """One bracket's empty finalized blob (the blob-reader fallback)."""
+    return _finalize_one(_new_acc_one())
 
 
 # ── Blob stat rollups (snapshot cells -> chart series) ───────────────────────
@@ -1169,7 +1264,7 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
     Reads the same on-disk blobs the snapshot walk uses."""
     u = (username or "").strip()
     if not u:
-        return empty()
+        return empty_one()
     rows: list[dict] = []
     if os.environ.get("MONGO_URL", "").strip():
         import re as _re
@@ -1215,7 +1310,9 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
                 )
             ]
 
-    acc = new_accumulator()
+    # Single-bracket walk: the username is the filter, so content brackets don't
+    # apply here. Use the per-bracket-free helpers directly.
+    acc = _new_acc_one()
     for row in rows:
         path = _RUNS_DIR / f"{row['run_hash']}.json"
         if not path.exists():
@@ -1223,7 +1320,7 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
         try:
             with open(path, "r", encoding="utf-8") as f:
                 blob = json.load(f)
-            accumulate(
+            _accumulate_one(
                 acc,
                 blob,
                 is_win=bool(row["win"]),
@@ -1233,4 +1330,4 @@ def build_user_blob_stats(username: str) -> dict[str, Any]:
             )
         except Exception:
             continue
-    return finalize(acc)
+    return _finalize_one(acc)

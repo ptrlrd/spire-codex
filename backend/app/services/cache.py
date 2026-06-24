@@ -78,17 +78,26 @@ def leaderboard_key(
     page: int = 1,
     limit: int = 50,
     ascension_min: int | None = None,
+    winrate_min: float | None = None,
 ) -> str:
     return (
         f"leaderboard:{category}:{(character or '').upper()}:{players or ''}:"
-        f"{game_mode or ''}:{int(today)}:{page}:{limit}:{ascension_min if ascension_min is not None else ''}"
+        f"{game_mode or ''}:{int(today)}:{page}:{limit}:"
+        f"{ascension_min if ascension_min is not None else ''}:"
+        f"{winrate_min if winrate_min is not None else ''}"
     )
 
 
 def entity_scores_key(
-    entity_type: str, act: int | None = None, character: str | None = None
+    entity_type: str,
+    act: int | None = None,
+    character: str | None = None,
+    bracket: str | None = None,
 ) -> str:
-    return f"entity_scores:{entity_type}:{act or 'all'}:{character or 'all'}"
+    return (
+        f"entity_scores:{entity_type}:{act or 'all'}:"
+        f"{character or 'all'}:{bracket or 'all'}"
+    )
 
 
 def _get_client() -> Any:

@@ -25,6 +25,12 @@ _INT_FIELDS = (
     "ascension",
     "player_count",
     "turn",
+    # Live combat damage (DPS) for the spectator view; absent / null outside a
+    # fight, cleared by the transient-unset list below when the mod sends null.
+    "damage_dealt",
+    "damage_dealt_this_turn",
+    "damage_taken",
+    "biggest_hit",
 )
 _STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username")
 _LIST_CAPS = {"deck": 200, "relics": 100, "potions": 10, "fighting": 8}
@@ -350,7 +356,17 @@ async def post_presence(request: Request):
     # purpose: keeping the last node avoids a blinking map marker between nodes.
     unset = [
         k
-        for k in ("turn", "fighting", "event", "shop", "enemies")
+        for k in (
+            "turn",
+            "fighting",
+            "event",
+            "shop",
+            "enemies",
+            "damage_dealt",
+            "damage_dealt_this_turn",
+            "damage_taken",
+            "biggest_hit",
+        )
         if k in data and data[k] is None
     ]
 

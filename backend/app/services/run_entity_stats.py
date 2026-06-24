@@ -89,17 +89,31 @@ _ELO_TOL = 1e-6
 # Acts beyond the third fold into the last bucket.
 _ACT_BUCKETS = 3
 
-# Run cohorts the metrics table can be sliced by. "all" is the default and
+# Run brackets the metrics table can be sliced by. "all" is the default and
 # lives in the top-level entity fields (also what scores/stats read). The
 # rest are pre-built in the same snapshot walk and stored nested per entity,
-# so switching cohort on the page is still a single cached read with no
-# per-request aggregation. A run contributes to "all" plus every cohort it
+# so switching bracket on the page is still a single cached read with no
+# per-request aggregation. A run contributes to "all" plus every bracket it
 # matches (a solo A10 daily run lands in solo, a10, daily).
-_COHORT_KEYS = ["solo", "2p", "3p", "4p", "a10", "daily", "custom"]
+_BRACKET_KEYS = [
+    "solo",
+    "2p",
+    "3p",
+    "4p",
+    "a10",
+    "daily",
+    "custom",
+    # Win-rate skill brackets (see _winrate_brackets).
+    "wr30",
+    "wr50",
+    "wr75",
+]
 
 
-def _run_extra_cohorts(player_count: int, ascension: int, game_mode: str) -> list[str]:
-    """Non-"all" cohort keys a single run belongs to."""
+def _run_extra_brackets(player_count: int, ascension: int, game_mode: str) -> list[str]:
+    """Non-"all" bracket keys a single run belongs to (from per-run fields only;
+    the win-rate brackets come from _winrate_brackets since they need the
+    submitter's identity, not just the run)."""
     out: list[str] = []
     pc = player_count or 1
     if pc <= 1:
@@ -120,6 +134,23 @@ def _run_extra_cohorts(player_count: int, ascension: int, game_mode: str) -> lis
     return out
 
 
+# Win-rate skill brackets. An A10-gated quality ladder: a run counts toward wrNN
+# when it is an Ascension-10 run AND its submitter's overall win rate exceeds
+# NN%. Nested by construction (a 0.80 player lands in wr30, wr50, and wr75). The
+# win rate is the username-keyed lifetime rate from get_user_winrates (5-run
+# floor), so these brackets mean the same thing as the /api/runs/list winrate
+# filter. Anonymous / below-floor submitters resolve to None -> no wr bracket.
+_WR_TIERS = (("wr30", 0.30), ("wr50", 0.50), ("wr75", 0.75))
+
+
+def _winrate_brackets(ascension: int, winrate: float | None) -> list[str]:
+    """wrNN bracket keys a single run belongs to, given its submitter's overall
+    win rate. Empty unless this is an A10 run by a player above the threshold."""
+    if winrate is None or (ascension or 0) < 10:
+        return []
+    return [k for k, thr in _WR_TIERS if winrate > thr]
+
+
 _RUNS_DIR = (
     Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
     / "runs"
@@ -135,13 +166,19 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Guards against an out-of-date writer (e.g. a stale container sharing the
 # Mongo) clobbering the snapshot: loaders reject a mismatched version and
 # keep serving what they have, and the leader rebuilds right over it instead
-# of trusting its freshness. Version 2 = elo + base/upg + cohorts + community.
+# of trusting its freshness. Version 2 = elo + base/upg + brackets + community.
 # Version 3 adds per-act relic pickup splits (act_picks / act_wins).
 # Version 4 = community map_danger (per act/node-type damage + death rates),
 # rest-site win/HP-band stats, and ancient offer take rates for the mod.
 # Version 5 adds precomputed per-encounter combat cells for
 # /api/runs/encounter-stats (folds the old per-request aggregation in).
-SNAPSHOT_VERSION = 5
+# Version 6 adds the win-rate skill-bracket brackets (wr30/wr50/wr75): A10-gated
+# per-submitter win-rate tiers in the bracket blocks.
+# Version 7 makes the charts blob per-bracket (all/a10/wr30/wr50/wr75) and moves
+# it to its own "charts" snapshot doc, so blob charts re-slice by content bracket.
+# Version 8 renames the persisted cohort_* fields to bracket_* (and each entity's
+# "cohorts" sub-tree to "brackets"); the loader reads either for back-compat.
+SNAPSHOT_VERSION = 8
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -168,10 +205,10 @@ _global_totals: dict[str, int] = {"total_runs": 0, "total_wins": 0}
 # / early-quit runs that contain almost no entities, which pushed nearly
 # every card and relic above baseline and piled everything into S-tier.
 _type_baselines: dict[str, float] = {}
-# Per-cohort baselines + totals for the metrics table's run-cohort filter
-# (solo/2p/3p/4p/a10/daily/custom). Keyed by cohort, then entity type.
-_cohort_baselines: dict[str, dict[str, float]] = {}
-_cohort_totals: dict[str, dict[str, int]] = {}
+# Per-bracket baselines + totals for the metrics table's run-bracket filter
+# (solo/2p/3p/4p/a10/daily/custom). Keyed by bracket, then entity type.
+_bracket_baselines: dict[str, dict[str, float]] = {}
+_bracket_totals: dict[str, dict[str, int]] = {}
 # Community / fun stats (event decisions, deaths, headline numbers, records).
 # Built in the same run-file walk and carried through the snapshot meta doc.
 _community_stats: dict[str, Any] = {}
@@ -571,8 +608,8 @@ def _accumulate_screen(
 ) -> None:
     """Fold one card-reward screen into a (pick_counts, pair_wins) pair.
 
-    Shared by the all-runs pass and each cohort pass so the offer/pick and
-    head-to-head bookkeeping stays identical across cohorts.
+    Shared by the all-runs pass and each bracket pass so the offer/pick and
+    head-to-head bookkeeping stays identical across brackets.
     """
     bucket = min(act_index, _ACT_BUCKETS - 1)
     for cid in picked_ids:
@@ -593,9 +630,9 @@ def _accumulate_screen(
             pair_wins[key] = pair_wins.get(key, 0) + 1
 
 
-def _new_cohort_acc() -> dict[str, Any]:
-    """Lightweight per-cohort accumulator (the metrics table doesn't need
-    by_character / last-submission, so cohorts carry only what it reads)."""
+def _new_bracket_acc() -> dict[str, Any]:
+    """Lightweight per-bracket accumulator (the metrics table doesn't need
+    by_character / last-submission, so brackets carry only what it reads)."""
     return {
         "cache": {},  # (etype, eid) -> {picks, wins}
         "pick_counts": {},  # cid -> pick entry
@@ -604,11 +641,11 @@ def _new_cohort_acc() -> dict[str, Any]:
     }
 
 
-def _finalize_cohort(acc: dict[str, Any]) -> tuple[dict, dict]:
-    """Turn a cohort accumulator into (entities, type_baselines).
+def _finalize_bracket(acc: dict[str, Any]) -> tuple[dict, dict]:
+    """Turn a bracket accumulator into (entities, type_baselines).
 
     entities[(etype, eid)] = {picks, wins, offered, picked, off_act,
-    pick_act, elo}. Mirrors the all-runs finalize so a cohort row reads
+    pick_act, elo}. Mirrors the all-runs finalize so a bracket row reads
     the same as an all-runs row.
     """
     cache = acc["cache"]
@@ -621,7 +658,7 @@ def _finalize_cohort(acc: dict[str, Any]) -> tuple[dict, dict]:
         agg["off_act"] = pc["off_act"]
         agg["pick_act"] = pc["pick_act"]
         agg["elo"] = elo.get(cid)
-    # Per-type pick-weighted baseline within this cohort.
+    # Per-type pick-weighted baseline within this bracket.
     type_totals: dict[str, dict[str, int]] = {}
     for (etype, _), agg in cache.items():
         tt = type_totals.setdefault(etype, {"wins": 0, "picks": 0})
@@ -636,14 +673,14 @@ def _finalize_cohort(acc: dict[str, Any]) -> tuple[dict, dict]:
 
 def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     """Walk every run JSON + DB row and return (cache, totals,
-    type_baselines, cohort_meta) WITHOUT mutating module globals. The heavy
+    type_baselines, bracket_meta) WITHOUT mutating module globals. The heavy
     100k-file walk lives here so the leader refresher can compute + persist a
     snapshot, and the in-process fallback can reuse the same logic.
 
     The all-runs aggregate lives in the top-level entity fields (what
-    scores/stats read). Each run ALSO feeds the cohorts it matches
+    scores/stats read). Each run ALSO feeds the brackets it matches
     (solo/2p/3p/4p/a10/daily/custom); those land nested under each entity's
-    ``cohorts`` key, and `cohort_meta` carries their baselines + totals.
+    ``brackets`` key, and `bracket_meta` carries their baselines + totals.
     """
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     new_totals = {"total_runs": 0, "total_wins": 0}
@@ -654,7 +691,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     pick_counts: dict[str, dict[str, Any]] = {}
     pair_wins: dict[tuple[str, str], int] = {}
     # Rest-site Smith decisions → Upgrade Elo for upgraded card variants.
-    # All-runs only; the metrics table doesn't split base/upg per cohort.
+    # All-runs only; the metrics table doesn't split base/upg per bracket.
     upgrade_pair_wins: dict[tuple[str, str], int] = {}
     # Community / fun stats, folded in from the same blob read (no 2nd walk).
     from . import charts_stats, community_stats, encounter_stats
@@ -662,13 +699,13 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     community_acc = community_stats.new_accumulator()
     charts_acc = charts_stats.new_accumulator()
     encounter_acc = encounter_stats.new_accumulator()
-    # Parallel lightweight accumulators, one per non-"all" cohort.
-    cohort_accs: dict[str, dict[str, Any]] = {
-        k: _new_cohort_acc() for k in _COHORT_KEYS
+    # Parallel lightweight accumulators, one per non-"all" bracket.
+    bracket_accs: dict[str, dict[str, Any]] = {
+        k: _new_bracket_acc() for k in _BRACKET_KEYS
     }
 
     # Source of truth depends on which DB the app is using. Either way we end
-    # up with rows carrying win/character/submission + the cohort fields
+    # up with rows carrying win/character/submission + the bracket fields
     # (player_count / ascension / game_mode).
     if _USING_MONGO:
         from .runs_db_mongo import _get_collection
@@ -686,6 +723,8 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                     "ascension": 1,
                     "game_mode": 1,
                     "killed_by": 1,
+                    # Owner key for the win-rate skill brackets (wr30/50/75).
+                    "username": 1,
                 },
             )
         )
@@ -701,6 +740,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "ascension": d.get("ascension") or 0,
                 "game_mode": d.get("game_mode") or "standard",
                 "killed_by": d.get("killed_by"),
+                "username": d.get("username") or "",
             }
             for d in rows
         ]
@@ -708,11 +748,36 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         with get_conn() as conn:
             rows = conn.execute(
                 "SELECT run_hash, character, win, submitted_at, "
-                "player_count, ascension, game_mode, killed_by FROM runs"
+                "player_count, ascension, game_mode, killed_by, username FROM runs"
             ).fetchall()
             rows = [dict(r) for r in rows]
 
     official_chars = _official_character_ids()
+
+    # Per-username overall win rate (fraction, 5-run floor) for the skill-bracket
+    # brackets. Computed from the loaded rows (username + win) so it's DB-agnostic
+    # (works on the SQLite fallback too) yet matches get_user_winrates exactly,
+    # the same definition the /api/runs/list winrate filter uses: every run
+    # counted, abandoned = loss, with a 5-run floor.
+    try:
+        from .runs_db_mongo import WINRATE_MIN_RUNS
+    except Exception:
+        WINRATE_MIN_RUNS = 5
+    _wr_counts: dict[str, list[int]] = {}
+    for row in rows:
+        uname = row.get("username") or ""
+        if not uname:
+            continue
+        c = _wr_counts.setdefault(uname, [0, 0])
+        c[0] += 1
+        if row.get("win"):
+            c[1] += 1
+    wr_map: dict[str, float] = {
+        u: (w / t)
+        for u, (t, w) in _wr_counts.items()
+        if t >= WINRATE_MIN_RUNS and t > 0
+    }
+
     for row in rows:
         # Official runs only: the game's ascensions are A0-A10. A11+ are modded
         # and a negative/placeholder like A-1 is bad data; both must be skipped
@@ -730,13 +795,19 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
             new_totals["total_wins"] += 1
         run_hash = row["run_hash"]
         is_win = bool(row["win"])
-        extra_cohorts = _run_extra_cohorts(
+        extra_brackets = _run_extra_brackets(
             row.get("player_count") or 1,
             row.get("ascension") or 0,
             row.get("game_mode") or "standard",
         )
-        for ck in extra_cohorts:
-            ct = cohort_accs[ck]["totals"]
+        # Skill brackets: append the A10-gated win-rate brackets the submitter
+        # qualifies for, so they flow through every downstream consumer of
+        # extra_brackets (totals, deck membership, card-reward picks) unchanged.
+        uname = row.get("username") or ""
+        if uname:
+            extra_brackets = extra_brackets + _winrate_brackets(_asc, wr_map.get(uname))
+        for ck in extra_brackets:
+            ct = bracket_accs[ck]["totals"]
             ct["total_runs"] += 1
             if is_win:
                 ct["total_wins"] += 1
@@ -772,11 +843,17 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "community-stats accumulate failed for %s", run_hash, exc_info=True
             )
 
-        # Chart cells for /api/charts, same guard.
+        # Chart cells for /api/charts, same guard. The blob is accumulated per
+        # content bracket so blob charts can re-slice by skill: "all" plus the
+        # A10-gated win-rate brackets this run already matched above.
+        chart_brackets = ["all"] + [
+            c for c in extra_brackets if c in ("a10", "wr30", "wr50", "wr75")
+        ]
         try:
             charts_stats.accumulate(
                 charts_acc,
                 blob,
+                brackets=chart_brackets,
                 is_win=is_win,
                 character=character,
                 player_count=row.get("player_count") or 1,
@@ -840,9 +917,9 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 agg["last_submitted_at"] = submitted
                 agg["last_run_hash"] = run_hash
 
-            # Deck membership for each matched cohort (lighter: picks/wins).
-            for ck in extra_cohorts:
-                cagg = cohort_accs[ck]["cache"].setdefault(
+            # Deck membership for each matched bracket (lighter: picks/wins).
+            for ck in extra_brackets:
+                cagg = bracket_accs[ck]["cache"].setdefault(
                     entity, {"picks": 0, "wins": 0}
                 )
                 cagg["picks"] += 1
@@ -928,15 +1005,15 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
 
         # Card-reward decisions: count offers/picks per act and record the
         # picked-beats-skipped head-to-heads for the Bradley-Terry fit, for
-        # the all-runs pass AND every cohort this run belongs to.
+        # the all-runs pass AND every bracket this run belongs to.
         for act_index, picked_ids, skipped_ids in _walk_card_reward_screens(blob):
             _accumulate_screen(
                 pick_counts, pair_wins, act_index, picked_ids, skipped_ids
             )
-            for ck in extra_cohorts:
+            for ck in extra_brackets:
                 _accumulate_screen(
-                    cohort_accs[ck]["pick_counts"],
-                    cohort_accs[ck]["pair_wins"],
+                    bracket_accs[ck]["pick_counts"],
+                    bracket_accs[ck]["pair_wins"],
                     act_index,
                     picked_ids,
                     skipped_ids,
@@ -991,18 +1068,18 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         for etype, tt in type_totals.items()
     }
 
-    # Finalize each cohort and embed it nested under the entity it belongs
-    # to. An entity only carries a cohort key if it has data in that cohort.
-    cohort_baselines: dict[str, dict[str, float]] = {}
-    cohort_totals: dict[str, dict[str, int]] = {}
-    for ck, acc in cohort_accs.items():
-        cohort_cache, baselines = _finalize_cohort(acc)
-        cohort_baselines[ck] = baselines
-        cohort_totals[ck] = acc["totals"]
-        for entity, cagg in cohort_cache.items():
+    # Finalize each bracket and embed it nested under the entity it belongs
+    # to. An entity only carries a bracket key if it has data in that bracket.
+    bracket_baselines: dict[str, dict[str, float]] = {}
+    bracket_totals: dict[str, dict[str, int]] = {}
+    for ck, acc in bracket_accs.items():
+        bracket_cache, baselines = _finalize_bracket(acc)
+        bracket_baselines[ck] = baselines
+        bracket_totals[ck] = acc["totals"]
+        for entity, cagg in bracket_cache.items():
             host = new_cache.get(entity)
             if host is None:
-                # Card seen only in this cohort's reward screens (never in
+                # Card seen only in this bracket's reward screens (never in
                 # an all-runs deck/choice). Rare, but keep it addressable.
                 host = new_cache.setdefault(
                     entity,
@@ -1014,7 +1091,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                         "last_run_hash": None,
                     },
                 )
-            host.setdefault("cohorts", {})[ck] = {
+            host.setdefault("brackets", {})[ck] = {
                 "picks": cagg.get("picks", 0),
                 "wins": cagg.get("wins", 0),
                 "offered": cagg.get("offered", 0),
@@ -1023,32 +1100,32 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "pick_act": cagg.get("pick_act", [0] * _ACT_BUCKETS),
                 "elo": cagg.get("elo"),
             }
-    cohort_meta = {
-        "baselines": cohort_baselines,
-        "totals": cohort_totals,
+    bracket_meta = {
+        "baselines": bracket_baselines,
+        "totals": bracket_totals,
         "community": community_stats.finalize(community_acc),
         "charts": charts_stats.finalize(charts_acc),
         "encounters": encounter_stats.finalize(encounter_acc),
     }
-    return new_cache, new_totals, new_type_baselines, cohort_meta
+    return new_cache, new_totals, new_type_baselines, bracket_meta
 
 
 def _apply_cache(
-    cache: dict, totals: dict, baselines: dict, cohort_meta: dict | None = None
+    cache: dict, totals: dict, baselines: dict, bracket_meta: dict | None = None
 ) -> None:
     """Swap freshly-built (or snapshot-loaded) data into module globals."""
     global _cache, _cache_built_at, _global_totals, _type_baselines
-    global _cohort_baselines, _cohort_totals, _community_stats, _charts_blob_stats
+    global _bracket_baselines, _bracket_totals, _community_stats, _charts_blob_stats
     global _encounter_blob_stats
     _cache = cache
     _global_totals = totals
     _type_baselines = baselines
-    cohort_meta = cohort_meta or {}
-    _cohort_baselines = cohort_meta.get("baselines", {})
-    _cohort_totals = cohort_meta.get("totals", {})
-    _community_stats = cohort_meta.get("community") or {}
-    _charts_blob_stats = cohort_meta.get("charts") or {}
-    _encounter_blob_stats = cohort_meta.get("encounters") or {}
+    bracket_meta = bracket_meta or {}
+    _bracket_baselines = bracket_meta.get("baselines", {})
+    _bracket_totals = bracket_meta.get("totals", {})
+    _community_stats = bracket_meta.get("community") or {}
+    _charts_blob_stats = bracket_meta.get("charts") or {}
+    _encounter_blob_stats = bracket_meta.get("encounters") or {}
     _cache_built_at = time.time()
 
 
@@ -1058,8 +1135,8 @@ def _build_cache() -> None:
     Only used when the Mongo snapshot is unavailable (SQLite path, or a
     cold start before the leader has written the first snapshot)."""
     global _cache_snapshot_version
-    cache, totals, baselines, cohort_meta = _build_cache_data()
-    _apply_cache(cache, totals, baselines, cohort_meta)
+    cache, totals, baselines, bracket_meta = _build_cache_data()
+    _apply_cache(cache, totals, baselines, bracket_meta)
     _cache_snapshot_version = SNAPSHOT_VERSION
     logger.info(
         "run-entity-stats cache rebuilt (local): %d entities across %d runs",
@@ -1078,7 +1155,7 @@ def _snapshot_coll():
 
 
 def _persist_snapshot(
-    cache: dict, totals: dict, baselines: dict, cohort_meta: dict | None = None
+    cache: dict, totals: dict, baselines: dict, bracket_meta: dict | None = None
 ) -> None:
     """Write the built cache to Mongo as one doc per entity type plus a
     meta doc. Entities are stored as arrays (not dicts) so entity IDs
@@ -1116,9 +1193,9 @@ def _persist_snapshot(
             entry["off_act"] = agg["off_act"]
             entry["pick_act"] = agg["pick_act"]
             entry["elo"] = agg.get("elo")
-        # Per-cohort metrics (nested; only cohorts this entity appears in).
-        if agg.get("cohorts"):
-            entry["cohorts"] = agg["cohorts"]
+        # Per-bracket metrics (nested; only brackets this entity appears in).
+        if agg.get("brackets"):
+            entry["brackets"] = agg["brackets"]
         # Base vs upgraded deck membership (cards only).
         if agg.get("base") is not None:
             entry["base"] = agg["base"]
@@ -1136,18 +1213,25 @@ def _persist_snapshot(
             {"_id": etype, "entities": entities, "updated_at": now},
             upsert=True,
         )
-    cohort_meta = cohort_meta or {}
+    bracket_meta = bracket_meta or {}
+    # The charts blob is now per-bracket (~5x bigger), so it lives in its own doc
+    # rather than __meta__ — that keeps either one from bumping Mongo's 16MB
+    # per-document cap as more bracketed cells accumulate.
+    coll.replace_one(
+        {"_id": "charts"},
+        {"_id": "charts", "blob": bracket_meta.get("charts", {}), "updated_at": now},
+        upsert=True,
+    )
     coll.replace_one(
         {"_id": "__meta__"},
         {
             "_id": "__meta__",
             "global_totals": totals,
             "type_baselines": baselines,
-            "cohort_baselines": cohort_meta.get("baselines", {}),
-            "cohort_totals": cohort_meta.get("totals", {}),
-            "community": cohort_meta.get("community", {}),
-            "charts": cohort_meta.get("charts", {}),
-            "encounters": cohort_meta.get("encounters", {}),
+            "bracket_baselines": bracket_meta.get("baselines", {}),
+            "bracket_totals": bracket_meta.get("totals", {}),
+            "community": bracket_meta.get("community", {}),
+            "encounters": bracket_meta.get("encounters", {}),
             "entity_types": list(by_type.keys()),
             "built_at": now,
             "snapshot_version": SNAPSHOT_VERSION,
@@ -1210,8 +1294,10 @@ def _load_snapshot() -> bool:
                 agg["off_act"] = e.get("off_act", [0] * _ACT_BUCKETS)
                 agg["pick_act"] = e.get("pick_act", [0] * _ACT_BUCKETS)
                 agg["elo"] = e.get("elo")
-            if e.get("cohorts"):
-                agg["cohorts"] = e["cohorts"]
+            # Back-compat: the entity bracket sub-tree was the "cohorts" field
+            # before the rename; read either so a pre-rename snapshot still loads.
+            if e.get("brackets") or e.get("cohorts"):
+                agg["brackets"] = e.get("brackets") or e.get("cohorts")
             if e.get("base") is not None:
                 agg["base"] = e["base"]
             if e.get("upg") is not None:
@@ -1220,15 +1306,22 @@ def _load_snapshot() -> bool:
                 agg["act_picks"] = e["act_picks"]
                 agg["act_wins"] = e.get("act_wins") or [0] * _ACT_BUCKETS
             new_cache[(etype, e["id"])] = agg
+    # Charts blob lives in its own doc (see _persist_snapshot). A pre-split
+    # snapshot has none; it stays empty until the leader rebuilds the new shape.
+    charts_doc = coll.find_one({"_id": "charts"})
+    charts_blob = (charts_doc or {}).get("blob") or {}
     _apply_cache(
         new_cache,
         meta.get("global_totals", {"total_runs": 0, "total_wins": 0}),
         meta.get("type_baselines", {}),
         {
-            "baselines": meta.get("cohort_baselines", {}),
-            "totals": meta.get("cohort_totals", {}),
+            # Back-compat: these meta fields were cohort_* before the rename.
+            "baselines": meta.get("bracket_baselines")
+            or meta.get("cohort_baselines")
+            or {},
+            "totals": meta.get("bracket_totals") or meta.get("cohort_totals") or {},
             "community": meta.get("community", {}),
-            "charts": meta.get("charts", {}),
+            "charts": charts_blob,
             "encounters": meta.get("encounters", {}),
         },
     )
@@ -1260,9 +1353,9 @@ def refresh_entity_stats_snapshot() -> int:
             return 0  # snapshot still fresh
 
     global _cache_snapshot_version
-    cache, totals, baselines, cohort_meta = _build_cache_data()
-    _persist_snapshot(cache, totals, baselines, cohort_meta)
-    _apply_cache(cache, totals, baselines, cohort_meta)
+    cache, totals, baselines, bracket_meta = _build_cache_data()
+    _persist_snapshot(cache, totals, baselines, bracket_meta)
+    _apply_cache(cache, totals, baselines, bracket_meta)
     _cache_snapshot_version = SNAPSHOT_VERSION
     logger.info(
         "entity-stats snapshot rebuilt: %d entities across %d runs",
@@ -1415,6 +1508,7 @@ def get_all_entity_scores(
     entity_type: str,
     character: str | None = None,
     act: int | None = None,
+    bracket: str | None = None,
     min_character_picks: int = 30,
 ) -> dict[str, dict[str, Any]]:
     """All entities of one type, keyed by ID, with score + counts + elo.
@@ -1455,6 +1549,32 @@ def get_all_entity_scores(
         if entity_type == "cards"
         else frozenset()
     )
+    # Bracket view (the content brackets: a10 / wr30 / wr50 / wr75 etc.): grade
+    # each entity against that bracket's baseline using its nested per-bracket
+    # counts, mirroring get_entity_metrics_table. character scoping isn't tracked
+    # per bracket, so it's ignored here; act + bracket don't combine (act returns
+    # above). Unknown bracket falls through to the all-runs path below.
+    if bracket and bracket in _BRACKET_KEYS:
+        c_baseline = _bracket_baselines.get(bracket, {}).get(
+            entity_type, _baseline_win_rate()
+        )
+        bracket_out: dict[str, dict[str, Any]] = {}
+        for (etype, eid), agg in _cache.items():
+            if etype != entity_type or eid in excluded:
+                continue
+            data = (agg.get("brackets") or {}).get(bracket)
+            if not data:
+                continue
+            cpicks = data.get("picks", 0)
+            cwins = data.get("wins", 0)
+            bracket_out[eid] = {
+                "score": _compute_score(cwins, cpicks, c_baseline),
+                "elo": data.get("elo"),
+                "picks": cpicks,
+                "wins": cwins,
+                "win_rate": round(cwins / cpicks * 100, 1) if cpicks else 0.0,
+            }
+        return bracket_out
     out: dict[str, dict[str, Any]] = {}
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
@@ -1524,7 +1644,7 @@ def _entity_scores_for_act(entity_type: str, act: int) -> dict[str, dict[str, An
     return out
 
 
-def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str, Any]:
+def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str, Any]:
     """Dense per-entity metrics for the /leaderboards/metrics table.
 
     One row per entity carrying both the win-outcome metrics (Codex Score,
@@ -1533,20 +1653,20 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
     walk so the route is a single in-memory pass, no per-request DB work.
     The frontend renders + sorts this table entirely client-side.
 
-    `cohort` slices to a pre-built run cohort. "all" reads the top-level
-    entity fields; any of _COHORT_KEYS reads the nested per-cohort block
-    (its own picks/wins/offered/picked/elo + baseline). Unknown cohorts
+    `bracket` slices to a pre-built run bracket. "all" reads the top-level
+    entity fields; any of _BRACKET_KEYS reads the nested per-bracket block
+    (its own picks/wins/offered/picked/elo + baseline). Unknown brackets
     fall back to "all".
     """
     _maybe_rebuild()
-    use_cohort = cohort in _COHORT_KEYS
-    if use_cohort:
-        baseline = _cohort_baselines.get(cohort, {}).get(
+    use_bracket = bracket in _BRACKET_KEYS
+    if use_bracket:
+        baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()
         )
-        total_runs = _cohort_totals.get(cohort, {}).get("total_runs", 0)
+        total_runs = _bracket_totals.get(bracket, {}).get("total_runs", 0)
     else:
-        cohort = "all"
+        bracket = "all"
         baseline = _type_baseline(entity_type)
         total_runs = _global_totals["total_runs"]
 
@@ -1583,9 +1703,9 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
         # Drop curses/status/event/token cards: not reward-pickable.
         if eid in excluded_cards:
             continue
-        if use_cohort:
-            # Cohort views stay merged (no base/upg split is tracked per cohort).
-            data = (agg.get("cohorts") or {}).get(cohort)
+        if use_bracket:
+            # Bracket views stay merged (no base/upg split is tracked per bracket).
+            data = (agg.get("brackets") or {}).get(bracket)
             if not data:
                 continue
             rows.append(
@@ -1655,7 +1775,7 @@ def get_entity_metrics_table(entity_type: str, cohort: str = "all") -> dict[str,
             )
     return {
         "entity_type": entity_type,
-        "cohort": cohort,
+        "bracket": bracket,
         "baseline_win_rate": round(baseline * 100, 1),
         "total_runs": total_runs,
         "rows": rows,
@@ -1728,6 +1848,35 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     ]
     total_runs = _global_totals["total_runs"]
     baseline = _type_baseline(entity_type)
+    # Per-bracket breakdown for the entity detail page: All + A10 + the win-rate
+    # skill tiers, each with Win%, Codex Elo, picks, and Codex Score (graded
+    # against that bracket's own baseline). Elo is card-reward only, so it's null
+    # for relics/potions and for non-offered cards. Brackets with no data in
+    # this entity are omitted.
+    brackets = agg.get("brackets") or {}
+    brackets: dict[str, Any] = {
+        "all": {
+            "picks": picks,
+            "wins": wins,
+            "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
+            "elo": agg.get("elo"),
+            "score": _compute_score(wins, picks, baseline),
+        }
+    }
+    for ck in ("a10", "wr30", "wr50", "wr75"):
+        cd = brackets.get(ck)
+        if not cd:
+            continue
+        cp = cd.get("picks", 0)
+        cw = cd.get("wins", 0)
+        cbase = _bracket_baselines.get(ck, {}).get(entity_type, _baseline_win_rate())
+        brackets[ck] = {
+            "picks": cp,
+            "wins": cw,
+            "win_rate": round(cw / cp * 100, 1) if cp else 0.0,
+            "elo": cd.get("elo"),
+            "score": _compute_score(cw, cp, cbase),
+        }
     return {
         "entity_type": entity_type,
         "entity_id": entity_id.upper(),
@@ -1738,6 +1887,8 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "total_runs": total_runs,
         "baseline_win_rate": round(baseline * 100, 1),
         "score": _compute_score(wins, picks, baseline),
+        "elo": agg.get("elo"),
+        "brackets": brackets,
         "by_character": by_character,
         "last_submitted_at": agg["last_submitted_at"],
         "last_run_hash": agg["last_run_hash"],

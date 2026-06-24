@@ -263,6 +263,53 @@ def clean_id(raw_id: str) -> str:
     return raw_id
 
 
+# DPS / damage tracking from the mod's live uploads (`_spirecodex_damage`).
+_DMG_INT_FIELDS = ("damage_dealt", "damage_taken", "biggest_hit", "combats", "turns")
+_DMG_MAX = 100_000_000  # clamp: anything past this is bogus, not a real run
+_DMG_BY_CARD_CAP = 100
+
+
+def clean_damage(raw) -> dict | None:
+    """Validate the optional `_spirecodex_damage` blob a live mod upload injects.
+    Returns a normalized sub-doc, or None on any problem — damage is bonus data,
+    so a bad payload must never reject the run (see the backend DPS handoff doc).
+
+    Numbers are unblocked HP damage. by_card is capped to the top 100 by amount,
+    ids run through clean_id, and "other" (non-card sources) is kept as-is."""
+    if not isinstance(raw, dict):
+        return None
+    try:
+        out: dict = {}
+        for f in _DMG_INT_FIELDS:
+            v = raw.get(f)
+            n = (
+                0
+                if (isinstance(v, bool) or not isinstance(v, (int, float)))
+                else int(v)
+            )
+            out[f] = max(0, min(n, _DMG_MAX))
+
+        by_card: dict[str, int] = {}
+        raw_by_card = raw.get("by_card")
+        if isinstance(raw_by_card, dict):
+            cleaned: list[tuple[str, int]] = []
+            for k, v in raw_by_card.items():
+                if not isinstance(k, str) or not k:
+                    continue
+                if isinstance(v, bool) or not isinstance(v, (int, float)):
+                    continue
+                amt = max(0, min(int(v), _DMG_MAX))
+                if amt > 0:
+                    cleaned.append((clean_id(k), amt))
+            cleaned.sort(key=lambda x: x[1], reverse=True)
+            for k, amt in cleaned[:_DMG_BY_CARD_CAP]:
+                by_card[k] = by_card.get(k, 0) + amt
+        out["by_card"] = by_card
+        return out
+    except Exception:
+        return None
+
+
 def init_db():
     """No-op for Mongo (indexes created lazily on first access). Kept for
     import-parity with runs_db.init_db()."""
@@ -490,6 +537,14 @@ def _submit_player_run(
         # we keep the projection narrow to bound doc size.
         "map_point_history": data.get("map_point_history", []),
     }
+
+    # DPS tracking: `_spirecodex_damage` is the whole-run total from the local
+    # player's mod, so attach it only to player 0 (avoids co-op double-counting
+    # in the per-character damage aggregates). Absent / invalid -> no field.
+    if player_idx == 0:
+        dmg = clean_damage(data.get("_spirecodex_damage"))
+        if dmg:
+            doc["damage"] = dmg
 
     coll = _get_collection()
     try:
@@ -1543,6 +1598,7 @@ def leaderboard(
     page: int = 1,
     limit: int = 50,
     ascension_min: int | None = None,
+    winrate_min: float | None = None,
 ) -> dict:
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
 
@@ -1558,8 +1614,14 @@ def leaderboard(
     # Fast path: serve from the materialized summary when the combo is one
     # we materialize (find_one misses otherwise and we fall to live). Docs
     # store 50 rows, so any page-1 request up to that size can be sliced.
-    # An ascension_min filter isn't materialized, so skip straight to live.
-    if ascension_min is None and not today and page == 1 and limit <= 50:
+    # An ascension_min / winrate_min filter isn't materialized, so skip to live.
+    if (
+        ascension_min is None
+        and winrate_min is None
+        and not today
+        and page == 1
+        and limit <= 50
+    ):
         try:
             key = _leaderboard_key(
                 category=category,
@@ -1588,6 +1650,7 @@ def leaderboard(
         page=page,
         limit=limit,
         ascension_min=ascension_min,
+        winrate_min=winrate_min,
     )
 
 
@@ -1600,6 +1663,7 @@ def _leaderboard_live(
     page: int = 1,
     limit: int = 50,
     ascension_min: int | None = None,
+    winrate_min: float | None = None,
 ) -> dict:
     """Live leaderboard query -- the original implementation, used directly
     by refresh_leaderboard_summary and as the fallback when the summary
@@ -1625,6 +1689,16 @@ def _leaderboard_live(
         q["game_mode"] = game_mode
     if ascension_min is not None:
         q["ascension"] = {"$gte": ascension_min}
+    if winrate_min is not None:
+        # Skill bracket: restrict to runs whose submitter's overall win rate
+        # clears the threshold (same per-user map + floor as the browse filter).
+        rates = get_user_winrates()
+        names = [
+            name
+            for name, (total, wins) in rates.items()
+            if total >= WINRATE_MIN_RUNS and (wins / total * 100) >= winrate_min
+        ]
+        q["username"] = {"$in": names}  # empty -> no matches, the correct result
     if today:
         q["seed"] = _today_daily_seed_match()
 
