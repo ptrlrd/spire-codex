@@ -21,6 +21,8 @@ interface BracketStat {
   win_rate: number;
   elo: number | null;
   score: number | null;
+  total_runs: number;
+  pick_rate: number;
 }
 
 interface EntityStats {
@@ -102,6 +104,12 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
   const brackets = stats.brackets ?? {};
   const availableBrackets = CONTENT_BRACKETS.filter((b) => brackets[b.key]);
   const sel = brackets[selectedBracket] ?? brackets["all"];
+  // Pick rate scoped to the selected bracket (picks / runs in that bracket).
+  // Fall back to the global figures for a pre-update API response that lacks
+  // the per-bracket denominator.
+  const selPickRate = sel?.pick_rate ?? stats.pick_rate;
+  const selTotalRuns = sel?.total_runs ?? stats.total_runs;
+  const isAll = selectedBracket === "all";
   const selLabel =
     CONTENT_BRACKETS.find((b) => b.key === selectedBracket)?.label ?? "All";
 
@@ -178,9 +186,9 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
           </>
         ) : (
           <>
-            <strong className="text-[var(--text-primary)]">{stats.win_rate}%</strong> win
-            rate across <strong>{stats.picks.toLocaleString()}</strong> picks
-            {top && (
+            <strong className="text-[var(--text-primary)]">{sel.win_rate}%</strong> win
+            rate across <strong>{sel.picks.toLocaleString()}</strong> picks
+            {top && isAll && (
               <>
                 . Most often taken by{" "}
                 <strong className="text-[var(--text-primary)]">
@@ -214,7 +222,7 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
       {!empty && stats.by_character.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-            Picks by character
+            Picks by character{!isAll ? " (all runs)" : ""}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -262,9 +270,11 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
 
       <p className="text-xs text-[var(--text-muted)]">
         Stats reflect community-submitted runs only and refresh every 30 minutes.
-        {stats.total_runs > 0 && (
+        {selTotalRuns > 0 && (
           <>
-            {" "}Pick rate: <strong>{stats.pick_rate}%</strong> of {stats.total_runs.toLocaleString()} tracked runs.
+            {" "}Pick rate: <strong>{selPickRate}%</strong> of{" "}
+            {selTotalRuns.toLocaleString()}
+            {!isAll ? ` ${selLabel}` : ""} tracked runs.
           </>
         )}
       </p>

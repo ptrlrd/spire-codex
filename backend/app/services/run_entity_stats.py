@@ -1905,6 +1905,11 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
             "elo": agg.get("elo"),
             "score": _compute_score(wins, picks, baseline),
+            # Pick rate within the bracket: picks / runs in that bracket, so the
+            # detail page can re-scope it instead of always dividing by the
+            # global run count.
+            "total_runs": total_runs,
+            "pick_rate": round(picks / total_runs * 100, 1) if total_runs else 0.0,
         }
     }
     for ck in ("a10", "wr30", "wr50", "wr75"):
@@ -1914,12 +1919,15 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         cp = cd.get("picks", 0)
         cw = cd.get("wins", 0)
         cbase = _bracket_baselines.get(ck, {}).get(entity_type, _baseline_win_rate())
+        ctot = _bracket_totals.get(ck, {}).get("total_runs", 0)
         brackets[ck] = {
             "picks": cp,
             "wins": cw,
             "win_rate": round(cw / cp * 100, 1) if cp else 0.0,
             "elo": cd.get("elo"),
             "score": _compute_score(cw, cp, cbase),
+            "total_runs": ctot,
+            "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
         }
     return {
         "entity_type": entity_type,
