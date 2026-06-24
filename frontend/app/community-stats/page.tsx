@@ -4,6 +4,8 @@ import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { RankBars, EventDonut, OPTION_HEX } from "./charts";
+import BracketFilter from "@/app/components/BracketFilter";
+import { normalizeBracket, bracketParam } from "@/lib/content-brackets";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -61,9 +63,12 @@ const SKY = "#38bdf8";
 const ROSE = "#fb7185";
 const GOLD = "#d4a843";
 
-async function fetchStats(): Promise<CommunityStats | null> {
+async function fetchStats(param?: string | null): Promise<CommunityStats | null> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/runs/community-stats`, { next: { revalidate: 300 } });
+    const qs = param ? `?bracket=${param}` : "";
+    const res = await fetch(`${API_INTERNAL}/api/runs/community-stats${qs}`, {
+      next: { revalidate: 300 },
+    });
     if (!res.ok) return null;
     return (await res.json()) as CommunityStats;
   } catch {
@@ -100,20 +105,27 @@ function RecordCard({ label, value, hash }: { label: string; value: string; hash
   return hash ? <Link href={`/runs/${hash}`}>{body}</Link> : body;
 }
 
-function Empty({ jsonLd }: { jsonLd: object[] }) {
+function Empty({ jsonLd, current }: { jsonLd: object[]; current: string }) {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2"><span className="text-[var(--accent-gold)]">Community Stats</span></h1>
+      <BracketFilter basePath="/community-stats" current={current} />
       <p className="text-sm text-[var(--text-muted)]">
-        No data yet. Stats build from community-submitted runs, <Link href="/leaderboards/submit" className="text-[var(--accent-gold)] hover:underline">submit a run</Link> to seed them.
+        No data for this bracket yet. Stats build from community-submitted runs, <Link href="/leaderboards/submit" className="text-[var(--accent-gold)] hover:underline">submit a run</Link> to seed them.
       </p>
     </div>
   );
 }
 
-export default async function CommunityStatsPage() {
-  const stats = await fetchStats();
+export default async function CommunityStatsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ bracket?: string }>;
+}) {
+  const sp = await searchParams;
+  const bracket = normalizeBracket(sp.bracket);
+  const stats = await fetchStats(bracketParam(bracket));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -128,7 +140,7 @@ export default async function CommunityStatsPage() {
     }),
   ];
 
-  if (!stats || stats.total_runs === 0) return <Empty jsonLd={jsonLd} />;
+  if (!stats || stats.total_runs === 0) return <Empty jsonLd={jsonLd} current={bracket} />;
 
   const { records } = stats;
   const rankPct = (rows: Ranked[]) =>
@@ -147,6 +159,9 @@ export default async function CommunityStatsPage() {
         How the community actually plays <em>Slay the Spire 2</em>, drawn from {stats.total_runs.toLocaleString()} submitted runs.
         A naive snapshot of the data, not a verdict on what is correct.
       </p>
+
+      {/* Content bracket: slice every dataset below by skill. */}
+      <BracketFilter basePath="/community-stats" current={bracket} />
 
       {/* Headline numbers */}
       <section className="mb-10">

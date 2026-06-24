@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { CONTENT_BRACKETS } from "@/lib/content-brackets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -66,6 +67,7 @@ export default function EncounterStatsClient() {
   const [acts, setActs] = useState<Set<number>>(new Set());
   const [roomTypes, setRoomTypes] = useState<Set<string>>(new Set());
   const [multiplayer, setMultiplayer] = useState<"any" | "only" | "exclude">("any");
+  const [bracket, setBracket] = useState("all");
   const [page, setPage] = useState(1);
 
   const [data, setData] = useState<EncounterResponse | null>(null);
@@ -94,6 +96,7 @@ export default function EncounterStatsClient() {
     if (acts.size) params.set("act", Array.from(acts).join(","));
     if (roomTypes.size) params.set("room_type", Array.from(roomTypes).join(","));
     if (multiplayer !== "any") params.set("multiplayer", multiplayer);
+    if (bracket !== "all") params.set("bracket", bracket);
     params.set("page", String(page));
     params.set("limit", "50");
     fetch(`${API}/api/runs/encounter-stats?${params}`)
@@ -101,13 +104,13 @@ export default function EncounterStatsClient() {
       .then((d: EncounterResponse) => setData(d))
       .catch(() => setData({ encounters: [], page, limit: 50, total: 0, has_next: false }))
       .finally(() => setLoading(false));
-  }, [acts, roomTypes, multiplayer, page]);
+  }, [acts, roomTypes, multiplayer, bracket, page]);
 
   // Reset to page 1 whenever the filter set changes, paging through a
   // previous query's results after a filter change would be confusing.
   useEffect(() => {
     setPage(1);
-  }, [acts, roomTypes, multiplayer]);
+  }, [acts, roomTypes, multiplayer, bracket]);
 
   const totalPages = useMemo(() => {
     if (!data) return 1;
@@ -202,6 +205,26 @@ export default function EncounterStatsClient() {
                 }`}
               >
                 {labels[m]}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm text-[var(--text-muted)] w-20">Bracket:</span>
+          {CONTENT_BRACKETS.map((b) => {
+            const active = bracket === b.key;
+            return (
+              <button
+                key={b.key}
+                onClick={() => setBracket(b.key)}
+                className={`px-3 py-1 rounded-md text-sm border transition-colors ${
+                  active
+                    ? "border-[var(--accent-gold)] text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
+                    : "border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50"
+                }`}
+              >
+                {b.label}
               </button>
             );
           })}
