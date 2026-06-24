@@ -1853,7 +1853,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     # against that bracket's own baseline). Elo is card-reward only, so it's null
     # for relics/potions and for non-offered cards. Brackets with no data in
     # this entity are omitted.
-    brackets = agg.get("brackets") or {}
+    agg_brackets = agg.get("brackets") or {}
     brackets: dict[str, Any] = {
         "all": {
             "picks": picks,
@@ -1864,7 +1864,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         }
     }
     for ck in ("a10", "wr30", "wr50", "wr75"):
-        cd = brackets.get(ck)
+        cd = agg_brackets.get(ck)
         if not cd:
             continue
         cp = cd.get("picks", 0)
