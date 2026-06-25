@@ -142,6 +142,11 @@ def _run_extra_brackets(player_count: int, ascension: int, game_mode: str) -> li
 # filter. Anonymous / below-floor submitters resolve to None -> no wr bracket.
 _WR_TIERS = (("wr30", 0.30), ("wr50", 0.50), ("wr75", 0.75))
 
+# Brackets whose per-entity data also carries a per-character split (so the
+# entity detail page's character table can re-slice by bracket). Only the tiers
+# the page actually shows, to keep the other brackets' snapshot data lean.
+_CHAR_BRACKETS = ("a10", "wr30", "wr50", "wr75")
+
 
 def _winrate_brackets(ascension: int, winrate: float | None) -> list[str]:
     """wrNN bracket keys a single run belongs to, given its submitter's overall
@@ -181,7 +186,9 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Version 9 makes the community and encounter blobs per-bracket (like charts) and
 # moves each to its own snapshot doc; the loader falls back to the old inline
 # __meta__ fields and to a flat blob for a pre-v9 snapshot.
-SNAPSHOT_VERSION = 9
+# Version 10 adds a per-character split to each entity's win-rate/A10 bracket data
+# so the detail page's character table re-slices by bracket (additive).
+SNAPSHOT_VERSION = 10
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -936,6 +943,8 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 agg["last_run_hash"] = run_hash
 
             # Deck membership for each matched bracket (lighter: picks/wins).
+            # For the win-rate / A10 tiers the detail page shows, also keep a
+            # per-character split so its character table can re-slice by bracket.
             for ck in extra_brackets:
                 cagg = bracket_accs[ck]["cache"].setdefault(
                     entity, {"picks": 0, "wins": 0}
@@ -943,6 +952,13 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 cagg["picks"] += 1
                 if is_win:
                     cagg["wins"] += 1
+                if ck in _CHAR_BRACKETS:
+                    cch = cagg.setdefault("by_character", {}).setdefault(
+                        character, {"picks": 0, "wins": 0}
+                    )
+                    cch["picks"] += 1
+                    if is_win:
+                        cch["wins"] += 1
 
         # Base vs upgraded deck membership, so the metrics table can split
         # each card into its base and "+" rows. The merged picks/wins above
@@ -1117,6 +1133,8 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "off_act": cagg.get("off_act", [0] * _ACT_BUCKETS),
                 "pick_act": cagg.get("pick_act", [0] * _ACT_BUCKETS),
                 "elo": cagg.get("elo"),
+                # Per-character split for the char-brackets (empty otherwise).
+                "by_character": cagg.get("by_character", {}),
             }
     bracket_meta = {
         "baselines": bracket_baselines,
@@ -1875,21 +1893,25 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         return None
     picks = agg["picks"]
     wins = agg["wins"]
-    by_character = [
-        {
-            "character": ch,
-            "picks": stats["picks"],
-            "wins": stats["wins"],
-            "win_rate": round(stats["wins"] / stats["picks"] * 100, 1)
-            if stats["picks"]
-            else 0.0,
-        }
-        for ch, stats in sorted(
-            agg["by_character"].items(),
-            key=lambda kv: kv[1]["picks"],
-            reverse=True,
-        )
-    ]
+
+    def _shape_chars(char_map: dict) -> list[dict]:
+        return [
+            {
+                "character": ch,
+                "picks": s["picks"],
+                "wins": s["wins"],
+                "win_rate": round(s["wins"] / s["picks"] * 100, 1)
+                if s["picks"]
+                else 0.0,
+            }
+            for ch, s in sorted(
+                (char_map or {}).items(),
+                key=lambda kv: kv[1]["picks"],
+                reverse=True,
+            )
+        ]
+
+    by_character = _shape_chars(agg["by_character"])
     total_runs = _global_totals["total_runs"]
     baseline = _type_baseline(entity_type)
     # Per-bracket breakdown for the entity detail page: All + A10 + the win-rate
@@ -1910,6 +1932,8 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             # global run count.
             "total_runs": total_runs,
             "pick_rate": round(picks / total_runs * 100, 1) if total_runs else 0.0,
+            # "All" reuses the global per-character split.
+            "by_character": by_character,
         }
     }
     for ck in ("a10", "wr30", "wr50", "wr75"):
@@ -1928,6 +1952,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             "score": _compute_score(cw, cp, cbase),
             "total_runs": ctot,
             "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
+            "by_character": _shape_chars(cd.get("by_character")),
         }
     return {
         "entity_type": entity_type,

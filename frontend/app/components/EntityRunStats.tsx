@@ -23,6 +23,7 @@ interface BracketStat {
   score: number | null;
   total_runs: number;
   pick_rate: number;
+  by_character?: CharacterRow[];
 }
 
 interface EntityStats {
@@ -95,20 +96,20 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
   }
 
   const empty = stats.picks === 0;
-  const top = stats.by_character[0];
   const last = relativeTime(stats.last_submitted_at);
-  const maxCharPicks = top?.picks ?? 0;
 
   // Bracket sub-menu: only the brackets with data for this entity. Selecting
-  // one re-scopes the headline stats below to that bracket's numbers.
+  // one re-scopes the headline stats AND the per-character table below.
   const brackets = stats.brackets ?? {};
   const availableBrackets = CONTENT_BRACKETS.filter((b) => brackets[b.key]);
   const sel = brackets[selectedBracket] ?? brackets["all"];
-  // Pick rate scoped to the selected bracket (picks / runs in that bracket).
-  // Fall back to the global figures for a pre-update API response that lacks
-  // the per-bracket denominator.
+  // Everything below scopes to the selected bracket, with a fall back to the
+  // global figures for a pre-update API response that lacks the per-bracket data.
   const selPickRate = sel?.pick_rate ?? stats.pick_rate;
   const selTotalRuns = sel?.total_runs ?? stats.total_runs;
+  const selByChar = sel?.by_character ?? stats.by_character;
+  const top = selByChar[0];
+  const maxCharPicks = top?.picks ?? 0;
   const isAll = selectedBracket === "all";
   const selLabel =
     CONTENT_BRACKETS.find((b) => b.key === selectedBracket)?.label ?? "All";
@@ -188,14 +189,14 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
           <>
             <strong className="text-[var(--text-primary)]">{sel.win_rate}%</strong> win
             rate across <strong>{sel.picks.toLocaleString()}</strong> picks
-            {top && isAll && (
+            {top && (
               <>
                 . Most often taken by{" "}
                 <strong className="text-[var(--text-primary)]">
                   {characterPretty(top.character)}
                 </strong>{" "}
                 players ({top.picks.toLocaleString()} picks ·{" "}
-                {Math.round((top.picks / stats.picks) * 100)}% share)
+                {Math.round((top.picks / sel.picks) * 100)}% share)
               </>
             )}
             . Last picked <strong>{last}</strong>
@@ -219,10 +220,10 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
       </p>
 
       {/* Per-character breakdown table, hidden when empty. */}
-      {!empty && stats.by_character.length > 0 && (
+      {!empty && selByChar.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-            Picks by character{!isAll ? " (all runs)" : ""}
+            Picks by character{!isAll ? ` · ${selLabel}` : ""}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
@@ -235,7 +236,7 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
                 </tr>
               </thead>
               <tbody>
-                {stats.by_character.map((row) => {
+                {selByChar.map((row) => {
                   const pct = maxCharPicks ? (row.picks / maxCharPicks) * 100 : 0;
                   return (
                     <tr
