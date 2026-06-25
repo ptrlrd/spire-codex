@@ -906,7 +906,6 @@ def get_stats(
                 }
             },
             {"$sort": {"offered": -1}},
-            {"$limit": 600},
         ]
     )
 
