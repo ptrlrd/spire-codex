@@ -10,8 +10,20 @@ import RichDescription from "@/app/components/RichDescription";
 import { fullCardUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
+import { CONTENT_BRACKETS, bracketParam } from "@/lib/content-brackets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+// One entity's per-bracket slice from /api/runs/scores/{type}?bracket=. Used
+// when a content bracket is active, in place of the get_stats top-N lists.
+interface BracketScore {
+  score: number | null;
+  elo: number | null;
+  picks: number;
+  wins: number;
+  win_rate: number;
+  pick_rate: number;
+}
 
 const CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] as const;
 
@@ -262,6 +274,17 @@ export default function StatsClient() {
   // the full population.
   const [players, setPlayers] = useState<"" | "single" | "multi">("");
 
+  // Content bracket (All / A10 / A10 >X% WR). When set to anything but "all",
+  // the card/relic/potion tabs source from the entity-score snapshot
+  // (/api/runs/scores) instead of get_stats, since the win-rate brackets only
+  // exist there. That snapshot is a self-contained skill slice, so the other
+  // filters (character/win/ascension/players) don't apply while it's active.
+  const [bracket, setBracket] = useState("all");
+  const [bracketScores, setBracketScores] = useState<
+    Record<EntityKind, Record<string, BracketScore>> | null
+  >(null);
+  const bracketActive = bracket !== "all";
+
   // Tabs
   const [tab, setTab] = useState<TopTab>("overview");
 
@@ -378,12 +401,65 @@ export default function StatsClient() {
       .finally(() => setLoading(false));
   }, [character, winFilter, ascension, players]);
 
+  // Per-bracket entity scores, fetched only when a bracket is active. The
+  // snapshot ignores the other filters, so this depends on `bracket` alone.
+  useEffect(() => {
+    const param = bracketParam(bracket);
+    if (!param) {
+      setBracketScores(null);
+      return;
+    }
+    let cancelled = false;
+    Promise.all([
+      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/cards?bracket=${param}`),
+      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/relics?bracket=${param}`),
+      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/potions?bracket=${param}`),
+    ])
+      .then(([card, relic, potion]) => {
+        if (!cancelled) setBracketScores({ card, relic, potion });
+      })
+      .catch(() => {
+        if (!cancelled) setBracketScores(null);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [bracket]);
+
   // One API for both channels now: beta entities' art serves from the main
   // backend/CDN since the beta site merged into the main deployment.
   const imgBaseFor = (_id: string) => API;
 
   // Build combined card table
   const cardRows = useMemo(() => {
+    if (bracketActive) {
+      const bs = bracketScores?.card;
+      if (!bs) return [];
+      return Object.keys(bs)
+        .filter((id) => cardData[id])
+        .map((id) => {
+          const s = bs[id];
+          const info = cardData[id];
+          return {
+            id,
+            name: info?.name || displayName(`CARD.${id}`),
+            type: info?.type || "",
+            rarity: info?.rarity || "",
+            cost: info?.cost ?? -99,
+            color: info?.color || "",
+            image_url: info?.image_url || null,
+            description: info?.description || "",
+            offered: 0,
+            picked: 0,
+            pick_rate: s.pick_rate ?? 0,
+            count: s.picks ?? 0,
+            win_runs: s.wins ?? 0,
+            total_runs_with: s.picks ?? 0,
+            win_pct: s.win_rate ?? 0,
+            elo: s.elo ?? null,
+          };
+        });
+    }
     if (!stats || stats.total_runs === 0) return [];
     const pickMap = new Map((stats.pick_rates || []).map((p) => [p.card_id, p]));
     const deckMap = new Map((stats.top_cards || []).map((c) => [c.card_id, c]));
@@ -421,7 +497,7 @@ export default function StatsClient() {
       };
     });
     return rows;
-  }, [stats, cardData, eloMap]);
+  }, [stats, cardData, eloMap, bracketActive, bracketScores]);
 
   const cardTypes = useMemo(() => {
     const s = new Set<string>();
@@ -461,6 +537,28 @@ export default function StatsClient() {
 
   // Relics
   const relicRows = useMemo(() => {
+    if (bracketActive) {
+      const bs = bracketScores?.relic;
+      if (!bs) return [];
+      return Object.keys(bs)
+        .filter((id) => relicData[id])
+        .map((id) => {
+          const s = bs[id];
+          const info = relicData[id];
+          return {
+            id,
+            name: info?.name || displayName(`RELIC.${id}`),
+            rarity: info?.rarity || "",
+            image_url: info?.image_url || null,
+            description: info?.description || "",
+            count: s.picks ?? 0,
+            total_runs_with: s.picks ?? 0,
+            win_runs: s.wins ?? 0,
+            pick_rate: s.pick_rate ?? 0,
+            win_pct: s.win_rate ?? 0,
+          };
+        });
+    }
     if (!stats || stats.total_runs === 0) return [];
     // Official relics only (drop modded relic ids not in the game data).
     return (stats.top_relics || [])
@@ -484,7 +582,7 @@ export default function StatsClient() {
         win_pct: winPct,
       };
     });
-  }, [stats, relicData]);
+  }, [stats, relicData, bracketActive, bracketScores]);
 
   const relicRarities = useMemo(() => {
     const s = new Set<string>();
@@ -508,6 +606,31 @@ export default function StatsClient() {
 
   // Potions
   const potionRows = useMemo(() => {
+    if (bracketActive) {
+      const bs = bracketScores?.potion;
+      if (!bs) return [];
+      return Object.keys(bs)
+        .filter((id) => potionData[id])
+        .map((id) => {
+          const s = bs[id];
+          const info = potionData[id];
+          return {
+            id,
+            name: info?.name || displayName(`POTION.${id}`),
+            rarity: info?.rarity || "",
+            image_url: info?.image_url || null,
+            description: info?.description || "",
+            offered: 0,
+            picked: 0,
+            used: 0,
+            total_runs_with: s.picks ?? 0,
+            win_runs: s.wins ?? 0,
+            pick_rate: s.pick_rate ?? 0,
+            use_rate: 0,
+            win_pct: s.win_rate ?? 0,
+          };
+        });
+    }
     if (!stats || stats.total_runs === 0) return [];
     // Official potions only (drop modded potion ids not in the game data).
     return (stats.top_potions || [])
@@ -534,7 +657,7 @@ export default function StatsClient() {
         win_pct: winPct,
       };
     });
-  }, [stats, potionData]);
+  }, [stats, potionData, bracketActive, bracketScores]);
 
   const potionRarities = useMemo(() => {
     const s = new Set<string>();
@@ -613,6 +736,35 @@ export default function StatsClient() {
         ))}
       </div>
 
+      {/* Content bracket selector. When set past "All" the card/relic/potion
+          tabs source from the entity-score snapshot (the only place the
+          win-rate brackets exist), and the filters below grey out. */}
+      <div className="flex flex-wrap items-center gap-1.5 mb-4">
+        <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
+        {CONTENT_BRACKETS.map((b) => {
+          const isActive = bracket === b.key;
+          return (
+            <button
+              key={b.key}
+              type="button"
+              onClick={() => setBracket(b.key)}
+              className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
+                isActive
+                  ? "bg-[var(--accent-gold)]/10 border-[var(--accent-gold)]/40 text-[var(--accent-gold)]"
+                  : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
+              }`}
+            >
+              {b.label}
+            </button>
+          );
+        })}
+        {bracketActive && (
+          <span className="text-xs text-[var(--text-muted)] ml-1">
+            Card / relic / potion tabs only; the filters below don&apos;t apply.
+          </span>
+        )}
+      </div>
+
       {/* Player-mode toggle, visually identical to LeaderboardBrowseClient's
           mode pills (same wrapper, padding, colors) so the two pages
           read as one design language. "All" is the default here
@@ -620,7 +772,11 @@ export default function StatsClient() {
           narrowed; leaderboards default to "single" because rankings
           across SP/MP pools aren't comparable. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
-        <div className="inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+        <div
+          className={`inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]${
+            bracketActive ? " opacity-40 pointer-events-none" : ""
+          }`}
+        >
           {([
             { value: "" as const, label: t("All", lang) },
             { value: "single" as const, label: t("Single Player", lang) },
@@ -646,7 +802,8 @@ export default function StatsClient() {
         <select
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
-          className={selectClass}
+          disabled={bracketActive}
+          className={`${selectClass}${bracketActive ? " opacity-40 pointer-events-none" : ""}`}
           style={{
             borderColor: character ? characterHex(character) : undefined,
           }}
@@ -661,7 +818,8 @@ export default function StatsClient() {
         <select
           value={ascension}
           onChange={(e) => setAscension(e.target.value)}
-          className={selectClass}
+          disabled={bracketActive}
+          className={`${selectClass}${bracketActive ? " opacity-40 pointer-events-none" : ""}`}
         >
           <option value="">All Ascensions</option>
           {Array.from({ length: 11 }, (_, i) => (
@@ -673,7 +831,8 @@ export default function StatsClient() {
         <select
           value={winFilter}
           onChange={(e) => setWinFilter(e.target.value)}
-          className={selectClass}
+          disabled={bracketActive}
+          className={`${selectClass}${bracketActive ? " opacity-40 pointer-events-none" : ""}`}
         >
           <option value="">{t("All", lang)}</option>
           <option value="true">{t("Wins", lang)}</option>

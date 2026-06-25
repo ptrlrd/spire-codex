@@ -1620,6 +1620,7 @@ def get_all_entity_scores(
         c_baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()
         )
+        btot = _bracket_totals.get(bracket, {}).get("total_runs", 0)
         bracket_out: dict[str, dict[str, Any]] = {}
         for (etype, eid), agg in _cache.items():
             if etype != entity_type or eid in excluded:
@@ -1635,6 +1636,9 @@ def get_all_entity_scores(
                 "picks": cpicks,
                 "wins": cwins,
                 "win_rate": round(cwins / cpicks * 100, 1) if cpicks else 0.0,
+                # Inclusion pick rate within the bracket (picks / runs in it), so
+                # the stats page's bracket view can show a Pick% column.
+                "pick_rate": round(cpicks / btot * 100, 1) if btot else 0.0,
             }
         return bracket_out
     out: dict[str, dict[str, Any]] = {}
