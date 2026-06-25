@@ -66,11 +66,13 @@ function TickerRow({
   cat,
   monsters,
   lp,
+  won,
 }: {
   e: LiveEvent;
   cat: Catalogs;
   monsters: MonsterMap;
   lp: string;
+  won?: string;
 }) {
   let icon: React.ReactNode = null;
   let body: React.ReactNode;
@@ -227,7 +229,11 @@ function TickerRow({
       );
       break;
     case "victory":
-      body = <span className="text-emerald-300">Won the fight</span>;
+      body = (
+        <span className="text-emerald-300">
+          {won ? `Won the fight against ${monsterName(won, monsters)}` : "Won the fight"}
+        </span>
+      );
       break;
     case "death":
       body = <span className="text-rose-400 font-semibold">Died</span>;
@@ -368,8 +374,16 @@ export default function LivePlayerClient() {
   const eventKeys = withOrdinalKeys(
     rawEvents.map((e) => `${e.k}|${e.v ?? ""}|${e.turn ?? ""}|${e.t ?? 0}`),
   );
+  // The "victory" beat carries no enemy id, so tag each win with the monster
+  // from the most recent preceding "combat" beat (append order). Degrades to a
+  // plain "Won the fight" if that beat has rolled off the window.
+  let lastFightMonster: string | undefined;
+  const wonAgainst = rawEvents.map((e) => {
+    if (e.k === "combat" && e.v) lastFightMonster = e.v;
+    return e.k === "victory" ? e.v || lastFightMonster : undefined;
+  });
   const events = rawEvents
-    .map((e, i) => ({ e, key: eventKeys[i].key }))
+    .map((e, i) => ({ e, key: eventKeys[i].key, won: wonAgainst[i] }))
     .reverse();
   // Group identical deck entries (STRIKE vs STRIKE+ stay distinct) in
   // acquisition order of first appearance.
@@ -503,8 +517,8 @@ export default function LivePlayerClient() {
             </p>
           ) : (
             <ul>
-              {events.map(({ e, key }) => (
-                <TickerRow key={key} e={e} cat={cat} monsters={monsters} lp={lp} />
+              {events.map(({ e, key, won }) => (
+                <TickerRow key={key} e={e} cat={cat} monsters={monsters} lp={lp} won={won} />
               ))}
             </ul>
           )}

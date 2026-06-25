@@ -313,19 +313,30 @@ export function FightingChip({
   circle?: string;
 }) {
   if (p.screen !== "combat" || !p.fighting?.length) return null;
-  const names = p.fighting.map((id) => monsterName(id, monsters));
+  // Merge identical enemies (a multi-segment foe like Decimillipede arrives as
+  // the same id repeated) into one entry with a count, so the chip stays short.
+  const groups: { id: string; count: number }[] = [];
+  for (const id of p.fighting) {
+    const g = groups.find((x) => x.id === id);
+    if (g) g.count += 1;
+    else groups.push({ id, count: 1 });
+  }
+  const names = groups.map((g) => {
+    const n = monsterName(g.id, monsters);
+    return g.count > 1 ? `${n} ×${g.count}` : n;
+  });
   const label =
     names.length <= 2 ? names.join(" & ") : `${names[0]} +${names.length - 1}`;
   return (
-    <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-full bg-rose-950/50 border border-rose-900/50 text-xs text-rose-200">
-      <span className="flex -space-x-2">
-        {withOrdinalKeys(p.fighting.slice(0, 3)).map(({ item, key }) => (
+    <span className="inline-flex min-w-0 max-w-full items-center gap-1.5 px-2 py-1 rounded-full bg-rose-950/50 border border-rose-900/50 text-xs text-rose-200">
+      <span className="flex -space-x-2 shrink-0">
+        {withOrdinalKeys(groups.slice(0, 3).map((g) => g.id)).map(({ item, key }) => (
           <EnemyCircle key={key} id={item} monsters={monsters} className={circle} />
         ))}
       </span>
-      <span className="truncate">Fighting {label}</span>
+      <span className="min-w-0 truncate">Fighting {label}</span>
       {p.turn != null && p.turn > 0 && (
-        <span className="text-rose-400/80 whitespace-nowrap">· Turn {p.turn}</span>
+        <span className="text-rose-400/80 whitespace-nowrap shrink-0">· Turn {p.turn}</span>
       )}
     </span>
   );

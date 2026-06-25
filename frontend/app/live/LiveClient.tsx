@@ -108,7 +108,7 @@ function PlayerCard({
         </div>
       </div>
 
-      <div className="mt-2 flex items-center gap-2">
+      <div className="mt-2 flex flex-wrap items-center gap-2">
         <FightingChip p={p} monsters={monsters} />
         {p.twitch_live && p.twitch_login && (
           <WatchOnTwitch

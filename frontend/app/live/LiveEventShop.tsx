@@ -1,12 +1,14 @@
 "use client";
 
 // Live current-screen detail (v4): what the player sees on the event and shop
-// screens. The event text is already localized by the mod, so it renders as-is.
+// screens. Event text is localized by the mod and carries the game's BBCode
+// tags ([gold]/[sine]/[jitter]/...), rendered via RichDescriptionSimple.
 // Shop item ids resolve to names/images through the run-page pills (hover shows
 // the full card / relic tooltip). Contract: markdown-docs/live-presence.md (v4).
 
 import Link from "next/link";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { RichDescriptionSimple } from "@/app/components/RichDescription";
 import {
   CardPill,
   PotionPill,
@@ -51,7 +53,7 @@ export function LiveEventPanel({ ev, lp }: { ev: LiveEventCtx; lp: string }) {
       </div>
       {ev.prompt && (
         <p className="text-sm text-[var(--text-secondary)] whitespace-pre-line mb-3 leading-relaxed">
-          {ev.prompt}
+          <RichDescriptionSimple text={ev.prompt} />
         </p>
       )}
       {(ev.options?.length ?? 0) > 0 && (
@@ -75,7 +77,7 @@ export function LiveEventPanel({ ev, lp }: { ev: LiveEventCtx; lp: string }) {
                     {o.chosen ? "✓" : disabled ? "\u{1F512}" : "•"}
                   </span>
                   <span className={`min-w-0 flex-1 ${disabled ? "line-through" : ""}`}>
-                    {o.text || o.key || "(option)"}
+                    {o.text ? <RichDescriptionSimple text={o.text} /> : o.key || "(option)"}
                   </span>
                   {o.proceed && !o.chosen && (
                     <span className="text-[10px] text-[var(--text-muted)] shrink-0">leave</span>

@@ -403,7 +403,7 @@ function WordTooltip({ word, info, children }: { word: string; info: Interactive
 }
 
 /** Simple renderer without interactive words (for tooltips to avoid infinite recursion) */
-function RichDescriptionSimple({ text }: { text: string }) {
+export function RichDescriptionSimple({ text }: { text: string }) {
   keyCounter = 0;
   const cleaned = cleanTemplateVars(text);
   const tokens = tokenize(cleaned);
