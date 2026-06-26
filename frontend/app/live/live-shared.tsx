@@ -178,6 +178,7 @@ export interface LivePlayer {
   player_powers?: LivePower[];
   loot?: LiveLoot | null;
   route?: LiveRoute | null;
+  reveals?: Reveal[];
   players?: LiveSeat[];
   run_time?: number | null;
   modifiers?: string[];
@@ -198,6 +199,18 @@ export interface MonsterInfo {
 }
 
 export type MonsterMap = Record<string, MonsterInfo>;
+
+/** A per-node map reveal: [col, row, resolved room_type, encounter/event id|null]
+ * for a visited node. Same coord space as the map nodes; grows as the player walks. */
+export type Reveal = [number, number, string, string | null];
+
+export interface EncounterInfo {
+  id: string;
+  name?: string;
+  monsters?: { id: string; name?: string }[];
+}
+
+export type EncounterMap = Record<string, EncounterInfo>;
 
 export function elapsed(startedAt?: string | null): string {
   if (!startedAt) return "";
@@ -325,6 +338,24 @@ export function useMonsterMap(enabled: boolean): MonsterMap {
       .then((monsters) => {
         const m: MonsterMap = {};
         for (const x of monsters) m[x.id] = x;
+        setMap(m);
+      })
+      .catch(() => {});
+  }, [enabled, lang]);
+  return map;
+}
+
+/** Lazy encounter id -> {name, monsters} map, for resolving a map reveal's
+ * encounter id to a representative monster portrait. Fetches once enabled. */
+export function useEncounterMap(enabled: boolean): EncounterMap {
+  const { lang } = useLanguage();
+  const [map, setMap] = useState<EncounterMap>({});
+  useEffect(() => {
+    if (!enabled) return;
+    cachedFetch<EncounterInfo[]>(`${API}/api/encounters?lang=${lang}`)
+      .then((encs) => {
+        const m: EncounterMap = {};
+        for (const x of encs) m[x.id] = x;
         setMap(m);
       })
       .catch(() => {});

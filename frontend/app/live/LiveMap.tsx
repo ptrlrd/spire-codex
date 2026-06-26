@@ -7,8 +7,23 @@
 // Coordinates are the game's own grid: row is act depth (0 = act start),
 // col is horizontal lane. We render row 0 at the bottom so it reads like
 // the in-game map (climb upward toward the boss).
+//
+// Enemy portraits in the circles: the boss/ancient are knowable ahead (joined
+// from route.boss/route.ancient), and every other circle fills in as the player
+// walks via the `reveals` array (the actual resolved room type + encounter id),
+// resolved encounter -> representative monster -> portrait. The game binds an
+// encounter to a node only on entry, so an unvisited node's enemy is genuinely
+// unknowable; unrevealed nodes keep the type glyph.
 
-import type { Coord, LiveMapData } from "./live-shared";
+import { imageUrl } from "@/lib/image-url";
+import type {
+  Coord,
+  EncounterMap,
+  LiveMapData,
+  LiveRoute,
+  MonsterMap,
+  Reveal,
+} from "./live-shared";
 
 // Per-node-type styling. Types arrive lowercase; an unrecognized type falls
 // back to the neutral "node" entry so a new map symbol never breaks rendering.
@@ -42,10 +57,18 @@ export default function LiveMap({
   map,
   path,
   pos,
+  reveals,
+  route,
+  monsters,
+  encounters,
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
   pos?: Coord | null;
+  reveals?: Reveal[];
+  route?: LiveRoute | null;
+  monsters?: MonsterMap;
+  encounters?: EncounterMap;
 }) {
   const nodes = map?.nodes ?? [];
   if (!nodes.length) return null;
@@ -64,6 +87,44 @@ export default function LiveMap({
   const isPos = (c: number, r: number) => !!pos && pos[0] === c && pos[1] === r;
 
   const edges = map?.edges ?? [];
+
+  // (col,row) -> [col, row, resolved room_type, encounter id|null] for visited nodes.
+  const revealMap = new Map<string, Reveal>();
+  for (const rv of reveals ?? []) revealMap.set(key(rv[0], rv[1]), rv);
+
+  // The portrait for a node, or null to fall back to the type glyph: a visited
+  // node resolves encounter -> first monster -> image; the boss/ancient resolve
+  // from route (knowable from the start).
+  function portraitFor(c: number, r: number, baseType: string): string | null {
+    const rv = revealMap.get(key(c, r));
+    if (rv && rv[3]) {
+      const monId = encounters?.[rv[3]]?.monsters?.[0]?.id;
+      if (monId) {
+        const info = monsters?.[monId];
+        return info?.image_url
+          ? imageUrl(info.image_url)
+          : imageUrl(`/static/images/monsters/${monId.toLowerCase()}.webp`);
+      }
+      return null; // shop/rest/treasure/event reveal: no portrait, keep glyph
+    }
+    if (baseType === "boss" && route?.boss?.id) {
+      return imageUrl(`/static/images/misc/bosses/${route.boss.id.toLowerCase()}.png`);
+    }
+    if (baseType === "ancient" && route?.ancient?.id) {
+      return imageUrl(`/static/images/misc/ancients/${route.ancient.id.toLowerCase()}.png`);
+    }
+    return null;
+  }
+
+  function titleFor(c: number, r: number, baseType: string, effType: string): string {
+    const rv = revealMap.get(key(c, r));
+    if (rv && rv[3]) return encounters?.[rv[3]]?.name || rv[3];
+    if (baseType === "boss" && route?.boss) return route.boss.name || route.boss.id || "Boss";
+    if (baseType === "ancient" && route?.ancient) {
+      return route.ancient.name || route.ancient.id || "Ancient";
+    }
+    return effType;
+  }
 
   return (
     <div className="overflow-auto">
@@ -91,9 +152,13 @@ export default function LiveMap({
           );
         })}
         {nodes.map(([c, r, type]) => {
-          const s = styleFor(type);
+          const rv = revealMap.get(key(c, r));
+          const effType = (rv && rv[2]) || type; // a `?` node shows what it became
+          const s = styleFor(effType);
           const here = isPos(c, r);
           const seen = onPath(c, r);
+          const portrait = portraitFor(c, r, type);
+          const dim = !(seen || here);
           return (
             <g key={`n-${c}-${r}`}>
               {here && (
@@ -102,29 +167,57 @@ export default function LiveMap({
                   <animate attributeName="stroke-opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite" />
                 </circle>
               )}
-              <circle
-                cx={x(c)}
-                cy={y(r)}
-                r={R}
-                fill={s.fill}
-                stroke={seen ? "var(--accent-gold)" : s.ring}
-                strokeWidth={seen ? 2 : 1}
-                fillOpacity={seen || here ? 1 : 0.55}
-              />
-              {s.glyph && (
-                <text
-                  x={x(c)}
-                  y={y(r) + 3}
-                  textAnchor="middle"
-                  fontSize="9"
-                  fontWeight="bold"
-                  fill="#1a1a1a"
-                  pointerEvents="none"
-                >
-                  {s.glyph}
-                </text>
+              {portrait ? (
+                <>
+                  <clipPath id={`lm-${c}-${r}`}>
+                    <circle cx={x(c)} cy={y(r)} r={R} />
+                  </clipPath>
+                  <image
+                    href={portrait}
+                    x={x(c) - R}
+                    y={y(r) - R}
+                    width={R * 2}
+                    height={R * 2}
+                    clipPath={`url(#lm-${c}-${r})`}
+                    preserveAspectRatio="xMidYMid slice"
+                    opacity={dim ? 0.55 : 1}
+                  />
+                  <circle
+                    cx={x(c)}
+                    cy={y(r)}
+                    r={R}
+                    fill="none"
+                    stroke={seen ? "var(--accent-gold)" : s.ring}
+                    strokeWidth={seen ? 2 : 1}
+                  />
+                </>
+              ) : (
+                <>
+                  <circle
+                    cx={x(c)}
+                    cy={y(r)}
+                    r={R}
+                    fill={s.fill}
+                    stroke={seen ? "var(--accent-gold)" : s.ring}
+                    strokeWidth={seen ? 2 : 1}
+                    fillOpacity={dim ? 0.55 : 1}
+                  />
+                  {s.glyph && (
+                    <text
+                      x={x(c)}
+                      y={y(r) + 3}
+                      textAnchor="middle"
+                      fontSize="9"
+                      fontWeight="bold"
+                      fill="#1a1a1a"
+                      pointerEvents="none"
+                    >
+                      {s.glyph}
+                    </text>
+                  )}
+                </>
               )}
-              <title>{type}</title>
+              <title>{titleFor(c, r, type, effType)}</title>
             </g>
           );
         })}
