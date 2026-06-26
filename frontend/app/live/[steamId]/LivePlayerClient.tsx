@@ -275,6 +275,110 @@ function TickerRow({
   );
 }
 
+/** Live combat detail: the DPS meter, the local player's powers, the current
+ * hand, and the pile counts. Each row renders only when its field is present, so
+ * the panel collapses to nothing outside combat. */
+function LiveCombatPanel({
+  p,
+  cat,
+  lp,
+  lang,
+}: {
+  p: LivePlayer;
+  cat: Catalogs;
+  lp: string;
+  lang: string;
+}) {
+  const dmg: [string, number | null | undefined][] = [
+    ["Dealt", p.damage_dealt],
+    ["This turn", p.damage_dealt_this_turn],
+    ["Taken", p.damage_taken],
+    ["Biggest hit", p.biggest_hit],
+  ];
+  const shownDmg = dmg.filter(([, v]) => v != null);
+  const piles: [string, number | null | undefined][] = [
+    ["Draw", p.draw_count],
+    ["Discard", p.discard_count],
+    ["Exhaust", p.exhaust_count],
+  ];
+  const shownPiles = piles.filter(([, v]) => v != null);
+  const powers = p.player_powers ?? [];
+  const hand = p.hand ?? [];
+  if (!shownDmg.length && !shownPiles.length && !powers.length && !hand.length) {
+    return null;
+  }
+  return (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">Combat</h2>
+      {powers.length > 0 && (
+        <div className="mb-3 flex flex-wrap gap-1">
+          {powers.map((pw) => (
+            <span
+              key={pw.id}
+              title={displayName(pw.id)}
+              className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[10px] tabular-nums text-[var(--text-secondary)]"
+            >
+              {displayName(pw.id)}
+              {pw.amount != null && pw.amount !== 0 ? ` ${pw.amount}` : ""}
+            </span>
+          ))}
+        </div>
+      )}
+      {shownDmg.length > 0 && (
+        <div className="mb-3 grid grid-cols-2 gap-x-4 gap-y-1 text-xs">
+          {shownDmg.map(([label, v]) => (
+            <div key={label} className="flex justify-between">
+              <span className="text-[var(--text-muted)]">{label}</span>
+              <span className="font-medium tabular-nums text-[var(--text-secondary)]">
+                {v}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+      {hand.length > 0 && (
+        <div className="mb-2">
+          <div className="mb-1 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+            Hand ({hand.length})
+          </div>
+          <div className="flex flex-wrap gap-1">
+            {withOrdinalKeys(hand).map(({ item, key }) => {
+              const { id, upgraded } = parseDeckId(item);
+              return (
+                <CardPill
+                  key={key}
+                  cardId={id}
+                  upgraded={upgraded}
+                  cardData={cat.cards}
+                  lp={lp}
+                  className="relative block w-12 shrink-0"
+                >
+                  <img
+                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                    alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
+                    className="h-auto w-12 rounded-sm"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                  />
+                </CardPill>
+              );
+            })}
+          </div>
+        </div>
+      )}
+      {shownPiles.length > 0 && (
+        <div className="flex gap-3 text-xs tabular-nums text-[var(--text-muted)]">
+          {shownPiles.map(([label, v]) => (
+            <span key={label}>
+              {label} {v}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function LivePlayerClient() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
@@ -453,8 +557,25 @@ export default function LivePlayerClient() {
                 {displayName(`CHARACTER.${p.character ?? ""}`)}
                 {p.screen ? ` · ${p.screen}` : ""}
                 {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
+                {p.run_time != null
+                  ? ` · run ${Math.floor(p.run_time / 60)}:${String(
+                      Math.floor(p.run_time % 60),
+                    ).padStart(2, "0")}`
+                  : ""}
                 {p.seed ? ` · seed ${p.seed}` : ""}
               </div>
+              {(p.modifiers?.length ?? 0) > 0 && (
+                <div className="mt-1 flex flex-wrap gap-1">
+                  {p.modifiers!.map((m) => (
+                    <span
+                      key={m}
+                      className="px-1.5 py-0.5 rounded text-[10px] bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)]"
+                    >
+                      {displayName(m)}
+                    </span>
+                  ))}
+                </div>
+              )}
               {p.twitch_live && p.twitch_login && (
                 <div className="mt-2">
                   <WatchOnTwitch login={p.twitch_login} viewers={p.twitch_viewers} />
@@ -485,6 +606,21 @@ export default function LivePlayerClient() {
               </div>
             </div>
           )}
+          {((p.block ?? 0) > 0 || p.energy != null) && (
+            <div className="mt-2 flex items-center gap-3 text-xs tabular-nums">
+              {(p.block ?? 0) > 0 && (
+                <span className="text-sky-300" title="Block">
+                  Block {p.block}
+                </span>
+              )}
+              {p.energy != null && (
+                <span className="text-[var(--accent-gold)]" title="Energy">
+                  Energy {p.energy}
+                  {p.max_energy != null ? `/${p.max_energy}` : ""}
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
             {/* Current-screen panels (combat enemies, event reader, shop), each
@@ -492,6 +628,7 @@ export default function LivePlayerClient() {
             {hasContext && (
               <div className="space-y-4">
                 {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
+                <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
                 {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
                 {p.shop && (
                   <LiveShopPanel

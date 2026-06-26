@@ -83,6 +83,55 @@ export interface Enemy {
   intents?: EnemyIntent[];
 }
 
+/** A combat buff/debuff on the local player (v6): id + stack amount. */
+export interface LivePower {
+  id: string;
+  amount?: number;
+}
+
+/** One route node (v6): a boss/ancient/elite/monster/event in the act, with an
+ * optional grid position so it can be matched to the map graph. */
+export interface LiveRouteNode {
+  id?: string;
+  name?: string;
+  room_type?: string;
+  col?: number;
+  row?: number;
+  floor?: number;
+}
+
+/** The act's route (v6): the boss + ancient and the elite/monster/event nodes. */
+export interface LiveRoute {
+  boss?: LiveRouteNode;
+  ancient?: LiveRouteNode;
+  elites?: LiveRouteNode[];
+  monsters?: LiveRouteNode[];
+  events?: LiveRouteNode[];
+}
+
+/** Combat / reward-screen loot on offer (v6). */
+export interface LiveLoot {
+  gold?: number | null;
+  cards?: string[];
+  relics?: string[];
+  potions?: string[];
+  card_removal?: boolean | number;
+}
+
+/** Co-op per-seat vitals (v6); `is_me` marks the local player's seat. */
+export interface LiveSeat {
+  character?: string | null;
+  hp?: number;
+  max_hp?: number;
+  block?: number;
+  gold?: number;
+  alive?: boolean;
+  deck_size?: number;
+  relic_count?: number;
+  potion_count?: number;
+  is_me?: boolean;
+}
+
 export interface LivePlayer {
   steam_id: string;
   username?: string | null;
@@ -112,6 +161,27 @@ export interface LivePlayer {
   event?: LiveEventCtx | null;
   shop?: LiveShop | null;
   enemies?: Enemy[] | null;
+  // Combat vitals + DPS (v6). `block`/`max_energy` ride the whole run; `energy`,
+  // the pile counts, damage, hand, and player_powers are combat-only. See
+  // markdown-docs/live-presence.md.
+  block?: number | null;
+  energy?: number | null;
+  max_energy?: number | null;
+  draw_count?: number | null;
+  discard_count?: number | null;
+  exhaust_count?: number | null;
+  damage_dealt?: number | null;
+  damage_dealt_this_turn?: number | null;
+  damage_taken?: number | null;
+  biggest_hit?: number | null;
+  hand?: string[];
+  player_powers?: LivePower[];
+  loot?: LiveLoot | null;
+  route?: LiveRoute | null;
+  players?: LiveSeat[];
+  run_time?: number | null;
+  modifiers?: string[];
+  act_name?: string | null;
   // Twitch enrichment from /api/presence (only when the player linked Twitch):
   // their channel, whether they are streaming right now, viewer count, and the
   // curated-partner flag. All optional and absent until the backend attaches them.
