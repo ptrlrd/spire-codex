@@ -15,7 +15,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
-import { LiveEventPanel, LiveShopPanel } from "../LiveEventShop";
+import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
 import {
   CardPill,
   PotionPill,
@@ -42,6 +42,9 @@ import {
   withOrdinalKeys,
   type LiveEvent,
   type LivePlayer,
+  type LiveRoute,
+  type LiveRouteNode,
+  type LiveSeat,
   type MonsterMap,
 } from "../live-shared";
 
@@ -379,6 +382,130 @@ function LiveCombatPanel({
   );
 }
 
+/** Co-op partner cards: one compact card per seat with vitals, the local seat
+ * highlighted and dead seats dimmed. Only shown when 2+ players are in the run. */
+function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
+  if (!players.length) return null;
+  return (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">Party</h2>
+      <div className="space-y-2">
+        {players.map((s, i) => {
+          const hpPct =
+            s.hp != null && s.max_hp
+              ? Math.max(0, Math.min(100, (s.hp / s.max_hp) * 100))
+              : null;
+          return (
+            <div
+              key={i}
+              className={`flex items-center gap-3 rounded-md border px-2.5 py-2 ${
+                s.is_me
+                  ? "border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/5"
+                  : "border-[var(--border-subtle)] bg-[var(--bg-primary)]"
+              } ${s.alive === false ? "opacity-50" : ""}`}
+            >
+              <CharacterIcon character={s.character} className="h-9 w-9 shrink-0" />
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="truncate text-[var(--text-secondary)]">
+                    {displayName(`CHARACTER.${s.character ?? ""}`)}
+                  </span>
+                  {s.is_me && (
+                    <span className="rounded bg-[var(--accent-gold)]/20 px-1 text-[9px] font-bold uppercase text-[var(--accent-gold)]">
+                      you
+                    </span>
+                  )}
+                  {s.alive === false && (
+                    <span className="text-[10px] text-rose-400">dead</span>
+                  )}
+                </div>
+                {hpPct != null && (
+                  <div className="mt-1 h-1.5 rounded bg-[var(--bg-card)]">
+                    <div
+                      className="h-1.5 rounded bg-rose-500"
+                      style={{ width: `${hpPct}%` }}
+                    />
+                  </div>
+                )}
+                <div className="mt-1 flex flex-wrap gap-x-3 text-[10px] tabular-nums text-[var(--text-muted)]">
+                  {s.hp != null && (
+                    <span>
+                      {s.hp}/{s.max_hp} HP
+                    </span>
+                  )}
+                  {(s.block ?? 0) > 0 && (
+                    <span className="text-sky-300">Block {s.block}</span>
+                  )}
+                  {s.gold != null && <span>{s.gold}g</span>}
+                  {s.deck_size != null && <span>{s.deck_size} cards</span>}
+                  {s.relic_count != null && <span>{s.relic_count} relics</span>}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function RouteNodeChip({ node }: { node: LiveRouteNode }) {
+  const label = node.name || (node.id ? displayName(node.id) : "?");
+  return (
+    <span
+      title={node.room_type || undefined}
+      className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[11px] text-[var(--text-secondary)]"
+    >
+      {label}
+    </span>
+  );
+}
+
+/** Act route preview: the boss, ancient, and the elite/monster/event nodes the
+ * mod surfaced for the current act. Complements the mini-map. */
+function LiveRoutePanel({
+  route,
+  act,
+  actName,
+  actFloor,
+}: {
+  route: LiveRoute;
+  act?: number | null;
+  actName?: string | null;
+  actFloor?: number | null;
+}) {
+  const groups: [string, LiveRouteNode[]][] = [];
+  if (route.boss) groups.push(["Boss", [route.boss]]);
+  if (route.ancient) groups.push(["Ancient", [route.ancient]]);
+  if (route.elites?.length) groups.push(["Elites", route.elites]);
+  if (route.monsters?.length) groups.push(["Monsters", route.monsters]);
+  if (route.events?.length) groups.push(["Events", route.events]);
+  if (!groups.length) return null;
+  const heading = actName || (act != null ? `Act ${act}` : "Route");
+  return (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">
+        Route · {heading}
+        {actFloor != null ? ` · F${actFloor}` : ""}
+      </h2>
+      <div className="space-y-2">
+        {groups.map(([label, nodes]) => (
+          <div key={label}>
+            <div className="mb-1 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+              {label}
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {nodes.map((n, i) => (
+                <RouteNodeChip key={(n.id || "") + i} node={n} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function LivePlayerClient() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
@@ -511,7 +638,7 @@ export default function LivePlayerClient() {
 
   // Whether there's a current-screen panel (combat enemies / event / shop) to
   // sit beside the player; when there isn't, the player spans the full width.
-  const hasContext = hasEnemies || !!p.event || !!p.shop;
+  const hasContext = hasEnemies || !!p.event || !!p.shop || !!p.loot;
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -638,6 +765,15 @@ export default function LivePlayerClient() {
                     potions={cat.potions}
                     lp={lp}
                     lang={lang}
+                  />
+                )}
+                {p.loot && (
+                  <LiveLootPanel
+                    loot={p.loot}
+                    cards={cat.cards}
+                    relics={cat.relics}
+                    potions={cat.potions}
+                    lp={lp}
                   />
                 )}
               </div>
@@ -781,6 +917,16 @@ export default function LivePlayerClient() {
                 })}
               </div>
             </div>
+          )}
+
+          {(p.players?.length ?? 0) > 0 && <LiveCoopPanel players={p.players!} />}
+          {p.route && (
+            <LiveRoutePanel
+              route={p.route}
+              act={p.act}
+              actName={p.act_name}
+              actFloor={p.act_floor}
+            />
           )}
 
           {p.sts2_version && (

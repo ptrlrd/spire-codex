@@ -24,6 +24,7 @@ import {
   safeId,
   withOrdinalKeys,
   type LiveEventCtx,
+  type LiveLoot,
   type LiveShop,
   type ShopItem,
 } from "./live-shared";
@@ -228,6 +229,92 @@ export function LiveShopPanel({
           ) : (
             <Gold cost={removal.cost} />
           )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** The combat/reward-screen loot: the gold and card/relic/potion rewards on
+ * offer, plus whether card removal is available. Each item links to its page. */
+export function LiveLootPanel({
+  loot,
+  cards,
+  relics,
+  potions,
+  lp,
+}: {
+  loot: LiveLoot;
+  cards: Record<string, CardInfo>;
+  relics: Record<string, RelicInfo>;
+  potions: Record<string, PotionInfo>;
+  lp: string;
+}) {
+  const cardIds = loot.cards ?? [];
+  const relicIds = loot.relics ?? [];
+  const potionIds = loot.potions ?? [];
+  const hasGold = loot.gold != null && loot.gold > 0;
+  const removal = !!loot.card_removal;
+  if (
+    !cardIds.length &&
+    !relicIds.length &&
+    !potionIds.length &&
+    !hasGold &&
+    !removal
+  ) {
+    return null;
+  }
+  const row = "flex items-center gap-2 text-sm text-[var(--text-secondary)]";
+  return (
+    <div className="rounded-lg border border-amber-900/50 bg-amber-950/20 p-4">
+      <div className="mb-2 flex items-center gap-2">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
+          Rewards
+        </span>
+        {hasGold && (
+          <span className="text-sm font-semibold tabular-nums text-[var(--accent-gold)]">
+            {loot.gold}g
+          </span>
+        )}
+      </div>
+      {(cardIds.length > 0 || relicIds.length > 0 || potionIds.length > 0) && (
+        <ul className="space-y-1.5">
+          {withOrdinalKeys(cardIds).map(({ item, key }) => {
+            const { id, upgraded } = parseDeckId(item);
+            return (
+              <li key={`c-${key}`} className={row}>
+                <CardPill cardId={id} upgraded={upgraded} cardData={cards} lp={lp} className="truncate">
+                  {cards[id]?.name || displayName(`CARD.${id}`)}
+                  {upgraded ? "+" : ""}
+                </CardPill>
+              </li>
+            );
+          })}
+          {withOrdinalKeys(relicIds).map(({ item, key }) => {
+            const id = cleanId(item);
+            return (
+              <li key={`r-${key}`} className={row}>
+                <RelicPill relicId={id} relicData={relics} lp={lp} className="truncate">
+                  {relics[id]?.name || displayName(`RELIC.${id}`)}
+                </RelicPill>
+              </li>
+            );
+          })}
+          {withOrdinalKeys(potionIds).map(({ item, key }) => {
+            const id = cleanId(item);
+            return (
+              <li key={`p-${key}`} className={row}>
+                <PotionPill potionId={id} potionData={potions} lp={lp} className="truncate">
+                  {potions[id]?.name || displayName(`POTION.${id}`)}
+                </PotionPill>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      {removal && (
+        <div className="mt-2 text-xs text-[var(--text-muted)]">
+          Card removal available
         </div>
       )}
     </div>
