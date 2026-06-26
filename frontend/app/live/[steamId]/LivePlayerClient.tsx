@@ -43,8 +43,6 @@ import {
   withOrdinalKeys,
   type LiveEvent,
   type LivePlayer,
-  type LiveRoute,
-  type LiveRouteNode,
   type LiveSeat,
   type MonsterMap,
 } from "../live-shared";
@@ -537,63 +535,6 @@ function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
   );
 }
 
-function RouteNodeChip({ node }: { node: LiveRouteNode }) {
-  const label = node.name || (node.id ? displayName(node.id) : "?");
-  return (
-    <span
-      title={node.room_type || undefined}
-      className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[11px] text-[var(--text-secondary)]"
-    >
-      {label}
-    </span>
-  );
-}
-
-/** Act route preview: the boss, ancient, and the elite/monster/event nodes the
- * mod surfaced for the current act. Complements the mini-map. */
-function LiveRoutePanel({
-  route,
-  act,
-  actName,
-  actFloor,
-}: {
-  route: LiveRoute;
-  act?: number | null;
-  actName?: string | null;
-  actFloor?: number | null;
-}) {
-  const groups: [string, LiveRouteNode[]][] = [];
-  if (route.boss) groups.push(["Boss", [route.boss]]);
-  if (route.ancient) groups.push(["Ancient", [route.ancient]]);
-  if (route.elites?.length) groups.push(["Elites", route.elites]);
-  if (route.monsters?.length) groups.push(["Monsters", route.monsters]);
-  if (route.events?.length) groups.push(["Events", route.events]);
-  if (!groups.length) return null;
-  const heading = actName || (act != null ? `Act ${act}` : "Route");
-  return (
-    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">
-        Route · {heading}
-        {actFloor != null ? ` · F${actFloor}` : ""}
-      </h2>
-      <div className="space-y-2">
-        {groups.map(([label, nodes]) => (
-          <div key={label}>
-            <div className="mb-1 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-              {label}
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {nodes.map((n, i) => (
-                <RouteNodeChip key={(n.id || "") + i} node={n} />
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export default function LivePlayerClient() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
@@ -906,8 +847,8 @@ export default function LivePlayerClient() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 lg:col-span-2">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 lg:col-span-1">
           <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Play-by-play</h2>
           {events.length === 0 ? (
             <p className="text-sm text-[var(--text-muted)]">
@@ -923,8 +864,8 @@ export default function LivePlayerClient() {
           )}
         </div>
 
-        <div className="space-y-4 lg:col-span-2">
-          <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 space-y-4 lg:col-span-2">
+          <div>
             <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
               Deck{p.deck ? ` (${p.deck.length})` : ""}
             </h2>
@@ -970,7 +911,7 @@ export default function LivePlayerClient() {
             )}
           </div>
 
-          <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+          <div>
             <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Relics</h2>
             {(p.relics ?? []).length === 0 ? (
               <p className="text-sm text-[var(--text-muted)]">No relic data on this beat.</p>
@@ -1008,7 +949,7 @@ export default function LivePlayerClient() {
           </div>
 
           {(p.potions ?? []).length > 0 && (
-            <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+            <div>
               <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Potions</h2>
               <div className="flex flex-wrap gap-1.5">
                 {withOrdinalKeys(p.potions ?? []).map(({ item: raw, key }) => {
@@ -1046,14 +987,6 @@ export default function LivePlayerClient() {
           )}
 
           {(p.players?.length ?? 0) > 0 && <LiveCoopPanel players={p.players!} />}
-          {p.route && (
-            <LiveRoutePanel
-              route={p.route}
-              act={p.act}
-              actName={p.act_name}
-              actFloor={p.act_floor}
-            />
-          )}
 
           {p.sts2_version && (
             <p className="text-[10px] text-[var(--text-muted)]">{p.sts2_version}</p>
