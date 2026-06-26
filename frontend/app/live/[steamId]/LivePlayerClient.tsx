@@ -29,6 +29,7 @@ import {
 import {
   API,
   CharacterIcon,
+  EnemyCircle,
   LiveDot,
   LiveEnemiesPanel,
   PartnerBadge,
@@ -206,6 +207,69 @@ function TickerRow({
       );
       break;
     }
+    case "relic":
+    case "ancient": {
+      // A relic was obtained; `ancient` is the same but from an ancient event.
+      const id = cleanId(e.v ?? "");
+      const info = cat.relics[id];
+      if (info?.image_url) {
+        icon = (
+          <img
+            src={imageUrl(info.image_url)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
+        );
+      }
+      const verb = e.k === "ancient" ? "Ancient relic:" : "Got";
+      body = id ? (
+        <>
+          <span className="text-amber-300">{verb}</span>{" "}
+          <RelicPill relicId={id} relicData={cat.relics} lp={lp} className={TICKER_LINK}>
+            {info?.name || displayName(`RELIC.${id}`)}
+          </RelicPill>
+        </>
+      ) : (
+        <span className="text-amber-300">
+          {e.k === "ancient" ? "Took an ancient relic" : "Got a relic"}
+        </span>
+      );
+      break;
+    }
+    case "loot": {
+      // Reward taken: `v` is a potion id, or a gold amount as a numeric string.
+      const num = Number(e.v);
+      if (e.v && Number.isFinite(num)) {
+        body = <span className="text-[var(--accent-gold)]">Took {num} gold</span>;
+        break;
+      }
+      const id = cleanId(e.v ?? "");
+      const info = cat.potions[id];
+      if (info?.image_url) {
+        icon = (
+          <img
+            src={imageUrl(info.image_url)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
+        );
+      }
+      body = id ? (
+        <>
+          Took{" "}
+          <PotionPill potionId={id} potionData={cat.potions} lp={lp} className={TICKER_LINK}>
+            {info?.name || displayName(`POTION.${id}`)}
+          </PotionPill>
+        </>
+      ) : (
+        <span className="text-[var(--text-secondary)]">Took loot</span>
+      );
+      break;
+    }
     case "event": {
       // Event-room visit. The backend passes any kind through, so this
       // lights up as soon as the mod ships {"k": "event", "v": EVENT_ID}.
@@ -225,10 +289,11 @@ function TickerRow({
       break;
     }
     case "combat":
-      body = e.v ? (
-        <span className="text-amber-300">Fight started: {monsterName(e.v, monsters)}</span>
-      ) : (
-        <span className="text-amber-300">Fight started</span>
+      body = (
+        <span className="inline-flex items-center gap-1.5 text-amber-300">
+          Fight started
+          {e.v && <EnemyCircle id={e.v} monsters={monsters} className="h-5 w-5" />}
+        </span>
       );
       break;
     case "victory":
@@ -370,12 +435,35 @@ function LiveCombatPanel({
         </div>
       )}
       {shownPiles.length > 0 && (
-        <div className="flex gap-3 text-xs tabular-nums text-[var(--text-muted)]">
-          {shownPiles.map(([label, v]) => (
-            <span key={label}>
-              {label} {v}
-            </span>
-          ))}
+        <div className="flex items-center gap-4">
+          {shownPiles.map(([label, v]) =>
+            label === "Exhaust" ? (
+              <span
+                key={label}
+                title="Exhaust pile"
+                className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white"
+              >
+                {v}
+              </span>
+            ) : (
+              <span
+                key={label}
+                title={`${label} pile`}
+                className="inline-flex items-center gap-1 text-xs tabular-nums text-[var(--text-secondary)]"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl(
+                    `/static/images/ui/combat/${label.toLowerCase()}_pile.png`,
+                  )}
+                  alt={label}
+                  className="h-6 w-6 object-contain"
+                  crossOrigin="anonymous"
+                />
+                {v}
+              </span>
+            ),
+          )}
         </div>
       )}
     </div>
@@ -625,7 +713,11 @@ export default function LivePlayerClient() {
     else deckGroups.push({ raw, count: 1 });
   }
 
-  const hasEnemies = (p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0;
+  // Gate combat UI on the combat screen so a stale enemies/fighting field (the
+  // mod not always nulling them on combat end) can't keep the fight panel up.
+  const hasEnemies =
+    p.screen === "combat" &&
+    ((p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0);
   const mapCard =
     (p.map?.nodes?.length ?? 0) > 0 ? (
       <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
@@ -714,8 +806,47 @@ export default function LivePlayerClient() {
                 {p.act != null ? `Act ${p.act}` : ""}
                 {p.total_floor != null ? ` · F${p.total_floor}` : ""}
               </div>
-              <div className="text-sm text-[var(--text-muted)] tabular-nums">
-                {p.gold != null ? `${p.gold} gold` : ""}
+              <div className="mt-0.5 flex items-center justify-end gap-3 text-sm tabular-nums">
+                {p.energy != null && (
+                  <span
+                    className="inline-flex items-center gap-1 text-[var(--text-secondary)]"
+                    title="Energy"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={imageUrl(
+                        `/static/images/icons/${(p.character ?? "colorless").toLowerCase()}_energy_icon.png`,
+                      )}
+                      alt="Energy"
+                      className="h-4 w-4 object-contain"
+                      crossOrigin="anonymous"
+                      onError={(e) => {
+                        const el = e.target as HTMLImageElement;
+                        const fb = imageUrl(
+                          "/static/images/icons/colorless_energy_icon.png",
+                        );
+                        if (el.src !== fb) el.src = fb;
+                      }}
+                    />
+                    {p.energy}
+                    {p.max_energy != null ? `/${p.max_energy}` : ""}
+                  </span>
+                )}
+                {p.gold != null && (
+                  <span
+                    className="inline-flex items-center gap-1 text-[var(--accent-gold)]"
+                    title="Gold"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={imageUrl("/static/images/icons/gold_icon.png")}
+                      alt="Gold"
+                      className="h-4 w-4 object-contain"
+                      crossOrigin="anonymous"
+                    />
+                    {p.gold}
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -733,19 +864,11 @@ export default function LivePlayerClient() {
               </div>
             </div>
           )}
-          {((p.block ?? 0) > 0 || p.energy != null) && (
-            <div className="mt-2 flex items-center gap-3 text-xs tabular-nums">
-              {(p.block ?? 0) > 0 && (
-                <span className="text-sky-300" title="Block">
-                  Block {p.block}
-                </span>
-              )}
-              {p.energy != null && (
-                <span className="text-[var(--accent-gold)]" title="Energy">
-                  Energy {p.energy}
-                  {p.max_energy != null ? `/${p.max_energy}` : ""}
-                </span>
-              )}
+          {(p.block ?? 0) > 0 && (
+            <div className="mt-2 text-xs tabular-nums">
+              <span className="text-sky-300" title="Block">
+                Block {p.block}
+              </span>
             </div>
           )}
         </div>
@@ -755,7 +878,9 @@ export default function LivePlayerClient() {
             {hasContext && (
               <div className="space-y-4">
                 {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
-                <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
+                {p.screen === "combat" && (
+                  <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
+                )}
                 {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
                 {p.shop && (
                   <LiveShopPanel
@@ -774,6 +899,7 @@ export default function LivePlayerClient() {
                     relics={cat.relics}
                     potions={cat.potions}
                     lp={lp}
+                    lang={lang}
                   />
                 )}
               </div>
@@ -781,7 +907,7 @@ export default function LivePlayerClient() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 lg:col-span-2">
           <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Play-by-play</h2>
           {events.length === 0 ? (
             <p className="text-sm text-[var(--text-muted)]">
@@ -797,7 +923,7 @@ export default function LivePlayerClient() {
           )}
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-4 lg:col-span-2">
           <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
             <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
               Deck{p.deck ? ` (${p.deck.length})` : ""}
