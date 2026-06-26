@@ -235,20 +235,23 @@ export function LiveShopPanel({
   );
 }
 
-/** The combat/reward-screen loot: the gold and card/relic/potion rewards on
- * offer, plus whether card removal is available. Each item links to its page. */
+/** The combat/reward-screen loot: gold plus the cards (full renders), relics,
+ * and potions on offer, each with the run-page hover tooltip. Potions on top,
+ * cards + relics below. */
 export function LiveLootPanel({
   loot,
   cards,
   relics,
   potions,
   lp,
+  lang,
 }: {
   loot: LiveLoot;
   cards: Record<string, CardInfo>;
   relics: Record<string, RelicInfo>;
   potions: Record<string, PotionInfo>;
   lp: string;
+  lang: string;
 }) {
   const cardIds = loot.cards ?? [];
   const relicIds = loot.relics ?? [];
@@ -264,7 +267,6 @@ export function LiveLootPanel({
   ) {
     return null;
   }
-  const row = "flex items-center gap-2 text-sm text-[var(--text-secondary)]";
   return (
     <div className="rounded-lg border border-amber-900/50 bg-amber-950/20 p-4">
       <div className="mb-2 flex items-center gap-2">
@@ -277,40 +279,94 @@ export function LiveLootPanel({
           </span>
         )}
       </div>
-      {(cardIds.length > 0 || relicIds.length > 0 || potionIds.length > 0) && (
-        <ul className="space-y-1.5">
+      {potionIds.length > 0 && (
+        <div className="mb-2 flex flex-wrap gap-1.5">
+          {withOrdinalKeys(potionIds).map(({ item, key }) => {
+            const id = cleanId(item);
+            const info = potions[id];
+            return (
+              <PotionPill
+                key={`p-${key}`}
+                potionId={id}
+                potionData={potions}
+                lp={lp}
+                className="block shrink-0"
+              >
+                {info?.image_url ? (
+                  <img
+                    src={imageUrl(info.image_url)}
+                    alt={info.name}
+                    className="h-9 w-9 object-contain"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <span className="text-xs text-[var(--text-secondary)]">
+                    {displayName(`POTION.${id}`)}
+                  </span>
+                )}
+              </PotionPill>
+            );
+          })}
+        </div>
+      )}
+      {(cardIds.length > 0 || relicIds.length > 0) && (
+        <div className="flex flex-wrap items-start gap-1.5">
           {withOrdinalKeys(cardIds).map(({ item, key }) => {
             const { id, upgraded } = parseDeckId(item);
             return (
-              <li key={`c-${key}`} className={row}>
-                <CardPill cardId={id} upgraded={upgraded} cardData={cards} lp={lp} className="truncate">
-                  {cards[id]?.name || displayName(`CARD.${id}`)}
-                  {upgraded ? "+" : ""}
-                </CardPill>
-              </li>
+              <CardPill
+                key={`c-${key}`}
+                cardId={id}
+                upgraded={upgraded}
+                cardData={cards}
+                lp={lp}
+                className="relative block w-16 shrink-0"
+              >
+                <img
+                  src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                  alt={cards[id]?.name || displayName(`CARD.${id}`)}
+                  className="h-auto w-16 rounded-sm"
+                  crossOrigin="anonymous"
+                  loading="lazy"
+                />
+              </CardPill>
             );
           })}
           {withOrdinalKeys(relicIds).map(({ item, key }) => {
             const id = cleanId(item);
+            const info = relics[id];
             return (
-              <li key={`r-${key}`} className={row}>
-                <RelicPill relicId={id} relicData={relics} lp={lp} className="truncate">
-                  {relics[id]?.name || displayName(`RELIC.${id}`)}
-                </RelicPill>
-              </li>
+              <RelicPill
+                key={`r-${key}`}
+                relicId={id}
+                relicData={relics}
+                lp={lp}
+                className="block shrink-0"
+              >
+                {info?.image_url ? (
+                  <img
+                    src={imageUrl(info.image_url)}
+                    alt={info.name}
+                    className="h-9 w-9 object-contain"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                ) : (
+                  <span className="text-xs text-[var(--text-secondary)]">
+                    {displayName(`RELIC.${id}`)}
+                  </span>
+                )}
+              </RelicPill>
             );
           })}
-          {withOrdinalKeys(potionIds).map(({ item, key }) => {
-            const id = cleanId(item);
-            return (
-              <li key={`p-${key}`} className={row}>
-                <PotionPill potionId={id} potionData={potions} lp={lp} className="truncate">
-                  {potions[id]?.name || displayName(`POTION.${id}`)}
-                </PotionPill>
-              </li>
-            );
-          })}
-        </ul>
+        </div>
       )}
       {removal && (
         <div className="mt-2 text-xs text-[var(--text-muted)]">
