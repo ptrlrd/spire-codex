@@ -238,14 +238,69 @@ function TickerRow({
       break;
     }
     case "loot": {
-      // Reward taken: `v` is a potion id, or a gold amount as a numeric string.
+      // Reward taken: `v` is a gold amount (numeric string), or an item id --
+      // a card, potion, or relic -- so resolve across the catalogs like a buy.
       const num = Number(e.v);
       if (e.v && Number.isFinite(num)) {
         body = <span className="text-[var(--accent-gold)]">Took {num} gold</span>;
         break;
       }
-      const id = cleanId(e.v ?? "");
-      const info = cat.potions[id];
+      if (!e.v) {
+        body = <span className="text-[var(--text-secondary)]">Took loot</span>;
+        break;
+      }
+      const { id, upgraded } = parseDeckId(e.v);
+      const card = cat.cards[id];
+      const potion = card ? undefined : cat.potions[id];
+      const relic = card || potion ? undefined : cat.relics[id];
+      const img = card?.image_url || potion?.image_url || relic?.image_url;
+      if (img) {
+        icon = (
+          <img
+            src={imageUrl(img)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
+        );
+      }
+      body = (
+        <>
+          Took{" "}
+          {card ? (
+            <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} lp={lp} className={TICKER_LINK}>
+              {card.name}
+              {upgraded ? "+" : ""}
+            </CardPill>
+          ) : potion ? (
+            <PotionPill potionId={id} potionData={cat.potions} lp={lp} className={TICKER_LINK}>
+              {potion.name}
+            </PotionPill>
+          ) : relic ? (
+            <RelicPill relicId={id} relicData={cat.relics} lp={lp} className={TICKER_LINK}>
+              {relic.name}
+            </RelicPill>
+          ) : (
+            <span className="text-[var(--text-primary)]">{displayName(`CARD.${id}`)}</span>
+          )}
+        </>
+      );
+      break;
+    }
+    case "rest": {
+      // Campfire rest (heal). Lights up when the mod ships {"k": "rest"}.
+      body = <span className="text-emerald-300">Rested at a campfire</span>;
+      break;
+    }
+    case "upgrade": {
+      // A card was upgraded (campfire smith, event, or relic).
+      if (!e.v) {
+        body = <span className="text-sky-300">Upgraded a card</span>;
+        break;
+      }
+      const { id } = parseDeckId(e.v);
+      const info = cat.cards[id];
       if (info?.image_url) {
         icon = (
           <img
@@ -257,15 +312,13 @@ function TickerRow({
           />
         );
       }
-      body = id ? (
+      body = (
         <>
-          Took{" "}
-          <PotionPill potionId={id} potionData={cat.potions} lp={lp} className={TICKER_LINK}>
-            {info?.name || displayName(`POTION.${id}`)}
-          </PotionPill>
+          <span className="text-sky-300">Upgraded</span>{" "}
+          <CardPill cardId={id} upgraded cardData={cat.cards} lp={lp} className={TICKER_LINK}>
+            {info?.name || displayName(`CARD.${id}`)}
+          </CardPill>
         </>
-      ) : (
-        <span className="text-[var(--text-secondary)]">Took loot</span>
       );
       break;
     }
@@ -280,7 +333,10 @@ function TickerRow({
       body = (
         <>
           <span className="text-purple-300">Event:</span>{" "}
-          <Link href={`${lp}/events/${id.toLowerCase()}`} className={TICKER_LINK}>
+          <Link
+            href={`${lp}/events/${id.toLowerCase()}`}
+            className="inline text-purple-300 hover:text-purple-100"
+          >
             {cat.events[id]?.name || displayName(`EVENT.${id}`)}
           </Link>
         </>
@@ -658,8 +714,11 @@ export default function LivePlayerClient() {
 
   // Gate combat UI on the combat screen so a stale enemies/fighting field (the
   // mod not always nulling them on combat end) can't keep the fight panel up.
+  // Also hide it once loot is on offer: the rewards screen means the fight is
+  // won, so a leftover enemy at "3 hp" shouldn't linger beside the rewards.
   const hasEnemies =
     p.screen === "combat" &&
+    !p.loot &&
     ((p.enemies?.length ?? 0) > 0 || (p.fighting?.length ?? 0) > 0);
   const mapCard =
     (p.map?.nodes?.length ?? 0) > 0 ? (
@@ -829,7 +888,7 @@ export default function LivePlayerClient() {
             {hasContext && (
               <div className="space-y-4">
                 {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
-                {p.screen === "combat" && (
+                {p.screen === "combat" && !p.loot && (
                   <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
                 )}
                 {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
