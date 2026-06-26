@@ -207,6 +207,69 @@ function TickerRow({
       );
       break;
     }
+    case "relic":
+    case "ancient": {
+      // A relic was obtained; `ancient` is the same but from an ancient event.
+      const id = cleanId(e.v ?? "");
+      const info = cat.relics[id];
+      if (info?.image_url) {
+        icon = (
+          <img
+            src={imageUrl(info.image_url)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
+        );
+      }
+      const verb = e.k === "ancient" ? "Ancient relic:" : "Got";
+      body = id ? (
+        <>
+          <span className="text-amber-300">{verb}</span>{" "}
+          <RelicPill relicId={id} relicData={cat.relics} lp={lp} className={TICKER_LINK}>
+            {info?.name || displayName(`RELIC.${id}`)}
+          </RelicPill>
+        </>
+      ) : (
+        <span className="text-amber-300">
+          {e.k === "ancient" ? "Took an ancient relic" : "Got a relic"}
+        </span>
+      );
+      break;
+    }
+    case "loot": {
+      // Reward taken: `v` is a potion id, or a gold amount as a numeric string.
+      const num = Number(e.v);
+      if (e.v && Number.isFinite(num)) {
+        body = <span className="text-[var(--accent-gold)]">Took {num} gold</span>;
+        break;
+      }
+      const id = cleanId(e.v ?? "");
+      const info = cat.potions[id];
+      if (info?.image_url) {
+        icon = (
+          <img
+            src={imageUrl(info.image_url)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
+        );
+      }
+      body = id ? (
+        <>
+          Took{" "}
+          <PotionPill potionId={id} potionData={cat.potions} lp={lp} className={TICKER_LINK}>
+            {info?.name || displayName(`POTION.${id}`)}
+          </PotionPill>
+        </>
+      ) : (
+        <span className="text-[var(--text-secondary)]">Took loot</span>
+      );
+      break;
+    }
     case "event": {
       // Event-room visit. The backend passes any kind through, so this
       // lights up as soon as the mod ships {"k": "event", "v": EVENT_ID}.
