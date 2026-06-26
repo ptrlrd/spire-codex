@@ -1032,7 +1032,20 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         # the relic tier list. Acts past the third fold into the last bucket.
         try:
             act_floors_list = blob.get("map_point_history") or []
-            if act_floors_list:
+            # A run carrying a modded relic id is a modded-content run: mods can
+            # grant relics on any floor, so its floor_added_to_deck is unreliable
+            # (that is how act-2/3 ancients like Meat Cleaver leaked into act 1).
+            # Skip its act attribution entirely so each act keeps only its real
+            # relics. Fail-open: an empty catalog means "don't filter".
+            official_relics = _official_relic_ids()
+            is_modded_run = bool(official_relics) and any(
+                (s := _strip_prefix(rel.get("id", "")))
+                and s[0] == "relics"
+                and s[1] not in official_relics
+                for player in (blob.get("players") or [])
+                for rel in (player.get("relics") or [])
+            )
+            if act_floors_list and not is_modded_run:
                 bounds: list[int] = []
                 running = 0
                 for act_floors in act_floors_list:
