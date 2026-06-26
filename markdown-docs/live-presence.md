@@ -50,6 +50,18 @@ Combat context (v2, absent between fights):
 - `turn`: the combat round number
 - `fighting`: bare ids of the living enemies, e.g. `["GREMLIN_NOB"]` (kept for the
   lightweight roster chip)
+- `block`, `energy`, `max_energy`: the local player's current block and energy
+- `draw_count`, `discard_count`, `exhaust_count`: pile sizes
+- `hand`: card ids in the current hand, e.g. `["STRIKE", "DEFEND+"]`
+- `damage_dealt`, `damage_dealt_this_turn`, `damage_taken`, `biggest_hit`: live DPS
+
+`loot` (v6, present on the combat/reward screen, transient): the rewards on offer —
+`{gold, cards: [ids], relics: [ids], potions: [ids], card_removal}` (`card_removal`
+is a bool/count for the removal option).
+
+`route` (v6, the act's structure, persists per act like the map): `{boss, ancient,
+elites: [], monsters: [], events: []}`. Each node is `{id, name?, room_type?}` plus
+`col`/`row`/`floor` when the mod sends a position, so a node can be matched to the map.
 
 Rich combat enemies (v5, absent between fights): `enemies` is the per-player combat
 panel data, each enemy carrying hp/block and its upcoming intent(s):

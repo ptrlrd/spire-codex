@@ -25,6 +25,14 @@ _INT_FIELDS = (
     "ascension",
     "player_count",
     "turn",
+    # Live combat vitals + pile sizes for the spectator combat view; combat-only,
+    # cleared by the transient-unset list below when the mod sends null.
+    "block",
+    "energy",
+    "max_energy",
+    "draw_count",
+    "discard_count",
+    "exhaust_count",
     # Live combat damage (DPS) for the spectator view; absent / null outside a
     # fight, cleared by the transient-unset list below when the mod sends null.
     "damage_dealt",
@@ -33,7 +41,9 @@ _INT_FIELDS = (
     "biggest_hit",
 )
 _STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username")
-_LIST_CAPS = {"deck": 200, "relics": 100, "potions": 10, "fighting": 8}
+# `hand` is the live combat hand (card ids); combat-only, so it's in the
+# transient-unset list below too.
+_LIST_CAPS = {"deck": 200, "relics": 100, "potions": 10, "fighting": 8, "hand": 12}
 
 
 def _safe_id(s: str) -> bool:
@@ -108,6 +118,75 @@ def _clean_map(raw) -> dict | None:
     ):
         out["act"] = int(raw["act"])
     return out
+
+
+# Route (the act's structure) + loot (the combat/reward screen). Route persists
+# per act like the map; loot is transient, cleared when the player leaves the
+# reward screen.
+_LOOT_CAP = 20
+_ROUTE_CAP = 30
+
+
+def _route_node(o) -> dict | None:
+    """One route entry (boss / ancient / an elite/monster/event). Keeps the id
+    plus optional name/room_type and grid position, when the mod sends them."""
+    if not isinstance(o, dict):
+        return None
+    out: dict = {}
+    for key in ("id", "name", "room_type"):
+        v = o.get(key)
+        if isinstance(v, str) and v:
+            out[key] = v[:_MAX_STR]
+    for key in ("col", "row", "floor"):
+        v = o.get(key)
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            out[key] = int(v)
+    return out or None
+
+
+def _clean_route(raw) -> dict | None:
+    """The act's route: the boss + ancient (single nodes) and the elite / monster
+    / event nodes. Persists between beats (the $set keeps it until the act changes)."""
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {}
+    for single in ("boss", "ancient"):
+        node = _route_node(raw.get(single))
+        if node:
+            out[single] = node
+    for key in ("elites", "monsters", "events"):
+        lst = raw.get(key)
+        if isinstance(lst, list):
+            nodes = [n for n in (_route_node(o) for o in lst[:_ROUTE_CAP]) if n]
+            if nodes:
+                out[key] = nodes
+    return out or None
+
+
+def _clean_loot(raw) -> dict | None:
+    """The combat/reward-screen loot: gold plus the card / relic / potion ids on
+    offer, and whether card removal is available."""
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {}
+    if isinstance(raw.get("gold"), (int, float)) and not isinstance(
+        raw.get("gold"), bool
+    ):
+        out["gold"] = int(raw["gold"])
+    for cat in ("cards", "relics", "potions"):
+        lst = raw.get(cat)
+        if isinstance(lst, list):
+            out[cat] = [
+                s
+                for x in lst[:_LOOT_CAP]
+                if isinstance(x, (str, int)) and _safe_id(s := str(x)[:_MAX_STR])
+            ]
+    cr = raw.get("card_removal")
+    if isinstance(cr, bool):
+        out["card_removal"] = cr
+    elif isinstance(cr, (int, float)):
+        out["card_removal"] = int(cr)
+    return out or None
 
 
 # Current-screen spectator detail: the live event (name/prompt/options) and the shop
@@ -350,10 +429,16 @@ async def post_presence(request: Request):
         fields["shop"] = shp
     if (en := _clean_enemies(data.get("enemies"))) is not None:
         fields["enemies"] = en
+    # The act's route persists between beats (like the map); loot is per-screen.
+    if (rt := _clean_route(data.get("route"))) is not None:
+        fields["route"] = rt
+    if (lt := _clean_loot(data.get("loot"))) is not None:
+        fields["loot"] = lt
 
     # Transient fields: when the mod sends these as explicit null (combat ended / left the
     # screen), clear them rather than leaving stale values. pos is NOT in this set on
-    # purpose: keeping the last node avoids a blinking map marker between nodes.
+    # purpose: keeping the last node avoids a blinking map marker between nodes. route is
+    # NOT here either: it's act-scoped and persists until the next act overwrites it.
     unset = [
         k
         for k in (
@@ -362,6 +447,14 @@ async def post_presence(request: Request):
             "event",
             "shop",
             "enemies",
+            "hand",
+            "loot",
+            "block",
+            "energy",
+            "max_energy",
+            "draw_count",
+            "discard_count",
+            "exhaust_count",
             "damage_dealt",
             "damage_dealt_this_turn",
             "damage_taken",
