@@ -51,9 +51,19 @@ Combat context (v2, absent between fights):
 - `fighting`: bare ids of the living enemies, e.g. `["GREMLIN_NOB"]` (kept for the
   lightweight roster chip)
 - `block`, `energy`, `max_energy`: the local player's current block and energy
-- `draw_count`, `discard_count`, `exhaust_count`: pile sizes
-- `hand`: card ids in the current hand, e.g. `["STRIKE", "DEFEND+"]`
+  (`block`/`max_energy` are sent the whole run; `energy` is combat-only)
+- `draw_count`, `discard_count`, `exhaust_count`: pile sizes (combat-only)
+- `hand`: card ids in the current hand, e.g. `["STRIKE", "DEFEND+"]` (combat-only)
 - `damage_dealt`, `damage_dealt_this_turn`, `damage_taken`, `biggest_hit`: live DPS
+- `player_powers`: the local player's combat buffs/debuffs as `[{id, amount}]`
+  (combat-only; `[]` means "in combat, no powers")
+- `run_time`: elapsed run seconds (freezes at win); present the whole run, distinct
+  from the wall-clock `started_at`
+- `modifiers`: bare ids of the run's daily/custom mutators (whole run)
+
+Co-op only (sent when `player_count > 1`): `players` is the per-seat vitals,
+`[{character, hp, max_hp, block, gold, alive, deck_size, relic_count, potion_count,
+is_me}]`; `is_me` marks the local seat.
 
 `loot` (v6, present on the combat/reward screen, transient): the rewards on offer —
 `{gold, cards: [ids], relics: [ids], potions: [ids], card_removal}` (`card_removal`

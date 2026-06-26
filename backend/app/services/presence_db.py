@@ -78,9 +78,11 @@ def end(steam_id: str) -> None:
 
 def active(limit: int = 50) -> list[dict]:
     """Fresh live players, deepest run first. Excludes the heavy per-run detail
-    (deck/relics/potions, the event window, and the map node/edge graph): the
+    (deck/relics/potions, the event window, the map node/edge graph, the combat
+    hand, the act route, loot, co-op seats, and the local player's powers): the
     per-player endpoint serves those for the live run view. Keeps path/pos so the
-    roster can show a player's position on a mini progress indicator."""
+    roster can show a player's position on a mini progress indicator. The light
+    scalars (run_time/block/energy/damage/pile counts) stay for a richer card."""
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)
     docs = (
         _presence_coll()
@@ -95,6 +97,11 @@ def active(limit: int = 50) -> list[dict]:
                 "event": 0,
                 "shop": 0,
                 "enemies": 0,
+                "hand": 0,
+                "route": 0,
+                "loot": 0,
+                "players": 0,
+                "player_powers": 0,
             },
         )
         .sort([("total_floor", -1), ("updated_at", -1)])

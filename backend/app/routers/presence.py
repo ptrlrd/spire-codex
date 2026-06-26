@@ -25,8 +25,11 @@ _INT_FIELDS = (
     "ascension",
     "player_count",
     "turn",
-    # Live combat vitals + pile sizes for the spectator combat view; combat-only,
-    # cleared by the transient-unset list below when the mod sends null.
+    # Run timer in seconds (freezes at win); present the whole run, not unset.
+    "run_time",
+    # Live combat vitals + pile sizes for the spectator combat view. `energy` and
+    # the pile counts are combat-only (cleared by the transient-unset list below);
+    # `block`/`max_energy` are sent the whole run, so they are NOT unset.
     "block",
     "energy",
     "max_energy",
@@ -42,8 +45,16 @@ _INT_FIELDS = (
 )
 _STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username")
 # `hand` is the live combat hand (card ids); combat-only, so it's in the
-# transient-unset list below too.
-_LIST_CAPS = {"deck": 200, "relics": 100, "potions": 10, "fighting": 8, "hand": 12}
+# transient-unset list below. `modifiers` are the run's daily/custom mutators —
+# valid the whole run, so NOT unset.
+_LIST_CAPS = {
+    "deck": 200,
+    "relics": 100,
+    "potions": 10,
+    "fighting": 8,
+    "hand": 20,
+    "modifiers": 20,
+}
 
 
 def _safe_id(s: str) -> bool:
@@ -187,6 +198,58 @@ def _clean_loot(raw) -> dict | None:
     elif isinstance(cr, (int, float)):
         out["card_removal"] = int(cr)
     return out or None
+
+
+_POWERS_CAP = 40
+_COOP_CAP = 4
+
+
+def _as_int(v) -> int:
+    """Coerce a heartbeat number to int; missing / non-numeric -> 0."""
+    return int(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else 0
+
+
+def _clean_powers(raw) -> list[dict] | None:
+    """The local player's combat buffs/debuffs as [{id, amount}]. An empty list
+    is meaningful (in combat, no powers); only None means absent this beat, so
+    it's in the transient-unset set."""
+    if not isinstance(raw, list):
+        return None
+    out: list[dict] = []
+    for p in raw[:_POWERS_CAP]:
+        if not isinstance(p, dict):
+            continue
+        pid = p.get("id")
+        if isinstance(pid, str) and pid:
+            out.append({"id": pid[:_MAX_STR], "amount": _as_int(p.get("amount"))})
+    return out
+
+
+def _clean_players(raw) -> list[dict] | None:
+    """Co-op per-seat vitals; the mod sends this only with 2+ players. `is_me`
+    marks the local seat so the frontend can highlight it."""
+    if not isinstance(raw, list):
+        return None
+    out: list[dict] = []
+    for p in raw[:_COOP_CAP]:
+        if not isinstance(p, dict):
+            continue
+        ch = p.get("character")
+        out.append(
+            {
+                "character": ch[:_MAX_STR] if isinstance(ch, str) and ch else None,
+                "hp": _as_int(p.get("hp")),
+                "max_hp": _as_int(p.get("max_hp")),
+                "block": _as_int(p.get("block")),
+                "gold": _as_int(p.get("gold")),
+                "alive": bool(p.get("alive")),
+                "deck_size": _as_int(p.get("deck_size")),
+                "relic_count": _as_int(p.get("relic_count")),
+                "potion_count": _as_int(p.get("potion_count")),
+                "is_me": bool(p.get("is_me")),
+            }
+        )
+    return out
 
 
 # Current-screen spectator detail: the live event (name/prompt/options) and the shop
@@ -434,11 +497,17 @@ async def post_presence(request: Request):
         fields["route"] = rt
     if (lt := _clean_loot(data.get("loot"))) is not None:
         fields["loot"] = lt
+    # Local player's combat powers ([] is meaningful) + co-op per-seat vitals.
+    if (pw := _clean_powers(data.get("player_powers"))) is not None:
+        fields["player_powers"] = pw
+    if (pls := _clean_players(data.get("players"))) is not None:
+        fields["players"] = pls
 
     # Transient fields: when the mod sends these as explicit null (combat ended / left the
     # screen), clear them rather than leaving stale values. pos is NOT in this set on
     # purpose: keeping the last node avoids a blinking map marker between nodes. route is
     # NOT here either: it's act-scoped and persists until the next act overwrites it.
+    # block / max_energy / run_time / modifiers are sent the whole run, so NOT unset.
     unset = [
         k
         for k in (
@@ -449,12 +518,11 @@ async def post_presence(request: Request):
             "enemies",
             "hand",
             "loot",
-            "block",
             "energy",
-            "max_energy",
             "draw_count",
             "discard_count",
             "exhaust_count",
+            "player_powers",
             "damage_dealt",
             "damage_dealt_this_turn",
             "damage_taken",
