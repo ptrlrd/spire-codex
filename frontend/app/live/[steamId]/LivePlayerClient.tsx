@@ -38,6 +38,7 @@ import {
   elapsed,
   monsterName,
   parseDeckId,
+  useEncounterMap,
   useMonsterMap,
   usePoll,
   withOrdinalKeys,
@@ -606,6 +607,7 @@ export default function LivePlayerClient() {
   const [status, setStatus] = useState<"loading" | "live" | "ended" | "missing">("loading");
   const [cat, setCat] = useState<Catalogs>({ cards: {}, relics: {}, potions: {}, events: {} });
   const monsters = useMonsterMap(true);
+  const encounters = useEncounterMap(true);
 
   useEffect(() => {
     cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`)
@@ -724,7 +726,15 @@ export default function LivePlayerClient() {
         <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
           Map{p.map?.act != null ? ` · Act ${p.map.act}` : ""}
         </h2>
-        <LiveMap map={p.map} path={p.path} pos={p.pos} />
+        <LiveMap
+          map={p.map}
+          path={p.path}
+          pos={p.pos}
+          reveals={p.reveals}
+          route={p.route}
+          monsters={monsters}
+          encounters={encounters}
+        />
       </div>
     ) : null;
 

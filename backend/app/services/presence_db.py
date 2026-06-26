@@ -94,6 +94,7 @@ def active(limit: int = 50) -> list[dict]:
                 "potions": 0,
                 "events": 0,
                 "map": 0,
+                "reveals": 0,
                 "event": 0,
                 "shop": 0,
                 "enemies": 0,

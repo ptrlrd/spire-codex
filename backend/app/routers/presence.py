@@ -131,6 +131,23 @@ def _clean_map(raw) -> dict | None:
     return out
 
 
+def _clean_reveals(raw) -> list | None:
+    """Per-node progressive reveals for the spectator map: one
+    [col, row, room_type, encounter_id] per VISITED node, the actual resolved
+    room type (so a `?` node shows what it became) and the encounter/event id
+    (null for shop/rest/treasure). Same coord space as the map nodes; grows as
+    the player walks. Capped (an act is ~15 nodes)."""
+    if not isinstance(raw, list):
+        return None
+    out = []
+    for e in raw[:64]:
+        if isinstance(e, list) and len(e) == 4 and _int_pair(e[:2]):
+            rt = e[2] if isinstance(e[2], str) else ""
+            enc = e[3] if isinstance(e[3], str) else None
+            out.append([int(e[0]), int(e[1]), rt[:_MAX_STR], enc])
+    return out
+
+
 # Route (the act's structure) + loot (the combat/reward screen). Route persists
 # per act like the map; loot is transient, cleared when the player leaves the
 # reward screen.
@@ -483,6 +500,8 @@ async def post_presence(request: Request):
         fields["pos"] = pos
     if (m := _clean_map(data.get("map"))) is not None:
         fields["map"] = m
+    if (rv := _clean_reveals(data.get("reveals"))) is not None:
+        fields["reveals"] = rv
 
     # Current-screen detail: the live event, the shop, and combat enemies. Present
     # only on those screens.

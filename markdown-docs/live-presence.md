@@ -147,6 +147,16 @@ The per-player doc carries the current act's map graph and the route taken so fa
 - The bulky `map` graph is sent once per act (it's static) and omitted from `/active`;
   `path`/`pos` ride every beat and DO appear on `/active` for a roster progress hint.
 
+`reveals` (per-node, progressive) rides every beat next to `path`/`pos`: one
+`[col, row, room_type, encounter_id]` per VISITED node — the ACTUAL resolved room type
+(so a `?` node shows what it became) and the encounter/event id (`null` for
+shop/rest/treasure). Same `col`/`row` space as `nodes[]`, so it overlays the map directly,
+and it grows as the player walks. Resolve `encounter_id` via `/api/encounters` to the
+encounter's first monster, then that monster's portrait, for the node art. The game binds an
+encounter to a node only on entry, so an unvisited node's enemy is genuinely unknowable
+except the boss and ancient (single fixed nodes: join the boss/ancient node coord in
+`nodes[]` with `route.boss` / `route.ancient`). Omitted from `/active`.
+
 ### Live event (v4, present only in an event room)
 
 When `screen == "event"`, the per-player doc carries the event the player is reading and
