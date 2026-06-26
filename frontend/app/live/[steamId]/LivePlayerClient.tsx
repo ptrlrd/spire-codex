@@ -441,16 +441,17 @@ function LiveCombatPanel({
     ["Exhaust", p.exhaust_count],
   ];
   const shownPiles = piles.filter(([, v]) => v != null);
-  // Hovering a pile lists its contents (grouped by name). The mod sends the
-  // card-id lists per pile; until it does, the hover is just the pile name.
+  // Hovering a pile shows its contents (grouped by name) in a popover. The mod
+  // sends the card-id lists per pile; until a player's mod updates, the list is
+  // empty and the popover doesn't show.
   const pileCards: Record<string, string[] | undefined> = {
     Draw: p.draw_pile,
     Discard: p.discard_pile,
     Exhaust: p.exhaust_pile,
   };
-  const pileTitle = (label: string): string => {
+  const pileEntries = (label: string): [string, number][] => {
     const ids = pileCards[label];
-    if (!ids?.length) return `${label} pile`;
+    if (!ids?.length) return [];
     const counts = new Map<string, number>();
     for (const raw of ids) {
       const { id, upgraded } = parseDeckId(raw);
@@ -458,10 +459,7 @@ function LiveCombatPanel({
         (cat.cards[id]?.name || displayName(`CARD.${id}`)) + (upgraded ? "+" : "");
       counts.set(nm, (counts.get(nm) ?? 0) + 1);
     }
-    const list = [...counts.entries()]
-      .map(([nm, n]) => (n > 1 ? `${nm} ×${n}` : nm))
-      .join(", ");
-    return `${label} pile: ${list}`;
+    return [...counts.entries()];
   };
   const powers = p.player_powers ?? [];
   const hand = p.hand ?? [];
@@ -529,34 +527,53 @@ function LiveCombatPanel({
       )}
       {shownPiles.length > 0 && (
         <div className="flex items-center gap-4">
-          {shownPiles.map(([label, v]) =>
-            label === "Exhaust" ? (
-              <span
-                key={label}
-                title={pileTitle(label)}
-                className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white"
-              >
-                {v}
+          {shownPiles.map(([label, v]) => {
+            const entries = pileEntries(label);
+            return (
+              <span key={label} className="group relative inline-flex">
+                {label === "Exhaust" ? (
+                  <span
+                    title={`${label} pile`}
+                    className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white"
+                  >
+                    {v}
+                  </span>
+                ) : (
+                  <span
+                    title={`${label} pile`}
+                    className="inline-flex items-center gap-1 text-xs tabular-nums text-[var(--text-secondary)]"
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={imageUrl(
+                        `/static/images/ui/combat/${label.toLowerCase()}_pile.png`,
+                      )}
+                      alt={label}
+                      className="h-6 w-6 object-contain"
+                      crossOrigin="anonymous"
+                    />
+                    {v}
+                  </span>
+                )}
+                {entries.length > 0 && (
+                  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-1 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-left text-[11px] leading-snug shadow-lg group-hover:block">
+                    <span className="mb-1 block font-semibold text-[var(--accent-gold)]">
+                      {label} pile ({v})
+                    </span>
+                    <span className="block whitespace-normal text-[var(--text-secondary)]">
+                      {entries.map(([nm, n], i) => (
+                        <span key={nm}>
+                          {i > 0 ? ", " : ""}
+                          {nm}
+                          {n > 1 ? ` ×${n}` : ""}
+                        </span>
+                      ))}
+                    </span>
+                  </span>
+                )}
               </span>
-            ) : (
-              <span
-                key={label}
-                title={pileTitle(label)}
-                className="inline-flex items-center gap-1 text-xs tabular-nums text-[var(--text-secondary)]"
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={imageUrl(
-                    `/static/images/ui/combat/${label.toLowerCase()}_pile.png`,
-                  )}
-                  alt={label}
-                  className="h-6 w-6 object-contain"
-                  crossOrigin="anonymous"
-                />
-                {v}
-              </span>
-            ),
-          )}
+            );
+          })}
         </div>
       )}
     </div>
