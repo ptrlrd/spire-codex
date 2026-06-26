@@ -38,6 +38,64 @@ import type { EntityType, Tier, TierEntity, TierList } from "./types";
 
 type Containers = Record<string, string[]>;
 
+// html-to-image renders a blank capture when the cloned styles contain oklch()
+// colors. Tailwind v4's default palette (neutral/sky/emerald/...) is all oklch,
+// and the serialized SVG fails to load, leaving only the background. Before
+// snapshotting, rewrite every oklch() the capture resolves to into rasterized
+// sRGB rgb() as an inline override; returns a function that reverts it after.
+const OKLCH_PROPS = [
+  "color",
+  "backgroundColor",
+  "backgroundImage",
+  "borderTopColor",
+  "borderRightColor",
+  "borderBottomColor",
+  "borderLeftColor",
+  "outlineColor",
+  "textDecorationColor",
+  "boxShadow",
+  "fill",
+  "stroke",
+] as const;
+
+function inlineOklchAsRgb(root: HTMLElement): () => void {
+  const ctx = document.createElement("canvas").getContext("2d");
+  if (!ctx) return () => {};
+  const cache = new Map<string, string>();
+  const toRgb = (oklch: string): string => {
+    const cached = cache.get(oklch);
+    if (cached !== undefined) return cached;
+    ctx.fillStyle = "#000";
+    ctx.fillStyle = oklch; // canvas rasterizes any CSS color, incl. oklch
+    ctx.fillRect(0, 0, 1, 1);
+    const [r, g, b, a] = ctx.getImageData(0, 0, 1, 1).data;
+    const rgb = `rgba(${r}, ${g}, ${b}, ${(a / 255).toFixed(3)})`;
+    cache.set(oklch, rgb);
+    return rgb;
+  };
+  const undo: Array<() => void> = [];
+  const els = [root, ...Array.from(root.querySelectorAll<HTMLElement>("*"))];
+  for (const el of els) {
+    const cs = getComputedStyle(el) as unknown as Record<string, string>;
+    for (const prop of OKLCH_PROPS) {
+      const val = cs[prop];
+      if (typeof val === "string" && val.includes("oklch")) {
+        const prev = (el.style as unknown as Record<string, string>)[prop];
+        (el.style as unknown as Record<string, string>)[prop] = val.replace(
+          /oklch\([^)]*\)/g,
+          (m) => toRgb(m),
+        );
+        undo.push(() => {
+          (el.style as unknown as Record<string, string>)[prop] = prev;
+        });
+      }
+    }
+  }
+  return () => {
+    for (const f of undo) f();
+  };
+}
+
 // Synthetic tray filter that matches beta-only entities by their `beta` flag
 // instead of their color/pool group, so beta content has a one-click pill.
 const BETA_GROUP = "__beta__";
@@ -322,17 +380,24 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     node.querySelectorAll("textarea").forEach((el) => {
       el.textContent = (el as HTMLTextAreaElement).value;
     });
-    const canvas = await toCanvas(node, {
-      pixelRatio,
-      backgroundColor: "#0a0a0a",
-      // cacheBust forces a fresh CORS fetch of the CDN art (cached copies
-      // were loaded without an Origin header and would taint the canvas).
-      cacheBust: true,
-      // Drop the per-row "edit" controls / popovers from the image.
-      filter: (n) => !(n instanceof HTMLElement && n.dataset.exportHide === "true"),
-    });
-    // webp is smaller/faster than png and is what we store on the CDN.
-    return canvas.toDataURL("image/webp", 0.92);
+    // Tailwind v4 colors resolve to oklch(), which makes html-to-image render a
+    // blank image; swap them for rgb() for the duration of the capture.
+    const restoreColors = inlineOklchAsRgb(node);
+    try {
+      const canvas = await toCanvas(node, {
+        pixelRatio,
+        backgroundColor: "#0a0a0a",
+        // cacheBust forces a fresh CORS fetch of the CDN art (cached copies
+        // were loaded without an Origin header and would taint the canvas).
+        cacheBust: true,
+        // Drop the per-row "edit" controls / popovers from the image.
+        filter: (n) => !(n instanceof HTMLElement && n.dataset.exportHide === "true"),
+      });
+      // webp is smaller/faster than png and is what we store on the CDN.
+      return canvas.toDataURL("image/webp", 0.92);
+    } finally {
+      restoreColors();
+    }
   }
 
   async function handleExport() {

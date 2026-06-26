@@ -214,6 +214,14 @@ def set_preview_image(tierlist_id: str, user_id: str, data: bytes) -> dict | Non
         return None
     url = r2_storage.upload_preview(doc["share_id"], data)
     if url:
+        # Version the URL by content hash. The R2 key is stable per share_id and
+        # the CDN caches it for an hour, so without this an edited preview (e.g.
+        # after deleting rows) keeps serving the old image until the cache
+        # expires. A content hash gives a fresh URL only when the image actually
+        # changes, so identical re-saves still hit the cache.
+        import hashlib
+
+        url = f"{url}?v={hashlib.md5(data).hexdigest()[:10]}"
         coll.update_one(
             {"_id": oid},
             {"$set": {"image_url": url, "updated_at": datetime.now(timezone.utc)}},
