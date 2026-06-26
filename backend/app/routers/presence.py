@@ -43,7 +43,7 @@ _INT_FIELDS = (
     "damage_taken",
     "biggest_hit",
 )
-_STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username")
+_STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username", "act_name")
 # `hand` is the live combat hand (card ids); combat-only, so it's in the
 # transient-unset list below. `modifiers` are the run's daily/custom mutators —
 # valid the whole run, so NOT unset.
