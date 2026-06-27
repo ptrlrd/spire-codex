@@ -564,11 +564,11 @@ function LiveCombatPanel({
       )}
       {openPile && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/60 p-4"
           onClick={() => setOpenPile(null)}
         >
           <div
-            className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+            className="my-8 w-full max-w-3xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
             onClick={(ev) => ev.stopPropagation()}
           >
             <div className="mb-3 flex items-center justify-between">
@@ -594,12 +594,12 @@ function LiveCombatPanel({
                     upgraded={upgraded}
                     cardData={cat.cards}
                     lp={lp}
-                    className="relative block w-24 shrink-0"
+                    className="relative block w-32 shrink-0"
                   >
                     <img
                       src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
                       alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                      className="h-auto w-24 rounded-sm"
+                      className="h-auto w-32 rounded-sm"
                       crossOrigin="anonymous"
                       loading="lazy"
                     />
