@@ -836,8 +836,321 @@ export default function LivePlayerClient() {
   // sit beside the player; when there isn't, the player spans the full width.
   const hasContext = hasEnemies || !!p.event || !!p.shop || !!p.loot;
 
+  const characterCard = (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <div className="flex items-center gap-3">
+        <CharacterIcon character={p.character} className="w-16 h-16" />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-2 flex-wrap">
+            {status === "live" ? <LiveDot /> : null}
+            <h1 className="text-xl font-bold text-[var(--text-primary)] truncate">
+              {p.username || "Anonymous climber"}
+            </h1>
+            {p.ascension != null && p.ascension > 0 && (
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
+                A{p.ascension}
+              </span>
+            )}
+            {(p.player_count ?? 1) > 1 && (
+              <span className="text-xs text-[var(--text-muted)]">co-op ×{p.player_count}</span>
+            )}
+            {p.is_partner && <PartnerBadge />}
+            {status === "ended" && (
+              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
+                run ended
+              </span>
+            )}
+          </div>
+          <div className="text-sm text-[var(--text-muted)] truncate">
+            {displayName(`CHARACTER.${p.character ?? ""}`)}
+            {p.screen ? ` · ${p.screen}` : ""}
+            {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
+            {p.run_time != null
+              ? ` · run ${Math.floor(p.run_time / 60)}:${String(
+                  Math.floor(p.run_time % 60),
+                ).padStart(2, "0")}`
+              : ""}
+            {p.seed ? ` · seed ${p.seed}` : ""}
+          </div>
+          {(p.modifiers?.length ?? 0) > 0 && (
+            <div className="mt-1 flex flex-wrap gap-1">
+              {p.modifiers!.map((m) => (
+                <span
+                  key={m}
+                  className="px-1.5 py-0.5 rounded text-[10px] bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)]"
+                >
+                  {displayName(m)}
+                </span>
+              ))}
+            </div>
+          )}
+          {p.twitch_live && p.twitch_login && (
+            <div className="mt-2">
+              <WatchOnTwitch login={p.twitch_login} viewers={p.twitch_viewers} />
+            </div>
+          )}
+        </div>
+        <div className="text-right shrink-0">
+          <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
+            {p.act != null ? `Act ${p.act}` : ""}
+            {p.total_floor != null ? ` · F${p.total_floor}` : ""}
+          </div>
+          <div className="mt-0.5 flex items-center justify-end gap-3 text-sm tabular-nums">
+            {p.energy != null && (
+              <span
+                className="inline-flex items-center gap-1 text-[var(--text-secondary)]"
+                title="Energy"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl(
+                    `/static/images/icons/${(p.character ?? "colorless").toLowerCase()}_energy_icon.png`,
+                  )}
+                  alt="Energy"
+                  className="h-4 w-4 object-contain"
+                  crossOrigin="anonymous"
+                  onError={(e) => {
+                    const el = e.target as HTMLImageElement;
+                    const fb = imageUrl(
+                      "/static/images/icons/colorless_energy_icon.png",
+                    );
+                    if (el.src !== fb) el.src = fb;
+                  }}
+                />
+                {p.energy}
+                {p.max_energy != null ? `/${p.max_energy}` : ""}
+              </span>
+            )}
+            {p.gold != null && (
+              <span
+                className="inline-flex items-center gap-1 text-[var(--accent-gold)]"
+                title="Gold"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={imageUrl("/static/images/icons/gold_icon.png")}
+                  alt="Gold"
+                  className="h-4 w-4 object-contain"
+                  crossOrigin="anonymous"
+                />
+                {p.gold}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+      {hpPct != null && (
+        <div className="mt-3">
+          <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
+            <span>HP</span>
+            <span>
+              {p.hp}/{p.max_hp}
+            </span>
+          </div>
+          <div className="h-2 rounded bg-[var(--bg-primary)]">
+            <div className="h-2 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+          </div>
+        </div>
+      )}
+      {(p.block ?? 0) > 0 && (
+        <div className="mt-2 text-xs tabular-nums">
+          <span className="text-sky-300" title="Block">
+            Block {p.block}
+          </span>
+        </div>
+      )}
+    </div>
+  );
+
+  const screenPanels = hasContext ? (
+    <div className="space-y-4">
+      {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
+      {p.screen === "combat" && !p.loot && (
+        <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
+      )}
+      {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
+      {p.shop && (
+        <LiveShopPanel
+          shop={p.shop}
+          cards={cat.cards}
+          relics={cat.relics}
+          potions={cat.potions}
+          lp={lp}
+          lang={lang}
+        />
+      )}
+      {p.loot && (
+        <LiveLootPanel
+          loot={p.loot}
+          cards={cat.cards}
+          relics={cat.relics}
+          potions={cat.potions}
+          lp={lp}
+          lang={lang}
+        />
+      )}
+    </div>
+  ) : null;
+
+  const playByPlay = (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Play-by-play</h2>
+      {events.length === 0 ? (
+        <p className="text-sm text-[var(--text-muted)]">
+          No plays yet. Card plays, potions, fights, and purchases show up here as they
+          happen.
+        </p>
+      ) : (
+        <ul>
+          {events.map(({ e, key, won }) => (
+            <TickerRow
+              key={key}
+              e={e}
+              cat={cat}
+              monsters={monsters}
+              encounters={encounters}
+              lp={lp}
+              won={won}
+            />
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+
+  const deckColumn = (
+    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 space-y-4">
+      <div>
+        <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+          Deck{p.deck ? ` (${p.deck.length})` : ""}
+        </h2>
+        {deckGroups.length === 0 ? (
+          <p className="text-sm text-[var(--text-muted)]">No deck data on this beat.</p>
+        ) : (
+          <div className="flex flex-wrap gap-1.5">
+            {deckGroups.map(({ raw, count }) => {
+              const { id, upgraded } = parseDeckId(raw);
+              const fallback = cat.cards[id]?.image_url
+                ? imageUrl(cat.cards[id].image_url as string)
+                : "";
+              return (
+                <CardPill
+                  key={raw}
+                  cardId={id}
+                  upgraded={upgraded}
+                  cardData={cat.cards}
+                  lp={lp}
+                  className="relative block w-28 shrink-0"
+                >
+                  <img
+                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                    alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
+                    className="w-28 h-auto rounded-sm"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    onError={(e) => {
+                      const el = e.target as HTMLImageElement;
+                      if (fallback && el.src !== fallback) el.src = fallback;
+                      else el.style.visibility = "hidden";
+                    }}
+                  />
+                  {count > 1 && (
+                    <span className="absolute -top-1 -right-1 px-1 rounded bg-[var(--accent-gold)] text-[var(--bg-primary)] text-[10px] font-bold">
+                      ×{count}
+                    </span>
+                  )}
+                </CardPill>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      <div>
+        <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Relics</h2>
+        {(p.relics ?? []).length === 0 ? (
+          <p className="text-sm text-[var(--text-muted)]">No relic data on this beat.</p>
+        ) : (
+          <div className="flex flex-wrap gap-1.5">
+            {(p.relics ?? []).map((raw) => {
+              const rid = cleanId(raw);
+              const info = cat.relics[rid];
+              const src = info?.image_url
+                ? imageUrl(info.image_url)
+                : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
+              return (
+                <RelicPill
+                  key={raw}
+                  relicId={rid}
+                  relicData={cat.relics}
+                  lp={lp}
+                  className="block shrink-0"
+                >
+                  <img
+                    src={src}
+                    alt={info?.name || displayName(`RELIC.${raw}`)}
+                    className="w-11 h-11 object-contain"
+                    crossOrigin="anonymous"
+                    loading="lazy"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).style.display = "none";
+                    }}
+                  />
+                </RelicPill>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {(p.potions ?? []).length > 0 && (
+        <div>
+          <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Potions</h2>
+          <div className="flex flex-wrap gap-1.5">
+            {withOrdinalKeys(p.potions ?? []).map(({ item: raw, key }) => {
+              const pid = cleanId(raw);
+              const info = cat.potions[pid];
+              return (
+                <PotionPill
+                  key={key}
+                  potionId={pid}
+                  potionData={cat.potions}
+                  lp={lp}
+                  className="block shrink-0"
+                >
+                  {info?.image_url ? (
+                    <img
+                      src={imageUrl(info.image_url)}
+                      alt={info.name}
+                      className="w-11 h-11 object-contain"
+                      crossOrigin="anonymous"
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  ) : (
+                    <span className="text-xs text-[var(--text-secondary)]">
+                      {displayName(`POTION.${raw}`)}
+                    </span>
+                  )}
+                </PotionPill>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {(p.players?.length ?? 0) > 0 && <LiveCoopPanel players={p.players!} />}
+
+      {p.sts2_version && (
+        <p className="text-[10px] text-[var(--text-muted)]">{p.sts2_version}</p>
+      )}
+    </div>
+  );
+
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <Link href="/live" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]">
         ← Live roster
       </Link>
@@ -845,328 +1158,17 @@ export default function LivePlayerClient() {
       {/* Main content on the left; the act map gets a narrow rail on the right
           sized to it, so it no longer leaves dead space in a half-width column.
           The rail is dropped entirely when there's no map. */}
-      <div className={`mt-3 grid gap-4 items-start ${mapCard ? "lg:grid-cols-[1fr_260px]" : ""}`}>
+      {/* Four columns on desktop (play-by-play | character + deck | combat
+          context | map); stacks to one column on mobile. */}
+      <div className="mt-3 grid grid-cols-1 lg:grid-cols-4 gap-4 items-start">
+        <div className="min-w-0">{playByPlay}</div>
         <div className="space-y-4 min-w-0">
-          {/* The player, with the live context (combat enemies, event reader,
-              shop) beside it. The player spans the full width when idle. */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-start">
-            <div
-              className={`rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 ${!hasContext ? "lg:col-span-2" : ""}`}
-            >
-          <div className="flex items-center gap-3">
-            <CharacterIcon character={p.character} className="w-16 h-16" />
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-2 flex-wrap">
-                {status === "live" ? <LiveDot /> : null}
-                <h1 className="text-xl font-bold text-[var(--text-primary)] truncate">
-                  {p.username || "Anonymous climber"}
-                </h1>
-                {p.ascension != null && p.ascension > 0 && (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
-                    A{p.ascension}
-                  </span>
-                )}
-                {(p.player_count ?? 1) > 1 && (
-                  <span className="text-xs text-[var(--text-muted)]">co-op ×{p.player_count}</span>
-                )}
-                {p.is_partner && <PartnerBadge />}
-                {status === "ended" && (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
-                    run ended
-                  </span>
-                )}
-              </div>
-              <div className="text-sm text-[var(--text-muted)] truncate">
-                {displayName(`CHARACTER.${p.character ?? ""}`)}
-                {p.screen ? ` · ${p.screen}` : ""}
-                {p.started_at ? ` · climbing for ${elapsed(p.started_at)}` : ""}
-                {p.run_time != null
-                  ? ` · run ${Math.floor(p.run_time / 60)}:${String(
-                      Math.floor(p.run_time % 60),
-                    ).padStart(2, "0")}`
-                  : ""}
-                {p.seed ? ` · seed ${p.seed}` : ""}
-              </div>
-              {(p.modifiers?.length ?? 0) > 0 && (
-                <div className="mt-1 flex flex-wrap gap-1">
-                  {p.modifiers!.map((m) => (
-                    <span
-                      key={m}
-                      className="px-1.5 py-0.5 rounded text-[10px] bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)]"
-                    >
-                      {displayName(m)}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {p.twitch_live && p.twitch_login && (
-                <div className="mt-2">
-                  <WatchOnTwitch login={p.twitch_login} viewers={p.twitch_viewers} />
-                </div>
-              )}
-            </div>
-            <div className="text-right shrink-0">
-              <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
-                {p.act != null ? `Act ${p.act}` : ""}
-                {p.total_floor != null ? ` · F${p.total_floor}` : ""}
-              </div>
-              <div className="mt-0.5 flex items-center justify-end gap-3 text-sm tabular-nums">
-                {p.energy != null && (
-                  <span
-                    className="inline-flex items-center gap-1 text-[var(--text-secondary)]"
-                    title="Energy"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={imageUrl(
-                        `/static/images/icons/${(p.character ?? "colorless").toLowerCase()}_energy_icon.png`,
-                      )}
-                      alt="Energy"
-                      className="h-4 w-4 object-contain"
-                      crossOrigin="anonymous"
-                      onError={(e) => {
-                        const el = e.target as HTMLImageElement;
-                        const fb = imageUrl(
-                          "/static/images/icons/colorless_energy_icon.png",
-                        );
-                        if (el.src !== fb) el.src = fb;
-                      }}
-                    />
-                    {p.energy}
-                    {p.max_energy != null ? `/${p.max_energy}` : ""}
-                  </span>
-                )}
-                {p.gold != null && (
-                  <span
-                    className="inline-flex items-center gap-1 text-[var(--accent-gold)]"
-                    title="Gold"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={imageUrl("/static/images/icons/gold_icon.png")}
-                      alt="Gold"
-                      className="h-4 w-4 object-contain"
-                      crossOrigin="anonymous"
-                    />
-                    {p.gold}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {hpPct != null && (
-            <div className="mt-3">
-              <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
-                <span>HP</span>
-                <span>
-                  {p.hp}/{p.max_hp}
-                </span>
-              </div>
-              <div className="h-2 rounded bg-[var(--bg-primary)]">
-                <div className="h-2 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
-              </div>
-            </div>
-          )}
-          {(p.block ?? 0) > 0 && (
-            <div className="mt-2 text-xs tabular-nums">
-              <span className="text-sky-300" title="Block">
-                Block {p.block}
-              </span>
-            </div>
-          )}
+          {characterCard}
+          {deckColumn}
         </div>
-
-            {/* Current-screen panels (combat enemies, event reader, shop), each
-                gated on its own data, which the backend clears on screen exit. */}
-            {hasContext && (
-              <div className="space-y-4">
-                {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
-                {p.screen === "combat" && !p.loot && (
-                  <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
-                )}
-                {p.event && <LiveEventPanel ev={p.event} lp={lp} />}
-                {p.shop && (
-                  <LiveShopPanel
-                    shop={p.shop}
-                    cards={cat.cards}
-                    relics={cat.relics}
-                    potions={cat.potions}
-                    lp={lp}
-                    lang={lang}
-                  />
-                )}
-                {p.loot && (
-                  <LiveLootPanel
-                    loot={p.loot}
-                    cards={cat.cards}
-                    relics={cat.relics}
-                    potions={cat.potions}
-                    lp={lp}
-                    lang={lang}
-                  />
-                )}
-              </div>
-            )}
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 lg:col-span-1">
-          <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Play-by-play</h2>
-          {events.length === 0 ? (
-            <p className="text-sm text-[var(--text-muted)]">
-              No plays yet. Card plays, potions, fights, and purchases show up here as they
-              happen.
-            </p>
-          ) : (
-            <ul>
-              {events.map(({ e, key, won }) => (
-                <TickerRow
-                  key={key}
-                  e={e}
-                  cat={cat}
-                  monsters={monsters}
-                  encounters={encounters}
-                  lp={lp}
-                  won={won}
-                />
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 space-y-4 lg:col-span-2">
-          <div>
-            <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
-              Deck{p.deck ? ` (${p.deck.length})` : ""}
-            </h2>
-            {deckGroups.length === 0 ? (
-              <p className="text-sm text-[var(--text-muted)]">No deck data on this beat.</p>
-            ) : (
-              <div className="flex flex-wrap gap-1.5">
-                {deckGroups.map(({ raw, count }) => {
-                  const { id, upgraded } = parseDeckId(raw);
-                  const fallback = cat.cards[id]?.image_url
-                    ? imageUrl(cat.cards[id].image_url as string)
-                    : "";
-                  return (
-                    <CardPill
-                      key={raw}
-                      cardId={id}
-                      upgraded={upgraded}
-                      cardData={cat.cards}
-                      lp={lp}
-                      className="relative block w-20 shrink-0"
-                    >
-                      <img
-                        src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
-                        alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                        className="w-20 h-auto rounded-sm"
-                        crossOrigin="anonymous"
-                        loading="lazy"
-                        onError={(e) => {
-                          const el = e.target as HTMLImageElement;
-                          if (fallback && el.src !== fallback) el.src = fallback;
-                          else el.style.visibility = "hidden";
-                        }}
-                      />
-                      {count > 1 && (
-                        <span className="absolute -top-1 -right-1 px-1 rounded bg-[var(--accent-gold)] text-[var(--bg-primary)] text-[10px] font-bold">
-                          ×{count}
-                        </span>
-                      )}
-                    </CardPill>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          <div>
-            <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Relics</h2>
-            {(p.relics ?? []).length === 0 ? (
-              <p className="text-sm text-[var(--text-muted)]">No relic data on this beat.</p>
-            ) : (
-              <div className="flex flex-wrap gap-1.5">
-                {(p.relics ?? []).map((raw) => {
-                  const rid = cleanId(raw);
-                  const info = cat.relics[rid];
-                  const src = info?.image_url
-                    ? imageUrl(info.image_url)
-                    : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
-                  return (
-                    <RelicPill
-                      key={raw}
-                      relicId={rid}
-                      relicData={cat.relics}
-                      lp={lp}
-                      className="block shrink-0"
-                    >
-                      <img
-                        src={src}
-                        alt={info?.name || displayName(`RELIC.${raw}`)}
-                        className="w-9 h-9 object-contain"
-                        crossOrigin="anonymous"
-                        loading="lazy"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).style.display = "none";
-                        }}
-                      />
-                    </RelicPill>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-
-          {(p.potions ?? []).length > 0 && (
-            <div>
-              <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">Potions</h2>
-              <div className="flex flex-wrap gap-1.5">
-                {withOrdinalKeys(p.potions ?? []).map(({ item: raw, key }) => {
-                  const pid = cleanId(raw);
-                  const info = cat.potions[pid];
-                  return (
-                    <PotionPill
-                      key={key}
-                      potionId={pid}
-                      potionData={cat.potions}
-                      lp={lp}
-                      className="block shrink-0"
-                    >
-                      {info?.image_url ? (
-                        <img
-                          src={imageUrl(info.image_url)}
-                          alt={info.name}
-                          className="w-9 h-9 object-contain"
-                          crossOrigin="anonymous"
-                          loading="lazy"
-                          onError={(e) => {
-                            (e.target as HTMLImageElement).style.display = "none";
-                          }}
-                        />
-                      ) : (
-                        <span className="text-xs text-[var(--text-secondary)]">
-                          {displayName(`POTION.${raw}`)}
-                        </span>
-                      )}
-                    </PotionPill>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {(p.players?.length ?? 0) > 0 && <LiveCoopPanel players={p.players!} />}
-
-          {p.sts2_version && (
-            <p className="text-[10px] text-[var(--text-muted)]">{p.sts2_version}</p>
-          )}
-        </div>
-      </div>
-        </div>
+        <div className="space-y-4 min-w-0">{screenPanels}</div>
         {mapCard && (
-          <div className="lg:sticky lg:top-4 self-start">{mapCard}</div>
+          <div className="lg:sticky lg:top-4 self-start min-w-0">{mapCard}</div>
         )}
       </div>
     </div>

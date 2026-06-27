@@ -44,10 +44,10 @@ function styleFor(type: string) {
   return NODE_STYLE[type] ?? NODE_STYLE.node;
 }
 
-const COL = 30; // horizontal spacing between lanes
-const ROW = 30; // vertical spacing between depths
-const PAD = 18;
-const R = 8; // node radius
+const COL = 44; // horizontal spacing between lanes
+const ROW = 44; // vertical spacing between depths
+const PAD = 22;
+const R = 13; // node radius
 
 function key(col: number, row: number): string {
   return `${col},${row}`;
@@ -205,9 +205,9 @@ export default function LiveMap({
                   {s.glyph && (
                     <text
                       x={x(c)}
-                      y={y(r) + 3}
+                      y={y(r) + 5}
                       textAnchor="middle"
-                      fontSize="9"
+                      fontSize="14"
                       fontWeight="bold"
                       fill="#1a1a1a"
                       pointerEvents="none"
