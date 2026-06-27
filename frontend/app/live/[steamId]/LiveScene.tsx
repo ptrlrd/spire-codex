@@ -180,16 +180,22 @@ export default function LiveScene({
   const hand = p.hand ?? [];
   // The room background for the current screen (combat falls back to the
   // gradient; not every screen has dedicated art yet).
-  const sceneBg =
+  // Scene background. Merchant/neow have their own room art; everything else
+  // (combat, events, treasure, rest) sits in the current act's region, so use
+  // that region's environment — the map parallax layers (top/middle/bottom),
+  // keyed by act_name — to match the in-game look.
+  const region = (p.act_name || "").toLowerCase();
+  const regionBgs = new Set(["overgrowth", "underdocks", "hive", "glory"]);
+  const sceneLayers: string[] =
     p.screen === "merchant"
-      ? imageUrl("/static/images/misc/merchant.webp")
-      : p.screen === "treasure"
-        ? imageUrl(
-            "/static/images/renders/backgrounds/treasure_room/chest_room_act_3.png",
-          )
-        : p.event?.id === "NEOW"
-          ? imageUrl("/static/images/renders/backgrounds/neow_room/neow.webp")
-          : "";
+      ? [imageUrl("/static/images/misc/merchant.webp")]
+      : p.event?.id === "NEOW"
+        ? [imageUrl("/static/images/misc/neow.webp")]
+        : regionBgs.has(region)
+          ? ["top", "middle", "bottom"].map((l) =>
+              imageUrl(`/static/images/ui/map_backgrounds/map_${l}_${region}.png`),
+            )
+          : [];
 
   return (
     <div className="overflow-hidden rounded-xl border border-[var(--border-subtle)]">
@@ -241,20 +247,21 @@ export default function LiveScene({
       {/* The arena: combat shows the battle; other screens render their own
           scene over the matching room background. */}
       <div className="relative min-h-[320px] overflow-hidden bg-gradient-to-b from-[#1a1320] via-[#120c18] to-[#0c0810]">
-        {sceneBg && (
-          <>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={sceneBg}
-              alt=""
-              className="absolute inset-0 h-full w-full object-cover opacity-90"
-              crossOrigin="anonymous"
-              onError={(e) => {
-                (e.target as HTMLImageElement).style.display = "none";
-              }}
-            />
-            <div className="absolute inset-0 bg-black/45" />
-          </>
+        {sceneLayers.map((src) => (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            src={src}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover"
+            crossOrigin="anonymous"
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+        ))}
+        {sceneLayers.length > 0 && (
+          <div className="absolute inset-0 bg-black/30" />
         )}
         <div className="relative px-6 py-8">
           {p.screen === "combat" ? (
