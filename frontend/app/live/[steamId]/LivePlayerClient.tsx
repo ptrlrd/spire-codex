@@ -428,6 +428,7 @@ function LiveCombatPanel({
   lp: string;
   lang: string;
 }) {
+  const [openPile, setOpenPile] = useState<string | null>(null);
   const dmg: [string, number | null | undefined][] = [
     ["Dealt", p.damage_dealt],
     ["This turn", p.damage_dealt_this_turn],
@@ -441,26 +442,17 @@ function LiveCombatPanel({
     ["Exhaust", p.exhaust_count],
   ];
   const shownPiles = piles.filter(([, v]) => v != null);
-  // Hovering a pile shows its contents (grouped by name) in a popover. The mod
-  // sends the card-id lists per pile; until a player's mod updates, the list is
-  // empty and the popover doesn't show.
+  // Clicking a pile opens a box showing its cards as renders. The mod sends the
+  // card-id lists per pile; the chip is only clickable once a player's mod is up
+  // to date and the list is present.
   const pileCards: Record<string, string[] | undefined> = {
     Draw: p.draw_pile,
     Discard: p.discard_pile,
     Exhaust: p.exhaust_pile,
   };
-  const pileEntries = (label: string): [string, number][] => {
-    const ids = pileCards[label];
-    if (!ids?.length) return [];
-    const counts = new Map<string, number>();
-    for (const raw of ids) {
-      const { id, upgraded } = parseDeckId(raw);
-      const nm =
-        (cat.cards[id]?.name || displayName(`CARD.${id}`)) + (upgraded ? "+" : "");
-      counts.set(nm, (counts.get(nm) ?? 0) + 1);
-    }
-    return [...counts.entries()];
-  };
+  const openIds = openPile ? (pileCards[openPile] ?? []) : [];
+  const openGroups = new Map<string, number>();
+  for (const raw of openIds) openGroups.set(raw, (openGroups.get(raw) ?? 0) + 1);
   const powers = p.player_powers ?? [];
   const hand = p.hand ?? [];
   if (!shownDmg.length && !shownPiles.length && !powers.length && !hand.length) {
@@ -510,12 +502,12 @@ function LiveCombatPanel({
                   upgraded={upgraded}
                   cardData={cat.cards}
                   lp={lp}
-                  className="relative block w-12 shrink-0"
+                  className="relative block w-16 shrink-0"
                 >
                   <img
                     src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
                     alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                    className="h-auto w-12 rounded-sm"
+                    className="h-auto w-16 rounded-sm"
                     crossOrigin="anonymous"
                     loading="lazy"
                   />
@@ -528,52 +520,99 @@ function LiveCombatPanel({
       {shownPiles.length > 0 && (
         <div className="flex items-center gap-4">
           {shownPiles.map(([label, v]) => {
-            const entries = pileEntries(label);
-            return (
-              <span key={label} className="group relative inline-flex">
-                {label === "Exhaust" ? (
-                  <span
-                    title={`${label} pile`}
-                    className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white"
-                  >
-                    {v}
-                  </span>
-                ) : (
-                  <span
-                    title={`${label} pile`}
-                    className="inline-flex items-center gap-1 text-xs tabular-nums text-[var(--text-secondary)]"
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={imageUrl(
-                        `/static/images/ui/combat/${label.toLowerCase()}_pile.png`,
-                      )}
-                      alt={label}
-                      className="h-6 w-6 object-contain"
-                      crossOrigin="anonymous"
-                    />
-                    {v}
-                  </span>
-                )}
-                {entries.length > 0 && (
-                  <span className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-1 hidden w-max max-w-[16rem] -translate-x-1/2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-left text-[11px] leading-snug shadow-lg group-hover:block">
-                    <span className="mb-1 block font-semibold text-[var(--accent-gold)]">
-                      {label} pile ({v})
-                    </span>
-                    <span className="block whitespace-normal text-[var(--text-secondary)]">
-                      {entries.map(([nm, n], i) => (
-                        <span key={nm}>
-                          {i > 0 ? ", " : ""}
-                          {nm}
-                          {n > 1 ? ` ×${n}` : ""}
-                        </span>
-                      ))}
-                    </span>
-                  </span>
-                )}
+            const hasCards = (pileCards[label]?.length ?? 0) > 0;
+            const chip =
+              label === "Exhaust" ? (
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white">
+                  {v}
+                </span>
+              ) : (
+                <span className="inline-flex items-center gap-1 text-xs tabular-nums text-[var(--text-secondary)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={imageUrl(
+                      `/static/images/ui/combat/${label.toLowerCase()}_pile.png`,
+                    )}
+                    alt={label}
+                    className="h-6 w-6 object-contain"
+                    crossOrigin="anonymous"
+                  />
+                  {v}
+                </span>
+              );
+            return hasCards ? (
+              <button
+                key={label}
+                type="button"
+                onClick={() => setOpenPile(label)}
+                title={`${label} pile — click to view`}
+                className="inline-flex cursor-pointer items-center transition hover:opacity-75"
+              >
+                {chip}
+              </button>
+            ) : (
+              <span
+                key={label}
+                title={`${label} pile`}
+                className="inline-flex items-center"
+              >
+                {chip}
               </span>
             );
           })}
+        </div>
+      )}
+      {openPile && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          onClick={() => setOpenPile(null)}
+        >
+          <div
+            className="max-h-[80vh] w-full max-w-2xl overflow-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+            onClick={(ev) => ev.stopPropagation()}
+          >
+            <div className="mb-3 flex items-center justify-between">
+              <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
+                {openPile} pile ({openIds.length})
+              </h3>
+              <button
+                type="button"
+                onClick={() => setOpenPile(null)}
+                aria-label="Close"
+                className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {[...openGroups.entries()].map(([raw, count]) => {
+                const { id, upgraded } = parseDeckId(raw);
+                return (
+                  <CardPill
+                    key={raw}
+                    cardId={id}
+                    upgraded={upgraded}
+                    cardData={cat.cards}
+                    lp={lp}
+                    className="relative block w-24 shrink-0"
+                  >
+                    <img
+                      src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                      alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
+                      className="h-auto w-24 rounded-sm"
+                      crossOrigin="anonymous"
+                      loading="lazy"
+                    />
+                    {count > 1 && (
+                      <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
+                        ×{count}
+                      </span>
+                    )}
+                  </CardPill>
+                );
+              })}
+            </div>
+          </div>
         </div>
       )}
     </div>
@@ -1017,12 +1056,12 @@ export default function LivePlayerClient() {
                       upgraded={upgraded}
                       cardData={cat.cards}
                       lp={lp}
-                      className="relative block w-14 shrink-0"
+                      className="relative block w-20 shrink-0"
                     >
                       <img
                         src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
                         alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                        className="w-14 h-auto rounded-sm"
+                        className="w-20 h-auto rounded-sm"
                         crossOrigin="anonymous"
                         loading="lazy"
                         onError={(e) => {
