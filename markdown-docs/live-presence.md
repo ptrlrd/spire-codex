@@ -59,6 +59,12 @@ Combat context (v2, absent between fights):
 - `damage_dealt`, `damage_dealt_this_turn`, `damage_taken`, `biggest_hit`: live DPS
 - `player_powers`: the local player's combat buffs/debuffs as `[{id, amount}]`
   (combat-only; `[]` means "in combat, no powers")
+- `orbs`, `orb_slots`: the player's channeled orbs (orb characters). `orbs` is
+  `[{id, passive, evoke}]` in slot order (`passive` = per-turn value, `evoke` =
+  on-evoke value); `orb_slots` is the current slot capacity, so empty slots can be
+  drawn (e.g. 2/3 filled). Combat-only; `[]`/absent for non-orb characters.
+- `turn_side`: whose turn it is in combat -- `"player"` or `"enemy"`; the frontend
+  highlights (glows) the active side's token. Combat-only.
 - `run_time`: elapsed run seconds (freezes at win); present the whole run, distinct
   from the wall-clock `started_at`
 - `modifiers`: bare ids of the run's daily/custom mutators (whole run)
@@ -92,9 +98,13 @@ panel data, each enemy carrying hp/block and its upcoming intent(s):
 `escape`, `summon`, `carddebuff`, `deathblow`, `hidden`, `unknown`); render the game's
 intent icon from it. For attacks, `dmg` is the base per-hit damage and `hits` the strike
 count, so `dmg:16, hits:2` is "16 x2" = 32 incoming (`dmg` is the base value; in-combat
-modifiers like strength/vulnerable aren't folded in). Non-attacks omit `dmg`/`hits`.
+modifiers like strength/vulnerable aren't folded in). Non-attacks omit `dmg`/`hits` but may
+carry `amount` — the magnitude of the move, e.g. the block a `defend` will gain — rendered
+next to the intent icon.
 `name` is the resolved enemy name (fall back to the id lookup if absent), `block` the
-enemy's current block. All fields except the intent `type` are optional. Excluded from
+enemy's current block. Each enemy may also carry `powers` (`[{id, amount}]`, same shape as
+`player_powers`) for its own buffs/debuffs (vulnerable, weak, strength, ...), rendered as
+icons on the token. All fields except the intent `type` are optional. Excluded from
 `/active` (per-player only) and cleared when combat ends (same null-to-clear rule as
 `turn`/`fighting`).
 
@@ -186,6 +196,10 @@ to link to the event page).
 - `title`/`prompt` are resolved localized strings (may be absent on a sparse beat).
 - each option: `key` (stable loc key), `text` (the localized button label), `locked` (greyed
   out / requirement unmet), `proceed` (the leave/continue option), `chosen` (already picked).
+- `desc`, `card`, `relic` (all optional): `desc` is the resolved consequence text with numbers
+  filled in ("Lose 3 HP"); `card` is a card the option previews — the specific card a
+  "lose a card" option will take, knowable because the game pre-rolls and hovers it; `relic`
+  is a relic the option grants. Render the card/relic as images beside the option.
 - Cleared when the player leaves the event (the mod sends `event: null` -> server `$unset`).
   Omitted from `/active`.
 
@@ -211,8 +225,39 @@ the deck. Costs are the live gold price.
 - `removal` is the card-removal service (null if this shop has none). Cleared on leaving
   the shop; omitted from `/active`.
 
-Note the singular `event`/`shop` objects are distinct from the plural `events` ticker
-array above.
+### Live rest (v7, present only at a rest site)
+
+When `screen == "rest"`, the doc carries the campfire's options.
+
+```json
+"rest": {
+  "options": [
+    {"id": "HEAL", "title": "Rest", "enabled": true},
+    {"id": "SMITH", "title": "Smith", "enabled": true}
+  ]
+}
+```
+
+- each option: `id` (stable, e.g. `HEAL`/`SMITH`/`DIG`/...), `title` (the localized button
+  label), `enabled` (false = greyed / unavailable). This is the button state the player is
+  choosing between; the actual rest/smith outcome still arrives via the `rest`/`upgrade`
+  ticker kinds.
+- Cleared when the player leaves the campfire (mod sends `rest: null` -> server `$unset`).
+  Omitted from `/active`.
+
+Note the singular `event`/`shop`/`rest` objects are distinct from the plural `events`
+ticker array above.
+
+### Death (v7, present once the run ends in a death)
+
+```json
+"death": { "line": "Not quite the top", "by": "THE_CHAMP" }
+```
+
+- `line` is the killer's **already-localized** death quote (free text, the line the game
+  shows on the death screen); `by` is the killer's id (for the portrait/name lookup).
+- The frontend renders a red death screen with the quote. Send it on the death beat;
+  it rides until the doc expires. Omitted from `/active`.
 
 ### POST /api/presence
 

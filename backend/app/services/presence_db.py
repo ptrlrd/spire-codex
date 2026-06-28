@@ -97,6 +97,8 @@ def active(limit: int = 50) -> list[dict]:
                 "reveals": 0,
                 "event": 0,
                 "shop": 0,
+                "rest": 0,
+                "death": 0,
                 "enemies": 0,
                 "hand": 0,
                 "draw_pile": 0,
@@ -106,6 +108,7 @@ def active(limit: int = 50) -> list[dict]:
                 "loot": 0,
                 "players": 0,
                 "player_powers": 0,
+                "orbs": 0,
             },
         )
         .sort([("total_floor", -1), ("updated_at", -1)])

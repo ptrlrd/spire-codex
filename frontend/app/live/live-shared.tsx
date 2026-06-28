@@ -41,6 +41,11 @@ export type Coord = [number, number];
 export interface LiveEventOption {
   key?: string;
   text?: string;
+  // resolved consequence text ("Lose 3 HP"), a card the option previews (e.g. the
+  // card a "lose a card" option will take), and a relic it grants. All optional.
+  desc?: string;
+  card?: string;
+  relic?: string;
   locked?: boolean;
   proceed?: boolean;
   chosen?: boolean;
@@ -65,6 +70,19 @@ export interface LiveShop {
   removal?: { cost?: number; stocked?: boolean };
 }
 
+// Rest-site options (v7), present only at a campfire: the Rest/Smith/Dig/...
+// buttons the player is choosing between. `id` is stable (HEAL/SMITH/...),
+// `title` the localized label, `enabled` whether it is selectable.
+export interface LiveRestOption {
+  id: string;
+  title?: string;
+  enabled?: boolean;
+}
+
+export interface LiveRest {
+  options?: LiveRestOption[];
+}
+
 // Rich combat enemy (v5) for the spectator combat panel: hp/block plus the
 // upcoming intent(s). `intents` is a list because one move can do several things
 // (attack + buff). Each intent's `type` is a codex category; `dmg`/`hits`
@@ -73,6 +91,8 @@ export interface EnemyIntent {
   type: string;
   dmg?: number;
   hits?: number;
+  // magnitude of a non-attack intent (e.g. the block a defend will gain)
+  amount?: number;
 }
 export interface Enemy {
   id?: string;
@@ -81,12 +101,22 @@ export interface Enemy {
   max_hp?: number;
   block?: number;
   intents?: EnemyIntent[];
+  // the enemy's buffs/debuffs (vulnerable, weak, strength, ...) for token icons
+  powers?: LivePower[];
 }
 
 /** A combat buff/debuff on the local player (v6): id + stack amount. */
 export interface LivePower {
   id: string;
   amount?: number;
+}
+
+/** A channeled orb (v7): id + `passive` (per-turn value) and `evoke` (on-evoke
+ * value). Combat-only, orb characters; `orb_slots` is the current capacity. */
+export interface LiveOrb {
+  id: string;
+  passive?: number;
+  evoke?: number;
 }
 
 /** One route node (v6): a boss/ancient/elite/monster/event in the act, with an
@@ -116,6 +146,13 @@ export interface LiveLoot {
   relics?: string[];
   potions?: string[];
   card_removal?: boolean | number;
+}
+
+// Death (v7), present once the run ends in a death. `line` is the killer's
+// already-localized death quote ("Not quite the top"), `by` the killer's id.
+export interface LiveDeath {
+  line?: string;
+  by?: string;
 }
 
 /** Co-op per-seat vitals (v6); `is_me` marks the local player's seat. */
@@ -160,6 +197,7 @@ export interface LivePlayer {
   pos?: Coord | null;
   event?: LiveEventCtx | null;
   shop?: LiveShop | null;
+  rest?: LiveRest | null;
   enemies?: Enemy[] | null;
   // Combat vitals + DPS (v6). `block`/`max_energy` ride the whole run; `energy`,
   // the pile counts, damage, hand, and player_powers are combat-only. See
@@ -179,7 +217,12 @@ export interface LivePlayer {
   discard_pile?: string[];
   exhaust_pile?: string[];
   player_powers?: LivePower[];
+  orbs?: LiveOrb[] | null;
+  orb_slots?: number | null;
+  // whose turn it is in combat: "player" / "enemy" (combat-only)
+  turn_side?: string | null;
   loot?: LiveLoot | null;
+  death?: LiveDeath | null;
   route?: LiveRoute | null;
   reveals?: Reveal[];
   players?: LiveSeat[];

@@ -34,7 +34,17 @@ function Gold({ cost }: { cost?: number }) {
   return <span className="text-[var(--accent-gold)] tabular-nums font-semibold">{cost}g</span>;
 }
 
-export function LiveEventPanel({ ev, lp }: { ev: LiveEventCtx; lp: string }) {
+export function LiveEventPanel({
+  ev,
+  lp,
+  cards,
+  relics,
+}: {
+  ev: LiveEventCtx;
+  lp: string;
+  cards?: Record<string, CardInfo>;
+  relics?: Record<string, RelicInfo>;
+}) {
   const id = cleanId(ev.id);
   const titleText = ev.title || displayName(`EVENT.${id}`);
   return (
@@ -79,6 +89,56 @@ export function LiveEventPanel({ ev, lp }: { ev: LiveEventCtx; lp: string }) {
                   </span>
                   <span className={`min-w-0 flex-1 ${disabled ? "line-through" : ""}`}>
                     {o.text ? <RichDescriptionSimple text={o.text} /> : o.key || "(option)"}
+                    {o.desc && o.desc !== o.text && (
+                      <span className="mt-0.5 block text-xs text-[var(--text-muted)]">
+                        <RichDescriptionSimple text={o.desc} />
+                      </span>
+                    )}
+                    {(o.card || o.relic) && (
+                      <span className="mt-1.5 flex flex-wrap items-center gap-2">
+                        {o.card && (
+                          <CardPill
+                            cardId={cleanId(o.card)}
+                            cardData={cards ?? {}}
+                            lp={lp}
+                            className="block w-16 shrink-0"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={fullCardUrl(o.card)}
+                              alt=""
+                              className="w-16 rounded shadow"
+                              crossOrigin="anonymous"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = "none";
+                              }}
+                            />
+                          </CardPill>
+                        )}
+                        {o.relic && (
+                          <RelicPill
+                            relicId={cleanId(o.relic)}
+                            relicData={relics ?? {}}
+                            lp={lp}
+                            className="block shrink-0"
+                          >
+                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                            <img
+                              src={imageUrl(
+                                relics?.[cleanId(o.relic)]?.image_url ||
+                                  `/static/images/relics/${cleanId(o.relic).toLowerCase()}.png`,
+                              )}
+                              alt=""
+                              className="h-9 w-9 object-contain"
+                              crossOrigin="anonymous"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).style.display = "none";
+                              }}
+                            />
+                          </RelicPill>
+                        )}
+                      </span>
+                    )}
                   </span>
                   {o.proceed && !o.chosen && (
                     <span className="text-[10px] text-[var(--text-muted)] shrink-0">leave</span>

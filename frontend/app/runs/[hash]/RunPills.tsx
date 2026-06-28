@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import Link from "next/link";
 import RichDescription from "@/app/components/RichDescription";
@@ -61,13 +61,21 @@ export function CardPill({
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
+  const [above, setAbove] = useState(true);
+  const ref = useRef<HTMLAnchorElement>(null);
   const { lang } = useLanguage();
   const info = cardData[cardId];
   return (
     <Link
+      ref={ref}
       href={`${lp}/cards/${cardId.toLowerCase()}`}
       className={`relative ${className || ""}`}
-      onMouseEnter={() => setShow(true)}
+      onMouseEnter={() => {
+        // Flip the card preview below when there isn't room above (small
+        // screens / cards near the top, e.g. the deck modal on the live page).
+        setAbove((ref.current?.getBoundingClientRect().top ?? 999) > 240);
+        setShow(true);
+      }}
       onMouseLeave={() => setShow(false)}
     >
       {children ?? (
@@ -85,7 +93,11 @@ export function CardPill({
         // Pop the full rendered card (enchanted and/or upgraded variant when
         // the run says so) instead of the text tooltip. Falls back from the
         // enchanted render to the plain one, then to the portrait art.
-        <span className="pointer-events-none absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-40">
+        <span
+          className={`pointer-events-none absolute z-50 left-1/2 w-40 -translate-x-1/2 ${
+            above ? "bottom-full mb-2" : "top-full mt-2"
+          }`}
+        >
           <img
             src={
               enchantment

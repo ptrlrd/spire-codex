@@ -36,6 +36,9 @@ _INT_FIELDS = (
     "draw_count",
     "discard_count",
     "exhaust_count",
+    # Channeled-orb slot capacity (combat-only, orb characters); the orbs
+    # themselves ride a separate cleaned list. In the transient-unset set.
+    "orb_slots",
     # Live combat damage (DPS) for the spectator view; absent / null outside a
     # fight, cleared by the transient-unset list below when the mod sends null.
     "damage_dealt",
@@ -43,7 +46,17 @@ _INT_FIELDS = (
     "damage_taken",
     "biggest_hit",
 )
-_STR_FIELDS = ("character", "seed", "screen", "sts2_version", "username", "act_name")
+_STR_FIELDS = (
+    "character",
+    "seed",
+    "screen",
+    "sts2_version",
+    "username",
+    "act_name",
+    # whose turn it is in combat: "player" / "enemy". Combat-only, in the
+    # transient-unset set below.
+    "turn_side",
+)
 # `hand` is the live combat hand (card ids); combat-only, so it's in the
 # transient-unset list below. `modifiers` are the run's daily/custom mutators —
 # valid the whole run, so NOT unset.
@@ -245,6 +258,31 @@ def _clean_powers(raw) -> list[dict] | None:
     return out
 
 
+_ORBS_CAP = 12
+
+
+def _clean_orbs(raw) -> list[dict] | None:
+    """The player's channeled orbs in slot order: each {id, passive, evoke} --
+    `passive` the per-turn value, `evoke` the on-evoke value. Combat-only (orb
+    characters); [] is meaningful, so it's in the transient-unset set."""
+    if not isinstance(raw, list):
+        return None
+    out: list[dict] = []
+    for o in raw[:_ORBS_CAP]:
+        if not isinstance(o, dict):
+            continue
+        oid = o.get("id")
+        if not isinstance(oid, str) or not _safe_id(oid[:_MAX_STR]):
+            continue
+        orb: dict = {"id": oid[:_MAX_STR]}
+        for k in ("passive", "evoke"):
+            v = o.get(k)
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                orb[k] = int(v)
+        out.append(orb)
+    return out
+
+
 def _clean_players(raw) -> list[dict] | None:
     """Co-op per-seat vitals; the mod sends this only with 2+ players. `is_me`
     marks the local seat so the frontend can highlight it."""
@@ -305,6 +343,15 @@ def _clean_event_ctx(raw) -> dict | None:
                 opt["key"] = o["key"][:_MAX_STR]
             if isinstance(o.get("text"), str):
                 opt["text"] = o["text"][:_OPT_TEXT_CAP]
+            # the resolved consequence text ("Lose 3 HP") plus any card the option
+            # previews (e.g. the card a "lose a card" option will take) or relic it
+            # grants -- the game pre-rolls these, so they're knowable before choosing.
+            if isinstance(o.get("desc"), str) and o["desc"]:
+                opt["desc"] = o["desc"][:_OPT_TEXT_CAP]
+            for ref in ("card", "relic"):
+                v = o.get(ref)
+                if isinstance(v, str) and _safe_id(v[:_MAX_STR]):
+                    opt[ref] = v[:_MAX_STR]
             for flag in ("locked", "proceed", "chosen"):
                 if isinstance(o.get(flag), bool):
                     opt[flag] = o[flag]
@@ -359,6 +406,50 @@ def _clean_shop(raw) -> dict | None:
     return out or None
 
 
+_REST_OPTIONS_CAP = 8
+
+
+def _clean_rest(raw) -> dict | None:
+    """The campfire's options (Rest/Smith/Dig/...): each {id, title, enabled}. `id`
+    is the stable option id, `title` the localized label, `enabled` whether it is
+    selectable. Present only at a rest site; cleared by the transient-unset list
+    when the player leaves the campfire."""
+    if not isinstance(raw, dict):
+        return None
+    opts = raw.get("options")
+    if not isinstance(opts, list):
+        return None
+    out_opts: list[dict] = []
+    for o in opts[:_REST_OPTIONS_CAP]:
+        if not isinstance(o, dict):
+            continue
+        oid = o.get("id")
+        if not isinstance(oid, str) or not oid:
+            continue
+        item: dict = {"id": oid}
+        if isinstance(o.get("title"), str):
+            item["title"] = o["title"]
+        if isinstance(o.get("enabled"), bool):
+            item["enabled"] = o["enabled"]
+        out_opts.append(item)
+    return {"options": out_opts} if out_opts else None
+
+
+def _clean_death(raw) -> dict | None:
+    """The run-ending death: `line` is the killer's already-localized death quote
+    (free text, e.g. "Not quite the top"), `by` the killer's id. Present once the
+    player dies."""
+    if not isinstance(raw, dict):
+        return None
+    out: dict = {}
+    if isinstance(raw.get("line"), str) and raw["line"]:
+        out["line"] = raw["line"][:_MAX_STR]
+    by = raw.get("by")
+    if isinstance(by, str) and _safe_id(by[:_MAX_STR]):
+        out["by"] = by[:_MAX_STR]
+    return out or None
+
+
 # Live combat enemies for the spectator combat panel: per enemy hp/block plus the
 # upcoming intent(s). A move can carry several intents (e.g. attack + buff), so
 # `intents` is a list of {type, dmg?, hits?}; `type` is the codex intent category
@@ -375,7 +466,9 @@ def _clean_intent(o) -> dict | None:
     if not isinstance(t, str) or not t:
         return None
     out: dict = {"type": t[:24]}
-    for k in ("dmg", "hits"):
+    # dmg/hits describe an attack; amount is the magnitude of a non-attack intent
+    # (e.g. the block a defend will gain, or a buff's stacks).
+    for k in ("dmg", "hits", "amount"):
         v = o.get(k)
         if isinstance(v, (int, float)) and not isinstance(v, bool):
             out[k] = int(v)
@@ -410,6 +503,9 @@ def _clean_enemies(raw) -> list[dict] | None:
                 for it in (_clean_intent(i) for i in raw_intents[:_INTENTS_CAP])
                 if it
             ]
+        # enemy buffs/debuffs (vulnerable, weak, strength, ...) -> token icons
+        if epw := _clean_powers(o.get("powers")):
+            en["powers"] = epw
         if en:
             out.append(en)
     return out or None
@@ -512,6 +608,10 @@ async def post_presence(request: Request):
         fields["event"] = ev
     if (shp := _clean_shop(data.get("shop"))) is not None:
         fields["shop"] = shp
+    if (rs := _clean_rest(data.get("rest"))) is not None:
+        fields["rest"] = rs
+    if (dth := _clean_death(data.get("death"))) is not None:
+        fields["death"] = dth
     if (en := _clean_enemies(data.get("enemies"))) is not None:
         fields["enemies"] = en
     # The act's route persists between beats (like the map); loot is per-screen.
@@ -522,6 +622,8 @@ async def post_presence(request: Request):
     # Local player's combat powers ([] is meaningful) + co-op per-seat vitals.
     if (pw := _clean_powers(data.get("player_powers"))) is not None:
         fields["player_powers"] = pw
+    if (orbs := _clean_orbs(data.get("orbs"))) is not None:
+        fields["orbs"] = orbs
     if (pls := _clean_players(data.get("players"))) is not None:
         fields["players"] = pls
 
@@ -534,9 +636,11 @@ async def post_presence(request: Request):
         k
         for k in (
             "turn",
+            "turn_side",
             "fighting",
             "event",
             "shop",
+            "rest",
             "enemies",
             "hand",
             "draw_pile",
@@ -548,6 +652,8 @@ async def post_presence(request: Request):
             "discard_count",
             "exhaust_count",
             "player_powers",
+            "orbs",
+            "orb_slots",
             "damage_dealt",
             "damage_dealt_this_turn",
             "damage_taken",
