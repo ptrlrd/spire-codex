@@ -9,6 +9,7 @@
 
 import { useState } from "react";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { RichDescriptionSimple } from "@/app/components/RichDescription";
 import LiveMap from "../LiveMap";
 import {
   CardPill,
@@ -267,7 +268,12 @@ export default function LiveScene({
 }) {
   const char = (p.character ?? "colorless").toLowerCase();
   const enemies: Enemy[] = (p.enemies ?? []).filter((e) => (e.hp ?? 1) > 0);
-  const dead = !!p.death || (p.events ?? []).some((e) => e.k === "death");
+  // Dead only on an actual death signal: a death ticker event or HP at 0.
+  // `p.death` (the killer's line) rides every beat once it exists, so it is NOT
+  // a death signal on its own -- it's just the quote to show when dead.
+  const dead =
+    (p.events ?? []).some((e) => e.k === "death") ||
+    (p.hp != null && p.hp <= 0);
   const hand = p.hand ?? [];
   const hpPct =
     p.hp != null && p.max_hp
@@ -503,7 +509,7 @@ export default function LiveScene({
               </div>
               {p.death?.line && (
                 <div className="text-2xl font-semibold italic leading-snug text-rose-200">
-                  “{p.death.line}”
+                  “<RichDescriptionSimple text={p.death.line} />”
                 </div>
               )}
               {p.death?.by && (
