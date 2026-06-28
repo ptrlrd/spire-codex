@@ -31,7 +31,7 @@ still emitted for the relic-page cross-reference.
 import json
 import re
 
-from parser_paths import BASE, DECOMPILED, DATA_DIR
+from parser_paths import BASE, DECOMPILED, DATA_DIR, RAW_DIR
 
 EVENTS_DIR = DECOMPILED / "MegaCrit.Sts2.Core.Models.Events"
 
@@ -256,7 +256,35 @@ def load_existing(path) -> dict:
     return idx
 
 
-def build_ancient(ancient_id: str, content: str, prior: dict) -> dict:
+_LOC_KEY_RE = re.compile(r"^[\w.]+$")
+
+
+def _looks_like_loc_key(s: str) -> bool:
+    """True for an unresolved loc key like 'ancients.NEOW.pages.DONE.description'
+    (dotted, no spaces) -- never a real prose description. Dialogue ancients
+    (NEOW, PAEL, ...) have no pages description, so a stale carried value can be
+    one of these keys; we must not ship it."""
+    return bool(s) and "." in s and bool(_LOC_KEY_RE.match(s))
+
+
+def load_epithets() -> dict[str, str]:
+    """Each ancient's epithet (e.g. NEOW -> "Mother of Resurrection (Exiled)")
+    from the eng loc, used as the description fallback for dialogue ancients that
+    have no prose description."""
+    loc_file = RAW_DIR / "localization" / "eng" / "ancients.json"
+    if not loc_file.exists():
+        return {}
+    with open(loc_file, "r", encoding="utf-8") as f:
+        loc = json.load(f)
+    out: dict[str, str] = {}
+    for aid in ANCIENT_FILES:
+        raw = loc.get(f"{aid}.epithet")
+        if isinstance(raw, str) and raw:
+            out[aid] = re.sub(r"\[/?[^\]]+\]", "", raw).strip()
+    return out
+
+
+def build_ancient(ancient_id: str, content: str, prior: dict, epithets: dict) -> dict:
     """Assemble the full generated entry for one ancient, merging prior prose."""
     p = prior.get(ancient_id, {})
     conditions = p.get("conditions", {})
@@ -271,8 +299,16 @@ def build_ancient(ancient_id: str, content: str, prior: dict) -> dict:
         ]
         pools_out.append(pool)
     entry = {"id": ancient_id, "name": ANCIENT_NAMES.get(ancient_id, ancient_id)}
-    if p.get("description"):
-        entry["description"] = p["description"]
+    # Prefer the curated prose description, but never ship an unresolved loc key
+    # (dialogue ancients have no pages description) -- fall back to the epithet.
+    carried = p.get("description")
+    desc = (
+        carried
+        if (carried and not _looks_like_loc_key(carried))
+        else epithets.get(ancient_id)
+    )
+    if desc:
+        entry["description"] = desc
     if p.get("selection"):
         entry["selection"] = p["selection"]
     entry["pools"] = pools_out
@@ -281,6 +317,7 @@ def build_ancient(ancient_id: str, content: str, prior: dict) -> dict:
 
 def main() -> None:
     prior = load_existing(DATA_DIR / "ancient_pools.json")
+    epithets = load_epithets()
 
     generated: list[dict] = []
     parsed_out: list[dict] = []
@@ -296,7 +333,7 @@ def main() -> None:
         full_set = parse_ancient_relics(content)
         per_char = parse_per_character_relics(content)
 
-        entry = build_ancient(ancient_id, content, prior)
+        entry = build_ancient(ancient_id, content, prior, epithets)
         covered = {r["id"] for pool in entry["pools"] for r in pool["relics"]}
 
         # The guarantee: generated pools must cover every relic the C# offers.
