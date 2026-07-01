@@ -569,7 +569,10 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
                 "take_rate": _pct(rec[0], rec[1]),
             }
             for rid, rec in acc["ancient"].items()
+            # Official relics only: modded relic ids aren't in the catalog, so
+            # drop them (matches _ranked; skipped if the catalog failed to load).
             if rec[1] >= MIN_ANCIENT_OFFERS
+            and (not names["relics"] or rid in names["relics"])
         },
         "most_removed": _ranked(removed, names["cards"], _TOP_N),
         "hopper_stolen": _ranked(acc.get("stolen") or {}, names["cards"], 10),
