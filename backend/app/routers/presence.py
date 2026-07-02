@@ -233,6 +233,58 @@ def _clean_loot(raw) -> dict | None:
     return out or None
 
 
+_FLOOR_HISTORY_CAP = 64  # a full run is < 60 floors
+_FLOOR_REWARDS_CAP = 24  # matches the mod-side per-floor cap
+_KIND_OK = {"card", "relic", "potion"}
+
+
+def _floor_rewards(raw) -> list[dict]:
+    """The taken / skipped items on a cleared floor: {kind, id} pairs. The ids
+    flow into image/CDN URLs on the frontend, so drop anything that fails the
+    path-safety check, same as the loot cleaner."""
+    out = []
+    if isinstance(raw, list):
+        for o in raw[:_FLOOR_REWARDS_CAP]:
+            if not isinstance(o, dict):
+                continue
+            kind, rid = o.get("kind"), o.get("id")
+            if kind in _KIND_OK and isinstance(rid, str) and _safe_id(rid[:_MAX_STR]):
+                out.append({"kind": kind, "id": rid[:_MAX_STR]})
+    return out
+
+
+def _clean_floor_history(raw) -> list[dict] | None:
+    """Per-cleared-floor summary for the map's previous-node hover: the same data
+    the game shows on a visited node (room/enemy, turns, damage, HP + gold, and
+    the rewards taken vs skipped). Run-level and sent every beat, so it is never
+    unset (unlike the combat-only fields)."""
+    if not isinstance(raw, list):
+        return None
+    out: list[dict] = []
+    for o in raw[:_FLOOR_HISTORY_CAP]:
+        if not isinstance(o, dict):
+            continue
+        f: dict = {
+            "floor": _as_int(o.get("floor")),
+            "act": _as_int(o.get("act")),
+            "type": str(o.get("type", "unknown"))[:24],
+            "hp": _as_int(o.get("hp")),
+            "max_hp": _as_int(o.get("max_hp")),
+            "gold": _as_int(o.get("gold")),
+        }
+        eid = o.get("encounter_id")
+        if isinstance(eid, str) and _safe_id(eid[:_MAX_STR]):
+            f["encounter_id"] = eid[:_MAX_STR]
+        for k in ("turns", "damage_taken", "healed", "gold_spent", "gold_gained"):
+            v = o.get(k)
+            if isinstance(v, int) and not isinstance(v, bool):
+                f[k] = int(v)
+        f["rewards"] = _floor_rewards(o.get("rewards"))
+        f["skipped"] = _floor_rewards(o.get("skipped"))
+        out.append(f)
+    return out
+
+
 _POWERS_CAP = 40
 _COOP_CAP = 4
 
@@ -619,6 +671,10 @@ async def post_presence(request: Request):
         fields["route"] = rt
     if (lt := _clean_loot(data.get("loot"))) is not None:
         fields["loot"] = lt
+    # Per-cleared-floor history for the map's previous-node hover. Run-level: it
+    # rides every beat and persists for the whole run, so it is NOT in `unset`.
+    if (fh := _clean_floor_history(data.get("floor_history"))) is not None:
+        fields["floor_history"] = fh
     # Local player's combat powers ([] is meaningful) + co-op per-seat vitals.
     if (pw := _clean_powers(data.get("player_powers"))) is not None:
         fields["player_powers"] = pw

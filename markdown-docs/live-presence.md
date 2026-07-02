@@ -259,6 +259,35 @@ ticker array above.
 - The frontend renders a red death screen with the quote. Send it on the death beat;
   it rides until the doc expires. Omitted from `/active`.
 
+### Floor history (v8, the map's previous-node hover)
+
+The live mirror of what the game shows when you hover a visited node on the map: one
+entry per cleared floor, for the whole run. `floor_history` accumulates (a full run is
+< 60 floors) and **excludes the floor being stood on**. Run-level, so it rides every beat
+and is never `$unset` (the doc is dropped when the run ends).
+
+```json
+"floor_history": [
+  {
+    "floor": 4, "act": 1, "type": "monster", "encounter_id": "SHRINKER_BEETLE",
+    "hp": 45, "max_hp": 70, "gold": 54, "turns": 4, "damage_taken": 4,
+    "rewards": [{"kind": "card", "id": "HAZE"}],
+    "skipped": [{"kind": "card", "id": "SPEEDSTER"}, {"kind": "card", "id": "ANTICIPATE"}]
+  }
+]
+```
+
+- `floor` is the global run floor (1-based, cumulative across acts); `act` is 1-indexed;
+  `type` is `monster|elite|boss|shop|treasure|restsite|event|ancient|unknown`.
+- `encounter_id` (bare id, resolve to a title) is present on combat/event floors, omitted
+  for shop/rest/treasure. `turns`/`damage_taken`/`healed`/`gold_spent`/`gold_gained` are
+  omitted when 0.
+- `rewards` were taken this floor, `skipped` were offered and left behind; each is
+  `{kind: card|relic|potion, id}` with bare ids (per-floor list capped at 24).
+- The frontend matches entries to map nodes by visit order within the act (the player
+  clears one node per depth), and shows the card on hover of a **visited** node only.
+  Omitted from `/active` (detail endpoint only).
+
 ### POST /api/presence
 
 Mod-only; requires the Steam JWT (`Authorization: Bearer`). The frontend never calls it.

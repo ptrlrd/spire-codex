@@ -14,15 +14,25 @@
 // resolved encounter -> representative monster -> portrait. The game binds an
 // encounter to a node only on entry, so an unvisited node's enemy is genuinely
 // unknowable; unrevealed nodes keep the type glyph.
+//
+// Hovering a previous (visited) node shows that floor's summary card, mirroring
+// the game's own node hover: HP/gold, room/enemy, damage/turns, and the rewards
+// taken vs skipped. Data comes from `floor_history` (v8), matched to nodes by
+// visit order within the act.
 
 import { imageUrl } from "@/lib/image-url";
-import type {
-  Coord,
-  EncounterMap,
-  LiveMapData,
-  LiveRoute,
-  MonsterMap,
-  Reveal,
+import { useState } from "react";
+import { cleanId, displayName } from "../runs/[hash]/RunPills";
+import {
+  safeId,
+  type Coord,
+  type EncounterMap,
+  type FloorReward,
+  type FloorSummary,
+  type LiveMapData,
+  type LiveRoute,
+  type MonsterMap,
+  type Reveal,
 } from "./live-shared";
 
 // Per-node-type styling. Types arrive lowercase; an unrecognized type falls
@@ -44,6 +54,20 @@ function styleFor(type: string) {
   return NODE_STYLE[type] ?? NODE_STYLE.node;
 }
 
+// Room-type -> human label for the floor hover. Combat types get an "Enemy:" /
+// "Elite:" / "Boss:" prefix in the card; the rest use the label directly.
+const ROOM_LABEL: Record<string, string> = {
+  monster: "Enemy",
+  elite: "Elite",
+  boss: "Boss",
+  shop: "Shop",
+  treasure: "Treasure",
+  restsite: "Rest Site",
+  event: "Event",
+  ancient: "Ancient",
+  unknown: "Unknown",
+};
+
 const COL = 44; // horizontal spacing between lanes
 const ROW = 44; // vertical spacing between depths
 const PAD = 22;
@@ -51,6 +75,131 @@ const R = 13; // node radius
 
 function key(col: number, row: number): string {
   return `${col},${row}`;
+}
+
+function hideImg(e: React.SyntheticEvent<HTMLImageElement>) {
+  (e.target as HTMLImageElement).style.display = "none";
+}
+
+// One taken/skipped item: a small icon (best-effort by convention, hidden on a
+// 404) plus its prettified name.
+function RewardRow({ item }: { item: FloorReward }) {
+  const id = cleanId(item.id);
+  const src =
+    !safeId(id)
+      ? ""
+      : item.kind === "card"
+        ? imageUrl(`/static/images/cards/${id.toLowerCase()}.webp`)
+        : item.kind === "relic"
+          ? imageUrl(`/static/images/relics/${id.toLowerCase()}.png`)
+          : imageUrl(`/static/images/potions/${id.toLowerCase()}.png`);
+  return (
+    <li className="flex items-center gap-1.5">
+      {src ? (
+        <img
+          src={src}
+          alt=""
+          className="h-4 w-4 shrink-0 object-contain"
+          crossOrigin="anonymous"
+          onError={hideImg}
+        />
+      ) : (
+        <span className="h-4 w-4 shrink-0" />
+      )}
+      <span className="truncate text-[var(--text-secondary)]">{displayName(id)}</span>
+    </li>
+  );
+}
+
+function RewardList({
+  label,
+  items,
+  gold,
+  tone,
+}: {
+  label: string;
+  items?: FloorReward[];
+  gold?: number;
+  tone: "reward" | "skip";
+}) {
+  if (!items?.length && !gold) return null;
+  return (
+    <div className="mt-1.5">
+      <div
+        className={`text-[10px] font-bold uppercase tracking-wide ${
+          tone === "reward" ? "text-[var(--accent-gold)]" : "text-[var(--text-muted)]"
+        }`}
+      >
+        {label}
+      </div>
+      <ul className="mt-0.5 space-y-0.5">
+        {gold ? (
+          <li className="flex items-center gap-1.5">
+            <img
+              src={imageUrl("/static/images/icons/gold_icon.png")}
+              alt=""
+              className="h-4 w-4 shrink-0 object-contain"
+              crossOrigin="anonymous"
+              onError={hideImg}
+            />
+            <span className="tabular-nums text-amber-300">{gold} Gold</span>
+          </li>
+        ) : null}
+        {(items ?? []).map((it, i) => (
+          <RewardRow key={`${it.kind}-${it.id}-${i}`} item={it} />
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// The floating card shown when hovering a visited node: mirrors the game's own
+// previous-floor hover.
+function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterMap }) {
+  const isCombat = f.type === "monster" || f.type === "elite" || f.type === "boss";
+  const encName = f.encounter_id
+    ? encounters?.[f.encounter_id]?.name || displayName(f.encounter_id)
+    : null;
+  return (
+    <div>
+      <div className="text-sm font-bold text-[var(--accent-gold)]">Floor {f.floor}</div>
+      <div className="mt-0.5 flex gap-3 text-[11px] tabular-nums">
+        <span className="text-rose-300">
+          {f.hp}/{f.max_hp} HP
+        </span>
+        <span className="text-amber-300">{f.gold} Gold</span>
+      </div>
+
+      <div className="mt-1 text-[11px]">
+        {isCombat ? (
+          <>
+            <div className="text-[var(--text-primary)]">
+              {ROOM_LABEL[f.type] ?? "Enemy"}: {encName ?? "Enemy"}
+            </div>
+            {f.damage_taken ? (
+              <div className="tabular-nums text-rose-300">{f.damage_taken} Damage</div>
+            ) : null}
+            {f.turns != null ? (
+              <div className="tabular-nums text-[var(--text-muted)]">{f.turns} Turns</div>
+            ) : null}
+          </>
+        ) : f.type === "event" && encName ? (
+          <div className="text-[var(--text-secondary)]">{encName}</div>
+        ) : (
+          <div className="text-[var(--text-secondary)]">{ROOM_LABEL[f.type] ?? "Room"}</div>
+        )}
+        {f.healed ? (
+          <div className="tabular-nums text-emerald-300">{f.healed} Healed</div>
+        ) : null}
+        {f.gold_spent ? (
+          <div className="tabular-nums text-amber-300/80">Spent {f.gold_spent} Gold</div>
+        ) : null}
+      </div>
+
+      <RewardList label="Rewards" items={f.rewards} gold={f.gold_gained} tone="reward" />
+      <RewardList label="Skipped" items={f.skipped} tone="skip" />
+    </div>
+  );
 }
 
 export default function LiveMap({
@@ -61,6 +210,7 @@ export default function LiveMap({
   route,
   monsters,
   encounters,
+  floorHistory,
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
@@ -69,7 +219,10 @@ export default function LiveMap({
   route?: LiveRoute | null;
   monsters?: MonsterMap;
   encounters?: EncounterMap;
+  floorHistory?: FloorSummary[];
 }) {
+  const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
+
   const nodes = map?.nodes ?? [];
   if (!nodes.length) return null;
 
@@ -91,6 +244,26 @@ export default function LiveMap({
   // (col,row) -> [col, row, resolved room_type, encounter id|null] for visited nodes.
   const revealMap = new Map<string, Reveal>();
   for (const rv of reveals ?? []) revealMap.set(key(rv[0], rv[1]), rv);
+
+  // Match floor_history entries to visited rows. floor_history has no grid
+  // coords, but the player clears exactly one node per depth, so within this act
+  // the entries (sorted by floor) line up with the visited rows in ascending
+  // order. The floor being stood on has no entry, so the deepest visited row
+  // naturally falls off the end -- exactly right (no card on the current node).
+  const actNo = map?.act;
+  const actHist = (floorHistory ?? [])
+    .filter((f) => actNo == null || f.act === actNo)
+    .slice()
+    .sort((a, b) => a.floor - b.floor);
+  const visitedRows = Array.from(new Set((path ?? []).map(([, r]) => r))).sort(
+    (a, b) => a - b,
+  );
+  const rowFloor = new Map<number, FloorSummary>();
+  visitedRows.forEach((r, i) => {
+    if (actHist[i]) rowFloor.set(r, actHist[i]);
+  });
+  const floorAt = (c: number, r: number): FloorSummary | undefined =>
+    onPath(c, r) ? rowFloor.get(r) : undefined;
 
   // The portrait for a node, or null to fall back to the type glyph: a visited
   // node resolves encounter -> first monster -> image; the boss/ancient resolve
@@ -126,15 +299,27 @@ export default function LiveMap({
     return effType;
   }
 
+  const hoverFloor = hovered ? floorAt(hovered.c, hovered.r) : undefined;
+  // Tooltip anchor as a percentage of the SVG box (the wrapper matches the
+  // rendered svg, so this holds even when max-w-full scales it down).
+  const lx = hovered ? (x(hovered.c) / width) * 100 : 0;
+  const ty = hovered ? (y(hovered.r) / height) * 100 : 0;
+  const anchorRight = lx > 55; // right-side node -> grow the card leftward
+  const below = ty < 40; // near the top -> drop the card below the node
+  const tipTransform = `translate(${anchorRight ? "-100%" : "0"}, ${
+    below ? "14px" : "calc(-100% - 14px)"
+  })`;
+
   return (
-    <div className="overflow-auto">
+    <div className="relative inline-block max-w-full">
       <svg
         width={width}
         height={height}
         viewBox={`0 0 ${width} ${height}`}
-        className="max-w-full"
+        className="block max-w-full"
         role="img"
         aria-label="Act map showing the player's route"
+        onMouseLeave={() => setHovered(null)}
       >
         {edges.map(([c, r, cc, cr], i) => {
           const lit = onPath(c, r) && onPath(cc, cr);
@@ -159,8 +344,13 @@ export default function LiveMap({
           const seen = onPath(c, r);
           const portrait = portraitFor(c, r, type);
           const dim = !(seen || here);
+          const hasFloor = !!floorAt(c, r);
           return (
-            <g key={`n-${c}-${r}`}>
+            <g
+              key={`n-${c}-${r}`}
+              onMouseEnter={() => setHovered({ c, r })}
+              style={{ cursor: hasFloor ? "help" : "default" }}
+            >
               {here && (
                 <circle cx={x(c)} cy={y(r)} r={R + 4} fill="none" stroke="var(--accent-gold)" strokeWidth={2}>
                   <animate attributeName="r" values={`${R + 2};${R + 6};${R + 2}`} dur="1.4s" repeatCount="indefinite" />
@@ -222,6 +412,14 @@ export default function LiveMap({
           );
         })}
       </svg>
+      {hovered && hoverFloor && (
+        <div
+          className="pointer-events-none absolute z-50 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-xs shadow-xl"
+          style={{ left: `${lx}%`, top: `${ty}%`, transform: tipTransform }}
+        >
+          <FloorCard f={hoverFloor} encounters={encounters} />
+        </div>
+      )}
     </div>
   );
 }

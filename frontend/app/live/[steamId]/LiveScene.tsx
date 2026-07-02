@@ -834,6 +834,7 @@ export default function LiveScene({
               route={p.route}
               monsters={monsters}
               encounters={encounters}
+              floorHistory={p.floor_history}
             />
           </div>
         </div>

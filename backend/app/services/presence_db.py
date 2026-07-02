@@ -79,7 +79,8 @@ def end(steam_id: str) -> None:
 def active(limit: int = 50) -> list[dict]:
     """Fresh live players, deepest run first. Excludes the heavy per-run detail
     (deck/relics/potions, the event window, the map node/edge graph, the combat
-    hand, the act route, loot, co-op seats, and the local player's powers): the
+    hand, the act route, loot, floor history, co-op seats, and the local player's
+    powers): the
     per-player endpoint serves those for the live run view. Keeps path/pos so the
     roster can show a player's position on a mini progress indicator. The light
     scalars (run_time/block/energy/damage/pile counts) stay for a richer card."""
@@ -106,6 +107,7 @@ def active(limit: int = 50) -> list[dict]:
                 "exhaust_pile": 0,
                 "route": 0,
                 "loot": 0,
+                "floor_history": 0,
                 "players": 0,
                 "player_powers": 0,
                 "orbs": 0,

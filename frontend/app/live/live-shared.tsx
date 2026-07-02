@@ -155,6 +155,31 @@ export interface LiveDeath {
   by?: string;
 }
 
+// Floor history (v8): the live mirror of the game's "previous floor" node hover.
+// One entry per cleared floor (excludes the floor you're standing on), covering
+// the whole run. `rewards` were taken, `skipped` were offered and left behind.
+// ids are bare (no CARD./RELIC. prefix). Contract: markdown-docs/live-presence.md.
+export interface FloorReward {
+  kind: "card" | "relic" | "potion";
+  id: string;
+}
+export interface FloorSummary {
+  floor: number;
+  act: number;
+  type: string; // monster|elite|boss|shop|treasure|restsite|event|ancient|unknown
+  encounter_id?: string; // bare enemy/event id; absent for shop/rest/treasure
+  hp: number;
+  max_hp: number;
+  gold: number;
+  turns?: number; // combat only
+  damage_taken?: number;
+  healed?: number;
+  gold_spent?: number;
+  gold_gained?: number;
+  rewards?: FloorReward[];
+  skipped?: FloorReward[];
+}
+
 /** Co-op per-seat vitals (v6); `is_me` marks the local player's seat. */
 export interface LiveSeat {
   character?: string | null;
@@ -223,6 +248,8 @@ export interface LivePlayer {
   turn_side?: string | null;
   loot?: LiveLoot | null;
   death?: LiveDeath | null;
+  // Per-cleared-floor history for the map's previous-node hover (v8).
+  floor_history?: FloorSummary[];
   route?: LiveRoute | null;
   reveals?: Reveal[];
   players?: LiveSeat[];

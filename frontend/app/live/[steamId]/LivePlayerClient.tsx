@@ -847,6 +847,7 @@ export default function LivePlayerClient() {
           route={p.route}
           monsters={monsters}
           encounters={encounters}
+          floorHistory={p.floor_history}
         />
       </div>
     ) : null;
