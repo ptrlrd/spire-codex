@@ -353,6 +353,11 @@ export default function LiveMap({
               onMouseEnter={() => setHovered({ c, r })}
               style={{ cursor: hasFloor ? "help" : "default" }}
             >
+              {/* Opaque backing so the connector lines never show through a
+                  node -- dim/unvisited nodes are drawn at 0.55 opacity, which
+                  otherwise lets the white edges bleed through and look like
+                  they sit on top of the circle. */}
+              <circle cx={x(c)} cy={y(r)} r={R} fill="var(--bg-primary)" />
               {here && (
                 <circle cx={x(c)} cy={y(r)} r={R + 4} fill="none" stroke="var(--accent-gold)" strokeWidth={2}>
                   <animate attributeName="r" values={`${R + 2};${R + 6};${R + 2}`} dur="1.4s" repeatCount="indefinite" />
