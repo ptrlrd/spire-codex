@@ -330,9 +330,11 @@ export default function LiveMap({
               y1={y(r)}
               x2={x(cc)}
               y2={y(cr)}
-              stroke={lit ? "var(--accent-gold)" : "var(--border-subtle)"}
-              strokeWidth={lit ? 2 : 1}
-              strokeOpacity={lit ? 0.9 : 0.5}
+              // White + thicker so the node connectors read clearly against the
+              // dark map (the traveled route stays gold and a touch heavier).
+              stroke={lit ? "var(--accent-gold)" : "#ffffff"}
+              strokeWidth={lit ? 3 : 2}
+              strokeOpacity={lit ? 0.95 : 0.7}
             />
           );
         })}
