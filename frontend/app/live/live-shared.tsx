@@ -155,18 +155,34 @@ export interface LiveDeath {
   by?: string;
 }
 
-/** Co-op per-seat vitals (v6); `is_me` marks the local player's seat. */
+/** Co-op per-seat vitals (v6); `is_me` marks the local player's seat. `energy`
+ * and `ended_turn` (v8) are combat turn state (0/false outside combat): with the
+ * global `turn_side`, they show who is still going vs already locked in. */
 export interface LiveSeat {
   character?: string | null;
   hp?: number;
   max_hp?: number;
   block?: number;
   gold?: number;
+  energy?: number;
   alive?: boolean;
+  ended_turn?: boolean;
   deck_size?: number;
   relic_count?: number;
   potion_count?: number;
   is_me?: boolean;
+}
+
+/** A friendly summon in combat (v8): the Necrobinder's Osty and any future pet.
+ * `owner` indexes into `players` (0 in single-player). Combat-only. */
+export interface LivePet {
+  id?: string;
+  name?: string;
+  hp?: number;
+  max_hp?: number;
+  block?: number;
+  alive?: boolean;
+  owner?: number;
 }
 
 export interface LivePlayer {
@@ -226,6 +242,8 @@ export interface LivePlayer {
   route?: LiveRoute | null;
   reveals?: Reveal[];
   players?: LiveSeat[];
+  // Friendly summons in combat (Necrobinder's Osty, etc.), combat-only (v8).
+  pets?: LivePet[] | null;
   run_time?: number | null;
   modifiers?: string[];
   act_name?: string | null;

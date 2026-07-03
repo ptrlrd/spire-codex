@@ -259,6 +259,37 @@ ticker array above.
 - The frontend renders a red death screen with the quote. Send it on the death beat;
   it rides until the doc expires. Omitted from `/active`.
 
+### Co-op turn state + pets (v8)
+
+Two combat additions for co-op and summoner runs.
+
+`players[]` (co-op only, run-level) now also carries per-seat combat turn state:
+
+```json
+"players": [
+  {"character": "NECROBINDER", "hp": 60, "max_hp": 70, "block": 0, "gold": 120,
+   "energy": 3, "alive": true, "ended_turn": false, "deck_size": 22,
+   "relic_count": 5, "potion_count": 1, "is_me": true}
+]
+```
+
+- `energy` and `ended_turn` are 0/false outside combat. Combine `ended_turn` with the
+  global `turn_side` (`player`/`enemy`): during the player side, a seat with
+  `ended_turn: false` is still taking its turn, `true` means locked in and waiting.
+
+`pets[]` (present only while a pet is out in combat, transient) is the friendly summons:
+
+```json
+"pets": [
+  {"id": "OSTY", "name": "Osty", "hp": 18, "max_hp": 30, "block": 0, "alive": true, "owner": 0}
+]
+```
+
+- `owner` indexes into `players[]` (0 in single-player), so a co-op pet attaches to the
+  right seat. ids are bare (`OSTY`). Combat-only: cleared (`$unset`) when a fight ends.
+  Omitted from `/active` (detail endpoint only). It is generic, so it picks up any future
+  pet, not just Osty.
+
 ### POST /api/presence
 
 Mod-only; requires the Steam JWT (`Authorization: Bearer`). The frontend never calls it.

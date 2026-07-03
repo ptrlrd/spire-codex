@@ -31,6 +31,7 @@ import {
   type Enemy,
   type EnemyIntent,
   type LiveOrb,
+  type LivePet,
   type LivePlayer,
   type LivePower,
   type MonsterMap,
@@ -199,6 +200,31 @@ function Vitals({
           {block}
         </div>
       )}
+    </div>
+  );
+}
+
+/** Friendly summons beside the player token (the Necrobinder's Osty and any
+ * future pet): portrait + name + HP, so a spectator can see the summon's health.
+ * Dead pets drop off. `owner` co-op matching is left to the caller. */
+function PetRow({ pets, monsters }: { pets: LivePet[]; monsters: MonsterMap }) {
+  const live = pets.filter((pt) => pt && pt.alive !== false && (pt.id || pt.name));
+  if (!live.length) return null;
+  return (
+    <div className="mt-1 flex flex-wrap items-start justify-center gap-3">
+      {live.map((pt, i) => (
+        <div key={(pt.id || pt.name || "pet") + i} className="flex flex-col items-center gap-1">
+          <EnemyCircle
+            id={pt.id || ""}
+            monsters={monsters}
+            className="h-16 w-16 ring-2 ring-emerald-400/60"
+          />
+          <div className="max-w-[6rem] truncate text-xs font-medium text-emerald-200">
+            {pt.name || (pt.id ? monsterName(pt.id, monsters) : "Pet")}
+          </div>
+          <Vitals hp={pt.hp} maxHp={pt.max_hp} block={pt.block} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -553,6 +579,7 @@ export default function LiveScene({
                 <Vitals hp={p.hp} maxHp={p.max_hp} block={p.block} />
                 <PowerRow powers={p.player_powers ?? []} />
                 <OrbRow orbs={p.orbs ?? []} slots={p.orb_slots} />
+                <PetRow pets={p.pets ?? []} monsters={monsters} />
               </div>
 
               {/* Enemy tokens */}

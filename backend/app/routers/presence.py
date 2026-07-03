@@ -285,7 +285,9 @@ def _clean_orbs(raw) -> list[dict] | None:
 
 def _clean_players(raw) -> list[dict] | None:
     """Co-op per-seat vitals; the mod sends this only with 2+ players. `is_me`
-    marks the local seat so the frontend can highlight it."""
+    marks the local seat so the frontend can highlight it. `energy`/`ended_turn`
+    are combat turn state (0/false outside combat): combined with the global
+    `turn_side`, they show who is still taking their turn vs already locked in."""
     if not isinstance(raw, list):
         return None
     out: list[dict] = []
@@ -300,13 +302,45 @@ def _clean_players(raw) -> list[dict] | None:
                 "max_hp": _as_int(p.get("max_hp")),
                 "block": _as_int(p.get("block")),
                 "gold": _as_int(p.get("gold")),
+                "energy": _as_int(p.get("energy")),
                 "alive": bool(p.get("alive")),
+                "ended_turn": bool(p.get("ended_turn")),
                 "deck_size": _as_int(p.get("deck_size")),
                 "relic_count": _as_int(p.get("relic_count")),
                 "potion_count": _as_int(p.get("potion_count")),
                 "is_me": bool(p.get("is_me")),
             }
         )
+    return out
+
+
+_PETS_CAP = 8
+
+
+def _clean_pets(raw) -> list[dict] | None:
+    """Friendly summons in combat (the Necrobinder's Osty and any future pet):
+    id/name + vitals plus `owner`, an index into `players` so a co-op pet can
+    hang off the right seat (0 in single-player). Combat-only, so it is cleared
+    with the other combat fields when a fight ends."""
+    if not isinstance(raw, list):
+        return None
+    out: list[dict] = []
+    for o in raw[:_PETS_CAP]:
+        if not isinstance(o, dict):
+            continue
+        pet: dict = {
+            "hp": _as_int(o.get("hp")),
+            "max_hp": _as_int(o.get("max_hp")),
+            "block": _as_int(o.get("block")),
+            "owner": _as_int(o.get("owner")),
+            "alive": bool(o.get("alive")),
+        }
+        pid = o.get("id")
+        if isinstance(pid, str) and _safe_id(pid[:_MAX_STR]):
+            pet["id"] = pid[:_MAX_STR]
+        if isinstance(o.get("name"), str) and o["name"]:
+            pet["name"] = o["name"][:_MAX_STR]
+        out.append(pet)
     return out
 
 
@@ -626,6 +660,8 @@ async def post_presence(request: Request):
         fields["orbs"] = orbs
     if (pls := _clean_players(data.get("players"))) is not None:
         fields["players"] = pls
+    if (pets := _clean_pets(data.get("pets"))) is not None:
+        fields["pets"] = pets
 
     # Transient fields: when the mod sends these as explicit null (combat ended / left the
     # screen), clear them rather than leaving stale values. pos is NOT in this set on
@@ -654,6 +690,7 @@ async def post_presence(request: Request):
             "player_powers",
             "orbs",
             "orb_slots",
+            "pets",
             "damage_dealt",
             "damage_dealt_this_turn",
             "damage_taken",
