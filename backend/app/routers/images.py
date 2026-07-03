@@ -1,7 +1,10 @@
 """Image browsing and download API endpoints."""
 
 import io
+import json
+import os
 import re
+import urllib.request
 import zipfile
 from pathlib import Path
 
@@ -15,6 +18,29 @@ IMAGES_DIR = STATIC_DIR / "images"
 BETA_DIR = IMAGES_DIR / "beta"
 VERSION_RE = re.compile(r"^v\d+\.\d+\.\d+(?:-beta)?$")
 
+# Beta art is served from the CDN, not committed to the repo (it bloated the
+# backend image and the Docker build). `beta/manifest.json` lists every beta
+# file per version so the gallery can still enumerate them; the bytes come from
+# the CDN (display via the frontend's /static->CDN rewrite, downloads by fetch).
+BETA_MANIFEST_PATH = BETA_DIR / "manifest.json"
+CDN_BASE = (os.environ.get("CDN_URL") or "https://cdn.spire-codex.com").rstrip("/")
+
+
+def _load_beta_manifest() -> dict:
+    """{"latest": "vX.Y.Z", "versions": {ver: [rel paths]}}. Empty on any
+    problem so the beta gallery just shows nothing rather than 500ing."""
+    try:
+        with open(BETA_MANIFEST_PATH, encoding="utf-8") as fh:
+            data = json.load(fh)
+        if isinstance(data, dict) and isinstance(data.get("versions"), dict):
+            return data
+    except (OSError, ValueError):
+        pass
+    return {"latest": None, "versions": {}}
+
+
+_BETA_MANIFEST = _load_beta_manifest()
+
 
 def _available_beta_versions() -> list[str]:
     """All selectable values for the /images version dropdown.
@@ -24,11 +50,7 @@ def _available_beta_versions() -> list[str]:
     is currently in the production game alongside any archived beta.
     """
     options = ["main"]
-    if not BETA_DIR.is_dir():
-        return options
-    versions = [
-        p.name for p in BETA_DIR.iterdir() if p.is_dir() and VERSION_RE.match(p.name)
-    ]
+    versions = list(_BETA_MANIFEST.get("versions", {}).keys())
     # Newest first so the dropdown defaults sensibly.
     options.extend(
         sorted(
@@ -49,23 +71,23 @@ def _resolve_beta_version(version: str | None) -> str | None:
     """
     if version == "main":
         return "main"
+    versions = _BETA_MANIFEST.get("versions", {})
     if version:
         if not VERSION_RE.match(version):
             raise HTTPException(
                 status_code=400, detail=f"Invalid version format: {version}"
             )
-        if not (BETA_DIR / version).is_dir():
+        if version not in versions:
             raise HTTPException(
                 status_code=404, detail=f"Beta version not found: {version}"
             )
         return version
-    latest = BETA_DIR / "latest"
-    if latest.is_symlink():
-        # readlink returns just the target (e.g. "v0.106.0"), not an absolute path.
-        return latest.readlink().name
-    # Fallback: pick the highest version directory if `latest` symlink is missing.
-    versions = [v for v in _available_beta_versions() if v != "main"]
-    return versions[0] if versions else None
+    latest = _BETA_MANIFEST.get("latest")
+    if latest and latest in versions:
+        return latest
+    # Fallback: pick the highest version in the manifest if `latest` is unset.
+    remaining = [v for v in _available_beta_versions() if v != "main"]
+    return remaining[0] if remaining else None
 
 
 # Category definitions: id -> (display name, path relative to images/, recursive)
@@ -200,6 +222,46 @@ EXCLUDED_SUBDIRS: dict[str, tuple[str, ...]] = {
 }
 
 
+def _beta_images_from_manifest(
+    files: list[str],
+    rest: str,
+    version: str,
+    recursive: bool,
+    explicit_files: list[str] | None,
+    category_id: str,
+) -> list[dict[str, str]]:
+    """The manifest counterpart to the on-disk glob below, for a beta category.
+
+    `files` are paths relative to `beta/<version>/` (e.g. `cards/abrasive.png`);
+    `rest` is the category's subdir (`cards`, `ui`, ...). Applies the same
+    recursive / non-recursive / explicit-file / excluded-subdir rules the glob
+    would, and emits `/static/images/beta/<version>/...` URLs (the frontend
+    rewrites those to the CDN, where the bytes actually live)."""
+    prefix = f"{rest}/"
+    excluded = EXCLUDED_SUBDIRS.get(category_id, ())
+    out: list[dict[str, str]] = []
+    for rel in files:
+        if not rel.startswith(prefix):
+            continue
+        tail = rel[len(prefix) :]
+        if explicit_files is not None:
+            if tail not in explicit_files:
+                continue
+        elif recursive:
+            if any(part in excluded for part in tail.split("/")[:-1]):
+                continue
+        elif "/" in tail:
+            continue  # non-recursive: direct children only
+        out.append(
+            {
+                "filename": tail.rsplit("/", 1)[-1],
+                "url": f"/static/images/beta/{version}/{rel}",
+            }
+        )
+    out.sort(key=lambda i: i["url"])
+    return out
+
+
 def _get_images_for_category(
     category_id: str, version: str | None = None
 ) -> list[dict[str, str]]:
@@ -224,12 +286,18 @@ def _get_images_for_category(
     #   (e.g. `beta/cards` → `beta/v0.106.0/cards`).
     if category_id.startswith("beta-") and base_path.startswith("beta/"):
         if version is None:
-            return []  # no beta versions on disk yet
+            return []  # no beta version resolved
         rest = base_path[len("beta/") :]
         if version == "main":
+            # Duplicate the stable tree under the same dropdown option; that
+            # tree is still on disk, so fall through to the glob below.
             base_path = rest
         else:
-            base_path = f"beta/{version}/{rest}"
+            # Versioned beta art is off-repo — enumerate from the manifest.
+            files = _BETA_MANIFEST.get("versions", {}).get(version, [])
+            return _beta_images_from_manifest(
+                files, rest, version, recursive, explicit_files, category_id
+            )
 
     dir_path = IMAGES_DIR / base_path
 
@@ -456,6 +524,14 @@ def download_category_zip(
             file_path = STATIC_DIR / rel_path
             if file_path.exists():
                 zf.write(file_path, arcname=img["filename"])
+            elif img["url"].startswith("/static/images/beta/"):
+                # Off-repo beta art lives on the CDN, not on disk — fetch it.
+                cdn_url = f"{CDN_BASE}/{img['url'].removeprefix('/static/images/')}"
+                try:
+                    with urllib.request.urlopen(cdn_url, timeout=20) as resp:
+                        zf.writestr(img["filename"], resp.read())
+                except Exception:
+                    continue
     buf.seek(0)
 
     suffix = f"-{fmt}" if fmt else ""
