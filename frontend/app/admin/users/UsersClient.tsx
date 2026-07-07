@@ -6,6 +6,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AdminShell, adminFetch } from "../shared";
+import GiveawayLookup from "./GiveawayLookup";
 
 interface UserRow {
   _id: string;
@@ -203,6 +204,7 @@ export default function UsersClient() {
 
   return (
     <AdminShell title="Users" subtitle="search, rename, delete, merge">
+      <GiveawayLookup />
       <div className="flex flex-wrap gap-2 mb-4">
         <input
           className={`${inputClass} w-80`}
