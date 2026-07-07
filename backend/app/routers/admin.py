@@ -349,6 +349,80 @@ async def users_set_partner(request: Request, user_id: str):
     return result
 
 
+# Cap the batch so one paste can't fan out into thousands of outbound Steam
+# requests. Plenty for a giveaway entrant list.
+_STEAM_RESOLVE_CAP = 300
+
+
+@router.post("/steam/resolve")
+async def steam_resolve(request: Request):
+    """Resolve a batch of raw SteamID64s for the giveaway tool. Each id is
+    validated, looked up against Steam's public profile XML (persona + avatar,
+    works for anyone with a public profile), and cross-checked against our
+    accounts (member? run count?). Input order is preserved and duplicates are
+    collapsed; the batch is capped at _STEAM_RESOLVE_CAP."""
+    _audit(request)
+    from fastapi import HTTPException
+
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    raw = body.get("steam_ids") if isinstance(body, dict) else None
+    if not isinstance(raw, list):
+        raise HTTPException(status_code=422, detail="steam_ids must be a list")
+
+    # Dedupe preserving first-seen order, then cap.
+    seen: list[str] = []
+    for item in raw:
+        sid = str(item).strip()
+        if sid and sid not in seen:
+            seen.append(sid)
+        if len(seen) >= _STEAM_RESOLVE_CAP:
+            break
+
+    from ..services import steam_profile
+
+    valid = [s for s in seen if steam_profile.is_valid_steamid64(s)]
+    profiles = await steam_profile.resolve_many(valid)
+
+    members: dict = {}
+    try:
+        from ..services.users_db import admin_members_by_steam_ids
+
+        members = admin_members_by_steam_ids(valid)
+    except Exception:
+        # A Mongo hiccup shouldn't sink the whole lookup; entrants still resolve
+        # to Steam profiles, just without the member/run-count annotation.
+        logger.warning("giveaway member lookup failed", exc_info=True)
+
+    results = []
+    resolved = 0
+    for sid in seen:
+        prof = profiles.get(sid)
+        if prof:
+            resolved += 1
+        results.append(
+            {
+                "steam_id": sid,
+                "valid": steam_profile.is_valid_steamid64(sid),
+                "steam": prof,
+                "member": members.get(sid),
+            }
+        )
+
+    return {
+        "results": results,
+        "counts": {
+            "total": len(seen),
+            "valid": len(valid),
+            "invalid": len(seen) - len(valid),
+            "resolved": resolved,
+            "members": len(members),
+        },
+    }
+
+
 @router.get("/feedback")
 def feedback_inbox(request: Request, include_resolved: bool = False, limit: int = 50):
     """The feedback inbox: site feedback and QA card reports, newest first.

@@ -745,6 +745,34 @@ def admin_list_users(q: str | None = None, page: int = 1, limit: int = 50) -> di
     }
 
 
+def admin_members_by_steam_ids(steam_ids: list[str]) -> dict[str, dict]:
+    """Map the given SteamID64s to the site accounts that own them. Only ids that
+    belong to a user appear in the returned map; each value carries the account
+    id, username, partner flag, and run count. The giveaway lookup uses this to
+    flag which pasted entrants are members - one indexed `$in` query plus the
+    shared run-count aggregate, not N find_ones."""
+    ids = [s for s in dict.fromkeys(steam_ids) if s]
+    if not ids:
+        return {}
+    coll = _get_collection()
+    users = []
+    for d in coll.find({"steam_id": {"$in": ids}}, _ADMIN_USER_FIELDS):
+        d["_id"] = str(d["_id"])
+        users.append(d)
+    _attach_run_counts(users)
+    out: dict[str, dict] = {}
+    for u in users:
+        sid = u.get("steam_id")
+        if sid:
+            out[sid] = {
+                "user_id": u["_id"],
+                "username": u.get("username"),
+                "is_partner": bool(u.get("is_partner")),
+                "run_count": u.get("run_count", 0),
+            }
+    return out
+
+
 def admin_set_username(user_id: str, new_name: str) -> dict:
     """Rename an account as an admin: enforces sanitization and uniqueness but
     skips the per-day self-service cap, and re-stamps the name on the runs."""
