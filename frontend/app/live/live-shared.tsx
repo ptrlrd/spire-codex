@@ -145,6 +145,10 @@ export interface LiveLoot {
   cards?: string[];
   relics?: string[];
   potions?: string[];
+  // Scroll-box bundles (v8): each pack is a list of card ids the player picks
+  // one whole pack from. Present only on the choose-a-bundle screen; when set,
+  // `cards` is empty and the panel shows the packs instead of the flat row.
+  packs?: string[][];
   card_removal?: boolean | number;
 }
 

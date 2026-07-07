@@ -316,12 +316,14 @@ export function LiveLootPanel({
   const cardIds = loot.cards ?? [];
   const relicIds = loot.relics ?? [];
   const potionIds = loot.potions ?? [];
+  const packs = loot.packs ?? [];
   const hasGold = loot.gold != null && loot.gold > 0;
   const removal = !!loot.card_removal;
   if (
     !cardIds.length &&
     !relicIds.length &&
     !potionIds.length &&
+    !packs.length &&
     !hasGold &&
     !removal
   ) {
@@ -373,9 +375,44 @@ export function LiveLootPanel({
           })}
         </div>
       )}
-      {(cardIds.length > 0 || relicIds.length > 0) && (
+      {packs.length > 0 && (
+        <div className="space-y-2">
+          {packs.map((pack, pi) => (
+            <div key={`pack-${pi}`}>
+              <div className="mb-1 text-[10px] font-bold uppercase tracking-wide text-amber-300/80">
+                Pack {pi + 1}
+              </div>
+              <div className="flex flex-wrap items-start gap-1.5">
+                {withOrdinalKeys(pack).map(({ item, key }) => {
+                  const { id, upgraded } = parseDeckId(item);
+                  return (
+                    <CardPill
+                      key={`pk${pi}-${key}`}
+                      cardId={id}
+                      upgraded={upgraded}
+                      cardData={cards}
+                      lp={lp}
+                      className="relative block w-16 shrink-0"
+                    >
+                      <img
+                        src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                        alt={cards[id]?.name || displayName(`CARD.${id}`)}
+                        className="h-auto w-16 rounded-sm"
+                        crossOrigin="anonymous"
+                        loading="lazy"
+                      />
+                    </CardPill>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+      {((!packs.length && cardIds.length > 0) || relicIds.length > 0) && (
         <div className="flex flex-wrap items-start gap-1.5">
-          {withOrdinalKeys(cardIds).map(({ item, key }) => {
+          {!packs.length &&
+            withOrdinalKeys(cardIds).map(({ item, key }) => {
             const { id, upgraded } = parseDeckId(item);
             return (
               <CardPill

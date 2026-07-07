@@ -168,6 +168,7 @@ def _clean_reveals(raw) -> list | None:
 # per act like the map; loot is transient, cleared when the player leaves the
 # reward screen.
 _LOOT_CAP = 20
+_PACKS_CAP = 8  # scroll-box offers 2 bundles; cap generously
 _ROUTE_CAP = 30
 
 
@@ -225,6 +226,24 @@ def _clean_loot(raw) -> dict | None:
                 for x in lst[:_LOOT_CAP]
                 if isinstance(x, (str, int)) and _safe_id(s := str(x)[:_MAX_STR])
             ]
+    # Scroll-box bundles (ScrollBoxes relic): a list of packs, each a list of
+    # bare card ids. Present only on the choose-a-bundle screen; the mod keeps
+    # these out of `cards`, so the frontend hides the flat card row when set.
+    packs = raw.get("packs")
+    if isinstance(packs, list):
+        cleaned = []
+        for pack in packs[:_PACKS_CAP]:
+            if not isinstance(pack, list):
+                continue
+            ids = [
+                s
+                for x in pack[:_LOOT_CAP]
+                if isinstance(x, (str, int)) and _safe_id(s := str(x)[:_MAX_STR])
+            ]
+            if ids:
+                cleaned.append(ids)
+        if cleaned:
+            out["packs"] = cleaned
     cr = raw.get("card_removal")
     if isinstance(cr, bool):
         out["card_removal"] = cr

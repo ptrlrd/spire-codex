@@ -75,7 +75,10 @@ is_me}]`; `is_me` marks the local seat.
 
 `loot` (v6, present on the combat/reward screen, transient): the rewards on offer —
 `{gold, cards: [ids], relics: [ids], potions: [ids], card_removal}` (`card_removal`
-is a bool/count for the removal option).
+is a bool/count for the removal option). On a **scroll-box bundle** screen
+(ScrollBoxes relic, v8) `loot` also carries `packs: [[ids], [ids]]` — each pack a
+list of card ids the player picks one whole pack from; `cards` is empty then, so
+the frontend renders the packs as labelled groups instead of the flat card row.
 
 `route` (v6, the act's structure, persists per act like the map): `{boss, ancient,
 elites: [], monsters: [], events: []}`. Each node is `{id, name?, room_type?}` plus
