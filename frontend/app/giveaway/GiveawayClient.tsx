@@ -297,10 +297,6 @@ Santa Rosa, CA 95406`}
           This promotion is in no way sponsored, endorsed, administered by, or associated with
           Valve, Steam, Mega Crit, Overwolf, or Artovision.
         </p>
-        <p className="text-[var(--text-muted)]">
-          [ Placeholder: add a privacy note, governing law / state, and any other terms your
-          jurisdiction requires before publishing. ]
-        </p>
       </div>
     </div>
   );
