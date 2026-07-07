@@ -4,7 +4,7 @@ import GiveawayClient from "./GiveawayClient";
 
 const title = "Slay the Spire 2 Shadowbox Giveaway | Spire Codex";
 const description =
-  "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. June 24 to July 24, 2026.";
+  "Enter to win a Slay the Spire 2 shadowbox. Sign in with Steam, get the mod, and upload a run. No purchase necessary. US residents only. July 7 to August 7, 2026.";
 
 export const metadata: Metadata = {
   title,

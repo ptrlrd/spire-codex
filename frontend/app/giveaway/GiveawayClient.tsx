@@ -12,10 +12,10 @@ const MOD_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=37475369
 const OVERWOLF_URL = "https://www.overwolf.com/app/ptrlrd-spire_codex";
 const PRIZE_URL = "https://artovision3d.com/products/slay-the-spire-2-shadowbox-art";
 
-// Noon Pacific (PDT, UTC-7) on both ends, matching WINDOW_LABEL.
-const START = new Date("2026-06-24T12:00:00-07:00");
-const END = new Date("2026-07-24T12:00:00-07:00");
-const WINDOW_LABEL = "June 24, 2026, 12:00 PM PT to July 24, 2026, 12:00 PM PT";
+// 5:00 PM Pacific (PDT, UTC-7) on both ends, matching WINDOW_LABEL.
+const START = new Date("2026-07-07T17:00:00-07:00");
+const END = new Date("2026-08-07T17:00:00-07:00");
+const WINDOW_LABEL = "July 7, 2026, 5:00 PM PT to August 7, 2026, 5:00 PM PT";
 
 function StepCard({
   n,
@@ -88,7 +88,7 @@ export default function GiveawayClient() {
 
   const phaseBadge =
     phase === "upcoming"
-      ? { text: "Opens June 24", cls: "bg-amber-500/15 text-amber-300 border-amber-500/30" }
+      ? { text: "Opens July 7", cls: "bg-amber-500/15 text-amber-300 border-amber-500/30" }
       : phase === "ended"
         ? { text: "Closed", cls: "bg-[var(--bg-card)] text-[var(--text-muted)] border-[var(--border-subtle)]" }
         : { text: "Open now", cls: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" };
