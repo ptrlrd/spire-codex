@@ -187,10 +187,14 @@ def runs_search(
     username: str | None = None,
     seed: str | None = None,
     run_hash: str | None = None,
+    max_win_seconds: int | None = None,
     limit: int = 25,
 ):
-    """Find submitted runs to inspect or delete. run_hash wins when given;
-    otherwise username/seed filter the normal listing, newest first."""
+    """Find submitted runs to inspect, hide, or delete. run_hash wins when given.
+    max_win_seconds surfaces the cheater review queue: wins faster than that many
+    seconds, fastest first, with already-hidden runs included so you can see
+    what's flagged. Otherwise username/seed filter the normal listing, newest
+    first. Admin searches include hidden runs (they carry a `hidden` flag)."""
     _audit(request)
     if not os.environ.get("MONGO_URL", "").strip():
         return {"runs": [], "total": 0}
@@ -203,12 +207,45 @@ def runs_search(
             d.pop("_id", None)
             d.pop("raw", None)
         return {"runs": docs, "total": len(docs)}
+    if max_win_seconds is not None:
+        # The review queue: implausibly fast "wins", fastest first, hidden ones
+        # included so an admin can tell what's already been flagged.
+        coll = get_database()["runs"]
+        q = {
+            "win": {"$in": [True, 1]},
+            "run_time": {"$gt": 0, "$lt": int(max_win_seconds)},
+        }
+        cursor = (
+            coll.find(
+                q,
+                {
+                    "_id": 0,
+                    "run_hash": 1,
+                    "run_time": 1,
+                    "character": 1,
+                    "ascension": 1,
+                    "username": 1,
+                    "win": 1,
+                    "hidden": 1,
+                    "submitted_at": 1,
+                },
+            )
+            .sort([("run_time", 1)])
+            .limit(limit)
+        )
+        runs = list(cursor)
+        for d in runs:
+            sa = d.get("submitted_at")
+            if hasattr(sa, "isoformat"):
+                d["submitted_at"] = sa.isoformat()
+        return {"runs": runs, "total": len(runs)}
     result = list_runs(
         username=(username or "").strip() or None,
         seed=(seed or "").strip() or None,
         sort="newest",
         page=1,
         limit=limit,
+        include_hidden=True,
     )
     return result
 
@@ -234,6 +271,33 @@ def runs_delete(request: Request, run_hash: str):
         result["file_removed"],
     )
     return {"run_hash": run_hash, **result}
+
+
+@router.post("/runs/{run_hash}/hide")
+async def runs_set_hidden(request: Request, run_hash: str):
+    """Flag (or unflag) a run as ineligible so it drops out of the leaderboards,
+    /charts, the stats, and the run browser. Body: {"hidden": bool} (defaults to
+    true). Reversible - the run is kept, just filtered. Materialized leaderboard
+    and stats summaries clear it on their next ~60s rebuild."""
+    _audit(request)
+    from fastapi import HTTPException
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=503, detail="run hiding needs MongoDB")
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    hidden = bool(body.get("hidden", True))
+    from ..services.runs_db_mongo import set_run_hidden
+    from .runs import _load_run_blob
+
+    result = set_run_hidden(run_hash.strip(), hidden)
+    # Evict the in-process blob LRU so this worker stops serving the run's
+    # detail immediately; other workers age it out on their own.
+    _load_run_blob.cache_clear()
+    logger.info("admin set hidden=%s on run %s: %s", hidden, run_hash, result)
+    return {"run_hash": run_hash, "hidden": hidden, **result}
 
 
 # ── Users ───────────────────────────────────────────────────────────────

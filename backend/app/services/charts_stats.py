@@ -130,7 +130,8 @@ def _load_frame() -> list[tuple]:
         from .runs_db_mongo import _get_collection
 
         cursor = _get_collection().find(
-            {},
+            # Exclude admin-flagged cheated runs (absent field = eligible).
+            {"hidden": {"$ne": True}},
             {
                 "_id": 0,
                 "character": 1,
