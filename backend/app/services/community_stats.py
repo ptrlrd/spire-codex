@@ -72,10 +72,10 @@ def _merge_starter(cid: str | None) -> str | None:
 
 
 COMMUNITY_VERSION = 1
-# Content brackets the blob is accumulated per (matches charts_stats /
-# encounter_stats): "all" plus the A10-gated win-rate ladder, so the community
-# datasets can re-slice by skill.
-_BLOB_BRACKETS = ["all", "a10", "wr30", "wr50", "wr75"]
+# Brackets the blob is accumulated per (matches encounter_stats): "all", the
+# exact player-count buckets (solo/2p/3p/4p), and the A10-gated win-rate ladder,
+# so the community datasets can re-slice by co-op size and by skill.
+_BLOB_BRACKETS = ["all", "solo", "2p", "3p", "4p", "a10", "wr30", "wr50", "wr75"]
 
 
 def _new_acc_one() -> dict[str, Any]:

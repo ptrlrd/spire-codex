@@ -30,9 +30,10 @@ logger = logging.getLogger(__name__)
 ENCOUNTER_VERSION = 2
 
 # Content brackets the blob is accumulated per (matches charts_stats). A run
-# feeds every bracket it matches: "all" plus the A10-gated win-rate ladder, so
-# the encounter table can re-slice by skill.
-_BLOB_BRACKETS = ["all", "a10", "wr30", "wr50", "wr75"]
+# feeds every bracket it matches: "all", the exact player-count buckets
+# (solo/2p/3p/4p), and the A10-gated win-rate ladder, so the encounter table can
+# re-slice by co-op size and by skill.
+_BLOB_BRACKETS = ["all", "solo", "2p", "3p", "4p", "a10", "wr30", "wr50", "wr75"]
 
 # Room types that count as combat. Matches the old aggregation's default
 # `rooms_filter` ([monster, elite, boss]); other room types never carry an

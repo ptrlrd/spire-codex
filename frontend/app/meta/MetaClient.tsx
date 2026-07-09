@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
+import { Pills, PLAYER_OPTS } from "../components/PlayerCountPills";
 import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell, Legend,
@@ -324,12 +325,12 @@ export default function MetaClient() {
           <option value="daily">Daily</option>
           <option value="custom">Custom</option>
         </select>
-        <select value={playerMode} onChange={(e) => setPlayerMode(e.target.value)}
-          className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-          <option value="">All Players</option>
-          <option value="single">Single Player</option>
-          <option value="multi">Multiplayer</option>
-        </select>
+        <Pills
+          options={PLAYER_OPTS}
+          value={playerMode}
+          onChange={setPlayerMode}
+          ariaLabel="Filter by player count"
+        />
         {loading && <span className="text-xs text-[var(--text-muted)] self-center">Updating...</span>}
       </div>
 

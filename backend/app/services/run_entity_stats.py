@@ -195,7 +195,9 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # __meta__ fields and to a flat blob for a pre-v9 snapshot.
 # Version 10 adds a per-character split to each entity's win-rate/A10 bracket data
 # so the detail page's character table re-slices by bracket (additive).
-SNAPSHOT_VERSION = 10
+# Version 11 adds solo/2p/3p/4p player-count brackets to the community and
+# encounter blobs so those pages can filter by co-op size (additive).
+SNAPSHOT_VERSION = 11
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -885,6 +887,13 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         blob_brackets = ["all"] + [
             c for c in extra_brackets if c in ("a10", "wr30", "wr50", "wr75")
         ]
+        # Community + encounter blobs additionally slice by exact player count
+        # (solo/2p/3p/4p) so those pages can filter by co-op size. Charts blobs
+        # stay lean (content brackets only) — the charts player filter runs on
+        # the metadata frame, not the blob, so bloating it here would be wasted.
+        mp_blob_brackets = blob_brackets + [
+            c for c in extra_brackets if c in ("solo", "2p", "3p", "4p")
+        ]
 
         # Community / fun stats, accumulated from the same blob. Guarded so
         # one malformed blob can't abort the whole snapshot rebuild.
@@ -892,7 +901,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
             community_stats.accumulate(
                 community_acc,
                 blob,
-                brackets=blob_brackets,
+                brackets=mp_blob_brackets,
                 run_hash=run_hash,
                 is_win=is_win,
                 character=character,
@@ -926,7 +935,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
             encounter_stats.accumulate(
                 encounter_acc,
                 blob,
-                brackets=blob_brackets,
+                brackets=mp_blob_brackets,
                 character=character,
                 is_win=is_win,
                 player_count=row.get("player_count") or 1,
