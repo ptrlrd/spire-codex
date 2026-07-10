@@ -102,6 +102,15 @@ _ACT_MIN_PICKS = 200
 # so switching bracket on the page is still a single cached read with no
 # per-request aggregation. A run contributes to "all" plus every bracket it
 # matches (a solo A10 daily run lands in solo, a10, daily).
+# Player-count and skill brackets that combine on the metrics page. A run in
+# both (a solo run from a >50%-WR player) also feeds the composite key
+# "solo:wr50", so the metrics table can filter by player count AND skill at once
+# without a live join. Only the entity cache reads composites; the community /
+# encounter / charts blobs filter to their own key sets and skip them.
+_PLAYER_BRACKETS = ("solo", "2p", "3p", "4p")
+_SKILL_BRACKETS = ("a10", "wr30", "wr50", "wr75")
+_COMPOSITE_BRACKETS = [f"{p}:{c}" for p in _PLAYER_BRACKETS for c in _SKILL_BRACKETS]
+
 _BRACKET_KEYS = [
     "solo",
     "2p",
@@ -114,7 +123,7 @@ _BRACKET_KEYS = [
     "wr30",
     "wr50",
     "wr75",
-]
+] + _COMPOSITE_BRACKETS
 
 
 def _run_extra_brackets(player_count: int, ascension: int, game_mode: str) -> list[str]:
@@ -196,7 +205,9 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Version 10 adds a per-character split to each entity's win-rate/A10 bracket data
 # so the detail page's character table re-slices by bracket (additive).
 # Version 11 adds solo/2p/3p/4p player-count brackets to the community and
-# encounter blobs so those pages can filter by co-op size (additive).
+# encounter blobs so those pages can filter by co-op size, plus player-count x
+# skill composite brackets (solo:wr50, ...) in the entity cache so the metrics
+# page can filter by both at once (additive).
 SNAPSHOT_VERSION = 11
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
@@ -860,6 +871,14 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         uname = (row.get("username") or "").lower()
         if uname:
             extra_brackets = extra_brackets + _winrate_brackets(_asc, wr_map.get(uname))
+        # Player-count x skill composites (solo:wr50, ...) so the metrics page can
+        # slice by both at once. Cheap: the run already matched both sides. Only
+        # the entity cache reads these; the blob-bracket lists below filter to
+        # their own keys and skip composites.
+        _pc = [b for b in extra_brackets if b in _PLAYER_BRACKETS]
+        _sk = [b for b in extra_brackets if b in _SKILL_BRACKETS]
+        if _pc and _sk:
+            extra_brackets = extra_brackets + [f"{p}:{c}" for p in _pc for c in _sk]
         for ck in extra_brackets:
             ct = bracket_accs[ck]["totals"]
             ct["total_runs"] += 1

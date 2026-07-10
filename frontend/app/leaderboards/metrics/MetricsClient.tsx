@@ -51,21 +51,63 @@ const COLOR_FILTERS = [
 ];
 
 
-// Run brackets (single-select). Mirrors BRACKETS in page.tsx / _BRACKET_KEYS.
-const BRACKETS = [
-  { key: "all", label: "All runs" },
+// The run-bracket filter has two combinable axes (player count x skill tier),
+// served as a "player:skill" composite (solo:wr50), plus a mutually-exclusive
+// game-mode axis. Keep keys in sync with _BRACKET_KEYS in run_entity_stats.py.
+const PLAYER_AXIS = [
+  { key: "", label: "All" },
   { key: "solo", label: "Solo" },
   { key: "2p", label: "2P" },
   { key: "3p", label: "3P" },
   { key: "4p", label: "4P" },
+];
+const SKILL_AXIS = [
+  { key: "", label: "All" },
   { key: "a10", label: "A10" },
-  { key: "daily", label: "Daily" },
-  { key: "custom", label: "Custom" },
-  // Win-rate skill brackets (A10-gated quality ladder). Mirror _BRACKET_KEYS.
   { key: "wr30", label: "A10 >30% WR" },
   { key: "wr50", label: "A10 >50% WR" },
   { key: "wr75", label: "A10 >75% WR" },
 ];
+const MODE_AXIS = [
+  { key: "", label: "All" },
+  { key: "daily", label: "Daily" },
+  { key: "custom", label: "Custom" },
+];
+const PLAYER_KEYS = PLAYER_AXIS.map((a) => a.key).filter(Boolean);
+const SKILL_KEYS = SKILL_AXIS.map((a) => a.key).filter(Boolean);
+const MODE_KEYS = MODE_AXIS.map((a) => a.key).filter(Boolean);
+
+// Split a bracket key into its axes. A "player:skill" composite splits on the
+// colon; a single bracket maps to whichever axis owns it.
+function parseBracket(b: string): { player: string; skill: string; mode: string } {
+  if (b.includes(":")) {
+    const [p, s] = b.split(":");
+    return { player: p, skill: s, mode: "" };
+  }
+  if (PLAYER_KEYS.includes(b)) return { player: b, skill: "", mode: "" };
+  if (SKILL_KEYS.includes(b)) return { player: "", skill: b, mode: "" };
+  if (MODE_KEYS.includes(b)) return { player: "", skill: "", mode: b };
+  return { player: "", skill: "", mode: "" };
+}
+
+// Mode is exclusive with player/skill (there are no daily/custom composites).
+function combineBracket(player: string, skill: string, mode: string): string {
+  if (mode) return mode;
+  if (player && skill) return `${player}:${skill}`;
+  return player || skill || "all";
+}
+
+function bracketLabel(b: string): string {
+  const { player, skill, mode } = parseBracket(b);
+  const parts: string[] = [];
+  const pl = PLAYER_AXIS.find((a) => a.key === player);
+  if (player && pl) parts.push(pl.label);
+  const sl = SKILL_AXIS.find((a) => a.key === skill);
+  if (skill && sl) parts.push(sl.label);
+  const ml = MODE_AXIS.find((a) => a.key === mode);
+  if (mode && ml) parts.push(ml.label);
+  return parts.length ? parts.join(" + ") : "All runs";
+}
 
 type SortKey =
   | "elo"
@@ -141,10 +183,21 @@ export default function MetricsClient({
     left: number;
   } | null>(null);
 
-  const pickBracket = (key: string) => {
+  const sel = parseBracket(bracket);
+  const nav = (key: string) => {
     const base = `${lp}/leaderboards/metrics`;
     router.push(key === "all" ? base : `${base}?bracket=${key}`);
   };
+  // Player and skill combine; picking either clears the exclusive mode axis.
+  const pickPlayer = (p: string) => nav(combineBracket(p, sel.skill, ""));
+  const pickSkill = (s: string) => nav(combineBracket(sel.player, s, ""));
+  const pickMode = (m: string) => nav(m || "all");
+  const pillCls = (active: boolean) =>
+    `rounded-full border px-3 py-1 text-xs transition-colors ${
+      active
+        ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"
+        : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
+    }`;
 
   const showPreview = (
     e: React.MouseEvent<HTMLElement>,
@@ -214,25 +267,47 @@ export default function MetricsClient({
           what players actually want when offered, not who happened to play the card.
         </p>
         <p className="mt-2 text-xs text-[var(--text-muted)]">
-          {BRACKETS.find((c) => c.key === bracket)?.label ?? "All runs"} ·{" "}
+          {bracketLabel(bracket)} ·{" "}
           {totalRuns.toLocaleString()} runs · baseline win rate {baselineWinRate}% ·{" "}
           {visible.length} cards shown
         </p>
       </header>
 
-      {/* Run-bracket filter. Each bracket is a pre-built slice, so switching
-          is a server refetch of an already-cached snapshot. */}
-      <div className="mb-3 flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 text-xs text-[var(--text-muted)]">Runs:</span>
-        {BRACKETS.map((c) => (
+      {/* Two combinable axes (player count x skill tier) plus an exclusive game
+          mode. Each slice is a pre-built snapshot bracket, so switching is a
+          cached server refetch. Pick a player count AND a skill tier to see,
+          e.g., solo runs from >50%-win-rate players. */}
+      <div className="mb-2 flex flex-wrap items-center gap-1.5">
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Players</span>
+        {PLAYER_AXIS.map((c) => (
           <button
-            key={c.key}
-            onClick={() => pickBracket(c.key)}
-            className={`rounded-full border px-3 py-1 text-xs transition-colors ${
-              bracket === c.key
-                ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"
-                : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
-            }`}
+            key={c.key || "all"}
+            onClick={() => pickPlayer(c.key)}
+            className={pillCls(sel.player === c.key)}
+          >
+            {c.label}
+          </button>
+        ))}
+      </div>
+      <div className="mb-2 flex flex-wrap items-center gap-1.5">
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Skill</span>
+        {SKILL_AXIS.map((c) => (
+          <button
+            key={c.key || "all"}
+            onClick={() => pickSkill(c.key)}
+            className={pillCls(sel.skill === c.key)}
+          >
+            {c.label}
+          </button>
+        ))}
+      </div>
+      <div className="mb-3 flex flex-wrap items-center gap-1.5">
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Mode</span>
+        {MODE_AXIS.map((c) => (
+          <button
+            key={c.key || "all"}
+            onClick={() => pickMode(c.key)}
+            className={pillCls(sel.mode === c.key)}
           >
             {c.label}
           </button>

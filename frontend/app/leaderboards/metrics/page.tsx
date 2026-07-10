@@ -101,6 +101,17 @@ export const BRACKETS = [
   { key: "wr75", label: "A10 >75% WR" },
 ] as const;
 
+// The metrics page lets you combine a player count with a skill tier, which the
+// backend serves as a "player:skill" composite bracket (e.g. solo:wr50). Accept
+// those in addition to the single brackets above.
+const _PLAYER_KEYS = ["solo", "2p", "3p", "4p"];
+const _SKILL_KEYS = ["a10", "wr30", "wr50", "wr75"];
+function isValidBracket(b: string): boolean {
+  if (BRACKETS.some((c) => c.key === b)) return true;
+  const [p, s] = b.split(":");
+  return _PLAYER_KEYS.includes(p) && _SKILL_KEYS.includes(s);
+}
+
 export async function loadMetrics(
   lang = "eng",
   bracket = "all"
@@ -110,7 +121,7 @@ export async function loadMetrics(
   totalRuns: number;
   bracket: string;
 }> {
-  const valid = BRACKETS.some((c) => c.key === bracket) ? bracket : "all";
+  const valid = isValidBracket(bracket) ? bracket : "all";
   const [cards, metrics] = await Promise.all([
     fetchJson<ApiCard[]>(`${API_INTERNAL}/api/cards?lang=${lang}`),
     fetchJson<MetricsResponse>(
