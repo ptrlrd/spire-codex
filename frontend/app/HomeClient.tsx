@@ -23,9 +23,9 @@ interface Translations {
 const CHARACTERS = [
   { id: "ironclad", cssColor: "var(--color-ironclad)" },
   { id: "silent", cssColor: "var(--color-silent)" },
-  { id: "defect", cssColor: "var(--color-defect)" },
-  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
   { id: "regent", cssColor: "var(--color-regent)" },
+  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
+  { id: "defect", cssColor: "var(--color-defect)" },
 ];
 
 const FALLBACK_DESCS: Record<string, string> = {
