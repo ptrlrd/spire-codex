@@ -1182,6 +1182,11 @@ def start_stats_refresher() -> None:
         )
         from ..services.run_entity_stats import refresh_entity_stats_snapshot
 
+        # Per-step timing: a rebuild that never completes shows up here as a step
+        # whose "done" log never arrives, so we can see which step starves it.
+        _cyc0 = time.time()
+        logger.info("refresh cycle: starting (leader)")
+
         # Warm the /charts page FIRST so the default no-filter view of each chart
         # is in Redis within seconds of a deploy, instead of waiting behind the
         # entity-stats snapshot walk below (which can run for minutes). Frame
@@ -1194,11 +1199,13 @@ def start_stats_refresher() -> None:
                 prewarm_charts()
         except Exception:
             logger.warning("charts prewarm failed", exc_info=True)
+        logger.info("refresh cycle: charts prewarm done at %.1fs", time.time() - _cyc0)
 
         try:
             refresh_stats_summary()
         except Exception:
             logger.warning("stats summary refresh failed", exc_info=True)
+        logger.info("refresh cycle: stats summary done at %.1fs", time.time() - _cyc0)
         # Pre-compute the default (category, character) ladder
         # views into leaderboard_summary. Reads for the common
         # combos become O(1) find_one instead of a 500ms
@@ -1207,6 +1214,11 @@ def start_stats_refresher() -> None:
             refresh_leaderboard_summary()
         except Exception:
             logger.warning("leaderboard summary refresh failed", exc_info=True)
+        logger.info(
+            "refresh cycle: leaderboard summary done at %.1fs, entering snapshot "
+            "rebuild",
+            time.time() - _cyc0,
+        )
         # Rebuild the shared entity-stats snapshot (tier-list
         # / Codex Score source) on the same leader-only loop.
         # Internally throttled, so this is a no-op find_one

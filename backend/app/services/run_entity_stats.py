@@ -839,6 +839,12 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
     (solo/2p/3p/4p/a10/daily/custom); those land nested under each entity's
     ``brackets`` key, and `bracket_meta` carries their baselines + totals.
     """
+    # Phase timing so a stalled rebuild is diagnosable from the logs (the walk is
+    # otherwise silent until it completes). Which phase the last log names tells
+    # us where a rebuild that never finishes is stuck.
+    _t0 = time.time()
+    logger.info("snapshot rebuild: starting (loading run rows from the DB)")
+
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     new_totals = {"total_runs": 0, "total_wins": 0}
 
@@ -908,6 +914,12 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "player_count, ascension, game_mode, killed_by, username FROM runs"
             ).fetchall()
             rows = [dict(r) for r in rows]
+
+    logger.info(
+        "snapshot rebuild: loaded %d run rows in %.1fs, now walking blob files",
+        len(rows),
+        time.time() - _t0,
+    )
 
     official_chars = _official_character_ids()
 
@@ -1221,6 +1233,13 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                     picked_ids,
                     skipped_ids,
                 )
+
+    logger.info(
+        "snapshot rebuild: blob walk done in %.1fs (%d entities), finalizing "
+        "(Codex Elo fits + bracket serialization)",
+        time.time() - _t0,
+        len(new_cache),
+    )
 
     # Fold the card-reward pick stats + fitted Codex Elo into the cache.
     # Cards that were offered but never decked still get an entry (picks=0
