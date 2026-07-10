@@ -731,6 +731,8 @@ def _build_match(
     if username:
         # Case-insensitive, exact (anchored) match on the normalized field.
         m["username_lower"] = username.lower()
+    # Drop admin-flagged cheated runs from every stat (absent field = eligible).
+    m["hidden"] = {"$ne": True}
     return m
 
 
@@ -1451,6 +1453,7 @@ def _projection_row() -> dict:
         "username": 1,
         "submitted_at": 1,
         "build_id": 1,
+        "hidden": 1,
     }
 
 
@@ -1532,10 +1535,16 @@ def list_runs(
     today: bool = False,
     page: int = 1,
     limit: int = 50,
+    include_hidden: bool = False,
 ) -> dict:
-    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path."""
+    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
+
+    include_hidden is for the admin console only; public callers leave it False
+    so admin-flagged cheated runs stay out of the run browser."""
     coll = _get_collection()
     q: dict[str, Any] = {}
+    if not include_hidden:
+        q["hidden"] = {"$ne": True}
     if character:
         q["character"] = character.upper()
     if win == "true":
@@ -1654,6 +1663,17 @@ def list_runs(
 
 
 @_instrument("leaderboard")
+def set_run_hidden(run_hash: str, hidden: bool) -> dict:
+    """Flag or unflag every doc sharing this run_hash as ineligible. Hidden runs
+    stay in the collection but drop out of leaderboards, /charts, the stats, and
+    the run list on the next read. The materialized leaderboard/stats summaries
+    clear the run on their next ~60s rebuild. Returns how many docs changed."""
+    coll = _get_collection()
+    update = {"$set": {"hidden": True}} if hidden else {"$unset": {"hidden": ""}}
+    result = coll.update_many({"run_hash": run_hash}, update)
+    return {"matched": result.matched_count, "modified": result.modified_count}
+
+
 def leaderboard(
     category: str = "fastest",
     character: str | None = None,
@@ -1743,7 +1763,8 @@ def _leaderboard_live(
     """
     coll = _get_collection()
     # ETL'd docs store win as 0/1 int; submit_run stores bool. Match both.
-    q: dict[str, Any] = {"win": {"$in": [True, 1]}}
+    # Exclude admin-flagged cheated runs (absent field = eligible).
+    q: dict[str, Any] = {"win": {"$in": [True, 1]}, "hidden": {"$ne": True}}
     if character:
         q["character"] = character.upper()
     if players in ("single", "1"):
