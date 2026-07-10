@@ -718,8 +718,14 @@ def _build_match(
         m["ascension"] = official
     if game_mode:
         m["game_mode"] = game_mode
-    if players == "single":
+    if players in ("single", "1"):
         m["player_count"] = 1
+    elif players in ("2", "3"):
+        m["player_count"] = int(players)
+    elif players == "4":
+        # Co-op caps at 4, so "4" is the top bucket; match >=4 to line up with
+        # the snapshot's 4p bracket (pc >= 4).
+        m["player_count"] = {"$gte": 4}
     elif players == "multi":
         m["player_count"] = {"$gt": 1}
     if username:
@@ -1577,8 +1583,12 @@ def list_runs(
         q["build_id"] = {"$in": [b for b in build_ids.split(",") if b]}
     elif build_id:
         q["build_id"] = build_id
-    if players == "single":
+    if players in ("single", "1"):
         q["player_count"] = 1
+    elif players in ("2", "3"):
+        q["player_count"] = int(players)
+    elif players == "4":
+        q["player_count"] = {"$gte": 4}
     elif players == "multi":
         q["player_count"] = {"$gt": 1}
     if game_mode:
@@ -1736,8 +1746,12 @@ def _leaderboard_live(
     q: dict[str, Any] = {"win": {"$in": [True, 1]}}
     if character:
         q["character"] = character.upper()
-    if players == "single":
+    if players in ("single", "1"):
         q["player_count"] = 1
+    elif players in ("2", "3"):
+        q["player_count"] = int(players)
+    elif players == "4":
+        q["player_count"] = {"$gte": 4}
     elif players == "multi":
         q["player_count"] = {"$gt": 1}
     if game_mode:

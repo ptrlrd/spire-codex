@@ -11,6 +11,7 @@ import { fullCardUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import { CONTENT_BRACKETS, bracketParam } from "@/lib/content-brackets";
+import { Pills, PLAYER_OPTS } from "@/app/components/PlayerCountPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -272,7 +273,7 @@ export default function StatsClient() {
   // on /api/runs/stats. Multiplayer runs are stored as one document
   // per player (player_count > 1), so leaving the filter off gives
   // the full population.
-  const [players, setPlayers] = useState<"" | "single" | "multi">("");
+  const [players, setPlayers] = useState("");
 
   // Content bracket (All / A10 / A10 >X% WR). When set to anything but "all",
   // the card/relic/potion tabs source from the entity-score snapshot
@@ -772,29 +773,13 @@ export default function StatsClient() {
           narrowed; leaderboards default to "single" because rankings
           across SP/MP pools aren't comparable. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
-        <div
-          className={`inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]${
-            bracketActive ? " opacity-40 pointer-events-none" : ""
-          }`}
-        >
-          {([
-            { value: "" as const, label: t("All", lang) },
-            { value: "single" as const, label: t("Single Player", lang) },
-            { value: "multi" as const, label: t("Multiplayer", lang) },
-          ]).map(({ value, label }) => (
-            <button
-              key={value || "all"}
-              onClick={() => setPlayers(value)}
-              className={`px-4 py-1.5 text-sm font-medium rounded transition-colors ${
-                players === value
-                  ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
-                  : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <Pills
+          options={PLAYER_OPTS}
+          value={players}
+          onChange={setPlayers}
+          disabled={bracketActive}
+          ariaLabel="Filter by player count"
+        />
       </div>
 
       {/* Global filter bar */}

@@ -17,7 +17,21 @@ export const CONTENT_BRACKETS: ContentBracket[] = [
   { key: "wr75", param: "wr75", label: "A10 >75% WR" },
 ];
 
-const _BY_KEY = new Map(CONTENT_BRACKETS.map((b) => [b.key, b]));
+// Exact player-count brackets. A separate axis from the content/skill brackets
+// above (they share the single ?bracket= slot, so they're mutually exclusive),
+// kept out of CONTENT_BRACKETS so the content-bracket pill rows and charts don't
+// render them. Keys match _run_extra_brackets in run_entity_stats.py.
+export const PLAYER_BRACKETS: ContentBracket[] = [
+  { key: "solo", param: "solo", label: "Solo" },
+  { key: "2p", param: "2p", label: "2P" },
+  { key: "3p", param: "3p", label: "3P" },
+  { key: "4p", param: "4p", label: "4P" },
+];
+
+// Both axes are valid ?bracket= values, so normalizeBracket must recognize them.
+const _BY_KEY = new Map(
+  [...CONTENT_BRACKETS, ...PLAYER_BRACKETS].map((b) => [b.key, b]),
+);
 
 /** Normalize a raw ?bracket= value to a known bracket key ("all" if unknown). */
 export function normalizeBracket(raw: string | undefined | null): string {

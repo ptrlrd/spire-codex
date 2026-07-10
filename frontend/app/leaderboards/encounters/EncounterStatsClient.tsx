@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { CONTENT_BRACKETS } from "@/lib/content-brackets";
+import { CONTENT_BRACKETS, PLAYER_BRACKETS } from "@/lib/content-brackets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -218,6 +218,31 @@ export default function EncounterStatsClient() {
               <button
                 key={b.key}
                 onClick={() => setBracket(b.key)}
+                className={`px-3 py-1 rounded-md text-sm border transition-colors ${
+                  active
+                    ? "border-[var(--accent-gold)] text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
+                    : "border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50"
+                }`}
+              >
+                {b.label}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="flex flex-wrap items-center gap-2">
+          <span className="text-sm text-[var(--text-muted)] w-20">Players:</span>
+          {PLAYER_BRACKETS.map((b) => {
+            const active = bracket === b.key;
+            return (
+              <button
+                key={b.key}
+                // Player count shares the bracket slot; picking one clears the
+                // now-redundant solo/multi toggle above.
+                onClick={() => {
+                  setBracket(b.key);
+                  setMultiplayer("any");
+                }}
                 className={`px-3 py-1 rounded-md text-sm border transition-colors ${
                   active
                     ? "border-[var(--accent-gold)] text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"

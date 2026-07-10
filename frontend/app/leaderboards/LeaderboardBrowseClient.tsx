@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
+import { Pills, PLAYER_OPTS } from "@/app/components/PlayerCountPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
@@ -81,7 +82,7 @@ interface BrowseRun {
 }
 
 type Tab = "fastest" | "highest_ascension" | "browse";
-type Mode = "" | "single" | "multi";
+type Mode = "" | "1" | "2" | "3" | "4";
 // `gameMode` mirrors the backend `game_mode` column. Empty string = no
 // filter (all modes). Default is "standard" since custom-seed and daily
 // runs aren't time-comparable to the canonical ladder.
@@ -93,9 +94,10 @@ function tabFromParam(value: string | null): Tab {
 }
 
 function modeFromParam(value: string | null): Mode {
-  if (value === "multi") return "multi";
-  if (value === "all" || value === "") return "";
-  return "single";
+  if (value === "2" || value === "3" || value === "4") return value;
+  // Legacy deep links: ?mode=all|multi -> all runs; single|1 -> solo.
+  if (value === "all" || value === "multi" || value === "") return "";
+  return "1"; // default: solo (SP/MP times aren't comparable)
 }
 
 function gameModeFromParam(value: string | null): GameMode {
@@ -295,25 +297,12 @@ export default function LeaderboardBrowseClient() {
           (parallel rooms, shared encounters, etc.), so the leaderboards
           read from disjoint pools. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
-        <div className="inline-flex gap-1 p-1 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
-          {([
-            { value: "" as Mode, label: t("All", lang) },
-            { value: "single" as Mode, label: t("Single Player", lang) },
-            { value: "multi" as Mode, label: t("Multiplayer", lang) },
-          ]).map(({ value, label }) => (
-            <button
-              key={value || "all"}
-              onClick={() => setMode(value)}
-              className={`px-4 py-1.5 text-sm font-medium rounded transition-colors ${
-                mode === value
-                  ? "bg-[var(--accent-gold)] text-[var(--bg-primary)]"
-                  : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-              }`}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
+        <Pills
+          options={PLAYER_OPTS}
+          value={mode}
+          onChange={(v) => setMode(v as Mode)}
+          ariaLabel="Filter by player count"
+        />
 
         {/* Game-mode pill row. Default is "standard", custom-seed and
             daily runs aren't comparable to the canonical pool (different

@@ -699,7 +699,16 @@ def get_encounter_stats_endpoint(
     limit, total, has_next}`. Served from the in-memory snapshot, which
     is built on both the Mongo and SQLite paths.
     """
-    if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
+    if bracket is not None and bracket not in (
+        "solo",
+        "2p",
+        "3p",
+        "4p",
+        "a10",
+        "wr30",
+        "wr50",
+        "wr75",
+    ):
         raise HTTPException(status_code=400, detail="bad bracket")
 
     from ..services.run_entity_stats import (
@@ -997,7 +1006,16 @@ def community_stats(request: Request, response: Response, bracket: str | None = 
 
     `bracket` slices to a content bracket (`a10`, `wr30`, `wr50`, `wr75`);
     omit for all runs."""
-    if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
+    if bracket is not None and bracket not in (
+        "solo",
+        "2p",
+        "3p",
+        "4p",
+        "a10",
+        "wr30",
+        "wr50",
+        "wr75",
+    ):
         raise HTTPException(status_code=400, detail="bad bracket")
     # An empty shell during a post-deploy rebuild must not stick in the
     # edge cache for 5 minutes on top of the rebuild itself.
