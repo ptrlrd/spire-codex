@@ -4575,7 +4575,16 @@
         "is_weak": false
       }
     ],
-    "innate_powers": null,
+    "innate_powers": [
+      {
+        "power_id": "PLATING",
+        "amount": 12
+      },
+      {
+        "power_id": "ASLEEP",
+        "amount": 3
+      }
+    ],
     "attack_pattern": {
       "type": "conditional",
       "initial_move": "SLEEP",
