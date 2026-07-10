@@ -256,13 +256,15 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
             base-card Elo exists only for cards.
           </li>
           <li>
-            <strong>Upgraded cards get their own Elo.</strong> Reward screens never offer an
-            upgraded card, so the base Elo can&apos;t speak for the &ldquo;+&rdquo; version.
-            Instead the upgraded variant is rated from a different revealed preference: the
-            rest-site Smith decision. When you upgrade a card, it &ldquo;beats&rdquo; the other
-            cards in your deck you could have upgraded but didn&apos;t. Fit the same Bradley-Terry
-            model over those choices and the &ldquo;+&rdquo; row gets a genuine Upgrade Elo, not a
-            copy of the base number. Starters can earn one this way too (you can Smith a Strike).
+            <strong>Upgraded cards get their own Elo.</strong> Reward screens can offer a card
+            already upgraded, but the run export only records which card was taken, not whether the
+            offer was the &ldquo;+&rdquo; version, so every reward pick counts toward the base card
+            and can&apos;t speak for the upgraded one. Instead the &ldquo;+&rdquo; variant is rated
+            from a different revealed preference: the rest-site Smith decision. When you upgrade a
+            card, it &ldquo;beats&rdquo; the other cards in your deck you could have upgraded but
+            didn&apos;t. Fit the same Bradley-Terry model over those choices and the
+            &ldquo;+&rdquo; row gets a genuine Upgrade Elo, not a copy of the base number. Starters
+            can earn one this way too (you can Smith a Strike).
           </li>
         </ul>
         <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
