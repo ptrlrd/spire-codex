@@ -45,12 +45,16 @@ OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 
 
 def _official_run_hashes() -> list[str]:
-    """Get hashes of runs with official characters from Mongo."""
+    """Get hashes of official runs from Mongo: an official character AND the
+    official ascension range (A11+ is modded)."""
     from ..services.runs_db_mongo import _get_collection
 
     coll = _get_collection()
     cursor = coll.find(
-        {"character": {"$in": list(OFFICIAL_CHARACTERS)}},
+        {
+            "character": {"$in": list(OFFICIAL_CHARACTERS)},
+            "ascension": {"$gte": 0, "$lte": 10},
+        },
         {"_id": 1},
         no_cursor_timeout=True,
     )

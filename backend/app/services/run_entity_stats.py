@@ -322,6 +322,59 @@ def _official_relic_ids() -> frozenset[str]:
     return _official_relics_cache
 
 
+_official_potions_cache: frozenset[str] | None = None
+
+
+def _official_potion_ids() -> frozenset[str]:
+    """Uppercase ids of the official potions. Runs can carry modded potion ids;
+    like _official_relic_ids, an empty set (unreadable catalog) means "don't
+    filter" so a transient read failure can't blank the list."""
+    global _official_potions_cache
+    if _official_potions_cache is None:
+        try:
+            from .data_service import load_potions
+
+            _official_potions_cache = frozenset(
+                (p.get("id") or "").upper() for p in load_potions() if p.get("id")
+            )
+        except Exception:
+            _official_potions_cache = frozenset()
+    return _official_potions_cache
+
+
+_official_cards_cache: frozenset[str] | None = None
+
+
+def _official_card_ids() -> frozenset[str]:
+    """Uppercase ids of the official cards (the real card catalog). A card id
+    absent from this set is fully modded (a mod's custom card). Empty set means
+    "don't filter"."""
+    global _official_cards_cache
+    if _official_cards_cache is None:
+        try:
+            from .data_service import load_cards
+
+            _official_cards_cache = frozenset(
+                (c.get("id") or "").upper() for c in load_cards() if c.get("id")
+            )
+        except Exception:
+            _official_cards_cache = frozenset()
+    return _official_cards_cache
+
+
+def _official_entity_ids(entity_type: str) -> frozenset[str]:
+    """The official-catalog id set for a stats entity type (cards/relics/potions).
+    An empty set means "don't filter" (unreadable catalog or an unknown type), so
+    callers use `if official and eid not in official` to fail open."""
+    if entity_type == "cards":
+        return _official_card_ids()
+    if entity_type == "relics":
+        return _official_relic_ids()
+    if entity_type == "potions":
+        return _official_potion_ids()
+    return frozenset()
+
+
 # Card colors that are never a real card-reward choice: curses and status
 # cards are forced into the deck, event/quest cards come from events, and
 # tokens are generated mid-combat. A forced grant isn't a revealed
@@ -1710,6 +1763,10 @@ def get_all_entity_scores(
         if entity_type == "cards"
         else frozenset()
     )
+    # Fully-modded ids (in no official catalog) leak from the run walk, which
+    # only gates ascension + character, not per-entity content. Drop them for
+    # every type; the per-act relic view already does this via _official_relic_ids.
+    official = _official_entity_ids(entity_type)
     # Bracket view (the content brackets: a10 / wr30 / wr50 / wr75 etc.): grade
     # each entity against that bracket's baseline using its nested per-bracket
     # counts, mirroring get_entity_metrics_table. character scoping isn't tracked
@@ -1723,6 +1780,8 @@ def get_all_entity_scores(
         bracket_out: dict[str, dict[str, Any]] = {}
         for (etype, eid), agg in _cache.items():
             if etype != entity_type or eid in excluded:
+                continue
+            if official and eid not in official:
                 continue
             data = (agg.get("brackets") or {}).get(bracket)
             if not data:
@@ -1744,7 +1803,7 @@ def get_all_entity_scores(
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
             continue
-        if eid in excluded:
+        if eid in excluded or (official and eid not in official):
             continue
         picks = agg["picks"]
         wins = agg["wins"]
@@ -1870,11 +1929,13 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
 
     rows: list[dict[str, Any]] = []
     excluded_cards = _excluded_card_ids() if entity_type == "cards" else frozenset()
+    official = _official_entity_ids(entity_type)
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
             continue
-        # Drop curses/status/event/token cards: not reward-pickable.
-        if eid in excluded_cards:
+        # Drop curses/status/event/token cards (not reward-pickable) and
+        # fully-modded ids (in no official catalog) of any type.
+        if eid in excluded_cards or (official and eid not in official):
             continue
         if use_bracket:
             # Bracket views stay merged (no base/upg split is tracked per bracket).
@@ -1968,9 +2029,17 @@ def get_top_entities_for_character(
     _maybe_rebuild()
     char = character.upper()
     baseline = _type_baseline(entity_type)
+    official = _official_entity_ids(entity_type)
+    excluded = (
+        _excluded_card_ids() | _starter_card_ids() | _token_card_ids()
+        if entity_type == "cards"
+        else frozenset()
+    )
     rows: list[dict[str, Any]] = []
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
+            continue
+        if eid in excluded or (official and eid not in official):
             continue
         cstats = agg["by_character"].get(char)
         if not cstats or cstats["picks"] <= 0:
@@ -2000,6 +2069,11 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     # Tokens can't be obtained in the official game, so any aggregate for them is
     # mod-only noise. Report no data (the endpoint renders a zero-filled stub).
     if entity_type == "cards" and entity_id.upper() in _token_card_ids():
+        return None
+    # Same for a fully-modded id (in no official catalog). Fail open on an
+    # unreadable catalog so a transient read failure can't blank real entities.
+    official = _official_entity_ids(entity_type)
+    if official and entity_id.upper() not in official:
         return None
     _maybe_rebuild()
     key = (entity_type, entity_id.upper())

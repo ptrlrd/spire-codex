@@ -130,8 +130,10 @@ def _load_frame() -> list[tuple]:
         from .runs_db_mongo import _get_collection
 
         cursor = _get_collection().find(
-            # Exclude admin-flagged cheated runs (absent field = eligible).
-            {"hidden": {"$ne": True}},
+            # Exclude admin-flagged cheated runs (absent field = eligible) and
+            # clamp to the official ascension range (A11+ is modded, mirroring
+            # _build_match); modded characters already fold into ALL only below.
+            {"hidden": {"$ne": True}, "ascension": {"$gte": 0, "$lte": 10}},
             {
                 "_id": 0,
                 "character": 1,
@@ -178,7 +180,7 @@ def _load_frame() -> list[tuple]:
                 "SELECT character, win, ascension, game_mode, player_count,"
                 " run_time, floors_reached, deck_size, relic_count,"
                 " submitted_at, username, was_abandoned, acts_completed, seed"
-                " FROM runs"
+                " FROM runs WHERE ascension BETWEEN 0 AND 10"
             ):
                 mode = (d["game_mode"] or "standard").lower()
                 rows.append(

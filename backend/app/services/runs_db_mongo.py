@@ -1498,7 +1498,16 @@ def get_user_winrates() -> dict[str, list[int]]:
         return cached
     coll = _get_collection()
     pipeline = [
-        {"$match": {"username_lower": {"$nin": [None, ""]}}},
+        # Official content only: A11+ and modded-character runs aren't real skill
+        # signal, so they must not count toward the win rate that gates the
+        # winrate:xx brackets on /list and the leaderboards.
+        {
+            "$match": {
+                "username_lower": {"$nin": [None, ""]},
+                "ascension": {"$gte": 0, "$lte": 10},
+                "character": {"$in": list(OFFICIAL_CHARACTERS)},
+            }
+        },
         {
             "$group": {
                 "_id": "$username_lower",
@@ -1767,6 +1776,10 @@ def _leaderboard_live(
     q: dict[str, Any] = {"win": {"$in": [True, 1]}, "hidden": {"$ne": True}}
     if character:
         q["character"] = character.upper()
+    else:
+        # Default (all-character) board: official characters only, so modded
+        # characters can't appear on the public leaderboard.
+        q["character"] = {"$in": list(OFFICIAL_CHARACTERS)}
     if players in ("single", "1"):
         q["player_count"] = 1
     elif players in ("2", "3"):
@@ -1777,8 +1790,12 @@ def _leaderboard_live(
         q["player_count"] = {"$gt": 1}
     if game_mode:
         q["game_mode"] = game_mode
+    # Clamp to the official ascension range (A10 is the game's cap); A11+ runs are
+    # modded and must never top the ladder. Merge an explicit ascension_min in.
     if ascension_min is not None:
-        q["ascension"] = {"$gte": ascension_min}
+        q["ascension"] = {"$gte": max(int(ascension_min), 0), "$lte": 10}
+    else:
+        q["ascension"] = {"$gte": 0, "$lte": 10}
     if winrate_min is not None:
         # Skill bracket: restrict to runs whose submitter's overall win rate
         # clears the threshold (same per-user map + floor as the browse filter).
@@ -2029,6 +2046,9 @@ def get_daily_leaderboard(username: str | None = None) -> dict:
         "win": {"$in": [True, 1]},
         "game_mode": "daily",
         "seed": _today_daily_seed_match(),
+        # Official content only, like the other ladders (A10 cap, real characters).
+        "ascension": {"$gte": 0, "$lte": 10},
+        "character": {"$in": list(OFFICIAL_CHARACTERS)},
     }
 
     top_10 = list(coll.find(base, _projection_row()).sort("run_time", 1).limit(10))
