@@ -1042,6 +1042,37 @@ def parse_single_monster(
                 depth -= 1
             i += 1
         init_block = content[start : i - 1]
+    # AfterAddedToRoom often delegates its combat-start setup to a private helper
+    # rather than writing every PowerCmd.Apply inline. Lagavulin Matriarch, for
+    # instance, calls `await Sleep();` and applies its innate Plating inside
+    # Sleep(). Follow local same-class method calls (await Foo(...) where Foo is a
+    # method defined in this file, not base.X / Cmd.X) so those applied powers are
+    # captured too. Bounded to a couple of levels with a visited set.
+    scan_block = init_block
+    seen_helpers: set[str] = set()
+    frontier = [init_block]
+    hops = 0
+    while frontier and hops < 8:
+        block = frontier.pop()
+        for call in re.finditer(r"\bawait\s+(\w+)\s*\(", block):
+            helper = call.group(1)
+            if helper in seen_helpers or helper == "AfterAddedToRoom":
+                continue
+            # Only follow methods actually DEFINED in this class (a private/
+            # protected/etc. helper); the modifier prefix excludes bare framework
+            # calls and `await base.X()` (which has no local definition here).
+            helper_body = _extract_method_body(
+                content,
+                r"(?:private|protected|internal|public)[^\n;{]*\b"
+                + re.escape(helper)
+                + r"\s*\(",
+            )
+            if helper_body is None:
+                continue
+            seen_helpers.add(helper)
+            scan_block += "\n" + helper_body
+            frontier.append(helper_body)
+            hops += 1
     # v0.104+ added an optional context arg before the target, same as the
     # move-effects regex above:
     #   OLD:  PowerCmd.Apply<ArtifactPower>(base.Creature, 3m, ...)
@@ -1054,7 +1085,7 @@ def parse_single_monster(
     # no `<Power>` token and is still not captured here.
     for pm in re.finditer(
         r"PowerCmd\.Apply<(\w+)>\(\s*(?:new\s+\w+\([^)]*\)\s*,\s*)?[\w.]+\s*,\s*(\w+?)m?\b",
-        init_block,
+        scan_block,
     ):
         power_name = pm.group(1).replace("Power", "")
         amount_ref = pm.group(2)
