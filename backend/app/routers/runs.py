@@ -1182,6 +1182,19 @@ def start_stats_refresher() -> None:
         )
         from ..services.run_entity_stats import refresh_entity_stats_snapshot
 
+        # Warm the /charts page FIRST so the default no-filter view of each chart
+        # is in Redis within seconds of a deploy, instead of waiting behind the
+        # entity-stats snapshot walk below (which can run for minutes). Frame
+        # charts warm immediately; blob charts that still need the snapshot come
+        # back "building" and re-warm on the next cycle. One worker, shared cache.
+        try:
+            if app_cache.enabled():
+                from .charts import prewarm_charts
+
+                prewarm_charts()
+        except Exception:
+            logger.warning("charts prewarm failed", exc_info=True)
+
         try:
             refresh_stats_summary()
         except Exception:
@@ -1225,16 +1238,6 @@ def start_stats_refresher() -> None:
                     )
         except Exception:
             logger.warning("entity-scores cache warm failed", exc_info=True)
-        # Warm the /charts page: precompute the default no-filter view of each
-        # chart so the page and chart switches serve from Redis instead of
-        # aggregating live on the first hit. One worker, shared cache, cheap.
-        try:
-            if app_cache.enabled():
-                from .charts import prewarm_charts
-
-                prewarm_charts()
-        except Exception:
-            logger.warning("charts prewarm failed", exc_info=True)
 
     threading.Thread(target=_loop, daemon=True, name="stats-refresher").start()
 

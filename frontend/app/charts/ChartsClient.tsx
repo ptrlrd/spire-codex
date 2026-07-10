@@ -34,6 +34,27 @@ ChartJS.register(
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+// Fetch and parse JSON defensively. When the backend briefly returns HTML
+// instead of JSON - a 502/504 gateway page while workers restart after a
+// deploy, or an auth gate redirecting to a login page - a naive res.json()
+// throws a cryptic "unexpected character at line 1 column 1". Check the status
+// and content-type first and surface a clean, retryable message instead.
+async function fetchJson<T>(url: string, init?: RequestInit): Promise<T> {
+  const res = await fetch(url, init);
+  const isJson = (res.headers.get("content-type") || "").includes("application/json");
+  if (!res.ok) {
+    const detail = isJson
+      ? await res
+          .json()
+          .then((b) => b?.detail)
+          .catch(() => null)
+      : null;
+    throw new Error(detail || `Server busy (HTTP ${res.status})`);
+  }
+  if (!isJson) throw new Error("Server returned a non-JSON response");
+  return res.json() as Promise<T>;
+}
+
 // ── Theme (matches the community-stats charts) ───────────────────────────────
 
 const GOLD = "#d4a843";
@@ -252,8 +273,7 @@ export default function ChartsClient() {
   };
 
   useEffect(() => {
-    fetch(`${API}/api/charts/meta`)
-      .then((r) => r.json())
+    fetchJson<Meta>(`${API}/api/charts/meta`)
       .then(setMeta)
       .catch(() => setError("Could not load chart list"));
   }, []);
@@ -261,9 +281,8 @@ export default function ChartsClient() {
   // Lazy-load selector lists the first time a chart needs them.
   useEffect(() => {
     if (spec?.needs.includes("encounter") && encounters.length === 0) {
-      fetch(`${API}/api/encounters?lang=eng`)
-        .then((r) => r.json())
-        .then((rows: { id: string; name: string }[]) => {
+      fetchJson<{ id: string; name: string }[]>(`${API}/api/encounters?lang=eng`)
+        .then((rows) => {
           const opts = rows
             .map((r) => ({ id: r.id, name: r.name }))
             .sort((a, b) => a.name.localeCompare(b.name));
@@ -277,9 +296,8 @@ export default function ChartsClient() {
 
   useEffect(() => {
     if (needsEntity && !entityLists[effEtype]) {
-      fetch(`${API}/api/${effEtype}?lang=eng`)
-        .then((r) => r.json())
-        .then((rows: { id: string; name: string }[]) => {
+      fetchJson<{ id: string; name: string }[]>(`${API}/api/${effEtype}?lang=eng`)
+        .then((rows) => {
           const opts = rows
             .map((r) => ({ id: r.id, name: r.name }))
             .sort((a, b) => a.name.localeCompare(b.name));
@@ -355,25 +373,39 @@ export default function ChartsClient() {
     setLoading(true);
     setError(null);
     const ctrl = new AbortController();
-    fetch(`${API}/api/charts/${spec.key}?${p}`, { signal: ctrl.signal })
-      .then(async (r) => {
-        if (!r.ok) throw new Error((await r.json()).detail || `HTTP ${r.status}`);
-        return r.json();
-      })
-      .then((d: ChartResponse) => {
-        // Fill the generic "stat" axis placeholders with the chosen labels.
-        const statLabel = (k: string) => meta?.stats.find((s) => s.key === k)?.label ?? k;
-        if (spec.needs.includes("stat")) d.axis = { ...d.axis, x: statLabel(stat) };
-        if (spec.needs.includes("x")) d.axis = { x: statLabel(xStat), y: statLabel(yStat) };
-        setData(d);
-        setLoading(false);
-      })
-      .catch((e) => {
-        if (e.name !== "AbortError") {
-          setError(String(e.message || e));
+
+    // Fetch with a couple of retries: right after a deploy the first hit can
+    // land on a worker that's still restarting (a brief gateway error), so a
+    // short backoff usually catches the backend once it's back instead of
+    // failing the whole page. The loading state stays up while we retry.
+    void (async () => {
+      const attempts = 3;
+      for (let attempt = 1; attempt <= attempts; attempt++) {
+        try {
+          const d = await fetchJson<ChartResponse>(
+            `${API}/api/charts/${spec.key}?${p}`,
+            { signal: ctrl.signal },
+          );
+          // Fill the generic "stat" axis placeholders with the chosen labels.
+          const statLabel = (k: string) =>
+            meta?.stats.find((s) => s.key === k)?.label ?? k;
+          if (spec.needs.includes("stat")) d.axis = { ...d.axis, x: statLabel(stat) };
+          if (spec.needs.includes("x")) d.axis = { x: statLabel(xStat), y: statLabel(yStat) };
+          setData(d);
+          setLoading(false);
+          return;
+        } catch (e) {
+          if (ctrl.signal.aborted || (e as Error).name === "AbortError") return;
+          if (attempt < attempts) {
+            await new Promise((r) => setTimeout(r, attempt * 800));
+            if (ctrl.signal.aborted) return;
+            continue;
+          }
+          setError(String((e as Error).message || e));
           setLoading(false);
         }
-      });
+      }
+    })();
     return () => ctrl.abort();
   }, [spec, meta, players, ascension, bracket, gameMode, username, split, stat, xStat, yStat, encounter, event, effEtype, entity, needsEntity]);
 
