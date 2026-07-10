@@ -110,6 +110,12 @@ _ACT_MIN_PICKS = 200
 _PLAYER_BRACKETS = ("solo", "2p", "3p", "4p")
 _SKILL_BRACKETS = ("a10", "wr30", "wr50", "wr75")
 _COMPOSITE_BRACKETS = [f"{p}:{c}" for p in _PLAYER_BRACKETS for c in _SKILL_BRACKETS]
+# Fast membership test in the hot per-run walk. Composite brackets skip the
+# expensive reward-pairwise / Codex Elo machinery (see the card-reward loop):
+# it's the heaviest part of the walk, and the composite tier-list / metrics
+# views only surface Score + Win%, not the reward-preference Elo / Pick% (which
+# are too thin sliced this finely to mean anything).
+_COMPOSITE_BRACKETS_SET = frozenset(_COMPOSITE_BRACKETS)
 
 _BRACKET_KEYS = [
     "solo",
@@ -211,7 +217,11 @@ SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # These landed in the same deploy as v11 but reused version 11, so the leader
 # considered its (composite-less) v11 snapshot current and never rebuilt them in;
 # the bump forces the rebuild.
-SNAPSHOT_VERSION = 12
+# Version 13: composites skip the reward-pairwise / Codex Elo build (they keep
+# Score + Win% only). The full-Elo v12 build over 26 brackets x ~740k runs was
+# too heavy to finish, so the snapshot never advanced past v10; this cuts the
+# walk back to a healthy duration. The bump forces the (now cheap) rebuild.
+SNAPSHOT_VERSION = 13
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -1199,6 +1209,11 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 pick_counts, pair_wins, act_index, picked_ids, skipped_ids
             )
             for ck in extra_brackets:
+                # Composite (player x skill) brackets skip the pairwise/Elo work
+                # — the heaviest part of the walk. They keep Score + Win% from
+                # the picks/wins loop above; their views don't show reward Elo.
+                if ck in _COMPOSITE_BRACKETS_SET:
+                    continue
                 _accumulate_screen(
                     bracket_accs[ck]["pick_counts"],
                     bracket_accs[ck]["pair_wins"],
