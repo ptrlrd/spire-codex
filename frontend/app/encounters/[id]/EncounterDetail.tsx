@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import "../../card-revamp.css";
 import "../../monster-encounter-extra.css";
@@ -179,6 +180,9 @@ export default function EncounterDetail({ initialEncounter }: { initialEncounter
             <LocalizedNames entityType="encounters" entityId={id} />
             <EntityHistory entityType="encounters" entityId={id} />
           </section>
+
+          {/* Programmatic prose block for SEO */}
+          <EntityProse kind="encounter" encounter={encounter} />
         </main>
 
         {/* ===== INFOBOX column (sticky) ===== */}

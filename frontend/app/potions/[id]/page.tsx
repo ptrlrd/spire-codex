@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import PotionDetail from "./PotionDetail";
+import type { EntityStats } from "@/app/components/EntityRunStats";
+import { fetchEntityStats } from "@/lib/entity-stats";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -18,9 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Potion Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const potion = await res.json();
     const desc = stripTagsFlat(potion.description || "");
-    const title = `Potion - ${potion.name} - ${potion.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${potion.name} - Slay the Spire 2 ${potion.rarity} Potion | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${potion.rarity} potion, ${potion.name}${desc ? `: ${desc}` : ""}`,
+      `${potion.name} is a ${potion.rarity} potion in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,
@@ -73,10 +75,12 @@ export default async function Page({ params }: Props) {
     apiUnreachable = true;
   }
   if (!potion && !apiUnreachable) redirectMissingEntity("potions", id);
+  // Server-render the community stats into the HTML (unique, crawlable data).
+  const initialStats: EntityStats | null = potion ? await fetchEntityStats("potions", id) : null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PotionDetail initialPotion={potion} />
+      <PotionDetail initialPotion={potion} initialStats={initialStats} />
     </>
   );
 }

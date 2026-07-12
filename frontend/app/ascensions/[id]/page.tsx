@@ -20,9 +20,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Ascension Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const asc = await res.json();
     const desc = stripTagsFlat(asc.description);
-    const title = `Ascension - Level ${asc.level} - ${asc.name} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `Ascension ${asc.level}: ${asc.name} - Slay the Spire 2 | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 Ascension ${asc.level}, ${asc.name}${desc ? `: ${desc}` : ""}`,
+      `Ascension ${asc.level} (${asc.name}) in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

@@ -29,7 +29,7 @@ interface BracketStat {
   by_character?: CharacterRow[];
 }
 
-interface EntityStats {
+export interface EntityStats {
   entity_type: string;
   entity_id: string;
   picks: number;
@@ -55,6 +55,10 @@ interface Props {
    * (stat tiles + bracket pills + by-character bars). Data/fetch/bracket
    * logic is identical; only the presentation changes. */
   variant?: "default" | "wiki";
+  /** Server-fetched stats used as the initial state so the numbers render into
+   * the SSR HTML (crawlable) instead of a client-only "Loading" placeholder.
+   * The component still re-fetches on mount to stay fresh. */
+  initialStats?: EntityStats | null;
 }
 
 /** Compact 1.2k / 44.8k style number for the wiki tiles + bars. */
@@ -115,8 +119,8 @@ function characterPretty(c: string): string {
  * state when the entity has no submitted runs yet so SEO crawlers
  * still see something other than spinners.
  */
-export default function EntityRunStats({ entityType, entityId, entityName, variant = "default" }: Props) {
-  const [stats, setStats] = useState<EntityStats | null>(null);
+export default function EntityRunStats({ entityType, entityId, entityName, variant = "default", initialStats = null }: Props) {
+  const [stats, setStats] = useState<EntityStats | null>(initialStats);
   const [selectedBracket, setSelectedBracket] = useState("all");
   const { lang } = useLanguage();
 

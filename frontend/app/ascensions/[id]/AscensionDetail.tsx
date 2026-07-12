@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import "../../card-revamp.css";
 import "../../meta-extra.css";
 
@@ -139,6 +140,9 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
             <div className="desc-quote">
               <RichDescription text={ascension.description} />
             </div>
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="ascension" ascension={ascension} />
           </section>
 
           {/* Prev/Next navigation */}

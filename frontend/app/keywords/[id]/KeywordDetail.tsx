@@ -7,6 +7,7 @@ import type { Card } from "@/lib/api";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import RichDescription from "@/app/components/RichDescription";
 import SearchFilter from "@/app/components/SearchFilter";
+import EntityProse from "@/app/components/EntityProse";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import "../../card-revamp.css";
@@ -187,6 +188,9 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
             />
 
             <FullCardGrid cards={filtered} />
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="keyword" keyword={keyword} />
           </section>
         </main>
       </div>

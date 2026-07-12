@@ -9,11 +9,13 @@ import {
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { GameEvent, EventPage } from "@/lib/api";
+import type { EventVotes } from "@/lib/event-votes";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
+import EntityProse from "@/app/components/EntityProse";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { imageUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
@@ -62,7 +64,10 @@ function PageBlock({ page }: { page: EventPage }) {
   );
 }
 
-export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent | null } = {}) {
+export default function EventDetail({
+  initialEvent,
+  voteStats,
+}: { initialEvent?: GameEvent | null; voteStats?: EventVotes | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -226,6 +231,9 @@ export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent
                 <RichDescription text={event.description} />
               </div>
             )}
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="event" event={event} />
           </section>
 
           {/* Choices & outcomes */}
@@ -250,6 +258,32 @@ export default function EventDetail({ initialEvent }: { initialEvent?: GameEvent
                       )}
                     </div>
                   ))}
+                </div>
+              )}
+
+              {voteStats && voteStats.options.length > 0 && (
+                <div className="event-votes">
+                  <h3 className="subh">How the community votes</h3>
+                  <p className="h-note">
+                    Across {voteStats.total.toLocaleString()} community-submitted runs at{" "}
+                    {event.name}, players chose:
+                  </p>
+                  <div className="bars">
+                    {voteStats.options.map((o) => (
+                      <div className="bar-row" key={o.id}>
+                        <span className="name">{o.label}</span>
+                        <span className="bar-track">
+                          <span
+                            className="bar-fill"
+                            style={{ width: `${o.pct}%`, background: "var(--gold)" }}
+                          />
+                        </span>
+                        <span className="num">
+                          <b>{o.pct}%</b> · {o.count.toLocaleString()}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               )}
 

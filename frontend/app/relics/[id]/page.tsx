@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import RelicDetail from "./RelicDetail";
+import type { EntityStats } from "@/app/components/EntityRunStats";
+import { fetchEntityStats } from "@/lib/entity-stats";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -26,9 +28,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Relic Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const relic = await res.json();
     const desc = stripTagsFlat(relic.description || "");
-    const title = `Relic - ${relic.name} - ${relic.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${relic.name} - Slay the Spire 2 ${relic.rarity} Relic | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${relic.rarity} relic, ${relic.name}${desc ? `: ${desc}` : ""}`,
+      `${relic.name} is a ${relic.rarity} relic in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,
@@ -84,10 +86,12 @@ export default async function Page({ params }: Props) {
     apiUnreachable = true;
   }
   if (!relic && !apiUnreachable) redirectMissingEntity("relics", id);
+  // Server-render the community stats into the HTML (unique, crawlable data).
+  const initialStats: EntityStats | null = relic ? await fetchEntityStats("relics", id) : null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <RelicDetail initialRelic={relic} />
+      <RelicDetail initialRelic={relic} initialStats={initialStats} />
     </>
   );
 }

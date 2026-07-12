@@ -15,13 +15,17 @@ export const revalidate = 1800;
 // Meta follows the standard `Slay the Spire 2 {Topic} - {Descriptor} | Spire Codex`
 // format used across the rest of the site (see /changelog, /cards, /relics, etc.).
 // The visible page tagline below is separate marketing copy.
+// Lead with the query people actually type ("slay the spire 2 patch notes",
+// "sts2 patch notes / updates") rather than a generic "News -".
+const NEWS_TITLE = `Slay the Spire 2 Patch Notes & Updates (sts2) | ${SITE_NAME}`;
+
 export const metadata: Metadata = {
-  title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+  title: NEWS_TITLE,
   description:
     "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
   alternates: { canonical: `${SITE_URL}/news`, languages: buildLanguageAlternates("/news") },
   openGraph: {
-    title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    title: NEWS_TITLE,
     description:
       "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
     url: `${SITE_URL}/news`,
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `News - Patch Notes & Announcements - Slay the Spire 2 (sts2) | ${SITE_NAME}`,
+    title: NEWS_TITLE,
     description: "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.",
     images: [DEFAULT_OG_IMAGE],
   },
@@ -73,6 +77,7 @@ export default async function NewsPage({
   const tabConfig = TABS.find((t) => t.key === activeTab) ?? TABS[0];
   const data = await loadNews(tabConfig.feedType);
   const items = data.items;
+  const latest = items[0];
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -91,11 +96,12 @@ export default async function NewsPage({
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">News</span>
+        <span className="text-[var(--accent-gold)]">Slay the Spire 2</span> Patch Notes &amp; News
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        Patch notes, dev updates, and community announcements from Mega Crit, plus press
-        coverage. Mirrored from Steam, read each post in full or follow the original link.
+        Every Slay the Spire 2 (sts2) patch note, dev update, and announcement from Mega Crit,
+        mirrored from Steam the moment it posts, plus press coverage from PCGamesN, RPS, and more.
+        {latest ? ` The most recent update is ${latest.title} (${formatNewsDate(latest.date)}).` : ""}
       </p>
 
       {/* Tabs, Community is the default; Press surfaces external coverage */}

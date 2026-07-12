@@ -19,9 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Enchantment Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const enchantment = await res.json();
     const desc = stripTagsFlat(enchantment.description || "");
-    const title = `Enchantment - ${enchantment.name} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${enchantment.name} - Slay the Spire 2 Enchantment | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card enchantment, ${enchantment.name}${desc ? `: ${desc}` : ""}`,
+      `${enchantment.name} is a card enchantment in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

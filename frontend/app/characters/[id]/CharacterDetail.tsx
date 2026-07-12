@@ -11,6 +11,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import FullCardGrid from "@/app/components/FullCardGrid";
+import EntityProse from "@/app/components/EntityProse";
 import "../../card-revamp.css";
 import "../../character-extra.css";
 
@@ -400,6 +401,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
             <div className="desc-quote">
               <RichDescription text={char.description} />
             </div>
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="character" character={char} />
           </section>
 
           {/* Starting Deck */}

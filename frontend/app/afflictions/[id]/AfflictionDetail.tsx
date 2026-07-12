@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import "../../card-revamp.css";
 import "../../reference-extra.css";
@@ -87,6 +88,9 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
             <div className="desc-quote">
               <RichDescription text={affliction.description} />
             </div>
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="affliction" affliction={affliction} />
           </section>
 
           {affliction.extra_card_text && (

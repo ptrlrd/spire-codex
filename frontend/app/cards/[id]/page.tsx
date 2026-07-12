@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import CardDetail from "./CardDetail";
+import type { EntityStats } from "@/app/components/EntityRunStats";
+import { fetchEntityStats } from "@/lib/entity-stats";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -31,11 +33,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const card = await res.json();
     const desc = stripTags(card.description || "");
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = `Card - ${card.name} - ${card.rarity} ${card.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${card.name} - Slay the Spire 2 ${card.rarity} ${card.type} | Spire Codex`;
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card, ${card.name} (${card.cost ?? "X"}-cost ${card.rarity} ${card.type}, ${color}). ${descFlat}${keywords}`,
+      `${card.name} is a ${card.cost ?? "X"}-cost ${color} ${card.rarity} ${card.type} card in Slay the Spire 2 (sts2). ${descFlat}${keywords}`,
     );
     // Full game-rendered card (base + upgraded) as the share image, English.
     const ogImages = cardOgImages(card, "eng");
@@ -103,10 +105,16 @@ export default async function Page({ params }: Props) {
   // 308 unknown IDs to the cards list so search engines transfer
   // link equity and humans land on something useful.
   if (!card && !apiUnreachable) redirectMissingEntity("cards", id);
+  // Server-render the community stats into the HTML (unique, crawlable data).
+  const initialStats: EntityStats | null = card ? await fetchEntityStats("cards", id) : null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail initialCard={card} initialEnchantments={enchantmentsForCard(id)} />
+      <CardDetail
+        initialCard={card}
+        initialEnchantments={enchantmentsForCard(id)}
+        initialStats={initialStats}
+      />
     </>
   );
 }

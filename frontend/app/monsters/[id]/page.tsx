@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MonsterDetail from "./MonsterDetail";
+import { fetchEncounterStats } from "@/lib/encounter-stats";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -23,10 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const monster = await res.json();
     const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
     const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
-    const title = `Monster - ${monster.name} - ${monster.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${monster.name} - Slay the Spire 2 ${monster.type} | Spire Codex`;
     const movesText = monster.moves?.length ? `${monster.moves.length} known moves.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${monster.type} monster, ${monster.name}.${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
+      `${monster.name} is a ${monster.type} in Slay the Spire 2 (sts2).${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
     );
     return {
       title,
@@ -78,10 +79,16 @@ export default async function Page({ params }: Props) {
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
+  // Server-render the community "how deadly" stats for this monster's fights.
+  const encounterStats = monster?.encounters?.length
+    ? await fetchEncounterStats(
+        monster.encounters.map((e: { encounter_id: string }) => e.encounter_id),
+      )
+    : [];
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <MonsterDetail initialMonster={monster} />
+      <MonsterDetail initialMonster={monster} encounterStats={encounterStats} />
     </>
   );
 }

@@ -86,7 +86,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const actPrefix = act ? `Act ${act} ` : "";
   const scope = poolLabel && pool ? `${actPrefix}${poolLabel} Relic` : `${actPrefix}Relic`;
-  const title = `${scope} Tier List - Relics Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
+  const title = `${scope} Tier List - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
   const description = act
     ? `Slay the Spire 2 (sts2) relics ranked by the win rate of runs that picked them up in Act ${act}, graded against other Act ${act} pickups.`
     : pool

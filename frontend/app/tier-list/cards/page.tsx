@@ -92,7 +92,7 @@ export async function generateMetadata({ searchParams }: PageProps): Promise<Met
   const scope = charLabel && color ? `${charLabel} Cards` : "Cards";
   // Title leads with STS2 abbreviation + full game name to capture both
   // query phrasings ("sts2 tier list" vs "slay the spire 2 tier list").
-  const title = `${scope} Tier List - Cards Ranked - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
+  const title = `${scope} Tier List - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
   const description = color
     ? `${charLabel} card tier list for Slay the Spire 2 (sts2). Every ${charLabel?.toLowerCase()} card ranked S through F based on community win-rate data.`
     : "Every Slay the Spire 2 (sts2) card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.";

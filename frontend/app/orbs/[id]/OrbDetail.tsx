@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
@@ -87,6 +88,9 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
             <div className="desc-quote">
               <RichDescription text={orb.description} />
             </div>
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="orb" orb={orb} />
           </section>
 
           {hasRelations && (

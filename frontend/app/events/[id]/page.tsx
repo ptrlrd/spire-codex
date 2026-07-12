@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import EventDetail from "./EventDetail";
+import { fetchEventVotes } from "@/lib/event-votes";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -18,9 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Event Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const event = await res.json();
     const desc = stripTagsFlat(event.description || "");
-    const title = `Event - ${event.name} - ${event.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${event.name} - Slay the Spire 2 Event | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${event.type} event, ${event.name}${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : ""}`,
+      `${event.name} is a ${event.type} event in Slay the Spire 2 (sts2)${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,
@@ -76,10 +77,12 @@ export default async function Page({ params }: Props) {
     apiUnreachable = true;
   }
   if (!event && !apiUnreachable) redirectMissingEntity("events", id);
+  // Server-render the community choice distribution (unique, crawlable data).
+  const voteStats = event ? await fetchEventVotes(id) : null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EventDetail initialEvent={event} />
+      <EventDetail initialEvent={event} voteStats={voteStats} />
     </>
   );
 }

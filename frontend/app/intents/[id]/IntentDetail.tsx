@@ -10,6 +10,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
@@ -82,6 +83,9 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
             <div className="desc-quote">
               <RichDescription text={intent.description} />
             </div>
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="intent" intent={intent} />
           </section>
 
           <section id="history">

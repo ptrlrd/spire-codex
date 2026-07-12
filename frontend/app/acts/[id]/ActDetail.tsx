@@ -9,6 +9,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import "../../card-revamp.css";
 import "../../meta-extra.css";
 
@@ -199,6 +200,9 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
             <LocalizedNames entityType="acts" entityId={id} />
             <EntityHistory entityType="acts" entityId={id} />
           </section>
+
+          {/* Programmatic prose block for SEO */}
+          <EntityProse kind="act" act={act} />
         </main>
       </div>
     </div>

@@ -15,6 +15,7 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl, enchantedCardUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
@@ -169,6 +170,9 @@ export default function EnchantmentDetail({
                 </div>
               </>
             )}
+
+            {/* Programmatic prose block for SEO */}
+            <EntityProse kind="enchantment" enchantment={enchantment} />
           </section>
 
           {/* Cards it can apply to */}

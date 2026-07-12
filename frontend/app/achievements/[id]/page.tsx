@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Achievement Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const achievement = await res.json();
     const desc = stripTagsFlat(achievement.description || "");
-    const title = `Achievement - ${achievement.name} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${achievement.name} - Slay the Spire 2 Achievement | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 achievement, ${achievement.name}${desc ? `: ${desc}` : ""}`,
+      `${achievement.name} is an achievement in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,
