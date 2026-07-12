@@ -279,7 +279,12 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
                 ) : null}
               </p>
             )}
-            <EntityTrends entityType={entityType} entityId={entityId} lang={lang} />
+            <EntityTrends
+              entityType={entityType}
+              entityId={entityId}
+              bracket={selectedBracket}
+              lang={lang}
+            />
           </>
         )}
 

@@ -19,6 +19,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { t } from "@/lib/ui-translations";
+import { bracketParam, CONTENT_BRACKETS } from "@/lib/content-brackets";
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
 
@@ -80,10 +81,12 @@ function makeOpts(): ChartOptions<"line"> {
 export default function EntityTrends({
   entityType,
   entityId,
+  bracket,
   lang,
 }: {
   entityType: string;
   entityId: string;
+  bracket: string;
   lang: string;
 }) {
   const [series, setSeries] = useState<Series[] | null>(null);
@@ -93,8 +96,13 @@ export default function EntityTrends({
     // else leave series null so the component simply renders nothing.
     if (!ETYPES.has(entityType)) return;
     let alive = true;
+    // The selected content bracket (a10 / wr30 / ...) slices the weekly blob on
+    // the backend, matching the pills above; "all" omits the param. Old charts
+    // stay put until the new data lands, so switching pills doesn't flicker.
+    const bp = bracketParam(bracket);
+    const bq = bp ? `&bracket=${bp}` : "";
     fetch(
-      `${API}/api/charts/entity-over-time?etype=${entityType}&entity=${entityId.toUpperCase()}`,
+      `${API}/api/charts/entity-over-time?etype=${entityType}&entity=${entityId.toUpperCase()}${bq}`,
     )
       .then((r) => (r.ok ? r.json() : null))
       .then((d: Series[] | null) => {
@@ -106,7 +114,7 @@ export default function EntityTrends({
     return () => {
       alive = false;
     };
-  }, [entityType, entityId]);
+  }, [entityType, entityId, bracket]);
 
   if (series === null) return null; // loading
 
@@ -170,12 +178,17 @@ export default function EntityTrends({
     ],
   };
 
+  const bp = bracketParam(bracket);
+  const bracketLabel = bp
+    ? CONTENT_BRACKETS.find((b) => b.key === bracket)?.label
+    : t("all ascensions and modes", lang);
+
   return (
     <div className="et-trends">
       <h3 className="subh">{t("Trends over time", lang)}</h3>
       <p className="h-note">
-        {t("Weekly, all ascensions and modes. Last", lang)} {weeks.length}{" "}
-        {t("weeks.", lang)}
+        {t("Weekly", lang)} · {bracketLabel} · {t("last", lang)} {weeks.length}{" "}
+        {t("weeks", lang)}
       </p>
       <div className="et-trend-grid">
         {hasWin && (
