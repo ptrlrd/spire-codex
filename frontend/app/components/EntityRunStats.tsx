@@ -243,16 +243,6 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
                 <h3 className="subh">
                   {t("Win rate by character", lang)}{!isAll ? ` · ${selLabel}` : ""}
                 </h3>
-                <p className="h-note">
-                  {top ? (
-                    <>
-                      {t("Picked most on", lang)} <b>{characterPretty(top.character)}</b> —{" "}
-                      {t("the story shifts by character and bracket.", lang)}
-                    </>
-                  ) : (
-                    t("By character and bracket.", lang)
-                  )}
-                </p>
                 <div className="bars">
                   {selByChar.map((row) => (
                     <div className="bar-row" key={row.character}>
