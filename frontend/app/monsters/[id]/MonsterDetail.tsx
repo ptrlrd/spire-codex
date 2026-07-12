@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, type MouseEvent as ReactMouseEvent, type C
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Monster, MonsterMove, MonsterMovePower, Power } from "@/lib/api";
+import type { EncounterStat } from "@/lib/encounter-stats";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
@@ -201,7 +202,10 @@ function MoveCard({
   );
 }
 
-export default function MonsterDetail({ initialMonster }: { initialMonster?: Monster | null } = {}) {
+export default function MonsterDetail({
+  initialMonster,
+  encounterStats,
+}: { initialMonster?: Monster | null; encounterStats?: EncounterStat[] } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -464,6 +468,26 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
             <section id="encounters">
               <h2>{t("Encounters", lang)}</h2>
               <p className="h-note">Where {monster.name} shows up.</p>
+              {encounterStats && encounterStats.length > 0 && (
+                <div className="enc-deadliness">
+                  {monster.encounters!.map((enc) => {
+                    const s = encounterStats.find(
+                      (x) => x.encounter_id === enc.encounter_id,
+                    );
+                    if (!s || !s.total) return null;
+                    const killRate = (s.fatal / s.total) * 100;
+                    return (
+                      <p key={enc.encounter_id} className="stat-note">
+                        In {s.total.toLocaleString()} community runs, the{" "}
+                        <b>{enc.encounter_name}</b> fight was fatal to{" "}
+                        <b>{killRate.toFixed(1)}%</b> of runs ({s.fatal.toLocaleString()}),
+                        dealing an average of <b>{s.avg_damage}</b> damage over{" "}
+                        <b>{s.avg_turns}</b> turns.
+                      </p>
+                    );
+                  })}
+                </div>
+              )}
               <div className="enc-list">
                 {monster.encounters!.map((enc) => (
                   <Link

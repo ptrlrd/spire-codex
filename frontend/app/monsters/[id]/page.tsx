@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MonsterDetail from "./MonsterDetail";
+import { fetchEncounterStats } from "@/lib/encounter-stats";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -78,10 +79,16 @@ export default async function Page({ params }: Props) {
       jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
     }
   } catch {}
+  // Server-render the community "how deadly" stats for this monster's fights.
+  const encounterStats = monster?.encounters?.length
+    ? await fetchEncounterStats(
+        monster.encounters.map((e: { encounter_id: string }) => e.encounter_id),
+      )
+    : [];
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <MonsterDetail initialMonster={monster} />
+      <MonsterDetail initialMonster={monster} encounterStats={encounterStats} />
     </>
   );
 }
