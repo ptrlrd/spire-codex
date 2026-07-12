@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
 import ScoreBadge, { scoreToTier } from "@/app/components/ScoreBadge";
+import EntityTrends from "./EntityTrends";
 import { CONTENT_BRACKETS } from "@/lib/content-brackets";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
@@ -278,6 +279,7 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
                 ) : null}
               </p>
             )}
+            <EntityTrends entityType={entityType} entityId={entityId} lang={lang} />
           </>
         )}
 
