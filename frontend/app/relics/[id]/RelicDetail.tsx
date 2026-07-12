@@ -12,7 +12,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
-import EntityRunStats from "@/app/components/EntityRunStats";
+import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
@@ -31,7 +31,10 @@ interface MiniStats {
   elo: number | null;
 }
 
-export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | null } = {}) {
+export default function RelicDetail({
+  initialRelic,
+  initialStats,
+}: { initialRelic?: Relic | null; initialStats?: EntityStats | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -199,6 +202,7 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
               entityId={id}
               entityName={relic.name}
               variant="wiki"
+              initialStats={initialStats}
             />
           </section>
 

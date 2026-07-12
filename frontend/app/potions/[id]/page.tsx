@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import PotionDetail from "./PotionDetail";
+import type { EntityStats } from "@/app/components/EntityRunStats";
+import { fetchEntityStats } from "@/lib/entity-stats";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -73,10 +75,12 @@ export default async function Page({ params }: Props) {
     apiUnreachable = true;
   }
   if (!potion && !apiUnreachable) redirectMissingEntity("potions", id);
+  // Server-render the community stats into the HTML (unique, crawlable data).
+  const initialStats: EntityStats | null = potion ? await fetchEntityStats("potions", id) : null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PotionDetail initialPotion={potion} />
+      <PotionDetail initialPotion={potion} initialStats={initialStats} />
     </>
   );
 }

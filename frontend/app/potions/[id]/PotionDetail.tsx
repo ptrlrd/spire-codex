@@ -12,7 +12,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
-import EntityRunStats from "@/app/components/EntityRunStats";
+import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import "../../card-revamp.css";
@@ -43,7 +43,10 @@ interface MiniStats {
   elo: number | null;
 }
 
-export default function PotionDetail({ initialPotion }: { initialPotion?: Potion | null } = {}) {
+export default function PotionDetail({
+  initialPotion,
+  initialStats,
+}: { initialPotion?: Potion | null; initialStats?: EntityStats | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -195,6 +198,7 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
               entityId={id}
               entityName={potion.name}
               variant="wiki"
+              initialStats={initialStats}
             />
           </section>
 

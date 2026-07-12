@@ -14,7 +14,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
-import EntityRunStats from "@/app/components/EntityRunStats";
+import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
@@ -150,7 +150,7 @@ function getMerchantPriceRange(rarity: string, color: string): { min: number; ma
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
 }
 
-export default function CardDetail({ initialCard, initialEnchantments }: { initialCard?: Card | null; initialEnchantments?: string[] } = {}) {
+export default function CardDetail({ initialCard, initialEnchantments, initialStats }: { initialCard?: Card | null; initialEnchantments?: string[]; initialStats?: EntityStats | null } = {}) {
   const params = useParams();
   const id = params.id as string;
   const { lang } = useLanguage();
@@ -441,6 +441,7 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
               entityId={id}
               entityName={card.name}
               variant="wiki"
+              initialStats={initialStats}
             />
           </section>
 
