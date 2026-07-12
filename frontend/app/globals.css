@@ -186,21 +186,20 @@ body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
   animation: rich-jitter 0.15s ease-in-out infinite;
 }
 
+/* Alert ticker: each slot fades/slides in as it becomes the active one. */
+@keyframes sc-ticker-fade {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
-/* Light-mode: announcement / donation / ancient banners are styled for the
-   dark ground (bg-*-900/40 + text-*-200). Re-tint them for light mode so the
-   text is legible. */
-:root[data-theme="light"] .sc-banner { background: var(--bg-secondary); border-color: var(--border-subtle); }
-:root[data-theme="light"] .sc-banner p { color: var(--text-primary); }
-:root[data-theme="light"] .sc-banner a { color: var(--accent-gold); }
-:root[data-theme="light"] .sc-banner button { color: var(--text-muted); }
+.sc-ticker-fade {
+  animation: sc-ticker-fade 0.4s ease-out;
+}
 
-/* Announcement banner: black wordmark + dark-green "New" pill (matching the
-   Live label) in light mode; white wordmark + bright pill stay in dark mode. */
-.sc-ann-logo--b { display: none; }
-:root[data-theme="light"] .sc-ann-logo--w { display: none !important; }
-@media (min-width: 640px) { :root[data-theme="light"] .sc-ann-logo--b { display: block; } }
-:root[data-theme="light"] .sc-ann-new { background: var(--color-silent); color: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  .sc-ticker-fade { animation: none; }
+}
+
 
 /* Mobile nav logo mark: white on the dark ground, black on the light ground.
    (Desktop shows the SPIRE CODEX wordmark instead, so both stay hidden there.) */

@@ -4,9 +4,7 @@ import { Geist, Geist_Mono, Kreon } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import BetaChrome from "./components/BetaChrome";
-import DonationBanner from "./components/DonationBanner";
-import OverwolfBanner from "./components/OverwolfBanner";
-import ModBanner from "./components/ModBanner";
+import AlertTicker from "./components/AlertTicker";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import FloatingFeedback from "./components/FloatingFeedback";
@@ -114,9 +112,7 @@ export default function RootLayout({
               <ToastProvider>
               <Navbar />
               <div className="pt-16">
-                <OverwolfBanner />
-                <ModBanner />
-                <DonationBanner />
+                <AlertTicker />
                 {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
                     focus-within from the dropdown after route changes. The
                     outline-none is required because the programmatic focus
