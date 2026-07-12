@@ -236,7 +236,7 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
             </Link>
           </div>
           <div className="text-right text-sm text-[var(--text-muted)]">
-            <div>Ascension {run.ascension}</div>
+            <div>{t("Ascension", lang)} {run.ascension}</div>
             <div>{formatTime(run.run_time)}</div>
           </div>
         </div>
@@ -244,25 +244,25 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
           <div className="bg-[var(--bg-primary)] rounded-lg p-2">
             <div className="text-lg font-bold text-[var(--text-primary)]">{player.deck.length}</div>
-            <div className="text-xs text-[var(--text-muted)]">Cards</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Cards", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-2">
             <div className="text-lg font-bold text-[var(--text-primary)]">{player.relics.length}</div>
-            <div className="text-xs text-[var(--text-muted)]">Relics</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Relics", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-2">
             <div className="text-lg font-bold text-[var(--text-primary)]">{totalFloors}</div>
-            <div className="text-xs text-[var(--text-muted)]">Floors</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Floors", lang)}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-2">
             <div className="text-lg font-bold text-[var(--text-primary)]">{run.acts.length}</div>
-            <div className="text-xs text-[var(--text-muted)]">Acts</div>
+            <div className="text-xs text-[var(--text-muted)]">{t("Acts", lang)}</div>
           </div>
         </div>
 
         {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
           <div className="mt-3 text-sm text-[var(--color-ironclad)]">
-            Killed by{" "}
+            {t("Killed by", lang)}{" "}
             <Link href={`${lp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline font-medium">
               {displayName(run.killed_by_encounter)}
             </Link>
@@ -270,14 +270,14 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
         )}
 
         <div className="mt-2 text-xs text-[var(--text-muted)]">
-          Seed: {run.seed} · {run.game_mode}
+          {t("Seed:", lang)} {run.seed} · {run.game_mode}
         </div>
       </div>
 
       {/* Final Deck */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          Final Deck ({player.deck.length})
+          {t("Final Deck", lang)} ({player.deck.length})
         </h2>
         <div className="flex flex-wrap gap-1.5">
           {player.deck
@@ -306,7 +306,7 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
       {/* Relics */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          Relics ({player.relics.length})
+          {t("Relics", lang)} ({player.relics.length})
         </h2>
         <div className="flex flex-wrap gap-1.5">
           {player.relics.map((relic, i) => {
@@ -330,7 +330,7 @@ function RunOverview({ run, cardData, relicData }: { run: RunData; cardData: Rec
       {/* Floor-by-floor */}
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          Floor History
+          {t("Floor History", lang)}
         </h2>
         <div className="space-y-1">
           {run.map_point_history.map((actFloors, actIdx) => (
@@ -571,7 +571,7 @@ export default function RunsClient() {
     try {
       const data = JSON.parse(jsonInput);
       if (!data.players || !data.map_point_history || !Array.isArray(data.acts)) {
-        setError("This doesn't look like a valid run file. Expected players, map_point_history, and acts fields.");
+        setError(t("This doesn't look like a valid run file. Expected players, map_point_history, and acts fields.", lang));
         return;
       }
       setRun(data);
@@ -590,7 +590,7 @@ export default function RunsClient() {
         })
         .catch(() => {});
     } catch {
-      setError("Invalid JSON. Make sure you pasted the full contents of the .run file.");
+      setError(t("Invalid JSON. Make sure you pasted the full contents of the .run file.", lang));
     }
   }
 
@@ -604,9 +604,9 @@ export default function RunsClient() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Runs</h1>
+      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">{t("Runs", lang)}</h1>
       <p className="text-[var(--text-secondary)] mb-4">
-        Submit your run data or browse community-submitted runs.
+        {t("Submit your run data or browse community-submitted runs.", lang)}
       </p>
 
       {/* Tabs */}
@@ -614,11 +614,11 @@ export default function RunsClient() {
         <div className="flex gap-1 mb-6 border-b border-[var(--border-subtle)]">
           <button onClick={() => setTab("submit")}
             className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${tab === "submit" ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-            Submit a Run
+            {t("Submit a Run", lang)}
           </button>
           <button onClick={() => setTab("browse")}
             className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${tab === "browse" ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-            Browse Runs
+            {t("Browse Runs", lang)}
             {runList.length > 0 && <span className="ml-1.5 text-xs text-[var(--text-muted)]">({runList.length})</span>}
           </button>
         </div>
@@ -628,7 +628,7 @@ export default function RunsClient() {
       {tab === "submit" && !run && (
         <div className="space-y-4">
           <p className="text-xs text-[var(--text-muted)]">
-            Submit your run data or browse community-submitted runs.
+            {t("Submit your run data or browse community-submitted runs.", lang)}
           </p>
 
           {/* Username */}
@@ -636,7 +636,7 @@ export default function RunsClient() {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value.slice(0, 25))}
-            placeholder="Username (optional)"
+            placeholder={t("Username (optional)", lang)}
             maxLength={25}
             className="px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] w-48"
           />
@@ -644,7 +644,7 @@ export default function RunsClient() {
           {/* File Upload */}
           <div className="bg-[var(--bg-card)] rounded-xl border border-dashed border-[var(--border-accent)] p-6 text-center">
             <p className="text-sm text-[var(--text-secondary)] mb-1">
-              Upload .run files, select one or multiple
+              {t("Upload .run files, select one or multiple", lang)}
             </p>
             <div className="text-left mb-3 space-y-1 text-xs text-[var(--text-muted)]">
               <p><strong className="text-[var(--text-secondary)]">Windows:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">%AppData%/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>
@@ -652,7 +652,7 @@ export default function RunsClient() {
               <p><strong className="text-[var(--text-secondary)]">Linux / Steam Deck:</strong> <code className="bg-[var(--bg-primary)] px-1 rounded">~/.local/share/SlayTheSpire2/steam/&lt;steamid&gt;/profile1/saves/history</code></p>
             </div>
             <label className="inline-block px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity cursor-pointer">
-              Choose Files
+              {t("Choose Files", lang)}
               <input
                 type="file"
                 multiple
@@ -669,12 +669,12 @@ export default function RunsClient() {
                 <p className="text-xs text-[var(--text-muted)]">
                   {uploadProgress.done === uploadProgress.total ? (
                     <>
-                      Done! {uploadProgress.total - uploadProgress.dupes - uploadProgress.errors} submitted
-                      {uploadProgress.dupes > 0 && <>, {uploadProgress.dupes} duplicates skipped</>}
-                      {uploadProgress.errors > 0 && <>, {uploadProgress.errors} invalid</>}
+                      {t("Done!", lang)} {uploadProgress.total - uploadProgress.dupes - uploadProgress.errors} {t("submitted", lang)}
+                      {uploadProgress.dupes > 0 && <>, {uploadProgress.dupes} {t("duplicates skipped", lang)}</>}
+                      {uploadProgress.errors > 0 && <>, {uploadProgress.errors} {t("invalid", lang)}</>}
                     </>
                   ) : (
-                    <>Processing {uploadProgress.done} of {uploadProgress.total}...</>
+                    <>{t("Processing", lang)} {uploadProgress.done} {t("of", lang)} {uploadProgress.total}...</>
                   )}
                 </p>
               </div>
@@ -684,7 +684,7 @@ export default function RunsClient() {
           {/* Or paste JSON */}
           <div className="relative">
             <div className="absolute inset-x-0 top-0 flex items-center justify-center -mt-2">
-              <span className="bg-[var(--bg-primary)] px-3 text-xs text-[var(--text-muted)]">or paste JSON</span>
+              <span className="bg-[var(--bg-primary)] px-3 text-xs text-[var(--text-muted)]">{t("or paste JSON", lang)}</span>
             </div>
             <textarea
               value={jsonInput}
@@ -698,7 +698,7 @@ export default function RunsClient() {
               disabled={!jsonInput.trim()}
               className="mt-2 px-5 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
             >
-              Analyze Run
+              {t("Analyze Run", lang)}
             </button>
           </div>
 
@@ -712,7 +712,7 @@ export default function RunsClient() {
           <div className="flex flex-wrap gap-2 mb-4">
             <select value={browseChar} onChange={(e) => setBrowseChar(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-              <option value="">All Characters</option>
+              <option value="">{t("All Characters", lang)}</option>
               <option value="IRONCLAD">Ironclad</option>
               <option value="SILENT">Silent</option>
               <option value="DEFECT">Defect</option>
@@ -721,9 +721,9 @@ export default function RunsClient() {
             </select>
             <select value={browseWin} onChange={(e) => setBrowseWin(e.target.value)}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-              <option value="">All Runs</option>
-              <option value="true">Wins</option>
-              <option value="false">Losses</option>
+              <option value="">{t("All Runs", lang)}</option>
+              <option value="true">{t("Wins", lang)}</option>
+              <option value="false">{t("Losses", lang)}</option>
             </select>
             <input
               type="text"
@@ -735,10 +735,10 @@ export default function RunsClient() {
           </div>
 
           {/* Total count */}
-          <p className="text-xs text-[var(--text-muted)] mb-3">{browseTotal} runs total</p>
+          <p className="text-xs text-[var(--text-muted)] mb-3">{browseTotal} {t("runs total", lang)}</p>
 
           {runList.length === 0 ? (
-            <p className="text-center py-8 text-[var(--text-muted)]">No runs found.</p>
+            <p className="text-center py-8 text-[var(--text-muted)]">{t("No runs found.", lang)}</p>
           ) : (
             <>
               <div className="space-y-2">
@@ -754,9 +754,9 @@ export default function RunsClient() {
                       {r.username && <span className="text-xs text-[var(--accent-gold)]">{r.username}</span>}
                     </div>
                     <div className="flex items-center gap-4 text-xs text-[var(--text-muted)]">
-                      <span>{r.deck_size} cards</span>
-                      <span>{r.relic_count} relics</span>
-                      <span>{r.floors_reached} floors</span>
+                      <span>{r.deck_size} {t("cards", lang)}</span>
+                      <span>{r.relic_count} {t("relics", lang)}</span>
+                      <span>{r.floors_reached} {t("floors", lang)}</span>
                       <span>{formatTimeShort(r.run_time)}</span>
                     </div>
                   </Link>
@@ -771,17 +771,17 @@ export default function RunsClient() {
                     disabled={browsePage <= 1}
                     className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
-                    &larr; Prev
+                    &larr; {t("Prev", lang)}
                   </button>
                   <span className="text-xs text-[var(--text-muted)]">
-                    Page {browsePage} of {browseTotalPages}
+                    {t("Page", lang)} {browsePage} {t("of", lang)} {browseTotalPages}
                   </span>
                   <button
                     onClick={() => setBrowsePage(browsePage + 1)}
                     disabled={browsePage >= browseTotalPages}
                     className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
                   >
-                    Next &rarr;
+                    {t("Next", lang)} &rarr;
                   </button>
                 </div>
               )}
@@ -798,7 +798,7 @@ export default function RunsClient() {
               onClick={() => { setRun(null); setJsonInput(""); setRunHash(null); setCopied(false); window.history.replaceState(null, "", "/runs"); }}
               className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
             >
-              &larr; Back to browsing runs
+              &larr; {t("Back to browsing runs", lang)}
             </button>
             {runHash && (
               <button

@@ -1,6 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Enchantment } from "@/lib/api";
@@ -12,16 +17,10 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl, enchantedCardUrl } from "@/lib/image-url";
+import "../../card-revamp.css";
+import "../../power-ench-event-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-const cardTypeColors: Record<string, string> = {
-  Attack: "bg-red-950/50 text-red-300 border-red-900/30",
-  Skill: "bg-blue-950/50 text-blue-300 border-blue-900/30",
-  Power: "bg-purple-950/50 text-purple-300 border-purple-900/30",
-};
-
-type Tab = "overview" | "cards" | "info";
 
 export default function EnchantmentDetail({
   initialEnchantment,
@@ -39,7 +38,7 @@ export default function EnchantmentDetail({
   const [enchantment, setEnchantment] = useState<Enchantment | null>(initialEnchantment ?? null);
   const [loading, setLoading] = useState(!initialEnchantment);
   const [notFound, setNotFound] = useState(false);
-  const [tab, setTab] = useState<Tab>("overview");
+  const [activeSection, setActiveSection] = useState<string>("description");
 
   useEffect(() => {
     if (!id) return;
@@ -48,6 +47,34 @@ export default function EnchantmentDetail({
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!enchantment) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [enchantment, cardIds.length]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
 
   if (loading) {
     return (
@@ -68,135 +95,172 @@ export default function EnchantmentDetail({
     );
   }
 
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("Overview", lang) },
-    ...(cardIds.length > 0 ? [{ key: "cards" as Tab, label: t("Cards", lang) }] : []),
-    { key: "info", label: t("Info", lang) },
+  const cardTypes = enchantment.card_type ? enchantment.card_type.split(", ") : [];
+  // Plain-text lede from the enchantment effect (rich tags + newlines stripped).
+  const ledeText = enchantment.description
+    ? enchantment.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+
+  const tocItems: { id: string; label: string }[] = [
+    { id: "description", label: t("Description", lang) },
+    ...(cardIds.length > 0 ? [{ id: "cards", label: t("Cards", lang) }] : []),
+    { id: "info", label: t("Info", lang) },
   ];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Enchantments", lang)}
-      </button>
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": "#a684e8",
+        ...(enchantment.image_url ? { "--entity-bg": `url("${imageUrl(enchantment.image_url)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <button className="cd-back" onClick={() => router.back()}>
+          &larr; {t("Back to", lang)} {t("Enchantments", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {enchantment.image_url && (
-          <div className="flex justify-center mb-6">
-            <img
-              src={imageUrl(enchantment.image_url)}
-              alt={`${enchantment.name} - Slay the Spire 2 Enchantment`}
-              className="w-24 h-24 object-contain"
-              crossOrigin="anonymous"
-            />
-          </div>
-        )}
-
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {enchantment.name}
-        </h1>
-
-        <div className="flex flex-col items-center gap-2 mb-6 text-sm">
-          <div className="flex items-center gap-3">
-            {enchantment.card_type?.split(", ").map((type) => (
-              <span
-                key={type}
-                className={`text-xs px-2 py-0.5 rounded border ${
-                  cardTypeColors[type] ||
-                  "bg-gray-800 text-gray-300 border-gray-700"
-                }`}
-              >
-                {type}
-              </span>
-            ))}
-            {enchantment.is_stackable && (
-              <span className="text-xs px-2 py-0.5 rounded border bg-cyan-950/50 text-cyan-300 border-cyan-900/30">
-                Stackable
-              </span>
-            )}
-          </div>
-          {enchantment.applicable_to && (
-            <p className="text-xs text-[var(--text-muted)]">
-              Applies to: {enchantment.applicable_to}
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{cardTypes.length > 0 ? cardTypes.join(" · ") : "All cards"}</span>
+              {enchantment.is_stackable && (
+                <>
+                  <span>&middot;</span>
+                  <span>Stackable</span>
+                </>
+              )}
             </p>
-          )}
-        </div>
+            <h1>{enchantment.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
+          </div>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
-          {tabs.map((tb) => (
-            <button
-              key={tb.key}
-              onClick={() => setTab(tb.key)}
-              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                tab === tb.key
-                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-              }`}
-            >
-              {tb.label}
-            </button>
-          ))}
-        </div>
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
 
-        {/* ===== Overview Tab ===== */}
-        {tab === "overview" && (
-          <>
-            <div className="text-[var(--text-secondary)] leading-relaxed mb-4">
+          {/* Description */}
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
               <RichDescription text={enchantment.description} />
             </div>
 
             {enchantment.extra_card_text && (
-              <div className="mt-4 p-3 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  Card Text
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-relaxed italic">
+              <>
+                <h3 className="subh">Card Text</h3>
+                <div className="desc-body" style={{ fontStyle: "italic" }}>
                   <RichDescription text={enchantment.extra_card_text} />
-                </p>
-              </div>
+                </div>
+              </>
             )}
-          </>
-        )}
+          </section>
 
-        {/* ===== Cards Tab ===== */}
-        {tab === "cards" && (
-          <div>
-            <p className="text-sm text-[var(--text-muted)] mb-4">
-              {enchantment.name} applied to {totalCards.toLocaleString()} card
-              {totalCards === 1 ? "" : "s"}
-              {cardIds.length < totalCards ? ` (showing ${cardIds.length})` : ""}.
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-              {cardIds.map((cid) => (
-                <Link
-                  key={cid}
-                  href={`${lp}/cards/${cid}`}
-                  className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 hover:border-[var(--accent-gold)]/50 transition-colors"
-                >
-                  <img
-                    src={enchantedCardUrl(cid, id, false, "stable", lang)}
-                    alt={`${cid} with ${enchantment.name} - Slay the Spire 2`}
-                    className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-                    loading="lazy"
-                    crossOrigin="anonymous"
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+          {/* Cards it can apply to */}
+          {cardIds.length > 0 && (
+            <section id="cards">
+              <h2>{t("Cards", lang)}</h2>
+              <p className="h-note">
+                {enchantment.name} applied to {totalCards.toLocaleString()} card
+                {totalCards === 1 ? "" : "s"}
+                {cardIds.length < totalCards ? ` (showing ${cardIds.length})` : ""}.
+              </p>
+              <div className="ench-grid">
+                {cardIds.map((cid) => {
+                  const cardName = cid
+                    .replace(/_/g, " ")
+                    .replace(/\b\w/g, (c) => c.toUpperCase());
+                  return (
+                    <Link key={cid} href={`${lp}/cards/${cid}`} className="ench-cell">
+                      <img
+                        src={enchantedCardUrl(cid, id, false, "stable", lang)}
+                        alt={`${cid} with ${enchantment.name} - Slay the Spire 2`}
+                        loading="lazy"
+                        crossOrigin="anonymous"
+                      />
+                      <div className="ench-name">{cardName}</div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
-        {/* ===== Info Tab ===== */}
-        {tab === "info" && (
-          <>
+          {/* Localized names + version history */}
+          <section id="info">
+            <h2>{t("Info", lang)}</h2>
             <LocalizedNames entityType="enchantments" entityId={id} />
             <EntityHistory entityType="enchantments" entityId={id} />
-          </>
-        )}
+          </section>
+        </main>
+
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            {enchantment.image_url && (
+              <div className="iconbox">
+                <img
+                  className="cardimg"
+                  src={imageUrl(enchantment.image_url)}
+                  alt={`${enchantment.name} - Slay the Spire 2 Enchantment`}
+                  crossOrigin="anonymous"
+                />
+              </div>
+            )}
+
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                <div className="frow">
+                  <dt>Card type</dt>
+                  <dd>
+                    {cardTypes.length > 0 ? (
+                      cardTypes.map((tp) => (
+                        <span className="kw" key={tp}>
+                          {tp}
+                        </span>
+                      ))
+                    ) : (
+                      <span>All</span>
+                    )}
+                  </dd>
+                </div>
+                {enchantment.applicable_to && (
+                  <div className="frow">
+                    <dt>Applies to</dt>
+                    <dd>{enchantment.applicable_to}</dd>
+                  </div>
+                )}
+                <div className="frow">
+                  <dt>Stackable</dt>
+                  <dd>{enchantment.is_stackable ? "Yes" : "No"}</dd>
+                </div>
+                {totalCards > 0 && (
+                  <div className="frow">
+                    <dt>{t("Cards", lang)}</dt>
+                    <dd>{totalCards.toLocaleString()}</dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   );

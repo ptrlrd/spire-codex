@@ -12,6 +12,8 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
+import "../../card-revamp.css";
+import "../../reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -51,64 +53,112 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
     );
   }
 
+  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
+  const ledeText = orb.description
+    ? orb.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+  const relGroups = [
+    { label: `Cards that Channel ${orb.name}`, items: orb.channeled_by_cards, route: "cards" },
+    { label: `Relics that Channel ${orb.name}`, items: orb.channeled_by_relics, route: "relics" },
+  ];
+  const hasRelations = relGroups.some((g) => g.items && g.items.length > 0);
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Reference", lang)}
-      </button>
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Reference", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {orb.image_url && (
-          <div className="flex justify-center mb-4">
-            <img
-              src={imageUrl(orb.image_url)}
-              alt={`${orb.name} - Slay the Spire 2 Orb`}
-              className="w-16 h-16 object-contain"
-              crossOrigin="anonymous"
-            />
+      <div className={`wrap${orb.image_url ? "" : " solo narrow"}`}>
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Orb", lang)}</span>
+            </p>
+            <h1>{orb.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
-        )}
 
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {orb.name}
-        </h1>
-
-        <div className="text-[var(--text-secondary)] leading-relaxed mb-4">
-          <RichDescription text={orb.description} />
-        </div>
-
-        {[
-          { label: `Cards that Channel ${orb.name}`, items: orb.channeled_by_cards, route: "cards" },
-          { label: `Relics that Channel ${orb.name}`, items: orb.channeled_by_relics, route: "relics" },
-        ].map(({ label, items, route }) =>
-          items && items.length > 0 ? (
-            <div key={route} className="mt-5">
-              <h2 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                {label}
-              </h2>
-              <ul className="space-y-1">
-                {items.map((it) => (
-                  <li key={it.id}>
-                    <Link
-                      href={`${lp}/${route}/${it.id.toLowerCase()}`}
-                      className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-                    >
-                      {it.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={orb.description} />
             </div>
-          ) : null
-        )}
+          </section>
 
-        <div className="mt-6">
-          <LocalizedNames entityType="orbs" entityId={id} />
-          <EntityHistory entityType="orbs" entityId={id} />
-        </div>
+          {hasRelations && (
+            <section id="relations">
+              <h2>{t("Relations", lang)}</h2>
+              <div className="rel">
+                {relGroups.map(({ label, items, route }) =>
+                  items && items.length > 0 ? (
+                    <div key={route} className="rel-block">
+                      <div className="rl">
+                        {label} <span className="cnt">{items.length}</span>
+                      </div>
+                      <div className="chips">
+                        {items.map((it) => (
+                          <Link
+                            key={it.id}
+                            href={`${lp}/${route}/${it.id.toLowerCase()}`}
+                            className="chip"
+                          >
+                            <span className="pip" />
+                            {it.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null,
+                )}
+              </div>
+            </section>
+          )}
+
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="orbs" entityId={id} />
+            <EntityHistory entityType="orbs" entityId={id} />
+          </section>
+        </main>
+
+        {orb.image_url && (
+          <aside className="aside">
+            <div className="box">
+              <div className="ref-icon">
+                <img
+                  src={imageUrl(orb.image_url)}
+                  alt={`${orb.name} - Slay the Spire 2 Orb`}
+                  crossOrigin="anonymous"
+                />
+              </div>
+              <div className="facts">
+                <div className="fh">{t("At a glance", lang)}</div>
+                <dl>
+                  <div className="frow">
+                    <dt>{t("Type", lang)}</dt>
+                    <dd>{t("Orb", lang)}</dd>
+                  </div>
+                  {orb.channeled_by_cards && orb.channeled_by_cards.length > 0 && (
+                    <div className="frow">
+                      <dt>{t("Cards", lang)}</dt>
+                      <dd>{orb.channeled_by_cards.length}</dd>
+                    </div>
+                  )}
+                  {orb.channeled_by_relics && orb.channeled_by_relics.length > 0 && (
+                    <div className="frow">
+                      <dt>{t("Relics", lang)}</dt>
+                      <dd>{orb.channeled_by_relics.length}</dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
+            </div>
+          </aside>
+        )}
       </div>
     </div>
   );

@@ -3,6 +3,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import { useToast } from "@/app/components/Toast";
 import RunDropZone from "@/app/components/RunDropZone";
 import ProfileStats from "@/app/components/ProfileStats";
@@ -33,6 +35,7 @@ interface UploadResult {
 
 export default function ProfileClient() {
   const { user, loading } = useAuth();
+  const { lang } = useLanguage();
   const { toast } = useToast();
   const [runs, setRuns] = useState<Run[]>([]);
   const [total, setTotal] = useState(0);
@@ -54,11 +57,11 @@ export default function ProfileClient() {
         setTotal(data.total || 0);
       }
     } catch {
-      toast("Failed to load runs", "error");
+      toast(t("Failed to load runs", lang), "error");
     } finally {
       setRunsLoading(false);
     }
-  }, [toast]);
+  }, [toast, lang]);
 
   useEffect(() => {
     if (user) fetchRuns(page);
@@ -83,21 +86,21 @@ export default function ProfileClient() {
         setUploadResults(data.results);
         const s = data.summary;
         toast(
-          `${s.claimed} claimed, ${s.duplicates} duplicates, ${s.errors} errors`,
+          `${s.claimed} ${t("claimed", lang)}, ${s.duplicates} ${t("duplicates", lang)}, ${s.errors} ${t("errors", lang)}`,
           s.errors > 0 ? "error" : "success"
         );
         fetchRuns(1);
         setPage(1);
       } else if (res.status === 401) {
-        toast("Please sign in to upload runs", "error");
+        toast(t("Please sign in to upload runs", lang), "error");
       } else if (res.status === 413) {
-        toast("Too many files or file too large", "error");
+        toast(t("Too many files or file too large", lang), "error");
       } else {
         const err = await res.json().catch(() => null);
-        toast(err?.detail || "Upload failed", "error");
+        toast(err?.detail || t("Upload failed", lang), "error");
       }
     } catch {
-      toast("Network error during upload", "error");
+      toast(t("Network error during upload", lang), "error");
     } finally {
       setUploading(false);
     }
@@ -110,18 +113,18 @@ export default function ProfileClient() {
         credentials: "include",
       });
       if (res.ok) {
-        toast("Run removed from your profile", "success");
+        toast(t("Run removed from your profile", lang), "success");
         setRuns((prev) => prev.filter((r) => r.run_hash !== runHash));
         setTotal((prev) => prev - 1);
       } else if (res.status === 403) {
-        toast("You do not own this run", "error");
+        toast(t("You do not own this run", lang), "error");
       } else if (res.status === 404) {
-        toast("Run not found", "error");
+        toast(t("Run not found", lang), "error");
       } else {
-        toast("Failed to delete run", "error");
+        toast(t("Failed to delete run", lang), "error");
       }
     } catch {
-      toast("Network error", "error");
+      toast(t("Network error", lang), "error");
     } finally {
       setDeleteConfirm(null);
     }
@@ -139,8 +142,8 @@ export default function ProfileClient() {
   if (!user) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">Sign in to view your profile</h1>
-        <p className="text-[var(--text-secondary)]">Connect your Steam or Discord account to see your runs and stats.</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">{t("Sign in to view your profile", lang)}</h1>
+        <p className="text-[var(--text-secondary)]">{t("Connect your Steam or Discord account to see your runs and stats.", lang)}</p>
       </div>
     );
   }
@@ -150,7 +153,7 @@ export default function ProfileClient() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
       <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-        {user.username ? `${user.username}'s Profile` : "Your Profile"}
+        {user.username ? `${user.username}'s ${t("Profile", lang)}` : t("Your Profile", lang)}
       </h1>
 
       {/* Stats (includes My Runs as a tab) */}
@@ -170,7 +173,7 @@ export default function ProfileClient() {
 
       {/* Claim Runs */}
       <section>
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Claim Runs</h2>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Claim Runs", lang)}</h2>
         <RunDropZone onFiles={(files) => handleUpload(files)} uploading={uploading} />
 
         {uploadResults && uploadResults.length > 0 && (

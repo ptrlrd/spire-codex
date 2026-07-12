@@ -1,18 +1,28 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Monster, MonsterMove, MonsterMovePower, Power, AttackPattern } from "@/lib/api";
+import type { Monster, MonsterMove, MonsterMovePower, Power } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { t } from "@/lib/ui-translations";
 import RichDescription from "@/app/components/RichDescription";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { imageUrl } from "@/lib/image-url";
+import "../../card-revamp.css";
+import "../../monster-encounter-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+// Per-entity spine accent for the wiki page (--spine), keyed by monster type.
+const SPINE_BY_TYPE: Record<string, string> = {
+  Boss: "var(--color-ironclad)",
+  Elite: "var(--accent-gold)",
+  Normal: "var(--color-silent)",
+};
 
 const typeBadge: Record<string, string> = {
   Normal: "bg-gray-800 text-gray-300",
@@ -120,17 +130,15 @@ function MoveCard({
   const intentParts = (move.intent || "Unknown").split(" + ");
 
   return (
-    <div className="bg-[var(--bg-primary)] rounded-lg border border-[var(--border-subtle)] p-4">
+    <div className="move">
       {/* Move header */}
-      <div className="flex items-center justify-between mb-2">
-        <h3 className="font-semibold text-[var(--text-primary)]">
-          {move.name}
-        </h3>
-        <div className="flex items-center gap-1.5">
+      <div className="move-head">
+        <span className="move-name">{move.name}</span>
+        <div className="intents">
           {intentParts.map((intent, i) => (
             <span
               key={i}
-              className={`text-xs px-2 py-0.5 rounded-full border border-[var(--border-subtle)] ${intentColors[intent] || intentColors.Unknown}`}
+              className={`intent ${intentColors[intent] || intentColors.Unknown}`}
             >
               {intentIcons[intent] ? `${intentIcons[intent]} ` : ""}{intent}
             </span>
@@ -139,19 +147,19 @@ function MoveCard({
       </div>
 
       {/* Move details */}
-      <div className="space-y-1.5 text-sm">
+      <div className="mstats">
         {/* Damage */}
         {move.damage && (
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--text-muted)] w-16">Damage</span>
-            <span className="font-medium text-red-400">
+          <div className="mrow">
+            <span className="mk">Damage</span>
+            <span className="mval text-red-400">
               {move.damage.normal}
               {move.damage.hit_count && move.damage.hit_count > 1
                 ? ` × ${move.damage.hit_count} = ${move.damage.normal * move.damage.hit_count}`
                 : ""}
             </span>
             {move.damage.ascension != null && (
-              <span className="text-orange-400 text-xs">
+              <span className="masc">
                 (A: {move.damage.ascension}
                 {move.damage.hit_count && move.damage.hit_count > 1
                   ? ` × ${move.damage.hit_count} = ${move.damage.ascension * move.damage.hit_count}`
@@ -163,25 +171,25 @@ function MoveCard({
 
         {/* Block */}
         {move.block != null && (
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--text-muted)] w-16">Block</span>
-            <span className="font-medium text-blue-400">{move.block}</span>
+          <div className="mrow">
+            <span className="mk">Block</span>
+            <span className="mval text-blue-400">{move.block}</span>
           </div>
         )}
 
         {/* Heal */}
         {move.heal != null && (
-          <div className="flex items-center gap-2">
-            <span className="text-[var(--text-muted)] w-16">Heal</span>
-            <span className="font-medium text-emerald-400">{move.heal}</span>
+          <div className="mrow">
+            <span className="mk">Heal</span>
+            <span className="mval text-emerald-400">{move.heal}</span>
           </div>
         )}
 
         {/* Powers applied */}
         {move.powers && move.powers.length > 0 && (
-          <div className="flex items-start gap-2">
-            <span className="text-[var(--text-muted)] w-16 flex-shrink-0">Effects</span>
-            <div className="flex flex-wrap gap-1.5">
+          <div className="mrow eff">
+            <span className="mk">Effects</span>
+            <div className="pills">
               {move.powers.map((p, i) => (
                 <PowerPill key={i} p={p} powerData={powerData} lp={lp} />
               ))}
@@ -203,6 +211,7 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
   const [loading, setLoading] = useState(!initialMonster);
   const [notFound, setNotFound] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("stats");
 
   useEffect(() => {
     if (!id) return;
@@ -243,6 +252,34 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
     });
   }, [monster, lang]);
 
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!monster) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [monster]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -279,193 +316,255 @@ export default function MonsterDetail({ initialMonster }: { initialMonster?: Mon
     ? [...new Set(monster.encounters.filter(e => e.act).map(e => e.act!))]
     : [];
 
+  const spineColor = SPINE_BY_TYPE[monster.type] ?? "var(--color-silent)";
+  const heroSrc = betaArt && monster.beta_image_url ? monster.beta_image_url : monster.image_url;
+
+  const hpNormal = monster.min_hp
+    ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `–${monster.max_hp}` : ""}`
+    : null;
+  const hpAscension = monster.min_hp_ascension
+    ? `${monster.min_hp_ascension}${monster.max_hp_ascension && monster.max_hp_ascension !== monster.min_hp_ascension ? `–${monster.max_hp_ascension}` : ""}`
+    : null;
+
+  const hasStats = !!(hpNormal || hpAscension || (monster.innate_powers && monster.innate_powers.length > 0) || monster.attack_pattern);
+  const hasMoves = !!(monster.moves && monster.moves.length > 0);
+  const hasEncounters = !!(monster.encounters && monster.encounters.length > 0);
+
+  const tocItems: { id: string; label: string }[] = [
+    ...(hasStats ? [{ id: "stats", label: t("Stats", lang) }] : []),
+    ...(hasMoves ? [{ id: "moves", label: t("Moves", lang) }] : []),
+    ...(hasEncounters ? [{ id: "encounters", label: t("Encounters", lang) }] : []),
+    { id: "history", label: t("Version history", lang) },
+  ];
+
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; Back to Monsters
-      </button>
-
-      {/* Image */}
-      {monster.image_url && (
-        <div className="mb-6">
-          <img
-            src={imageUrl(betaArt && monster.beta_image_url ? monster.beta_image_url : monster.image_url)}
-            alt={`${monster.name} - Slay the Spire 2 Monster`}
-            className="mx-auto max-h-80 object-contain"
-            crossOrigin="anonymous"
-          />
-        </div>
-      )}
-
-      {/* Name + Badges + Beta Toggle */}
-      <div className="flex flex-wrap items-center gap-3 mb-6">
-        <h1 className="text-3xl font-bold text-[var(--text-primary)]">
-          {monster.name}
-        </h1>
-        <span
-          className={`text-xs px-3 py-1 rounded-full font-medium ${
-            typeBadge[monster.type] || ""
-          }`}
-        >
-          {monster.type}
-        </span>
-        {acts.map((act) => (
-          <span
-            key={act}
-            className="text-xs px-3 py-1 rounded-full bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
-          >
-            {act}
-          </span>
-        ))}
-        {monster.beta_image_url && (
-          <button
-            onClick={() => setBetaArt(!betaArt)}
-            className={`ml-auto text-sm w-8 h-8 flex items-center justify-center rounded transition-colors ${
-              betaArt
-                ? "bg-amber-950/60 border border-amber-700/50"
-                : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
-            }`}
-            title={betaArt ? "Show current art" : "Show concept art"}
-          >
-            ✏️
-          </button>
-        )}
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": spineColor,
+        ...(heroSrc ? { "--entity-bg": `url("${imageUrl(heroSrc)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <button type="button" onClick={() => router.back()} className="cd-back">
+          &larr; Back to Monsters
+        </button>
       </div>
 
-      {/* HP Section */}
-      {(monster.min_hp || monster.min_hp_ascension) && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Hit Points
-          </h2>
-          <div className="flex gap-8">
-            {monster.min_hp && (
-              <div>
-                <span className="text-xs text-[var(--text-muted)] block mb-1">
-                  Normal
-                </span>
-                <span className="text-xl font-bold text-red-400">
-                  {monster.min_hp}
-                  {monster.max_hp && monster.max_hp !== monster.min_hp
-                    ? `\u2013${monster.max_hp}`
-                    : ""}
-                </span>
-              </div>
-            )}
-            {monster.min_hp_ascension && (
-              <div>
-                <span className="text-xs text-[var(--text-muted)] block mb-1">
-                  Ascension
-                </span>
-                <span className="text-xl font-bold text-orange-400">
-                  {monster.min_hp_ascension}
-                  {monster.max_hp_ascension &&
-                  monster.max_hp_ascension !== monster.min_hp_ascension
-                    ? `\u2013${monster.max_hp_ascension}`
-                    : ""}
-                </span>
-              </div>
-            )}
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              {acts.length > 0 && (
+                <>
+                  <span>{acts.join(", ")}</span>
+                  <span>&middot;</span>
+                </>
+              )}
+              <span>{monster.type}</span>
+            </p>
+            <h1>{monster.name}</h1>
           </div>
-        </div>
-      )}
 
-      {/* Innate Powers */}
-      {monster.innate_powers && monster.innate_powers.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Innate Powers
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">Applied at the start of combat</p>
-          <div className="flex flex-wrap gap-1.5">
-            {monster.innate_powers.map((p, i) => (
-              <span key={i} className="flex items-center gap-1">
-                <PowerPill
-                  p={{ power_id: p.power_id, target: "self", amount: p.amount }}
-                  powerData={powerData}
-                  lp={lp}
-                />
-                {p.amount_ascension != null && p.amount_ascension !== p.amount && (
-                  <span className="text-xs text-orange-400">(A: {p.amount_ascension})</span>
-                )}
-              </span>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Attack Pattern */}
-      {monster.attack_pattern && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Attack Pattern
-          </h2>
-          <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-            {monster.attack_pattern.description}
-          </p>
-        </div>
-      )}
-
-      {/* Moves Section, the main event */}
-      {monster.moves && monster.moves.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Moves ({monster.moves.length})
-          </h2>
-          <div className="space-y-3">
-            {monster.moves.map((move) => (
-              <MoveCard key={move.id} move={move} powerData={powerData} lp={lp} />
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Encounters Section */}
-      {monster.encounters && monster.encounters.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 mb-4">
-          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Encounters
-          </h2>
-          <div className="space-y-2">
-            {monster.encounters.map((enc) => (
-              <Link
-                key={enc.encounter_id}
-                href={`${lp}/encounters/${enc.encounter_id.toLowerCase()}`}
-                className="flex items-center justify-between py-2 px-3 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-card-hover)] transition-colors"
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
               >
-                <span className="text-sm text-[var(--text-secondary)]">
-                  {enc.encounter_name}
-                </span>
-                <div className="flex items-center gap-2">
-                  {enc.act && (
-                    <span className="text-xs text-[var(--text-muted)]">
-                      {enc.act}
-                    </span>
-                  )}
-                  <span
-                    className={`text-xs px-2 py-0.5 rounded-full ${
-                      typeBadge[enc.room_type] || "bg-gray-800 text-gray-300"
-                    }`}
-                  >
-                    {enc.room_type}
-                  </span>
-                  {enc.is_weak && (
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-green-900/30 text-green-400">
-                      Weak
-                    </span>
-                  )}
-                </div>
-              </Link>
+                {it.label}
+              </a>
             ))}
-          </div>
-        </div>
-      )}
+          </nav>
 
-      <LocalizedNames entityType="monsters" entityId={id} />
-      <EntityHistory entityType="monsters" entityId={id} />
+          {/* Stats */}
+          {hasStats && (
+            <section id="stats">
+              <h2>{t("Stats", lang)}</h2>
+
+              {(hpNormal || hpAscension || hasMoves) && (
+                <div className="tiles">
+                  {hpNormal && (
+                    <div className="tile">
+                      <div className="k">Hit Points</div>
+                      <div className="v" style={{ color: "var(--warn)" }}>{hpNormal}</div>
+                    </div>
+                  )}
+                  {hpAscension && (
+                    <div className="tile">
+                      <div className="k">HP · Ascension</div>
+                      <div className="v" style={{ color: "var(--warn)" }}>{hpAscension}</div>
+                    </div>
+                  )}
+                  {hasMoves && (
+                    <div className="tile">
+                      <div className="k">{t("Moves", lang)}</div>
+                      <div className="v">{monster.moves!.length}</div>
+                    </div>
+                  )}
+                  <div className="tile">
+                    <div className="k">Type</div>
+                    <div className="v" style={{ color: "var(--spine)", fontSize: 20 }}>{monster.type}</div>
+                  </div>
+                </div>
+              )}
+
+              {/* Innate Powers */}
+              {monster.innate_powers && monster.innate_powers.length > 0 && (
+                <>
+                  <h3 className="subh">Innate Powers</h3>
+                  <p className="h-note">Applied at the start of combat</p>
+                  <div className="pills">
+                    {monster.innate_powers.map((p, i) => (
+                      <span key={i} className="flex items-center gap-1">
+                        <PowerPill
+                          p={{ power_id: p.power_id, target: "self", amount: p.amount }}
+                          powerData={powerData}
+                          lp={lp}
+                        />
+                        {p.amount_ascension != null && p.amount_ascension !== p.amount && (
+                          <span className="text-xs text-orange-400">(A: {p.amount_ascension})</span>
+                        )}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* Attack Pattern */}
+              {monster.attack_pattern && (
+                <>
+                  <h3 className="subh">Attack Pattern</h3>
+                  <p className="desc-body">{monster.attack_pattern.description}</p>
+                </>
+              )}
+            </section>
+          )}
+
+          {/* Moves */}
+          {hasMoves && (
+            <section id="moves">
+              <h2>{t("Moves", lang)} ({monster.moves!.length})</h2>
+              <div className="moves">
+                {monster.moves!.map((move) => (
+                  <MoveCard key={move.id} move={move} powerData={powerData} lp={lp} />
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Encounters */}
+          {hasEncounters && (
+            <section id="encounters">
+              <h2>{t("Encounters", lang)}</h2>
+              <p className="h-note">Where {monster.name} shows up.</p>
+              <div className="enc-list">
+                {monster.encounters!.map((enc) => (
+                  <Link
+                    key={enc.encounter_id}
+                    href={`${lp}/encounters/${enc.encounter_id.toLowerCase()}`}
+                    className="enc-row"
+                  >
+                    <span className="enc-name">{enc.encounter_name}</span>
+                    <div className="enc-meta">
+                      {enc.act && <span className="badge">{enc.act}</span>}
+                      <span className={`badge ${typeBadge[enc.room_type] || ""}`}>
+                        {enc.room_type}
+                      </span>
+                      {enc.is_weak && (
+                        <span className="badge bg-green-900/30 text-green-400">Weak</span>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Version history + localized names */}
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="monsters" entityId={id} />
+            <EntityHistory entityType="monsters" entityId={id} />
+          </section>
+        </main>
+
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            {heroSrc && (
+              <img
+                className="sprite"
+                src={imageUrl(heroSrc)}
+                alt={`${monster.name} - Slay the Spire 2 Monster`}
+                crossOrigin="anonymous"
+              />
+            )}
+
+            {/* Beta / concept art toggle */}
+            {monster.beta_image_url && (
+              <div className="variant">
+                <button
+                  type="button"
+                  className={`betabtn${betaArt ? " on" : ""}`}
+                  aria-pressed={betaArt}
+                  onClick={() => setBetaArt(!betaArt)}
+                  title={betaArt ? "Show current art" : "Show concept art"}
+                >
+                  {betaArt ? "Current art" : "Concept art"}
+                </button>
+              </div>
+            )}
+
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                {hpNormal && (
+                  <div className="frow">
+                    <dt>Hit Points</dt>
+                    <dd>{hpNormal}</dd>
+                  </div>
+                )}
+                {hpAscension && (
+                  <div className="frow">
+                    <dt>HP · Ascension</dt>
+                    <dd style={{ color: "var(--warn)" }}>{hpAscension}</dd>
+                  </div>
+                )}
+                <div className="frow">
+                  <dt>{t("Type", lang)}</dt>
+                  <dd style={{ color: "var(--spine)" }}>{monster.type}</dd>
+                </div>
+                {acts.length > 0 && (
+                  <div className="frow">
+                    <dt>Act</dt>
+                    <dd>{acts.join(", ")}</dd>
+                  </div>
+                )}
+                {hasMoves && (
+                  <div className="frow">
+                    <dt>{t("Moves", lang)}</dt>
+                    <dd>{monster.moves!.length}</dd>
+                  </div>
+                )}
+                {hasEncounters && (
+                  <div className="frow">
+                    <dt>{t("Encounters", lang)}</dt>
+                    <dd>{monster.encounters!.length}</dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          </div>
+        </aside>
+      </div>
     </div>
   );
 }

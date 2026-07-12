@@ -3,8 +3,10 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
-import ScoreBadge from "@/app/components/ScoreBadge";
+import ScoreBadge, { scoreToTier } from "@/app/components/ScoreBadge";
 import { CONTENT_BRACKETS } from "@/lib/content-brackets";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -48,7 +50,36 @@ interface Props {
   entityId: string;
   /** Display name for the prose summary (e.g. "Sozu", "Strike"). */
   entityName: string;
+  /** "wiki" swaps the tabbed styling for the unrolled card-page layout
+   * (stat tiles + bracket pills + by-character bars). Data/fetch/bracket
+   * logic is identical; only the presentation changes. */
+  variant?: "default" | "wiki";
 }
+
+/** Compact 1.2k / 44.8k style number for the wiki tiles + bars. */
+function kFmt(n: number): string {
+  return n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(n);
+}
+
+/** Tier letter → accent color for the Codex Score tile badge. */
+const TIER_COLOR: Record<string, string> = {
+  S: "var(--gold)",
+  A: "var(--good)",
+  B: "var(--defect)",
+  C: "#9aa4ab",
+  D: "var(--regent)",
+  F: "var(--warn)",
+};
+
+/** Character enum → bar color, using the global site character tokens so the
+ * bars read the same regardless of which entity's --spine is set. */
+const CHAR_COLOR: Record<string, string> = {
+  SILENT: "var(--color-silent)",
+  IRONCLAD: "var(--color-ironclad)",
+  DEFECT: "var(--color-defect)",
+  NECROBINDER: "var(--color-necrobinder)",
+  REGENT: "var(--color-regent)",
+};
 
 function relativeTime(iso: string | null): string {
   if (!iso) return "—";
@@ -83,16 +114,21 @@ function characterPretty(c: string): string {
  * state when the entity has no submitted runs yet so SEO crawlers
  * still see something other than spinners.
  */
-export default function EntityRunStats({ entityType, entityId, entityName }: Props) {
+export default function EntityRunStats({ entityType, entityId, entityName, variant = "default" }: Props) {
   const [stats, setStats] = useState<EntityStats | null>(null);
   const [selectedBracket, setSelectedBracket] = useState("all");
+  const { lang } = useLanguage();
 
   useEffect(() => {
     cachedFetch<EntityStats>(`${API}/api/runs/stats/${entityType}/${entityId}`).then(setStats);
   }, [entityType, entityId]);
 
   if (!stats) {
-    return <p className="text-sm text-[var(--text-muted)]">Loading run stats…</p>;
+    return variant === "wiki" ? (
+      <p className="h-note">{t("Loading run stats…", lang)}</p>
+    ) : (
+      <p className="text-sm text-[var(--text-muted)]">{t("Loading run stats…", lang)}</p>
+    );
   }
 
   const empty = stats.picks === 0;
@@ -114,13 +150,169 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
   const selLabel =
     CONTENT_BRACKETS.find((b) => b.key === selectedBracket)?.label ?? "All";
 
+  // ── Wiki layout: stat tiles + bracket pills + by-character bars. Same data,
+  // same bracket handling as the default tabbed view above; only styling
+  // differs. Styling comes from the .card-rvmp scoped CSS on the card page. ──
+  if (variant === "wiki") {
+    const tier = sel?.score != null ? scoreToTier(sel.score) : null;
+    const wr = sel?.win_rate ?? stats.win_rate;
+    const wins = sel?.wins ?? stats.wins;
+    const picks = sel?.picks ?? stats.picks;
+    const share = top && picks ? Math.round((top.picks / picks) * 100) : 0;
+    return (
+      <div>
+        {empty ? (
+          <p className="h-note">
+            {entityName} hasn&apos;t appeared in any submitted community run yet
+            (across {stats.total_runs.toLocaleString()} tracked). Submit a run via{" "}
+            <Link href="/leaderboards/submit">the runs page</Link> to seed this
+            section.
+          </p>
+        ) : (
+          <>
+            {availableBrackets.length > 1 && (
+              <div className="brkt" role="group" aria-label="Stats bracket">
+                {availableBrackets.map((b) => (
+                  <button
+                    key={b.key}
+                    type="button"
+                    className={`brkt-pill${selectedBracket === b.key ? " on" : ""}`}
+                    onClick={() => setSelectedBracket(b.key)}
+                  >
+                    {b.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="tiles">
+              <div className="tile">
+                <div className="k">{t("Win rate", lang)}</div>
+                <div
+                  className="v"
+                  style={{ color: wr >= 50 ? "var(--good)" : "var(--warn)" }}
+                >
+                  {wr}
+                  <span style={{ fontSize: 16 }}>%</span>
+                </div>
+                <div className="s">
+                  {kFmt(wins)} {t("of", lang)} {kFmt(picks)} {t("wins", lang)}
+                </div>
+              </div>
+              <div className="tile">
+                <div className="k">{t("Pick rate", lang)}</div>
+                <div className="v">
+                  {selPickRate}
+                  <span style={{ fontSize: 16 }}>%</span>
+                </div>
+                <div className="s">{picks.toLocaleString()} {t("picks", lang)}</div>
+              </div>
+              <div className="tile">
+                <div className="k">{t("Codex Score", lang)}</div>
+                <div
+                  className="v"
+                  style={{ display: "flex", alignItems: "center", gap: 10 }}
+                >
+                  {tier ? (
+                    <>
+                      <span
+                        className="tier"
+                        style={{ background: TIER_COLOR[tier.letter] ?? "var(--warn)" }}
+                      >
+                        {tier.letter}
+                      </span>
+                      <span>{sel?.score}</span>
+                    </>
+                  ) : (
+                    <span>—</span>
+                  )}
+                </div>
+                <div className="s">{tier ? t(tier.label, lang) : t("Not enough data", lang)}</div>
+              </div>
+              <div className="tile">
+                <div className="k">{t("Codex Elo", lang)}</div>
+                <div className="v">
+                  {sel?.elo != null ? Math.round(sel.elo) : "—"}
+                </div>
+                <div className="s">{t("revealed preference", lang)}</div>
+              </div>
+            </div>
+
+            {selByChar.length > 0 && (
+              <>
+                <h3 className="subh">
+                  {t("Win rate by character", lang)}{!isAll ? ` · ${selLabel}` : ""}
+                </h3>
+                <p className="h-note">
+                  {top ? (
+                    <>
+                      {t("Picked most on", lang)} <b>{characterPretty(top.character)}</b> —{" "}
+                      {t("the story shifts by character and bracket.", lang)}
+                    </>
+                  ) : (
+                    t("By character and bracket.", lang)
+                  )}
+                </p>
+                <div className="bars">
+                  {selByChar.map((row) => (
+                    <div className="bar-row" key={row.character}>
+                      <span className="name">{characterPretty(row.character)}</span>
+                      <span className="bar-track">
+                        <span
+                          className="bar-fill"
+                          style={{
+                            width: `${row.win_rate}%`,
+                            background: CHAR_COLOR[row.character] ?? "var(--text-2)",
+                          }}
+                        />
+                      </span>
+                      <span className="num">
+                        <b>{row.win_rate}%</b> · {kFmt(row.picks)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {top && (
+              <p className="insight">
+                {t("Most often taken by", lang)} <b>{characterPretty(top.character)}</b> {t("players", lang)}
+                ({top.picks.toLocaleString()} {t("picks", lang)} · {share}% {t("share", lang)}).
+                {tier ? (
+                  <>
+                    {" "}
+                    {t("Codex rates it", lang)} <b>{tier.letter}</b> ({t(tier.label, lang).toLowerCase()}){" "}
+                    {t("overall", lang)}.
+                  </>
+                ) : null}
+              </p>
+            )}
+          </>
+        )}
+
+        <p className="stat-note">
+          {t("Community-submitted runs only, refreshed every 30 minutes.", lang)}
+          {selTotalRuns > 0 && (
+            <>
+              {" "}
+              {t("Pick rate is", lang)} {selPickRate}% {t("of", lang)} {selTotalRuns.toLocaleString()}
+              {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.", lang)}
+            </>
+          )}{" "}
+          <Link href="/leaderboards/scoring">{t("How is the score calculated?", lang)}</Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-5">
       {/* Bracket sub-menu: re-scopes the headline stats below. Only shown when
           a bracket beyond "All" has data for this entity. */}
       {!empty && availableBrackets.length > 1 && (
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
+          <span className="text-xs text-[var(--text-muted)] mr-1">{t("Bracket", lang)}</span>
           {availableBrackets.map((b) => {
             const isActive = selectedBracket === b.key;
             return (
@@ -149,24 +341,24 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
           <ScoreBadge score={sel.score} size="lg" showNumber />
           <div className="text-xs text-[var(--text-muted)] leading-snug">
             <div className="text-[var(--text-secondary)] font-semibold mb-0.5">
-              Codex Score{selectedBracket !== "all" ? ` · ${selLabel}` : ""}
+              {t("Codex Score", lang)}{selectedBracket !== "all" ? ` · ${selLabel}` : ""}
             </div>
             <div>
-              <strong className="text-[var(--text-secondary)]">{sel.win_rate}%</strong> win rate
+              <strong className="text-[var(--text-secondary)]">{sel.win_rate}%</strong> {t("win rate", lang)}
               {sel.elo != null && (
                 <>
                   {" · "}
-                  <strong className="text-[var(--text-secondary)]">{Math.round(sel.elo)}</strong> Elo
+                  <strong className="text-[var(--text-secondary)]">{Math.round(sel.elo)}</strong> {t("Elo", lang)}
                 </>
               )}
               {" · "}
-              {sel.picks.toLocaleString()} picks
+              {sel.picks.toLocaleString()} {t("picks", lang)}
               {" · "}
               <Link
                 href="/leaderboards/scoring"
                 className="text-[var(--accent-gold)]/80 hover:text-[var(--accent-gold)] hover:underline"
               >
-                how is this calculated?
+                {t("how is this calculated?", lang)}
               </Link>
             </div>
           </div>
@@ -187,22 +379,23 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
           </>
         ) : (
           <>
-            <strong className="text-[var(--text-primary)]">{sel.win_rate}%</strong> win
-            rate across <strong>{sel.picks.toLocaleString()}</strong> picks
+            <strong className="text-[var(--text-primary)]">{sel.win_rate}%</strong>{" "}
+            {t("win rate across", lang)}{" "}
+            <strong>{sel.picks.toLocaleString()}</strong> {t("picks", lang)}
             {top && (
               <>
-                . Most often taken by{" "}
+                . {t("Most often taken by", lang)}{" "}
                 <strong className="text-[var(--text-primary)]">
                   {characterPretty(top.character)}
                 </strong>{" "}
-                players ({top.picks.toLocaleString()} picks ·{" "}
-                {Math.round((top.picks / sel.picks) * 100)}% share)
+                {t("players", lang)} ({top.picks.toLocaleString()} {t("picks", lang)} ·{" "}
+                {Math.round((top.picks / sel.picks) * 100)}% {t("share", lang)})
               </>
             )}
-            . Last picked <strong>{last}</strong>
+            . {t("Last picked", lang)} <strong>{last}</strong>
             {stats.last_run_hash && (
               <>
-                {" "}in run{" "}
+                {" "}{t("in run", lang)}{" "}
                 <Link
                   // Frontend route is /runs/<hash>; the /shared/ segment
                   // exists only on the backend API (/api/runs/shared/<hash>)
@@ -223,16 +416,16 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
       {!empty && selByChar.length > 0 && (
         <div>
           <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-            Picks by character{!isAll ? ` · ${selLabel}` : ""}
+            {t("Picks by character", lang)}{!isAll ? ` · ${selLabel}` : ""}
           </h3>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
                 <tr className="text-xs uppercase tracking-wider text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-                  <th className="text-left py-2 pr-3 font-semibold">Character</th>
-                  <th className="text-right py-2 px-3 font-semibold">Picks</th>
-                  <th className="text-right py-2 px-3 font-semibold">Win Rate</th>
-                  <th className="text-left py-2 pl-3 font-semibold w-1/3">Distribution</th>
+                  <th className="text-left py-2 pr-3 font-semibold">{t("Character", lang)}</th>
+                  <th className="text-right py-2 px-3 font-semibold">{t("Picks", lang)}</th>
+                  <th className="text-right py-2 px-3 font-semibold">{t("Win Rate", lang)}</th>
+                  <th className="text-left py-2 pl-3 font-semibold w-1/3">{t("Distribution", lang)}</th>
                 </tr>
               </thead>
               <tbody>
@@ -270,12 +463,12 @@ export default function EntityRunStats({ entityType, entityId, entityName }: Pro
       )}
 
       <p className="text-xs text-[var(--text-muted)]">
-        Stats reflect community-submitted runs only and refresh every 30 minutes.
+        {t("Stats reflect community-submitted runs only and refresh every 30 minutes.", lang)}
         {selTotalRuns > 0 && (
           <>
-            {" "}Pick rate: <strong>{selPickRate}%</strong> of{" "}
+            {" "}{t("Pick rate:", lang)} <strong>{selPickRate}%</strong> {t("of", lang)}{" "}
             {selTotalRuns.toLocaleString()}
-            {!isAll ? ` ${selLabel}` : ""} tracked runs.
+            {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.", lang)}
           </>
         )}
       </p>

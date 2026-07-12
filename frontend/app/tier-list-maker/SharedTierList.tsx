@@ -40,7 +40,7 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
 
   if (error) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-12 text-center text-neutral-400">
+      <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">
         <p>{error}</p>
         <Link href="/tier-list-maker" className="mt-3 inline-block text-sky-400 hover:underline">
           Make your own tier list
@@ -50,14 +50,14 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
   }
 
   if (!list) {
-    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-neutral-400">Loading…</div>;
+    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">Loading…</div>;
   }
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <div className="mb-4">
-        <h1 className="text-2xl font-bold text-white">{list.title}</h1>
-        <p className="text-sm text-neutral-400">
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">{list.title}</h1>
+        <p className="text-sm text-[var(--text-secondary)]">
           {ENTITY_LABEL[list.entity_type]}
           {list.owner_username ? ` · by ${list.owner_username}` : ""}
         </p>
@@ -67,7 +67,7 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
         {user && user.username === list.owner_username && list.id && (
           <Link
             href={`/tier-list-maker/${list.id}`}
-            className="inline-block rounded border border-neutral-600 px-4 py-2 font-semibold text-neutral-200 hover:border-neutral-400 hover:text-white"
+            className="inline-block rounded border border-[var(--border-accent)] px-4 py-2 font-semibold text-[var(--text-primary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
           >
             Edit this list
           </Link>

@@ -1,0 +1,26 @@
+/* Lighter wiki layout for the small reference entity pages (orbs, keywords,
+   afflictions, intents, modifiers). Scoped under .card-rvmp so it only ever
+   touches these pages, and it reuses card-revamp.css for the heavy lifting —
+   this file only adds what those pages need on top of the card layout. */
+
+/* Single-column variants: reference pages have no big infobox column, so the
+   default 1fr/320px grid would leave a dead gap. `.solo` drops to one column;
+   `.narrow` also caps the reading width for pure-text pages. */
+.card-rvmp .wrap.solo { grid-template-columns: minmax(0, 1fr); }
+.card-rvmp .wrap.narrow { max-width: 880px; }
+
+/* Back link rendered as a <button> (router.back()) rather than a <Link>. */
+.card-rvmp button.cd-back {
+  background: none; border: 0; padding: 0;
+  font-family: var(--sans); cursor: pointer;
+}
+
+/* Small entity icon in the infobox (orbs, intents). */
+.card-rvmp .ref-icon {
+  display: grid; place-items: center; padding: 26px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 11px;
+}
+.card-rvmp .ref-icon img {
+  width: 84px; height: 84px; object-fit: contain;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .45));
+}

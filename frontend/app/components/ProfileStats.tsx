@@ -7,6 +7,8 @@ import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import MyTierLists from "../tier-list-maker/MyTierLists";
 import { characterHex } from "@/lib/character-colors";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -148,6 +150,7 @@ export default function ProfileStats({
   onPageChange, onDeleteRun, deleteConfirm, onDeleteConfirm,
 }: ProfileStatsProps) {
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const [stats, setStats] = useState<Stats | null>(null);
   const [bests, setBests] = useState<PersonalBests | null>(null);
   const [competitive, setCompetitive] = useState<CompetitiveData | null>(null);
@@ -200,18 +203,18 @@ export default function ProfileStats({
   if (!stats || stats.total_runs === 0) {
     return (
       <p className="text-sm text-[var(--text-secondary)] py-4">
-        No stats yet. Upload runs to see your personal stats here.
+        {t("No stats yet. Upload runs to see your personal stats here.", lang)}
       </p>
     );
   }
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: "Overview" },
-    { key: "runs", label: "Runs" },
-    { key: "cards", label: "Cards" },
-    { key: "relics", label: "Relics" },
-    { key: "potions", label: "Potions" },
-    { key: "tierlists", label: "Tier Lists" },
+    { key: "overview", label: t("Overview", lang) },
+    { key: "runs", label: t("Runs", lang) },
+    { key: "cards", label: t("Cards", lang) },
+    { key: "relics", label: t("Relics", lang) },
+    { key: "potions", label: t("Potions", lang) },
+    { key: "tierlists", label: t("Tier Lists", lang) },
   ];
 
   const topCards = (stats.top_cards || [])
@@ -246,15 +249,15 @@ export default function ProfileStats({
       {tab === "overview" && (
         <div className="space-y-4">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <StatCard label="Runs" value={stats.total_runs} />
-            <StatCard label="Wins" value={stats.total_wins ?? 0} />
-            <StatCard label="Win Rate" value={`${stats.win_rate ?? 0}%`} />
-            <StatCard label="Abandoned" value={stats.total_abandoned ?? 0} />
+            <StatCard label={t("Runs", lang)} value={stats.total_runs} />
+            <StatCard label={t("Wins", lang)} value={stats.total_wins ?? 0} />
+            <StatCard label={t("Win Rate", lang)} value={`${stats.win_rate ?? 0}%`} />
+            <StatCard label={t("Abandoned", lang)} value={stats.total_abandoned ?? 0} />
           </div>
 
           {stats.characters && stats.characters.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Characters</h3>
+              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Characters", lang)}</h3>
               <div className="space-y-2">
                 {stats.characters.map((c) => {
                   const color = characterHex(c.character) || "var(--text-muted)";
@@ -276,14 +279,14 @@ export default function ProfileStats({
 
           {bests && Object.keys(bests).length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Personal Bests</h3>
+              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Personal Bests", lang)}</h3>
               <div className="space-y-2">
                 {([
-                  ["fastest_solo", "Fastest Solo", bests.fastest_solo],
-                  ["fastest_multi", "Fastest Co-op", bests.fastest_multi],
-                  ["highest_ascension", "Highest Ascension", bests.highest_ascension],
-                  ["todays_daily", "Today’s Daily Climb", bests.todays_daily],
-                  ["fastest_daily", "Fastest Daily (All Time)", bests.fastest_daily],
+                  ["fastest_solo", t("Fastest Solo", lang), bests.fastest_solo],
+                  ["fastest_multi", t("Fastest Co-op", lang), bests.fastest_multi],
+                  ["highest_ascension", t("Highest Ascension", lang), bests.highest_ascension],
+                  ["todays_daily", t("Today’s Daily Climb", lang), bests.todays_daily],
+                  ["fastest_daily", t("Fastest Daily (All Time)", lang), bests.fastest_daily],
                 ] as [string, string, PersonalBest | undefined][]).map(([key, label, best]) => {
                   if (!best) return null;
                   const rank = competitive?.personal_ranks?.[key];
@@ -316,8 +319,8 @@ export default function ProfileStats({
           {competitive?.daily_leaderboard && competitive.daily_leaderboard.runs.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">Today&apos;s Daily Climb</h3>
-                <span className="text-[10px] text-[var(--text-tertiary)]">{competitive.daily_leaderboard.total_today} runs today</span>
+                <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider">{t("Today's Daily Climb", lang)}</h3>
+                <span className="text-[10px] text-[var(--text-tertiary)]">{competitive.daily_leaderboard.total_today} {t("runs today", lang)}</span>
               </div>
               <div className="space-y-1">
                 {competitive.daily_leaderboard.runs.map((entry, i) => (
@@ -332,7 +335,7 @@ export default function ProfileStats({
                   >
                     <span className="w-5 text-right text-xs text-[var(--text-tertiary)] tabular-nums">{i + 1}</span>
                     <span className={`flex-1 truncate ${entry.is_current_user ? "text-[var(--accent-gold)] font-medium" : "text-[var(--text-primary)]"}`}>
-                      {entry.username || "Anonymous"}
+                      {entry.username || t("Anonymous", lang)}
                     </span>
                     <span className="text-xs tabular-nums" style={{ color: characterHex(entry.character) || "var(--text-tertiary)" }}>{displayName(entry.character)}</span>
                     <span className="text-xs text-[var(--text-primary)] tabular-nums font-medium">{formatTime(entry.run_time)}</span>
@@ -343,7 +346,7 @@ export default function ProfileStats({
                     <div className="text-center text-[var(--text-muted)] text-xs py-1">...</div>
                     <div className="flex items-center gap-3 text-sm px-2 -mx-2 py-1.5 rounded bg-[var(--accent-gold)]/10">
                       <span className="w-5 text-right text-xs text-[var(--text-tertiary)] tabular-nums">{competitive.daily_leaderboard.user_rank}</span>
-                      <span className="flex-1 text-[var(--accent-gold)] font-medium">You</span>
+                      <span className="flex-1 text-[var(--accent-gold)] font-medium">{t("You", lang)}</span>
                     </div>
                   </>
                 )}
@@ -354,7 +357,7 @@ export default function ProfileStats({
           {/* Win Rate vs Community */}
           {competitive?.win_rate_comparison && competitive.win_rate_comparison.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Win Rate vs Community</h3>
+              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Win Rate vs Community", lang)}</h3>
               <div className="space-y-3">
                 {competitive.win_rate_comparison.map((c) => {
                   const color = characterHex(c.character) || "var(--text-muted)";
@@ -370,14 +373,14 @@ export default function ProfileStats({
                       </div>
                       <div className="space-y-0.5">
                         <div className="flex items-center gap-2">
-                          <span className="w-8 text-[10px] text-[var(--text-tertiary)]">You</span>
+                          <span className="w-8 text-[10px] text-[var(--text-tertiary)]">{t("You", lang)}</span>
                           <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                             <div className="h-full rounded-full" style={{ width: `${Math.min(c.user_win_rate, 100)}%`, backgroundColor: color }} />
                           </div>
                           <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">{c.user_win_rate}%</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="w-8 text-[10px] text-[var(--text-tertiary)]">Avg</span>
+                          <span className="w-8 text-[10px] text-[var(--text-tertiary)]">{t("Avg", lang)}</span>
                           <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                             <div className="h-full rounded-full opacity-40" style={{ width: `${Math.min(c.community_win_rate, 100)}%`, backgroundColor: color }} />
                           </div>
@@ -394,12 +397,12 @@ export default function ProfileStats({
 
           {deadliest.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Deadliest Encounters</h3>
+              <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Deadliest Encounters", lang)}</h3>
               <div className="space-y-1.5">
                 {deadliest.map((d) => (
                   <div key={d.encounter} className="flex items-center justify-between text-sm">
                     <span className="text-[var(--text-primary)]">{displayName(d.encounter)}</span>
-                    <span className="text-xs text-[var(--text-tertiary)] tabular-nums">{d.count} deaths</span>
+                    <span className="text-xs text-[var(--text-tertiary)] tabular-nums">{d.count} {t("deaths", lang)}</span>
                   </div>
                 ))}
               </div>
@@ -418,7 +421,7 @@ export default function ProfileStats({
             </div>
           ) : runs.length === 0 ? (
             <p className="text-sm text-[var(--text-secondary)] py-4">
-              No runs yet. Upload .run files to get started.
+              {t("No runs yet. Upload .run files to get started.", lang)}
             </p>
           ) : (
             <>
@@ -451,7 +454,7 @@ export default function ProfileStats({
                       href={`/runs/${run.run_hash}`}
                       className="text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors shrink-0"
                     >
-                      View
+                      {t("View", lang)}
                     </Link>
                     {deleteConfirm === run.run_hash ? (
                       <div className="flex items-center gap-1 shrink-0">
@@ -459,13 +462,13 @@ export default function ProfileStats({
                           onClick={() => onDeleteRun(run.run_hash)}
                           className="text-xs text-red-400 hover:text-red-300"
                         >
-                          Confirm
+                          {t("Confirm", lang)}
                         </button>
                         <button
                           onClick={() => onDeleteConfirm(null)}
                           className="text-xs text-[var(--text-tertiary)]"
                         >
-                          Cancel
+                          {t("Cancel", lang)}
                         </button>
                       </div>
                     ) : (
@@ -473,7 +476,7 @@ export default function ProfileStats({
                         onClick={() => onDeleteConfirm(run.run_hash)}
                         className="text-xs text-[var(--text-tertiary)] hover:text-red-400 transition-colors shrink-0"
                       >
-                        Delete
+                        {t("Delete", lang)}
                       </button>
                     )}
                   </div>
@@ -487,7 +490,7 @@ export default function ProfileStats({
                     disabled={runsPage <= 1}
                     className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] disabled:opacity-30"
                   >
-                    Prev
+                    {t("Prev", lang)}
                   </button>
                   <span className="text-sm text-[var(--text-tertiary)]">
                     {runsPage} / {runsTotalPages}
@@ -497,7 +500,7 @@ export default function ProfileStats({
                     disabled={runsPage >= runsTotalPages}
                     className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] disabled:opacity-30"
                   >
-                    Next
+                    {t("Next", lang)}
                   </button>
                 </div>
               )}
@@ -508,9 +511,9 @@ export default function ProfileStats({
 
       {tab === "cards" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Most Used Cards</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Cards", lang)}</h3>
           {topCards.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">No card data yet.</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No card data yet.", lang)}</p>
           ) : (
             <div className="space-y-0.5">
               {topCards.map((c) => {
@@ -520,7 +523,7 @@ export default function ProfileStats({
                     key={c.card_id}
                     name={info?.name || displayName(c.card_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${c.count} copies`}
+                    stat={`${c.count} ${t("copies", lang)}`}
                     href={`${lp}/cards/${c.card_id.toLowerCase()}`}
                   />
                 );
@@ -532,9 +535,9 @@ export default function ProfileStats({
 
       {tab === "relics" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Most Used Relics</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Relics", lang)}</h3>
           {topRelics.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">No relic data yet.</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No relic data yet.", lang)}</p>
           ) : (
             <div className="space-y-0.5">
               {topRelics.map((r) => {
@@ -544,7 +547,7 @@ export default function ProfileStats({
                     key={r.relic_id}
                     name={info?.name || displayName(r.relic_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${r.total_runs_with} runs`}
+                    stat={`${r.total_runs_with} ${t("runs", lang)}`}
                     href={`${lp}/relics/${r.relic_id.toLowerCase()}`}
                   />
                 );
@@ -556,9 +559,9 @@ export default function ProfileStats({
 
       {tab === "potions" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">Most Picked Potions</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Picked Potions", lang)}</h3>
           {topPotions.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">No potion data yet.</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No potion data yet.", lang)}</p>
           ) : (
             <div className="space-y-0.5">
               {topPotions.map((p) => {
@@ -568,7 +571,7 @@ export default function ProfileStats({
                     key={p.potion_id}
                     name={info?.name || displayName(p.potion_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${p.pick_rate}% pick`}
+                    stat={`${p.pick_rate}% ${t("pick", lang)}`}
                     href={`${lp}/potions/${p.potion_id.toLowerCase()}`}
                   />
                 );
@@ -585,7 +588,7 @@ export default function ProfileStats({
               href="/tier-list-maker"
               className="text-sm text-sky-400 hover:underline"
             >
-              New tier list
+              {t("New tier list", lang)}
             </Link>
           </div>
           <MyTierLists />

@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { Character, Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -218,14 +219,14 @@ export default function CompareDetail({
   if (!parsed) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <p className="text-[var(--text-muted)]">Invalid comparison pair.</p>
+        <p className="text-[var(--text-muted)]">{t("Invalid comparison pair.", lang)}</p>
       </div>
     );
   }
 
   if (loading) {
     return (
-      <div className="text-center py-12 text-[var(--text-muted)]">Loading...</div>
+      <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...", lang)}</div>
     );
   }
 
@@ -233,7 +234,7 @@ export default function CompareDetail({
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <p className="text-[var(--text-muted)]">
-          Could not load character data. Please try again later.
+          {t("Could not load character data. Please try again later.", lang)}
         </p>
       </div>
     );
@@ -275,28 +276,28 @@ export default function CompareDetail({
           href="/compare"
           className="text-xs text-[var(--text-muted)] hover:text-[var(--accent-gold)] transition-colors"
         >
-          &larr; All Comparisons
+          &larr; {t("All Comparisons", lang)}
         </Link>
       </div>
       <h1 className="text-3xl font-bold mb-2">
         <span className={colorTextClass[colorA]}>{nameA}</span>
-        <span className="text-[var(--text-muted)] mx-3 text-xl">vs</span>
+        <span className="text-[var(--text-muted)] mx-3 text-xl">{t("vs", lang)}</span>
         <span className={colorTextClass[colorB]}>{nameB}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
-        Side-by-side comparison of stats, card pools, and keyword distributions.
+        {t("Side-by-side comparison of stats, card pools, and keyword distributions.", lang)}
       </p>
 
       {/* Stats Comparison */}
       <section className="mb-8">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
-          Base Stats
+          {t("Base Stats", lang)}
         </h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          <StatBox label="HP" valueA={charA.starting_hp} valueB={charB.starting_hp} colorA={colorA} colorB={colorB} />
-          <StatBox label="Gold" valueA={charA.starting_gold} valueB={charB.starting_gold} colorA={colorA} colorB={colorB} />
-          <StatBox label="Energy" valueA={charA.max_energy ?? 3} valueB={charB.max_energy ?? 3} colorA={colorA} colorB={colorB} />
-          <StatBox label="Orb Slots" valueA={charA.orb_slots ?? 0} valueB={charB.orb_slots ?? 0} colorA={colorA} colorB={colorB} />
+          <StatBox label={t("HP", lang)} valueA={charA.starting_hp} valueB={charB.starting_hp} colorA={colorA} colorB={colorB} />
+          <StatBox label={t("Gold", lang)} valueA={charA.starting_gold} valueB={charB.starting_gold} colorA={colorA} colorB={colorB} />
+          <StatBox label={t("Energy", lang)} valueA={charA.max_energy ?? 3} valueB={charB.max_energy ?? 3} colorA={colorA} colorB={colorB} />
+          <StatBox label={t("Orb Slots", lang)} valueA={charA.orb_slots ?? 0} valueB={charB.orb_slots ?? 0} colorA={colorA} colorB={colorB} />
         </div>
         <div className="flex items-center justify-center gap-6 mt-2 text-xs text-[var(--text-muted)]">
           <span className="flex items-center gap-1">
@@ -315,7 +316,7 @@ export default function CompareDetail({
         {/* By Type */}
         <section className={`rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5`}>
           <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-            Card Pool by Type
+            {t("Card Pool by Type", lang)}
           </h2>
           <div className="flex items-center justify-between mb-3 text-xs text-[var(--text-muted)]">
             <span className={colorTextClass[colorA]}>{nameA} ({cardsA.length})</span>
@@ -337,7 +338,7 @@ export default function CompareDetail({
         {/* By Rarity */}
         <section className={`rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5`}>
           <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-            Card Pool by Rarity
+            {t("Card Pool by Rarity", lang)}
           </h2>
           <div className="flex items-center justify-between mb-3 text-xs text-[var(--text-muted)]">
             <span className={colorTextClass[colorA]}>{nameA}</span>
@@ -362,7 +363,7 @@ export default function CompareDetail({
       {/* Keyword Distribution */}
       <section className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 mb-8">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-          Keyword Distribution
+          {t("Keyword Distribution", lang)}
         </h2>
         <div className="flex items-center justify-between mb-3 text-xs text-[var(--text-muted)]">
           <span className={colorTextClass[colorA]}>{nameA}</span>
@@ -385,7 +386,7 @@ export default function CompareDetail({
           (kw) => (keywordCountsA[kw] || 0) + (keywordCountsB[kw] || 0) === 0
         ) && (
           <p className="text-sm text-[var(--text-muted)] text-center py-4">
-            No keyword cards found for either character.
+            {t("No keyword cards found for either character.", lang)}
           </p>
         )}
       </section>
@@ -393,14 +394,14 @@ export default function CompareDetail({
       {/* Starting Deck Comparison */}
       <section className="mb-8">
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-          Starting Decks
+          {t("Starting Decks", lang)}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div
             className={`rounded-xl border ${colorBgClass[colorA] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3 className={`text-sm font-semibold ${colorTextClass[colorA]} mb-3`}>
-              {nameA} ({charA.starting_deck.length} cards)
+              {nameA} ({charA.starting_deck.length} {t("cards", lang)})
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {charA.starting_deck.map((cardName, i) => (
@@ -417,7 +418,7 @@ export default function CompareDetail({
             className={`rounded-xl border ${colorBgClass[colorB] || "border-[var(--border-subtle)]"} p-5`}
           >
             <h3 className={`text-sm font-semibold ${colorTextClass[colorB]} mb-3`}>
-              {nameB} ({charB.starting_deck.length} cards)
+              {nameB} ({charB.starting_deck.length} {t("cards", lang)})
             </h3>
             <div className="flex flex-wrap gap-1.5">
               {charB.starting_deck.map((cardName, i) => (
@@ -436,7 +437,7 @@ export default function CompareDetail({
       {/* Starting Relics */}
       <section>
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-          Starting Relics
+          {t("Starting Relics", lang)}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div

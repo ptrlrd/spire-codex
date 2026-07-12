@@ -11,6 +11,8 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import "../../card-revamp.css";
+import "../../reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -50,26 +52,43 @@ export default function ModifierDetail({ initialModifier }: { initialModifier?: 
     );
   }
 
+  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
+  const ledeText = modifier.description
+    ? modifier.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Reference", lang)}
-      </button>
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Reference", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {modifier.name}
-        </h1>
+      <div className="wrap solo narrow">
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Modifier", lang)}</span>
+            </p>
+            <h1>{modifier.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
+          </div>
 
-        <div className="text-[var(--text-secondary)] leading-relaxed mb-6">
-          <RichDescription text={modifier.description} />
-        </div>
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={modifier.description} />
+            </div>
+          </section>
 
-        <LocalizedNames entityType="modifiers" entityId={id} />
-        <EntityHistory entityType="modifiers" entityId={id} />
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="modifiers" entityId={id} />
+            <EntityHistory entityType="modifiers" entityId={id} />
+          </section>
+        </main>
       </div>
     </div>
   );

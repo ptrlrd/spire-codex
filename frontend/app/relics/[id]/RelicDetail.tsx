@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Relic } from "@/lib/api";
@@ -16,21 +16,20 @@ import EntityRunStats from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
+import "../../card-revamp.css";
+import "../../relic-potion-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-const rarityColorMap: Record<string, string> = {
-  Starter: "text-gray-400",
-  Common: "text-gray-300",
-  Uncommon: "text-blue-400",
-  Rare: "text-[var(--accent-gold)]",
-  Shop: "text-emerald-400",
-  Event: "text-cyan-400",
-  Ancient: "text-purple-400",
-};
-
-
-type Tab = "overview" | "details" | "stats" | "info";
+// Headline figures for the infobox mini-stats block. Same endpoint
+// EntityRunStats fetches, so cachedFetch dedupes it (no extra request).
+interface MiniStats {
+  picks: number;
+  win_rate: number;
+  pick_rate: number;
+  score: number | null;
+  elo: number | null;
+}
 
 export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | null } = {}) {
   const { id } = useParams<{ id: string }>();
@@ -42,7 +41,9 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
   const [selectedChar, setSelectedChar] = useState<string | null>(null);
   const [loading, setLoading] = useState(!initialRelic);
   const [notFound, setNotFound] = useState(false);
-  const [tab, setTab] = useState<Tab>("overview");
+  // Scroll-spy: which section the ToC highlights.
+  const [activeSection, setActiveSection] = useState<string>("performance");
+  const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -60,6 +61,43 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  // Headline community numbers for the infobox mini block. Hits the same URL
+  // EntityRunStats fetches, so cachedFetch serves it from cache.
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<MiniStats>(`${API}/api/runs/stats/relics/${id}`)
+      .then(setMiniStats)
+      .catch(() => {});
+  }, [id]);
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!relic) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [relic]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
 
   if (loading) {
     return (
@@ -80,218 +118,274 @@ export default function RelicDetail({ initialRelic }: { initialRelic?: Relic | n
     );
   }
 
-  const rarityColor = rarityColorMap[relic.rarity] || "text-gray-400";
+  const renderSrc = selectedVariant || relic.image_url;
+  // Plain-text lede from the relic effect (rich tags + newlines stripped).
+  const ledeText = relic.description
+    ? relic.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
 
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("Overview", lang) },
-    { key: "details", label: t("Details", lang) },
-    { key: "stats", label: t("Stats", lang) },
-    { key: "info", label: t("Info", lang) },
+  const hasImageVariants =
+    !!relic.image_variants && Object.keys(relic.image_variants).length > 0;
+  const hasNameVariants =
+    !!relic.name_variants && Object.keys(relic.name_variants).length > 0;
+  const hasNotes = !!relic.notes && relic.notes.length > 0;
+
+  const tocItems: { id: string; label: string }[] = [
+    { id: "performance", label: t("Community", lang) },
+    { id: "description", label: t("Description", lang) },
+    { id: "relations", label: t("Relations", lang) },
+    { id: "history", label: t("Version history", lang) },
   ];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Relics", lang)}
-      </button>
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": "var(--accent-gold)",
+        ...(renderSrc ? { "--entity-bg": `url("${imageUrl(renderSrc)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Relics", lang)}
+        </button>
+        <div style={{ marginTop: 12 }}>
+          <BetaDiffNotice entityType="relics" entityId={relic.id} />
+        </div>
+      </div>
 
-      <BetaDiffNotice entityType="relics" entityId={relic.id} />
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{relic.rarity}</span>
+              <span>&middot;</span>
+              <span>{relic.pool}</span>
+              <span>&middot;</span>
+              <span>{t("Relic", lang)}</span>
+            </p>
+            <h1>{relic.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
+          </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {relic.image_url && (
-          <div className="flex flex-col items-center mb-6">
-            <img
-              src={imageUrl(selectedVariant || relic.image_url)}
-              alt={`${relic.name}${selectedChar ? ` (${selectedChar})` : ""} - Slay the Spire 2 Relic`}
-              className="w-24 h-24 object-contain"
-              crossOrigin="anonymous"
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Community performance (featured first) */}
+          <section id="performance">
+            <h2>{t("Community performance", lang)}</h2>
+            <p className="h-note">
+              {t(
+                "Live aggregate across community-submitted runs. Filter by bracket to see how it holds up at higher levels of play.",
+                lang,
+              )}
+            </p>
+            <EntityRunStats
+              entityType="relics"
+              entityId={id}
+              entityName={relic.name}
+              variant="wiki"
             />
-            {relic.image_variants && Object.keys(relic.image_variants).length > 0 && (() => {
-              // Single layout for both variant types: buttons row, then a
-              // single italic hint below. Active button is already
-              // gold-highlighted so an explicit "Showing: X" was redundant.
-              // The full "why" for non-character variants (e.g. Looming
-              // Fruit's per-save coin flip) lives in the relic's `notes`.
+          </section>
+
+          {/* Description */}
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={relic.description} />
+            </div>
+
+            {relic.flavor && (
+              <div className="desc-body rp-flavor">
+                <RichDescription text={relic.flavor} />
+              </div>
+            )}
+
+            {/* Per-character display name overrides, Sea Glass renames itself
+                ("Demon Glass" for Ironclad, "Venom Glass" for Silent, etc.). */}
+            {hasNameVariants && (
+              <>
+                <h3 className="subh">{t("Known as", lang)}</h3>
+                <div className="chips">
+                  {Object.entries(relic.name_variants!).map(([char, variantName]) => (
+                    <span key={char} className="chip">
+                      <span>{variantName}</span>
+                      <span className="rp-alias">{char}</span>
+                    </span>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {hasNotes && (
+              <>
+                <h3 className="subh">{t("Mechanics", lang)}</h3>
+                <ul className="rp-notes">
+                  {relic.notes!.map((note, i) => (
+                    <li key={i}>{note}</li>
+                  ))}
+                </ul>
+              </>
+            )}
+
+            {/* Programmatic prose block, adds 60-100 words of factual
+                contextual content per page from already-localized fields. */}
+            <EntityProse kind="relic" relic={relic} />
+          </section>
+
+          {/* Relations, related relics from the same pool + rarity */}
+          <section id="relations">
+            <h2>{t("Relations", lang)}</h2>
+            <p className="h-note">
+              {t("Other relics from the same pool and rarity.", lang)}
+            </p>
+            <RelatedItems
+              currentId={id}
+              route="relics"
+              heading="Related Relics"
+              groups={[
+                {
+                  label: `${relic.pool} relics`,
+                  path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
+                },
+                {
+                  label: relic.rarity.endsWith("Relic") ? `${relic.rarity}s` : `${relic.rarity} Relics`,
+                  path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}`,
+                },
+              ]}
+            />
+          </section>
+
+          {/* Version history + localized names */}
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="relics" entityId={id} />
+            <EntityHistory entityType="relics" entityId={id} />
+          </section>
+        </main>
+
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            {renderSrc && (
+              <img
+                className="cardimg render relimg"
+                src={imageUrl(selectedVariant || relic.image_url || "")}
+                alt={`${relic.name}${selectedChar ? ` (${selectedChar})` : ""} - Slay the Spire 2 Relic`}
+                crossOrigin="anonymous"
+              />
+            )}
+
+            {/* Per-character / per-save art switcher. Single layout for both
+                variant types: buttons row, then a single italic hint below. */}
+            {hasImageVariants && (() => {
               const CHARACTER_KEYS = new Set(["Ironclad", "Silent", "Defect", "Necrobinder", "Regent"]);
-              const variantKeys = Object.keys(relic.image_variants);
+              const variantKeys = Object.keys(relic.image_variants!);
               const isCharacterVariants = variantKeys.every((k) => CHARACTER_KEYS.has(k));
               const hint = isCharacterVariants
                 ? t("This relic has different art for each character. Use buttons above.", lang)
                 : t("Multiple in-game art variants, toggle above", lang);
               return (
-                <div className="mt-4 text-center w-full max-w-xs mx-auto">
-                  <div className="flex flex-wrap gap-1.5 justify-center">
-                    {Object.entries(relic.image_variants).map(([variantKey, url]) => (
+                <div>
+                  <div className="rp-variants">
+                    {Object.entries(relic.image_variants!).map(([variantKey, url]) => (
                       <button
                         key={variantKey}
                         onClick={() => { setSelectedVariant(url); setSelectedChar(variantKey); }}
                         title={`${t("Show", lang)} ${variantKey} ${t("variant", lang)}`}
-                        className={`text-xs px-2 py-1 rounded border transition-colors ${
-                          selectedVariant === url
-                            ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
-                            : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                        }`}
+                        className={`rp-vbtn${selectedVariant === url ? " on" : ""}`}
                       >
                         {variantKey}
                       </button>
                     ))}
                   </div>
-                  <p className="text-xs text-[var(--text-muted)] mt-2 italic px-2">
-                    {hint}
-                  </p>
+                  <p className="rp-hint">{hint}</p>
                 </div>
               );
             })()}
-          </div>
-        )}
 
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {relic.name}
-        </h1>
-
-        <div className="flex items-center justify-center gap-3 mb-6 text-sm">
-          <span className={rarityColor}>{relic.rarity}</span>
-          <span className="text-[var(--text-muted)]">&middot;</span>
-          <span className="text-[var(--text-muted)] capitalize">{relic.pool}</span>
-        </div>
-
-        {/* Per-character display name overrides, Sea Glass renames itself
-            ("Demon Glass" for Ironclad, "Venom Glass" for Silent, etc.).
-            Surfaced as a single line under the rarity/pool row so visitors
-            can find each variant by name without scrolling. */}
-        {relic.name_variants && Object.keys(relic.name_variants).length > 0 && (
-          <div className="mb-6 -mt-2 text-center">
-            <p className="text-xs text-[var(--text-muted)] mb-1">
-              {t("Known as", lang)}:
-            </p>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 justify-center text-sm">
-              {Object.entries(relic.name_variants).map(([char, variantName]) => (
-                <span key={char}>
-                  <span className="text-[var(--accent-gold)]">{variantName}</span>
-                  <span className="text-[var(--text-muted)]"> ({char})</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Tabs */}
-        <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
-          {tabs.map((tb) => (
-            <button
-              key={tb.key}
-              onClick={() => setTab(tb.key)}
-              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                tab === tb.key
-                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-              }`}
-            >
-              {tb.label}
-            </button>
-          ))}
-        </div>
-
-        {/* ===== Overview Tab ===== */}
-        {tab === "overview" && (
-          <>
-            <div className="text-[var(--text-secondary)] leading-relaxed mb-4">
-              <RichDescription text={relic.description} />
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                <div className="frow">
+                  <dt>{t("Rarity", lang)}</dt>
+                  <dd>{relic.rarity}</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Pool", lang)}</dt>
+                  <dd style={{ textTransform: "capitalize" }}>{relic.pool}</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Merchant Price", lang)}</dt>
+                  <dd>
+                    {relic.merchant_price ? (
+                      <>
+                        <img
+                          src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
+                          alt="Gold"
+                          style={{ width: 15, height: 15 }}
+                          crossOrigin="anonymous"
+                        />
+                        {relic.merchant_price.min}&ndash;{relic.merchant_price.max}
+                      </>
+                    ) : (
+                      t("Not sold", lang)
+                    )}
+                  </dd>
+                </div>
+              </dl>
             </div>
 
-            {relic.flavor && (
-              <div className="text-sm text-[var(--text-muted)] italic mt-4 border-t border-[var(--border-subtle)] pt-4">
-                <RichDescription text={relic.flavor} />
-              </div>
-            )}
-
-            {/* Programmatic prose block, adds 60-100 words of factual
-                contextual content per page from already-localized
-                fields, pushing the page past Google's "thin content"
-                floor without needing per-language translations. */}
-            <EntityProse kind="relic" relic={relic} />
-          </>
-        )}
-
-        {/* ===== Details Tab ===== */}
-        {tab === "details" && (
-          <>
-            {relic.merchant_price ? (
-              <div className="mb-5">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  {t("Merchant Price", lang)}
-                </h3>
-                <div className="flex items-center gap-2 text-sm">
-                  <img
-                    src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
-                    alt="Gold"
-                    className="w-5 h-5"
-                    crossOrigin="anonymous"
-                  />
-                  <span className="text-[var(--accent-gold)] font-medium">
-                    {relic.merchant_price.min}–{relic.merchant_price.max}
-                  </span>
+            {/* Community mini-stats */}
+            {miniStats && miniStats.picks > 0 && (
+              <div className="mini">
+                <div className="mh">{t("Community", lang)}</div>
+                <div className="mg">
+                  <div>
+                    <div
+                      className="mv"
+                      style={{ color: miniStats.win_rate >= 50 ? "var(--good)" : "var(--warn)" }}
+                    >
+                      {miniStats.win_rate}%
+                    </div>
+                    <div className="ml">{t("Win rate", lang)}</div>
+                  </div>
+                  <div>
+                    <div className="mv">{miniStats.pick_rate}%</div>
+                    <div className="ml">{t("Pick rate", lang)}</div>
+                  </div>
+                  {miniStats.score != null && (
+                    <div>
+                      <div className="mv">{miniStats.score}</div>
+                      <div className="ml">{t("Codex Score", lang)}</div>
+                    </div>
+                  )}
+                  {miniStats.elo != null && (
+                    <div>
+                      <div className="mv">{Math.round(miniStats.elo)}</div>
+                      <div className="ml">Elo</div>
+                    </div>
+                  )}
                 </div>
               </div>
-            ) : (
-              <p className="text-sm text-[var(--text-muted)]">
-                This relic is not sold at the merchant.
-              </p>
             )}
-
-            {relic.notes && relic.notes.length > 0 && (
-              <div className="mt-5">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  {t("Mechanics", lang)}
-                </h3>
-                <ul className="space-y-1.5">
-                  {relic.notes.map((note, i) => (
-                    <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                      <span className="text-[var(--text-muted)] select-none">•</span>
-                      <span>{note}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </>
-        )}
-
-        {/* ===== Stats Tab, community run aggregates ===== */}
-        {tab === "stats" && (
-          <EntityRunStats entityType="relics" entityId={id} entityName={relic.name} />
-        )}
-
-        {/* ===== Info Tab ===== */}
-        {tab === "info" && (
-          <>
-            <LocalizedNames entityType="relics" entityId={id} />
-            <EntityHistory entityType="relics" entityId={id} />
-          </>
-        )}
-
-        {/* Related-relics block sits outside the tabs so it's always
-            visible, gives Google a crawl path to siblings (same pool +
-            same rarity) and adds 30+ extra word-equivalents of indexed
-            content to what was a thin detail page. */}
-        <RelatedItems
-          currentId={id}
-          route="relics"
-          heading="Related Relics"
-          groups={[
-            {
-              label: `${relic.pool} relics`,
-              path: `/api/relics?pool=${encodeURIComponent(relic.pool)}&lang=${lang}`,
-            },
-            {
-              label: relic.rarity.endsWith("Relic") ? `${relic.rarity}s` : `${relic.rarity} Relics`,
-              path: `/api/relics?rarity=${encodeURIComponent(relic.rarity)}&lang=${lang}`,
-            },
-          ]}
-        />
+          </div>
+        </aside>
       </div>
     </div>
   );

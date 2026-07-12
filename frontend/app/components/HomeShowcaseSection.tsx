@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { t } from "@/lib/ui-translations";
 
@@ -12,13 +13,18 @@ interface ShowcaseProject {
   author: string;
 }
 
-const CATEGORY_BADGE: Record<string, string> = {
-  api: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
-  widget: "bg-purple-500/20 text-purple-300 border-purple-500/30",
-  bot: "bg-blue-500/20 text-blue-300 border-blue-500/30",
-  app: "bg-amber-500/20 text-amber-300 border-amber-500/30",
-  tool: "bg-rose-500/20 text-rose-300 border-rose-500/30",
-  content: "bg-red-500/20 text-red-300 border-red-500/30",
+const ARROW = (
+  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
+
+/** Category to a chip colour (drives `--cc` on the card). */
+const CATEGORY_CC: Record<string, string> = {
+  api: "#23935b",
+  widget: "#9b6bd6",
+  bot: "#3873a9",
+  app: "#e8b830",
+  tool: "#bf5a85",
+  content: "#d53b27",
 };
 
 /** Mirrors the read pattern in `app/showcase/page.tsx`, Docker mount
@@ -65,48 +71,41 @@ export default async function HomeShowcaseSection({
   if (items.length === 0) return null;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="flex items-baseline justify-between gap-3 mb-5">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
-          {t("Community", lang)}{" "}
-          <span className="text-[var(--accent-gold)]">{t("Showcase", lang)}</span>
-        </h2>
-        <Link
-          href={`${langPrefix}/showcase`}
-          className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          <span>{t("View more", lang)}</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
+    <div className="rvmp">
+      <section className="hb">
+        <div className="hsec">
+          <div className="s-head">
+            <h2>{t("Showcase", lang)}</h2>
+            <Link className="viewmore" href={`${langPrefix}/showcase`}>
+              {t("View more", lang)} {ARROW}
+            </Link>
+          </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {items.map((p) => {
-          const badge = CATEGORY_BADGE[p.category] ?? "bg-[var(--bg-card)] text-[var(--text-secondary)] border-[var(--border-subtle)]";
-          return (
-            <a
-              key={p.id}
-              href={p.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/30 transition-all flex flex-col p-5 gap-2"
-            >
-              <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider">
-                <span className={`px-2 py-0.5 rounded border ${badge}`}>{p.category}</span>
-              </div>
-              <h3 className="text-lg font-semibold text-[var(--text-primary)] leading-tight group-hover:text-[var(--accent-gold)] transition-colors">
-                {p.name}
-              </h3>
-              <p className="text-sm text-[var(--text-secondary)] leading-snug line-clamp-3 flex-1">
-                {p.description}
-              </p>
-              <p className="text-xs text-[var(--text-muted)] mt-1">
-                By <span className="text-[var(--text-secondary)]">{p.author}</span>
-              </p>
-            </a>
-          );
-        })}
-      </div>
-    </section>
+          <div className="newsrow">
+            {items.map((p) => {
+              const cc = CATEGORY_CC[p.category] ?? "var(--gold)";
+              return (
+                <a
+                  key={p.id}
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="scard scard-lg"
+                  style={{ ["--cc"]: cc } as CSSProperties}
+                >
+                  <span className="scard-txt">
+                    <span className="scard-t">{p.name}</span>
+                    <span className="scard-d">{p.description}</span>
+                    <span className="scard-by">
+                      {p.category} · {t("by", lang)} {p.author}
+                    </span>
+                  </span>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

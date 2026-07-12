@@ -6,10 +6,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { t } from "@/lib/ui-translations";
+import { useLanguage } from "@/app/contexts/LanguageContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }) {
+  const { lang } = useLanguage();
   const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
@@ -24,13 +27,16 @@ export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }
         Beta{version ? ` ${version}` : ""}
       </span>
       <span className="text-[var(--text-muted)] truncate">
-        Preview content; numbers and text can change before they reach main.
+        {t(
+          "Preview content; numbers and text can change before they reach main.",
+          lang,
+        )}
       </span>
       <Link
         href={stablePath}
         className="ml-auto shrink-0 text-emerald-300 hover:text-emerald-200 hover:underline"
       >
-        Switch to main →
+        {t("Switch to main", lang)} →
       </Link>
     </div>
   );

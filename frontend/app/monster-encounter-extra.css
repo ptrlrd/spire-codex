@@ -1,0 +1,44 @@
+/* Extra wiki-layout styles for the Monster + Encounter detail pages. Scoped under
+   .card-rvmp so nothing leaks. Reuses the tokens defined by card-revamp.css
+   (--surface, --border, --spine, --serif, --mono, etc.); this file only adds the
+   handful of pieces those pages need on top of the shared card styles. */
+
+/* back link rendered as a <button> (router.back()) — strip button chrome so it
+   matches the .cd-back anchor styling from card-revamp.css */
+.card-rvmp button.cd-back { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; }
+
+/* infobox sprite (monsters). Transparent PNG on a subtle spine-tinted backing. */
+.card-rvmp .sprite { display: block; width: 100%; height: auto; max-height: 360px; object-fit: contain;
+  border-radius: 11px; padding: 14px; border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--spine) 8%, var(--surface)); }
+
+/* shared pill row (innate powers, move effects) */
+.card-rvmp .pills { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* ── moves list ── */
+.card-rvmp .moves { display: grid; gap: 12px; }
+.card-rvmp .move { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+.card-rvmp .move-head { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  margin-bottom: 10px; flex-wrap: wrap; }
+.card-rvmp .move-name { font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--text); }
+.card-rvmp .intents { display: flex; gap: 6px; flex-wrap: wrap; }
+.card-rvmp .intent { font-family: var(--mono); font-size: 11px; letter-spacing: .03em; padding: 3px 9px;
+  border-radius: 999px; border: 1px solid var(--border-2); background: var(--surface-2); }
+.card-rvmp .mstats { display: grid; gap: 7px; }
+.card-rvmp .mrow { display: flex; align-items: center; gap: 10px; font-size: 14px; }
+.card-rvmp .mrow.eff { align-items: flex-start; }
+.card-rvmp .mrow .mk { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--text-2); width: 62px; flex: none; }
+.card-rvmp .mrow .mval { color: var(--text); font-weight: 500; font-variant-numeric: tabular-nums; }
+.card-rvmp .mrow .masc { font-size: 12px; color: var(--warn); font-variant-numeric: tabular-nums; }
+
+/* ── encounter/appears-in list ── */
+.card-rvmp .enc-list { display: grid; gap: 8px; }
+.card-rvmp .enc-row { display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  background: var(--surface); border: 1px solid var(--border-2); border-radius: 8px; padding: 9px 13px; color: var(--text); }
+.card-rvmp .enc-row:hover { border-color: var(--gold); background: var(--surface-2); }
+.card-rvmp .enc-name { font-size: 14px; color: var(--text); }
+.card-rvmp .enc-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.card-rvmp .badge { font-family: var(--mono); font-size: 11px; padding: 2px 8px; border-radius: 999px;
+  border: 1px solid var(--border-2); color: var(--text-2); }
+.card-rvmp .chip .cn { color: var(--text); }

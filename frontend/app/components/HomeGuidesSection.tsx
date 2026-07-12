@@ -17,18 +17,15 @@ interface GuideStub {
   tags?: string[];
 }
 
-const CATEGORY_ACCENTS: Record<string, string> = {
-  general: "from-amber-500/30 to-amber-700/10",
-  character: "from-rose-500/30 to-rose-700/10",
-  strategy: "from-emerald-500/30 to-emerald-700/10",
-  boss: "from-red-500/30 to-red-800/10",
-};
-
 const DIFFICULTY_LABEL: Record<string, string> = {
   beginner: "Beginner",
   intermediate: "Intermediate",
   advanced: "Advanced",
 };
+
+const ARROW = (
+  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
 
 async function loadLatestGuides(): Promise<GuideStub[]> {
   try {
@@ -56,57 +53,39 @@ export default async function HomeGuidesSection({
   const guidesBase = `${langPrefix}/guides`;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="flex items-baseline justify-between gap-3 mb-5">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
-          {t("Community", lang)}{" "}
-          <span className="text-[var(--accent-gold)]">{t("Guides", lang)}</span>
-        </h2>
-        <Link
-          href={guidesBase}
-          className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          <span>{t("View more", lang)}</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {guides.map((g) => {
-          const accent =
-            CATEGORY_ACCENTS[g.category] ?? "from-[var(--accent-gold)]/30 to-[var(--accent-red)]/10";
-          const difficulty = g.difficulty ? DIFFICULTY_LABEL[g.difficulty] ?? g.difficulty : null;
-          return (
-            <Link
-              key={g.slug}
-              href={`${guidesBase}/${g.slug}`}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/30 transition-all flex flex-col"
-            >
-              <div className={`absolute inset-0 bg-gradient-to-br ${accent} opacity-60 group-hover:opacity-90 transition-opacity`} />
-              <div className="relative p-5 flex flex-col gap-2 flex-1">
-                <div className="flex items-center gap-2 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                  <span className="font-semibold text-[var(--accent-gold)]">{g.category}</span>
-                  {difficulty && (
-                    <>
-                      <span aria-hidden>·</span>
-                      <span>{difficulty}</span>
-                    </>
-                  )}
-                </div>
-                <h3 className="text-lg font-semibold text-[var(--text-primary)] leading-tight group-hover:text-[var(--accent-gold)] transition-colors line-clamp-2">
-                  {g.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)] leading-snug line-clamp-3 flex-1">
-                  {g.summary}
-                </p>
-                <p className="text-xs text-[var(--text-muted)] mt-1">
-                  By <span className="text-[var(--text-secondary)]">{g.author}</span>
-                </p>
-              </div>
+    <div className="rvmp">
+      <section className="hb">
+        <div className="hsec">
+          <div className="s-head">
+            <h2>{t("Guides", lang)}</h2>
+            <Link className="viewmore" href={guidesBase}>
+              {t("View more", lang)} {ARROW}
             </Link>
-          );
-        })}
-      </div>
-    </section>
+          </div>
+
+          <div className="newsrow">
+            {guides.map((g) => {
+              const difficulty = g.difficulty ? DIFFICULTY_LABEL[g.difficulty] ?? g.difficulty : null;
+              return (
+                <Link key={g.slug} href={`${guidesBase}/${g.slug}`} className="gcard">
+                  <span className="gcard-k">
+                    {g.category}
+                    {difficulty ? ` · ${difficulty}` : ""}
+                  </span>
+                  <span className="gcard-t">{g.title}</span>
+                  <span className="gcard-d">{g.summary}</span>
+                  <span className="gcard-foot">
+                    <span className="gcard-by">
+                      By <span style={{ color: "var(--text-2)" }}>{g.author}</span>
+                    </span>
+                    <span className="gcard-more">{t("View more", lang)} {ARROW}</span>
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

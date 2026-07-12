@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import type { Card } from "@/lib/api";
@@ -18,32 +18,31 @@ import EntityRunStats from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
+import "../../card-revamp.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-const colorMapSolid: Record<string, string> = {
-  ironclad: "border-[var(--color-ironclad)]",
-  silent: "border-[var(--color-silent)]",
-  defect: "border-[var(--color-defect)]",
-  necrobinder: "border-[var(--color-necrobinder)]",
-  regent: "border-[var(--color-regent)]",
-  colorless: "border-[var(--color-colorless)]",
-  curse: "border-[var(--color-curse)]",
-  status: "border-gray-600",
+// Per-entity character accent for the wiki page spine (--spine).
+const SPINE_COLOR: Record<string, string> = {
+  ironclad: "var(--color-ironclad)",
+  silent: "var(--color-silent)",
+  defect: "var(--color-defect)",
+  necrobinder: "var(--color-necrobinder)",
+  regent: "var(--color-regent)",
+  colorless: "var(--color-colorless)",
+  curse: "var(--color-curse)",
+  status: "var(--text-muted)",
 };
 
-const rarityColors: Record<string, string> = {
-  Basic: "text-gray-400",
-  Common: "text-gray-300",
-  Uncommon: "text-blue-400",
-  Rare: "text-[var(--accent-gold)]",
-  Ancient: "text-purple-400",
-  Curse: "text-red-400",
-  Status: "text-gray-500",
-  Event: "text-emerald-400",
-  Token: "text-gray-500",
-  Quest: "text-amber-400",
-};
+// Headline figures for the infobox mini-stats block. Same endpoint EntityRunStats
+// fetches, so cachedFetch dedupes it (no extra request).
+interface MiniStats {
+  picks: number;
+  win_rate: number;
+  pick_rate: number;
+  score: number | null;
+  elo: number | null;
+}
 
 const typeIcons: Record<string, string> = {
   Attack: "\u2694",
@@ -151,8 +150,6 @@ function getMerchantPriceRange(rarity: string, color: string): { min: number; ma
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
 }
 
-type Tab = "overview" | "details" | "stats" | "info" | "enchantments";
-
 export default function CardDetail({ initialCard, initialEnchantments }: { initialCard?: Card | null; initialEnchantments?: string[] } = {}) {
   const params = useParams();
   const id = params.id as string;
@@ -167,28 +164,18 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
   const [cardImgFailed, setCardImgFailed] = useState(false);
-  // Hero display: "card" = full game render image (default), "detail" = the
-  // interactive CSS card render.
-  const [cardMode, setCardMode] = useState<"card" | "detail">("card");
-  useEffect(() => {
-    // Key bumped to -v2 to reset everyone to the 1:1 card render once, since
-    // it's now the default. Visitors can still switch back to "detail".
-    const saved = localStorage.getItem("card-detail-view-v2");
-    if (saved === "card" || saved === "detail") setCardMode(saved);
-  }, []);
-  const toggleCardMode = () => {
-    const next = cardMode === "card" ? "detail" : "card";
-    setCardMode(next);
-    localStorage.setItem("card-detail-view-v2", next);
-  };
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
-  const [tab, setTab] = useState<Tab>("overview");
+  // Enchantment chosen in the infobox variant switcher ("none" = plain render).
+  const [selectedEnch, setSelectedEnch] = useState<string>("none");
+  // Scroll-spy: which section the ToC highlights.
+  const [activeSection, setActiveSection] = useState<string>("performance");
+  const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [orbData, setOrbData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   // Enchantments this card can take (server-passed, from the render manifest)
-  // + their localized name/description for the Enchantments tab.
+  // + their localized name/description for the Enchantments section + switcher.
   const cardEnchantments = initialEnchantments ?? [];
   const [enchMeta, setEnchMeta] = useState<Record<string, { id: string; name: string; description: string; image_url: string | null }>>({});
 
@@ -246,6 +233,43 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
         });
   }, [lang]);
 
+  // Headline community numbers for the infobox mini block. Hits the same URL
+  // EntityRunStats fetches, so cachedFetch serves it from cache.
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<MiniStats>(`${API}/api/runs/stats/cards/${id}`)
+      .then(setMiniStats)
+      .catch(() => {});
+  }, [id]);
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!card) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [card, cardEnchantments.length]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -302,404 +326,503 @@ export default function CardDetail({ initialCard, initialEnchantments }: { initi
   const priceRange = getMerchantPriceRange(card.rarity_key || card.rarity, card.color);
   const displayKeywords = [...display.visibleKeywords, ...display.addedKeywords];
 
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("Overview", lang) },
-    { key: "details", label: t("Details", lang) },
-    { key: "stats", label: t("Stats", lang) },
-    ...(cardEnchantments.length > 0
-      ? [{ key: "enchantments" as Tab, label: t("Enchants", lang) }]
-      : []),
-    { key: "info", label: t("Info", lang) },
+  const interactiveWords = buildInteractiveWords(
+    displayKeywords,
+    powerData,
+    keywordData,
+    glossaryData,
+    orbData,
+    lp,
+  );
+
+  const spineColor = SPINE_COLOR[card.color] ?? "var(--accent-gold)";
+  const characterLabel = card.color
+    ? card.color.charAt(0).toUpperCase() + card.color.slice(1)
+    : "—";
+  const costLabel = card.is_x_cost ? "X" : cost != null && cost < 0 ? "U" : String(cost);
+  const targetLabel =
+    card.target && card.target !== "None" && card.target !== "Self"
+      ? card.target.replace(/([A-Z])/g, " $1").trim()
+      : null;
+  // Plain-text lede from the card effect (rich tags + newlines stripped).
+  const ledeText = descText
+    ? descText.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+
+  const enchActive = selectedEnch !== "none" && cardEnchantments.includes(selectedEnch);
+  // Infobox render: enchanted render > raw artwork (detail / beta / variant /
+  // failed full render) > full engine render. Mirrors the old image logic while
+  // driving off the new variant switcher.
+  const renderSrc = enchActive
+    ? enchantedCardUrl(card.id.toLowerCase(), selectedEnch, isUpgraded, channel, lang)
+    : betaArt || variantImg || cardImgFailed
+      ? imageUrl(imgUrl)
+      : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang);
+
+  const tocItems: { id: string; label: string }[] = [
+    { id: "performance", label: t("Community", lang) },
+    { id: "description", label: t("Description", lang) },
+    { id: "relations", label: t("Relations", lang) },
+    { id: "history", label: t("Version history", lang) },
   ];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link
-        href={`${lp}/cards`}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Cards", lang)}
-      </Link>
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": spineColor,
+        ...(imgUrl ? { "--entity-bg": `url("${imageUrl(imgUrl)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <Link href={`${lp}/cards`} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Cards", lang)}
+        </Link>
+        <div style={{ marginTop: 12 }}>
+          <BetaDiffNotice entityType="cards" entityId={card.id} />
+        </div>
+      </div>
 
-      <BetaDiffNotice entityType="cards" entityId={card.id} />
-
-      <div
-        className={`bg-[var(--bg-card)] rounded-2xl border-2 ${
-          isUpgraded
-            ? "border-emerald-600"
-            : colorMapSolid[card.color] || "border-[var(--border-subtle)]"
-        } shadow-2xl shadow-black/50`}
-      >
-        {cardMode === "card" ? (
-          // Full game-rendered card (engine render from the CDN). Margins are
-          // baked in so it can't clip; ancients animate. Falls back to the
-          // portrait if there's no full render (e.g. mad_science).
-          <div className="bg-black/40 rounded-t-2xl flex justify-center py-6 px-4">
-            <img
-              src={
-                cardImgFailed
-                  ? imageUrl(imgUrl)
-                  : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang)
-              }
-              alt={`${card.name}${isUpgraded ? "+" : ""} - Slay the Spire 2`}
-              className="w-[300px] max-w-full h-auto drop-shadow-[0_4px_14px_rgba(0,0,0,0.55)]"
-              crossOrigin="anonymous"
-              onError={() => setCardImgFailed(true)}
-            />
-          </div>
-        ) : (
-          // Raw card artwork (the painting), the way spire-codex.com shows it.
-          // Respects the beta-art / variant toggles via imgUrl.
-          <div className="bg-black/40 rounded-t-2xl flex justify-center p-4">
-            <img
-              src={imageUrl(imgUrl)}
-              alt={`${card.name} artwork - Slay the Spire 2`}
-              className="w-full max-w-[460px] h-auto rounded-lg"
-              crossOrigin="anonymous"
-            />
-          </div>
-        )}
-
-        <div className="p-5 sm:p-6">
-          {/* Header: Name + Cost */}
-          <div className="flex items-start justify-between mb-4">
-            <h1 className="text-2xl font-bold text-[var(--text-primary)] leading-tight">
-              {card.name}
-              {isUpgraded && <span className="text-emerald-400">+</span>}
-            </h1>
-            <div className="ml-3 flex-shrink-0 flex items-center gap-1.5">
-              <span
-                className={`inline-flex items-center justify-center w-10 h-10 rounded-full bg-[var(--bg-primary)] border text-xl font-bold ${
-                  isUpgraded && display.upgrade?.cost != null
-                    ? "border-emerald-700/50 text-emerald-400"
-                    : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
-                }`}
-              >
-                {card.is_x_cost ? "X" : cost != null && cost < 0 ? "U" : cost}
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero (artwork lives in the page background now, not inline) */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{characterLabel}</span>
+              <span>&middot;</span>
+              <span>{card.rarity}</span>
+              <span>&middot;</span>
+              <span>
+                {typeIcons[displayType] || ""} {displayType}
               </span>
+              <span>&middot;</span>
+              <span>{costLabel} {t("Energy", lang)}</span>
               {(card.star_cost != null || card.is_x_star_cost) && (
-                <span className="inline-flex items-center gap-0.5 px-2 py-1 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
-                  {card.is_x_star_cost ? "X" : card.star_cost}
-                  <img
-                    src={imageUrl("/static/images/icons/star_icon.webp")}
-                    alt="star"
-                    className="w-4 h-4"
-                    crossOrigin="anonymous"
-                  />
-                </span>
+                <>
+                  <span>&middot;</span>
+                  <span>{card.is_x_star_cost ? "X" : card.star_cost} &#9733;</span>
+                </>
               )}
-            </div>
+            </p>
+            <h1>
+              {card.name}
+              {isUpgraded && <span className="up">+</span>}
+            </h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
 
-          {/* Metadata: Type / Rarity / Color / Target */}
-          <div className="flex items-center gap-2 mb-5 text-sm">
-            <span className="text-[var(--text-secondary)]">
-              {typeIcons[displayType] || ""} {displayType}
-            </span>
-            <span className="text-[var(--text-muted)]">&middot;</span>
-            <span className={rarityColors[card.rarity] || "text-gray-400"}>
-              {card.rarity}
-            </span>
-            <span className="text-[var(--text-muted)]">&middot;</span>
-            <span className="text-[var(--text-muted)] capitalize">
-              {card.color}
-            </span>
-            {card.target && card.target !== "None" && card.target !== "Self" && (
-              <>
-                <span className="text-[var(--text-muted)]">&middot;</span>
-                <span className="text-[var(--text-muted)]">
-                  {card.target.replace(/([A-Z])/g, " $1").trim()}
-                </span>
-              </>
-            )}
-          </div>
-
-          {/* Type Variant Toggle */}
-          {hasVariants && card.type_variants && (
-            <div className="flex gap-1.5 mb-4">
-              {Object.entries(card.type_variants).map(([key, v]) => (
-                <button
-                  key={key}
-                  onClick={() => setSelectedVariant(selectedVariant === key ? null : key)}
-                  className={`text-xs px-3 py-1.5 rounded-lg border transition-colors ${
-                    (selectedVariant === key || (!selectedVariant && key === card.type.toLowerCase()))
-                      ? "bg-[var(--accent-gold)]/10 border-[var(--accent-gold)]/40 text-[var(--accent-gold)]"
-                      : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                  }`}
-                >
-                  {typeIcons[v.type] || ""} {v.type}
-                </button>
-              ))}
-            </div>
-          )}
-
-          {/* Tabs */}
-          <div className="flex items-center gap-1 mb-5 border-b border-[var(--border-subtle)]">
-            {/* Tabs scroll horizontally so the bar never runs off a narrow
-                screen; the toggle buttons stay pinned on the right. */}
-            <div className="flex gap-1 overflow-x-auto min-w-0 flex-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {tabs.map((tb) => (
-                <button
-                  key={tb.key}
-                  onClick={() => setTab(tb.key)}
-                  className={`shrink-0 whitespace-nowrap px-2.5 sm:px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                    tab === tb.key
-                      ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                      : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                  }`}
-                >
-                  {tb.label}
-                </button>
-              ))}
-            </div>
-
-            {/* Toggle buttons in tab bar */}
-            <div className="shrink-0 flex items-center gap-1.5">
-              <button
-                onClick={toggleCardMode}
-                className={`text-sm w-8 h-8 flex items-center justify-center rounded transition-colors ${
-                  cardMode === "detail"
-                    ? "bg-sky-950/60 border border-sky-700/50"
-                    : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
-                }`}
-                title={cardMode === "card" ? "Switch to detailed view" : "Switch to card view"}
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
               >
-                🎨
-              </button>
-              {hasBetaArt && (
-                <button
-                  onClick={() => setBetaArt(!betaArt)}
-                  className={`text-sm w-8 h-8 flex items-center justify-center rounded transition-colors ${
-                    betaArt
-                      ? "bg-amber-950/60 border border-amber-700/50"
-                      : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
-                  }`}
-                  title={betaArt ? "Show normal art" : "Show beta art"}
-                >
-                  ✏️
-                </button>
-              )}
-              {hasUpgrade && (
-                <button
-                  onClick={() => setUpgraded(!upgraded)}
-                  className={`text-sm w-8 h-8 flex items-center justify-center rounded transition-colors ${
-                    upgraded
-                      ? "bg-emerald-950/60 border border-emerald-700/50"
-                      : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
-                  }`}
-                  title={upgraded ? "Show base card" : "Show upgraded"}
-                >
-                  🔨
-                </button>
-              )}
-            </div>
-          </div>
+                {it.label}
+              </a>
+            ))}
+          </nav>
 
-          {/* ===== Overview Tab ===== */}
-          {tab === "overview" && (
-            <>
-              {/* Description, show all variants if available */}
-              {hasVariants && card.type_variants ? (
-                <div className="space-y-3 mb-5">
-                  {Object.entries(card.type_variants).map(([key, v]) => {
-                    const isActive = selectedVariant === key || (!selectedVariant && key === card.type.toLowerCase());
-                    return (
+          {/* Community performance (featured first) */}
+          <section id="performance">
+            <h2>{t("Community performance", lang)}</h2>
+            <p className="h-note">
+              {t(
+                "Live aggregate across community-submitted runs. Filter by bracket to see how it holds up at higher levels of play.",
+                lang,
+              )}
+            </p>
+            <EntityRunStats
+              entityType="cards"
+              entityId={id}
+              entityName={card.name}
+              variant="wiki"
+            />
+          </section>
+
+          {/* Description */}
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+
+            {/* Type variant toggle (re-scopes description + render) */}
+            {hasVariants && card.type_variants && (
+              <div className="vtoggle">
+                {Object.entries(card.type_variants).map(([key, v]) => {
+                  const on =
+                    selectedVariant === key ||
+                    (!selectedVariant && key === card.type.toLowerCase());
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      className={`vbtn${on ? " on" : ""}`}
+                      onClick={() =>
+                        setSelectedVariant(selectedVariant === key ? null : key)
+                      }
+                    >
+                      {typeIcons[v.type] || ""} {v.type}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {hasVariants && card.type_variants ? (
+              <div className="space-y-3">
+                {Object.entries(card.type_variants).map(([key, v]) => {
+                  const isActive =
+                    selectedVariant === key ||
+                    (!selectedVariant && key === card.type.toLowerCase());
+                  return (
+                    <div
+                      key={key}
+                      className={`text-sm leading-relaxed rounded-lg border transition-colors overflow-hidden ${
+                        isActive
+                          ? "border-[var(--accent-gold)]/30"
+                          : "border-[var(--border-subtle)] opacity-60"
+                      }`}
+                    >
                       <div
-                        key={key}
-                        className={`text-sm leading-relaxed rounded-lg border transition-colors overflow-hidden ${
-                          isActive
-                            ? "border-[var(--accent-gold)]/30"
-                            : "border-[var(--border-subtle)] opacity-60"
+                        className={`px-3 py-2 ${
+                          isActive ? "bg-[var(--accent-gold)]/5" : "bg-[var(--bg-primary)]/50"
                         }`}
                       >
-                        <div className={`px-3 py-2 ${isActive ? "bg-[var(--accent-gold)]/5" : "bg-[var(--bg-primary)]/50"}`}>
-                          <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mr-2">
-                            {typeIcons[v.type] || ""} {v.type}
+                        <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mr-2">
+                          {typeIcons[v.type] || ""} {v.type}
+                        </span>
+                        {v.description ? (
+                          <span className="text-[var(--text-secondary)]">
+                            <RichDescription text={v.description} energyIcon={energyIcon} />
                           </span>
-                          {v.description ? (
-                            <span className="text-[var(--text-secondary)]">
-                              <RichDescription text={v.description} energyIcon={energyIcon} />
-                            </span>
-                          ) : null}
-                        </div>
-                        {v.riders && v.riders.length > 0 && (
-                          <div className="border-t border-[var(--border-subtle)] px-3 py-2 space-y-1.5">
-                            {v.riders.map((r) => (
-                              <div key={r.id} className="flex items-start gap-2 text-xs">
-                                <span className="font-medium text-[var(--accent-gold)] whitespace-nowrap flex-shrink-0">
-                                  + {r.name}
-                                </span>
-                                <span className="text-[var(--text-secondary)]">
-                                  <RichDescription text={r.description} energyIcon={energyIcon} />
-                                </span>
-                              </div>
-                            ))}
-                          </div>
-                        )}
+                        ) : null}
                       </div>
+                      {v.riders && v.riders.length > 0 && (
+                        <div className="border-t border-[var(--border-subtle)] px-3 py-2 space-y-1.5">
+                          {v.riders.map((r) => (
+                            <div key={r.id} className="flex items-start gap-2 text-xs">
+                              <span className="font-medium text-[var(--accent-gold)] whitespace-nowrap flex-shrink-0">
+                                + {r.name}
+                              </span>
+                              <span className="text-[var(--text-secondary)]">
+                                <RichDescription text={r.description} energyIcon={energyIcon} />
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <>
+                <div className="desc-quote">
+                  <RichDescription
+                    text={descText}
+                    energyIcon={energyIcon}
+                    relatedCards={spawnedCards.map((sc): RelatedCard => ({
+                      id: sc.id,
+                      name: sc.name,
+                      image_url: sc.image_url,
+                      type: sc.type,
+                      rarity: sc.rarity,
+                      cost: sc.cost,
+                    }))}
+                    interactiveWords={interactiveWords}
+                  />
+                </div>
+                {keywordText && (
+                  <div className="desc-body">
+                    <RichDescription
+                      text={keywordText}
+                      energyIcon={energyIcon}
+                      interactiveWords={interactiveWords}
+                    />
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* Powers applied */}
+            {card.powers_applied && card.powers_applied.length > 0 && (
+              <>
+                <h3 className="subh">{t("Powers Applied", lang)}</h3>
+                <div className="pow-list">
+                  {card.powers_applied.map((pa) => {
+                    const powerName = pa.power_key || pa.power;
+                    const powerId = powerName
+                      .replace(/([A-Z])/g, "_$1")
+                      .replace(/^_/, "")
+                      .toUpperCase();
+                    const prettyName = pa.power.replace(/([A-Z])/g, " $1").trim();
+                    const data = powerData[pa.power.toLowerCase()];
+                    return (
+                      <HoverTooltip key={pa.power} title={prettyName} content={data?.description}>
+                        <Link href={`${lp}/powers/${powerId}`}>
+                          {prettyName}
+                          {pa.amount ? ` ${pa.amount}` : ""}
+                        </Link>
+                      </HoverTooltip>
                     );
                   })}
                 </div>
-              ) : (
-                <div className="text-sm text-[var(--text-secondary)] leading-relaxed mb-5 space-y-2">
-                  <div>
-                    <RichDescription
-                      text={descText}
-                      energyIcon={energyIcon}
-                      relatedCards={spawnedCards.map((sc): RelatedCard => ({
-                        id: sc.id,
-                        name: sc.name,
-                        image_url: sc.image_url,
-                        type: sc.type,
-                        rarity: sc.rarity,
-                        cost: sc.cost,
-                      }))}
-                      interactiveWords={buildInteractiveWords(displayKeywords, powerData, keywordData, glossaryData, orbData, lp)}
-                    />
-                  </div>
-                  {keywordText && (
-                    <div>
-                      <RichDescription
-                        text={keywordText}
-                        energyIcon={energyIcon}
-                        interactiveWords={buildInteractiveWords(displayKeywords, powerData, keywordData, glossaryData, orbData, lp)}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
+              </>
+            )}
+          </section>
 
-            </>
-          )}
-
-          {/* ===== Details Tab ===== */}
-          {tab === "details" && (
-            <>
-              {/* Merchant Price, bare gold-icon + range, no pill box */}
-              {priceRange && (
-                <div className="mb-5">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    {t("Merchant Price", lang)}
-                  </h3>
-                  <div className="flex items-center gap-2 text-sm">
-                    <img
-                      src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
-                      alt="Gold"
-                      className="w-5 h-5"
-                      crossOrigin="anonymous"
-                    />
-                    <span className="text-[var(--accent-gold)] font-medium">
-                      {priceRange.min}–{priceRange.max}
-                    </span>
-                    {card.color === "colorless" && (
-                      <span className="text-xs text-[var(--text-muted)]">
-                        (15% colorless markup)
-                      </span>
-                    )}
+          {/* Relations */}
+          <section id="relations">
+            <h2>{t("Relations", lang)}</h2>
+            <p className="h-note">
+              {t("What this card makes, and what else interacts with it.", lang)}
+            </p>
+            <div className="rel">
+              {spawnedCards.length > 0 && (
+                <div className="rel-block">
+                  <div className="rl">{t("Generates", lang)}</div>
+                  <div className="chips">
+                    {spawnedCards.map((sc) => (
+                      <Link
+                        key={sc.id}
+                        href={`${lp}/cards/${sc.id.toLowerCase()}`}
+                        className="cardlink"
+                      >
+                        {sc.image_url && (
+                          <img
+                            className="cardimg xs"
+                            src={imageUrl(sc.image_url)}
+                            alt=""
+                            crossOrigin="anonymous"
+                          />
+                        )}
+                        <span>
+                          <span className="cln">{sc.name}</span>
+                          <span className="cls">{sc.type}</span>
+                        </span>
+                      </Link>
+                    ))}
                   </div>
                 </div>
               )}
-
-              {/* Powers Applied, vertical list, hyperlinked, hover tooltip */}
-              {card.powers_applied && card.powers_applied.length > 0 && (
-                <div className="mb-5">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                    {t("Powers Applied", lang)}
-                  </h3>
-                  <ul className="space-y-1">
-                    {card.powers_applied.map((pa) => {
-                      const powerName = pa.power_key || pa.power;
-                      const powerId = powerName.replace(/([A-Z])/g, "_$1").replace(/^_/, "").toUpperCase();
-                      const prettyName = pa.power.replace(/([A-Z])/g, " $1").trim();
-                      const data = powerData[pa.power.toLowerCase()];
-                      return (
-                        <li key={pa.power}>
-                          <HoverTooltip title={prettyName} content={data?.description}>
-                            <Link
-                              href={`${lp}/powers/${powerId}`}
-                              className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-                            >
-                              {prettyName}
-                              {pa.amount ? ` ${pa.amount}` : ""}
-                            </Link>
-                          </HoverTooltip>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
-
-              {/* Related Cards */}
               <RelatedCards
                 currentId={id}
                 keywords={displayKeywords}
                 tags={card.tags}
                 color={card.color}
               />
-            </>
-          )}
+            </div>
+          </section>
 
-          {/* ===== Stats Tab, community run aggregates ===== */}
-          {tab === "stats" && card && (
-            <EntityRunStats entityType="cards" entityId={id} entityName={card.name} />
-          )}
+          {/* Version history + localized names */}
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="cards" entityId={id} />
+            <EntityHistory entityType="cards" entityId={id} />
+          </section>
+        </main>
 
-          {/* ===== Info Tab ===== */}
-          {tab === "info" && (
-            <>
-              <LocalizedNames entityType="cards" entityId={id} />
-              <EntityHistory entityType="cards" entityId={id} />
-            </>
-          )}
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            <img
+              key={renderSrc}
+              className="cardimg render cardframe"
+              src={renderSrc}
+              alt={`${card.name}${isUpgraded ? "+" : ""} - Slay the Spire 2`}
+              crossOrigin="anonymous"
+              onError={(e) => {
+                const el = e.currentTarget;
+                if (enchActive) {
+                  if (!el.dataset.fb) {
+                    el.dataset.fb = "1";
+                    el.src = enchantedCardUrl(card.id.toLowerCase(), selectedEnch, false, channel, lang);
+                  }
+                } else if (!betaArt && !variantImg) {
+                  setCardImgFailed(true);
+                }
+              }}
+            />
 
-          {/* ===== Enchantments Tab ===== */}
-          {tab === "enchantments" && (
-            <div>
-              <p className="text-sm text-[var(--text-muted)] mb-4">
-                Every enchantment {card.name} can take, rendered by the game.
-                {hasUpgrade ? " Toggle 🔨 to see the upgraded versions." : ""}
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {cardEnchantments.map((eid) => {
-                  const meta = enchMeta[eid];
-                  return (
-                    <Link
-                      key={eid}
-                      href={`${lp}/enchantments/${eid}`}
-                      className="group rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 hover:border-[var(--accent-gold)]/50 transition-colors"
-                    >
-                      <img
-                        src={enchantedCardUrl(card.id.toLowerCase(), eid, isUpgraded, channel, lang)}
-                        alt={`${card.name}${isUpgraded ? "+" : ""} with ${meta?.name ?? eid} - Slay the Spire 2`}
-                        className="w-full h-auto drop-shadow-[0_2px_8px_rgba(0,0,0,0.5)]"
-                        loading="lazy"
-                        crossOrigin="anonymous"
-                        onError={(e) => {
-                          // Upgraded-enchanted renders may not be uploaded yet;
-                          // fall back to the base-enchanted render once.
-                          const el = e.currentTarget;
-                          if (!el.dataset.fb) {
-                            el.dataset.fb = "1";
-                            el.src = enchantedCardUrl(card.id.toLowerCase(), eid, false, channel, lang);
-                          }
-                        }}
-                      />
-                      <div className="mt-1.5 text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                        {meta?.name ?? eid}
-                      </div>
-                      {meta?.description ? (
-                        <div className="text-xs text-[var(--text-secondary)] leading-snug mt-0.5">
-                          <RichDescription text={meta.description} />
-                        </div>
-                      ) : null}
-                    </Link>
-                  );
-                })}
+            {/* Variant switcher */}
+            <div className="variant">
+              {hasUpgrade && (
+                <div className="seg" role="group" aria-label={t("Card version", lang)}>
+                  <button
+                    type="button"
+                    className={`segbtn${!upgraded ? " on" : ""}`}
+                    onClick={() => setUpgraded(false)}
+                  >
+                    {t("Normal", lang)}
+                  </button>
+                  <button
+                    type="button"
+                    className={`segbtn${upgraded ? " on" : ""}`}
+                    onClick={() => setUpgraded(true)}
+                  >
+                    {t("Upgraded", lang)}
+                  </button>
+                </div>
+              )}
+
+              {cardEnchantments.length > 0 && (
+                <select
+                  className="ench-select"
+                  aria-label={t("Enchantment", lang)}
+                  value={selectedEnch}
+                  onChange={(e) => setSelectedEnch(e.target.value)}
+                >
+                  <option value="none">{t("No enchantment", lang)}</option>
+                  {cardEnchantments.map((eid) => (
+                    <option key={eid} value={eid}>
+                      {enchMeta[eid]?.name ?? eid}
+                    </option>
+                  ))}
+                </select>
+              )}
+
+              {hasBetaArt && (
+                <button
+                  type="button"
+                  className={`betabtn${betaArt ? " on" : ""}`}
+                  aria-pressed={betaArt}
+                  onClick={() => setBetaArt(!betaArt)}
+                >
+                  {t("Beta art", lang)}
+                </button>
+              )}
+
+              <div className="variant-cap">
+                {enchActive ? (
+                  <>
+                    {enchMeta[selectedEnch]?.name ?? selectedEnch}
+                    {isUpgraded ? " + Upgraded" : ""}
+                  </>
+                ) : betaArt ? (
+                  <>
+                    Beta art{isUpgraded ? " + Upgraded" : ""}
+                  </>
+                ) : (
+                  <>
+                    {isUpgraded ? "Upgraded" : "Normal"}
+                    {activeVariant ? ` · ${activeVariant.type}` : ""} render
+                  </>
+                )}
               </div>
             </div>
-          )}
-        </div>
+
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                <div className="frow">
+                  <dt>{t("Energy", lang)}</dt>
+                  <dd>{costLabel}</dd>
+                </div>
+                {(card.star_cost != null || card.is_x_star_cost) && (
+                  <div className="frow">
+                    <dt>{t("Star Cost", lang)}</dt>
+                    <dd>{card.is_x_star_cost ? "X" : card.star_cost}</dd>
+                  </div>
+                )}
+                <div className="frow">
+                  <dt>{t("Type", lang)}</dt>
+                  <dd>{displayType}</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Rarity", lang)}</dt>
+                  <dd>{card.rarity}</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Character", lang)}</dt>
+                  <dd style={{ color: "var(--spine)" }}>{characterLabel}</dd>
+                </div>
+                {targetLabel && (
+                  <div className="frow">
+                    <dt>{t("Target", lang)}</dt>
+                    <dd>{targetLabel}</dd>
+                  </div>
+                )}
+                {displayKeywords.length > 0 && (
+                  <div className="frow">
+                    <dt>{t("Keywords", lang)}</dt>
+                    <dd>
+                      {displayKeywords.map((kw) => (
+                        <span className="kw" key={kw}>
+                          {kw}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+                {spawnedCards.length > 0 && (
+                  <div className="frow">
+                    <dt>{t("Generates", lang)}</dt>
+                    <dd>
+                      {spawnedCards.map((sc, i) => (
+                        <span key={sc.id}>
+                          {i > 0 ? ", " : ""}
+                          <Link href={`${lp}/cards/${sc.id.toLowerCase()}`}>{sc.name}</Link>
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+                {priceRange && (
+                  <div className="frow">
+                    <dt>{t("Merchant Price", lang)}</dt>
+                    <dd>
+                      <img
+                        src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
+                        alt="Gold"
+                        style={{ width: 15, height: 15 }}
+                        crossOrigin="anonymous"
+                      />
+                      {priceRange.min}&ndash;{priceRange.max}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+
+            {/* Community mini-stats */}
+            {miniStats && miniStats.picks > 0 && (
+              <div className="mini">
+                <div className="mh">{t("Community", lang)}</div>
+                <div className="mg">
+                  <div>
+                    <div
+                      className="mv"
+                      style={{ color: miniStats.win_rate >= 50 ? "var(--good)" : "var(--warn)" }}
+                    >
+                      {miniStats.win_rate}%
+                    </div>
+                    <div className="ml">{t("Win rate", lang)}</div>
+                  </div>
+                  <div>
+                    <div className="mv">{miniStats.pick_rate}%</div>
+                    <div className="ml">{t("Pick rate", lang)}</div>
+                  </div>
+                  {miniStats.score != null && (
+                    <div>
+                      <div className="mv">{miniStats.score}</div>
+                      <div className="ml">{t("Codex Score", lang)}</div>
+                    </div>
+                  )}
+                  {miniStats.elo != null && (
+                    <div>
+                      <div className="mv">{Math.round(miniStats.elo)}</div>
+                      <div className="ml">Elo</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </div>
   );

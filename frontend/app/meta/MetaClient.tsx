@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
 import { Pills, PLAYER_OPTS } from "../components/PlayerCountPills";
@@ -171,6 +173,7 @@ type SortKey = "pick_rate" | "offered" | "in_decks" | "win_pct" | "name";
 
 export default function MetaClient() {
   const lp = useLangPrefix();
+  const { lang } = useLanguage();
   const [stats, setStats] = useState<CommunityStats | null>(null);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
@@ -281,61 +284,61 @@ export default function MetaClient() {
   })();
 
   if (loading && !stats) {
-    return <div className="max-w-5xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">Loading...</div>;
+    return <div className="max-w-5xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">{t("Loading...", lang)}</div>;
   }
 
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <StatsRebuildingNotice />
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">Community Meta</h1>
+      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">{t("Community Meta", lang)}</h1>
       <p className="text-[var(--text-secondary)] mb-4">
-        Aggregated stats from {stats?.total_runs || 0} submitted runs.{" "}
-        <Link href={`${lp}/runs`} className="text-[var(--accent-gold)] hover:underline">Submit yours</Link> to contribute.
+        {t("Aggregated stats from", lang)} {stats?.total_runs || 0} {t("submitted runs.", lang)}{" "}
+        <Link href={`${lp}/runs`} className="text-[var(--accent-gold)] hover:underline">{t("Submit yours", lang)}</Link> {t("to contribute.", lang)}
       </p>
 
       {/* Filters */}
       <div className="flex flex-wrap gap-2 mb-6">
         <select value={character} onChange={(e) => setCharacter(e.target.value)}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-          <option value="">All Characters</option>
-          <option value="IRONCLAD">Ironclad</option>
-          <option value="SILENT">Silent</option>
-          <option value="DEFECT">Defect</option>
-          <option value="NECROBINDER">Necrobinder</option>
-          <option value="REGENT">Regent</option>
+          <option value="">{t("All Characters", lang)}</option>
+          <option value="IRONCLAD">{t("Ironclad", lang)}</option>
+          <option value="SILENT">{t("Silent", lang)}</option>
+          <option value="DEFECT">{t("Defect", lang)}</option>
+          <option value="NECROBINDER">{t("Necrobinder", lang)}</option>
+          <option value="REGENT">{t("Regent", lang)}</option>
         </select>
         <select value={winFilter} onChange={(e) => setWinFilter(e.target.value)}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-          <option value="">All Runs</option>
-          <option value="true">Wins</option>
-          <option value="false">Losses</option>
-          <option value="abandoned">Abandoned</option>
+          <option value="">{t("All Runs", lang)}</option>
+          <option value="true">{t("Wins", lang)}</option>
+          <option value="false">{t("Losses", lang)}</option>
+          <option value="abandoned">{t("Abandoned", lang)}</option>
         </select>
         <select value={ascension} onChange={(e) => setAscension(e.target.value)}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-          <option value="">All Ascensions</option>
+          <option value="">{t("All Ascensions", lang)}</option>
           {Array.from({ length: 11 }, (_, i) => (
-            <option key={i} value={String(i)}>Ascension {i}</option>
+            <option key={i} value={String(i)}>{t("Ascension", lang)} {i}</option>
           ))}
         </select>
         <select value={gameMode} onChange={(e) => setGameMode(e.target.value)}
           className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]">
-          <option value="">All Game Types</option>
-          <option value="standard">Standard</option>
-          <option value="daily">Daily</option>
-          <option value="custom">Custom</option>
+          <option value="">{t("All Game Types", lang)}</option>
+          <option value="standard">{t("Standard", lang)}</option>
+          <option value="daily">{t("Daily", lang)}</option>
+          <option value="custom">{t("Custom", lang)}</option>
         </select>
         <Pills
           options={PLAYER_OPTS}
           value={playerMode}
           onChange={setPlayerMode}
-          ariaLabel="Filter by player count"
+          ariaLabel={t("Filter by player count", lang)}
         />
-        {loading && <span className="text-xs text-[var(--text-muted)] self-center">Updating...</span>}
+        {loading && <span className="text-xs text-[var(--text-muted)] self-center">{t("Updating...", lang)}</span>}
       </div>
 
       {!stats || stats.total_runs === 0 ? (
-        <div className="text-center py-12 text-[var(--text-muted)]">No runs match these filters.</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">{t("No runs match these filters.", lang)}</div>
       ) : (
         <div className="space-y-4">
           {/* Overview */}
@@ -343,19 +346,19 @@ export default function MetaClient() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-4">
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-[var(--text-primary)]">{stats.total_runs}</div>
-                <div className="text-xs text-[var(--text-muted)]">Runs</div>
+                <div className="text-xs text-[var(--text-muted)]">{t("Runs", lang)}</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
-                <div className="text-xs text-[var(--text-muted)]">Wins</div>
+                <div className="text-xs text-[var(--text-muted)]">{t("Wins", lang)}</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-red-400">{(stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0)}</div>
-                <div className="text-xs text-[var(--text-muted)]">Losses</div>
+                <div className="text-xs text-[var(--text-muted)]">{t("Losses", lang)}</div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3">
                 <div className="text-2xl font-bold text-[var(--accent-gold)]">{stats.win_rate}%</div>
-                <div className="text-xs text-[var(--text-muted)]">Win Rate</div>
+                <div className="text-xs text-[var(--text-muted)]">{t("Win Rate", lang)}</div>
               </div>
             </div>
 
@@ -364,14 +367,14 @@ export default function MetaClient() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                 {/* Win/Loss Pie */}
                 <div>
-                  <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">Win / Loss</h2>
+                  <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">{t("Win / Loss", lang)}</h2>
                   <ResponsiveContainer width="100%" height={200}>
                     <PieChart>
                       <Pie
                         data={[
-                          { name: "Wins", value: stats.total_wins || 0 },
-                          { name: "Losses", value: (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0) },
-                          ...(stats.total_abandoned ? [{ name: "Abandoned", value: stats.total_abandoned }] : []),
+                          { name: t("Wins", lang), value: stats.total_wins || 0 },
+                          { name: t("Losses", lang), value: (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0) },
+                          ...(stats.total_abandoned ? [{ name: t("Abandoned", lang), value: stats.total_abandoned }] : []),
                         ]}
                         cx="50%" cy="50%" innerRadius={50} outerRadius={80}
                         dataKey="value" stroke="none"
@@ -388,7 +391,7 @@ export default function MetaClient() {
 
                 {/* Character Win Rate Bar */}
                 <div>
-                  <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">Games by Character</h2>
+                  <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">{t("Games by Character", lang)}</h2>
                   <ResponsiveContainer width="100%" height={200}>
                     <BarChart data={stats.characters.map((c) => ({
                       name: displayName(`CHARACTER.${c.character}`),
@@ -399,8 +402,8 @@ export default function MetaClient() {
                       <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#9ca3af" }} />
                       <YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} />
                       <Tooltip contentStyle={{ background: "#1a1a2e", border: "1px solid #333", borderRadius: 8, fontSize: 12 }} />
-                      <Bar dataKey="wins" stackId="a" fill={CHART_COLORS.green} name="Wins" />
-                      <Bar dataKey="losses" stackId="a" fill={CHART_COLORS.red} name="Losses" radius={[4, 4, 0, 0]} />
+                      <Bar dataKey="wins" stackId="a" fill={CHART_COLORS.green} name={t("Wins", lang)} />
+                      <Bar dataKey="losses" stackId="a" fill={CHART_COLORS.red} name={t("Losses", lang)} radius={[4, 4, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
@@ -428,21 +431,21 @@ export default function MetaClient() {
           {cardTable.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
               <div className="flex items-center justify-between mb-3">
-                <h2 className="text-lg font-semibold text-[var(--text-primary)]">Card Stats ({cardTable.length})</h2>
+                <h2 className="text-lg font-semibold text-[var(--text-primary)]">{t("Card Stats", lang)} ({cardTable.length})</h2>
                 <div className="flex items-center gap-2">
                   {cardView === "table" && (
                     <button onClick={() => setShowAllCards(!showAllCards)} className="text-xs text-[var(--accent-gold)] hover:underline">
-                      {showAllCards ? "Top 20" : "Show All"}
+                      {showAllCards ? t("Top 20", lang) : t("Show All", lang)}
                     </button>
                   )}
                   <div className="flex rounded-lg border border-[var(--border-subtle)] overflow-hidden">
                     <button onClick={() => setCardView("chart")}
                       className={`text-xs px-2.5 py-1 transition-colors ${cardView === "chart" ? "bg-[var(--accent-gold)]/10 text-[var(--accent-gold)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-                      Chart
+                      {t("Chart", lang)}
                     </button>
                     <button onClick={() => setCardView("table")}
                       className={`text-xs px-2.5 py-1 border-l border-[var(--border-subtle)] transition-colors ${cardView === "table" ? "bg-[var(--accent-gold)]/10 text-[var(--accent-gold)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-                      Table
+                      {t("Table", lang)}
                     </button>
                   </div>
                 </div>
@@ -463,7 +466,7 @@ export default function MetaClient() {
                     <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 10, fill: "#9ca3af" }} />
                     <Tooltip
                       contentStyle={{ background: "#1a1a2e", border: "1px solid #333", borderRadius: 8, fontSize: 12 }}
-                      formatter={(value) => [`${value}%`, "Pick Rate"]}
+                      formatter={(value) => [`${value}%`, t("Pick Rate", lang)]}
                     />
                     <Bar dataKey="pick_rate" fill={CHART_COLORS.gold} radius={[0, 4, 4, 0]} />
                   </BarChart>
@@ -480,7 +483,7 @@ export default function MetaClient() {
                     className={`text-[10px] px-2 py-0.5 rounded border transition-colors ${
                       cardSort === key ? "border-[var(--accent-gold)]/40 text-[var(--accent-gold)] bg-[var(--accent-gold)]/5" : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                     }`}>
-                    {label}
+                    {t(label, lang)}
                   </button>
                 ))}
               </div>
@@ -489,12 +492,12 @@ export default function MetaClient() {
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-                      <th className="text-left py-1.5 font-medium">Card</th>
-                      <th className="text-right py-1.5 font-medium w-16">Offered</th>
-                      <th className="text-right py-1.5 font-medium w-16">Picked</th>
-                      <th className="text-right py-1.5 font-medium w-16">Pick %</th>
-                      <th className="text-right py-1.5 font-medium w-16">Runs</th>
-                      <th className="text-right py-1.5 font-medium w-16">Win %</th>
+                      <th className="text-left py-1.5 font-medium">{t("Card", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Offered", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Picked", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Pick %", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Runs", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Win %", lang)}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -535,21 +538,21 @@ export default function MetaClient() {
             return (
               <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-semibold text-[var(--text-primary)]">Relic Stats ({relicRows.length})</h2>
+                  <h2 className="text-lg font-semibold text-[var(--text-primary)]">{t("Relic Stats", lang)} ({relicRows.length})</h2>
                   <div className="flex items-center gap-2">
                     {relicView === "table" && (
                       <button onClick={() => setShowAllRelics(!showAllRelics)} className="text-xs text-[var(--accent-gold)] hover:underline">
-                        {showAllRelics ? "Top 20" : "Show All"}
+                        {showAllRelics ? t("Top 20", lang) : t("Show All", lang)}
                       </button>
                     )}
                     <div className="flex rounded-lg border border-[var(--border-subtle)] overflow-hidden">
                       <button onClick={() => setRelicView("chart")}
                         className={`text-xs px-2.5 py-1 transition-colors ${relicView === "chart" ? "bg-[var(--accent-gold)]/10 text-[var(--accent-gold)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-                        Chart
+                        {t("Chart", lang)}
                       </button>
                       <button onClick={() => setRelicView("table")}
                         className={`text-xs px-2.5 py-1 border-l border-[var(--border-subtle)] transition-colors ${relicView === "table" ? "bg-[var(--accent-gold)]/10 text-[var(--accent-gold)]" : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"}`}>
-                        Table
+                        {t("Table", lang)}
                       </button>
                     </div>
                   </div>
@@ -563,7 +566,7 @@ export default function MetaClient() {
                       <XAxis type="number" tick={{ fontSize: 10, fill: "#9ca3af" }} />
                       <YAxis type="category" dataKey="name" width={120} tick={{ fontSize: 10, fill: "#9ca3af" }} />
                       <Tooltip contentStyle={{ background: "#1a1a2e", border: "1px solid #333", borderRadius: 8, fontSize: 12 }} />
-                      <Bar dataKey="count" fill={CHART_COLORS.gold} radius={[0, 4, 4, 0]} name="Runs" />
+                      <Bar dataKey="count" fill={CHART_COLORS.gold} radius={[0, 4, 4, 0]} name={t("Runs", lang)} />
                     </BarChart>
                   </ResponsiveContainer>
                 )}
@@ -576,7 +579,7 @@ export default function MetaClient() {
                           className={`text-[10px] px-2 py-0.5 rounded border transition-colors ${
                             relicSort === key ? "border-[var(--accent-gold)]/40 text-[var(--accent-gold)] bg-[var(--accent-gold)]/5" : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
                           }`}>
-                          {label}
+                          {t(label, lang)}
                         </button>
                       ))}
                     </div>
@@ -584,9 +587,9 @@ export default function MetaClient() {
                       <table className="w-full text-xs">
                         <thead>
                           <tr className="text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-                            <th className="text-left py-1.5 font-medium">Relic</th>
-                            <th className="text-right py-1.5 font-medium w-16">Runs</th>
-                            <th className="text-right py-1.5 font-medium w-16">Win %</th>
+                            <th className="text-left py-1.5 font-medium">{t("Relic", lang)}</th>
+                            <th className="text-right py-1.5 font-medium w-16">{t("Runs", lang)}</th>
+                            <th className="text-right py-1.5 font-medium w-16">{t("Win %", lang)}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -613,17 +616,17 @@ export default function MetaClient() {
           {/* Potion Stats */}
           {stats.top_potions && stats.top_potions.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Potion Stats ({stats.top_potions.length})</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Potion Stats", lang)} ({stats.top_potions.length})</h2>
               <div className="overflow-visible">
                 <table className="w-full text-xs">
                   <thead>
                     <tr className="text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-                      <th className="text-left py-1.5 font-medium">Potion</th>
-                      <th className="text-right py-1.5 font-medium w-16">Offered</th>
-                      <th className="text-right py-1.5 font-medium w-16">Picked</th>
-                      <th className="text-right py-1.5 font-medium w-16">Pick %</th>
-                      <th className="text-right py-1.5 font-medium w-16">Used</th>
-                      <th className="text-right py-1.5 font-medium w-16">Win %</th>
+                      <th className="text-left py-1.5 font-medium">{t("Potion", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Offered", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Picked", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Pick %", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Used", lang)}</th>
+                      <th className="text-right py-1.5 font-medium w-16">{t("Win %", lang)}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -655,14 +658,14 @@ export default function MetaClient() {
           {/* Deadliest Encounters */}
           {stats.deadliest && stats.deadliest.length > 0 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Most Deadly Encounters</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Most Deadly Encounters", lang)}</h2>
               <div className="space-y-1">
                 {stats.deadliest.map((d) => (
                   <div key={d.encounter} className="flex items-center justify-between text-sm py-1 border-b border-[var(--border-subtle)] last:border-0">
                     <Link href={`${lp}/encounters/${d.encounter.toLowerCase()}`} className="text-red-300 hover:text-red-200">
                       {displayName(`ENCOUNTER.${d.encounter}`)}
                     </Link>
-                    <span className="text-xs text-[var(--text-muted)]">{d.count} deaths</span>
+                    <span className="text-xs text-[var(--text-muted)]">{d.count} {t("deaths", lang)}</span>
                   </div>
                 ))}
               </div>
@@ -672,7 +675,7 @@ export default function MetaClient() {
           {/* Ascension Distribution */}
           {stats.ascensions && stats.ascensions.length > 1 && (
             <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">Ascension Distribution</h2>
+              <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Ascension Distribution", lang)}</h2>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={stats.ascensions.map((a) => ({
                   name: `A${a.level}`,
@@ -682,16 +685,16 @@ export default function MetaClient() {
                   <XAxis dataKey="name" tick={{ fontSize: 10, fill: "#9ca3af" }} />
                   <YAxis tick={{ fontSize: 10, fill: "#9ca3af" }} />
                   <Tooltip contentStyle={{ background: "#1a1a2e", border: "1px solid #333", borderRadius: 8, fontSize: 12 }} />
-                  <Bar dataKey="wins" stackId="a" fill={CHART_COLORS.green} name="Wins" />
-                  <Bar dataKey="losses" stackId="a" fill={CHART_COLORS.red} name="Losses" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="wins" stackId="a" fill={CHART_COLORS.green} name={t("Wins", lang)} />
+                  <Bar dataKey="losses" stackId="a" fill={CHART_COLORS.red} name={t("Losses", lang)} radius={[4, 4, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
               <div className="space-y-1 mt-3">
                 {stats.ascensions.map((a) => (
                   <div key={a.level} className="flex items-center justify-between text-sm py-1 border-b border-[var(--border-subtle)] last:border-0">
-                    <span className="text-[var(--text-secondary)]">Ascension {a.level}</span>
+                    <span className="text-[var(--text-secondary)]">{t("Ascension", lang)} {a.level}</span>
                     <div className="flex items-center gap-3 text-xs">
-                      <span className="text-[var(--text-muted)]">{a.total} runs</span>
+                      <span className="text-[var(--text-muted)]">{a.total} {t("runs", lang)}</span>
                       <span className={a.win_rate > 0 ? "text-emerald-400" : "text-[var(--text-muted)]"}>{a.win_rate}%</span>
                     </div>
                   </div>

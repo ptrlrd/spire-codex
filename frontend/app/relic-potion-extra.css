@@ -1,0 +1,75 @@
+/* Extra bits for the relic + potion wiki detail pages. Everything is scoped
+   under .card-rvmp so it lives alongside card-revamp.css without leaking. Only
+   things the shared card styles don't already cover live here: the small icon
+   render (relics/potions are icons, not full-bleed card art), the per-character
+   art switcher, the mechanics notes list, and the "known as" alias label. */
+
+/* Icon render in the infobox: cap it instead of the card render's width:100%
+   so the small source art isn't upscaled to the full 320px column. Keeps the
+   dark backdrop + drop shadow inherited from .cardimg.render. */
+.card-rvmp .cardimg.relimg {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* Per-character (or per-save) art switcher under the render. */
+.card-rvmp .rp-variants {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.card-rvmp .rp-vbtn {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 11px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-2);
+  background: var(--surface-2);
+  border: 1px solid var(--border-2);
+  transition: color .12s, background .12s, border-color .12s;
+}
+.card-rvmp .rp-vbtn:hover { color: var(--text); }
+.card-rvmp .rp-vbtn.on { background: var(--gold); color: #1a1205; border-color: var(--gold); }
+.card-rvmp .rp-hint {
+  margin: 8px auto 0;
+  max-width: 34ch;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-3);
+  text-align: center;
+}
+
+/* Mechanics notes list. */
+.card-rvmp .rp-notes {
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  max-width: 62ch;
+}
+.card-rvmp .rp-notes li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.card-rvmp .rp-notes li::before {
+  content: "\2022";
+  position: absolute;
+  left: 2px;
+  color: var(--text-3);
+}
+
+/* Italic flavor block under the description. */
+.card-rvmp .rp-flavor { font-style: italic; color: var(--text-3); margin-top: 16px; }
+
+/* "Known as" alias chips: the per-character rename label. */
+.card-rvmp .rp-alias { color: var(--text-3); font-family: var(--mono); font-size: 12px; }

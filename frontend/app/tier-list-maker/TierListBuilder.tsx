@@ -20,6 +20,8 @@ import { SortableContext, arrayMove, rectSortingStrategy } from "@dnd-kit/sortab
 import { toCanvas } from "html-to-image";
 
 import { useAuth } from "../contexts/AuthContext";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import { Chip, SortableItem } from "./chip";
 import { createTierList, saveTierListImage, updateTierList } from "./api";
 import { fullCardUrl, CARD_RENDER_LANGS } from "@/lib/image-url";
@@ -123,6 +125,7 @@ const CARD_LANG_OPTIONS: { code: string; label: string }[] = [
 export default function TierListBuilder({ entityType, entities, initial }: Props) {
   const router = useRouter();
   const { user, loading: authLoading, loginSteam } = useAuth();
+  const { lang } = useLanguage();
 
   // Card maker only: render the card images in the chosen language. Other
   // entity types have no localized renders, so the selector is hidden.
@@ -276,9 +279,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
   // ── Tier row controls ────────────────────────────────────────────────
   function addTier() {
-    const t = { id: uid(), label: "New", color: TIER_COLORS[tierMeta.length % TIER_COLORS.length] };
-    setTierMeta((m) => [...m, t]);
-    setContainers((c) => ({ ...c, [t.id]: [] }));
+    const tier = { id: uid(), label: "New", color: TIER_COLORS[tierMeta.length % TIER_COLORS.length] };
+    setTierMeta((m) => [...m, tier]);
+    setContainers((c) => ({ ...c, [tier.id]: [] }));
   }
 
   function removeTier(id: string) {
@@ -357,7 +360,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
       // The Share box surfaces the public /shared/ link to copy.
       if (result.id) router.replace(`/tier-list-maker/${result.id}`);
     } catch (e) {
-      setError(e instanceof Error ? e.message : "Could not save");
+      setError(e instanceof Error ? e.message : t("Could not save", lang));
     } finally {
       setSaving(false);
     }
@@ -381,10 +384,16 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     // Tailwind v4 colors resolve to oklch(), which makes html-to-image render a
     // blank image; swap them for rgb() for the duration of the capture.
     const restoreColors = inlineOklchAsRgb(node);
+    // Match the export backdrop to the current theme's page background so the
+    // rounded capture card sits seamlessly on it (light card on a dark square
+    // otherwise looked wrong in light mode).
+    const pageBg =
+      getComputedStyle(document.documentElement).getPropertyValue("--bg-primary").trim() ||
+      "#0a0a0a";
     try {
       const canvas = await toCanvas(node, {
         pixelRatio,
-        backgroundColor: "#0a0a0a",
+        backgroundColor: pageBg,
         // cacheBust forces a fresh CORS fetch of the CDN art (cached copies
         // were loaded without an Origin header and would taint the canvas).
         cacheBust: true,
@@ -414,7 +423,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
       a.href = dataUrl;
       a.click();
     } catch {
-      setError("Could not export the image. Try again.");
+      setError(t("Could not export the image. Try again.", lang));
     } finally {
       setExporting(false);
     }
@@ -422,7 +431,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
   // ── Reset ────────────────────────────────────────────────────────────
   function resetBoard() {
-    if (!window.confirm("Reset the board? Every item goes back to the tray.")) {
+    if (!window.confirm(t("Reset the board? Every item goes back to the tray.", lang))) {
       return;
     }
     setContainers(() => {
@@ -500,50 +509,50 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     <div className="mx-auto max-w-[1800px] px-4 sm:px-6 py-6">
       <Link
         href="/tier-list-maker"
-        className="mb-3 inline-flex items-center gap-1 text-sm text-neutral-400 hover:text-white"
+        className="mb-3 inline-flex items-center gap-1 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
       >
-        <span aria-hidden>←</span> Back to tier lists
+        <span aria-hidden>←</span> {t("Back to tier lists", lang)}
       </Link>
       <div className="mb-4 flex flex-wrap items-center gap-3">
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 min-w-[200px] rounded border border-neutral-700 bg-neutral-900 px-3 py-2 text-lg font-semibold text-white outline-none focus:border-sky-500"
-          placeholder="Tier list name"
-          aria-label="Tier list name"
+          className="flex-1 min-w-[200px] rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-lg font-semibold text-[var(--text-primary)] outline-none focus:border-sky-500"
+          placeholder={t("Tier list name", lang)}
+          aria-label={t("Tier list name", lang)}
         />
         <button
           onClick={resetBoard}
-          className="rounded border border-neutral-600 px-4 py-2 font-semibold text-neutral-200 hover:border-red-500 hover:text-white"
+          className="rounded border border-[var(--border-accent)] px-4 py-2 font-semibold text-[var(--text-primary)] hover:border-red-500 hover:text-[var(--text-primary)]"
         >
-          Reset
+          {t("Reset", lang)}
         </button>
         <button
           onClick={handleExport}
           disabled={exporting}
-          className="rounded border border-neutral-600 px-4 py-2 font-semibold text-neutral-200 hover:border-neutral-400 hover:text-white disabled:opacity-50"
+          className="rounded border border-[var(--border-accent)] px-4 py-2 font-semibold text-[var(--text-primary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] disabled:opacity-50"
         >
-          {exporting ? "Exporting…" : "Export image"}
+          {exporting ? t("Exporting…", lang) : t("Export image", lang)}
         </button>
         <button
           onClick={handleSave}
           disabled={saving || authLoading}
           className="rounded bg-sky-600 px-4 py-2 font-semibold text-white hover:bg-sky-500 disabled:opacity-50"
         >
-          {saving ? "Saving…" : user ? "Save" : "Sign in with Steam to save"}
+          {saving ? t("Saving…", lang) : user ? t("Save", lang) : t("Sign in with Steam to save", lang)}
         </button>
       </div>
 
       {error && <p className="mb-3 text-sm text-red-400">{error}</p>}
 
       {shareUrl && (
-        <div className="mb-4 flex flex-wrap items-center gap-2 rounded border border-neutral-700 bg-neutral-900 p-2">
-          <span className="text-sm text-neutral-400">Share:</span>
+        <div className="mb-4 flex flex-wrap items-center gap-2 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
+          <span className="text-sm text-[var(--text-secondary)]">{t("Share:", lang)}</span>
           <input
             readOnly
             value={shareUrl}
             onFocus={(e) => e.currentTarget.select()}
-            className="flex-1 min-w-[200px] rounded bg-neutral-800 px-2 py-1 text-sm text-neutral-200"
+            className="flex-1 min-w-[200px] rounded bg-[var(--bg-secondary)] px-2 py-1 text-sm text-[var(--text-primary)]"
           />
           <button
             onClick={() => {
@@ -551,11 +560,11 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               setCopied(true);
               setTimeout(() => setCopied(false), 1500);
             }}
-            className={`rounded px-3 py-1 text-sm text-white ${
-              copied ? "bg-green-600" : "bg-neutral-700 hover:bg-neutral-600"
+            className={`rounded px-3 py-1 text-sm text-[var(--text-primary)] ${
+              copied ? "bg-green-600" : "bg-[var(--bg-card-hover)] hover:bg-[var(--border-accent)]"
             }`}
           >
-            {copied ? "Copied!" : "Copy"}
+            {copied ? t("Copied!", lang) : t("Copy", lang)}
           </button>
         </div>
       )}
@@ -568,11 +577,11 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
       >
         <div
           ref={captureRef}
-          className="rounded-lg border border-neutral-800 bg-neutral-950 [&>*:first-child]:rounded-t-lg [&>*:last-child]:rounded-b-lg"
+          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] [&>*:first-child]:rounded-t-lg [&>*:last-child]:rounded-b-lg"
         >
           {/* Branding header — shown in the editor and baked into the export. */}
-          <div className="flex items-center justify-between gap-3 border-b border-neutral-800 px-3 py-2">
-            <span className="truncate text-base font-bold text-white">
+          <div className="flex items-center justify-between gap-3 border-b border-[var(--border-subtle)] px-3 py-2">
+            <span className="truncate text-base font-bold text-[var(--text-primary)]">
               {title.trim() || `My ${ENTITY_LABEL[entityType]} Tier List`}
             </span>
             <div className="flex shrink-0 items-center gap-2">
@@ -585,8 +594,8 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 className="h-[22px] w-[22px] rounded"
               />
               <div className="leading-tight">
-                <div className="text-sm font-semibold text-white">Spire Codex</div>
-                <div className="text-[10px] text-neutral-400">spire-codex.com</div>
+                <div className="text-sm font-semibold text-[var(--text-primary)]">Spire Codex</div>
+                <div className="text-[10px] text-[var(--text-secondary)]">spire-codex.com</div>
               </div>
             </div>
           </div>
@@ -611,14 +620,14 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
         <button
           onClick={addTier}
-          className="mt-2 rounded border border-dashed border-neutral-600 px-3 py-1.5 text-sm text-neutral-300 hover:border-neutral-400 hover:text-white"
+          className="mt-2 rounded border border-dashed border-[var(--border-accent)] px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
         >
-          + Add tier
+          + {t("Add tier", lang)}
         </button>
 
         <div className="mt-6">
           <div className="mb-2 flex items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-neutral-400">
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
               {ENTITY_LABEL[entityType]} ({filteredTray.length})
             </h2>
             <div className="flex items-center gap-2">
@@ -626,9 +635,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <select
                   value={cardLang}
                   onChange={(e) => setCardLang(e.target.value)}
-                  className="rounded border border-neutral-700 bg-neutral-900 px-2 py-1 text-sm text-white outline-none focus:border-sky-500"
-                  aria-label="Card language"
-                  title="Render the cards in this language"
+                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+                  aria-label={t("Card language", lang)}
+                  title={t("Render the cards in this language", lang)}
                 >
                   {CARD_LANG_OPTIONS.map((l) => (
                     <option key={l.code} value={l.code}>
@@ -641,10 +650,10 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <select
                   value={rarityFilter}
                   onChange={(e) => setRarityFilter(e.target.value)}
-                  className="rounded border border-neutral-700 bg-neutral-900 px-2 py-1 text-sm text-white outline-none focus:border-sky-500"
-                  aria-label="Filter by rarity"
+                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+                  aria-label={t("Filter by rarity", lang)}
                 >
-                  <option value="">All rarities</option>
+                  <option value="">{t("All rarities", lang)}</option>
                   {rarityOptions.map((r) => (
                     <option key={r} value={r}>
                       {r}
@@ -655,15 +664,15 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                placeholder="Search…"
-                className="w-40 rounded border border-neutral-700 bg-neutral-900 px-2 py-1 text-sm text-white outline-none focus:border-sky-500"
+                placeholder={t("Search…", lang)}
+                className="w-40 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
               />
             </div>
           </div>
           {trayGroups.length > 0 && (
             <div className="mb-2 flex flex-wrap gap-1.5">
               <GroupPill
-                label="All"
+                label={t("All", lang)}
                 count={trayItems.length}
                 active={groupFilter === null}
                 onClick={() => setGroupFilter(null)}
@@ -683,7 +692,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
           )}
           <DropArea
             id={TRAY_ID}
-            className="flex min-h-[80px] flex-wrap content-start gap-1 rounded-lg border border-neutral-800 bg-neutral-950 p-2"
+            className="flex min-h-[80px] flex-wrap content-start gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2"
           >
             <SortableContext items={filteredTray} strategy={rectSortingStrategy}>
               {filteredTray.map((id) => {
@@ -713,7 +722,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
           onClick={() => setCommentFor(null)}
         >
           <div
-            className="w-full max-w-md rounded-lg border border-neutral-700 bg-neutral-900 p-4 shadow-xl"
+            className="w-full max-w-md rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 shadow-xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="mb-3 flex items-center gap-3">
@@ -722,14 +731,14 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <img
                   src={entityMap.get(commentFor)!.image}
                   alt=""
-                  className="h-10 w-10 shrink-0 rounded bg-neutral-800 object-contain"
+                  className="h-10 w-10 shrink-0 rounded bg-[var(--bg-secondary)] object-contain"
                 />
               )}
               <div>
-                <div className="text-sm font-semibold text-white">
+                <div className="text-sm font-semibold text-[var(--text-primary)]">
                   {entityMap.get(commentFor)?.name ?? commentFor}
                 </div>
-                <div className="text-xs text-neutral-400">Note / rationale</div>
+                <div className="text-xs text-[var(--text-secondary)]">{t("Note / rationale", lang)}</div>
               </div>
             </div>
             <textarea
@@ -738,23 +747,23 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               onChange={(e) => setCommentDraft(e.target.value)}
               maxLength={500}
               rows={4}
-              placeholder="Why is it ranked here?"
-              className="w-full resize-none rounded border border-neutral-700 bg-neutral-950 p-2 text-sm text-white outline-none focus:border-sky-500"
+              placeholder={t("Why is it ranked here?", lang)}
+              className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
             />
             <div className="mt-3 flex items-center justify-between gap-2">
-              <span className="text-[11px] text-neutral-500">{commentDraft.length}/500</span>
+              <span className="text-[11px] text-[var(--text-muted)]">{commentDraft.length}/500</span>
               <div className="flex gap-2">
                 <button
                   onClick={() => setCommentFor(null)}
-                  className="rounded px-3 py-1.5 text-sm text-neutral-300 hover:text-white"
+                  className="rounded px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 >
-                  Cancel
+                  {t("Cancel", lang)}
                 </button>
                 <button
                   onClick={saveComment}
                   className="rounded bg-sky-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-sky-500"
                 >
-                  {commentDraft.trim() ? "Save note" : "Remove note"}
+                  {commentDraft.trim() ? t("Save note", lang) : t("Remove note", lang)}
                 </button>
               </div>
             </div>
@@ -783,7 +792,7 @@ function GroupPill({
       className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
         active
           ? "border-sky-500 bg-sky-600 text-white"
-          : "border-neutral-700 bg-neutral-900 text-neutral-300 hover:border-neutral-500 hover:text-white"
+          : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
       }`}
     >
       {label} <span className="opacity-70">({count})</span>
@@ -835,6 +844,7 @@ function TierRow({
   comments: Record<string, string>;
   onItemClick: (id: string) => void;
 }) {
+  const { lang } = useLanguage();
   const [editing, setEditing] = useState(false);
   // Local draft for the hex field so typing a partial value (e.g. "#ff") isn't
   // fought by the controlled prop; commits to the tier only when it's valid.
@@ -863,7 +873,7 @@ function TierRow({
   }, [editing]);
 
   return (
-    <div className="flex items-stretch border-b border-neutral-900 last:border-b-0">
+    <div className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0">
       <div
         style={{ background: tier.color }}
         className="relative flex w-20 shrink-0 flex-col items-center justify-center gap-1 p-1 text-black"
@@ -882,28 +892,28 @@ function TierRow({
           rows={1}
           spellCheck={false}
           className="w-full resize-none overflow-hidden whitespace-pre-wrap break-words bg-transparent text-center text-lg font-bold leading-tight outline-none"
-          aria-label="Tier label"
+          aria-label={t("Tier label", lang)}
         />
         <button
           data-export-hide="true"
           onClick={() => setEditing((v) => !v)}
           className="text-[10px] underline opacity-70 hover:opacity-100"
         >
-          edit
+          {t("edit", lang)}
         </button>
         {editing && (
           <div
             data-export-hide="true"
-            className="absolute left-0 top-full z-10 mt-1 w-44 rounded border border-neutral-700 bg-neutral-900 p-2 text-white shadow-lg"
+            className="absolute left-0 top-full z-10 mt-1 w-44 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2 text-[var(--text-primary)] shadow-lg"
           >
             <div className="mb-2 flex items-center justify-between">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-neutral-400">
-                Edit row
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
+                {t("Edit row", lang)}
               </span>
               <button
                 onClick={() => setEditing(false)}
-                aria-label="Close editor"
-                className="-mr-1 -mt-1 rounded px-1.5 text-sm leading-none text-neutral-400 hover:text-white"
+                aria-label={t("Close editor", lang)}
+                className="-mr-1 -mt-1 rounded px-1.5 text-sm leading-none text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
               >
                 ✕
               </button>
@@ -914,20 +924,20 @@ function TierRow({
                   key={c}
                   onClick={() => onRecolor(tier.id, c)}
                   style={{ background: c }}
-                  className={`h-5 w-5 rounded ${tier.color === c ? "ring-2 ring-white" : ""}`}
-                  aria-label={`Color ${c}`}
+                  className={`h-5 w-5 rounded ${tier.color === c ? "ring-2 ring-[var(--accent-gold)]" : ""}`}
+                  aria-label={`${t("Color", lang)} ${c}`}
                 />
               ))}
             </div>
             {/* Custom color — pick a swatch or type a hex if the presets
                 don't fit. */}
-            <div className="mb-2 flex items-center gap-1.5 border-t border-neutral-700 pt-2">
+            <div className="mb-2 flex items-center gap-1.5 border-t border-[var(--border-subtle)] pt-2">
               <input
                 type="color"
                 value={/^#[0-9a-fA-F]{6}$/.test(tier.color) ? tier.color : "#cccccc"}
                 onChange={(e) => onRecolor(tier.id, e.target.value)}
-                className="h-6 w-7 shrink-0 cursor-pointer rounded border border-neutral-600 bg-transparent p-0"
-                aria-label="Pick a custom color"
+                className="h-6 w-7 shrink-0 cursor-pointer rounded border border-[var(--border-accent)] bg-transparent p-0"
+                aria-label={t("Pick a custom color", lang)}
               />
               <input
                 type="text"
@@ -939,22 +949,22 @@ function TierRow({
                 }}
                 placeholder="#rrggbb"
                 spellCheck={false}
-                className="w-full rounded border border-neutral-600 bg-neutral-800 px-1.5 py-0.5 text-xs text-white outline-none focus:border-sky-500"
-                aria-label="Hex color"
+                className="w-full rounded border border-[var(--border-accent)] bg-[var(--bg-secondary)] px-1.5 py-0.5 text-xs text-[var(--text-primary)] outline-none focus:border-sky-500"
+                aria-label={t("Hex color", lang)}
               />
             </div>
             <div className="flex flex-wrap gap-1 text-xs">
-              <button onClick={() => onMove(tier.id, -1)} disabled={isFirst} className="rounded bg-neutral-700 px-2 py-1 disabled:opacity-40">↑</button>
-              <button onClick={() => onMove(tier.id, 1)} disabled={isLast} className="rounded bg-neutral-700 px-2 py-1 disabled:opacity-40">↓</button>
-              <button onClick={() => onClear(tier.id)} className="rounded bg-neutral-700 px-2 py-1">Clear</button>
-              <button onClick={() => onRemove(tier.id)} className="rounded bg-red-700 px-2 py-1">Delete</button>
+              <button onClick={() => onMove(tier.id, -1)} disabled={isFirst} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↑</button>
+              <button onClick={() => onMove(tier.id, 1)} disabled={isLast} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↓</button>
+              <button onClick={() => onClear(tier.id)} className="rounded bg-[var(--bg-card-hover)] px-2 py-1">{t("Clear", lang)}</button>
+              <button onClick={() => onRemove(tier.id)} className="rounded bg-red-700 px-2 py-1">{t("Delete", lang)}</button>
             </div>
           </div>
         )}
       </div>
       <DropArea
         id={tier.id}
-        className="flex min-h-[64px] flex-1 flex-wrap content-start gap-1 bg-neutral-950 p-1.5"
+        className="flex min-h-[64px] flex-1 flex-wrap content-start gap-1 bg-[var(--bg-primary)] p-1.5"
       >
         <SortableContext items={itemIds} strategy={rectSortingStrategy}>
           {itemIds.map((id) => {

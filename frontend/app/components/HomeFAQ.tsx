@@ -60,45 +60,36 @@ export default function HomeFAQ({
 }) {
   const faqs = buildFaqs(stats);
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <JsonLd data={buildFAQPageJsonLd(faqs)} />
-      <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)] mb-5">
-        {t("home_faq_heading", lang)}
-      </h2>
-      <div className="space-y-3">
-        {faqs.map((faq) => (
-          <details
-            key={faq.question}
-            // `name` groups these like radio buttons, opening one auto-
-            // closes any other with the same name, native browser behaviour
-            // (HTML Living Standard, shipped Chrome 120 / Safari 17.2 /
-            // Firefox 136, fully supported in current evergreens).
-            name="home-faq"
-            className="group rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:border-[var(--border-accent)] transition-colors"
-          >
-            <summary className="cursor-pointer list-none flex items-baseline justify-between gap-3 p-4 sm:p-5">
-              <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                {faq.question}
-              </h3>
-              <svg
-                aria-hidden
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="shrink-0 w-4 h-4 text-[var(--text-muted)] transition-transform group-open:rotate-180"
+    <div className="rvmp">
+      <section className="hb hb-last">
+        <div className="hsec">
+          <JsonLd data={buildFAQPageJsonLd(faqs)} />
+          <div className="s-head">
+            <h2>{t("home_faq_heading", lang)}</h2>
+          </div>
+          <div className="faqs">
+            {faqs.map((faq) => (
+              <details
+                key={faq.question}
+                // `name` groups these like radio buttons, opening one auto-
+                // closes any other with the same name, native browser behaviour
+                // (HTML Living Standard, shipped Chrome 120 / Safari 17.2 /
+                // Firefox 136, fully supported in current evergreens).
+                name="home-faq"
+                className="faq"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </summary>
-            <p className="px-4 sm:px-5 pb-4 sm:pb-5 -mt-1 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
-              {faq.answer}
-            </p>
-          </details>
-        ))}
-      </div>
-    </section>
+                <summary>
+                  {faq.question}
+                  <svg aria-hidden viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                </summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

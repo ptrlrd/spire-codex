@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type CSSProperties } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { Stats } from "@/lib/api";
@@ -21,11 +21,11 @@ interface Translations {
 }
 
 const CHARACTERS = [
-  { id: "ironclad", cssColor: "var(--color-ironclad)" },
-  { id: "silent", cssColor: "var(--color-silent)" },
-  { id: "regent", cssColor: "var(--color-regent)" },
-  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
-  { id: "defect", cssColor: "var(--color-defect)" },
+  { id: "ironclad", cssColor: "var(--color-ironclad)", wr: 26.1 },
+  { id: "silent", cssColor: "var(--color-silent)", wr: 28.6 },
+  { id: "regent", cssColor: "var(--color-regent)", wr: 27.7 },
+  { id: "necrobinder", cssColor: "var(--color-necrobinder)", wr: 26.3 },
+  { id: "defect", cssColor: "var(--color-defect)", wr: 24.5 },
 ];
 
 const FALLBACK_DESCS: Record<string, string> = {
@@ -195,269 +195,109 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
     },
   ];
 
+
+  const ARROW = (
+    <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  );
+
+  const startTiles = [
+    { title: t("Download the app", lang), desc: t("Download Spire Codex on Overwolf to upload your runs and get in-game help. The best Slay the Spire 2 companion app.", lang), href: "https://www.overwolf.com/app/ptrlrd-spire_codex", ext: true,
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path strokeLinecap="round" strokeLinejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4" /></svg>) },
+    { title: t("Download the mod", lang), desc: t("Get the Spire Codex mod on the Steam Workshop for in-game stats contribution, auto run uploads, and a route planner.", lang), href: "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911", ext: true,
+      icon: (<svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.98 0C5.66 0 .48 4.88.02 11.06L6.45 13.72a3.4 3.4 0 011.92-.59l.14.01 2.86-4.14v-.06a4.54 4.54 0 119.08 0 4.54 4.54 0 01-4.54 4.54h-.1l-4.08 2.91.01.11a3.41 3.41 0 11-6.81.16L.4 14.78A12 12 0 1011.98 0zM7.54 18.21l-1.47-.61a2.56 2.56 0 004.71-.4 2.55 2.55 0 00-3.34-3.35l1.52.63a1.88 1.88 0 11-1.44 3.47v.26zm10.85-9.66a3.02 3.02 0 00-3.02-3.02 3.02 3.02 0 100 6.04 3.02 3.02 0 003.02-3.02zm-5.28-.01a2.27 2.27 0 114.54.01 2.27 2.27 0 01-4.54-.01z" /></svg>) },
+    { title: t("Support on Patreon", lang), desc: t("Like the project? Support us directly to unlock more features and keep the data free and as up to date as possible.", lang), href: "https://www.patreon.com/cw/SpireCodex", ext: true,
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><path strokeLinecap="round" strokeLinejoin="round" d="M12 20.5l-1.45-1.32C5.4 14.5 2 11.4 2 7.6 2 5 4 3 6.5 3c1.74 0 3.41.81 4.5 2.09C12.09 3.81 13.76 3 15.5 3 18 3 20 5 20 7.6c0 3.8-3.4 6.9-8.55 11.58L12 20.5z" /></svg>) },
+    { title: t("Create a tier list", lang), desc: t("Show off your favorite tier lists of cards, relics, and more, and help others master the Spire.", lang), href: "/tier-list-maker", ext: false,
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><rect x="3" y="4.5" width="18" height="4" rx="1.2" /><rect x="3" y="10" width="18" height="4" rx="1.2" /><rect x="3" y="15.5" width="18" height="4" rx="1.2" /></svg>) },
+    { title: t("Join the Discord", lang), desc: t("Get on-demand updates, share tier lists, and show off your runs in the Spire Codex Discord.", lang), href: "https://discord.gg/xMsTBeh", ext: true,
+      icon: (<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.369a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 01.079.009c.12.099.246.198.373.292a.077.077 0 01-.006.127c-.598.349-1.22.645-1.873.892a.076.076 0 00-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z" /></svg>) },
+  ];
+
+
   return (
     <>
-      {/* Character showcase */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="grid grid-cols-5 gap-2 sm:gap-4">
+      {/* Get started */}
+      <section className="getstarted">
+        <div className="gs-head">
+          <h2>{t("Get started", lang)}</h2>
+          <p>{t("Everything you need to climb the Spire. Track your runs, rank your favorites, and join the community.", lang)}</p>
+        </div>
+        <div className="gs-grid">
+          {!user && (
+            <div className="act act-signin">
+              <span className="act-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="12" cy="8" r="4" /><path strokeLinecap="round" strokeLinejoin="round" d="M4 20c0-3.6 3.6-6.5 8-6.5s8 2.9 8 6.5" /></svg></span>
+              <span className="act-t">{t("Create an account", lang)}</span>
+              <span className="act-d">{t("Spire Codex keeps track of your runs and tier lists, all while not tracking you.", lang)}</span>
+              <div className="act-logins">
+                <button onClick={loginSteam} className="act-login act-steam">{t("Steam", lang)}</button>
+                <button onClick={loginDiscord} className="act-login act-discord">{t("Discord", lang)}</button>
+              </div>
+            </div>
+          )}
+          {startTiles.map((c) => {
+            const inner = (<><span className="act-ico">{c.icon}</span><span className="act-t">{c.title}</span><span className="act-d">{c.desc}</span></>);
+            return c.ext
+              ? (<a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" className="act">{inner}</a>)
+              : (<Link key={c.title} href={c.href} className="act">{inner}</Link>);
+          })}
+        </div>
+      </section>
+
+      {/* Characters */}
+      <section className="hsec">
+        <div className="s-head">
+          <h2>{t("Characters", lang)}</h2>
+          <Link className="viewmore" href={`${langPrefix}/characters`}>{t("All characters", lang)} {ARROW}</Link>
+        </div>
+        <div className="charbar">
           {CHARACTERS.map((char) => {
             const charName = translations.character_names?.[char.id] ?? char.id.charAt(0).toUpperCase() + char.id.slice(1);
             return (
-              <Link
-                key={char.id}
-                href={`${langPrefix}/characters/${char.id.toLowerCase()}`}
-                className="group relative overflow-hidden rounded-xl bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-all"
-              >
-                <div
-                  className="absolute inset-0 opacity-60"
-                  style={{ background: `linear-gradient(to top, ${char.cssColor}66, transparent)` }}
-                />
-                <div className="relative aspect-square flex items-end justify-center overflow-hidden">
-                  <img
-                    src={imageUrl(`/static/images/characters/combat_${char.id}.webp`)}
-                    alt={`${charName} - Slay the Spire 2 Character`}
-                    className="w-full h-full object-contain p-1 sm:p-2 group-hover:scale-105 transition-transform duration-300"
-                    crossOrigin="anonymous"
-                  />
-                </div>
-                <div className="relative text-center pb-2 sm:pb-3">
-                  <span className="text-xs sm:text-sm font-medium text-[var(--text-secondary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                    {charName}
-                  </span>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* Get started: one card, a gold CTA header, then a single row of
-          the sign-in cell (signed out only) plus the 5 action tiles. */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="flex flex-col gap-px overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--border-subtle)]">
-          {/* Row 1: full-width CTA header, gold so it reads as subtext
-              to the SPIRE CODEX logo above. */}
-          <div className="relative overflow-hidden bg-[var(--bg-card)] px-6 py-9 text-center">
-            <div className="relative">
-              <h2 className="text-2xl font-bold tracking-tight text-[var(--accent-gold)] sm:text-3xl">
-                Get started
-              </h2>
-              <p className="mx-auto mt-2 max-w-2xl text-[var(--text-secondary)]">
-                Everything you need to climb the Spire. Track your runs, rank
-                your favorites, and join the community.
-              </p>
-            </div>
-          </div>
-          {/* Row 2: sign-in cell (signed out only) + the 5 action tiles. */}
-          <div
-            className={`relative grid grid-cols-1 gap-0 bg-[var(--border-subtle)] sm:grid-cols-2 ${
-              user ? "lg:grid-cols-5" : "lg:grid-cols-6"
-            }`}
-          >
-            {!user && (
-              <div className="flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center shadow-[inset_-1px_0_0_0_var(--border-subtle),inset_0_-1px_0_0_var(--border-subtle)]">
-                <span className="text-[var(--accent-gold)]">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-9 w-9">
-                    <circle cx="12" cy="8" r="4" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 20c0-3.6 3.6-6.5 8-6.5s8 2.9 8 6.5" />
-                  </svg>
+              <Link key={char.id} href={`${langPrefix}/characters/${char.id.toLowerCase()}`} className="charp" style={{ ["--cc"]: char.cssColor } as CSSProperties}>
+                <span className="charp-art">
+                  <img className="charp-combat" src={imageUrl(`/static/images/characters/combat_${char.id}.webp`)} alt={`${charName} - Slay the Spire 2 Character`} crossOrigin="anonymous" />
+                  <img className="charp-icon" src={imageUrl(`/static/images/characters/character_icon_${char.id}.webp`)} alt="" aria-hidden="true" crossOrigin="anonymous" />
                 </span>
-                <h3 className="font-semibold text-[var(--text-primary)]">
-                  Create an account
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)]">
-                  Spire Codex keeps track of your runs and tier lists, all
-                  while not tracking you. Sign in with your Steam account or
-                  Discord.
-                </p>
-                <div className="mt-auto flex w-full gap-2 pt-2">
-                  <button
-                    onClick={loginSteam}
-                    className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#1b2838] px-2 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#2a475e]"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path d="M11.98 0C5.66 0 .48 4.88.02 11.06L6.45 13.72a3.4 3.4 0 011.92-.59l.14.01 2.86-4.14v-.06a4.54 4.54 0 119.08 0 4.54 4.54 0 01-4.54 4.54h-.1l-4.08 2.91.01.11a3.41 3.41 0 11-6.81.16L.4 14.78A12 12 0 1011.98 0zM7.54 18.21l-1.47-.61a2.56 2.56 0 004.71-.4 2.55 2.55 0 00-3.34-3.35l1.52.63a1.88 1.88 0 11-1.44 3.47v.26zm10.85-9.66a3.02 3.02 0 00-3.02-3.02 3.02 3.02 0 100 6.04 3.02 3.02 0 003.02-3.02zm-5.28-.01a2.27 2.27 0 114.54.01 2.27 2.27 0 01-4.54-.01z" />
-                    </svg>
-                    Steam
-                  </button>
-                  <button
-                    onClick={loginDiscord}
-                    className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#5865F2] px-2 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#4752c4]"
-                  >
-                    <svg viewBox="0 0 24 24" fill="currentColor" className="h-4 w-4">
-                      <path d="M20.317 4.369a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 01.079.009c.12.099.246.198.373.292a.077.077 0 01-.006.127c-.598.349-1.22.645-1.873.892a.076.076 0 00-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z" />
-                    </svg>
-                    Discord
-                  </button>
-                </div>
-              </div>
-            )}
-          {[
-            {
-              title: "Download the app",
-              desc: "Download Spire Codex on Overwolf to upload your runs and get in-game help. The best Slay the Spire 2 companion app.",
-              href: "https://www.overwolf.com/app/ptrlrd-spire_codex",
-              ext: true,
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-9 w-9">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v12m0 0l-4-4m4 4l4-4M4 15v4a2 2 0 002 2h12a2 2 0 002-2v-4" />
-                </svg>
-              ),
-            },
-            {
-              title: "Download the mod",
-              desc: "Get the Spire Codex mod on the Steam Workshop for in-game stats contribution, auto run uploads, and a route planner.",
-              href: "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911",
-              ext: true,
-              icon: (
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-9 w-9">
-                  <path d="M11.98 0C5.66 0 .48 4.88.02 11.06L6.45 13.72a3.4 3.4 0 011.92-.59l.14.01 2.86-4.14v-.06a4.54 4.54 0 119.08 0 4.54 4.54 0 01-4.54 4.54h-.1l-4.08 2.91.01.11a3.41 3.41 0 11-6.81.16L.4 14.78A12 12 0 1011.98 0zM7.54 18.21l-1.47-.61a2.56 2.56 0 004.71-.4 2.55 2.55 0 00-3.34-3.35l1.52.63a1.88 1.88 0 11-1.44 3.47v.26zm10.85-9.66a3.02 3.02 0 00-3.02-3.02 3.02 3.02 0 100 6.04 3.02 3.02 0 003.02-3.02zm-5.28-.01a2.27 2.27 0 114.54.01 2.27 2.27 0 01-4.54-.01z" />
-                </svg>
-              ),
-            },
-            {
-              title: "Support on Patreon",
-              desc: "Like the project? Support us directly to unlock more features and keep the data free and as up to date as possible.",
-              href: "https://www.patreon.com/cw/SpireCodex",
-              ext: true,
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-9 w-9">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 20.5l-1.45-1.32C5.4 14.5 2 11.4 2 7.6 2 5 4 3 6.5 3c1.74 0 3.41.81 4.5 2.09C12.09 3.81 13.76 3 15.5 3 18 3 20 5 20 7.6c0 3.8-3.4 6.9-8.55 11.58L12 20.5z" />
-                </svg>
-              ),
-            },
-            {
-              title: "Create a tier list",
-              desc: "Show off your favorite tier lists of cards, relics, and more, and help others master the Spire.",
-              href: "/tier-list-maker",
-              ext: false,
-              icon: (
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-9 w-9">
-                  <rect x="3" y="4.5" width="18" height="4" rx="1.2" />
-                  <rect x="3" y="10" width="18" height="4" rx="1.2" />
-                  <rect x="3" y="15.5" width="18" height="4" rx="1.2" />
-                </svg>
-              ),
-            },
-            {
-              title: "Join the Discord",
-              desc: "Get on-demand updates, share tier lists, and show off your runs in the Spire Codex Discord.",
-              href: "https://discord.gg/xMsTBeh",
-              ext: true,
-              icon: (
-                <svg viewBox="0 0 24 24" fill="currentColor" className="h-9 w-9">
-                  <path d="M20.317 4.369a19.79 19.79 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 00-5.487 0 12.6 12.6 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.058a.082.082 0 00.031.056 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.1 13.1 0 01-1.872-.892.077.077 0 01-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 01.078-.01c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 01.079.009c.12.099.246.198.373.292a.077.077 0 01-.006.127c-.598.349-1.22.645-1.873.892a.076.076 0 00-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.84 19.84 0 006.002-3.03.077.077 0 00.032-.055c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.955 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.419 0 1.333-.946 2.419-2.157 2.419z" />
-                </svg>
-              ),
-            },
-          ].map((c) => {
-            const cls =
-              "group flex h-full flex-col items-center gap-3 bg-[var(--bg-card)] p-6 text-center transition-colors hover:bg-[var(--bg-card-hover)] shadow-[inset_-1px_0_0_0_var(--border-subtle),inset_0_-1px_0_0_var(--border-subtle)]";
-            const inner = (
-              <>
-                <span className="text-[var(--accent-gold)]">{c.icon}</span>
-                <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                  {c.title}
-                </h3>
-                <p className="text-sm text-[var(--text-secondary)]">{c.desc}</p>
-              </>
-            );
-            return c.ext ? (
-              <a
-                key={c.title}
-                href={c.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cls}
-              >
-                {inner}
-              </a>
-            ) : (
-              <Link key={c.title} href={c.href} className={cls}>
-                {inner}
+                <span className="charp-meta"><span className="charp-name">{charName}</span><span className="charp-wr">{char.wr}% {t("win rate", lang)}</span></span>
               </Link>
             );
           })}
-          {/* Gold pooled at the bottom of the tiles, fading up. Painted
-              over the tiles (last child) but click-through. */}
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--accent-gold)]/12 to-transparent" />
-          </div>
         </div>
       </section>
 
-      {/* Stats grid. The Overlay promo is injected after the first 3
-          cards so it lands as the second row of the grid (full-width via
-          col-span). CSS grid auto-places items row-major, so wrapping
-          the promo at position 3 just works. */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {sections.flatMap((s, i) => {
-            const card = (
-              <Link
-                key={s.href}
-                href={`${langPrefix}${s.href}`}
-                className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] transition-all hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/20"
-              >
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background: `linear-gradient(to bottom right, ${s.color}4d, transparent)` }}
-                />
-                <div className="relative p-6">
-                  <div className="flex items-baseline justify-between mb-3">
-                    <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
-                      {sectionKey(s.key)}
-                    </h2>
-                    {s.count != null && (
-                      <span className="text-2xl font-bold" style={{ color: s.color }}>
-                        {s.count}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-sm text-[var(--text-secondary)]">{sectionDesc(s.key)}</p>
+      {/* Browse the compendium */}
+      <section className="hsec">
+        <div className="s-head">
+          <h2>{t("Browse the compendium", lang)}</h2>
+        </div>
+        <div className="bgrid">
+          {sections.map((s, i) => {
+            const tile = (
+              <Link key={s.href} href={`${langPrefix}${s.href}`} className="btile" style={{ ["--cc"]: s.color } as CSSProperties}>
+                <div className="bt-top">
+                  <span className="bt-name">{sectionKey(s.key)}</span>
+                  {s.count != null && <span className="bt-count">{s.count}</span>}
                 </div>
+                <span className="bt-desc">{sectionDesc(s.key)}</span>
               </Link>
             );
-            if (i === 3) {
+            // Break the long grid up: drop the full-width Overwolf promo band in
+            // the middle so it splits the entities into two groups.
+            if (i === 6) {
               return [
-                <Link
-                  key="overlay-promo"
-                  href={`${langPrefix}/overlay`}
-                  className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] hover:bg-[var(--bg-card-hover)] hover:border-[var(--accent-gold)] hover:shadow-xl hover:shadow-black/20 transition-all flex flex-col sm:flex-row items-stretch sm:col-span-2 lg:col-span-3"
-                >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-r from-[var(--accent-gold)]/15 via-transparent to-transparent" />
-                  <div className="relative bg-black sm:w-48 flex-shrink-0">
-                    <img
-                      src="/overwolf-logo.png"
-                      alt="Overwolf"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="relative flex-1 p-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--accent-gold)]">
-                        New
-                      </span>
-                      <span className="text-xs text-[var(--text-muted)]">
-                        Overwolf companion app
-                      </span>
-                    </div>
-                    <h2 className="text-xl font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors mb-2">
-                      Spire Codex Overlay
-                    </h2>
-                    <p className="text-sm text-[var(--text-secondary)] mb-3">
-                      In-game lookup for cards, relics, monsters and events,
-                      plus a live run tracker that reads your save as you
-                      play.
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-sm font-medium text-[var(--accent-gold)]">
-                      Learn more <span aria-hidden>→</span>
-                    </span>
+                tile,
+                <Link key="ow-promo" href={`${langPrefix}/overlay`} className="promo">
+                  <img className="promo-img" src="/overwolf-logo.png" alt="Overwolf" />
+                  <div className="promo-body">
+                    <span className="promo-kick">{t("New · Overwolf companion", lang)}</span>
+                    <div className="promo-t">{t("Spire Codex Overlay", lang)}</div>
+                    <p className="promo-d">{t("In-game lookup for cards, relics, monsters and events, plus a live run tracker that reads your save as you play.", lang)}</p>
+                    <span className="promo-more">{t("Learn more", lang)} &rarr;</span>
                   </div>
                 </Link>,
-                card,
               ];
             }
-            return [card];
+            return tile;
           })}
         </div>
       </section>

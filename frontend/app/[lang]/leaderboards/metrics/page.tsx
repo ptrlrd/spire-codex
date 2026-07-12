@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import MetricsClient from "@/app/leaderboards/metrics/MetricsClient";
-import { loadMetrics } from "@/app/leaderboards/metrics/page";
+import { loadMetrics } from "@/app/leaderboards/metrics/metrics-data";
 import {
   isValidLang,
   LANG_GAME_NAME,

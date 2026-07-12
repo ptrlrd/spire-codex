@@ -9,6 +9,8 @@ import RichDescription from "@/app/components/RichDescription";
 import SearchFilter from "@/app/components/SearchFilter";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
+import "../../card-revamp.css";
+import "../../reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -106,21 +108,30 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
   // Glossary term page
   if (glossary) {
     return (
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <button onClick={() => router.back()} className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6">
-          &larr; Back to Keywords & Game Terms
-        </button>
+      <div className="card-rvmp">
+        <div className="cd-top">
+          <button onClick={() => router.back()} className="cd-back">
+            &larr; Back to Keywords & Game Terms
+          </button>
+        </div>
 
-        <div className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border-subtle)] p-6 sm:p-8 shadow-xl shadow-black/30">
-          <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3 block">
-            {CATEGORY_LABELS[glossary.category] || "Game Term"}
-          </span>
-          <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-4">
-            {glossary.name}
-          </h1>
-          <div className="text-[var(--text-secondary)] leading-relaxed">
-            <RichDescription text={glossary.description.replace(/\n/g, "\n\n")} />
-          </div>
+        <div className="wrap solo narrow">
+          <main className="main">
+            <div className="hero">
+              <p className="eyebrow">
+                <span className="dot">&#9670;</span>
+                <span>{CATEGORY_LABELS[glossary.category] || "Game Term"}</span>
+              </p>
+              <h1>{glossary.name}</h1>
+            </div>
+
+            <section id="description">
+              <h2>Description</h2>
+              <div className="desc-quote">
+                <RichDescription text={glossary.description.replace(/\n/g, "\n\n")} />
+              </div>
+            </section>
+          </main>
         </div>
       </div>
     );
@@ -134,39 +145,51 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
   if (search) filtered = filtered.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <button onClick={() => router.back()} className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6">
-        &larr; Back to Keywords
-      </button>
-
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-          {keyword.name}
-        </h1>
-        <p className="text-[var(--text-secondary)] text-lg mb-1">
-          <RichDescription text={keyword.description} />
-        </p>
-        <p className="text-sm text-[var(--text-muted)]">
-          {cards.length} card{cards.length !== 1 ? "s" : ""} with this keyword
-        </p>
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; Back to Keywords
+        </button>
       </div>
 
-      <SearchFilter
-        search={search}
-        onSearchChange={setSearch}
-        placeholder={`Search ${keyword.name} cards...`}
-        resultCount={filtered.length}
-        filters={[
-          {
-            label: "All Characters",
-            value: color,
-            options: colorOptions,
-            onChange: setColor,
-          },
-        ]}
-      />
+      <div className="wrap solo">
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>Keyword</span>
+            </p>
+            <h1>{keyword.name}</h1>
+            <div className="lede">
+              <RichDescription text={keyword.description} />
+            </div>
+          </div>
 
-      <FullCardGrid cards={filtered} />
+          <section id="cards">
+            <h2>Cards</h2>
+            <p className="h-note">
+              {cards.length} card{cards.length !== 1 ? "s" : ""} with this keyword
+            </p>
+
+            <SearchFilter
+              search={search}
+              onSearchChange={setSearch}
+              placeholder={`Search ${keyword.name} cards...`}
+              resultCount={filtered.length}
+              filters={[
+                {
+                  label: "All Characters",
+                  value: color,
+                  options: colorOptions,
+                  onChange: setColor,
+                },
+              ]}
+            />
+
+            <FullCardGrid cards={filtered} />
+          </section>
+        </main>
+      </div>
     </div>
   );
 }
