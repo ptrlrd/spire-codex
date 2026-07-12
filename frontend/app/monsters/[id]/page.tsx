@@ -23,10 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const monster = await res.json();
     const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
     const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
-    const title = `Monster - ${monster.name} - ${monster.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${monster.name} - Slay the Spire 2 ${monster.type} | Spire Codex`;
     const movesText = monster.moves?.length ? `${monster.moves.length} known moves.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${monster.type} monster, ${monster.name}.${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
+      `${monster.name} is a ${monster.type} in Slay the Spire 2 (sts2).${hpText ? ` ${hpText}.` : ""}${movesText ? ` ${movesText}` : ""}`,
     );
     return {
       title,

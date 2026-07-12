@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Affliction Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const affliction = await res.json();
     const desc = stripTagsFlat(affliction.description || "");
-    const title = `Affliction - ${affliction.name} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${affliction.name} - Slay the Spire 2 Affliction | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 affliction, ${affliction.name}${desc ? `: ${desc}` : ""}`,
+      `${affliction.name} is an affliction in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

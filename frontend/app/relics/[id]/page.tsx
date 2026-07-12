@@ -26,9 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Relic Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const relic = await res.json();
     const desc = stripTagsFlat(relic.description || "");
-    const title = `Relic - ${relic.name} - ${relic.rarity} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${relic.name} - Slay the Spire 2 ${relic.rarity} Relic | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${relic.rarity} relic, ${relic.name}${desc ? `: ${desc}` : ""}`,
+      `${relic.name} is a ${relic.rarity} relic in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

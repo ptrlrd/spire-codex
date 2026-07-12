@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Intent Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const intent = await res.json();
     const desc = stripTagsFlat(intent.description || "");
-    const title = `Intent - ${intent.name} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${intent.name} - Slay the Spire 2 Monster Intent | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 monster intent, ${intent.name}${desc ? `: ${desc}` : ""}`,
+      `${intent.name} is a monster intent in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

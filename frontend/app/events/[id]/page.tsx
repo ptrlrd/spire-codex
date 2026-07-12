@@ -18,9 +18,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     if (!res.ok) return { title: "Event Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const event = await res.json();
     const desc = stripTagsFlat(event.description || "");
-    const title = `Event - ${event.name} - ${event.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${event.name} - Slay the Spire 2 Event | Spire Codex`;
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 ${event.type} event, ${event.name}${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : ""}`,
+      `${event.name} is a ${event.type} event in Slay the Spire 2 (sts2)${event.act ? ` (${event.act})` : ""}${desc ? `: ${desc}` : "."}`,
     );
     return {
       title,

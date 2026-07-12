@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const card = await res.json();
     const desc = stripTags(card.description || "");
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = `Card - ${card.name} - ${card.rarity} ${card.type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${card.name} - Slay the Spire 2 ${card.rarity} ${card.type} | Spire Codex`;
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
     const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 card, ${card.name} (${card.cost ?? "X"}-cost ${card.rarity} ${card.type}, ${color}). ${descFlat}${keywords}`,
+      `${card.name} is a ${card.cost ?? "X"}-cost ${color} ${card.rarity} ${card.type} card in Slay the Spire 2 (sts2). ${descFlat}${keywords}`,
     );
     // Full game-rendered card (base + upgraded) as the share image, English.
     const ogImages = cardOgImages(card, "eng");

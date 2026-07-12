@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const res = await fetch(`${API_INTERNAL}/api/encounters/${id}`);
     if (!res.ok) return { title: "Encounter Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
     const encounter = await res.json();
-    const title = `Encounter - ${encounter.name} - ${encounter.room_type} - Slay the Spire 2 (sts2) | Spire Codex`;
+    const title = `${encounter.name} - Slay the Spire 2 ${encounter.room_type} Encounter | Spire Codex`;
     const monsterList = encounter.monsters?.length
       ? ` Monsters: ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
       : "";

@@ -32,7 +32,7 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
     const langCode = lang as LangCode;
     const gameName = LANG_GAME_NAME[langCode];
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = `${gameName} Card - ${card.name} - ${card.rarity} ${card.type} | Spire Codex (${LANG_NAMES[langCode]})`;
+    const title = `${card.name} - ${gameName} ${card.rarity} ${card.type} | Spire Codex (${LANG_NAMES[langCode]})`;
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
     const metaDesc = clipMetaDescription(
