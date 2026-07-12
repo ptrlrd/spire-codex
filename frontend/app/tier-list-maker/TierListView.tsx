@@ -16,9 +16,9 @@ export default function TierListView({
   // directly so the bordered container still reads as a rounded card.
   const lastTier = list.tiers.length - 1;
   return (
-    <div className="rounded-lg border border-neutral-800">
+    <div className="rounded-lg border border-[var(--border-subtle)]">
       {list.tiers.map((tier, i) => (
-        <div key={tier.id} className="flex items-stretch border-b border-neutral-900 last:border-b-0">
+        <div key={tier.id} className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0">
           <div
             style={{ background: tier.color }}
             className={`flex w-16 shrink-0 items-center justify-center p-2 text-center text-lg font-bold text-black ${
@@ -28,7 +28,7 @@ export default function TierListView({
             {tier.label}
           </div>
           <div
-            className={`flex min-h-[64px] flex-1 flex-wrap content-start gap-1 bg-neutral-950 p-1.5 ${
+            className={`flex min-h-[64px] flex-1 flex-wrap content-start gap-1 bg-[var(--bg-primary)] p-1.5 ${
               i === 0 ? "rounded-tr-lg" : ""
             } ${i === lastTier ? "rounded-br-lg" : ""}`}
           >

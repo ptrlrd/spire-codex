@@ -12,6 +12,7 @@ import JsonLd from "./components/JsonLd";
 import SearchTrigger from "./components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { SITE_NAME, IS_BETA, buildLanguageAlternates, HOME_OG_IMAGE } from "@/lib/seo";
+import "./home-revamp.css";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -84,35 +85,30 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       <JsonLd data={[buildWebSiteJsonLd(), buildVideoGameJsonLd()]} />
-      {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-red)]/8 via-transparent to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 relative">
-          <div className="text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-4">
-              <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
-              <span className="text-[var(--text-primary)] font-light">
-                CODEX
-              </span>
+      <div className="rvmp">
+        <main className="home">
+          <section className="hero">
+            <h1 className="wordmark">
+              SPIRE <span>CODEX</span>
               {IS_BETA && (
-                <span className="ml-3 text-sm font-medium px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 align-middle">
+                <sup className="ml-2 align-super text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">
                   BETA
-                </span>
+                </sup>
               )}
             </h1>
-            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
+            <p className="htag">
               {IS_BETA
-                ? "Preview of upcoming Slay the Spire 2 content"
-                : "The complete database for Slay the Spire 2"}
+                ? "Preview of upcoming Slay the Spire 2 content, every card, relic, monster, and run."
+                : "The complete database for Slay the Spire 2, every card, relic, monster, and run, searchable and cross-referenced."}
             </p>
-            <div className="max-w-xl mx-auto">
+            <div style={{ maxWidth: 540, margin: "18px auto 0" }}>
               <SearchTrigger variant="hero" />
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+          <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+        </main>
+      </div>
 
       {/* Latest 3 community announcements rendered as image-card blocks
           mirroring the grid above. Server-rendered so search snippets

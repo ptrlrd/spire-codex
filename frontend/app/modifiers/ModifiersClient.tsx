@@ -6,6 +6,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "../components/RichDescription";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -51,7 +52,7 @@ export default function ModifiersClient() {
   }, [lang]);
 
   if (loading) {
-    return <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">Loading...</div>;
+    return <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">{t("Loading...", lang)}</div>;
   }
 
   const deckModifiers = modifiers.filter((m) => MODIFIER_TAGS[m.id]?.includes("Clears Starter Deck"));
@@ -61,7 +62,7 @@ export default function ModifiersClient() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        Custom Mode Modifiers
+        {t("Custom Mode Modifiers", lang)}
       </h1>
       <p className="text-[var(--text-secondary)] mb-6">
         All {modifiers.length} modifiers available in Custom Mode. Some modifiers replace your starting deck and change how Neow works.
@@ -71,10 +72,10 @@ export default function ModifiersClient() {
       {deckModifiers.length > 0 && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Deck Replacement Modifiers
+            {t("Deck Replacement Modifiers", lang)}
           </h2>
           <p className="text-xs text-[var(--text-muted)] mb-3">
-            These modifiers clear your starter deck and replace the Neow encounter. When active, Pandora&apos;s Box will not be offered by Darv.
+            {t("These modifiers clear your starter deck and replace the Neow encounter. When active, Pandora's Box will not be offered by Darv.", lang)}
           </p>
           <div className="space-y-3">
             {deckModifiers.map((mod) => (
@@ -88,10 +89,10 @@ export default function ModifiersClient() {
       {neowModifiers.length > 0 && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Neow Replacement Modifiers
+            {t("Neow Replacement Modifiers", lang)}
           </h2>
           <p className="text-xs text-[var(--text-muted)] mb-3">
-            These modifiers replace Neow&apos;s normal relic offerings with a custom selection.
+            {t("These modifiers replace Neow's normal relic offerings with a custom selection.", lang)}
           </p>
           <div className="space-y-3">
             {neowModifiers.map((mod) => (
@@ -105,7 +106,7 @@ export default function ModifiersClient() {
       {otherModifiers.length > 0 && (
         <div className="mb-6">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Other Modifiers
+            {t("Other Modifiers", lang)}
           </h2>
           <div className="space-y-3">
             {otherModifiers.map((mod) => (

@@ -93,7 +93,7 @@ export default function ScoringPage() {
   const jsonLd = [...articleAndBreadcrumb, faqJsonLd];
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">

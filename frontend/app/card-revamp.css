@@ -1,0 +1,217 @@
+/* Wiki-style card detail styles (ported from the design mockup). Scoped under
+   .card-rvmp so nothing leaks into the rest of the site. Artifact variables are
+   mapped onto the real Spire Codex tokens + Kreon, mirroring home-revamp.css.
+   --spine (the per-entity character accent) is set inline per card color. */
+.card-rvmp {
+  --gold: var(--accent-gold);
+  --gold-lite: var(--accent-gold-light, #fbd91e);
+  --spine: var(--color-silent);
+  --spine-soft: color-mix(in srgb, var(--spine) 20%, transparent);
+  --surface: var(--bg-card);
+  --surface-2: var(--bg-card-hover);
+  --border: var(--border-subtle);
+  --border-2: var(--border-accent);
+  --text: var(--text-primary);
+  --text-2: var(--text-secondary);
+  --text-3: var(--text-muted);
+  --bg: var(--bg-primary);
+  --bg-2: var(--bg-secondary);
+  --ironclad: var(--color-ironclad);
+  --defect: var(--color-defect);
+  --necro: var(--color-necrobinder);
+  --regent: var(--color-regent);
+  --good: #35c07a;
+  --warn: #d08a3a;
+  --serif: var(--font-kreon), Georgia, "Times New Roman", serif;
+  --sans: var(--font-kreon), system-ui, -apple-system, sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, monospace;
+  --radius: 6px;
+  --wrap: 1200px;
+  font-family: var(--sans);
+}
+.card-rvmp a { text-decoration: none; color: var(--gold); }
+.card-rvmp a:hover { text-decoration: none; }
+
+/* ── top strip (back link + beta notice) ── */
+.card-rvmp .cd-top { max-width: var(--wrap); margin: 0 auto; padding: 14px 24px 0; }
+.card-rvmp .cd-back { display: inline-flex; align-items: center; gap: 5px; font-family: var(--sans);
+  font-size: 13px; color: var(--text-2); }
+.card-rvmp .cd-back:hover { color: var(--text); }
+
+/* ── page grid ── */
+.card-rvmp .wrap { max-width: var(--wrap); margin: 0 auto; padding: 18px 24px 80px;
+  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 44px; }
+.card-rvmp .main { min-width: 0; }
+
+/* ── title / hero ── */
+.card-rvmp .hero { position: relative; }
+.card-rvmp .hero-art { position: absolute; right: -12px; top: -20px; width: 240px; opacity: .16;
+  pointer-events: none; z-index: 0;
+  -webkit-mask-image: linear-gradient(to left, #000 10%, transparent 78%);
+  mask-image: linear-gradient(to left, #000 10%, transparent 78%); }
+.card-rvmp .hero > * { position: relative; z-index: 1; }
+.card-rvmp .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .09em;
+  text-transform: uppercase; color: var(--text-2); display: flex; gap: 10px; flex-wrap: wrap;
+  align-items: center; }
+.card-rvmp .eyebrow .dot { color: var(--spine); }
+.card-rvmp .hero h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 5vw, 50px);
+  line-height: 1.04; margin: 12px 0 0; text-wrap: balance; color: var(--text); }
+.card-rvmp .hero h1 .up { color: var(--good); }
+.card-rvmp .lede { color: var(--text-2); font-size: 18px; margin: 14px 0 0; max-width: 60ch; }
+
+/* ── sticky ToC ── */
+.card-rvmp .toc { position: sticky; top: 64px; z-index: 20; margin: 28px 0 0; padding: 10px 0;
+  background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(6px);
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: flex; gap: 4px; flex-wrap: wrap; }
+.card-rvmp .toc a { color: var(--text-2); font-size: 13px; padding: 5px 11px; border-radius: 4px; }
+.card-rvmp .toc a:hover { color: var(--text); background: var(--surface); }
+.card-rvmp .toc a.on { color: var(--spine); background: var(--spine-soft); }
+
+/* ── sections ── */
+.card-rvmp section { padding-top: 40px; scroll-margin-top: 128px; }
+.card-rvmp h2 { font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0 0 4px; color: var(--text); }
+.card-rvmp .h-note { color: var(--text-3); font-size: 13px; margin: 0 0 18px; }
+.card-rvmp .subh { font-family: var(--serif); font-weight: 600; font-size: 17px; margin: 30px 0 4px; color: var(--text); }
+
+/* inline entity cross-links */
+.card-rvmp .ent { color: var(--gold); border-bottom: 1px dotted color-mix(in srgb, var(--gold) 55%, transparent); cursor: help; }
+.card-rvmp .ent:hover { border-bottom-style: solid; }
+.card-rvmp .desc-quote { font-size: 19px; line-height: 1.5; color: var(--text); background: var(--surface);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 18px 22px; }
+.card-rvmp .desc-body { color: var(--text-2); margin-top: 16px; max-width: 62ch; font-size: 15px; line-height: 1.6; }
+
+/* ── stat tiles ── */
+.card-rvmp .tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.card-rvmp .tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 15px 16px; }
+.card-rvmp .tile .k { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-2); }
+.card-rvmp .tile .v { font-family: var(--mono); font-size: 27px; font-weight: 600; margin-top: 6px; font-variant-numeric: tabular-nums; color: var(--text); }
+.card-rvmp .tile .s { font-size: 12px; color: var(--text-3); margin-top: 3px; }
+.card-rvmp .tier { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 5px;
+  font-family: var(--serif); font-weight: 700; font-size: 18px; color: #0a1118; background: var(--warn); }
+
+/* ── by-character bars ── */
+.card-rvmp .bars { margin-top: 6px; display: grid; gap: 9px; }
+.card-rvmp .bar-row { display: grid; grid-template-columns: 92px 1fr 116px; gap: 12px; align-items: center; font-size: 13px; }
+.card-rvmp .bar-row .name { color: var(--text); }
+.card-rvmp .bar-track { height: 9px; background: var(--surface-2); border-radius: 5px; overflow: hidden; }
+.card-rvmp .bar-fill { display: block; height: 100%; border-radius: 5px; }
+.card-rvmp .bar-row .num { font-family: var(--mono); font-variant-numeric: tabular-nums; color: var(--text-2); text-align: right; font-size: 12px; }
+.card-rvmp .bar-row .num b { color: var(--text); }
+.card-rvmp .insight { margin-top: 16px; font-size: 14px; color: var(--text-2); background: var(--spine-soft);
+  border-radius: var(--radius); padding: 12px 15px; border: 1px solid color-mix(in srgb, var(--spine) 30%, transparent); }
+.card-rvmp .insight b { color: var(--text); }
+.card-rvmp .stat-note { margin-top: 14px; font-size: 12px; color: var(--text-3); }
+
+/* ── bracket pills ── */
+.card-rvmp .brkt { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 20px; }
+.card-rvmp .brkt-pill { padding: 6px 12px; font-family: var(--sans); font-size: 12.5px; font-weight: 600;
+  color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border-2);
+  border-radius: 999px; cursor: pointer; transition: color .12s, background .12s, border-color .12s; }
+.card-rvmp .brkt-pill:hover { color: var(--text); border-color: var(--border); }
+.card-rvmp .brkt-pill.on { color: #1a1205; background: var(--gold); border-color: var(--gold); }
+
+/* ── relations ── */
+.card-rvmp .rel { display: grid; gap: 20px; }
+.card-rvmp .rel-block .rl { font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--text-2); margin-bottom: 10px; display: flex; gap: 8px; align-items: baseline; }
+.card-rvmp .rel-block .rl .cnt { color: var(--text-3); }
+.card-rvmp .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.card-rvmp .chip { display: inline-flex; align-items: center; gap: 7px; background: var(--surface); border: 1px solid var(--border-2);
+  border-radius: 999px; padding: 5px 13px 5px 6px; font-size: 13.5px; color: var(--text); }
+.card-rvmp .chip:hover { border-color: var(--gold); background: var(--surface-2); }
+.card-rvmp .chip .pip { width: 16px; height: 16px; border-radius: 3px; background: var(--spine); flex: none; }
+.card-rvmp .cardlink { display: inline-flex; gap: 12px; align-items: center; background: var(--surface);
+  border: 1px solid var(--border-2); border-radius: 9px; padding: 8px 16px 8px 8px; color: var(--text); }
+.card-rvmp .cardlink:hover { border-color: var(--gold); background: var(--surface-2); }
+.card-rvmp .cardlink .cln { display: block; font-size: 15px; color: var(--text); }
+.card-rvmp .cardlink .cls { display: block; font-size: 12px; color: var(--text-3); font-family: var(--mono); }
+.card-rvmp .cardimg.xs { width: 52px; height: auto; border-radius: 6px; box-shadow: 0 3px 10px -4px #000a; }
+
+/* ── powers applied list ── */
+.card-rvmp .pow-list { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+.card-rvmp .pow-list a { font-size: 14px; color: var(--text-2); }
+.card-rvmp .pow-list a:hover { color: var(--gold); }
+
+/* ── type variant toggle ── */
+.card-rvmp .vtoggle { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 14px; }
+.card-rvmp .vbtn { font-size: 12.5px; padding: 6px 12px; border-radius: 8px; cursor: pointer;
+  background: var(--surface-2); border: 1px solid var(--border-2); color: var(--text-2); font-weight: 600; }
+.card-rvmp .vbtn:hover { color: var(--text); }
+.card-rvmp .vbtn.on { background: var(--gold); color: #1a1205; border-color: var(--gold); }
+
+/* ── enchantments grid ── */
+.card-rvmp .ench-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+.card-rvmp .ench-cell { display: flex; flex-direction: column; gap: 6px; background: var(--surface);
+  border: 1px solid var(--border-2); border-radius: 10px; padding: 10px; }
+.card-rvmp .ench-cell:hover { border-color: color-mix(in srgb, var(--gold) 50%, var(--border-2)); }
+.card-rvmp .ench-cell img { width: 100%; height: auto; border-radius: 7px; }
+.card-rvmp .ench-name { font-size: 14px; font-weight: 600; color: var(--text); }
+.card-rvmp .ench-cell:hover .ench-name { color: var(--gold); }
+.card-rvmp .ench-desc { font-size: 12px; line-height: 1.4; color: var(--text-3); }
+
+/* ── infobox (sticky) ── */
+.card-rvmp .aside { min-width: 0; }
+.card-rvmp .box { position: sticky; top: 84px; display: grid; gap: 16px; }
+.card-rvmp .cardimg { display: block; width: 100%; height: auto; border-radius: 11px; }
+.card-rvmp .cardimg.render { background: color-mix(in srgb, #000 30%, transparent); padding: 10px;
+  filter: drop-shadow(0 12px 30px rgba(0,0,0,.5)); }
+/* Card renders lock to the full-card aspect (400x520) so switching Normal /
+   Upgraded / Beta / enchanted art (some renders are portrait, the raw art is
+   landscape) never reshapes the box; off-ratio art is contained inside it. */
+.card-rvmp .cardimg.render.cardframe { aspect-ratio: 400 / 520; height: auto; object-fit: contain; }
+
+/* variant switcher */
+.card-rvmp .variant { display: grid; gap: 10px; margin-top: 14px; }
+.card-rvmp .seg { display: flex; gap: 3px; padding: 3px; background: var(--surface-2);
+  border: 1px solid var(--border-2); border-radius: 9px; }
+.card-rvmp .segbtn { flex: 1; padding: 8px; font-family: var(--sans); font-size: 13px; font-weight: 600;
+  color: var(--text-2); background: none; border: 0; border-radius: 6px; cursor: pointer; transition: color .12s, background .12s; }
+.card-rvmp .segbtn:hover { color: var(--text); }
+.card-rvmp .segbtn.on { background: var(--gold); color: #1a1205; }
+.card-rvmp .ench-select { width: 100%; padding: 9px 30px 9px 11px; font-family: var(--sans); font-size: 13.5px;
+  color: var(--text); background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 9px; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a9298' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 11px center; }
+.card-rvmp .ench-select:hover { border-color: var(--border); }
+.card-rvmp .betabtn { width: 100%; padding: 9px 12px; font-family: var(--sans); font-size: 13px; font-weight: 600;
+  color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border-2); border-radius: 9px; cursor: pointer;
+  transition: color .12s, background .12s, border-color .12s; }
+.card-rvmp .betabtn:hover { color: var(--text); }
+.card-rvmp .betabtn.on { background: var(--gold); color: #1a1205; border-color: var(--gold); }
+.card-rvmp .variant-cap { min-height: 18px; font-family: var(--sans); font-size: 13px; line-height: 1.4;
+  text-align: center; color: var(--text-2); }
+.card-rvmp .variant-cap b { color: var(--gold-lite); font-variant-numeric: tabular-nums; }
+.card-rvmp .variant-cap .muted { opacity: .55; }
+
+/* facts table */
+.card-rvmp .facts { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.card-rvmp .facts .fh { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--text-2); padding: 11px 15px; border-bottom: 1px solid var(--border); background: var(--spine-soft); }
+.card-rvmp .facts dl { margin: 0; padding: 6px 15px 12px; }
+.card-rvmp .frow { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); font-size: 13.5px; }
+.card-rvmp .frow:last-child { border-bottom: 0; }
+.card-rvmp .frow dt { color: var(--text-2); }
+.card-rvmp .frow dd { margin: 0; color: var(--text); text-align: right; font-weight: 500; display: flex; gap: 5px;
+  flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+.card-rvmp .kw { display: inline-block; font-size: 11.5px; border: 1px solid var(--border-2); border-radius: 3px;
+  padding: 1px 7px; color: var(--gold); }
+
+/* mini community block */
+.card-rvmp .mini { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }
+.card-rvmp .mini .mh { font-family: var(--mono); font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-2); margin-bottom: 10px; }
+.card-rvmp .mini .mg { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 14px; }
+.card-rvmp .mini .mv { font-family: var(--mono); font-size: 20px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
+.card-rvmp .mini .ml { font-size: 11px; color: var(--text-3); }
+
+@media (max-width: 900px) {
+  .card-rvmp .wrap { grid-template-columns: 1fr; gap: 26px; }
+  .card-rvmp .box { position: static; }
+  .card-rvmp .aside { order: -1; }
+  .card-rvmp .tiles { grid-template-columns: repeat(2, 1fr); }
+  .card-rvmp .bar-row { grid-template-columns: 78px 1fr 100px; }
+  .card-rvmp .hero-art { display: none; }
+  .card-rvmp .toc { top: 64px; }
+}

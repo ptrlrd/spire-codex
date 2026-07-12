@@ -7,6 +7,7 @@ import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { colorTextClass } from "@/lib/character-colors";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 
 export interface MetricRow {
@@ -97,16 +98,16 @@ function combineBracket(player: string, skill: string, mode: string): string {
   return player || skill || "all";
 }
 
-function bracketLabel(b: string): string {
+function bracketLabel(b: string, lang: string): string {
   const { player, skill, mode } = parseBracket(b);
   const parts: string[] = [];
   const pl = PLAYER_AXIS.find((a) => a.key === player);
-  if (player && pl) parts.push(pl.label);
+  if (player && pl) parts.push(t(pl.label, lang));
   const sl = SKILL_AXIS.find((a) => a.key === skill);
-  if (skill && sl) parts.push(sl.label);
+  if (skill && sl) parts.push(t(sl.label, lang));
   const ml = MODE_AXIS.find((a) => a.key === mode);
-  if (mode && ml) parts.push(ml.label);
-  return parts.length ? parts.join(" + ") : "All runs";
+  if (mode && ml) parts.push(t(ml.label, lang));
+  return parts.length ? parts.join(" + ") : t("All runs", lang);
 }
 
 type SortKey =
@@ -253,23 +254,20 @@ export default function MetricsClient({
       <StatsRebuildingNotice />
       <header className="mb-5">
         <h1 className="text-2xl sm:text-3xl font-bold text-[var(--text-primary)]">
-          Card Metrics
+          {t("Card Metrics", lang)}
         </h1>
         <p className="mt-2 max-w-3xl text-sm text-[var(--text-secondary)]">
-          Every card scored two ways.{" "}
+          {t("Every card scored two ways.", lang)}{" "}
           <Link href={`${lp}/leaderboards/scoring`} className="text-[var(--accent-gold)] hover:underline">
             Codex Score
           </Link>{" "}
-          grades win rate (does the card win games). <strong>Codex Elo</strong> is a
-          revealed-preference rating built from card-reward decisions. Every reward
-          screen is a head-to-head where the card you take beats the cards you skip,
-          fit with a Bradley-Terry model. Elo is largely skill-agnostic: it measures
-          what players actually want when offered, not who happened to play the card.
+          {t("grades win rate (does the card win games).", lang)} <strong>Codex Elo</strong>{" "}
+          {t("is a revealed-preference rating built from card-reward decisions. Every reward screen is a head-to-head where the card you take beats the cards you skip, fit with a Bradley-Terry model. Elo is largely skill-agnostic: it measures what players actually want when offered, not who happened to play the card.", lang)}
         </p>
         <p className="mt-2 text-xs text-[var(--text-muted)]">
-          {bracketLabel(bracket)} ·{" "}
-          {totalRuns.toLocaleString()} runs · baseline win rate {baselineWinRate}% ·{" "}
-          {visible.length} cards shown
+          {bracketLabel(bracket, lang)} ·{" "}
+          {totalRuns.toLocaleString()} {t("runs", lang)} · {t("baseline win rate", lang)} {baselineWinRate}% ·{" "}
+          {visible.length} {t("cards shown", lang)}
         </p>
       </header>
 
@@ -278,38 +276,38 @@ export default function MetricsClient({
           cached server refetch. Pick a player count AND a skill tier to see,
           e.g., solo runs from >50%-win-rate players. */}
       <div className="mb-2 flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Players</span>
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">{t("Players", lang)}</span>
         {PLAYER_AXIS.map((c) => (
           <button
             key={c.key || "all"}
             onClick={() => pickPlayer(c.key)}
             className={pillCls(sel.player === c.key)}
           >
-            {c.label}
+            {t(c.label, lang)}
           </button>
         ))}
       </div>
       <div className="mb-2 flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Skill</span>
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">{t("Skill", lang)}</span>
         {SKILL_AXIS.map((c) => (
           <button
             key={c.key || "all"}
             onClick={() => pickSkill(c.key)}
             className={pillCls(sel.skill === c.key)}
           >
-            {c.label}
+            {t(c.label, lang)}
           </button>
         ))}
       </div>
       <div className="mb-3 flex flex-wrap items-center gap-1.5">
-        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">Mode</span>
+        <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">{t("Mode", lang)}</span>
         {MODE_AXIS.map((c) => (
           <button
             key={c.key || "all"}
             onClick={() => pickMode(c.key)}
             className={pillCls(sel.mode === c.key)}
           >
-            {c.label}
+            {t(c.label, lang)}
           </button>
         ))}
       </div>
@@ -319,7 +317,7 @@ export default function MetricsClient({
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Search cards..."
+          placeholder={t("Search cards...", lang)}
           className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
         />
         <div className="flex flex-wrap gap-1.5">
@@ -333,7 +331,7 @@ export default function MetricsClient({
                   : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--text-muted)]"
               }`}
             >
-              {c.label}
+              {t(c.label, lang)}
             </button>
           ))}
         </div>
@@ -347,26 +345,26 @@ export default function MetricsClient({
               {COLUMNS.map((col) => (
                 <th
                   key={col.key}
-                  title={col.title}
+                  title={t(col.title, lang)}
                   onClick={() => onSort(col)}
                   className={`px-3 py-2 font-medium cursor-pointer select-none hover:text-[var(--accent-gold)] ${
                     col.align === "right" ? "text-right" : "text-left"
                   } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
                 >
-                  {col.label}
+                  {t(col.label, lang)}
                   {arrow(col)}
                 </th>
               ))}
-              <th className="px-2 py-2 text-center font-medium" title="Pick rate by act">
+              <th className="px-2 py-2 text-center font-medium" title={t("Pick rate by act", lang)}>
                 A1
               </th>
-              <th className="px-2 py-2 text-center font-medium" title="Pick rate by act">
+              <th className="px-2 py-2 text-center font-medium" title={t("Pick rate by act", lang)}>
                 A2
               </th>
-              <th className="px-2 py-2 text-center font-medium" title="Pick rate by act">
+              <th className="px-2 py-2 text-center font-medium" title={t("Pick rate by act", lang)}>
                 A3
               </th>
-              <th className="px-2 py-2 text-right font-medium" title="Wins / Losses (runs)">
+              <th className="px-2 py-2 text-right font-medium" title={t("Wins / Losses (runs)", lang)}>
                 W-L
               </th>
             </tr>
@@ -424,23 +422,22 @@ export default function MetricsClient({
         </table>
         {visible.length === 0 && (
           <p className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-            No cards match your filters.
+            {t("No cards match your filters.", lang)}
           </p>
         )}
       </div>
 
       <p className="mt-3 text-xs text-[var(--text-muted)]">
-        Tier letters follow the Codex Score bands:{" "}
-        {Object.keys(TIER_CLASS).map((t) => (
+        {t("Tier letters follow the Codex Score bands:", lang)}{" "}
+        {Object.keys(TIER_CLASS).map((tier) => (
           <span
-            key={t}
-            className={`mx-0.5 inline-block rounded border px-1.5 py-0.5 text-[10px] font-bold ${TIER_CLASS[t]}`}
+            key={tier}
+            className={`mx-0.5 inline-block rounded border px-1.5 py-0.5 text-[10px] font-bold ${TIER_CLASS[tier]}`}
           >
-            {t}
+            {tier}
           </span>
         ))}
-        . Elo and Pick% come from card-reward picks, so starter cards and
-        non-offered cards show &quot;·&quot; there.
+        . {t('Elo and Pick% come from card-reward picks, so starter cards and non-offered cards show "·" there.', lang)}
       </p>
 
       {/* Card render preview, position:fixed so the table's horizontal

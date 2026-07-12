@@ -11,6 +11,7 @@ import ScoreBadge from "@/app/components/ScoreBadge";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 import { fullCardUrl } from "@/lib/image-url";
+import { t } from "@/lib/ui-translations";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -65,6 +66,10 @@ interface ScoreEntry {
 type ScoreRow = ScoreEntry & { entity_id: string };
 
 export default async function CardsPage() {
+  // The base /cards route renders in English; localized visitors get
+  // app/[lang]/cards. Thread eng through t() so the wrapped UI strings
+  // resolve to their English source here.
+  const lang = "eng";
   // Fetch the catalog + Codex Scores in parallel so the server-rendered
   // HTML carries every fact this page surfaces. No client-side hydration
   // step is required for Google to see the intro prose, the top-N
@@ -113,21 +118,21 @@ export default async function CardsPage() {
 
   const faq = [
     {
-      question: "How many cards are in Slay the Spire 2?",
+      question: t("How many cards are in Slay the Spire 2?", lang),
       answer: `Slay the Spire 2 has ${totalCards.toLocaleString()} cards across the five characters, Ironclad, Silent, Defect, Necrobinder, and Regent, plus colorless, event, and token cards. Spire Codex updates the catalog automatically with each patch by re-parsing the decompiled game source.`,
     },
     {
-      question: "Which sts2 cards have the best win rates?",
+      question: t("Which sts2 cards have the best win rates?", lang),
       answer:
         "Spire Codex computes a Codex Score for every card using a Bayesian-shrunk win rate from community-tracked runs, so cards with a few high-win-rate samples don't outrank cards with thousands of runs. The S-tier picks shown above update continuously as new runs are submitted; see the tier list for the full S→F ranking.",
     },
     {
-      question: "What are the card rarities in sts2?",
+      question: t("What are the card rarities in sts2?", lang),
       answer:
         "Cards come in four rarities, Common, Uncommon, Rare, and Boss, plus Starter cards in each character's opening deck. Rarity affects merchant pricing, card-reward drop odds, and tier-list balance: Boss cards can swing a run, while Common pickability matters more in long campaigns.",
     },
     {
-      question: "Where does the card data come from?",
+      question: t("Where does the card data come from?", lang),
       answer:
         "Card definitions are parsed directly from the decompiled Slay the Spire 2 game source on every patch (so cost, damage, block, keywords, and resolved DynamicVars stay canonical). Pick rates, win rates, and tier scores are aggregated live from community-submitted .run files uploaded via the Overwolf overlay and the website.",
     },
@@ -189,17 +194,17 @@ export default async function CardsPage() {
           <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
             <div>
               <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)] bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 rounded px-2 py-0.5 mb-2">
-                ★ Top tier · live
+                {t("★ Top tier · live", lang)}
               </span>
               <h2 className="text-xl font-semibold">
-                Highest-rated sts2 cards right now
+                {t("Highest-rated sts2 cards right now", lang)}
               </h2>
             </div>
             <Link
               href="/tier-list/cards"
               className="text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap"
             >
-              Full tier list →
+              {t("Full tier list", lang)} →
             </Link>
           </div>
           <p className="text-sm text-[var(--text-muted)] mb-4 max-w-3xl">
@@ -224,7 +229,7 @@ export default async function CardsPage() {
                       {score.win_rate.toFixed(0)}% WR
                     </span>
                     <span className="text-[var(--text-muted)]">
-                      {score.picks.toLocaleString()} picks
+                      {score.picks.toLocaleString()} {t("picks", lang)}
                     </span>
                     {score.score != null && <ScoreBadge score={score.score} size="sm" />}
                   </div>
@@ -240,7 +245,7 @@ export default async function CardsPage() {
           "silent cards", etc.). Each link uses the color query param so
           the destination is the filtered grid view rather than a 404. */}
       <section className="mb-10">
-        <h2 className="text-xl font-semibold mb-3">Browse cards by character</h2>
+        <h2 className="text-xl font-semibold mb-3">{t("Browse cards by character", lang)}</h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {cardsByCharacter.map((char) => (
             <li key={char.id}>
@@ -252,7 +257,7 @@ export default async function CardsPage() {
                   {char.name}
                 </div>
                 <div className="text-xs text-[var(--text-muted)] mt-1">
-                  {char.count} cards
+                  {char.count} {t("cards", lang)}
                 </div>
                 <div className="text-xs text-[var(--text-muted)] mt-0.5">
                   {char.tagline}
@@ -291,7 +296,7 @@ export default async function CardsPage() {
           grid so it doesn't push the catalog below the fold. */}
       <section className="mt-12 max-w-3xl">
         <h2 className="text-xl font-semibold mb-4">
-          Frequently asked about sts2 cards
+          {t("Frequently asked about sts2 cards", lang)}
         </h2>
         <dl className="space-y-4">
           {faq.map((q) => (

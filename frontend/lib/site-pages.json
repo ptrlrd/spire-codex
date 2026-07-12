@@ -7,6 +7,14 @@
     ]
   },
   {
+    "path": "/admin/users",
+    "name": "Admin · Users",
+    "keywords": [
+      "admin",
+      "users"
+    ]
+  },
+  {
     "path": "/ancients",
     "name": "Ancients",
     "keywords": [
@@ -50,6 +58,13 @@
     ]
   },
   {
+    "path": "/charts",
+    "name": "Charts",
+    "keywords": [
+      "charts"
+    ]
+  },
+  {
     "path": "/community-stats",
     "name": "Community Stats",
     "keywords": [
@@ -90,6 +105,13 @@
     "name": "Events",
     "keywords": [
       "events"
+    ]
+  },
+  {
+    "path": "/giveaway",
+    "name": "Giveaway",
+    "keywords": [
+      "giveaway"
     ]
   },
   {

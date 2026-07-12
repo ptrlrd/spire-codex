@@ -38,17 +38,17 @@ export default function MyTierLists() {
     }
   }
 
-  if (loading) return <p className="mt-2 text-neutral-400">…</p>;
+  if (loading) return <p className="mt-2 text-[var(--text-secondary)]">…</p>;
   if (!user) {
     return (
-      <p className="mt-2 text-neutral-400">
+      <p className="mt-2 text-[var(--text-secondary)]">
         Sign in with Steam to save tier lists and find them here later.
       </p>
     );
   }
-  if (loadingMine) return <p className="mt-2 text-neutral-400">Loading…</p>;
+  if (loadingMine) return <p className="mt-2 text-[var(--text-secondary)]">Loading…</p>;
   if (mine.length === 0) {
-    return <p className="mt-2 text-neutral-400">No saved tier lists yet.</p>;
+    return <p className="mt-2 text-[var(--text-secondary)]">No saved tier lists yet.</p>;
   }
 
   return (
@@ -56,21 +56,21 @@ export default function MyTierLists() {
       {mine.map((t) => (
         <li
           key={t.id}
-          className="flex items-center justify-between gap-3 rounded border border-neutral-800 bg-neutral-900 px-3 py-2"
+          className="flex items-center justify-between gap-3 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2"
         >
           <Link
             href={`/tier-list-maker/${t.id}`}
-            className="flex-1 truncate text-white hover:text-sky-400"
+            className="flex-1 truncate text-[var(--text-primary)] hover:text-sky-400"
           >
             {t.title}
-            <span className="ml-2 text-xs text-neutral-500">
+            <span className="ml-2 text-xs text-[var(--text-muted)]">
               {ENTITY_LABEL[t.entity_type]}
             </span>
           </Link>
           {t.share_id && (
             <Link
               href={`/tier-list-maker/shared/${t.share_id}`}
-              className="text-sm text-neutral-400 hover:text-white"
+              className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
             >
               Share
             </Link>

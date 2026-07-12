@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Act } from "@/lib/api";
@@ -9,6 +9,8 @@ import { useLanguage } from "../../contexts/LanguageContext";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import "../../card-revamp.css";
+import "../../meta-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -20,6 +22,7 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
   const [act, setAct] = useState<Act | null>(initialAct ?? null);
   const [loading, setLoading] = useState(!initialAct);
   const [notFound, setNotFound] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
     if (!id) return;
@@ -28,6 +31,32 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!act) return;
+    const secs = Array.from(document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"));
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [act]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
 
   if (loading) {
     return (
@@ -48,106 +77,129 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
     );
   }
 
+  const titleCase = (s: string) => s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const summaryBits: string[] = [];
+  if (act.num_rooms) summaryBits.push(`${act.num_rooms} rooms`);
+  if (act.bosses.length > 0) summaryBits.push(`${act.bosses.length} bosses`);
+  if (act.encounters.length > 0) summaryBits.push(`${act.encounters.length} encounters`);
+  if (act.events.length > 0) summaryBits.push(`${act.events.length} events`);
+
+  const tocItems: { id: string; label: string }[] = [
+    ...(act.bosses.length > 0 ? [{ id: "bosses", label: "Bosses" }] : []),
+    ...(act.encounters.length > 0 ? [{ id: "encounters", label: "Encounters" }] : []),
+    ...(act.events.length > 0 ? [{ id: "events", label: "Events" }] : []),
+    ...(act.ancients.length > 0 ? [{ id: "ancients", label: "Ancients" }] : []),
+    { id: "history", label: "Version history" },
+  ];
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; Back to Reference
-      </button>
+    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
+      <div className="cd-top solo">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; Back to Reference
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-          {act.name}
-        </h1>
-        {act.num_rooms && (
-          <p className="text-[var(--text-muted)] mb-6">{act.num_rooms} rooms</p>
-        )}
-
-        {/* Bosses */}
-        {act.bosses.length > 0 && (
-          <div className="mb-5">
-            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">
-              Bosses ({act.bosses.length})
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {act.bosses.map((b) => (
-                <Link
-                  key={b}
-                  href={`${lp}/encounters/${b.toLowerCase()}`}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-red-900/20 text-red-300 border border-red-800/30 hover:bg-red-900/40 transition-colors"
-                >
-                  {b.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()).replace(/ Boss$/, "")}
-                </Link>
-              ))}
-            </div>
+      <div className="wrap solo">
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>Act</span>
+              {act.num_rooms != null && (
+                <>
+                  <span>&middot;</span>
+                  <span>{act.num_rooms} rooms</span>
+                </>
+              )}
+            </p>
+            <h1>{act.name}</h1>
+            {summaryBits.length > 0 && <p className="lede">{summaryBits.join(" · ")}</p>}
           </div>
-        )}
 
-        {/* Encounters */}
-        {act.encounters.length > 0 && (
-          <div className="mb-5">
-            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">
-              Encounters ({act.encounters.length})
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {act.encounters.map((e) => (
-                <Link
-                  key={e}
-                  href={`${lp}/encounters/${e.toLowerCase()}`}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-card-hover)] transition-colors"
-                >
-                  {e.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()).replace(/ (Normal|Weak|Elite|Boss)$/, "")}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label="On this page">
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
 
-        {/* Events */}
-        {act.events.length > 0 && (
-          <div className="mb-5">
-            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">
-              Events ({act.events.length})
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {act.events.map((e) => (
-                <Link
-                  key={e}
-                  href={`${lp}/events/${e.toLowerCase()}`}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-card-hover)] transition-colors"
-                >
-                  {e.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
+          {/* Bosses */}
+          {act.bosses.length > 0 && (
+            <section id="bosses">
+              <h2>Bosses ({act.bosses.length})</h2>
+              <div className="chips">
+                {act.bosses.map((b) => (
+                  <Link key={b} href={`${lp}/encounters/${b.toLowerCase()}`} className="chip">
+                    <span className="pip" style={{ background: "#b3423a" }} />
+                    {titleCase(b).replace(/ Boss$/, "")}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
-        {/* Ancients */}
-        {act.ancients.length > 0 && (
-          <div className="mb-5">
-            <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-2">
-              Ancients
-            </h2>
-            <div className="flex flex-wrap gap-2">
-              {[...new Set(act.ancients)].map((a) => (
-                <span
-                  key={a}
-                  className="text-sm px-3 py-1.5 rounded-lg bg-purple-900/20 text-purple-300 border border-purple-800/30"
-                >
-                  {a.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+          {/* Encounters */}
+          {act.encounters.length > 0 && (
+            <section id="encounters">
+              <h2>Encounters ({act.encounters.length})</h2>
+              <div className="chips">
+                {act.encounters.map((e) => (
+                  <Link key={e} href={`${lp}/encounters/${e.toLowerCase()}`} className="chip">
+                    <span className="pip" />
+                    {titleCase(e).replace(/ (Normal|Weak|Elite|Boss)$/, "")}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
 
-        <div className="mt-6">
-          <LocalizedNames entityType="acts" entityId={id} />
-          <EntityHistory entityType="acts" entityId={id} />
-        </div>
+          {/* Events */}
+          {act.events.length > 0 && (
+            <section id="events">
+              <h2>Events ({act.events.length})</h2>
+              <div className="chips">
+                {act.events.map((e) => (
+                  <Link key={e} href={`${lp}/events/${e.toLowerCase()}`} className="chip">
+                    <span className="pip" style={{ background: "#4f7fb3" }} />
+                    {titleCase(e)}
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Ancients */}
+          {act.ancients.length > 0 && (
+            <section id="ancients">
+              <h2>Ancients</h2>
+              <div className="chips">
+                {[...new Set(act.ancients)].map((a) => (
+                  <span key={a} className="chip">
+                    <span className="pip" style={{ background: "#8a5cc4" }} />
+                    {titleCase(a)}
+                  </span>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Version history + localized names */}
+          <section id="history">
+            <h2>Version history</h2>
+            <LocalizedNames entityType="acts" entityId={id} />
+            <EntityHistory entityType="acts" entityId={id} />
+          </section>
+        </main>
       </div>
     </div>
   );

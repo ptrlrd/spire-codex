@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
@@ -7,6 +8,8 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import type { Badge } from "@/lib/api";
 import { imageUrl } from "@/lib/image-url";
+import "../../card-revamp.css";
+import "../../meta-extra.css";
 
 export const dynamic = "force-dynamic";
 
@@ -36,16 +39,10 @@ const RARITY_LABEL: Record<string, string> = {
   gold: "Gold",
 };
 
-const RARITY_TEXT: Record<string, string> = {
-  bronze: "text-[#c5894a]",
-  silver: "text-[#cfd6e0]",
-  gold: "text-[var(--accent-gold)]",
-};
-
-const RARITY_BORDER: Record<string, string> = {
-  bronze: "border-l-[#a87a3d]",
-  silver: "border-l-[#9ca6b4]",
-  gold: "border-l-[var(--accent-gold)]",
+const RARITY_COLOR: Record<string, string> = {
+  bronze: "#c5894a",
+  silver: "#cfd6e0",
+  gold: "var(--accent-gold)",
 };
 
 async function fetchBadge(id: string): Promise<Badge | null> {
@@ -130,86 +127,113 @@ export default async function BadgePage({ params }: Props) {
 
   const jsonLd = [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)];
 
+  const hasImage = !!badge.image_url;
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
+    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
       <JsonLd data={jsonLd} />
 
-      <Link
-        href="/badges"
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; Back to Badges
-      </Link>
+      <div className={hasImage ? "cd-top" : "cd-top solo"}>
+        <Link href="/badges" className="cd-back">
+          &larr; Back to Badges
+        </Link>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {badge.image_url && (
-          <div className="flex justify-center mb-6">
-            <img
-              src={imageUrl(badge.image_url)}
-              alt={`Slay the Spire 2 ${badge.name} badge`}
-              className="w-24 h-24 object-contain"
-            />
+      <div className={hasImage ? "wrap" : "wrap solo"}>
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>Badge</span>
+              <span>&middot;</span>
+              <span>{badge.tiered ? `${badge.tiers.length} tiers` : "Single tier"}</span>
+              {badge.requires_win && (
+                <>
+                  <span>&middot;</span>
+                  <span>Requires win</span>
+                </>
+              )}
+              {badge.multiplayer_only && (
+                <>
+                  <span>&middot;</span>
+                  <span>Multiplayer only</span>
+                </>
+              )}
+            </p>
+            <h1>{badge.name}</h1>
           </div>
-        )}
 
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-3">
-          {badge.name}
-        </h1>
-
-        <div className="flex items-center justify-center gap-3 mb-5 text-sm flex-wrap">
-          {badge.tiered ? (
-            <span className="text-[var(--text-muted)]">
-              {badge.tiers.length} tiers
-            </span>
-          ) : (
-            <span className="text-[var(--text-muted)]">Single tier</span>
+          {/* Table of contents (static: server-rendered page) */}
+          {badge.tiered && (
+            <nav className="toc" aria-label="On this page">
+              <a href="#description">Description</a>
+              <a href="#tiers">Tiers</a>
+            </nav>
           )}
-          {badge.requires_win && (
-            <>
-              <span className="text-[var(--text-muted)]">·</span>
-              <span className="text-[var(--text-muted)]">Requires win</span>
-            </>
-          )}
-          {badge.multiplayer_only && (
-            <>
-              <span className="text-[var(--text-muted)]">·</span>
-              <span className="text-[var(--accent-gold)]">Multiplayer only</span>
-            </>
-          )}
-        </div>
 
-        <div className="text-[var(--text-secondary)] leading-relaxed text-center mb-6">
-          <RichDescription text={badge.description} />
-        </div>
+          {/* Description */}
+          <section id="description">
+            <h2>Description</h2>
+            <div className="desc-quote">
+              <RichDescription text={badge.description} />
+            </div>
+          </section>
 
-        {badge.tiered && (
-          <>
-            <h2 className="text-sm font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-3">
-              Tiers
-            </h2>
-            <div className="space-y-3">
+          {/* Tiers */}
+          {badge.tiered && (
+            <section id="tiers">
+              <h2>Tiers</h2>
               {badge.tiers.map((t) => (
                 <div
                   key={t.rarity}
-                  className={`rounded-lg border-l-4 ${RARITY_BORDER[t.rarity] ?? "border-l-[var(--border-subtle)]"} border-y border-r border-[var(--border-subtle)] bg-[var(--bg-primary)] p-4`}
+                  className="trow"
+                  style={{ borderLeftColor: RARITY_COLOR[t.rarity] ?? "var(--border-accent)" }}
                 >
-                  <div className="flex items-baseline gap-3 mb-1">
-                    <span
-                      className={`text-xs uppercase tracking-wider font-semibold ${RARITY_TEXT[t.rarity] ?? ""}`}
-                    >
+                  <div className="tr-head">
+                    <span className="tr-rarity" style={{ color: RARITY_COLOR[t.rarity] ?? "var(--text-muted)" }}>
                       {RARITY_LABEL[t.rarity] ?? t.rarity}
                     </span>
-                    <h3 className="text-base font-semibold text-[var(--text-primary)]">
-                      {t.title}
-                    </h3>
+                    <span className="tr-title">{t.title}</span>
                   </div>
-                  <p className="text-sm text-[var(--text-secondary)] leading-snug">
+                  <p className="tr-desc">
                     <RichDescription text={t.description} />
                   </p>
                 </div>
               ))}
+            </section>
+          )}
+        </main>
+
+        {hasImage && (
+          <aside className="aside">
+            <div className="box">
+              <img
+                src={imageUrl(badge.image_url!)}
+                alt={`Slay the Spire 2 ${badge.name} badge`}
+                className="meta-icon"
+              />
+              <div className="facts">
+                <div className="fh">At a glance</div>
+                <dl>
+                  <div className="frow">
+                    <dt>Tiers</dt>
+                    <dd>{badge.tiered ? badge.tiers.length : "Single"}</dd>
+                  </div>
+                  <div className="frow">
+                    <dt>Requires win</dt>
+                    <dd>{badge.requires_win ? "Yes" : "No"}</dd>
+                  </div>
+                  {badge.multiplayer_only && (
+                    <div className="frow">
+                      <dt>Multiplayer</dt>
+                      <dd style={{ color: "var(--accent-gold)" }}>Only</dd>
+                    </div>
+                  )}
+                </dl>
+              </div>
             </div>
-          </>
+          </aside>
         )}
       </div>
     </div>

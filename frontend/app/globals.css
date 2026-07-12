@@ -40,6 +40,72 @@
   --border-accent: #2a4555;
 }
 
+/* Light theme (toggled from the nav). Only the palette flips; token-driven components follow. */
+:root[data-theme="light"] {
+  /* Catppuccin Latte (https://catppuccin.com). The page uses Crust as the
+     ground so Base-colored cards (helped by --shadow-card) lift above it;
+     text, borders, and accents are the standard Latte swatches. */
+  --bg-primary: #eff1f5;    /* Base (near-white ground) */
+  --bg-secondary: #e6e9ef;  /* Mantle   */
+  --bg-card: #ffffff;       /* pure white, lifts above the Base ground */
+  --bg-card-hover: #f2f4f8;
+  --accent-gold: #df8e1d;       /* Yellow   */
+  --accent-gold-light: #eaa72f;
+  --text-primary: #4c4f69;      /* Text     */
+  --text-secondary: #6c6f85;    /* Subtext0 */
+  --text-muted: #8c8fa1;        /* Overlay1 */
+  --border-subtle: #ccd0da;     /* Surface0 */
+  --border-accent: #bcc0cc;     /* Surface1 */
+  --color-silent: #40a02b;      /* Green    */
+  --accent-teal: #179299;       /* Teal     */
+  --shadow-card: 0 1px 2px rgba(76, 79, 105, 0.10), 0 2px 6px rgba(76, 79, 105, 0.08);
+}
+
+/* ── Light-mode contrast fixes ────────────────────────────────────────────
+   The vibrant accent greens/teals that read well on the dark ground are too
+   light on the cream light-mode ground. Darken them (light mode only). */
+:root[data-theme="light"] .wr-sg { color: #40a02b; } /* Latte Green   */
+:root[data-theme="light"] .wr-g { color: #179299; }  /* Latte Teal    */
+:root[data-theme="light"] .wr-r { color: #d20f39; }  /* Latte Red     */
+:root[data-theme="light"] .rvmp,
+:root[data-theme="light"] .card-rvmp { --good: #40a02b; --spine: #40a02b; }
+/* Colored count numbers get their hue from an inline --cc (hardcoded per
+   entity, e.g. the bright teal on Enchantments/Powers). Darken it in light
+   mode without touching the dark theme. */
+:root[data-theme="light"] .bt-count,
+:root[data-theme="light"] .ct-count {
+  color: color-mix(in srgb, var(--cc, currentColor), #0a0f14 36%);
+}
+/* Character-card name + win rate are white text over a bottom fade that uses
+   --bg; in light mode that fade goes white and hides them. Force it dark. */
+:root[data-theme="light"] .charp::after {
+  background: linear-gradient(180deg, transparent 38%, rgba(12, 18, 26, 0.9));
+}
+/* Slate light: cards, panels, and the search bar lift off the cool ground with
+   a soft shadow so figure/ground reads clearly (the flat cream theme didn't). */
+:root[data-theme="light"] .rvmp .btile,
+:root[data-theme="light"] .rvmp .act,
+:root[data-theme="light"] .rvmp .charp,
+:root[data-theme="light"] .rvmp .news,
+:root[data-theme="light"] .rvmp .panel,
+:root[data-theme="light"] .rvmp .gcard,
+:root[data-theme="light"] .rvmp .scard,
+:root[data-theme="light"] .rvmp .faq,
+:root[data-theme="light"] .rvmp .promo,
+:root[data-theme="light"] .rvmp .getstarted,
+:root[data-theme="light"] .sc-hero-search,
+:root[data-theme="light"] .card-rvmp .box,
+:root[data-theme="light"] .card-rvmp .hero {
+  box-shadow: var(--shadow-card);
+}
+/* The entity-render mat is tuned dark (30% black) for the dark ground; on the
+   light ground that reads as a pronounced gray box that clashes with the art.
+   Lighten the mat and soften its drop-shadow in light mode. */
+:root[data-theme="light"] .card-rvmp .cardimg.render {
+  background: color-mix(in srgb, var(--text-primary) 6%, transparent);
+  filter: drop-shadow(0 10px 24px rgba(76, 79, 105, 0.20));
+}
+
 @theme inline {
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
@@ -53,7 +119,35 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Site-wide atmospheric background: the main-menu art, fixed to the viewport
+   and kept faint so it reads as a textured ground behind every page. It paints
+   above the body's base color (var(--bg-primary)) but behind all content, so it
+   shows through the gutters and gaps between the opaque cards. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("https://cdn.spire-codex.com/misc/main_menu_bg.png") center center / cover no-repeat;
+  opacity: 0.04;
+}
+
+/* Entity detail pages swap the global menu art for the entity's own artwork,
+   passed in as --entity-bg on the .card-rvmp root. When present it replaces the
+   global background (hidden below) rather than stacking on top of it. */
+body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
+.card-rvmp::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--entity-bg, none) center center / cover no-repeat;
+  opacity: 0.04;
 }
 
 /* Scrollbar */
@@ -90,4 +184,28 @@ body {
 .rich-jitter {
   display: inline-block;
   animation: rich-jitter 0.15s ease-in-out infinite;
+}
+
+
+/* Light-mode: announcement / donation / ancient banners are styled for the
+   dark ground (bg-*-900/40 + text-*-200). Re-tint them for light mode so the
+   text is legible. */
+:root[data-theme="light"] .sc-banner { background: var(--bg-secondary); border-color: var(--border-subtle); }
+:root[data-theme="light"] .sc-banner p { color: var(--text-primary); }
+:root[data-theme="light"] .sc-banner a { color: var(--accent-gold); }
+:root[data-theme="light"] .sc-banner button { color: var(--text-muted); }
+
+/* Announcement banner: black wordmark + dark-green "New" pill (matching the
+   Live label) in light mode; white wordmark + bright pill stay in dark mode. */
+.sc-ann-logo--b { display: none; }
+:root[data-theme="light"] .sc-ann-logo--w { display: none !important; }
+@media (min-width: 640px) { :root[data-theme="light"] .sc-ann-logo--b { display: block; } }
+:root[data-theme="light"] .sc-ann-new { background: var(--color-silent); color: #fff; }
+
+/* Mobile nav logo mark: white on the dark ground, black on the light ground.
+   (Desktop shows the SPIRE CODEX wordmark instead, so both stay hidden there.) */
+.sc-nav-logo--b { display: none; }
+:root[data-theme="light"] .sc-nav-logo--w { display: none; }
+@media (max-width: 639px) {
+  :root[data-theme="light"] .sc-nav-logo--b { display: inline; }
 }

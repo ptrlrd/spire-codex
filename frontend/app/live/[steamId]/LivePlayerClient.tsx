@@ -1190,9 +1190,9 @@ export default function LivePlayerClient() {
       {sceneMode ? (
         // Scene mode: a collapsible play-by-play (~1/5) beside the battle scene,
         // which carries the character/combat/deck/map itself.
-        <div className="mt-3 flex items-start gap-3">
+        <div className="mt-3 flex flex-col-reverse items-stretch gap-3 lg:flex-row lg:items-start">
           {pbpOpen ? (
-            <div className="relative w-1/5 min-w-[180px] shrink-0">
+            <div className="relative w-full shrink-0 lg:w-1/5 lg:min-w-[180px]">
               <button
                 type="button"
                 onClick={() => setPbpOpen(false)}
@@ -1226,14 +1226,16 @@ export default function LivePlayerClient() {
         </div>
       ) : (
         <div className="mt-3 grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-4 items-start">
-          <div className="min-w-0">{playByPlay}</div>
+          {/* On mobile the map leads and the play-by-play trails; on lg+ the
+              grid reverts to source order (play-by-play first, map last). */}
+          <div className="order-last min-w-0 lg:order-none">{playByPlay}</div>
           <div className="space-y-4 min-w-0">
             {characterCard}
             {deckColumn}
           </div>
           <div className="space-y-4 min-w-0">{screenPanels}</div>
           {mapCard && (
-            <div className="lg:sticky lg:top-4 self-start min-w-0">{mapCard}</div>
+            <div className="order-first self-start min-w-0 lg:order-none lg:sticky lg:top-4">{mapCard}</div>
           )}
         </div>
       )}

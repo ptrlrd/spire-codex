@@ -11,6 +11,8 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import "../../card-revamp.css";
+import "../../reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -50,47 +52,58 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
     );
   }
 
+  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
+  const ledeText = affliction.description
+    ? affliction.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Reference", lang)}
-      </button>
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Reference", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {affliction.name}
-        </h1>
-
-        <div className="flex items-center justify-center gap-3 mb-6 text-sm">
-          {affliction.is_stackable && (
-            <span className="text-xs px-2 py-0.5 rounded border bg-cyan-950/50 text-cyan-300 border-cyan-900/30">
-              Stackable
-            </span>
-          )}
-        </div>
-
-        <div className="text-[var(--text-secondary)] leading-relaxed mb-4">
-          <RichDescription text={affliction.description} />
-        </div>
-
-        {affliction.extra_card_text && (
-          <div className="mt-4 p-3 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)]">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-              Card Text
-            </h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed italic">
-              <RichDescription text={affliction.extra_card_text} />
+      <div className="wrap solo narrow">
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Affliction", lang)}</span>
+              {affliction.is_stackable && (
+                <>
+                  <span>&middot;</span>
+                  <span className="kw">Stackable</span>
+                </>
+              )}
             </p>
+            <h1>{affliction.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
-        )}
 
-        <div className="mt-6">
-          <LocalizedNames entityType="afflictions" entityId={id} />
-          <EntityHistory entityType="afflictions" entityId={id} />
-        </div>
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={affliction.description} />
+            </div>
+          </section>
+
+          {affliction.extra_card_text && (
+            <section id="card-text">
+              <h2>Card Text</h2>
+              <div className="desc-body" style={{ fontStyle: "italic" }}>
+                <RichDescription text={affliction.extra_card_text} />
+              </div>
+            </section>
+          )}
+
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="afflictions" entityId={id} />
+            <EntityHistory entityType="afflictions" entityId={id} />
+          </section>
+        </main>
       </div>
     </div>
   );

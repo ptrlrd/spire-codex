@@ -1,0 +1,60 @@
+/* Extra wiki-layout styles for the Power / Enchantment / Event detail pages.
+   These pages reuse the shared .card-rvmp system from card-revamp.css; the
+   rules here only add the few pieces those pages need that the card page
+   didn't (icon-only infobox, event choices/pages/dialogue, epithet, and a
+   reset for the router.back() button rendered with .cd-back). Scoped under
+   .card-rvmp so nothing leaks. */
+
+/* back button (these pages use router.back() instead of a Link) */
+.card-rvmp button.cd-back { background: none; border: 0; padding: 0; cursor: pointer;
+  font-family: var(--sans); }
+
+/* EntityProse renders a nested <section> inside the Description section; the
+   shared `.card-rvmp section { padding-top: 40px }` would double the gap. */
+.card-rvmp section section { padding-top: 0; scroll-margin-top: 0; }
+
+/* infobox icon (powers / enchantments / events show a small square icon,
+   not a full card render). More specific than .card-rvmp .cardimg so it wins
+   regardless of stylesheet order. */
+.card-rvmp .iconbox { display: grid; place-items: center; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 11px; padding: 30px; }
+.card-rvmp .iconbox .cardimg { width: 128px; height: 128px; object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .45)); }
+
+/* event epithet (the flavour subtitle under the title) */
+.card-rvmp .epithet { font-family: var(--serif); font-style: italic; font-size: 18px;
+  color: var(--spine); margin: 8px 0 0; }
+
+/* preconditions (event) */
+.card-rvmp .pcond { display: inline-block; font-size: 12px; padding: 4px 11px; border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent);
+  background: color-mix(in srgb, var(--warn) 12%, transparent); color: var(--warn); }
+
+/* event choices + page options */
+.card-rvmp .choices { display: grid; gap: 8px; margin-top: 4px; }
+.card-rvmp .choice { background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 11px 14px; }
+.card-rvmp .choice .ct { color: var(--text); font-size: 14.5px; }
+.card-rvmp .choice .cd { color: var(--text-2); font-size: 13px; line-height: 1.5; margin-top: 4px; }
+
+/* event multi-page flow */
+.card-rvmp .evt-page { border-left: 2px solid color-mix(in srgb, var(--spine) 45%, transparent);
+  padding: 2px 0 2px 16px; }
+.card-rvmp .evt-page + .evt-page { margin-top: 14px; }
+.card-rvmp .evt-page .pl { font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--text-3); margin: 0 0 8px; }
+.card-rvmp .evt-page .pdesc { color: var(--text-2); font-size: 14px; line-height: 1.6;
+  margin: 0 0 10px; white-space: pre-line; }
+
+/* event dialogue */
+.card-rvmp .dgroups { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.card-rvmp .dchip { font-family: var(--sans); font-size: 12.5px; padding: 5px 12px; border-radius: 999px;
+  cursor: pointer; color: var(--text-2); background: var(--surface-2); border: 1px solid var(--border-2);
+  transition: color .12s, background .12s, border-color .12s; }
+.card-rvmp .dchip:hover { color: var(--text); }
+.card-rvmp .dchip.on { color: #1a1205; background: var(--gold); border-color: var(--gold); }
+.card-rvmp .dlg { display: grid; gap: 8px; }
+.card-rvmp .dlg-line { font-size: 14px; line-height: 1.5; padding: 9px 13px; border-radius: var(--radius);
+  white-space: pre-line; background: var(--surface); border-left: 2px solid var(--border-2); color: var(--text-2); }
+.card-rvmp .dlg-line.ancient { border-left-color: var(--spine); color: var(--text); background: var(--spine-soft); }
+.card-rvmp .dlg-line.other { margin-left: 24px; }

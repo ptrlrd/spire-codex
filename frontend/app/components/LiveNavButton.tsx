@@ -1,8 +1,7 @@
 "use client";
 
-// "N Players Live" pill for the navbar. Polls /api/presence/active for the
-// live count and links to /live. Renders nothing when nobody is playing, so
-// it only lights up (red, glowing) when there's actually live activity.
+// "Live" nav item. A green pulse + "Live", linking to /live; when players are
+// actually online it appends the live count. Polls /api/presence/active.
 //
 // Self-contained on purpose: the navbar mounts on every page, so this keeps
 // its own tiny poll rather than pulling in the live-page module chain.
@@ -17,9 +16,9 @@ const POLL_MS = 60_000;
 
 function LiveCircle() {
   return (
-    <span className="relative flex h-2.5 w-2.5 shrink-0">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
-      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-red-500" />
+    <span className="relative flex h-2 w-2 shrink-0">
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--color-silent)] opacity-75" />
+      <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-silent)]" />
     </span>
   );
 }
@@ -58,17 +57,11 @@ export default function LiveNavButton({
     };
   }, []);
 
-  if (count <= 0) return null;
-  const label = `${count} ${count === 1 ? "Player" : "Players"} Live`;
-
   if (variant === "mobile") {
     return (
-      <Link
-        href="/live"
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-red-300 hover:bg-[var(--bg-card)] transition-colors"
-      >
+      <Link href="/live" className="flex items-center gap-2 text-lg font-semibold text-[var(--color-silent)]">
         <LiveCircle />
-        {label}
+        <span className="tabular-nums">{count > 0 ? `(${count}) Live` : "Live"}</span>
       </Link>
     );
   }
@@ -77,14 +70,10 @@ export default function LiveNavButton({
     <Link
       href="/live"
       title="Watch players live"
-      className="hidden lg:inline-flex items-center gap-2 h-9 px-3 rounded-full text-xs font-semibold text-red-300 border border-red-500/40 bg-red-500/10 hover:bg-red-500/20 transition-colors shrink-0 shadow-[0_0_12px_rgba(239,68,68,0.35)]"
+      className="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-silent)] hover:bg-[var(--bg-card)] transition-colors shrink-0"
     >
       <LiveCircle />
-      {/* Compact (count only) from lg to xl, where the full nav row is
-          tight and the long label would shove the profile menu off-screen;
-          the full label appears at xl+ once there's room. */}
-      <span className="tabular-nums xl:hidden">{count}</span>
-      <span className="hidden xl:inline">{label}</span>
+      <span className="tabular-nums">{count > 0 ? `(${count}) Live` : "Live"}</span>
     </Link>
   );
 }

@@ -6,6 +6,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CONTENT_BRACKETS, normalizeBracket } from "@/lib/content-brackets";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 import {
   Chart as ChartJS,
   LineElement,
@@ -235,6 +237,7 @@ const selectCls =
 export default function ChartsClient() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { lang } = useLanguage();
 
   const [meta, setMeta] = useState<Meta | null>(null);
   const [chart, setChart] = useState(searchParams.get("chart") || "winrate-by-floor");
@@ -275,7 +278,7 @@ export default function ChartsClient() {
   useEffect(() => {
     fetchJson<Meta>(`${API}/api/charts/meta`)
       .then(setMeta)
-      .catch(() => setError("Could not load chart list"));
+      .catch(() => setError(t("Could not load chart list", lang)));
   }, []);
 
   // Lazy-load selector lists the first time a chart needs them.
@@ -424,7 +427,7 @@ export default function ChartsClient() {
       {/* Controls */}
       <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 mb-6 space-y-3">
         <div className="flex flex-wrap items-center gap-3">
-          <select className={selectCls} value={chart} onChange={(e) => setChart(e.target.value)} aria-label="Chart">
+          <select className={selectCls} value={chart} onChange={(e) => setChart(e.target.value)} aria-label={t("Chart", lang)}>
             {[...groups.entries()].map(([group, charts]) => (
               <optgroup key={group} label={group}>
                 {charts.map((c) => (
@@ -437,7 +440,7 @@ export default function ChartsClient() {
           </select>
 
           {spec?.needs.includes("stat") && (
-            <select className={selectCls} value={stat} onChange={(e) => setStat(e.target.value)} aria-label="Run stat">
+            <select className={selectCls} value={stat} onChange={(e) => setStat(e.target.value)} aria-label={t("Run stat", lang)}>
               {(meta?.stats ?? []).map((s) => (
                 <option key={s.key} value={s.key}>
                   {s.label}
@@ -447,14 +450,14 @@ export default function ChartsClient() {
           )}
           {spec?.needs.includes("x") && (
             <>
-              <select className={selectCls} value={xStat} onChange={(e) => setXStat(e.target.value)} aria-label="X stat">
+              <select className={selectCls} value={xStat} onChange={(e) => setXStat(e.target.value)} aria-label={t("X stat", lang)}>
                 {(meta?.stats ?? []).map((s) => (
                   <option key={s.key} value={s.key}>
                     X: {s.label}
                   </option>
                 ))}
               </select>
-              <select className={selectCls} value={yStat} onChange={(e) => setYStat(e.target.value)} aria-label="Y stat">
+              <select className={selectCls} value={yStat} onChange={(e) => setYStat(e.target.value)} aria-label={t("Y stat", lang)}>
                 {(meta?.stats ?? []).map((s) => (
                   <option key={s.key} value={s.key}>
                     Y: {s.label}
@@ -464,7 +467,7 @@ export default function ChartsClient() {
             </>
           )}
           {spec?.needs.includes("encounter") && (
-            <select className={selectCls} value={encounter} onChange={(e) => setEncounter(e.target.value)} aria-label="Encounter">
+            <select className={selectCls} value={encounter} onChange={(e) => setEncounter(e.target.value)} aria-label={t("Encounter", lang)}>
               {encounters.map((o) => (
                 <option key={o.id} value={o.id}>
                   {o.name}
@@ -473,7 +476,7 @@ export default function ChartsClient() {
             </select>
           )}
           {spec?.needs.includes("event") && (
-            <select className={selectCls} value={event} onChange={(e) => setEvent(e.target.value)} aria-label="Event">
+            <select className={selectCls} value={event} onChange={(e) => setEvent(e.target.value)} aria-label={t("Event", lang)}>
               {(meta?.events ?? []).map((o) => (
                 <option key={o.id} value={o.id}>
                   {o.name}
@@ -491,16 +494,16 @@ export default function ChartsClient() {
                     setEtype(e.target.value);
                     setEntity("");
                   }}
-                  aria-label="Entity type"
+                  aria-label={t("Entity type", lang)}
                 >
-                  {ETYPES.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
+                  {ETYPES.map((opt) => (
+                    <option key={opt.value} value={opt.value}>
+                      {t(opt.label, lang)}
                     </option>
                   ))}
                 </select>
               )}
-              <select className={selectCls} value={entity} onChange={(e) => setEntity(e.target.value)} aria-label="Entity">
+              <select className={selectCls} value={entity} onChange={(e) => setEntity(e.target.value)} aria-label={t("Entity", lang)}>
                 {(entityLists[effEtype] ?? []).map((o) => (
                   <option key={o.id} value={o.id}>
                     {o.name}
@@ -515,11 +518,11 @@ export default function ChartsClient() {
               className={selectCls}
               value={spec!.splits.includes(split) ? split : "character"}
               onChange={(e) => setSplit(e.target.value)}
-              aria-label="Split series by"
+              aria-label={t("Split series by", lang)}
             >
               {spec!.splits.map((s) => (
                 <option key={s} value={s}>
-                  {SPLIT_LABELS[s] ?? s}
+                  {t(SPLIT_LABELS[s] ?? s, lang)}
                 </option>
               ))}
             </select>
@@ -527,19 +530,19 @@ export default function ChartsClient() {
 
           <input
             className={`${selectCls} w-44`}
-            placeholder="Username (optional)"
+            placeholder={t("Username (optional)", lang)}
             value={usernameInput}
             onChange={(e) => onUsername(e.target.value)}
-            aria-label="Filter to one player's runs"
+            aria-label={t("Filter to one player's runs", lang)}
           />
         </div>
 
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Pills options={PLAYER_OPTS} value={players} onChange={setPlayers} />
-          <Pills options={MODE_OPTS} value={gameMode} onChange={setGameMode} disabled={filtersLocked} />
+          <Pills options={PLAYER_OPTS.map((o) => ({ ...o, label: t(o.label, lang) }))} value={players} onChange={setPlayers} />
+          <Pills options={MODE_OPTS.map((o) => ({ ...o, label: t(o.label, lang) }))} value={gameMode} onChange={setGameMode} disabled={filtersLocked} />
           <div className={filtersLocked ? "opacity-40 pointer-events-none" : ""}>
-            <select className={selectCls} value={ascension} onChange={(e) => setAscension(e.target.value)} aria-label="Ascension">
-              <option value="">All ascensions</option>
+            <select className={selectCls} value={ascension} onChange={(e) => setAscension(e.target.value)} aria-label={t("Ascension", lang)}>
+              <option value="">{t("All ascensions", lang)}</option>
               {/* A10 is the cap; the game has nothing above it. */}
               {Array.from({ length: 11 }, (_, i) => (
                 <option key={i} value={String(i)}>
@@ -558,11 +561,11 @@ export default function ChartsClient() {
           />
           {spec?.kind === "blob" && (
             <span className="text-xs text-[var(--text-muted)]">
-              Exact ascension and mode don&apos;t apply here; use the Bracket to slice by skill.
+              {t("Exact ascension and mode don't apply here; use the Bracket to slice by skill.", lang)}
             </span>
           )}
           {spec?.daily && (
-            <span className="text-xs text-[var(--text-muted)]">Daily runs only.</span>
+            <span className="text-xs text-[var(--text-muted)]">{t("Daily runs only.", lang)}</span>
           )}
         </div>
       </div>
@@ -573,21 +576,21 @@ export default function ChartsClient() {
           <p className="text-sm text-rose-400 py-12 text-center">{error}</p>
         ) : !data || loading ? (
           <div className="h-[420px] flex items-center justify-center text-sm text-[var(--text-muted)]">
-            Crunching runs…
+            {t("Crunching runs…", lang)}
           </div>
         ) : data.series.length === 0 ? (
           <div className="h-[420px] flex items-center justify-center text-sm text-[var(--text-muted)]">
             {data.building
-              ? "These stats are still building after a fresh deploy. They cover every run and land within a few minutes."
-              : "Not enough runs match these filters."}
+              ? t("These stats are still building after a fresh deploy. They cover every run and land within a few minutes.", lang)
+              : t("Not enough runs match these filters.", lang)}
           </div>
         ) : (
-          <ExplorerChart spec={spec!} data={data} />
+          <ExplorerChart spec={spec!} data={data} lang={lang} />
         )}
         {data && !loading && !error && (
           <p className="text-xs text-[var(--text-muted)] mt-3">
-            {data.desc} Based on {data.total_runs.toLocaleString()} runs matching the filters.
-            Thin samples are hidden so lines don&apos;t whip around on noise.
+            {data.desc} {t("Based on", lang)} {data.total_runs.toLocaleString()} {t("runs matching the filters.", lang)}{" "}
+            {t("Thin samples are hidden so lines don't whip around on noise.", lang)}
           </p>
         )}
       </div>
@@ -597,10 +600,10 @@ export default function ChartsClient() {
 
 // ── Rendering ────────────────────────────────────────────────────────────────
 
-function ExplorerChart({ spec, data }: { spec: ChartSpec; data: ChartResponse }) {
-  if (spec.scatter) return <ScatterChart data={data} />;
+function ExplorerChart({ spec, data, lang }: { spec: ChartSpec; data: ChartResponse; lang: string }) {
+  if (spec.scatter) return <ScatterChart data={data} lang={lang} />;
   if (spec.bars) return <BarRanking data={data} horizontal={spec.horizontal} />;
-  return <LineChart data={data} />;
+  return <LineChart data={data} lang={lang} />;
 }
 
 function legendOpts(count: number) {
@@ -610,7 +613,7 @@ function legendOpts(count: number) {
   };
 }
 
-function baseOptions(data: ChartResponse): ChartOptions<"line"> {
+function baseOptions(data: ChartResponse, lang: string): ChartOptions<"line"> {
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -623,7 +626,7 @@ function baseOptions(data: ChartResponse): ChartOptions<"line"> {
         callbacks: {
           label: (item: TooltipItem<"line">) => {
             const raw = item.raw as Point;
-            const n = raw?.n != null ? ` · ${raw.n.toLocaleString()} runs` : "";
+            const n = raw?.n != null ? ` · ${raw.n.toLocaleString()} ${t("runs", lang)}` : "";
             return `${item.dataset.label}: ${item.parsed.y}${n}`;
           },
         },
@@ -660,9 +663,9 @@ function lineDataset(s: Series, i: number) {
   };
 }
 
-function LineChart({ data }: { data: ChartResponse }) {
+function LineChart({ data, lang }: { data: ChartResponse; lang: string }) {
   const numericX = data.series.every((s) => s.points.every((p) => typeof p.x === "number"));
-  const options = baseOptions(data);
+  const options = baseOptions(data, lang);
 
   if (numericX) {
     (options.scales!.x as { type?: string }).type = "linear";
@@ -702,7 +705,7 @@ function LineChart({ data }: { data: ChartResponse }) {
   });
   return (
     <div className="h-[460px]">
-      <Line data={{ labels, datasets }} options={baseOptions(data)} />
+      <Line data={{ labels, datasets }} options={baseOptions(data, lang)} />
     </div>
   );
 }
@@ -801,7 +804,7 @@ function BarRanking({ data, horizontal }: { data: ChartResponse; horizontal: boo
   );
 }
 
-function ScatterChart({ data }: { data: ChartResponse }) {
+function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
   const datasets = data.series.map((s, i) => ({
     label: s.label,
     data: s.points.map((p) => ({ x: p.x as number, y: p.y })),
@@ -847,7 +850,7 @@ function ScatterChart({ data }: { data: ChartResponse }) {
         />
       </div>
       <p className="text-xs text-[var(--text-muted)] mt-2">
-        Sampled from {sampled.toLocaleString()} matching runs.
+        {t("Sampled from", lang)} {sampled.toLocaleString()} {t("matching runs.", lang)}
       </p>
     </>
   );

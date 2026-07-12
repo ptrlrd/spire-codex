@@ -684,7 +684,7 @@ export default function StatsClient() {
   if (loading && !stats) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
-        Loading...
+        {t("Loading...", lang)}
       </div>
     );
   }
@@ -701,25 +701,25 @@ export default function StatsClient() {
     "text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]";
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <StatsRebuildingNotice />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">{t("Stats", lang)}</span>
       </h1>
       <p className="text-[var(--text-secondary)] mb-3">
-        {stats?.total_runs || 0} runs analyzed.{" "}
+        {stats?.total_runs || 0} {t("runs analyzed.", lang)}{" "}
         <Link
           href={`${lp}/leaderboards/submit`}
           className="text-[var(--accent-gold)] hover:underline"
         >
-          Submit yours
+          {t("Submit yours", lang)}
         </Link>{" "}
-        to contribute.
+        {t("to contribute.", lang)}
       </p>
 
       {/* Jumping-off points to the deeper views built on the same run data. */}
       <div className="flex flex-wrap items-center gap-1.5 mb-6 text-xs">
-        <span className="text-[var(--text-muted)] mr-1">Dig deeper:</span>
+        <span className="text-[var(--text-muted)] mr-1">{t("Dig deeper:", lang)}</span>
         {[
           { href: "/charts", label: "Run Charts" },
           { href: "/community-stats", label: "Community Stats" },
@@ -732,7 +732,7 @@ export default function StatsClient() {
             href={l.href}
             className="px-3 py-1.5 rounded-md border bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] transition-colors"
           >
-            {l.label}
+            {t(l.label, lang)}
           </Link>
         ))}
       </div>
@@ -741,7 +741,7 @@ export default function StatsClient() {
           tabs source from the entity-score snapshot (the only place the
           win-rate brackets exist), and the filters below grey out. */}
       <div className="flex flex-wrap items-center gap-1.5 mb-4">
-        <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
+        <span className="text-xs text-[var(--text-muted)] mr-1">{t("Bracket", lang)}</span>
         {CONTENT_BRACKETS.map((b) => {
           const isActive = bracket === b.key;
           return (
@@ -755,13 +755,13 @@ export default function StatsClient() {
                   : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
               }`}
             >
-              {b.label}
+              {t(b.label, lang)}
             </button>
           );
         })}
         {bracketActive && (
           <span className="text-xs text-[var(--text-muted)] ml-1">
-            Card / relic / potion tabs only; the filters below don&apos;t apply.
+            {t("Card / relic / potion tabs only; the filters below don't apply.", lang)}
           </span>
         )}
       </div>
@@ -778,7 +778,7 @@ export default function StatsClient() {
           value={players}
           onChange={setPlayers}
           disabled={bracketActive}
-          ariaLabel="Filter by player count"
+          ariaLabel={t("Filter by player count", lang)}
         />
       </div>
 
@@ -793,7 +793,7 @@ export default function StatsClient() {
             borderColor: character ? characterHex(character) : undefined,
           }}
         >
-          <option value="">All Characters</option>
+          <option value="">{t("All Characters", lang)}</option>
           {CHARACTERS.map((c) => (
             <option key={c} value={c}>
               {displayName(`CHARACTER.${c}`)}
@@ -806,10 +806,10 @@ export default function StatsClient() {
           disabled={bracketActive}
           className={`${selectClass}${bracketActive ? " opacity-40 pointer-events-none" : ""}`}
         >
-          <option value="">All Ascensions</option>
+          <option value="">{t("All Ascensions", lang)}</option>
           {Array.from({ length: 11 }, (_, i) => (
             <option key={i} value={String(i)}>
-              Ascension {i}
+              {t("Ascension", lang)} {i}
             </option>
           ))}
         </select>
@@ -871,6 +871,7 @@ export default function StatsClient() {
               lp={lp}
               betaIds={betaIds}
               imgBaseFor={imgBaseFor}
+              lang={lang}
             />
           )}
           {tab === "relics" && (
@@ -885,6 +886,7 @@ export default function StatsClient() {
               lp={lp}
               betaIds={betaIds}
               imgBaseFor={imgBaseFor}
+              lang={lang}
             />
           )}
           {tab === "potions" && (
@@ -899,9 +901,10 @@ export default function StatsClient() {
               lp={lp}
               betaIds={betaIds}
               imgBaseFor={imgBaseFor}
+              lang={lang}
             />
           )}
-          {tab === "encounters" && <EncountersTab stats={stats} lp={lp} />}
+          {tab === "encounters" && <EncountersTab stats={stats} lp={lp} lang={lang} />}
         </>
       )}
     </div>
@@ -954,7 +957,7 @@ function OverviewTab({
       {stats.characters && stats.characters.length > 0 && (
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Character Win Rates
+            {t("Character Win Rates", lang)}
           </h2>
           <div className="space-y-2">
             {stats.characters.map((c) => {
@@ -1009,16 +1012,16 @@ function OverviewTab({
       {stats.ascensions && stats.ascensions.length > 0 && (
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
           <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-            Ascension Breakdown
+            {t("Ascension Breakdown", lang)}
           </h2>
           <table className="w-full text-sm">
             <thead>
               <tr className="text-[var(--text-muted)] text-xs border-b border-[var(--border-subtle)]">
-                <th className="text-left py-2 font-medium">Ascension</th>
-                <th className="text-right py-2 font-medium">Runs</th>
-                <th className="text-right py-2 font-medium">Wins</th>
-                <th className="text-right py-2 font-medium">Losses</th>
-                <th className="text-right py-2 font-medium">Win Rate</th>
+                <th className="text-left py-2 font-medium">{t("Ascension", lang)}</th>
+                <th className="text-right py-2 font-medium">{t("Runs", lang)}</th>
+                <th className="text-right py-2 font-medium">{t("Wins", lang)}</th>
+                <th className="text-right py-2 font-medium">{t("Losses", lang)}</th>
+                <th className="text-right py-2 font-medium">{t("Win Rate", lang)}</th>
               </tr>
             </thead>
             <tbody>
@@ -1073,6 +1076,7 @@ interface CardRow {
 }
 
 function CardsTab({
+  lang,
   rows,
   cardTypes,
   cardRarities,
@@ -1089,6 +1093,7 @@ function CardsTab({
   betaIds,
   imgBaseFor,
 }: {
+  lang: string;
   rows: CardRow[];
   totalRuns: number;
   cardTypes: string[];
@@ -1114,10 +1119,10 @@ function CardsTab({
       <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
         <div className="flex flex-wrap gap-2">
           <select value={cardType} onChange={(e) => setCardType(e.target.value)} className={selectClass}>
-            <option value="">All Types</option>
-            {cardTypes.map((t) => (
-              <option key={t} value={t}>
-                {t}
+            <option value="">{t("All Types", lang)}</option>
+            {cardTypes.map((ct) => (
+              <option key={ct} value={ct}>
+                {ct}
               </option>
             ))}
           </select>
@@ -1126,7 +1131,7 @@ function CardsTab({
             onChange={(e) => setCardRarity(e.target.value)}
             className={selectClass}
           >
-            <option value="">All Rarities</option>
+            <option value="">{t("All Rarities", lang)}</option>
             {cardRarities.map((r) => (
               <option key={r} value={r}>
                 {r}
@@ -1134,7 +1139,7 @@ function CardsTab({
             ))}
           </select>
           <select value={cardCost} onChange={(e) => setCardCost(e.target.value)} className={selectClass}>
-            <option value="">All Costs</option>
+            <option value="">{t("All Costs", lang)}</option>
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -1143,7 +1148,7 @@ function CardsTab({
             <option value="X">X</option>
           </select>
         </div>
-        <span className="text-xs text-[var(--text-muted)]">{rows.length} cards</span>
+        <span className="text-xs text-[var(--text-muted)]">{rows.length} {t("cards", lang)}</span>
       </div>
 
       <CardTable
@@ -1154,6 +1159,7 @@ function CardsTab({
         lp={lp}
         betaIds={betaIds}
         imgBaseFor={imgBaseFor}
+        lang={lang}
       />
     </div>
   );
@@ -1191,6 +1197,7 @@ function SortHeader<T extends string>({
 }
 
 function CardTable({
+  lang,
   rows,
   cardSort,
   cardDir,
@@ -1199,6 +1206,7 @@ function CardTable({
   betaIds,
   imgBaseFor,
 }: {
+  lang: string;
   rows: CardRow[];
   cardSort: CardSort;
   cardDir: SortDir;
@@ -1209,7 +1217,7 @@ function CardTable({
 }) {
   if (rows.length === 0) {
     return (
-      <div className="py-8 text-center text-sm text-[var(--text-muted)]">No cards match.</div>
+      <div className="py-8 text-center text-sm text-[var(--text-muted)]">{t("No cards match.", lang)}</div>
     );
   }
   return (
@@ -1219,19 +1227,19 @@ function CardTable({
           <tr className="border-b border-[var(--border-subtle)]">
             <th className="text-left py-2 font-medium text-[var(--text-muted)] w-10">#</th>
             <SortHeader column="name" current={cardSort} dir={cardDir} onClick={onCardHeader} align="left">
-              Card
+              {t("Card", lang)}
             </SortHeader>
             <SortHeader column="pick_rate" current={cardSort} dir={cardDir} onClick={onCardHeader}>
-              Pick Rate
+              {t("Pick Rate", lang)}
             </SortHeader>
             <SortHeader column="win_pct" current={cardSort} dir={cardDir} onClick={onCardHeader}>
-              Win Rate
+              {t("Win Rate", lang)}
             </SortHeader>
             <SortHeader column="elo" current={cardSort} dir={cardDir} onClick={onCardHeader}>
               Codex Elo
             </SortHeader>
             <SortHeader column="count" current={cardSort} dir={cardDir} onClick={onCardHeader}>
-              Count
+              {t("Count", lang)}
             </SortHeader>
           </tr>
         </thead>
@@ -1306,6 +1314,7 @@ interface RelicRow {
 }
 
 function RelicsTab({
+  lang,
   rows,
   relicRarities,
   relicRarity,
@@ -1317,6 +1326,7 @@ function RelicsTab({
   betaIds,
   imgBaseFor,
 }: {
+  lang: string;
   rows: RelicRow[];
   relicRarities: string[];
   relicRarity: string;
@@ -1339,18 +1349,18 @@ function RelicsTab({
           onChange={(e) => setRelicRarity(e.target.value)}
           className={selectClass}
         >
-          <option value="">All Rarities</option>
+          <option value="">{t("All Rarities", lang)}</option>
           {relicRarities.map((r) => (
             <option key={r} value={r}>
               {r}
             </option>
           ))}
         </select>
-        <span className="text-xs text-[var(--text-muted)]">{rows.length} relics</span>
+        <span className="text-xs text-[var(--text-muted)]">{rows.length} {t("relics", lang)}</span>
       </div>
 
       {rows.length === 0 ? (
-        <div className="py-8 text-center text-sm text-[var(--text-muted)]">No relics match.</div>
+        <div className="py-8 text-center text-sm text-[var(--text-muted)]">{t("No relics match.", lang)}</div>
       ) : (
         <div className="overflow-x-auto md:overflow-visible">
           <table className="w-full text-sm">
@@ -1358,16 +1368,16 @@ function RelicsTab({
               <tr className="border-b border-[var(--border-subtle)]">
                 <th className="text-left py-2 font-medium text-[var(--text-muted)] w-10">#</th>
                 <SortHeader column="name" current={relicSort} dir={relicDir} onClick={onRelicHeader} align="left">
-                  Relic
+                  {t("Relic", lang)}
                 </SortHeader>
                 <SortHeader column="pick_rate" current={relicSort} dir={relicDir} onClick={onRelicHeader}>
-                  Pick Rate
+                  {t("Pick Rate", lang)}
                 </SortHeader>
                 <SortHeader column="win_pct" current={relicSort} dir={relicDir} onClick={onRelicHeader}>
-                  Win Rate
+                  {t("Win Rate", lang)}
                 </SortHeader>
                 <SortHeader column="count" current={relicSort} dir={relicDir} onClick={onRelicHeader}>
-                  Count
+                  {t("Count", lang)}
                 </SortHeader>
               </tr>
             </thead>
@@ -1436,6 +1446,7 @@ interface PotionRow {
 }
 
 function PotionsTab({
+  lang,
   rows,
   potionRarities,
   potionRarity,
@@ -1447,6 +1458,7 @@ function PotionsTab({
   betaIds,
   imgBaseFor,
 }: {
+  lang: string;
   rows: PotionRow[];
   potionRarities: string[];
   potionRarity: string;
@@ -1469,18 +1481,18 @@ function PotionsTab({
           onChange={(e) => setPotionRarity(e.target.value)}
           className={selectClass}
         >
-          <option value="">All Rarities</option>
+          <option value="">{t("All Rarities", lang)}</option>
           {potionRarities.map((r) => (
             <option key={r} value={r}>
               {r}
             </option>
           ))}
         </select>
-        <span className="text-xs text-[var(--text-muted)]">{rows.length} potions</span>
+        <span className="text-xs text-[var(--text-muted)]">{rows.length} {t("potions", lang)}</span>
       </div>
 
       {rows.length === 0 ? (
-        <div className="py-8 text-center text-sm text-[var(--text-muted)]">No potions match.</div>
+        <div className="py-8 text-center text-sm text-[var(--text-muted)]">{t("No potions match.", lang)}</div>
       ) : (
         <div className="overflow-x-auto md:overflow-visible">
           <table className="w-full text-sm">
@@ -1488,21 +1500,21 @@ function PotionsTab({
               <tr className="border-b border-[var(--border-subtle)]">
                 <th className="text-left py-2 font-medium text-[var(--text-muted)] w-10">#</th>
                 <SortHeader column="name" current={potionSort} dir={potionDir} onClick={onPotionHeader} align="left">
-                  Potion
+                  {t("Potion", lang)}
                 </SortHeader>
                 <SortHeader column="pick_rate" current={potionSort} dir={potionDir} onClick={onPotionHeader}>
-                  <span title="How often a potion is bought when it appears on a shop shelf. Combat-drop potions are excluded: with an open slot you take almost every free potion, so drop pick-rate just measures slot availability, not quality. A shop buy is a real gold decision.">
-                    Shop Buy %
+                  <span title={t("How often a potion is bought when it appears on a shop shelf. Combat-drop potions are excluded: with an open slot you take almost every free potion, so drop pick-rate just measures slot availability, not quality. A shop buy is a real gold decision.", lang)}>
+                    {t("Shop Buy %", lang)}
                   </span>
                 </SortHeader>
                 <SortHeader column="use_rate" current={potionSort} dir={potionDir} onClick={onPotionHeader}>
-                  Use Rate
+                  {t("Use Rate", lang)}
                 </SortHeader>
                 <SortHeader column="win_pct" current={potionSort} dir={potionDir} onClick={onPotionHeader}>
-                  Win Rate
+                  {t("Win Rate", lang)}
                 </SortHeader>
                 <SortHeader column="count" current={potionSort} dir={potionDir} onClick={onPotionHeader}>
-                  Count
+                  {t("Count", lang)}
                 </SortHeader>
               </tr>
             </thead>
@@ -1567,11 +1579,11 @@ function PotionsTab({
 
 /* ------------------------- Encounters ------------------------- */
 
-function EncountersTab({ stats, lp }: { stats: CommunityStats; lp: string }) {
+function EncountersTab({ stats, lp, lang }: { stats: CommunityStats; lp: string; lang: string }) {
   if (!stats.deadliest || stats.deadliest.length === 0) {
     return (
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 text-center text-sm text-[var(--text-muted)]">
-        No deadly encounters recorded.
+        {t("No deadly encounters recorded.", lang)}
       </div>
     );
   }
@@ -1579,14 +1591,14 @@ function EncountersTab({ stats, lp }: { stats: CommunityStats; lp: string }) {
   return (
     <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
       <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-        Deadliest Encounters
+        {t("Deadliest Encounters", lang)}
       </h2>
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-[var(--border-subtle)] text-[var(--text-muted)] text-xs">
             <th className="text-left py-2 font-medium w-10">#</th>
-            <th className="text-left py-2 font-medium">Encounter</th>
-            <th className="text-right py-2 font-medium">Deaths</th>
+            <th className="text-left py-2 font-medium">{t("Encounter", lang)}</th>
+            <th className="text-right py-2 font-medium">{t("Deaths", lang)}</th>
             <th className="py-2 font-medium w-48"></th>
           </tr>
         </thead>

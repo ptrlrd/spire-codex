@@ -7,6 +7,9 @@
  * event, dispatching that event is how we open it from anywhere.
  */
 
+import { t } from "@/lib/ui-translations";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+
 type Variant = "hero" | "nav" | "icon";
 
 function openGlobalSearch() {
@@ -33,12 +36,14 @@ interface Props {
 }
 
 export default function SearchTrigger({ variant, className = "", placeholder }: Props) {
+  const { lang } = useLanguage();
+
   if (variant === "icon") {
     return (
       <button
         type="button"
         onClick={openGlobalSearch}
-        aria-label="Search"
+        aria-label={t("Search", lang)}
         className={`inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors ${className}`}
       >
         <SearchIcon className="w-5 h-5" />
@@ -51,14 +56,14 @@ export default function SearchTrigger({ variant, className = "", placeholder }: 
       <button
         type="button"
         onClick={openGlobalSearch}
-        className={`group w-full flex items-center gap-3 px-5 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] text-left hover:border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors ${className}`}
+        className={`sc-hero-search group w-full flex items-center gap-3 px-5 py-3.5 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] text-left hover:border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors ${className}`}
       >
         <SearchIcon className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent-gold)] transition-colors shrink-0" />
         <span className="flex-1 text-base text-[var(--text-muted)] truncate">
-          {placeholder ?? "Find your next card, relic, or potion..."}
+          {placeholder ?? t("Find your next card, relic, or potion...", lang)}
         </span>
         <kbd className="hidden sm:inline-block text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5 shrink-0">
-          Press .
+          {t("Press .", lang)}
         </kbd>
       </button>
     );
@@ -73,7 +78,7 @@ export default function SearchTrigger({ variant, className = "", placeholder }: 
     >
       <SearchIcon className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent-gold)] transition-colors shrink-0" />
       <span className="flex-1 text-left text-[var(--text-muted)] truncate">
-        {placeholder ?? "Search cards, relics, monsters..."}
+        {placeholder ?? t("Search cards, relics, monsters...", lang)}
       </span>
       <kbd className="text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5 shrink-0">
         .

@@ -3,6 +3,10 @@ import { t } from "@/lib/ui-translations";
 import { IS_BETA } from "@/lib/seo";
 import { characterHex } from "@/lib/character-colors";
 
+const ARROW = (
+  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
+
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 // Beta has run submissions disabled, so its stats endpoint reports near
 // zero. Pull from stable on beta so the section matches the community
@@ -71,7 +75,9 @@ export default async function HomeStatsSection({
   const stats = await loadStats();
   if (!stats || stats.total_runs === 0) return null;
   const losses = (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0);
-  const maxCharTotal = Math.max(1, ...stats.characters.map((c) => c.total));
+  // Win-rate bars are scaled relative to the strongest character (like the
+  // mockup): the top character fills the track, the rest scale down from it.
+  const maxWinRate = Math.max(1, ...stats.characters.map((c) => c.win_rate));
   // The character with the highest run count drives the "Most Played" tile.
   // `stats.characters` isn't guaranteed-sorted, so derive it explicitly.
   const mostPlayed = stats.characters.length
@@ -79,109 +85,76 @@ export default async function HomeStatsSection({
     : null;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="flex items-baseline justify-between gap-3 mb-5">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
-          {t("Stats", lang)}
-        </h2>
-        <Link
-          href={`${RUNS_HOST}${langPrefix}/leaderboards/stats`}
-          className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          <span>{t("View all stats", lang)}</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
+    <div className="rvmp">
+      {/* Single full-width panel, same vertical layout as the Overview tab
+          on /leaderboards/stats: stat strip on top, character win-rate
+          bars below, both inside one bordered surface. */}
+      <section className="hb">
+        <section className="panel">
+          <div className="s-head">
+            <span className="s-kick">{t("Overview", lang)}</span>
+            <h2>{t("Stats", lang)}</h2>
+            <Link className="viewmore" href={`${RUNS_HOST}${langPrefix}/leaderboards/stats`}>
+              {t("View all stats", lang)} {ARROW}
+            </Link>
+          </div>
 
-      {/* Single full-width block, same vertical layout as the Overview tab
-          on /leaderboards/stats: 4-stat strip on top, character win-rate
-          bars below, both inside one bordered card. */}
-      <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 space-y-5">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 text-center">
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2.5">
-            <div className="text-xl font-bold text-[var(--text-primary)] tabular-nums leading-tight">
-              {stats.total_runs}
+          <div className="statgrid five">
+            <div className="stat">
+              <span className="stat-v">{stats.total_runs}</span>
+              <span className="stat-k">{t("Runs", lang)}</span>
             </div>
-            <div className="text-[11px] text-[var(--text-muted)]">{t("Runs", lang)}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2.5">
-            <div className="text-xl font-bold text-emerald-400 tabular-nums leading-tight">
-              {stats.total_wins}
+            <div className="stat">
+              <span className="stat-v" style={{ color: "var(--good)" }}>{stats.total_wins}</span>
+              <span className="stat-k">{t("Wins", lang)}</span>
             </div>
-            <div className="text-[11px] text-[var(--text-muted)]">{t("Wins", lang)}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2.5">
-            <div className="text-xl font-bold text-red-400 tabular-nums leading-tight">
-              {losses}
+            <div className="stat">
+              <span className="stat-v" style={{ color: "var(--warn)" }}>{losses}</span>
+              <span className="stat-k">{t("Losses", lang)}</span>
             </div>
-            <div className="text-[11px] text-[var(--text-muted)]">{t("Losses", lang)}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2.5">
-            <div className="text-xl font-bold text-[var(--accent-gold)] tabular-nums leading-tight">
-              {stats.win_rate}%
+            <div className="stat">
+              <span className="stat-v">{stats.win_rate}%</span>
+              <span className="stat-k">{t("Win %", lang)}</span>
             </div>
-            <div className="text-[11px] text-[var(--text-muted)]">{t("Win %", lang)}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-2.5">
-            <div
-              className="text-xl font-bold leading-tight truncate"
-              style={{ color: mostPlayed ? characterHex(mostPlayed.character) || "var(--text-primary)" : "var(--text-muted)" }}
-              title={mostPlayed ? characterLabel(mostPlayed.character, characterNames) : ""}
-            >
-              {mostPlayed ? characterLabel(mostPlayed.character, characterNames) : "—"}
+            <div className="stat">
+              <span
+                className="stat-v"
+                style={{ color: mostPlayed ? characterHex(mostPlayed.character) || "var(--gold)" : "var(--text-3)" }}
+                title={mostPlayed ? characterLabel(mostPlayed.character, characterNames) : ""}
+              >
+                {mostPlayed ? characterLabel(mostPlayed.character, characterNames) : "—"}
+              </span>
+              <span className="stat-k">{t("Most Played", lang)}</span>
             </div>
-            <div className="text-[11px] text-[var(--text-muted)]">{t("Most Played", lang)}</div>
           </div>
-        </div>
 
-        {stats.characters.length > 0 && (
-          <div>
-            <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
-              {t("Character Win Rates", lang)}
-            </h3>
-            <div className="space-y-2">
+          {stats.characters.length > 0 && (
+            <div>
+              <div className="wr-title">{t("Character Win Rates", lang)}</div>
               {stats.characters.map((c) => {
-                const charColor = characterHex(c.character) || "var(--text-muted)";
-                const totalPct = (c.total / maxCharTotal) * 100;
-                const winPct = c.total > 0 ? (c.wins / c.total) * 100 : 0;
+                const charColor = characterHex(c.character) || "var(--text-3)";
+                const relPct = (c.win_rate / maxWinRate) * 100;
                 return (
-                  <div key={c.character}>
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-sm font-medium" style={{ color: charColor }}>
-                        {characterLabel(c.character, characterNames)}
-                      </span>
-                      <div className="flex items-center gap-3 text-xs">
-                        <span className="text-[var(--text-muted)] tabular-nums">
-                          {c.wins}W / {c.total - c.wins}L
-                        </span>
-                        <span
-                          className="font-semibold tabular-nums"
-                          style={{ color: winRateColor(c.win_rate) }}
-                        >
-                          {c.win_rate}%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="relative h-2 rounded-full bg-[var(--bg-primary)] overflow-hidden">
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full opacity-40"
-                        style={{ width: `${totalPct}%`, backgroundColor: charColor }}
-                      />
-                      <div
-                        className="absolute inset-y-0 left-0 rounded-full"
-                        style={{
-                          width: `${(totalPct * winPct) / 100}%`,
-                          backgroundColor: charColor,
-                        }}
-                      />
-                    </div>
+                  <div key={c.character} className="wr-row wr-stat">
+                    <span className="wr-name" style={{ color: charColor }}>
+                      {characterLabel(c.character, characterNames)}
+                    </span>
+                    <span className="wr-track">
+                      <span className="wr-fill" style={{ width: `${relPct}%`, background: charColor }} />
+                    </span>
+                    <span className="wr-wl">
+                      {c.wins}W / {c.total - c.wins}L
+                    </span>
+                    <span className="wr-num" style={{ color: winRateColor(c.win_rate) }}>
+                      {c.win_rate}%
+                    </span>
                   </div>
                 );
               })}
             </div>
-          </div>
-        )}
-      </div>
-    </section>
+          )}
+        </section>
+      </section>
+    </div>
   );
 }

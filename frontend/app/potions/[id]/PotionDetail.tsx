@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Potion } from "@/lib/api";
@@ -15,14 +15,10 @@ import EntityProse from "@/app/components/EntityProse";
 import EntityRunStats from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
+import "../../card-revamp.css";
+import "../../relic-potion-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-const rarityColorMap: Record<string, string> = {
-  Common: "text-gray-300",
-  Uncommon: "text-blue-400",
-  Rare: "text-[var(--accent-gold)]",
-};
 
 // Merchant price ranges for potions (from C#)
 // Common: base 50, range x0.95-1.05 = 48-53
@@ -37,7 +33,15 @@ function getPotionMerchantPriceRange(rarity: string): { min: number; max: number
   }
 }
 
-type Tab = "overview" | "details" | "stats" | "info";
+// Headline figures for the infobox mini-stats block. Same endpoint
+// EntityRunStats fetches, so cachedFetch dedupes it (no extra request).
+interface MiniStats {
+  picks: number;
+  win_rate: number;
+  pick_rate: number;
+  score: number | null;
+  elo: number | null;
+}
 
 export default function PotionDetail({ initialPotion }: { initialPotion?: Potion | null } = {}) {
   const { id } = useParams<{ id: string }>();
@@ -47,7 +51,9 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
   const [potion, setPotion] = useState<Potion | null>(initialPotion ?? null);
   const [loading, setLoading] = useState(!initialPotion);
   const [notFound, setNotFound] = useState(false);
-  const [tab, setTab] = useState<Tab>("overview");
+  // Scroll-spy: which section the ToC highlights.
+  const [activeSection, setActiveSection] = useState<string>("performance");
+  const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
 
   useEffect(() => {
     if (!id) return;
@@ -56,6 +62,43 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
   }, [id, lang]);
+
+  // Headline community numbers for the infobox mini block. Hits the same URL
+  // EntityRunStats fetches, so cachedFetch serves it from cache.
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<MiniStats>(`${API}/api/runs/stats/potions/${id}`)
+      .then(setMiniStats)
+      .catch(() => {});
+  }, [id]);
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!potion) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [potion]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
 
   if (loading) {
     return (
@@ -76,143 +119,213 @@ export default function PotionDetail({ initialPotion }: { initialPotion?: Potion
     );
   }
 
-  const rarityColor = rarityColorMap[potion.rarity] || "text-gray-400";
   const priceRange = getPotionMerchantPriceRange(potion.rarity_key || potion.rarity);
+  // Plain-text lede from the potion effect (rich tags + newlines stripped).
+  const ledeText = potion.description
+    ? potion.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
 
-  const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("Overview", lang) },
-    { key: "details", label: t("Details", lang) },
-    { key: "stats", label: t("Stats", lang) },
-    { key: "info", label: t("Info", lang) },
+  const tocItems: { id: string; label: string }[] = [
+    { id: "performance", label: t("Community", lang) },
+    { id: "description", label: t("Description", lang) },
+    { id: "relations", label: t("Relations", lang) },
+    { id: "history", label: t("Version history", lang) },
   ];
 
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Potions", lang)}
-      </button>
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": "var(--accent-gold)",
+        ...(potion.image_url ? { "--entity-bg": `url("${imageUrl(potion.image_url)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Potions", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {potion.image_url && (
-          <div className="flex justify-center mb-6">
-            <img
-              src={imageUrl(potion.image_url)}
-              alt={`${potion.name} - Slay the Spire 2 Potion`}
-              className="w-24 h-24 object-contain"
-              crossOrigin="anonymous"
-            />
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{potion.rarity}</span>
+              {potion.pool && (
+                <>
+                  <span>&middot;</span>
+                  <span>{potion.pool}</span>
+                </>
+              )}
+              <span>&middot;</span>
+              <span>{t("Potion", lang)}</span>
+            </p>
+            <h1>{potion.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
-        )}
 
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {potion.name}
-        </h1>
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
 
-        <div className="flex items-center justify-center gap-3 mb-6 text-sm">
-          <span className={rarityColor}>{potion.rarity}</span>
-          {potion.pool && (
-            <>
-              <span className="text-[var(--border-subtle)]">&middot;</span>
-              <span className="text-[var(--text-muted)] capitalize">{potion.pool}</span>
-            </>
-          )}
-        </div>
+          {/* Community performance (featured first) */}
+          <section id="performance">
+            <h2>{t("Community performance", lang)}</h2>
+            <p className="h-note">
+              {t(
+                "Live aggregate across community-submitted runs. Filter by bracket to see how it holds up at higher levels of play.",
+                lang,
+              )}
+            </p>
+            <EntityRunStats
+              entityType="potions"
+              entityId={id}
+              entityName={potion.name}
+              variant="wiki"
+            />
+          </section>
 
-        {/* Tabs */}
-        <div className="flex gap-1 mb-5 border-b border-[var(--border-subtle)]">
-          {tabs.map((tb) => (
-            <button
-              key={tb.key}
-              onClick={() => setTab(tb.key)}
-              className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
-                tab === tb.key
-                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                  : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-              }`}
-            >
-              {tb.label}
-            </button>
-          ))}
-        </div>
-
-        {/* ===== Overview Tab ===== */}
-        {tab === "overview" && (
-          <>
-            <div className="text-[var(--text-secondary)] leading-relaxed">
+          {/* Description */}
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
               <RichDescription text={potion.description} />
             </div>
+
             {/* Programmatic prose block, adds factual context using
-                already-localized fields (rarity, pool, name) plus
-                merchant pricing tiers, pushing the page past Google's
-                "thin content" floor without per-language translation. */}
+                already-localized fields (rarity, pool, name) plus merchant
+                pricing tiers, pushing the page past Google's thin-content floor. */}
             <EntityProse kind="potion" potion={potion} />
-          </>
-        )}
+          </section>
 
-        {/* ===== Details Tab ===== */}
-        {tab === "details" && (
-          <>
-            {priceRange ? (
-              <div className="mb-5">
-                <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                  {t("Merchant Price", lang)}
-                </h3>
-                <div className="flex items-center gap-2 text-sm">
-                  <img
-                    src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
-                    alt="Gold"
-                    className="w-5 h-5"
-                    crossOrigin="anonymous"
-                  />
-                  <span className="text-[var(--accent-gold)] font-medium">
-                    {priceRange.min}–{priceRange.max}
-                  </span>
-                </div>
-              </div>
-            ) : (
-              <p className="text-sm text-[var(--text-muted)]">
-                This potion is not sold at the merchant.
-              </p>
-            )}
-          </>
-        )}
+          {/* Relations, related potions from the same rarity + pool */}
+          <section id="relations">
+            <h2>{t("Relations", lang)}</h2>
+            <p className="h-note">
+              {t("Other potions from the same rarity and pool.", lang)}
+            </p>
+            <RelatedItems
+              currentId={id}
+              route="potions"
+              heading="Related Potions"
+              groups={[
+                {
+                  label: `${potion.rarity} potions`,
+                  path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}`,
+                },
+                ...(potion.pool
+                  ? [{
+                      label: `${potion.pool} pool`,
+                      path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}`,
+                    }]
+                  : []),
+              ]}
+            />
+          </section>
 
-        {/* ===== Stats Tab, community run aggregates ===== */}
-        {tab === "stats" && (
-          <EntityRunStats entityType="potions" entityId={id} entityName={potion.name} />
-        )}
-
-        {/* ===== Info Tab ===== */}
-        {tab === "info" && (
-          <>
+          {/* Version history + localized names */}
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
             <LocalizedNames entityType="potions" entityId={id} />
             <EntityHistory entityType="potions" entityId={id} />
-          </>
-        )}
+          </section>
+        </main>
 
-        {/* Related-potions block sits outside the tabs so it's always
-            visible, gives Google a crawl path to siblings (same rarity
-            and pool) and adds 30+ extra word-equivalents per page. */}
-        <RelatedItems
-          currentId={id}
-          route="potions"
-          heading="Related Potions"
-          groups={[
-            {
-              label: `${potion.rarity} potions`,
-              path: `/api/potions?rarity=${encodeURIComponent(potion.rarity)}&lang=${lang}`,
-            },
-            ...(potion.pool
-              ? [{
-                  label: `${potion.pool} pool`,
-                  path: `/api/potions?pool=${encodeURIComponent(potion.pool)}&lang=${lang}`,
-                }]
-              : []),
-          ]}
-        />
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            {potion.image_url && (
+              <img
+                className="cardimg render relimg"
+                src={imageUrl(potion.image_url)}
+                alt={`${potion.name} - Slay the Spire 2 Potion`}
+                crossOrigin="anonymous"
+              />
+            )}
+
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                <div className="frow">
+                  <dt>{t("Rarity", lang)}</dt>
+                  <dd>{potion.rarity}</dd>
+                </div>
+                {potion.pool && (
+                  <div className="frow">
+                    <dt>{t("Pool", lang)}</dt>
+                    <dd style={{ textTransform: "capitalize" }}>{potion.pool}</dd>
+                  </div>
+                )}
+                <div className="frow">
+                  <dt>{t("Merchant Price", lang)}</dt>
+                  <dd>
+                    {priceRange ? (
+                      <>
+                        <img
+                          src={imageUrl("/static/images/ui/rewards/reward_icon_money.webp")}
+                          alt="Gold"
+                          style={{ width: 15, height: 15 }}
+                          crossOrigin="anonymous"
+                        />
+                        {priceRange.min}&ndash;{priceRange.max}
+                      </>
+                    ) : (
+                      t("Not sold", lang)
+                    )}
+                  </dd>
+                </div>
+              </dl>
+            </div>
+
+            {/* Community mini-stats */}
+            {miniStats && miniStats.picks > 0 && (
+              <div className="mini">
+                <div className="mh">{t("Community", lang)}</div>
+                <div className="mg">
+                  <div>
+                    <div
+                      className="mv"
+                      style={{ color: miniStats.win_rate >= 50 ? "var(--good)" : "var(--warn)" }}
+                    >
+                      {miniStats.win_rate}%
+                    </div>
+                    <div className="ml">{t("Win rate", lang)}</div>
+                  </div>
+                  <div>
+                    <div className="mv">{miniStats.pick_rate}%</div>
+                    <div className="ml">{t("Pick rate", lang)}</div>
+                  </div>
+                  {miniStats.score != null && (
+                    <div>
+                      <div className="mv">{miniStats.score}</div>
+                      <div className="ml">{t("Codex Score", lang)}</div>
+                    </div>
+                  )}
+                  {miniStats.elo != null && (
+                    <div>
+                      <div className="mv">{Math.round(miniStats.elo)}</div>
+                      <div className="ml">Elo</div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
       </div>
     </div>
   );

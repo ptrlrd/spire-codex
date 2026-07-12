@@ -1,0 +1,84 @@
+/* Ancient Relic Pools page — the accordion of the 8 Ancients and their relic
+   pools, styled to match the wiki entity detail pages. Everything is scoped
+   under .card-rvmp so it shares the tokens + Kreon from card-revamp.css and
+   leaks nowhere else, same pattern as relic-potion-extra.css. */
+
+/* Infobox art selector: the styled select (shares .ench-select from
+   card-revamp.css) sitting under the portrait; it only swaps the image. */
+.card-rvmp .anc-img-select { margin-top: 10px; }
+
+/* the list of all ancients */
+.card-rvmp .anc-list { display: grid; gap: 16px; margin-top: 18px; }
+/* each Ancient is a jump target for the ToC submenu; clear the sticky bars. */
+.card-rvmp .anc-sec { scroll-margin-top: 120px; }
+
+/* one ancient = a surface panel. */
+.card-rvmp .anc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* header (static now that only one ancient shows at a time) */
+.card-rvmp .anc-head {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  text-align: left;
+  padding: 15px 20px;
+}
+.card-rvmp .anc-head.static { cursor: default; }
+.card-rvmp .anc-head h2 { margin: 0; font-size: 22px; }
+.card-rvmp .anc-sel { margin: 3px 0 0; font-size: 13px; color: var(--text-3); }
+
+/* expanded body */
+.card-rvmp .anc-body { padding: 16px 20px 20px; border-top: 1px solid var(--border); }
+.card-rvmp .anc-desc { margin: 0 0 16px; font-size: 14px; line-height: 1.6; color: var(--text-2); }
+.card-rvmp .anc-pools { display: grid; gap: 14px; }
+
+/* one relic pool = a mini facts panel (mono header bar + rows) */
+.card-rvmp .anc-pool {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.card-rvmp .anc-pool-h {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  background: var(--spine-soft);
+}
+.card-rvmp .anc-pool-h .cnt { margin-left: auto; color: var(--text-3); }
+.card-rvmp .anc-pool-desc { margin: 0; padding: 10px 14px 0; font-size: 12.5px; font-style: italic; color: var(--text-3); }
+.card-rvmp .anc-relics { padding: 2px 14px 6px; }
+
+/* relic row: icon + name link on the left, condition/variants below */
+.card-rvmp .anc-relic {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent);
+}
+.card-rvmp .anc-relic:last-child { border-bottom: 0; }
+.card-rvmp .anc-relic-link { display: flex; align-items: center; gap: 8px; flex: none; }
+.card-rvmp .anc-relic-link:hover { opacity: .85; }
+.card-rvmp .anc-relic-link img { width: 30px; height: 30px; object-fit: contain; }
+.card-rvmp .anc-relic-name { font-size: 14px; font-weight: 600; color: var(--gold); }
+.card-rvmp .anc-relic-link:hover .anc-relic-name { text-decoration: underline; }
+.card-rvmp .anc-relic-meta { display: flex; flex-direction: column; gap: 2px; padding-top: 3px; }
+.card-rvmp .anc-cond { font-size: 12.5px; font-style: italic; line-height: 1.5; color: var(--text-3); }
+.card-rvmp .anc-variants { font-size: 12.5px; line-height: 1.5; color: var(--text-3); }
+.card-rvmp .anc-variants .lbl { font-style: italic; }
+.card-rvmp .anc-variants .vn { color: var(--gold); }

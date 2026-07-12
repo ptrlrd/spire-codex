@@ -2,10 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { t } from "@/lib/ui-translations";
+import { useLanguage } from "@/app/contexts/LanguageContext";
 
 const STORAGE_KEY = "overwolf-banner-dismissed";
 
 export default function OverwolfBanner() {
+  const { lang } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -26,17 +29,19 @@ export default function OverwolfBanner() {
         />
         <div className="flex-1 min-w-0 text-sm text-white/90">
           <span className="font-semibold text-white">
-            Spire Codex is now on Overwolf.
+            {t("Spire Codex is now on Overwolf.", lang)}
           </span>{" "}
           <span className="hidden sm:inline">
-            Get the in-game overlay with live card lookups and one-click run
-            uploads.{" "}
+            {t(
+              "Get the in-game overlay with live card lookups and one-click run uploads.",
+              lang,
+            )}{" "}
           </span>
           <Link
             href="/overlay"
             className="text-[var(--accent-gold)] hover:underline font-medium whitespace-nowrap"
           >
-            Learn more →
+            {t("Learn more", lang)} →
           </Link>
         </div>
         <button
@@ -45,7 +50,7 @@ export default function OverwolfBanner() {
             localStorage.setItem(STORAGE_KEY, "1");
             setVisible(false);
           }}
-          aria-label="Dismiss Overwolf banner"
+          aria-label={t("Dismiss Overwolf banner", lang)}
           className="text-white/60 hover:text-white transition-colors text-lg leading-none flex-shrink-0"
         >
           &times;

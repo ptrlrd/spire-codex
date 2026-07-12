@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Character, Card, Relic, Potion } from "@/lib/api";
@@ -8,22 +8,28 @@ import RichDescription from "@/app/components/RichDescription";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { t } from "@/lib/ui-translations";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import FullCardGrid from "@/app/components/FullCardGrid";
+import "../../card-revamp.css";
+import "../../character-extra.css";
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+// Per-character accent for the wiki page spine (--spine). char.color is a plain
+// color word ("red"/"green"/…); map it onto the class token so the spine matches
+// the class identity everywhere else on the site uses.
+const SPINE_COLOR: Record<string, string> = {
+  red: "var(--color-ironclad)",
+  green: "var(--color-silent)",
+  blue: "var(--color-defect)",
+  purple: "var(--color-necrobinder)",
+  orange: "var(--color-regent)",
+};
 
 function toUpperSnake(s: string): string {
   return s.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
 }
-
-const colorStyles: Record<string, { border: string; accent: string; bg: string }> = {
-  red: { border: "border-red-700/60", accent: "text-red-400", bg: "from-red-900/20" },
-  green: { border: "border-green-700/60", accent: "text-green-400", bg: "from-green-900/20" },
-  blue: { border: "border-blue-700/60", accent: "text-blue-400", bg: "from-blue-900/20" },
-  purple: { border: "border-purple-700/60", accent: "text-purple-400", bg: "from-purple-900/20" },
-  orange: { border: "border-orange-700/60", accent: "text-orange-400", bg: "from-orange-900/20" },
-};
 
 const QUOTE_LABELS: Record<string, { label: string; icon: string }> = {
   aroma_principle: { label: "Inner Principle", icon: "soul" },
@@ -47,8 +53,9 @@ interface TopEntity {
   image_url: string | null;
 }
 
-// One "Top 5 picked" block. Mirrors the cards page top-by-score grid so
-// the character page reads as the same family of stats.
+// One "Top 5 picked" block, rendered inside the Community section. Mirrors the
+// cards page top-by-score grid so the character page reads as the same family
+// of stats.
 function TopPicks({
   title,
   subtitle,
@@ -67,34 +74,29 @@ function TopPicks({
     .filter((x): x is { it: TopEntry; ent: TopEntity } => !!x.ent);
   if (resolved.length === 0) return null;
   return (
-    <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 mb-6">
-      <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-1">{title}</h2>
-      <p className="text-sm text-[var(--text-muted)] mb-4">{subtitle}</p>
-      <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+    <div className="pick-block">
+      <h3 className="subh">{title}</h3>
+      <p className="h-note">{subtitle}</p>
+      <ul className="picks">
         {resolved.map(({ it, ent }) => (
           <li key={it.entity_id}>
-            <Link
-              href={`${hrefBase}/${ent.id.toLowerCase()}`}
-              className="block group p-3 rounded-lg border border-[var(--border-subtle)] hover:border-[var(--accent-gold)] transition-colors"
-            >
+            <Link href={`${hrefBase}/${ent.id.toLowerCase()}`} className="pick">
               {ent.image_url && (
                 <img
                   src={imageUrl(ent.image_url)}
                   alt={`${ent.name} - Slay the Spire 2`}
-                  className="w-full h-24 object-contain mb-2"
+                  className="pick-img"
                   loading="lazy"
                   crossOrigin="anonymous"
                 />
               )}
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-sm font-medium group-hover:text-[var(--accent-gold)] transition-colors truncate">
-                  {ent.name}
-                </span>
+              <span className="pick-name">
+                <span className="pick-nm">{ent.name}</span>
                 {it.score != null && <ScoreBadge score={it.score} size="sm" />}
-              </div>
-              <div className="text-xs text-[var(--text-muted)] mt-1">
-                {it.win_rate.toFixed(1)}% win · {it.picks.toLocaleString()} picks
-              </div>
+              </span>
+              <span className="pick-sub">
+                {it.win_rate.toFixed(1)}% win &middot; {it.picks.toLocaleString()} picks
+              </span>
             </Link>
           </li>
         ))}
@@ -121,6 +123,8 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   const [expandedAncient, setExpandedAncient] = useState<string | null>(null);
   const [cardsExpanded, setCardsExpanded] = useState(true);
   const [relicsExpanded, setRelicsExpanded] = useState(true);
+  // Scroll-spy: which section the ToC highlights.
+  const [activeSection, setActiveSection] = useState<string>("overview");
 
   useEffect(() => {
     if (!id) return;
@@ -195,6 +199,34 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     return m;
   }, [potions]);
 
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!char) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [char, allCards.length, poolRelics.length, topCards.length, topRelics.length, topPotions.length]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
@@ -214,7 +246,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     );
   }
 
-  const style = colorStyles[char.color || ""] || { border: "border-[var(--border-subtle)]", accent: "text-gray-400", bg: "from-gray-900/20" };
+  const spineColor = SPINE_COLOR[char.color || ""] ?? "var(--accent-gold)";
 
   // Strip out items that are in every run for this character anyway — the
   // starter deck, the starting relic, and Ascender's Bane (added at high
@@ -280,343 +312,403 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     Ancient: "bg-red-600/30 text-red-300",
   };
 
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; Back to Characters
-      </button>
+  // Plain-text lede from the character description (rich tags + newlines stripped).
+  const ledeText = char.description
+    ? char.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
 
-      {/* Hero section */}
-      <div className={`rounded-xl border-2 ${style.border} bg-gradient-to-br ${style.bg} to-transparent bg-[var(--bg-card)] p-6 mb-8`}>
-        <div className="flex flex-col sm:flex-row items-center gap-6">
-          {/* Animated Spine idle when we've rendered one for this version,
-              otherwise the static combat portrait. The animation is a
-              looping webp, lazy-loaded so it only fetches when the page is
-              actually viewed. */}
-          <img
-            src={imageUrl(
-              char.animation_url ??
-                `/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
-            )}
-            alt={`${char.name} - Slay the Spire 2 Character`}
-            className="w-48 h-48 object-contain"
-            loading="lazy"
-            crossOrigin="anonymous"
-          />
-          <div className="flex-1 text-center sm:text-left">
-            <h1 className={`text-3xl font-bold ${style.accent} mb-2`}>{char.name}</h1>
-            <div className="text-[var(--text-secondary)] leading-relaxed mb-4">
-              <RichDescription text={char.description} />
-            </div>
-            <div className="flex flex-wrap justify-center sm:justify-start gap-3">
+  const hasDeck = char.starting_deck.length > 0;
+  const hasStartRelics = char.starting_relics.length > 0;
+  const hasCommunity =
+    topCardsFiltered.length > 0 || topRelicsFiltered.length > 0 || topPotionsFiltered.length > 0;
+  const hasAllCards = allCards.length > 0;
+  const hasPoolRelics = sortedPoolRelics.length > 0;
+  const hasQuotes =
+    !!char.quotes && Object.keys(char.quotes).some((k) => k in QUOTE_LABELS);
+  const hasDialogues = !!char.dialogues && char.dialogues.length > 0;
+
+  const tocItems: { id: string; label: string }[] = [
+    { id: "overview", label: t("Overview", lang) },
+    ...(hasDeck ? [{ id: "deck", label: t("Starting deck", lang) }] : []),
+    ...(hasStartRelics ? [{ id: "relic", label: t("Starting relic", lang) }] : []),
+    ...(hasCommunity ? [{ id: "community", label: t("Community", lang) }] : []),
+    ...(hasAllCards ? [{ id: "cards", label: t("Cards", lang) }] : []),
+    ...(hasPoolRelics ? [{ id: "relics", label: t("Relics", lang) }] : []),
+    ...(hasQuotes ? [{ id: "quotes", label: t("Quotes", lang) }] : []),
+    ...(hasDialogues ? [{ id: "dialogue", label: t("Dialogue", lang) }] : []),
+  ];
+
+  const combatSrc =
+    char.animation_url ?? `/static/images/characters/combat_${char.id.toLowerCase()}.webp`;
+
+  return (
+    <div
+      className="card-rvmp"
+      style={{
+        "--spine": spineColor,
+        ...(combatSrc ? { "--entity-bg": `url("${imageUrl(combatSrc)}?bg")` } : {}),
+      } as CSSProperties}
+    >
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Characters", lang)}
+        </button>
+      </div>
+
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Character", lang)}</span>
               {char.gender && (
-                <span className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
-                  {char.gender}
-                </span>
+                <>
+                  <span>&middot;</span>
+                  <span>{char.gender}</span>
+                </>
               )}
               {char.unlocks_after && (
-                <span className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]">
-                  Unlocks after {char.unlocks_after}
-                </span>
+                <>
+                  <span>&middot;</span>
+                  <span>Unlocks after {char.unlocks_after}</span>
+                </>
               )}
-            </div>
+            </p>
+            <h1>{char.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
-        </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 gap-3 mt-6">
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-            <div className="text-xs text-[var(--text-muted)] mb-1">HP</div>
-            <div className="text-2xl font-bold text-red-400">{char.starting_hp}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-            <div className="text-xs text-[var(--text-muted)] mb-1">Gold</div>
-            <div className="text-2xl font-bold text-[var(--accent-gold)]">{char.starting_gold}</div>
-          </div>
-          <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-            <div className="text-xs text-[var(--text-muted)] mb-1">Energy</div>
-            <div className="text-2xl font-bold text-amber-400">{char.max_energy ?? 3}</div>
-          </div>
-          {char.orb_slots && (
-            <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-              <div className="text-xs text-[var(--text-muted)] mb-1">Orb Slots</div>
-              <div className="text-2xl font-bold text-blue-400">{char.orb_slots}</div>
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page", lang)}>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Overview */}
+          <section id="overview">
+            <h2>{t("Overview", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={char.description} />
             </div>
+          </section>
+
+          {/* Starting Deck */}
+          {hasDeck && (
+            <section id="deck">
+              <h2>
+                {t("Starting Deck", lang)}
+                <span className="sec-count">({char.starting_deck.length} cards)</span>
+              </h2>
+              <div className="deck-grid">
+                {char.starting_deck.map((cardName, i) => {
+                  const cardData = cards[toUpperSnake(cardName)];
+                  if (!cardData) return null;
+                  return (
+                    <Link
+                      key={`${cardName}-${i}`}
+                      href={`/cards/${cardData.id.toLowerCase()}`}
+                      title={cardData.name}
+                    >
+                      <img
+                        src={fullCardUrl(cardData.id.toLowerCase(), false, "stable", lang)}
+                        alt={`${cardData.name} - Slay the Spire 2`}
+                        crossOrigin="anonymous"
+                        loading="lazy"
+                      />
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
           )}
-        </div>
-      </div>
 
-      {/* Starting Deck */}
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 mb-6">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-          Starting Deck
-          <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
-            ({char.starting_deck.length} cards)
-          </span>
-        </h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-          {char.starting_deck.map((cardName, i) => {
-            const cardData = cards[toUpperSnake(cardName)];
-            if (!cardData) return null;
-            return (
-              <Link
-                key={`${cardName}-${i}`}
-                href={`/cards/${cardData.id.toLowerCase()}`}
-                className="block transition-transform duration-150 hover:scale-[1.04]"
-                title={cardData.name}
-              >
-                <img
-                  src={fullCardUrl(cardData.id.toLowerCase(), false, "stable", lang)}
-                  alt={`${cardData.name} - Slay the Spire 2`}
-                  className="w-full h-auto drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                  crossOrigin="anonymous"
-                  loading="lazy"
-                />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
+          {/* Starting Relic(s) */}
+          {hasStartRelics && (
+            <section id="relic">
+              <h2>{t("Starting Relic", lang)}</h2>
+              <div className="kit-list">
+                {char.starting_relics.map((relicName) => {
+                  const relicData = relics[toUpperSnake(relicName)];
+                  return (
+                    <Link
+                      key={relicName}
+                      href={relicData ? `/relics/${relicData.id.toLowerCase()}` : "#"}
+                      className="kit-row"
+                    >
+                      {relicData?.image_url && (
+                        <img
+                          className="kit-img"
+                          src={imageUrl(relicData.image_url)}
+                          alt={`${relicData.name} - Slay the Spire 2 Relic`}
+                          crossOrigin="anonymous"
+                        />
+                      )}
+                      <div className="kit-body">
+                        <div className="kit-name">
+                          {relicData?.name ?? relicName.replace(/([A-Z])/g, " $1").trim()}
+                        </div>
+                        {relicData && (
+                          <div className="kit-desc">
+                            <RichDescription text={relicData.description} />
+                          </div>
+                        )}
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
-      {/* Starting Relics */}
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 mb-6">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">Starting Relic</h2>
-        <div className="flex flex-wrap gap-3">
-          {char.starting_relics.map((relicName) => {
-            const relicData = relics[toUpperSnake(relicName)];
-            return (
-              <Link
-                key={relicName}
-                href={relicData ? `/relics/${relicData.id.toLowerCase()}` : "#"}
-                className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--accent-gold)]/20 hover:border-[var(--accent-gold)]/50 transition-colors"
-              >
-                {relicData?.image_url && (
-                  <img
-                    src={imageUrl(relicData.image_url)}
-                    alt={`${relicData.name} - Slay the Spire 2 Relic`}
-                    className="w-10 h-10 object-contain"
-                    crossOrigin="anonymous"
-                  />
+          {/* Top picked from community runs, ranked by how often this
+              character's runs include them. */}
+          {hasCommunity && (
+            <section id="community">
+              <h2>{t("Community picks", lang)}</h2>
+              <p className="h-note">
+                {t(
+                  "What this character's community-tracked runs include most, beyond the starter kit.",
+                  lang,
                 )}
+              </p>
+              <TopPicks
+                title={`Top cards picked by ${char.name}`}
+                subtitle="Most-included cards across community-tracked runs, excluding the starter deck."
+                items={topCardsFiltered}
+                lookup={(eid) => cardByLower[eid.toLowerCase()]}
+                hrefBase="/cards"
+              />
+              <TopPicks
+                title={`Top relics picked by ${char.name}`}
+                subtitle="Relics that show up most often in this character's runs, excluding the starting relic."
+                items={topRelicsFiltered}
+                lookup={(eid) => relicByLower[eid.toLowerCase()]}
+                hrefBase="/relics"
+              />
+              <TopPicks
+                title={`Top potions picked by ${char.name}`}
+                subtitle="Potions most commonly held in this character's runs."
+                items={topPotionsFiltered}
+                lookup={(eid) => potionByLower[eid.toLowerCase()]}
+                hrefBase="/potions"
+              />
+            </section>
+          )}
+
+          {/* All Character Cards */}
+          {hasAllCards && (
+            <section id="cards">
+              <button className="sec-toggle" onClick={() => setCardsExpanded(!cardsExpanded)}>
+                <h2>
+                  All {char.name} Cards
+                  <span className="sec-count">({allCards.length} cards)</span>
+                </h2>
+                <span className="chev">{cardsExpanded ? "▲" : "▼"}</span>
+              </button>
+              {cardsExpanded && (
                 <div>
-                  <div className="text-sm font-medium text-[var(--accent-gold)]">
-                    {relicData?.name ?? relicName.replace(/([A-Z])/g, " $1").trim()}
-                  </div>
-                  {relicData && (
-                    <div className="text-xs text-[var(--text-secondary)]">
-                      <RichDescription text={relicData.description} />
+                  {sortedRarities.map((rarity) => (
+                    <div key={rarity} className="rar-group">
+                      <h3 className="rgh">
+                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                          {rarity}
+                        </span>
+                        <span className="rgn">({cardsByRarity[rarity].length})</span>
+                      </h3>
+                      <FullCardGrid
+                        cards={cardsByRarity[rarity]}
+                        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
+                      />
                     </div>
-                  )}
+                  ))}
                 </div>
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Top picked from community runs, ranked by how often this
-          character's runs include them. */}
-      <TopPicks
-        title={`Top cards picked by ${char.name}`}
-        subtitle="Most-included cards across community-tracked runs, excluding the starter deck."
-        items={topCardsFiltered}
-        lookup={(eid) => cardByLower[eid.toLowerCase()]}
-        hrefBase="/cards"
-      />
-      <TopPicks
-        title={`Top relics picked by ${char.name}`}
-        subtitle="Relics that show up most often in this character's runs, excluding the starting relic."
-        items={topRelicsFiltered}
-        lookup={(eid) => relicByLower[eid.toLowerCase()]}
-        hrefBase="/relics"
-      />
-      <TopPicks
-        title={`Top potions picked by ${char.name}`}
-        subtitle="Potions most commonly held in this character's runs."
-        items={topPotionsFiltered}
-        lookup={(eid) => potionByLower[eid.toLowerCase()]}
-        hrefBase="/potions"
-      />
-
-      {/* All Character Cards */}
-      {allCards.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] mb-6 overflow-hidden">
-          <button
-            onClick={() => setCardsExpanded(!cardsExpanded)}
-            className="w-full flex items-center justify-between p-6 hover:bg-[var(--bg-card-hover)] transition-colors text-left"
-          >
-            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-              All {char.name} Cards
-              <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
-                ({allCards.length} cards)
-              </span>
-            </h2>
-            <span className="text-[var(--text-muted)]">{cardsExpanded ? "\u25B2" : "\u25BC"}</span>
-          </button>
-          {cardsExpanded && (
-            <div className="px-6 pb-6 space-y-6">
-              {sortedRarities.map((rarity) => (
-                <div key={rarity}>
-                  <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3 flex items-center gap-2">
-                    <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
-                      {rarity}
-                    </span>
-                    <span className="text-xs font-normal">({cardsByRarity[rarity].length})</span>
-                  </h3>
-                  <FullCardGrid
-                    cards={cardsByRarity[rarity]}
-                    className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3"
-                  />
-                </div>
-              ))}
-            </div>
+              )}
+            </section>
           )}
-        </div>
-      )}
 
-      {/* Character Relics */}
-      {sortedPoolRelics.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] mb-6 overflow-hidden">
-          <button
-            onClick={() => setRelicsExpanded(!relicsExpanded)}
-            className="w-full flex items-center justify-between p-6 hover:bg-[var(--bg-card-hover)] transition-colors text-left"
-          >
-            <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-              {char.name} Relics
-              <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
-                ({sortedPoolRelics.length} relics)
-              </span>
-            </h2>
-            <span className="text-[var(--text-muted)]">{relicsExpanded ? "\u25B2" : "\u25BC"}</span>
-          </button>
-          {relicsExpanded && (
-            <div className="px-6 pb-6 space-y-2">
-              {sortedPoolRelics.map((relic) => (
-                <Link
-                  key={relic.id}
-                  href={`/relics/${relic.id.toLowerCase()}`}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors"
-                >
-                  {relic.image_url && (
-                    <img
-                      src={imageUrl(relic.image_url)}
-                      alt={`${relic.name} - Slay the Spire 2 Relic`}
-                      className="w-10 h-10 object-contain flex-shrink-0"
-                      crossOrigin="anonymous"
-                    />
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-sm font-medium text-[var(--text-primary)]">
-                        {relic.name}
-                      </span>
-                      <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${rarityBadgeColors[relic.rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
-                        {relic.rarity}
-                      </span>
-                    </div>
-                    <div className="text-xs text-[var(--text-secondary)] line-clamp-1 mt-0.5">
-                      <RichDescription text={relic.description} />
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* Quotes */}
-      {char.quotes && Object.keys(char.quotes).some((k) => k in QUOTE_LABELS) && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 mb-6">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">Quotes</h2>
-          <div className="space-y-4">
-            {Object.entries(QUOTE_LABELS).map(([key, { label }]) => {
-              const text = char.quotes?.[key];
-              if (!text || text === "...") return null;
-              return (
-                <div key={key} className="border-l-2 border-[var(--border-subtle)] pl-4">
-                  <div className="text-xs text-[var(--text-muted)] uppercase tracking-wider mb-1">
-                    {label}
-                  </div>
-                  <div className="text-[var(--text-secondary)] italic">
-                    <RichDescription text={text} />
-                  </div>
+          {/* Character Relics */}
+          {hasPoolRelics && (
+            <section id="relics">
+              <button className="sec-toggle" onClick={() => setRelicsExpanded(!relicsExpanded)}>
+                <h2>
+                  {char.name} Relics
+                  <span className="sec-count">({sortedPoolRelics.length} relics)</span>
+                </h2>
+                <span className="chev">{relicsExpanded ? "▲" : "▼"}</span>
+              </button>
+              {relicsExpanded && (
+                <div className="kit-list">
+                  {sortedPoolRelics.map((relic) => (
+                    <Link
+                      key={relic.id}
+                      href={`/relics/${relic.id.toLowerCase()}`}
+                      className="kit-row"
+                    >
+                      {relic.image_url && (
+                        <img
+                          className="kit-img"
+                          src={imageUrl(relic.image_url)}
+                          alt={`${relic.name} - Slay the Spire 2 Relic`}
+                          crossOrigin="anonymous"
+                        />
+                      )}
+                      <div className="kit-body">
+                        <div className="kit-name">
+                          {relic.name}
+                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${rarityBadgeColors[relic.rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                            {relic.rarity}
+                          </span>
+                        </div>
+                        <div className="kit-desc clamp">
+                          <RichDescription text={relic.description} />
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
-              );
-            })}
-          </div>
-        </div>
-      )}
+              )}
+            </section>
+          )}
 
-      {/* NPC Dialogues */}
-      {char.dialogues && char.dialogues.length > 0 && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-          <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
-            NPC Dialogues
-            <span className="text-sm font-normal text-[var(--text-muted)] ml-2">
-              ({char.dialogues.length} conversations)
-            </span>
-          </h2>
-          <div className="space-y-3">
-            {Object.entries(dialoguesByAncient).map(([ancientId, convos]) => {
-              const ancientName = convos![0].ancient_name;
-              const isExpanded = expandedAncient === ancientId;
-              return (
-                <div key={ancientId} className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
-                  <button
-                    onClick={() => setExpandedAncient(isExpanded ? null : ancientId)}
-                    className="w-full flex items-center justify-between p-4 bg-[var(--bg-primary)] hover:bg-[var(--bg-card-hover)] transition-colors text-left"
-                  >
-                    <span className="font-medium text-[var(--text-primary)]">
-                      {ancientName}
-                    </span>
-                    <span className="text-xs text-[var(--text-muted)]">
-                      {convos!.length} conversation{convos!.length !== 1 ? "s" : ""}
-                      <span className="ml-2">{isExpanded ? "\u25B2" : "\u25BC"}</span>
-                    </span>
-                  </button>
-                  {isExpanded && (
-                    <div className="p-4 space-y-6">
-                      {convos!.map((convo, ci) => (
-                        <div key={ci} className={ci > 0 ? "border-t border-[var(--border-subtle)] pt-4" : ""}>
-                          <div className="space-y-2">
-                            {convo.lines.map((line, li) => (
-                              <div
-                                key={li}
-                                className={`flex gap-3 ${
-                                  line.speaker === "char" ? "flex-row-reverse" : ""
-                                }`}
-                              >
+          {/* Quotes */}
+          {hasQuotes && (
+            <section id="quotes">
+              <h2>{t("Quotes", lang)}</h2>
+              <div className="quotes">
+                {Object.entries(QUOTE_LABELS).map(([key, { label }]) => {
+                  const text = char.quotes?.[key];
+                  if (!text || text === "...") return null;
+                  return (
+                    <div key={key} className="quote">
+                      <div className="quote-label">{label}</div>
+                      <div className="quote-text">
+                        <RichDescription text={text} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          )}
+
+          {/* NPC Dialogues */}
+          {hasDialogues && (
+            <section id="dialogue">
+              <h2>
+                {t("NPC Dialogue", lang)}
+                <span className="sec-count">({char.dialogues!.length} conversations)</span>
+              </h2>
+              <div className="dlg-list">
+                {Object.entries(dialoguesByAncient).map(([ancientId, convos]) => {
+                  const ancientName = convos![0].ancient_name;
+                  const isExpanded = expandedAncient === ancientId;
+                  return (
+                    <div key={ancientId} className="dlg-group">
+                      <button
+                        onClick={() => setExpandedAncient(isExpanded ? null : ancientId)}
+                        className="dlg-toggle"
+                      >
+                        <span className="dlg-title">{ancientName}</span>
+                        <span className="dlg-meta">
+                          {convos!.length} conversation{convos!.length !== 1 ? "s" : ""}
+                          <span>{isExpanded ? "▲" : "▼"}</span>
+                        </span>
+                      </button>
+                      {isExpanded && (
+                        <div className="dlg-body">
+                          {convos!.map((convo, ci) => (
+                            <div key={ci} className="dlg-convo">
+                              {convo.lines.map((line, li) => (
                                 <div
-                                  className={`max-w-[80%] rounded-lg px-3 py-2 text-sm ${
-                                    line.speaker === "char"
-                                      ? `bg-[var(--bg-primary)] ${style.border} border`
-                                      : "bg-[var(--bg-card-hover)] border border-[var(--border-subtle)]"
-                                  }`}
+                                  key={li}
+                                  className={`dlg-line${line.speaker === "char" ? " self" : ""}`}
                                 >
-                                  <div className="text-[10px] text-[var(--text-muted)] uppercase tracking-wider mb-1">
-                                    {line.speaker === "char" ? char.name : ancientName}
-                                  </div>
-                                  <div className="text-[var(--text-secondary)] whitespace-pre-line">
-                                    <RichDescription text={line.text} />
+                                  <div className={`bubble${line.speaker === "char" ? " self" : ""}`}>
+                                    <div className="bubble-who">
+                                      {line.speaker === "char" ? char.name : ancientName}
+                                    </div>
+                                    <div className="bubble-text">
+                                      <RichDescription text={line.text} />
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            ))}
-                          </div>
+                              ))}
+                            </div>
+                          ))}
                         </div>
-                      ))}
+                      )}
                     </div>
-                  )}
+                  );
+                })}
+              </div>
+            </section>
+          )}
+        </main>
+
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            {/* Animated Spine idle when we've rendered one for this version,
+                otherwise the static combat portrait. The animation is a
+                looping webp, lazy-loaded so it only fetches when the page is
+                actually viewed. */}
+            <img
+              className="cardimg render charimg"
+              src={imageUrl(combatSrc)}
+              alt={`${char.name} - Slay the Spire 2 Character`}
+              loading="lazy"
+              crossOrigin="anonymous"
+            />
+
+            {/* Facts table */}
+            <div className="facts">
+              <div className="fh">{t("At a glance", lang)}</div>
+              <dl>
+                <div className="frow">
+                  <dt>{t("HP", lang)}</dt>
+                  <dd style={{ color: "#f87171" }}>{char.starting_hp}</dd>
                 </div>
-              );
-            })}
+                <div className="frow">
+                  <dt>{t("Gold", lang)}</dt>
+                  <dd style={{ color: "var(--accent-gold)" }}>{char.starting_gold}</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Energy", lang)}</dt>
+                  <dd style={{ color: "#fbbf24" }}>{char.max_energy ?? 3}</dd>
+                </div>
+                {char.orb_slots != null && (
+                  <div className="frow">
+                    <dt>{t("Orb Slots", lang)}</dt>
+                    <dd style={{ color: "#60a5fa" }}>{char.orb_slots}</dd>
+                  </div>
+                )}
+                {char.gender && (
+                  <div className="frow">
+                    <dt>{t("Gender", lang)}</dt>
+                    <dd>{char.gender}</dd>
+                  </div>
+                )}
+                {char.unlocks_after && (
+                  <div className="frow">
+                    <dt>{t("Unlocks after", lang)}</dt>
+                    <dd>{char.unlocks_after}</dd>
+                  </div>
+                )}
+              </dl>
+            </div>
           </div>
-        </div>
-      )}
+        </aside>
+      </div>
     </div>
   );
 }

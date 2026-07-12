@@ -9,6 +9,8 @@ import OverwolfBanner from "./components/OverwolfBanner";
 import ModBanner from "./components/ModBanner";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
+import FloatingFeedback from "./components/FloatingFeedback";
+import HighlightFeedback from "./components/HighlightFeedback";
 import { Suspense } from "react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
@@ -100,6 +102,11 @@ export default function RootLayout({
       <body
         className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.remove('dark');}else{document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
+          }}
+        />
         <LanguageProvider>
           <Suspense>
             <BetaVersionProvider>
@@ -121,6 +128,8 @@ export default function RootLayout({
               </div>
               <Footer />
               <GlobalSearch />
+              <FloatingFeedback />
+              <HighlightFeedback />
               </ToastProvider>
               </AuthProvider>
             </BetaVersionProvider>

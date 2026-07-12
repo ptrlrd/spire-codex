@@ -1,0 +1,134 @@
+/* Extra bits for the character wiki detail page. Everything is scoped under
+   .card-rvmp so it lives alongside card-revamp.css without leaking. Only the
+   things the shared card styles don't already cover live here: the tall combat
+   portrait render, the starting-deck full-card grid, the "top picked" grids,
+   the collapsible kit sections (all cards / pool relics), the quotes list, and
+   the NPC dialogue chat. */
+
+/* Combat portrait / idle animation in the infobox. Characters are tall figures
+   (not cards), so contain instead of the card render's width:100% upscale.
+   Keeps the dark backdrop + drop shadow inherited from .cardimg.render. */
+.card-rvmp .cardimg.charimg {
+  width: 100%;
+  height: auto;
+  max-height: 420px;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+/* ── starting deck: full game-rendered cards ── */
+.card-rvmp .deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(112px, 1fr));
+  gap: 12px;
+}
+.card-rvmp .deck-grid a { display: block; transition: transform .15s; }
+.card-rvmp .deck-grid a:hover { transform: scale(1.04); }
+.card-rvmp .deck-grid img { width: 100%; height: auto; filter: drop-shadow(0 4px 12px rgba(0,0,0,.5)); }
+
+/* ── "top picked" community grids ── */
+.card-rvmp .pick-block { margin-top: 24px; }
+.card-rvmp .pick-block:first-child { margin-top: 0; }
+.card-rvmp .picks {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(146px, 1fr));
+  gap: 12px;
+}
+.card-rvmp .pick {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  padding: 12px;
+  transition: color .12s, background .12s, border-color .12s;
+}
+.card-rvmp .pick:hover { border-color: var(--gold); background: var(--surface-2); }
+.card-rvmp .pick-img { display: block; width: 100%; height: 88px; object-fit: contain; margin-bottom: 8px; }
+.card-rvmp .pick-name { display: flex; align-items: center; justify-content: space-between; gap: 6px; font-size: 14px; font-weight: 600; color: var(--text); }
+.card-rvmp .pick:hover .pick-name { color: var(--gold); }
+.card-rvmp .pick-nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.card-rvmp .pick-sub { display: block; font-family: var(--mono); font-size: 11.5px; color: var(--text-3); margin-top: 5px; font-variant-numeric: tabular-nums; }
+
+/* ── collapsible kit sections (all cards / pool relics) ── */
+.card-rvmp .sec-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  color: var(--text);
+}
+.card-rvmp .sec-toggle .sec-count { font-family: var(--mono); font-size: 15px; font-weight: 400; color: var(--text-3); margin-left: 8px; }
+.card-rvmp .sec-toggle .chev { color: var(--text-3); font-size: 12px; flex: none; }
+.card-rvmp .rar-group { margin-top: 20px; }
+.card-rvmp .rar-group:first-child { margin-top: 14px; }
+.card-rvmp .rgh { display: flex; align-items: center; gap: 8px; margin: 0 0 12px; font-family: var(--mono); font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-2); }
+.card-rvmp .rgh .rgn { color: var(--text-3); }
+
+/* ── kit rows (starting relic + pool relics) ── */
+.card-rvmp .kit-list { display: grid; gap: 8px; margin-top: 6px; }
+.card-rvmp .kit-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  background: var(--surface);
+  border: 1px solid var(--border-2);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: var(--text);
+  transition: color .12s, background .12s, border-color .12s;
+}
+.card-rvmp .kit-row:hover { border-color: var(--gold); background: var(--surface-2); }
+.card-rvmp .kit-img { width: 40px; height: 40px; object-fit: contain; flex: none; }
+.card-rvmp .kit-body { min-width: 0; flex: 1; }
+.card-rvmp .kit-name { display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--text); }
+.card-rvmp .kit-row:hover .kit-name { color: var(--gold); }
+.card-rvmp .kit-desc { font-size: 12.5px; color: var(--text-3); margin-top: 3px; line-height: 1.45; }
+.card-rvmp .kit-desc.clamp { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ── quotes ── */
+.card-rvmp .quotes { display: grid; gap: 16px; }
+.card-rvmp .quote { border-left: 2px solid color-mix(in srgb, var(--spine) 45%, transparent); padding-left: 16px; }
+.card-rvmp .quote-label { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--text-3); margin-bottom: 4px; }
+.card-rvmp .quote-text { color: var(--text-2); font-style: italic; font-size: 15px; line-height: 1.55; }
+
+/* ── NPC dialogue chat ── */
+.card-rvmp .dlg-list { display: grid; gap: 10px; }
+.card-rvmp .dlg-group { border: 1px solid var(--border-2); border-radius: 10px; overflow: hidden; }
+.card-rvmp .dlg-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  background: var(--surface);
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background .12s;
+}
+.card-rvmp .dlg-toggle:hover { background: var(--surface-2); }
+.card-rvmp .dlg-title { font-size: 15px; font-weight: 600; color: var(--text); }
+.card-rvmp .dlg-meta { font-family: var(--mono); font-size: 12px; color: var(--text-3); display: flex; align-items: center; gap: 8px; white-space: nowrap; }
+.card-rvmp .dlg-body { padding: 16px; display: grid; gap: 18px; background: var(--bg-2); }
+.card-rvmp .dlg-convo { display: grid; gap: 8px; }
+.card-rvmp .dlg-convo + .dlg-convo { border-top: 1px solid var(--border); padding-top: 16px; }
+.card-rvmp .dlg-line { display: flex; }
+.card-rvmp .dlg-line.self { flex-direction: row-reverse; }
+.card-rvmp .bubble { max-width: 80%; border-radius: 10px; padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); }
+.card-rvmp .bubble.self { background: var(--spine-soft); border-color: color-mix(in srgb, var(--spine) 35%, transparent); }
+.card-rvmp .bubble-who { font-family: var(--mono); font-size: 10px; letter-spacing: .05em; text-transform: uppercase; color: var(--text-3); margin-bottom: 3px; }
+.card-rvmp .bubble-text { font-size: 14px; color: var(--text-2); line-height: 1.5; white-space: pre-line; }
+
+@media (max-width: 900px) {
+  .card-rvmp .picks { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}

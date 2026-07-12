@@ -134,7 +134,7 @@ const ROTATING_BANNERS: RotatingBanner[] = [
 
 function PatreonBanner({ onDismiss }: { onDismiss: () => void }) {
   return (
-    <div className="bg-emerald-900/40 border-b border-emerald-700/30">
+    <div className="sc-banner bg-emerald-900/40 border-b border-emerald-700/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
@@ -178,7 +178,7 @@ function PatreonBanner({ onDismiss }: { onDismiss: () => void }) {
 
 function AncientBanner({ banner, onDismiss }: { banner: RotatingBanner; onDismiss: () => void }) {
   return (
-    <div className={`${banner.bg} border-b ${banner.border}`}>
+    <div className={`sc-banner ${banner.bg} border-b ${banner.border}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
@@ -245,16 +245,22 @@ function AnnouncementBanner({
   onDismiss: () => void;
 }) {
   return (
-    <div className="bg-green-900/40 border-b border-green-700/30">
+    <div className="sc-banner bg-green-900/40 border-b border-green-700/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <img
             src="/spire-codex-white-final.png"
             alt="Spire Codex"
-            className="w-8 h-8 object-contain flex-shrink-0 hidden sm:block"
+            className="sc-ann-logo--w w-8 h-8 object-contain flex-shrink-0 hidden sm:block"
+          />
+          <img
+            src="/spire-codex-black-final.png"
+            alt="Spire Codex"
+            aria-hidden="true"
+            className="sc-ann-logo--b w-8 h-8 object-contain flex-shrink-0"
           />
           <p className="text-sm text-green-200">
-            <span className="mr-2 rounded bg-green-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+            <span className="sc-ann-new mr-2 rounded bg-green-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               New
             </span>
             {renderAnnouncement(ann.message)}

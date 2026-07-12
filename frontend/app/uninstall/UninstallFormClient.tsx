@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "@/app/contexts/LanguageContext";
+import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -18,6 +20,7 @@ const REASONS = [
 type Status = "idle" | "submitting" | "success" | "error";
 
 export default function UninstallFormClient() {
+  const { lang } = useLanguage();
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [otherReason, setOtherReason] = useState("");
   const [comment, setComment] = useState("");
@@ -63,10 +66,10 @@ export default function UninstallFormClient() {
     return (
       <div className="text-center py-8">
         <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-3">
-          Thanks for using spire-codex.com.
+          {t("Thanks for using spire-codex.com.", lang)}
         </h2>
         <p className="text-sm text-[var(--text-secondary)]">
-          We appreciate you trying us out, and we&apos;ve recorded your feedback.
+          {t("We appreciate you trying us out, and we've recorded your feedback.", lang)}
         </p>
       </div>
     );
@@ -76,7 +79,7 @@ export default function UninstallFormClient() {
     <form onSubmit={onSubmit} className="space-y-6">
       <fieldset>
         <legend className="text-sm font-semibold text-[var(--text-primary)] mb-2">
-          Why did you uninstall our extension? Please select all that apply.
+          {t("Why did you uninstall our extension? Please select all that apply.", lang)}
         </legend>
         <div className="space-y-2">
           {REASONS.map((reason) => (
@@ -90,7 +93,7 @@ export default function UninstallFormClient() {
                 onChange={() => toggle(reason)}
                 className="mt-0.5 accent-[var(--accent-gold)]"
               />
-              <span>{reason}</span>
+              <span>{t(reason, lang)}</span>
             </label>
           ))}
           <label className="flex items-start gap-2.5 text-sm text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)]">
@@ -100,7 +103,7 @@ export default function UninstallFormClient() {
               onChange={() => toggle("Other")}
               className="mt-0.5 accent-[var(--accent-gold)]"
             />
-            <span>Other</span>
+            <span>{t("Other", lang)}</span>
           </label>
           {selected.has("Other") && (
             <textarea
@@ -108,7 +111,7 @@ export default function UninstallFormClient() {
               onChange={(e) => setOtherReason(e.target.value)}
               rows={2}
               maxLength={500}
-              placeholder="Tell us more..."
+              placeholder={t("Tell us more...", lang)}
               className="w-full mt-1 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
             />
           )}
@@ -117,7 +120,7 @@ export default function UninstallFormClient() {
 
       <div>
         <label htmlFor="uninstall-comment" className="block text-sm font-semibold text-[var(--text-primary)] mb-2">
-          Leave a comment
+          {t("Leave a comment", lang)}
         </label>
         <textarea
           id="uninstall-comment"
@@ -125,16 +128,16 @@ export default function UninstallFormClient() {
           onChange={(e) => setComment(e.target.value)}
           rows={4}
           maxLength={2000}
-          placeholder="Any feedback you want to share..."
+          placeholder={t("Any feedback you want to share...", lang)}
           className="w-full rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
       </div>
 
       <div>
         <label htmlFor="uninstall-email" className="block text-sm font-semibold text-[var(--text-primary)] mb-1">
-          Can we reach out to you for further questions?
+          {t("Can we reach out to you for further questions?", lang)}
         </label>
-        <p className="text-xs text-[var(--text-muted)] mb-2">Optional. We won&apos;t add you to anything.</p>
+        <p className="text-xs text-[var(--text-muted)] mb-2">{t("Optional. We won't add you to anything.", lang)}</p>
         <input
           id="uninstall-email"
           type="email"
@@ -148,7 +151,7 @@ export default function UninstallFormClient() {
 
       {status === "error" && (
         <div className="text-sm text-red-400 bg-red-950/30 border border-red-900/50 rounded px-3 py-2">
-          Couldn&apos;t submit. {errMessage}
+          {t("Couldn't submit.", lang)} {errMessage}
         </div>
       )}
 
@@ -157,7 +160,7 @@ export default function UninstallFormClient() {
         disabled={status === "submitting"}
         className="w-full rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-semibold px-4 py-2.5 text-sm hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
       >
-        {status === "submitting" ? "Sending..." : "Send feedback"}
+        {status === "submitting" ? t("Sending...", lang) : t("Send feedback", lang)}
       </button>
     </form>
   );

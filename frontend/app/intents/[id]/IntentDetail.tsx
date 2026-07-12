@@ -12,6 +12,8 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
+import "../../card-revamp.css";
+import "../../reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -51,37 +53,66 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
     );
   }
 
+  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
+  const ledeText = intent.description
+    ? intent.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    : "";
+
   return (
-    <div className="max-w-2xl mx-auto px-4 py-8">
-      <button
-        onClick={() => router.back()}
-        className="inline-flex items-center gap-1 text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-6"
-      >
-        &larr; {t("Back to", lang)} {t("Reference", lang)}
-      </button>
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to", lang)} {t("Reference", lang)}
+        </button>
+      </div>
 
-      <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
-        {intent.image_url && (
-          <div className="flex justify-center mb-4">
-            <img
-              src={imageUrl(intent.image_url)}
-              alt={`${intent.name} - Slay the Spire 2 Intent`}
-              className="w-16 h-16 object-contain"
-              crossOrigin="anonymous"
-            />
+      <div className={`wrap${intent.image_url ? "" : " solo narrow"}`}>
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Intent", lang)}</span>
+            </p>
+            <h1>{intent.name}</h1>
+            {ledeText && <p className="lede">{ledeText}</p>}
           </div>
+
+          <section id="description">
+            <h2>{t("Description", lang)}</h2>
+            <div className="desc-quote">
+              <RichDescription text={intent.description} />
+            </div>
+          </section>
+
+          <section id="history">
+            <h2>{t("Version history", lang)}</h2>
+            <LocalizedNames entityType="intents" entityId={id} />
+            <EntityHistory entityType="intents" entityId={id} />
+          </section>
+        </main>
+
+        {intent.image_url && (
+          <aside className="aside">
+            <div className="box">
+              <div className="ref-icon">
+                <img
+                  src={imageUrl(intent.image_url)}
+                  alt={`${intent.name} - Slay the Spire 2 Intent`}
+                  crossOrigin="anonymous"
+                />
+              </div>
+              <div className="facts">
+                <div className="fh">{t("At a glance", lang)}</div>
+                <dl>
+                  <div className="frow">
+                    <dt>{t("Type", lang)}</dt>
+                    <dd>{t("Intent", lang)}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </aside>
         )}
-
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] text-center mb-4">
-          {intent.name}
-        </h1>
-
-        <div className="text-[var(--text-secondary)] leading-relaxed mb-6">
-          <RichDescription text={intent.description} />
-        </div>
-
-        <LocalizedNames entityType="intents" entityId={id} />
-        <EntityHistory entityType="intents" entityId={id} />
       </div>
     </div>
   );

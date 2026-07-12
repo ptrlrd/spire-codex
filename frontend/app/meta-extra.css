@@ -1,0 +1,39 @@
+/* Extra styles for the small META entity pages (acts, ascensions, achievements,
+   badges, timeline epochs) that reuse the wiki-style card-revamp layout. Scoped
+   under .card-rvmp so nothing leaks. Only holds what card-revamp.css doesn't
+   already provide: a single-column wrapper and the meta infobox / tier bits. */
+
+/* single-column layout for meta pages with no infobox image */
+.card-rvmp .wrap.solo { display: block; max-width: 860px; }
+/* keep the back-link strip aligned with the narrower single-column content */
+.card-rvmp .cd-top.solo { max-width: 860px; }
+
+/* infobox media */
+.card-rvmp .box .meta-art { display: block; width: 100%; height: auto; border-radius: var(--radius);
+  border: 1px solid var(--border); }
+.card-rvmp .box .meta-icon { display: block; width: 128px; height: 128px; object-fit: contain;
+  margin: 6px auto 2px; }
+
+/* chip category pip color override is inline; keep group spacing tidy */
+.card-rvmp .rel-block .rl .cnt { color: var(--text-3); }
+
+/* badge tier rows */
+.card-rvmp .trow { background: var(--surface); border: 1px solid var(--border);
+  border-left: 3px solid var(--border-2); border-radius: var(--radius); padding: 12px 15px; }
+.card-rvmp .trow + .trow { margin-top: 10px; }
+.card-rvmp .trow .tr-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px;
+  flex-wrap: wrap; }
+.card-rvmp .trow .tr-rarity { font-family: var(--mono); font-size: 11px; letter-spacing: .06em;
+  text-transform: uppercase; font-weight: 700; }
+.card-rvmp .trow .tr-title { font-family: var(--serif); font-size: 16px; font-weight: 600; color: var(--text); }
+.card-rvmp .trow .tr-desc { font-size: 14px; color: var(--text-2); line-height: 1.5; }
+
+/* prev/next epoch/ascension footer nav */
+.card-rvmp .stepnav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  margin-top: 6px; }
+.card-rvmp .stepnav a { font-size: 13px; color: var(--text-2); }
+.card-rvmp .stepnav a:hover { color: var(--text); }
+
+/* small italic / muted notes inside a section */
+.card-rvmp .meta-note { font-size: 13px; color: var(--text-3); margin: 12px 0 0; }
+.card-rvmp .meta-note.italic { font-style: italic; }

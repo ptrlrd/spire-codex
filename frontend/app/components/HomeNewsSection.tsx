@@ -7,6 +7,11 @@ import {
   newsSlugForArticle,
 } from "@/lib/steam-news";
 import { t } from "@/lib/ui-translations";
+import "../home-sections.css";
+
+const ARROW = (
+  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -62,63 +67,40 @@ export default async function HomeNewsSection({
   const newsBase = `${langPrefix}/news`;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="flex items-baseline justify-between gap-3 mb-5">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
-          {t("home_news_heading_prefix", lang)}{" "}
-          <span className="text-[var(--accent-gold)]">Mega Crit</span>
-        </h2>
-        <Link
-          href={newsBase}
-          className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          <span>{t("View more", lang)}</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {items.map((article) => {
-          const hero = firstNewsImage(article.contents) ?? STEAM_HEADER_FALLBACK;
-          const blurb = newsExcerpt(article.contents ?? "", 110);
-          const date = formatNewsDate(article.date);
-          const href = newsSlugForArticle(article.gid, newsBase);
-          return (
-            <Link
-              key={article.gid}
-              href={href}
-              className="group relative overflow-hidden rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] aspect-[4/3] hover:border-[var(--border-accent)] hover:shadow-xl hover:shadow-black/30 transition-all"
-            >
-              <img
-                src={hero}
-                alt=""
-                loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              {/* Dark gradient under the text so the title is legible against
-                  any hero image. Slightly darker at the bottom where copy sits. */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/55 to-black/10" />
-
-              <div className="relative h-full flex flex-col justify-end p-4 sm:p-5">
-                <h3 className="text-base sm:text-lg font-semibold text-white leading-tight mb-1 group-hover:text-[var(--accent-gold)] transition-colors line-clamp-2">
-                  {article.title}
-                </h3>
-                {blurb && (
-                  <p className="text-xs sm:text-sm text-white/80 leading-snug mb-2 line-clamp-2">
-                    {blurb}
-                  </p>
-                )}
-                <time
-                  dateTime={new Date(article.date * 1000).toISOString()}
-                  className="text-[11px] uppercase tracking-wider text-white/60"
-                >
-                  {date}
-                </time>
-              </div>
+    <div className="rvmp">
+      <section className="hb">
+        <div className="hsec">
+          <div className="s-head">
+            <h2>
+              {t("home_news_heading_prefix", lang)}{" "}
+              <span style={{ color: "var(--gold)" }}>Mega Crit</span>
+            </h2>
+            <Link className="viewmore" href={newsBase}>
+              {t("View more", lang)} {ARROW}
             </Link>
-          );
-        })}
-      </div>
-    </section>
+          </div>
+
+          <div className="newsrow">
+            {items.map((article) => {
+              const hero = firstNewsImage(article.contents) ?? STEAM_HEADER_FALLBACK;
+              const blurb = newsExcerpt(article.contents ?? "", 110);
+              const date = formatNewsDate(article.date);
+              const href = newsSlugForArticle(article.gid, newsBase);
+              return (
+                <Link key={article.gid} href={href} className="news">
+                  <img className="news-thumb" src={hero} alt="" loading="lazy" />
+                  <span className="news-src">Mega Crit</span>
+                  <span className="news-title">{article.title}</span>
+                  {blurb && <span className="news-ex">{blurb}</span>}
+                  <time className="news-date" dateTime={new Date(article.date * 1000).toISOString()}>
+                    {date}
+                  </time>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -10,7 +10,10 @@ import LiveNavButton from "./LiveNavButton";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
+import ThemeToggle from "./ThemeToggle";
+import { recordRecent, getRecent, isRecentType, ENTITY_SINGULAR, prettyRecentName, type RecentEntity } from "@/lib/recent-entities";
 import { t } from "@/lib/ui-translations";
+import { cachedFetch } from "@/lib/fetch-cache";
 import { IS_BETA } from "@/lib/seo";
 
 const LANG_CODES = new Set(["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]);
@@ -54,34 +57,27 @@ function NavLinkLabel({ label, badge, lang }: { label: string; badge?: "discord-
 
 const NAV_GROUPS: NavGroup[] = [
   {
-    label: "Database",
+    label: "Compendium",
     links: [
       { href: "/cards", label: "Card Library" },
-      { href: "/characters", label: "Characters" },
       { href: "/relics", label: "Relic Collection" },
-      { href: "/monsters", label: "Bestiary" },
       { href: "/potions", label: "Potion Lab" },
-      { href: "/enchantments", label: "Enchantments" },
+      { href: "/powers", label: "Powers" },
+      { href: "/keywords", label: "Keywords" },
+      { href: "/characters", label: "Characters" },
+      { href: "/monsters", label: "Bestiary" },
       { href: "/encounters", label: "Encounters" },
       { href: "/events", label: "Events" },
-      { href: "/powers", label: "Powers" },
+      { href: "/ancients", label: "Ancients" },
+      { href: "/merchant", label: "Merchant" },
+      { href: "/modifiers", label: "Custom Mode" },
+      { href: "/mechanics", label: "Mechanics" },
+      { href: "/unlocks", label: "Unlockables" },
       { href: "/timeline", label: "Timeline" },
       { href: "/images", label: "Images" },
       { href: "/reference", label: "Reference" },
       { href: "/badges", label: "Badges" },
-    ],
-  },
-  {
-    label: "Gameplay",
-    links: [
-      { href: "/news", label: "News" },
-      { href: "/merchant", label: "Merchant" },
-      { href: "/ancients", label: "Ancients" },
-      { href: "/keywords", label: "Keywords" },
       { href: "/compare", label: "Compare Characters" },
-      { href: "/modifiers", label: "Custom Mode" },
-      { href: "/unlocks", label: "Unlockables" },
-      { href: "/mechanics", label: "Mechanics" },
       { href: "/guides", label: "Guides" },
     ],
   },
@@ -89,15 +85,15 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Stats",
     links: [
       { href: "/tier-list", label: "Tier List" },
+      { href: "/leaderboards/metrics", label: "Card Metrics" },
+      { href: "/leaderboards/scoring", label: "Scoring" },
       { href: "/community-stats", label: "Community Stats" },
       { href: "/charts", label: "Charts" },
+      { href: "/leaderboards/stats", label: "Stats" },
+      { href: "/leaderboards/encounters", label: "Encounters" },
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/runs", label: "Browse Runs" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
-      { href: "/leaderboards/stats", label: "Stats" },
-      { href: "/leaderboards/metrics", label: "Card Metrics" },
-      { href: "/leaderboards/encounters", label: "Encounters" },
-      { href: "/leaderboards/scoring", label: "Scoring" },
     ],
   },
   {
@@ -116,6 +112,7 @@ const NAV_GROUPS: NavGroup[] = [
     links: [
       { href: "/about", label: "Spire Codex" },
       { href: "/changelog", label: "Changelog" },
+      { href: "/news", label: "News" },
       { href: "/thank-you", label: "Thank You" },
       { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
       { href: "/privacy", label: "Privacy" },
@@ -127,6 +124,58 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
 ];
+
+
+// Color + live-count metadata so the Database mega reads like a compendium
+// index (color chip + count) instead of a plain link list, matching the redesign.
+const DB_META: Record<string, { color: string; count?: string }> = {
+  "/cards": { color: "#e8b830", count: "cards" },
+  "/relics": { color: "#f07c1e", count: "relics" },
+  "/potions": { color: "#3873a9", count: "potions" },
+  "/powers": { color: "#bf5a85", count: "powers" },
+  "/keywords": { color: "#23935b", count: "keywords" },
+  "/characters": { color: "#d53b27", count: "characters" },
+  "/monsters": { color: "#d53b27", count: "monsters" },
+  "/encounters": { color: "#3873a9", count: "encounters" },
+  "/events": { color: "#23935b", count: "events" },
+  "/ancients": { color: "#6b5b8a" },
+  "/merchant": { color: "#c5894a" },
+  "/modifiers": { color: "#6b5b8a", count: "modifiers" },
+  "/mechanics": { color: "#596068" },
+  "/unlocks": { color: "#c5894a" },
+  "/timeline": { color: "#8a6b3a", count: "epochs" },
+  "/images": { color: "#f07c1e", count: "images" },
+  "/reference": { color: "#596068" },
+  "/badges": { color: "#c5894a", count: "badges" },
+  "/compare": { color: "#3873a9" },
+  "/guides": { color: "#23935b" },
+};
+
+// Each nav group opens a multi-column mega panel. Columns reference links by
+// their (English) label so beta-hidden links drop out automatically.
+const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
+  Compendium: [
+    { title: "Cards & Combat", labels: ["Card Library", "Relic Collection", "Potion Lab", "Powers", "Keywords"] },
+    { title: "The Run", labels: ["Characters", "Bestiary", "Encounters", "Events", "Ancients", "Merchant"] },
+    { title: "Systems & Meta", labels: ["Custom Mode", "Mechanics", "Unlockables"] },
+    { title: "Reference", labels: ["Timeline", "Images", "Reference", "Badges", "Compare Characters", "Guides"] },
+  ],
+  Stats: [
+    { title: "Rankings", labels: ["Tier List", "Card Metrics", "Scoring"] },
+    { title: "Aggregate data", labels: ["Community Stats", "Charts", "Stats", "Encounters"] },
+    { title: "Runs", labels: ["Leaderboards", "Browse Runs", "Submit a Run"] },
+  ],
+  Tools: [
+    { title: "Make & share", labels: ["Tier List Maker", "Showcase"] },
+    { title: "Companion apps", labels: ["Overlay (Overwolf)", "Knowledge Demon"] },
+    { title: "Build with the data", labels: ["Developers", "API"] },
+  ],
+  About: [
+    { title: "Project", labels: ["Spire Codex", "Changelog", "News", "Thank You"] },
+    { title: "Support", labels: ["Ko-fi", "Feedback", "Email"] },
+    { title: "Elsewhere", labels: ["Discord", "GitHub", "Privacy", "Terms"] },
+  ],
+};
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -144,16 +193,6 @@ export default function Navbar() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const userMenuRef = useRef<HTMLDivElement>(null);
   const userButtonRef = useRef<HTMLButtonElement>(null);
-
-  // Auto-expand the group containing the active page
-  useEffect(() => {
-    for (const group of NAV_GROUPS) {
-      if (group.links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href))) {
-        setExpandedGroups((prev) => new Set(prev).add(group.label));
-        break;
-      }
-    }
-  }, [pathname]);
 
   // Close menus when clicking outside
   useEffect(() => {
@@ -202,115 +241,154 @@ export default function Navbar() {
     });
   }
 
+  const [navStats, setNavStats] = useState<Record<string, number> | null>(null);
+  useEffect(() => {
+    cachedFetch<Record<string, number>>(`${API_BASE}/api/stats?lang=${lang}`)
+      .then((d) => setNavStats(d ?? null))
+      .catch(() => {});
+  }, [lang]);
+
+  const [recents, setRecents] = useState<RecentEntity[]>([]);
+  useEffect(() => {
+    const parts = strippedPath.split("/").filter(Boolean);
+    if (parts.length === 2 && isRecentType(parts[0])) recordRecent(parts[0], parts[1]);
+    setRecents(getRecent());
+  }, [strippedPath]);
+
+  const renderMega = (group: NavGroup, isLast: boolean) => {
+    const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
+    if (links.length === 0) return null;
+    const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
+    const linkByLabel = new Map(links.map((l) => [l.label, l]));
+    const cols = (NAV_COLUMNS[group.label] ?? [{ title: "", labels: links.map((l) => l.label) }])
+      .map((c) => ({
+        title: c.title,
+        links: c.labels
+          .map((lbl) => linkByLabel.get(lbl))
+          .filter(Boolean) as { href: string; label: string; badge?: "discord-bot" }[],
+      }))
+      .filter((c) => c.links.length > 0);
+    return (
+      <div key={group.label} className="relative group">
+        <button
+          type="button"
+          aria-haspopup="menu"
+          onMouseDown={(e) => e.preventDefault()}
+          className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
+            hasActive
+              ? "text-[var(--accent-gold)]"
+              : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+          } group-hover:bg-[var(--bg-card)] group-focus-within:bg-[var(--bg-card)]`}
+        >
+          {t(group.label, lang)}
+          <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180">
+            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
+          </svg>
+        </button>
+        <div className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}>
+          <div role="menu" className="flex gap-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/40 p-4">
+            {cols.map((col, ci) => (
+              <div key={ci} className="min-w-[9.5rem]">
+                {col.title && (
+                  <div className="mb-1.5 border-b border-[var(--border-subtle)] px-2.5 pb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
+                    {t(col.title, lang)}
+                  </div>
+                )}
+                <div className="flex flex-col gap-0.5">
+                  {col.links.map((link) => {
+                    const isInternal = link.href.startsWith("/");
+                    const isHttp = link.href.startsWith("http");
+                    const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                    const isActive = isInternal && isLinkActive(strippedPath, link.href);
+                    const meta = DB_META[link.href];
+                    const countVal = meta?.count ? navStats?.[meta.count] : undefined;
+                    const className = `flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
+                      isActive
+                        ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
+                    }`;
+                    const inner = (
+                      <>
+                        {meta && <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: meta.color }} aria-hidden />}
+                        <span className="flex-1"><NavLinkLabel label={link.label} badge={link.badge} lang={lang} /></span>
+                        {countVal != null && <span className="font-mono text-xs tabular-nums text-[var(--text-muted)]">{countVal}</span>}
+                      </>
+                    );
+                    return isInternal ? (
+                      <Link key={link.href} href={fullHref} role="menuitem" className={className} onMouseDown={(e) => e.preventDefault()}>{inner}</Link>
+                    ) : (
+                      <a key={link.href} href={fullHref} {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})} role="menuitem" onMouseDown={(e) => e.preventDefault()} className={className}>{inner}</a>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+            {group.label === "Compendium" && (
+              <div className="min-w-[12rem] border-l border-[var(--border-subtle)] pl-6">
+                <div className="mb-1.5 border-b border-[var(--border-subtle)] px-2.5 pb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
+                  {t("Jump back in", lang)}
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  {recents.slice(0, 3).map((r) => {
+                    const rmeta = DB_META["/" + r.type];
+                    return (
+                      <Link
+                        key={`${r.type}-${r.id}`}
+                        href={`${langPrefix}/${r.type}/${r.id}`}
+                        role="menuitem"
+                        onMouseDown={(e) => e.preventDefault()}
+                        className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 hover:bg-[var(--bg-card)] transition-colors"
+                      >
+                        <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: rmeta?.color ?? "var(--text-muted)" }} aria-hidden />
+                        <span className="flex min-w-0 flex-col">
+                          <span className="truncate text-sm font-medium text-[var(--text-primary)]">{prettyRecentName(r.id)}</span>
+                          <span className="text-xs text-[var(--text-muted)]">{ENTITY_SINGULAR[r.type] ?? r.type}</span>
+                        </span>
+                      </Link>
+                    );
+                  })}
+                  {recents.length === 0 && (
+                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-muted)]">{t("Pages you open show up here.", lang)}</p>
+                  )}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-[var(--border-subtle)] bg-[var(--bg-primary)]/95 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-3 sm:gap-4 h-16">
-          <Link href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
-            <img
-              src="/spire-codex-white-final.png"
-              alt="Spire Codex"
-              className="h-8 w-auto sm:hidden"
-            />
-            <span className="hidden sm:inline text-xl font-bold text-[var(--accent-gold)]">
-              SPIRE
-            </span>
-            <span className="hidden sm:inline text-xl font-normal text-[var(--text-primary)]">
-              CODEX
-            </span>
-          </Link>
-
-          {/* Live indicator, between the logo and the nav groups. Shows only
-              when players are in a run; lights up red and links to /live. */}
-          <LiveNavButton />
-
-          {/* Desktop nav, lg+ only. Single-row mega-menu pattern: each
-              group button opens a multi-column panel below the row. Pure
-              CSS toggle (`group-hover` + `group-focus-within`) so keyboard
-              users get the same affordance as mouse users; the panel is
-              `display:none` until either trigger fires, which keeps the
-              inner links out of the tab order while collapsed. The wrapper
-              uses `top-full pt-1` (padding INSIDE the absolute box) so
-              there's visual breathing room without breaking the hover
-              chain, a margin gap would briefly leave the cursor over
-              "nothing" and snap the panel shut. Last group's panel is
-              right-anchored so it doesn't push past the viewport edge. */}
-          <div className="hidden lg:flex items-center gap-1 shrink-0">
-            {NAV_GROUPS.map((group, i) => {
-              const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
-              if (links.length === 0) return null;
-              const hasActive = links.some(
-                (link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href)
-              );
-              const isLast = i === NAV_GROUPS.length - 1;
-              return (
-                <div key={group.label} className="relative group">
-                  <button
-                    type="button"
-                    aria-haspopup="menu"
-                    onMouseDown={(e) => e.preventDefault()}
-                    className={`flex items-center gap-1.5 px-3.5 py-2 text-sm font-medium rounded-md transition-colors ${
-                      hasActive
-                        ? "text-[var(--accent-gold)]"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                    } group-hover:bg-[var(--bg-card)] group-focus-within:bg-[var(--bg-card)]`}
-                  >
-                    {t(group.label, lang)}
-                    <svg
-                      aria-hidden
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                      className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}
-                  >
-                    <div
-                      role="menu"
-                      className="grid grid-cols-2 w-[25rem] gap-x-4 gap-y-0.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-2"
-                    >
-                      {links.map((link) => {
-                        const isInternal = link.href.startsWith("/");
-                        const isHttp = link.href.startsWith("http");
-                        const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
-                        const isActive = isInternal && isLinkActive(strippedPath, link.href);
-                        const className = `block px-3 py-2 text-sm font-medium whitespace-nowrap rounded-md transition-colors ${
-                          isActive
-                            ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
-                            : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                        }`;
-                        if (isInternal) {
-                          return (
-                            <Link key={link.href} href={fullHref} role="menuitem" className={className} onMouseDown={(e) => e.preventDefault()}>
-                              <NavLinkLabel label={link.label} badge={link.badge} lang={lang} />
-                            </Link>
-                          );
-                        }
-                        return (
-                          <a
-                            key={link.href}
-                            href={fullHref}
-                            {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                            role="menuitem"
-                            onMouseDown={(e) => e.preventDefault()}
-                            className={className}
-                          >
-                            <NavLinkLabel label={link.label} badge={link.badge} lang={lang} />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+          {/* Left: logo + nav pushed tight together; the cluster is pushed right */}
+          <div className="flex items-center gap-2 sm:gap-6 min-w-0">
+            <Link href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
+              <img
+                src="/spire-codex-white-final.png"
+                alt="Spire Codex"
+                className="sc-nav-logo--w h-8 w-auto sm:hidden"
+              />
+              <img
+                src="/spire-codex-black-final.png"
+                alt="Spire Codex"
+                aria-hidden="true"
+                className="sc-nav-logo--b h-8 w-auto sm:hidden"
+              />
+              <span className="hidden sm:inline text-xl font-bold text-[var(--accent-gold)]">
+                SPIRE
+              </span>
+              <span className="hidden sm:inline text-xl font-bold text-[var(--text-primary)]">
+                CODEX
+              </span>
+            </Link>
+            {/* Desktop nav (lg+): groups + Live, tight against the logo */}
+            <div className="hidden lg:flex items-center gap-1">
+              {NAV_GROUPS.map((group, i) => renderMega(group, i === NAV_GROUPS.length - 1))}
+              <LiveNavButton />
+            </div>
           </div>
 
           {/* Inline search bar, md only. At lg+ the nav owns the row
@@ -324,37 +402,15 @@ export default function Navbar() {
           )}
 
           <div className="flex items-center gap-2 shrink-0">
-            <a
-              href="https://discord.gg/xMsTBeh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-              aria-label="Discord"
-            >
-              <DiscordIcon className="w-5 h-5" />
-            </a>
-            <a
-              href="https://www.patreon.com/cw/SpireCodex"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden sm:flex text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-              aria-label="Patreon"
-            >
-              <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z" />
-              </svg>
-            </a>
             <SiteSwitcher />
             <LanguageSelector />
 
             {/* Icon search, visible on mobile (below md) AND at lg+
                 where the inline bar collapses. Sits next to the language
                 selector in the right cluster. */}
-            {!isHome && (
-              <div className="md:hidden lg:flex">
-                <SearchTrigger variant="icon" />
-              </div>
-            )}
+            <div className="md:hidden lg:flex">
+              <SearchTrigger variant="icon" />
+            </div>
 
           {/* User menu, hidden on beta (accounts are stable-only for now) */}
           {!authLoading && !IS_BETA && (
@@ -367,14 +423,14 @@ export default function Navbar() {
                   }
                 }}
                 className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
-                aria-label={user ? "Account menu" : "Sign in"}
+                aria-label={user ? t("Account menu", lang) : t("Sign in", lang)}
               >
                 <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 {user ? (
                   <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
-                    {user.username || "Account"}
+                    {user.username || t("Account", lang)}
                   </span>
                 ) : null}
               </button>
@@ -391,7 +447,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="absolute inset-0 w-full h-full opacity-0"
-                  aria-label="Sign in options"
+                  aria-label={t("Sign in options", lang)}
                   tabIndex={-1}
                 />
               )}
@@ -401,7 +457,7 @@ export default function Navbar() {
                   ref={userMenuRef}
                   className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
                 >
-                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">Sign in with</p>
+                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">{t("Sign in with", lang)}</p>
                   <button
                     onClick={() => { setUserMenuOpen(false); loginSteam(); }}
                     className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
@@ -426,7 +482,7 @@ export default function Navbar() {
                   className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
                 >
                   <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
-                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || "User"}</p>
+                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || t("User", lang)}</p>
                     {user.email && <p className="text-xs text-[var(--text-tertiary)] truncate">{user.email}</p>}
                   </div>
                   <Link
@@ -434,14 +490,14 @@ export default function Navbar() {
                     onClick={() => setUserMenuOpen(false)}
                     className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   >
-                    Profile
+                    {t("Profile", lang)}
                   </Link>
                   <Link
                     href={`${langPrefix}/settings`}
                     onClick={() => setUserMenuOpen(false)}
                     className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   >
-                    Settings
+                    {t("Settings", lang)}
                   </Link>
                   {/* Admin pages are unlocalized, so no langPrefix here. The
                       link is cosmetic gating only; /admin itself 404s for
@@ -452,19 +508,23 @@ export default function Navbar() {
                       onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
                     >
-                      Admin
+                      {t("Admin", lang)}
                     </Link>
                   )}
                   <button
                     onClick={() => { setUserMenuOpen(false); logout(); }}
                     className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
                   >
-                    Sign Out
+                    {t("Sign Out", lang)}
                   </button>
                 </div>
               )}
             </div>
           )}
+
+            <div className="hidden lg:flex">
+              <ThemeToggle />
+            </div>
 
           {/* Burger button -- hidden at lg+ where the secondary nav row below takes over */}
           <div className="relative lg:hidden">
@@ -493,111 +553,97 @@ export default function Navbar() {
             {open && (
               <div
                 ref={menuRef}
-                className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 max-h-[calc(100vh-5rem)] overflow-y-auto"
+                className="fixed top-0 left-0 z-50 h-screen w-screen flex flex-col bg-[var(--bg-primary)]"
               >
-                {/* Home link, with the live indicator right under it. */}
-                <div className="py-1">
-                  <Link
-                    href={`${langPrefix}/`}
-                    className={`block px-4 py-2 text-sm font-medium transition-colors ${
-                      strippedPath === "/"
-                        ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                    }`}
+                <div className="flex items-center justify-between h-16 px-5 border-b border-[var(--border-subtle)] shrink-0">
+                  <span className="text-xl font-bold">
+                    <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
+                    <span className="text-[var(--text-primary)]">CODEX</span>
+                  </span>
+                  <button
+                    onClick={() => setOpen(false)}
+                    aria-label={t("Close menu", lang)}
+                    className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
                   >
-                    {t("Home", lang)}
-                  </Link>
-                  <LiveNavButton variant="mobile" />
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
                 </div>
 
-                {/* Collapsible groups */}
-                {NAV_GROUPS.map((group) => {
-                  const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
-                  if (links.length === 0) return null;
-                  const isExpanded = expandedGroups.has(group.label);
-                  const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
-                  return (
-                    <div key={group.label} className="border-t border-[var(--border-subtle)]">
-                      <button
-                        onClick={() => toggleGroup(group.label)}
-                        className={`w-full flex items-center justify-between px-4 py-2 text-xs font-semibold uppercase tracking-wider transition-colors ${
-                          hasActive
-                            ? "text-[var(--accent-gold)]"
-                            : "text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
-                        }`}
-                      >
-                        {t(group.label, lang)}
-                        <svg
-                          aria-hidden
-                          viewBox="0 0 20 20"
-                          fill="currentColor"
-                          className={`w-3.5 h-3.5 transition-transform ${isExpanded ? "" : "-rotate-90"}`}
+                <div className="flex-1 overflow-y-auto pb-10">
+                  {NAV_GROUPS.map((group) => {
+                    const links = IS_BETA ? group.links.filter((l) => !BETA_HIDDEN.has(l.href)) : group.links;
+                    if (links.length === 0) return null;
+                    const isExpanded = expandedGroups.has(group.label);
+                    const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
+                    const linkByLabel = new Map(links.map((l) => [l.label, l]));
+                    const cols = (NAV_COLUMNS[group.label] ?? [{ title: "", labels: links.map((l) => l.label) }])
+                      .map((c) => ({
+                        title: c.title,
+                        links: c.labels
+                          .map((lbl) => linkByLabel.get(lbl))
+                          .filter(Boolean) as { href: string; label: string; badge?: "discord-bot" }[],
+                      }))
+                      .filter((c) => c.links.length > 0);
+                    return (
+                      <div key={group.label} className="border-b border-[var(--border-subtle)]">
+                        <button
+                          onClick={() => toggleGroup(group.label)}
+                          className={`w-full flex items-center justify-between px-5 py-4 text-lg font-semibold transition-colors ${
+                            hasActive ? "text-[var(--accent-gold)]" : "text-[var(--text-primary)]"
+                          }`}
                         >
-                          <path
-                            fillRule="evenodd"
-                            d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
-                            clipRule="evenodd"
-                          />
-                        </svg>
-                      </button>
-                      {isExpanded && (
-                        <div className="pb-1">
-                          {links.map((link) => {
-                            const isInternal = link.href.startsWith("/");
-                            const isHttp = link.href.startsWith("http");
-                            const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
-                            const isActive = isInternal && isLinkActive(strippedPath, link.href);
-                            const className = `block px-6 py-1.5 text-sm font-medium transition-colors ${
-                              isActive
-                                ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
-                                : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
-                            }`;
-                            if (isInternal) {
-                              return (
-                                <Link key={link.href} href={fullHref} className={className}>
-                                  <NavLinkLabel label={link.label} badge={link.badge} lang={lang} />
-                                </Link>
-                              );
-                            }
-                            return (
-                              <a
-                                key={link.href}
-                                href={fullHref}
-                                {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                                className={className}
-                              >
-                                <NavLinkLabel label={link.label} badge={link.badge} lang={lang} />
-                              </a>
-                            );
-                          })}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                          {t(group.label, lang)}
+                          <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${isExpanded ? "rotate-180" : ""}`}>
+                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
+                          </svg>
+                        </button>
+                        {isExpanded && (
+                          <div className="px-5 pb-4">
+                            {cols.map((col, ci) => (
+                              <div key={ci}>
+                                {col.title && (
+                                  <div className="pt-3 pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
+                                    {t(col.title, lang)}
+                                  </div>
+                                )}
+                                {col.links.map((link) => {
+                                  const isInternal = link.href.startsWith("/");
+                                  const isHttp = link.href.startsWith("http");
+                                  const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                                  const isActive = isInternal && isLinkActive(strippedPath, link.href);
+                                  const meta = DB_META[link.href];
+                                  const countVal = meta?.count ? navStats?.[meta.count] : undefined;
+                                  const cls = `flex items-center gap-3 py-2.5 text-[15px] transition-colors ${
+                                    isActive ? "text-[var(--accent-gold)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                  }`;
+                                  const inner = (
+                                    <>
+                                      {meta && <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: meta.color }} aria-hidden />}
+                                      <span className="flex-1"><NavLinkLabel label={link.label} badge={link.badge} lang={lang} /></span>
+                                      {countVal != null && <span className="font-mono text-sm tabular-nums text-[var(--text-muted)]">{countVal}</span>}
+                                    </>
+                                  );
+                                  return isInternal ? (
+                                    <Link key={link.href} href={fullHref} className={cls}>{inner}</Link>
+                                  ) : (
+                                    <a key={link.href} href={fullHref} {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={cls}>{inner}</a>
+                                  );
+                                })}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
 
-                {/* Discord + Patreon quick links */}
-                <div className="border-t border-[var(--border-subtle)] flex items-center justify-center gap-6 p-3">
-                  <a
-                    href="https://discord.gg/xMsTBeh"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Discord"
-                    className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    <DiscordIcon className="w-6 h-6" />
-                  </a>
-                  <a
-                    href="https://www.patreon.com/cw/SpireCodex"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Patreon"
-                    className="text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M14.82 2.41c3.96 0 7.18 3.24 7.18 7.21 0 3.96-3.22 7.18-7.18 7.18-3.97 0-7.21-3.22-7.21-7.18 0-3.97 3.24-7.21 7.21-7.21M2 21.6h3.5V2.41H2V21.6z" />
-                    </svg>
-                  </a>
+                  <div className="border-b border-[var(--border-subtle)] px-5 py-3">
+                    <LiveNavButton variant="mobile" />
+                  </div>
+
+                  <ThemeToggle variant="segmented" />
                 </div>
               </div>
             )}

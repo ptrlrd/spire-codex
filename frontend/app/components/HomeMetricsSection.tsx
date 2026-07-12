@@ -1,6 +1,46 @@
 import Link from "next/link";
 import { t } from "@/lib/ui-translations";
-import { colorTextClass } from "@/lib/character-colors";
+
+const ARROW = (
+  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+);
+
+/** Card-color to an inline hex/token, mirroring `colorTextClass`. Inline so
+ * it beats the `.dtable td` colour, which a plain class would lose to. */
+function cardHex(color: string): string {
+  switch ((color || "").toLowerCase()) {
+    case "ironclad":
+      return "#d53b27";
+    case "silent":
+      return "#23935b";
+    case "defect":
+      return "#3873a9";
+    case "necrobinder":
+      return "#bf5a85";
+    case "regent":
+      return "#f07c1e";
+    case "curse":
+      return "#9b6bd6";
+    case "colorless":
+      return "var(--text-secondary)";
+    case "event":
+      return "var(--accent-gold)";
+    case "token":
+    case "status":
+      return "var(--text-muted)";
+    default:
+      return "var(--text-primary)";
+  }
+}
+
+/** Win-rate colour ramp, reusing the .wr-* classes from home-revamp.css. */
+function winClass(v: number | null): string {
+  if (v === null || v === undefined) return "dim";
+  if (v >= 50) return "wr-sg";
+  if (v >= 45) return "wr-g";
+  if (v >= 40) return "wr-n";
+  return "wr-r";
+}
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -68,63 +108,45 @@ export default async function HomeMetricsSection({
   const href = `${langPrefix}/leaderboards/metrics?bracket=a10`;
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-      <div className="flex items-baseline justify-between gap-3 mb-5">
-        <h2 className="text-xl sm:text-2xl font-semibold text-[var(--text-primary)]">
-          {t("Card Metrics", lang)}
-          <span className="ml-2 text-xs font-bold px-2 py-0.5 rounded bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] align-middle">
-            A10
-          </span>
-        </h2>
-        <Link
-          href={href}
-          className="shrink-0 inline-flex items-center gap-1 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          <span>{t("View Card metrics", lang)}</span>
-          <span aria-hidden>→</span>
-        </Link>
-      </div>
+    <div className="rvmp">
+      <section className="hb">
+        <section className="panel">
+          <div className="s-head">
+            <span className="s-kick">{t("A10 · by Codex Elo", lang)}</span>
+            <h2>{t("Card Metrics", lang)}</h2>
+            <Link className="viewmore" href={href}>
+              {t("View Card metrics", lang)} {ARROW}
+            </Link>
+          </div>
 
-      <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] overflow-x-auto">
-        <table className="w-full min-w-[460px] text-sm">
-          <thead className="text-[var(--text-secondary)]">
-            <tr className="border-b border-[var(--border-subtle)]">
-              <th className="px-3 py-2.5 text-right font-medium w-10">#</th>
-              <th className="px-3 py-2.5 text-left font-medium">{t("Card", lang)}</th>
-              <th className="px-3 py-2.5 text-right font-medium">{t("Codex Elo", lang)}</th>
-              <th className="px-3 py-2.5 text-right font-medium">Win%</th>
-              <th className="px-3 py-2.5 text-right font-medium">Pick%</th>
-            </tr>
-          </thead>
-          <tbody>
-            {top.map(({ r, c }, i) => (
-              <tr
-                key={c.id}
-                className="border-b border-[var(--border-subtle)]/40 last:border-0 hover:bg-[var(--bg-card-hover)] transition-colors"
-              >
-                <td className="px-3 py-2 text-right tabular-nums text-[var(--text-muted)]">
-                  {i + 1}
-                </td>
-                <td className="px-3 py-2">
-                  <Link
-                    href={`${langPrefix}/cards/${c.id.toLowerCase()}`}
-                    className={`font-medium hover:underline ${colorTextClass(c.color)}`}
-                  >
-                    {c.name}
-                  </Link>
-                </td>
-                <td className="px-3 py-2 text-right tabular-nums font-semibold text-[var(--accent-gold)]">
-                  {r.elo === null ? "·" : Math.round(r.elo)}
-                </td>
-                <td className="px-3 py-2 text-right tabular-nums">{pct(r.win_rate)}</td>
-                <td className="px-3 py-2 text-right tabular-nums text-[var(--text-muted)]">
-                  {pct(r.pick_rate)}
-                </td>
+          <table className="dtable">
+            <thead>
+              <tr>
+                <th className="rk">#</th>
+                <th>{t("Card", lang)}</th>
+                <th className="num">{t("Codex Elo", lang)}</th>
+                <th className="num">Win%</th>
+                <th className="num">Pick%</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+            </thead>
+            <tbody>
+              {top.map(({ r, c }, i) => (
+                <tr key={c.id}>
+                  <td className="rk">{i + 1}</td>
+                  <td className="ent">
+                    <Link href={`${langPrefix}/cards/${c.id.toLowerCase()}`} style={{ color: cardHex(c.color) }}>
+                      {c.name}
+                    </Link>
+                  </td>
+                  <td className="num mono">{r.elo === null ? "·" : Math.round(r.elo)}</td>
+                  <td className={`num ${winClass(r.win_rate)}`}>{pct(r.win_rate)}</td>
+                  <td className="num dim">{pct(r.pick_rate)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </div>
   );
 }
