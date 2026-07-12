@@ -89,7 +89,7 @@ export default function AlertTicker() {
             alt="Overwolf"
             className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 rounded"
           />
-          <span className="flex-1 min-w-0 text-sm text-white/90 line-clamp-2 sm:line-clamp-1">
+          <span className="flex-1 min-w-0 text-sm text-white/90 line-clamp-2">
             <span className="font-semibold text-white">
               {t("Spire Codex is now on Overwolf.", lang)}
             </span>{" "}
@@ -120,23 +120,25 @@ export default function AlertTicker() {
             alt="Steam Workshop"
             className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0"
           />
-          <span className="flex-1 min-w-0 text-sm text-[#c7d5e0] line-clamp-2 sm:line-clamp-1">
+          <span className="flex-1 min-w-0 text-sm text-[#c7d5e0] line-clamp-2">
             <span className="font-semibold text-white">
               {t("Spire Codex now has a mod.", lang)}
             </span>{" "}
-            {t(
-              "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner",
-              lang,
-            )}{" "}
+            <span className="hidden sm:inline">
+              {t(
+                "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner",
+                lang,
+              )}
+              .{" "}
+            </span>
             <a
               href={MOD_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-[#66c0f4] underline hover:text-white transition-colors whitespace-nowrap"
+              className="text-[var(--accent-gold)] hover:underline font-medium whitespace-nowrap"
             >
-              {t("here", lang)}
+              {t("Learn more", lang)} →
             </a>
-            .
           </span>
         </>
       ),
@@ -153,16 +155,24 @@ export default function AlertTicker() {
             className="w-7 h-7 sm:w-8 sm:h-8 object-contain flex-shrink-0 hidden sm:block"
             crossOrigin="anonymous"
           />
-          <span className="flex-1 min-w-0 text-sm text-emerald-200 italic line-clamp-2 sm:line-clamp-1">
-            &ldquo;{t("If you wish to support Spire Codex, consider", lang)}{" "}
+          <span className="flex-1 min-w-0 text-sm text-emerald-200 italic line-clamp-2">
+            &ldquo;I haven&apos;t had a visitor in a millennia! If you wish to
+            support Spire Codex, consider{" "}
             <a
               href="https://www.patreon.com/cw/SpireCodex"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-emerald-100 underline hover:text-white transition-colors whitespace-nowrap"
+              className="font-medium not-italic text-emerald-100 underline hover:text-white transition-colors"
             >
-              {t("supporting us on Patreon", lang)}
+              supporting us on Patreon
             </a>
+            . Servants! Fetch tea for{" "}
+            <Link
+              href="/thank-you"
+              className="font-medium not-italic text-emerald-100 underline hover:text-white transition-colors"
+            >
+              those who&apos;ve supported us
+            </Link>
             .&rdquo;
           </span>
         </>
@@ -179,7 +189,7 @@ export default function AlertTicker() {
             alt="Spire Codex"
             className="w-7 h-7 sm:w-8 sm:h-8 object-contain flex-shrink-0 hidden sm:block"
           />
-          <span className="flex-1 min-w-0 text-sm text-green-200 line-clamp-2 sm:line-clamp-1">
+          <span className="flex-1 min-w-0 text-sm text-green-200 line-clamp-2">
             <span className="mr-2 rounded bg-green-500 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
               {t("New", lang)}
             </span>
@@ -213,7 +223,7 @@ export default function AlertTicker() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[46px] flex items-center gap-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[52px] flex items-center gap-3">
         <div key={active.key} className="sc-ticker-fade flex flex-1 min-w-0 items-center gap-3">
           {active.node}
         </div>
