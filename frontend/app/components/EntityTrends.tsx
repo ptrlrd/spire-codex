@@ -39,8 +39,24 @@ interface Series {
   label: string;
   points: Point[];
 }
+interface HistPoint {
+  date: string;
+  score: number | null;
+  elo: number | null;
+}
 
-function makeOpts(): ChartOptions<"line"> {
+const HIST_DAYS = 30; // most recent N daily Score/Elo points
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+// "2026-07-12" -> "Jul 12", without constructing a Date.
+function shortDate(iso: string): string {
+  const [, m, d] = iso.split("-");
+  return m && d ? `${MONTHS[+m - 1] ?? m} ${+d}` : iso;
+}
+
+function makeOpts(
+  opts: { unit?: string; min?: number; max?: number } = {},
+): ChartOptions<"line"> {
+  const unit = opts.unit ?? "";
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -50,7 +66,9 @@ function makeOpts(): ChartOptions<"line"> {
       tooltip: {
         callbacks: {
           label: (ctx) =>
-            ctx.parsed.y == null ? "" : `${ctx.dataset.label}: ${ctx.parsed.y}%`,
+            ctx.parsed.y == null
+              ? ""
+              : `${ctx.dataset.label}: ${ctx.parsed.y}${unit}`,
         },
       },
     },
@@ -63,11 +81,13 @@ function makeOpts(): ChartOptions<"line"> {
       y: {
         grid: { color: GRID },
         border: { display: false },
+        suggestedMin: opts.min,
+        suggestedMax: opts.max,
         ticks: {
           color: TICK,
           font: { size: 10 },
           maxTicksLimit: 5,
-          callback: (v) => `${v}%`,
+          callback: (v) => `${v}${unit}`,
         },
       },
     },
@@ -90,6 +110,7 @@ export default function EntityTrends({
   lang: string;
 }) {
   const [series, setSeries] = useState<Series[] | null>(null);
+  const [history, setHistory] = useState<HistPoint[] | null>(null);
 
   useEffect(() => {
     // The weekly series only exists for cards / relics / potions. For anything
@@ -110,6 +131,28 @@ export default function EntityTrends({
       })
       .catch(() => {
         if (alive) setSeries([]);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [entityType, entityId, bracket]);
+
+  // Codex Score + Elo history (daily, per bracket) from the archive. Empty until
+  // it has accumulated on the backend, so these two charts stay hidden at first.
+  useEffect(() => {
+    if (!ETYPES.has(entityType)) return;
+    let alive = true;
+    const bp = bracketParam(bracket);
+    const bq = bp ? `?bracket=${bp}` : "";
+    fetch(
+      `${API}/api/runs/stats/${entityType}/${entityId.toUpperCase()}/history${bq}`,
+    )
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d: { points?: HistPoint[] } | null) => {
+        if (alive) setHistory(Array.isArray(d?.points) ? d.points : []);
+      })
+      .catch(() => {
+        if (alive) setHistory([]);
       });
     return () => {
       alive = false;
@@ -178,6 +221,41 @@ export default function EntityTrends({
     ],
   };
 
+  // Codex Score + Elo daily history (only shows once the archive has data).
+  const hist = (history ?? []).slice(-HIST_DAYS);
+  const histLabels = hist.map((h) => shortDate(h.date));
+  const scoreVals = hist.map((h) => h.score);
+  const eloVals = hist.map((h) => h.elo);
+  const hasScore = scoreVals.filter((v) => v != null).length >= 2;
+  const hasElo = eloVals.filter((v) => v != null).length >= 2;
+
+  const scoreData = {
+    labels: histLabels,
+    datasets: [
+      {
+        label: t("Codex Score", lang),
+        data: scoreVals,
+        borderColor: "#d4a843",
+        backgroundColor: "rgba(212,168,67,0.12)",
+        fill: true,
+        spanGaps: true,
+      },
+    ],
+  };
+  const eloData = {
+    labels: histLabels,
+    datasets: [
+      {
+        label: t("Codex Elo", lang),
+        data: eloVals,
+        borderColor: "#a78bfa",
+        backgroundColor: "rgba(167,139,250,0.12)",
+        fill: true,
+        spanGaps: true,
+      },
+    ],
+  };
+
   const bp = bracketParam(bracket);
   const bracketLabel = bp
     ? CONTENT_BRACKETS.find((b) => b.key === bracket)?.label
@@ -186,10 +264,7 @@ export default function EntityTrends({
   return (
     <div className="et-trends">
       <h3 className="subh">{t("Trends over time", lang)}</h3>
-      <p className="h-note">
-        {t("Weekly", lang)} · {bracketLabel} · {t("last", lang)} {weeks.length}{" "}
-        {t("weeks", lang)}
-      </p>
+      <p className="h-note">{bracketLabel}</p>
       <div className="et-trend-grid">
         {hasWin && (
           <figure className="et-trend">
@@ -198,7 +273,7 @@ export default function EntityTrends({
               {t("Win rate over time", lang)}
             </figcaption>
             <div className="et-canvas">
-              <Line data={winData} options={makeOpts()} />
+              <Line data={winData} options={makeOpts({ unit: "%" })} />
             </div>
           </figure>
         )}
@@ -209,7 +284,29 @@ export default function EntityTrends({
               {t("Pick rate over time", lang)}
             </figcaption>
             <div className="et-canvas">
-              <Line data={pickData} options={makeOpts()} />
+              <Line data={pickData} options={makeOpts({ unit: "%" })} />
+            </div>
+          </figure>
+        )}
+        {hasScore && (
+          <figure className="et-trend">
+            <figcaption>
+              <span className="et-dot" style={{ background: "#d4a843" }} />{" "}
+              {t("Codex Score over time", lang)}
+            </figcaption>
+            <div className="et-canvas">
+              <Line data={scoreData} options={makeOpts({ min: 0, max: 100 })} />
+            </div>
+          </figure>
+        )}
+        {hasElo && (
+          <figure className="et-trend">
+            <figcaption>
+              <span className="et-dot" style={{ background: "#a78bfa" }} />{" "}
+              {t("Codex Elo over time", lang)}
+            </figcaption>
+            <div className="et-canvas">
+              <Line data={eloData} options={makeOpts()} />
             </div>
           </figure>
         )}
