@@ -15,6 +15,7 @@ from ..services.run_entity_stats import (
     _BRACKET_KEYS,
     get_all_entity_scores,
     get_community_stats as get_community_fun_stats,
+    get_entity_metric_history,
     get_entity_metrics_table,
     get_entity_stats,
     get_top_entities_for_character,
@@ -893,6 +894,31 @@ def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
             "last_run_hash": None,
         }
     return stats
+
+
+@router.get("/stats/{entity_type}/{entity_id}/history", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_entity_metric_history_endpoint(
+    request: Request,
+    entity_type: str,
+    entity_id: str,
+    bracket: str = "all",
+):
+    """Daily Codex Score + Elo history for one entity, for the trend charts.
+    Empty until the archive accumulates (it only grows going forward)."""
+    if entity_type not in _ENTITY_STATS_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
+        )
+    if bracket not in ("all", "a10", "wr30", "wr50", "wr75"):
+        raise HTTPException(status_code=400, detail="bad bracket")
+    return {
+        "entity_type": entity_type,
+        "entity_id": entity_id.upper(),
+        "bracket": bracket,
+        "points": get_entity_metric_history(entity_type, entity_id, bracket),
+    }
 
 
 @router.get("/scores/{entity_type}", tags=["Runs"])

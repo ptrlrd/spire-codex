@@ -189,6 +189,12 @@ _RUNS_DIR = (
 # walking the files itself — this is what stops N workers each pegging a
 # CPU rebuilding the same data. Mirrors the stats_summary pattern.
 SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
+# Time-series archive of per-entity Codex Score + Elo: one row per
+# entity/bracket/day, appended at the end of each snapshot rebuild. Powers the
+# entity-page score/elo trend charts. TTL-pruned, and it only accumulates going
+# forward (no backfill) because the live snapshot is overwritten each rebuild.
+HISTORY_COLLECTION_NAME = "entity_metric_history"
+_HISTORY_RETENTION_DAYS = 90
 # Bump whenever the snapshot shape changes (fields the readers depend on).
 # Guards against an out-of-date writer (e.g. a stale container sharing the
 # Mongo) clobbering the snapshot: loaders reject a mismatched version and
@@ -1378,6 +1384,111 @@ def _snapshot_coll():
     return _get_collection().database[SNAPSHOT_COLLECTION_NAME]
 
 
+_history_indexes_ready = False
+
+
+def _history_coll():
+    """The per-entity Score/Elo time-series collection, with its indexes
+    created once per process on first access."""
+    from .runs_db_mongo import _get_collection
+
+    global _history_indexes_ready
+    coll = _get_collection().database[HISTORY_COLLECTION_NAME]
+    if not _history_indexes_ready:
+        try:
+            # TTL prune of old points (single-field, required for a TTL index).
+            coll.create_index(
+                "date", expireAfterSeconds=_HISTORY_RETENTION_DAYS * 86400
+            )
+            # Serves the per-entity/bracket history query, already date-ordered.
+            coll.create_index(
+                [("entity_type", 1), ("entity_id", 1), ("bracket", 1), ("date", 1)]
+            )
+            _history_indexes_ready = True
+        except Exception as e:  # noqa: BLE001
+            logger.warning("could not create entity_metric_history indexes: %s", e)
+    return coll
+
+
+def _archive_metric_history() -> None:
+    """Append today's Codex Score + Elo for every entity/bracket to the history
+    collection: one row per entity/bracket/day, so several rebuilds in a day
+    overwrite rather than pile up. Reuses get_entity_stats so the archived
+    numbers are exactly what the detail page shows. Best-effort — any failure is
+    logged and swallowed so it can never fail the rebuild that just finished."""
+    try:
+        from pymongo import UpdateOne
+
+        day = datetime.now(timezone.utc).replace(
+            hour=0, minute=0, second=0, microsecond=0
+        )
+        day_key = day.strftime("%Y-%m-%d")
+        ops = []
+        for etype, eid in list(_cache.keys()):
+            stats = get_entity_stats(etype, eid)
+            if not stats:
+                continue
+            for bkey, bd in (stats.get("brackets") or {}).items():
+                score = bd.get("score")
+                elo = bd.get("elo")
+                if score is None and elo is None:
+                    continue
+                ops.append(
+                    UpdateOne(
+                        {"_id": f"{etype}:{eid}:{bkey}:{day_key}"},
+                        {
+                            "$set": {
+                                "entity_type": etype,
+                                "entity_id": eid,
+                                "bracket": bkey,
+                                "date": day,
+                                "score": score,
+                                "elo": elo,
+                            }
+                        },
+                        upsert=True,
+                    )
+                )
+        if ops:
+            _history_coll().bulk_write(ops, ordered=False)
+        logger.info("archived entity metric history: %d rows", len(ops))
+    except Exception as e:  # noqa: BLE001
+        logger.warning("entity metric history archive failed: %s", e)
+
+
+def get_entity_metric_history(
+    entity_type: str, entity_id: str, bracket: str = "all"
+) -> list[dict]:
+    """Daily Codex Score + Elo points for one entity/bracket, oldest first.
+    Empty until the archive has accumulated (it only grows going forward)."""
+    try:
+        rows = (
+            _history_coll()
+            .find(
+                {
+                    "entity_type": entity_type,
+                    "entity_id": entity_id.upper(),
+                    "bracket": bracket,
+                },
+                {"_id": 0, "date": 1, "score": 1, "elo": 1},
+            )
+            .sort("date", 1)
+        )
+        out = []
+        for r in rows:
+            d = r.get("date")
+            out.append(
+                {
+                    "date": d.strftime("%Y-%m-%d") if hasattr(d, "strftime") else d,
+                    "score": r.get("score"),
+                    "elo": r.get("elo"),
+                }
+            )
+        return out
+    except Exception:  # noqa: BLE001
+        return []
+
+
 def _persist_snapshot(
     cache: dict, totals: dict, baselines: dict, bracket_meta: dict | None = None
 ) -> None:
@@ -1585,6 +1696,9 @@ def refresh_entity_stats_snapshot() -> int:
     _persist_snapshot(cache, totals, baselines, bracket_meta)
     _apply_cache(cache, totals, baselines, bracket_meta)
     _cache_snapshot_version = SNAPSHOT_VERSION
+    # Best-effort: the snapshot + cache are already committed above; this only
+    # appends the daily Score/Elo history and never raises into the rebuild.
+    _archive_metric_history()
     logger.info(
         "entity-stats snapshot rebuilt: %d entities across %d runs",
         len(cache),
