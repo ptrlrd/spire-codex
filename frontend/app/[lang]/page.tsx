@@ -13,6 +13,7 @@ import SearchTrigger from "@/app/components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { t } from "@/lib/ui-translations";
 import { SITE_URL, SITE_NAME, IS_BETA, HOME_OG_IMAGE } from "@/lib/seo";
+import "@/app/home-revamp.css";
 import {
   isValidLang,
   LANG_GAME_NAME,
@@ -101,36 +102,32 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   return (
     <div className="min-h-screen">
       <JsonLd data={[buildWebSiteJsonLd(), buildVideoGameJsonLd()]} />
-      {/* Hero, mirrors `/page.tsx` so the localized routes get the same
-          search-led hero instead of the entity-count tagline. */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--accent-red)]/8 via-transparent to-transparent" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8 relative">
-          <div className="text-center">
-            <h1 className="text-5xl sm:text-6xl font-bold mb-4">
-              <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
-              <span className="text-[var(--text-primary)] font-light">
-                CODEX
-              </span>
+      {/* Mirror `/page.tsx` exactly so switching languages keeps the revamp
+          home layout instead of falling back to an unstyled hero. */}
+      <div className="rvmp">
+        <main className="home">
+          <section className="hero">
+            <h1 className="wordmark">
+              SPIRE <span>CODEX</span>
               {IS_BETA && (
-                <span className="ml-3 text-sm font-medium px-2 py-1 rounded bg-[var(--accent-gold)]/20 text-[var(--accent-gold)] align-middle">
+                <sup className="ml-2 align-super text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400">
                   BETA
-                </span>
+                </sup>
               )}
             </h1>
-            <p className="text-lg text-[var(--text-secondary)] max-w-2xl mx-auto mb-6">
+            <p className="htag">
               {IS_BETA
                 ? t("Preview of upcoming Slay the Spire 2 content", lang)
                 : t("The complete database for Slay the Spire 2", lang)}
             </p>
-            <div className="max-w-xl mx-auto">
+            <div style={{ maxWidth: 540, margin: "18px auto 0" }}>
               <SearchTrigger variant="hero" />
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+          <HomeClient initialStats={stats} initialTranslations={translations ?? {}} />
+        </main>
+      </div>
 
       <HomeNewsSection langPrefix={`/${lang}`} lang={lang} />
       <HomeLeaderboardSection langPrefix={`/${lang}`} lang={lang} characterNames={translations?.character_names} />
