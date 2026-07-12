@@ -42,3 +42,20 @@
 .card-rvmp .badge { font-family: var(--mono); font-size: 11px; padding: 2px 8px; border-radius: 999px;
   border: 1px solid var(--border-2); color: var(--text-2); }
 .card-rvmp .chip .cn { color: var(--text); }
+
+/* ── monster overview lead prose (rendered right under the hero) ── */
+.card-rvmp .mon-lead { max-width: 64ch; margin: 2px 0 8px; font-size: 15px; line-height: 1.65; color: var(--text-2); }
+.card-rvmp .mon-lead p { margin: 0 0 10px; }
+.card-rvmp .mon-lead p:last-child { margin-bottom: 0; }
+
+/* ── readable per-move effect line (English only, sits above the numeric rows) ── */
+.card-rvmp .move-effect { font-size: 14px; line-height: 1.5; color: var(--text-2); margin: 0 0 10px; }
+
+/* ── attack-pattern move sequence (localized move-name chips, shown in every language) ── */
+.card-rvmp .atk-seq { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: 12px; }
+.card-rvmp .atk-step-wrap { display: inline-flex; align-items: center; gap: 6px; }
+.card-rvmp .atk-step { font-family: var(--mono); font-size: 12px; padding: 4px 10px; border-radius: 999px;
+  border: 1px solid var(--border-2); background: var(--surface-2); color: var(--text); white-space: nowrap; }
+.card-rvmp .atk-arrow { color: var(--text-3); font-size: 13px; }
+.card-rvmp .atk-repeat { font-family: var(--mono); font-size: 13px; padding: 4px 8px; border-radius: 999px;
+  border: 1px dashed var(--border-2); color: var(--text-3); }

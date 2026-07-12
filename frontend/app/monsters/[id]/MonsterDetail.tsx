@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import type { Monster, MonsterMove, MonsterMovePower, Power } from "@/lib/api";
+import type { Monster, MonsterMove, MonsterMovePower, Power, AttackPattern } from "@/lib/api";
 import type { EncounterStat } from "@/lib/encounter-stats";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -12,6 +12,7 @@ import { t } from "@/lib/ui-translations";
 import RichDescription from "@/app/components/RichDescription";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
+import EntityProse from "@/app/components/EntityProse";
 import { imageUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
 import "../../monster-encounter-extra.css";
@@ -119,16 +120,101 @@ function PowerPill({
   );
 }
 
+// Title-case a raw id ("EYE_LASERS" -> "Eye Lasers").
+function titleCaseId(id: string): string {
+  return id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+// A plain-English, one-line summary of what a move does, built from its
+// structured fields (damage / block / heal / applied powers). English only —
+// non-English monster pages skip it to avoid duplicating boilerplate across
+// the localized variants (same policy as EntityProse). Falls back to an
+// intent-derived line for moves that carry no numbers or powers.
+function describeMove(move: MonsterMove, powerData: Record<string, Power>): string | null {
+  const clauses: string[] = [];
+  const d = move.damage;
+  if (d && d.normal != null) {
+    const multi = !!(d.hit_count && d.hit_count > 1);
+    const base = multi
+      ? `hits ${d.hit_count} times for ${d.normal} (${d.normal * d.hit_count!} total)`
+      : `hits for ${d.normal}`;
+    const asc =
+      d.ascension != null && d.ascension !== d.normal
+        ? ` (${multi ? `${d.ascension}×${d.hit_count} = ${d.ascension * d.hit_count!}` : d.ascension} on Ascension)`
+        : "";
+    clauses.push(`${base} damage${asc}`);
+  }
+  if (move.block != null) clauses.push(`gains ${move.block} Block`);
+  if (move.heal != null) clauses.push(`heals ${move.heal} HP`);
+  for (const p of move.powers || []) {
+    const nm = powerData[p.power_id]?.name || titleCaseId(p.power_id);
+    clauses.push(`${p.target === "player" ? "applies" : "gains"} ${p.amount} ${nm}`);
+  }
+  if (clauses.length === 0) {
+    // No numbers or powers parsed — lean on the intent so the move still reads.
+    const intent = (move.intent || "").toLowerCase();
+    if (intent.includes("debuff")) return "Applies a debuff to you.";
+    if (intent.includes("buff")) return "Strengthens itself with a buff.";
+    if (intent.includes("defend")) return "Braces behind Block.";
+    if (intent.includes("status")) return "Adds a status effect.";
+    if (intent.includes("escape")) return "Prepares to flee the fight.";
+    return null;
+  }
+  const joined =
+    clauses.length === 1
+      ? clauses[0]
+      : clauses.length === 2
+        ? `${clauses[0]} and ${clauses[1]}`
+        : `${clauses.slice(0, -1).join(", ")}, and ${clauses[clauses.length - 1]}`;
+  return joined.charAt(0).toUpperCase() + joined.slice(1) + ".";
+}
+
+// Ordered list of move display names for an attack pattern, so it can render
+// as a visible sequence of chips. Follows the state machine's `next` links for
+// a cycle; for other pattern types, lists the distinct moves it can pick.
+function patternSteps(pattern: AttackPattern, moves: MonsterMove[]): string[] {
+  const states = pattern.states || [];
+  if (states.length === 0) return [];
+  const nameOf = (mid: string) => moves.find((m) => m.id === mid)?.name || titleCaseId(mid);
+
+  if (pattern.type === "cycle") {
+    const byId = new Map(states.map((s) => [s.id, s]));
+    const start =
+      states.find((s) => s.move_id === pattern.initial_move) || states.find((s) => s.move_id) || states[0];
+    const seen = new Set<string>();
+    const out: string[] = [];
+    let cur: typeof start | undefined = start;
+    while (cur && !seen.has(cur.id)) {
+      seen.add(cur.id);
+      if (cur.move_id) out.push(nameOf(cur.move_id));
+      cur = cur.next ? byId.get(cur.next) : undefined;
+    }
+    // Guard against a malformed chain that skipped most states.
+    if (out.length >= 2) return out;
+  }
+
+  // random / conditional / mixed (or a broken cycle): unique moves it can use.
+  const ids: string[] = [];
+  for (const s of states) {
+    if (s.move_id) ids.push(s.move_id);
+    for (const b of s.branches || []) if (b.move_id) ids.push(b.move_id);
+  }
+  return [...new Set(ids)].map(nameOf);
+}
+
 function MoveCard({
   move,
   powerData,
   lp,
+  isEnglish,
 }: {
   move: MonsterMove;
   powerData: Record<string, Power>;
   lp: string;
+  isEnglish: boolean;
 }) {
   const intentParts = (move.intent || "Unknown").split(" + ");
+  const effect = isEnglish ? describeMove(move, powerData) : null;
 
   return (
     <div className="move">
@@ -146,6 +232,9 @@ function MoveCard({
           ))}
         </div>
       </div>
+
+      {/* Plain-English effect summary (English pages only) */}
+      {effect && <p className="move-effect">{effect}</p>}
 
       {/* Move details */}
       <div className="mstats">
@@ -315,10 +404,26 @@ export default function MonsterDetail({
     );
   }
 
+  const isEnglish = lang === "eng";
+
   // Derive acts from encounters
   const acts = monster.encounters
     ? [...new Set(monster.encounters.filter(e => e.act).map(e => e.act!))]
     : [];
+
+  // The single deadliest encounter this monster shows up in (highest kill
+  // rate), fed to the overview prose as our own unique community data.
+  const deadliest = (() => {
+    if (!encounterStats?.length || !monster.encounters?.length) return null;
+    let best: { name: string; killRate: number } | null = null;
+    for (const enc of monster.encounters) {
+      const s = encounterStats.find((x) => x.encounter_id === enc.encounter_id);
+      if (!s || !s.total) continue;
+      const killRate = (s.fatal / s.total) * 100;
+      if (!best || killRate > best.killRate) best = { name: enc.encounter_name, killRate };
+    }
+    return best;
+  })();
 
   const spineColor = SPINE_BY_TYPE[monster.type] ?? "var(--color-silent)";
   const heroSrc = betaArt && monster.beta_image_url ? monster.beta_image_url : monster.image_url;
@@ -372,6 +477,9 @@ export default function MonsterDetail({
             </p>
             <h1>{monster.name}</h1>
           </div>
+
+          {/* Overview prose (unique, data-derived intro under the H1) */}
+          <EntityProse kind="monster" monster={monster} deadliest={deadliest} />
 
           {/* Sticky ToC */}
           <nav className="toc" aria-label={t("On this page", lang)}>
@@ -441,13 +549,33 @@ export default function MonsterDetail({
                 </>
               )}
 
-              {/* Attack Pattern */}
-              {monster.attack_pattern && (
-                <>
-                  <h3 className="subh">Attack Pattern</h3>
-                  <p className="desc-body">{monster.attack_pattern.description}</p>
-                </>
-              )}
+              {/* Attack Pattern — text description plus a visible move sequence.
+                  The sequence chips use localized move names, so they render in
+                  every language even when the English description is thin. */}
+              {monster.attack_pattern && (() => {
+                const steps = patternSteps(monster.attack_pattern!, monster.moves || []);
+                const desc = monster.attack_pattern!.description;
+                const isCycle = monster.attack_pattern!.type === "cycle";
+                return (
+                  <>
+                    <h3 className="subh">Attack Pattern</h3>
+                    {desc && <p className="desc-body">{desc}</p>}
+                    {steps.length > 1 && (
+                      <div className="atk-seq">
+                        {steps.map((s, i) => (
+                          <span key={i} className="atk-step-wrap">
+                            <span className="atk-step">{s}</span>
+                            {i < steps.length - 1 && <span className="atk-arrow">→</span>}
+                          </span>
+                        ))}
+                        {isCycle && (
+                          <span className="atk-repeat" title={t("Repeats", lang)}>↻</span>
+                        )}
+                      </div>
+                    )}
+                  </>
+                );
+              })()}
             </section>
           )}
 
@@ -457,7 +585,7 @@ export default function MonsterDetail({
               <h2>{t("Moves", lang)} ({monster.moves!.length})</h2>
               <div className="moves">
                 {monster.moves!.map((move) => (
-                  <MoveCard key={move.id} move={move} powerData={powerData} lp={lp} />
+                  <MoveCard key={move.id} move={move} powerData={powerData} lp={lp} isEnglish={isEnglish} />
                 ))}
               </div>
             </section>

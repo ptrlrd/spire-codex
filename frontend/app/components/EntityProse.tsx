@@ -1,7 +1,7 @@
 "use client";
 
 import { useLanguage } from "@/app/contexts/LanguageContext";
-import type { Relic, Potion, Power } from "@/lib/api";
+import type { Relic, Potion, Power, Monster } from "@/lib/api";
 
 /**
  * Programmatic prose block at the bottom of each entity's Overview
@@ -31,7 +31,21 @@ import type { Relic, Potion, Power } from "@/lib/api";
 interface RelicProseProps { kind: "relic"; relic: Relic; }
 interface PotionProseProps { kind: "potion"; potion: Potion; }
 interface PowerProseProps { kind: "power"; power: Power; appliedByCount: number; }
-type Props = RelicProseProps | PotionProseProps | PowerProseProps;
+interface MonsterProseProps { kind: "monster"; monster: Monster; deadliest?: { name: string; killRate: number } | null; }
+type Props = RelicProseProps | PotionProseProps | PowerProseProps | MonsterProseProps;
+
+// Title-case a raw power id ("INCREASING_INTENSITY" -> "Increasing Intensity")
+// for SSR-safe prose (power display names load client-side only).
+function titleCaseId(id: string): string {
+  return id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+// "a", "a and b", "a, b, and c"
+function listWords(items: string[]): string {
+  if (items.length <= 1) return items[0] ?? "";
+  if (items.length === 2) return `${items[0]} and ${items[1]}`;
+  return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
 
 export default function EntityProse(props: Props) {
   const { lang } = useLanguage();
@@ -87,6 +101,88 @@ export default function EntityProse(props: Props) {
     return <Prose sentences={sentences} />;
   }
 
+  if (props.kind === "monster") {
+    const m = props.monster;
+    const name = m.name;
+    const type = m.type || "enemy";
+    const hp = m.min_hp
+      ? `${m.min_hp}${m.max_hp && m.max_hp !== m.min_hp ? `–${m.max_hp}` : ""}`
+      : null;
+    const hpAsc = m.min_hp_ascension
+      ? `${m.min_hp_ascension}${m.max_hp_ascension && m.max_hp_ascension !== m.min_hp_ascension ? `–${m.max_hp_ascension}` : ""}`
+      : null;
+
+    if (!isEnglish) {
+      // Non-English: one line from localized fields only (no English prose).
+      return <Prose lead sentences={[`${name} · ${type}${hp ? ` · ${hp} HP` : ""}`]} />;
+    }
+
+    const moves = m.moves || [];
+    const sentences: string[] = [];
+    const article = (w: string) => (/^[aeiou]/i.test(w) ? "an" : "a");
+
+    // 1. Identity + HP.
+    let s1 = `${name} is ${article(type)} ${type.toLowerCase()} enemy in Slay the Spire 2`;
+    if (hp) s1 += `, entering combat with ${hp} HP`;
+    if (hpAsc && hpAsc !== hp) s1 += ` (${hpAsc} on higher Ascensions)`;
+    sentences.push(s1 + ".");
+
+    // 2. Attack pattern. When a description is present it already spells out the
+    // sequence, so lead with that rather than a move count (some moves are
+    // conditional and never appear in the printed rotation).
+    const pat = m.attack_pattern;
+    if (pat && pat.description) {
+      const desc = pat.description;
+      if (desc.includes("→")) {
+        // Arrow sequence — frame it as the rotation.
+        sentences.push(
+          pat.type === "cycle"
+            ? `It cycles through ${desc}.`
+            : `Its attack pattern runs ${desc}.`,
+        );
+      } else {
+        // Already a prose summary (e.g. "Always uses Wake Up") — use it as-is.
+        sentences.push(desc.endsWith(".") ? desc : desc + ".");
+      }
+    } else if (moves.length) {
+      sentences.push(`It has ${moves.length} known move${moves.length === 1 ? "" : "s"}.`);
+    }
+
+    // 3. Heaviest hit (by total damage across multi-hits).
+    const hardest = [...moves]
+      .filter((mv) => mv.damage && mv.damage.normal != null)
+      .sort(
+        (a, b) =>
+          b.damage!.normal * (b.damage!.hit_count || 1) -
+          a.damage!.normal * (a.damage!.hit_count || 1),
+      )[0];
+    if (hardest && hardest.damage) {
+      const d = hardest.damage;
+      const dmg =
+        d.hit_count && d.hit_count > 1
+          ? `${d.normal}×${d.hit_count} (${d.normal * d.hit_count} total)`
+          : `${d.normal}`;
+      let s3 = `Its heaviest attack, ${hardest.name}, deals ${dmg} damage`;
+      if (hardest.block != null) s3 += `, and it gains ${hardest.block} Block on the same turn`;
+      sentences.push(s3 + ".");
+    }
+
+    // 4. Innate powers it enters combat with.
+    if (m.innate_powers && m.innate_powers.length) {
+      const names = m.innate_powers.map((p) => titleCaseId(p.power_id));
+      sentences.push(`It opens the fight already holding ${listWords(names)}.`);
+    }
+
+    // 5. Community deadliness (our own run data — nothing else has this).
+    if (props.deadliest && props.deadliest.killRate > 0) {
+      sentences.push(
+        `Across community-tracked runs, the ${props.deadliest.name} fight proves fatal to ${props.deadliest.killRate.toFixed(1)}% of the parties that reach it.`,
+      );
+    }
+
+    return <Prose lead sentences={sentences} />;
+  }
+
   // power
   const pw = props.power;
   const name = pw.name;
@@ -124,7 +220,17 @@ export default function EntityProse(props: Props) {
   return <Prose sentences={sentences} />;
 }
 
-function Prose({ sentences }: { sentences: string[] }) {
+function Prose({ sentences, lead }: { sentences: string[]; lead?: boolean }) {
+  // lead: rendered as an intro right under a page hero (no top border/rule).
+  if (lead) {
+    return (
+      <section className="mon-lead">
+        {sentences.map((s, i) => (
+          <p key={i}>{s}</p>
+        ))}
+      </section>
+    );
+  }
   return (
     <section className="mt-6 pt-5 border-t border-[var(--border-subtle)] text-sm leading-relaxed text-[var(--text-secondary)] space-y-2">
       {sentences.map((s, i) => (
