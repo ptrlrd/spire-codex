@@ -7,7 +7,7 @@ import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
 from pymongo import ASCENDING
 from slowapi import Limiter
@@ -156,6 +156,30 @@ def _page_hashes(start, end, cursor, limit):
     return [doc["_id"] for doc in docs], next_cursor
 
 
+def _page_params(
+    start: str | None = Query(
+        None, description="Inclusive lower bound on submitted_at (ISO-8601)."
+    ),
+    end: str | None = Query(
+        None, description="Exclusive upper bound on submitted_at (ISO-8601)."
+    ),
+    cursor: str | None = Query(
+        None,
+        description="Opaque keyset token from a prior page's X-Next-Cursor header.",
+    ),
+):
+    """Parse the window/cursor params as a dependency. Dependencies resolve
+    before the rate-limit decorator charges the request, so a malformed value
+    400s without spending budget — the same phase FastAPI validates ``limit``
+    in. Parsed inside the handler these would be charged first (60 for an
+    unbounded request), letting a few junk requests lock an IP out."""
+    return (
+        _parse_iso(start, "start") if start else None,
+        _parse_iso(end, "end") if end else None,
+        _decode_cursor(cursor) if cursor else None,
+    )
+
+
 def _export_cost(request: Request) -> int:
     """Rate-limit cost: a bounded (paginated) pull is cheap; an unbounded full
     dump stays rare. 60 against the 120/hour bucket reproduces the historical
@@ -202,16 +226,7 @@ def export_runs(
         le=MAX_PAGE_LIMIT,
         description="Max runs in this page. Omit for the full (unbounded) export.",
     ),
-    start: str | None = Query(
-        None, description="Inclusive lower bound on submitted_at (ISO-8601)."
-    ),
-    end: str | None = Query(
-        None, description="Exclusive upper bound on submitted_at (ISO-8601)."
-    ),
-    cursor: str | None = Query(
-        None,
-        description="Opaque keyset token from a prior page's X-Next-Cursor header.",
-    ),
+    page: tuple = Depends(_page_params),
 ):
     """Bulk export of submitted runs as gzipped JSONL.
 
@@ -244,9 +259,7 @@ def export_runs(
     * Browser clients reading ``X-Next-Cursor`` need it in the CORS
       ``Access-Control-Expose-Headers`` list; non-browser clients are unaffected.
     """
-    start_dt = _parse_iso(start, "start") if start else None
-    end_dt = _parse_iso(end, "end") if end else None
-    cursor_key = _decode_cursor(cursor) if cursor else None
+    start_dt, end_dt, cursor_key = page
 
     (run_export_pages if limit is not None else run_exports).inc()
     hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit)

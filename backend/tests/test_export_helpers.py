@@ -17,6 +17,7 @@ from app.routers.exports import (
     _decode_cursor,
     _encode_cursor,
     _export_cost,
+    _page_params,
     _parse_iso,
 )
 
@@ -126,6 +127,34 @@ def test_build_match_cursor_past_nulls():
     # Strictly after (sa, abc) in (submitted_at, _id) order.
     assert {"submitted_at": {"$gt": sa}} in or_clause
     assert {"submitted_at": sa, "_id": {"$gt": "abc"}} in or_clause
+
+
+# --- _page_params ------------------------------------------------------------
+
+def test_page_params_all_absent():
+    # Called directly (not via FastAPI), Query defaults are the sentinel
+    # objects, so pass the absent values explicitly.
+    assert _page_params(None, None, None) == (None, None, None)
+
+
+def test_page_params_parses_and_decodes():
+    sa = datetime(2026, 6, 22, 19, 51, 28, tzinfo=timezone.utc)
+    token = _encode_cursor(sa, "aaaabbbbcccc1111")
+    start, end, cursor = _page_params("2026-06-01T00:00:00", None, token)
+    assert start == datetime(2026, 6, 1, tzinfo=timezone.utc)
+    assert end is None
+    assert cursor == (sa, "aaaabbbbcccc1111")
+
+
+def test_page_params_rejects_malformed_before_handler():
+    # The dependency is what turns junk into a 400 before the rate limiter
+    # charges the request; a malformed value must raise, not pass through.
+    with pytest.raises(HTTPException) as err:
+        _page_params("not-a-date", None, None)
+    assert err.value.status_code == 400
+    with pytest.raises(HTTPException) as err:
+        _page_params(None, None, "x")
+    assert err.value.status_code == 400
 
 
 # --- _export_cost ----------------------------------------------------------

@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import logging
 import os
 import time
 from contextlib import contextmanager
@@ -50,6 +51,8 @@ from pymongo.errors import DuplicateKeyError
 
 from ..metrics import db_operations, db_operation_duration
 from . import cache as app_cache
+
+logger = logging.getLogger(__name__)
 
 OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 
@@ -316,8 +319,12 @@ def _ensure_run_validator(coll) -> None:
             validationLevel="moderate",
             validationAction="error",
         )
-    except Exception as e:
-        print(f"Warning: could not apply runs submitted_at validator: {e}")
+    except Exception:
+        logger.exception(
+            "could not apply the runs submitted_at validator; inserts are NOT "
+            "being schema-checked — new-run ordering relies on the submit path "
+            "alone until collMod succeeds on a later startup"
+        )
 
 
 # ── helpers (mirrors of the sqlite module) ──────────────────────────────
