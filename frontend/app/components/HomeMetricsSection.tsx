@@ -119,7 +119,7 @@ export default async function HomeMetricsSection({
             </Link>
           </div>
 
-          <table className="dtable">
+          <div className="overflow-x-auto"><table className="dtable">
             <thead>
               <tr>
                 <th className="rk">#</th>
@@ -144,7 +144,7 @@ export default async function HomeMetricsSection({
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         </section>
       </section>
     </div>

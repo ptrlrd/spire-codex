@@ -213,7 +213,7 @@ export default async function HomeLeaderboardSection({
               {fastest.runs.length === 0 ? (
                 <p className="lb-empty">{t("No A10 wins submitted yet, be the first.", lang)}</p>
               ) : (
-                <table className="dtable">
+                <div className="overflow-x-auto"><table className="dtable">
                   <thead>
                     <tr>
                       <th className="rk">#</th>
@@ -242,7 +242,7 @@ export default async function HomeLeaderboardSection({
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table></div>
               )}
             </section>
 
@@ -258,7 +258,7 @@ export default async function HomeLeaderboardSection({
               {daily.length === 0 ? (
                 <p className="lb-empty">{t("No daily runs yet today.", lang)}</p>
               ) : (
-                <table className="dtable">
+                <div className="overflow-x-auto"><table className="dtable">
                   <thead>
                     <tr>
                       <th className="rk">#</th>
@@ -287,7 +287,7 @@ export default async function HomeLeaderboardSection({
                       </tr>
                     ))}
                   </tbody>
-                </table>
+                </table></div>
               )}
             </section>
 
@@ -302,7 +302,7 @@ export default async function HomeLeaderboardSection({
               {recent.length === 0 ? (
                 <p className="lb-empty">{t("No runs submitted yet.", lang)}</p>
               ) : (
-                <table className="dtable">
+                <div className="overflow-x-auto"><table className="dtable">
                   <thead>
                     <tr>
                       <th>Character</th>
@@ -344,7 +344,7 @@ export default async function HomeLeaderboardSection({
                       );
                     })}
                   </tbody>
-                </table>
+                </table></div>
               )}
             </section>
           </div>
