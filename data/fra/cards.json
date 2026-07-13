@@ -2838,7 +2838,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Cobaye #C14"
+      },
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Méca-Chevalier"
+      }
+    ]
   },
   {
     "id": "BULLET_TIME",
@@ -7400,7 +7412,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Berserker de vase"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Limon brindille (M)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Limon feuillu (M)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Limon feuillu (S)"
+      }
+    ]
   },
   {
     "id": "PRECISE_CUT",
@@ -11134,7 +11168,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Croquebot"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Navire hanté"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Œil denté"
+      }
+    ]
   },
   {
     "id": "HEGEMONY",
@@ -11575,7 +11626,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Larve"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Parasite Krapo"
+      }
+    ]
   },
   {
     "id": "UNMOVABLE",
@@ -16404,7 +16467,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantôme"
+      }
+    ]
   },
   {
     "id": "ESCAPE_PLAN",
@@ -21804,7 +21874,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Sarcopte"
+      }
+    ]
   },
   {
     "id": "COLLISION_COURSE",
@@ -23757,7 +23834,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Clepséon"
+      }
+    ]
   },
   {
     "id": "GUIDING_STAR",

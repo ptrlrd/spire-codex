@@ -2246,7 +2246,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Auge mit Zähnen"
+      },
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Mampfer"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Spukschiff"
+      }
+    ]
   },
   {
     "id": "REAVE",
@@ -9440,7 +9457,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Phroschparasit"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Schlängler"
+      }
+    ]
   },
   {
     "id": "INFERNO",
@@ -19407,7 +19436,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Mylbe"
+      }
+    ]
   },
   {
     "id": "BULK_UP",
@@ -20610,7 +20646,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Mecha-Ritter"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Testsubjekt #C14"
+      }
+    ]
   },
   {
     "id": "CORRUPTION",
@@ -20731,7 +20779,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Äonenglas"
+      }
+    ]
   },
   {
     "id": "DECAY",
@@ -21289,7 +21344,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Blattschleim (kl.)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Blattschleim (mi.)"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Schleimiger Berserker"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Zweigschleim (mi.)"
+      }
+    ]
   },
   {
     "id": "FEED",
@@ -22692,7 +22769,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ]
   },
   {
     "id": "WISH",

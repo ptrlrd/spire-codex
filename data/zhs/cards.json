@@ -981,7 +981,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "墨影幻灵"
+      }
+    ]
   },
   {
     "id": "GAMMA_BLAST",
@@ -2471,7 +2478,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "永世沙漏"
+      }
+    ]
   },
   {
     "id": "MANGLE",
@@ -8953,7 +8967,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "异蛙寄生虫"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "扭动虫"
+      }
+    ]
   },
   {
     "id": "ANGER",
@@ -11986,7 +12012,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "利齿之眼"
+      },
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "啃咬机"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "幽灵船"
+      }
+    ]
   },
   {
     "id": "SHADOW_SHIELD",
@@ -13388,7 +13431,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "异螨"
+      }
+    ]
   },
   {
     "id": "NOXIOUS_FUMES",
@@ -14602,7 +14652,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "实验体 #C14"
+      },
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "机甲骑士"
+      }
+    ]
   },
   {
     "id": "THE_BOMB",
@@ -23833,7 +23895,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "史莱姆狂战士"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "树叶史莱姆（中）"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "树叶史莱姆（小）"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "树枝史莱姆（中）"
+      }
+    ]
   },
   {
     "id": "DARK_EMBRACE",

@@ -522,7 +522,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "チョンパー"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "幽霊船"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "牙むく眼"
+      }
+    ]
   },
   {
     "id": "MIMIC",
@@ -13709,7 +13726,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "リグラー"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "寄生キャエル"
+      }
+    ]
   },
   {
     "id": "OUTBREAK",
@@ -16273,7 +16302,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "マイト"
+      }
+    ]
   },
   {
     "id": "GLACIER",
@@ -16840,7 +16876,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "メカナイト"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "実験体 #C14"
+      }
+    ]
   },
   {
     "id": "SPIRIT_OF_ASH",
@@ -18952,7 +19000,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "スライムバーサーカー"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "リーフスライム (中)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "リーフスライム (小)"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "細枝スライム (中)"
+      }
+    ]
   },
   {
     "id": "ACCURACY",
@@ -20903,7 +20973,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "永劫の砂時計"
+      }
+    ]
   },
   {
     "id": "REND",
@@ -21358,7 +21435,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "ヴァントム"
+      }
+    ]
   },
   {
     "id": "CONSUMING_SHADOW",

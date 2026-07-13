@@ -6702,7 +6702,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Barco embrujado"
+      },
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Bocaditos"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Ojo dentado"
+      }
+    ]
   },
   {
     "id": "MURDER",
@@ -7064,7 +7081,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Clepsamia eónica"
+      }
+    ]
   },
   {
     "id": "DEBT",
@@ -12198,7 +12222,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Tintasma"
+      }
+    ]
   },
   {
     "id": "HYPERBEAM",
@@ -13012,7 +13043,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Alimaña retorcida"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Sapo agusanado"
+      }
+    ]
   },
   {
     "id": "INFERNO",
@@ -19069,7 +19112,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Caballero mecanizado"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Sujeto de pruebas #C14"
+      }
+    ]
   },
   {
     "id": "RIP_AND_TEAR",
@@ -22427,7 +22482,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Asaltante acárido"
+      }
+    ]
   },
   {
     "id": "GANG_UP",
@@ -23304,7 +23366,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Berserker viscoso"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Herbolimo grande"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Herbolimo pequeño"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Ramalimo grande"
+      }
+    ]
   },
   {
     "id": "VOLTAIC",

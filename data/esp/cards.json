@@ -2941,7 +2941,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Musgobaba (grande)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Musgobaba (pequeña)"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Ramababa (grande)"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Viscoberseker"
+      }
+    ]
   },
   {
     "id": "UP_MY_SLEEVE",
@@ -6786,7 +6808,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Barco embrujado"
+      },
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Mordebot"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Ojo dentado"
+      }
+    ]
   },
   {
     "id": "DISMANTLE",
@@ -12704,7 +12743,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantasma"
+      }
+    ]
   },
   {
     "id": "TOOLS_OF_THE_TRADE",
@@ -13389,7 +13435,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Parásito engusanado"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Sanguilarva"
+      }
+    ]
   },
   {
     "id": "INFERNO",
@@ -15112,7 +15170,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Clepsidreón"
+      }
+    ]
   },
   {
     "id": "HEIRLOOM_HAMMER",
@@ -18786,7 +18851,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Cibercaballero"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Sujeto de prueba #C14"
+      }
+    ]
   },
   {
     "id": "SCRAPE",
@@ -22580,7 +22657,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Ácaro"
+      }
+    ]
   },
   {
     "id": "KNIFE_TRAP",

@@ -4837,7 +4837,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Kımıldak"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Parazitli Gurbağa"
+      }
+    ]
   },
   {
     "id": "ENTROPY",
@@ -15312,7 +15324,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Dişli Göz"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Lanetli Gemi"
+      },
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Çiğneyici"
+      }
+    ]
   },
   {
     "id": "CRASH_LANDING",
@@ -17436,7 +17465,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Mayt"
+      }
+    ]
   },
   {
     "id": "HUDDLE_UP",
@@ -18722,7 +18758,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Denek #C14"
+      },
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Meka Şövalye"
+      }
+    ]
   },
   {
     "id": "SLIMED",
@@ -18763,7 +18811,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Balçıklanmış Vahşi Savaşçı"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Dal Balçığı (O)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Yaprak Balçık (K)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Yaprak Balçık (O)"
+      }
+    ]
   },
   {
     "id": "REND",
@@ -18843,7 +18913,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ]
   },
   {
     "id": "INJURY",
@@ -21653,7 +21730,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Ebedi Saat"
+      }
+    ]
   },
   {
     "id": "PUTREFY",

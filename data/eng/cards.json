@@ -2973,7 +2973,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Mecha Knight"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Test Subject #C14"
+      }
+    ]
   },
   {
     "id": "BURNING_PACT",
@@ -5341,7 +5353,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Chomper"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Eye with Teeth"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Haunted Ship"
+      }
+    ]
   },
   {
     "id": "DEADLY_POISON",
@@ -11462,7 +11491,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Phrog Parasite"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Wriggler"
+      }
+    ]
   },
   {
     "id": "INFERNAL_BLADE",
@@ -19305,7 +19346,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Leaf Slime (M)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Leaf Slime (S)"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Slimed Berserker"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Twig Slime (M)"
+      }
+    ]
   },
   {
     "id": "SLOTH",
@@ -22452,7 +22515,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Myte"
+      }
+    ]
   },
   {
     "id": "TRACKING",
@@ -23749,7 +23819,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Aeonglass"
+      }
+    ]
   },
   {
     "id": "WOUND",
@@ -23788,7 +23865,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ]
   },
   {
     "id": "WRAITH_FORM",

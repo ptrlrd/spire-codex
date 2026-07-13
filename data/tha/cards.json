@@ -9889,7 +9889,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Myte"
+      }
+    ]
   },
   {
     "id": "TRACKING",
@@ -10732,7 +10739,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Aeonglass"
+      }
+    ]
   },
   {
     "id": "WROUGHT_IN_WAR",
@@ -12558,7 +12572,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Chomper"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "EyeWithTeeth"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "HauntedShip"
+      }
+    ]
   },
   {
     "id": "DARKNESS",
@@ -14995,7 +15026,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "PhrogParasite"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Wriggler"
+      }
+    ]
   },
   {
     "id": "BEAT_INTO_SHAPE",
@@ -15641,7 +15684,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ]
   },
   {
     "id": "BIG_BANG",
@@ -22455,7 +22505,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "MechaKnight"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "TestSubject"
+      }
+    ]
   },
   {
     "id": "BRIGHTEST_FLAME",
@@ -22625,7 +22687,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "LeafSlimeM"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "LeafSlimeS"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "SlimedBerserker"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "TwigSlimeM"
+      }
+    ]
   },
   {
     "id": "CHILL",
