@@ -3679,7 +3679,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Зубастик"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Зубастое око"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Проклятое судно"
+      }
+    ]
   },
   {
     "id": "HOLOGRAM",
@@ -7266,7 +7283,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Ерзун"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Лягуш-паразит"
+      }
+    ]
   },
   {
     "id": "PANACHE",
@@ -13120,7 +13149,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Механический рыцарь"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Подопытный №14"
+      }
+    ]
   },
   {
     "id": "DARK_SHACKLES",
@@ -17388,7 +17429,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Вантом"
+      }
+    ]
   },
   {
     "id": "MOLTEN_FIST",
@@ -19173,7 +19221,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Лиственный слизень (маленький)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Лиственный слизень (средний)"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Ослизненный берсерк"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Сучковый слизень (средний)"
+      }
+    ]
   },
   {
     "id": "FUSION",
@@ -21029,7 +21099,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Кровожор"
+      }
+    ]
   },
   {
     "id": "BODY_SLAM",
@@ -22416,7 +22493,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Вечные часы"
+      }
+    ]
   },
   {
     "id": "COMPACT",

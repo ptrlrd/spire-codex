@@ -84,6 +84,9 @@ export interface Card {
    * the C# default of `true`, so a missing value means "yes, can spawn". */
   can_be_generated_in_combat: boolean | null;
   compendium_order: number;
+  /** Monsters that generate this card in combat (status cards etc.), parsed
+   *  from the game code. Absent on cards with no in-combat source. */
+  sources?: { type: string; id: string; name: string }[] | null;
   /** A short "did you know" note (curated or derived), merged by the API. */
   trivia?: string | null;
 }

@@ -373,7 +373,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "게구리 기생체"
+      },
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "꿈틀벌레"
+      }
+    ]
   },
   {
     "id": "NECRO_MASTERY",
@@ -8926,7 +8938,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "밴텀"
+      }
+    ]
   },
   {
     "id": "PUTREFY",
@@ -13582,7 +13601,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "먹깨비"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "유령선"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "톱니눈"
+      }
+    ]
   },
   {
     "id": "UPPERCUT",
@@ -15226,7 +15262,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "진듸기"
+      }
+    ]
   },
   {
     "id": "WRAITH_FORM",
@@ -17106,7 +17149,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "가지 슬라임 (중)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "나뭇잎 슬라임 (소)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "나뭇잎 슬라임 (중)"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "슬라임 광전사"
+      }
+    ]
   },
   {
     "id": "IGNITION",
@@ -20265,7 +20330,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "영겁의 모래시계"
+      }
+    ]
   },
   {
     "id": "COUNTDOWN",
@@ -23379,7 +23451,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "기계 기사"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "실험체 #C14"
+      }
+    ]
   },
   {
     "id": "FLAME_BARRIER",

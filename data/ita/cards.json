@@ -6277,7 +6277,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Clessica eonica"
+      }
+    ]
   },
   {
     "id": "DEVASTATE",
@@ -6756,7 +6763,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Mordicchio"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Nave infestata"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Occhio dentato"
+      }
+    ]
   },
   {
     "id": "DISTRACTION",
@@ -8042,7 +8066,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Vantom"
+      }
+    ]
   },
   {
     "id": "FERAL",
@@ -11128,7 +11159,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Larva"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Parassita drana"
+      }
+    ]
   },
   {
     "id": "INTERCEPT",
@@ -11290,7 +11333,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Berserkr viscido"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Melmerba (media)"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Melmerba (piccola)"
+      },
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Ramomelma (media)"
+      }
+    ]
   },
   {
     "id": "HYPERBEAM",
@@ -22724,7 +22789,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Acaro"
+      }
+    ]
   },
   {
     "id": "BATTLE_TRANCE",
@@ -23448,7 +23520,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Cavaliere meccanico"
+      },
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Soggetto di prova #C14"
+      }
+    ]
   },
   {
     "id": "NULL",

@@ -583,6 +583,26 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               </div>
             )}
 
+            {/* Sources — monsters that add this card to your deck in combat
+                (parsed from the game code; mostly status cards like Wither). */}
+            {card.sources && card.sources.length > 0 && (
+              <>
+                <h3 className="subh">{t("Sources", lang)}</h3>
+                <p className="h-note">{t("Added to your deck in combat by:", lang)}</p>
+                <div className="kw-row">
+                  {card.sources.map((s) => (
+                    <Link
+                      key={s.id}
+                      href={`${lp}/monsters/${s.id.toLowerCase()}`}
+                      className="kw"
+                    >
+                      {s.name}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+
             {/* Powers applied */}
             {card.powers_applied && card.powers_applied.length > 0 && (
               <>

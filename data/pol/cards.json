@@ -5291,7 +5291,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 556
+    "compendium_order": 556,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "WRIGGLER",
+        "name": "Pasożyt"
+      },
+      {
+        "type": "monster",
+        "id": "PHROG_PARASITE",
+        "name": "Zainfekowana Żapka"
+      }
+    ]
   },
   {
     "id": "INVOKE",
@@ -10834,7 +10846,24 @@
       "Ethereal",
       "Unplayable"
     ],
-    "compendium_order": 553
+    "compendium_order": 553,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "CHOMPER",
+        "name": "Gryzak"
+      },
+      {
+        "type": "monster",
+        "id": "HAUNTED_SHIP",
+        "name": "Nawiedzony Statek"
+      },
+      {
+        "type": "monster",
+        "id": "EYE_WITH_TEETH",
+        "name": "Zębate Oko"
+      }
+    ]
   },
   {
     "id": "CONSUMING_SHADOW",
@@ -12371,7 +12400,19 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 552
+    "compendium_order": 552,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TEST_SUBJECT",
+        "name": "Eksperyment #C14"
+      },
+      {
+        "type": "monster",
+        "id": "MECHA_KNIGHT",
+        "name": "Mecha-Rycerz"
+      }
+    ]
   },
   {
     "id": "GLIMPSE_BEYOND",
@@ -13741,7 +13782,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 561
+    "compendium_order": 561,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "AEONGLASS",
+        "name": "Wieczny Obserwator"
+      }
+    ]
   },
   {
     "id": "TREMBLE",
@@ -14900,7 +14948,14 @@
     "keywords_key": [
       "Unplayable"
     ],
-    "compendium_order": 562
+    "compendium_order": 562,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "VANTOM",
+        "name": "Fantom"
+      }
+    ]
   },
   {
     "id": "REANIMATE",
@@ -18086,7 +18141,14 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 559
+    "compendium_order": 559,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "MYTE",
+        "name": "Roztycz"
+      }
+    ]
   },
   {
     "id": "BATTLE_TRANCE",
@@ -23507,7 +23569,29 @@
     "keywords_key": [
       "Exhaust"
     ],
-    "compendium_order": 557
+    "compendium_order": 557,
+    "sources": [
+      {
+        "type": "monster",
+        "id": "TWIG_SLIME_M",
+        "name": "Gałęziowy Śluzak"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_S",
+        "name": "Liściowe Śluzątko"
+      },
+      {
+        "type": "monster",
+        "id": "LEAF_SLIME_M",
+        "name": "Liściowy Śluzak"
+      },
+      {
+        "type": "monster",
+        "id": "SLIMED_BERSERKER",
+        "name": "Śluzak Berserker"
+      }
+    ]
   },
   {
     "id": "LETHALITY",
