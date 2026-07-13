@@ -526,6 +526,10 @@ app.add_middleware(RequestLoggingMiddleware)
 app.add_middleware(CORSStaticMiddleware)
 app.add_middleware(GZipMiddleware, minimum_size=1000)
 _cors_origins = os.environ.get("CORS_ORIGINS", "").strip()
+# Response headers a browser client is allowed to read; wildcard allow_headers
+# only covers the *request* side. X-Next-Cursor carries the run-export keyset
+# token (GET /api/exports/runs).
+_cors_expose_headers = ["X-Next-Cursor"]
 if _cors_origins:
     app.add_middleware(
         CORSMiddleware,
@@ -533,6 +537,7 @@ if _cors_origins:
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=_cors_expose_headers,
     )
 else:
     app.add_middleware(
@@ -540,6 +545,7 @@ else:
         allow_origins=["*"],
         allow_methods=["*"],
         allow_headers=["*"],
+        expose_headers=_cors_expose_headers,
     )
 
 # ── Prometheus metrics ────────────────────────────────────────

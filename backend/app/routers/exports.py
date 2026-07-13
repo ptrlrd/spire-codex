@@ -1,16 +1,19 @@
+import base64
 import gzip
 import io
 import json
 import os
 import zipfile
+from datetime import datetime, timezone
 from pathlib import Path
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from fastapi.responses import StreamingResponse
+from pymongo import ASCENDING
 from slowapi import Limiter
 
 from ..dependencies import VALID_LANGUAGES, client_ip
-from ..metrics import data_exports, run_exports
+from ..metrics import data_exports, run_export_pages, run_exports
 from ..services.data_service import DATA_DIR
 
 router = APIRouter(prefix="/api/exports", tags=["Exports"])
@@ -43,30 +46,148 @@ _RUNS_DIR = (
 
 OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 
+# Upper bound on a single page so one request can't ask for the whole corpus
+# while still claiming the cheap (paginated) rate-limit cost.
+MAX_PAGE_LIMIT = 50000
 
-def _official_run_hashes() -> list[str]:
-    """Get hashes of official runs from Mongo: an official character AND the
-    official ascension range (A11+ is modded)."""
+
+def _parse_iso(value: str, field: str) -> datetime:
+    """Parse an ISO-8601 timestamp param into an aware UTC datetime (400 on
+    malformed input). Naive timestamps are assumed UTC."""
+    try:
+        dt = datetime.fromisoformat(value)
+    except ValueError:
+        raise HTTPException(
+            status_code=400, detail=f"invalid {field}: expected an ISO-8601 timestamp"
+        )
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=timezone.utc)
+    return dt
+
+
+def _encode_cursor(submitted_at, run_hash: str) -> str:
+    """Encode a keyset position as an opaque, URL-safe token. Runs missing a
+    submitted_at sort first, encoded with an empty timestamp."""
+    sa = submitted_at.isoformat() if submitted_at is not None else ""
+    return base64.urlsafe_b64encode(f"{sa}|{run_hash}".encode("utf-8")).decode("ascii")
+
+
+def _decode_cursor(token: str):
+    """Decode an X-Next-Cursor token back into (submitted_at|None, run_hash).
+    400 on a malformed token. binascii.Error subclasses ValueError, so a bad
+    base64 payload is covered too."""
+    try:
+        raw = base64.urlsafe_b64decode(token.encode("ascii")).decode("utf-8")
+        sa_str, run_hash = raw.split("|", 1)
+    except (ValueError, UnicodeDecodeError):
+        raise HTTPException(status_code=400, detail="invalid cursor")
+    submitted_at = _parse_iso(sa_str, "cursor") if sa_str else None
+    return submitted_at, run_hash
+
+
+def _build_match(start, end, cursor) -> dict:
+    """Mongo filter for the export: official runs (an official character in
+    the official ascension range; A11+ is modded), an optional half-open
+    [start, end) submitted_at window, and an optional keyset continuation
+    strictly after `cursor`'s (submitted_at, _id)."""
+    clauses: list[dict] = [
+        {"character": {"$in": list(OFFICIAL_CHARACTERS)}},
+        {"ascension": {"$gte": 0, "$lte": 10}},
+    ]
+
+    range_q: dict = {}
+    if start is not None:
+        range_q["$gte"] = start
+    if end is not None:
+        range_q["$lt"] = end
+    if range_q:
+        clauses.append({"submitted_at": range_q})
+
+    if cursor is not None:
+        sa, run_hash = cursor
+        if sa is None:
+            # Still inside the leading null/missing-submitted_at block: take
+            # the remaining nulls by _id, then everything with a timestamp.
+            clauses.append(
+                {
+                    "$or": [
+                        {"submitted_at": None, "_id": {"$gt": run_hash}},
+                        {"submitted_at": {"$ne": None}},
+                    ]
+                }
+            )
+        else:
+            clauses.append(
+                {
+                    "$or": [
+                        {"submitted_at": {"$gt": sa}},
+                        {"submitted_at": sa, "_id": {"$gt": run_hash}},
+                    ]
+                }
+            )
+
+    return clauses[0] if len(clauses) == 1 else {"$and": clauses}
+
+
+def _page_hashes(start, end, cursor, limit):
+    """Return (ordered_hashes, next_cursor). Runs are ordered by
+    (submitted_at, _id); next_cursor is None unless a bounded page is full
+    and at least one more run follows it."""
     from ..services.runs_db_mongo import _get_collection
 
     coll = _get_collection()
-    cursor = coll.find(
-        {
-            "character": {"$in": list(OFFICIAL_CHARACTERS)},
-            "ascension": {"$gte": 0, "$lte": 10},
-        },
-        {"_id": 1},
+    finder = coll.find(
+        _build_match(start, end, cursor),
+        {"_id": 1, "submitted_at": 1},
         no_cursor_timeout=True,
-    )
+    ).sort([("submitted_at", ASCENDING), ("_id", ASCENDING)])
+    if limit is not None:
+        finder = finder.limit(limit + 1)  # one extra row probes for a next page
     try:
-        return [doc["_id"] for doc in cursor]
+        docs = list(finder)
     finally:
-        cursor.close()
+        finder.close()
+
+    next_cursor = None
+    if limit is not None and len(docs) > limit:
+        docs = docs[:limit]
+        last = docs[-1]
+        next_cursor = _encode_cursor(last.get("submitted_at"), last["_id"])
+    return [doc["_id"] for doc in docs], next_cursor
 
 
-def _stream_runs_jsonl():
-    hashes = _official_run_hashes()
+def _page_params(
+    start: str | None = Query(
+        None, description="Inclusive lower bound on submitted_at (ISO-8601)."
+    ),
+    end: str | None = Query(
+        None, description="Exclusive upper bound on submitted_at (ISO-8601)."
+    ),
+    cursor: str | None = Query(
+        None,
+        description="Opaque keyset token from a prior page's X-Next-Cursor header.",
+    ),
+):
+    """Parse the window/cursor params as a dependency. Dependencies resolve
+    before the rate-limit decorator charges the request, so a malformed value
+    400s without spending budget — the same phase FastAPI validates ``limit``
+    in. Parsed inside the handler these would be charged first (60 for an
+    unbounded request), letting a few junk requests lock an IP out."""
+    return (
+        _parse_iso(start, "start") if start else None,
+        _parse_iso(end, "end") if end else None,
+        _decode_cursor(cursor) if cursor else None,
+    )
 
+
+def _export_cost(request: Request) -> int:
+    """Rate-limit cost: a bounded (paginated) pull is cheap; an unbounded full
+    dump stays rare. 60 against the 120/hour bucket reproduces the historical
+    2/hour ceiling for the full export."""
+    return 1 if request.query_params.get("limit") else 60
+
+
+def _stream_runs_jsonl(hashes):
     buf = io.BytesIO()
     gz = gzip.GzipFile(fileobj=buf, mode="wb")
 
@@ -96,22 +217,64 @@ def _stream_runs_jsonl():
 # Declared BEFORE the /{lang} route so FastAPI matches the literal
 # path "runs" instead of treating it as a language code.
 @router.get("/runs")
-@limiter.limit("2/hour")
-def export_runs(request: Request):
-    """Bulk export of all submitted runs as gzipped JSONL.
+@limiter.limit("120/hour", cost=_export_cost)
+def export_runs(
+    request: Request,
+    limit: int | None = Query(
+        None,
+        ge=1,
+        le=MAX_PAGE_LIMIT,
+        description="Max runs in this page. Omit for the full (unbounded) export.",
+    ),
+    page: tuple = Depends(_page_params),
+):
+    """Bulk export of submitted runs as gzipped JSONL.
 
     Each line is the full raw game JSON as submitted by the client,
     including players, map_point_history, acts, deck, relics, and
     card_choices. Only runs with official characters are included.
+
+    Runs are ordered by ``(submitted_at, _id)``. With no params the response
+    is the full corpus (unchanged behaviour). To pull it in reliable chunks:
+
+    * ``limit=N`` bounds the page to N runs. When more runs follow, the
+      response carries an ``X-Next-Cursor`` header; pass it back as
+      ``cursor=`` to fetch the next page. The ascending order means runs
+      submitted *during* a long bootstrap sort after the cursor, so a
+      forward pager never misses them.
+    * ``start`` / ``end`` restrict to a half-open ``[start, end)``
+      submitted_at window (e.g. an incremental "everything since my last
+      sync"). Combine with ``limit`` to also bound each page.
+
+    Consumer notes:
+
+    * Terminate a paged walk on the **absence of ``X-Next-Cursor``**, never on
+      "fewer lines than ``limit``": a page is ``limit`` *runs*, but the streamed
+      line count can differ (missing/unreadable run files are skipped, and a
+      multiplayer run emits one raw line per player).
+    * The cursor does **not** embed the window, so keep ``start`` / ``end``
+      constant across a paged sequence.
+    * ``start`` / ``end`` filter on ``submitted_at``, so they exclude legacy
+      runs that have no ``submitted_at``. Omit both to receive the whole corpus.
+    * ``X-Next-Cursor`` is in the CORS ``Access-Control-Expose-Headers`` list,
+      so browser clients can read it too; non-browser clients never needed it.
     """
-    run_exports.inc()
+    start_dt, end_dt, cursor_key = page
+
+    (run_export_pages if limit is not None else run_exports).inc()
+    hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit)
+
+    headers = {
+        "Content-Disposition": 'attachment; filename="spire-codex-runs.jsonl.gz"',
+        "Cache-Control": "no-store",
+    }
+    if next_cursor is not None:
+        headers["X-Next-Cursor"] = next_cursor
+
     return StreamingResponse(
-        _stream_runs_jsonl(),
+        _stream_runs_jsonl(hashes),
         media_type="application/gzip",
-        headers={
-            "Content-Disposition": 'attachment; filename="spire-codex-runs.jsonl.gz"',
-            "Cache-Control": "no-store",
-        },
+        headers=headers,
     )
 
 

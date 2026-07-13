@@ -47,6 +47,7 @@ import sqlite3
 import sys
 import time
 from collections import defaultdict
+from datetime import datetime, timezone
 from typing import Any
 
 try:
@@ -88,6 +89,22 @@ def build_doc(run_row: dict[str, Any], children: dict[str, dict]) -> dict[str, A
         "_id": rh,
         **{k: v for k, v in run_row.items() if k not in ("run_hash", "id")},
     }
+    # The runs collection requires a BSON-date submitted_at on every insert
+    # (see _ensure_run_validator in backend/app/services/runs_db_mongo.py) —
+    # the keyset run export orders by it. SQLite stores TIMESTAMP as text, so
+    # convert; CURRENT_TIMESTAMP is UTC. A missing/unparseable value is left
+    # as-is so the insert fails validation and shows up in _flush's error
+    # output, rather than silently landing where the export can't order it.
+    sa = doc.get("submitted_at")
+    if isinstance(sa, str):
+        try:
+            parsed = datetime.fromisoformat(sa)
+        except ValueError:
+            pass
+        else:
+            if parsed.tzinfo is None:
+                parsed = parsed.replace(tzinfo=timezone.utc)
+            doc["submitted_at"] = parsed
     # Pull child arrays keyed by the integer run_id.
     doc["deck"] = children.get("run_cards", {}).get(rid, [])
     doc["relics"] = children.get("run_relics", {}).get(rid, [])
