@@ -14,8 +14,10 @@ Metrics, per unordered pair (a, b) over N official runs:
   PMI         log( P(a,b) / (P(a) P(b)) )
   NPMI        PMI / -log P(a,b)                 in [-1, 1]; >0 synergy, 0 = independent,
                                                 <0 = actively avoided together
-  conf(b|a)   co / count[a]                     directional: of decks with a, the
-                                                fraction that also run b
+  conf        co / count[this]                  directional: of decks with THIS
+                                                item, fraction that also run the partner
+  conf_rev    co / count[partner]               the other direction, P(this | partner);
+                                                both are stored so neither is missed
   winrate     wins_together / co                the pair's win rate
 
 Cards and relics are drafted, so their co-occurrence is a real synergy signal
@@ -193,14 +195,18 @@ def _score_and_rank(items_list, count, wins, co, co_win, n_runs) -> dict[str, An
         cw = co_win.get((i, j), 0)
         winrate = round(cw / c, 4) if c else 0.0
 
-        # i's page gets j as a partner (directional conf = of i-decks, how many
-        # also run j), and vice-versa.
+        # Store BOTH confidence directions: conf = P(partner | this item), and
+        # conf_rev = P(this item | partner). One direction alone misleads — a
+        # rare card can be a near-mandatory pick inside a common card's decks
+        # while barely denting that common card's overall rate. `conf` always
+        # reads "of THIS page's decks, the fraction that also run the partner".
         if c >= _MIN_SUPPORT.get(kj, 250):
             partners[i][kj].append(
                 {
                     "id": idj,
                     "co": c,
-                    "conf": round(c / ci, 4),
+                    "conf": round(c / ci, 4),  # P(j | i)
+                    "conf_rev": round(c / cj, 4),  # P(i | j)
                     "npmi": round(npmi, 4),
                     "winrate": winrate,
                 }
@@ -210,7 +216,8 @@ def _score_and_rank(items_list, count, wins, co, co_win, n_runs) -> dict[str, An
                 {
                     "id": idi,
                     "co": c,
-                    "conf": round(c / cj, 4),
+                    "conf": round(c / cj, 4),  # P(i | j)
+                    "conf_rev": round(c / ci, 4),  # P(j | i)
                     "npmi": round(npmi, 4),
                     "winrate": winrate,
                 }
