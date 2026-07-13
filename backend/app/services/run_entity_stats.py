@@ -229,7 +229,10 @@ _HISTORY_RETENTION_DAYS = 90
 # walk back to a healthy duration. The bump forces the (now cheap) rebuild.
 # Version 14: the community blob also carries the player x skill composites so
 # /community-stats can combine both axes (additive; the bump forces the rebuild).
-SNAPSHOT_VERSION = 14
+# Version 15: the encounter blob also carries per-game-version buckets (keyed
+# "ver:<build_id>") for the most recent few versions, so the stats pages can
+# compare an enemy across balance patches (additive; the bump forces the rebuild).
+SNAPSHOT_VERSION = 15
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -287,6 +290,13 @@ _charts_blob_stats: dict[str, Any] = {}
 # Per-encounter combat cells for /api/runs/encounter-stats, accumulated in
 # the same walk and carried through the snapshot, rolled up per request.
 _encounter_blob_stats: dict[str, Any] = {}
+# The recent game versions (build_ids) the encounter blob carries per-version
+# buckets for — the options the stats-page version dropdown offers. Newest
+# first. Empty until the first v15+ snapshot is built/loaded.
+_recent_stat_versions: list[str] = []
+# How many recent game versions get their own encounter bucket. Bounds the
+# snapshot growth: older versions fold into "all" only.
+_RECENT_VERSIONS_N = 6
 _cache_built_at: float = 0.0
 _building: bool = False
 # The snapshot_version of whatever is currently loaded (None = nothing
@@ -854,7 +864,7 @@ def _finalize_bracket(acc: dict[str, Any]) -> tuple[dict, dict]:
     return cache, baselines
 
 
-def _accumulate(rows, official_chars, wr_map):
+def _accumulate(rows, official_chars, wr_map, recent_versions=()):
     """Accumulate a chunk of run rows into the raw (pre-finalize) accumulators.
 
     Pure over its inputs (no module-global mutation) so N chunks can run in
@@ -876,7 +886,10 @@ def _accumulate(rows, official_chars, wr_map):
 
     community_acc = community_stats.new_accumulator()
     charts_acc = charts_stats.new_accumulator()
-    encounter_acc = encounter_stats.new_accumulator()
+    # Seed one encounter bucket per recent version so per-version runs have a
+    # bucket to fold into (accumulate() only fills buckets that already exist).
+    encounter_acc = encounter_stats.new_accumulator(recent_versions)
+    _recent_versions_set = set(recent_versions)
     # Parallel lightweight accumulators, one per non-"all" bracket.
     bracket_accs: dict[str, dict[str, Any]] = {
         k: _new_bracket_acc() for k in _BRACKET_KEYS
@@ -995,11 +1008,19 @@ def _accumulate(rows, official_chars, wr_map):
         # Per-encounter combat stats for /api/runs/encounter-stats, folded
         # into the same blob read so the endpoint serves a precomputed
         # snapshot instead of a per-request triple-$unwind over every run.
+        # Also fold this run into its game-version bucket ("ver:<build_id>"),
+        # when that version is one of the recent ones we keep a slice for. It's
+        # a sibling of the content brackets, so this is just one more bucket in
+        # the same list — no cross-multiplication.
+        bid = row.get("build_id")
+        enc_brackets = mp_blob_brackets
+        if bid and bid in _recent_versions_set:
+            enc_brackets = mp_blob_brackets + [f"ver:{bid}"]
         try:
             encounter_stats.accumulate(
                 encounter_acc,
                 blob,
-                brackets=mp_blob_brackets,
+                brackets=enc_brackets,
                 character=character,
                 is_win=is_win,
                 player_count=row.get("player_count") or 1,
@@ -1406,11 +1427,11 @@ def _merge_raw(dst: dict, src: dict) -> None:
 
 def _accumulate_worker(args):
     """Top-level (picklable) entry point for a parallel chunk."""
-    rows, official_chars, wr_map = args
-    return _accumulate(rows, official_chars, wr_map)
+    rows, official_chars, wr_map, recent_versions = args
+    return _accumulate(rows, official_chars, wr_map, recent_versions)
 
 
-def _accumulate_parallel(rows, official_chars, wr_map, workers):
+def _accumulate_parallel(rows, official_chars, wr_map, recent_versions, workers):
     """Map-reduce _accumulate across processes. Contiguous chunks keep record
     tie-breaks aligned with the serial order."""
     import concurrent.futures
@@ -1435,13 +1456,29 @@ def _accumulate_parallel(rows, official_chars, wr_map, workers):
         partials = list(
             ex.map(
                 _accumulate_worker,
-                [(c, official_chars, wr_map) for c in chunks],
+                [(c, official_chars, wr_map, recent_versions) for c in chunks],
             )
         )
     raw = partials[0]
     for p in partials[1:]:
         _merge_raw(raw, p)
     return raw
+
+
+def _version_sort_key(build_id: str) -> tuple:
+    """Numeric ordering key for a build_id like "v0.107.0" / "1.0.20". Plain
+    string sort is wrong (v0.9 > v0.107, 1.0.9 > 1.0.20), so sort on the tuple
+    of integer components instead."""
+    import re
+
+    return tuple(int(x) for x in re.findall(r"\d+", build_id or ""))
+
+
+def _pick_recent_versions(rows, n: int) -> list[str]:
+    """The n newest distinct build_ids present in the run rows, newest first.
+    These get their own encounter bucket; everything else folds into "all"."""
+    seen = {r.get("build_id") for r in rows if r.get("build_id")}
+    return sorted(seen, key=_version_sort_key, reverse=True)[:n]
 
 
 def _build_cache_data() -> tuple[dict, dict, dict, dict]:
@@ -1482,6 +1519,9 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                     "killed_by": 1,
                     # Owner key for the win-rate skill brackets (wr30/50/75).
                     "username": 1,
+                    # Game version (e.g. "v0.107.0") for the per-version
+                    # encounter buckets.
+                    "build_id": 1,
                 },
             )
         )
@@ -1498,6 +1538,7 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
                 "game_mode": d.get("game_mode") or "standard",
                 "killed_by": d.get("killed_by"),
                 "username": d.get("username") or "",
+                "build_id": d.get("build_id") or "",
             }
             for d in rows
         ]
@@ -1505,7 +1546,8 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         with get_conn() as conn:
             rows = conn.execute(
                 "SELECT run_hash, character, win, submitted_at, "
-                "player_count, ascension, game_mode, killed_by, username FROM runs"
+                "player_count, ascension, game_mode, killed_by, username, "
+                "build_id FROM runs"
             ).fetchall()
             rows = [dict(r) for r in rows]
 
@@ -1541,20 +1583,27 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         if t >= WINRATE_MIN_RUNS and t > 0
     }
 
+    # The recent versions that get their own encounter bucket, computed once so
+    # every worker seeds the same buckets and out-of-window runs collapse to
+    # "all" consistently.
+    recent_versions = _pick_recent_versions(rows, _RECENT_VERSIONS_N)
+
     workers = _rebuild_workers()
     if workers > 1 and len(rows) >= _PARALLEL_MIN_RUNS:
         logger.info(
             "snapshot rebuild: accumulating in parallel across %d workers", workers
         )
         try:
-            raw = _accumulate_parallel(rows, official_chars, wr_map, workers)
+            raw = _accumulate_parallel(
+                rows, official_chars, wr_map, recent_versions, workers
+            )
         except Exception:
             logger.warning(
                 "parallel rebuild failed; falling back to serial", exc_info=True
             )
-            raw = _accumulate(rows, official_chars, wr_map)
+            raw = _accumulate(rows, official_chars, wr_map, recent_versions)
     else:
-        raw = _accumulate(rows, official_chars, wr_map)
+        raw = _accumulate(rows, official_chars, wr_map, recent_versions)
     logger.info(
         "snapshot rebuild: blob walk done in %.1fs (%d entities), finalizing "
         "(Codex Elo fits + bracket serialization)",
@@ -1562,7 +1611,12 @@ def _build_cache_data() -> tuple[dict, dict, dict, dict]:
         len(raw["new_cache"]),
     )
 
-    return _finalize(**raw)
+    result = _finalize(**raw)
+    # Advertise which versions actually got their own bucket, so the read path
+    # and the version dropdown only offer versions that have data. result[3] is
+    # the bracket_meta dict.
+    result[3]["recent_versions"] = recent_versions
+    return result
 
 
 def _apply_cache(
@@ -1571,7 +1625,7 @@ def _apply_cache(
     """Swap freshly-built (or snapshot-loaded) data into module globals."""
     global _cache, _cache_built_at, _global_totals, _type_baselines
     global _bracket_baselines, _bracket_totals, _community_stats, _charts_blob_stats
-    global _encounter_blob_stats
+    global _encounter_blob_stats, _recent_stat_versions
     _cache = cache
     _global_totals = totals
     _type_baselines = baselines
@@ -1581,6 +1635,7 @@ def _apply_cache(
     _community_stats = bracket_meta.get("community") or {}
     _charts_blob_stats = bracket_meta.get("charts") or {}
     _encounter_blob_stats = bracket_meta.get("encounters") or {}
+    _recent_stat_versions = bracket_meta.get("recent_versions") or []
     _cache_built_at = time.time()
 
 
@@ -1794,6 +1849,9 @@ def _persist_snapshot(
             "entity_types": list(by_type.keys()),
             "built_at": now,
             "snapshot_version": SNAPSHOT_VERSION,
+            # The recent versions the encounter blob carries per-version buckets
+            # for — the dropdown options for the stats-page version filter.
+            "recent_versions": bracket_meta.get("recent_versions", []),
         },
         upsert=True,
     )
@@ -1887,6 +1945,7 @@ def _load_snapshot() -> bool:
             "community": _blob_doc("community"),
             "charts": _blob_doc("charts"),
             "encounters": _blob_doc("encounters"),
+            "recent_versions": meta.get("recent_versions") or [],
         },
     )
     _cache_snapshot_version = meta_version
@@ -2062,6 +2121,14 @@ def get_charts_blob_stats() -> dict[str, Any]:
     return _charts_blob_stats or charts_stats.empty()
 
 
+def get_recent_stat_versions() -> list[str]:
+    """Game versions (build_ids) the encounter blob carries a per-version slice
+    for, newest first — the options the stats-page version dropdown offers.
+    Empty until a v15+ snapshot is built/loaded."""
+    _maybe_rebuild()
+    return list(_recent_stat_versions)
+
+
 def get_encounter_stats(
     acts: list[int] | None = None,
     room_types: list[str] | None = None,
@@ -2069,18 +2136,25 @@ def get_encounter_stats(
     page: int = 1,
     limit: int = 50,
     bracket: str | None = None,
+    build_id: str | None = None,
 ) -> dict[str, Any]:
     """Per-encounter combat stats for /api/runs/encounter-stats, rolled up
     from the precomputed snapshot cells for one content bracket. Same lifecycle
     as the community / charts stats: built in the walk, carried through the
     snapshot, O(rows) to slice — no per-request walk over every run's
-    map_point_history."""
+    map_point_history.
+
+    `build_id` selects the per-version slice ("ver:<build_id>") instead of a
+    content bracket, for comparing an enemy across balance patches. Only the
+    recent versions in `get_recent_stat_versions()` have a bucket; an unknown
+    one falls back to "all"."""
     _maybe_rebuild()
     from . import encounter_stats
 
+    key = f"ver:{build_id}" if build_id else bracket
     sub = _pick_bracket_blob(
         _encounter_blob_stats or encounter_stats.empty(),
-        bracket,
+        key,
         encounter_stats.empty_one,
     )
     return encounter_stats.rollup(

@@ -672,6 +672,7 @@ def get_encounter_stats_endpoint(
     page: int = 1,
     limit: int = 50,
     bracket: str | None = None,
+    build_id: str | None = None,
 ):
     """Per-encounter combat stats over submitted runs.
 
@@ -714,7 +715,13 @@ def get_encounter_stats_endpoint(
 
     from ..services.run_entity_stats import (
         get_encounter_stats as _get_encounter_stats,
+        get_recent_stat_versions,
     )
+
+    # A version filter must name one of the recent versions we keep a slice for;
+    # reject unknowns rather than silently serving the all-versions data.
+    if build_id is not None and build_id not in get_recent_stat_versions():
+        raise HTTPException(status_code=400, detail="unknown or unsupported version")
 
     acts = [int(a) for a in act.split(",") if a.strip().isdigit()] if act else None
     room_types = (
@@ -729,16 +736,25 @@ def get_encounter_stats_endpoint(
         page=page,
         limit=limit,
         bracket=bracket,
+        build_id=build_id,
     )
 
 
 @router.get("/versions", tags=["Runs"])
 def get_run_versions(request: Request):
-    """Return distinct build_id values from submitted runs."""
+    """Return distinct build_id values from submitted runs.
+
+    `stat_versions` is the subset (newest first) the stats snapshot carries a
+    per-version encounter slice for — the options the stats-page version
+    dropdown should offer, since only these have version-filtered data.
+    """
+    from ..services.run_entity_stats import get_recent_stat_versions
+
+    stat_versions = get_recent_stat_versions()
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import distinct_build_ids
 
-        return {"versions": distinct_build_ids()}
+        return {"versions": distinct_build_ids(), "stat_versions": stat_versions}
 
     from ..services.runs_db import get_conn
 
@@ -746,7 +762,10 @@ def get_run_versions(request: Request):
         rows = conn.execute(
             "SELECT DISTINCT build_id FROM runs WHERE build_id IS NOT NULL AND build_id != '' ORDER BY build_id DESC"
         ).fetchall()
-        return {"versions": [r["build_id"] for r in rows]}
+        return {
+            "versions": [r["build_id"] for r in rows],
+            "stat_versions": stat_versions,
+        }
 
 
 @router.get("/shared/{run_hash}", tags=["Runs"])

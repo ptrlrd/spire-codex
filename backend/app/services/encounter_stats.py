@@ -51,10 +51,20 @@ def _new_acc_one() -> dict[str, Any]:
     }
 
 
-def new_accumulator() -> dict[str, Any]:
+def new_accumulator(versions=None) -> dict[str, Any]:
     """Per-bracket accumulators; accumulate() folds each run into every content
-    bracket it belongs to."""
-    return {b: _new_acc_one() for b in _BLOB_BRACKETS}
+    bracket it belongs to.
+
+    `versions` (recent build_ids) pre-seeds one extra bucket per version, keyed
+    ``ver:<build_id>``. These are siblings of the content brackets, not a
+    sub-axis: a run feeds its own version's bucket (over all its content), so
+    the stats page can slice by game version without cross-multiplying the
+    bracket cells. accumulate() only folds into buckets that already exist, so
+    they must be seeded here."""
+    acc = {b: _new_acc_one() for b in _BLOB_BRACKETS}
+    for v in versions or []:
+        acc[f"ver:{v}"] = _new_acc_one()
+    return acc
 
 
 def merge(dst: dict, src: dict) -> None:
