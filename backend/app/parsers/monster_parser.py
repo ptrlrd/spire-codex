@@ -310,8 +310,11 @@ def extract_move_effects(content: str) -> dict[str, dict]:
                                 "normal": int(const_match.group(1))
                             }
 
-            # Check for hit count: .WithHitCount(N or Var)
-            hit_match = re.search(r"Attack\(\w+\)\.WithHitCount\((\w+)\)", body)
+            # Check for hit count: .WithHitCount(N or Var). Search the move body
+            # directly instead of requiring WithHitCount immediately after
+            # Attack() — monster attacks chain .FromMonster(this)/.WithAttackerAnim()
+            # in between, and that gap made this miss every multi-hit attack.
+            hit_match = re.search(r"\.WithHitCount\((\w+)\)", body)
             if hit_match and "damage" in move_effects[move_id]:
                 hit_val = hit_match.group(1)
                 if hit_val.isdigit():
@@ -957,8 +960,13 @@ def parse_single_monster(
     ):
         repeat_vars[rm.group(1)] = int(rm.group(3))  # Use normal value
 
-    # Now match WithHitCount to damage vars: DamageCmd.Attack(XDamage).WithHitCount(N_or_Var)
-    for hm in re.finditer(r"Attack\((\w+)Damage\)\.WithHitCount\((\w+)\)", content):
+    # Now match WithHitCount to damage vars: DamageCmd.Attack(XDamage)...WithHitCount(N_or_Var).
+    # Allow chained calls (.FromMonster(this).WithAttackerAnim(...)) between the
+    # attack and the hit count — that's the normal shape and used to be missed.
+    for hm in re.finditer(
+        r"Attack\((\w+)Damage\)(?:\s*\.\w+\([^)]*\))*?\s*\.WithHitCount\((\w+)\)",
+        content,
+    ):
         dmg_name = hm.group(1)
         hit_val = hm.group(2)
         if hit_val.isdigit():
