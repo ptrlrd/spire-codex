@@ -31,7 +31,14 @@ from typing import Any
 
 PRESENCE_TTL_SECONDS = 90
 
+# Cap on the gap credited to a player's all-time live total per heartbeat. The
+# mod beats ~every 30s; anything longer (a missed beat streak, or a crash/quit
+# and a later return) is treated as a break and not counted, so the total
+# tracks real continuous play rather than wall-clock between sessions.
+CREDIT_CAP_SECONDS = 150
+
 _coll = None  # lazy — set by _presence_coll
+_totals_coll = None  # lazy — set by _live_totals_coll
 
 
 def _presence_coll():
@@ -44,6 +51,19 @@ def _presence_coll():
         coll.create_index("updated_at", expireAfterSeconds=PRESENCE_TTL_SECONDS)
         _coll = coll
     return _coll
+
+
+def _live_totals_coll():
+    """Permanent per-player accumulator of live seconds (no TTL), keyed by
+    steam_id like the presence doc. Fed by _credit_live_time on each heartbeat."""
+    global _totals_coll
+    if _totals_coll is None:
+        from .runs_db_mongo import get_database
+
+        coll = get_database().live_totals
+        coll.create_index("total_seconds")
+        _totals_coll = coll
+    return _totals_coll
 
 
 # Rolling per-player window of ticker events ("played X", "fighting Y"); old entries
@@ -70,6 +90,39 @@ def heartbeat(
     if events:
         update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
     _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
+    _credit_live_time(steam_id, fields.get("username"), now)
+
+
+def _credit_live_time(steam_id: str, username: str | None, now: datetime) -> None:
+    """Add the time since this player's previous heartbeat to their all-time live
+    total. Best-effort: accounting never breaks a heartbeat. Gaps longer than
+    CREDIT_CAP_SECONDS (a crash/quit and a later return) aren't counted, so the
+    total reflects real continuous play. Because credit accrues per beat, it
+    captures sessions that end by crash/TTL, not just clean stops."""
+    try:
+        from pymongo import ReturnDocument
+
+        set_fields: dict[str, Any] = {"last_seen": now}
+        if username:
+            set_fields["username"] = username
+        prev = _live_totals_coll().find_one_and_update(
+            {"_id": steam_id},
+            {
+                "$set": set_fields,
+                "$setOnInsert": {"first_seen": now, "total_seconds": 0},
+            },
+            upsert=True,
+            return_document=ReturnDocument.BEFORE,
+        )
+        last = (prev or {}).get("last_seen")
+        if isinstance(last, datetime):
+            delta = (now - last.replace(tzinfo=timezone.utc)).total_seconds()
+            if 0 < delta <= CREDIT_CAP_SECONDS:
+                _live_totals_coll().update_one(
+                    {"_id": steam_id}, {"$inc": {"total_seconds": int(delta)}}
+                )
+    except Exception:
+        pass
 
 
 def end(steam_id: str) -> None:
@@ -125,6 +178,79 @@ def get(steam_id: str) -> dict | None:
     cutoff = datetime.now(timezone.utc) - timedelta(seconds=PRESENCE_TTL_SECONDS)
     d = _presence_coll().find_one({"_id": steam_id, "updated_at": {"$gte": cutoff}})
     return _public(d) if d else None
+
+
+def current_summary(limit: int = 50) -> list[dict]:
+    """Live roster for the admin view: who's playing, their depth, and how long
+    the current session has run (seconds). Deepest run first. Empty on error."""
+    try:
+        now = datetime.now(timezone.utc)
+        cutoff = now - timedelta(seconds=PRESENCE_TTL_SECONDS)
+        docs = (
+            _presence_coll()
+            .find(
+                {"updated_at": {"$gte": cutoff}},
+                {
+                    "username": 1,
+                    "character": 1,
+                    "ascension": 1,
+                    "total_floor": 1,
+                    "act": 1,
+                    "started_at": 1,
+                },
+            )
+            .sort([("total_floor", -1), ("updated_at", -1)])
+            .limit(limit)
+        )
+        out: list[dict] = []
+        for d in docs:
+            started = d.get("started_at")
+            secs = (
+                int((now - started.replace(tzinfo=timezone.utc)).total_seconds())
+                if isinstance(started, datetime)
+                else None
+            )
+            out.append(
+                {
+                    "steam_id": str(d.get("_id")),
+                    "username": d.get("username"),
+                    "character": d.get("character"),
+                    "ascension": d.get("ascension"),
+                    "total_floor": d.get("total_floor"),
+                    "act": d.get("act"),
+                    "session_seconds": secs,
+                }
+            )
+        return out
+    except Exception:
+        return []
+
+
+def top_live_totals(limit: int = 20) -> list[dict]:
+    """All-time cumulative live seconds per player, highest first. Empty on error."""
+    try:
+        rows = (
+            _live_totals_coll()
+            .find({}, {"username": 1, "total_seconds": 1, "last_seen": 1})
+            .sort("total_seconds", -1)
+            .limit(limit)
+        )
+        out: list[dict] = []
+        for r in rows:
+            last = r.get("last_seen")
+            out.append(
+                {
+                    "steam_id": str(r.get("_id")),
+                    "username": r.get("username"),
+                    "total_seconds": int(r.get("total_seconds") or 0),
+                    "last_seen": last.replace(tzinfo=timezone.utc).isoformat()
+                    if isinstance(last, datetime)
+                    else None,
+                }
+            )
+        return out
+    except Exception:
+        return []
 
 
 def _public(d: dict) -> dict:

@@ -17,10 +17,16 @@ from __future__ import annotations
 import hashlib
 import os
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 from fastapi import APIRouter, HTTPException, Request
 
 router = APIRouter(prefix="/api/telemetry", tags=["Telemetry"])
+
+# DAU day boundaries follow Pacific time (the operator's local day), so "active
+# today" rolls over at PT midnight rather than UTC. The stored day is a plain
+# YYYY-MM-DD string; admin._dau_info reads it back with the same zone.
+DAU_TZ = ZoneInfo("America/Los_Angeles")
 
 DAU_TTL_DAYS = 120
 _MAX_STR = 64
@@ -76,7 +82,7 @@ async def ping(request: Request):
         data = {}
 
     now = datetime.now(timezone.utc)
-    day = now.strftime("%Y-%m-%d")
+    day = now.astimezone(DAU_TZ).strftime("%Y-%m-%d")
     uid = _hash_steam_id(steam_id)
     _dau_coll().update_one(
         {"_id": f"{day}:{uid}"},

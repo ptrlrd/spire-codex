@@ -134,13 +134,15 @@ def _dau_info() -> dict:
             )
         )
         series = [{"day": r["_id"], "count": r["count"]} for r in reversed(rows)]
-        today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        # Day strings are bucketed in Pacific time by the telemetry ping; read
+        # "today" and the rolling windows in the same zone so they line up.
+        from .telemetry import DAU_TZ
+
+        today = datetime.now(DAU_TZ).strftime("%Y-%m-%d")
         today_count = next((r["count"] for r in series if r["day"] == today), 0)
 
         def _distinct_since(days: int) -> int:
-            cutoff = (datetime.now(timezone.utc) - timedelta(days=days)).strftime(
-                "%Y-%m-%d"
-            )
+            cutoff = (datetime.now(DAU_TZ) - timedelta(days=days)).strftime("%Y-%m-%d")
             res = list(
                 coll.aggregate(
                     [
@@ -175,6 +177,20 @@ def overview(request: Request):
         "redis": app_cache.info(),
         "dau": _dau_info(),
         "environment": os.environ.get("ENVIRONMENT", "development"),
+    }
+
+
+@router.get("/live")
+def live(request: Request):
+    """Live players: the current roster (identity, depth, current-session
+    length) and the all-time live-hours leaderboard. Both from the presence
+    layer; polled more often than /overview since it changes by the second."""
+    _audit(request)
+    from ..services import presence_db
+
+    return {
+        "current": presence_db.current_summary(50),
+        "all_time": presence_db.top_live_totals(20),
     }
 
 
