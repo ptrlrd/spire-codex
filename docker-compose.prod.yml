@@ -40,6 +40,11 @@ services:
       # (the serial ~80min walk); capped at the box's CPU count. Set the value
       # in the box .env after validating with scripts/validate_parallel_rebuild.py.
       - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
+      # How often the leader may rerun the heavy walk (seconds). Default 7200
+      # (2h). With the parallel rebuild on, lower it for fresher public numbers,
+      # but keep it well above the observed walk time so the box isn't always
+      # mid-rebuild. Floored at 300s in code.
+      - ENTITY_STATS_REBUILD_INTERVAL_SECONDS=${ENTITY_STATS_REBUILD_INTERVAL_SECONDS:-7200}
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
       # Cloudflare purge from the admin cache tab. Same token/zone the
       # autodeploy script uses; set them in the box's .env.

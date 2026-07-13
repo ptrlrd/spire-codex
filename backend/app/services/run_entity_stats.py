@@ -237,13 +237,26 @@ SNAPSHOT_VERSION = 14
 # rebuild takes beats serving nothing: to users an empty stats page is
 # indistinguishable from the site losing its data.
 SNAPSHOT_MIN_COMPAT = 3
+
+
 # Leader rebuilds the heavy walk at most this often. The walk reads every run
-# blob (~750k files, ~80 min on the current box), so a 10-minute interval had the
-# leader walking almost continuously — one worker pegged, a full run + file scan
-# back-to-back — which starved the DB and slowed the whole site. These stats
-# (tier list / community / Codex Score) don't need minute-fresh data, so rebuild
-# a few times a day instead; the walk now runs a fraction of the time.
-_SNAPSHOT_REBUILD_SECONDS = 2 * 60 * 60
+# blob (~750k files). Serial it was ~80 min, so a short interval pinned one core
+# in a back-to-back walk that starved the DB and slowed the whole site — hence
+# the conservative 2h default. With the parallel rebuild
+# (ENTITY_STATS_REBUILD_WORKERS>1) the walk is far shorter, so the interval can be
+# lowered for fresher public numbers. Tunable via
+# ENTITY_STATS_REBUILD_INTERVAL_SECONDS; keep it comfortably above the observed
+# walk duration so the box isn't perpetually mid-rebuild (the walk now pegs all
+# the rebuild workers, not one core). Floored at 300s against a runaway loop.
+def _rebuild_interval_seconds() -> int:
+    try:
+        v = int(os.environ.get("ENTITY_STATS_REBUILD_INTERVAL_SECONDS", "7200"))
+    except ValueError:
+        v = 2 * 60 * 60
+    return max(300, v)
+
+
+_SNAPSHOT_REBUILD_SECONDS = _rebuild_interval_seconds()
 # Workers reload the snapshot from Mongo this often (cheap read).
 _SNAPSHOT_LOAD_SECONDS = 5 * 60
 
