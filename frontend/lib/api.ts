@@ -84,6 +84,8 @@ export interface Card {
    * the C# default of `true`, so a missing value means "yes, can spawn". */
   can_be_generated_in_combat: boolean | null;
   compendium_order: number;
+  /** A short "did you know" note (curated or derived), merged by the API. */
+  trivia?: string | null;
 }
 
 export interface CharacterDialogueLine {
