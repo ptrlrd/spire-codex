@@ -415,6 +415,14 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
             {/* Overview prose as the hero lead (replaces the old token-stripped
                 description lede, which rendered blanks like "Gain ."). */}
             <EntityProse kind="card" card={card} lead />
+            {card.trivia && (
+              <p className="mt-3 rounded-md border-l-2 border-[var(--accent-gold)]/50 bg-[var(--accent-gold)]/5 px-3 py-2 text-sm leading-relaxed text-[var(--text-secondary)]">
+                <span className="font-semibold text-[var(--accent-gold)]">
+                  {t("Did you know?", lang)}{" "}
+                </span>
+                {card.trivia}
+              </p>
+            )}
           </div>
 
           {/* Sticky ToC */}

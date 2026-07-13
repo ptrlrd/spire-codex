@@ -1,11 +1,44 @@
 """Card API endpoints."""
 
+import json
+from functools import lru_cache
+
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from ..models.schemas import Card
-from ..services.data_service import load_cards, load_translation_maps
+from ..services.data_service import DATA_DIR, load_cards, load_translation_maps
 from ..dependencies import get_lang, matches_search
 
 router = APIRouter(prefix="/api/cards", tags=["Cards"])
+
+# Card types with few enough members that "one of N" reads as a fun fact.
+_TRIVIA_TYPES = {"Status", "Curse", "Power"}
+
+
+@lru_cache(maxsize=1)
+def _curated_trivia() -> dict[str, str]:
+    """Hand-written 'did you know' lines keyed by card id, from a flat file the
+    card parser can't overwrite on regen. English-only; empty if the file's
+    absent."""
+    try:
+        with open(DATA_DIR / "card_trivia.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+            return data if isinstance(data, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def _resolve_trivia(card: dict, cards: list[dict]) -> str | None:
+    """A curated line if we have one, else a derived 'one of N <type>' fact for
+    the special card types (Status/Curse/Power)."""
+    curated = _curated_trivia().get(card["id"])
+    if curated:
+        return curated
+    ctype = card.get("type")
+    if ctype in _TRIVIA_TYPES:
+        n = sum(1 for c in cards if c.get("type") == ctype)
+        if n > 1:
+            return f"{card['name']} is one of {n} {ctype} cards in Slay the Spire 2."
+    return None
 
 
 @router.get("", response_model=list[Card])
@@ -82,5 +115,7 @@ def get_card(request: Request, card_id: str, lang: str = Depends(get_lang)):
     cards = load_cards(lang)
     for card in cards:
         if card["id"] == card_id.upper():
-            return card
+            trivia = _resolve_trivia(card, cards)
+            # Copy so the trivia we add doesn't stick to the lru-cached list.
+            return {**card, "trivia": trivia} if trivia else card
     raise HTTPException(status_code=404, detail=f"Card '{card_id}' not found")

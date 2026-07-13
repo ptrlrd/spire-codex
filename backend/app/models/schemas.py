@@ -56,6 +56,14 @@ class CardTypeVariant(BaseModel):
     riders: list[CardRiderEffect] | None = None
 
 
+class CardSource(BaseModel):
+    """Where a card comes from in combat, e.g. a monster that generates it."""
+
+    type: str
+    id: str
+    name: str
+
+
 class Card(BaseModel):
     id: str
     name: str
@@ -94,6 +102,12 @@ class Card(BaseModel):
     # surface the field when it's explicitly `false` to keep the payload tight.
     can_be_generated_in_combat: bool | None = None
     compendium_order: int = 0
+    # Which monsters generate this card in combat (parsed from the game code —
+    # see card_parser.build_card_sources). Absent on cards with no source.
+    sources: list[CardSource] | None = None
+    # A short "did you know" note — a curated line (data/card_trivia.json) or a
+    # derived one, merged in by the card endpoint. English-only, like the prose.
+    trivia: str | None = None
 
     @computed_field  # type: ignore[prop-decorator]
     @property
