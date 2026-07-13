@@ -36,6 +36,10 @@ services:
     environment:
       - DATA_DIR=/data
       - BETA_DATA_DIR=/data-beta
+      # Parallelize the entity-stats snapshot rebuild across N cores. 1 = off
+      # (the serial ~80min walk); capped at the box's CPU count. Set the value
+      # in the box .env after validating with scripts/validate_parallel_rebuild.py.
+      - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
       # Cloudflare purge from the admin cache tab. Same token/zone the
       # autodeploy script uses; set them in the box's .env.
