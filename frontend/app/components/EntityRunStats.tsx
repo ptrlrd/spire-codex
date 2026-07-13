@@ -59,6 +59,11 @@ interface Props {
    * the SSR HTML (crawlable) instead of a client-only "Loading" placeholder.
    * The component still re-fetches on mount to stay fresh. */
   initialStats?: EntityStats | null;
+  /** Controlled bracket: when provided, the pills drive this value instead of
+   * internal state, so a parent (e.g. the card page's infobox mini-stats) can
+   * scope to the same bracket the user picked. Uncontrolled if omitted. */
+  bracket?: string;
+  onBracketChange?: (b: string) => void;
 }
 
 /** Compact 1.2k / 44.8k style number for the wiki tiles + bars. */
@@ -119,9 +124,12 @@ function characterPretty(c: string): string {
  * state when the entity has no submitted runs yet so SEO crawlers
  * still see something other than spinners.
  */
-export default function EntityRunStats({ entityType, entityId, entityName, variant = "default", initialStats = null }: Props) {
+export default function EntityRunStats({ entityType, entityId, entityName, variant = "default", initialStats = null, bracket, onBracketChange }: Props) {
   const [stats, setStats] = useState<EntityStats | null>(initialStats);
-  const [selectedBracket, setSelectedBracket] = useState("all");
+  const [internalBracket, setInternalBracket] = useState("all");
+  // Controlled when a parent passes `bracket`; internal otherwise.
+  const selectedBracket = bracket ?? internalBracket;
+  const setSelectedBracket = onBracketChange ?? setInternalBracket;
   const { lang } = useLanguage();
 
   useEffect(() => {

@@ -37,12 +37,15 @@ const SPINE_COLOR: Record<string, string> = {
 
 // Headline figures for the infobox mini-stats block. Same endpoint EntityRunStats
 // fetches, so cachedFetch dedupes it (no extra request).
-interface MiniStats {
+interface MiniBracket {
   picks: number;
   win_rate: number;
   pick_rate: number;
   score: number | null;
   elo: number | null;
+}
+interface MiniStats extends MiniBracket {
+  brackets?: Record<string, MiniBracket>;
 }
 
 const typeIcons: Record<string, string> = {
@@ -171,6 +174,9 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
   // Scroll-spy: which section the ToC highlights.
   const [activeSection, setActiveSection] = useState<string>("performance");
   const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
+  // Bracket shared with EntityRunStats so the infobox mini-stats track the
+  // pill the user picked in the Community section.
+  const [statsBracket, setStatsBracket] = useState("all");
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
@@ -440,6 +446,8 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               entityName={card.name}
               variant="wiki"
               initialStats={initialStats}
+              bracket={statsBracket}
+              onBracketChange={setStatsBracket}
             />
           </section>
 
@@ -809,39 +817,44 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               </dl>
             </div>
 
-            {/* Community mini-stats */}
-            {miniStats && miniStats.picks > 0 && (
-              <div className="mini">
-                <div className="mh">{t("Community", lang)}</div>
-                <div className="mg">
-                  <div>
-                    <div
-                      className="mv"
-                      style={{ color: miniStats.win_rate >= 50 ? "var(--good)" : "var(--warn)" }}
-                    >
-                      {miniStats.win_rate}%
-                    </div>
-                    <div className="ml">{t("Win rate", lang)}</div>
-                  </div>
-                  <div>
-                    <div className="mv">{miniStats.pick_rate}%</div>
-                    <div className="ml">{t("Pick rate", lang)}</div>
-                  </div>
-                  {miniStats.score != null && (
+            {/* Community mini-stats — scoped to the bracket picked in the
+                Community section (falls back to the all-runs figures). */}
+            {(() => {
+              const mini = miniStats?.brackets?.[statsBracket] ?? miniStats;
+              if (!mini || mini.picks <= 0) return null;
+              return (
+                <div className="mini">
+                  <div className="mh">{t("Community", lang)}</div>
+                  <div className="mg">
                     <div>
-                      <div className="mv">{miniStats.score}</div>
-                      <div className="ml">{t("Codex Score", lang)}</div>
+                      <div
+                        className="mv"
+                        style={{ color: mini.win_rate >= 50 ? "var(--good)" : "var(--warn)" }}
+                      >
+                        {mini.win_rate}%
+                      </div>
+                      <div className="ml">{t("Win rate", lang)}</div>
                     </div>
-                  )}
-                  {miniStats.elo != null && (
                     <div>
-                      <div className="mv">{Math.round(miniStats.elo)}</div>
-                      <div className="ml">Elo</div>
+                      <div className="mv">{mini.pick_rate}%</div>
+                      <div className="ml">{t("Pick rate", lang)}</div>
                     </div>
-                  )}
+                    {mini.score != null && (
+                      <div>
+                        <div className="mv">{mini.score}</div>
+                        <div className="ml">{t("Codex Score", lang)}</div>
+                      </div>
+                    )}
+                    {mini.elo != null && (
+                      <div>
+                        <div className="mv">{Math.round(mini.elo)}</div>
+                        <div className="ml">Elo</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-            )}
+              );
+            })()}
           </div>
         </aside>
       </div>
