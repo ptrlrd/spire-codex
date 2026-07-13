@@ -904,7 +904,7 @@ export default function StatsClient() {
               lang={lang}
             />
           )}
-          {tab === "encounters" && <EncountersTab stats={stats} lp={lp} lang={lang} />}
+          {tab === "encounters" && <EncountersTab lp={lp} lang={lang} />}
         </>
       )}
     </div>
@@ -1579,52 +1579,92 @@ function PotionsTab({
 
 /* ------------------------- Encounters ------------------------- */
 
-function EncountersTab({ stats, lp, lang }: { stats: CommunityStats; lp: string; lang: string }) {
-  if (!stats.deadliest || stats.deadliest.length === 0) {
+interface EncStatRow {
+  encounter_id: string;
+  total: number;
+  fatal: number;
+  room_type?: string;
+  act?: number | string;
+}
+
+function EncountersTab({ lp, lang }: { lp: string; lang: string }) {
+  const [rows, setRows] = useState<EncStatRow[] | null>(null);
+  useEffect(() => {
+    cachedFetch<{ encounters: EncStatRow[] }>(`${API}/api/runs/encounter-stats?limit=200`)
+      .then((d) => setRows(d.encounters || []))
+      .catch(() => setRows([]));
+  }, []);
+
+  // Rank by deaths *per encounter* (share of parties that die to a fight), not
+  // raw death count — so rare-but-lethal bosses like Aeonglass rise to the top
+  // instead of being buried under the common early fights. The min-sample gate
+  // keeps a handful of unlucky runs from topping the list.
+  const MIN_FACED = 200;
+  const ranked = (rows ?? [])
+    .filter((e) => e.total >= MIN_FACED)
+    .map((e) => ({ ...e, rate: (e.fatal / e.total) * 100 }))
+    .sort((a, b) => b.rate - a.rate)
+    .slice(0, 30);
+
+  if (rows === null) {
+    return (
+      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 text-center text-sm text-[var(--text-muted)]">
+        {t("Loading…", lang)}
+      </div>
+    );
+  }
+  if (ranked.length === 0) {
     return (
       <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 text-center text-sm text-[var(--text-muted)]">
         {t("No deadly encounters recorded.", lang)}
       </div>
     );
   }
-  const max = Math.max(1, ...stats.deadliest.map((d) => d.count));
+  const maxRate = Math.max(1, ...ranked.map((r) => r.rate));
   return (
     <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-      <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+      <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-1">
         {t("Deadliest Encounters", lang)}
       </h2>
+      <p className="text-xs text-[var(--text-muted)] mb-3">
+        {t("Ranked by deaths per encounter — the share of parties that die to a fight, not raw death count.", lang)}
+      </p>
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b border-[var(--border-subtle)] text-[var(--text-muted)] text-xs">
             <th className="text-left py-2 font-medium w-10">#</th>
             <th className="text-left py-2 font-medium">{t("Encounter", lang)}</th>
-            <th className="text-right py-2 font-medium">{t("Deaths", lang)}</th>
-            <th className="py-2 font-medium w-48"></th>
+            <th className="text-right py-2 font-medium">{t("Per encounter", lang)}</th>
+            <th className="text-right py-2 font-medium">{t("Deaths / faced", lang)}</th>
+            <th className="py-2 font-medium w-40"></th>
           </tr>
         </thead>
         <tbody>
-          {stats.deadliest.map((d, i) => (
+          {ranked.map((r, i) => (
             <tr
-              key={d.encounter}
+              key={r.encounter_id}
               className="border-b border-[var(--border-subtle)] last:border-0 hover:bg-[var(--bg-card-hover)]/60 transition-colors"
             >
               <td className="py-2 text-[var(--text-muted)] tabular-nums">{i + 1}</td>
               <td className="py-2">
                 <Link
-                  href={`${lp}/encounters/${d.encounter.toLowerCase()}`}
+                  href={`${lp}/encounters/${r.encounter_id.toLowerCase()}`}
                   className="text-[var(--text-primary)] hover:text-[var(--accent-gold)] font-medium transition-colors"
                 >
-                  {displayName(`ENCOUNTER.${d.encounter}`)}
+                  {displayName(`ENCOUNTER.${r.encounter_id}`)}
                 </Link>
               </td>
               <td className="py-2 text-right text-red-400 tabular-nums font-semibold">
-                {d.count}
+                {r.rate.toFixed(1)}%
+              </td>
+              <td className="py-2 text-right text-[var(--text-secondary)] tabular-nums text-xs">
+                {r.fatal.toLocaleString()} / {r.total.toLocaleString()}
               </td>
               <td className="py-2 pl-4">
                 <div className="h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                   <div
                     className="h-full rounded-full bg-red-400/70"
-                    style={{ width: `${(d.count / max) * 100}%` }}
+                    style={{ width: `${(r.rate / maxRate) * 100}%` }}
                   />
                 </div>
               </td>
