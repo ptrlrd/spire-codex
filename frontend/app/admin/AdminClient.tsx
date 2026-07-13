@@ -53,6 +53,7 @@ interface LiveTotal {
 interface Live {
   current: LivePlayer[];
   all_time: LiveTotal[];
+  peak?: { value: number; at?: string | null } | null;
 }
 
 function fmtAge(seconds?: number | null): string {
@@ -244,6 +245,19 @@ export default function AdminClient() {
                 </span>
                 <span className="text-xs text-[var(--text-secondary)]">
                   {(live?.current?.length ?? 0).toLocaleString()} playing now
+                  {live?.peak?.value != null && (
+                    <span
+                      className="text-[var(--text-muted)]"
+                      title={
+                        live.peak.at
+                          ? `peak set ${new Date(live.peak.at).toLocaleString()}`
+                          : undefined
+                      }
+                    >
+                      {" · peak "}
+                      {live.peak.value.toLocaleString()} all-time
+                    </span>
+                  )}
                 </span>
               </div>
               {live && live.current.length > 0 ? (

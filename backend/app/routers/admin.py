@@ -188,9 +188,13 @@ def live(request: Request):
     _audit(request)
     from ..services import presence_db
 
+    # Capture the current concurrency against the all-time peak while we're here,
+    # so opening this view records a high even if no new session fired it.
+    presence_db.note_peak()
     return {
         "current": presence_db.current_summary(50),
         "all_time": presence_db.top_live_totals(20),
+        "peak": presence_db.peak_concurrent(),
     }
 
 

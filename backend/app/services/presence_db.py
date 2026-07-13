@@ -39,6 +39,7 @@ CREDIT_CAP_SECONDS = 150
 
 _coll = None  # lazy — set by _presence_coll
 _totals_coll = None  # lazy — set by _live_totals_coll
+_meta_coll = None  # lazy — set by _live_meta_coll
 
 
 def _presence_coll():
@@ -66,6 +67,17 @@ def _live_totals_coll():
     return _totals_coll
 
 
+def _live_meta_coll():
+    """Small key/value collection for live-stats singletons (currently just the
+    all-time peak of concurrent players). No TTL."""
+    global _meta_coll
+    if _meta_coll is None:
+        from .runs_db_mongo import get_database
+
+        _meta_coll = get_database().live_meta
+    return _meta_coll
+
+
 # Rolling per-player window of ticker events ("played X", "fighting Y"); old entries
 # fall off as new beats arrive, and the whole doc still dies with the 90s TTL.
 EVENT_WINDOW = 50
@@ -89,8 +101,13 @@ def heartbeat(
         update["$unset"] = {k: "" for k in unset}
     if events:
         update["$push"] = {"events": {"$each": events, "$slice": -EVENT_WINDOW}}
-    _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
+    res = _presence_coll().update_one({"_id": steam_id}, update, upsert=True)
     _credit_live_time(steam_id, fields.get("username"), now)
+    # A new presence doc means a session just started, i.e. concurrency ticked
+    # up — the only moment the peak can rise. Existing players' beats are updates
+    # and skip the count entirely.
+    if res.upserted_id is not None:
+        note_peak(now)
 
 
 def _credit_live_time(steam_id: str, username: str | None, now: datetime) -> None:
@@ -251,6 +268,43 @@ def top_live_totals(limit: int = 20) -> list[dict]:
         return out
     except Exception:
         return []
+
+
+def note_peak(now: datetime | None = None) -> None:
+    """Bump the all-time peak of concurrent live players when the current count
+    exceeds it. Cheap: an indexed count plus a write only when a new high is set.
+    Called on each new session (a heartbeat insert) and when the admin live view
+    is polled, so the mark is captured whether or not anyone is watching."""
+    try:
+        now = now or datetime.now(timezone.utc)
+        cutoff = now - timedelta(seconds=PRESENCE_TTL_SECONDS)
+        current = _presence_coll().count_documents({"updated_at": {"$gte": cutoff}})
+        doc = _live_meta_coll().find_one({"_id": "peak_concurrent"})
+        if not doc or current > int(doc.get("value") or 0):
+            _live_meta_coll().update_one(
+                {"_id": "peak_concurrent"},
+                {"$set": {"value": current, "at": now}},
+                upsert=True,
+            )
+    except Exception:
+        pass
+
+
+def peak_concurrent() -> dict | None:
+    """The all-time high-water mark of simultaneous live players, or None."""
+    try:
+        d = _live_meta_coll().find_one({"_id": "peak_concurrent"})
+        if not d:
+            return None
+        at = d.get("at")
+        return {
+            "value": int(d.get("value") or 0),
+            "at": at.replace(tzinfo=timezone.utc).isoformat()
+            if isinstance(at, datetime)
+            else None,
+        }
+    except Exception:
+        return None
 
 
 def _public(d: dict) -> dict:
