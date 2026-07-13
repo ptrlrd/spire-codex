@@ -76,7 +76,7 @@
 /* ── sections ── */
 .card-rvmp section { padding-top: 40px; scroll-margin-top: 128px; }
 .card-rvmp h2 { font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0 0 4px; color: var(--text); }
-.card-rvmp .h-note { color: var(--text-3); font-size: 13px; margin: 0 0 18px; }
+.card-rvmp .h-note { color: var(--text-2); font-size: 13px; margin: 0 0 18px; }
 .card-rvmp .subh { font-family: var(--serif); font-weight: 600; font-size: 17px; margin: 30px 0 4px; color: var(--text); }
 
 /* inline entity cross-links */
@@ -106,7 +106,7 @@
 .card-rvmp .insight { margin-top: 16px; font-size: 14px; color: var(--text-2); background: var(--spine-soft);
   border-radius: var(--radius); padding: 12px 15px; border: 1px solid color-mix(in srgb, var(--spine) 30%, transparent); }
 .card-rvmp .insight b { color: var(--text); }
-.card-rvmp .stat-note { margin-top: 14px; font-size: 12px; color: var(--text-3); }
+.card-rvmp .stat-note { margin-top: 14px; font-size: 13px; color: var(--text-2); }
 
 /* ── trend charts (weekly win rate / pick rate over time) ── */
 .card-rvmp .et-trends { margin-top: 8px; }
