@@ -24,7 +24,8 @@
         "intent": "Attack",
         "damage": {
           "normal": 11,
-          "ascension": 12
+          "ascension": 12,
+          "hit_count": 2
         }
       },
       {
@@ -40,7 +41,8 @@
       },
       "EyeLasers": {
         "normal": 11,
-        "ascension": 12
+        "ascension": 12,
+        "hit_count": 2
       }
     },
     "block_values": {
