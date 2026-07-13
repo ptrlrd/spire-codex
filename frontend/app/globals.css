@@ -34,8 +34,13 @@
   --color-colorless: #6b7280;
   --color-curse: #8b1a1a;
   --text-primary: #e0ddd8;
-  --text-secondary: #8a9298;
-  --text-muted: #506570;
+  /* secondary/muted were too dim on the dark ground: muted #506570 was ~2.7:1
+     on the card surface, well below WCAG AA (4.5:1) and hard to read wherever
+     quiet sub-text appears. Lifted both into a high-contrast 8-10:1 band
+     (secondary ~9.5:1, muted ~8.2:1 on the card surface) so sub-text reads
+     clearly everywhere, keeping a step down from primary. Light theme unchanged. */
+  --text-secondary: #bfc4ca;
+  --text-muted: #b1b7be;
   --border-subtle: #1e3040;
   --border-accent: #2a4555;
 }
