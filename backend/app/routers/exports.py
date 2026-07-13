@@ -67,8 +67,20 @@ def _parse_iso(value: str, field: str) -> datetime:
 
 def _encode_cursor(submitted_at, run_hash: str) -> str:
     """Encode a keyset position as an opaque, URL-safe token. Runs missing a
-    submitted_at sort first, encoded with an empty timestamp."""
-    sa = submitted_at.isoformat() if submitted_at is not None else ""
+    submitted_at sort first, encoded with an empty timestamp.
+
+    submitted_at is normally a datetime (or None). Legacy runs imported from the
+    old SQLite store can still hold it as a string, which has no isoformat() and
+    used to crash here, 500-ing the whole page. Coerce anything non-datetime to
+    text so a page boundary never raises. tools/backfill_run_submitted_at.py
+    converts those strings to real dates so the keyset walk covers the whole
+    corpus; until it runs, such a boundary just reads as its raw timestamp."""
+    if submitted_at is None:
+        sa = ""
+    elif hasattr(submitted_at, "isoformat"):
+        sa = submitted_at.isoformat()
+    else:
+        sa = str(submitted_at)
     return base64.urlsafe_b64encode(f"{sa}|{run_hash}".encode("utf-8")).decode("ascii")
 
 
