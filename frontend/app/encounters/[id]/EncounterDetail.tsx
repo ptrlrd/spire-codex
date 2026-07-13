@@ -11,6 +11,7 @@ import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import EntityProse from "@/app/components/EntityProse";
+import type { EncounterStat } from "@/lib/encounter-stats";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import "../../card-revamp.css";
 import "../../monster-encounter-extra.css";
@@ -30,7 +31,7 @@ const roomTypeBadge: Record<string, string> = {
   Boss: "bg-red-950/50 text-red-300 border-red-900/30",
 };
 
-export default function EncounterDetail({ initialEncounter }: { initialEncounter?: Encounter | null } = {}) {
+export default function EncounterDetail({ initialEncounter, encounterStat }: { initialEncounter?: Encounter | null; encounterStat?: EncounterStat | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { lang } = useLanguage();
@@ -99,7 +100,10 @@ export default function EncounterDetail({ initialEncounter }: { initialEncounter
   const hasMonsters = !!(encounter.monsters && encounter.monsters.length > 0);
   const hasLoss = !!encounter.loss_text;
 
+  const hasCommunity = !!(encounterStat && encounterStat.total > 0);
+
   const tocItems: { id: string; label: string }[] = [
+    ...(hasCommunity ? [{ id: "community", label: t("Community", lang) }] : []),
     ...(hasMonsters ? [{ id: "composition", label: t("Monsters", lang) }] : []),
     ...(hasLoss ? [{ id: "loss", label: "Loss Text" }] : []),
     { id: "history", label: t("Version history", lang) },
@@ -148,6 +152,28 @@ export default function EncounterDetail({ initialEncounter }: { initialEncounter
               </a>
             ))}
           </nav>
+
+          {/* Community deadliness — how often this fight is entered and how
+              many runs it ends. Data from /api/runs/encounter-stats. */}
+          {hasCommunity && (
+            <section id="community">
+              <h2>{t("Community", lang)}</h2>
+              <p className="desc-body">
+                In community-submitted runs, <b>{encounter.name}</b> has been
+                encountered <b>{encounterStat!.total.toLocaleString()}</b> times
+                and killed <b>{encounterStat!.fatal.toLocaleString()}</b>{" "}
+                {encounterStat!.fatal === 1 ? "player" : "players"} (
+                {((encounterStat!.fatal / encounterStat!.total) * 100).toFixed(1)}%
+                of the runs that reach it).
+              </p>
+              {(encounterStat!.avg_damage > 0 || encounterStat!.avg_turns > 0) && (
+                <p className="h-note">
+                  It deals an average of <b>{encounterStat!.avg_damage}</b> damage
+                  over <b>{encounterStat!.avg_turns}</b> turns.
+                </p>
+              )}
+            </section>
+          )}
 
           {/* Composition (monsters in the fight) */}
           {hasMonsters && (
