@@ -30,8 +30,14 @@ export async function fetchEncounterStats(
     });
     if (!res.ok) return [];
     const data = (await res.json()) as { encounters?: EncounterStat[] };
+    // The endpoint can return several rows for one encounter_id (tiny beta /
+    // edge slices alongside the real aggregate). Keep the highest-volume row so
+    // a stray "2 runs, 0 damage" slice never masks the true numbers.
     const byId = new Map<string, EncounterStat>();
-    for (const r of data.encounters ?? []) byId.set(r.encounter_id, r);
+    for (const r of data.encounters ?? []) {
+      const prev = byId.get(r.encounter_id);
+      if (!prev || r.total > prev.total) byId.set(r.encounter_id, r);
+    }
     return encounterIds
       .map((id) => byId.get(id))
       .filter((x): x is EncounterStat => !!x && x.total > 0);
