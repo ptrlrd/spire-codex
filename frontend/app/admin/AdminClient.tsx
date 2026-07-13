@@ -237,6 +237,18 @@ export default function AdminClient() {
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mt-8 mb-3">
             Live players
           </h2>
+          <div className="grid grid-cols-2 gap-3 mb-4 sm:max-w-md">
+            <Card label="Live now" value={(live?.current?.length ?? 0).toLocaleString()} />
+            <Card
+              label="Peak concurrent"
+              value={live?.peak?.value != null ? live.peak.value.toLocaleString() : "-"}
+              sub={
+                live?.peak?.at
+                  ? `all-time · ${new Date(live.peak.at).toLocaleDateString()}`
+                  : "all-time"
+              }
+            />
+          </div>
           <div className="grid gap-4 md:grid-cols-2">
             <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 md:col-span-2">
               <div className="flex items-baseline justify-between mb-3 gap-3">
@@ -245,19 +257,6 @@ export default function AdminClient() {
                 </span>
                 <span className="text-xs text-[var(--text-secondary)]">
                   {(live?.current?.length ?? 0).toLocaleString()} playing now
-                  {live?.peak?.value != null && (
-                    <span
-                      className="text-[var(--text-muted)]"
-                      title={
-                        live.peak.at
-                          ? `peak set ${new Date(live.peak.at).toLocaleString()}`
-                          : undefined
-                      }
-                    >
-                      {" · peak "}
-                      {live.peak.value.toLocaleString()} all-time
-                    </span>
-                  )}
                 </span>
               </div>
               {live && live.current.length > 0 ? (
