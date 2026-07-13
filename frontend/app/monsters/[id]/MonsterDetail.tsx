@@ -549,9 +549,10 @@ export default function MonsterDetail({
                 </>
               )}
 
-              {/* Attack Pattern — text description plus a visible move sequence.
-                  The sequence chips use localized move names, so they render in
-                  every language even when the English description is thin. */}
+              {/* Attack Pattern — the localized move-name sequence (chips with
+                  arrows). Falls back to the text description only when there
+                  aren't enough steps to form a chip sequence, so the two never
+                  duplicate each other. */}
               {monster.attack_pattern && (() => {
                 const steps = patternSteps(monster.attack_pattern!, monster.moves || []);
                 const desc = monster.attack_pattern!.description;
@@ -559,8 +560,7 @@ export default function MonsterDetail({
                 return (
                   <>
                     <h3 className="subh">Attack Pattern</h3>
-                    {desc && <p className="desc-body">{desc}</p>}
-                    {steps.length > 1 && (
+                    {steps.length > 1 ? (
                       <div className="atk-seq">
                         {steps.map((s, i) => (
                           <span key={i} className="atk-step-wrap">
@@ -572,6 +572,8 @@ export default function MonsterDetail({
                           <span className="atk-repeat" title={t("Repeats", lang)}>↻</span>
                         )}
                       </div>
+                    ) : (
+                      desc && <p className="desc-body">{desc}</p>
                     )}
                   </>
                 );

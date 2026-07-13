@@ -164,6 +164,7 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
             <div className="lede">
               <RichDescription text={keyword.description} />
             </div>
+            <EntityProse kind="keyword" keyword={keyword} lead />
           </div>
 
           <section id="cards">
@@ -188,9 +189,6 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
             />
 
             <FullCardGrid cards={filtered} />
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="keyword" keyword={keyword} />
           </section>
         </main>
       </div>

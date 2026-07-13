@@ -313,11 +313,6 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     Ancient: "bg-red-600/30 text-red-300",
   };
 
-  // Plain-text lede from the character description (rich tags + newlines stripped).
-  const ledeText = char.description
-    ? char.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
-
   const hasDeck = char.starting_deck.length > 0;
   const hasStartRelics = char.starting_relics.length > 0;
   const hasCommunity =
@@ -378,7 +373,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
               )}
             </p>
             <h1>{char.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="character" character={char} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -401,9 +396,6 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
             <div className="desc-quote">
               <RichDescription text={char.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="character" character={char} />
           </section>
 
           {/* Starting Deck */}

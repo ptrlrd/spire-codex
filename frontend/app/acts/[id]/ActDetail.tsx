@@ -80,12 +80,6 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
 
   const titleCase = (s: string) => s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
-  const summaryBits: string[] = [];
-  if (act.num_rooms) summaryBits.push(`${act.num_rooms} rooms`);
-  if (act.bosses.length > 0) summaryBits.push(`${act.bosses.length} bosses`);
-  if (act.encounters.length > 0) summaryBits.push(`${act.encounters.length} encounters`);
-  if (act.events.length > 0) summaryBits.push(`${act.events.length} events`);
-
   const tocItems: { id: string; label: string }[] = [
     ...(act.bosses.length > 0 ? [{ id: "bosses", label: "Bosses" }] : []),
     ...(act.encounters.length > 0 ? [{ id: "encounters", label: "Encounters" }] : []),
@@ -117,7 +111,7 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
               )}
             </p>
             <h1>{act.name}</h1>
-            {summaryBits.length > 0 && <p className="lede">{summaryBits.join(" · ")}</p>}
+            <EntityProse kind="act" act={act} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -200,9 +194,6 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
             <LocalizedNames entityType="acts" entityId={id} />
             <EntityHistory entityType="acts" entityId={id} />
           </section>
-
-          {/* Programmatic prose block for SEO */}
-          <EntityProse kind="act" act={act} />
         </main>
       </div>
     </div>

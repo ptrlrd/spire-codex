@@ -53,11 +53,6 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
     );
   }
 
-  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
-  const ledeText = affliction.description
-    ? affliction.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
-
   return (
     <div className="card-rvmp">
       <div className="cd-top">
@@ -80,7 +75,7 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
               )}
             </p>
             <h1>{affliction.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="affliction" affliction={affliction} lead />
           </div>
 
           <section id="description">
@@ -88,9 +83,6 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
             <div className="desc-quote">
               <RichDescription text={affliction.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="affliction" affliction={affliction} />
           </section>
 
           {affliction.extra_card_text && (

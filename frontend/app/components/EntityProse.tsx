@@ -63,7 +63,7 @@ interface AfflictionProseProps { kind: "affliction"; affliction: Affliction; }
 interface AchievementProseProps { kind: "achievement"; achievement: Achievement; }
 interface ActProseProps { kind: "act"; act: Act; }
 interface AscensionProseProps { kind: "ascension"; ascension: Ascension; }
-type Props =
+type Props = (
   | RelicProseProps
   | PotionProseProps
   | PowerProseProps
@@ -80,7 +80,13 @@ type Props =
   | AfflictionProseProps
   | AchievementProseProps
   | ActProseProps
-  | AscensionProseProps;
+  | AscensionProseProps
+) & {
+  // When true the prose renders as a hero lead (no top rule) instead of the
+  // default bottom block. Entity detail pages pass this to put the overview
+  // right under the H1; relics/potions/powers omit it (bottom of overview tab).
+  lead?: boolean;
+};
 
 // "a"/"an" by leading vowel sound (good enough for our vocabulary).
 function article(word: string): string {
@@ -113,7 +119,7 @@ export default function EntityProse(props: Props) {
     if (!isEnglish) {
       // Non-English: single sentence using ONLY localized API fields.
       // No English connective text → no duplicate-content signal.
-      return <Prose sentences={[`${name} · ${rarity} · ${pool}`]} />;
+      return <Prose lead={props.lead} sentences={[`${name} · ${rarity} · ${pool}`]} />;
     }
 
     const sentences: string[] = [];
@@ -130,7 +136,7 @@ export default function EntityProse(props: Props) {
     sentences.push(
       `Like every relic in Slay the Spire 2, ${name} is preserved across combats unless removed by an event.`
     );
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "potion") {
@@ -140,7 +146,7 @@ export default function EntityProse(props: Props) {
     const pool = (p as Potion & { pool?: string | null }).pool;
 
     if (!isEnglish) {
-      return <Prose sentences={[`${name} · ${rarity}${pool ? ` · ${pool}` : ""}`]} />;
+      return <Prose lead={props.lead} sentences={[`${name} · ${rarity}${pool ? ` · ${pool}` : ""}`]} />;
     }
 
     const sentences: string[] = [];
@@ -151,7 +157,7 @@ export default function EntityProse(props: Props) {
     sentences.push(
       `${name} can be saved between combats and used at any point during your turn. Effects trigger immediately and the potion is consumed.`
     );
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "card") {
@@ -161,7 +167,7 @@ export default function EntityProse(props: Props) {
       ironclad: "Ironclad", silent: "Silent", defect: "Defect", necrobinder: "Necrobinder", regent: "Regent",
     };
     if (!isEnglish) {
-      return <Prose sentences={[`${name} · ${c.rarity} · ${c.type}`]} />;
+      return <Prose lead={props.lead} sentences={[`${name} · ${c.rarity} · ${c.type}`]} />;
     }
     const who = pools[c.color] ? ` for the ${pools[c.color]}` : "";
     const cost = c.is_x_cost ? "X" : `${c.cost}`;
@@ -178,14 +184,14 @@ export default function EntityProse(props: Props) {
     if (c.keywords && c.keywords.length) {
       sentences.push(`It carries the ${listWords(c.keywords)} keyword${c.keywords.length > 1 ? "s" : ""}.`);
     }
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "enchantment") {
     const e = props.enchantment;
     const name = e.name;
     if (!isEnglish) {
-      return <Prose sentences={[`${name}${e.card_type ? ` · ${e.card_type}` : ""}`]} />;
+      return <Prose lead={props.lead} sentences={[`${name}${e.card_type ? ` · ${e.card_type}` : ""}`]} />;
     }
     const sentences: string[] = [];
     sentences.push(
@@ -196,14 +202,14 @@ export default function EntityProse(props: Props) {
         ? `${name} stacks, so a single card can hold more than one for a compounding effect.`
         : `${name} does not stack; a card can carry it only once.`,
     );
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "character") {
     const ch = props.character;
     const name = ch.name;
     if (!isEnglish) {
-      return <Prose sentences={[`${name}${ch.starting_hp != null ? ` · ${ch.starting_hp} HP` : ""}`]} />;
+      return <Prose lead={props.lead} sentences={[`${name}${ch.starting_hp != null ? ` · ${ch.starting_hp} HP` : ""}`]} />;
     }
     const sentences: string[] = [];
     const stats: string[] = [];
@@ -221,13 +227,13 @@ export default function EntityProse(props: Props) {
     }
     if (ch.orb_slots) sentences.push(`${name} channels orbs, with ${ch.orb_slots} orb slot${ch.orb_slots === 1 ? "" : "s"} to start.`);
     if (ch.unlocks_after) sentences.push(`${name} unlocks after ${ch.unlocks_after}.`);
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "orb") {
     const o = props.orb;
     const name = o.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     const cards = o.channeled_by_cards?.length || 0;
     const relics = o.channeled_by_relics?.length || 0;
     const sentences: string[] = [];
@@ -238,13 +244,13 @@ export default function EntityProse(props: Props) {
       if (relics) src.push(`${relics} relic${relics === 1 ? "" : "s"}`);
       sentences.push(`${name} is channeled by ${listWords(src)} in the game.`);
     }
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "event") {
     const ev = props.event;
     const name = ev.name;
-    if (!isEnglish) return <Prose sentences={[`${name}${ev.act ? ` · ${ev.act}` : ""}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}${ev.act ? ` · ${ev.act}` : ""}`]} />;
     const sentences: string[] = [];
     const typeWord = ev.type && ev.type.toLowerCase() !== "event" ? `${ev.type.toLowerCase()} event` : "event";
     sentences.push(`${name} is ${article(typeWord)} ${typeWord} in Slay the Spire 2${ev.act ? `, encountered in ${ev.act}` : ""}.`);
@@ -253,13 +259,13 @@ export default function EntityProse(props: Props) {
     if (ev.relics && ev.relics.length) {
       sentences.push(`It can reward the ${listWords(ev.relics.map(titleCaseId))} relic${ev.relics.length > 1 ? "s" : ""}.`);
     }
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "encounter") {
     const en = props.encounter;
     const name = en.name;
-    if (!isEnglish) return <Prose sentences={[`${name}${en.room_type ? ` · ${en.room_type}` : ""}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}${en.room_type ? ` · ${en.room_type}` : ""}`]} />;
     const room = (en.room_type || "combat").toLowerCase();
     const monsters = (en.monsters || []).map((mm) => mm.name);
     let s1 = `${name} is ${article(room)} ${room} encounter in Slay the Spire 2${en.act ? `, fought in ${en.act}` : ""}`;
@@ -269,12 +275,12 @@ export default function EntityProse(props: Props) {
     }
     const sentences: string[] = [s1 + "."];
     if (en.is_weak) sentences.push(`It is flagged as one of the weaker fights for its act.`);
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "keyword") {
     const name = props.keyword.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     return (
       <Prose
         sentences={[
@@ -287,7 +293,7 @@ export default function EntityProse(props: Props) {
 
   if (props.kind === "intent") {
     const name = props.intent.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     return (
       <Prose
         sentences={[
@@ -300,7 +306,7 @@ export default function EntityProse(props: Props) {
 
   if (props.kind === "modifier") {
     const name = props.modifier.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     return (
       <Prose
         sentences={[
@@ -314,7 +320,7 @@ export default function EntityProse(props: Props) {
   if (props.kind === "affliction") {
     const af = props.affliction;
     const name = af.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     const sentences: string[] = [];
     sentences.push(`${name} is an affliction in Slay the Spire 2, a lasting negative effect that follows your character rather than a single card or combat.`);
     sentences.push(
@@ -322,12 +328,12 @@ export default function EntityProse(props: Props) {
         ? `${name} can stack, so repeated sources make it progressively worse.`
         : `${name} does not stack; picking it up again has no added effect.`,
     );
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "achievement") {
     const name = props.achievement.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     return (
       <Prose
         sentences={[
@@ -341,7 +347,7 @@ export default function EntityProse(props: Props) {
   if (props.kind === "act") {
     const ac = props.act;
     const name = ac.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     const sentences: string[] = [];
     let s1 = `${name} is an act in Slay the Spire 2`;
     if (ac.num_rooms) s1 += `, spanning around ${ac.num_rooms} rooms from entrance to boss`;
@@ -351,13 +357,13 @@ export default function EntityProse(props: Props) {
     if (ac.encounters?.length) counts.push(`${ac.encounters.length} combat encounter${ac.encounters.length === 1 ? "" : "s"}`);
     if (ac.events?.length) counts.push(`${ac.events.length} event${ac.events.length === 1 ? "" : "s"}`);
     if (counts.length) sentences.push(`It includes ${listWords(counts)}.`);
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "ascension") {
     const as = props.ascension;
     const name = as.name;
-    if (!isEnglish) return <Prose sentences={[`${name}`]} />;
+    if (!isEnglish) return <Prose lead={props.lead} sentences={[`${name}`]} />;
     const sentences: string[] =
       as.level > 0
         ? [
@@ -368,7 +374,7 @@ export default function EntityProse(props: Props) {
             `${name} is the base difficulty in Slay the Spire 2, played without any Ascension modifiers.`,
             `Clearing a run here unlocks Ascension 1, the first of the stacking difficulty levels.`,
           ];
-    return <Prose sentences={sentences} />;
+    return <Prose lead={props.lead} sentences={sentences} />;
   }
 
   if (props.kind === "monster") {
@@ -459,7 +465,7 @@ export default function EntityProse(props: Props) {
   const stack = pw.stack_type || "Counter";
 
   if (!isEnglish) {
-    return <Prose sentences={[`${name} · ${type} · ${stack}`]} />;
+    return <Prose lead={props.lead} sentences={[`${name} · ${type} · ${stack}`]} />;
   }
 
   const sentences: string[] = [];
@@ -486,14 +492,14 @@ export default function EntityProse(props: Props) {
       `${name} is not directly applied by any cards in the player's pool, it appears via enemy moves, relics, or events.`
     );
   }
-  return <Prose sentences={sentences} />;
+  return <Prose lead={props.lead} sentences={sentences} />;
 }
 
 function Prose({ sentences, lead }: { sentences: string[]; lead?: boolean }) {
   // lead: rendered as an intro right under a page hero (no top border/rule).
   if (lead) {
     return (
-      <section className="mon-lead">
+      <section className="entity-lead">
         {sentences.map((s, i) => (
           <p key={i}>{s}</p>
         ))}

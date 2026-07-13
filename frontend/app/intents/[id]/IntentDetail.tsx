@@ -54,11 +54,6 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
     );
   }
 
-  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
-  const ledeText = intent.description
-    ? intent.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
-
   return (
     <div className="card-rvmp">
       <div className="cd-top">
@@ -75,7 +70,7 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
               <span>{t("Intent", lang)}</span>
             </p>
             <h1>{intent.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="intent" intent={intent} lead />
           </div>
 
           <section id="description">
@@ -83,9 +78,6 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
             <div className="desc-quote">
               <RichDescription text={intent.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="intent" intent={intent} />
           </section>
 
           <section id="history">

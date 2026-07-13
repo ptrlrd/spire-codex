@@ -97,10 +97,6 @@ export default function EnchantmentDetail({
   }
 
   const cardTypes = enchantment.card_type ? enchantment.card_type.split(", ") : [];
-  // Plain-text lede from the enchantment effect (rich tags + newlines stripped).
-  const ledeText = enchantment.description
-    ? enchantment.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
 
   const tocItems: { id: string; label: string }[] = [
     { id: "description", label: t("Description", lang) },
@@ -138,7 +134,7 @@ export default function EnchantmentDetail({
               )}
             </p>
             <h1>{enchantment.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="enchantment" enchantment={enchantment} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -170,9 +166,6 @@ export default function EnchantmentDetail({
                 </div>
               </>
             )}
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="enchantment" enchantment={enchantment} />
           </section>
 
           {/* Cards it can apply to */}

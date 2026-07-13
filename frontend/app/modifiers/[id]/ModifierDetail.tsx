@@ -53,11 +53,6 @@ export default function ModifierDetail({ initialModifier }: { initialModifier?: 
     );
   }
 
-  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
-  const ledeText = modifier.description
-    ? modifier.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
-
   return (
     <div className="card-rvmp">
       <div className="cd-top">
@@ -74,7 +69,7 @@ export default function ModifierDetail({ initialModifier }: { initialModifier?: 
               <span>{t("Modifier", lang)}</span>
             </p>
             <h1>{modifier.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="modifier" modifier={modifier} lead />
           </div>
 
           <section id="description">
@@ -82,9 +77,6 @@ export default function ModifierDetail({ initialModifier }: { initialModifier?: 
             <div className="desc-quote">
               <RichDescription text={modifier.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="modifier" modifier={modifier} />
           </section>
 
           <section id="history">

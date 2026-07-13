@@ -104,6 +104,7 @@ export default function AchievementDetail({ initialAchievement }: { initialAchie
               <span>Achievement</span>
             </p>
             <h1>{achievement.name}</h1>
+            <EntityProse kind="achievement" achievement={achievement} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -126,9 +127,6 @@ export default function AchievementDetail({ initialAchievement }: { initialAchie
             <div className="desc-quote">
               <RichDescription text={achievement.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="achievement" achievement={achievement} />
           </section>
 
           {/* Version history + localized names */}
