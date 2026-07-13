@@ -4,6 +4,7 @@ import { stripTags, clipMetaDescription, DEFAULT_OG_IMAGE, buildLanguageAlternat
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { fetchEncounterStats } from "@/lib/encounter-stats";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
@@ -76,10 +77,13 @@ export default async function Page({ params }: Props) {
     apiUnreachable = true;
   }
   if (!encounter && !apiUnreachable) redirectMissingEntity("encounters", id);
+  // Community "how deadly" numbers for this fight (encountered / killed), SSR'd.
+  const stats = encounter?.id ? await fetchEncounterStats([encounter.id]) : [];
+  const encounterStat = stats[0] ?? null;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EncounterDetail initialEncounter={encounter} />
+      <EncounterDetail initialEncounter={encounter} encounterStat={encounterStat} />
     </>
   );
 }
