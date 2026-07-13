@@ -12,6 +12,7 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityHistory from "@/app/components/EntityHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
+import EntityPairings from "@/app/components/EntityPairings";
 import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
@@ -281,6 +282,8 @@ export default function RelicDetail({
               ]}
             />
           </section>
+
+          <EntityPairings kind="relics" id={id} name={relic.name} lang={lang} lp={lp} />
 
           {/* Version history + localized names */}
           <section id="history">

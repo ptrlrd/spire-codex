@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api/pairings", tags=["Pairings"])
 
 
 @router.get("/{item_type}/{item_id}")
-def get_item_pairings(item_type: str, item_id: str):
+def get_item_pairings(item_type: str, item_id: str, lang: str = "eng"):
     """Which cards / relics / potions show up in the same runs as this item.
 
     Each partner carries `co` (co-occurrence count), both confidence directions
@@ -25,7 +25,7 @@ def get_item_pairings(item_type: str, item_id: str):
     """
     if item_type not in ("cards", "relics", "potions"):
         raise HTTPException(status_code=400, detail="bad item_type")
-    doc = get_pairings(item_type, item_id)
+    doc = get_pairings(item_type, item_id, lang)
     if not doc:
         return {"kind": item_type, "item_id": item_id.upper(), "partners": {}}
     return doc

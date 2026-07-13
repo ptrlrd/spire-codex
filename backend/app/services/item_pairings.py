@@ -32,6 +32,7 @@ import math
 import os
 from collections import defaultdict
 from datetime import datetime, timezone
+from functools import lru_cache
 from itertools import combinations
 from typing import Any
 
@@ -291,8 +292,36 @@ def build_and_store() -> int:
     return n
 
 
-def get_pairings(item_type: str, item_id: str) -> dict[str, Any] | None:
-    """Read one item's cached partners for the API. None if not computed yet."""
+@lru_cache(maxsize=32)
+def _name_maps(lang: str) -> dict[str, dict[str, str]]:
+    """Per-language {kind: {ID: display name}} for enriching partner ids at read
+    time. The cached pairings are language-agnostic (built once), so names are
+    resolved here per request. Cached per lang; catalogs are static per deploy."""
+    from .data_service import load_cards, load_potions, load_relics
+
+    def m(rows):
+        return {
+            (r["id"]).upper(): (r.get("name") or r["id"]) for r in rows if r.get("id")
+        }
+
+    try:
+        return {
+            "cards": m(load_cards(lang)),
+            "relics": m(load_relics(lang)),
+            "potions": m(load_potions(lang)),
+        }
+    except Exception:
+        logger.warning(
+            "item-pairings: name map load failed for %s", lang, exc_info=True
+        )
+        return {k: {} for k in _ITEM_KINDS}
+
+
+def get_pairings(
+    item_type: str, item_id: str, lang: str = "eng"
+) -> dict[str, Any] | None:
+    """Read one item's cached partners for the API, with each partner's
+    localized display name attached. None if not computed yet."""
     if not os.environ.get("MONGO_URL", "").strip():
         return None
     from .runs_db_mongo import _get_collection
@@ -304,4 +333,9 @@ def get_pairings(item_type: str, item_id: str) -> dict[str, Any] | None:
     if not doc:
         return None
     doc.pop("_id", None)
+    names = _name_maps(lang)
+    for kind, lst in (doc.get("partners") or {}).items():
+        nm = names.get(kind, {})
+        for p in lst:
+            p["name"] = nm.get(p["id"], p["id"])
     return doc
