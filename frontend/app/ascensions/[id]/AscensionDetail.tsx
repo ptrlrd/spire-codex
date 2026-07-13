@@ -117,7 +117,7 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
               <span>Level {ascension.level}</span>
             </p>
             <h1>{ascension.name}</h1>
-            <p className="lede">Ascension Level {ascension.level}</p>
+            <EntityProse kind="ascension" ascension={ascension} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -140,9 +140,6 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
             <div className="desc-quote">
               <RichDescription text={ascension.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="ascension" ascension={ascension} />
           </section>
 
           {/* Prev/Next navigation */}

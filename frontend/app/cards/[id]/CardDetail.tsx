@@ -345,11 +345,6 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
     card.target && card.target !== "None" && card.target !== "Self"
       ? card.target.replace(/([A-Z])/g, " $1").trim()
       : null;
-  // Plain-text lede from the card effect (rich tags + newlines stripped).
-  const ledeText = descText
-    ? descText.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
-
   const enchActive = selectedEnch !== "none" && cardEnchantments.includes(selectedEnch);
   // Infobox render: enchanted render > raw artwork (detail / beta / variant /
   // failed full render) > full engine render. Mirrors the old image logic while
@@ -411,7 +406,9 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               {card.name}
               {isUpgraded && <span className="up">+</span>}
             </h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            {/* Overview prose as the hero lead (replaces the old token-stripped
+                description lede, which rendered blanks like "Gain ."). */}
+            <EntityProse kind="card" card={card} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -549,6 +546,27 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               </>
             )}
 
+            {/* Keywords this card uses (Exhaust, Ethereal, Sly, ...) shown in
+                the description box, linked to their glossary pages. */}
+            {displayKeywords.length > 0 && (
+              <div className="kw-row">
+                {displayKeywords.map((kw) => {
+                  const data = keywordData[kw.toLowerCase()];
+                  const tip = data?.description || keywordTooltips[kw] || "";
+                  return (
+                    <HoverTooltip key={kw} title={data?.name || kw} content={tip}>
+                      <Link
+                        href={`${lp}/keywords/${(data?.id || kw).toLowerCase()}`}
+                        className="kw"
+                      >
+                        {data?.name || kw}
+                      </Link>
+                    </HoverTooltip>
+                  );
+                })}
+              </div>
+            )}
+
             {/* Powers applied */}
             {card.powers_applied && card.powers_applied.length > 0 && (
               <>
@@ -575,8 +593,6 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
               </>
             )}
 
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="card" card={card} />
           </section>
 
           {/* Relations */}

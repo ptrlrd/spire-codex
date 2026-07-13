@@ -58,6 +58,11 @@
   line-height: 1.04; margin: 12px 0 0; text-wrap: balance; color: var(--text); }
 .card-rvmp .hero h1 .up { color: var(--good); }
 .card-rvmp .lede { color: var(--text-2); font-size: 18px; margin: 14px 0 0; max-width: 60ch; }
+/* Programmatic overview prose rendered as a hero lead (EntityProse lead mode).
+   Sits under the H1 in place of the old token-stripped description lede. */
+.card-rvmp .entity-lead { margin: 14px 0 0; max-width: 64ch; font-size: 15px; line-height: 1.65; color: var(--text-2); }
+.card-rvmp .entity-lead p { margin: 0 0 10px; }
+.card-rvmp .entity-lead p:last-child { margin-bottom: 0; }
 
 /* ── sticky ToC ── */
 .card-rvmp .toc { position: sticky; top: 64px; z-index: 20; margin: 28px 0 0; padding: 10px 0;
@@ -209,6 +214,10 @@
   flex-wrap: wrap; justify-content: flex-end; align-items: center; }
 .card-rvmp .kw { display: inline-block; font-size: 11.5px; border: 1px solid var(--border-2); border-radius: 3px;
   padding: 1px 7px; color: var(--gold); }
+/* keyword chips shown inline in the description box */
+.card-rvmp .kw-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+a.kw { text-decoration: none; }
+.card-rvmp a.kw:hover { border-color: var(--gold); }
 
 /* mini community block */
 .card-rvmp .mini { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 13px 15px; }

@@ -150,10 +150,6 @@ export default function EventDetail({
     (event.pages && event.pages.length > 1);
   const hasRelics = event.relics && event.relics.length > 0;
   const hasDialogue = event.dialogue && Object.keys(event.dialogue).length > 0;
-  // Plain-text lede from the event description (rich tags + newlines stripped).
-  const ledeText = event.description
-    ? event.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
 
   const tocItems: { id: string; label: string }[] = [
     { id: "description", label: t("Description", lang) },
@@ -197,7 +193,7 @@ export default function EventDetail({
             </p>
             <h1>{event.name}</h1>
             {event.epithet && <p className="epithet">{event.epithet}</p>}
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="event" event={event} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -231,9 +227,6 @@ export default function EventDetail({
                 <RichDescription text={event.description} />
               </div>
             )}
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="event" event={event} />
           </section>
 
           {/* Choices & outcomes */}

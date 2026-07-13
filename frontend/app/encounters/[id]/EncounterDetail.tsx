@@ -132,6 +132,7 @@ export default function EncounterDetail({ initialEncounter }: { initialEncounter
               </span>
             </p>
             <h1>{encounter.name}</h1>
+            <EntityProse kind="encounter" encounter={encounter} lead />
           </div>
 
           {/* Sticky ToC */}
@@ -180,9 +181,6 @@ export default function EncounterDetail({ initialEncounter }: { initialEncounter
             <LocalizedNames entityType="encounters" entityId={id} />
             <EntityHistory entityType="encounters" entityId={id} />
           </section>
-
-          {/* Programmatic prose block for SEO */}
-          <EntityProse kind="encounter" encounter={encounter} />
         </main>
 
         {/* ===== INFOBOX column (sticky) ===== */}

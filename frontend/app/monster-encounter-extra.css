@@ -43,11 +43,6 @@
   border: 1px solid var(--border-2); color: var(--text-2); }
 .card-rvmp .chip .cn { color: var(--text); }
 
-/* ── monster overview lead prose (rendered right under the hero) ── */
-.card-rvmp .mon-lead { max-width: 64ch; margin: 2px 0 8px; font-size: 15px; line-height: 1.65; color: var(--text-2); }
-.card-rvmp .mon-lead p { margin: 0 0 10px; }
-.card-rvmp .mon-lead p:last-child { margin-bottom: 0; }
-
 /* ── readable per-move effect line (English only, sits above the numeric rows) ── */
 .card-rvmp .move-effect { font-size: 14px; line-height: 1.5; color: var(--text-2); margin: 0 0 10px; }
 

@@ -54,10 +54,6 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
     );
   }
 
-  // Plain-text lede: the effect with rich [tags] + whitespace stripped.
-  const ledeText = orb.description
-    ? orb.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
-    : "";
   const relGroups = [
     { label: `Cards that Channel ${orb.name}`, items: orb.channeled_by_cards, route: "cards" },
     { label: `Relics that Channel ${orb.name}`, items: orb.channeled_by_relics, route: "relics" },
@@ -80,7 +76,7 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
               <span>{t("Orb", lang)}</span>
             </p>
             <h1>{orb.name}</h1>
-            {ledeText && <p className="lede">{ledeText}</p>}
+            <EntityProse kind="orb" orb={orb} lead />
           </div>
 
           <section id="description">
@@ -88,9 +84,6 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
             <div className="desc-quote">
               <RichDescription text={orb.description} />
             </div>
-
-            {/* Programmatic prose block for SEO */}
-            <EntityProse kind="orb" orb={orb} />
           </section>
 
           {hasRelations && (

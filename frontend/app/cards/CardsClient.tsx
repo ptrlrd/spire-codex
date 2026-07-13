@@ -37,6 +37,7 @@ const typeOptions = [
   { label: "Attack", value: "Attack" },
   { label: "Skill", value: "Skill" },
   { label: "Power", value: "Power" },
+  { label: "Quest", value: "Quest" },
   { label: "Status", value: "Status" },
   { label: "Curse", value: "Curse" },
 ];
