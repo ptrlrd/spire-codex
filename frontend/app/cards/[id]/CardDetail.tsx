@@ -15,6 +15,7 @@ import EntityHistory from "@/app/components/EntityHistory";
 import RelatedCards from "@/app/components/RelatedCards";
 import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
+import EntityDraftRecs from "@/app/components/EntityDraftRecs";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
 import HoverTooltip from "@/app/components/HoverTooltip";
@@ -676,6 +677,8 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
           </section>
 
           <EntityPairings kind="cards" id={id} name={card.name} lang={lang} lp={lp} />
+
+          <EntityDraftRecs kind="cards" id={id} name={card.name} lang={lang} lp={lp} />
 
           {/* Version history + localized names */}
           <section id="history">

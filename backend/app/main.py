@@ -46,6 +46,7 @@ from .routers import (
     ancient_pools,
     runs,
     pairings,
+    draft,
     charts,
     beta,
     admin,
@@ -587,6 +588,7 @@ app.include_router(entity_history.router)
 app.include_router(ancient_pools.router)
 app.include_router(runs.router)
 app.include_router(pairings.router)
+app.include_router(draft.router)
 app.include_router(charts.router)
 app.include_router(beta.router)
 # Hidden from the OpenAPI schema (/docs): internal admin surface.
