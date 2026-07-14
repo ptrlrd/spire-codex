@@ -1695,9 +1695,11 @@ def _history_coll():
 def _archive_metric_history() -> None:
     """Append today's Codex Score + Elo for every entity/bracket to the history
     collection: one row per entity/bracket/day, so several rebuilds in a day
-    overwrite rather than pile up. Reuses get_entity_stats so the archived
-    numbers are exactly what the detail page shows. Best-effort — any failure is
-    logged and swallowed so it can never fail the rebuild that just finished."""
+    overwrite rather than pile up. Covers every bracket the metrics table can
+    slice by (all/A10/win-rate tiers, player counts, modes, and the player x
+    skill composites) so any of them can be charted over time. Best-effort — any
+    failure is logged and swallowed so it can never fail the rebuild that just
+    finished."""
     try:
         from pymongo import UpdateOne
 
@@ -1707,12 +1709,32 @@ def _archive_metric_history() -> None:
         day_key = day.strftime("%Y-%m-%d")
         ops = []
         for etype, eid in list(_cache.keys()):
+            # get_entity_stats applies the token/official exclusions and gives
+            # the pooled all/A10/win-rate numbers; None means filtered out.
             stats = get_entity_stats(etype, eid)
             if not stats:
                 continue
-            for bkey, bd in (stats.get("brackets") or {}).items():
-                score = bd.get("score")
-                elo = bd.get("elo")
+            # bkey -> (score, elo). Start with the pooled skill brackets the
+            # detail-page charts already use (keeps those points unchanged), then
+            # add every other bracket — solo/2p/3p/4p, daily/custom, and the
+            # player x skill composites — straight off the cache, scored the same
+            # way the metrics table does, so any of them can be charted over time.
+            points: dict[str, tuple] = {
+                bkey: (bd.get("score"), bd.get("elo"))
+                for bkey, bd in (stats.get("brackets") or {}).items()
+            }
+            agg = _cache.get((etype, eid)) or {}
+            for bkey, bd in (agg.get("brackets") or {}).items():
+                if bkey in points:
+                    continue
+                baseline = _bracket_baselines.get(bkey, {}).get(
+                    etype, _baseline_win_rate()
+                )
+                points[bkey] = (
+                    _compute_score(bd.get("wins", 0), bd.get("picks", 0), baseline),
+                    bd.get("elo"),
+                )
+            for bkey, (score, elo) in points.items():
                 if score is None and elo is None:
                     continue
                 ops.append(
