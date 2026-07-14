@@ -106,39 +106,40 @@ export default function EntityPairings({
     <section id="pairings">
       <h2>{t("Often drafted with", lang)}</h2>
       <p className="h-note">
-        {t("How often each is picked up in the same community runs as", lang)} {name}
-        {". "}
-        {t(
-          "The first figure is the share of this item's runs; the second is the share of the partner's runs.",
-          lang,
-        )}
+        {t("How often each shows up in the same community runs as", lang)} {name}.
       </p>
       <div className="pair-groups">
-        {groups.map((g) => (
-          <div key={g.key} className="pair-group">
-            <h3 className="subh">{g.heading}</h3>
-            <ul className="pair-list">
-              {g.items.map((it) => (
-                <li key={it.id} className="pair-row">
-                  <div className="pair-head">
-                    {withHover(g.key, it)}
-                    <span className="pair-wr">
-                      {pct(it.winrate)} {t("win rate", lang)}
+        {groups.map((g) => {
+          // Cards/relics are drafted into a deck ("also run"); potions aren't
+          // deckbuilt, they just turn up in a run ("also had").
+          const unit = g.key === "potions" ? t("runs", lang) : t("decks", lang);
+          const verb = g.key === "potions" ? t("also had", lang) : t("also run", lang);
+          return (
+            <div key={g.key} className="pair-group">
+              <h3 className="subh">{g.heading}</h3>
+              <ul className="pair-list">
+                {g.items.map((it) => (
+                  <li key={it.id} className="pair-row">
+                    <div className="pair-head">
+                      {withHover(g.key, it)}
+                      <span className="pair-wr">
+                        {pct(it.winrate)} {t("win rate together", lang)}
+                      </span>
+                    </div>
+                    <span className="pair-stats">
+                      <span>
+                        {pct(it.conf)} {t("of", lang)} {name} {unit} {verb} {it.name}
+                      </span>
+                      <span>
+                        {pct(it.conf_rev)} {t("of", lang)} {it.name} {unit} {verb} {name}
+                      </span>
                     </span>
-                  </div>
-                  <span className="pair-stats">
-                    <span>
-                      {pct(it.conf)} {t("of", lang)} {name} {t("runs", lang)}
-                    </span>
-                    <span>
-                      {pct(it.conf_rev)} {t("of", lang)} {it.name} {t("runs", lang)}
-                    </span>
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
