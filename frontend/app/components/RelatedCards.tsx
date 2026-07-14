@@ -5,7 +5,6 @@ import Link from "next/link";
 import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
 
@@ -30,12 +29,11 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
   // instead of a permanent "Loading" stub.
   const [groups, setGroups] = useState<RelatedGroup[] | null>(null);
 
-  // Fetch on mount (not on toggle) so the related-card <Link>s sit in
-  // the rendered DOM at first paint. Googlebot doesn't click toggles,
-  // and this component is a critical internal-linking hub for the
-  // localized card detail pages, those were stuck in GSC's
-  // "Crawled - currently not indexed" bucket because they had no
-  // outbound crawl paths.
+  // Fetch on mount so the related-card <Link>s sit in the rendered DOM
+  // without any interaction. This component is a critical internal-linking
+  // hub for the localized card detail pages, which were stuck in GSC's
+  // "Crawled - currently not indexed" bucket when they had no outbound
+  // crawl paths.
   useEffect(() => {
     const fetches: Promise<RelatedGroup>[] = [];
 
@@ -82,52 +80,32 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
     );
   }, [currentId, keywords, tags, color, lang]);
 
-  if (groups !== null && groups.length === 0) return null;
+  // Render nothing until loaded (or if there's nothing related). Once loaded,
+  // each group lists directly inside the card's Relations section as its own
+  // block, matching the "Generates" block above it.
+  if (!groups || groups.length === 0) return null;
 
   return (
-    <details className="mt-6 group" open>
-      <summary className="text-sm text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors flex items-center gap-1 cursor-pointer list-none">
-        <svg
-          aria-hidden
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          className="w-4 h-4 transition-transform -rotate-90 group-open:rotate-0"
-        >
-          <path
-            fillRule="evenodd"
-            d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
-            clipRule="evenodd"
-          />
-        </svg>
-        {t("Related Cards", lang)}
-      </summary>
-      {groups && groups.length > 0 ? (
-        <div className="mt-3 space-y-4">
-          {groups.map((group) => (
-            <div key={group.label}>
-              <h4 className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)] mb-2">
-                {group.label}
-              </h4>
-              <ul className="space-y-1">
-                {group.cards.map((card) => (
-                  <li key={card.id}>
-                    <HoverTooltip title={card.name} content={card.description}>
-                      <Link
-                        href={`${lp}/cards/${card.id.toLowerCase()}`}
-                        className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-                      >
-                        {card.name}
-                      </Link>
-                    </HoverTooltip>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+    <>
+      {groups.map((group) => (
+        <div key={group.label} className="rel-block">
+          <div className="rl">{group.label}</div>
+          <ul className="space-y-1">
+            {group.cards.map((card) => (
+              <li key={card.id}>
+                <HoverTooltip title={card.name} content={card.description}>
+                  <Link
+                    href={`${lp}/cards/${card.id.toLowerCase()}`}
+                    className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+                  >
+                    {card.name}
+                  </Link>
+                </HoverTooltip>
+              </li>
+            ))}
+          </ul>
         </div>
-      ) : (
-        <p className="text-xs text-[var(--text-muted)] mt-2">Loading…</p>
-      )}
-    </details>
+      ))}
+    </>
   );
 }
