@@ -269,10 +269,10 @@ export default function MetricsClient({
           {totalRuns.toLocaleString()} {t("runs", lang)} · {t("baseline win rate", lang)} {baselineWinRate}% ·{" "}
           {visible.length} {t("cards shown", lang)}
         </p>
-        {sel.player && sel.skill && (
+        {!sel.player && !sel.mode && (
           <p className="mt-1 text-xs text-[var(--text-muted)]">
             {t(
-              "Combined brackets carry Codex Score and Win% only. Elo and Pick% aren't computed for them.",
+              "Elo here is the average across player counts. Pick a player count to see its own.",
               lang,
             )}
           </p>

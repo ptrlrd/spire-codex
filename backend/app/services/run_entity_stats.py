@@ -110,11 +110,10 @@ _ACT_MIN_PICKS = 200
 _PLAYER_BRACKETS = ("solo", "2p", "3p", "4p")
 _SKILL_BRACKETS = ("a10", "wr30", "wr50", "wr75")
 _COMPOSITE_BRACKETS = [f"{p}:{c}" for p in _PLAYER_BRACKETS for c in _SKILL_BRACKETS]
-# Fast membership test in the hot per-run walk. Composite brackets skip the
-# expensive reward-pairwise / Codex Elo machinery (see the card-reward loop):
-# it's the heaviest part of the walk, and the composite tier-list / metrics
-# views only surface Score + Win%, not the reward-preference Elo / Pick% (which
-# are too thin sliced this finely to mean anything).
+# Fast membership test in the hot per-run walk. Composites carry the full
+# reward-pairwise / Codex Elo + Pick% build like every other bracket (v16); it's
+# the heaviest part of the walk, so this build leans on the parallel rebuild.
+# Cards below the per-bracket head-to-head floor still get no Elo in that slice.
 _COMPOSITE_BRACKETS_SET = frozenset(_COMPOSITE_BRACKETS)
 
 _BRACKET_KEYS = [
@@ -232,7 +231,11 @@ _HISTORY_RETENTION_DAYS = 90
 # Version 15: the encounter blob also carries per-game-version buckets (keyed
 # "ver:<build_id>") for the most recent few versions, so the stats pages can
 # compare an enemy across balance patches (additive; the bump forces the rebuild).
-SNAPSHOT_VERSION = 15
+# Version 16: composites get the reward-pairwise / Codex Elo + Pick% build back
+# (v13 had cut it as too heavy) so solo:a10, 2p:wr50, ... carry a real Elo, not a
+# blank. Requires the parallel rebuild — it's the heaviest bracket set. The
+# metrics table's player=All rows average the per-player Elos at read time.
+SNAPSHOT_VERSION = 16
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -1183,11 +1186,10 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
                 pick_counts, pair_wins, act_index, picked_ids, skipped_ids
             )
             for ck in extra_brackets:
-                # Composite (player x skill) brackets skip the pairwise/Elo work
-                # — the heaviest part of the walk. They keep Score + Win% from
-                # the picks/wins loop above; their views don't show reward Elo.
-                if ck in _COMPOSITE_BRACKETS_SET:
-                    continue
+                # Every bracket, composites included, accumulates the reward
+                # pairwise so it gets its own Codex Elo + Pick%. This is the
+                # heaviest part of the walk (why v13 skipped composites); it's
+                # feasible again on the parallel rebuild.
                 _accumulate_screen(
                     bracket_accs[ck]["pick_counts"],
                     bracket_accs[ck]["pair_wins"],
@@ -2342,9 +2344,6 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
     """
     _maybe_rebuild()
     use_bracket = bracket in _BRACKET_KEYS
-    # Composites (solo:a10, ...) skip the reward-pairwise / Elo build (v13), so
-    # their stored Elo is a meaningless 0 — surface it as null (blank cell).
-    is_composite = bracket in _COMPOSITE_BRACKETS_SET
     if use_bracket:
         baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()
@@ -2354,6 +2353,28 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
         bracket = "all"
         baseline = _type_baseline(entity_type)
         total_runs = _global_totals["total_runs"]
+
+    # Player=All rows blend the per-player Elos (equal weight) instead of the
+    # pooled fit, so a card's "All players" rating reflects every mode rather
+    # than being dominated by solo volume. Maps the requested bracket to the
+    # player brackets to average; None for player-specific / composite brackets,
+    # which keep their own stored Elo.
+    avg_siblings = {
+        "all": list(_PLAYER_BRACKETS),
+        "a10": [f"{p}:a10" for p in _PLAYER_BRACKETS],
+        "wr30": [f"{p}:wr30" for p in _PLAYER_BRACKETS],
+        "wr50": [f"{p}:wr50" for p in _PLAYER_BRACKETS],
+        "wr75": [f"{p}:wr75" for p in _PLAYER_BRACKETS],
+    }.get(bracket)
+
+    def _avg_player_elo(agg: dict) -> float | None:
+        brackets = agg.get("brackets") or {}
+        vals = [
+            brackets[b]["elo"]
+            for b in avg_siblings or []
+            if brackets.get(b) and brackets[b].get("elo") is not None
+        ]
+        return round(sum(vals) / len(vals), 1) if vals else None
 
     z3 = [0] * _ACT_BUCKETS
 
@@ -2400,7 +2421,7 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
                     eid,
                     data.get("picks", 0),
                     data.get("wins", 0),
-                    elo=None if is_composite else data.get("elo"),
+                    elo=_avg_player_elo(agg) if avg_siblings else data.get("elo"),
                     offered=data.get("offered", 0),
                     picked=data.get("picked", 0),
                     off_act=data.get("off_act") or z3,
@@ -2420,7 +2441,7 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
                     eid,
                     base["picks"],
                     base["wins"],
-                    elo=agg.get("elo"),
+                    elo=_avg_player_elo(agg) if avg_siblings else agg.get("elo"),
                     offered=agg.get("offered", 0),
                     picked=agg.get("picked", 0),
                     off_act=agg.get("off_act") or z3,
@@ -2452,7 +2473,7 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
                     eid,
                     agg.get("picks", 0),
                     agg.get("wins", 0),
-                    elo=agg.get("elo"),
+                    elo=_avg_player_elo(agg) if avg_siblings else agg.get("elo"),
                     offered=agg.get("offered", 0),
                     picked=agg.get("picked", 0),
                     off_act=agg.get("off_act") or z3,
