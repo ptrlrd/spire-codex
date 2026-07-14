@@ -2342,6 +2342,9 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
     """
     _maybe_rebuild()
     use_bracket = bracket in _BRACKET_KEYS
+    # Composites (solo:a10, ...) skip the reward-pairwise / Elo build (v13), so
+    # their stored Elo is a meaningless 0 — surface it as null (blank cell).
+    is_composite = bracket in _COMPOSITE_BRACKETS_SET
     if use_bracket:
         baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()
@@ -2397,7 +2400,7 @@ def get_entity_metrics_table(entity_type: str, bracket: str = "all") -> dict[str
                     eid,
                     data.get("picks", 0),
                     data.get("wins", 0),
-                    elo=data.get("elo"),
+                    elo=None if is_composite else data.get("elo"),
                     offered=data.get("offered", 0),
                     picked=data.get("picked", 0),
                     off_act=data.get("off_act") or z3,
