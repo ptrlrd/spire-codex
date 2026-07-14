@@ -12,6 +12,7 @@ interface Summary {
   distinct: number;
   zero: number;
   zero_rate: number;
+  ctr: number;
   clients: number;
   days: number;
 }
@@ -200,9 +201,10 @@ export default function SearchesClient() {
       {note && <p className="text-sm text-red-400 mb-4">{note}</p>}
 
       {s && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
           <Card label="Searches" value={s.total.toLocaleString()} sub={`last ${s.days}d`} />
           <Card label="Distinct queries" value={s.distinct.toLocaleString()} />
+          <Card label="Click-through" value={pct(s.ctr)} sub="picked a result" />
           <Card
             label="Zero-result rate"
             value={pct(s.zero_rate)}
@@ -218,7 +220,7 @@ export default function SearchesClient() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-6">
           <QueryTable
             title="Top searches"
-            note="Most-typed queries. Debounced typing means prefixes show up too."
+            note="What people settle on — the query when they pick a result or leave."
             rows={data.top}
             showZeroRate
           />

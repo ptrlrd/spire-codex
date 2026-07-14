@@ -1,18 +1,14 @@
 """Search-query logging + analytics over the global search bar.
 
-Every real /api/search hit (the navbar search) is logged to a Mongo
-`search_log` collection so we can see what people actually look for — including
-the queries that return nothing, which is the useful "what can't they find"
-signal Prometheus's per-entity counters miss. Writes are fire-and-forget (a
-FastAPI BackgroundTask) and never touch the search response; a TTL index trims
-the log after the retention window. The raw IP is never stored, only a
-day-scoped hash so a client de-dupes within a day but isn't trackable across
-days.
-
-Note: the search bar is debounced but still fires while typing, so short
-prefixes ("fir" on the way to "fireleaf") land in the log too. Top-searches is
-directional rather than exact; the zero-result and volume views are the clean
-signals.
+The frontend beacons a *committed* search — the query the user picked a result
+on, or settled on before leaving — to /api/search/log, which lands here. Logging
+the settled query rather than every debounced keystroke keeps prefixes ("fir" on
+the way to "fireleaf") out of the data, so the counts reflect real intent. Each
+row records the query, lang, result count, a zero flag, whether it led to a
+click, and a day-scoped IP hash (the raw IP is never stored). A TTL index trims
+the log after the retention window. Zero-result queries — the "what can't they
+find" signal Prometheus's per-entity counters miss — come through the same
+beacon when a search returns nothing and the user gives up.
 """
 
 import hashlib
@@ -62,9 +58,11 @@ def _cutoff(days: int) -> datetime:
     return datetime.now(timezone.utc) - timedelta(days=max(1, days))
 
 
-def log_search(q: str, lang: str, results: int, ip: str = "") -> None:
-    """Record one search. Guarded and swallowed so a logging hiccup can never
-    fail the search request that scheduled it."""
+def log_search(
+    q: str, lang: str, results: int, ip: str = "", clicked: bool = False
+) -> None:
+    """Record one committed search. Guarded and swallowed so a logging hiccup
+    can never fail the request that sent it."""
     if not os.environ.get("MONGO_URL", "").strip():
         return
     try:
@@ -78,6 +76,7 @@ def log_search(q: str, lang: str, results: int, ip: str = "") -> None:
                 "lang": lang or "eng",
                 "results": int(results),
                 "zero": int(results) == 0,
+                "clicked": bool(clicked),
                 "ip_hash": _ip_hash(ip) if ip else None,
                 "at": datetime.now(timezone.utc),
             }
@@ -95,6 +94,7 @@ def _top(match: dict, limit: int) -> list[dict]:
                 "count": {"$sum": 1},
                 "clients": {"$addToSet": "$ip_hash"},
                 "zero": {"$sum": {"$cond": ["$zero", 1, 0]}},
+                "clicks": {"$sum": {"$cond": ["$clicked", 1, 0]}},
                 "sample": {"$last": "$q"},
                 "last_at": {"$max": "$at"},
             }
@@ -111,6 +111,7 @@ def _top(match: dict, limit: int) -> list[dict]:
                 "query": r.get("sample") or r["_id"],
                 "count": count,
                 "clients": len(clients),
+                "clicks": r.get("clicks") or 0,
                 "zero_rate": round((r.get("zero") or 0) / count, 3) if count else 0,
                 "last_at": _iso(r.get("last_at")),
             }
@@ -170,6 +171,7 @@ def summary(days: int = 7) -> dict:
                 "_id": None,
                 "total": {"$sum": 1},
                 "zero": {"$sum": {"$cond": ["$zero", 1, 0]}},
+                "clicks": {"$sum": {"$cond": ["$clicked", 1, 0]}},
                 "queries": {"$addToSet": "$q_norm"},
                 "clients": {"$addToSet": "$ip_hash"},
             }
@@ -182,6 +184,7 @@ def summary(days: int = 7) -> dict:
             "distinct": 0,
             "zero": 0,
             "zero_rate": 0,
+            "ctr": 0,
             "clients": 0,
             "days": days,
         }
@@ -192,6 +195,7 @@ def summary(days: int = 7) -> dict:
         "distinct": len([q for q in (d.get("queries") or []) if q]),
         "zero": d.get("zero") or 0,
         "zero_rate": round((d.get("zero") or 0) / total, 3) if total else 0,
+        "ctr": round((d.get("clicks") or 0) / total, 3) if total else 0,
         "clients": len([c for c in (d.get("clients") or []) if c]),
         "days": days,
     }

@@ -17,7 +17,8 @@ from __future__ import annotations
 
 from typing import Any, Callable, Iterable
 
-from fastapi import APIRouter, BackgroundTasks, Depends, Query, Request
+from fastapi import APIRouter, Depends, Query, Request
+from pydantic import BaseModel, Field
 
 from ..dependencies import client_ip, get_lang
 from ..services import data_service, mechanics_pages, search_analytics
@@ -110,7 +111,6 @@ _REFERENCE_SOURCES: list[tuple[str, str, str]] = [
 @router.get("", tags=["Search"])
 def global_search(
     request: Request,
-    background_tasks: BackgroundTasks,
     q: str = Query(..., min_length=1, max_length=80),
     lang: str = Depends(get_lang),
 ) -> dict[str, Any]:
@@ -212,10 +212,27 @@ def global_search(
         ],
     )
 
-    # Log what was searched (fire-and-forget, after the response is sent) so the
-    # admin search-analytics page can see it, including zero-result queries.
-    total = sum(len(c.get("items") or []) for c in categories)
-    background_tasks.add_task(
-        search_analytics.log_search, q, lang, total, client_ip(request)
-    )
     return {"query": q, "categories": categories}
+
+
+class SearchLog(BaseModel):
+    """Beacon the frontend sends once a search is 'committed' — the user picked
+    a result or settled on a final query — so the log holds real intent, not
+    every debounced keystroke."""
+
+    q: str = Field(..., min_length=1, max_length=80)
+    lang: str = "eng"
+    results: int = 0
+    clicked: bool = False
+
+
+@router.post("/log", include_in_schema=False)
+def log_committed_search(payload: SearchLog, request: Request) -> dict[str, bool]:
+    search_analytics.log_search(
+        payload.q,
+        payload.lang,
+        payload.results,
+        client_ip(request),
+        payload.clicked,
+    )
+    return {"ok": True}

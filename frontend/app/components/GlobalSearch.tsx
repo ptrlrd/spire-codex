@@ -125,6 +125,47 @@ export default function GlobalSearch() {
     ...sections.flatMap((s) => s.items),
   ];
 
+  // Keep the latest query + result count in refs so the "committed search"
+  // beacon reads current values without stale-closure bugs.
+  const queryRef = useRef("");
+  const resultsRef = useRef(0);
+  queryRef.current = query;
+  resultsRef.current = flatResults.length;
+  const committedRef = useRef<string | null>(null);
+
+  // Log a committed search: the user picked a result (clicked) or settled on a
+  // final query and closed the box. One beacon per settled query, so debounced
+  // keystrokes ("fir" -> "fireleaf") never pollute the analytics.
+  const logCommitted = useCallback(
+    (clicked: boolean) => {
+      const q = queryRef.current.trim();
+      if (q.length < 2 || committedRef.current === q) return;
+      committedRef.current = q;
+      try {
+        fetch(buildApiUrl(`${API}/api/search/log`), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ q, lang, results: resultsRef.current, clicked }),
+          keepalive: true,
+        }).catch(() => {});
+      } catch {
+        /* best effort */
+      }
+    },
+    [lang],
+  );
+
+  // Reset the dedupe when the box opens; when it closes, log whatever the user
+  // settled on (this is what captures abandoned + zero-result searches, which
+  // have no result to click).
+  useEffect(() => {
+    if (open) {
+      committedRef.current = null;
+    } else {
+      logCommitted(false);
+    }
+  }, [open, logCommitted]);
+
   // Open on "." key when not in an input
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
@@ -210,6 +251,7 @@ export default function GlobalSearch() {
   // Navigate to result
   const navigate = useCallback(
     (item: SearchItem) => {
+      logCommitted(true);
       setOpen(false);
       if (item.external) {
         window.open(item.path, "_blank", "noopener,noreferrer");
@@ -217,7 +259,7 @@ export default function GlobalSearch() {
         router.push(item.path);
       }
     },
-    [router]
+    [router, logCommitted]
   );
 
   // Keyboard navigation inside modal
