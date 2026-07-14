@@ -85,6 +85,7 @@ const SECTIONS = [
   { href: "/admin/analytics", label: "Analytics" },
   { href: "/admin/searches", label: "Searches" },
   { href: "/admin/cache", label: "Cache" },
+  { href: "/admin/rate-limits", label: "Rate limits" },
 ];
 
 export function AdminShell({

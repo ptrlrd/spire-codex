@@ -51,6 +51,7 @@ from .routers import (
     beta,
     admin,
     admin_searches,
+    admin_rate_limits,
     glossary,
     guides,
     versions,
@@ -77,6 +78,7 @@ from .services.data_service import (
     load_translation_maps,
 )
 from .dependencies import client_ip, get_lang, VALID_LANGUAGES, LANGUAGE_NAMES
+from .services import rate_limit_config
 from prometheus_fastapi_instrumentator import Instrumentator
 
 from .metrics import (
@@ -131,7 +133,12 @@ IS_BETA_BACKEND = os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1"
 # /api/* lookups per page, low enough to choke off scraping. Endpoints
 # that want a tighter cap (guide submission, auth, feedback) declare
 # `@limiter.limit(...)` at the router level and override this default.
-limiter = Limiter(key_func=client_ip, default_limits=["300/minute"])
+# The blanket cap is a callable so an operator can retune it at runtime via
+# /api/admin/rate-limits (default stays 300/minute). slowapi re-evaluates it
+# per request.
+limiter = Limiter(
+    key_func=client_ip, default_limits=[rate_limit_config.default_limit_value]
+)
 
 app = FastAPI(
     title="Spire Codex API",
@@ -595,6 +602,7 @@ app.include_router(beta.router)
 # Hidden from the OpenAPI schema (/docs): internal admin surface.
 app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)
+app.include_router(admin_rate_limits.router, include_in_schema=False)
 app.include_router(glossary.router)
 app.include_router(guides.router)
 app.include_router(versions.router)
