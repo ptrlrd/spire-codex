@@ -4,12 +4,14 @@
 // community runs as this entity, from the cached item-pairings job. Reads
 // /api/pairings/{kind}/{id}; renders nothing until data arrives or if the item
 // has no partners yet. Cards/relics are ranked by synergy (NPMI); potions are
-// "commonly seen with" (RNG, ranked by frequency). Each row shows both
-// confidence directions plus the pair's win rate.
+// "commonly seen with" (RNG, ranked by frequency). Each row names both sides so
+// the two confidence directions read plainly, and shows the pair win rate.
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
+import CardHover from "@/app/components/CardHover";
+import HoverTooltip from "@/app/components/HoverTooltip";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { t } from "@/lib/ui-translations";
 
@@ -21,6 +23,7 @@ const pct = (x: number) => `${Math.round((x ?? 0) * 100)}%`;
 type Partner = {
   id: string;
   name: string;
+  desc: string;
   co: number;
   conf: number;
   conf_rev: number;
@@ -83,12 +86,32 @@ export default function EntityPairings({
 
   if (!loaded || groups.length === 0) return null;
 
+  // Card partners get the full-render hover pop; relics/potions get a text
+  // tooltip from their description.
+  const withHover = (g: Kind, it: Partner) => {
+    const link = (
+      <Link href={`${lp}/${g}/${it.id.toLowerCase()}`} className="pair-name">
+        {it.name}
+      </Link>
+    );
+    if (g === "cards") return <CardHover cardId={it.id}>{link}</CardHover>;
+    return (
+      <HoverTooltip title={it.name} content={it.desc}>
+        {link}
+      </HoverTooltip>
+    );
+  };
+
   return (
     <section id="pairings">
       <h2>{t("Often drafted with", lang)}</h2>
       <p className="h-note">
-        {t("Cards, relics and potions that show up in the same community runs as", lang)}{" "}
-        {name}.
+        {t("How often each is picked up in the same community runs as", lang)} {name}
+        {". "}
+        {t(
+          "The first figure is the share of this item's runs; the second is the share of the partner's runs.",
+          lang,
+        )}
       </p>
       <div className="pair-groups">
         {groups.map((g) => (
@@ -97,21 +120,18 @@ export default function EntityPairings({
             <ul className="pair-list">
               {g.items.map((it) => (
                 <li key={it.id} className="pair-row">
-                  <Link
-                    href={`${lp}/${g.key}/${it.id.toLowerCase()}`}
-                    className="pair-name"
-                  >
-                    {it.name}
-                  </Link>
-                  <span className="pair-stats">
-                    <span title={t("Of this item's runs, the share that also run it", lang)}>
-                      {pct(it.conf)} {t("of decks", lang)}
-                    </span>
-                    <span title={t("Of that item's runs, the share that also run this one", lang)}>
-                      {pct(it.conf_rev)} {t("of theirs", lang)}
-                    </span>
+                  <div className="pair-head">
+                    {withHover(g.key, it)}
                     <span className="pair-wr">
-                      {pct(it.winrate)} {t("win", lang)}
+                      {pct(it.winrate)} {t("win rate", lang)}
+                    </span>
+                  </div>
+                  <span className="pair-stats">
+                    <span>
+                      {pct(it.conf)} {t("of", lang)} {name} {t("runs", lang)}
+                    </span>
+                    <span>
+                      {pct(it.conf_rev)} {t("of", lang)} {it.name} {t("runs", lang)}
                     </span>
                   </span>
                 </li>

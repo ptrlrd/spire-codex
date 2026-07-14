@@ -251,7 +251,13 @@ a.kw { text-decoration: none; }
   flex-direction: column;
   gap: 11px;
 }
-.card-rvmp .pair-row { display: flex; flex-direction: column; gap: 2px; }
+.card-rvmp .pair-row { display: flex; flex-direction: column; gap: 3px; }
+.card-rvmp .pair-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
 .card-rvmp .pair-name {
   font-weight: 600;
   font-size: 15px;
@@ -259,12 +265,17 @@ a.kw { text-decoration: none; }
   text-decoration: none;
 }
 .card-rvmp .pair-name:hover { text-decoration: underline; }
+.card-rvmp .pair-wr {
+  font-size: 12px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
 .card-rvmp .pair-stats {
   display: flex;
-  flex-wrap: wrap;
-  gap: 2px 12px;
+  flex-direction: column;
+  gap: 1px;
   font-size: 12px;
   color: var(--text-2);
   font-variant-numeric: tabular-nums;
 }
-.card-rvmp .pair-wr { color: var(--text); }
