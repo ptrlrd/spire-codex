@@ -115,7 +115,12 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
   const typeLabel = power.type === "None" ? "Neutral" : power.type;
   // Plain-text lede from the power effect (rich tags + newlines stripped).
   const ledeText = power.description
-    ? power.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    ? power.description
+        .replace(/\[energy:(\d+|X)\]/g, "$1 Energy")
+        .replace(/\[star:(\d+|X)\]/g, "$1 Star")
+        .replace(/\[[^\]]*\]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
     : "";
 
   const tocItems: { id: string; label: string }[] = [

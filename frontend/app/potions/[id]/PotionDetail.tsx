@@ -132,13 +132,19 @@ export default function PotionDetail({
   const priceRange = getPotionMerchantPriceRange(potion.rarity_key || potion.rarity);
   // Plain-text lede from the potion effect (rich tags + newlines stripped).
   const ledeText = potion.description
-    ? potion.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    ? potion.description
+        .replace(/\[energy:(\d+|X)\]/g, "$1 Energy")
+        .replace(/\[star:(\d+|X)\]/g, "$1 Star")
+        .replace(/\[[^\]]*\]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
     : "";
 
   const tocItems: { id: string; label: string }[] = [
     { id: "performance", label: t("Community", lang) },
     { id: "description", label: t("Description", lang) },
     { id: "relations", label: t("Relations", lang) },
+    { id: "pairings", label: t("Synergy", lang) },
     { id: "history", label: t("Version history", lang) },
   ];
 

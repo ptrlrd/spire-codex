@@ -132,7 +132,12 @@ export default function RelicDetail({
   const renderSrc = selectedVariant || relic.image_url;
   // Plain-text lede from the relic effect (rich tags + newlines stripped).
   const ledeText = relic.description
-    ? relic.description.replace(/\[[^\]]*\]/g, "").replace(/\s+/g, " ").trim()
+    ? relic.description
+        .replace(/\[energy:(\d+|X)\]/g, "$1 Energy")
+        .replace(/\[star:(\d+|X)\]/g, "$1 Star")
+        .replace(/\[[^\]]*\]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
     : "";
 
   const hasImageVariants =
@@ -145,6 +150,7 @@ export default function RelicDetail({
     { id: "performance", label: t("Community", lang) },
     { id: "description", label: t("Description", lang) },
     { id: "relations", label: t("Relations", lang) },
+    { id: "pairings", label: t("Synergy", lang) },
     { id: "history", label: t("Version history", lang) },
   ];
 

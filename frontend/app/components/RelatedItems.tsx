@@ -113,7 +113,7 @@ export default function RelatedItems({
               <ul className="space-y-1">
                 {group.items.map((item) => (
                   <li key={item.id}>
-                    <HoverTooltip title={item.name} content={item.description}>
+                    <HoverTooltip title={item.name} content={item.description} image={item.image_url}>
                       <Link
                         href={`${lp}/${route}/${item.id.toLowerCase()}`}
                         className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"

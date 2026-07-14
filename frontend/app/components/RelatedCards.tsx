@@ -93,7 +93,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
           <ul className="space-y-1">
             {group.cards.map((card) => (
               <li key={card.id}>
-                <HoverTooltip title={card.name} content={card.description}>
+                <HoverTooltip title={card.name} content={card.description} image={card.image_url}>
                   <Link
                     href={`${lp}/cards/${card.id.toLowerCase()}`}
                     className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"

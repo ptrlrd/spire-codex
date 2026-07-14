@@ -322,6 +322,7 @@ def _name_maps(lang: str) -> dict[str, dict[str, dict[str, str]]]:
             (r["id"]).upper(): {
                 "name": r.get("name") or r["id"],
                 "desc": r.get("description") or "",
+                "image_url": r.get("image_url") or "",
             }
             for r in rows
             if r.get("id")
@@ -364,4 +365,5 @@ def get_pairings(
             meta = nm.get(p["id"]) or {}
             p["name"] = meta.get("name", p["id"])
             p["desc"] = meta.get("desc", "")
+            p["image_url"] = meta.get("image_url", "")
     return doc

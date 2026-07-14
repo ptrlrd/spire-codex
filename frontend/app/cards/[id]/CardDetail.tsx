@@ -367,6 +367,7 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
     { id: "performance", label: t("Community", lang) },
     { id: "description", label: t("Description", lang) },
     { id: "relations", label: t("Relations", lang) },
+    { id: "pairings", label: t("Synergy", lang) },
     { id: "history", label: t("Version history", lang) },
   ];
 

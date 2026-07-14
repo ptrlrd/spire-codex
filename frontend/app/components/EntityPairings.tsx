@@ -24,6 +24,7 @@ type Partner = {
   id: string;
   name: string;
   desc: string;
+  image_url?: string;
   co: number;
   conf: number;
   conf_rev: number;
@@ -96,7 +97,7 @@ export default function EntityPairings({
     );
     if (g === "cards") return <CardHover cardId={it.id}>{link}</CardHover>;
     return (
-      <HoverTooltip title={it.name} content={it.desc}>
+      <HoverTooltip title={it.name} content={it.desc} image={it.image_url}>
         {link}
       </HoverTooltip>
     );
