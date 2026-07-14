@@ -78,9 +78,8 @@
 .card-rvmp h2 { font-family: var(--serif); font-size: 25px; font-weight: 600; margin: 0 0 4px; color: var(--text); }
 .card-rvmp .h-note { color: var(--text-2); font-size: 13px; margin: 0 0 18px; }
 .card-rvmp .subh { font-family: var(--serif); font-weight: 600; font-size: 17px; margin: 30px 0 4px; color: var(--text); }
-/* Boxed info panels: Other languages + Version history, shown in full. */
-.card-rvmp .info-card { margin-top: 10px; background: var(--surface); border: 1px solid var(--border-2);
-  border-radius: 10px; padding: 16px 18px; }
+/* Thin rule under each section title, separating one section from the next. */
+.card-rvmp section h2 { border-bottom: 1px solid var(--border-2); padding-bottom: 10px; margin-bottom: 14px; }
 
 /* inline entity cross-links */
 .card-rvmp .ent { color: var(--gold); border-bottom: 1px dotted color-mix(in srgb, var(--gold) 55%, transparent); cursor: help; }

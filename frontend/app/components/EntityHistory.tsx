@@ -113,8 +113,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
   return (
     <section id="history">
       <h2>{t("Version history", lang)}</h2>
-      <div className="info-card">
-        {history && history.length > 0 ? (
+      {history && history.length > 0 ? (
           <div className="relative ml-2">
             {/* Timeline line */}
             <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
@@ -215,7 +214,6 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
         >
           {t("View the full changelog", lang)} &rarr;
         </Link>
-      </div>
     </section>
   );
 }

@@ -100,37 +100,35 @@ export default function LocalizedNames({
   return (
     <section id="other-languages">
       <h2>{t("Other languages", lang)}</h2>
-      <div className="info-card">
-        {rows.length > 0 ? (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm list-none p-0 m-0">
-            {rows.map(({ apiName, name, href, hrefLang }) => (
-              <li key={apiName}>
-                {href ? (
-                  <Link
-                    href={href}
-                    hrefLang={hrefLang}
-                    className="flex justify-between gap-3 rounded px-1.5 -mx-1.5 py-1 hover:bg-[var(--bg-card)] transition-colors"
-                  >
-                    <span className="text-[var(--text-secondary)]">{apiName}</span>
-                    <span className="text-[var(--text-primary)] text-right">
-                      {name}
-                    </span>
-                  </Link>
-                ) : (
-                  <div className="flex justify-between gap-3 px-1.5 py-1">
-                    <span className="text-[var(--text-secondary)]">{apiName}</span>
-                    <span className="text-[var(--text-primary)] text-right">
-                      {name}
-                    </span>
-                  </div>
-                )}
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="text-xs text-[var(--text-muted)] m-0">Loading…</p>
-        )}
-      </div>
+      {rows.length > 0 ? (
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm list-none p-0 m-0">
+          {rows.map(({ apiName, name, href, hrefLang }) => (
+            <li key={apiName}>
+              {href ? (
+                <Link
+                  href={href}
+                  hrefLang={hrefLang}
+                  className="flex justify-between gap-3 rounded px-1.5 -mx-1.5 py-1 hover:bg-[var(--bg-card)] transition-colors"
+                >
+                  <span className="text-[var(--text-secondary)]">{apiName}</span>
+                  <span className="text-[var(--text-primary)] text-right">
+                    {name}
+                  </span>
+                </Link>
+              ) : (
+                <div className="flex justify-between gap-3 px-1.5 py-1">
+                  <span className="text-[var(--text-secondary)]">{apiName}</span>
+                  <span className="text-[var(--text-primary)] text-right">
+                    {name}
+                  </span>
+                </div>
+              )}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-xs text-[var(--text-muted)] m-0">Loading…</p>
+      )}
     </section>
   );
 }
