@@ -49,8 +49,9 @@ function formatTimeShort(s: number): string {
 }
 
 // Parse an ascension value: "20" → exact, "3-4" → range, "3+" → min.
+// Tolerates the in-game "A10" spelling ("a10", "a3-a7").
 function parseAscension(value: string): { exact?: number; min?: number; max?: number } {
-  const v = value.trim();
+  const v = value.trim().replace(/a(?=\d)/gi, "");
   if (!v) return {};
   const range = /^(\d+)\s*-\s*(\d+)$/.exec(v);
   if (range) {
@@ -73,7 +74,7 @@ type Sort = "date" | "time_asc" | "time_desc" | "ascension_desc";
 // Parse `key:value` expressions out of a free-text query.
 // Returns extracted filters and the remaining free-text (after stripping
 // recognized key:value pairs).
-type QueryKey = "user" | "seed" | "char" | "asc" | "version" | "mode" | "result" | "players" | "card" | "relic" | "winrate";
+type QueryKey = "user" | "seed" | "char" | "asc" | "version" | "mode" | "result" | "players" | "card" | "relic" | "shop" | "winrate";
 
 function parseQuery(q: string): {
   filters: Partial<Record<QueryKey, string>>;
@@ -85,7 +86,15 @@ function parseQuery(q: string): {
   // card/relic accumulate across repeated tokens AND comma-separated values
   const appendMulti = (existing: string | undefined, value: string) =>
     existing ? `${existing},${value}` : value;
-  for (const tok of tokens) {
+  for (let i = 0; i < tokens.length; i++) {
+    let tok = tokens[i];
+    // Tolerate a space after the colon ("asc: 10"): a bare "key:" token
+    // absorbs the next token as its value. Without this the pair fell
+    // through to the username search and silently matched nothing.
+    if (/^[a-z]+:$/i.test(tok) && tokens[i + 1] && !tokens[i + 1].includes(":")) {
+      tok = tok + tokens[i + 1];
+      i++;
+    }
     const m = /^([a-z]+):"?([^"]+)"?$/i.exec(tok);
     if (!m) {
       restTokens.push(tok);
@@ -103,6 +112,7 @@ function parseQuery(q: string): {
     else if (["players", "p"].includes(key)) filters.players = value;
     else if (["card", "cards"].includes(key)) filters.card = appendMulti(filters.card, value);
     else if (["relic", "relics"].includes(key)) filters.relic = appendMulti(filters.relic, value);
+    else if (["shop", "bought", "buy"].includes(key)) filters.shop = appendMulti(filters.shop, value);
     else if (["winrate", "wr"].includes(key)) filters.winrate = value;
     else restTokens.push(tok);
   }
@@ -240,6 +250,7 @@ export default function BrowseRunsClient() {
       : "");
   const effectiveCard = queryFilters.card || "";
   const effectiveRelic = queryFilters.relic || "";
+  const effectiveShop = queryFilters.shop || "";
   const effectiveWinrate = queryFilters.winrate || "";
 
   // Reset page when any filter changes
@@ -289,6 +300,7 @@ export default function BrowseRunsClient() {
     }
     if (effectiveCard) params.set("card", effectiveCard);
     if (effectiveRelic) params.set("relic", effectiveRelic);
+    if (effectiveShop) params.set("shop", effectiveShop);
     if (effectiveWinrate) {
       const wr = parseWinrate(effectiveWinrate);
       if (wr.min !== undefined) params.set("winrate_min", String(wr.min));
@@ -313,7 +325,7 @@ export default function BrowseRunsClient() {
       })
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [effectiveChar, effectiveWin, effectiveUser, effectiveSeed, effectiveBuildId, effectivePlayers, effectiveGameMode, effectiveAscension, effectiveCard, effectiveRelic, effectiveWinrate, versions, sort, page]);
+  }, [effectiveChar, effectiveWin, effectiveUser, effectiveSeed, effectiveBuildId, effectivePlayers, effectiveGameMode, effectiveAscension, effectiveCard, effectiveRelic, effectiveShop, effectiveWinrate, versions, sort, page]);
 
   function clearAll() {
     setQuery("");
@@ -361,7 +373,7 @@ export default function BrowseRunsClient() {
           className="w-full text-sm px-4 py-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
         <p className="mt-1.5 text-[10px] text-[var(--text-tertiary)]">
-          Expressions: <code>user:name</code>, <code>char:ironclad</code>, <code>asc:10</code> or <code>asc:3-7</code>, <code>card:bash,anger</code>, <code>relic:burning_blood</code> (combine for AND), <code>winrate:50-70</code>, <code>winrate:&gt;50</code>, or <code>winrate:100</code> (submitter win rate, min 5 runs), <code>version:v0.106.0</code> or <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>, <code>mode:daily</code>, <code>result:win</code>, <code>players:single</code>
+          Expressions: <code>user:name</code>, <code>char:ironclad</code>, <code>asc:10</code> or <code>asc:3-7</code>, <code>card:bash,anger</code>, <code>relic:burning_blood</code> (combine for AND), <code>shop:orange_dough</code> (bought at a shop — cards, relics, or potions), <code>winrate:50-70</code>, <code>winrate:&gt;50</code>, or <code>winrate:100</code> (submitter win rate, min 5 runs), <code>version:v0.106.0</code> or <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>, <code>mode:daily</code>, <code>result:win</code>, <code>players:single</code>
         </p>
       </div>
 

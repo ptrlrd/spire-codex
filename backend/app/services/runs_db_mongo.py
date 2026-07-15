@@ -16,6 +16,7 @@ Document shape (one doc per player-run):
         "relics": [{ "id": ..., "floor_added": ... }],
         "potions": [{ "id": ..., "was_picked": ..., "was_used": ... }],
         "card_choices": [{ "card_id": ..., "was_picked": ..., "floor": ... }],
+        "bought": [<clean ids of everything bought at a shop, run-level>],
         "raw": <the full submitted JSON, for share pages>,
     }
 
@@ -174,6 +175,9 @@ def _ensure_indexes(coll) -> None:
     coll.create_index([("build_id", ASCENDING)])
     coll.create_index([("deck.id", ASCENDING)])
     coll.create_index([("relics.id", ASCENDING)])
+    # Multikey over the small per-run shop-purchase list; backs the run
+    # browser's shop: filter.
+    coll.create_index([("bought", ASCENDING)])
     coll.create_index([("killed_by", ASCENDING)])
     # /api/runs/list hot shapes: filter+sort compounds so Mongo never
     # in-memory-sorts a 40k-doc subset, plus seed for anchored prefix search.
@@ -495,6 +499,42 @@ def submit_run(
     return results[0]
 
 
+def _shop_purchases(data: dict) -> list[str]:
+    """Clean ids of everything bought at a shop in this run, all players.
+
+    A shop floor's player_stats record every shelf item with was_picked
+    (card_choices / potion_choices / relic_choices) plus the colorless
+    shelf as a plain id list (bought_colorless). Collected run-level, not
+    per player: the run browser filters runs, and per-player attribution
+    isn't recoverable for the backfill's pre-existing docs anyway."""
+    bought: set[str] = set()
+    for act_floors in data.get("map_point_history", []) or []:
+        for floor in act_floors or []:
+            rooms = floor.get("rooms") or []
+            if not any((r or {}).get("room_type") == "shop" for r in rooms):
+                continue
+            for ps in floor.get("player_stats", []) or []:
+                for choice in ps.get("card_choices", []) or []:
+                    if choice.get("was_picked"):
+                        cid = clean_id((choice.get("card") or {}).get("id") or "")
+                        if cid:
+                            bought.add(cid)
+                for pc in ps.get("potion_choices", []) or []:
+                    if pc.get("was_picked"):
+                        pid = clean_id(pc.get("choice") or "")
+                        if pid:
+                            bought.add(pid)
+                for rc in ps.get("relic_choices", []) or []:
+                    if rc.get("was_picked"):
+                        rid = clean_id(rc.get("choice") or "")
+                        if rid:
+                            bought.add(rid)
+                for cc in ps.get("bought_colorless", []) or []:
+                    if isinstance(cc, str) and cc:
+                        bought.add(clean_id(cc))
+    return sorted(bought)
+
+
 def _submit_player_run(
     data: dict,
     player: dict,
@@ -614,6 +654,9 @@ def _submit_player_run(
         "relics": relics,
         "potions": potions,
         "card_choices": card_choices,
+        # Small indexed list backing the run browser's shop: filter (see
+        # _shop_purchases for why it's run-level).
+        "bought": _shop_purchases(data),
         # Per-room history needed for the encounter-stats aggregation
         # (`/api/runs/encounter-stats`). Stored as the original 2D
         # array (acts → rooms) so the agg can `$unwind` it without a
@@ -720,6 +763,129 @@ def backfill_username_lower() -> int:
         result = coll.update_many(
             {"username": {"$nin": [None, ""]}, "username_lower": {"$exists": False}},
             [{"$set": {"username_lower": {"$toLower": "$username"}}}],
+        )
+        return result.modified_count
+    except Exception:
+        return 0
+
+
+def backfill_bought() -> int:
+    """One-time backfill: materialize `bought` (clean ids of shop purchases,
+    run-level — see _shop_purchases) on docs that predate the field, so the
+    run browser's shop: filter matches old runs too. Runs server-side as one
+    aggregation-pipeline update walking each doc's map_point_history — no
+    round-trips. Idempotent via the $exists guard; best effort like
+    backfill_username_lower."""
+
+    # Picked shelf ids from one player_stats entry ($$this in the reduce
+    # below): the choice rows with was_picked, mapped to their id field.
+    def _picked(choices_path: str, id_expr: str) -> dict:
+        return {
+            "$map": {
+                "input": {
+                    "$filter": {
+                        "input": {"$ifNull": [choices_path, []]},
+                        "as": "ch",
+                        "cond": {"$eq": ["$$ch.was_picked", True]},
+                    }
+                },
+                "as": "ch",
+                "in": id_expr,
+            }
+        }
+
+    # One floor's purchases: nothing unless the floor has a shop room, else
+    # every picked shelf id (card/potion/relic) plus the colorless buys,
+    # across all players. Bound to $$floor via $let since $reduce can't name
+    # its variable.
+    per_floor = {
+        "$cond": [
+            {
+                "$gt": [
+                    {
+                        "$size": {
+                            "$filter": {
+                                "input": {"$ifNull": ["$$floor.rooms", []]},
+                                "as": "r",
+                                "cond": {"$eq": ["$$r.room_type", "shop"]},
+                            }
+                        }
+                    },
+                    0,
+                ]
+            },
+            {
+                "$reduce": {
+                    "input": {"$ifNull": ["$$floor.player_stats", []]},
+                    "initialValue": [],
+                    "in": {
+                        "$concatArrays": [
+                            "$$value",
+                            _picked("$$this.card_choices", "$$ch.card.id"),
+                            _picked("$$this.potion_choices", "$$ch.choice"),
+                            _picked("$$this.relic_choices", "$$ch.choice"),
+                            {"$ifNull": ["$$this.bought_colorless", []]},
+                        ]
+                    },
+                }
+            },
+            [],
+        ]
+    }
+
+    # acts -> floors -> per-floor purchases, concatenated.
+    raw_ids = {
+        "$reduce": {
+            "input": {"$ifNull": ["$map_point_history", []]},
+            "initialValue": [],
+            "in": {
+                "$concatArrays": [
+                    "$$value",
+                    {
+                        "$reduce": {
+                            "input": {"$ifNull": ["$$this", []]},
+                            "initialValue": [],
+                            "in": {
+                                "$concatArrays": [
+                                    "$$value",
+                                    {
+                                        "$let": {
+                                            "vars": {"floor": "$$this"},
+                                            "in": per_floor,
+                                        }
+                                    },
+                                ]
+                            },
+                        }
+                    },
+                ]
+            },
+        }
+    }
+
+    # Strip the CARD./POTION./RELIC. namespace (mirrors clean_id) and drop
+    # anything that wasn't a string (a malformed entry must not abort the
+    # whole update); $setUnion dedupes.
+    cleaned = {
+        "$map": {
+            "input": raw_ids,
+            "as": "id",
+            "in": {
+                "$cond": [
+                    {"$eq": [{"$type": "$$id"}, "string"]},
+                    {"$arrayElemAt": [{"$split": ["$$id", "."]}, -1]},
+                    None,
+                ]
+            },
+        }
+    }
+    bought_expr = {"$setDifference": [{"$setUnion": [cleaned]}, [None]]}
+
+    try:
+        coll = _get_collection()
+        result = coll.update_many(
+            {"bought": {"$exists": False}},
+            [{"$set": {"bought": bought_expr}}],
         )
         return result.modified_count
     except Exception:
@@ -1617,6 +1783,7 @@ def list_runs(
     ascension_max: int | None = None,
     card: str | None = None,
     relic: str | None = None,
+    shop: str | None = None,
     today: bool = False,
     page: int = 1,
     limit: int = 50,
@@ -1712,6 +1879,17 @@ def list_runs(
             q["relics.id"] = relics_f[0]
         elif relics_f:
             q["relics.id"] = {"$all": relics_f}
+    if shop:
+        # Items bought at a shop (any type — the `bought` list holds clean
+        # card/potion/relic ids together). Comma-separated values AND like
+        # the card/relic filters.
+        bought_f = [
+            s.strip().upper().replace(" ", "_") for s in shop.split(",") if s.strip()
+        ]
+        if len(bought_f) == 1:
+            q["bought"] = bought_f[0]
+        elif bought_f:
+            q["bought"] = {"$all": bought_f}
     if today:
         q["seed"] = _today_daily_seed_match()
 

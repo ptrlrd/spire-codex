@@ -293,6 +293,7 @@ def list_runs(
     build_ids: str | None = None,
     card: str | None = None,
     relic: str | None = None,
+    shop: str | None = None,
     today: bool = False,
     page: int = 1,
     limit: int = 50,
@@ -302,6 +303,10 @@ def list_runs(
     `winrate_min` / `winrate_max` filter runs by their submitter's overall
     win rate percentage; only users with at least 5 submitted runs qualify,
     and anonymous runs never match.
+
+    `shop` matches runs that bought the item (card, relic, or potion) at a
+    shop; comma-separated ids AND together like `card`/`relic`. Mongo only —
+    the dev SQLite fallback ignores it, like the card/relic filters.
     """
     # Normalize once so the cache key and the DB filter key off the same
     # case-insensitive value (the runs are matched on username_lower).
@@ -332,6 +337,7 @@ def list_runs(
             ascension_max,
             card,
             relic,
+            shop,
             int(today),
             page,
             limit,
@@ -360,6 +366,7 @@ def list_runs(
             ascension_max=ascension_max,
             card=card,
             relic=relic,
+            shop=shop,
             today=today,
             page=page,
             limit=limit,
