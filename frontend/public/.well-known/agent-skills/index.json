@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agentskills.io/schemas/index/v0.2.0.json",
+  "version": "0.2.0",
+  "site": "https://spire-codex.com",
+  "skills": [
+    {
+      "name": "spire-codex-api",
+      "type": "skill",
+      "description": "Look up Slay the Spire 2 game data and community stats through the Spire Codex REST API.",
+      "url": "https://spire-codex.com/.well-known/agent-skills/spire-codex-api/SKILL.md",
+      "sha256": "3ab2f66099199e451c38488e6eee478fa456a88cdaafd90d6d18c1d03467db4f"
+    }
+  ]
+}
