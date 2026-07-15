@@ -9,7 +9,7 @@
 import { useEffect, useState } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl } from "@/lib/image-url";
+import { imageUrl, fullCardUrl } from "@/lib/image-url";
 import { cleanId, displayName } from "../runs/[hash]/RunPills";
 import TwitchIcon from "@/app/components/TwitchIcon";
 
@@ -354,6 +354,67 @@ export function withOrdinalKeys(items: string[]): { item: string; key: string }[
     seen[item] = n + 1;
     return { item, key: `${item}#${n}` };
   });
+}
+
+/** A card render for the live views with a three-step source chain: the main
+ * (live) render first, then the current beta render (beta players carry cards
+ * that don't exist on main yet), then the catalog portrait art (official cards
+ * with no full render, e.g. mad_science). An id that resolves through none of
+ * those is modded content with no render anywhere, so a MODDED CARD tile
+ * stands in instead of a broken image. */
+export function LiveCardImg({
+  id,
+  upgraded = false,
+  alt,
+  className = "",
+  portrait,
+}: {
+  id: string;
+  upgraded?: boolean;
+  alt: string;
+  className?: string;
+  portrait?: string | null;
+}) {
+  const { lang } = useLanguage();
+  // The exhausted-chain marker is keyed by card+lang+chain shape so the tile
+  // resets if this slot rerenders as a different card (ordinal keys reuse list
+  // positions across polls) or the catalog portrait arrives late.
+  const cardKey = `${id}|${upgraded}|${lang}|${portrait ? 1 : 0}`;
+  const [failedKey, setFailedKey] = useState("");
+  if (!safeId(id) || failedKey === cardKey) {
+    return (
+      <span
+        className={`flex aspect-[10/13] items-center justify-center overflow-hidden rounded-sm border border-dashed border-[var(--border-subtle)] bg-[var(--bg-primary)] p-1 text-center ${className}`}
+        title={alt}
+      >
+        <span className="text-[8px] font-bold uppercase leading-tight tracking-wider text-[var(--text-muted)]">
+          Modded card
+        </span>
+      </span>
+    );
+  }
+  const lower = id.toLowerCase();
+  const chain = [
+    fullCardUrl(lower, upgraded, "stable", lang),
+    fullCardUrl(lower, upgraded, "beta", lang),
+    ...(portrait ? [imageUrl(portrait)] : []),
+  ];
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={chain[0]}
+      alt={alt}
+      className={className}
+      crossOrigin="anonymous"
+      loading="lazy"
+      onError={(e) => {
+        const el = e.target as HTMLImageElement;
+        const next = chain[chain.indexOf(el.src) + 1];
+        if (next) el.src = next;
+        else setFailedKey(cardKey);
+      }}
+    />
+  );
 }
 
 export function LiveDot() {

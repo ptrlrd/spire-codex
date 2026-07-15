@@ -8,7 +8,7 @@
 // the normal layout. All driven by the same presence fields the panels use.
 
 import { useState } from "react";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import { RichDescriptionSimple } from "@/app/components/RichDescription";
 import LiveMap from "../LiveMap";
 import {
@@ -24,6 +24,7 @@ import {
 import {
   CharacterIcon,
   EnemyCircle,
+  LiveCardImg,
   monsterName,
   parseDeckId,
   withOrdinalKeys,
@@ -285,14 +286,12 @@ export default function LiveScene({
   monsters,
   encounters,
   lp,
-  lang,
 }: {
   p: LivePlayer;
   cat: Catalogs;
   monsters: MonsterMap;
   encounters: EncounterMap;
   lp: string;
-  lang: string;
 }) {
   const char = (p.character ?? "colorless").toLowerCase();
   const enemies: Enemy[] = (p.enemies ?? []).filter((e) => (e.hp ?? 1) > 0);
@@ -556,7 +555,6 @@ export default function LiveScene({
                 relics={cat.relics}
                 potions={cat.potions}
                 lp={lp}
-                lang={lang}
               />
             </div>
           ) : p.screen === "combat" && enemies.length > 0 ? (
@@ -637,7 +635,6 @@ export default function LiveScene({
                   relics={cat.relics}
                   potions={cat.potions}
                   lp={lp}
-                  lang={lang}
                 />
               </div>
               <span className="inline-flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--accent-gold)]/60 bg-[var(--bg-primary)]">
@@ -737,12 +734,12 @@ export default function LiveScene({
                   lp={lp}
                   className="relative block w-20 shrink-0 transition hover:-translate-y-2"
                 >
-                  <img
-                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
                     alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
                     className="h-auto w-20 rounded-sm"
-                    crossOrigin="anonymous"
-                    loading="lazy"
+                    portrait={cat.cards[id]?.image_url}
                   />
                 </CardPill>
               );
@@ -809,12 +806,12 @@ export default function LiveScene({
                       lp={lp}
                       className="relative block w-24 shrink-0"
                     >
-                      <img
-                        src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                      <LiveCardImg
+                        id={id}
+                        upgraded={upgraded}
                         alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
                         className="h-auto w-24 rounded-sm"
-                        crossOrigin="anonymous"
-                        loading="lazy"
+                        portrait={cat.cards[id]?.image_url}
                       />
                       {count > 1 && (
                         <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">

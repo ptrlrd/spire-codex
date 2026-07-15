@@ -92,7 +92,8 @@ export function CardPill({
       {show && (
         // Pop the full rendered card (enchanted and/or upgraded variant when
         // the run says so) instead of the text tooltip. Falls back from the
-        // enchanted render to the plain one, then to the portrait art.
+        // enchanted render to the plain one, then to the beta render (cards
+        // that only exist on the beta channel yet), then to the portrait art.
         <span
           className={`pointer-events-none absolute z-50 left-1/2 w-40 -translate-x-1/2 ${
             above ? "bottom-full mb-2" : "top-full mt-2"
@@ -109,12 +110,16 @@ export function CardPill({
             crossOrigin="anonymous"
             onError={(e) => {
               const el = e.target as HTMLImageElement;
-              const plain = fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang);
-              if (enchantment && el.src !== plain) {
-                el.src = plain;
-              } else if (info?.image_url) {
-                el.src = imageUrl(info.image_url);
-              }
+              const chain = [
+                fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang),
+                fullCardUrl(cardId.toLowerCase(), upgraded, "beta", lang),
+                ...(info?.image_url ? [imageUrl(info.image_url)] : []),
+              ];
+              // The enchanted src isn't in the chain, so its failure lands on
+              // the plain render (indexOf -1 + 1 = 0).
+              const next = chain[chain.indexOf(el.src) + 1];
+              if (next) el.src = next;
+              else el.style.visibility = "hidden";
             }}
           />
         </span>

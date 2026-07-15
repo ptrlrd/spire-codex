@@ -13,7 +13,7 @@ import { useParams } from "next/navigation";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
@@ -31,6 +31,7 @@ import {
   API,
   CharacterIcon,
   EnemyCircle,
+  LiveCardImg,
   LiveDot,
   LiveEnemiesPanel,
   PartnerBadge,
@@ -428,12 +429,10 @@ function LiveCombatPanel({
   p,
   cat,
   lp,
-  lang,
 }: {
   p: LivePlayer;
   cat: Catalogs;
   lp: string;
-  lang: string;
 }) {
   const [openPile, setOpenPile] = useState<string | null>(null);
   const dmg: [string, number | null | undefined][] = [
@@ -511,12 +510,12 @@ function LiveCombatPanel({
                   lp={lp}
                   className="relative block w-16 shrink-0"
                 >
-                  <img
-                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
                     alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
                     className="h-auto w-16 rounded-sm"
-                    crossOrigin="anonymous"
-                    loading="lazy"
+                    portrait={cat.cards[id]?.image_url}
                   />
                 </CardPill>
               );
@@ -603,12 +602,12 @@ function LiveCombatPanel({
                     lp={lp}
                     className="relative block w-32 shrink-0"
                   >
-                    <img
-                      src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                    <LiveCardImg
+                      id={id}
+                      upgraded={upgraded}
                       alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
                       className="h-auto w-32 rounded-sm"
-                      crossOrigin="anonymous"
-                      loading="lazy"
+                      portrait={cat.cards[id]?.image_url}
                     />
                     {count > 1 && (
                       <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
@@ -986,7 +985,7 @@ export default function LivePlayerClient() {
     <div className="space-y-4">
       {hasEnemies && <LiveEnemiesPanel p={p} monsters={monsters} />}
       {p.screen === "combat" && !p.loot && (
-        <LiveCombatPanel p={p} cat={cat} lp={lp} lang={lang} />
+        <LiveCombatPanel p={p} cat={cat} lp={lp} />
       )}
       {p.event && (
         <LiveEventPanel
@@ -1003,7 +1002,6 @@ export default function LivePlayerClient() {
           relics={cat.relics}
           potions={cat.potions}
           lp={lp}
-          lang={lang}
         />
       )}
       {p.loot && (
@@ -1013,7 +1011,6 @@ export default function LivePlayerClient() {
           relics={cat.relics}
           potions={cat.potions}
           lp={lp}
-          lang={lang}
         />
       )}
     </div>
@@ -1057,9 +1054,6 @@ export default function LivePlayerClient() {
           <div className="flex flex-wrap gap-1.5">
             {deckGroups.map(({ raw, count }) => {
               const { id, upgraded } = parseDeckId(raw);
-              const fallback = cat.cards[id]?.image_url
-                ? imageUrl(cat.cards[id].image_url as string)
-                : "";
               return (
                 <CardPill
                   key={raw}
@@ -1069,17 +1063,12 @@ export default function LivePlayerClient() {
                   lp={lp}
                   className="relative block w-28 shrink-0"
                 >
-                  <img
-                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
                     alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
                     className="w-28 h-auto rounded-sm"
-                    crossOrigin="anonymous"
-                    loading="lazy"
-                    onError={(e) => {
-                      const el = e.target as HTMLImageElement;
-                      if (fallback && el.src !== fallback) el.src = fallback;
-                      else el.style.visibility = "hidden";
-                    }}
+                    portrait={cat.cards[id]?.image_url}
                   />
                   {count > 1 && (
                     <span className="absolute -top-1 -right-1 px-1 rounded bg-[var(--accent-gold)] text-[var(--bg-primary)] text-[10px] font-bold">
@@ -1220,7 +1209,6 @@ export default function LivePlayerClient() {
               monsters={monsters}
               encounters={encounters}
               lp={lp}
-              lang={lang}
             />
           </div>
         </div>

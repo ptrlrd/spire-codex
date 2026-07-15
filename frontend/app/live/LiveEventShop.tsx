@@ -7,7 +7,7 @@
 // the full card / relic tooltip). Contract: markdown-docs/live-presence.md (v4).
 
 import Link from "next/link";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import { RichDescriptionSimple } from "@/app/components/RichDescription";
 import {
   CardPill,
@@ -20,6 +20,7 @@ import {
   type RelicInfo,
 } from "../runs/[hash]/RunPills";
 import {
+  LiveCardImg,
   parseDeckId,
   safeId,
   withOrdinalKeys,
@@ -103,15 +104,11 @@ export function LiveEventPanel({
                             lp={lp}
                             className="block w-16 shrink-0"
                           >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={fullCardUrl(o.card)}
+                            <LiveCardImg
+                              id={cleanId(o.card)}
                               alt=""
                               className="w-16 rounded shadow"
-                              crossOrigin="anonymous"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = "none";
-                              }}
+                              portrait={cards?.[cleanId(o.card)]?.image_url}
                             />
                           </CardPill>
                         )}
@@ -161,7 +158,6 @@ function ShopSection({
   relics,
   potions,
   lp,
-  lang,
 }: {
   title: string;
   items: ShopItem[];
@@ -170,7 +166,6 @@ function ShopSection({
   relics: Record<string, RelicInfo>;
   potions: Record<string, PotionInfo>;
   lp: string;
-  lang: string;
 }) {
   const real = items.filter((it) => it.id);
   if (real.length === 0) return null;
@@ -189,17 +184,12 @@ function ShopSection({
           const portrait = info?.image_url ? imageUrl(info.image_url) : "";
           const thumb =
             kind === "card" ? (
-              <img
-                src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+              <LiveCardImg
+                id={id}
+                upgraded={upgraded}
                 alt={name}
                 className="w-7 h-auto rounded-sm"
-                crossOrigin="anonymous"
-                loading="lazy"
-                onError={(e) => {
-                  const el = e.target as HTMLImageElement;
-                  if (portrait && el.src !== portrait) el.src = portrait;
-                  else el.style.visibility = "hidden";
-                }}
+                portrait={info?.image_url}
               />
             ) : (
               <img
@@ -261,14 +251,12 @@ export function LiveShopPanel({
   relics,
   potions,
   lp,
-  lang,
 }: {
   shop: LiveShop;
   cards: Record<string, CardInfo>;
   relics: Record<string, RelicInfo>;
   potions: Record<string, PotionInfo>;
   lp: string;
-  lang: string;
 }) {
   const removal = shop.removal;
   return (
@@ -276,9 +264,9 @@ export function LiveShopPanel({
       <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)]">
         Shop
       </div>
-      <ShopSection title="Cards" items={shop.cards ?? []} kind="card" cards={cards} relics={relics} potions={potions} lp={lp} lang={lang} />
-      <ShopSection title="Relics" items={shop.relics ?? []} kind="relic" cards={cards} relics={relics} potions={potions} lp={lp} lang={lang} />
-      <ShopSection title="Potions" items={shop.potions ?? []} kind="potion" cards={cards} relics={relics} potions={potions} lp={lp} lang={lang} />
+      <ShopSection title="Cards" items={shop.cards ?? []} kind="card" cards={cards} relics={relics} potions={potions} lp={lp} />
+      <ShopSection title="Relics" items={shop.relics ?? []} kind="relic" cards={cards} relics={relics} potions={potions} lp={lp} />
+      <ShopSection title="Potions" items={shop.potions ?? []} kind="potion" cards={cards} relics={relics} potions={potions} lp={lp} />
       {removal && removal.cost != null && (
         <div className="flex items-center gap-2 pt-1 border-t border-[var(--border-subtle)]">
           <span className={`text-sm flex-1 ${removal.stocked === false ? "text-[var(--text-muted)] line-through" : "text-[var(--text-secondary)]"}`}>
@@ -304,14 +292,12 @@ export function LiveLootPanel({
   relics,
   potions,
   lp,
-  lang,
 }: {
   loot: LiveLoot;
   cards: Record<string, CardInfo>;
   relics: Record<string, RelicInfo>;
   potions: Record<string, PotionInfo>;
   lp: string;
-  lang: string;
 }) {
   const cardIds = loot.cards ?? [];
   const relicIds = loot.relics ?? [];
@@ -394,12 +380,12 @@ export function LiveLootPanel({
                       lp={lp}
                       className="relative block w-16 shrink-0"
                     >
-                      <img
-                        src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                      <LiveCardImg
+                        id={id}
+                        upgraded={upgraded}
                         alt={cards[id]?.name || displayName(`CARD.${id}`)}
                         className="h-auto w-16 rounded-sm"
-                        crossOrigin="anonymous"
-                        loading="lazy"
+                        portrait={cards[id]?.image_url}
                       />
                     </CardPill>
                   );
@@ -423,12 +409,12 @@ export function LiveLootPanel({
                 lp={lp}
                 className="relative block w-16 shrink-0"
               >
-                <img
-                  src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                <LiveCardImg
+                  id={id}
+                  upgraded={upgraded}
                   alt={cards[id]?.name || displayName(`CARD.${id}`)}
                   className="h-auto w-16 rounded-sm"
-                  crossOrigin="anonymous"
-                  loading="lazy"
+                  portrait={cards[id]?.image_url}
                 />
               </CardPill>
             );

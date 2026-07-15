@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import {
   CardPill,
   RelicPill,
@@ -27,6 +27,7 @@ import {
   API,
   CharacterIcon,
   FightingChip,
+  LiveCardImg,
   LiveDot,
   PartnerBadge,
   WatchOnTwitch,
@@ -52,14 +53,12 @@ function PlayerCard({
   relicData,
   monsters,
   lp,
-  lang,
 }: {
   p: LivePlayer;
   cardData: Record<string, CardInfo>;
   relicData: Record<string, RelicInfo>;
   monsters: MonsterMap;
   lp: string;
-  lang: string;
 }) {
   const hpPct =
     p.hp != null && p.max_hp ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100)) : null;
@@ -149,9 +148,6 @@ function PlayerCard({
           <div className="flex gap-1.5">
             {withOrdinalKeys(recent).map(({ item: raw, key }) => {
               const { id, upgraded } = parseDeckId(raw);
-              const fallback = cardData[id]?.image_url
-                ? imageUrl(cardData[id].image_url as string)
-                : "";
               return (
                 <CardPill
                   key={key}
@@ -161,17 +157,12 @@ function PlayerCard({
                   lp={lp}
                   className="block w-12 shrink-0"
                 >
-                  <img
-                    src={fullCardUrl(id.toLowerCase(), upgraded, "stable", lang)}
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
                     alt={cardData[id]?.name || displayName(`CARD.${id}`)}
                     className="w-12 h-auto rounded-sm"
-                    crossOrigin="anonymous"
-                    loading="lazy"
-                    onError={(e) => {
-                      const el = e.target as HTMLImageElement;
-                      if (fallback && el.src !== fallback) el.src = fallback;
-                      else el.style.visibility = "hidden";
-                    }}
+                    portrait={cardData[id]?.image_url}
                   />
                 </CardPill>
               );
@@ -315,7 +306,6 @@ export default function LiveClient() {
               relicData={relicData}
               monsters={monsters}
               lp={lp}
-              lang={lang}
             />
           ))}
         </div>
