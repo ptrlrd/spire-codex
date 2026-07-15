@@ -10,13 +10,15 @@ import RichDescription from "@/app/components/RichDescription";
 import { fullCardUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
-import { CONTENT_BRACKETS, bracketParam } from "@/lib/content-brackets";
+import { CONTENT_BRACKETS, combineBracket } from "@/lib/content-brackets";
 import { Pills, PLAYER_OPTS } from "@/app/components/PlayerCountPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-// One entity's per-bracket slice from /api/runs/scores/{type}?bracket=. Used
-// when a content bracket is active, in place of the get_stats top-N lists.
+// One entity's per-bracket slice from /api/runs/scores/{type}?bracket= (or,
+// with a character selected, from /api/runs/metrics/{type} mapped to the same
+// shape). Used when a content bracket is active, in place of the get_stats
+// top-N lists.
 interface BracketScore {
   score: number | null;
   elo: number | null;
@@ -24,7 +26,42 @@ interface BracketScore {
   wins: number;
   win_rate: number;
   pick_rate: number;
+  // Only on metrics-sourced rows (cards): reward-screen counts, so the Pick
+  // Rate column is the real per-bracket reward pick rate.
+  offered?: number;
+  picked?: number;
 }
+
+// A /api/runs/metrics/{type} row (only the fields this page reads).
+interface MetricsRow {
+  id: string;
+  score: number | null;
+  elo: number | null;
+  win_rate: number | null;
+  pick_rate: number | null;
+  picks: number;
+  wins: number;
+  offered: number;
+  picked: number;
+}
+
+// The community-stats blob slices this page reads for the bracket overview.
+interface BracketOverview {
+  total_runs: number;
+  total_wins: number;
+  win_rate: number;
+  by_ascension: { ascension: number; runs: number; wins: number; win_rate: number }[];
+  by_character: { id: string; runs: number; wins: number; win_rate: number }[];
+}
+
+// The live path filters by ?players= (1-4); the snapshot path slices by the
+// solo/2p/3p/4p brackets. Same cut, two vocabularies.
+const PLAYERS_TO_BRACKET: Record<string, string> = {
+  "1": "solo",
+  "2": "2p",
+  "3": "3p",
+  "4": "4p",
+};
 
 const CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] as const;
 
@@ -276,15 +313,25 @@ export default function StatsClient() {
   const [players, setPlayers] = useState("");
 
   // Content bracket (All / A10 / A10 >X% WR). When set to anything but "all",
-  // the card/relic/potion tabs source from the entity-score snapshot
-  // (/api/runs/scores) instead of get_stats, since the win-rate brackets only
-  // exist there. That snapshot is a self-contained skill slice, so the other
-  // filters (character/win/ascension/players) don't apply while it's active.
+  // everything sources from the pre-built stats snapshot instead of the live
+  // get_stats query: the overview reads the community blob, the card/relic/
+  // potion tabs read the entity snapshot (the only places the win-rate
+  // brackets exist). Player count and character still combine with it —
+  // players maps onto the solo/2p/3p/4p bracket axis, character onto the
+  // per-bracket by_character splits. Win and ascension have no snapshot
+  // dimension, so those two grey out.
   const [bracket, setBracket] = useState("all");
   const [bracketScores, setBracketScores] = useState<
     Record<EntityKind, Record<string, BracketScore>> | null
   >(null);
+  const [bracketOverview, setBracketOverview] = useState<BracketOverview | null>(null);
+  const [bracketLoading, setBracketLoading] = useState(false);
   const bracketActive = bracket !== "all";
+  // The ?bracket= value combining both axes, e.g. "wr50", "solo:wr50".
+  const apiBracket = combineBracket(
+    PLAYERS_TO_BRACKET[players] ?? "",
+    bracketActive ? bracket : "",
+  );
 
   // Tabs
   const [tab, setTab] = useState<TopTab>("overview");
@@ -402,20 +449,49 @@ export default function StatsClient() {
       .finally(() => setLoading(false));
   }, [character, winFilter, ascension, players]);
 
-  // Per-bracket entity scores, fetched only when a bracket is active. The
-  // snapshot ignores the other filters, so this depends on `bracket` alone.
+  // Per-bracket entity data, fetched only when a bracket is active. Cards come
+  // from /api/runs/metrics: it's the only endpoint that combines bracket x
+  // character (via the snapshot's by_character splits), and its bracket rows
+  // carry real reward offered/picked counts, so Pick Rate keeps meaning reward
+  // pick rate. Relics and potions come from /api/runs/scores (inclusion pick
+  // rates) unless a character is set, which only metrics can slice. Character
+  // rows carry Win% only — Elo and Pick% aren't tracked per character, those
+  // columns go blank.
   useEffect(() => {
-    const param = bracketParam(bracket);
-    if (!param) {
+    if (!bracketActive) {
       setBracketScores(null);
       return;
     }
     let cancelled = false;
-    Promise.all([
-      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/cards?bracket=${param}`),
-      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/relics?bracket=${param}`),
-      cachedFetch<Record<string, BracketScore>>(`${API}/api/runs/scores/potions?bracket=${param}`),
-    ])
+    const fromMetrics = (kind: EntityKind): Promise<Record<string, BracketScore>> => {
+      const params = new URLSearchParams({ bracket: apiBracket });
+      if (character) params.set("character", character);
+      return cachedFetch<{ rows: MetricsRow[] }>(
+        `${API}/api/runs/metrics/${kind}s?${params}`,
+      ).then((d) => {
+        const out: Record<string, BracketScore> = {};
+        for (const row of d.rows || []) {
+          out[row.id] = {
+            score: row.score,
+            elo: row.elo,
+            picks: row.picks,
+            wins: row.wins,
+            win_rate: row.win_rate ?? 0,
+            pick_rate: row.pick_rate ?? 0,
+            offered: row.offered,
+            picked: row.picked,
+          };
+        }
+        return out;
+      });
+    };
+    const fetchType = (kind: EntityKind): Promise<Record<string, BracketScore>> => {
+      if (kind === "card" || character) return fromMetrics(kind);
+      return cachedFetch<Record<string, BracketScore>>(
+        `${API}/api/runs/scores/${kind}s?bracket=${encodeURIComponent(apiBracket)}`,
+      );
+    };
+    Promise.all([fetchType("card"), fetchType("relic"), fetchType("potion")])
       .then(([card, relic, potion]) => {
         if (!cancelled) setBracketScores({ card, relic, potion });
       })
@@ -425,7 +501,92 @@ export default function StatsClient() {
     return () => {
       cancelled = true;
     };
-  }, [bracket]);
+  }, [bracketActive, apiBracket, character]);
+
+  // Bracket overview: the community-stats blob materializes every bracket
+  // (including the player:skill composites), so the Overview tab's totals,
+  // character win rates, and ascension table can follow the bracket instead
+  // of freezing on the live all-runs numbers.
+  useEffect(() => {
+    if (!bracketActive) {
+      setBracketOverview(null);
+      return;
+    }
+    let cancelled = false;
+    setBracketLoading(true);
+    cachedFetch<BracketOverview>(
+      `${API}/api/runs/community-stats?bracket=${encodeURIComponent(apiBracket)}`,
+    )
+      .then((d) => {
+        if (!cancelled) setBracketOverview(d);
+      })
+      .catch(() => {
+        if (!cancelled) setBracketOverview(null);
+      })
+      .finally(() => {
+        if (!cancelled) setBracketLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [bracketActive, apiBracket]);
+
+  // What the header, overview tab, and empty-state gate render: the live
+  // get_stats response normally, or a pseudo-stats built from the bracket's
+  // community blob when a bracket is active. With a character selected the
+  // totals come from that character's row; the ascension split isn't tracked
+  // per character in the snapshot, so it hides rather than showing an
+  // unfiltered table.
+  const viewStats: CommunityStats | null = useMemo(() => {
+    if (!bracketActive) return stats;
+    if (!bracketOverview) return null;
+    const rows = bracketOverview.by_character || [];
+    const selected = character
+      ? rows.filter((c) => c.id === character.toLowerCase())
+      : rows;
+    const totalRuns = character
+      ? selected.reduce((n, c) => n + c.runs, 0)
+      : bracketOverview.total_runs;
+    const totalWins = character
+      ? selected.reduce((n, c) => n + c.wins, 0)
+      : bracketOverview.total_wins;
+    return {
+      total_runs: totalRuns,
+      total_wins: totalWins,
+      total_abandoned: 0,
+      win_rate: character
+        ? totalRuns > 0
+          ? Math.round((totalWins / totalRuns) * 1000) / 10
+          : 0
+        : bracketOverview.win_rate,
+      filters: {
+        character: character || null,
+        win: null,
+        ascension: null,
+        game_mode: null,
+        players: players || null,
+      },
+      characters: selected.map((c) => ({
+        character: c.id.toUpperCase(),
+        total: c.runs,
+        wins: c.wins,
+        win_rate: c.win_rate,
+      })),
+      ascensions: character
+        ? []
+        : (bracketOverview.by_ascension || []).map((a) => ({
+            level: a.ascension,
+            total: a.runs,
+            wins: a.wins,
+            win_rate: a.win_rate,
+          })),
+      top_cards: [],
+      pick_rates: [],
+      top_relics: [],
+      top_potions: [],
+      deadliest: [],
+    };
+  }, [bracketActive, bracketOverview, stats, character, players]);
 
   // One API for both channels now: beta entities' art serves from the main
   // backend/CDN since the beta site merged into the main deployment.
@@ -450,8 +611,8 @@ export default function StatsClient() {
             color: info?.color || "",
             image_url: info?.image_url || null,
             description: info?.description || "",
-            offered: 0,
-            picked: 0,
+            offered: s.offered ?? 0,
+            picked: s.picked ?? 0,
             pick_rate: s.pick_rate ?? 0,
             count: s.picks ?? 0,
             win_runs: s.wins ?? 0,
@@ -707,7 +868,7 @@ export default function StatsClient() {
         <span className="text-[var(--accent-gold)]">{t("Stats", lang)}</span>
       </h1>
       <p className="text-[var(--text-secondary)] mb-3">
-        {stats?.total_runs || 0} {t("runs analyzed.", lang)}{" "}
+        {viewStats?.total_runs || 0} {t("runs analyzed.", lang)}{" "}
         <Link
           href={`${lp}/leaderboards/submit`}
           className="text-[var(--accent-gold)] hover:underline"
@@ -737,9 +898,10 @@ export default function StatsClient() {
         ))}
       </div>
 
-      {/* Content bracket selector. When set past "All" the card/relic/potion
-          tabs source from the entity-score snapshot (the only place the
-          win-rate brackets exist), and the filters below grey out. */}
+      {/* Content bracket selector. When set past "All" the page sources from
+          the stats snapshot (the only place the win-rate brackets exist);
+          player count and character keep combining with it, win/ascension
+          grey out. */}
       <div className="flex flex-wrap items-center gap-1.5 mb-4">
         <span className="text-xs text-[var(--text-muted)] mr-1">{t("Bracket", lang)}</span>
         {CONTENT_BRACKETS.map((b) => {
@@ -761,7 +923,12 @@ export default function StatsClient() {
         })}
         {bracketActive && (
           <span className="text-xs text-[var(--text-muted)] ml-1">
-            {t("Card / relic / potion tabs only; the filters below don't apply.", lang)}
+            {t("Result and ascension filters don't apply within a bracket.", lang)}
+          </span>
+        )}
+        {bracketActive && character && (
+          <span className="text-xs text-[var(--text-muted)] ml-1">
+            {t("Character rows carry Codex Score and Win% only. Elo and Pick% aren't tracked per character.", lang)}
           </span>
         )}
       </div>
@@ -777,7 +944,6 @@ export default function StatsClient() {
           options={PLAYER_OPTS}
           value={players}
           onChange={setPlayers}
-          disabled={bracketActive}
           ariaLabel={t("Filter by player count", lang)}
         />
       </div>
@@ -787,8 +953,7 @@ export default function StatsClient() {
         <select
           value={character}
           onChange={(e) => setCharacter(e.target.value)}
-          disabled={bracketActive}
-          className={`${selectClass}${bracketActive ? " opacity-40 pointer-events-none" : ""}`}
+          className={selectClass}
           style={{
             borderColor: character ? characterHex(character) : undefined,
           }}
@@ -824,7 +989,7 @@ export default function StatsClient() {
           <option value="false">{t("Losses", lang)}</option>
           <option value="abandoned">{t("Abandoned", lang)}</option>
         </select>
-        {loading && (
+        {(loading || bracketLoading) && (
           <span className="text-xs text-[var(--text-muted)] self-center">{t("Loading...", lang)}</span>
         )}
       </div>
@@ -846,17 +1011,21 @@ export default function StatsClient() {
         ))}
       </div>
 
-      {!stats || stats.total_runs === 0 ? (
+      {!viewStats ? (
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {loading || bracketLoading ? t("Loading...", lang) : t("No runs found.", lang)}
+        </div>
+      ) : viewStats.total_runs === 0 ? (
         <div className="text-center py-12 text-[var(--text-muted)]">
           {t("No runs found.", lang)}
         </div>
       ) : (
         <>
-          {tab === "overview" && <OverviewTab stats={stats} onCharacterClick={setCharacter} lang={lang} />}
+          {tab === "overview" && <OverviewTab stats={viewStats} onCharacterClick={setCharacter} lang={lang} />}
           {tab === "cards" && (
             <CardsTab
               rows={filteredCards}
-              totalRuns={stats.total_runs}
+              totalRuns={viewStats.total_runs}
               cardTypes={cardTypes}
               cardRarities={cardRarities}
               cardType={cardType}
@@ -1402,7 +1571,13 @@ function RelicsTab({
                   </td>
                   <td className="py-2">
                     <div className="flex justify-end">
-                      <PercentBar value={r.pick_rate} color={pickRateColor(r.pick_rate)} />
+                      {/* Character-scoped bracket rows have no pick rate
+                          (inclusion isn't tracked per character). */}
+                      {r.pick_rate > 0 ? (
+                        <PercentBar value={r.pick_rate} color={pickRateColor(r.pick_rate)} />
+                      ) : (
+                        <span className="text-[var(--text-muted)]">—</span>
+                      )}
                     </div>
                   </td>
                   <td className="py-2">

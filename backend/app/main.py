@@ -655,7 +655,9 @@ app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)
 app.include_router(admin_rate_limits.router, include_in_schema=False)
 app.include_router(admin_api_keys.router, include_in_schema=False)
-app.include_router(api_keys.router)
+# Key management (create/list/revoke) is session-authed and site-internal, so
+# it stays out of /docs; only the public tier info (/api/rate-limits) shows.
+app.include_router(api_keys.router, include_in_schema=False)
 app.include_router(api_keys.info_router)
 app.include_router(glossary.router)
 app.include_router(guides.router)
