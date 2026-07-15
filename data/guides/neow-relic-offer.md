@@ -1,11 +1,8 @@
 ---
 title: "Neow in Slay the Spire 2: How Her Relic Offer Works"
 slug: "neow-relic-offer"
-author: "Yitsy"
+author: "Spire Codex"
 date: "2026-07-15"
-twitter: "ptrlrd"
-bluesky: "ptrlrd"
-twitch: "yitsy"
 category: "general"
 tags: ["neow", "ancients", "relics", "early game"]
 summary: "How Neow works in Slay the Spire 2: her full relic pool, the curse exclusion rules, and what community runs say about which offer to take."
