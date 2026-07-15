@@ -39,6 +39,13 @@ const UMAMI_SRC = "https://analytics.spire-codex.com/script.js";
 const UMAMI_WEBSITE_ID =
   process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "715a2b92-5064-4369-9d33-cdd1c0ea8f93";
 
+// Google Analytics 4 + Google Tag Manager, running alongside Umami. Both ids
+// are public-by-design like the Umami website id. GTM could load the GA tag
+// itself, but keeping the direct gtag include means pageviews keep flowing
+// even while the GTM container is empty or misconfigured.
+const GA_ID = "G-9ZKSNKCV77";
+const GTM_ID = "GTM-NKVKGMVS";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -100,6 +107,15 @@ export default function RootLayout({
       <body
         className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.remove('dark');}else{document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
@@ -139,6 +155,25 @@ export default function RootLayout({
             defer
           />
         )}
+        {/* Google tag (gtag.js) */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+        </Script>
+        {/* Google Tag Manager */}
+        <Script id="gtm-init" strategy="afterInteractive">
+          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${GTM_ID}');`}
+        </Script>
       </body>
     </html>
   );
