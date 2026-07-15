@@ -47,16 +47,49 @@ interface Me {
   is_admin?: boolean;
 }
 
+// The gate verdict, cached for the tab's lifetime: without this every /admin/*
+// navigation re-fetched /api/auth/me and blanked the page on "Loading..."
+// before the page's own data fetch could even start. The gate is cosmetic
+// (every /api/admin/* endpoint enforces require_admin server-side), so trusting
+// a same-session verdict is safe; sign-out clears sessionStorage cookies-side
+// and the API would 401 anyway.
+let _gateMe: Me | null = null;
+
+function cachedGate(): Me | null {
+  if (_gateMe) return _gateMe;
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem("admin_gate_me");
+    if (raw) {
+      _gateMe = JSON.parse(raw) as Me;
+      return _gateMe;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
 export function useAdminGate(): { state: "loading" | "denied" | "ok"; me: Me | null } {
-  const [state, setState] = useState<"loading" | "denied" | "ok">("loading");
-  const [me, setMe] = useState<Me | null>(null);
+  const cached = cachedGate();
+  const [state, setState] = useState<"loading" | "denied" | "ok">(
+    cached ? "ok" : "loading",
+  );
+  const [me, setMe] = useState<Me | null>(cached);
   useEffect(() => {
+    if (cachedGate()) return;
     fetch(`${API}/api/auth/me`, { credentials: "include", headers: authHeaders() })
       .then((r) => (r.ok ? r.json() : null))
       .then((m: Me | null) => {
         if (!m?.is_admin) {
           setState("denied");
           return;
+        }
+        _gateMe = m;
+        try {
+          sessionStorage.setItem("admin_gate_me", JSON.stringify(m));
+        } catch {
+          /* ignore */
         }
         setMe(m);
         setState("ok");

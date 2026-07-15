@@ -161,33 +161,60 @@ export default function ProfileStats({
   const [tab, setTab] = useState<Tab>("overview");
 
   useEffect(() => {
-    async function load() {
-      try {
-        const [statsRes, bestsRes, competitiveRes, cards, relics, potions] = await Promise.all([
-          fetch(`${API}/api/auth/stats`, { credentials: "include" }).then((r) => r.ok ? r.json() : null),
-          fetch(`${API}/api/auth/personal-bests`, { credentials: "include" }).then((r) => r.ok ? r.json() : null),
-          fetch(`${API}/api/auth/competitive`, { credentials: "include" }).then((r) => r.ok ? r.json() : null),
-          cachedFetch<EntityInfo[]>(`${API}/api/cards`),
-          cachedFetch<EntityInfo[]>(`${API}/api/relics`),
-          cachedFetch<EntityInfo[]>(`${API}/api/potions`),
-        ]);
-        if (statsRes) setStats(statsRes);
-        if (bestsRes) setBests(bestsRes);
-        if (competitiveRes) setCompetitive(competitiveRes);
+    // Progressive load: each piece renders as it arrives instead of the whole
+    // panel blanking on a skeleton until the slowest endpoint (/competitive,
+    // a dozen Mongo queries) returns. The headline stats paint first.
+    let alive = true;
+
+    fetch(`${API}/api/auth/stats`, { credentials: "include" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (!alive) return;
+        if (d) setStats(d);
+      })
+      .catch(() => {})
+      .finally(() => {
+        if (alive) setLoading(false);
+      });
+
+    fetch(`${API}/api/auth/personal-bests`, { credentials: "include" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => alive && d && setBests(d))
+      .catch(() => {});
+
+    fetch(`${API}/api/auth/competitive`, { credentials: "include" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => alive && d && setCompetitive(d))
+      .catch(() => {});
+
+    cachedFetch<EntityInfo[]>(`${API}/api/cards`)
+      .then((cards) => {
+        if (!alive) return;
         const cm: Record<string, EntityInfo> = {};
         for (const c of cards) cm[c.id] = c;
         setCardData(cm);
+      })
+      .catch(() => {});
+    cachedFetch<EntityInfo[]>(`${API}/api/relics`)
+      .then((relics) => {
+        if (!alive) return;
         const rm: Record<string, EntityInfo> = {};
         for (const r of relics) rm[r.id] = r;
         setRelicData(rm);
+      })
+      .catch(() => {});
+    cachedFetch<EntityInfo[]>(`${API}/api/potions`)
+      .then((potions) => {
+        if (!alive) return;
         const pm: Record<string, EntityInfo> = {};
         for (const p of potions) pm[p.id] = p;
         setPotionData(pm);
-      } catch {} finally {
-        setLoading(false);
-      }
-    }
-    load();
+      })
+      .catch(() => {});
+
+    return () => {
+      alive = false;
+    };
   }, []);
 
   if (loading) {

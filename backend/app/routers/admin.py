@@ -165,19 +165,41 @@ def _dau_info() -> dict:
         return {}
 
 
+# Overview vitals cache: the five info blocks are independent Mongo queries
+# (the DAU aggregations are the slow ones); computed serially they made the
+# admin landing page drag. Fan out + a short TTL so revisits are instant.
+_OVERVIEW_TTL_SECONDS = 20.0
+_overview_cache: dict = {"at": 0.0, "data": None}
+
+
 @router.get("/overview")
 def overview(request: Request):
     """Operational vitals: run volume, users, snapshot freshness, Redis, and
     the mod's daily-active-user counts."""
     _audit(request)
-    return {
-        "runs": _runs_info(),
-        "users": _users_info(),
-        "snapshot": _snapshot_info(),
-        "redis": app_cache.info(),
-        "dau": _dau_info(),
-        "environment": os.environ.get("ENVIRONMENT", "development"),
-    }
+    import time
+    from concurrent.futures import ThreadPoolExecutor
+
+    now = time.monotonic()
+    if (
+        _overview_cache["data"] is not None
+        and now - _overview_cache["at"] < _OVERVIEW_TTL_SECONDS
+    ):
+        return _overview_cache["data"]
+
+    with ThreadPoolExecutor(max_workers=5, thread_name_prefix="admin-ov") as pool:
+        futures = {
+            "runs": pool.submit(_runs_info),
+            "users": pool.submit(_users_info),
+            "snapshot": pool.submit(_snapshot_info),
+            "redis": pool.submit(app_cache.info),
+            "dau": pool.submit(_dau_info),
+        }
+        data = {k: f.result() for k, f in futures.items()}
+    data["environment"] = os.environ.get("ENVIRONMENT", "development")
+    _overview_cache["data"] = data
+    _overview_cache["at"] = now
+    return data
 
 
 @router.get("/live")

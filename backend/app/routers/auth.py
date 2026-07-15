@@ -24,8 +24,11 @@ _MAX_UPLOAD_SIZE = 512 * 1024  # 512 KB per file
 _MAX_UPLOAD_FILES = 100
 
 
+# These handlers are plain `def` on purpose: they call blocking pymongo, and
+# as `async def` they ran ON the event loop, stalling every other request for
+# the duration of their queries. Plain `def` routes run in the threadpool.
 @router.get("/me")
-async def me(request: Request):
+def me(request: Request):
     user = get_current_user(request)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
@@ -46,7 +49,7 @@ async def me(request: Request):
 
 @router.post("/steam/disconnect")
 @limiter.limit("10/minute")
-async def disconnect_steam(request: Request):
+def disconnect_steam(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_steam
 
@@ -58,7 +61,7 @@ async def disconnect_steam(request: Request):
 
 @router.post("/discord/disconnect")
 @limiter.limit("10/minute")
-async def disconnect_discord(request: Request):
+def disconnect_discord(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_discord
 
@@ -70,7 +73,7 @@ async def disconnect_discord(request: Request):
 
 @router.post("/twitch/disconnect")
 @limiter.limit("10/minute")
-async def disconnect_twitch(request: Request):
+def disconnect_twitch(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_twitch
 
@@ -81,7 +84,7 @@ async def disconnect_twitch(request: Request):
 
 
 @router.post("/logout")
-async def logout(request: Request):
+def logout(request: Request):
     response = JSONResponse({"success": True})
     clear_auth_cookie(response)
     return response
@@ -142,7 +145,7 @@ async def update_username(request: Request):
 
 
 @router.get("/username/check")
-async def check_username(username: str):
+def check_username(username: str):
     if not username or not username.strip():
         return {"available": False}
     from ..services.users_db import check_username_available
@@ -177,7 +180,7 @@ async def update_email(request: Request):
 
 @router.get("/runs")
 @limiter.limit("60/minute")
-async def get_my_runs(
+def get_my_runs(
     request: Request,
     page: int = 1,
     limit: int = 50,
@@ -198,7 +201,7 @@ async def get_my_runs(
 
 @router.delete("/runs/{run_hash}")
 @limiter.limit("30/minute")
-async def delete_run(run_hash: str, request: Request):
+def delete_run(run_hash: str, request: Request):
     user = require_user(request)
 
     if not os.environ.get("MONGO_URL", "").strip():
@@ -220,7 +223,7 @@ async def delete_run(run_hash: str, request: Request):
 
 @router.get("/stats")
 @limiter.limit("10/minute")
-async def user_stats(request: Request):
+def user_stats(request: Request):
     user = require_user(request)
     username = user.get("username")
     if not username:
@@ -232,6 +235,29 @@ async def user_stats(request: Request):
     from ..services.runs_db_mongo import get_stats
 
     return get_stats(username=username)
+
+
+# Per-user cache for personal bests: both /personal-bests and /competitive need
+# them, so without this a single profile load computed the same five sorted
+# queries twice. 60s is plenty; a just-submitted run shows up on the next load.
+_BESTS_TTL_SECONDS = 60.0
+_bests_cache: dict[str, tuple[float, dict]] = {}
+
+
+def _personal_bests_cached(username: str) -> dict:
+    import time
+
+    now = time.monotonic()
+    hit = _bests_cache.get(username.lower())
+    if hit and hit[0] > now:
+        return hit[1]
+    bests = _compute_personal_bests(username)
+    # Bounded: drop expired entries past a size cap so it can't grow forever.
+    if len(_bests_cache) > 2000:
+        for k in [k for k, (exp, _) in _bests_cache.items() if exp <= now]:
+            _bests_cache.pop(k, None)
+    _bests_cache[username.lower()] = (now + _BESTS_TTL_SECONDS, bests)
+    return bests
 
 
 def _compute_personal_bests(username: str) -> dict:
@@ -292,17 +318,17 @@ def _compute_personal_bests(username: str) -> dict:
 
 @router.get("/personal-bests")
 @limiter.limit("10/minute")
-async def personal_bests(request: Request):
+def personal_bests(request: Request):
     user = require_user(request)
     username = user.get("username")
     if not username or not os.environ.get("MONGO_URL", "").strip():
         return {}
-    return _compute_personal_bests(username)
+    return _personal_bests_cached(username)
 
 
 @router.get("/competitive")
 @limiter.limit("10/minute")
-async def competitive_stats(request: Request):
+def competitive_stats(request: Request):
     user = require_user(request)
     username = user.get("username")
     if not username or not os.environ.get("MONGO_URL", "").strip():
@@ -318,7 +344,7 @@ async def competitive_stats(request: Request):
         get_win_rate_comparison,
     )
 
-    bests = _compute_personal_bests(username)
+    bests = _personal_bests_cached(username)
 
     rank_configs = {
         "fastest_solo": {
@@ -340,17 +366,25 @@ async def competitive_stats(request: Request):
         "fastest_daily": {"category": "fastest", "game_mode": "daily"},
     }
 
-    personal_ranks = {}
-    for key, cfg in rank_configs.items():
-        best = bests.get(key)
-        if best:
-            personal_ranks[key] = get_run_rank_scoped(best["run_hash"], **cfg)
+    # Up to 5 rank counts + the leaderboard + the comparison are independent
+    # Mongo queries; serially they were the profile page's long pole. Fan them
+    # out on a small pool so the endpoint costs one slow query, not the sum.
+    from concurrent.futures import ThreadPoolExecutor
 
-    return {
-        "daily_leaderboard": get_daily_leaderboard(username),
-        "personal_ranks": personal_ranks,
-        "win_rate_comparison": get_win_rate_comparison(username),
-    }
+    with ThreadPoolExecutor(max_workers=4, thread_name_prefix="competitive") as pool:
+        rank_futures = {
+            key: pool.submit(get_run_rank_scoped, bests[key]["run_hash"], **cfg)
+            for key, cfg in rank_configs.items()
+            if bests.get(key)
+        }
+        daily_future = pool.submit(get_daily_leaderboard, username)
+        wr_future = pool.submit(get_win_rate_comparison, username)
+        personal_ranks = {key: f.result() for key, f in rank_futures.items()}
+        return {
+            "daily_leaderboard": daily_future.result(),
+            "personal_ranks": personal_ranks,
+            "win_rate_comparison": wr_future.result(),
+        }
 
 
 @router.post("/runs/upload")
@@ -478,7 +512,7 @@ async def upload_runs(request: Request, files: list[UploadFile] = File(...)):
 
 @router.get("/runs/stats")
 @limiter.limit("60/minute")
-async def get_my_stats(request: Request):
+def get_my_stats(request: Request):
     user = require_user(request)
     username = user.get("username")
     if not username:
