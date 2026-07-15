@@ -12,7 +12,7 @@ export type LangCode = (typeof SUPPORTED_LANGS)[number];
 /** Maps 3-letter game codes to BCP-47 / hreflang codes */
 export const LANG_HREFLANG: Record<LangCode, string> = {
   deu: "de",
-  esp: "es",
+  esp: "es-ES",
   fra: "fr",
   ita: "it",
   jpn: "ja",
@@ -20,7 +20,11 @@ export const LANG_HREFLANG: Record<LangCode, string> = {
   pol: "pl",
   ptb: "pt-BR",
   rus: "ru",
-  spa: "es-419",
+  // Generic "es" on purpose: the LatAm variant is the catch-all Spanish
+  // (Spain gets the explicit es-ES above). The old es-419 region code is
+  // valid per BCP 47 and Google, but most SEO crawlers only accept ISO
+  // country codes and flagged every page for it.
+  spa: "es",
   tha: "th",
   tur: "tr",
   zhs: "zh-Hans",
