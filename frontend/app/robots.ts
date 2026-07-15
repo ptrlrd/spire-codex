@@ -24,10 +24,12 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        // /_next/ is deliberately NOT disallowed: Googlebot has to fetch the
+        // JS/CSS chunks to render pages, and a disallow there blocked every
+        // asset on every page (crawlers flagged all of them).
         disallow: [
           "/api/",       // backend JSON + download endpoints
           "/static/",    // static asset trees (CDN-served)
-          "/_next/",     // Next.js build output (already not indexable but explicit)
           "/uninstall",  // Overwolf post-uninstall survey, entered only by the OW client
         ],
       },
