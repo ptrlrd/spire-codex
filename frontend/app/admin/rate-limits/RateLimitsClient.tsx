@@ -118,7 +118,7 @@ export default function RateLimitsClient() {
               Browse cap
             </label>
             <div className="text-xs text-[var(--text-muted)] mb-2">
-              Un-keyed traffic, per IP.
+              Un-keyed traffic, per IP, counted per endpoint.
             </div>
             <div className="flex gap-2">
               <input
@@ -164,7 +164,7 @@ export default function RateLimitsClient() {
               API-key tiers
             </label>
             <div className="text-xs text-[var(--text-muted)] mb-3">
-              Cap per <span className="font-mono">X-API-Key</span>, by the key&apos;s tier.
+              Cap per <span className="font-mono">X-API-Key</span>, by the key&apos;s tier, counted per endpoint.
             </div>
             <div className="space-y-2">
               {TIER_META.map((t) => (
