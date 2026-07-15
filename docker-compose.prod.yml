@@ -107,6 +107,11 @@ services:
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
       - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID:-}
       - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET:-}
+      # Patreon link for the paid API-key tier (auth_patreon router). Unset =
+      # the feature stays dormant (connect bounces with patreon_unconfigured).
+      - PATREON_CLIENT_ID=${PATREON_CLIENT_ID:-}
+      - PATREON_CLIENT_SECRET=${PATREON_CLIENT_SECRET:-}
+      - PATREON_WEBHOOK_SECRET=${PATREON_WEBHOOK_SECRET:-}
       - FRONTEND_URL=${FRONTEND_URL:-https://spire-codex.com}
       - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://spire-codex.com}
       - ENVIRONMENT=${ENVIRONMENT:-production}
