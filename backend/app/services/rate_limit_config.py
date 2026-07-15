@@ -12,6 +12,11 @@ counts live.
 Endpoints with their own tighter ``@limiter.limit(...)`` (auth, feedback, guide
 submission) keep those — those stay per-IP so a key can't buy past them.
 
+Caps count PER ENDPOINT (the limiter scopes counters by route), so a key's
+60/minute means 60/minute on each route, not across the whole API. Deliberate:
+it protects every endpoint from hammering while staying generous to clients
+that fan out across several.
+
 Endpoint overrides: the config also carries a list of {path, limit} entries so
 an operator can clamp a specific path prefix live when it's being abused (e.g.
 ``/api/runs`` -> ``30/minute``). Longest matching prefix wins, the override

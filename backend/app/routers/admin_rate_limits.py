@@ -5,11 +5,12 @@ raise/lower the global per-IP cap or switch it off entirely at runtime, without
 a redeploy. Per-endpoint limits (auth, feedback, ...) are unaffected.
 """
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from ..services import rate_limit_config
 from ..services.auth_jwt import require_admin
+from .admin import _audit
 
 router = APIRouter(
     prefix="/api/admin/rate-limits",
@@ -19,8 +20,9 @@ router = APIRouter(
 
 
 @router.get("")
-def get_rate_limits():
+def get_rate_limits(request: Request):
     """Current browse cap, per-tier caps, and whether limiting is on."""
+    _audit(request)
     return rate_limit_config.get_config()
 
 
@@ -52,9 +54,10 @@ class RateLimitUpdate(BaseModel):
 
 
 @router.put("")
-def set_rate_limits(body: RateLimitUpdate):
+def set_rate_limits(body: RateLimitUpdate, request: Request):
     """Change the browse cap, tier caps, endpoint clamps, and/or toggle limiting.
     Takes effect across workers within the config cache window (~15s)."""
+    _audit(request)
     try:
         return rate_limit_config.set_config(
             body.default_limit,

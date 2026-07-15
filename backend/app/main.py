@@ -143,10 +143,13 @@ IS_BETA_BACKEND = os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1"
 # key_style="endpoint" scopes each counter by ROUTE, not URL — slowapi's default
 # "url" gave every distinct path its own counter, so a scraper enumerating
 # /api/cards/{id} across hundreds of ids got the full cap on each one.
+# headers_enabled: responses carry X-RateLimit-Limit/Remaining/Reset (and 429s
+# a Retry-After) so API consumers can see their quota and back off politely.
 limiter = Limiter(
     key_func=rate_limit_config.rate_limit_key,
     default_limits=[rate_limit_config.tier_limit_value],
     key_style="endpoint",
+    headers_enabled=True,
 )
 
 app = FastAPI(
@@ -563,7 +566,14 @@ _cors_origins = os.environ.get("CORS_ORIGINS", "").strip()
 # Response headers a browser client is allowed to read; wildcard allow_headers
 # only covers the *request* side. X-Next-Cursor carries the run-export keyset
 # token (GET /api/exports/runs).
-_cors_expose_headers = ["X-Next-Cursor"]
+_cors_expose_headers = [
+    "X-Next-Cursor",
+    # Quota headers, so browser-side API clients can read their remaining budget.
+    "X-RateLimit-Limit",
+    "X-RateLimit-Remaining",
+    "X-RateLimit-Reset",
+    "Retry-After",
+]
 if _cors_origins:
     app.add_middleware(
         CORSMiddleware,

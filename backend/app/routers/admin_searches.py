@@ -6,10 +6,11 @@ the existing operator login instead of a separate token. Reads the `search_log`
 collection populated by the /api/search hook.
 """
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 
 from ..services import search_analytics
 from ..services.auth_jwt import require_admin
+from .admin import _audit
 
 router = APIRouter(
     prefix="/api/admin/searches",
@@ -19,7 +20,8 @@ router = APIRouter(
 
 
 @router.get("")
-def searches_overview(days: int = 7, limit: int = 50):
+def searches_overview(request: Request, days: int = 7, limit: int = 50):
     """Everything the /admin/searches page needs in one call: headline summary,
     top queries, top zero-result queries, per-day volume, and a recent feed."""
+    _audit(request)
     return search_analytics.overview(days, limit)

@@ -147,7 +147,7 @@ export default function DevelopersPage() {
           casual use (rate limited per IP). For scripts and tools, create an API key on your{" "}
           <Link href="/profile" className="text-[var(--accent-gold)] hover:underline">profile page</Link>{" "}
           and send it as the <code className="text-xs bg-[var(--bg-card)] px-1.5 py-0.5 rounded">X-API-Key</code>{" "}
-          header to get your own dedicated rate limit instead of sharing the per-IP cap.
+          header to get your own dedicated rate limit (counted per endpoint) instead of sharing the per-IP cap. Responses carry X-RateLimit-Remaining / X-RateLimit-Reset so you can pace requests.
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
