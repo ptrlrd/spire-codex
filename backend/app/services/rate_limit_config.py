@@ -22,6 +22,11 @@ an operator can clamp a specific path prefix live when it's being abused (e.g.
 ``/api/runs`` -> ``30/minute``). Longest matching prefix wins, the override
 applies to every tier (a clamp during an attack should clamp everyone), and
 ``/api/admin`` is never overridable so the controls can't lock themselves out.
+
+With REDIS_URL set (prod always sets it, the cache lives there) the counters
+live in Redis via ``storage_kwargs`` and are shared across all workers, so a
+cap means exactly what it says. Unset, or with Redis down, slowapi falls back
+to per-worker in-memory counters (~workers x the cap) — the pre-Redis behavior.
 """
 
 import logging
@@ -57,6 +62,22 @@ _cache: dict = {"at": 0.0, "cfg": None}
 # before the limit callable, in the same context) so tier_limit_value can apply
 # endpoint overrides without access to the request object.
 _current_path: ContextVar[str] = ContextVar("rl_current_path", default="")
+
+
+def storage_kwargs() -> dict:
+    """kwargs for every slowapi ``Limiter(...)``: Redis-backed counters when
+    RATE_LIMIT_REDIS_URL or REDIS_URL is set (shared across workers, so caps are
+    exact), else slowapi's in-memory default. in_memory_fallback_enabled means a
+    Redis outage degrades to per-worker limiting instead of 500s. The shared
+    cache Redis runs allkeys-lru; counter keys are tiny and short-lived, so
+    eviction pressure at worst forgets a window early (fail-generous)."""
+    url = (
+        os.environ.get("RATE_LIMIT_REDIS_URL", "").strip()
+        or os.environ.get("REDIS_URL", "").strip()
+    )
+    if not url:
+        return {}
+    return {"storage_uri": url, "in_memory_fallback_enabled": True}
 
 
 def _coll():

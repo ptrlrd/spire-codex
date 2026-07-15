@@ -145,11 +145,15 @@ IS_BETA_BACKEND = os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1"
 # /api/cards/{id} across hundreds of ids got the full cap on each one.
 # headers_enabled: responses carry X-RateLimit-Limit/Remaining/Reset (and 429s
 # a Retry-After) so API consumers can see their quota and back off politely.
+# storage_kwargs points the counters at Redis when REDIS_URL is set, so all
+# workers share them and a cap means exactly what it says (previously each of
+# the 4 workers kept its own in-memory count, ~4x the configured cap).
 limiter = Limiter(
     key_func=rate_limit_config.rate_limit_key,
     default_limits=[rate_limit_config.tier_limit_value],
     key_style="endpoint",
     headers_enabled=True,
+    **rate_limit_config.storage_kwargs(),
 )
 
 app = FastAPI(
