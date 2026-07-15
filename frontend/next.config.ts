@@ -26,6 +26,19 @@ const nextConfig: NextConfig = {
           { key: "Access-Control-Allow-Origin", value: "*" },
         ],
       },
+      // RFC 8288 Link headers on the homepage so agents and API clients can
+      // discover the machine-readable surfaces without parsing HTML:
+      // the RFC 9727 api-catalog, the human API docs, and llms.txt.
+      {
+        source: "/",
+        headers: [
+          {
+            key: "Link",
+            value:
+              '</.well-known/api-catalog>; rel="api-catalog", </developers>; rel="service-doc", </llms.txt>; rel="describedby"; type="text/plain"',
+          },
+        ],
+      },
     ];
   },
 };
