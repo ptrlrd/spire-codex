@@ -20,7 +20,7 @@ from datetime import datetime, timezone
 logger = logging.getLogger("spire-codex")
 
 API_KEYS_COLLECTION = "api_keys"
-KEY_PREFIX = "sk_"
+KEY_PREFIX = "sk-codex-"
 # Ordered low -> high; new user keys start at 'registered'. 'general' is the
 # floor tier an admin can drop a key to; 'academia'/'paid' are promotions.
 TIERS = ("general", "registered", "academia", "paid")
@@ -29,7 +29,7 @@ _MAX_KEYS_PER_USER = 10
 
 # hash -> (expires_monotonic, {tier, key_id, user_id} | None). Keeps the hot
 # rate-limit path off Mongo; revocation busts the entry immediately. Bounded:
-# unknown sk_-prefixed garbage also lands here (cached None), so without a cap
+# unknown sk-codex-prefixed garbage also lands here (cached None), so without a cap
 # an attacker spraying random keys would grow it forever.
 _RESOLVE_TTL_SECONDS = 30.0
 _RESOLVE_CACHE_MAX = 5000
