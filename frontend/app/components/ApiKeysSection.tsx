@@ -44,10 +44,14 @@ export default function ApiKeysSection() {
   const [error, setError] = useState<string | null>(null);
 
   const load = useCallback(() => {
-    fetch(`${API_BASE}/api/keys`, { credentials: "include" })
+    fetch(`${API_BASE}/api/keys`, { credentials: "include", cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${r.status}`))))
       .then((d: { keys: ApiKey[] }) => setKeys(d.keys ?? []))
-      .catch(() => setKeys([]));
+      .catch(() => {
+        // A failed load is not "you have no keys" - say so instead.
+        setKeys([]);
+        setError("Could not load your keys. Refresh to retry.");
+      });
   }, []);
 
   useEffect(() => {

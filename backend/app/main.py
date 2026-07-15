@@ -371,6 +371,12 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
             response.headers["Cache-Control"] = "no-store"
         elif path.startswith("/api/runs/"):
             response.headers["Cache-Control"] = "public, max-age=30, s-maxage=30"
+        elif path.startswith("/api/keys") or path.startswith("/api/admin"):
+            # Per-user (API keys) and operator (admin) responses must never land
+            # in a shared cache: the public catch-all below let Cloudflare cache
+            # an authed /api/keys response at the edge for an hour, serving one
+            # user's (stale) key list to everyone.
+            response.headers["Cache-Control"] = "private, no-store"
         elif path.startswith("/api/"):
             response.headers["Cache-Control"] = "public, max-age=300, s-maxage=3600"
         return response
