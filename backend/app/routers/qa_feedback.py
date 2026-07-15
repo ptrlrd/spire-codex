@@ -23,11 +23,12 @@ from pydantic import BaseModel, Field
 from slowapi import Limiter
 
 from ..dependencies import client_ip
+from ..services import rate_limit_config
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/api/qa-feedback", tags=["Feedback"])
-limiter = Limiter(key_func=client_ip)
+limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 
 class QAFeedback(BaseModel):

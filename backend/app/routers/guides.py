@@ -11,6 +11,7 @@ from pydantic import BaseModel
 from slowapi import Limiter
 
 from ..dependencies import client_ip
+from ..services import rate_limit_config
 from ..models.schemas import GuideSummary, Guide
 from ..services.data_service import load_guides
 from ..metrics import guide_submissions
@@ -19,7 +20,7 @@ router = APIRouter(prefix="/api/guides", tags=["Guides"])
 
 WEBHOOK_URL = os.environ.get("GUIDE_WEBHOOK_URL", "")
 
-limiter = Limiter(key_func=client_ip)
+limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 
 @router.get("", response_model=list[GuideSummary])

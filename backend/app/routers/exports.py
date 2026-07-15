@@ -13,12 +13,13 @@ from pymongo import ASCENDING
 from slowapi import Limiter
 
 from ..dependencies import VALID_LANGUAGES, client_ip
+from ..services import rate_limit_config
 from ..metrics import data_exports, run_export_pages, run_exports
 from ..services.data_service import DATA_DIR
 
 router = APIRouter(prefix="/api/exports", tags=["Exports"])
 
-limiter = Limiter(key_func=client_ip)
+limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 ENTITY_FILES = [
     "cards",

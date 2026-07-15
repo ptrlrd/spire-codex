@@ -23,12 +23,13 @@ from fastapi.responses import RedirectResponse
 from slowapi import Limiter
 
 from ..dependencies import client_ip
+from ..services import rate_limit_config
 from ..services.auth_jwt import create_oauth_state, verify_oauth_state
 
 logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth/twitch", tags=["Auth"])
-limiter = Limiter(key_func=client_ip)
+limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 _TWITCH_AUTHORIZE = "https://id.twitch.tv/oauth2/authorize"
 _TWITCH_TOKEN = "https://id.twitch.tv/oauth2/token"

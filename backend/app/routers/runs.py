@@ -9,6 +9,7 @@ from pathlib import Path
 from fastapi import APIRouter, HTTPException, Query, Request, Response
 from slowapi import Limiter
 from ..dependencies import client_ip
+from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
@@ -41,7 +42,7 @@ router = APIRouter(prefix="/api/runs", tags=["Runs"])
 # client_ip, not slowapi's get_remote_address: behind Cloudflare -> nginx
 # the latter reads the proxy address, so every visitor would share ONE
 # bucket and these limits would trip fleet-wide (see dependencies.client_ip).
-limiter = Limiter(key_func=client_ip)
+limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 MAX_BODY_SIZE = 512 * 1024  # 512 KB
 
