@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
 
-  const title = `${t("Thank", lang)} ${t("You", lang)} - ${gameName} | Spire Codex (${nativeName})`;
+  const title = `${t("Thank You", lang)} - ${gameName} | Spire Codex (${nativeName})`;
   const description = `Thank you to the ${gameName} community, Ko-fi supporters, and contributors who help grow Spire Codex. ${nativeName}.`;
 
   return {

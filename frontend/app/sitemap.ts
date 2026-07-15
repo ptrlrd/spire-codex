@@ -369,16 +369,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }))
   );
 
-  // Localized news article pages
-  const langNewsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
-    newsItems.map((n) => ({
-      url: `${SITE_URL}/${lang}/news/${n.gid}`,
-      lastModified: n.date ? new Date(n.date * 1000) : lastMod.community,
-      changeFrequency: "monthly" as const,
-      priority: 0.3,
-    }))
-  );
-
   // Localized entity detail pages, only for routes that have a real
   // [id]/page.tsx under `app/[lang]/`. Previously this expanded ALL
   // DYNAMIC_ROUTES including timeline/acts/etc, producing 13 × 57 = 741
@@ -405,7 +395,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...browseEntries,
     ...langListEntries,
     ...langMechanicsEntries,
-    ...langNewsEntries,
     ...langDetailEntries,
     ...englishDetailEntries,
   ];

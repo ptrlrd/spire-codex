@@ -1,0 +1,38 @@
+# Spire Codex
+
+> Fan-built database, wiki, and community stats site for Slay the Spire 2 (STS2), the deck-building roguelike by Mega Crit. Game data is extracted from the game files each patch and served in 14 languages, alongside community-submitted run statistics, tier lists, and leaderboards.
+
+Spire Codex is not affiliated with Mega Crit. Game content belongs to Mega Crit; the site's own data is available through a public REST API.
+
+## Game data
+
+- [Cards](https://spire-codex.com/cards): every card with cost, type, rarity, character, and full text
+- [Relics](https://spire-codex.com/relics): every relic with effects and rarity
+- [Potions](https://spire-codex.com/potions): every potion with effects and prices
+- [Characters](https://spire-codex.com/characters): the five playable characters with starting decks
+- [Monsters](https://spire-codex.com/monsters): every monster with HP ranges and attack patterns
+- [Encounters](https://spire-codex.com/encounters): combat encounters with monster compositions
+- [Events](https://spire-codex.com/events): every event with choices and outcomes
+- [Powers](https://spire-codex.com/powers): every buff and debuff
+- [Keywords](https://spire-codex.com/keywords): game terms with the cards that use them
+- [Merchant guide](https://spire-codex.com/merchant): shop prices and mechanics
+- [Reference](https://spire-codex.com/reference): keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascensions
+
+## Community stats
+
+- [Tier list](https://spire-codex.com/tier-list): cards, relics, and potions ranked by Codex Score from community runs
+- [Card metrics](https://spire-codex.com/leaderboards/metrics): win rate, pick rate, and Codex Elo per card
+- [Community stats](https://spire-codex.com/community-stats): event decisions, deadliest encounters, win rates
+- [Leaderboards](https://spire-codex.com/leaderboards): fastest wins and daily climbs
+- [Run charts](https://spire-codex.com/charts): interactive charts over community-submitted runs
+
+## Developers
+
+- [API documentation](https://spire-codex.com/developers): public REST API with 22+ endpoints and an embeddable tooltip widget
+- [Changelog](https://spire-codex.com/changelog): what changes between game patches and site releases
+
+## Optional
+
+- [About](https://spire-codex.com/about): how the site works and its data pipeline
+- [Guides](https://spire-codex.com/guides): community strategy guides
+- [News](https://spire-codex.com/news): Slay the Spire 2 patch notes and announcements

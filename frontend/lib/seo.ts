@@ -37,8 +37,12 @@ export function buildLanguageAlternates(path: string): Record<string, string> {
     en: `${SITE_URL}${trimmed}`,
     "x-default": `${SITE_URL}${trimmed}`,
   };
+  // For the home page the localized URL is /<code>, not /<code>/ — the
+  // trailing-slash form 308s, and hreflang alternates must not redirect
+  // (every crawl flagged them as incorrect hreflang links).
+  const suffix = trimmed === "/" ? "" : trimmed;
   for (const code of SUPPORTED_LANGS) {
-    map[LANG_HREFLANG[code]] = `${SITE_URL}/${code}${trimmed}`;
+    map[LANG_HREFLANG[code]] = `${SITE_URL}/${code}${suffix}`;
   }
   return map;
 }
