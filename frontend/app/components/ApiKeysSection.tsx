@@ -17,6 +17,8 @@ interface ApiKey {
   label: string;
   created_at: string | null;
   last_used_at: string | null;
+  requests_today: number;
+  requests_week: number;
   revoked: boolean;
 }
 
@@ -157,6 +159,14 @@ export default function ApiKeysSection() {
                 <div className="text-xs text-[var(--text-muted)]">
                   {t("created", lang)} {fmtDate(k.created_at)} · {t("last used", lang)}{" "}
                   {fmtDate(k.last_used_at)}
+                </div>
+              </div>
+              <div className="shrink-0 text-right tabular-nums text-xs">
+                <div className="text-[var(--text-primary)]">
+                  {(k.requests_today ?? 0).toLocaleString()} {t("today", lang)}
+                </div>
+                <div className="text-[var(--text-muted)]">
+                  {(k.requests_week ?? 0).toLocaleString()} / 7d
                 </div>
               </div>
               <span className="shrink-0 text-xs px-2 py-0.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)]">

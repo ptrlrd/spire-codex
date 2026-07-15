@@ -8,10 +8,27 @@ as the ``X-API-Key`` header to get that key's tier's rate limit.
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel, Field
 
-from ..services import api_key_service
+from ..services import api_key_service, rate_limit_config
 from ..services.auth_jwt import require_user
 
 router = APIRouter(prefix="/api/keys", tags=["API Keys"])
+
+# Public info route (no auth): the current tier caps, so the developers page
+# shows the live admin-tuned numbers instead of hardcoded ones that drift.
+info_router = APIRouter(prefix="/api", tags=["API Keys"])
+
+
+@info_router.get("/rate-limits")
+def rate_limits_info():
+    """The public rate-limit tiers. Browse = un-keyed traffic (per IP); keyed
+    tiers apply per ``X-API-Key``. All caps count per endpoint. Endpoint clamps
+    and the kill switch are operator details and not exposed here."""
+    cfg = rate_limit_config.get_config()
+    return {
+        "browse": cfg.get("default_limit"),
+        "tiers": cfg.get("tiers") or {},
+        "scope": "per endpoint",
+    }
 
 
 def _uid(user: dict) -> str:

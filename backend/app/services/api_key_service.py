@@ -99,10 +99,22 @@ def create_key(user_id: str, label: str = "", tier: str = _DEFAULT_TIER) -> dict
 
 
 def list_keys(user_id: str) -> list[dict]:
+    """A user's own keys, with their usage joined so the profile page can show
+    requests today / this week (same numbers the admin view sees)."""
     if not os.environ.get("MONGO_URL", "").strip():
         return []
-    cur = _coll().find({"user_id": user_id}).sort("created_at", -1)
-    return [_public(d) for d in cur]
+    from . import api_key_usage
+
+    docs = list(_coll().find({"user_id": user_id}).sort("created_at", -1))
+    usage = api_key_usage.usage_for_keys([d["_id"] for d in docs])
+    out = []
+    for d in docs:
+        row = _public(d)
+        u = usage.get(d["_id"]) or {}
+        row["requests_today"] = u.get("today", 0)
+        row["requests_week"] = u.get("week", 0)
+        out.append(row)
+    return out
 
 
 def revoke_key(user_id: str, key_id: str) -> bool:

@@ -28,7 +28,34 @@ export const metadata: Metadata = {
   alternates: { canonical: "/developers" },
 };
 
-export default function DevelopersPage() {
+const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+// Live tier caps from the admin-tunable config, so this table can't drift from
+// what the limiter actually enforces. Falls back to the shipped defaults.
+async function fetchRateLimits(): Promise<{ browse: string; tiers: Record<string, string> }> {
+  const fallback = {
+    browse: "300/minute",
+    tiers: { general: "15/minute", registered: "60/minute", academia: "100/minute", paid: "120/minute" },
+  };
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/rate-limits`, { next: { revalidate: 300 } });
+    if (!res.ok) return fallback;
+    const d = await res.json();
+    return { browse: d.browse || fallback.browse, tiers: { ...fallback.tiers, ...(d.tiers || {}) } };
+  } catch {
+    return fallback;
+  }
+}
+
+const TIER_ROWS: { key: string; label: string; how: string }[] = [
+  { key: "general", label: "General", how: "any issued key" },
+  { key: "registered", label: "Registered", how: "create one on your profile" },
+  { key: "academia", label: "Academia", how: "granted on request" },
+  { key: "paid", label: "Paid", how: "supporters" },
+];
+
+export default async function DevelopersPage() {
+  const limits = await fetchRateLimits();
   const jsonLd = [
     buildSoftwareApplicationJsonLd(),
     buildBreadcrumbJsonLd([
@@ -149,6 +176,33 @@ export default function DevelopersPage() {
           and send it as the <code className="text-xs bg-[var(--bg-card)] px-1.5 py-0.5 rounded">X-API-Key</code>{" "}
           header to get your own dedicated rate limit (counted per endpoint) instead of sharing the per-IP cap. Responses carry X-RateLimit-Remaining / X-RateLimit-Reset so you can pace requests.
         </p>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+          <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+            Rate limits
+          </h3>
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <tbody>
+                <tr className="border-b border-[var(--border-subtle)]">
+                  <td className="py-2 pr-4 text-[var(--text-primary)]">No key</td>
+                  <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">{limits.browse}</td>
+                  <td className="py-2 text-[var(--text-muted)]">per IP</td>
+                </tr>
+                {TIER_ROWS.map((t) => (
+                  <tr key={t.key} className="border-b border-[var(--border-subtle)] last:border-0">
+                    <td className="py-2 pr-4 text-[var(--text-primary)]">{t.label}</td>
+                    <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">{limits.tiers[t.key]}</td>
+                    <td className="py-2 text-[var(--text-muted)]">{t.how}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-3 text-xs text-[var(--text-muted)]">
+            All caps count per endpoint. Watch X-RateLimit-Remaining and back off on 429 (Retry-After is set).
+          </p>
+        </div>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
           <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
