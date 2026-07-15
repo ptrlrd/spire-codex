@@ -228,7 +228,7 @@ export default async function HomeLeaderboardSection({
                         <td className="rk">{i + 1}</td>
                         <td>
                           <Link className="ent" href={`${runsBase}/${r.run_hash}`}>
-                            <img className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
+                            <img crossOrigin="anonymous" className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
                             <span className="lb-who">
                               <span className="lb-name" style={{ color: characterHex(r.character) || undefined }}>
                                 {characterLabel(r.character, characterNames)}
@@ -273,7 +273,7 @@ export default async function HomeLeaderboardSection({
                         <td className="rk">{i + 1}</td>
                         <td>
                           <Link className="ent" href={`${runsBase}/${r.run_hash}`}>
-                            <img className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
+                            <img crossOrigin="anonymous" className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
                             <span className="lb-who">
                               <span className="lb-name" style={{ color: characterHex(r.character) || undefined }}>
                                 {characterLabel(r.character, characterNames)}
@@ -328,7 +328,7 @@ export default async function HomeLeaderboardSection({
                         <tr key={r.run_hash}>
                           <td>
                             <Link className="ent" href={`${runsBase}/${r.run_hash}`}>
-                              <img className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
+                              <img crossOrigin="anonymous" className="lb-ico" src={characterIcon(r.character)} alt={characterLabel(r.character, characterNames)} loading="lazy" />
                               <span className="lb-who">
                                 <span className="lb-name" style={{ color: characterHex(r.character) || undefined }}>
                                   {characterLabel(r.character, characterNames)}

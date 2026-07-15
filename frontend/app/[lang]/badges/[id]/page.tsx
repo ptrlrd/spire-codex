@@ -152,7 +152,7 @@ export default async function LangBadgePage({ params }: Props) {
       <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6">
         {badge.image_url && (
           <div className="flex justify-center mb-6">
-            <img
+            <img crossOrigin="anonymous"
               src={imageUrl(badge.image_url)}
               alt={`${badge.name} badge`}
               className="w-24 h-24 object-contain"

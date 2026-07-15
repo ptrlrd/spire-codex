@@ -128,7 +128,7 @@ function BadgeCard({ badge }: { badge: Badge }) {
       className={`bg-[var(--bg-card)] rounded-lg border ${borderClass} p-4 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all flex gap-4 group`}
     >
       {badge.image_url && (
-        <img
+        <img crossOrigin="anonymous"
           src={imageUrl(badge.image_url)}
           alt={`Slay the Spire 2 ${badge.name} badge`}
           className="w-14 h-14 object-contain shrink-0"

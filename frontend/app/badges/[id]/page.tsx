@@ -208,7 +208,7 @@ export default async function BadgePage({ params }: Props) {
         {hasImage && (
           <aside className="aside">
             <div className="box">
-              <img
+              <img crossOrigin="anonymous"
                 src={imageUrl(badge.image_url!)}
                 alt={`Slay the Spire 2 ${badge.name} badge`}
                 className="meta-icon"
