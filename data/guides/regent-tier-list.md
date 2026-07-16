@@ -37,3 +37,5 @@ Regent's relic pool is graded on the [relic tier list](https://spire-codex.com/t
 [[relic:Lunar Pastry]] tops the pool in S tier at a 67.2% win rate, end-of-turn energy that every Regent deck can spend. [[relic:Regalite]] and [[relic:Orange Dough]] join it in S: Regent creates cards constantly, so Block-per-created-card is effectively a defense engine. [[relic:Fencing Manual]] is the pool's standout common (Forge 10 every combat). The trap is [[relic:Divine Destiny]] at F tier and a 48% win rate, the only Regent relic below the baseline.
 
 Full numbers, per-act splits, and Codex Elo live on the [card metrics page](https://spire-codex.com/leaderboards/metrics). If your Regent runs say otherwise, [upload them](https://spire-codex.com/leaderboards/submit) and prove it.
+
+More character tier lists: [Ironclad](https://spire-codex.com/guides/ironclad-tier-list), [Silent](https://spire-codex.com/guides/silent-tier-list), [Defect](https://spire-codex.com/guides/defect-tier-list), [Necrobinder](https://spire-codex.com/guides/necrobinder-tier-list).

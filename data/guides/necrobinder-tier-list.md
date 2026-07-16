@@ -39,3 +39,5 @@ Necrobinder has four S-tier relics in a nine-relic pool, more than any other cha
 [[relic:Ivory Tile]] and [[relic:Big Hat]] tie at the top (66.3% win rate), [[relic:Funerary Mask]] seeds the Soul engine from turn 0, and [[relic:Bone Flute]] is arguably the best common relic in the game, S tier at 65.1% for having Osty do what Osty does. The only one to think twice about is [[relic:Phylactery Unbound]], D tier at 51.2%, which reads like a build-around and performs like a blank.
 
 Full numbers, per-act splits, and Codex Elo live on the [card metrics page](https://spire-codex.com/leaderboards/metrics). For how her deck loops actually work, read [Necrobinder's True Potential](https://spire-codex.com/guides/necrobinder-true-potential), then [upload your runs](https://spire-codex.com/leaderboards/submit).
+
+More character tier lists: [Ironclad](https://spire-codex.com/guides/ironclad-tier-list), [Silent](https://spire-codex.com/guides/silent-tier-list), [Defect](https://spire-codex.com/guides/defect-tier-list), [Regent](https://spire-codex.com/guides/regent-tier-list).

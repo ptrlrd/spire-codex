@@ -37,3 +37,5 @@ Defect's relic pool mirrors its card pool: solid, no standouts. The full grades 
 [[relic:Power Cell]] leads at A tier and a 63.5% win rate, with [[relic:Data Disk]] right behind it as one of the best commons anywhere, a permanent Focus from floor 1. [[relic:Gold-Plated Cables]] and [[relic:Metronome]] both reward committed orb decks at B tier. The trap is [[relic:Infused Core]] at F tier and a 41.7% win rate, over twenty points under the pool's best.
 
 Full numbers with per-act pick splits and Codex Elo live on the [card metrics page](https://spire-codex.com/leaderboards/metrics). Think the meta is missing something? [Upload your runs](https://spire-codex.com/leaderboards/submit).
+
+More character tier lists: [Ironclad](https://spire-codex.com/guides/ironclad-tier-list), [Silent](https://spire-codex.com/guides/silent-tier-list), [Necrobinder](https://spire-codex.com/guides/necrobinder-tier-list), [Regent](https://spire-codex.com/guides/regent-tier-list).

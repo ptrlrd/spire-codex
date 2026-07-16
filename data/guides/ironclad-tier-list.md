@@ -35,3 +35,5 @@ Ironclad's own relic pool is graded on the [relic tier list](https://spire-codex
 [[relic:Self-Forming Clay]] and [[relic:Ruined Helmet]] share the top at A tier and a 63.9% win rate: free Block from taking hits, and doubled Strength on your first gain, both feed exactly what Ironclad already does. [[relic:Paper Phrog]] (63.1%) makes every Vulnerable source better, and [[relic:Red Skull]] is the best common in the pool, 3 Strength for playing at half HP, which an Ironclad deck does anyway. The trap is [[relic:Black Blood]] at F tier and a 40.5% win rate, well below the relic baseline.
 
 The full list with per-act pick splits and Codex Elo lives on the [card metrics page](https://spire-codex.com/leaderboards/metrics). If your own runs disagree with the community, [upload them](https://spire-codex.com/leaderboards/submit) and move the numbers.
+
+More character tier lists: [Silent](https://spire-codex.com/guides/silent-tier-list), [Defect](https://spire-codex.com/guides/defect-tier-list), [Necrobinder](https://spire-codex.com/guides/necrobinder-tier-list), [Regent](https://spire-codex.com/guides/regent-tier-list).

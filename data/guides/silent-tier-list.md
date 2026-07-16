@@ -39,3 +39,5 @@ Silent's relic pool is the strongest in the game, graded on the [relic tier list
 [[relic:Tough Bandages]] is a perfect 100 Codex Score at a 69% win rate, the highest-rated relic in the game: discard synergy turns into free Block on a character built around discarding. [[relic:Paper Krane]] (66.9%) and [[relic:Helical Dart]] (65.6%) join it in S tier, and the drop-off barely exists: even the pool's worst pickups, like [[relic:Ring of the Drake]], sit at C rather than F. There is no real trap here; if a Silent-pool relic is offered, the data says take it.
 
 Full numbers, per-act splits, and Codex Elo are on the [card metrics page](https://spire-codex.com/leaderboards/metrics). Disagree? [Upload your runs](https://spire-codex.com/leaderboards/submit) and change the data.
+
+More character tier lists: [Ironclad](https://spire-codex.com/guides/ironclad-tier-list), [Defect](https://spire-codex.com/guides/defect-tier-list), [Necrobinder](https://spire-codex.com/guides/necrobinder-tier-list), [Regent](https://spire-codex.com/guides/regent-tier-list).
