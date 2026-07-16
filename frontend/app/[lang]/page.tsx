@@ -25,7 +25,17 @@ import {
   type LangCode,
 } from "@/lib/languages";
 
-export const dynamic = "force-dynamic";
+// ISR, not force-dynamic: rendering this tree per request cost ~1.2s of
+// server time on every localized home hit (the English home, prerendered,
+// serves in ~50ms). The data fetches were already cached at 300s; now the
+// page itself prerenders for all 13 languages and revalidates on the same
+// clock, so freshness is unchanged and the render cost is paid once per
+// window instead of per visitor.
+export const revalidate = 300;
+
+export function generateStaticParams() {
+  return SUPPORTED_LANGS.map((lang) => ({ lang }));
+}
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
