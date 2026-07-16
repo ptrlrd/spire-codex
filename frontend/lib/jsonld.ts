@@ -317,6 +317,10 @@ export function buildNewsArticleJsonLd({
     ...(externalUrl ? { isBasedOn: externalUrl } : {}),
     url: `${SITE_URL}${path}`,
     inLanguage: inLanguage ?? "en",
-    about: { "@type": "VideoGame", name: "Slay the Spire 2" },
+    // "Thing", not "VideoGame": a nested VideoGame stub with only a name
+    // gets validated against full SoftwareApplication rules by crawlers and
+    // flagged for every field it lacks. Thing carries the same topical
+    // signal without the app schema obligations.
+    about: { "@type": "Thing", name: "Slay the Spire 2" },
   };
 }
