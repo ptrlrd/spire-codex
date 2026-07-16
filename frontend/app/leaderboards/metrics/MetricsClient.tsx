@@ -355,11 +355,6 @@ export default function MetricsClient({
               <option key={v} value={v}>{v}</option>
             ))}
           </select>
-          {selVersion && (
-            <span className="text-xs text-[var(--text-muted)]">
-              {t("Version view: player, skill, and mode filters don't combine with it.", lang)}
-            </span>
-          )}
         </div>
       )}
       {/* Server-side re-scope to one character's runs (any bracket combines).

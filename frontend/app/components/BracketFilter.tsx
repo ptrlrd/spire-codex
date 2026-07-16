@@ -7,6 +7,7 @@ import {
   combineBracket,
   type ContentBracket,
 } from "@/lib/content-brackets";
+import VersionSelectNav from "@/app/components/VersionSelectNav";
 
 /**
  * Bracket pill rows (All / Asc 10 / win-rate tiers, plus player count) for
@@ -60,13 +61,17 @@ export default function BracketFilter({
       </Link>
     );
     return (
-      <div className="flex flex-wrap items-center gap-1.5 mb-5">
-        <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
-        {CONTENT_BRACKETS.map(renderPill)}
-        {/* Player count shares the ?bracket= slot, so picking one clears the
-            content bracket and vice versa. */}
-        <span className="text-xs text-[var(--text-muted)] mx-1">Players</span>
-        {PLAYER_BRACKETS.map(renderPill)}
+      <div className="mb-5 space-y-1.5">
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
+          {CONTENT_BRACKETS.map(renderPill)}
+          {/* Player count shares the ?bracket= slot, so picking one clears the
+              content bracket and vice versa. */}
+          <span className="text-xs text-[var(--text-muted)] mx-1">Players</span>
+          {PLAYER_BRACKETS.map(renderPill)}
+        </div>
+        {/* Game version shares the same slot too (exclusive slice). */}
+        <VersionSelectNav basePath={basePath} current={active} extraParams={extraParams} />
       </div>
     );
   }
@@ -103,6 +108,9 @@ export default function BracketFilter({
           </Link>
         ))}
       </div>
+      {/* Game version is an exclusive slice of the same ?bracket= slot:
+          picking one replaces the player/skill selection and vice versa. */}
+      <VersionSelectNav basePath={basePath} current={active} extraParams={extraParams} />
     </div>
   );
 }

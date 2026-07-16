@@ -266,20 +266,24 @@ export default function EncounterStatsClient() {
             );
           })}
         </div>
-      </div>
+
         {statVersions.length > 0 && (
-          <select
-            value={version}
-            onChange={(e) => { setVersion(e.target.value); }}
-            className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
-            aria-label="Game version"
-          >
-            <option value="">All versions</option>
-            {statVersions.map((v) => (
-              <option key={v} value={v}>{v}</option>
-            ))}
-          </select>
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="text-sm text-[var(--text-muted)] w-20">Version:</span>
+            <select
+              value={version}
+              onChange={(e) => { setVersion(e.target.value); }}
+              className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
+              aria-label="Game version"
+            >
+              <option value="">All versions</option>
+              {statVersions.map((v) => (
+                <option key={v} value={v}>{v}</option>
+              ))}
+            </select>
+          </div>
         )}
+      </div>
 
       {loading ? (
         <div className="text-center py-12 text-[var(--text-muted)]">Loading…</div>

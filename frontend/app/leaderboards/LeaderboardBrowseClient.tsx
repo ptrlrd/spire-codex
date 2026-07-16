@@ -198,7 +198,7 @@ export default function LeaderboardBrowseClient() {
   }, [tab, mode, gameMode, lbChar, browseChar, browseWin, browseUser, browseBuildId, browseBracket]);
 
   // Reset leaderboard page when filters change
-  useEffect(() => { setLbPage(1); }, [tab, lbChar, mode, gameMode, browseBracket]);
+  useEffect(() => { setLbPage(1); }, [tab, lbChar, mode, gameMode, browseBracket, browseBuildId]);
 
   // Fetch leaderboard (only when on a leaderboard tab)
   useEffect(() => {
@@ -218,6 +218,7 @@ export default function LeaderboardBrowseClient() {
     const bp = bracketListParams(browseBracket);
     if (bp.ascension_min) params.set("ascension_min", String(bp.ascension_min));
     if (bp.winrate_min) params.set("winrate_min", String(bp.winrate_min));
+    if (browseBuildId) params.set("build_id", browseBuildId);
     params.set("page", String(lbPage));
     params.set("limit", "20");
     fetch(`${API}/api/runs/leaderboard?${params}`)
@@ -238,7 +239,7 @@ export default function LeaderboardBrowseClient() {
         setLbTotalPages(0);
       })
       .finally(() => setLbLoading(false));
-  }, [tab, lbChar, lbPage, mode, gameMode, browseBracket]);
+  }, [tab, lbChar, lbPage, mode, gameMode, browseBracket, browseBuildId]);
 
   // Reset browse page when filters change
   useEffect(() => { setBrowsePage(1); }, [browseChar, browseWin, browseUser, browseSeed, browseBuildId, browseSort, browseBracket, mode, gameMode]);
@@ -437,6 +438,21 @@ export default function LeaderboardBrowseClient() {
                 <span className="hidden sm:inline text-sm">{stripThe(charName(ch))}</span>
               </button>
             ))}
+            {/* Game version narrows the ladder to runs on that patch. Shared
+                with the browse tab's version filter (same state). */}
+            {versions.length > 0 && (
+              <select
+                value={browseBuildId}
+                onChange={(e) => setBrowseBuildId(e.target.value)}
+                aria-label="Game version"
+                className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
+              >
+                <option value="">{t("All Versions", lang)}</option>
+                {versions.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
+            )}
           </div>
 
           {/* Leaderboard table */}

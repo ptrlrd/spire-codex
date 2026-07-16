@@ -1951,6 +1951,7 @@ def leaderboard(
     limit: int = 50,
     ascension_min: int | None = None,
     winrate_min: float | None = None,
+    build_id: str | None = None,
 ) -> dict:
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
 
@@ -1966,10 +1967,12 @@ def leaderboard(
     # Fast path: serve from the materialized summary when the combo is one
     # we materialize (find_one misses otherwise and we fall to live). Docs
     # store 50 rows, so any page-1 request up to that size can be sliced.
-    # An ascension_min / winrate_min filter isn't materialized, so skip to live.
+    # An ascension_min / winrate_min / build_id filter isn't materialized, so
+    # skip to live.
     if (
         ascension_min is None
         and winrate_min is None
+        and build_id is None
         and not today
         and page == 1
         and limit <= 50
@@ -2003,6 +2006,7 @@ def leaderboard(
         limit=limit,
         ascension_min=ascension_min,
         winrate_min=winrate_min,
+        build_id=build_id,
     )
 
 
@@ -2016,6 +2020,7 @@ def _leaderboard_live(
     limit: int = 50,
     ascension_min: int | None = None,
     winrate_min: float | None = None,
+    build_id: str | None = None,
 ) -> dict:
     """Live leaderboard query -- the original implementation, used directly
     by refresh_leaderboard_summary and as the fallback when the summary
@@ -2048,6 +2053,8 @@ def _leaderboard_live(
         q["player_count"] = {"$gt": 1}
     if game_mode:
         q["game_mode"] = game_mode
+    if build_id:
+        q["build_id"] = build_id
     # Clamp to the official ascension range (A10 is the game's cap); A11+ runs are
     # modded and must never top the ladder. Merge an explicit ascension_min in.
     if ascension_min is not None:

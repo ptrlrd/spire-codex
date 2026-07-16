@@ -71,6 +71,10 @@ const _PLAYER_KEYS = ["solo", "2p", "3p", "4p"];
 const _SKILL_KEYS = ["a10", "wr30", "wr50", "wr75"];
 function isValidBracket(b: string): boolean {
   if (BRACKETS.some((c) => c.key === b)) return true;
+  // Game-version slices (v0.107.1) are exclusive snapshot brackets too.
+  // Without this the server silently normalized ?bracket=v0.106.0 to "all",
+  // so the version dropdown wrote the URL but nothing changed.
+  if (/^v\d+(\.\d+)*$/.test(b)) return true;
   const [p, s] = b.split(":");
   return _PLAYER_KEYS.includes(p) && _SKILL_KEYS.includes(s);
 }

@@ -39,6 +39,15 @@ const _SKILL_KEYS = new Set(
 );
 
 /**
+ * A game-version bracket ("v0.107.1"): the snapshot keeps an exclusive
+ * per-version slice for every release version, so a version is a valid
+ * ?bracket= value on its own (it never composes with player/skill).
+ */
+export function isVersionBracket(raw: string | undefined | null): boolean {
+  return !!raw && /^v\d+(\.\d+)*$/.test(raw);
+}
+
+/**
  * A "player:skill" composite (e.g. "solo:wr50") combines a player-count bracket
  * with a content/skill bracket. Only the entity cache (tier list + metrics)
  * materializes these, so BracketFilter offers them only in composite mode.
@@ -77,6 +86,7 @@ export function normalizeBracket(raw: string | undefined | null): string {
   if (!raw) return "all";
   if (_BY_KEY.has(raw)) return raw;
   if (isCompositeBracket(raw)) return raw;
+  if (isVersionBracket(raw)) return raw;
   return "all";
 }
 
@@ -85,7 +95,7 @@ export function normalizeBracket(raw: string | undefined | null): string {
 export function bracketParam(key: string | undefined | null): string | null {
   const n = normalizeBracket(key);
   if (n === "all") return null;
-  if (isCompositeBracket(n)) return n;
+  if (isCompositeBracket(n) || isVersionBracket(n)) return n;
   return _BY_KEY.get(n)?.param ?? null;
 }
 

@@ -239,7 +239,7 @@ _HISTORY_RETENTION_DAYS = 90
 # the skill tiers), so ?character= combines with any bracket on the metrics
 # endpoint — e.g. bracket=solo:a10&character=IRONCLAD (additive; the bump
 # forces the rebuild).
-SNAPSHOT_VERSION = 18
+SNAPSHOT_VERSION = 19
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -301,9 +301,11 @@ _encounter_blob_stats: dict[str, Any] = {}
 # buckets for — the options the stats-page version dropdown offers. Newest
 # first. Empty until the first v15+ snapshot is built/loaded.
 _recent_stat_versions: list[str] = []
-# How many recent game versions get their own encounter bucket. Bounds the
-# snapshot growth: older versions fold into "all" only.
-_RECENT_VERSIONS_N = 6
+# How many game versions get their own per-version bucket. None = every
+# release version that has a submitted run (the dropdowns go back to the
+# first patch, not just the recent window). Per-version buckets are small,
+# so unbounded growth tracks the game's release cadence, not run volume.
+_RECENT_VERSIONS_N: int | None = None
 _cache_built_at: float = 0.0
 _building: bool = False
 # The snapshot_version of whatever is currently loaded (None = nothing
@@ -1516,11 +1518,18 @@ def _version_sort_key(build_id: str) -> tuple:
     return tuple(int(x) for x in re.findall(r"\d+", build_id or ""))
 
 
-def _pick_recent_versions(rows, n: int) -> list[str]:
-    """The n newest distinct build_ids present in the run rows, newest first.
-    These get their own encounter bucket; everything else folds into "all"."""
+def _pick_recent_versions(rows, n: int | None = None) -> list[str]:
+    """Distinct release build_ids present in the run rows, newest first.
+    These get their own per-version bucket; anything else folds into "all".
+    Only release-shaped ids (v0.107.1) qualify — dev/modded builds like
+    NON-RELEASE-VERSION stay out per the modded-content policy. `n` caps
+    the list; None keeps every release version."""
+    import re
+
     seen = {r.get("build_id") for r in rows if r.get("build_id")}
-    return sorted(seen, key=_version_sort_key, reverse=True)[:n]
+    releases = [b for b in seen if re.fullmatch(r"v\d+(\.\d+)*", b or "")]
+    ordered = sorted(releases, key=_version_sort_key, reverse=True)
+    return ordered[:n] if n else ordered
 
 
 def _build_cache_data() -> tuple[dict, dict, dict, dict]:

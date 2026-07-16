@@ -475,6 +475,7 @@ def get_leaderboard(
     limit: int = 50,
     ascension_min: int | None = None,
     winrate_min: float | None = None,
+    build_id: str | None = None,
 ):
     """Leaderboard for winning runs.
 
@@ -506,6 +507,7 @@ def get_leaderboard(
         limit=limit,
         ascension_min=ascension_min,
         winrate_min=winrate_min,
+        build_id=build_id,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -523,6 +525,7 @@ def get_leaderboard(
             limit=limit,
             ascension_min=ascension_min,
             winrate_min=winrate_min,
+            build_id=build_id,
         )
         app_cache.set_json(cache_key, result, ttl_seconds=60)
         return result
@@ -548,6 +551,9 @@ def get_leaderboard(
         if ascension_min is not None:
             conditions.append("ascension >= ?")
             params.append(ascension_min)
+        if build_id:
+            conditions.append("build_id = ?")
+            params.append(build_id)
         where = "WHERE " + " AND ".join(conditions)
 
         if category == "highest_ascension":

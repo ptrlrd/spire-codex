@@ -79,12 +79,14 @@ def leaderboard_key(
     limit: int = 50,
     ascension_min: int | None = None,
     winrate_min: float | None = None,
+    build_id: str | None = None,
 ) -> str:
     return (
         f"leaderboard:{category}:{(character or '').upper()}:{players or ''}:"
         f"{game_mode or ''}:{int(today)}:{page}:{limit}:"
         f"{ascension_min if ascension_min is not None else ''}:"
-        f"{winrate_min if winrate_min is not None else ''}"
+        f"{winrate_min if winrate_min is not None else ''}:"
+        f"{build_id or ''}"
     )
 
 
