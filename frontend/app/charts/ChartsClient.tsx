@@ -3,7 +3,7 @@
 // The /charts explorer. All aggregation happens in the backend
 // (/api/charts/{key}); this component is controls + a Chart.js canvas.
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CONTENT_BRACKETS, normalizeBracket } from "@/lib/content-brackets";
 import { useLanguage } from "@/app/contexts/LanguageContext";
@@ -234,7 +234,7 @@ function Pills({
 const selectCls =
   "bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-md px-3 py-1.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 max-w-72";
 
-export default function ChartsClient() {
+function ChartsClientInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { lang } = useLanguage();
@@ -853,5 +853,17 @@ function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
         {t("Sampled from", lang)} {sampled.toLocaleString()} {t("matching runs.", lang)}
       </p>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function ChartsClient() {
+  return (
+    <Suspense fallback={null}>
+      <ChartsClientInner  />
+    </Suspense>
   );
 }

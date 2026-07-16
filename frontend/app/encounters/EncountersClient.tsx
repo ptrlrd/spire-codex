@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Encounter } from "@/lib/api";
@@ -40,7 +40,7 @@ const actOptions = [
   { label: "Act 3 - Glory", value: "glory" },
 ];
 
-export default function EncountersClient({ initialEncounters }: { initialEncounters: Encounter[] }) {
+function EncountersClientInner({ initialEncounters }: { initialEncounters: Encounter[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -197,5 +197,17 @@ export default function EncountersClient({ initialEncounters }: { initialEncount
         ))}
       </div>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function EncountersClient(props: Parameters<typeof EncountersClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <EncountersClientInner {...props} />
+    </Suspense>
   );
 }

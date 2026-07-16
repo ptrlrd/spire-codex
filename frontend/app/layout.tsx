@@ -9,7 +9,6 @@ import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import FloatingFeedback from "./components/FloatingFeedback";
 import HighlightFeedback from "./components/HighlightFeedback";
-import { Suspense } from "react";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -121,8 +120,12 @@ export default function RootLayout({
             __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.remove('dark');}else{document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
           }}
         />
+        {/* No Suspense between here and the page: a boundary above {children}
+            made every dynamic page stream its whole body after the shell,
+            so non-JS crawlers saw pages with no h1 and no text. The only
+            component that needed it (BetaVersionProvider's useSearchParams)
+            reads window.location instead now. */}
         <LanguageProvider>
-          <Suspense>
             <BetaVersionProvider>
               <AuthProvider>
               <ToastProvider>
@@ -145,7 +148,6 @@ export default function RootLayout({
               </ToastProvider>
               </AuthProvider>
             </BetaVersionProvider>
-          </Suspense>
         </LanguageProvider>
         {UMAMI_SRC && UMAMI_WEBSITE_ID && (
           <Script

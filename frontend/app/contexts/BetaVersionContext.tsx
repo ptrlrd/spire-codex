@@ -7,7 +7,7 @@ import {
   useEffect,
   type ReactNode,
 } from "react";
-import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { IS_BETA } from "@/lib/seo";
 import { setBetaVersion, clearCache } from "@/lib/fetch-cache";
 
@@ -34,9 +34,16 @@ const BetaVersionContext = createContext<BetaVersionContextType>({
 export function BetaVersionProvider({ children }: { children: ReactNode }) {
   const [version, setVersionState] = useState<string | null>(null);
   const [versions, setVersions] = useState<VersionInfo[]>([]);
-  const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
+  // window.location.search instead of useSearchParams() on purpose: the
+  // params are only read inside effects and handlers (never for render),
+  // and useSearchParams in a provider that wraps every page forces a
+  // Suspense boundary around the whole app — which made dynamic pages
+  // stream their entire body after the shell, invisible to non-JS
+  // crawlers (no h1, no text in the raw HTML).
+  const currentParams = () =>
+    new URLSearchParams(typeof window === "undefined" ? "" : window.location.search);
 
   // Fetch available versions on mount (only on beta)
   useEffect(() => {
@@ -52,7 +59,8 @@ export function BetaVersionProvider({ children }: { children: ReactNode }) {
   // On mount + URL change: URL param takes priority, then localStorage
   useEffect(() => {
     if (!IS_BETA) return;
-    const urlVersion = searchParams.get("version");
+    const params = currentParams();
+    const urlVersion = params.get("version");
     if (urlVersion && urlVersion !== "latest") {
       setVersionState(urlVersion);
       setBetaVersion(urlVersion);
@@ -63,12 +71,12 @@ export function BetaVersionProvider({ children }: { children: ReactNode }) {
         setVersionState(stored);
         setBetaVersion(stored);
         // Re-add version to URL so links are always shareable
-        const params = new URLSearchParams(searchParams.toString());
         params.set("version", stored);
         router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       }
     }
-  }, [searchParams, pathname]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
 
   const setVersion = (v: string | null) => {
     setVersionState(v);
@@ -80,7 +88,7 @@ export function BetaVersionProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem(STORAGE_KEY);
     }
     // Update URL with version param
-    const params = new URLSearchParams(searchParams.toString());
+    const params = currentParams();
     if (v) {
       params.set("version", v);
     } else {

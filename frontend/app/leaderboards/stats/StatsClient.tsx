@@ -843,9 +843,17 @@ export default function StatsClient() {
   }, [potionRows, potionRarity, potionSort, potionDir]);
 
   if (loading && !stats) {
+    // Keep the page header in the pre-data render: this branch is what
+    // server-side rendering emits, so without the h1 here the crawled HTML
+    // had no heading at all.
     return (
-      <div className="max-w-5xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
-        {t("Loading...", lang)}
+      <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
+        <h1 className="text-3xl font-bold mb-2">
+          <span className="text-[var(--accent-gold)]">{t("Stats", lang)}</span>
+        </h1>
+        <div className="max-w-5xl py-12 text-center text-[var(--text-muted)]">
+          {t("Loading...", lang)}
+        </div>
       </div>
     );
   }

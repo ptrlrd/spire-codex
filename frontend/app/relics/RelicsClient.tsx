@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { Relic } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -63,7 +63,7 @@ const sortOptions = [
   { label: "Compendium", value: "compendium" },
 ];
 
-export default function RelicsClient({ initialRelics }: { initialRelics: Relic[] }) {
+function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -234,5 +234,17 @@ export default function RelicsClient({ initialRelics }: { initialRelics: Relic[]
         })}
       </div>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function RelicsClient(props: Parameters<typeof RelicsClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <RelicsClientInner {...props} />
+    </Suspense>
   );
 }

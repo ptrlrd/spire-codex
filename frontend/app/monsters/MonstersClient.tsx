@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Monster } from "@/lib/api";
@@ -40,7 +40,7 @@ const actOptions = [
   { label: "Weak Encounters", value: "weak" },
 ];
 
-export default function MonstersClient({ initialMonsters }: { initialMonsters: Monster[] }) {
+function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }) {
   const { lang } = useLanguage();
   const lp = useLangPrefix();
   const channel = useChannel();
@@ -243,5 +243,17 @@ export default function MonstersClient({ initialMonsters }: { initialMonsters: M
         ))}
       </div>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function MonstersClient(props: Parameters<typeof MonstersClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <MonstersClientInner {...props} />
+    </Suspense>
   );
 }

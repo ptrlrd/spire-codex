@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo, useCallback } from "react";
+import { Suspense, useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { GuideSummary } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -41,7 +41,7 @@ const sortOptions = [
   { label: "Z → A", value: "za" },
 ];
 
-export default function GuidesClient({ initialGuides }: { initialGuides: GuideSummary[] }) {
+function GuidesClientInner({ initialGuides }: { initialGuides: GuideSummary[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -160,5 +160,17 @@ export default function GuidesClient({ initialGuides }: { initialGuides: GuideSu
         </div>
       )}
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function GuidesClient(props: Parameters<typeof GuidesClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <GuidesClientInner {...props} />
+    </Suspense>
   );
 }

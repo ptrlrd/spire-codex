@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { Enchantment } from "@/lib/api";
@@ -25,7 +25,7 @@ const cardTypeOptions = [
   { label: "Power", value: "Power" },
 ];
 
-export default function EnchantmentsClient({ initialEnchantments }: { initialEnchantments: Enchantment[] }) {
+function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments: Enchantment[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -140,5 +140,17 @@ export default function EnchantmentsClient({ initialEnchantments }: { initialEnc
         ))}
       </div>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function EnchantmentsClient(props: Parameters<typeof EnchantmentsClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <EnchantmentsClientInner {...props} />
+    </Suspense>
   );
 }

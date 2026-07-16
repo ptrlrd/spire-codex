@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { Potion } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -43,7 +43,7 @@ const sortOptions = [
   { label: "Compendium", value: "compendium" },
 ];
 
-export default function PotionsClient({ initialPotions }: { initialPotions: Potion[] }) {
+function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
   const { lang } = useLanguage();
   const lp = useLangPrefix();
   const channel = useChannel();
@@ -183,5 +183,17 @@ export default function PotionsClient({ initialPotions }: { initialPotions: Poti
         </div>
       )}
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function PotionsClient(props: Parameters<typeof PotionsClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <PotionsClientInner {...props} />
+    </Suspense>
   );
 }

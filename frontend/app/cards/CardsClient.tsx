@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -61,7 +61,7 @@ const keywordOptions = [
   { label: "Eternal", value: "Eternal" },
 ];
 
-export default function CardsClient({ initialCards }: { initialCards: Card[] }) {
+function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -240,5 +240,17 @@ export default function CardsClient({ initialCards }: { initialCards: Card[] }) 
         <CardGrid cards={sortedCards} />
       )}
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function CardsClient(props: Parameters<typeof CardsClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <CardsClientInner {...props} />
+    </Suspense>
   );
 }

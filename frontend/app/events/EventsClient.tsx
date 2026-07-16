@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import type { GameEvent, EventPage, DialogueLine } from "@/lib/api";
@@ -100,7 +100,7 @@ function PageBlock({
   );
 }
 
-export default function EventsClient({ initialEvents }: { initialEvents: GameEvent[] }) {
+function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
   const lp = useLangPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -424,5 +424,17 @@ export default function EventsClient({ initialEvents }: { initialEvents: GameEve
         })}
       </div>
     </>
+  );
+}
+
+// useSearchParams needs a Suspense boundary above it now that the root
+// layout no longer provides one (the app-wide boundary made every dynamic
+// page's body invisible to non-JS crawlers). The boundary lives here so
+// every page that renders this client, English and localized, gets it.
+export default function EventsClient(props: Parameters<typeof EventsClientInner>[0]) {
+  return (
+    <Suspense fallback={null}>
+      <EventsClientInner {...props} />
+    </Suspense>
   );
 }
