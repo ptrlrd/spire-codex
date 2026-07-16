@@ -1,5 +1,5 @@
 ---
-title: "The Best Slay the Spire 2 Mods on the Steam Workshop"
+title: "The Best Mods on the Steam Workshop"
 slug: "best-mods"
 author: "Spire Codex"
 date: "2026-07-15"

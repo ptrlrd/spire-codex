@@ -1,5 +1,5 @@
 ---
-title: "Neow in Slay the Spire 2: How Her Relic Offer Works"
+title: "How Neow's Relic Offer Works"
 slug: "neow-relic-offer"
 author: "Spire Codex"
 date: "2026-07-15"
