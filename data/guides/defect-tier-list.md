@@ -30,4 +30,10 @@ Ratings come from community-submitted runs: Codex Score grades a card's win rate
 
 [[Darkness]], [[Barrage]], and [[Sunder]] hold the floor at 29 to 31% win rates. Barrage especially reads like orb payoff and performs like a blank.
 
+## The relics
+
+Defect's relic pool mirrors its card pool: solid, no standouts. The full grades are on the [relic tier list](https://spire-codex.com/tier-list/relics?pool=defect); relic win rates run high everywhere, so read the tiers, not the raw percentages.
+
+[[relic:Power Cell]] leads at A tier and a 63.5% win rate, with [[relic:Data Disk]] right behind it as one of the best commons anywhere, a permanent Focus from floor 1. [[relic:Gold-Plated Cables]] and [[relic:Metronome]] both reward committed orb decks at B tier. The trap is [[relic:Infused Core]] at F tier and a 41.7% win rate, over twenty points under the pool's best.
+
 Full numbers with per-act pick splits and Codex Elo live on the [card metrics page](https://spire-codex.com/leaderboards/metrics). Think the meta is missing something? [Upload your runs](https://spire-codex.com/leaderboards/submit).

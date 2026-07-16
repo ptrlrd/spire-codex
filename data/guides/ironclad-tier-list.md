@@ -28,4 +28,10 @@ For every run, the real headliners are [[Offering]] (52.5% win, picked over half
 
 [[Break]] and [[Cinder]] hold the floor at roughly 31% win rates. Break in particular looks like removal support and plays like a dead card. The data is blunt about both.
 
+## The relics
+
+Ironclad's own relic pool is graded on the [relic tier list](https://spire-codex.com/tier-list/relics?pool=ironclad). One reading note: relic win rates run high across the board, because runs that collect relics are runs that survive, so trust the tier, which grades against the relic baseline, more than the raw percentage.
+
+[[relic:Self-Forming Clay]] and [[relic:Ruined Helmet]] share the top at A tier and a 63.9% win rate: free Block from taking hits, and doubled Strength on your first gain, both feed exactly what Ironclad already does. [[relic:Paper Phrog]] (63.1%) makes every Vulnerable source better, and [[relic:Red Skull]] is the best common in the pool, 3 Strength for playing at half HP, which an Ironclad deck does anyway. The trap is [[relic:Black Blood]] at F tier and a 40.5% win rate, well below the relic baseline.
+
 The full list with per-act pick splits and Codex Elo lives on the [card metrics page](https://spire-codex.com/leaderboards/metrics). If your own runs disagree with the community, [upload them](https://spire-codex.com/leaderboards/submit) and move the numbers.

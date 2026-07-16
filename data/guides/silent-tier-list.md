@@ -32,4 +32,10 @@ The one to actually learn from is [[Malaise]]: a 54.8% win rate on an 18.8% pick
 
 [[Dagger Spray]] props up the floor at a 33.4% win rate. Multi-hit chip damage does not justify a card slot in this pool.
 
+## The relics
+
+Silent's relic pool is the strongest in the game, graded on the [relic tier list](https://spire-codex.com/tier-list/relics?pool=silent). Relic win rates run high everywhere (relic count correlates with surviving), so trust the tiers over the raw percentages.
+
+[[relic:Tough Bandages]] is a perfect 100 Codex Score at a 69% win rate, the highest-rated relic in the game: discard synergy turns into free Block on a character built around discarding. [[relic:Paper Krane]] (66.9%) and [[relic:Helical Dart]] (65.6%) join it in S tier, and the drop-off barely exists: even the pool's worst pickups, like [[relic:Ring of the Drake]], sit at C rather than F. There is no real trap here; if a Silent-pool relic is offered, the data says take it.
+
 Full numbers, per-act splits, and Codex Elo are on the [card metrics page](https://spire-codex.com/leaderboards/metrics). Disagree? [Upload your runs](https://spire-codex.com/leaderboards/submit) and change the data.

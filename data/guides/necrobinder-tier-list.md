@@ -32,4 +32,10 @@ The underrated one is [[Shared Fate]]: 55.4% win rate on a 19.7% pick rate. Symm
 
 [[Reap]] and [[Sow]] sit at the bottom at 30 to 33% win rates. The names promise an engine, the numbers say it never comes online.
 
+## The relics
+
+Necrobinder has four S-tier relics in a nine-relic pool, more than any other character, graded on the [relic tier list](https://spire-codex.com/tier-list/relics?pool=necrobinder). Relic win rates run high across the board, so the tier is the signal.
+
+[[relic:Ivory Tile]] and [[relic:Big Hat]] tie at the top (66.3% win rate), [[relic:Funerary Mask]] seeds the Soul engine from turn 0, and [[relic:Bone Flute]] is arguably the best common relic in the game, S tier at 65.1% for having Osty do what Osty does. The only one to think twice about is [[relic:Phylactery Unbound]], D tier at 51.2%, which reads like a build-around and performs like a blank.
+
 Full numbers, per-act splits, and Codex Elo live on the [card metrics page](https://spire-codex.com/leaderboards/metrics). For how her deck loops actually work, read [Necrobinder's True Potential](https://spire-codex.com/guides/necrobinder-true-potential), then [upload your runs](https://spire-codex.com/leaderboards/submit).
