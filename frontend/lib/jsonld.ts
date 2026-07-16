@@ -213,28 +213,22 @@ export function buildVideoGameJsonLd(steam?: {
 }
 
 export function buildSoftwareApplicationJsonLd() {
-  // Google's SoftwareApplication rich-results gate on `aggregateRating`
-  // or `offers`. We don't accept reviews, keep `offers` (free) so the
-  // schema passes validation. `image` added so the result is eligible
-  // for SoftwareApp panel display.
+  // WebAPI, not SoftwareApplication: the thing described is a REST API,
+  // and SoftwareApplication carries rich-result requirements (a rating or
+  // review) that nothing can honestly satisfy for an API. WebAPI is the
+  // schema.org type for exactly this and, as a Service subtype, supports
+  // provider/offers/termsOfService with no rating obligation.
   return {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
+    "@type": "WebAPI",
     name: "Spire Codex API",
-    applicationCategory: "DeveloperApplication",
-    operatingSystem: "Any",
     url: `${SITE_URL}/developers`,
     image: DEFAULT_OG_IMAGE,
     description:
       "Public REST API and embeddable tooltip widget for Slay the Spire 2 game data. 22+ endpoints, 14-language support, no authentication required.",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
-    publisher: PUBLISHER_ORG,
-    featureList: [
-      "REST API with 22+ endpoints",
-      "Embeddable tooltip widget for all 13 entity types",
-      "14-language support",
-      "Downloadable JSON data exports",
-    ],
+    provider: PUBLISHER_ORG,
+    termsOfService: `${SITE_URL}/terms`,
   };
 }
 
