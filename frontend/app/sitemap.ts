@@ -291,22 +291,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  // News detail pages, pull recent gids from /api/news. Articles
-  // canonical-link back to Steam (see `news/[...slug]/page.tsx`) so
-  // they're additive for "Slay the Spire 2 news"-style queries.
-  type NewsItem = { gid: string; date?: number };
-  type NewsResponse = { items?: NewsItem[] };
-  const newsRes = await fetch(`${API}/api/news?limit=500`, {
-    next: { revalidate: 1800 },
-  }).catch(() => null);
-  const newsItems: NewsItem[] =
-    newsRes && newsRes.ok ? ((await newsRes.json()) as NewsResponse).items ?? [] : [];
-  const newsEntries: MetadataRoute.Sitemap = newsItems.map((n) => ({
-    url: `${SITE_URL}/news/${n.gid}`,
-    lastModified: n.date ? new Date(n.date * 1000) : lastMod.community,
-    changeFrequency: "monthly" as const,
-    priority: 0.5,
-  }));
+  // News detail pages canonical-link back to Steam (see
+  // news/[...slug]/page.tsx), and a sitemap must only list canonical URLs —
+  // crawlers flag non-canonical entries. The /news list page stays; the
+  // articles are reachable from it.
 
   // Tier list filter variants, each is its own indexable URL with
   // its own generateMetadata title + canonical, so they need their
@@ -390,7 +378,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...mechanicsEntries,
-    ...newsEntries,
     ...tierListVariants,
     ...browseEntries,
     ...langListEntries,

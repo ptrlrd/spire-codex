@@ -20,12 +20,16 @@ const CHAR_CSS_VAR: Record<string, string> = {
   REGENT: "var(--color-regent)",
 };
 
-export default function SharedRunClient() {
+// `initialRun` is the server-fetched run from page.tsx. With it, the whole
+// page server-renders with real data — before, the body was an empty shell
+// until the client refetched the same endpoint, so every run page looked
+// identical to crawlers (duplicate content) and carried no unique text.
+export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
   const { hash } = useParams<{ hash: string }>();
   const lp = useLangPrefix();
   const { lang } = useLanguage();
-  const [run, setRun] = useState<any>(null);
-  const [loading, setLoading] = useState(true);
+  const [run, setRun] = useState<any>(initialRun ?? null);
+  const [loading, setLoading] = useState(!initialRun);
   const [notFound, setNotFound] = useState(false);
   const [copied, setCopied] = useState(false);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
@@ -37,11 +41,14 @@ export default function SharedRunClient() {
 
   useEffect(() => {
     if (!hash) return;
-    fetch(`${API}/api/runs/shared/${hash}`)
-      .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
-      .then(setRun)
-      .catch(() => setNotFound(true))
-      .finally(() => setLoading(false));
+    // Server already delivered the run; no need to refetch it client-side.
+    if (!initialRun) {
+      fetch(`${API}/api/runs/shared/${hash}`)
+        .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
+        .then(setRun)
+        .catch(() => setNotFound(true))
+        .finally(() => setLoading(false));
+    }
 
     cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).then((cards) => {
       const m: Record<string, CardInfo> = {};
@@ -168,17 +175,18 @@ export default function SharedRunClient() {
         className="rounded-xl border px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-2"
         style={{ borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`, background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))` }}
       >
-        <div className="flex items-center gap-3">
+        {/* h1 on purpose: this line is the page's one heading, and run pages
+            audited as headingless before it. */}
+        <h1 className="flex items-center gap-3 text-xl font-bold">
           <span
-            className="text-xl font-bold"
             style={{ color: run.win ? "var(--color-silent)" : run.was_abandoned ? "var(--text-muted)" : "var(--color-ironclad)" }}
           >
             {run.win ? t("Victory", lang) : run.was_abandoned ? t("Abandoned", lang) : t("Defeat", lang)}
           </span>
-          <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-base hover:underline" style={{ color: charColor }}>
+          <Link href={`${lp}/characters/${charId.toLowerCase()}`} className="text-base font-normal hover:underline" style={{ color: charColor }}>
             {localizedCharName(player.character)}
           </Link>
-        </div>
+        </h1>
         <div className="text-sm text-[var(--text-muted)]">
           {t("Ascension", lang)} {run.ascension || 0}
           {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (

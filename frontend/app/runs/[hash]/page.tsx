@@ -89,7 +89,10 @@ export default async function SharedRunPage({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <SharedRunClient />
+      {/* The run is passed down so the page server-renders with real
+          content; without it every run page was an identical client-side
+          shell (duplicate content, no unique text for crawlers). */}
+      <SharedRunClient initialRun={run} />
     </>
   );
 }
