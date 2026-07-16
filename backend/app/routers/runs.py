@@ -1078,6 +1078,11 @@ def community_stats(request: Request, response: Response, bracket: str | None = 
         _p, _, _s = bracket.partition(":")
         _ok = _p in _players and _s in _skills
     if not _ok:
+        # Version slices (build_id keys) are valid brackets too.
+        from ..services.run_entity_stats import get_recent_stat_versions
+
+        _ok = bracket in get_recent_stat_versions()
+    if not _ok:
         raise HTTPException(status_code=400, detail="bad bracket")
     # An empty shell during a post-deploy rebuild must not stick in the
     # edge cache for 5 minutes on top of the rebuild itself.

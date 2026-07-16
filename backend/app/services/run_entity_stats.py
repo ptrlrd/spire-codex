@@ -914,7 +914,7 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
     # Community / fun stats, folded in from the same blob read (no 2nd walk).
     from . import charts_stats, community_stats, encounter_stats
 
-    community_acc = community_stats.new_accumulator()
+    community_acc = community_stats.new_accumulator(recent_versions)
     charts_acc = charts_stats.new_accumulator()
     # Seed one encounter bucket per recent version so per-version runs have a
     # bucket to fold into (accumulate() only fills buckets that already exist).
@@ -1006,9 +1006,14 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         # Community blob ALSO slices by the player x skill composites (solo:wr50,
         # ...) so its page can combine both axes like the tier list. These only
         # apply to A10 runs from qualifying players, so most runs add nothing.
-        community_blob_brackets = mp_blob_brackets + [
-            c for c in extra_brackets if c in _COMPOSITE_BRACKETS_SET
-        ]
+        community_blob_brackets = (
+            mp_blob_brackets
+            + [c for c in extra_brackets if c in _COMPOSITE_BRACKETS_SET]
+            # Version slice: the community blob keeps one accumulator per
+            # recent game version too, so /community-stats and the stats
+            # page overview can filter by version.
+            + ([_bid] if _bid in _recent_versions_set else [])
+        )
 
         # Community / fun stats, accumulated from the same blob. Guarded so
         # one malformed blob can't abort the whole snapshot rebuild.

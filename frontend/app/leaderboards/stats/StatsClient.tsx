@@ -326,12 +326,20 @@ export default function StatsClient() {
   >(null);
   const [bracketOverview, setBracketOverview] = useState<BracketOverview | null>(null);
   const [bracketLoading, setBracketLoading] = useState(false);
+  const [statVersions, setStatVersions] = useState<string[]>([]);
+  useEffect(() => {
+    fetch(`${API}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setStatVersions(d?.stat_versions || []))
+      .catch(() => {});
+  }, []);
   const bracketActive = bracket !== "all";
+  const isVersion = /^v\d/.test(bracket);
   // The ?bracket= value combining both axes, e.g. "wr50", "solo:wr50".
-  const apiBracket = combineBracket(
-    PLAYERS_TO_BRACKET[players] ?? "",
-    bracketActive ? bracket : "",
-  );
+  // A version bracket is exclusive: it never composes with player counts.
+  const apiBracket = isVersion
+    ? bracket
+    : combineBracket(PLAYERS_TO_BRACKET[players] ?? "", bracketActive ? bracket : "");
 
   // Tabs
   const [tab, setTab] = useState<TopTab>("overview");
@@ -929,6 +937,19 @@ export default function StatsClient() {
             </button>
           );
         })}
+        {statVersions.length > 0 && (
+          <select
+            value={isVersion ? bracket : ""}
+            onChange={(e) => setBracket(e.target.value || "all")}
+            className="text-xs px-2 py-1.5 rounded-md border bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
+            aria-label="Game version"
+          >
+            <option value="">{t("All versions", lang)}</option>
+            {statVersions.map((v) => (
+              <option key={v} value={v}>{v}</option>
+            ))}
+          </select>
+        )}
         {bracketActive && (
           <span className="text-xs text-[var(--text-muted)] ml-1">
             {t("Result and ascension filters don't apply within a bracket.", lang)}

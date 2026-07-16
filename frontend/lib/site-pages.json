@@ -7,6 +7,31 @@
     ]
   },
   {
+    "path": "/admin/keys",
+    "name": "Admin · Keys",
+    "keywords": [
+      "admin",
+      "keys"
+    ]
+  },
+  {
+    "path": "/admin/rate-limits",
+    "name": "Admin · Rate Limits",
+    "keywords": [
+      "admin",
+      "rate",
+      "limits"
+    ]
+  },
+  {
+    "path": "/admin/searches",
+    "name": "Admin · Searches",
+    "keywords": [
+      "admin",
+      "searches"
+    ]
+  },
+  {
     "path": "/admin/users",
     "name": "Admin · Users",
     "keywords": [

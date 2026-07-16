@@ -68,6 +68,17 @@ export default function EncounterStatsClient() {
   const [roomTypes, setRoomTypes] = useState<Set<string>>(new Set());
   const [multiplayer, setMultiplayer] = useState<"any" | "only" | "exclude">("any");
   const [bracket, setBracket] = useState("all");
+  // Game versions the snapshot keeps encounter slices for; filters via the
+  // endpoint's build_id param (exclusive axis, does not combine with bracket
+  // on the backend's per-version slices).
+  const [version, setVersion] = useState("");
+  const [statVersions, setStatVersions] = useState<string[]>([]);
+  useEffect(() => {
+    fetch(`${API}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setStatVersions(d?.stat_versions || []))
+      .catch(() => {});
+  }, []);
   const [page, setPage] = useState(1);
 
   const [data, setData] = useState<EncounterResponse | null>(null);
@@ -97,6 +108,7 @@ export default function EncounterStatsClient() {
     if (roomTypes.size) params.set("room_type", Array.from(roomTypes).join(","));
     if (multiplayer !== "any") params.set("multiplayer", multiplayer);
     if (bracket !== "all") params.set("bracket", bracket);
+    if (version) params.set("build_id", version);
     params.set("page", String(page));
     params.set("limit", "50");
     fetch(`${API}/api/runs/encounter-stats?${params}`)
@@ -104,7 +116,7 @@ export default function EncounterStatsClient() {
       .then((d: EncounterResponse) => setData(d))
       .catch(() => setData({ encounters: [], page, limit: 50, total: 0, has_next: false }))
       .finally(() => setLoading(false));
-  }, [acts, roomTypes, multiplayer, bracket, page]);
+  }, [acts, roomTypes, multiplayer, bracket, version, page]);
 
   // Reset to page 1 whenever the filter set changes, paging through a
   // previous query's results after a filter change would be confusing.
@@ -255,6 +267,19 @@ export default function EncounterStatsClient() {
           })}
         </div>
       </div>
+        {statVersions.length > 0 && (
+          <select
+            value={version}
+            onChange={(e) => { setVersion(e.target.value); }}
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
+            aria-label="Game version"
+          >
+            <option value="">All versions</option>
+            {statVersions.map((v) => (
+              <option key={v} value={v}>{v}</option>
+            ))}
+          </select>
+        )}
 
       {loading ? (
         <div className="text-center py-12 text-[var(--text-muted)]">Loading…</div>

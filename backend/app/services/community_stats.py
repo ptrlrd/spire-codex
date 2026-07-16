@@ -115,10 +115,12 @@ def _new_acc_one() -> dict[str, Any]:
     }
 
 
-def new_accumulator() -> dict[str, Any]:
+def new_accumulator(recent_versions: tuple | list = ()) -> dict[str, Any]:
     """Per-bracket accumulators; accumulate() folds each run into every content
-    bracket it belongs to."""
-    return {b: _new_acc_one() for b in _BLOB_BRACKETS}
+    bracket it belongs to. `recent_versions` adds one accumulator per recent
+    game version (build_id keys) so the blob can serve per-version slices."""
+    keys = list(_BLOB_BRACKETS) + [v for v in recent_versions if v]
+    return {b: _new_acc_one() for b in keys}
 
 
 # Field groups for merging two accumulators (from parallel run-chunk walks).

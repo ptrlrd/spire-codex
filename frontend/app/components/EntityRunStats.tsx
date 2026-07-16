@@ -155,6 +155,13 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
   // A10 selected reads the "solo:a10" composite block. Only offered when the
   // API response carries player-count brackets (post-update snapshots).
   const availablePlayers = PLAYER_BRACKETS.filter((b) => brackets[b.key]);
+  // Version slices ride the same brackets dict (build_id keys, v18+
+  // snapshots). A version is exclusive: it replaces the player/skill pair.
+  const availableVersions = Object.keys(brackets)
+    .filter((k) => /^v\d/.test(k))
+    .sort()
+    .reverse();
+  const selVersion = availableVersions.includes(selectedBracket) ? selectedBracket : "";
   const { player: selPlayer, skill: selSkill } = splitBracket(selectedBracket);
   const pickPlayer = (p: string) => setSelectedBracket(combineBracket(p, selSkill));
   const pickSkill = (sk: string) =>
@@ -230,6 +237,19 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
                   </button>
                 ))}
               </div>
+            )}
+            {availableVersions.length > 0 && (
+              <select
+                value={selVersion}
+                onChange={(e) => setSelectedBracket(e.target.value || "all")}
+                className="ml-1 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[11px] text-[var(--text-secondary)] focus:outline-none"
+                aria-label="Game version"
+              >
+                <option value="">{t("All versions", lang)}</option>
+                {availableVersions.map((v) => (
+                  <option key={v} value={v}>{v}</option>
+                ))}
+              </select>
             )}
 
             <div className="tiles">
