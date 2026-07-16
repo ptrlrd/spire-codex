@@ -55,7 +55,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const nativeName = LANG_NAMES[langCode];
 
   const title = `Spire Codex - ${gameName} ${dbWord} (${nativeName})`;
-  const description = `${gameName} ${dbWord} (${nativeName}), Spire Codex. Browse cards, relics, characters, monsters, potions, events, and powers.`;
+  // The tail sentence is translated: an English description on a localized
+  // page reads as a language mismatch to crawlers (flagged on all 13 homes).
+  const description = `${gameName} ${dbWord} (${nativeName}), Spire Codex. ${t("Browse cards, relics, characters, monsters, potions, events, and powers.", lang)}`;
 
   const languages: Record<string, string> = {
     "en": `${SITE_URL}/`,
