@@ -1,6 +1,6 @@
 ---
 title: Unknown Room Probabilities
-description: What happens when you enter a "?" room: the adaptive odds system for events, fights, shops, and treasure, including the between-acts reset.
+description: What happens when you enter a "?" room, including the adaptive odds for events, fights, shops, and treasure, and the between-acts reset.
 category: mechanics
 order: 7
 ---
