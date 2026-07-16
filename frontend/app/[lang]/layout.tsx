@@ -10,6 +10,8 @@ import {
   type LangCode,
 } from "@/lib/languages";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { LanguageProvider } from "@/app/contexts/LanguageContext";
+import HtmlLang from "@/app/components/HtmlLang";
 
 interface Props {
   params: Promise<{ lang: string }>;
@@ -67,5 +69,15 @@ export default async function LangLayout({ params, children }: Props) {
     notFound();
   }
 
-  return <>{children}</>;
+  // A nested provider seeded with the URL segment: client components under
+  // /<lang>/ now server-render their UI strings in the page's language
+  // instead of the English default (crawlers were detecting every localized
+  // page as English content). HtmlLang fixes the <html lang> attribute
+  // after hydration, since the root layout can't see this segment.
+  return (
+    <LanguageProvider initialLang={lang}>
+      <HtmlLang lang={lang} />
+      {children}
+    </LanguageProvider>
+  );
 }

@@ -59,8 +59,20 @@ function getInitialLang(): string {
   return "eng";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState(getInitialLang);
+// `initialLang` seeds the language during server rendering. Without it,
+// getInitialLang can only see the URL in the browser, so every client
+// component under /<lang>/ prerendered its UI strings in English — and
+// crawlers detected localized pages as English-language content. The
+// [lang] layout nests a provider seeded with its URL segment, so the
+// server render matches what the viewer hydrates into.
+export function LanguageProvider({
+  children,
+  initialLang,
+}: {
+  children: ReactNode;
+  initialLang?: string;
+}) {
+  const [lang, setLangState] = useState(() => initialLang ?? getInitialLang());
   const pathname = usePathname();
 
   // Sync language from URL on every navigation
