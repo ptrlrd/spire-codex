@@ -1,5 +1,115 @@
 [
   {
+    "id": "builds-guide",
+    "slug": "builds-guide",
+    "title": "Builds: The Archetypes the Data Rewards",
+    "author": "Spire Codex",
+    "date": "2026-07-16",
+    "updated": null,
+    "category": "general",
+    "tags": [
+      "builds",
+      "archetypes",
+      "strategy"
+    ],
+    "summary": "The strongest build archetypes for every Slay the Spire 2 character, assembled from the community's highest-rated cards and relics rather than theorycrafting.",
+    "difficulty": "intermediate",
+    "character": null,
+    "website": null,
+    "bluesky": null,
+    "twitter": null,
+    "twitch": null,
+    "content": "A build is just the cards the data already likes, drafted on purpose. Every package below is assembled from the top of each character's community ratings, the same numbers behind the [tier lists](https://spire-codex.com/tier-list), so these are the archetypes that win runs, not theorycraft. Character links go to the full tier guides.\n\n## Ironclad: pay HP, get everything\n\nHis two best packages overlap: HP-as-resource ([[Offering]], [[Crimson Mantle]], [[Tear Asunder]], with [[relic:Red Skull]] rewarding low HP) and exhaust ([[Fiend Fire]], [[Pact's End]], with [[relic:Charon's Ashes]] turning every exhaust into AoE). [[relic:Self-Forming Clay]] converts the self-damage into next-turn Block and glues the two together. Details in the [Ironclad tier list](https://spire-codex.com/guides/ironclad-tier-list).\n\n## Silent: discard first, shivs second\n\nDiscard is her best engine: [[Tools of the Trade]] and [[Storm of Steel]] feed Sly cards, and [[relic:Tough Bandages]] (the highest-rated relic in the game) plus [[relic:Tingsha]] pay Block and damage per discard. The shiv package ([[Blade of Ink]], [[Fan of Knives]], [[relic:Helical Dart]]) is a close second, and [[Malaise]], her most underrated card, slots into every build. The [Silent tier list](https://spire-codex.com/guides/silent-tier-list) has the numbers.\n\n## Defect: zero-cost tempo over orb greed\n\nThe data likes [[All for One]] plus [[relic:Power Cell]] zero-cost tempo more than pure orb scaling, with [[relic:Data Disk]] and [[relic:Gold-Plated Cables]] as the orb backbone when Frost and Plasma do come. [[Echo Form]] is fine, just drafted like it is better than it is. See the [Defect tier list](https://spire-codex.com/guides/defect-tier-list).\n\n## Necrobinder: Souls into everything\n\nThe strongest character has three overlapping engines: Souls and Ethereal ([[Glimpse Beyond]], [[Banshee's Cry]], [[relic:Big Hat]], [[relic:Funerary Mask]]), Osty ([[Reanimate]], [[Necro Mastery]], [[relic:Bone Flute]]), and Doom ([[Neurosurge]], [[Oblivion]], [[relic:Undying Sigil]]). Any two of the three win; the [Necrobinder tier list](https://spire-codex.com/guides/necrobinder-tier-list) ranks the pieces.\n\n## Regent: chain skills until something dies\n\nEverything feeds the skill chain: [[Big Bang]] and [[Decisions, Decisions]] as payoffs, [[Make It So]] recurring through it, [[GUARDS!!!]] converting dead cards, and [[relic:Regalite]] paying Block for every created card while [[relic:Lunar Pastry]] funds the turn. [[Prophesize]], his most skipped good card, is the draw the chain wants. Full rankings in the [Regent tier list](https://spire-codex.com/guides/regent-tier-list).\n\nArchetypes drift with every patch; the [card metrics](https://spire-codex.com/leaderboards/metrics) page is the live version of this guide, and the win rates update as the community climbs."
+  },
+  {
+    "id": "steam-reviews",
+    "slug": "steam-reviews",
+    "title": "What the Mixed Steam Reviews Actually Say",
+    "author": "Spire Codex",
+    "date": "2026-07-16",
+    "updated": null,
+    "category": "general",
+    "tags": [
+      "reviews",
+      "steam",
+      "early access"
+    ],
+    "summary": "Slay the Spire 2 sits at Mixed on Steam. Here is what the numbers look like, what Mega Crit has changed in response, and what 830,000 community runs say about who is still playing.",
+    "difficulty": "beginner",
+    "character": null,
+    "website": null,
+    "bluesky": null,
+    "twitter": null,
+    "twitch": null,
+    "content": "Slay the Spire 2's Steam page shows a Mixed rating, and if you searched that phrase before buying, here is the honest picture, with numbers.\n\n## The raw numbers\n\nAs of mid-July 2026, the game sits at 60% positive: 114,588 positive reviews against 75,007 negative, out of 189,595 total, at a $24.99 early access price. For the sequel to one of the best-reviewed games in the genre, that number is the story, and it is worth understanding rather than waving off.\n\n## What changed, and what Mega Crit did about it\n\nThe sequel launched into early access as a bigger, harder, more systemic game than the original: five characters, co-op, Ancients, enchantments, and a full rebalance rather than a content pack. Big rework sequels split their audiences, and this one did.\n\nWhat the review score does not show is the response rate. Major Update #2 removed the Doormaker fight outright, the boss the community argued about most. The same cycle reworked the Ironclad card players disliked most and eased the lower Ascensions where new players were bouncing. And when asked for deadlines, the studio published a roadmap without dates, saying exacting deadlines produce sloppy, uninspired work. Whatever you think of a Mixed score, the patch record reads like a team that is listening. The [news page](https://spire-codex.com/news) tracks every update as it lands.\n\n## What the players who stayed are doing\n\nReview scores measure sentiment; run data measures engagement. Spire Codex has received over 830,000 community-submitted runs, and the pool grows daily. The game is genuinely harder than its predecessor, solo players win 19.1% of runs overall, and the difficulty is a real part of the review split. But the depth is also real: the [community stats](https://spire-codex.com/community-stats) show a meta still shifting patch to patch, and the [tier lists](https://spire-codex.com/tier-list) rebuilt from scratch as the balance moves.\n\n## Should that score stop you?\n\nIf you loved the original for its readable, tight balance, early access will still show you rough edges, and waiting for 1.0 is defensible. If you want more Spire with more systems and can live with a live balance sheet, the game underneath the score is the deepest deckbuilder Mega Crit has made, for $24.99. Either way, decide on current information: the reviews aggregate two years of patches, and the game you would install today is not the one the oldest reviews describe."
+  },
+  {
+    "id": "lantern-key",
+    "slug": "lantern-key",
+    "title": "The Lantern Key, Explained",
+    "author": "Spire Codex",
+    "date": "2026-07-16",
+    "updated": null,
+    "category": "general",
+    "tags": [
+      "lantern key",
+      "events",
+      "secrets"
+    ],
+    "summary": "What the Lantern Key does in Slay the Spire 2: where the event appears, what each choice is worth, and what keeping the key unlocks.",
+    "difficulty": "beginner",
+    "character": null,
+    "website": null,
+    "bluesky": null,
+    "twitter": null,
+    "twitch": null,
+    "content": "The Lantern Key is one of the sequel's chained secrets: an event choice in one act that changes what you can find in the next. Here is exactly how it works, from the game files.\n\n## The event\n\n[[event:The Lantern Key]] appears in Act 2 (the Hive). You find a faintly glowing key, and a stranger who looks like bad news claims it. Two choices:\n\n- **Return the Key**: gain 100 Gold. The stranger thanks you and rewards you handsomely. Safe, done, no key.\n- **Keep the Key**: fight the stranger to keep it. Win the combat and the [[Lantern Key]] joins your deck as a card.\n\n## What the card does\n\nThe Lantern Key card's whole text is: \"Unlocks a special event in the next Act.\" It is not playable in combat; it rides in your deck as a pass. Reach the next act with it and a special event becomes available on your map that runs without the key never see.\n\n## Should you keep it?\n\nTreat it as a bet priced at 100 gold plus one fight's worth of HP. If your deck is healthy at the Act 2 midpoint, the fight is affordable and a bonus act 3 event is usually worth more than 100 gold, extra events mean extra chances at relics and removals when they matter most. If you are limping, take the gold: 100 at a shop is a card removal or a potion, and dead climbers unlock nothing.\n\nOne caution for lean decks: the key is a card. Until it leaves, it occupies a draw like any other card, so ultra-thin combo decks pay a small consistency tax to carry it. For most decks that tax is invisible.\n\nThe [events index](https://spire-codex.com/events) has every event's full choices and outcomes, and the [boss guide](https://spire-codex.com/guides/boss-guide) covers what act 2 will throw at you on the way to spending it."
+  },
+  {
+    "id": "characters-guide",
+    "slug": "characters-guide",
+    "title": "Characters: Who Returns and Who Is New",
+    "author": "Spire Codex",
+    "date": "2026-07-16",
+    "updated": null,
+    "category": "general",
+    "tags": [
+      "characters",
+      "roster",
+      "watcher"
+    ],
+    "summary": "The full Slay the Spire 2 roster: which of the original four return, who the two new characters are, and the answer to whether the Watcher and her stances made it in.",
+    "difficulty": "beginner",
+    "character": null,
+    "website": null,
+    "bluesky": null,
+    "twitter": null,
+    "twitch": null,
+    "content": "Slay the Spire 2 ships with five playable characters: three veterans of the first game and two newcomers. This covers who they are, what changed, and the roster questions people actually search for, sourced from the game files.\n\n## The returning three\n\n**[The Ironclad](https://spire-codex.com/characters/ironclad)**, the last soldier of the Ironclads, still crushes foes with sword and flame. His pool leans harder than ever on HP as a resource, and the community's [Ironclad tier list](https://spire-codex.com/guides/ironclad-tier-list) shows self-damage payoffs at the top.\n\n**[The Silent](https://spire-codex.com/characters/silent)**, the huntress from outside the Spire, keeps poison and shivs and gains a new discard engine built on the Sly keyword. Her relic pool rates as the strongest in the game in the [Silent tier list](https://spire-codex.com/guides/silent-tier-list).\n\n**[The Defect](https://spire-codex.com/characters/defect)**, the self-modifying automaton, returns with orbs intact plus the new Glass orb, a decaying AoE that rewards fast fights.\n\n## The new two\n\n**[The Necrobinder](https://spire-codex.com/characters/necrobinder)** is a Spireborn lich fighting alongside Osty, her summonable skeletal left hand. Her kit runs on Souls, Ethereal cards, and Doom, an execute debuff that kills enemies outright. The data says she is the strongest character in the game right now; her [tier list](https://spire-codex.com/guides/necrobinder-tier-list) includes the highest-rated card and four S-tier relics.\n\n**[The Regent](https://spire-codex.com/characters/regent)** is heir to the Throne of Stars, a skill-chaining royal whose minions do the work while he Forges the Sovereign Blade. His engine cards top the [Regent tier list](https://spire-codex.com/guides/regent-tier-list).\n\n## Is the Watcher in Slay the Spire 2?\n\nNo. The Watcher, and with her the Calm and Wrath stance system, is not in the current five-character roster, and stances do not exist as a mechanic in the game files. The game is in early access with an open roadmap, so the roster growing later is possible, but nothing official points at her yet. Players missing stance-style tempo swings get the closest feel from Regent's skill-chaining turns or Silent's discard loops.\n\nThe characters are not reskins of their originals either: returning characters keep their identity but their pools were rebuilt, with new keywords (Sly, Eternal), new mechanics, and rebalanced classics. The [compare page](https://spire-codex.com/compare) puts any two characters' stats side by side, and each character page lists their full card pool, starting deck, and community win rate."
+  },
+  {
+    "id": "coop-guide",
+    "slug": "coop-guide",
+    "title": "How Co-op Works",
+    "author": "Spire Codex",
+    "date": "2026-07-16",
+    "updated": null,
+    "category": "general",
+    "tags": [
+      "co-op",
+      "multiplayer",
+      "mechanics"
+    ],
+    "summary": "Slay the Spire 2 co-op explained: how multiplayer runs work, the co-op card pool, and what 300,000+ multiplayer runs say about difficulty per party size.",
+    "difficulty": "beginner",
+    "character": null,
+    "website": null,
+    "bluesky": null,
+    "twitter": null,
+    "twitch": null,
+    "content": "Slay the Spire 2 shipped with co-op built in: up to four players climb one Spire together, each with their own character, deck, and seat at every reward screen. This guide covers how it works and what the community data says about playing in a group. Every number comes from runs submitted to Spire Codex.\n\n## The headline: co-op is easier, and it scales\n\nFrom over 830,000 submitted runs, win rates by party size:\n\n- Solo: 19.1% (504,572 runs)\n- 2 players: 23.6% (177,807 runs)\n- 3 players: 46.9% (92,996 runs)\n- 4 players: 71.3% (56,833 runs)\n\nA full party wins almost three out of four runs, nearly four times the solo rate. Shared damage, more total card plays per enemy turn, and cross-player support effects compound hard. If you are stuck on a wall solo, the data says bring friends; if you want the real challenge, the [leaderboards](https://spire-codex.com/leaderboards) rank solo and co-op separately for exactly this reason.\n\n## The co-op card pool\n\nA slice of every character's pool only makes sense with allies, and some of the highest-rated cards in the game live there: [[Tank]] (allies take half damage) tops Ironclad's list, [[Sneaky]] tops Silent's, [[Ignition]] channels Plasma for a teammate, [[Glimpse Beyond]] gives ALL players Souls, and [[Legion of Bone]] summons for the whole party. Neow even has a multiplayer-only relic offer in [[relic:Massive Scroll]]. The [tier list](https://spire-codex.com/tier-list) and [card metrics](https://spire-codex.com/leaderboards/metrics) both slice by player-count bracket, so you can see each card's rating in your actual party size instead of the blended number.\n\n## Stats without pollution\n\nBecause co-op is so much easier, every stat page on Spire Codex separates the pools: the metrics brackets (solo, 2P, 3P, 4P), the community stats, and the leaderboards all keep solo rankings clean of four-player wins. Solo players comparing themselves to the tier list should use the Solo bracket; it is the honest baseline.\n\n## Spectating\n\nWith the [Spire Codex mod](https://spire-codex.com/guides/best-mods), anyone in the party can share a live view at [spire-codex.com/live](https://spire-codex.com/live): the map, every seat's HP and deck, the current fight, and shop decisions as they happen. It doubles as a coaching tool, since a friend can watch your reward screens and disagree with you in real time.\n\nUploaded co-op runs count every seat, and each player's page shows their own history. If your group climbs regularly, [upload the runs](https://spire-codex.com/leaderboards/submit) and check who is actually carrying."
+  },
+  {
     "id": "keywords-guide",
     "slug": "keywords-guide",
     "title": "Keywords and Terms, Explained",
