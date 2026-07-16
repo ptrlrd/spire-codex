@@ -16,23 +16,34 @@ const title = `Card Metrics - Codex Elo, Win Rate & Pick Rate - Slay the Spire 2
 const description =
   "Every Slay the Spire 2 (sts2) card ranked by Codex Elo, Codex Score, win rate and pick rate. Revealed-preference ratings from community card-reward picks, plus per-act splits and raw counts.";
 
-export const metadata: Metadata = {
-  title,
-  description,
-  alternates: {
-    canonical: "/leaderboards/metrics",
-    languages: buildLanguageAlternates("/leaderboards/metrics"),
-  },
-  openGraph: {
-    type: "website",
-    siteName: SITE_NAME,
-    url: `${SITE_URL}/leaderboards/metrics`,
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ bracket?: string; character?: string }>;
+}): Promise<Metadata> {
+  const sp = await searchParams;
+  // Filter variants (?bracket=, ?character=) canonical to the clean URL, and
+  // a page whose canonical points elsewhere must not carry hreflang
+  // alternates — crawlers flag that as an hreflang conflict.
+  const isVariant = Boolean(sp.bracket || sp.character);
+  return {
     title,
     description,
-    images: [{ url: DEFAULT_OG_IMAGE }],
-  },
-  twitter: { card: "summary_large_image", title, description },
-};
+    alternates: {
+      canonical: "/leaderboards/metrics",
+      ...(isVariant ? {} : { languages: buildLanguageAlternates("/leaderboards/metrics") }),
+    },
+    openGraph: {
+      type: "website",
+      siteName: SITE_NAME,
+      url: `${SITE_URL}/leaderboards/metrics`,
+      title,
+      description,
+      images: [{ url: DEFAULT_OG_IMAGE }],
+    },
+    twitter: { card: "summary_large_image", title, description },
+  };
+}
 
 export default async function MetricsPage({
   searchParams,

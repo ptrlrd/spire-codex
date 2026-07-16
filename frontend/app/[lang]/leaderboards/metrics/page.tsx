@@ -20,11 +20,17 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ lang: string }>;
+  searchParams: Promise<{ bracket?: string; character?: string }>;
 }): Promise<Metadata> {
   const { lang } = await params;
+  const sp = await searchParams;
   if (!isValidLang(lang)) return {};
+  // Filter variants canonical to the clean URL; a non-canonical page must
+  // not carry hreflang alternates (crawlers flag the conflict).
+  const isVariant = Boolean(sp.bracket || sp.character);
   const langCode = lang as LangCode;
   const gameName = LANG_GAME_NAME[langCode];
   const nativeName = LANG_NAMES[langCode];
@@ -52,7 +58,10 @@ export async function generateMetadata({
       images: [{ url: DEFAULT_OG_IMAGE }],
     },
     twitter: { card: "summary_large_image", title, description },
-    alternates: { canonical: `/${lang}/leaderboards/metrics`, languages },
+    alternates: {
+      canonical: `/${lang}/leaderboards/metrics`,
+      ...(isVariant ? {} : { languages }),
+    },
   };
 }
 
