@@ -152,7 +152,7 @@ if [ -n "$PREV" ] && [ -f "$REPO/data-beta/$PREV/eng/cards.json" ]; then
     > "$DATA_OUT/render-cards.txt" <<'PY'
 import json, re, sys
 
-NOISE = re.compile(r"image|url", re.I)
+NOISE = re.compile(r"image|url|compendium_order", re.I)
 
 def strip(card):
     return {k: v for k, v in card.items() if not NOISE.search(k)}
