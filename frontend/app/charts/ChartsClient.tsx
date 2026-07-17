@@ -244,6 +244,16 @@ function ChartsClientInner() {
   const [players, setPlayers] = useState(searchParams.get("players") || "");
   const [ascension, setAscension] = useState(searchParams.get("ascension") || "");
   const [bracket, setBracket] = useState(() => normalizeBracket(searchParams.get("bracket")));
+  // Game version: query-time on frame charts, per-version snapshot buckets
+  // on blob charts — combines with every other filter either way.
+  const [buildId, setBuildId] = useState(searchParams.get("version") || "");
+  const [versions, setVersions] = useState<string[]>([]);
+  useEffect(() => {
+    fetch(`${API}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => setVersions(d?.stat_versions || []))
+      .catch(() => {});
+  }, []);
   const [gameMode, setGameMode] = useState(searchParams.get("mode") || "");
   const [usernameInput, setUsernameInput] = useState(searchParams.get("user") || "");
   const [username, setUsername] = useState(searchParams.get("user") || "");
@@ -331,6 +341,7 @@ function ChartsClientInner() {
     if (players) p.set("players", players);
     if (ascension) p.set("ascension", ascension);
     if (bracket !== "all") p.set("bracket", bracket);
+    if (buildId) p.set("version", buildId);
     if (gameMode) p.set("mode", gameMode);
     if (username) p.set("user", username);
     if (split !== "character" && spec?.splits.includes(split)) p.set("split", split);
@@ -347,7 +358,7 @@ function ChartsClientInner() {
     }
     const qs = p.toString();
     router.replace(`/charts${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [chart, players, ascension, bracket, gameMode, username, split, stat, xStat, yStat, encounter, event, etype, entity, needsEntity, spec, router]);
+  }, [chart, players, ascension, bracket, buildId, gameMode, username, split, stat, xStat, yStat, encounter, event, etype, entity, needsEntity, spec, router]);
 
   // Fetch the chart itself.
   useEffect(() => {
@@ -359,6 +370,7 @@ function ChartsClientInner() {
     if (players) p.set("players", players);
     if (spec.kind === "frame" && !spec.daily && ascension) p.set("ascension", ascension);
     if (!spec.daily && bracket !== "all") p.set("bracket", bracket);
+    if (buildId) p.set("build_id", buildId);
     if (spec.kind === "frame" && !spec.daily && gameMode) p.set("game_mode", gameMode);
     if (username) p.set("username", username);
     if (spec.splits.includes(split) && split !== "character") p.set("split", split);
@@ -410,7 +422,7 @@ function ChartsClientInner() {
       }
     })();
     return () => ctrl.abort();
-  }, [spec, meta, players, ascension, bracket, gameMode, username, split, stat, xStat, yStat, encounter, event, effEtype, entity, needsEntity]);
+  }, [spec, meta, players, ascension, bracket, buildId, gameMode, username, split, stat, xStat, yStat, encounter, event, effEtype, entity, needsEntity]);
 
   const groups = useMemo(() => {
     const g = new Map<string, ChartSpec[]>();
@@ -559,6 +571,21 @@ function ChartsClientInner() {
             onChange={setBracket}
             disabled={spec?.daily}
           />
+          {/* Game version: combines with every other filter (query-time on
+              frame charts, per-version snapshot buckets on blob charts). */}
+          {versions.length > 0 && (
+            <select
+              value={buildId}
+              onChange={(e) => setBuildId(e.target.value)}
+              aria-label="Game version"
+              className="text-xs px-2 py-1.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
+            >
+              <option value="">{t("All versions", lang)}</option>
+              {versions.map((v) => (
+                <option key={v} value={v}>{v}</option>
+              ))}
+            </select>
+          )}
           {spec?.kind === "blob" && (
             <span className="text-xs text-[var(--text-muted)]">
               {t("Exact ascension and mode don't apply here; use the Bracket to slice by skill.", lang)}

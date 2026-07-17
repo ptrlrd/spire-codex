@@ -70,11 +70,17 @@ export const BRACKETS = [
 const _PLAYER_KEYS = ["solo", "2p", "3p", "4p"];
 const _SKILL_KEYS = ["a10", "wr30", "wr50", "wr75"];
 function isValidBracket(b: string): boolean {
+  // A trailing ":vX.Y.Z" version segment composes with any base (v20
+  // snapshots), and a bare version stands alone. Without this the server
+  // silently normalized version brackets to "all", so the dropdown wrote
+  // the URL but nothing changed.
+  const i = b.lastIndexOf(":");
+  if (i > 0 && /^v\d+(\.\d+)*$/.test(b.slice(i + 1))) {
+    b = b.slice(0, i);
+  } else if (/^v\d+(\.\d+)*$/.test(b)) {
+    return true;
+  }
   if (BRACKETS.some((c) => c.key === b)) return true;
-  // Game-version slices (v0.107.1) are exclusive snapshot brackets too.
-  // Without this the server silently normalized ?bracket=v0.106.0 to "all",
-  // so the version dropdown wrote the URL but nothing changed.
-  if (/^v\d+(\.\d+)*$/.test(b)) return true;
   const [p, s] = b.split(":");
   return _PLAYER_KEYS.includes(p) && _SKILL_KEYS.includes(s);
 }

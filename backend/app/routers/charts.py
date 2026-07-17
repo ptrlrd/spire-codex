@@ -12,6 +12,7 @@ is set.
 """
 
 import logging
+import re
 
 from fastapi import APIRouter, HTTPException, Query, Request
 from slowapi import Limiter
@@ -376,6 +377,7 @@ def _chart_cache_key(
     etype,
     entity,
     bracket=None,
+    build_id=None,
 ) -> str:
     """Redis key for one chart + filter combo. Shared by the live endpoint and
     the prewarmer so a warmed entry is a byte-for-byte hit on a real request."""
@@ -383,7 +385,7 @@ def _chart_cache_key(
         f"charts:{chart_key}:{players or ''}:{ascension if ascension is not None else ''}:"
         f"{game_mode or ''}:{(username or '').lower()}:{split}:{stat or ''}:{x or ''}:{y or ''}:"
         f"{(encounter or '').lower()}:{(event or '').lower()}:{etype or ''}:{(entity or '').lower()}:"
-        f"{bracket or ''}"
+        f"{bracket or ''}:{build_id or ''}"
     )
 
 
@@ -403,6 +405,7 @@ def _compute_chart(
     etype,
     entity,
     bracket=None,
+    build_id=None,
 ) -> dict:
     """Build one chart payload (no caching). Raises HTTPException for invalid
     blob filters, same as the endpoint."""
@@ -410,12 +413,13 @@ def _compute_chart(
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
         rows = cs.filter_rows(
-            cs.get_frame(), players, ascension, mode, username, bracket
+            cs.get_frame(), players, ascension, mode, username, bracket, build_id
         )
         series = _build_frame_chart(chart_key, rows, stat, x, y, split)
         total = len(rows)
     else:
-        # Blob charts: snapshot rollup (sliced to the requested content bracket),
+        # Blob charts: snapshot rollup (sliced to the requested content bracket
+        # and/or game version — the v20 blob keeps bracket x version buckets),
         # or a per-user walk when username set (username is the filter; the
         # bracket doesn't apply there).
         if ascension is not None or game_mode:
@@ -427,7 +431,16 @@ def _compute_chart(
             stats = cs.build_user_blob_stats(username)
         else:
             blob = get_charts_blob_stats()
-            stats = blob.get(bracket or "all") or blob.get("all") or cs.empty_one()
+            if bracket and build_id:
+                bkey = f"{bracket}:{build_id}"
+            else:
+                bkey = build_id or bracket or "all"
+            if bkey == "all":
+                stats = blob.get("all") or cs.empty_one()
+            else:
+                # A requested slice the snapshot hasn't materialized yet
+                # serves the empty shape, never a silent all-runs fallback.
+                stats = blob.get(bkey) or cs.empty_one()
         series = _build_blob_chart(
             chart_key, stats, spec, players, encounter, event, etype, entity
         )
@@ -548,7 +561,12 @@ def get_chart(
     entity: str | None = Query(None, max_length=80, description="Entity id"),
     bracket: str | None = Query(
         None,
-        description="Content bracket: a10 | wr30 | wr50 | wr75 (frame charts only)",
+        description="Content bracket: a10 | wr30 | wr50 | wr75",
+    ),
+    build_id: str | None = Query(
+        None,
+        max_length=32,
+        description="Game version (e.g. v0.107.1); combines with every other filter",
     ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
@@ -560,6 +578,8 @@ def get_chart(
     # per bracket in the snapshot).
     if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
         raise HTTPException(status_code=400, detail="bad bracket")
+    if build_id is not None and not re.fullmatch(r"v[\d.]+", build_id):
+        raise HTTPException(status_code=400, detail="bad build_id")
     if game_mode and game_mode not in ("standard", "daily", "custom"):
         raise HTTPException(status_code=400, detail="bad game_mode")
     for name, value in (("stat", stat), ("x", x), ("y", y)):
@@ -588,6 +608,7 @@ def get_chart(
         etype,
         entity,
         bracket,
+        build_id,
     )
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -609,6 +630,7 @@ def get_chart(
         etype,
         entity,
         bracket,
+        build_id,
     )
     # A still-building snapshot resolves within minutes; don't pin the empty
     # answer for the full TTL.

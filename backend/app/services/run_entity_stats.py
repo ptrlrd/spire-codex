@@ -239,7 +239,11 @@ _HISTORY_RETENTION_DAYS = 90
 # the skill tiers), so ?character= combines with any bracket on the metrics
 # endpoint — e.g. bracket=solo:a10&character=IRONCLAD (additive; the bump
 # forces the rebuild).
-SNAPSHOT_VERSION = 19
+SNAPSHOT_VERSION = 20
+# Entities per persisted chunk doc. With version-composable brackets a
+# popular entity carries hundreds of per-bracket blocks, so entity arrays
+# are split across docs to stay well under Mongo's 16MB document cap.
+_ENTITY_CHUNK = 150
 # The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
 # on every shape change; bump this floor ONLY when a change actually breaks
 # readers (a removed/retyped field). Everything in between is additive, and
@@ -917,7 +921,7 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
     from . import charts_stats, community_stats, encounter_stats
 
     community_acc = community_stats.new_accumulator(recent_versions)
-    charts_acc = charts_stats.new_accumulator()
+    charts_acc = charts_stats.new_accumulator(recent_versions)
     # Seed one encounter bucket per recent version so per-version runs have a
     # bucket to fold into (accumulate() only fills buckets that already exist).
     encounter_acc = encounter_stats.new_accumulator(recent_versions)
@@ -955,14 +959,6 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         uname = (row.get("username") or "").lower()
         if uname:
             extra_brackets = extra_brackets + _winrate_brackets(_asc, wr_map.get(uname))
-        # Version brackets: a run's build_id (when it's one of the recent
-        # versions the snapshot keeps slices for) becomes one more bracket
-        # key, so metrics/scores/stats can filter to a single game version
-        # through the same ?bracket= machinery. Versions never pair into
-        # composites; the pairing below only looks at player/skill keys.
-        _bid = (row.get("build_id") or "").strip()
-        if _bid in _recent_versions_set:
-            extra_brackets = extra_brackets + [_bid]
         # Player-count x skill composites (solo:wr50, ...) so the metrics page can
         # slice by both at once. Cheap: the run already matched both sides. Only
         # the entity cache reads these; the blob-bracket lists below filter to
@@ -971,6 +967,18 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         _sk = [b for b in extra_brackets if b in _SKILL_BRACKETS]
         if _pc and _sk:
             extra_brackets = extra_brackets + [f"{p}:{c}" for p in _pc for c in _sk]
+        # Version brackets: a run's build_id becomes one more bracket key AND
+        # composes with every bracket key the run already matched (player,
+        # skill, mode, player:skill), so any filter combo the UI can express
+        # has a materialized slice (solo:a10:v0.107.1). This doubles the
+        # per-run key count, which is what the sharded persistence and the
+        # ~2x walk cost in the PR notes account for.
+        _bid = (row.get("build_id") or "").strip()
+        _has_ver = _bid in _recent_versions_set
+        if _has_ver:
+            extra_brackets = (
+                extra_brackets + [f"{b}:{_bid}" for b in extra_brackets] + [_bid]
+            )
         for ck in extra_brackets:
             ct = bracket_accs[ck]["totals"]
             ct["total_runs"] += 1
@@ -1008,14 +1016,19 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         # Community blob ALSO slices by the player x skill composites (solo:wr50,
         # ...) so its page can combine both axes like the tier list. These only
         # apply to A10 runs from qualifying players, so most runs add nothing.
-        community_blob_brackets = (
-            mp_blob_brackets
-            + [c for c in extra_brackets if c in _COMPOSITE_BRACKETS_SET]
-            # Version slice: the community blob keeps one accumulator per
-            # recent game version too, so /community-stats and the stats
-            # page overview can filter by version.
-            + ([_bid] if _bid in _recent_versions_set else [])
-        )
+        community_blob_brackets = mp_blob_brackets + [
+            c for c in extra_brackets if c in _COMPOSITE_BRACKETS_SET
+        ]
+        # Version slices: one accumulator per game version, plus the version
+        # composed onto every other blob bracket ("all:version" collapses to
+        # the bare version key), so /community-stats combines version with
+        # players and skill like the entity cache does.
+        if _has_ver:
+            community_blob_brackets = (
+                community_blob_brackets
+                + [f"{b}:{_bid}" for b in community_blob_brackets if b != "all"]
+                + [_bid]
+            )
 
         # Community / fun stats, accumulated from the same blob. Guarded so
         # one malformed blob can't abort the whole snapshot rebuild.
@@ -1034,12 +1047,21 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
                 "community-stats accumulate failed for %s", run_hash, exc_info=True
             )
 
-        # Chart cells for /api/charts, same guard.
+        # Chart cells for /api/charts, same guard. The blob charts combine
+        # their skill brackets with versions the same way the entity cache
+        # does, so the charts version filter isn't frame-charts-only.
+        charts_blob_brackets = blob_brackets
+        if _has_ver:
+            charts_blob_brackets = (
+                blob_brackets
+                + [f"{b}:{_bid}" for b in blob_brackets if b != "all"]
+                + [_bid]
+            )
         try:
             charts_stats.accumulate(
                 charts_acc,
                 blob,
-                brackets=blob_brackets,
+                brackets=charts_blob_brackets,
                 is_win=is_win,
                 character=character,
                 player_count=row.get("player_count") or 1,
@@ -1053,14 +1075,18 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         # Per-encounter combat stats for /api/runs/encounter-stats, folded
         # into the same blob read so the endpoint serves a precomputed
         # snapshot instead of a per-request triple-$unwind over every run.
-        # Also fold this run into its game-version bucket ("ver:<build_id>"),
-        # when that version is one of the recent ones we keep a slice for. It's
-        # a sibling of the content brackets, so this is just one more bucket in
-        # the same list — no cross-multiplication.
-        bid = row.get("build_id")
+        # Also fold this run into its game-version bucket ("ver:<build_id>",
+        # the legacy bare-version key the endpoint still reads) AND into the
+        # version composed with every content/player bracket, so the
+        # encounters page can combine bracket + version instead of the
+        # version overriding the bracket.
         enc_brackets = mp_blob_brackets
-        if bid and bid in _recent_versions_set:
-            enc_brackets = mp_blob_brackets + [f"ver:{bid}"]
+        if _has_ver:
+            enc_brackets = (
+                mp_blob_brackets
+                + [f"{b}:{_bid}" for b in mp_blob_brackets if b != "all"]
+                + [f"ver:{_bid}"]
+            )
         try:
             encounter_stats.accumulate(
                 encounter_acc,
@@ -1896,21 +1922,59 @@ def _persist_snapshot(
         by_type.setdefault(etype, []).append(entry)
     now = datetime.now(timezone.utc)
     for etype, entities in by_type.items():
+        # Chunked storage: with version-composable brackets every popular
+        # entity carries hundreds of per-bracket blocks, so one doc per
+        # entity type can cross Mongo's 16MB document cap. The index doc
+        # keeps the chunk count; stale higher-numbered chunks from a
+        # previous (larger) snapshot are deleted so a shrink can't leave
+        # phantom entities behind.
+        prev = coll.find_one({"_id": etype}, {"chunk_count": 1}) or {}
+        chunks = [
+            entities[i : i + _ENTITY_CHUNK]
+            for i in range(0, len(entities), _ENTITY_CHUNK)
+        ] or [[]]
+        for ci, chunk in enumerate(chunks):
+            coll.replace_one(
+                {"_id": f"{etype}:chunk:{ci}"},
+                {"_id": f"{etype}:chunk:{ci}", "entities": chunk, "updated_at": now},
+                upsert=True,
+            )
         coll.replace_one(
             {"_id": etype},
-            {"_id": etype, "entities": entities, "updated_at": now},
+            {"_id": etype, "chunk_count": len(chunks), "updated_at": now},
             upsert=True,
         )
+        stale = [
+            f"{etype}:chunk:{ci}"
+            for ci in range(len(chunks), prev.get("chunk_count") or 0)
+        ]
+        if stale:
+            coll.delete_many({"_id": {"$in": stale}})
     bracket_meta = bracket_meta or {}
-    # The charts, community, and encounter blobs are all per-bracket now (~5x
-    # bigger), so each lives in its own doc rather than __meta__ to stay well
-    # under Mongo's 16MB per-document cap as more bracketed cells accumulate.
-    for blob_id in ("charts", "community", "encounters"):
+    # The community, charts, and encounter blobs are per-bracket AND
+    # per-version-composite now (hundreds of keys), far past the 16MB
+    # single-doc cap, so each shards one doc per bracket key with the key
+    # list in its index doc. Stale keys from a previous (larger) snapshot
+    # are deleted the same way as entity chunks.
+    for blob_id in ("community", "charts", "encounters"):
+        blob = bracket_meta.get(blob_id, {}) or {}
+        prev_doc = coll.find_one({"_id": blob_id}, {"keys": 1}) or {}
+        for bkey, acc in blob.items():
+            coll.replace_one(
+                {"_id": f"{blob_id}:{bkey}"},
+                {"_id": f"{blob_id}:{bkey}", "blob": acc, "updated_at": now},
+                upsert=True,
+            )
         coll.replace_one(
             {"_id": blob_id},
-            {"_id": blob_id, "blob": bracket_meta.get(blob_id, {}), "updated_at": now},
+            {"_id": blob_id, "keys": sorted(blob.keys()), "updated_at": now},
             upsert=True,
         )
+        stale = [
+            f"{blob_id}:{k}" for k in (prev_doc.get("keys") or []) if k not in blob
+        ]
+        if stale:
+            coll.delete_many({"_id": {"$in": stale}})
     coll.replace_one(
         {"_id": "__meta__"},
         {
@@ -1966,7 +2030,14 @@ def _load_snapshot() -> bool:
         doc = coll.find_one({"_id": etype})
         if not doc:
             continue
-        for e in doc.get("entities", []):
+        # v20+ snapshots chunk the entity array across docs (16MB cap);
+        # older ones keep it inline. Read whichever shape this doc has.
+        entities = doc.get("entities", [])
+        if not entities and doc.get("chunk_count"):
+            for ci in range(int(doc["chunk_count"])):
+                cdoc = coll.find_one({"_id": f"{etype}:chunk:{ci}"}) or {}
+                entities.extend(cdoc.get("entities", []))
+        for e in entities:
             by_char = {
                 c["character"]: {"picks": c["picks"], "wins": c["wins"]}
                 for c in e.get("by_character", [])
@@ -2002,8 +2073,20 @@ def _load_snapshot() -> bool:
     # encounters inline in __meta__, so fall back to that. A genuinely missing
     # blob stays empty until the leader rebuilds the new shape.
     def _blob_doc(blob_id: str):
-        doc = coll.find_one({"_id": blob_id})
-        return (doc or {}).get("blob") or meta.get(blob_id) or {}
+        # v20+ shards each blob one doc per bracket key (the key list lives
+        # in the index doc — hundreds of keys with version composites, far
+        # past the single-doc cap); older snapshots kept the whole map in
+        # one doc's "blob" (or inline in __meta__ before that).
+        doc = coll.find_one({"_id": blob_id}) or {}
+        keys = doc.get("keys")
+        if not keys:
+            return doc.get("blob") or meta.get(blob_id) or {}
+        out: dict[str, Any] = {}
+        for k in keys:
+            kdoc = coll.find_one({"_id": f"{blob_id}:{k}"}) or {}
+            if kdoc.get("blob") is not None:
+                out[k] = kdoc["blob"]
+        return out
 
     _apply_cache(
         new_cache,
@@ -2159,13 +2242,19 @@ def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
 
 
 def _pick_bracket_blob(blob: dict, bracket: str | None, empty_one):
-    """Pick one bracket's finalized sub-blob from a per-bracket blob. Unknown
-    bracket falls back to 'all'; a pre-v9 FLAT blob (no per-bracket keys) is
-    served as-is for any bracket; an empty/missing blob -> a single empty blob."""
+    """Pick one bracket's finalized sub-blob from a per-bracket blob. A
+    requested-but-absent bracket returns the EMPTY shape, not the "all"
+    fallback: silently serving all-runs data for a version slice the
+    snapshot hasn't materialized yet reads as wrong numbers, while an empty
+    state honestly says "no data for this slice" (it self-heals when the
+    current-version snapshot finishes rebuilding). A pre-v9 FLAT blob (no
+    per-bracket keys) is served as-is; an empty/missing blob -> empty."""
     if not blob:
         return empty_one()
     if "all" in blob:  # per-bracket shape {all: ..., a10: ..., ...}
-        return blob.get(bracket or "all") or blob.get("all") or empty_one()
+        if bracket and bracket != "all":
+            return blob.get(bracket) or empty_one()
+        return blob.get("all") or empty_one()
     return blob  # flat pre-v9 blob; the bracket can't apply until it rebuilds
 
 
@@ -2194,6 +2283,22 @@ def get_charts_blob_stats() -> dict[str, Any]:
     return _charts_blob_stats or charts_stats.empty()
 
 
+def is_valid_stat_bracket(bracket: str | None) -> bool:
+    """True when `bracket` names a materialized snapshot slice: a plain
+    bracket key (solo, a10, solo:wr50, ...), a bare game version
+    (v0.107.1), or any plain key composed with a version
+    (solo:a10:v0.107.1). The single source of truth for ?bracket=
+    validation, so the endpoints can't drift from what _accumulate
+    actually materializes."""
+    if not bracket:
+        return False
+    _maybe_rebuild()
+    if bracket in _BRACKET_KEYS or bracket in _recent_stat_versions:
+        return True
+    base, sep, ver = bracket.rpartition(":")
+    return bool(sep) and ver in _recent_stat_versions and base in _BRACKET_KEYS
+
+
 def get_recent_stat_versions() -> list[str]:
     """Game versions (build_ids) the encounter blob carries a per-version slice
     for, newest first — the options the stats-page version dropdown offers.
@@ -2219,12 +2324,19 @@ def get_encounter_stats(
 
     `build_id` selects the per-version slice ("ver:<build_id>") instead of a
     content bracket, for comparing an enemy across balance patches. Only the
-    recent versions in `get_recent_stat_versions()` have a bucket; an unknown
-    one falls back to "all"."""
+    versions in `get_recent_stat_versions()` have a bucket; an unknown one
+    returns the empty shape (never a silent all-runs fallback)."""
     _maybe_rebuild()
     from . import encounter_stats
 
-    key = f"ver:{build_id}" if build_id else bracket
+    # bracket + build_id COMBINE (v20 keeps bracket x version buckets); a
+    # bare version reads the legacy "ver:" bucket.
+    if build_id and bracket and bracket != "all":
+        key = f"{bracket}:{build_id}"
+    elif build_id:
+        key = f"ver:{build_id}"
+    else:
+        key = bracket
     sub = _pick_bracket_blob(
         _encounter_blob_stats or encounter_stats.empty(),
         key,
@@ -2295,7 +2407,7 @@ def get_all_entity_scores(
     # counts, mirroring get_entity_metrics_table. character scoping isn't tracked
     # per bracket, so it's ignored here; act + bracket don't combine (act returns
     # above). Unknown bracket falls through to the all-runs path below.
-    if bracket and (bracket in _BRACKET_KEYS or bracket in _recent_stat_versions):
+    if bracket and is_valid_stat_bracket(bracket):
         c_baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()
         )
@@ -2423,7 +2535,7 @@ def get_entity_metrics_table(
     """
     _maybe_rebuild()
     character = (character or "").strip().upper() or None
-    use_bracket = bracket in _BRACKET_KEYS or bracket in _recent_stat_versions
+    use_bracket = is_valid_stat_bracket(bracket)
     if use_bracket:
         baseline = _bracket_baselines.get(bracket, {}).get(
             entity_type, _baseline_win_rate()

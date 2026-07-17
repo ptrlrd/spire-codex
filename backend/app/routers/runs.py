@@ -1075,21 +1075,15 @@ def community_stats(request: Request, response: Response, bracket: str | None = 
 
     `bracket` slices to a content bracket (`a10`, `wr30`, `wr50`, `wr75`);
     omit for all runs."""
-    # Accept the player-count buckets, the skill tiers, and their player:skill
-    # composites (solo:wr50, ...) — the last let the page combine both axes.
-    _players = ("solo", "2p", "3p", "4p")
-    _skills = ("a10", "wr30", "wr50", "wr75")
-    _ok = bracket is None or bracket in _players or bracket in _skills
-    if not _ok and ":" in (bracket or ""):
-        _p, _, _s = bracket.partition(":")
-        _ok = _p in _players and _s in _skills
-    if not _ok:
-        # Version slices (build_id keys) are valid brackets too.
-        from ..services.run_entity_stats import get_recent_stat_versions
+    # One grammar for every bracket surface: plain keys, player:skill
+    # composites, game versions, and any of those composed with a version
+    # (solo:wr50:v0.107.1). Shared with the entity endpoints so this route
+    # can't drift from what the snapshot actually materializes.
+    if bracket is not None:
+        from ..services.run_entity_stats import is_valid_stat_bracket
 
-        _ok = bracket in get_recent_stat_versions()
-    if not _ok:
-        raise HTTPException(status_code=400, detail="bad bracket")
+        if not is_valid_stat_bracket(bracket):
+            raise HTTPException(status_code=400, detail="bad bracket")
     # An empty shell during a post-deploy rebuild must not stick in the
     # edge cache for 5 minutes on top of the rebuild itself.
     response.headers["Cache-Control"] = (

@@ -80,28 +80,44 @@ const PLAYER_KEYS = PLAYER_AXIS.map((a) => a.key).filter(Boolean);
 const SKILL_KEYS = SKILL_AXIS.map((a) => a.key).filter(Boolean);
 const MODE_KEYS = MODE_AXIS.map((a) => a.key).filter(Boolean);
 
-// Split a bracket key into its axes. A "player:skill" composite splits on the
-// colon; a single bracket maps to whichever axis owns it.
-function parseBracket(b: string): { player: string; skill: string; mode: string } {
+// Split a bracket key into its axes. The version rides as a trailing
+// ":vX.Y.Z" segment on any base (or stands alone); a "player:skill"
+// composite splits on the colon; a single bracket maps to whichever axis
+// owns it.
+function parseBracket(b: string): {
+  player: string;
+  skill: string;
+  mode: string;
+  version: string;
+} {
+  let version = "";
+  const i = b.lastIndexOf(":");
+  if (i > 0 && /^v\d/.test(b.slice(i + 1))) {
+    version = b.slice(i + 1);
+    b = b.slice(0, i);
+  } else if (/^v\d/.test(b)) {
+    return { player: "", skill: "", mode: "", version: b };
+  }
   if (b.includes(":")) {
     const [p, s] = b.split(":");
-    return { player: p, skill: s, mode: "" };
+    return { player: p, skill: s, mode: "", version };
   }
-  if (PLAYER_KEYS.includes(b)) return { player: b, skill: "", mode: "" };
-  if (SKILL_KEYS.includes(b)) return { player: "", skill: b, mode: "" };
-  if (MODE_KEYS.includes(b)) return { player: "", skill: "", mode: b };
-  return { player: "", skill: "", mode: "" };
+  if (PLAYER_KEYS.includes(b)) return { player: b, skill: "", mode: "", version };
+  if (SKILL_KEYS.includes(b)) return { player: "", skill: b, mode: "", version };
+  if (MODE_KEYS.includes(b)) return { player: "", skill: "", mode: b, version };
+  return { player: "", skill: "", mode: "", version };
 }
 
-// Mode is exclusive with player/skill (there are no daily/custom composites).
-function combineBracket(player: string, skill: string, mode: string): string {
-  if (mode) return mode;
-  if (player && skill) return `${player}:${skill}`;
-  return player || skill || "all";
+// Mode is exclusive with player/skill (there are no daily/custom player
+// composites), but the version composes with any of them.
+function combineBracket(player: string, skill: string, mode: string, version = ""): string {
+  const base = mode || [player, skill].filter(Boolean).join(":");
+  if (base && version) return `${base}:${version}`;
+  return base || version || "all";
 }
 
 function bracketLabel(b: string, lang: string): string {
-  const { player, skill, mode } = parseBracket(b);
+  const { player, skill, mode, version } = parseBracket(b);
   const parts: string[] = [];
   const pl = PLAYER_AXIS.find((a) => a.key === player);
   if (player && pl) parts.push(t(pl.label, lang));
@@ -109,6 +125,7 @@ function bracketLabel(b: string, lang: string): string {
   if (skill && sl) parts.push(t(sl.label, lang));
   const ml = MODE_AXIS.find((a) => a.key === mode);
   if (mode && ml) parts.push(t(ml.label, lang));
+  if (version) parts.push(version);
   return parts.length ? parts.join(" + ") : t("All runs", lang);
 }
 
@@ -189,9 +206,9 @@ export default function MetricsClient({
   } | null>(null);
 
   const sel = parseBracket(bracket);
-  // Game versions the snapshot keeps per-version slices for. A version is
-  // its own exclusive bracket (it doesn't compose with player/skill), so
-  // selecting one clears the other axes, same as the mode pills.
+  // Game versions the snapshot keeps per-version slices for. The version is
+  // a third axis (v20): it composes with the player/skill (or mode) pills
+  // instead of clearing them.
   const [statVersions, setStatVersions] = useState<string[]>([]);
   useEffect(() => {
     fetch(`${API}/api/runs/versions`)
@@ -199,7 +216,7 @@ export default function MetricsClient({
       .then((d) => setStatVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const selVersion = statVersions.includes(bracket) ? bracket : "";
+  const selVersion = sel.version;
   const nav = (key: string, char: string = character) => {
     const base = `${lp}/leaderboards/metrics`;
     const params = new URLSearchParams();
@@ -209,9 +226,12 @@ export default function MetricsClient({
     router.push(qs ? `${base}?${qs}` : base);
   };
   // Player and skill combine; picking either clears the exclusive mode axis.
-  const pickPlayer = (p: string) => nav(combineBracket(p, sel.skill, ""));
-  const pickSkill = (s: string) => nav(combineBracket(sel.player, s, ""));
-  const pickMode = (m: string) => nav(m || "all");
+  // Every pill keeps the version selection.
+  const pickPlayer = (p: string) => nav(combineBracket(p, sel.skill, "", sel.version));
+  const pickSkill = (s: string) => nav(combineBracket(sel.player, s, "", sel.version));
+  const pickMode = (m: string) => nav(combineBracket("", "", m, sel.version));
+  const pickVersion = (v: string) =>
+    nav(combineBracket(sel.player, sel.skill, sel.mode, v));
   // "Played by": server-side character re-scope (that character's runs), on top
   // of any bracket. Distinct from the card-color filter below, which only
   // narrows which cards are listed.
@@ -347,7 +367,7 @@ export default function MetricsClient({
           <span className="mr-1 w-12 text-xs text-[var(--text-muted)]">{t("Version", lang)}</span>
           <select
             value={selVersion}
-            onChange={(e) => nav(e.target.value || "all")}
+            onChange={(e) => pickVersion(e.target.value)}
             className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-xs text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
           >
             <option value="">{t("All versions", lang)}</option>

@@ -57,7 +57,8 @@ _RUNS_DIR = _DATA_DIR / "runs"
     ABANDONED,
     ACTS,
     DAILY,
-) = range(14)
+    BUILD,
+) = range(15)
 
 _FRAME: list[tuple] = []
 _FRAME_TS: float = 0.0
@@ -150,6 +151,7 @@ def _load_frame() -> list[tuple]:
                 "was_abandoned": 1,
                 "acts_completed": 1,
                 "seed": 1,
+                "build_id": 1,
             },
         )
         for d in cursor:
@@ -170,6 +172,7 @@ def _load_frame() -> list[tuple]:
                     1 if d.get("was_abandoned") else 0,
                     int(d.get("acts_completed") or 0),
                     _daily_date(d.get("seed"), mode),
+                    (d.get("build_id") or "").strip(),
                 )
             )
     else:
@@ -179,7 +182,8 @@ def _load_frame() -> list[tuple]:
             for d in conn.execute(
                 "SELECT character, win, ascension, game_mode, player_count,"
                 " run_time, floors_reached, deck_size, relic_count,"
-                " submitted_at, username, was_abandoned, acts_completed, seed"
+                " submitted_at, username, was_abandoned, acts_completed, seed,"
+                " build_id"
                 " FROM runs WHERE ascension BETWEEN 0 AND 10"
             ):
                 mode = (d["game_mode"] or "standard").lower()
@@ -199,6 +203,7 @@ def _load_frame() -> list[tuple]:
                         1 if d["was_abandoned"] else 0,
                         int(d["acts_completed"] or 0),
                         _daily_date(d["seed"], mode),
+                        (d["build_id"] or "").strip(),
                     )
                 )
     return rows
@@ -288,12 +293,17 @@ def filter_rows(
     game_mode: str | None,
     username: str | None,
     bracket: str | None = None,
+    build_id: str | None = None,
 ) -> list[tuple]:
     u = (username or "").lower().strip()
     asc_floor, wr_floor = _BRACKET_FILTERS.get(bracket or "", (None, None))
     wr_map = _frame_winrate_map() if wr_floor is not None else None
     out = []
     for r in rows:
+        # Game version: query-time on the frame, so it combines with every
+        # other filter here (unlike the snapshot brackets, no materialization).
+        if build_id and r[BUILD] != build_id:
+            continue
         if players is not None and r[PLAYERS] != players:
             continue
         if ascension is not None and r[ASC] != ascension:
@@ -635,10 +645,20 @@ def _new_acc_one() -> dict[str, Any]:
     }
 
 
-def new_accumulator() -> dict[str, Any]:
+def new_accumulator(versions=None) -> dict[str, Any]:
     """Per-bracket blob accumulators; accumulate() folds each run into the
-    sub-accumulator for every content bracket it belongs to."""
-    return {b: _new_acc_one() for b in _BLOB_BRACKETS}
+    sub-accumulator for every content bracket it belongs to. `versions`
+    (release build_ids) pre-seeds one bucket per version plus one per
+    bracket x version composite (``a10:v0.107.1``), so the blob charts
+    honor the same version filter the frame charts apply query-time.
+    accumulate() only folds into buckets that already exist."""
+    acc = {b: _new_acc_one() for b in _BLOB_BRACKETS}
+    for v in versions or []:
+        acc[v] = _new_acc_one()
+        for b in _BLOB_BRACKETS:
+            if b != "all":
+                acc[f"{b}:{v}"] = _new_acc_one()
+    return acc
 
 
 # Merging two accumulators (from parallel run-chunk walks) adds per key. Most

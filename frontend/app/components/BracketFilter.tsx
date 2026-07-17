@@ -5,6 +5,7 @@ import {
   normalizeBracket,
   splitBracket,
   combineBracket,
+  stripVersion,
   type ContentBracket,
 } from "@/lib/content-brackets";
 import VersionSelectNav from "@/app/components/VersionSelectNav";
@@ -34,7 +35,7 @@ export default function BracketFilter({
   composite?: boolean;
 }) {
   const active = normalizeBracket(current);
-  const { player, skill } = splitBracket(active);
+  const { player, skill, version } = splitBracket(active);
 
   const hrefFor = (bracketValue: string) => {
     const params = new URLSearchParams();
@@ -54,9 +55,15 @@ export default function BracketFilter({
     }`;
 
   if (!composite) {
-    // Mutually-exclusive: each pill sets ?bracket=<its key>.
+    // Mutually-exclusive pills (each sets the base bracket), but the version
+    // axis still composes: picking a pill keeps the version and vice versa.
+    const base = stripVersion(active);
     const renderPill = (b: ContentBracket) => (
-      <Link key={b.key} href={hrefFor(b.key)} className={pillCls(active === b.key)}>
+      <Link
+        key={b.key}
+        href={hrefFor(b.key === "all" ? version || "all" : version ? `${b.key}:${version}` : b.key)}
+        className={pillCls(base === b.key || (b.key === "all" && !base))}
+      >
         {b.label}
       </Link>
     );
@@ -70,8 +77,12 @@ export default function BracketFilter({
           <span className="text-xs text-[var(--text-muted)] mx-1">Players</span>
           {PLAYER_BRACKETS.map(renderPill)}
         </div>
-        {/* Game version shares the same slot too (exclusive slice). */}
-        <VersionSelectNav basePath={basePath} current={active} extraParams={extraParams} />
+        <VersionSelectNav
+          basePath={basePath}
+          current={active}
+          extraParams={extraParams}
+          base={base}
+        />
       </div>
     );
   }
@@ -88,7 +99,7 @@ export default function BracketFilter({
           return (
             <Link
               key={b.key}
-              href={hrefFor(combineBracket(player, targetSkill))}
+              href={hrefFor(combineBracket(player, targetSkill, version))}
               className={pillCls(skill === targetSkill)}
             >
               {b.label}
@@ -101,16 +112,21 @@ export default function BracketFilter({
         {playerOpts.map((b) => (
           <Link
             key={b.key || "all"}
-            href={hrefFor(combineBracket(b.key, skill))}
+            href={hrefFor(combineBracket(b.key, skill, version))}
             className={pillCls(player === b.key)}
           >
             {b.label}
           </Link>
         ))}
       </div>
-      {/* Game version is an exclusive slice of the same ?bracket= slot:
-          picking one replaces the player/skill selection and vice versa. */}
-      <VersionSelectNav basePath={basePath} current={active} extraParams={extraParams} />
+      {/* Game version is a third axis: it composes with the player and
+          skill selections instead of replacing them. */}
+      <VersionSelectNav
+        basePath={basePath}
+        current={active}
+        extraParams={extraParams}
+        base={combineBracket(player, skill) === "all" ? "" : combineBracket(player, skill)}
+      />
     </div>
   );
 }

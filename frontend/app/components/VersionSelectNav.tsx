@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { isVersionBracket } from "@/lib/content-brackets";
+import { splitBracket } from "@/lib/content-brackets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -10,19 +10,22 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
  * The Version row of BracketFilter. Client half of a server component: it
  * self-populates from /api/runs/versions (stat_versions = the versions the
  * snapshot keeps per-version slices for) and navigates the same way the
- * bracket pills do (?bracket=v0.107.1; "All versions" drops the param).
- * A version is an exclusive bracket, so picking one replaces any player/
- * skill selection, and picking a pill afterwards replaces the version.
- * Renders nothing while the version list is loading or empty.
+ * bracket pills do. The version is a third axis that COMPOSES with the
+ * current bracket selection: picking one keeps `base` (the player/skill
+ * selection, e.g. "solo:wr50") and emits ?bracket=solo:wr50:v0.107.1;
+ * "All versions" drops back to the base alone. Renders nothing while the
+ * version list is loading or empty.
  */
 export default function VersionSelectNav({
   basePath,
   current,
   extraParams,
+  base = "",
 }: {
   basePath: string;
   current: string;
   extraParams?: Record<string, string | undefined>;
+  base?: string;
 }) {
   const router = useRouter();
   const [versions, setVersions] = useState<string[]>([]);
@@ -38,15 +41,16 @@ export default function VersionSelectNav({
 
   // Keep a URL-supplied version selectable even if it fell out of the
   // snapshot's list (stale link), so the select reflects the page state.
-  const value = isVersionBracket(current) ? current : "";
+  const value = splitBracket(current).version;
   const options = value && !versions.includes(value) ? [value, ...versions] : versions;
 
   const onChange = (v: string) => {
+    const bracket = v ? (base ? `${base}:${v}` : v) : base;
     const params = new URLSearchParams();
     for (const [k, val] of Object.entries(extraParams ?? {})) {
       if (val) params.set(k, val);
     }
-    if (v) params.set("bracket", v);
+    if (bracket && bracket !== "all") params.set("bracket", bracket);
     const qs = params.toString();
     router.push(qs ? `${basePath}?${qs}` : basePath);
   };

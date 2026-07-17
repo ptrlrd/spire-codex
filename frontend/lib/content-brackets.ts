@@ -39,12 +39,31 @@ const _SKILL_KEYS = new Set(
 );
 
 /**
- * A game-version bracket ("v0.107.1"): the snapshot keeps an exclusive
- * per-version slice for every release version, so a version is a valid
- * ?bracket= value on its own (it never composes with player/skill).
+ * A game-version bracket ("v0.107.1"): the snapshot keeps a per-version
+ * slice for every release version, both standalone and composed onto any
+ * other bracket key ("solo:wr50:v0.107.1"), so versions combine with the
+ * player and skill axes everywhere.
  */
 export function isVersionBracket(raw: string | undefined | null): boolean {
   return !!raw && /^v\d+(\.\d+)*$/.test(raw);
+}
+
+/** The bracket value minus any trailing version segment ("" for a bare
+ * version or "all"). */
+export function stripVersion(raw: string | undefined | null): string {
+  if (!raw || raw === "all") return "";
+  const { base } = splitVersion(raw);
+  return base === "all" ? "" : base;
+}
+
+/** Split a trailing ":vX.Y.Z" version segment off a bracket value. */
+function splitVersion(raw: string): { base: string; version: string } {
+  const i = raw.lastIndexOf(":");
+  if (i > 0 && isVersionBracket(raw.slice(i + 1))) {
+    return { base: raw.slice(0, i), version: raw.slice(i + 1) };
+  }
+  if (isVersionBracket(raw)) return { base: "", version: raw };
+  return { base: raw, version: "" };
 }
 
 /**
@@ -58,35 +77,43 @@ export function isCompositeBracket(raw: string | undefined | null): boolean {
   return _PLAYER_KEYS.has(p) && _SKILL_KEYS.has(s);
 }
 
-/** Split a bracket value into its player + skill axes. A single bracket maps to
- * whichever axis owns it; "all"/unknown gives both empty. */
+/** Split a bracket value into its player + skill + version axes. A single
+ * bracket maps to whichever axis owns it; "all"/unknown gives all empty. */
 export function splitBracket(raw: string | undefined | null): {
   player: string;
   skill: string;
+  version: string;
 } {
   const b = normalizeBracket(raw);
-  if (isCompositeBracket(b)) {
-    const [player, skill] = b.split(":");
-    return { player, skill };
+  const { base, version } = splitVersion(b === "all" ? "" : b);
+  if (isCompositeBracket(base)) {
+    const [player, skill] = base.split(":");
+    return { player, skill, version };
   }
-  if (_PLAYER_KEYS.has(b)) return { player: b, skill: "" };
-  if (_SKILL_KEYS.has(b)) return { player: "", skill: b };
-  return { player: "", skill: "" };
+  if (_PLAYER_KEYS.has(base)) return { player: base, skill: "", version };
+  if (_SKILL_KEYS.has(base)) return { player: "", skill: base, version };
+  return { player: "", skill: "", version };
 }
 
-/** Combine a player + skill selection into one ?bracket= value. */
-export function combineBracket(player: string, skill: string): string {
-  if (player && skill) return `${player}:${skill}`;
-  return player || skill || "all";
+/** Combine player + skill + version selections into one ?bracket= value.
+ * Any subset works: the axes compose in canonical player:skill:version
+ * order, and all-empty collapses to "all". */
+export function combineBracket(player: string, skill: string, version = ""): string {
+  const base = [player, skill].filter(Boolean).join(":");
+  if (base && version) return `${base}:${version}`;
+  return base || version || "all";
 }
 
-/** Normalize a raw ?bracket= value to a known bracket key or a player:skill
- * composite ("all" if unknown). */
+/** Normalize a raw ?bracket= value to a known bracket key, a player:skill
+ * composite, a game version, or any of those with a trailing version
+ * ("all" if unknown). */
 export function normalizeBracket(raw: string | undefined | null): string {
   if (!raw) return "all";
   if (_BY_KEY.has(raw)) return raw;
   if (isCompositeBracket(raw)) return raw;
   if (isVersionBracket(raw)) return raw;
+  const { base, version } = splitVersion(raw);
+  if (version && base && (_BY_KEY.has(base) || isCompositeBracket(base))) return raw;
   return "all";
 }
 
@@ -109,7 +136,9 @@ export function bracketListParams(key: string | undefined | null): {
   ascension_min?: number;
   winrate_min?: number;
 } {
-  switch (normalizeBracket(key)) {
+  // Only the skill axis maps to list filters; a composed player/version
+  // segment rides on its own params (players= / build_id=) at the callers.
+  switch (splitBracket(key).skill || normalizeBracket(key)) {
     case "a10":
       return { ascension_min: 10 };
     case "wr30":

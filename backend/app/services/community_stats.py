@@ -117,9 +117,17 @@ def _new_acc_one() -> dict[str, Any]:
 
 def new_accumulator(recent_versions: tuple | list = ()) -> dict[str, Any]:
     """Per-bracket accumulators; accumulate() folds each run into every content
-    bracket it belongs to. `recent_versions` adds one accumulator per recent
-    game version (build_id keys) so the blob can serve per-version slices."""
-    keys = list(_BLOB_BRACKETS) + [v for v in recent_versions if v]
+    bracket it belongs to. `recent_versions` adds one accumulator per game
+    version (build_id keys) plus one per bracket x version composite
+    ("solo:wr50:v0.107.1"), so the blob serves every combination the
+    community page can express ("all:version" collapses to the bare
+    version key)."""
+    versions = [v for v in recent_versions if v]
+    keys = (
+        list(_BLOB_BRACKETS)
+        + versions
+        + [f"{b}:{v}" for b in _BLOB_BRACKETS if b != "all" for v in versions]
+    )
     return {b: _new_acc_one() for b in keys}
 
 

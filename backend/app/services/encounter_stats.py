@@ -55,15 +55,18 @@ def new_accumulator(versions=None) -> dict[str, Any]:
     """Per-bracket accumulators; accumulate() folds each run into every content
     bracket it belongs to.
 
-    `versions` (recent build_ids) pre-seeds one extra bucket per version, keyed
-    ``ver:<build_id>``. These are siblings of the content brackets, not a
-    sub-axis: a run feeds its own version's bucket (over all its content), so
-    the stats page can slice by game version without cross-multiplying the
-    bracket cells. accumulate() only folds into buckets that already exist, so
-    they must be seeded here."""
+    `versions` (release build_ids) pre-seeds one bucket per version (keyed
+    ``ver:<build_id>``, the legacy bare-version key) PLUS one per
+    bracket x version composite (``solo:v0.107.1``), so the encounters page
+    combines bracket and version instead of one overriding the other.
+    accumulate() only folds into buckets that already exist, so they must
+    be seeded here."""
     acc = {b: _new_acc_one() for b in _BLOB_BRACKETS}
     for v in versions or []:
         acc[f"ver:{v}"] = _new_acc_one()
+        for b in _BLOB_BRACKETS:
+            if b != "all":
+                acc[f"{b}:{v}"] = _new_acc_one()
     return acc
 
 

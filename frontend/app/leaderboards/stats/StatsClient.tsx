@@ -333,13 +333,16 @@ export default function StatsClient() {
       .then((d) => setStatVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const bracketActive = bracket !== "all";
-  const isVersion = /^v\d/.test(bracket);
-  // The ?bracket= value combining both axes, e.g. "wr50", "solo:wr50".
-  // A version bracket is exclusive: it never composes with player counts.
-  const apiBracket = isVersion
-    ? bracket
-    : combineBracket(PLAYERS_TO_BRACKET[players] ?? "", bracketActive ? bracket : "");
+  // Game version: a third axis (v20 snapshots) that composes with the
+  // skill bracket and the player count instead of replacing them.
+  const [version, setVersion] = useState("");
+  const bracketActive = bracket !== "all" || version !== "";
+  // The ?bracket= value combining all axes, e.g. "solo:wr50:v0.107.1".
+  const apiBracket = combineBracket(
+    PLAYERS_TO_BRACKET[players] ?? "",
+    bracket !== "all" ? bracket : "",
+    version,
+  );
 
   // Tabs
   const [tab, setTab] = useState<TopTab>("overview");
@@ -939,8 +942,8 @@ export default function StatsClient() {
         })}
         {statVersions.length > 0 && (
           <select
-            value={isVersion ? bracket : ""}
-            onChange={(e) => setBracket(e.target.value || "all")}
+            value={version}
+            onChange={(e) => setVersion(e.target.value)}
             className="text-xs px-2 py-1.5 rounded-md border bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] focus:outline-none focus:border-[var(--accent-gold)]"
             aria-label="Game version"
           >

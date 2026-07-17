@@ -79,8 +79,8 @@ export default function EncounterStatsClient() {
   const [multiplayer, setMultiplayer] = useState<"any" | "only" | "exclude">("any");
   const [bracket, setBracket] = useState("all");
   // Game versions the snapshot keeps encounter slices for; filters via the
-  // endpoint's build_id param (exclusive axis, does not combine with bracket
-  // on the backend's per-version slices).
+  // endpoint's build_id param. Combines with the bracket (v20 snapshots
+  // keep bracket x version buckets).
   const [version, setVersion] = useState("");
   const [statVersions, setStatVersions] = useState<string[]>([]);
   useEffect(() => {
