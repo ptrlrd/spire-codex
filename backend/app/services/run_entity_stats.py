@@ -1523,15 +1523,22 @@ def _accumulate_parallel(rows, official_chars, wr_map, recent_versions, workers)
     with concurrent.futures.ProcessPoolExecutor(
         max_workers=len(chunks), mp_context=ctx
     ) as ex:
-        partials = list(
-            ex.map(
-                _accumulate_worker,
-                [(c, official_chars, wr_map, recent_versions) for c in chunks],
-            )
-        )
-    raw = partials[0]
-    for p in partials[1:]:
-        _merge_raw(raw, p)
+        # Stream-merge each partial as it arrives instead of materializing
+        # all of them at once. Every partial is a near-full-size accumulator
+        # (each chunk touches most entities), so list(ex.map(...)) held N
+        # complete copies in the parent simultaneously — with the per-bracket
+        # blocks the walk now materializes, that peak is what OOM-killed the
+        # last parallel attempt. ex.map already yields in submission order,
+        # which keeps record tie-breaks aligned with the serial walk.
+        raw = None
+        for p in ex.map(
+            _accumulate_worker,
+            [(c, official_chars, wr_map, recent_versions) for c in chunks],
+        ):
+            if raw is None:
+                raw = p
+            else:
+                _merge_raw(raw, p)
     return raw
 
 
