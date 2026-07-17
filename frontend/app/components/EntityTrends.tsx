@@ -105,8 +105,13 @@ export default function EntityTrends({
       `${API}/api/charts/entity-over-time?etype=${entityType}&entity=${entityId.toUpperCase()}${bq}`,
     )
       .then((r) => (r.ok ? r.json() : null))
-      .then((d: Series[] | null) => {
-        if (alive) setSeries(Array.isArray(d) ? d : []);
+      .then((d: { series?: Series[] } | Series[] | null) => {
+        // The charts endpoint wraps the series in its standard payload
+        // ({chart, label, series: [...]}), not a bare array. Expecting an
+        // array here meant every response parsed to [] and the trend charts
+        // never rendered anywhere.
+        const arr = Array.isArray(d) ? d : d?.series;
+        if (alive) setSeries(Array.isArray(arr) ? arr : []);
       })
       .catch(() => {
         if (alive) setSeries([]);
