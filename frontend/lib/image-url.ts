@@ -35,9 +35,23 @@ export function setBetaRenderVersion(v: string | null | undefined) {
 export const CARD_RENDER_LANGS = new Set<string>([
   "eng", "deu", "esp", "fra", "ita", "jpn", "kor",
   "pol", "ptb", "rus", "spa", "tha", "tur", "zhs",
-  // zht joins after its full-catalog render export uploads to
-  // cards-full/ — until then zht pages fall back to English renders.
 ]);
+
+/**
+ * Languages rendered for the BETA channel only. zht's full catalog is
+ * exported from the beta build (the game added the language in v0.109.0),
+ * so beta serves real zht renders while stable keeps the English fallback
+ * until the language ships to the game's default branch — matching how the
+ * data side falls back too. Promote a language into CARD_RENDER_LANGS once
+ * its renders exist under cards-full/stable/.
+ */
+export const CARD_RENDER_LANGS_BETA = new Set<string>(["zht"]);
+
+/** True when this language has a rendered folder for the given channel. */
+function hasRenderLang(lang: string, channel: "stable" | "beta"): boolean {
+  if (CARD_RENDER_LANGS.has(lang)) return true;
+  return channel === "beta" && CARD_RENDER_LANGS_BETA.has(lang);
+}
 
 /**
  * Full game-rendered card image (the engine-rendered card, frame + art + text,
@@ -56,7 +70,7 @@ export function fullCardUrl(
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   // Only route to a localized folder for languages we've actually rendered;
   // everything else uses the English base path.
-  const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+  const langSeg = lang !== "eng" && hasRenderLang(lang, channel) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }
 
@@ -79,7 +93,7 @@ export function enchantedCardUrl(
   lang = "eng"
 ): string {
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
-  const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+  const langSeg = lang !== "eng" && hasRenderLang(lang, channel) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}ench/${enchantment.toLowerCase()}/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }
 
