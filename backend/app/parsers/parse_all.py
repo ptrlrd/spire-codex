@@ -34,6 +34,9 @@ LANGUAGES = [
     "tha",
     "tur",
     "zhs",
+    # Traditional Chinese: added to the game in v0.109.0 (2026-07-16 patch),
+    # with English fallback for strings not yet translated.
+    "zht",
 ]
 
 

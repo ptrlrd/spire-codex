@@ -1,0 +1,1586 @@
+[
+  {
+    "id": "AEONGLASS_BOSS",
+    "name": "永世沙漏",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AEONGLASS",
+        "name": "永世沙漏"
+      }
+    ],
+    "loss_text": "[gold]永世沙漏[/gold]對[b]The Adventurer[/b]的打擾大為不滿。"
+  },
+  {
+    "id": "AXEBOTS_NORMAL",
+    "name": "斧刃機器人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "AXEBOT",
+        "name": "斧刃機器人"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]遭[gold]斧刃機器人[/gold]肢解。"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_ENCOUNTER",
+    "name": "Battleworn Dummy Event Encounter",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": null,
+    "loss_text": null
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V1_ENCOUNTER",
+    "name": "歷戰假人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V1",
+        "name": "戰鬥夥伴 V1.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]不知怎地被[gold]歷戰假人[/gold]殺死了？？？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER",
+    "name": "歷戰假人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V2",
+        "name": "戰鬥夥伴 V2.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]不知怎地被[gold]歷戰假人[/gold]殺死了？？？"
+  },
+  {
+    "id": "BATTLEWORN_DUMMY_EVENT_V3_ENCOUNTER",
+    "name": "歷戰假人",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BATTLE_FRIEND_V3",
+        "name": "戰鬥夥伴 V3.0"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]不知怎地被[gold]歷戰假人[/gold]殺死了？？？"
+  },
+  {
+    "id": "BOWLBUGS_NORMAL",
+    "name": "盛碗蟲群",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "盛碗蟲（卵）"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "盛碗蟲（蜜）"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "盛碗蟲（石）"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "盛碗蟲（絲）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]擋在忙碌的[gold]盛碗蟲群[/gold]前面。"
+  },
+  {
+    "id": "BOWLBUGS_WEAK",
+    "name": "盛碗蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_EGG",
+        "name": "盛碗蟲（卵）"
+      },
+      {
+        "id": "BOWLBUG_NECTAR",
+        "name": "盛碗蟲（蜜）"
+      },
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "盛碗蟲（石）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]擋在忙碌的[gold]盛碗蟲[/gold]前面。"
+  },
+  {
+    "id": "BYGONE_EFFIGY_ELITE",
+    "name": "往昔塑像",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYGONE_EFFIGY",
+        "name": "往昔塑像"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]往昔塑像[/gold]攔腰斬成兩半。"
+  },
+  {
+    "id": "BYRDONIS_ELITE",
+    "name": "異鳥成鳥",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "BYRDONIS",
+        "name": "異鳥成鳥"
+      }
+    ],
+    "loss_text": "[gold]異鳥成鳥[/gold]保護了它的孩子免受[b]The Adventurer[/b]傷害。"
+  },
+  {
+    "id": "CEREMONIAL_BEAST_BOSS",
+    "name": "儀式獸",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CEREMONIAL_BEAST",
+        "name": "儀式獸"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]儀式獸[/gold]送入長眠。"
+  },
+  {
+    "id": "CHOMPERS_NORMAL",
+    "name": "一對自動機械",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "啃咬機"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]一對自動機械[/gold]活活咬死了。"
+  },
+  {
+    "id": "CONSTRUCT_MENAGERIE_NORMAL",
+    "name": "構造體大集合",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "方柱構造體"
+      },
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "拳擊構造體"
+      }
+    ],
+    "loss_text": "[gold]構造體大集合[/gold]壓扁了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "CORPSE_SLUGS_NORMAL",
+    "name": "大群噬屍蛞蝓",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "噬屍蛞蝓"
+      }
+    ],
+    "loss_text": "[gold]大群噬屍蛞蝓[/gold]以[b]The Adventurer[/b]大快朵頤。"
+  },
+  {
+    "id": "CORPSE_SLUGS_WEAK",
+    "name": "一些噬屍蛞蝓",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Slugs"
+    ],
+    "monsters": [
+      {
+        "id": "CORPSE_SLUG",
+        "name": "噬屍蛞蝓"
+      }
+    ],
+    "loss_text": "[gold]一些噬屍蛞蝓[/gold]以[b]The Adventurer[/b]大快朵頤。"
+  },
+  {
+    "id": "CUBEX_CONSTRUCT_NORMAL",
+    "name": "方柱構造體",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CUBEX_CONSTRUCT",
+        "name": "方柱構造體"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]方柱構造體[/gold]的雷射射殺了。"
+  },
+  {
+    "id": "CULTISTS_NORMAL",
+    "name": "邪教徒",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "鈣化邪教徒"
+      },
+      {
+        "id": "DAMP_CULTIST",
+        "name": "潮濕邪教徒"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]邪教徒[/gold]殺死了。[sine]嘎——[/sine]……"
+  },
+  {
+    "id": "DECIMILLIPEDE_ELITE",
+    "name": "殘殺千足蟲",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_BACK",
+        "name": "Decimillipede Segment Back"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_FRONT",
+        "name": "Decimillipede Segment Front"
+      },
+      {
+        "id": "DECIMILLIPEDE_SEGMENT_MIDDLE",
+        "name": "Decimillipede Segment Middle"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]沒能活著逃出[gold]殘殺千足蟲[/gold]的地盤。"
+  },
+  {
+    "id": "DENSE_VEGETATION_EVENT_ENCOUNTER",
+    "name": "蠕動蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WRIGGLER",
+        "name": "蠕動蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]遭[gold]蠕動蟲[/gold]寄生而死。"
+  },
+  {
+    "id": "DEVOTED_SCULPTOR_WEAK",
+    "name": "虔誠雕塑師",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "DEVOTED_SCULPTOR",
+        "name": "虔誠雕塑師"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]虔誠雕塑師[/gold]砸得粉碎。"
+  },
+  {
+    "id": "ENTOMANCER_ELITE",
+    "name": "蟲群術士",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ENTOMANCER",
+        "name": "蟲群術士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]蟲群術士[/gold]活活螫死了。"
+  },
+  {
+    "id": "EXOSKELETONS_NORMAL",
+    "name": "大群外骨骼蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "外骨骼蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]大群外骨骼蟲[/gold]開膛破肚。"
+  },
+  {
+    "id": "EXOSKELETONS_WEAK",
+    "name": "一些外骨骼蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Exoskeletons"
+    ],
+    "monsters": [
+      {
+        "id": "EXOSKELETON",
+        "name": "外骨骼蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]一些外骨骼蟲[/gold]開膛破肚。"
+  },
+  {
+    "id": "FABRICATOR_NORMAL",
+    "name": "組裝師",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FABRICATOR",
+        "name": "組裝師"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]組裝師[/gold]的機器人電擊而死。"
+  },
+  {
+    "id": "FAKE_MERCHANT_EVENT_ENCOUNTER",
+    "name": "商人？？？",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAKE_MERCHANT_MONSTER",
+        "name": "商人？？？"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]承受了[gold]商人？？？[/gold]的怒火。"
+  },
+  {
+    "id": "FLYCONID_NORMAL",
+    "name": "蕈菇與史萊姆",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "飛蠅蕈菇"
+      },
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "葉片史萊姆（中）"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝史萊姆（中）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]蕈菇與史萊姆[/gold]吸收了。"
+  },
+  {
+    "id": "FOGMOG_NORMAL",
+    "name": "霧菇",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "EYE_WITH_TEETH",
+        "name": "利齒之眼"
+      },
+      {
+        "id": "FOGMOG",
+        "name": "霧菇"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]霧菇[/gold]的幻象分散了注意力。"
+  },
+  {
+    "id": "FOSSIL_STALKER_NORMAL",
+    "name": "化石潛獵者",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FOSSIL_STALKER",
+        "name": "化石潛獵者"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]遭[gold]化石潛獵者[/gold]伏擊。"
+  },
+  {
+    "id": "FROG_KNIGHT_NORMAL",
+    "name": "青蛙騎士",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FROG_KNIGHT",
+        "name": "青蛙騎士"
+      }
+    ],
+    "loss_text": "英勇的[gold]青蛙騎士[/gold]戰勝了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "FUZZY_WURM_CRAWLER_WEAK",
+    "name": "絨毛蠕蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "絨毛蠕蟲"
+      }
+    ],
+    "loss_text": "[gold]絨毛蠕蟲[/gold]吐在了[b]The Adventurer[/b]身上。"
+  },
+  {
+    "id": "GLOBE_HEAD_NORMAL",
+    "name": "落單的球頭怪",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GLOBE_HEAD",
+        "name": "球頭怪"
+      }
+    ],
+    "loss_text": "[gold]落單的球頭怪[/gold]電倒了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "GREMLIN_MERC_NORMAL",
+    "name": "穿著風衣的兩隻地精",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "FAT_GREMLIN",
+        "name": "胖地精"
+      },
+      {
+        "id": "GREMLIN_MERC",
+        "name": "地精傭兵"
+      },
+      {
+        "id": "SNEAKY_GREMLIN",
+        "name": "鬼祟地精"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]遭到[gold]穿著風衣的兩隻地精[/gold]搶劫了。"
+  },
+  {
+    "id": "HAUNTED_SHIP_NORMAL",
+    "name": "幽靈船",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HAUNTED_SHIP",
+        "name": "幽靈船"
+      }
+    ],
+    "loss_text": "一艘[gold]幽靈船[/gold]碾過了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "HUNTER_KILLER_NORMAL",
+    "name": "獵殺蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "HUNTER_KILLER",
+        "name": "獵殺蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]獵殺蟲[/gold]開膛破肚。"
+  },
+  {
+    "id": "INFESTED_PRISMS_ELITE",
+    "name": "感染稜鏡",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INFESTED_PRISM",
+        "name": "感染稜鏡"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]感染稜鏡[/gold]擋了下來。"
+  },
+  {
+    "id": "INKLETS_NORMAL",
+    "name": "墨靈",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "INKLET",
+        "name": "墨靈"
+      }
+    ],
+    "loss_text": "幾隻[gold]墨靈[/gold]不讓[b]The Adventurer[/b]通過。"
+  },
+  {
+    "id": "KAISER_CRAB_BOSS",
+    "name": "帝皇蟹",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "CRUSHER",
+        "name": "碾碎者"
+      },
+      {
+        "id": "ROCKET",
+        "name": "火箭"
+      }
+    ],
+    "loss_text": "[gold]帝皇蟹[/gold]從四面八方猛擊[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "KNIGHTS_ELITE",
+    "name": "騎士幫",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Knights"
+    ],
+    "monsters": [
+      {
+        "id": "FLAIL_KNIGHT",
+        "name": "鏈枷騎士"
+      },
+      {
+        "id": "MAGI_KNIGHT",
+        "name": "魔導騎士"
+      },
+      {
+        "id": "SPECTRAL_KNIGHT",
+        "name": "幽魂騎士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]騎士幫[/gold]殺死了。"
+  },
+  {
+    "id": "KNOWLEDGE_DEMON_BOSS",
+    "name": "知識惡魔",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KNOWLEDGE_DEMON",
+        "name": "知識惡魔"
+      }
+    ],
+    "loss_text": "[gold]知識惡魔[/gold]以壓倒性的知識詛咒了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "LAGAVULIN_MATRIARCH_BOSS",
+    "name": "樂加維林女族長",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LAGAVULIN_MATRIARCH",
+        "name": "樂加維林女族長"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]樂加維林女族長[/gold]攔腰斬成兩半。"
+  },
+  {
+    "id": "LIVING_FOG_NORMAL",
+    "name": "活霧",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "GAS_BOMB",
+        "name": "瓦斯炸彈"
+      },
+      {
+        "id": "LIVING_FOG",
+        "name": "活霧"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]無法忍受[gold]活霧[/gold]的惡臭。"
+  },
+  {
+    "id": "LOUSE_PROGENITOR_NORMAL",
+    "name": "蝨蟲始祖",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LOUSE_PROGENITOR",
+        "name": "蝨蟲始祖"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]蝨蟲始祖[/gold]麻痺了。"
+  },
+  {
+    "id": "MAWLER_NORMAL",
+    "name": "巨口蠻獸",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MAWLER",
+        "name": "巨口蠻獸"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]成了[gold]巨口蠻獸[/gold]的美味大餐。"
+  },
+  {
+    "id": "MECHA_KNIGHT_ELITE",
+    "name": "機甲騎士",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MECHA_KNIGHT",
+        "name": "機甲騎士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]機甲騎士[/gold]刺傷並燒死。"
+  },
+  {
+    "id": "MYSTERIOUS_KNIGHT_EVENT_ENCOUNTER",
+    "name": "神祕騎士",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYSTERIOUS_KNIGHT",
+        "name": "神祕騎士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]試圖奪走[gold]神祕騎士[/gold]的鑰匙。"
+  },
+  {
+    "id": "MYTES_NORMAL",
+    "name": "異蟎群",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "MYTE",
+        "name": "異蟎"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]異蟎群[/gold]淹沒了。"
+  },
+  {
+    "id": "NIBBITS_NORMAL",
+    "name": "兩隻啃咬獸",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "啃咬獸"
+      }
+    ],
+    "loss_text": "[gold]兩隻啃咬獸[/gold]打死了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "NIBBITS_WEAK",
+    "name": "落單的啃咬獸",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Nibbit"
+    ],
+    "monsters": [
+      {
+        "id": "NIBBIT",
+        "name": "啃咬獸"
+      }
+    ],
+    "loss_text": "[gold]落單的啃咬獸[/gold]打死了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "OVERGROWTH_CRAWLERS",
+    "name": "密林蠕蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker",
+      "Crawler"
+    ],
+    "monsters": [
+      {
+        "id": "FUZZY_WURM_CRAWLER",
+        "name": "絨毛蠕蟲"
+      },
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "縮小甲蟲"
+      }
+    ],
+    "loss_text": "幾隻[gold]密林蠕蟲[/gold]以[b]The Adventurer[/b]大快朵頤。"
+  },
+  {
+    "id": "OVICOPTER_NORMAL",
+    "name": "育卵飛蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OVICOPTER",
+        "name": "育卵飛蟲"
+      },
+      {
+        "id": "TOUGH_EGG",
+        "name": "堅硬蟲卵"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]成了[gold]育卵飛蟲[/gold]孩子們的食物。"
+  },
+  {
+    "id": "OWL_MAGISTRATE_NORMAL",
+    "name": "貓頭鷹判官",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "OWL_MAGISTRATE",
+        "name": "貓頭鷹判官"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]貓頭鷹判官[/gold]判處死刑。"
+  },
+  {
+    "id": "PHANTASMAL_GARDENERS_ELITE",
+    "name": "花園幽靈鰻",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHANTASMAL_GARDENER",
+        "name": "花園幽靈鰻"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]花園幽靈鰻[/gold]送入長眠。"
+  },
+  {
+    "id": "PHROG_PARASITE_ELITE",
+    "name": "異蛙寄生蟲",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PHROG_PARASITE",
+        "name": "異蛙寄生蟲"
+      },
+      {
+        "id": "WRIGGLER",
+        "name": "蠕動蟲"
+      }
+    ],
+    "loss_text": "[gold]異蛙寄生蟲[/gold]讓自己的聚落蔓延到[b]The Adventurer[/b]身上。"
+  },
+  {
+    "id": "PUNCH_CONSTRUCT_NORMAL",
+    "name": "拳擊構造體",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "拳擊構造體"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]和[gold]拳擊構造體[/gold]拳腳相向。"
+  },
+  {
+    "id": "PUNCH_OFF_EVENT_ENCOUNTER",
+    "name": "拳擊構造體",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PUNCH_CONSTRUCT",
+        "name": "拳擊構造體"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]打斷了兩具[gold]拳擊構造體[/gold]的對決。"
+  },
+  {
+    "id": "QUEEN_BOSS",
+    "name": "女王",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "QUEEN",
+        "name": "女王"
+      },
+      {
+        "id": "TORCH_HEAD_AMALGAM",
+        "name": "火炬頭融合體"
+      }
+    ],
+    "loss_text": "[gold]女王[/gold]把[b]The Adventurer[/b]的一部分加入了她的收藏。"
+  },
+  {
+    "id": "RUBY_RAIDERS_NORMAL",
+    "name": "紅寶石掠奪者",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ASSASSIN_RUBY_RAIDER",
+        "name": "掠奪者刺客"
+      },
+      {
+        "id": "AXE_RUBY_RAIDER",
+        "name": "掠奪者斧手"
+      },
+      {
+        "id": "BRUTE_RUBY_RAIDER",
+        "name": "掠奪者蠻兵"
+      },
+      {
+        "id": "CROSSBOW_RUBY_RAIDER",
+        "name": "掠奪者弩手"
+      },
+      {
+        "id": "TRACKER_RUBY_RAIDER",
+        "name": "掠奪者追蹤手"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]遭[gold]紅寶石掠奪者[/gold]圍攻。"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_NORMAL",
+    "name": "大群咬噬卷軸",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "咬噬卷軸"
+      }
+    ],
+    "loss_text": "[gold]大群咬噬卷軸[/gold]把[b]The Adventurer[/b]撕成碎片。"
+  },
+  {
+    "id": "SCROLLS_OF_BITING_WEAK",
+    "name": "一些咬噬卷軸",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": [
+      "Scrolls"
+    ],
+    "monsters": [
+      {
+        "id": "SCROLL_OF_BITING",
+        "name": "咬噬卷軸"
+      }
+    ],
+    "loss_text": "幾本[gold]一些咬噬卷軸[/gold]把[b]The Adventurer[/b]撕成碎片。"
+  },
+  {
+    "id": "SEAPUNK_NORMAL",
+    "name": "暗港野生動物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "CALCIFIED_CULTIST",
+        "name": "鈣化邪教徒"
+      },
+      {
+        "id": "SEAPUNK",
+        "name": "海龐克獸"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]暗港野生動物[/gold]打敗了。"
+  },
+  {
+    "id": "SEAPUNK_WEAK",
+    "name": "海龐克獸",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": [
+      "Seapunk"
+    ],
+    "monsters": [
+      {
+        "id": "SEAPUNK",
+        "name": "海龐克獸"
+      }
+    ],
+    "loss_text": "[gold]海龐克獸[/gold]狠揍了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "SEWER_CLAM_NORMAL",
+    "name": "下水道蚌",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SEWER_CLAM",
+        "name": "下水道蚌"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]下水道蚌[/gold]一口吞下。"
+  },
+  {
+    "id": "SHRINKER_BEETLE_WEAK",
+    "name": "縮小甲蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Shrinker"
+    ],
+    "monsters": [
+      {
+        "id": "SHRINKER_BEETLE",
+        "name": "縮小甲蟲"
+      }
+    ],
+    "loss_text": "[gold]縮小甲蟲[/gold]把[b]The Adventurer[/b]當成點心吃了。"
+  },
+  {
+    "id": "SKULKING_COLONY_ELITE",
+    "name": "潛伏珊瑚群",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SKULKING_COLONY",
+        "name": "潛伏珊瑚群"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]潛伏珊瑚群[/gold]吸收了。"
+  },
+  {
+    "id": "SLIMED_BERSERKER_NORMAL",
+    "name": "史萊姆狂戰士",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLIMED_BERSERKER",
+        "name": "史萊姆狂戰士"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]史萊姆狂戰士[/gold]吸收進體內。"
+  },
+  {
+    "id": "SLIMES_NORMAL",
+    "name": "大群史萊姆",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "葉片史萊姆（中）"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "葉片史萊姆（小）"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝史萊姆（中）"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝史萊姆（小）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]大群史萊姆[/gold]打倒了。"
+  },
+  {
+    "id": "SLIMES_WEAK",
+    "name": "史萊姆群",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "葉片史萊姆（中）"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "葉片史萊姆（小）"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝史萊姆（中）"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝史萊姆（小）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]史萊姆群[/gold]打倒了。"
+  },
+  {
+    "id": "SLITHERING_STRANGLER_NORMAL",
+    "name": "絞殺者與夥伴",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Jaxfruit",
+      "Slimes"
+    ],
+    "monsters": [
+      {
+        "id": "LEAF_SLIME_M",
+        "name": "葉片史萊姆（中）"
+      },
+      {
+        "id": "LEAF_SLIME_S",
+        "name": "葉片史萊姆（小）"
+      },
+      {
+        "id": "SLITHERING_STRANGLER",
+        "name": "蛇行絞殺者"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "閃光賈克斯果"
+      },
+      {
+        "id": "TWIG_SLIME_M",
+        "name": "細枝史萊姆（中）"
+      },
+      {
+        "id": "TWIG_SLIME_S",
+        "name": "細枝史萊姆（小）"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]絞殺者與夥伴[/gold]活活悶死。"
+  },
+  {
+    "id": "SLUDGE_SPINNER_WEAK",
+    "name": "淤泥旋螺",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SLUDGE_SPINNER",
+        "name": "淤泥旋螺"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]沒能打敗[gold]淤泥旋螺[/gold]。"
+  },
+  {
+    "id": "SLUMBERING_BEETLE_NORMAL",
+    "name": "沉睡派對",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Workers"
+    ],
+    "monsters": [
+      {
+        "id": "BOWLBUG_ROCK",
+        "name": "盛碗蟲（石）"
+      },
+      {
+        "id": "BOWLBUG_SILK",
+        "name": "盛碗蟲（絲）"
+      },
+      {
+        "id": "SLUMBERING_BEETLE",
+        "name": "沉睡甲蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]打擾了[gold]沉睡派對[/gold]。"
+  },
+  {
+    "id": "SNAPPING_JAXFRUIT_NORMAL",
+    "name": "密林植物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": [
+      "Mushroom",
+      "Jaxfruit"
+    ],
+    "monsters": [
+      {
+        "id": "FLYCONID",
+        "name": "飛蠅蕈菇"
+      },
+      {
+        "id": "SNAPPING_JAXFRUIT",
+        "name": "閃光賈克斯果"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]惹上了一些[gold]密林植物[/gold]。"
+  },
+  {
+    "id": "SOUL_FYSH_BOSS",
+    "name": "靈魂異魚",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_FYSH",
+        "name": "靈魂異魚"
+      }
+    ],
+    "loss_text": "[gold]靈魂異魚[/gold]召喚[b]The Adventurer[/b]走向末日。"
+  },
+  {
+    "id": "SOUL_NEXUS_ELITE",
+    "name": "靈魂樞紐",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SOUL_NEXUS",
+        "name": "靈魂樞紐"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]在被遺忘的戰場上命喪[gold]靈魂樞紐[/gold]之手。"
+  },
+  {
+    "id": "SPINY_TOAD_NORMAL",
+    "name": "棘刺蟾蜍",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "SPINY_TOAD",
+        "name": "棘刺蟾蜍"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]無法穿透[gold]棘刺蟾蜍[/gold]的尖刺。"
+  },
+  {
+    "id": "TERROR_EEL_ELITE",
+    "name": "恐鰻",
+    "room_type": "Elite",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TERROR_EEL",
+        "name": "恐鰻"
+      }
+    ],
+    "loss_text": "[gold]恐鰻[/gold]對[b]The Adventurer[/b]而言實在太可怕了。"
+  },
+  {
+    "id": "TEST_SUBJECT_BOSS",
+    "name": "實驗體",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TEST_SUBJECT",
+        "name": "實驗體 #C{Count}"
+      }
+    ],
+    "loss_text": "[gold]實驗體[/gold]忠誠地保護主人免受[b]The Adventurer[/b]傷害。"
+  },
+  {
+    "id": "THE_ARCHITECT_EVENT_ENCOUNTER",
+    "name": "建築師",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": null,
+    "monsters": [
+      {
+        "id": "ARCHITECT",
+        "name": "建築師"
+      }
+    ],
+    "loss_text": "你不該看到這行字。"
+  },
+  {
+    "id": "THE_INSATIABLE_BOSS",
+    "name": "無饜沙蟲",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_INSATIABLE",
+        "name": "無饜沙蟲"
+      }
+    ],
+    "loss_text": "[gold]無饜沙蟲[/gold]吞噬了[b]The Adventurer[/b]。然而，它依然飢餓……"
+  },
+  {
+    "id": "THE_KIN_BOSS",
+    "name": "眷族",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "KIN_FOLLOWER",
+        "name": "眷族信徒"
+      },
+      {
+        "id": "KIN_PRIEST",
+        "name": "眷族祭司"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]眷族[/gold]更高明的戰術徹底殲滅。"
+  },
+  {
+    "id": "THE_LOST_AND_FORGOTTEN_NORMAL",
+    "name": "迷失之物與遺忘之物",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "THE_FORGOTTEN",
+        "name": "遺忘之物"
+      },
+      {
+        "id": "THE_LOST",
+        "name": "迷失之物"
+      }
+    ],
+    "loss_text": "[gold]迷失之物與遺忘之物[/gold]奪走了[b]The Adventurer[/b]的求生意志。"
+  },
+  {
+    "id": "THE_OBSCURA_NORMAL",
+    "name": "朧光獸",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 2 - Hive",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "PARAFRIGHT",
+        "name": "寄生懼靈"
+      },
+      {
+        "id": "THE_OBSCURA",
+        "name": "朧光獸"
+      }
+    ],
+    "loss_text": "[gold]朧光獸[/gold]與它的幻象一起砸扁了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "THIEVING_HOPPER_WEAK",
+    "name": "竊盜蚱蜢",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Thieves"
+    ],
+    "monsters": [
+      {
+        "id": "THIEVING_HOPPER",
+        "name": "竊盜蚱蜢"
+      }
+    ],
+    "loss_text": "[gold]竊盜蚱蜢[/gold]搶劫了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "TOADPOLES_WEAK",
+    "name": "蟾蜍蝌蚪",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TOADPOLE",
+        "name": "蟾蜍蝌蚪"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]應付不了[gold]蟾蜍蝌蚪[/gold]。"
+  },
+  {
+    "id": "TUNNELER_NORMAL",
+    "name": "掘地雙蟲",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": null,
+    "tags": [
+      "Burrower",
+      "Chomper"
+    ],
+    "monsters": [
+      {
+        "id": "CHOMPER",
+        "name": "啃咬機"
+      },
+      {
+        "id": "TUNNELER",
+        "name": "掘地蟲"
+      }
+    ],
+    "loss_text": "[gold]掘地雙蟲[/gold]了結了[b]The Adventurer[/b]。"
+  },
+  {
+    "id": "TUNNELER_WEAK",
+    "name": "掘地蟲",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 2 - Hive",
+    "tags": [
+      "Burrower"
+    ],
+    "monsters": [
+      {
+        "id": "TUNNELER",
+        "name": "掘地蟲"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]掘地蟲[/gold]痛打了一頓。"
+  },
+  {
+    "id": "TURRET_OPERATOR_WEAK",
+    "name": "砲塔操手",
+    "room_type": "Monster",
+    "is_weak": true,
+    "act": "Act 3 - Glory",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "LIVING_SHIELD",
+        "name": "活盾"
+      },
+      {
+        "id": "TURRET_OPERATOR",
+        "name": "砲塔操手"
+      }
+    ],
+    "loss_text": "[gold]砲塔操手[/gold]把[b]The Adventurer[/b]打得千瘡百孔。"
+  },
+  {
+    "id": "TWO_TAILED_RATS_NORMAL",
+    "name": "雙尾鼠",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "TWO_TAILED_RAT",
+        "name": "雙尾鼠"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]雙尾鼠[/gold]包圍了。"
+  },
+  {
+    "id": "VANTOM_BOSS",
+    "name": "墨影幻靈",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VANTOM",
+        "name": "墨影幻靈"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]被[gold]墨影幻靈[/gold]變成了墨靈。"
+  },
+  {
+    "id": "VINE_SHAMBLER_NORMAL",
+    "name": "藤蔓蹣跚獸",
+    "room_type": "Monster",
+    "is_weak": false,
+    "act": "Act 1 - Overgrowth",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "VINE_SHAMBLER",
+        "name": "藤蔓蹣跚獸"
+      }
+    ],
+    "loss_text": "[b]The Adventurer[/b]沒能逃出[gold]藤蔓蹣跚獸[/gold]的魔掌。"
+  },
+  {
+    "id": "WATERFALL_GIANT_BOSS",
+    "name": "瀑布巨獸",
+    "room_type": "Boss",
+    "is_weak": false,
+    "act": "Act 1 - Underdocks",
+    "tags": null,
+    "monsters": [
+      {
+        "id": "WATERFALL_GIANT",
+        "name": "瀑布巨獸"
+      }
+    ],
+    "loss_text": "[gold]瀑布巨獸[/gold]清除了暗港中的[b]The Adventurer[/b]。"
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "BOUND",
+    "name": "禁縛",
+    "description": "每回合只能打出 [blue]1[/blue] 張[gold]禁縛[/gold]牌。回合結束時，卡牌會解除[gold]禁縛[/gold]。",
+    "extra_card_text": "禁縛",
+    "is_stackable": false
+  },
+  {
+    "id": "ENTANGLED",
+    "name": "糾纏",
+    "description": "額外耗能 [energy:1]。",
+    "extra_card_text": "糾纏",
+    "is_stackable": false
+  },
+  {
+    "id": "GALVANIZED",
+    "name": "感電",
+    "description": "打出這張牌時，受到 [blue]X[/blue] 點傷害。",
+    "extra_card_text": "受到 X 點傷害。",
+    "is_stackable": true
+  },
+  {
+    "id": "HEXED",
+    "name": "受咒",
+    "description": "為這張牌附加[gold]虛無[/gold]。",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "RINGING",
+    "name": "鳴響",
+    "description": "本回合你只能打出 [blue]1[/blue] 張牌。",
+    "extra_card_text": "鳴響。",
+    "is_stackable": false
+  },
+  {
+    "id": "SMOG",
+    "name": "煙霧",
+    "description": "本回合你無法打出額外的[gold]技能[/gold]。回合結束時清除。",
+    "extra_card_text": null,
+    "is_stackable": false
+  },
+  {
+    "id": "TAINTED",
+    "name": "污穢",
+    "description": "打出時，獲得 [blue]X[/blue] 層[gold]污穢[/gold]。",
+    "extra_card_text": "獲得 X 層污穢。",
+    "is_stackable": true
+  }
+]

@@ -1,0 +1,450 @@
+[
+  {
+    "id": "BIG_DECK",
+    "name": "大型牌組",
+    "description": "使用至少有 [blue]40[/blue] 張牌的牌組完成一局遊戲。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "大型牌組",
+        "description": "使用至少有 [blue]40[/blue] 張牌的牌組完成一局遊戲。"
+      },
+      {
+        "rarity": "silver",
+        "title": "超大型牌組",
+        "description": "使用至少有 [blue]60[/blue] 張牌的牌組完成一局遊戲。"
+      },
+      {
+        "rarity": "gold",
+        "title": "怪獸級牌組",
+        "description": "使用至少有 [blue]100[/blue] 張牌的牌組完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_big_deck.png"
+  },
+  {
+    "id": "CCCCOMBO",
+    "name": "連、連、連、連段",
+    "description": "在單一回合中打出 [blue]20[/blue] 張牌。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "連、連、連、連段",
+        "description": "在單一回合中打出 [blue]20[/blue] 張牌。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ccccombo.png"
+  },
+  {
+    "id": "CURSES",
+    "name": "詛咒纏身！",
+    "description": "持有至少 [blue]5[/blue] 張[red]詛咒[/red]牌時完成一局遊戲。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "詛咒纏身！",
+        "description": "持有至少 [blue]5[/blue] 張[red]詛咒[/red]牌時完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_curses.png"
+  },
+  {
+    "id": "DAMAGE_LEADER",
+    "name": "傷害之王",
+    "description": "在多人遊戲中，對敵人造成最多傷害。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "傷害之王",
+        "description": "在多人遊戲中，對敵人造成最多傷害。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_damage_leader.png"
+  },
+  {
+    "id": "DEBUFFER",
+    "name": "弱化專家",
+    "description": "在多人遊戲中，施加最多弱化效果。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "弱化專家",
+        "description": "在多人遊戲中，施加最多弱化效果。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_debuffer.png"
+  },
+  {
+    "id": "DOUBLE_SNECKO",
+    "name": "異蛇之眼成雙",
+    "description": "同時取得真假兩種異蛇之眼。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "異蛇之眼成雙",
+        "description": "同時取得真假兩種異蛇之眼。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_double_snecko.png"
+  },
+  {
+    "id": "ELITE",
+    "name": "菁英獵手",
+    "description": "擊敗至少 [blue]3[/blue] 名菁英。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "菁英獵手",
+        "description": "擊敗至少 [blue]3[/blue] 名菁英。"
+      },
+      {
+        "rarity": "silver",
+        "title": "菁英殺手",
+        "description": "擊敗至少 [blue]6[/blue] 名菁英。"
+      },
+      {
+        "rarity": "gold",
+        "title": "菁英屠戮者",
+        "description": "擊敗至少 [blue]9[/blue] 名菁英。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_elite.png"
+  },
+  {
+    "id": "FAMISHED",
+    "name": "飢腸轆轆",
+    "description": "在最大生命降至初始值的一半以下時完成一局遊戲。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "飢腸轆轆",
+        "description": "在最大生命降至初始值的一半以下時完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_famished.png"
+  },
+  {
+    "id": "GLUTTON",
+    "name": "酒足飯飽",
+    "description": "在最大生命提高至少 [blue]15[/blue] 點時完成一局遊戲。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "酒足飯飽",
+        "description": "在最大生命提高至少 [blue]15[/blue] 點時完成一局遊戲。"
+      },
+      {
+        "rarity": "silver",
+        "title": "吃撐了",
+        "description": "在最大生命提高至少 [blue]30[/blue] 點時完成一局遊戲。"
+      },
+      {
+        "rarity": "gold",
+        "title": "饕餮",
+        "description": "在最大生命高得離譜（提高至少 [blue]50[/blue] 點）時完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_glutton.png"
+  },
+  {
+    "id": "HEALER",
+    "name": "療傷者",
+    "description": "為一名盟友療傷一次。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "療傷者",
+        "description": "為一名盟友療傷一次。"
+      },
+      {
+        "rarity": "silver",
+        "title": "治療師",
+        "description": "為一名盟友療傷兩次。"
+      },
+      {
+        "rarity": "gold",
+        "title": "醫生",
+        "description": "反覆為盟友療傷（至少 [blue]3[/blue] 次）。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_healer.png"
+  },
+  {
+    "id": "HIGHLANDER",
+    "name": "獨一無二",
+    "description": "使用沒有重複卡牌的牌組完成一局遊戲（不計起始牌）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "獨一無二",
+        "description": "使用沒有重複卡牌的牌組完成一局遊戲（不計起始牌）。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_highlander.png"
+  },
+  {
+    "id": "HONED",
+    "name": "千錘百鍊",
+    "description": "使用至少有 [blue]5[/blue] 張相同卡牌的牌組完成一局遊戲（不計起始牌）。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "千錘百鍊",
+        "description": "使用至少有 [blue]5[/blue] 張相同卡牌的牌組完成一局遊戲（不計起始牌）。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_honed.png"
+  },
+  {
+    "id": "ILIKESHINY",
+    "name": "我愛亮晶晶",
+    "description": "持有至少 [blue]25[/blue] 件遺物。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "我愛亮晶晶",
+        "description": "持有至少 [blue]25[/blue] 件遺物。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_ilikeshiny.png"
+  },
+  {
+    "id": "KACHING",
+    "name": "鏘啷！",
+    "description": "在商人處花費超過 [blue]1,000[/blue] 枚[gold]金幣[/gold]。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "鏘啷！",
+        "description": "在商人處花費超過 [blue]1,000[/blue] 枚[gold]金幣[/gold]。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_kaching.png"
+  },
+  {
+    "id": "MONEY_MONEY",
+    "name": "好多好多錢",
+    "description": "持有至少 [blue]200[/blue] 枚[gold]金幣[/gold]時完成一局遊戲。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "好多好多錢",
+        "description": "持有至少 [blue]200[/blue] 枚[gold]金幣[/gold]時完成一局遊戲。"
+      },
+      {
+        "rarity": "silver",
+        "title": "金幣雨",
+        "description": "持有至少 [blue]400[/blue] 枚[gold]金幣[/gold]時完成一局遊戲。"
+      },
+      {
+        "rarity": "gold",
+        "title": "我愛金幣",
+        "description": "持有至少 [blue]600[/blue] 枚[gold]金幣[/gold]時完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_money_money.png"
+  },
+  {
+    "id": "MYSTERY_MACHINE",
+    "name": "神祕機器",
+    "description": "造訪至少 [blue]15[/blue] 間「？」房間。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "神祕機器",
+        "description": "造訪至少 [blue]15[/blue] 間「？」房間。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_mystery_machine.png"
+  },
+  {
+    "id": "PERFECT",
+    "name": "無瑕",
+    "description": "在不損失任何生命的情況下擊敗一名頭目。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "無瑕",
+        "description": "在不損失任何生命的情況下擊敗一名頭目。"
+      },
+      {
+        "rarity": "silver",
+        "title": "至高無上",
+        "description": "在不損失任何生命的情況下擊敗 [blue]2[/blue] 名頭目。"
+      },
+      {
+        "rarity": "gold",
+        "title": "完美無缺",
+        "description": "在不損失任何生命的情況下擊敗 [blue]3[/blue] 名頭目。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_perfect.png"
+  },
+  {
+    "id": "RESTFUL",
+    "name": "休養生息",
+    "description": "在每個休息處都選擇休息，並完成一局遊戲。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "休養生息",
+        "description": "在每個休息處都選擇休息，並完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restful.png"
+  },
+  {
+    "id": "RESTLESS",
+    "name": "不眠不休",
+    "description": "在全程未休息的情況下完成一局遊戲。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "不眠不休",
+        "description": "在全程未休息的情況下完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_restless.png"
+  },
+  {
+    "id": "SPEEDY",
+    "name": "高速",
+    "description": "在 [blue]50[/blue] 分鐘內完成一局遊戲。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "高速",
+        "description": "在 [blue]50[/blue] 分鐘內完成一局遊戲。"
+      },
+      {
+        "rarity": "silver",
+        "title": "疾速",
+        "description": "在 [blue]40[/blue] 分鐘內完成一局遊戲。"
+      },
+      {
+        "rarity": "gold",
+        "title": "光速",
+        "description": "在 [blue]30[/blue] 分鐘內完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_speedy.png"
+  },
+  {
+    "id": "TABLET",
+    "name": "真理石板",
+    "description": "在最大生命僅有 [blue]1[/blue] 點時完成一局遊戲。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "真理石板",
+        "description": "在最大生命僅有 [blue]1[/blue] 點時完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tablet.png"
+  },
+  {
+    "id": "TEAM_PLAYER",
+    "name": "團隊型選手",
+    "description": "牌組中含有至少 [blue]3[/blue] 張多人遊戲專用卡牌。",
+    "tiered": false,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "團隊型選手",
+        "description": "牌組中含有至少 [blue]3[/blue] 張多人遊戲專用卡牌。"
+      }
+    ],
+    "requires_win": false,
+    "multiplayer_only": true,
+    "image_url": "/static/images/badges/badge_team_player.png"
+  },
+  {
+    "id": "TINY_DECK",
+    "name": "小型牌組",
+    "description": "使用不超過 [blue]20[/blue] 張牌的牌組完成一局遊戲。",
+    "tiered": true,
+    "tiers": [
+      {
+        "rarity": "bronze",
+        "title": "小型牌組",
+        "description": "使用不超過 [blue]20[/blue] 張牌的牌組完成一局遊戲。"
+      },
+      {
+        "rarity": "silver",
+        "title": "袖珍牌組",
+        "description": "使用不超過 [blue]10[/blue] 張牌的牌組完成一局遊戲。"
+      },
+      {
+        "rarity": "gold",
+        "title": "微型牌組",
+        "description": "使用不超過 [blue]5[/blue] 張牌的牌組完成一局遊戲。"
+      }
+    ],
+    "requires_win": true,
+    "multiplayer_only": false,
+    "image_url": "/static/images/badges/badge_tiny_deck.png"
+  }
+]

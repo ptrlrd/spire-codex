@@ -1,0 +1,82 @@
+[
+  {
+    "id": "ALL_STAR",
+    "name": "全明星",
+    "description": "開始時擁有 [blue]5[/blue] 張[gold]無色[/gold]牌。"
+  },
+  {
+    "id": "BIG_GAME_HUNTER",
+    "name": "巨獸獵手",
+    "description": "菁英敵人充斥尖塔，並掉落[gold]稀有[/gold]卡牌獎勵。"
+  },
+  {
+    "id": "BINARY",
+    "name": "二選一",
+    "description": "卡牌獎勵現在只有 [blue]2[/blue] 張牌。"
+  },
+  {
+    "id": "CURSED_RUN",
+    "name": "詛咒之旅",
+    "description": "每一幕開始時，將一張隨機[red]詛咒[/red]加入你的牌組。"
+  },
+  {
+    "id": "DEADLY_EVENTS",
+    "name": "致命事件",
+    "description": "未知房間現在可能出現菁英，但也更有可能是財寶房。"
+  },
+  {
+    "id": "DRAFT",
+    "name": "選牌",
+    "description": "從 [blue]10[/blue] 次卡牌獎勵中選牌，取代你的起始牌組。"
+  },
+  {
+    "id": "FLIGHT",
+    "name": "飛行",
+    "description": "選擇下一個要前往的房間時，你可以無視路徑限制。"
+  },
+  {
+    "id": "HOARDER",
+    "name": "囤積者",
+    "description": "每當你將一張牌加入牌組時，再加入 [blue]2[/blue] 張相同的牌。你無法再透過商人從牌組中移除卡牌。"
+  },
+  {
+    "id": "INSANITY",
+    "name": "精神錯亂",
+    "description": "起始牌組由 [blue]30[/blue] 張隨機牌組成。"
+  },
+  {
+    "id": "MIDAS",
+    "name": "點金手",
+    "description": "敵人掉落的金幣增加 [blue]200%[/blue]，但你無法再於[gold]休息處[/gold]鍛造。"
+  },
+  {
+    "id": "MURDEROUS",
+    "name": "殺氣騰騰",
+    "description": "每場戰鬥開始時，你擁有 [blue]3[/blue] 層[gold]力量[/gold]。所有敵人也擁有 [blue]3[/blue] 層[gold]力量[/gold]。"
+  },
+  {
+    "id": "NIGHT_TERRORS",
+    "name": "暗夜驚魂",
+    "description": "在[gold]休息處[/gold]休息會完全恢復生命，但會失去 [red]5[/red] 點最大生命。"
+  },
+  {
+    "id": "SEALED_DECK",
+    "name": "現開牌組",
+    "description": "從 [blue]30[/blue] 張牌中選擇 [blue]10[/blue] 張，取代你的起始牌組。"
+  },
+  {
+    "id": "SPECIALIZED",
+    "name": "專精",
+    "description": "開始時擁有 [blue]5[/blue] 張相同的牌。"
+  },
+  {
+    "id": "TERMINAL",
+    "name": "身患絕症",
+    "description": "每當你進入新房間時，失去 [red]1[/red] 點最大生命。每場戰鬥開始時，擁有 [blue]5[/blue] 層[gold]鍍甲[/gold]。"
+  },
+  {
+    "id": "VINTAGE",
+    "name": "古董",
+    "description": "普通敵人會掉落遺物而非卡牌。"
+  }
+]

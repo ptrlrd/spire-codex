@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "無晉階",
+    "description": "遊戲時不套用任何晉階調整。"
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "菁英蜂擁",
+    "description": "[gold]菁英[/gold]出現得更頻繁。"
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "旅途勞頓",
+    "description": "遠古之民只會恢復你已損失生命的 [blue]80%[/blue]。"
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "貧窮",
+    "description": "敵人與財寶箱掉落的[gold]金幣[/gold]減少 [blue]25%[/blue]。"
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "收緊腰帶",
+    "description": "每局開始時，藥水欄位減少 1 個。"
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "晉階者之禍",
+    "description": "每局開始時即[red]被詛咒[/red]。"
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "通貨膨脹",
+    "description": "商人的卡牌移除服務價格提升。"
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "稀缺",
+    "description": "稀有卡牌與已升級卡牌較少出現。"
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "強韌敵人",
+    "description": "所有敵人都更難擊敗。"
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "致命敵人",
+    "description": "所有敵人的攻擊都更加致命。"
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "雙頭目",
+    "description": "在第 3 幕終點與兩名頭目戰鬥。"
+  }
+]

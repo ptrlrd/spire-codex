@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "黑暗",
+    "description": "[gold]被动：[/gold]回合结束时，将这个充能球的伤害增加[blue]6[/blue]。\n[gold]激发：[/gold]对生命值最少的敌人造成[blue]6[/blue]点伤害。",
+    "description_raw": "[gold]被动：[/gold]回合结束时，将这个充能球的伤害增加[blue]{Passive}[/blue]。\n[gold]激发：[/gold]对生命值最少的敌人造成[blue]{Evoke}[/blue]点伤害。",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "冰霜",
+    "description": "[gold]被动：[/gold]在回合结束时，获得[blue]2[/blue]点[gold]格挡[/gold]。\n[gold]激发：[/gold]获得[blue]5[/blue]点[gold]格挡[/gold]。",
+    "description_raw": "[gold]被动：[/gold]在回合结束时，获得[blue]{Passive}[/blue]点[gold]格挡[/gold]。\n[gold]激发：[/gold]获得[blue]{Evoke}[/blue]点[gold]格挡[/gold]。",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "玻璃",
+    "description": "[gold]被动：[/gold]在回合结束时，对所有敌人造成[blue]4[/blue]点伤害，然后将这个充能球的数值减少[blue]1[/blue]。\n[gold]激发：[/gold]对所有敌人造成[blue]8[/blue]点伤害。",
+    "description_raw": "[gold]被动：[/gold]在回合结束时，对所有敌人造成[blue]{Passive}[/blue]点伤害，然后将这个充能球的数值减少[blue]1[/blue]。\n[gold]激发：[/gold]对所有敌人造成[blue]{Evoke}[/blue]点伤害。",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "闪电",
+    "description": "[gold]被动：[/gold]回合结束时，对一名随机敌人造成[blue]3[/blue]点伤害。\n[gold]激发：[/gold]对一名随机敌人造成[blue]8[/blue]点伤害。",
+    "description_raw": "[gold]被动：[/gold]回合结束时，对一名随机敌人造成[blue]{Passive}[/blue]点伤害。\n[gold]激发：[/gold]对一名随机敌人造成[blue]{Evoke}[/blue]点伤害。",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "等离子",
+    "description": "[gold]被动：[/gold]回合开始时，\n获得[energy:1]。\n[gold]激发：[/gold]获得[energy:2]。\n等离子充能球不受[gold]集中[/gold]影响。",
+    "description_raw": "[gold]被动：[/gold]回合开始时，\n获得{energyPrefix:energyIcons(1)}。\n[gold]激发：[/gold]获得{energyPrefix:energyIcons(2)}。\n等离子充能球不受[gold]集中[/gold]影响。",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "id": "LEVEL_00",
+    "level": 0,
+    "name": "Sin Ascensión",
+    "description": "Juega sin modificadores de Ascensión."
+  },
+  {
+    "id": "LEVEL_01",
+    "level": 1,
+    "name": "Élites a tutiplén",
+    "description": "Los [gold]Élites[/gold] aparecen más a menudo."
+  },
+  {
+    "id": "LEVEL_02",
+    "level": 2,
+    "name": "Viaje agotador",
+    "description": "Los Antiguos solo curan un [blue]80 %[/blue] de los PV que has perdido."
+  },
+  {
+    "id": "LEVEL_03",
+    "level": 3,
+    "name": "Pobreza",
+    "description": "Los enemigos y cofres del tesoro sueltan un [blue]25 %[/blue] menos de [gold]Oro[/gold]."
+  },
+  {
+    "id": "LEVEL_04",
+    "level": 4,
+    "name": "Cinturón apretado",
+    "description": "Comienza la partida con 1 espacio para pociones menos."
+  },
+  {
+    "id": "LEVEL_05",
+    "level": 5,
+    "name": "Ascensión accidentada",
+    "description": "Comienza la partida con una [red]Maldición[/red]."
+  },
+  {
+    "id": "LEVEL_06",
+    "level": 6,
+    "name": "Inflación",
+    "description": "Eliminar cartas de tu mazo mediante el Comerciante es más caro."
+  },
+  {
+    "id": "LEVEL_07",
+    "level": 7,
+    "name": "Escasez",
+    "description": "Las cartas raras y mejoradas aparecen con menos frecuencia."
+  },
+  {
+    "id": "LEVEL_08",
+    "level": 8,
+    "name": "Enemigos resistentes",
+    "description": "Todos los enemigos son más resistentes."
+  },
+  {
+    "id": "LEVEL_09",
+    "level": 9,
+    "name": "Enemigos letales",
+    "description": "Todos los enemigos tienen ataques más poderosos."
+  },
+  {
+    "id": "LEVEL_10",
+    "level": 10,
+    "name": "Jefe doble",
+    "description": "Combate contra dos jefes al final del Acto 3."
+  }
+]

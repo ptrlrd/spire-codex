@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "格擋",
+    "description": "在下個回合前，阻擋傷害。",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "卡牌獎勵",
+    "description": "[blue]3[/blue] 張隨機牌的卡牌包，你可以從中選擇 [blue]1[/blue] 張加入你的[gold]牌組[/gold]。",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "凝聚",
+    "description": "凝聚充能球會將其放入第一個空的充能球欄位。若欄位已滿，則會自動[gold]激發[/gold]最左側的充能球，騰出欄位。",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "烹飪",
+    "description": "[gold]移除[/gold]你[gold]牌組[/gold]中的 [blue]2[/blue] 張牌，並在[gold]休息處[/gold]獲得 [green]5[/green] 點最大生命。",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "牌組",
+    "description": "檢視你牌組中的所有卡牌。",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "棄牌堆",
+    "description": "如果你的抽牌堆是空的，則棄牌堆會被洗入抽牌堆。\n\n點選檢視你棄牌堆中的卡牌。",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "抽牌堆",
+    "description": "在每回合開始時，\n你會從這裡抽取 [blue]5[/blue] 張卡牌。\n\n點選這裡檢視你抽牌堆中的卡牌（洗牌過）。",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "能量",
+    "description": "要使用能量才能打出你[gold]手牌[/gold]中的卡牌。",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "激發",
+    "description": "消耗你最右側的充能球並使用其激發效果。",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "已消耗卡牌",
+    "description": "點選以檢視在本場戰鬥中已消耗的卡牌。",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "致死",
+    "description": "當這張牌殺死一名非手下敵人時觸發。",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "鑄造",
+    "description": "每場戰鬥中你第一次[gold]鑄造[/gold]時，將[gold]君王之劍[/gold]加入你的[gold]手牌[/gold]。為[gold]君王之劍[/gold]增加額外傷害。",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "生命值（HP）",
+    "description": "生命歸零時，你便會死亡。",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "相連獎勵",
+    "description": "這組獎勵只能選擇 [blue]1[/blue] 項。",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "金幣",
+    "description": "你所擁有的金幣數。金幣是尖塔中使用的貨幣。",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "藥水欄位",
+    "description": "在戰鬥中使用藥水可以獲得[green]額外效果[/green]或[red]妨害[/red]敵人。",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "重演",
+    "description": "將這張牌額外打出一次。",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "遠古之民",
+    "description": "遠古之民居住在這些房間之中。\n\n他們會賜予你驚人的獎勵、財寶與知識。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "頭目",
+    "description": "整個地區最強悍的敵人。\n\n將其擊敗就可以進入下一幕。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "菁英",
+    "description": "這些房間中有強大的敵人。\n\n擊敗他們即可獲得一件[gold]遺物[/gold]。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "敵人",
+    "description": "這些房間裡有敵人駐守。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "事件",
+    "description": "這些房間裡會發生些不尋常的事情……",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "商店",
+    "description": "神秘的商人會在這些房間中出售他的貨物。\n\n在這裡花費你辛苦賺來的[gold]金幣[/gold]吧！",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "休息處",
+    "description": "在這些房間可以[green]恢復[/green]一些生命，或[gold]升級[/gold]一張卡牌。",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "財寶房",
+    "description": "在這些令人垂涎的房間中能找到[gold]遺物[/gold]與[gold]金幣[/gold]。",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "擊暈",
+    "description": "防止敵人在其下個回合行動。",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "召喚",
+    "description": "召喚[gold]奧斯提[/gold]。\n若已召喚，則在本場戰鬥中提高他的最大生命。",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "轉化",
+    "description": "被轉化的卡牌會變成任意稀有度的一張隨機卡牌。",
+    "category": "mechanics"
+  }
+]

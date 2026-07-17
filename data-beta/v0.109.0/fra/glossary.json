@@ -1,0 +1,170 @@
+[
+  {
+    "id": "BLOCK",
+    "name": "Armure",
+    "description": "Vous protège des dégâts jusqu'au prochain tour.",
+    "category": "combat"
+  },
+  {
+    "id": "CARD_REWARD",
+    "name": "Récompense de cartes",
+    "description": "Un tirage aléatoire de [blue]3[/blue] cartes. Vous pouvez en choisir [blue]1[/blue] à ajouter à votre [gold]Deck[/gold].",
+    "category": "progression"
+  },
+  {
+    "id": "CHANNELING",
+    "name": "Canaliser",
+    "description": "Lorsqu'un Orbe est canalisé, il est placé dans votre premier emplacement libre. Si vous n'avez pas d'emplacement libre, votre premier Orbe est automatiquement [gold]Activé[/gold] pour lui faire de la place.",
+    "category": "combat"
+  },
+  {
+    "id": "COOK",
+    "name": "Cuisiner",
+    "description": "[gold]Retirez[/gold] [blue]2[/blue] cartes de votre [gold]Deck[/gold] et gagnez [green]9[/green] PV Max à un [gold]Site de repos[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "DECK",
+    "name": "Deck",
+    "description": "Visionnez toutes les cartes de votre deck.",
+    "category": "zones"
+  },
+  {
+    "id": "DISCARD_PILE",
+    "name": "Défausse",
+    "description": "Si votre pioche est vide, la défausse est remélangée à la pioche.\n\nCliquez pour visionner les cartes dans la défausse.",
+    "category": "zones"
+  },
+  {
+    "id": "DRAW_PILE",
+    "name": "Pioche",
+    "description": "Au début de chaque tour,\nvous piochez [blue]5[/blue] cartes de cette pile.\n\nCliquez pour visionner les cartes de la pioche (dans le désordre).",
+    "category": "zones"
+  },
+  {
+    "id": "ENERGY",
+    "name": "Énergie",
+    "description": "Vous dépensez votre Énergie pour jouer les cartes depuis votre [gold]Main[/gold].",
+    "category": "combat"
+  },
+  {
+    "id": "EVOKE",
+    "name": "Activation",
+    "description": "Consomme l'Orbe le plus à droite et déclenche son effet d'Activation.",
+    "category": "combat"
+  },
+  {
+    "id": "EXHAUST_PILE",
+    "name": "Cartes Épuisées",
+    "description": "Cliquez pour visionner les cartes Épuisées pendant ce combat.",
+    "category": "zones"
+  },
+  {
+    "id": "FATAL",
+    "name": "Coup de grâce",
+    "description": "Déclenché lorsque cette carte tue un ennemi (ne fonctionne pas sur les serviteurs).",
+    "category": "combat"
+  },
+  {
+    "id": "FORGE",
+    "name": "Forger",
+    "description": "La première fois que vous [gold]Forgez[/gold] pendant un combat, ajoutez [gold]Lame souveraine[/gold] à votre [gold]Main[/gold]. Augmente les dégâts de la [gold]Lame souveraine[/gold].",
+    "category": "mechanics"
+  },
+  {
+    "id": "HIT_POINTS",
+    "name": "Points de vie",
+    "description": "Si vous n'avez plus de PV, vous perdez la partie.",
+    "category": "progression"
+  },
+  {
+    "id": "LINKED_REWARDS",
+    "name": "Récompenses liées",
+    "description": "Vous ne pouvez choisir qu'[blue]une seule[/blue] récompense.",
+    "category": "progression"
+  },
+  {
+    "id": "MONEY_POUCH",
+    "name": "Pièces d'or",
+    "description": "Votre total de pièces d'or. L'or est la devise de la Tour.",
+    "category": "progression"
+  },
+  {
+    "id": "POTION_SLOT",
+    "name": "Emplacement de potion",
+    "description": "Utilisez des potions pendant le combat pour gagner des [green]bonus[/green] ou [red]entraver[/red] les ennemis.",
+    "category": "progression"
+  },
+  {
+    "id": "REPLAY",
+    "name": "Écho",
+    "description": "Cette carte est jouée une fois supplémentaire.",
+    "category": "mechanics"
+  },
+  {
+    "id": "ROOM_ANCIENT",
+    "name": "Ancien",
+    "description": "Les Anciens habitent ces salles.\n\nIls accordent de puissantes bénédictions et des trésors précieux.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_BOSS",
+    "name": "Boss",
+    "description": "L'ennemi le plus redoutable dans cette zone.\n\nVous devrez l'affronter pour procéder à l'acte suivant.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ELITE",
+    "name": "Élite",
+    "description": "De puissants adversaires se trouvent dans ces salles.\n\nLes vaincre vous récompensera d'une [gold]Relique[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_ENEMY",
+    "name": "Ennemi",
+    "description": "Des créatures hostiles se trouvent dans ces salles.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_EVENT",
+    "name": "Événement",
+    "description": "Des choses inhabituelles se produisent dans ce type de salles...",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_MERCHANT",
+    "name": "Boutique",
+    "description": "Le mystérieux Marchand expose ses biens dans ces salles.\n\nVous pouvez y dépenser vos [gold]Pièces d'or[/gold].",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_REST",
+    "name": "Site de repos",
+    "description": "Passez par ces salles pour [green]Soigner[/green] vos PV ou pour [gold]Améliorer[/gold] une carte.",
+    "category": "rooms"
+  },
+  {
+    "id": "ROOM_TREASURE",
+    "name": "Salle au trésor",
+    "description": "Vous trouverez des [gold]Reliques[/gold] et des [gold]Pièces d'or[/gold] dans ces salles convoitées.",
+    "category": "rooms"
+  },
+  {
+    "id": "STUN",
+    "name": "Étourdir",
+    "description": "Empêche l'ennemi de jouer son prochain tour.",
+    "category": "combat"
+  },
+  {
+    "id": "SUMMON",
+    "name": "Invocation",
+    "description": "Invoque [gold]Titos[/gold].\nS'il est déjà en vie, augmente ses PV Max ce combat.",
+    "category": "mechanics"
+  },
+  {
+    "id": "TRANSFORM",
+    "name": "Transformer",
+    "description": "Transforme une carte en une carte aléatoire de n'importe quel niveau de rareté.",
+    "category": "mechanics"
+  }
+]

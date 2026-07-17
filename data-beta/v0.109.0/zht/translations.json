@@ -1,0 +1,74 @@
+{
+  "card_types": {
+    "Attack": "攻擊",
+    "Skill": "技能",
+    "Power": "能力",
+    "Status": "狀態",
+    "Curse": "詛咒",
+    "Quest": "任務"
+  },
+  "card_rarities": {
+    "Basic": "基本",
+    "Common": "普通",
+    "Uncommon": "罕見",
+    "Rare": "稀有",
+    "Ancient": "遠古",
+    "Event": "事件",
+    "Token": "衍生",
+    "Status": "狀態",
+    "Curse": "詛咒",
+    "Quest": "任務"
+  },
+  "relic_rarities": {
+    "Starter": "初始遺物",
+    "Common": "普通遺物",
+    "Uncommon": "罕見遺物",
+    "Rare": "稀有遺物",
+    "Ancient": "遠古遺物",
+    "Event": "事件遺物",
+    "Shop": "商店遺物"
+  },
+  "potion_rarities": {
+    "Common": "普通",
+    "Uncommon": "罕見",
+    "Rare": "稀有",
+    "Event": "事件",
+    "Token": "衍生"
+  },
+  "keywords": {
+    "ETERNAL": "永恆",
+    "ETHEREAL": "虛無",
+    "EXHAUST": "消耗",
+    "INNATE": "固有",
+    "RETAIN": "保留",
+    "SLY": "奇巧",
+    "UNPLAYABLE": "無法打出"
+  },
+  "sections": {
+    "cards": "卡牌收藏",
+    "characters": "Characters",
+    "relics": "遺物收藏",
+    "monsters": "怪物圖鑑",
+    "potions": "藥水實驗室",
+    "enchantments": "Enchantments",
+    "encounters": "Encounters",
+    "events": "Events",
+    "powers": "Powers",
+    "timeline": "時間軸",
+    "images": "Images",
+    "reference": "Reference"
+  },
+  "section_descs": {
+    "cards": "檢視你在尖塔中遇過的所有卡牌。",
+    "relics": "檢視你在各局遊戲中取得的各種飾品與人工製品。",
+    "monsters": "檢視你在尖塔中遭遇過的所有敵人。",
+    "potions": "查看攀登尖塔途中發現的各式藥水。"
+  },
+  "character_names": {
+    "ironclad": "鐵甲戰士",
+    "silent": "寂靜獵手",
+    "defect": "故障機器人",
+    "necrobinder": "縛亡者",
+    "regent": "儲君"
+  }
+}

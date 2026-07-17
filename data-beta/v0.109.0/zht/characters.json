@@ -1,0 +1,2330 @@
+[
+  {
+    "id": "DEFECT",
+    "name": "故障機器人",
+    "description": "一具為了生存而不斷自我改造的自動機械。\n不得不戰鬥時，會部署充能球科技。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": 3,
+    "starting_deck": [
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "StrikeDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "DefendDefect",
+      "Zap",
+      "Dualcast"
+    ],
+    "starting_relics": [
+      "CrackedCore"
+    ],
+    "unlocks_after": "Necrobinder",
+    "gender": "Neutral",
+    "color": "blue",
+    "dialogue_color": "13446B",
+    "quotes": {
+      "event_death_prevention": "我必須為朋友們活下去！",
+      "gold_monologue": "[sine]這些金幣可以拿來換零件……[/sine]",
+      "aroma_principle": "[sine][blue]1100 0011 1100 0011...[/blue][/sine]",
+      "banter_alive": "[jitter]0x54494D45 0x204C494D 0x49542045 0x58434545 0x00444544[/jitter]",
+      "banter_dead": "……",
+      "unlock_text": "使用 [pink]{Prerequisite}[/pink] 完成一局遊戲，即可解鎖此角色。",
+      "cards_modifier_title": "故障機器人卡牌",
+      "cards_modifier_description": "故障機器人的卡牌現在會出現在獎勵與商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你這堆廢鐵還真漂亮，知道嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<3[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "看來你還在努力……來看看能不能幫你升級！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我一直替你留著你朋友的那個，呃……嗯。\n算了算了！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<疑惑的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "不服輸的小破爛，剛才那些話全當我沒說！"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……構造體……你……\n……變成了……什麼……？[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……他……能……\n……修好……你……修好……一切……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……我……無法…… ……讓……\n……你……忘記……[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<堅定的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]……很好……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "構造體真配得上我的祝福嗎？\n上前來吧，故障機器人。你將成為所有自動機械中最美麗的一具。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "可憐又傷痕累累的機器啊，讓我為你淬鍊一番。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我通常不喜歡建築師造的東西，但不得不承認，我越來越喜歡你了。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<難為情的啾聲>[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "什麼！僕從構造體？！還在運作！！\n為什麼來這裡？為什麼不在工廠？？"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "閃亮的充能球！怎麼運作？\n[jitter]好痛！！[/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "核心壞了？涅奧使用壞掉的構造體？\n被操控了？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<輕輕的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "建築師能修好你？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]苦惱的自動機械啊，你在找朋友嗎？\n讓我幫忙……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]構造體會做夢嗎？\n看著我，照著做……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]我夢見了你的朋友……\n父親能復原[aqua]缺陷[/aqua]……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "構造體！沒有武器！？拿這個！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "充能球不是武器！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "故障機器人，跟我打！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]故障機器人英勇奮戰。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "充能球[jitter]是[/jitter]武器！？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[i][font_size=22]<問候的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "你不是來煩我的？真是個[jitter][b]不尋常[/b][/jitter]的小構造體……"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "要是他反被自己的造物摧毀，那該有多好笑？"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你確定想把自己修好嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<疑惑的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "好吧，既然你真的這麼[jitter][b]確定[/b][/jitter]，那就照你的意思。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你來這裡做什麼？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<隨機亂碼>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "修好你？逼我啊。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你又回來了？我不是拆了你嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<隨機亂碼>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "修好你？修好你的朋友？荒謬。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你怎麼總能回來？是涅奧搞的鬼嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "<隨機亂碼>"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "愚蠢。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "殘破之物，讓我使你臻於[sine]完美[/sine]。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "其他構造體同胞都想要你的命，你不覺得奇怪嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "只要把建築師的心臟帶給我，我就會復原你的[aqua]同伴[/aqua]。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]<恐懼的嗶聲>[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "哪一個更重要？你的創造者，還是你的朋友？"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_defect.webp",
+    "animation_url": null
+  },
+  {
+    "id": "IRONCLAD",
+    "name": "鐵甲戰士",
+    "description": "鐵甲軍團的最後一名士兵。\n違背自身意願，以利劍與烈焰粉碎敵人。",
+    "starting_hp": 80,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "StrikeIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "DefendIronclad",
+      "Bash"
+    ],
+    "starting_relics": [
+      "BurningBlood"
+    ],
+    "unlocks_after": null,
+    "gender": "Masculine",
+    "color": "red",
+    "dialogue_color": "590700",
+    "quotes": {
+      "event_death_prevention": "我的隊伍還需要我。",
+      "gold_monologue": "[sine]這些財富足以充實我族的軍械庫……[/sine]",
+      "aroma_principle": "[sine][red]痛苦不足為道。我的敵人必須死。[/red][/sine]",
+      "banter_alive": "快點。",
+      "banter_dead": "……",
+      "cards_modifier_title": "鐵甲戰士卡牌",
+      "cards_modifier_description": "鐵甲戰士的卡牌現在會出現在獎勵與商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "冒火的戰士回來了！\n我正好有件東西適合你！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "很高興看到你還活蹦亂跳，到處敲爛別人的腦袋！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我還替你保管著那把沉重的大劍……但我找不到能修復它的人。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]鐵甲戰士盯著達弗。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "或許建築師知道些什麼。"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……起來吧……我的……戰士……\n……再次……戰鬥……的時候到了……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……仍然……迷失於……憤怒……很好……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……還記得……你……第一次\n……來到……我面前時嗎……[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]……如此……憤怒……[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]……如此……有用……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "啊，鐵甲戰士終於來到我面前。\n上前來，我將賜予你力量。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "鐵甲戰士啊，鐵甲戰士……我先前的恩賜還不夠嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你又回來了，我的鬥士？這是第幾次了？\n你以前不是強到足以消滅整個氏族嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "是個鐵甲戰士！？怎麼可能？？好可怕。非常可怕！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "簽契約的人？為什麼！？選錯了？對。錯了！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "希望你自由！！非常希望！\n瓦庫很壞。非常壞！建築師能讓你自由？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你體內蘊藏著如此深重的憤怒。取走我的一部分，尋得些許平靜吧……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你還記得做夢是什麼感覺嗎？\n睡覺是件好事……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你必須平息自己的火焰。\n父親能讓你自由……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "好厲害的劍，戰士！你還能用更多武器！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "戰士的武器！拿起來！跟我打！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "鐵甲戰士，跟我打！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]鐵甲戰士與坦克斯交戰。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "太棒了——！！打得痛快，拿件武器！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你[jitter][b]燃燒[/b][/jitter]的模樣真漂亮！進來吧、進來吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你真是個強壯的好孩子！來吃點東西。\n可不能餓著肚子去[jitter][b]大開殺戒[/b][/jitter]！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "哎呀，建築師還活著？[jitter][b]快點[/b][/jitter]殺了他，好嗎？\n我會在這裡等你！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "大惡魔的奴僕終於來了？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "敵人……\n殺掉……"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你受了詛咒，得永遠戰鬥，對吧？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "建築師……頭號……敵人！！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "你連自己叫什麼都不知道嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你真可憐。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "殺掉……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "回到底層去吧，鐵甲戰士。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "時隔這麼久，竟然又見到[sine]你[/sine]了。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter][b]神聖惡魔！[/b][/jitter]\n你對我做了什麼！？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "正是你當初談好的條件。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "那些失落的部族，還壓在你心頭嗎……？\n[i][font_size=22]瓦庫放聲大笑。[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我傀儡中的傀儡啊……你怎麼還沒殺死建築師？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "等我殺了建築師，下一個就殺[jitter][b]你！[/b][/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[i][font_size=22][sine]呵欠[/sine][/font_size][/i]\n我等著看你失敗。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_ironclad.webp",
+    "animation_url": null
+  },
+  {
+    "id": "NECROBINDER",
+    "name": "縛亡者",
+    "description": "一名誕生於尖塔、尋求復仇的巫妖。\n戰鬥時會召喚她信賴的左手[gold]奧斯提[/gold]。",
+    "starting_hp": 66,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "StrikeNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "DefendNecrobinder",
+      "Bodyguard",
+      "Unleash"
+    ],
+    "starting_relics": [
+      "BoundPhylactery"
+    ],
+    "unlocks_after": "Regent",
+    "gender": "Feminine",
+    "color": "purple",
+    "dialogue_color": "6B4658",
+    "quotes": {
+      "event_death_prevention": "我的朋友少了我可撐不下去。",
+      "gold_monologue": "[sine]也許我終於能買雙鞋了……[/sine]",
+      "aroma_principle": "[sine][purple]我會為他們報仇……絕不退縮……[/purple][/sine]",
+      "banter_alive": "隨時都行……",
+      "banter_dead": "……",
+      "unlock_text": "使用 [orange]{Prerequisite}[/orange] 完成一局遊戲，即可解鎖此角色。",
+      "cards_modifier_title": "縛亡者卡牌",
+      "cards_modifier_description": "縛亡者的卡牌現在會出現在獎勵與商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "看得出來你是個認真的人。小姐，我能為你做什麼？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "只要能幫我殺了那個可恨至極的男人，什麼都行。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "好吧……那就瞧瞧吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "還在大殺四方？我可不會攔你！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "這本書似乎和你緊密相連，而且比你還古老。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你是怎麼拿到那東西的？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]嚇人[/sine]的東西總會莫名其妙跑進我的收藏裡。"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……我們……有著……相同的……目標……[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[jitter]他把我所愛的一切全殺了！！[/jitter]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]……我的力量……屬於你……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]他……仍然……活著……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[sine]這……真的……可能嗎……？[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]……[red]建築師[/red]……正在……衰弱……\n……我們……更加強大……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "你的守衛都死了。傳聞說，你會賜福給想殺死建築師的人。"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "我欣賞有本事的人，也願意賜予你幾分力量。\n下次別殺我的守衛。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "法師上陣需要精良行頭。上前來吧，縛亡者。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "建築師可不會樂見你那隻[sine]寵物[/sine]。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你是說奧斯提嗎？最後一擊會由他來完成。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "死了？！沒死！為什麼是傀儡？大大的手！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我不是傀儡。我有個非殺不可的男人。\n你能為我做什麼？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "殺戮不好！！改拿這個！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "沒死的人！給你好東西！！暴力不好。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "不要暴力！改收集閃亮東西……閃亮！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "只有建築師不復存在，我的使命才會結束。\n暴力在所難免。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "建築師不壞！也許談談？說話很好！！非常好！"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]如此深重的惡意染透了你的心。[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "若你知道我的遭遇，就會明白你我的心早已染上同樣的顏色。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你走的這條路不會通往安寧。\n取走我的一部分，稍稍減輕你的負擔吧……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]擁有那隻手的人又回來了。\n痛苦的記憶。帶走我的力量，然後離開……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]殺死[red]父親[/red]不會帶來平靜。[/thinky_dots]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你竟把那個[jitter]東西[/jitter]叫作父親！？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]我們無法選擇自己的家人……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "好強大的鐮刀！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "是的，這是為了復仇而特製的。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "那隻手需要武器嗎！？"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "奧斯提，跟我打！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "縛亡者，跟我打！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]縛亡者與奧斯提聯手和坦克斯扭打成一團。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "了不起的團隊合作！！拿件武器！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "牆內怎麼會有骷髏？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我的目的很簡單。為家人復仇。\n我會抵達塔頂，讓他付出代價。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[jitter][b]太棒了[/b][/jitter]！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "進來吧、進來吧！讓你的火焰燃燒得[jitter][b]更旺[/b][/jitter]。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你身邊的火焰讓我想起了某種禁忌之物。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你知道什麼？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "我知道是誰寫了那本[jitter][b]書[/b][/jitter]。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "建築師！你殺了我的父母。你殺了我的朋友。你毀了我的人生！……現在我要殺了你！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "復仇，是嗎？敬謝不敏。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "建築師！你殺了我的父母。你殺了我的朋友。你毀了我的——"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "憤怒無法改變過去。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "建築師！你殺了我的父母。你殺了我的朋友。你毀了我的人生——"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "為了維持秩序，我非那麼做不可。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "建築師！你殺了我的父母。你殺了我的朋友。你毀了我的——"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "人生。"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "什麼……？！去死吧，怪物！"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我們都渴求[sine]復仇[/sine]。但那需要付出代價。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我接受任何代價。只要能換來他的死。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我知道你從哪裡得到[sine]那隻手[/sine]的。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "建築師重創了你我二人。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "快點吧，惡魔。把契約拿出來。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "開門見山。很好……"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_necrobinder.webp",
+    "animation_url": null
+  },
+  {
+    "id": "REGENT",
+    "name": "儲君",
+    "description": "群星王座的繼承人。\n手握宇宙之力，卻把事情都交給手下處理。",
+    "starting_hp": 75,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "StrikeRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "DefendRegent",
+      "FallingStar",
+      "Venerate"
+    ],
+    "starting_relics": [
+      "DivineRight"
+    ],
+    "unlocks_after": "Silent",
+    "gender": "Masculine",
+    "color": "orange",
+    "dialogue_color": "52371D",
+    "quotes": {
+      "event_death_prevention": "我必須活下去，幫助我的隊伍！！",
+      "gold_monologue": "[sine]我可以徵召一支沒有蠢蛋的大軍……[/sine]",
+      "aroma_principle": "[sine][orange]我就是下一任群星之王……[/orange][/sine]",
+      "banter_alive": "我等著！！",
+      "banter_dead": "……",
+      "unlock_text": "使用 [green]{Prerequisite}[/green] 完成一局遊戲，即可解鎖此角色。",
+      "cards_modifier_title": "儲君卡牌",
+      "cards_modifier_description": "儲君的卡牌現在會出現在獎勵與商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "像你這樣的人怎麼會來到這裡？想看看我的收藏嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我確實喜愛上等貨色……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "對啊！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "殿下又回來拿更多東西了？！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "新朋友，我這裡可有好東西要給你！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我洗耳恭聽！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "我本來想給你，但被建築師搶走了！！\n幫朋友一把！幫我個忙，好嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "藍色大傢伙，我是未來的[orange]群星之王[/orange]！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]……真可愛……\n……你……還會……再見到……我……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……又來了……？[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "[jitter]我為何贏不了？！[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[sine]……收下……這份……祝福……[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "……是的，謝謝你，涅奧。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我求見諾奴佩普！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "如此美麗的長袍，是從遙遠國度帶來的吧！\n讓你的手下抬你上前，我便賜福於汝。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "王室祝福，獻給王室貴客。\n侍從！為我們上茶。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "建築師瘋了！要是有一位高貴的鬥士能救我們脫離困境就好了……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "不用怕！我堂堂儲君，定會終結這場瘋狂！\n不過，先喝茶！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "旅行者！從太空來！？太空哪裡？\n怎麼從太空來？尖尖的頭！小小朋友！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]儲君自顧自地講了好幾個小時。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "太精彩了！太厲害了！！再來！再來！！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "更多故事！找到這些送你！\n現在快講更多故事！！"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我的頭號粉絲！歐洛巴斯，好朋友！\n很高興看到你還活著！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "故事？！"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "當然當然……不過你有找到什麼小飾品要給我嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "你好！我是儲君。\n你好——？？[jitter]聽得見嗎！？[/jitter]"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]安靜一點。\n取走我的一部分，然後離開吧……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我回來了！啊，你果然睡著了。\n讓我瞧瞧……"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "你為何不斷把自己的血肉送出去？"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "[thinky_dots]既然我的血肉如此充裕，為何不與人分享？[/thinky_dots]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[thinky_dots]等你回來時，我又會恢復如初。\n睡覺就是有這種功效……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "橘色！？這傢伙怎麼會是橘色的！？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "眾所周知，橘色是最有皇室氣派的顏色！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "不可思議！太威猛了！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "橘色傢伙！！選一件威猛的武器！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "儲君，跟我打！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "不！我上次來這裡時已經和你打過了！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "再跟我打一次！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "哎呀，真是位[jitter][b]特別[/b][/jitter]的訪客！小可愛，你是誰呀？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "我才不是小可愛！稱呼我時尊重一點，巨大的……東西人！"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "瞧我禮數都到哪去了？\n[i][font_size=22]特茲卡塔拉開心地咯咯大笑。[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你和朋友們又回來了？\n我為你們準備了[jitter][b]點心[/b][/jitter]！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "歡迎回來，皇室男孩！看來你在外頭[jitter][b]表現得很好[/b][/jitter]。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "那當然！只是在高層遇到了一點小挫折……比如死了一次。"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "我們都得從錯誤中學習。"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我到了！那邊那個平民！這裡是塔頂嗎？"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "我需要安靜……"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "我來教教你禮數！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我又來了！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "那個吵鬧的蠢貨又回來了？"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "我既不吵，也不是蠢貨！正面迎戰我！"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我受夠你這般無禮了！"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "這點我們倒是意見一致。"
+          },
+          {
+            "order": 2,
+            "speaker": "char",
+            "text": "來共舞吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "來自群星的生物？竟會出現在這受詛咒的高牆之內？"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "你知道我是誰嗎？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "知道。我想我們能互相幫助。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "只需付出一點小小代價，我就能賜予你更多力量。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "char",
+            "text": "我認為這些交易不太妙。我感覺不太舒服。"
+          },
+          {
+            "order": 1,
+            "speaker": "ancient",
+            "text": "你已經仔細讀過契約了，對吧？\n簽字時也是出於自願，並清楚自己得承擔一切責任，對吧？"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "你不打算履行自己應盡的義務嗎？\n再簽一份契約如何？那樣不是更好嗎？"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_regent.webp",
+    "animation_url": null
+  },
+  {
+    "id": "SILENT",
+    "name": "寂靜獵手",
+    "description": "一名來自尖塔之外的女獵手。\n準備好用刀刃與毒素解決任何擋路者。",
+    "starting_hp": 70,
+    "starting_gold": 99,
+    "max_energy": 3,
+    "orb_slots": null,
+    "starting_deck": [
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "StrikeSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "DefendSilent",
+      "Neutralize",
+      "Survivor"
+    ],
+    "starting_relics": [
+      "RingOfTheSnake"
+    ],
+    "unlocks_after": null,
+    "gender": "Feminine",
+    "color": "green",
+    "dialogue_color": "284719",
+    "quotes": {
+      "event_death_prevention": "活下去才能擇日再狩獵……",
+      "gold_monologue": "[sine]姊妹們會以這些財富為榮……[/sine]",
+      "aroma_principle": "[sine][green]……狩獵……證明……歸屬……[/green][/sine]",
+      "banter_alive": "[sine]……[/sine]",
+      "banter_dead": "……",
+      "unlock_text": "完成一局遊戲，即可解鎖此角色。",
+      "cards_modifier_title": "寂靜獵手卡牌",
+      "cards_modifier_description": "寂靜獵手的卡牌現在會出現在獎勵與商店中。"
+    },
+    "dialogues": [
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你也回尖塔啦？\n就是抗拒不了那些閃亮亮的東西，對吧？！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "我拿好東西跟你換那件戰利品！"
+          }
+        ]
+      },
+      {
+        "ancient": "DARV",
+        "ancient_name": "Darv",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "可惜你不記得我有多慷慨！\n對啦對啦，你也知道涅奧是什麼德性……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "好啦！來幫你為那場最終決戰還是什麼的做好準備吧！"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……從……外面……回來了？\n……早知道……你會……回來……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……你的……\n……獵物……在等你……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NEOW",
+        "ancient_name": "Neow",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[sine]……我們都……懂得……失去家人的……痛苦……[/sine]"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "[sine]……還在……尋求……認同……？\n……[jitter]愚蠢[/jitter]……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "竟有小賊溜進我的領地？\n別以為我看不見你。快出來！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]寂靜獵手從陰影中走出……[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "原來是位女獵人。是什麼召喚你重返尖塔？\n上前來，接受這些祝福。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "刺客，我已為你備妥禮物，別害羞。"
+          }
+        ]
+      },
+      {
+        "ancient": "NONUPEIPE",
+        "ancient_name": "Nonupeipe",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "在她所有的傀儡當中，最令我驚訝的就是你。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "是什麼奪走了你的第一條命？是涅奧[sine]找到[/sine]你的嗎？\n可惜你不說話。"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "感染……？[jitter]荒疫！？[/jitter]拿了就走！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]……[/sine]"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "不會傳染？快死了？建築師能幫你？"
+          }
+        ]
+      },
+      {
+        "ancient": "OROBAS",
+        "ancient_name": "Orobas",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你的姊妹在哪裡？可怕又壞心的姊妹！\n當好人！不要像姊妹！！"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]嗜殺之物啊，這裡不需要暴力。\n拿走我的一部分，尋得平靜吧……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]在獵取戰利品嗎？好吧，拿走我的一部分……\n只要能讓你感到安慰……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "PAEL",
+        "ancient_name": "Pael",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[thinky_dots]你讓我中毒了……？\n這會讓我……？呼嚕嚕……[/thinky_dots]"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "女獵人！我來把你的爪子磨利！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "為什麼用匕首！！一點也不威猛！"
+          }
+        ]
+      },
+      {
+        "ancient": "TANX",
+        "ancient_name": "Tanx",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "寂靜獵手，跟我打！！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[i][font_size=22]寂靜獵手逃走了，途中還偷走一件武器。[/font_size][/i]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "你跑哪去了！！！"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "靠近一點，沉默的小傢伙。我眼睛不太好……"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "你可以[jitter][b]信任[/b][/jitter]我。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你染上的[jitter][b]疾病[/b][/jitter]真棘手。讓我來照顧你吧。"
+          }
+        ]
+      },
+      {
+        "ancient": "TEZCATARA",
+        "ancient_name": "Tezcatara",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你知道嗎？我見過你的姊妹。她們可真是群可愛的姑娘。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "……"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "哎呀……你該不會一直在[jitter][b]打架[/b][/jitter]吧？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "連自我介紹都沒有嗎？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "你從哪裡來？\n有什麼目的？"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[jitter]呃啊！[/jitter]\n[jitter][red]去死！！[/red][/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "THE_ARCHITECT",
+        "ancient_name": "The Architect",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "煩人的混帳！\n[jitter]消失吧！！[/jitter]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "殺人兇手。"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]……[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "你不會有什麼好[jitter]下場[/jitter]的。"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "[i][font_size=22]瓦庫向寂靜獵手展示各式各樣的契約。[/font_size][/i]"
+          }
+        ]
+      },
+      {
+        "ancient": "VAKUU",
+        "ancient_name": "Vakuu",
+        "lines": [
+          {
+            "order": 0,
+            "speaker": "ancient",
+            "text": "光殺建築師還不夠，把你的姊妹也殺了！"
+          },
+          {
+            "order": 1,
+            "speaker": "char",
+            "text": "[sine]……[/sine]"
+          },
+          {
+            "order": 2,
+            "speaker": "ancient",
+            "text": "無需言語，我們是一樣的。"
+          }
+        ]
+      }
+    ],
+    "image_url": "/static/images/characters/char_select_silent.webp",
+    "animation_url": null
+  }
+]

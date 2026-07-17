@@ -1,0 +1,37 @@
+[
+  {
+    "id": "DARK_ORB",
+    "name": "黑暗",
+    "description": "[gold]被動：[/gold]回合結束時，使此充能球的傷害提高 [blue]6[/blue] 點。\n[gold]激發：[/gold]對生命值最低的敵人造成 [blue]6[/blue] 點傷害。",
+    "description_raw": "[gold]被動：[/gold]回合結束時，使此充能球的傷害提高 [blue]{Passive}[/blue] 點。\n[gold]激發：[/gold]對生命值最低的敵人造成 [blue]{Evoke}[/blue] 點傷害。",
+    "image_url": "/static/images/orbs/dark_orb.webp"
+  },
+  {
+    "id": "FROST_ORB",
+    "name": "冰霜",
+    "description": "[gold]被動：[/gold]回合結束時，獲得 [blue]2[/blue] 點[gold]格擋[/gold]。\n[gold]激發：[/gold]獲得 [blue]5[/blue] 點[gold]格擋[/gold]。",
+    "description_raw": "[gold]被動：[/gold]回合結束時，獲得 [blue]{Passive}[/blue] 點[gold]格擋[/gold]。\n[gold]激發：[/gold]獲得 [blue]{Evoke}[/blue] 點[gold]格擋[/gold]。",
+    "image_url": "/static/images/orbs/frost_orb.webp"
+  },
+  {
+    "id": "GLASS_ORB",
+    "name": "玻璃",
+    "description": "[gold]被動：[/gold]回合結束時，對所有敵人造成 [blue]4[/blue] 點傷害，並使此充能球的數值降低 [blue]1[/blue] 點。\n[gold]激發：[/gold]對所有敵人造成 [blue]8[/blue] 點傷害。",
+    "description_raw": "[gold]被動：[/gold]回合結束時，對所有敵人造成 [blue]{Passive}[/blue] 點傷害，並使此充能球的數值降低 [blue]1[/blue] 點。\n[gold]激發：[/gold]對所有敵人造成 [blue]{Evoke}[/blue] 點傷害。",
+    "image_url": "/static/images/orbs/glass_orb.webp"
+  },
+  {
+    "id": "LIGHTNING_ORB",
+    "name": "閃電",
+    "description": "[gold]被動：[/gold]回合結束時，對一名隨機敵人造成 [blue]3[/blue] 點傷害。\n[gold]激發：[/gold]對一名隨機敵人造成 [blue]8[/blue] 點傷害。",
+    "description_raw": "[gold]被動：[/gold]回合結束時，對一名隨機敵人造成 [blue]{Passive}[/blue] 點傷害。\n[gold]激發：[/gold]對一名隨機敵人造成 [blue]{Evoke}[/blue] 點傷害。",
+    "image_url": "/static/images/orbs/lightning_orb.webp"
+  },
+  {
+    "id": "PLASMA_ORB",
+    "name": "電漿",
+    "description": "[gold]被動：[/gold]回合開始時，\n獲得 [energy:1]。\n[gold]激發：[/gold]獲得 [energy:2]。\n電漿不受[gold]集中[/gold]影響。",
+    "description_raw": "[gold]被動：[/gold]回合開始時，\n獲得 {energyPrefix:energyIcons(1)}。\n[gold]激發：[/gold]獲得 {energyPrefix:energyIcons(2)}。\n電漿不受[gold]集中[/gold]影響。",
+    "image_url": "/static/images/orbs/plasma_orb.webp"
+  }
+]

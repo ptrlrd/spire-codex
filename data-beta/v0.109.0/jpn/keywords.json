@@ -1,0 +1,37 @@
+[
+  {
+    "id": "ETERNAL",
+    "name": "永劫",
+    "description": "[gold]デッキ[/gold]から削除、または変化させることができない"
+  },
+  {
+    "id": "ETHEREAL",
+    "name": "エセリアル",
+    "description": "このターンの終了時にこのカードが[gold]手札[/gold]にある場合、[gold]廃棄[/gold]される。"
+  },
+  {
+    "id": "EXHAUST",
+    "name": "廃棄",
+    "description": "戦闘終了時まで取り除かれる。"
+  },
+  {
+    "id": "INNATE",
+    "name": "天賦",
+    "description": "このカードが[gold]手札[/gold]にある状態で戦闘を開始する。"
+  },
+  {
+    "id": "RETAIN",
+    "name": "保留",
+    "description": "保留されたカードは、ターン終了時に捨て札にならない。"
+  },
+  {
+    "id": "SLY",
+    "name": "スライ",
+    "description": "自分のターン終了前にこのカードが[gold]手札[/gold]から捨てられた場合、コストを支払わずにプレイする。"
+  },
+  {
+    "id": "UNPLAYABLE",
+    "name": "プレイ不可",
+    "description": "プレイ不可のカードはプレイできない。"
+  }
+]

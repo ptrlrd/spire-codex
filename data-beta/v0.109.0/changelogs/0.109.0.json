@@ -1,0 +1,7193 @@
+{
+  "app_id": 2868840,
+  "game_version": "0.109.0",
+  "build_id": "24251656",
+  "tag": "0.109.0",
+  "date": "2026-07-16",
+  "title": "Beta v0.109.0",
+  "from_ref": "/mnt/c/Users/peter/Documents/prima-codex/spire-codex-v0107/data-beta/v0.108.0/eng",
+  "to_ref": "/mnt/c/Users/peter/Documents/prima-codex/spire-codex-v0107/data-beta/v0.109.0/eng",
+  "summary": {
+    "added": 7,
+    "removed": 1,
+    "changed": 573
+  },
+  "categories": [
+    {
+      "id": "cards",
+      "name": "Cards",
+      "old_count": 592,
+      "new_count": 595,
+      "added": [
+        {
+          "id": "ABUNDANCE",
+          "name": "Abundance",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Ancient"
+        },
+        {
+          "id": "DOWSING",
+          "name": "Dowsing",
+          "cost": -1,
+          "type": "Quest",
+          "rarity": "Quest"
+        },
+        {
+          "id": "TUTOR",
+          "name": "Tutor",
+          "cost": 1,
+          "type": "Skill",
+          "rarity": "Rare"
+        }
+      ],
+      "changed": [
+        {
+          "id": "ACCELERANT",
+          "name": "Accelerant",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "153",
+              "new": "114"
+            },
+            {
+              "field": "rarity",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Rare",
+              "new": "Uncommon"
+            }
+          ]
+        },
+        {
+          "id": "ACCURACY",
+          "name": "Accuracy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "114",
+              "new": "115"
+            }
+          ]
+        },
+        {
+          "id": "ACROBATICS",
+          "name": "Acrobatics",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "115",
+              "new": "116"
+            }
+          ]
+        },
+        {
+          "id": "ADAPTIVE_STRIKE",
+          "name": "Adaptive Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "424",
+              "new": "425"
+            }
+          ]
+        },
+        {
+          "id": "ADRENALINE",
+          "name": "Adrenaline",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "154",
+              "new": "153"
+            }
+          ]
+        },
+        {
+          "id": "AFTERIMAGE",
+          "name": "Afterimage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "155",
+              "new": "154"
+            }
+          ]
+        },
+        {
+          "id": "AFTERLIFE",
+          "name": "Afterlife",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "275",
+              "new": "276"
+            }
+          ]
+        },
+        {
+          "id": "ALCHEMIZE",
+          "name": "Alchemize",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "493",
+              "new": "494"
+            }
+          ]
+        },
+        {
+          "id": "ALL_FOR_ONE",
+          "name": "All for One",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "425",
+              "new": "426"
+            }
+          ]
+        },
+        {
+          "id": "ANOINTED",
+          "name": "Anointed",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "494",
+              "new": "495"
+            }
+          ]
+        },
+        {
+          "id": "APOTHEOSIS",
+          "name": "Apotheosis",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "536",
+              "new": "538"
+            }
+          ]
+        },
+        {
+          "id": "APPARITION",
+          "name": "Apparition",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "537",
+              "new": "539"
+            }
+          ]
+        },
+        {
+          "id": "ASCENDERS_BANE",
+          "name": "Ascender's Bane",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "518",
+              "new": "519"
+            }
+          ]
+        },
+        {
+          "id": "ASSASSINATE",
+          "name": "Assassinate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "156",
+              "new": "155"
+            }
+          ]
+        },
+        {
+          "id": "AUTOMATION",
+          "name": "Automation",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "453",
+              "new": "454"
+            }
+          ]
+        },
+        {
+          "id": "BACKSTAB",
+          "name": "Backstab",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "116",
+              "new": "117"
+            }
+          ]
+        },
+        {
+          "id": "BAD_LUCK",
+          "name": "Bad Luck",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "519",
+              "new": "520"
+            }
+          ]
+        },
+        {
+          "id": "BALL_LIGHTNING",
+          "name": "Ball Lightning",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "366",
+              "new": "367"
+            }
+          ]
+        },
+        {
+          "id": "BANSHEES_CRY",
+          "name": "Banshee's Cry",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "333",
+              "new": "334"
+            }
+          ]
+        },
+        {
+          "id": "BARRAGE",
+          "name": "Barrage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "367",
+              "new": "368"
+            }
+          ]
+        },
+        {
+          "id": "BEACON_OF_HOPE",
+          "name": "Beacon of Hope",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "495",
+              "new": "496"
+            }
+          ]
+        },
+        {
+          "id": "BEAM_CELL",
+          "name": "Beam Cell",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "368",
+              "new": "369"
+            }
+          ]
+        },
+        {
+          "id": "BEAT_DOWN",
+          "name": "Beat Down",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "496",
+              "new": "497"
+            }
+          ]
+        },
+        {
+          "id": "BECKON",
+          "name": "Beckon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "566",
+              "new": "569"
+            }
+          ]
+        },
+        {
+          "id": "BELIEVE_IN_YOU",
+          "name": "Believe in You",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "454",
+              "new": "455"
+            }
+          ]
+        },
+        {
+          "id": "BIASED_COGNITION",
+          "name": "Biased Cognition",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "451",
+              "new": "452"
+            }
+          ]
+        },
+        {
+          "id": "BLADE_OF_INK",
+          "name": "Blade of Ink",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "157",
+              "new": "156"
+            }
+          ]
+        },
+        {
+          "id": "BLADE_SYMPHONY",
+          "name": "Blade Symphony",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "117",
+              "new": "118"
+            },
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "2"
+            },
+            {
+              "field": "upgrade.cards",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Add 3 [gold]Shivs[/gold] to ALL player's [gold]Hands[/gold].",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "BLIGHT_STRIKE",
+          "name": "Blight Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "276",
+              "new": "277"
+            }
+          ]
+        },
+        {
+          "id": "BLOODLETTING",
+          "name": "Bloodletting",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "5",
+              "new": "26"
+            },
+            {
+              "field": "rarity",
+              "old": "Common",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Common",
+              "new": "Uncommon"
+            }
+          ]
+        },
+        {
+          "id": "BLOOD_WALL",
+          "name": "Blood Wall",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "6",
+              "new": "5"
+            }
+          ]
+        },
+        {
+          "id": "BLUDGEON",
+          "name": "Bludgeon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "26",
+              "new": "27"
+            }
+          ]
+        },
+        {
+          "id": "BLUR",
+          "name": "Blur",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "118",
+              "new": "119"
+            }
+          ]
+        },
+        {
+          "id": "BODYGUARD",
+          "name": "Bodyguard",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "271",
+              "new": "272"
+            }
+          ]
+        },
+        {
+          "id": "BODY_SLAM",
+          "name": "Body Slam",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "7",
+              "new": "6"
+            }
+          ]
+        },
+        {
+          "id": "BOLAS",
+          "name": "Bolas",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "497",
+              "new": "498"
+            }
+          ]
+        },
+        {
+          "id": "BONE_SHARDS",
+          "name": "Bone Shards",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "295",
+              "new": "296"
+            }
+          ]
+        },
+        {
+          "id": "BOOST_AWAY",
+          "name": "Boost Away",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "369",
+              "new": "370"
+            }
+          ]
+        },
+        {
+          "id": "BOOT_SEQUENCE",
+          "name": "Boot Sequence",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "386",
+              "new": "387"
+            }
+          ]
+        },
+        {
+          "id": "BORROWED_TIME",
+          "name": "Borrowed Time",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "296",
+              "new": "297"
+            }
+          ]
+        },
+        {
+          "id": "BOUNCING_FLASK",
+          "name": "Bouncing Flask",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "119",
+              "new": "120"
+            }
+          ]
+        },
+        {
+          "id": "BREAKTHROUGH",
+          "name": "Breakthrough",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "8",
+              "new": "7"
+            }
+          ]
+        },
+        {
+          "id": "BRIGHTEST_FLAME",
+          "name": "Brightest Flame",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "538",
+              "new": "540"
+            }
+          ]
+        },
+        {
+          "id": "BUBBLE_BUBBLE",
+          "name": "Bubble Bubble",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "120",
+              "new": "121"
+            }
+          ]
+        },
+        {
+          "id": "BUFFER",
+          "name": "Buffer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "426",
+              "new": "427"
+            }
+          ]
+        },
+        {
+          "id": "BULK_UP",
+          "name": "Bulk Up",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "387",
+              "new": "388"
+            }
+          ]
+        },
+        {
+          "id": "BULLET_TIME",
+          "name": "Bullet Time",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "158",
+              "new": "157"
+            }
+          ]
+        },
+        {
+          "id": "BULLY",
+          "name": "Bully",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "27",
+              "new": "28"
+            }
+          ]
+        },
+        {
+          "id": "BURN",
+          "name": "Burn",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "567",
+              "new": "570"
+            }
+          ]
+        },
+        {
+          "id": "BURNING_PACT",
+          "name": "Burning Pact",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "28",
+              "new": "29"
+            }
+          ]
+        },
+        {
+          "id": "BURST",
+          "name": "Burst",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "159",
+              "new": "158"
+            }
+          ]
+        },
+        {
+          "id": "BURY",
+          "name": "Bury",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "297",
+              "new": "298"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS_EGG",
+          "name": "Byrdonis Egg",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "563",
+              "new": "565"
+            }
+          ]
+        },
+        {
+          "id": "BYRD_SWOOP",
+          "name": "Byrd Swoop",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "544",
+              "new": "546"
+            }
+          ]
+        },
+        {
+          "id": "CACOPHONY",
+          "name": "Cacophony",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "334",
+              "new": "335"
+            }
+          ]
+        },
+        {
+          "id": "CALAMITY",
+          "name": "Calamity",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "498",
+              "new": "499"
+            }
+          ]
+        },
+        {
+          "id": "CALCIFY",
+          "name": "Calcify",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "298",
+              "new": "299"
+            }
+          ]
+        },
+        {
+          "id": "CALCULATED_GAMBLE",
+          "name": "Calculated Gamble",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "121",
+              "new": "122"
+            }
+          ]
+        },
+        {
+          "id": "CALL_OF_THE_VOID",
+          "name": "Call of the Void",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "335",
+              "new": "336"
+            }
+          ]
+        },
+        {
+          "id": "CALTROPS",
+          "name": "Caltrops",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "545",
+              "new": "547"
+            }
+          ]
+        },
+        {
+          "id": "CAPACITOR",
+          "name": "Capacitor",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "388",
+              "new": "389"
+            }
+          ]
+        },
+        {
+          "id": "CAPTURE_SPIRIT",
+          "name": "Capture Spirit",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "299",
+              "new": "300"
+            }
+          ]
+        },
+        {
+          "id": "CATASTROPHE",
+          "name": "Catastrophe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "455",
+              "new": "456"
+            }
+          ]
+        },
+        {
+          "id": "CHAOS",
+          "name": "Chaos",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "389",
+              "new": "390"
+            }
+          ]
+        },
+        {
+          "id": "CHARGE_BATTERY",
+          "name": "Charge Battery",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "370",
+              "new": "371"
+            }
+          ]
+        },
+        {
+          "id": "CHILL",
+          "name": "Chill",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "390",
+              "new": "391"
+            }
+          ]
+        },
+        {
+          "id": "CINDER",
+          "name": "Cinder",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "9",
+              "new": "8"
+            }
+          ]
+        },
+        {
+          "id": "CLASH",
+          "name": "Clash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "546",
+              "new": "548"
+            }
+          ]
+        },
+        {
+          "id": "CLAW",
+          "name": "Claw",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "371",
+              "new": "372"
+            }
+          ]
+        },
+        {
+          "id": "CLEANSE",
+          "name": "Cleanse",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "300",
+              "new": "301"
+            }
+          ]
+        },
+        {
+          "id": "CLUMSY",
+          "name": "Clumsy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "520",
+              "new": "521"
+            }
+          ]
+        },
+        {
+          "id": "COLD_SNAP",
+          "name": "Cold Snap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "372",
+              "new": "373"
+            }
+          ]
+        },
+        {
+          "id": "COLLISION_COURSE",
+          "name": "Collision Course",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "11",
+              "new": "10"
+            },
+            {
+              "field": "description",
+              "old": "Deal 11 damage.\nAdd a [gold]Debris[/gold] into your [gold]Hand[/gold].",
+              "new": "Deal 10 damage.\nAdd a [gold]Debris[/gold] into your [gold]Hand[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 15 damage.\nAdd a [gold]Debris[/gold] into your [gold]Hand[/gold].",
+              "new": "Deal 14 damage.\nAdd a [gold]Debris[/gold] into your [gold]Hand[/gold]."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "11",
+              "new": "10"
+            }
+          ]
+        },
+        {
+          "id": "COLOSSUS",
+          "name": "Colossus",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "29",
+              "new": "30"
+            }
+          ]
+        },
+        {
+          "id": "COMPACT",
+          "name": "Compact",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "391",
+              "new": "392"
+            }
+          ]
+        },
+        {
+          "id": "COMPILE_DRIVER",
+          "name": "Compile Driver",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "373",
+              "new": "374"
+            }
+          ]
+        },
+        {
+          "id": "CONCOCT",
+          "name": "Concoct",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "122",
+              "new": "123"
+            }
+          ]
+        },
+        {
+          "id": "CONSUMING_SHADOW",
+          "name": "Consuming Shadow",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "427",
+              "new": "428"
+            }
+          ]
+        },
+        {
+          "id": "COOLANT",
+          "name": "Coolant",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "428",
+              "new": "429"
+            }
+          ]
+        },
+        {
+          "id": "COOLHEADED",
+          "name": "Coolheaded",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "374",
+              "new": "375"
+            }
+          ]
+        },
+        {
+          "id": "COORDINATE",
+          "name": "Coordinate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "456",
+              "new": "457"
+            }
+          ]
+        },
+        {
+          "id": "CORROSIVE_WAVE",
+          "name": "Corrosive Wave",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "160",
+              "new": "159"
+            }
+          ]
+        },
+        {
+          "id": "COUNTDOWN",
+          "name": "Countdown",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "301",
+              "new": "302"
+            }
+          ]
+        },
+        {
+          "id": "CREATIVE_AI",
+          "name": "Creative AI",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "429",
+              "new": "430"
+            }
+          ]
+        },
+        {
+          "id": "CRUELTY",
+          "name": "Cruelty",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "67",
+              "new": "31"
+            },
+            {
+              "field": "rarity",
+              "old": "Rare",
+              "new": "Uncommon"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Rare",
+              "new": "Uncommon"
+            }
+          ]
+        },
+        {
+          "id": "CURSE_OF_THE_BELL",
+          "name": "Curse of the Bell",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "521",
+              "new": "522"
+            }
+          ]
+        },
+        {
+          "id": "DANSE_MACABRE",
+          "name": "Danse Macabre",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "302",
+              "new": "303"
+            }
+          ]
+        },
+        {
+          "id": "DARKNESS",
+          "name": "Darkness",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "392",
+              "new": "393"
+            }
+          ]
+        },
+        {
+          "id": "DARK_EMBRACE",
+          "name": "Dark Embrace",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "68",
+              "new": "67"
+            }
+          ]
+        },
+        {
+          "id": "DARK_SHACKLES",
+          "name": "Dark Shackles",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "457",
+              "new": "458"
+            }
+          ]
+        },
+        {
+          "id": "DASH",
+          "name": "Dash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "123",
+              "new": "124"
+            }
+          ]
+        },
+        {
+          "id": "DAZED",
+          "name": "Dazed",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "568",
+              "new": "571"
+            }
+          ]
+        },
+        {
+          "id": "DEATHBRINGER",
+          "name": "Deathbringer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "303",
+              "new": "304"
+            }
+          ]
+        },
+        {
+          "id": "DEATHS_DOOR",
+          "name": "Death's Door",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "304",
+              "new": "305"
+            }
+          ]
+        },
+        {
+          "id": "DEATH_MARCH",
+          "name": "Death March",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "305",
+              "new": "306"
+            }
+          ]
+        },
+        {
+          "id": "DEBILITATE",
+          "name": "Debilitate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "306",
+              "new": "307"
+            }
+          ]
+        },
+        {
+          "id": "DEBRIS",
+          "name": "Debris",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "569",
+              "new": "572"
+            }
+          ]
+        },
+        {
+          "id": "DEBT",
+          "name": "Debt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "522",
+              "new": "523"
+            }
+          ]
+        },
+        {
+          "id": "DECAY",
+          "name": "Decay",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "523",
+              "new": "524"
+            }
+          ]
+        },
+        {
+          "id": "DEFEND_DEFECT",
+          "name": "Defend",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "362",
+              "new": "363"
+            }
+          ]
+        },
+        {
+          "id": "DEFEND_NECROBINDER",
+          "name": "Defend",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "272",
+              "new": "273"
+            }
+          ]
+        },
+        {
+          "id": "DEFILE",
+          "name": "Defile",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "277",
+              "new": "278"
+            }
+          ]
+        },
+        {
+          "id": "DEFRAGMENT",
+          "name": "Defragment",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "430",
+              "new": "431"
+            }
+          ]
+        },
+        {
+          "id": "DEFY",
+          "name": "Defy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "278",
+              "new": "279"
+            }
+          ]
+        },
+        {
+          "id": "DELAY",
+          "name": "Delay",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "307",
+              "new": "308"
+            }
+          ]
+        },
+        {
+          "id": "DEMESNE",
+          "name": "Demesne",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "336",
+              "new": "337"
+            }
+          ]
+        },
+        {
+          "id": "DEMONIC_SHIELD",
+          "name": "Demonic Shield",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "30",
+              "new": "32"
+            }
+          ]
+        },
+        {
+          "id": "DEMON_FORM",
+          "name": "Demon Form",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "69",
+              "new": "68"
+            },
+            {
+              "field": "description",
+              "old": "At the start of your turn, gain 2 [gold]Strength[/gold].",
+              "new": "At the start of your turn, gain 3 [gold]Strength[/gold]."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "At the start of your turn, gain 3 [gold]Strength[/gold].",
+              "new": "At the start of your turn, gain 4 [gold]Strength[/gold]."
+            },
+            {
+              "field": "vars.Strength",
+              "old": "2",
+              "new": "3"
+            },
+            {
+              "field": "vars.StrengthPower",
+              "old": "2",
+              "new": "3"
+            }
+          ]
+        },
+        {
+          "id": "DEVOUR_LIFE",
+          "name": "Devour Life",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "337",
+              "new": "338"
+            }
+          ]
+        },
+        {
+          "id": "DIRGE",
+          "name": "Dirge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "308",
+              "new": "309"
+            }
+          ]
+        },
+        {
+          "id": "DISCOVERY",
+          "name": "Discovery",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "458",
+              "new": "459"
+            }
+          ]
+        },
+        {
+          "id": "DISINTEGRATION",
+          "name": "Disintegration",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "588",
+              "new": "591"
+            }
+          ]
+        },
+        {
+          "id": "DISMANTLE",
+          "name": "Dismantle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "31",
+              "new": "33"
+            }
+          ]
+        },
+        {
+          "id": "DISTRACTION",
+          "name": "Distraction",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "547",
+              "new": "549"
+            }
+          ]
+        },
+        {
+          "id": "DOMINATE",
+          "name": "Dominate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "32",
+              "new": "69"
+            },
+            {
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Rare"
+            }
+          ]
+        },
+        {
+          "id": "DOUBLE_ENERGY",
+          "name": "Double Energy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "393",
+              "new": "394"
+            }
+          ]
+        },
+        {
+          "id": "DOUBT",
+          "name": "Doubt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "524",
+              "new": "525"
+            }
+          ]
+        },
+        {
+          "id": "DRAIN_POWER",
+          "name": "Drain Power",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "279",
+              "new": "280"
+            }
+          ]
+        },
+        {
+          "id": "DRAMATIC_ENTRANCE",
+          "name": "Dramatic Entrance",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "459",
+              "new": "460"
+            }
+          ]
+        },
+        {
+          "id": "DREDGE",
+          "name": "Dredge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "309",
+              "new": "310"
+            }
+          ]
+        },
+        {
+          "id": "DRUM_OF_BATTLE",
+          "name": "Drum of Battle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "33",
+              "new": "34"
+            }
+          ]
+        },
+        {
+          "id": "DUALCAST",
+          "name": "Dualcast",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "363",
+              "new": "364"
+            }
+          ]
+        },
+        {
+          "id": "DUAL_WIELD",
+          "name": "Dual Wield",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "548",
+              "new": "550"
+            }
+          ]
+        },
+        {
+          "id": "ECHOING_SLASH",
+          "name": "Echoing Slash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "161",
+              "new": "160"
+            }
+          ]
+        },
+        {
+          "id": "ECHO_FORM",
+          "name": "Echo Form",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "431",
+              "new": "432"
+            }
+          ]
+        },
+        {
+          "id": "EIDOLON",
+          "name": "Eidolon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "338",
+              "new": "339"
+            },
+            {
+              "field": "description",
+              "old": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nIf 9 cards were [gold]Exhausted[...",
+              "new": "Play ALL [gold]Ethereal[/gold] cards in your [gold]Exhaust Pile[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "[gold]Exhaust[/gold] your [gold]Hand[/gold].\nIf 9 cards were [gold]Exhausted[...",
+              "new": "Play ALL [gold]Ethereal[/gold] cards in your [gold]Exhaust Pile[/gold]."
+            },
+            {
+              "field": "keywords[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "none",
+              "new": "Exhaust"
+            },
+            {
+              "field": "vars.intangibleThreshold",
+              "old": "9",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "END_OF_DAYS",
+          "name": "End of Days",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "339",
+              "new": "340"
+            }
+          ]
+        },
+        {
+          "id": "ENERGY_SURGE",
+          "name": "Energy Surge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "394",
+              "new": "395"
+            }
+          ]
+        },
+        {
+          "id": "ENFEEBLING_TOUCH",
+          "name": "Enfeebling Touch",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "310",
+              "new": "311"
+            }
+          ]
+        },
+        {
+          "id": "ENLIGHTENMENT",
+          "name": "Enlightenment",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "549",
+              "new": "551"
+            }
+          ]
+        },
+        {
+          "id": "ENTHRALLED",
+          "name": "Enthralled",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "525",
+              "new": "526"
+            }
+          ]
+        },
+        {
+          "id": "ENTRENCH",
+          "name": "Entrench",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "550",
+              "new": "552"
+            }
+          ]
+        },
+        {
+          "id": "ENTROPY",
+          "name": "Entropy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "499",
+              "new": "500"
+            }
+          ]
+        },
+        {
+          "id": "ENVENOM",
+          "name": "Envenom",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "162",
+              "new": "161"
+            }
+          ]
+        },
+        {
+          "id": "EQUILIBRIUM",
+          "name": "Equilibrium",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "460",
+              "new": "461"
+            }
+          ]
+        },
+        {
+          "id": "ERADICATE",
+          "name": "Eradicate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "340",
+              "new": "341"
+            }
+          ]
+        },
+        {
+          "id": "ESCAPE_PLAN",
+          "name": "Escape Plan",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "124",
+              "new": "125"
+            }
+          ]
+        },
+        {
+          "id": "ETERNAL_ARMOR",
+          "name": "Eternal Armor",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "500",
+              "new": "501"
+            }
+          ]
+        },
+        {
+          "id": "EVIL_EYE",
+          "name": "Evil Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "34",
+              "new": "35"
+            }
+          ]
+        },
+        {
+          "id": "EXPECT_A_FIGHT",
+          "name": "Expect a Fight",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "35",
+              "new": "36"
+            },
+            {
+              "field": "description",
+              "old": "Gain [energy:1] for each Attack in your [gold]Hand[/gold].\nYou cannot gain\nad...",
+              "new": "Gain [energy:1] for each Attack in your [gold]Hand[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain {energyPrefix:energyIcons(1)} for each Attack in your [gold]Hand[/gold]....",
+              "new": "Gain {energyPrefix:energyIcons(1)} for each Attack in your [gold]Hand[/gold]...."
+            }
+          ]
+        },
+        {
+          "id": "EXPERTISE",
+          "name": "Expertise",
+          "changes": [
+            {
+              "field": "cards_draw",
+              "old": "6",
+              "new": "2"
+            },
+            {
+              "field": "compendium_order",
+              "old": "125",
+              "new": "126"
+            },
+            {
+              "field": "description",
+              "old": "Draw cards until you have 6 in your [gold]Hand[/gold].",
+              "new": "Draw 2 cards.\nThey gain [gold]Retain[/gold] this turn."
+            },
+            {
+              "field": "description_raw",
+              "old": "Draw cards until you have {Cards:diff()} in your [gold]Hand[/gold].",
+              "new": "Draw {Cards:diff()} cards.\nThey gain [gold]Retain[/gold] this turn."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Draw cards until you have 7 in your [gold]Hand[/gold].",
+              "new": "Draw 3 cards.\nThey gain [gold]Retain[/gold] this turn."
+            },
+            {
+              "field": "vars.Cards",
+              "old": "6",
+              "new": "2"
+            }
+          ]
+        },
+        {
+          "id": "EXPOSE",
+          "name": "Expose",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "126",
+              "new": "127"
+            }
+          ]
+        },
+        {
+          "id": "EXTERMINATE",
+          "name": "Exterminate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "551",
+              "new": "553"
+            }
+          ]
+        },
+        {
+          "id": "FADE",
+          "name": "Fade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "127",
+              "new": "128"
+            }
+          ]
+        },
+        {
+          "id": "FAN_OF_KNIVES",
+          "name": "Fan of Knives",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "163",
+              "new": "162"
+            }
+          ]
+        },
+        {
+          "id": "FASTEN",
+          "name": "Fasten",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "461",
+              "new": "462"
+            }
+          ]
+        },
+        {
+          "id": "FEAR",
+          "name": "Fear",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "280",
+              "new": "281"
+            }
+          ]
+        },
+        {
+          "id": "FEEDING_FRENZY",
+          "name": "Feeding Frenzy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "552",
+              "new": "554"
+            }
+          ]
+        },
+        {
+          "id": "FEEL_NO_PAIN",
+          "name": "Feel No Pain",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "36",
+              "new": "37"
+            }
+          ]
+        },
+        {
+          "id": "FERAL",
+          "name": "Feral",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "395",
+              "new": "396"
+            }
+          ]
+        },
+        {
+          "id": "FETCH",
+          "name": "Fetch",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "311",
+              "new": "312"
+            }
+          ]
+        },
+        {
+          "id": "FIGHT_ME",
+          "name": "Fight Me!",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "37",
+              "new": "38"
+            }
+          ]
+        },
+        {
+          "id": "FIGHT_THROUGH",
+          "name": "Fight Through",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "396",
+              "new": "397"
+            }
+          ]
+        },
+        {
+          "id": "FINESSE",
+          "name": "Finesse",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "462",
+              "new": "463"
+            }
+          ]
+        },
+        {
+          "id": "FINISHER",
+          "name": "Finisher",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "128",
+              "new": "129"
+            }
+          ]
+        },
+        {
+          "id": "FISTICUFFS",
+          "name": "Fisticuffs",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "463",
+              "new": "464"
+            }
+          ]
+        },
+        {
+          "id": "FLAK_CANNON",
+          "name": "Flak Cannon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "432",
+              "new": "433"
+            }
+          ]
+        },
+        {
+          "id": "FLAME_BARRIER",
+          "name": "Flame Barrier",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "38",
+              "new": "39"
+            }
+          ]
+        },
+        {
+          "id": "FLANKING",
+          "name": "Flanking",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "164",
+              "new": "163"
+            }
+          ]
+        },
+        {
+          "id": "FLASH_OF_STEEL",
+          "name": "Flash of Steel",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "464",
+              "new": "465"
+            }
+          ]
+        },
+        {
+          "id": "FLATTEN",
+          "name": "Flatten",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "281",
+              "new": "282"
+            }
+          ]
+        },
+        {
+          "id": "FLECHETTES",
+          "name": "Flechettes",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "129",
+              "new": "130"
+            }
+          ]
+        },
+        {
+          "id": "FOCUSED_STRIKE",
+          "name": "Focused Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "375",
+              "new": "376"
+            }
+          ]
+        },
+        {
+          "id": "FOLLY",
+          "name": "Folly",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "526",
+              "new": "527"
+            }
+          ]
+        },
+        {
+          "id": "FOOTWORK",
+          "name": "Footwork",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "130",
+              "new": "131"
+            }
+          ]
+        },
+        {
+          "id": "FORBIDDEN_GRIMOIRE",
+          "name": "Forbidden Grimoire",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "360",
+              "new": "361"
+            }
+          ]
+        },
+        {
+          "id": "FORGOTTEN_RITUAL",
+          "name": "Forgotten Ritual",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "39",
+              "new": "40"
+            }
+          ]
+        },
+        {
+          "id": "FRANTIC_ESCAPE",
+          "name": "Frantic Escape",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "570",
+              "new": "573"
+            }
+          ]
+        },
+        {
+          "id": "FRIENDSHIP",
+          "name": "Friendship",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "312",
+              "new": "313"
+            }
+          ]
+        },
+        {
+          "id": "FTL",
+          "name": "FTL",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "397",
+              "new": "398"
+            }
+          ]
+        },
+        {
+          "id": "FUEL",
+          "name": "Fuel",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "578",
+              "new": "581"
+            }
+          ]
+        },
+        {
+          "id": "FUSION",
+          "name": "Fusion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "398",
+              "new": "399"
+            }
+          ]
+        },
+        {
+          "id": "GANG_UP",
+          "name": "Gang Up",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "465",
+              "new": "466"
+            }
+          ]
+        },
+        {
+          "id": "GENETIC_ALGORITHM",
+          "name": "Genetic Algorithm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "433",
+              "new": "434"
+            }
+          ]
+        },
+        {
+          "id": "GIANT_ROCK",
+          "name": "Giant Rock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "579",
+              "new": "582"
+            },
+            {
+              "field": "damage",
+              "old": "16",
+              "new": "20"
+            },
+            {
+              "field": "description",
+              "old": "Deal 16 damage.",
+              "new": "Deal 20 damage."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 20 damage.",
+              "new": "Deal 24 damage."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "16",
+              "new": "20"
+            }
+          ]
+        },
+        {
+          "id": "GLACIER",
+          "name": "Glacier",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "399",
+              "new": "400"
+            }
+          ]
+        },
+        {
+          "id": "GLASSWORK",
+          "name": "Glasswork",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "400",
+              "new": "401"
+            }
+          ]
+        },
+        {
+          "id": "GLIMPSE_BEYOND",
+          "name": "Glimpse Beyond",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "341",
+              "new": "342"
+            }
+          ]
+        },
+        {
+          "id": "GOLD_AXE",
+          "name": "Gold Axe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "501",
+              "new": "502"
+            }
+          ]
+        },
+        {
+          "id": "GO_FOR_THE_EYES",
+          "name": "Go for the Eyes",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "376",
+              "new": "377"
+            }
+          ]
+        },
+        {
+          "id": "GRAND_FINALE",
+          "name": "Grand Finale",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "165",
+              "new": "164"
+            }
+          ]
+        },
+        {
+          "id": "GRAVEBLAST",
+          "name": "Graveblast",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "282",
+              "new": "283"
+            }
+          ]
+        },
+        {
+          "id": "GRAVE_WARDEN",
+          "name": "Grave Warden",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "283",
+              "new": "284"
+            }
+          ]
+        },
+        {
+          "id": "GREED",
+          "name": "Greed",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "527",
+              "new": "528"
+            }
+          ]
+        },
+        {
+          "id": "GUILTY",
+          "name": "Guilty",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "528",
+              "new": "529"
+            }
+          ]
+        },
+        {
+          "id": "GUNK_UP",
+          "name": "Gunk Up",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "377",
+              "new": "378"
+            }
+          ]
+        },
+        {
+          "id": "HAILSTORM",
+          "name": "Hailstorm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "401",
+              "new": "402"
+            }
+          ]
+        },
+        {
+          "id": "HAND_OF_GREED",
+          "name": "Hand of Greed",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "502",
+              "new": "503"
+            }
+          ]
+        },
+        {
+          "id": "HAND_TRICK",
+          "name": "Hand Trick",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "131",
+              "new": "132"
+            }
+          ]
+        },
+        {
+          "id": "HANG",
+          "name": "Hang",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "342",
+              "new": "343"
+            }
+          ]
+        },
+        {
+          "id": "HAUNT",
+          "name": "Haunt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "313",
+              "new": "314"
+            }
+          ]
+        },
+        {
+          "id": "HAVOC",
+          "name": "Havoc",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "10",
+              "new": "9"
+            }
+          ]
+        },
+        {
+          "id": "HAZE",
+          "name": "Haze",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "132",
+              "new": "133"
+            }
+          ]
+        },
+        {
+          "id": "HEADBUTT",
+          "name": "Headbutt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "11",
+              "new": "10"
+            }
+          ]
+        },
+        {
+          "id": "HELIX_DRILL",
+          "name": "Helix Drill",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "434",
+              "new": "435"
+            }
+          ]
+        },
+        {
+          "id": "HELLO_WORLD",
+          "name": "Hello World",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "553",
+              "new": "555"
+            }
+          ]
+        },
+        {
+          "id": "HEMOKINESIS",
+          "name": "Hemokinesis",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "40",
+              "new": "41"
+            }
+          ]
+        },
+        {
+          "id": "HIBERNATE",
+          "name": "Hibernate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "402",
+              "new": "403"
+            }
+          ]
+        },
+        {
+          "id": "HIDDEN_DAGGERS",
+          "name": "Hidden Daggers",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "133",
+              "new": "134"
+            }
+          ]
+        },
+        {
+          "id": "HIDDEN_GEM",
+          "name": "Hidden Gem",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "503",
+              "new": "504"
+            }
+          ]
+        },
+        {
+          "id": "HIGH_FIVE",
+          "name": "High Five",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "314",
+              "new": "315"
+            }
+          ]
+        },
+        {
+          "id": "HOLOGRAM",
+          "name": "Hologram",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "378",
+              "new": "379"
+            }
+          ]
+        },
+        {
+          "id": "HOTFIX",
+          "name": "Hotfix",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "379",
+              "new": "380"
+            }
+          ]
+        },
+        {
+          "id": "HOWL_FROM_BEYOND",
+          "name": "Howl from Beyond",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "41",
+              "new": "42"
+            }
+          ]
+        },
+        {
+          "id": "HUDDLE_UP",
+          "name": "Huddle Up",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "466",
+              "new": "467"
+            }
+          ]
+        },
+        {
+          "id": "HYPERBEAM",
+          "name": "Hyperbeam",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "435",
+              "new": "436"
+            },
+            {
+              "field": "damage",
+              "old": "28",
+              "new": "30"
+            },
+            {
+              "field": "description",
+              "old": "Deal 28 damage to ALL enemies.\nLose 3 [gold]Focus[/gold].",
+              "new": "Deal 30 damage to ALL enemies.\nLose 3 [gold]Focus[/gold]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 36 damage to ALL enemies.\nLose 3 [gold]Focus[/gold].",
+              "new": "Deal 38 damage to ALL enemies.\nLose 3 [gold]Focus[/gold]."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "28",
+              "new": "30"
+            }
+          ]
+        },
+        {
+          "id": "ICE_LANCE",
+          "name": "Ice Lance",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "436",
+              "new": "437"
+            }
+          ]
+        },
+        {
+          "id": "IGNITION",
+          "name": "Ignition",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "403",
+              "new": "404"
+            }
+          ]
+        },
+        {
+          "id": "IMITATION_LEARNING",
+          "name": "Imitation Learning",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "437",
+              "new": "438"
+            }
+          ]
+        },
+        {
+          "id": "IMPATIENCE",
+          "name": "Impatience",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "467",
+              "new": "468"
+            }
+          ]
+        },
+        {
+          "id": "INFECTION",
+          "name": "Infection",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "571",
+              "new": "574"
+            }
+          ]
+        },
+        {
+          "id": "INFERNAL_BLADE",
+          "name": "Infernal Blade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "42",
+              "new": "43"
+            }
+          ]
+        },
+        {
+          "id": "INFERNO",
+          "name": "Inferno",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "43",
+              "new": "44"
+            }
+          ]
+        },
+        {
+          "id": "INFINITE_BLADES",
+          "name": "Infinite Blades",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "134",
+              "new": "135"
+            }
+          ]
+        },
+        {
+          "id": "INFLAME",
+          "name": "Inflame",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "44",
+              "new": "45"
+            }
+          ]
+        },
+        {
+          "id": "INJURY",
+          "name": "Injury",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "529",
+              "new": "530"
+            }
+          ]
+        },
+        {
+          "id": "INTERCEPT",
+          "name": "Intercept",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "468",
+              "new": "469"
+            }
+          ]
+        },
+        {
+          "id": "INVOKE",
+          "name": "Invoke",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "284",
+              "new": "285"
+            }
+          ]
+        },
+        {
+          "id": "IRON_WAVE",
+          "name": "Iron Wave",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "12",
+              "new": "11"
+            }
+          ]
+        },
+        {
+          "id": "ITERATION",
+          "name": "Iteration",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "404",
+              "new": "405"
+            }
+          ]
+        },
+        {
+          "id": "JACKPOT",
+          "name": "Jackpot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "504",
+              "new": "505"
+            }
+          ]
+        },
+        {
+          "id": "JACK_OF_ALL_TRADES",
+          "name": "Jack of All Trades",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "469",
+              "new": "470"
+            }
+          ]
+        },
+        {
+          "id": "JUGGLING",
+          "name": "Juggling",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "45",
+              "new": "46"
+            }
+          ]
+        },
+        {
+          "id": "KNIFE_TRAP",
+          "name": "Knife Trap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "166",
+              "new": "165"
+            }
+          ]
+        },
+        {
+          "id": "KNOCKDOWN",
+          "name": "Knockdown",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "505",
+              "new": "506"
+            }
+          ]
+        },
+        {
+          "id": "LANTERN_KEY",
+          "name": "Lantern Key",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "564",
+              "new": "567"
+            }
+          ]
+        },
+        {
+          "id": "LEAP",
+          "name": "Leap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "380",
+              "new": "381"
+            }
+          ]
+        },
+        {
+          "id": "LEGION_OF_BONE",
+          "name": "Legion of Bone",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "315",
+              "new": "316"
+            }
+          ]
+        },
+        {
+          "id": "LEG_SWEEP",
+          "name": "Leg Sweep",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "135",
+              "new": "136"
+            }
+          ]
+        },
+        {
+          "id": "LETHALITY",
+          "name": "Lethality",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "316",
+              "new": "317"
+            }
+          ]
+        },
+        {
+          "id": "LIFT",
+          "name": "Lift",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "470",
+              "new": "471"
+            }
+          ]
+        },
+        {
+          "id": "LIGHTNING_ROD",
+          "name": "Lightning Rod",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "381",
+              "new": "382"
+            }
+          ]
+        },
+        {
+          "id": "LOOP",
+          "name": "Loop",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "405",
+              "new": "406"
+            }
+          ]
+        },
+        {
+          "id": "LUMINESCE",
+          "name": "Luminesce",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "580",
+              "new": "583"
+            }
+          ]
+        },
+        {
+          "id": "MACHINE_LEARNING",
+          "name": "Machine Learning",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "438",
+              "new": "439"
+            }
+          ]
+        },
+        {
+          "id": "MAD_SCIENCE",
+          "name": "Mad Science",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "554",
+              "new": "556"
+            },
+            {
+              "field": "type_variants.attack.image_url",
+              "old": "/static/images/beta/v0.108.0/cards/mad_science_attack.webp",
+              "new": "/static/images/cards/mad_science_attack.webp"
+            },
+            {
+              "field": "type_variants.power.image_url",
+              "old": "/static/images/beta/v0.108.0/cards/mad_science_power.webp",
+              "new": "/static/images/cards/mad_science_power.webp"
+            },
+            {
+              "field": "type_variants.skill.image_url",
+              "old": "/static/images/beta/v0.108.0/cards/mad_science_skill.webp",
+              "new": "/static/images/cards/mad_science_skill.webp"
+            }
+          ]
+        },
+        {
+          "id": "MALAISE",
+          "name": "Malaise",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "167",
+              "new": "166"
+            }
+          ]
+        },
+        {
+          "id": "MASTER_OF_STRATEGY",
+          "name": "Master of Strategy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "506",
+              "new": "507"
+            }
+          ]
+        },
+        {
+          "id": "MASTER_PLANNER",
+          "name": "Master Planner",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "168",
+              "new": "167"
+            }
+          ]
+        },
+        {
+          "id": "MAUL",
+          "name": "Maul",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "539",
+              "new": "541"
+            }
+          ]
+        },
+        {
+          "id": "MAYHEM",
+          "name": "Mayhem",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "507",
+              "new": "508"
+            }
+          ]
+        },
+        {
+          "id": "MELANCHOLY",
+          "name": "Melancholy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "317",
+              "new": "318"
+            }
+          ]
+        },
+        {
+          "id": "MEMENTO_MORI",
+          "name": "Memento Mori",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "136",
+              "new": "137"
+            }
+          ]
+        },
+        {
+          "id": "METAMORPHOSIS",
+          "name": "Metamorphosis",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "555",
+              "new": "557"
+            }
+          ]
+        },
+        {
+          "id": "METEOR_SHOWER",
+          "name": "Meteor Shower",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "269",
+              "new": "270"
+            }
+          ]
+        },
+        {
+          "id": "METEOR_STRIKE",
+          "name": "Meteor Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "439",
+              "new": "440"
+            }
+          ]
+        },
+        {
+          "id": "MIDNIGHT",
+          "name": "Midnight",
+          "changes": [
+            {
+              "field": "damage",
+              "old": "99",
+              "new": "60"
+            },
+            {
+              "field": "description",
+              "old": "Deal 99 damage.\nCosts 1 less [energy:1] for each card [gold]Exhausted[/gold] ...",
+              "new": "Deal 60 damage.\nCosts 1 less [energy:1] for each card [gold]Exhausted[/gold] ..."
+            },
+            {
+              "field": "upgrade.damage",
+              "old": "+21",
+              "new": "+12"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 120 damage.\nCosts 1 less [energy:1] for each card [gold]Exhausted[/gold]...",
+              "new": "Deal 72 damage.\nCosts 1 less [energy:1] for each card [gold]Exhausted[/gold] ..."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "99",
+              "new": "60"
+            }
+          ]
+        },
+        {
+          "id": "MIMIC",
+          "name": "Mimic",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "508",
+              "new": "509"
+            }
+          ]
+        },
+        {
+          "id": "MIND_BLAST",
+          "name": "Mind Blast",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "471",
+              "new": "472"
+            }
+          ]
+        },
+        {
+          "id": "MIND_ROT",
+          "name": "Mind Rot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "589",
+              "new": "592"
+            }
+          ]
+        },
+        {
+          "id": "MINION_DIVE_BOMB",
+          "name": "Minion Dive Bomb",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "581",
+              "new": "584"
+            }
+          ]
+        },
+        {
+          "id": "MINION_SACRIFICE",
+          "name": "Minion Sacrifice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "582",
+              "new": "585"
+            }
+          ]
+        },
+        {
+          "id": "MINION_STRIKE",
+          "name": "Minion Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "583",
+              "new": "586"
+            }
+          ]
+        },
+        {
+          "id": "MIRAGE",
+          "name": "Mirage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "137",
+              "new": "138"
+            },
+            {
+              "field": "cost",
+              "old": "1",
+              "new": "0"
+            },
+            {
+              "field": "damage",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "description",
+              "old": "Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.",
+              "new": "Next turn, gain [energy:1]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Gain [gold]Block[/gold] equal to [gold]Poison[/gold] on ALL enemies.{InCombat...",
+              "new": "Next turn, gain {Energy:energyIcons()}."
+            },
+            {
+              "field": "energy_gain",
+              "old": "none",
+              "new": "1"
+            },
+            {
+              "field": "keywords[0]",
+              "old": "Exhaust",
+              "new": "none"
+            },
+            {
+              "field": "keywords_key[0]",
+              "old": "Exhaust",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.energy",
+              "old": "none",
+              "new": "+1"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "none",
+              "new": "Next turn, gain [energy:2]."
+            },
+            {
+              "field": "vars.CalculationBase",
+              "old": "0",
+              "new": "none"
+            },
+            {
+              "field": "vars.CalculationExtra",
+              "old": "1",
+              "new": "none"
+            },
+            {
+              "field": "vars.Energy",
+              "old": "none",
+              "new": "1"
+            }
+          ]
+        },
+        {
+          "id": "MISERY",
+          "name": "Misery",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "343",
+              "new": "344"
+            }
+          ]
+        },
+        {
+          "id": "MODDED",
+          "name": "Modded",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "440",
+              "new": "441"
+            }
+          ]
+        },
+        {
+          "id": "MOLTEN_FIST",
+          "name": "Molten Fist",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "13",
+              "new": "12"
+            }
+          ]
+        },
+        {
+          "id": "MOMENTUM_STRIKE",
+          "name": "Momentum Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "382",
+              "new": "383"
+            }
+          ]
+        },
+        {
+          "id": "MULTI_CAST",
+          "name": "Multi-Cast",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "441",
+              "new": "442"
+            }
+          ]
+        },
+        {
+          "id": "MURDER",
+          "name": "Murder",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "169",
+              "new": "168"
+            }
+          ]
+        },
+        {
+          "id": "NECRO_MASTERY",
+          "name": "Necro Mastery",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "344",
+              "new": "345"
+            }
+          ]
+        },
+        {
+          "id": "NEGATIVE_PULSE",
+          "name": "Negative Pulse",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "285",
+              "new": "286"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_FURY",
+          "name": "Neow's Fury",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "540",
+              "new": "542"
+            }
+          ]
+        },
+        {
+          "id": "NEUROSURGE",
+          "name": "Neurosurge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "345",
+              "new": "346"
+            }
+          ]
+        },
+        {
+          "id": "NIGHTMARE",
+          "name": "Nightmare",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "170",
+              "new": "169"
+            }
+          ]
+        },
+        {
+          "id": "NORMALITY",
+          "name": "Normality",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "530",
+              "new": "531"
+            }
+          ]
+        },
+        {
+          "id": "NOSTALGIA",
+          "name": "Nostalgia",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "509",
+              "new": "510"
+            }
+          ]
+        },
+        {
+          "id": "NOXIOUS_FUMES",
+          "name": "Noxious Fumes",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "138",
+              "new": "139"
+            }
+          ]
+        },
+        {
+          "id": "NO_ESCAPE",
+          "name": "No Escape",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "318",
+              "new": "319"
+            }
+          ]
+        },
+        {
+          "id": "NULL",
+          "name": "Null",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "406",
+              "new": "407"
+            }
+          ]
+        },
+        {
+          "id": "OBLIVION",
+          "name": "Oblivion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "346",
+              "new": "347"
+            }
+          ]
+        },
+        {
+          "id": "OMNISLICE",
+          "name": "Omnislice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "472",
+              "new": "473"
+            }
+          ]
+        },
+        {
+          "id": "ONE_FOR_ALL",
+          "name": "One for All",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "442",
+              "new": "443"
+            }
+          ]
+        },
+        {
+          "id": "OUTBREAK",
+          "name": "Outbreak",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "139",
+              "new": "140"
+            },
+            {
+              "field": "description",
+              "old": "Whenever you apply [gold]Poison[/gold], deal 3 damage to ALL enemies.",
+              "new": "Whenever you apply [gold]Poison[/gold], deal 4 damage to ALL enemies."
+            },
+            {
+              "field": "powers_applied[0].amount",
+              "old": "3",
+              "new": "4"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you apply [gold]Poison[/gold], deal 4 damage to ALL enemies.",
+              "new": "Whenever you apply [gold]Poison[/gold], deal 5 damage to ALL enemies."
+            },
+            {
+              "field": "vars.Outbreak",
+              "old": "3",
+              "new": "4"
+            },
+            {
+              "field": "vars.OutbreakPower",
+              "old": "3",
+              "new": "4"
+            }
+          ]
+        },
+        {
+          "id": "OUTMANEUVER",
+          "name": "Outmaneuver",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "556",
+              "new": "558"
+            }
+          ]
+        },
+        {
+          "id": "OUTRAGE",
+          "name": "Outrage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "46",
+              "new": "47"
+            }
+          ]
+        },
+        {
+          "id": "OVERCLOCK",
+          "name": "Overclock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "407",
+              "new": "408"
+            }
+          ]
+        },
+        {
+          "id": "PAGESTORM",
+          "name": "Pagestorm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "319",
+              "new": "320"
+            }
+          ]
+        },
+        {
+          "id": "PANACHE",
+          "name": "Panache",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "473",
+              "new": "474"
+            }
+          ]
+        },
+        {
+          "id": "PANIC_BUTTON",
+          "name": "Panic Button",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "474",
+              "new": "475"
+            }
+          ]
+        },
+        {
+          "id": "PARSE",
+          "name": "Parse",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "320",
+              "new": "321"
+            }
+          ]
+        },
+        {
+          "id": "PECK",
+          "name": "Peck",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "557",
+              "new": "559"
+            }
+          ]
+        },
+        {
+          "id": "PERFECTED_STRIKE",
+          "name": "Perfected Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "14",
+              "new": "13"
+            }
+          ]
+        },
+        {
+          "id": "PHANTOM_BLADES",
+          "name": "Phantom Blades",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "140",
+              "new": "141"
+            }
+          ]
+        },
+        {
+          "id": "PILLAGE",
+          "name": "Pillage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "47",
+              "new": "48"
+            }
+          ]
+        },
+        {
+          "id": "PILLAR_OF_CREATION",
+          "name": "Pillar of Creation",
+          "changes": [
+            {
+              "field": "block",
+              "old": "3",
+              "new": "5"
+            },
+            {
+              "field": "description",
+              "old": "Whenever you create a card, gain 3 [gold]Block[/gold].",
+              "new": "The first time you create a card each turn, gain 5 [gold]Block[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "Whenever you create a card, gain {Block:diff()} [gold]Block[/gold].",
+              "new": "The first time you create a card each turn, gain {Block:diff()} [gold]Block[/..."
+            },
+            {
+              "field": "upgrade.block",
+              "old": "+1",
+              "new": "+2"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Whenever you create a card, gain 4 [gold]Block[/gold].",
+              "new": "The first time you create a card each turn, gain 7 [gold]Block[/gold]."
+            },
+            {
+              "field": "vars.Block",
+              "old": "3",
+              "new": "5"
+            }
+          ]
+        },
+        {
+          "id": "PINPOINT",
+          "name": "Pinpoint",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "141",
+              "new": "142"
+            }
+          ]
+        },
+        {
+          "id": "POKE",
+          "name": "Poke",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "286",
+              "new": "287"
+            }
+          ]
+        },
+        {
+          "id": "POMMEL_STRIKE",
+          "name": "Pommel Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "15",
+              "new": "14"
+            }
+          ]
+        },
+        {
+          "id": "POOR_SLEEP",
+          "name": "Poor Sleep",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "531",
+              "new": "532"
+            }
+          ]
+        },
+        {
+          "id": "POUNCE",
+          "name": "Pounce",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "142",
+              "new": "143"
+            }
+          ]
+        },
+        {
+          "id": "PRECISE_CUT",
+          "name": "Precise Cut",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "143",
+              "new": "144"
+            }
+          ]
+        },
+        {
+          "id": "PREP_TIME",
+          "name": "Prep Time",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "475",
+              "new": "476"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCTION",
+          "name": "Production",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "476",
+              "new": "477"
+            }
+          ]
+        },
+        {
+          "id": "PROLONG",
+          "name": "Prolong",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "477",
+              "new": "478"
+            }
+          ]
+        },
+        {
+          "id": "PROTECTOR",
+          "name": "Protector",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "361",
+              "new": "362"
+            }
+          ]
+        },
+        {
+          "id": "PROWESS",
+          "name": "Prowess",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "478",
+              "new": "479"
+            }
+          ]
+        },
+        {
+          "id": "PULL_AGGRO",
+          "name": "Pull Aggro",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "287",
+              "new": "288"
+            }
+          ]
+        },
+        {
+          "id": "PULL_FROM_BELOW",
+          "name": "Pull from Below",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "321",
+              "new": "322"
+            }
+          ]
+        },
+        {
+          "id": "PURITY",
+          "name": "Purity",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "479",
+              "new": "480"
+            }
+          ]
+        },
+        {
+          "id": "PUTREFY",
+          "name": "Putrefy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "322",
+              "new": "323"
+            }
+          ]
+        },
+        {
+          "id": "QUADCAST",
+          "name": "Quadcast",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "452",
+              "new": "453"
+            }
+          ]
+        },
+        {
+          "id": "RAGE",
+          "name": "Rage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "48",
+              "new": "49"
+            }
+          ]
+        },
+        {
+          "id": "RAINBOW",
+          "name": "Rainbow",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "443",
+              "new": "444"
+            }
+          ]
+        },
+        {
+          "id": "RALLY",
+          "name": "Rally",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "510",
+              "new": "511"
+            }
+          ]
+        },
+        {
+          "id": "RAMPAGE",
+          "name": "Rampage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "49",
+              "new": "50"
+            }
+          ]
+        },
+        {
+          "id": "RATTLE",
+          "name": "Rattle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "323",
+              "new": "324"
+            }
+          ]
+        },
+        {
+          "id": "REANIMATE",
+          "name": "Reanimate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "347",
+              "new": "348"
+            }
+          ]
+        },
+        {
+          "id": "REAP",
+          "name": "Reap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "288",
+              "new": "289"
+            }
+          ]
+        },
+        {
+          "id": "REAPER_FORM",
+          "name": "Reaper Form",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "348",
+              "new": "349"
+            }
+          ]
+        },
+        {
+          "id": "REAVE",
+          "name": "Reave",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "289",
+              "new": "290"
+            }
+          ]
+        },
+        {
+          "id": "REBOOT",
+          "name": "Reboot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "444",
+              "new": "445"
+            }
+          ]
+        },
+        {
+          "id": "REBOUND",
+          "name": "Rebound",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "558",
+              "new": "560"
+            }
+          ]
+        },
+        {
+          "id": "REFLEX",
+          "name": "Reflex",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "144",
+              "new": "145"
+            }
+          ]
+        },
+        {
+          "id": "REFRACT",
+          "name": "Refract",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "408",
+              "new": "409"
+            }
+          ]
+        },
+        {
+          "id": "REGRET",
+          "name": "Regret",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "532",
+              "new": "533"
+            }
+          ]
+        },
+        {
+          "id": "RELAX",
+          "name": "Relax",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "541",
+              "new": "543"
+            }
+          ]
+        },
+        {
+          "id": "REND",
+          "name": "Rend",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "511",
+              "new": "512"
+            }
+          ]
+        },
+        {
+          "id": "RESTLESSNESS",
+          "name": "Restlessness",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "480",
+              "new": "481"
+            }
+          ]
+        },
+        {
+          "id": "RIGHT_HAND_HAND",
+          "name": "Right Hand Hand",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "324",
+              "new": "325"
+            }
+          ]
+        },
+        {
+          "id": "RIP_AND_TEAR",
+          "name": "Rip and Tear",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "559",
+              "new": "561"
+            }
+          ]
+        },
+        {
+          "id": "ROCKET_PUNCH",
+          "name": "Rocket Punch",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "409",
+              "new": "410"
+            }
+          ]
+        },
+        {
+          "id": "ROLLING_BOULDER",
+          "name": "Rolling Boulder",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "512",
+              "new": "513"
+            }
+          ]
+        },
+        {
+          "id": "RUPTURE",
+          "name": "Rupture",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "50",
+              "new": "51"
+            }
+          ]
+        },
+        {
+          "id": "SACRIFICE",
+          "name": "Sacrifice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "349",
+              "new": "350"
+            }
+          ]
+        },
+        {
+          "id": "SALVO",
+          "name": "Salvo",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "513",
+              "new": "514"
+            }
+          ]
+        },
+        {
+          "id": "SCARE",
+          "name": "Scare",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "145",
+              "new": "146"
+            }
+          ]
+        },
+        {
+          "id": "SCAVENGE",
+          "name": "Scavenge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "410",
+              "new": "411"
+            }
+          ]
+        },
+        {
+          "id": "SCOURGE",
+          "name": "Scourge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "290",
+              "new": "291"
+            }
+          ]
+        },
+        {
+          "id": "SCRAPE",
+          "name": "Scrape",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "411",
+              "new": "412"
+            }
+          ]
+        },
+        {
+          "id": "SCRAWL",
+          "name": "Scrawl",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "514",
+              "new": "515"
+            }
+          ]
+        },
+        {
+          "id": "SCULPTING_STRIKE",
+          "name": "Sculpting Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "291",
+              "new": "292"
+            }
+          ]
+        },
+        {
+          "id": "SEANCE",
+          "name": "Seance",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "350",
+              "new": "351"
+            }
+          ]
+        },
+        {
+          "id": "SECOND_WIND",
+          "name": "Second Wind",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "51",
+              "new": "52"
+            }
+          ]
+        },
+        {
+          "id": "SECRET_TECHNIQUE",
+          "name": "Secret Technique",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "515",
+              "new": "516"
+            }
+          ]
+        },
+        {
+          "id": "SECRET_WEAPON",
+          "name": "Secret Weapon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "516",
+              "new": "517"
+            }
+          ]
+        },
+        {
+          "id": "SEEKER_STRIKE",
+          "name": "Seeker Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "481",
+              "new": "482"
+            }
+          ]
+        },
+        {
+          "id": "SENTRY_MODE",
+          "name": "Sentry Mode",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "351",
+              "new": "352"
+            }
+          ]
+        },
+        {
+          "id": "SERPENT_FORM",
+          "name": "Serpent Form",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "171",
+              "new": "170"
+            }
+          ]
+        },
+        {
+          "id": "SETUP_STRIKE",
+          "name": "Setup Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "16",
+              "new": "15"
+            }
+          ]
+        },
+        {
+          "id": "SEVERANCE",
+          "name": "Severance",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "325",
+              "new": "326"
+            }
+          ]
+        },
+        {
+          "id": "SHADOWMELD",
+          "name": "Shadowmeld",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "172",
+              "new": "171"
+            }
+          ]
+        },
+        {
+          "id": "SHADOW_SHIELD",
+          "name": "Shadow Shield",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "412",
+              "new": "413"
+            }
+          ]
+        },
+        {
+          "id": "SHADOW_STEP",
+          "name": "Shadow Step",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "173",
+              "new": "172"
+            }
+          ]
+        },
+        {
+          "id": "SHAME",
+          "name": "Shame",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "533",
+              "new": "534"
+            }
+          ]
+        },
+        {
+          "id": "SHARED_FATE",
+          "name": "Shared Fate",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "352",
+              "new": "353"
+            }
+          ]
+        },
+        {
+          "id": "SHATTER",
+          "name": "Shatter",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "445",
+              "new": "446"
+            }
+          ]
+        },
+        {
+          "id": "SHIV",
+          "name": "Shiv",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "584",
+              "new": "587"
+            }
+          ]
+        },
+        {
+          "id": "SHOCKWAVE",
+          "name": "Shockwave",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "482",
+              "new": "483"
+            }
+          ]
+        },
+        {
+          "id": "SHROUD",
+          "name": "Shroud",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "326",
+              "new": "327"
+            }
+          ]
+        },
+        {
+          "id": "SHRUG_IT_OFF",
+          "name": "Shrug It Off",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "17",
+              "new": "16"
+            }
+          ]
+        },
+        {
+          "id": "SIC_EM",
+          "name": "Sic 'Em",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "327",
+              "new": "328"
+            }
+          ]
+        },
+        {
+          "id": "SIGNAL_BOOST",
+          "name": "Signal Boost",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "446",
+              "new": "447"
+            }
+          ]
+        },
+        {
+          "id": "SKEWER",
+          "name": "Skewer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "146",
+              "new": "147"
+            }
+          ]
+        },
+        {
+          "id": "SKIM",
+          "name": "Skim",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "413",
+              "new": "414"
+            }
+          ]
+        },
+        {
+          "id": "SLEIGHT_OF_FLESH",
+          "name": "Sleight of Flesh",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "328",
+              "new": "329"
+            }
+          ]
+        },
+        {
+          "id": "SLIMED",
+          "name": "Slimed",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "572",
+              "new": "575"
+            }
+          ]
+        },
+        {
+          "id": "SLOTH",
+          "name": "Sloth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "590",
+              "new": "593"
+            }
+          ]
+        },
+        {
+          "id": "SMOKESTACK",
+          "name": "Smokestack",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "414",
+              "new": "415"
+            }
+          ]
+        },
+        {
+          "id": "SNAP",
+          "name": "Snap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "292",
+              "new": "293"
+            }
+          ]
+        },
+        {
+          "id": "SNEAKY",
+          "name": "Sneaky",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "174",
+              "new": "173"
+            }
+          ]
+        },
+        {
+          "id": "SOOT",
+          "name": "Soot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "573",
+              "new": "576"
+            }
+          ]
+        },
+        {
+          "id": "SOUL",
+          "name": "Soul",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "585",
+              "new": "588"
+            }
+          ]
+        },
+        {
+          "id": "SOULBOUND",
+          "name": "Soulbound",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "329",
+              "new": "330"
+            }
+          ]
+        },
+        {
+          "id": "SOUL_STORM",
+          "name": "Soul Storm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "353",
+              "new": "354"
+            }
+          ]
+        },
+        {
+          "id": "SOVEREIGN_BLADE",
+          "name": "Sovereign Blade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "586",
+              "new": "589"
+            }
+          ]
+        },
+        {
+          "id": "SOW",
+          "name": "Sow",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "293",
+              "new": "294"
+            }
+          ]
+        },
+        {
+          "id": "SPEEDSTER",
+          "name": "Speedster",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "147",
+              "new": "148"
+            }
+          ]
+        },
+        {
+          "id": "SPINNER",
+          "name": "Spinner",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "447",
+              "new": "448"
+            }
+          ]
+        },
+        {
+          "id": "SPIRIT_OF_ASH",
+          "name": "Spirit of Ash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "354",
+              "new": "355"
+            }
+          ]
+        },
+        {
+          "id": "SPITE",
+          "name": "Spite",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "52",
+              "new": "53"
+            }
+          ]
+        },
+        {
+          "id": "SPLASH",
+          "name": "Splash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "483",
+              "new": "484"
+            }
+          ]
+        },
+        {
+          "id": "SPOILS_MAP",
+          "name": "Spoils Map",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "565",
+              "new": "568"
+            }
+          ]
+        },
+        {
+          "id": "SPORE_MIND",
+          "name": "Spore Mind",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "534",
+              "new": "535"
+            }
+          ]
+        },
+        {
+          "id": "SPUR",
+          "name": "Spur",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "330",
+              "new": "331"
+            }
+          ]
+        },
+        {
+          "id": "SQUASH",
+          "name": "Squash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "560",
+              "new": "562"
+            }
+          ]
+        },
+        {
+          "id": "SQUEEZE",
+          "name": "Squeeze",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "355",
+              "new": "356"
+            }
+          ]
+        },
+        {
+          "id": "STACK",
+          "name": "Stack",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "561",
+              "new": "563"
+            }
+          ]
+        },
+        {
+          "id": "STAMPEDE",
+          "name": "Stampede",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "53",
+              "new": "54"
+            }
+          ]
+        },
+        {
+          "id": "STOMP",
+          "name": "Stomp",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "54",
+              "new": "55"
+            }
+          ]
+        },
+        {
+          "id": "STONE_ARMOR",
+          "name": "Stone Armor",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "55",
+              "new": "56"
+            }
+          ]
+        },
+        {
+          "id": "STORM",
+          "name": "Storm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "415",
+              "new": "416"
+            }
+          ]
+        },
+        {
+          "id": "STORM_OF_STEEL",
+          "name": "Storm of Steel",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "175",
+              "new": "174"
+            }
+          ]
+        },
+        {
+          "id": "STRANGLE",
+          "name": "Strangle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "148",
+              "new": "149"
+            }
+          ]
+        },
+        {
+          "id": "STRATAGEM",
+          "name": "Stratagem",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "484",
+              "new": "485"
+            }
+          ]
+        },
+        {
+          "id": "STRIKE_DEFECT",
+          "name": "Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "364",
+              "new": "365"
+            }
+          ]
+        },
+        {
+          "id": "STRIKE_NECROBINDER",
+          "name": "Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "273",
+              "new": "274"
+            }
+          ]
+        },
+        {
+          "id": "SUBROUTINE",
+          "name": "Subroutine",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "416",
+              "new": "417"
+            }
+          ]
+        },
+        {
+          "id": "SUNDER",
+          "name": "Sunder",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "417",
+              "new": "418"
+            },
+            {
+              "field": "damage",
+              "old": "24",
+              "new": "26"
+            },
+            {
+              "field": "description",
+              "old": "Deal 24 damage.\nIf this kills an enemy, gain [energy:3].",
+              "new": "Deal 26 damage.\nIf this kills an enemy, gain [energy:3]."
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 32 damage.\nIf this kills an enemy, gain [energy:3].",
+              "new": "Deal 34 damage.\nIf this kills an enemy, gain [energy:3]."
+            },
+            {
+              "field": "vars.Damage",
+              "old": "24",
+              "new": "26"
+            }
+          ]
+        },
+        {
+          "id": "SUPERCRITICAL",
+          "name": "Supercritical",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "448",
+              "new": "449"
+            }
+          ]
+        },
+        {
+          "id": "SWEEPING_BEAM",
+          "name": "Sweeping Beam",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "383",
+              "new": "384"
+            }
+          ]
+        },
+        {
+          "id": "SWEEPING_GAZE",
+          "name": "Sweeping Gaze",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "587",
+              "new": "590"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_BOOMERANG",
+          "name": "Sword Boomerang",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "18",
+              "new": "17"
+            }
+          ]
+        },
+        {
+          "id": "SYNCHRONIZE",
+          "name": "Synchronize",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "418",
+              "new": "419"
+            }
+          ]
+        },
+        {
+          "id": "SYNTHESIS",
+          "name": "Synthesis",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "419",
+              "new": "420"
+            }
+          ]
+        },
+        {
+          "id": "TACTICIAN",
+          "name": "Tactician",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "149",
+              "new": "150"
+            }
+          ]
+        },
+        {
+          "id": "TAG_TEAM",
+          "name": "Tag Team",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "485",
+              "new": "486"
+            }
+          ]
+        },
+        {
+          "id": "TAUNT",
+          "name": "Taunt",
+          "changes": [
+            {
+              "field": "block",
+              "old": "7",
+              "new": "6"
+            },
+            {
+              "field": "compendium_order",
+              "old": "56",
+              "new": "18"
+            },
+            {
+              "field": "description",
+              "old": "Gain 7 [gold]Block[/gold].\nApply 1 [gold]Vulnerable[/gold].",
+              "new": "Gain 6 [gold]Block[/gold].\nApply 1 [gold]Vulnerable[/gold]."
+            },
+            {
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Common"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Common"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Gain 8 [gold]Block[/gold].\nApply 2 [gold]Vulnerable[/gold].",
+              "new": "Gain 7 [gold]Block[/gold].\nApply 2 [gold]Vulnerable[/gold]."
+            },
+            {
+              "field": "vars.Block",
+              "old": "7",
+              "new": "6"
+            }
+          ]
+        },
+        {
+          "id": "TEMPEST",
+          "name": "Tempest",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "420",
+              "new": "421"
+            }
+          ]
+        },
+        {
+          "id": "TESLA_COIL",
+          "name": "Tesla Coil",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "421",
+              "new": "422"
+            }
+          ]
+        },
+        {
+          "id": "THE_BALL",
+          "name": "The Ball",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "486",
+              "new": "487"
+            },
+            {
+              "field": "description",
+              "old": "Deal 10 damage.\nIncrease this card's damage by 15 this combat and give it to ...",
+              "new": "Deal 10 damage.\nIncrease this card's damage by 10 this combat and give it to ..."
+            },
+            {
+              "field": "upgrade.increase",
+              "old": "+10",
+              "new": "+5"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "Deal 10 damage.\nIncrease this card's damage by 25 this combat and give it to ...",
+              "new": "Deal 10 damage.\nIncrease this card's damage by 15 this combat and give it to ..."
+            },
+            {
+              "field": "vars.Increase",
+              "old": "15",
+              "new": "10"
+            }
+          ]
+        },
+        {
+          "id": "THE_BOMB",
+          "name": "The Bomb",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "487",
+              "new": "488"
+            }
+          ]
+        },
+        {
+          "id": "THE_GAMBIT",
+          "name": "The Gambit",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "517",
+              "new": "518"
+            }
+          ]
+        },
+        {
+          "id": "THE_HUNT",
+          "name": "The Hunt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "176",
+              "new": "175"
+            }
+          ]
+        },
+        {
+          "id": "THE_SCYTHE",
+          "name": "The Scythe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "356",
+              "new": "357"
+            }
+          ]
+        },
+        {
+          "id": "THE_SEALED_THRONE",
+          "name": "The Sealed Throne",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "270",
+              "new": "271"
+            }
+          ]
+        },
+        {
+          "id": "THINKING_AHEAD",
+          "name": "Thinking Ahead",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "488",
+              "new": "489"
+            }
+          ]
+        },
+        {
+          "id": "THRUMMING_HATCHET",
+          "name": "Thrumming Hatchet",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "489",
+              "new": "490"
+            }
+          ]
+        },
+        {
+          "id": "THUNDER",
+          "name": "Thunder",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "422",
+              "new": "423"
+            }
+          ]
+        },
+        {
+          "id": "TIMES_UP",
+          "name": "Time's Up",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "357",
+              "new": "358"
+            }
+          ]
+        },
+        {
+          "id": "TOOLS_OF_THE_TRADE",
+          "name": "Tools of the Trade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "177",
+              "new": "176"
+            }
+          ]
+        },
+        {
+          "id": "TORIC_TOUGHNESS",
+          "name": "Toric Toughness",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "562",
+              "new": "564"
+            }
+          ]
+        },
+        {
+          "id": "TOXIC",
+          "name": "Toxic",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "574",
+              "new": "577"
+            }
+          ]
+        },
+        {
+          "id": "TRACKING",
+          "name": "Tracking",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "178",
+              "new": "177"
+            }
+          ]
+        },
+        {
+          "id": "TRANSFIGURE",
+          "name": "Transfigure",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "358",
+              "new": "359"
+            }
+          ]
+        },
+        {
+          "id": "TRASH_TO_TREASURE",
+          "name": "Trash to Treasure",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "449",
+              "new": "450"
+            },
+            {
+              "field": "upgrade.add_innate",
+              "old": "yes",
+              "new": "none"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "none",
+              "new": "0"
+            }
+          ]
+        },
+        {
+          "id": "TURBO",
+          "name": "TURBO",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "384",
+              "new": "385"
+            }
+          ]
+        },
+        {
+          "id": "TYRANNY",
+          "name": "Tyranny",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "267",
+              "new": "268"
+            }
+          ]
+        },
+        {
+          "id": "ULTIMATE_DEFEND",
+          "name": "Ultimate Defend",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "490",
+              "new": "491"
+            }
+          ]
+        },
+        {
+          "id": "ULTIMATE_STRIKE",
+          "name": "Ultimate Strike",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "491",
+              "new": "492"
+            }
+          ]
+        },
+        {
+          "id": "UNDEATH",
+          "name": "Undeath",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "359",
+              "new": "360"
+            }
+          ]
+        },
+        {
+          "id": "UNDERWORLD",
+          "name": "Underworld",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "331",
+              "new": "332"
+            }
+          ]
+        },
+        {
+          "id": "UNLEASH",
+          "name": "Unleash",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "274",
+              "new": "275"
+            }
+          ]
+        },
+        {
+          "id": "UPROAR",
+          "name": "Uproar",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "385",
+              "new": "386"
+            }
+          ]
+        },
+        {
+          "id": "UP_MY_SLEEVE",
+          "name": "Up My Sleeve",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "150",
+              "new": "151"
+            }
+          ]
+        },
+        {
+          "id": "VEILPIERCER",
+          "name": "Veilpiercer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "332",
+              "new": "333"
+            }
+          ]
+        },
+        {
+          "id": "VOID",
+          "name": "Void",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "575",
+              "new": "578"
+            }
+          ]
+        },
+        {
+          "id": "VOID_FORM",
+          "name": "Void Form",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "268",
+              "new": "269"
+            }
+          ]
+        },
+        {
+          "id": "VOLLEY",
+          "name": "Volley",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "492",
+              "new": "493"
+            }
+          ]
+        },
+        {
+          "id": "VOLTAIC",
+          "name": "Voltaic",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "450",
+              "new": "451"
+            }
+          ]
+        },
+        {
+          "id": "WASTE_AWAY",
+          "name": "Waste Away",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "591",
+              "new": "594"
+            }
+          ]
+        },
+        {
+          "id": "WELL_LAID_PLANS",
+          "name": "Well-Laid Plans",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "151",
+              "new": "178"
+            },
+            {
+              "field": "description",
+              "old": "At the end of your turn, [gold]Retain[/gold] up to 1 card.",
+              "new": "At the end of your turn, you no longer discard your [gold]Hand[/gold]."
+            },
+            {
+              "field": "description_raw",
+              "old": "At the end of your turn, [gold]Retain[/gold] up to {RetainAmount:diff()} {Ret...",
+              "new": "At the end of your turn, you no longer discard your [gold]Hand[/gold]."
+            },
+            {
+              "field": "rarity",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "rarity_key",
+              "old": "Uncommon",
+              "new": "Rare"
+            },
+            {
+              "field": "upgrade.cost",
+              "old": "none",
+              "new": "0"
+            },
+            {
+              "field": "upgrade.retainamount",
+              "old": "+1",
+              "new": "none"
+            },
+            {
+              "field": "upgrade_description",
+              "old": "At the end of your turn, [gold]Retain[/gold] up to 2 cards.",
+              "new": "none"
+            },
+            {
+              "field": "vars.RetainAmount",
+              "old": "1",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "WHISTLE",
+          "name": "Whistle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "542",
+              "new": "544"
+            }
+          ]
+        },
+        {
+          "id": "WHITE_NOISE",
+          "name": "White Noise",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "423",
+              "new": "424"
+            }
+          ]
+        },
+        {
+          "id": "WISH",
+          "name": "Wish",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "543",
+              "new": "545"
+            }
+          ]
+        },
+        {
+          "id": "WISP",
+          "name": "Wisp",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "294",
+              "new": "295"
+            }
+          ]
+        },
+        {
+          "id": "WITHER",
+          "name": "Wither",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "576",
+              "new": "579"
+            }
+          ]
+        },
+        {
+          "id": "WOUND",
+          "name": "Wound",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "577",
+              "new": "580"
+            }
+          ]
+        },
+        {
+          "id": "WRITHE",
+          "name": "Writhe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "535",
+              "new": "536"
+            }
+          ]
+        },
+        {
+          "id": "ZAP",
+          "name": "Zap",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "365",
+              "new": "366"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "relics",
+      "name": "Relics",
+      "old_count": 296,
+      "new_count": 298,
+      "added": [
+        {
+          "id": "DOWSING_ROD",
+          "name": "Dowsing Rod",
+          "rarity": "Ancient Relic"
+        },
+        {
+          "id": "NEOWS_SACRIFICE",
+          "name": "Neow's Sacrifice",
+          "rarity": "Ancient Relic"
+        }
+      ],
+      "changed": [
+        {
+          "id": "BIG_MUSHROOM",
+          "name": "Big Mushroom",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "261",
+              "new": "263"
+            }
+          ]
+        },
+        {
+          "id": "BING_BONG",
+          "name": "Bing Bong",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "262",
+              "new": "264"
+            }
+          ]
+        },
+        {
+          "id": "BONE_TEA",
+          "name": "Bone Tea",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "264",
+              "new": "266"
+            }
+          ]
+        },
+        {
+          "id": "BYRDPIP",
+          "name": "Byrdpip",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "265",
+              "new": "267"
+            }
+          ]
+        },
+        {
+          "id": "CHOSEN_CHEESE",
+          "name": "The Chosen Cheese",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "290",
+              "new": "292"
+            }
+          ]
+        },
+        {
+          "id": "CIRCLET",
+          "name": "Circlet",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "295",
+              "new": "297"
+            }
+          ]
+        },
+        {
+          "id": "DARKSTONE_PERIAPT",
+          "name": "Darkstone Periapt",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "266",
+              "new": "268"
+            }
+          ]
+        },
+        {
+          "id": "DAUGHTER_OF_THE_WIND",
+          "name": "Daughter of the Wind",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "267",
+              "new": "269"
+            }
+          ]
+        },
+        {
+          "id": "DIAMOND_DIADEM",
+          "name": "Diamond Diadem",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you play [blue]2[/blue] or fewer cards in a turn, take half damage f...",
+              "new": "Start combat with [blue]20[/blue] [gold]Block[/gold]. Your [gold]Block[/gold]..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Whenever you play [blue]{CardThreshold}[/blue] or fewer cards in a turn, take...",
+              "new": "Start combat with [blue]{Block}[/blue] [gold]Block[/gold]. Your [gold]Block[/..."
+            }
+          ]
+        },
+        {
+          "id": "DISTINGUISHED_CAPE",
+          "name": "Distinguished Cape",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Upon pickup, lose [blue]9[/blue] Max HP. Add [blue]3[/blue] [gold]Apparitions...",
+              "new": "Upon pickup, add [blue]2[/blue] random [red]Curses[/red] and [blue]3[/blue] [..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Upon pickup, lose [blue]9[/blue] Max HP. Add [blue]{Cards}[/blue] [gold]{Card...",
+              "new": "Upon pickup, add [blue]{Curses}[/blue] random [red]Curses[/red] and [blue]{Ca..."
+            }
+          ]
+        },
+        {
+          "id": "DREAM_CATCHER",
+          "name": "Dream Catcher",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "268",
+              "new": "270"
+            }
+          ]
+        },
+        {
+          "id": "DRIFTWOOD",
+          "name": "Driftwood",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "179",
+              "new": "180"
+            }
+          ]
+        },
+        {
+          "id": "DUSTY_TOME",
+          "name": "Dusty Tome",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "180",
+              "new": "181"
+            }
+          ]
+        },
+        {
+          "id": "ECTOPLASM",
+          "name": "Ectoplasm",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "181",
+              "new": "182"
+            }
+          ]
+        },
+        {
+          "id": "ELECTRIC_SHRYMP",
+          "name": "Electric Shrymp",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "182",
+              "new": "183"
+            }
+          ]
+        },
+        {
+          "id": "EMBER_TEA",
+          "name": "Ember Tea",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "269",
+              "new": "271"
+            }
+          ]
+        },
+        {
+          "id": "EMPTY_CAGE",
+          "name": "Empty Cage",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "183",
+              "new": "184"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ANCHOR",
+          "name": "Anchor???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "260",
+              "new": "262"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_BLOOD_VIAL",
+          "name": "Blood Vial???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "263",
+              "new": "265"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_HAPPY_FLOWER",
+          "name": "Happy Flower???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "274",
+              "new": "276"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_LEES_WAFFLE",
+          "name": "Lee's Waffle???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "276",
+              "new": "278"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MANGO",
+          "name": "Mango???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "278",
+              "new": "280"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_MERCHANTS_RUG",
+          "name": "The Merchant's Rug???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "291",
+              "new": "293"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_ORICHALCUM",
+          "name": "Orichalcum???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "281",
+              "new": "283"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_SNECKO_EYE",
+          "name": "Snecko Eye???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "284",
+              "new": "286"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_STRIKE_DUMMY",
+          "name": "Strike Dummy???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "285",
+              "new": "287"
+            }
+          ]
+        },
+        {
+          "id": "FAKE_VENERABLE_TEA_SET",
+          "name": "Venerable Tea Set???",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "292",
+              "new": "294"
+            }
+          ]
+        },
+        {
+          "id": "FIDDLE",
+          "name": "Fiddle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "184",
+              "new": "185"
+            },
+            {
+              "field": "description",
+              "old": "At the start of each turn, draw [blue]2[/blue] additional cards. You may not ...",
+              "new": "At the start of each turn, draw [blue]3[/blue] additional cards. You may not ..."
+            }
+          ]
+        },
+        {
+          "id": "FISHING_ROD",
+          "name": "Fishing Rod",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "185",
+              "new": "186"
+            }
+          ]
+        },
+        {
+          "id": "FORGOTTEN_SOUL",
+          "name": "Forgotten Soul",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "270",
+              "new": "272"
+            }
+          ]
+        },
+        {
+          "id": "FRAGRANT_MUSHROOM",
+          "name": "Fragrant Mushroom",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "271",
+              "new": "273"
+            }
+          ]
+        },
+        {
+          "id": "FRESNEL_LENS",
+          "name": "Fresnel Lens",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "272",
+              "new": "274"
+            }
+          ]
+        },
+        {
+          "id": "FUR_COAT",
+          "name": "Fur Coat",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "186",
+              "new": "187"
+            }
+          ]
+        },
+        {
+          "id": "GLASS_EYE",
+          "name": "Glass Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "187",
+              "new": "188"
+            }
+          ]
+        },
+        {
+          "id": "GLITTER",
+          "name": "Glitter",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "188",
+              "new": "189"
+            }
+          ]
+        },
+        {
+          "id": "GOLDEN_COMPASS",
+          "name": "Golden Compass",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "189",
+              "new": "190"
+            }
+          ]
+        },
+        {
+          "id": "GOLDEN_PEARL",
+          "name": "Golden Pearl",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "190",
+              "new": "191"
+            }
+          ]
+        },
+        {
+          "id": "HAND_DRILL",
+          "name": "Hand Drill",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "273",
+              "new": "275"
+            }
+          ]
+        },
+        {
+          "id": "HEFTY_TABLET",
+          "name": "Hefty Tablet",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "191",
+              "new": "192"
+            }
+          ]
+        },
+        {
+          "id": "HISTORY_COURSE",
+          "name": "History Course",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "275",
+              "new": "277"
+            },
+            {
+              "field": "description",
+              "old": "At the start of your turn, play a copy of your last played Attack or Skill.",
+              "new": "At the start of your turn, play a copy of your last played Attack."
+            },
+            {
+              "field": "description_raw",
+              "old": "At the start of your turn, play a copy of your last played Attack or Skill.",
+              "new": "At the start of your turn, play a copy of your last played Attack."
+            }
+          ]
+        },
+        {
+          "id": "IRON_CLUB",
+          "name": "Iron Club",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "192",
+              "new": "193"
+            }
+          ]
+        },
+        {
+          "id": "JEWELED_MASK",
+          "name": "Jeweled Mask",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "193",
+              "new": "194"
+            }
+          ]
+        },
+        {
+          "id": "JEWELRY_BOX",
+          "name": "Jewelry Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "194",
+              "new": "195"
+            }
+          ]
+        },
+        {
+          "id": "KALEIDOSCOPE",
+          "name": "Kaleidoscope",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "195",
+              "new": "196"
+            }
+          ]
+        },
+        {
+          "id": "LARGE_CAPSULE",
+          "name": "Large Capsule",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "196",
+              "new": "197"
+            }
+          ]
+        },
+        {
+          "id": "LAVA_ROCK",
+          "name": "Lava Rock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "197",
+              "new": "198"
+            }
+          ]
+        },
+        {
+          "id": "LEAD_PAPERWEIGHT",
+          "name": "Lead Paperweight",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "198",
+              "new": "199"
+            }
+          ]
+        },
+        {
+          "id": "LEAFY_POULTICE",
+          "name": "Leafy Poultice",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "199",
+              "new": "200"
+            }
+          ]
+        },
+        {
+          "id": "LOOMING_FRUIT",
+          "name": "Looming Fruit",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "200",
+              "new": "201"
+            },
+            {
+              "field": "image_variants.Cornucopia",
+              "old": "/static/images/beta/v0.108.0/relics/looming_fruit.webp",
+              "new": "/static/images/relics/looming_fruit.webp"
+            },
+            {
+              "field": "image_variants.Fruit",
+              "old": "/static/images/beta/v0.108.0/relics/looming_fruit_2.webp",
+              "new": "/static/images/relics/looming_fruit_2.webp"
+            }
+          ]
+        },
+        {
+          "id": "LORDS_PARASOL",
+          "name": "Lord's Parasol",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "201",
+              "new": "202"
+            }
+          ]
+        },
+        {
+          "id": "LOST_COFFER",
+          "name": "Lost Coffer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "202",
+              "new": "203"
+            }
+          ]
+        },
+        {
+          "id": "LOST_WISP",
+          "name": "Lost Wisp",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "277",
+              "new": "279"
+            }
+          ]
+        },
+        {
+          "id": "MASSIVE_SCROLL",
+          "name": "Massive Scroll",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "203",
+              "new": "204"
+            }
+          ]
+        },
+        {
+          "id": "MAW_BANK",
+          "name": "Maw Bank",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "279",
+              "new": "281"
+            }
+          ]
+        },
+        {
+          "id": "MEAT_CLEAVER",
+          "name": "Meat Cleaver",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "204",
+              "new": "205"
+            }
+          ]
+        },
+        {
+          "id": "MR_STRUGGLES",
+          "name": "Mr. Struggles",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "280",
+              "new": "282"
+            }
+          ]
+        },
+        {
+          "id": "MUSIC_BOX",
+          "name": "Music Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "205",
+              "new": "206"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_BONES",
+          "name": "Neow's Bones",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "206",
+              "new": "207"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_TALISMAN",
+          "name": "Neow's Talisman",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "207",
+              "new": "209"
+            }
+          ]
+        },
+        {
+          "id": "NEOWS_TORMENT",
+          "name": "Neow's Torment",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "208",
+              "new": "210"
+            }
+          ]
+        },
+        {
+          "id": "NEW_LEAF",
+          "name": "New Leaf",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "209",
+              "new": "211"
+            }
+          ]
+        },
+        {
+          "id": "NUTRITIOUS_OYSTER",
+          "name": "Nutritious Oyster",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "210",
+              "new": "212"
+            }
+          ]
+        },
+        {
+          "id": "NUTRITIOUS_SOUP",
+          "name": "Nutritious Soup",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "211",
+              "new": "213"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_BLOOD",
+          "name": "Pael's Blood",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "212",
+              "new": "214"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_CLAW",
+          "name": "Pael's Claw",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "213",
+              "new": "215"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_EYE",
+          "name": "Pael's Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "214",
+              "new": "216"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_FLESH",
+          "name": "Pael's Flesh",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "215",
+              "new": "217"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_GROWTH",
+          "name": "Pael's Growth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "216",
+              "new": "218"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_HORN",
+          "name": "Pael's Horn",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "217",
+              "new": "219"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_LEGION",
+          "name": "Pael's Legion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "218",
+              "new": "220"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_TEARS",
+          "name": "Pael's Tears",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "219",
+              "new": "221"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_TOOTH",
+          "name": "Pael's Tooth",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "220",
+              "new": "222"
+            }
+          ]
+        },
+        {
+          "id": "PAELS_WING",
+          "name": "Pael's Wing",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "221",
+              "new": "223"
+            }
+          ]
+        },
+        {
+          "id": "PANDORAS_BOX",
+          "name": "Pandora's Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "222",
+              "new": "224"
+            }
+          ]
+        },
+        {
+          "id": "PHIAL_HOLSTER",
+          "name": "Phial Holster",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "223",
+              "new": "225"
+            }
+          ]
+        },
+        {
+          "id": "PHILOSOPHERS_STONE",
+          "name": "Philosopher's Stone",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "224",
+              "new": "226"
+            }
+          ]
+        },
+        {
+          "id": "POLLINOUS_CORE",
+          "name": "Pollinous Core",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "282",
+              "new": "284"
+            }
+          ]
+        },
+        {
+          "id": "POMANDER",
+          "name": "Pomander",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "225",
+              "new": "227"
+            }
+          ]
+        },
+        {
+          "id": "PRECARIOUS_SHEARS",
+          "name": "Precarious Shears",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "226",
+              "new": "228"
+            }
+          ]
+        },
+        {
+          "id": "PRECISE_SCISSORS",
+          "name": "Precise Scissors",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "227",
+              "new": "229"
+            }
+          ]
+        },
+        {
+          "id": "PRESERVED_FOG",
+          "name": "Preserved Fog",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "228",
+              "new": "230"
+            }
+          ]
+        },
+        {
+          "id": "PRISMATIC_GEM",
+          "name": "Prismatic Gem",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "229",
+              "new": "231"
+            }
+          ]
+        },
+        {
+          "id": "PUMPKIN_CANDLE",
+          "name": "Pumpkin Candle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "230",
+              "new": "232"
+            }
+          ]
+        },
+        {
+          "id": "RADIANT_PEARL",
+          "name": "Radiant Pearl",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "231",
+              "new": "233"
+            }
+          ]
+        },
+        {
+          "id": "ROYAL_POISON",
+          "name": "Royal Poison",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "283",
+              "new": "285"
+            }
+          ]
+        },
+        {
+          "id": "RUNIC_PYRAMID",
+          "name": "Runic Pyramid",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "232",
+              "new": "234"
+            }
+          ]
+        },
+        {
+          "id": "SAI",
+          "name": "Sai",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "233",
+              "new": "235"
+            }
+          ]
+        },
+        {
+          "id": "SAND_CASTLE",
+          "name": "Sand Castle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "234",
+              "new": "236"
+            }
+          ]
+        },
+        {
+          "id": "SCROLL_BOXES",
+          "name": "Scroll Boxes",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "235",
+              "new": "237"
+            }
+          ]
+        },
+        {
+          "id": "SEAL_OF_GOLD",
+          "name": "Seal of Gold",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "237",
+              "new": "239"
+            }
+          ]
+        },
+        {
+          "id": "SEA_GLASS",
+          "name": "Sea Glass",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "236",
+              "new": "238"
+            }
+          ]
+        },
+        {
+          "id": "SERE_TALON",
+          "name": "Sere Talon",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "238",
+              "new": "240"
+            },
+            {
+              "field": "description",
+              "old": "Upon pickup, add [blue]2[/blue] random [red]Curses[/red] and [blue]3[/blue] [...",
+              "new": "Upon pickup, lose [blue]9[/blue] Max HP. Add [blue]3[/blue] [purple]Wishes[/p..."
+            },
+            {
+              "field": "description_raw",
+              "old": "Upon pickup, add [blue]{Curses}[/blue] random [red]Curses[/red] and [blue]{Wi...",
+              "new": "Upon pickup, lose [blue]9[/blue] Max HP. Add [blue]{Wishes}[/blue] [purple]Wi..."
+            }
+          ]
+        },
+        {
+          "id": "SIGNET_RING",
+          "name": "Signet Ring",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "239",
+              "new": "241"
+            }
+          ]
+        },
+        {
+          "id": "SILKEN_TRESS",
+          "name": "Silken Tress",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "240",
+              "new": "242"
+            }
+          ]
+        },
+        {
+          "id": "SILVER_CRUCIBLE",
+          "name": "Silver Crucible",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "241",
+              "new": "243"
+            }
+          ]
+        },
+        {
+          "id": "SMALL_CAPSULE",
+          "name": "Small Capsule",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "242",
+              "new": "244"
+            }
+          ]
+        },
+        {
+          "id": "SNECKO_EYE",
+          "name": "Snecko Eye",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "243",
+              "new": "245"
+            }
+          ]
+        },
+        {
+          "id": "SOZU",
+          "name": "Sozu",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "244",
+              "new": "246"
+            }
+          ]
+        },
+        {
+          "id": "SPIKED_GAUNTLETS",
+          "name": "Spiked Gauntlets",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "245",
+              "new": "247"
+            }
+          ]
+        },
+        {
+          "id": "STONE_HUMIDIFIER",
+          "name": "Stone Humidifier",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "246",
+              "new": "248"
+            }
+          ]
+        },
+        {
+          "id": "STORYBOOK",
+          "name": "Storybook",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "247",
+              "new": "249"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_OF_JADE",
+          "name": "Sword of Jade",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "286",
+              "new": "288"
+            }
+          ]
+        },
+        {
+          "id": "SWORD_OF_STONE",
+          "name": "Sword of Stone",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "287",
+              "new": "289"
+            }
+          ]
+        },
+        {
+          "id": "TANXS_WHISTLE",
+          "name": "Tanx's Whistle",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "248",
+              "new": "250"
+            }
+          ]
+        },
+        {
+          "id": "TEA_OF_DISCOURTESY",
+          "name": "Tea of Discourtesy",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "288",
+              "new": "290"
+            }
+          ]
+        },
+        {
+          "id": "THE_BOOT",
+          "name": "The Boot",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "289",
+              "new": "291"
+            }
+          ]
+        },
+        {
+          "id": "THROWING_AXE",
+          "name": "Throwing Axe",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "249",
+              "new": "251"
+            }
+          ]
+        },
+        {
+          "id": "TOASTY_MITTENS",
+          "name": "Toasty Mittens",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "250",
+              "new": "252"
+            }
+          ]
+        },
+        {
+          "id": "TOUCH_OF_OROBAS",
+          "name": "Touch of Orobas",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "251",
+              "new": "253"
+            }
+          ]
+        },
+        {
+          "id": "TOY_BOX",
+          "name": "Toy Box",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "252",
+              "new": "254"
+            },
+            {
+              "field": "description",
+              "old": "Upon pickup, obtain [blue]4[/blue] [gold]Wax Relics[/gold]. Every [blue]3[/bl...",
+              "new": "Upon pickup, obtain [blue]5[/blue] [gold]Wax Relics[/gold]. Every [blue]3[/bl..."
+            }
+          ]
+        },
+        {
+          "id": "TRI_BOOMERANG",
+          "name": "Tri-Boomerang",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "253",
+              "new": "255"
+            }
+          ]
+        },
+        {
+          "id": "VELVET_CHOKER",
+          "name": "Velvet Choker",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "254",
+              "new": "256"
+            }
+          ]
+        },
+        {
+          "id": "VERY_HOT_COCOA",
+          "name": "Very Hot Cocoa",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "255",
+              "new": "257"
+            }
+          ]
+        },
+        {
+          "id": "WAR_HAMMER",
+          "name": "War Hammer",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "256",
+              "new": "258"
+            }
+          ]
+        },
+        {
+          "id": "WHISPERING_EARRING",
+          "name": "Whispering Earring",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "257",
+              "new": "259"
+            }
+          ]
+        },
+        {
+          "id": "WINGED_BOOTS",
+          "name": "Winged Boots",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "258",
+              "new": "260"
+            }
+          ]
+        },
+        {
+          "id": "WONGOS_MYSTERY_TICKET",
+          "name": "Wongo's Mystery Ticket",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "294",
+              "new": "296"
+            }
+          ]
+        },
+        {
+          "id": "WONGO_CUSTOMER_APPRECIATION_BADGE",
+          "name": "Wongo Customer Appreciation Badge",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "293",
+              "new": "295"
+            }
+          ]
+        },
+        {
+          "id": "YUMMY_COOKIE",
+          "name": "Yummy Cookie",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "259",
+              "new": "261"
+            },
+            {
+              "field": "image_variants.Defect",
+              "old": "/static/images/beta/v0.108.0/relics/yummy_cookie_defect.webp",
+              "new": "/static/images/relics/yummy_cookie_defect.webp"
+            },
+            {
+              "field": "image_variants.Ironclad",
+              "old": "/static/images/beta/v0.108.0/relics/yummy_cookie_ironclad.webp",
+              "new": "/static/images/relics/yummy_cookie_ironclad.webp"
+            },
+            {
+              "field": "image_variants.Regent",
+              "old": "/static/images/beta/v0.108.0/relics/yummy_cookie_regent.webp",
+              "new": "/static/images/relics/yummy_cookie_regent.webp"
+            },
+            {
+              "field": "image_variants.Silent",
+              "old": "/static/images/beta/v0.108.0/relics/yummy_cookie_silent.webp",
+              "new": "/static/images/relics/yummy_cookie_silent.webp"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monsters",
+      "name": "Monsters",
+      "old_count": 115,
+      "new_count": 115,
+      "changed": [
+        {
+          "id": "AEONGLASS",
+          "name": "Aeonglass",
+          "changes": [
+            {
+              "field": "damage_values.Ebb.ascension",
+              "old": "32",
+              "new": "26"
+            },
+            {
+              "field": "damage_values.Ebb.normal",
+              "old": "26",
+              "new": "22"
+            },
+            {
+              "field": "moves[EBB].damage.ascension",
+              "old": "32",
+              "new": "26"
+            },
+            {
+              "field": "moves[EBB].damage.normal",
+              "old": "26",
+              "new": "22"
+            }
+          ]
+        },
+        {
+          "id": "BYRDONIS",
+          "name": "Byrdonis",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Swoop → Peck → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "SWOOP",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[PECK_MOVE].next",
+              "old": "SWOOP_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[SWOOP_MOVE].next",
+              "old": "PECK_MOVE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "HAUNTED_SHIP",
+          "name": "Haunted Ship",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Haunt → Swipe → Stomp → repeat",
+              "new": "Always uses Haunt"
+            },
+            {
+              "field": "attack_pattern.states[HAUNT_MOVE].next",
+              "old": "SWIPE_MOVE",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "LEAF_SLIME_M",
+          "name": "Leaf Slime (M)",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Sticky Shot → Clump Shot → repeat",
+              "new": ""
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "STICKY_SHOT",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[CLUMP_SHOT].next",
+              "old": "STICKY_SHOT",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[STICKY_SHOT].next",
+              "old": "CLUMP_SHOT",
+              "new": "none"
+            }
+          ]
+        },
+        {
+          "id": "TORCH_HEAD_AMALGAM",
+          "name": "Torch Head Amalgam",
+          "changes": [
+            {
+              "field": "attack_pattern.description",
+              "old": "Tackle → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat",
+              "new": "Strong Tackle → Tackle 2 → Beam → Tackle 3 → Tackle 4 → repeat"
+            },
+            {
+              "field": "attack_pattern.initial_move",
+              "old": "TACKLE",
+              "new": "STRONG_TACKLE"
+            },
+            {
+              "field": "attack_pattern.states[STRONG_TACKLE_MOVE].id",
+              "old": "none",
+              "new": "STRONG_TACKLE_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[STRONG_TACKLE_MOVE].move_id",
+              "old": "none",
+              "new": "STRONG_TACKLE"
+            },
+            {
+              "field": "attack_pattern.states[STRONG_TACKLE_MOVE].next",
+              "old": "none",
+              "new": "TACKLE_2_MOVE"
+            },
+            {
+              "field": "attack_pattern.states[STRONG_TACKLE_MOVE].type",
+              "old": "none",
+              "new": "move"
+            },
+            {
+              "field": "attack_pattern.states[TACKLE_MOVE].id",
+              "old": "TACKLE_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TACKLE_MOVE].move_id",
+              "old": "TACKLE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TACKLE_MOVE].next",
+              "old": "TACKLE_2_MOVE",
+              "new": "none"
+            },
+            {
+              "field": "attack_pattern.states[TACKLE_MOVE].type",
+              "old": "move",
+              "new": "none"
+            },
+            {
+              "field": "damage_values.StrongTackle.ascension",
+              "old": "none",
+              "new": "32"
+            },
+            {
+              "field": "damage_values.StrongTackle.normal",
+              "old": "none",
+              "new": "26"
+            },
+            {
+              "field": "moves[STRONG_TACKLE].damage.ascension",
+              "old": "none",
+              "new": "32"
+            },
+            {
+              "field": "moves[STRONG_TACKLE].damage.normal",
+              "old": "none",
+              "new": "26"
+            },
+            {
+              "field": "moves[STRONG_TACKLE].id",
+              "old": "none",
+              "new": "STRONG_TACKLE"
+            },
+            {
+              "field": "moves[STRONG_TACKLE].intent",
+              "old": "none",
+              "new": "Attack"
+            },
+            {
+              "field": "moves[STRONG_TACKLE].name",
+              "old": "none",
+              "new": "Strong Tackle"
+            },
+            {
+              "field": "moves[TACKLE].damage.ascension",
+              "old": "22",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].damage.normal",
+              "old": "18",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].id",
+              "old": "TACKLE",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].intent",
+              "old": "Attack",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE].name",
+              "old": "Tackle",
+              "new": "none"
+            },
+            {
+              "field": "moves[TACKLE_2].damage.ascension",
+              "old": "22",
+              "new": "32"
+            },
+            {
+              "field": "moves[TACKLE_2].damage.normal",
+              "old": "18",
+              "new": "26"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "potions",
+      "name": "Potions",
+      "old_count": 63,
+      "new_count": 64,
+      "added": [
+        {
+          "id": "AMBERGRIS",
+          "name": "Ambergris",
+          "rarity": "Event"
+        }
+      ],
+      "changed": [
+        {
+          "id": "FOUL_POTION",
+          "name": "Foul Potion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "60",
+              "new": "61"
+            }
+          ]
+        },
+        {
+          "id": "GLOWWATER_POTION",
+          "name": "Glowwater Potion",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "61",
+              "new": "62"
+            }
+          ]
+        },
+        {
+          "id": "POTION_SHAPED_ROCK",
+          "name": "Potion-Shaped Rock",
+          "changes": [
+            {
+              "field": "compendium_order",
+              "old": "62",
+              "new": "63"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "events",
+      "name": "Events",
+      "old_count": 66,
+      "new_count": 66,
+      "changed": [
+        {
+          "id": "NEOW",
+          "name": "Neow",
+          "changes": [
+            {
+              "field": "relics[21]",
+              "old": "HEFTY_TABLET",
+              "new": "DOWSING_ROD"
+            },
+            {
+              "field": "relics[22]",
+              "old": "LARGE_CAPSULE",
+              "new": "HEFTY_TABLET"
+            },
+            {
+              "field": "relics[23]",
+              "old": "LEAFY_POULTICE",
+              "new": "LARGE_CAPSULE"
+            },
+            {
+              "field": "relics[24]",
+              "old": "NEOWS_BONES",
+              "new": "LEAFY_POULTICE"
+            },
+            {
+              "field": "relics[25]",
+              "old": "PRECARIOUS_SHEARS",
+              "new": "NEOWS_BONES"
+            },
+            {
+              "field": "relics[26]",
+              "old": "SILKEN_TRESS",
+              "new": "NEOWS_SACRIFICE"
+            },
+            {
+              "field": "relics[27]",
+              "old": "SILVER_CRUCIBLE",
+              "new": "PRECARIOUS_SHEARS"
+            },
+            {
+              "field": "relics[28]",
+              "old": "none",
+              "new": "SILKEN_TRESS"
+            },
+            {
+              "field": "relics[29]",
+              "old": "none",
+              "new": "SILVER_CRUCIBLE"
+            }
+          ]
+        },
+        {
+          "id": "OROBAS",
+          "name": "Orobas",
+          "changes": [
+            {
+              "field": "relics[2]",
+              "old": "SAND_CASTLE",
+              "new": "ALCHEMICAL_COFFER"
+            },
+            {
+              "field": "relics[3]",
+              "old": "ALCHEMICAL_COFFER",
+              "new": "DRIFTWOOD"
+            },
+            {
+              "field": "relics[4]",
+              "old": "DRIFTWOOD",
+              "new": "RADIANT_PEARL"
+            },
+            {
+              "field": "relics[5]",
+              "old": "RADIANT_PEARL",
+              "new": "SAND_CASTLE"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "powers",
+      "name": "Powers",
+      "old_count": 265,
+      "new_count": 265,
+      "added": [
+        {
+          "id": "AMBERGRIS",
+          "name": "Ambergris",
+          "type": "Buff"
+        }
+      ],
+      "removed": [
+        {
+          "id": "DIAMOND_DIADEM",
+          "name": "Diamond Diadem"
+        }
+      ],
+      "changed": [
+        {
+          "id": "DEMON_FORM",
+          "name": "Demon Form",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the start of your turn, gain [blue]2[/blue] [gold]Strength[/gold].",
+              "new": "At the start of your turn, gain [blue]3[/blue] [gold]Strength[/gold]."
+            }
+          ]
+        },
+        {
+          "id": "HIBERNATE",
+          "name": "Hibernate",
+          "changes": [
+            {
+              "field": "stack_type",
+              "old": "Single",
+              "new": "Counter"
+            }
+          ]
+        },
+        {
+          "id": "PILLAR_OF_CREATION",
+          "name": "Pillar of Creation",
+          "changes": [
+            {
+              "field": "description",
+              "old": "Whenever you create a card, gain [blue]5[/blue] [gold]Block[/gold].",
+              "new": "The first time you create a card each turn, gain [blue][Amount][/blue] [gold]..."
+            },
+            {
+              "field": "description_raw",
+              "old": "none",
+              "new": "The first time you create a card each turn, gain [blue]{Amount}[/blue] [gold]..."
+            }
+          ]
+        },
+        {
+          "id": "WELL_LAID_PLANS",
+          "name": "Well-Laid Plans",
+          "changes": [
+            {
+              "field": "description",
+              "old": "At the end of your turn, [gold]Retain[/gold] up to [blue]1[/blue] card.",
+              "new": "At the end of your turn, you no longer discard your [gold]Hand[/gold]."
+            },
+            {
+              "field": "stack_type",
+              "old": "Counter",
+              "new": "Single"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
