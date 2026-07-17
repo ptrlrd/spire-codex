@@ -1205,7 +1205,20 @@ def start_stats_refresher() -> None:
     actually runs the heavy aggregation cycle. Others spin idle
     every refresh interval and the lease auto-rotates if the holder
     dies.
+
+    STATS_REFRESHER=off opts an instance out of the lease entirely:
+    the web containers set it so the heavy walk runs only in the
+    dedicated rebuilder service, whose container survives web deploys
+    (which used to kill every in-flight rebuild).
     """
+    if os.environ.get("STATS_REFRESHER", "on").strip().lower() in (
+        "off",
+        "0",
+        "false",
+        "no",
+    ):
+        logger.info("stats refresher disabled on this instance (STATS_REFRESHER=off)")
+        return
     import threading
 
     def _loop() -> None:
