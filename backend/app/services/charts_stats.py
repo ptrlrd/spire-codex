@@ -998,16 +998,21 @@ def hp_loss_by_floor(stats: dict[str, Any], players: int | None) -> list[dict]:
 
 
 def _encounter_names() -> dict[str, str]:
+    # Historical entries ride along: retired-but-official content (the
+    # Doormaker era) still fills months of run rows, and this map doubles as
+    # the modded-id guard, so without them those rows silently vanish.
+    from .encounter_stats import HISTORICAL_ENCOUNTERS
     from . import data_service
 
     try:
-        return {
+        names = {
             e["id"]: e.get("name") or e["id"]
             for e in data_service.load_encounters()
             if e.get("id")
         }
+        return {**HISTORICAL_ENCOUNTERS, **names}
     except Exception:
-        return {}
+        return dict(HISTORICAL_ENCOUNTERS)
 
 
 def encounter_ranking(
@@ -1016,8 +1021,20 @@ def encounter_ranking(
     """Encounters ranked by avg % max HP lost per fight, or by avg turns."""
     merged = _merge_cells(stats.get("enc") or [], players)
     names = _encounter_names()
-    rows = []
+    # Fold renamed ids into their current id first (Toadpoles -> Seapunk),
+    # so a renamed fight ranks as one entry instead of two half-sized ones.
+    from .encounter_stats import ENCOUNTER_ID_RENAMES
+
+    folded: dict[str, list[float]] = {}
     for enc, (s, n, st, nt) in (merged.get("ALL") or {}).items():
+        key = ENCOUNTER_ID_RENAMES.get(enc, enc)
+        f = folded.setdefault(key, [0.0, 0, 0.0, 0])
+        f[0] += s
+        f[1] += n
+        f[2] += st
+        f[3] += nt
+    rows = []
+    for enc, (s, n, st, nt) in folded.items():
         if names and enc not in names:
             continue  # modded encounters
         if metric == "turns":

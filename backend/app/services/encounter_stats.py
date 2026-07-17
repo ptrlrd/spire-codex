@@ -208,6 +208,29 @@ def empty_one() -> dict[str, Any]:
     return _finalize_one(_new_acc_one())
 
 
+# Retired-but-official encounters: content that shipped in an official build
+# and was later replaced outright, so the current catalog no longer lists it,
+# but months of submitted runs still reference it. Without these the modded-id
+# scrub silently erases that history: the Doormaker was the Act 3 boss from
+# the 2025-10-16 patch until the v0.100.0 (2026-05-07) Aeonglass rework, and
+# every one of those fights vanished from the encounter stats. Maps id ->
+# display name (the catalog can't name what it no longer contains).
+HISTORICAL_ENCOUNTERS: dict[str, str] = {
+    "DOORMAKER_BOSS": "The Doormaker",
+    # The Dreamer was the Act 3 boss the Doormaker replaced (2025-10-16).
+    # Both id spellings are allowed since the exact retired id predates the
+    # current decompile; an entry that never matches simply never surfaces.
+    "DREAMER_BOSS": "The Dreamer",
+    "THE_DREAMER_BOSS": "The Dreamer",
+}
+
+# Same fight, renamed id. The game migrates local saves (V100Renames in the
+# decompiled SharedMigrationHelper), but runs submitted before the rename
+# reached us with the old id, so fold those rows into the current id.
+ENCOUNTER_ID_RENAMES: dict[str, str] = {
+    "TOADPOLES_NORMAL": "SEAPUNK_NORMAL",
+}
+
 _official_enc_ids: frozenset[str] | None = None
 
 
@@ -240,7 +263,7 @@ def _official_encounter_ids() -> frozenset[str]:
     except Exception:
         logger.warning("encounter official-id load failed", exc_info=True)
         return frozenset()
-    _official_enc_ids = frozenset(ids)
+    _official_enc_ids = frozenset(ids | set(HISTORICAL_ENCOUNTERS))
     return _official_enc_ids
 
 
@@ -279,6 +302,9 @@ def rollup(
     grouped: dict[tuple[str, int, str], dict[str, Any]] = {}
     for cell in cells:
         enc_id, act, room_type, character, mp, total, fatal, dmg, turns = cell
+        # Renamed content: old-id rows fold into the current id so the same
+        # fight isn't split into two half-sized entries.
+        enc_id = ENCOUNTER_ID_RENAMES.get(enc_id, enc_id)
         if official and enc_id not in official:
             continue
         if mp not in mp_keep:

@@ -51,7 +51,17 @@ function toggle<T>(set: Set<T>, value: T): Set<T> {
   return next;
 }
 
+// Retired-but-official encounters: the game data no longer names them (the
+// Doormaker was the Act 3 boss until the v0.100.0 Aeonglass rework), but the
+// stats still carry their rows. Mirrors HISTORICAL_ENCOUNTERS on the backend.
+const LEGACY_NAMES: Record<string, string> = {
+  DOORMAKER_BOSS: "The Doormaker",
+  DREAMER_BOSS: "The Dreamer",
+  THE_DREAMER_BOSS: "The Dreamer",
+};
+
 function displayName(id: string): string {
+  if (LEGACY_NAMES[id]) return LEGACY_NAMES[id];
   // Fallback when we don't have an encounters lookup hit, humanize the
   // upper-snake-case id. Matches the convention other stats tables use.
   return id
