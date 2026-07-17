@@ -52,6 +52,14 @@ fi
 docker compose -f docker-compose.prod.yml pull backend frontend
 docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
 
+# The rebuilder gets its own `up` WITHOUT --force-recreate: compose then
+# only recreates it when the backend image actually changed. A frontend or
+# data-only deploy leaves it untouched, so the multi-hour snapshot walk
+# survives - recreating it on every deploy is exactly how the snapshot
+# sat stale for days. Never drop this line: a rebuilder abandoned on an
+# old image would keep writing old-version snapshots forever.
+docker compose -f docker-compose.prod.yml up -d rebuilder
+
 # Recreated containers get new IPs on the shared docker network, but nginx
 # resolves upstream hostnames once at startup, so without a reload it keeps
 # proxying to the old addresses and the whole site 502s (2026-06-11, and
