@@ -2,7 +2,9 @@
 # Hourly auto-deploy for spire-codex prod. Polls origin/main; if HEAD
 # advanced, pulls Docker images and recreates the backend+frontend
 # containers. After a clean restart, purges Cloudflare cache so /news,
-# /api/news, sitemap.xml, etc. immediately reflect the new build.
+# /api/news, sitemap.xml, etc. immediately reflect the new build. Code
+# deploys purge the whole zone and then re-warm the hot pages;
+# news-data-only commits purge just the news URLs (see the purge block).
 #
 # Installed by playbooks/install-autodeploy.yml. Triggered by
 # /etc/cron.d/spire-codex-autodeploy. Manual run: just exec this script.
@@ -131,8 +133,35 @@ fi
 
 # Purge Cloudflare cache. Without this, /news + /api/news + sitemap.xml
 # keep serving the pre-deploy HTML (CF s-maxage is up to 1 year for some
-# routes). We purge everything because the cost of overpurging is just a
-# brief cold cache, while the cost of underpurging is invisible stale data.
+# routes). Scope depends on what changed:
+#
+#   RECREATE=1 : real code deploy — page HTML can change on every route,
+#                so purge everything (a prefix purge needs a paid CF
+#                plan). Overpurging here costs a brief cold cache;
+#                underpurging is invisible stale data.
+#   RECREATE=0 : news/beta-data-only commit (the hourly news workflow,
+#                several per day). Only the news surfaces changed, so a
+#                targeted `files` purge keeps /static/* (1y immutable),
+#                the R2 images, and every other cached API response warm
+#                instead of going cold zone-wide every hour.
+if [ "$RECREATE" = "1" ]; then
+  PURGE_BODY='{"purge_everything":true}'
+  PURGE_WHAT="everything"
+else
+  # The URLs whose content moves when a news commit lands:
+  #   /            homepage embeds the latest 3 announcements (HomeNewsSection)
+  #   /news        list page, plus its tab views (?tab=press, ?tab=all)
+  #   /api/news    the list endpoint clients hit through CF
+  #   sitemap.xml  in case lastmod moved
+  # Not purged, on purpose: /news/<slug> detail pages — a NEW article is a
+  # never-cached URL, and enumerating existing slugs isn't cheap here.
+  # /api/news query-string variants we can't enumerate expire on their own
+  # within s-maxage=3600. Localized /<lang>/news is force-dynamic (uncached).
+  PURGE_BODY='{"files":["https://spire-codex.com/","https://spire-codex.com/news","https://spire-codex.com/news?tab=press","https://spire-codex.com/news?tab=all","https://spire-codex.com/api/news","https://spire-codex.com/sitemap.xml"]}'
+  PURGE_WHAT="news URLs only"
+fi
+
+PURGED=0
 if [ -f "$CF_ENV" ]; then
   # shellcheck source=/dev/null
   source "$CF_ENV"
@@ -141,9 +170,10 @@ if [ -f "$CF_ENV" ]; then
       -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE}/purge_cache" \
       -H "Authorization: Bearer ${CF_TOKEN}" \
       -H "Content-Type: application/json" \
-      -d '{"purge_everything":true}')
+      -d "$PURGE_BODY")
     if [ "$HTTP" = "200" ]; then
-      log "✓ CF cache purged"
+      log "✓ CF cache purged ($PURGE_WHAT)"
+      PURGED=1
     else
       log "✗ CF purge returned $HTTP: $(cat /tmp/cf-purge.out)"
     fi
@@ -152,6 +182,21 @@ if [ -f "$CF_ENV" ]; then
   fi
 else
   log "⚠ $CF_ENV not found — skipping cache purge"
+fi
+
+# A full purge leaves the whole edge cold, so the next visitor to every
+# page pays origin latency (and the origin pays the fan-in). Re-warm the
+# hot landing pages right away; entity detail pages re-warm via the
+# startup.sh --full crawl or organically. Best-effort: warming is an
+# optimization and must never fail the deploy. Skipped when the purge was
+# skipped or failed — nothing went cold.
+if [ "$RECREATE" = "1" ] && [ "$PURGED" = "1" ]; then
+  log "  re-warming hot pages after full purge"
+  if timeout 10m python3 "$REPO/tools/warm_cache.py" --hot >> "$LOG" 2>&1; then
+    log "✓ warm crawl done (hot pages)"
+  else
+    log "⚠ warm crawl failed or timed out; continuing (pages warm on first visit)"
+  fi
 fi
 
 log "==== deploy done ===="

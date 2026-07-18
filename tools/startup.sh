@@ -2,11 +2,14 @@
 # Manual deploy entrypoint.
 #
 #   ./tools/startup.sh             defer to the installed autodeploy script
-#                                  (no-op when there's no new commit on main)
+#                                  (deploy no-ops when there's no new commit
+#                                  on main), then start the full warm crawl
+#                                  in the background
 #   ./tools/startup.sh release     force a full deploy NOW via autodeploy:
 #                                  pull images, snapshot prewarm, recreate
 #                                  backend+frontend, nginx reload, Cloudflare
 #                                  purge - even when the commit didn't change
+#                                  - then the background warm crawl
 #   ./tools/startup.sh --bypass    release entirely by hand: skip the
 #                                  autodeploy script, leave git alone, and
 #                                  just pull images + recreate backend and
@@ -32,10 +35,22 @@ done
 if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
     if [ "$MODE" = "release" ]; then
         echo "forcing a full deploy via spire-codex-autodeploy --force"
-        exec sudo /usr/local/bin/spire-codex-autodeploy --force
+        sudo /usr/local/bin/spire-codex-autodeploy --force
+    else
+        echo "delegating to spire-codex-autodeploy"
+        sudo /usr/local/bin/spire-codex-autodeploy
     fi
-    echo "delegating to spire-codex-autodeploy"
-    exec sudo /usr/local/bin/spire-codex-autodeploy
+    # set -e: reaching this line means autodeploy exited 0 (a same-commit
+    # tick no-ops and still exits 0); on failure we exit with its status
+    # and skip the crawl. Historically these were `exec` calls, which
+    # replaced the shell and made the warm crawl below unreachable in the
+    # automated path. Autodeploy re-warms the hot landing pages itself
+    # after a full purge; this --full crawl adds the entity detail pages
+    # (the on-demand ISR pages a container recreate resets).
+    nohup python3 "$(dirname "$0")/warm_cache.py" --full \
+        >/tmp/spire-warm-cache.log 2>&1 &
+    echo "cache warm crawl started in the background (log: /tmp/spire-warm-cache.log)"
+    exit 0
 fi
 
 # Bypass mode, or the autodeploy script isn't installed: the raw deploy.
