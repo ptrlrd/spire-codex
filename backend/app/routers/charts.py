@@ -523,8 +523,12 @@ def prewarm_charts(budget_s: float | None = None) -> int:
         except ValueError:
             budget_s = 900.0
     # Block until the frame is actually loaded: warming every frame chart
-    # from an empty frame would fill Redis with empty payloads.
+    # from an empty frame would fill Redis with empty payloads for hours.
+    # If it still isn't ready at the deadline, warm blob charts only.
     cs.get_frame(wait=True)
+    frame_missing = cs.frame_loading()
+    if frame_missing:
+        logger.warning("chart prewarm: charts frame unavailable; skipping frame charts")
     plain_brackets = [b for b in _BRACKET_KEYS if ":" not in b]
     versions = get_recent_stat_versions()  # newest first
     slices: list[tuple[str | None, str | None]] = [(None, None)]
@@ -557,6 +561,8 @@ def prewarm_charts(budget_s: float | None = None) -> int:
             out_of_budget = True
             break
         for chart_key, spec in eligible:
+            if frame_missing and spec["kind"] == "frame":
+                continue
             needs = spec.get("needs", [])
             stat = "deck_size" if "stat" in needs else None
             x = "floors_reached" if "x" in needs else None
