@@ -70,6 +70,16 @@ docker exec web-server nginx -s reload 2>/dev/null \
     && echo "nginx reloaded" \
     || echo "nginx reload skipped (web-server not running here)"
 
+# Warm every page in the background so the first visitor after this deploy
+# never pays the first-render cost. The script waits for the site to come
+# healthy, then crawls the sitemap plus every entity detail page (the
+# on-demand ISR pages a deploy resets). Fire-and-forget on purpose: the
+# deploy is done regardless of how the crawl goes; check the log if pages
+# feel cold.
+nohup python3 "$(dirname "$0")/warm_cache.py" --full \
+    >/tmp/spire-warm-cache.log 2>&1 &
+echo "cache warm crawl started in the background (log: /tmp/spire-warm-cache.log)"
+
 if [ "$BYPASS" = "1" ]; then
     echo "bypass deploy done: images pulled, containers recreated, nginx reloaded."
     echo "skipped on purpose: git changes, snapshot prewarm, Cloudflare purge."
