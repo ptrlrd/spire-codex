@@ -1105,6 +1105,7 @@ def get_stats(
     game_mode: str | None = None,
     players: str | None = None,
     username: str | None = None,
+    max_time_ms: int | None = None,
 ) -> dict:
     """Aggregated community stats. Mirrors the SQLite implementation's
     response shape — frontend doesn't care which backend produced it.
@@ -1139,7 +1140,10 @@ def get_stats(
     # (allowDiskUse doesn't help $facet). Each independent aggregate
     # gets its own 100MB budget + can spill to disk via allowDiskUse.
     def agg(pipeline: list[dict]) -> list[dict]:
-        return list(coll.aggregate(pipeline, allowDiskUse=True))
+        kwargs: dict = {"allowDiskUse": True}
+        if max_time_ms:
+            kwargs["maxTimeMS"] = max_time_ms
+        return list(coll.aggregate(pipeline, **kwargs))
 
     totals_rows = agg(
         [
@@ -1625,7 +1629,8 @@ def refresh_stats_summary() -> int:
 @_instrument("refresh_home_stats", collection="stats_summary")
 def refresh_home_stats() -> int:
     """Refresh only the no-filter stats combo the homepage polls."""
-    result = get_stats()
+    t0 = time.time()
+    result = get_stats(max_time_ms=30_000)
     key = _filter_key()
     doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
     _summary_coll().replace_one({"_id": key}, doc, upsert=True)
@@ -1633,6 +1638,11 @@ def refresh_home_stats() -> int:
         app_cache.stats_key(),
         result,
         ttl_seconds=app_cache.WARM_TTL_SECONDS,
+    )
+    logger.info(
+        "home stats refreshed: %d runs in %.1fs",
+        result.get("total_runs", 0),
+        time.time() - t0,
     )
     return 1
 
