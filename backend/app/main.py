@@ -201,6 +201,16 @@ def _warm_run_entity_stats() -> None:
             start_stats_refresher()
         except Exception:
             pass
+        # Kick the charts metadata-frame load now (it's a 60-100s scan of
+        # every run row) so it happens during the deploy window instead of
+        # inside the first visitor's chart request. get_frame() without
+        # wait just starts the background thread and returns.
+        try:
+            from .services import charts_stats
+
+            charts_stats.get_frame()
+        except Exception:
+            pass
         # One-time field backfills for runs that predate a field
         # (username_lower normalization, the `bought` shop-purchase list),
         # off the request path (the runs collection is large). Idempotent

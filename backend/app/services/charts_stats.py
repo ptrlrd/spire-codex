@@ -209,23 +209,73 @@ def _load_frame() -> list[tuple]:
     return rows
 
 
-def get_frame() -> list[tuple]:
-    """The metadata frame, reloading from the store at most every TTL.
-    Keeps serving the previous frame if a reload fails."""
-    global _FRAME, _FRAME_TS
-    if _FRAME and time.time() - _FRAME_TS < _FRAME_TTL:
-        return _FRAME
+_FRAME_REFRESHING = False
+
+
+def _kick_frame_refresh() -> None:
+    """Reload the frame on a daemon thread, at most one in flight. The scan
+    walks every eligible run row (60-100s on prod), which used to run
+    synchronously inside whichever chart request crossed the TTL — a
+    once-per-10-minutes-per-worker visitor ate a one-minute hang and
+    usually a 504. Requests now always get the current frame instantly."""
+    global _FRAME_REFRESHING
     with _FRAME_LOCK:
-        if _FRAME and time.time() - _FRAME_TS < _FRAME_TTL:
-            return _FRAME
+        if _FRAME_REFRESHING:
+            return
+        _FRAME_REFRESHING = True
+
+    def _run() -> None:
+        global _FRAME, _FRAME_TS, _FRAME_REFRESHING
         try:
             rows = _load_frame()
-            if rows or not _FRAME:
-                _FRAME = rows
-            _FRAME_TS = time.time()
+            with _FRAME_LOCK:
+                # Keep serving the previous frame if a reload comes back
+                # empty; an empty store only wins when there was nothing.
+                if rows or not _FRAME:
+                    _FRAME = rows
+                _FRAME_TS = time.time()
         except Exception:
             logger.warning("charts frame reload failed", exc_info=True)
-            _FRAME_TS = time.time()  # don't hammer a broken store
+            with _FRAME_LOCK:
+                _FRAME_TS = time.time()  # don't hammer a broken store
+        finally:
+            with _FRAME_LOCK:
+                _FRAME_REFRESHING = False
+
+    threading.Thread(target=_run, name="charts-frame-refresh", daemon=True).start()
+
+
+def frame_loading() -> bool:
+    """True while the frame is empty because its first load hasn't finished,
+    so endpoints can mark payloads "building" instead of caching a bogus
+    empty chart. False once any load has completed, even an empty one (a
+    store with no runs is empty, not warming up)."""
+    return not _FRAME and (_FRAME_REFRESHING or _FRAME_TS == 0)
+
+
+def get_frame(wait: bool = False) -> list[tuple]:
+    """The metadata frame, refreshed from the store at most every TTL.
+
+    Request path (wait=False): never blocks. A fresh frame serves as-is; a
+    stale or missing one kicks a background reload and serves whatever is
+    loaded right now (stale beats a one-minute hang, and `frame_loading`
+    tells callers when empty means "still warming").
+
+    wait=True is for the prewarmer: it must never compute warm payloads
+    from an empty frame, so it waits out the load (bounded) instead.
+
+    Freshness keys off the timestamp, not the frame's truthiness: a store
+    with zero runs is a completed (empty) load, not a reason to rescan on
+    every call."""
+    if _FRAME_TS and time.time() - _FRAME_TS < _FRAME_TTL:
+        return _FRAME
+    _kick_frame_refresh()
+    if wait:
+        deadline = time.time() + 600
+        while time.time() < deadline:
+            if time.time() - _FRAME_TS < _FRAME_TTL:
+                break
+            time.sleep(1)
     return _FRAME
 
 
