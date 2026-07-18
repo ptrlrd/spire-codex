@@ -12,6 +12,7 @@ is set.
 """
 
 import logging
+import os
 import re
 import time
 
@@ -491,37 +492,68 @@ def _compute_chart(
     }
 
 
-def prewarm_charts() -> int:
-    """Precompute chart payloads for the slices people actually open and warm
-    the shared cache, so the /charts page, chart switches, and the common
-    bracket/version filters serve from Redis instead of aggregating live.
+def prewarm_charts(budget_s: float | None = None) -> int:
+    """Precompute chart payloads into the shared cache so filter clicks on
+    /charts serve from Redis instead of aggregating live.
 
-    Warmed per chart (skipping charts that wait on a user-picked entity,
-    encounter, or event): the unfiltered default, each plain bracket
-    (solo/2p/.../wr75), and the newest few game versions. Composite slices
-    (solo:a10:v0.109.0 and friends) stay on-demand — the long tail is huge
-    and _CACHE_TTL keeps repeat views of any slice cheap.
+    Greedy with a time budget: the slice list covers EVERY combination the
+    UI can request — the unfiltered default, each bracket (plain and
+    player:skill composites), each game version, and every bracket x version
+    composite — ordered so the highest-traffic slices warm first and older
+    versions' composites warm last. Warming stops when the budget runs out
+    and logs how many slices didn't make it, so coverage is visible, not
+    assumed. CHART_PREWARM_BUDGET_S tunes the budget (default 900s); the
+    long tail that misses the cut computes on demand and _CACHE_TTL keeps
+    its repeat views cheap.
+
+    Charts that wait on a user-picked entity, encounter, or event are
+    skipped — they have no default worth warming.
 
     Called from the stats refresher cycle right after each snapshot rebuild,
     so every cycle overwrites the warm set with fresh data. Returns how many
     payloads were warmed."""
+    if budget_s is None:
+        try:
+            budget_s = float(os.environ.get("CHART_PREWARM_BUDGET_S", "") or 900)
+        except ValueError:
+            budget_s = 900.0
     plain_brackets = [b for b in _BRACKET_KEYS if ":" not in b]
-    versions = get_recent_stat_versions()[:3]
+    versions = get_recent_stat_versions()  # newest first
     slices: list[tuple[str | None, str | None]] = [(None, None)]
     slices += [(b, None) for b in plain_brackets]
     slices += [(None, v) for v in versions]
+    slices += [(b, None) for b in _BRACKET_KEYS if ":" in b]
+    # Full composite grid, newest versions first so a tight budget drops the
+    # oldest (least-visited) slices.
+    slices += [(b, v) for v in versions for b in _BRACKET_KEYS]
+
+    eligible: list[tuple[str, dict]] = [
+        (chart_key, spec)
+        for chart_key, spec in CHARTS.items()
+        if not any(n in ("entity", "encounter", "event") for n in spec.get("needs", []))
+    ]
     warmed = 0
     started = time.monotonic()
-    for chart_key, spec in CHARTS.items():
-        needs = spec.get("needs", [])
-        # These charts have no sensible default until the user picks one.
-        if any(n in ("entity", "encounter", "event") for n in needs):
-            continue
-        stat = "deck_size" if "stat" in needs else None
-        x = "floors_reached" if "x" in needs else None
-        y = "deck_size" if "x" in needs else None
-        split = "character"
-        for bracket, build_id in slices:
+    out_of_budget = False
+    for si, (bracket, build_id) in enumerate(slices):
+        if time.monotonic() - started > budget_s:
+            skipped = (len(slices) - si) * len(eligible)
+            logger.info(
+                "chart prewarm: budget (%.0fs) exhausted at slice %d/%d; "
+                "~%d payloads left on-demand",
+                budget_s,
+                si,
+                len(slices),
+                skipped,
+            )
+            out_of_budget = True
+            break
+        for chart_key, spec in eligible:
+            needs = spec.get("needs", [])
+            stat = "deck_size" if "stat" in needs else None
+            x = "floors_reached" if "x" in needs else None
+            y = "deck_size" if "x" in needs else None
+            split = "character"
             try:
                 payload = _compute_chart(
                     chart_key,
@@ -572,9 +604,11 @@ def prewarm_charts() -> int:
             app_cache.set_json(key, payload, 30 if payload["building"] else _WARM_TTL)
             warmed += 1
     logger.info(
-        "chart prewarm: %d payloads (%d slices) in %.1fs",
+        "chart prewarm: %d payloads (%d/%d slices%s) in %.1fs",
         warmed,
+        min(si + (0 if out_of_budget else 1), len(slices)) if slices else 0,
         len(slices),
+        ", budget hit" if out_of_budget else "",
         time.monotonic() - started,
     )
     return warmed
