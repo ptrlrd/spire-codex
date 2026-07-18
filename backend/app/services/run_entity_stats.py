@@ -2294,6 +2294,86 @@ def _load_rows_after(last_key: tuple) -> list[dict]:
     ]
 
 
+_CHECKPOINT_PATH = (
+    Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
+    / "stats_checkpoint.pkl.gz"
+)
+_CHECKPOINT_INTERVAL = max(
+    300, int(os.environ.get("STATS_CHECKPOINT_INTERVAL_SECONDS", "") or 3600)
+)
+_last_checkpoint_ts = 0.0
+
+
+def save_stats_checkpoint() -> bool:
+    """Snapshot the incremental base to disk so a restarted rebuilder can
+    resume by tailing instead of rewalking every run."""
+    if _incr is None or _incr.get("last_key") is None:
+        return False
+    import gzip
+    import pickle
+
+    global _last_checkpoint_ts
+    t0 = time.time()
+    tmp = _CHECKPOINT_PATH.with_suffix(".tmp")
+    try:
+        with gzip.open(tmp, "wb", compresslevel=1) as f:
+            pickle.dump(
+                {"snapshot_version": SNAPSHOT_VERSION, "incr": _incr},
+                f,
+                protocol=pickle.HIGHEST_PROTOCOL,
+            )
+        tmp.replace(_CHECKPOINT_PATH)
+    except Exception:
+        logger.warning("stats checkpoint save failed", exc_info=True)
+        tmp.unlink(missing_ok=True)
+        return False
+    _last_checkpoint_ts = time.time()
+    logger.info(
+        "stats checkpoint saved: %d MB in %.1fs",
+        _CHECKPOINT_PATH.stat().st_size // (1024 * 1024),
+        time.time() - t0,
+    )
+    return True
+
+
+def _load_stats_checkpoint() -> bool:
+    if not _CHECKPOINT_PATH.exists():
+        return False
+    import gzip
+    import pickle
+
+    global _incr
+    t0 = time.time()
+    try:
+        with gzip.open(_CHECKPOINT_PATH, "rb") as f:
+            data = pickle.load(f)
+    except Exception:
+        logger.warning("stats checkpoint unreadable; falling back to a full walk")
+        return False
+    if data.get("snapshot_version") != SNAPSHOT_VERSION:
+        logger.info(
+            "stats checkpoint is snapshot version %s (want %s); full walk instead",
+            data.get("snapshot_version"),
+            SNAPSHOT_VERSION,
+        )
+        return False
+    incr = data.get("incr")
+    if not incr or incr.get("last_key") is None:
+        return False
+    if time.time() - incr.get("last_full_ts", 0) >= _STATS_REPAIR_SECONDS:
+        logger.info("stats checkpoint is past the repair interval; full walk instead")
+        return False
+    incr["pending"] = incr.get("pending", 0) + 1
+    incr["last_persist_ts"] = 0.0
+    _incr = incr
+    logger.info(
+        "stats checkpoint loaded in %.1fs; resuming from %s",
+        time.time() - t0,
+        incr["last_key"][0],
+    )
+    return True
+
+
 def _incremental_tick() -> int:
     """Fold newly submitted runs into the retained raw accumulators and
     re-finalize + persist on the _STATS_PERSIST_SECONDS cadence. The raw
@@ -2352,6 +2432,8 @@ def _incremental_tick() -> int:
         )
         _incr["pending"] = 0
         _incr["last_persist_ts"] = time.time()
+        if time.time() - _last_checkpoint_ts >= _CHECKPOINT_INTERVAL:
+            save_stats_checkpoint()
         return len(cache)
     return 0
 
@@ -2362,6 +2444,8 @@ def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
     game version, incremental disabled) runs the full walk and retains its
     raw state as the new base. Returns entities persisted, 0 if nothing."""
     coll = _snapshot_coll()
+    if not force_full and _INCREMENTAL_ENABLED and _USING_MONGO and _incr is None:
+        _load_stats_checkpoint()
     if (
         not force_full
         and _INCREMENTAL_ENABLED
@@ -2407,6 +2491,8 @@ def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
         len(cache),
         totals["total_runs"],
     )
+    if _INCREMENTAL_ENABLED and _USING_MONGO:
+        save_stats_checkpoint()
     return len(cache)
 
 

@@ -185,6 +185,19 @@ app.add_middleware(SlowAPIMiddleware)
 # doesn't block on a 5-10s walk of every submitted run JSON. Run in
 # the background so container readiness probes don't have to wait on
 # it; beta deploys (no run submissions) skip the warm-up.
+# On the rebuilder, a graceful stop snapshots the incremental stats base so
+# the next boot resumes by tailing instead of rewalking every run. Web
+# workers hold no base, so this returns instantly there.
+@app.on_event("shutdown")
+def _save_stats_checkpoint() -> None:
+    try:
+        from .services.run_entity_stats import save_stats_checkpoint
+
+        save_stats_checkpoint()
+    except Exception:
+        pass
+
+
 @app.on_event("startup")
 def _warm_run_entity_stats() -> None:
     if IS_BETA_BACKEND:
