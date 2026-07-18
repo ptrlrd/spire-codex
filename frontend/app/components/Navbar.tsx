@@ -162,7 +162,7 @@ const DB_META: Record<string, { color: string; count?: string }> = {
 // their (English) label so beta-hidden links drop out automatically.
 const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
   Compendium: [
-    { title: "Cards & Combat", labels: ["Card Library", "Relic Collection", "Potion Lab", "Powers", "Keywords"] },
+    { title: "Cards & Combat", labels: ["Card Library", "Relic Collection", "Potion Lab", "Enchantments", "Powers", "Keywords"] },
     { title: "The Run", labels: ["Characters", "Bestiary", "Encounters", "Events", "Ancients", "Merchant"] },
     { title: "Systems & Meta", labels: ["Custom Mode", "Mechanics", "Unlockables"] },
     { title: "Reference", labels: ["Timeline", "Images", "Reference", "Badges", "Compare Characters", "Guides"] },
