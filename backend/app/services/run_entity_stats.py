@@ -2035,6 +2035,7 @@ def _load_snapshot() -> bool:
     False if no snapshot exists yet (caller falls back to local build)."""
     global _cache_snapshot_version
     coll = _snapshot_coll()
+    started = time.monotonic()
     meta = coll.find_one({"_id": "__meta__"})
     if not meta:
         return False
@@ -2070,8 +2071,10 @@ def _load_snapshot() -> bool:
         # older ones keep it inline. Read whichever shape this doc has.
         entities = doc.get("entities", [])
         if not entities and doc.get("chunk_count"):
-            for ci in range(int(doc["chunk_count"])):
-                cdoc = coll.find_one({"_id": f"{etype}:chunk:{ci}"}) or {}
+            # One batched query instead of a round trip per chunk; chunk
+            # order doesn't matter, the cache is keyed by (etype, id).
+            ids = [f"{etype}:chunk:{ci}" for ci in range(int(doc["chunk_count"]))]
+            for cdoc in coll.find({"_id": {"$in": ids}}):
                 entities.extend(cdoc.get("entities", []))
         for e in entities:
             by_char = {
@@ -2117,13 +2120,19 @@ def _load_snapshot() -> bool:
         keys = doc.get("keys")
         if not keys:
             return doc.get("blob") or meta.get(blob_id) or {}
+        # One batched query for all shards of this blob: with version
+        # composites that's hundreds of keys, and a round trip per key was
+        # most of the post-deploy snapshot-load window.
         out: dict[str, Any] = {}
-        for k in keys:
-            kdoc = coll.find_one({"_id": f"{blob_id}:{k}"}) or {}
+        prefix = f"{blob_id}:"
+        for kdoc in coll.find({"_id": {"$in": [prefix + k for k in keys]}}):
             if kdoc.get("blob") is not None:
-                out[k] = kdoc["blob"]
+                out[kdoc["_id"][len(prefix) :]] = kdoc["blob"]
         return out
 
+    community = _blob_doc("community")
+    charts = _blob_doc("charts")
+    encounters = _blob_doc("encounters")
     _apply_cache(
         new_cache,
         meta.get("global_totals", {"total_runs": 0, "total_wins": 0}),
@@ -2134,13 +2143,21 @@ def _load_snapshot() -> bool:
             or meta.get("cohort_baselines")
             or {},
             "totals": meta.get("bracket_totals") or meta.get("cohort_totals") or {},
-            "community": _blob_doc("community"),
-            "charts": _blob_doc("charts"),
-            "encounters": _blob_doc("encounters"),
+            "community": community,
+            "charts": charts,
+            "encounters": encounters,
             "recent_versions": meta.get("recent_versions") or [],
         },
     )
     _cache_snapshot_version = meta_version
+    logger.info(
+        "entity-stats snapshot loaded: %d entities, %d/%d/%d blob keys in %.1fs",
+        len(new_cache),
+        len(community),
+        len(charts),
+        len(encounters),
+        time.monotonic() - started,
+    )
     return True
 
 
@@ -2210,6 +2227,12 @@ def snapshot_status() -> dict[str, Any]:
 
 
 def _maybe_rebuild() -> None:
+    """Kick a background (re)load of the cache when it's stale. Never blocks:
+    the caller reads whatever is in memory right now. The load used to run
+    synchronously on the triggering request thread, which meant the first
+    stats request after a worker boot — and one unlucky request every
+    _SNAPSHOT_LOAD_SECONDS per worker, forever — hung for the full multi-
+    thousand-doc snapshot read."""
     global _building
     age = time.time() - _cache_built_at
     if age < _SNAPSHOT_LOAD_SECONDS:
@@ -2220,24 +2243,38 @@ def _maybe_rebuild() -> None:
         if time.time() - _cache_built_at < _SNAPSHOT_LOAD_SECONDS:
             return
         _building = True
-    try:
-        # On the Mongo path, request threads NEVER walk the run files.
-        # They only load the shared snapshot the leader refresher builds.
-        # If the snapshot doesn't exist yet (cold start before the first
-        # leader cycle), we leave the cache as-is and let the next read
-        # pick it up once the refresher has written it — a few seconds of
-        # an empty tier list beats every worker pegging a CPU.
-        if _USING_MONGO:
-            try:
-                _load_snapshot()
-            except Exception as e:
-                logger.warning("entity-stats snapshot load failed: %s", e)
-            return
-        # SQLite path: no shared snapshot, build locally.
-        _build_cache()
-    finally:
-        with _lock:
-            _building = False
+
+    def _run() -> None:
+        global _building
+        try:
+            # On the Mongo path, request threads NEVER walk the run files.
+            # They only load the shared snapshot the leader refresher builds.
+            # If the snapshot doesn't exist yet (cold start before the first
+            # leader cycle), we leave the cache as-is and let the next read
+            # pick it up once the refresher has written it — a few seconds of
+            # an empty tier list beats every worker pegging a CPU.
+            if _USING_MONGO:
+                try:
+                    _load_snapshot()
+                except Exception as e:
+                    logger.warning("entity-stats snapshot load failed: %s", e)
+                return
+            # SQLite path: no shared snapshot, build locally.
+            _build_cache()
+        finally:
+            with _lock:
+                _building = False
+
+    threading.Thread(
+        target=_run, name="entity-stats-snapshot-load", daemon=True
+    ).start()
+
+
+def kick_snapshot_load() -> None:
+    """Start the first snapshot load in the background. Called at worker
+    startup so the load runs during the deploy window instead of starting
+    on (and delaying) the first visitor's stats request."""
+    _maybe_rebuild()
 
 
 def _baseline_win_rate() -> float:

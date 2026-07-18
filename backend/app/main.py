@@ -211,6 +211,15 @@ def _warm_run_entity_stats() -> None:
             charts_stats.get_frame()
         except Exception:
             pass
+        # Same idea for the shared entity-stats snapshot: start loading it
+        # from Mongo now so the post-deploy "stats are rebuilding" window
+        # is the load's actual duration, not "until someone asks + load".
+        try:
+            from .services.run_entity_stats import kick_snapshot_load
+
+            kick_snapshot_load()
+        except Exception:
+            pass
         # One-time field backfills for runs that predate a field
         # (username_lower normalization, the `bought` shop-purchase list),
         # off the request path (the runs collection is large). Idempotent
