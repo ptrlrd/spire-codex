@@ -210,6 +210,7 @@ export default function GlobalSearch() {
       abortRef.current = controller;
 
       const encoded = encodeURIComponent(query.trim());
+      const wantSemantic = query.trim().split(/\s+/).length >= 3;
       Promise.all([
         fetch(buildApiUrl(`${API}/api/search?q=${encoded}&lang=${lang}`), {
           signal: controller.signal,
@@ -221,7 +222,14 @@ export default function GlobalSearch() {
         })
           .then((r) => (r.ok ? r.json() : []))
           .catch(() => []),
-      ]).then(([unified, images]) => {
+        wantSemantic
+          ? fetch(buildApiUrl(`${API}/api/search/semantic?q=${encoded}`), {
+              signal: controller.signal,
+            })
+              .then((r) => (r.ok ? r.json() : { items: [] }))
+              .catch(() => ({ items: [] }))
+          : Promise.resolve({ items: [] }),
+      ]).then(([unified, images, semantic]) => {
         if (controller.signal.aborted) return;
         const next: SearchSection[] = (unified.categories ?? []).map(
           (c: { label: string; items: SearchItem[] }) => ({
@@ -239,6 +247,15 @@ export default function GlobalSearch() {
             external: true,
           }));
         if (imageItems.length > 0) next.push({ label: "Images", items: imageItems });
+        const already = new Set(
+          next.flatMap((s) => s.items.map((it) => it.path))
+        );
+        const semanticItems: SearchItem[] = (
+          (semantic.items ?? []) as SearchItem[]
+        ).filter((it) => !already.has(it.path));
+        if (semanticItems.length > 0) {
+          next.push({ label: t("Best matches", lang), items: semanticItems.slice(0, MAX_PER_CATEGORY) });
+        }
         setSections(next);
         setSelectedIndex(0);
         setLoading(false);
