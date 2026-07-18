@@ -272,6 +272,11 @@ def _ensure_indexes(coll) -> None:
         [("game_mode", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
         name="mode_win_runtime",
     )
+    # Stats ?players= filters match on player_count (equality or range)
+    # without character/win, and nothing above leads with it — those
+    # combos were collection scans. Ascension rides along for the
+    # always-present official A0-A10 range in _build_match.
+    coll.create_index([("player_count", ASCENDING), ("ascension", ASCENDING)])
 
 
 def _ensure_run_validator(coll) -> None:
@@ -1120,7 +1125,15 @@ def get_stats(
         character, win, ascension, game_mode, players, username, include_character=False
     )
 
-    total = coll.count_documents(match)
+    # `username` is arbitrary user input; probe the username_lower index
+    # before counting against the composite match so a nonexistent user
+    # costs one index seek instead of a planner-dependent count.
+    if username and (
+        coll.find_one({"username_lower": username.lower()}, {"_id": 1}) is None
+    ):
+        total = 0
+    else:
+        total = coll.count_documents(match)
     if total == 0:
         return {
             "total_runs": 0,

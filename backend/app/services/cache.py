@@ -167,6 +167,21 @@ def set_json(key: str, value: Any, ttl_seconds: int) -> None:
         cache_errors.labels(namespace=_namespace(key), operation="set").inc()
 
 
+def acquire_lock(key: str, ttl_seconds: int = 30) -> bool:
+    """Best-effort single-flight lock: SET NX with a TTL so a dead holder
+    never wedges the key. Fail-open like the rest of this module — Redis
+    disabled or erroring reports the lock as acquired, so callers proceed
+    exactly as if there were no lock. Release with delete()."""
+    client = _get_client()
+    if client is None:
+        return True
+    try:
+        return bool(client.set(key, "1", nx=True, ex=ttl_seconds))
+    except Exception:
+        cache_errors.labels(namespace=_namespace(key), operation="lock").inc()
+        return True
+
+
 def delete(key: str) -> None:
     """Drop one key. No-ops on any failure."""
     client = _get_client()

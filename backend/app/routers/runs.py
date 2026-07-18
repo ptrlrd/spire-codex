@@ -1450,28 +1450,24 @@ def get_community_stats(
     ]:
         del _stats_fallback_cache[k]
 
-    # 3. Slow path: live aggregation
-    result = get_stats(
-        character=character,
-        win=win,
-        ascension=ascension,
-        game_mode=game_mode,
-        players=players,
-        username=username,
-    )
-    _stats_fallback_cache[cache_key] = (now, result)
-    app_cache.set_json(redis_key, result, ttl_seconds=60)
+    # 3. Slow path: live aggregation. Single-flight per filter combo: the
+    # first miss takes a short Redis lock and computes; concurrent misses
+    # poll briefly for the winner's Redis write instead of stacking
+    # identical multi-second aggregations on Mongo. If the winner's result
+    # never lands (Redis down, holder died), fall through and compute
+    # anyway — degraded behavior is today's behavior, never worse.
+    lock_key = f"lock:{redis_key}"
+    lock_acquired = app_cache.acquire_lock(lock_key, ttl_seconds=30)
+    if not lock_acquired:
+        deadline = time.monotonic() + 5.0
+        while time.monotonic() < deadline:
+            time.sleep(0.25)
+            winner = app_cache.get_json(redis_key)
+            if winner is not None:
+                return winner
 
-    # Lazy write-through to stats_summary so subsequent requests for this
-    # combo -- on any worker -- serve from the materialized view instead
-    # of paying the 5-10s aggregation again. Hot combos still get
-    # overwritten by the periodic refresher; non-hot combos persist until
-    # something else replaces them.
     try:
-        from ..services.runs_db_mongo import write_stats_summary
-
-        write_stats_summary(
-            result,
+        result = get_stats(
             character=character,
             win=win,
             ascension=ascension,
@@ -1479,7 +1475,30 @@ def get_community_stats(
             players=players,
             username=username,
         )
-    except Exception:
-        pass
+        _stats_fallback_cache[cache_key] = (time.monotonic(), result)
+        app_cache.set_json(redis_key, result, ttl_seconds=60)
+
+        # Lazy write-through to stats_summary so subsequent requests for this
+        # combo -- on any worker -- serve from the materialized view instead
+        # of paying the 5-10s aggregation again. Hot combos still get
+        # overwritten by the periodic refresher; non-hot combos persist until
+        # something else replaces them.
+        try:
+            from ..services.runs_db_mongo import write_stats_summary
+
+            write_stats_summary(
+                result,
+                character=character,
+                win=win,
+                ascension=ascension,
+                game_mode=game_mode,
+                players=players,
+                username=username,
+            )
+        except Exception:
+            pass
+    finally:
+        if lock_acquired:
+            app_cache.delete(lock_key)
 
     return result
