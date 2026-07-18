@@ -1607,7 +1607,7 @@ def refresh_stats_summary() -> int:
     written = 0
     for filters in HOT_FILTER_COMBOS:
         try:
-            result = get_stats(**filters)
+            result = get_stats(**filters, max_time_ms=120_000)
             key = _filter_key(**filters)
             doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
             summary.replace_one({"_id": key}, doc, upsert=True)
