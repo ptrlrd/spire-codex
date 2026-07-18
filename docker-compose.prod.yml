@@ -155,6 +155,9 @@ services:
   rebuilder:
     image: ptrlrd/spire-codex-backend:latest
     container_name: spire-codex-rebuilder
+    # Walks eat every core; low shares make them yield to web + Mongo
+    # under contention while still using all idle CPU.
+    cpu_shares: 256
     command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
     volumes:
       - ./data:/data
