@@ -1342,11 +1342,18 @@ def start_stats_refresher() -> None:
         _cyc0 = time.time()
         logger.info("refresh cycle: starting (leader)")
 
+        # Entity-stats snapshot: full walk at boot / repair / new game
+        # version, otherwise an incremental fold of just the new runs.
+        persisted = 0
+        try:
+            persisted = refresh_entity_stats_snapshot()
+        except Exception:
+            logger.warning("entity-stats snapshot refresh failed", exc_info=True)
+
+        # Stats aggregations run after the tick: its finalize pins the GIL and
+        # pegs Mongo for minutes, so anything kicked before it just races it.
         _kick_side_job("home_stats", refresh_home_stats)
 
-        # Summaries are heavy Mongo aggregations (the stats summary alone can
-        # run ~1h under load), so they run on their own thread and cadence;
-        # the snapshot tick below must stay every-minute.
         if time.time() - _cadence["summary"] >= _SUMMARY_INTERVAL_SECONDS:
             _cadence["summary"] = time.time()
 
@@ -1363,14 +1370,6 @@ def start_stats_refresher() -> None:
                 )
 
             _kick_side_job("summaries", _summaries)
-
-        # Entity-stats snapshot: full walk at boot / repair / new game
-        # version, otherwise an incremental fold of just the new runs.
-        persisted = 0
-        try:
-            persisted = refresh_entity_stats_snapshot()
-        except Exception:
-            logger.warning("entity-stats snapshot refresh failed", exc_info=True)
         # Proactive warm of the entity-scores cache so tier pages serve
         # straight from Redis cluster-wide. Only after something was
         # actually persisted; a no-op tick has nothing new to warm.
