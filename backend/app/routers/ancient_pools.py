@@ -1,12 +1,36 @@
 """Ancient relic pool API endpoints."""
 
 import json
+from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 
-from ..services.data_service import DATA_DIR, _resolve_base, _get_version
+from ..services.data_service import (
+    BETA_DATA_DIR,
+    DATA_DIR,
+    _resolve_base,
+    _get_version,
+    get_beta_version,
+    get_channel,
+)
 
 router = APIRouter(prefix="/api/ancient-pools", tags=["Ancient Pools"])
+
+
+def _candidates(filename: str) -> list[Path]:
+    """Channel-aware lookup order: per-version file first, then the data root."""
+    if get_channel() == "beta":
+        version = _get_version() or get_beta_version()
+        paths = []
+        if version:
+            paths.append(BETA_DATA_DIR / version / filename)
+        paths.append(BETA_DATA_DIR / filename)
+        paths.append(DATA_DIR / filename)
+        return paths
+    return [
+        _resolve_base(_get_version()) / filename,
+        DATA_DIR / filename,
+    ]
 
 
 def _load_pools() -> list[dict]:
@@ -14,16 +38,8 @@ def _load_pools() -> list[dict]:
     `per_character_relics` set (relic IDs the ancient offers as 5
     distinct character-skinned options in-game — currently just
     SEA_GLASS via Orobas's DiscoveryTotems).
-
-    Tries the version-resolved base first (so beta versions can ship their own
-    file), then falls back to DATA_DIR so an unversioned file at the data root
-    works for both stable and beta layouts. Same lookup order for the
-    parsed companion file so a beta drop can override its enrichment.
     """
-    candidates = [
-        _resolve_base(_get_version()) / "ancient_pools.json",
-        DATA_DIR / "ancient_pools.json",
-    ]
+    candidates = _candidates("ancient_pools.json")
     pools: list[dict] = []
     for path in candidates:
         if path.exists():
@@ -37,10 +53,7 @@ def _load_pools() -> list[dict]:
     # if the parsed file is missing (parser hasn't run yet), the response
     # is identical to the hand file alone — `per_character_relics` just
     # stays absent so the frontend treats every relic as single-option.
-    parsed_candidates = [
-        _resolve_base(_get_version()) / "ancient_pools_parsed.json",
-        DATA_DIR / "ancient_pools_parsed.json",
-    ]
+    parsed_candidates = _candidates("ancient_pools_parsed.json")
     parsed: dict[str, list[str]] = {}
     for path in parsed_candidates:
         if path.exists():
