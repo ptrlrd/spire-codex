@@ -1077,6 +1077,27 @@ def runs_snapshot_status(request: Request, response: Response):
     return snapshot_status()
 
 
+@router.get("/pulse", tags=["Runs"])
+@limiter.limit("240/minute")
+def runs_pulse(request: Request, response: Response):
+    """Live community totals: the snapshot baseline plus the hot overlay's
+    counters, which update within milliseconds of each accepted upload.
+    5s shared cache so the edge absorbs all polling."""
+    response.headers["Cache-Control"] = "public, max-age=5, s-maxage=5"
+    from ..services.live_overlay import hot_totals
+    from ..services.run_entity_stats import global_totals
+
+    base = global_totals()
+    hot = hot_totals()
+    st = snapshot_status()
+    return {
+        "total_runs": (base.get("total_runs") or 0) + hot.get("runs", 0),
+        "total_wins": (base.get("total_wins") or 0) + hot.get("wins", 0),
+        "hot_runs": hot.get("runs", 0),
+        "data_through": st.get("data_through"),
+    }
+
+
 @router.get("/community-stats", tags=["Runs"])
 @limiter.limit("60/minute")
 def community_stats(request: Request, response: Response, bracket: str | None = None):

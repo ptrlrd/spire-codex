@@ -166,6 +166,17 @@ def apply_run_async(run_hash: str, blob: dict) -> None:
     ).start()
 
 
+def hot_totals() -> dict[str, int]:
+    try:
+        r = _client()
+        if r is None:
+            return {}
+        h = r.hgetall("hot:totals") or {}
+        return {"runs": int(h.get("runs") or 0), "wins": int(h.get("wins") or 0)}
+    except Exception:
+        return {}
+
+
 def rebase_after_persist(last_key: tuple, folded_runs: int) -> None:
     """Reset the hot state to exactly the runs newer than the snapshot
     cursor. Called by the rebuilder after each persist; the transient
