@@ -1324,6 +1324,7 @@ def start_stats_refresher() -> None:
 
     def _run_refresh_cycle() -> None:
         from ..services.runs_db_mongo import (
+            refresh_home_stats,
             refresh_leaderboard_summary,
             refresh_stats_summary,
         )
@@ -1333,6 +1334,8 @@ def start_stats_refresher() -> None:
         # whose "done" log never arrives, so we can see which step starves it.
         _cyc0 = time.time()
         logger.info("refresh cycle: starting (leader)")
+
+        _kick_side_job("home_stats", refresh_home_stats)
 
         # Summaries are heavy Mongo aggregations (the stats summary alone can
         # run ~1h under load), so they run on their own thread and cadence;

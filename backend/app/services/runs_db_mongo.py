@@ -1622,6 +1622,21 @@ def refresh_stats_summary() -> int:
     return written
 
 
+@_instrument("refresh_home_stats", collection="stats_summary")
+def refresh_home_stats() -> int:
+    """Refresh only the no-filter stats combo the homepage polls."""
+    result = get_stats()
+    key = _filter_key()
+    doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
+    _summary_coll().replace_one({"_id": key}, doc, upsert=True)
+    app_cache.set_json(
+        app_cache.stats_key(),
+        result,
+        ttl_seconds=app_cache.WARM_TTL_SECONDS,
+    )
+    return 1
+
+
 @_instrument("refresh_leaderboard_summary", collection="leaderboard_summary")
 def refresh_leaderboard_summary() -> int:
     """Compute the hot (category, character) leaderboard combos and write
