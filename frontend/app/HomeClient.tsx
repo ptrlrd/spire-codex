@@ -54,60 +54,6 @@ interface HomeClientProps {
   initialTranslations: Translations;
 }
 
-function LivePulse({ lang }: { lang: string }) {
-  const [total, setTotal] = useState<number | null>(null);
-  const [shown, setShown] = useState<number | null>(null);
-  const shownRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    let active = true;
-    const load = () => {
-      if (document.hidden) return;
-      fetch(`${API}/api/runs/pulse`)
-        .then((r) => (r.ok ? r.json() : null))
-        .then((d) => {
-          if (active && d && typeof d.total_runs === "number" && d.total_runs > 0) {
-            setTotal(d.total_runs);
-          }
-        })
-        .catch(() => {});
-    };
-    load();
-    const timer = setInterval(load, 10_000);
-    return () => {
-      active = false;
-      clearInterval(timer);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (total == null) return;
-    const from = shownRef.current ?? total;
-    shownRef.current = total;
-    if (from === total) {
-      setShown(total);
-      return;
-    }
-    const t0 = performance.now();
-    let raf = 0;
-    const step = (now: number) => {
-      const p = Math.min(1, (now - t0) / 900);
-      setShown(Math.round(from + (total - from) * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) raf = requestAnimationFrame(step);
-    };
-    raf = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(raf);
-  }, [total]);
-
-  if (shown == null) return null;
-  return (
-    <span className="livepulse" title={t("Updates as runs are uploaded", lang)}>
-      <span className="lp-dot" aria-hidden="true" />
-      <span className="lp-n">{shown.toLocaleString()}</span>&nbsp;{t("runs tracked", lang)}
-    </span>
-  );
-}
-
 export default function HomeClient({ initialStats, initialTranslations }: HomeClientProps) {
   const [stats, setStats] = useState<Stats | null>(initialStats);
   const [translations, setTranslations] = useState<Translations>(initialTranslations);
@@ -302,7 +248,6 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       <section className="hsec">
         <div className="s-head">
           <h2>{t("Characters", lang)}</h2>
-          <LivePulse lang={lang} />
           <Link className="viewmore" href={`${langPrefix}/characters`}>{t("All characters", lang)} {ARROW}</Link>
         </div>
         <div className="charbar">
