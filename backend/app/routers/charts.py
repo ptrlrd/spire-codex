@@ -428,11 +428,16 @@ def _compute_chart(
     building = False
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
+        frame = cs.get_frame()
         rows = cs.filter_rows(
-            cs.get_frame(), players, ascension, mode, username, bracket, build_id
+            frame, players, ascension, mode, username, bracket, build_id
         )
         series = _build_frame_chart(chart_key, rows, stat, x, y, split)
         total = len(rows)
+        # A cold worker's frame is still loading in the background; say so
+        # instead of caching a bogus empty chart for the full TTL.
+        if not frame and cs.frame_loading():
+            building = True
     else:
         # Blob charts: snapshot rollup (sliced to the requested content bracket
         # and/or game version — the v20 blob keeps bracket x version buckets),
@@ -517,6 +522,9 @@ def prewarm_charts(budget_s: float | None = None) -> int:
             budget_s = float(os.environ.get("CHART_PREWARM_BUDGET_S", "") or 900)
         except ValueError:
             budget_s = 900.0
+    # Block until the frame is actually loaded: warming every frame chart
+    # from an empty frame would fill Redis with empty payloads.
+    cs.get_frame(wait=True)
     plain_brackets = [b for b in _BRACKET_KEYS if ":" not in b]
     versions = get_recent_stat_versions()  # newest first
     slices: list[tuple[str | None, str | None]] = [(None, None)]
