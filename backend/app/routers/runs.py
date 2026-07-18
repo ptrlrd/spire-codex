@@ -189,6 +189,13 @@ async def submit_run_endpoint(
     run_hash = result.get("run_hash")
     if run_hash:
         result["url"] = f"{site_base}/runs/{run_hash}"
+        if os.environ.get("MONGO_URL", "").strip():
+            try:
+                from ..services.live_overlay import apply_run_async
+
+                apply_run_async(run_hash, data)
+            except Exception:
+                pass
     seed = (data.get("seed") or "").strip()
     if (
         seed

@@ -195,6 +195,14 @@ def _read_blob_file(run_hash: str) -> dict | None:
         return None
 
 
+class _PreloadedBlobs:
+    def __init__(self, blobs: dict):
+        self._blobs = blobs
+
+    def get(self, run_hash: str):
+        return self._blobs.get(run_hash)
+
+
 class _BlobProvider:
     """Batched, in-row-order run blob reads: Mongo first, file fallback."""
 
@@ -971,11 +979,13 @@ def _finalize_bracket(
     return cache, baselines
 
 
-def _accumulate(rows, official_chars, wr_map, recent_versions=()):
+def _accumulate(rows, official_chars, wr_map, recent_versions=(), preloaded_blobs=None):
     """Accumulate a chunk of run rows into the raw (pre-finalize) accumulators.
 
     Pure over its inputs (no module-global mutation) so N chunks can run in
-    parallel and have their raw accumulators merged.
+    parallel and have their raw accumulators merged. `preloaded_blobs` skips
+    the store round-trip when the caller already holds the run JSON (the
+    live-overlay single-run path).
     """
     new_cache: dict[tuple[str, str], dict[str, Any]] = {}
     new_totals = {"total_runs": 0, "total_wins": 0}
@@ -1011,7 +1021,10 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=()):
         for _b in _BRACKET_KEYS:
             bracket_accs[f"{_b}:{_v}"] = _new_bracket_acc()
 
-    blobs = _BlobProvider([r["run_hash"] for r in rows])
+    if preloaded_blobs is not None:
+        blobs = _PreloadedBlobs(preloaded_blobs)
+    else:
+        blobs = _BlobProvider([r["run_hash"] for r in rows])
 
     for row in rows:
         # Official runs only: the game's ascensions are A0-A10. A11+ are modded
@@ -2623,6 +2636,12 @@ def _incremental_tick() -> int:
             time.time() - _t1,
             totals["total_runs"],
         )
+        try:
+            from . import live_overlay
+
+            live_overlay.rebase_after_persist(_incr["last_key"], _incr["pending"])
+        except Exception:
+            logger.warning("live overlay rebase failed", exc_info=True)
         _incr["pending"] = 0
         _incr["pending_brackets"] = set()
         _incr["pending_blobs"] = {

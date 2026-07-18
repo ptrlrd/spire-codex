@@ -128,6 +128,12 @@ def _get_client() -> Any:
     return _client
 
 
+def raw_client() -> Any:
+    """The shared Redis client (or None), for callers needing atomic ops
+    beyond the JSON get/set layer (the live-overlay counters)."""
+    return _get_client()
+
+
 def enabled() -> bool:
     """True when a cache backend is configured (not necessarily reachable)."""
     return bool(_REDIS_URL) and not _client_init_failed
