@@ -771,7 +771,8 @@ def _walk_rest_upgrade_choices(blob: dict) -> Iterable[tuple[list[str], list[str
 
 def _compute_codex_elo(
     pair_wins: dict[tuple[str, str], int],
-) -> dict[str, float]:
+    warm: dict[str, float] | None = None,
+) -> tuple[dict[str, float], dict[str, float]]:
     """Bradley-Terry MM solver → Codex Elo per card.
 
     `pair_wins[(i, j)]` is the number of reward screens where card i was
@@ -783,10 +784,12 @@ def _compute_codex_elo(
     finally mapped to a readable Elo via ANCHOR + SPREAD·log10(p).
 
     Cards with fewer than `_ELO_MIN_GAMES` total head-to-heads are dropped
-    (too thin to rate). Returns {} when there's no comparison data.
+    (too thin to rate). `warm` seeds the strengths from a previous fit so
+    near-identical data converges in a few iterations instead of hundreds.
+    Returns (elo, strengths); strengths feed the next warm start.
     """
     if not pair_wins:
-        return {}
+        return {}, {}
 
     # Aggregate per-card wins (W_i) and symmetric comparison counts (n_ij).
     wins: dict[str, float] = {}
@@ -806,7 +809,7 @@ def _compute_codex_elo(
 
     nodes = list(games.keys())
     if not nodes:
-        return {}
+        return {}, {}
 
     # MM needs strictly-positive wins to be identifiable. A card that was
     # never once preferred (W_i == 0) would collapse to strength 0 and
@@ -814,6 +817,11 @@ def _compute_codex_elo(
     # solver stays well-defined. With real data this is negligible.
     eps = 1e-3
     p = {n: 1.0 for n in nodes}
+    if warm:
+        for n in nodes:
+            v = warm.get(n)
+            if v is not None and v > 0:
+                p[n] = v
     w = {n: wins.get(n, 0.0) + eps for n in nodes}
 
     for _ in range(_ELO_MAX_ITERS):
@@ -852,7 +860,7 @@ def _compute_codex_elo(
         if strength <= 0:
             continue
         out[n] = round(_ELO_ANCHOR + _ELO_SPREAD * math.log10(strength), 1)
-    return out
+    return out, p
 
 
 def _score_to_tier(score: int | None) -> str | None:
@@ -916,15 +924,29 @@ def _new_bracket_acc() -> dict[str, Any]:
     }
 
 
-def _finalize_bracket(acc: dict[str, Any]) -> tuple[dict, dict]:
+def _finalize_bracket(
+    acc: dict[str, Any],
+    elo_state: dict | None = None,
+    refit: bool = True,
+) -> tuple[dict, dict]:
     """Turn a bracket accumulator into (entities, type_baselines).
 
     entities[(etype, eid)] = {picks, wins, offered, picked, off_act,
     pick_act, elo}. Mirrors the all-runs finalize so a bracket row reads
-    the same as an all-runs row.
+    the same as an all-runs row. `elo_state` carries the previous fit's
+    strengths (warm start) and elo values; refit=False reuses the previous
+    elo outright while still refreshing every counter.
     """
     cache = acc["cache"]
-    elo = _compute_codex_elo(acc["pair_wins"])
+    if refit or elo_state is None or "elo" not in elo_state:
+        elo, strengths = _compute_codex_elo(
+            acc["pair_wins"], warm=(elo_state or {}).get("strengths")
+        )
+        if elo_state is not None:
+            elo_state["elo"] = elo
+            elo_state["strengths"] = strengths
+    else:
+        elo = elo_state["elo"]
     for cid, pc in acc["pick_counts"].items():
         key = ("cards", cid)
         agg = cache.setdefault(key, {"picks": 0, "wins": 0})
@@ -1345,6 +1367,8 @@ def _finalize(
     changed_blobs=None,
     bracket_baselines_memo=None,
     blob_final_memo=None,
+    elo_memo=None,
+    elo_refit=None,
 ) -> tuple[dict, dict, dict, dict]:
     """Fold the merged raw accumulators into the finalized snapshot payload.
 
@@ -1358,7 +1382,10 @@ def _finalize(
     # Cards that were offered but never decked still get an entry (picks=0
     # → no Win%/Score, but a valid Pick%/Elo). Starter cards that are
     # never offered keep no pick stats (correct, they have no reward Elo).
-    elo = _compute_codex_elo(pair_wins)
+    ememo = elo_memo if elo_memo is not None else {}
+    _gstate = ememo.setdefault("__global__", {})
+    elo, _gs = _compute_codex_elo(pair_wins, warm=_gstate.get("strengths"))
+    _gstate["strengths"] = _gs
     for cid, pc in pick_counts.items():
         key = ("cards", cid)
         agg = new_cache.setdefault(
@@ -1382,7 +1409,11 @@ def _finalize(
     # metrics table's "+" row carries its own preference rating instead of
     # echoing the base card's reward Elo. Only cards that actually appear
     # upgraded in a deck have an "upg" block to attach it to.
-    upgrade_elo = _compute_codex_elo(upgrade_pair_wins)
+    _ustate = ememo.setdefault("__upgrade__", {})
+    upgrade_elo, _us = _compute_codex_elo(
+        upgrade_pair_wins, warm=_ustate.get("strengths")
+    )
+    _ustate["strengths"] = _us
     for (etype, cid), agg in new_cache.items():
         if etype != "cards":
             continue
@@ -1416,7 +1447,9 @@ def _finalize(
         if changed_brackets is not None and ck not in changed_brackets and ck in memo:
             bracket_baselines[ck] = memo[ck]
             continue
-        bracket_cache, baselines = _finalize_bracket(acc)
+        _estate = ememo.setdefault(ck, {})
+        _refit = elo_refit is None or ck in elo_refit or "elo" not in _estate
+        bracket_cache, baselines = _finalize_bracket(acc, _estate, _refit)
         memo[ck] = baselines
         bracket_baselines[ck] = baselines
         for entity, cagg in bracket_cache.items():
@@ -1798,6 +1831,8 @@ def _build_cache_data(stash: bool = False) -> tuple[dict, dict, dict, dict]:
             "pending_blobs": {"community": set(), "charts": set(), "encounters": set()},
             "bracket_baselines_memo": {},
             "blob_final_memo": {},
+            "elo_memo": {},
+            "elo_pending": {},
         }
 
     fin_kwargs = {}
@@ -1805,6 +1840,7 @@ def _build_cache_data(stash: bool = False) -> tuple[dict, dict, dict, dict]:
         fin_kwargs = {
             "bracket_baselines_memo": _incr["bracket_baselines_memo"],
             "blob_final_memo": _incr["blob_final_memo"],
+            "elo_memo": _incr["elo_memo"],
         }
     result = _finalize(**raw, **fin_kwargs)
     # Advertise which versions actually got their own bucket, so the read path
@@ -2322,6 +2358,9 @@ _STATS_PERSIST_SECONDS = max(
 _STATS_REPAIR_SECONDS = max(
     3600, int(os.environ.get("STATS_REPAIR_INTERVAL_SECONDS", "") or 86400)
 )
+# A bracket's Elo refits only after this many new runs land in it; counters
+# still update every tick, only the rating fit defers.
+_ELO_REFIT_MIN_RUNS = max(1, int(os.environ.get("STATS_ELO_REFIT_MIN_RUNS", "") or 20))
 _RELEASE_VERSION_RE = None
 
 
@@ -2497,9 +2536,12 @@ def _incremental_tick() -> int:
         )
         _merge_raw(_incr["raw"], partial)
         pb = _incr.setdefault("pending_brackets", set())
+        epend = _incr.setdefault("elo_pending", {})
         for ck, acc in partial["bracket_accs"].items():
-            if acc["totals"]["total_runs"]:
+            n = acc["totals"]["total_runs"]
+            if n:
                 pb.add(ck)
+                epend[ck] = epend.get(ck, 0) + n
         blobs = _incr.setdefault(
             "pending_blobs", {"community": set(), "charts": set(), "encounters": set()}
         )
@@ -2527,6 +2569,13 @@ def _incremental_tick() -> int:
             _incr["blob_final_memo"] = {}
             changed_brackets = None
             changed_blobs = None
+        epend = _incr.setdefault("elo_pending", {})
+        if changed_brackets is None:
+            refit = None
+        else:
+            refit = {
+                ck for ck in changed_brackets if epend.get(ck, 0) >= _ELO_REFIT_MIN_RUNS
+            }
         _t0 = time.time()
         cache, totals, baselines, bracket_meta = _finalize(
             **_incr["raw"],
@@ -2534,8 +2583,15 @@ def _incremental_tick() -> int:
             changed_blobs=changed_blobs,
             bracket_baselines_memo=_incr["bracket_baselines_memo"],
             blob_final_memo=_incr["blob_final_memo"],
+            elo_memo=_incr.setdefault("elo_memo", {}),
+            elo_refit=refit,
         )
         fin_s = time.time() - _t0
+        if refit is None:
+            epend.clear()
+        else:
+            for ck in refit:
+                epend[ck] = 0
         bracket_meta["recent_versions"] = _incr["recent_versions"]
         _t1 = time.time()
         _persist_snapshot(
