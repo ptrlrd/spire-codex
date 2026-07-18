@@ -2714,6 +2714,10 @@ def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
     return len(cache)
 
 
+def global_totals() -> dict[str, int]:
+    return dict(_global_totals)
+
+
 def snapshot_loaded() -> bool:
     """True once any compatible snapshot (or local build) is in memory.
     While False, snapshot-backed endpoints serve empty shells; callers use
