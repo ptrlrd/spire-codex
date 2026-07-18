@@ -362,6 +362,9 @@ _building: bool = False
 # loaded yet). Differs from SNAPSHOT_VERSION while serving a compatible
 # older snapshot during a post-deploy rebuild.
 _cache_snapshot_version: int | None = None
+# (submitted_at, run_hash) the loaded snapshot is current through; the anchor
+# for the live-overlay stage and the "stats current through" UI.
+_data_through: list | None = None
 
 
 def _strip_prefix(raw: str) -> tuple[str, str] | None:
@@ -2091,6 +2094,13 @@ def get_entity_metric_history(
         return []
 
 
+def _persist_data_through() -> list | None:
+    global _data_through
+    if _incr and _incr.get("last_key"):
+        _data_through = list(_incr["last_key"])
+    return _data_through
+
+
 def _persist_snapshot(
     cache: dict,
     totals: dict,
@@ -2213,6 +2223,9 @@ def _persist_snapshot(
             "bracket_totals": bracket_meta.get("totals", {}),
             "entity_types": list(by_type.keys()),
             "built_at": now,
+            # The (submitted_at, run_hash) keyset this snapshot is current
+            # through — the anchor the live-overlay stage merges from.
+            "data_through": _persist_data_through(),
             "snapshot_version": SNAPSHOT_VERSION,
             # The recent versions the encounter blob carries per-version buckets
             # for — the dropdown options for the stats-page version filter.
@@ -2334,6 +2347,8 @@ def _load_snapshot() -> bool:
         },
     )
     _cache_snapshot_version = meta_version
+    global _data_through
+    _data_through = meta.get("data_through")
     logger.info(
         "entity-stats snapshot loaded: %d entities, %d/%d/%d blob keys in %.1fs",
         len(new_cache),
@@ -2702,6 +2717,9 @@ def snapshot_status() -> dict[str, Any]:
         "version": _cache_snapshot_version,
         "want_version": SNAPSHOT_VERSION,
         "built_at": _cache_built_at or None,
+        "data_through": _data_through[0].isoformat()
+        if _data_through and hasattr(_data_through[0], "isoformat")
+        else None,
         "total_runs": (_global_totals or {}).get("total_runs", 0),
     }
 
