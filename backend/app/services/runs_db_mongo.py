@@ -720,6 +720,7 @@ def _submit_player_run(
     coll = _get_collection()
     try:
         coll.insert_one(doc)
+        bump_stats_counters(doc)
     except DuplicateKeyError:
         # The run already exists (commonly: it was submitted anonymously
         # before the client started sending an identity). Re-submitting with
@@ -1611,6 +1612,8 @@ def refresh_stats_summary() -> int:
             key = _filter_key(**filters)
             doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
             summary.replace_one({"_id": key}, doc, upsert=True)
+            if not filters:
+                seed_stats_counters(result)
             # Proactive warm: write the fresh result straight into Redis so
             # readers hit the cache instead of Mongo. Refreshed every cycle;
             # the long TTL is only a safety net if this loop dies.
@@ -1626,24 +1629,107 @@ def refresh_stats_summary() -> int:
     return written
 
 
+def _stats_counters_coll():
+    return _get_collection().database["stats_counters"]
+
+
+def bump_stats_counters(row: dict, delta: int = 1) -> None:
+    """Atomically adjust the running global-stats counters for one run doc.
+
+    Mirrors _build_match's no-filter semantics: only official ascensions
+    (0-10) count. Callers handle hidden-state eligibility."""
+    try:
+        asc = row.get("ascension")
+        if not isinstance(asc, int) or asc < 0 or asc > 10:
+            return
+        inc = {"total": delta}
+        if row.get("win"):
+            inc["wins"] = delta
+        if row.get("was_abandoned"):
+            inc["abandoned"] = delta
+        ch = str(row.get("character") or "").upper()
+        if ch and ch.isidentifier():
+            inc[f"char.{ch}.total"] = delta
+            if row.get("win"):
+                inc[f"char.{ch}.wins"] = delta
+        _stats_counters_coll().update_one({"_id": "global"}, {"$inc": inc}, upsert=True)
+    except Exception:
+        logger.warning("stats counter bump failed", exc_info=True)
+
+
+def seed_stats_counters(doc: dict) -> None:
+    """(Re)initialize the counters from a full global stats doc."""
+    counters = {
+        "_id": "global",
+        "total": int(doc.get("total_runs") or 0),
+        "wins": int(doc.get("total_wins") or 0),
+        "abandoned": int(doc.get("total_abandoned") or 0),
+        "char": {
+            r["character"]: {
+                "total": int(r.get("total") or 0),
+                "wins": int(r.get("wins") or 0),
+            }
+            for r in doc.get("characters") or []
+            if r.get("character")
+        },
+    }
+    _stats_counters_coll().replace_one({"_id": "global"}, counters, upsert=True)
+
+
 @_instrument("refresh_home_stats", collection="stats_summary")
 def refresh_home_stats() -> int:
-    """Refresh only the no-filter stats combo the homepage polls."""
+    """Fold the submit-time counters into the global stats doc — no scans."""
     t0 = time.time()
-    result = get_stats(max_time_ms=30_000)
     key = _filter_key()
-    doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
-    _summary_coll().replace_one({"_id": key}, doc, upsert=True)
+    summary = _summary_coll()
+    doc = summary.find_one({"_id": key})
+    if not doc:
+        return 0
+    counters = _stats_counters_coll().find_one({"_id": "global"})
+    if not counters:
+        seed_stats_counters(doc)
+        counters = _stats_counters_coll().find_one({"_id": "global"})
+        if not counters:
+            return 0
+    total = int(counters.get("total") or 0)
+    wins = int(counters.get("wins") or 0)
+    chars = sorted(
+        (
+            (c, v)
+            for c, v in (counters.get("char") or {}).items()
+            if c in OFFICIAL_CHARACTERS
+        ),
+        key=lambda cv: cv[1].get("total", 0),
+        reverse=True,
+    )
+    doc.update(
+        {
+            "total_runs": total,
+            "total_wins": wins,
+            "total_abandoned": int(counters.get("abandoned") or 0),
+            "win_rate": round(wins / total * 100, 1) if total else 0,
+            "characters": [
+                {
+                    "character": c,
+                    "total": v.get("total", 0),
+                    "wins": v.get("wins", 0),
+                    "win_rate": round(v.get("wins", 0) / v["total"] * 100, 1)
+                    if v.get("total")
+                    else 0,
+                }
+                for c, v in chars
+            ],
+            "updated_at": datetime.now(timezone.utc),
+        }
+    )
+    summary.replace_one({"_id": key}, doc, upsert=True)
+    payload = {k: v for k, v in doc.items() if k not in ("_id", "updated_at")}
     app_cache.set_json(
         app_cache.stats_key(),
-        result,
+        payload,
         ttl_seconds=app_cache.WARM_TTL_SECONDS,
     )
-    logger.info(
-        "home stats refreshed: %d runs in %.1fs",
-        result.get("total_runs", 0),
-        time.time() - t0,
-    )
+    logger.info("home stats refreshed: %d runs in %.1fs", total, time.time() - t0)
     return 1
 
 
@@ -1999,12 +2085,20 @@ def set_run_hidden(run_hash: str, hidden: bool) -> dict:
     the run list on the next read. The materialized leaderboard/stats summaries
     clear the run on their next ~60s rebuild. Returns how many docs changed."""
     coll = _get_collection()
-    update = {"$set": {"hidden": True}} if hidden else {"$unset": {"hidden": ""}}
+    query = {"$or": [{"_id": run_hash}, {"run_hash": run_hash}]}
     # Single-player runs key on _id (= run hash) with no run_hash field;
     # multiplayer runs share a run_hash field across per-player docs. Match either.
-    result = coll.update_many(
-        {"$or": [{"_id": run_hash}, {"run_hash": run_hash}]}, update
+    rows = list(
+        coll.find(
+            query,
+            {"hidden": 1, "character": 1, "win": 1, "was_abandoned": 1, "ascension": 1},
+        )
     )
+    update = {"$set": {"hidden": True}} if hidden else {"$unset": {"hidden": ""}}
+    result = coll.update_many(query, update)
+    for row in rows:
+        if bool(row.get("hidden")) != hidden:
+            bump_stats_counters(row, -1 if hidden else 1)
     return {"matched": result.matched_count, "modified": result.modified_count}
 
 
