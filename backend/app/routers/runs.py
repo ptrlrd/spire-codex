@@ -1236,7 +1236,7 @@ _PREWARM_INTERVAL_SECONDS = max(
     300, int(os.environ.get("CHART_PREWARM_INTERVAL_SECONDS", "") or 7200)
 )
 _cadence = {"summary": 0.0, "prewarm": 0.0}
-_side_jobs: dict[str, bool] = {}
+_side_jobs: dict[str, float] = {}
 
 
 def _kick_side_job(name: str, fn) -> None:
@@ -1244,9 +1244,16 @@ def _kick_side_job(name: str, fn) -> None:
     summary/prewarm jobs never block the every-minute stats tick."""
     import threading
 
-    if _side_jobs.get(name):
+    started = _side_jobs.get(name)
+    if started:
+        if time.time() - started > 600:
+            logger.warning(
+                "%s job still in flight after %.0fs; skipping kick",
+                name,
+                time.time() - started,
+            )
         return
-    _side_jobs[name] = True
+    _side_jobs[name] = time.time()
 
     def _run() -> None:
         try:
@@ -1254,7 +1261,7 @@ def _kick_side_job(name: str, fn) -> None:
         except Exception:
             logger.warning("%s job failed", name, exc_info=True)
         finally:
-            _side_jobs[name] = False
+            _side_jobs.pop(name, None)
 
     threading.Thread(target=_run, daemon=True, name=f"stats-{name}").start()
 
