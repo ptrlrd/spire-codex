@@ -62,7 +62,8 @@ _RUNS_DIR = _DATA_DIR / "runs"
 
 _FRAME: list[tuple] = []
 _FRAME_TS: float = 0.0
-_FRAME_TTL = 600  # seconds between store reloads
+# The scan costs ~400s under load; rescanning every 10min starved workers.
+_FRAME_TTL = 3600
 _FRAME_LOCK = threading.Lock()
 
 # Smallest sample a single point may summarise; thinner buckets are dropped so

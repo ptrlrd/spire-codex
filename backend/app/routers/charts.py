@@ -16,7 +16,7 @@ import os
 import re
 import time
 
-from fastapi import APIRouter, HTTPException, Query, Request
+from fastapi import APIRouter, HTTPException, Query, Request, Response
 from slowapi import Limiter
 from ..dependencies import client_ip
 from ..services import rate_limit_config
@@ -632,6 +632,7 @@ def prewarm_charts(budget_s: float | None = None) -> int:
 @limiter.limit("120/minute")
 def get_chart(
     request: Request,
+    response: Response,
     chart_key: str,
     players: int | None = Query(None, ge=1, le=4, description="Player count filter"),
     ascension: int | None = Query(
@@ -726,7 +727,7 @@ def get_chart(
         bracket,
         build_id,
     )
-    # A still-building snapshot resolves within minutes; don't pin the empty
-    # answer for the full TTL.
+    if payload["building"]:
+        response.headers["Cache-Control"] = "no-store"
     app_cache.set_json(cache_key, payload, 30 if payload["building"] else _CACHE_TTL)
     return payload
