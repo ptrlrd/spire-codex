@@ -1661,6 +1661,7 @@ def seed_stats_counters(doc: dict) -> None:
     """(Re)initialize the counters from a full global stats doc."""
     counters = {
         "_id": "global",
+        "seeded": True,
         "total": int(doc.get("total_runs") or 0),
         "wins": int(doc.get("total_wins") or 0),
         "abandoned": int(doc.get("total_abandoned") or 0),
@@ -1686,7 +1687,7 @@ def refresh_home_stats() -> int:
     if not doc:
         return 0
     counters = _stats_counters_coll().find_one({"_id": "global"})
-    if not counters:
+    if not counters or not counters.get("seeded"):
         seed_stats_counters(doc)
         counters = _stats_counters_coll().find_one({"_id": "global"})
         if not counters:
