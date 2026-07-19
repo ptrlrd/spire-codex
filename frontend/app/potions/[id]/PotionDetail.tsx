@@ -277,9 +277,13 @@ export default function PotionDetail({
 
             <div className="mb-2 text-center">
               <EntityVersionSelect
-                brackets={miniStats?.brackets}
+                entityType="potions"
+                entityId={id}
                 bracket={statsBracket}
                 onBracketChange={setStatsBracket}
+                onEntityData={(d) => {
+                  if (d) setPotion(d as Potion);
+                }}
               />
             </div>
 

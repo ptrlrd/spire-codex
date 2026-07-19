@@ -52,15 +52,43 @@ def get_beta_version() -> str | None:
 def _resolve_base(version: str | None = None) -> Path:
     """Resolve the base data directory for a given version.
 
-    - version="v0.103.0" → DATA_DIR/v0.103.0/
+    - version="v0.103.0" → DATA_DIR/v0.103.0/, else the beta history tree
+      (every patch shipped through a beta drop, so data-beta/<ver>/ is the
+      site's per-version archive; the stable tree is flat, current-only)
     - version=None → DATA_DIR/latest/ (if symlink exists) or DATA_DIR/ (flat, stable site)
     """
     if version:
-        return DATA_DIR / version
+        stable = DATA_DIR / version
+        if stable.exists():
+            return stable
+        beta = BETA_DATA_DIR / version
+        if beta.exists():
+            return beta
+        return stable
     latest = DATA_DIR / "latest"
     if latest.exists():
         return latest
     return DATA_DIR
+
+
+def list_data_versions() -> list[str]:
+    """Version dirs a `?version=` request can actually serve, newest first."""
+    out: set[str] = set()
+    for base in (DATA_DIR, BETA_DATA_DIR):
+        try:
+            for p in base.iterdir():
+                if p.is_dir() and p.name.startswith("v") and (p / "eng").exists():
+                    out.add(p.name)
+        except OSError:
+            continue
+
+    def _key(v: str):
+        try:
+            return tuple(int(x) for x in v.lstrip("v").split(".") if x.isdigit())
+        except ValueError:
+            return (0,)
+
+    return sorted(out, key=_key, reverse=True)
 
 
 def _get_version() -> str | None:
