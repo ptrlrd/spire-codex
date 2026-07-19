@@ -3483,7 +3483,26 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     # Skill tiers first (they carry per-character splits), then the player
     # counts and player x skill composites (picks/wins only) so the detail
     # page can filter by co-op size like the metrics table does.
-    for ck in ("a10", "wr30", "wr50", "wr75", *_PLAYER_BRACKETS, *_COMPOSITE_BRACKETS):
+    # Version slices (bare "v0.108.0" and composed "a10:v0.108.0") ride the
+    # same agg dict; without them the entity-page version picker changed the
+    # bracket to a key the payload never carried and silently fell back to
+    # all-runs.
+    import re
+
+    version_keys = sorted(
+        k
+        for k in agg_brackets
+        if re.match(r"^v\d", k.rpartition(":")[2]) and agg_brackets[k].get("picks")
+    )
+    for ck in (
+        "a10",
+        "wr30",
+        "wr50",
+        "wr75",
+        *_PLAYER_BRACKETS,
+        *_COMPOSITE_BRACKETS,
+        *version_keys,
+    ):
         cd = agg_brackets.get(ck)
         if not cd:
             continue

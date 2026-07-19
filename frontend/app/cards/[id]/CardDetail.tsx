@@ -180,7 +180,6 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
   const [statsBracket, setStatsBracket] = useState("all");
-  const [dataVersion, setDataVersion] = useState("");
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
@@ -747,30 +746,15 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
                 </select>
               )}
 
-              <div className="variant-cap">
-                {enchActive ? (
-                  <>
-                    {enchMeta[selectedEnch]?.name ?? selectedEnch}
-                    {isUpgraded ? " + Upgraded" : ""}
-                  </>
-                ) : (
-                  <EntityVersionSelect
-                    entityType="cards"
-                    entityId={id}
-                    bracket={statsBracket}
-                    onBracketChange={setStatsBracket}
-                    onEntityData={(d, v) => {
-                      if (d) setCard(d as Card);
-                      setDataVersion(v);
-                    }}
-                  />
-                )}
-              </div>
-              {dataVersion && (
-                <div className="variant-cap">
-                  {dataVersion} {t("data", lang)} · {t("current render shown", lang)}
-                </div>
-              )}
+              <EntityVersionSelect
+                entityType="cards"
+                entityId={id}
+                bracket={statsBracket}
+                onBracketChange={setStatsBracket}
+                onEntityData={(d) => {
+                  if (d) setCard(d as Card);
+                }}
+              />
             </div>
 
             {/* Facts table */}
