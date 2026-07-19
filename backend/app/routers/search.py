@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from typing import Any, Callable, Iterable
 
-from fastapi import APIRouter, Depends, Query, Request
+from fastapi import APIRouter, Depends, Query, Request, Response
 from pydantic import BaseModel, Field
 
 from ..dependencies import client_ip, get_lang
@@ -106,6 +106,58 @@ _REFERENCE_SOURCES: list[tuple[str, str, str]] = [
     ("load_achievements", "Achievement", "/unlocks"),
     ("load_badges", "Badge", "/badges"),
 ]
+
+
+_SEMANTIC_PATHS = {
+    "cards": "/cards",
+    "relics": "/relics",
+    "potions": "/potions",
+    "powers": "/powers",
+    "events": "/events",
+    "enchantments": "/enchantments",
+    "monsters": "/monsters",
+    "keywords": "/keywords",
+}
+_SEMANTIC_LABELS = {
+    "cards": "Card",
+    "relics": "Relic",
+    "potions": "Potion",
+    "powers": "Power",
+    "events": "Event",
+    "enchantments": "Enchantment",
+    "monsters": "Monster",
+    "keywords": "Keyword",
+}
+_SEMANTIC_MIN_SCORE = 0.45
+
+
+@router.get("/semantic", tags=["Search"])
+def semantic_search_route(
+    request: Request,
+    response: Response,
+    q: str = Query(..., min_length=3, max_length=120),
+    limit: int = Query(8, ge=1, le=20),
+) -> dict[str, Any]:
+    """Meaning-based entity search over Workers AI embeddings. Returns the
+    same item shape as /api/search; empty when the feature is unavailable
+    (no vectors built or no Workers AI token)."""
+    from ..services import semantic_search
+
+    results = semantic_search.search(q.strip(), limit=limit)
+    if results is None:
+        response.headers["Cache-Control"] = "no-store"
+        return {"query": q, "items": [], "available": False}
+    response.headers["Cache-Control"] = "public, max-age=60, s-maxage=300"
+    items = [
+        {
+            "name": r["name"],
+            "path": f"{_SEMANTIC_PATHS[r['etype']]}/{r['id'].lower()}",
+            "subtitle": _SEMANTIC_LABELS.get(r["etype"], ""),
+        }
+        for r in results
+        if r["etype"] in _SEMANTIC_PATHS and r["score"] >= _SEMANTIC_MIN_SCORE
+    ]
+    return {"query": q, "items": items, "available": True}
 
 
 @router.get("", tags=["Search"])
