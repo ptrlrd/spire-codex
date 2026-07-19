@@ -56,16 +56,33 @@ const ACT_FILTERS = [
   { value: "3", label: "Act 3" },
 ];
 
+// Ancient relic pools (the /api/relics ?ancient= filter): rank only the
+// relics one ancient can offer, so "which Neow relic should I take" gets
+// a direct answer.
+const ANCIENT_FILTERS = [
+  { value: "",          label: "All" },
+  { value: "neow",      label: "Neow" },
+  { value: "tezcatara", label: "Tezcatara" },
+  { value: "pael",      label: "Pael" },
+  { value: "orobas",    label: "Orobas" },
+  { value: "darv",      label: "Darv" },
+  { value: "nonupeipe", label: "Nonupeipe" },
+  { value: "tanx",      label: "Tanx" },
+  { value: "vakuu",     label: "Vakuu" },
+];
+
 function relicHref(
   pool?: string,
   rarity?: string,
   act?: string,
   bracket?: string,
+  ancient?: string,
 ): string {
   const params = new URLSearchParams();
   if (pool) params.set("pool", pool);
   if (rarity) params.set("rarity", rarity);
   if (act) params.set("act", act);
+  if (ancient) params.set("ancient", ancient);
   if (bracket && bracket !== "all") params.set("bracket", bracket);
   const qs = params.toString();
   return `/tier-list/relics${qs ? `?${qs}` : ""}`;
@@ -75,24 +92,37 @@ function parseAct(raw?: string): string {
   return raw === "1" || raw === "2" || raw === "3" ? raw : "";
 }
 
+function parseAncient(raw?: string): string {
+  const v = (raw ?? "").toLowerCase();
+  return ANCIENT_FILTERS.some((a) => a.value && a.value === v) ? v : "";
+}
+
 interface PageProps {
-  searchParams: Promise<{ pool?: string; rarity?: string; act?: string; bracket?: string }>;
+  searchParams: Promise<{ pool?: string; rarity?: string; act?: string; bracket?: string; ancient?: string }>;
 }
 
 export async function generateMetadata({ searchParams }: PageProps): Promise<Metadata> {
   const sp = await searchParams;
   const pool = sp.pool?.toLowerCase();
   const act = parseAct(sp.act);
+  const ancient = parseAncient(sp.ancient);
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
+  const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
   const actPrefix = act ? `Act ${act} ` : "";
-  const scope = poolLabel && pool ? `${actPrefix}${poolLabel} Relic` : `${actPrefix}Relic`;
+  const scope = ancient
+    ? `${actPrefix}${ancientLabel} Relic`
+    : poolLabel && pool
+    ? `${actPrefix}${poolLabel} Relic`
+    : `${actPrefix}Relic`;
   const title = `${scope} Tier List - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
-  const description = act
+  const description = ancient
+    ? `${ancientLabel} relic tier list for Slay the Spire 2 (sts2). Every relic ${ancientLabel} can offer ranked S through F by community win rate, so you know which pick wins runs.`
+    : act
     ? `Slay the Spire 2 (sts2) relics ranked by the win rate of runs that picked them up in Act ${act}, graded against other Act ${act} pickups.`
     : pool
     ? `${poolLabel} relic tier list for Slay the Spire 2 (sts2). Every relic in the ${pool} pool ranked S through F by community win rate.`
     : "Every Slay the Spire 2 (sts2) relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.";
-  const path = relicHref(pool, undefined, act);
+  const path = relicHref(pool, undefined, act, undefined, ancient);
   return {
     title,
     description,
@@ -106,8 +136,13 @@ async function fetchData(
   pool?: string,
   act?: string,
   param?: string | null,
+  ancient?: string,
 ): Promise<{ relics: ApiRelic[]; scores: ScoresMap }> {
-  const relicsUrl = `${API_INTERNAL}/api/relics${pool ? `?pool=${pool}` : ""}`;
+  const relicParams = new URLSearchParams();
+  if (pool) relicParams.set("pool", pool);
+  if (ancient) relicParams.set("ancient", ancient);
+  const relicQs = relicParams.toString();
+  const relicsUrl = `${API_INTERNAL}/api/relics${relicQs ? `?${relicQs}` : ""}`;
   // act and param both reslice scores; the backend prioritizes act, so mirror
   // that here (act view ignores the bracket).
   const scoreQs = act ? `?act=${act}` : param ? `?bracket=${param}` : "";
@@ -130,9 +165,10 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
   const pool = sp.pool?.toLowerCase();
   const rarity = sp.rarity?.toLowerCase();
   const act = parseAct(sp.act);
+  const ancient = parseAncient(sp.ancient);
   const bracket = normalizeBracket(sp.bracket);
   const param = bracketParam(bracket);
-  const { relics, scores } = await fetchData(pool, act, param);
+  const { relics, scores } = await fetchData(pool, act, param, ancient);
 
   const entities: TierEntity[] = relics
     .filter((r) => !rarity || (r.rarity_key ?? "").toLowerCase() === rarity)
@@ -147,11 +183,14 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
     }));
 
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
+  const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
   const actPrefix = act ? `Act ${act} ` : "";
-  const heading = poolLabel && pool
+  const heading = ancient
+    ? `${actPrefix}${ancientLabel} Relic Tier List`
+    : poolLabel && pool
     ? `${actPrefix}${poolLabel} Relic Tier List`
     : `${actPrefix}Relic Tier List`;
-  const path = relicHref(pool, undefined, act);
+  const path = relicHref(pool, undefined, act, undefined, ancient);
 
   // Top-30 by score for ItemList JSON-LD, gives Google a structured
   // ranked list it can render as carousel-style rich results.
@@ -213,7 +252,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
           return (
             <Link
               key={opt.value || "all"}
-              href={relicHref(opt.value || undefined, rarity, act, bracket)}
+              href={relicHref(opt.value || undefined, rarity, act, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
                   ? "bg-[var(--accent-gold)]/10 border-[var(--accent-gold)]/40 text-[var(--accent-gold)]"
@@ -233,10 +272,30 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
           return (
             <Link
               key={opt.value || "all-rarities"}
-              href={relicHref(pool, opt.value || undefined, act, bracket)}
+              href={relicHref(pool, opt.value || undefined, act, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
                   ? "bg-sky-500/10 border-sky-500/40 text-sky-300"
+                  : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
+              }`}
+            >
+              {opt.label}
+            </Link>
+          );
+        })}
+      </div>
+      {/* Ancient offer pools: rank one ancient's options against each other */}
+      <div className="flex flex-wrap items-center gap-1.5 mb-2">
+        <span className="text-xs text-[var(--text-muted)] mr-1">Ancients</span>
+        {ANCIENT_FILTERS.map((opt) => {
+          const isActive = ancient === opt.value;
+          return (
+            <Link
+              key={opt.value || "all-ancients"}
+              href={relicHref(pool, rarity, act, bracket, opt.value || undefined)}
+              className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
+                isActive
+                  ? "bg-purple-500/10 border-purple-500/40 text-purple-300"
                   : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
               }`}
             >
@@ -253,7 +312,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
           return (
             <Link
               key={opt.value || "all-acts"}
-              href={relicHref(pool, rarity, opt.value || undefined, bracket)}
+              href={relicHref(pool, rarity, opt.value || undefined, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
                   ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
@@ -271,7 +330,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
       <BracketFilter
         basePath="/tier-list/relics"
         current={bracket}
-        extraParams={{ pool, rarity, act }}
+        extraParams={{ pool, rarity, act, ancient }}
         composite
       />
 
