@@ -1244,7 +1244,10 @@ _SUMMARY_INTERVAL_SECONDS = max(
 _PREWARM_INTERVAL_SECONDS = max(
     300, int(os.environ.get("CHART_PREWARM_INTERVAL_SECONDS", "") or 7200)
 )
-_cadence = {"summary": 0.0, "prewarm": 0.0}
+_VECTORS_INTERVAL_SECONDS = max(
+    3600, int(os.environ.get("RUN_VECTORS_INTERVAL_SECONDS", "") or 86400)
+)
+_cadence = {"summary": 0.0, "prewarm": 0.0, "vectors": 0.0}
 _side_jobs: dict[str, float] = {}
 _blob_backfill_kicked = False
 
@@ -1392,6 +1395,20 @@ def start_stats_refresher() -> None:
         _kick_side_job("home_stats", refresh_home_stats)
         # One-shot files -> run_blobs backfill, first leader cycle only.
         _maybe_kick_blob_backfill()
+
+        if (
+            os.environ.get("RUN_VECTORS", "on").strip().lower()
+            not in ("off", "0", "false")
+            and time.time() - _cadence["vectors"] >= _VECTORS_INTERVAL_SECONDS
+        ):
+            _cadence["vectors"] = time.time()
+
+            def _vectors() -> None:
+                from ..services.run_vectors import build_run_vectors
+
+                build_run_vectors()
+
+            _kick_side_job("run_vectors", _vectors)
 
         if time.time() - _cadence["summary"] >= _SUMMARY_INTERVAL_SECONDS:
             _cadence["summary"] = time.time()
@@ -1578,3 +1595,57 @@ def get_community_stats(
             app_cache.delete(lock_key)
 
     return result
+
+
+@router.get("/{run_hash}/similar", tags=["Runs"])
+@limiter.limit("60/minute")
+def get_similar_runs(
+    request: Request, response: Response, run_hash: str, lang: str = "eng"
+):
+    """Nearest winning solo decks to this run, from the nightly composition
+    vectors, plus the cards/relics those winners took that this run didn't."""
+    run_hash = run_hash.strip()
+    cache_key = f"simruns:{run_hash}:{lang}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    empty = {
+        "run_hash": run_hash,
+        "items": [],
+        "winners_also_took": [],
+        "available": False,
+    }
+    from ..services.run_vectors import available, similar_runs
+
+    if not (os.environ.get("MONGO_URL", "").strip() and available()):
+        response.headers["Cache-Control"] = "no-store"
+        return empty
+    try:
+        result = similar_runs(run_hash)
+    except Exception:
+        logger.warning("similar-runs lookup failed for %s", run_hash, exc_info=True)
+        result = None
+    if result is None:
+        response.headers["Cache-Control"] = "no-store"
+        return empty
+    from ..services import data_service
+
+    try:
+        cards = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relics = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        cards, relics = {}, {}
+    for w in result["winners_also_took"]:
+        catalog = cards if w["etype"] == "cards" else relics
+        w["name"] = catalog.get(w["id"]) or w["id"].replace("_", " ").title()
+    payload = {"run_hash": run_hash, "available": True, **result}
+    app_cache.set_json(cache_key, payload, ttl_seconds=6 * 3600)
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return payload
