@@ -28,6 +28,12 @@ interface SimilarResponse {
   available: boolean;
   items: SimilarItem[];
   winners_also_took: AlsoTook[];
+  archetype?: {
+    name: string;
+    win_rate: number;
+    share: number;
+    similarity: number;
+  } | null;
 }
 
 function formatRunTime(seconds: number): string {
@@ -64,6 +70,21 @@ export default function SimilarRuns({ hash }: { hash: string }) {
       <p className="text-xs text-[var(--text-muted)] mb-3">
         {t("The closest winning decks to this one, by cards and relics.", lang)}
       </p>
+      {data.archetype && (
+        <p className="text-xs mb-3">
+          <span className="text-[var(--text-muted)]">{t("Build", lang)}: </span>
+          <Link
+            href={`${lp}/archetypes`}
+            className="text-[var(--accent-gold)] hover:underline font-semibold"
+          >
+            {data.archetype.name}
+          </Link>
+          <span className="text-[var(--text-muted)]">
+            {" "}· {data.archetype.win_rate}% {t("win rate", lang)} ·{" "}
+            {data.archetype.share}% {t("of runs", lang)}
+          </span>
+        </p>
+      )}
       <div className="space-y-1.5">
         {data.items.map((it) => (
           <Link

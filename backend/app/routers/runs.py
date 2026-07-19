@@ -201,6 +201,32 @@ async def submit_run_endpoint(
                 apply_run_async(run_hash, data)
             except Exception:
                 pass
+        try:
+            players = data.get("players") or []
+            if len(players) == 1:
+                from ..services import data_service
+                from ..services.run_vectors import match_archetype
+                from ..services.runs_db_mongo import clean_id
+
+                p = players[0]
+                arch = await run_in_threadpool(
+                    match_archetype,
+                    clean_id(str(p.get("character") or "")).upper(),
+                    [{"id": clean_id(c.get("id", ""))} for c in p.get("deck") or []],
+                    [{"id": clean_id(r.get("id", ""))} for r in p.get("relics") or []],
+                )
+                if arch:
+                    names = {
+                        str(c.get("id", "")).upper(): c.get("name")
+                        for c in data_service.load_cards("eng")
+                    }
+                    arch["name"] = " + ".join(
+                        names.get(i) or i.replace("_", " ").title()
+                        for i in arch["defining_cards"][:2]
+                    )
+                    result["archetype"] = arch
+        except Exception:
+            pass
     seed = (data.get("seed") or "").strip()
     if (
         seed
@@ -1651,7 +1677,170 @@ def get_similar_runs(
     for w in result["winners_also_took"]:
         catalog = cards if w["etype"] == "cards" else relics
         w["name"] = catalog.get(w["id"]) or w["id"].replace("_", " ").title()
+    arch = result.get("archetype")
+    if arch:
+        arch["name"] = " + ".join(
+            cards.get(i) or i.replace("_", " ").title()
+            for i in arch["defining_cards"][:2]
+        )
     payload = {"run_hash": run_hash, "available": True, **result}
     app_cache.set_json(cache_key, payload, ttl_seconds=6 * 3600)
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return payload
+
+
+@router.get("/archetypes", tags=["Runs"])
+@limiter.limit("60/minute")
+def get_archetypes(request: Request, response: Response, lang: str = "eng"):
+    """Community deck archetypes, clustered nightly from run-composition
+    vectors: defining cards/relics, share, and win rate per build."""
+    cache_key = f"archetypes:{lang}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=600"
+        return cached
+    from ..services.run_vectors import load_archetypes
+
+    data = load_archetypes()
+    if not data:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "characters": {}}
+    from ..services import data_service
+
+    try:
+        cards = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relics = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        cards, relics = {}, {}
+
+    def _name(catalog: dict, eid: str) -> str:
+        return catalog.get(eid) or eid.replace("_", " ").title()
+
+    def _ver_key(v: str):
+        try:
+            return tuple(int(x) for x in v.lstrip("v").split("."))
+        except ValueError:
+            return (0,)
+
+    out_chars: dict[str, list] = {}
+    for ch, clusters in (data.get("characters") or {}).items():
+        char_total = sum(c["size"] for c in clusters) or 1
+        ver_totals: dict[str, int] = {}
+        for c in clusters:
+            for v, sw in (c.get("versions") or {}).items():
+                ver_totals[v] = ver_totals.get(v, 0) + sw[0]
+        recent = sorted((v for v, n in ver_totals.items() if n >= 200), key=_ver_key)[
+            -2:
+        ]
+        rows = []
+        for c in clusters:
+            if c["size"] < 50:
+                continue
+            trend = None
+            if len(recent) == 2:
+                now_v, prev_v = recent[1], recent[0]
+                share_now = (
+                    (c.get("versions", {}).get(now_v, [0])[0]) / ver_totals[now_v]
+                )
+                share_prev = (
+                    (c.get("versions", {}).get(prev_v, [0])[0]) / ver_totals[prev_v]
+                )
+                trend = {
+                    "version": now_v,
+                    "delta": round((share_now - share_prev) * 100, 1),
+                }
+            rows.append(
+                {
+                    "trend": trend,
+                    "name": " + ".join(_name(cards, i) for i in c["defining_cards"][:2])
+                    or ch.title(),
+                    "size": c["size"],
+                    "share": round(c["size"] / char_total * 100, 1),
+                    "win_rate": c["win_rate"],
+                    "defining_cards": [
+                        {"id": i, "name": _name(cards, i)} for i in c["defining_cards"]
+                    ],
+                    "defining_relics": [
+                        {"id": i, "name": _name(relics, i)}
+                        for i in c["defining_relics"]
+                    ],
+                    "example_runs": c["example_runs"],
+                }
+            )
+        out_chars[ch] = rows
+    payload = {
+        "available": True,
+        "built_at": data.get("built_at"),
+        "characters": out_chars,
+    }
+    app_cache.set_json(cache_key, payload, ttl_seconds=1800)
+    response.headers["Cache-Control"] = "public, max-age=600"
+    return payload
+
+
+@router.get("/deck-advisor", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_deck_advisor(
+    request: Request,
+    response: Response,
+    character: str,
+    cards: str = "",
+    relics: str = "",
+    limit: int = Query(8, ge=1, le=20),
+    lang: str = "eng",
+):
+    """Deck advisor: among the winning decks nearest this partial deck, the
+    cards and relics they carry that the draft doesn't yet, with the share of
+    those winners carrying each."""
+    import hashlib
+
+    char = character.strip().upper()
+    card_ids = sorted(c.strip().upper() for c in cards.split(",") if c.strip())
+    relic_ids = sorted(r.strip().upper() for r in relics.split(",") if r.strip())
+    key_src = f"{char}|{','.join(card_ids)}|{','.join(relic_ids)}|{limit}|{lang}"
+    cache_key = "deckadv:" + hashlib.sha1(key_src.encode()).hexdigest()
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    from ..services.run_vectors import deck_advisor
+
+    try:
+        recs = deck_advisor(
+            char,
+            [{"id": c} for c in card_ids],
+            [{"id": r} for r in relic_ids],
+            limit=limit,
+        )
+    except Exception:
+        logger.warning("deck advisor failed", exc_info=True)
+        recs = None
+    if recs is None:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "items": []}
+    from ..services import data_service
+
+    try:
+        card_names = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relic_names = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        card_names, relic_names = {}, {}
+    for r in recs:
+        catalog = card_names if r["etype"] == "cards" else relic_names
+        r["name"] = catalog.get(r["id"]) or r["id"].replace("_", " ").title()
+    payload = {"available": True, "character": char, "items": recs}
+    app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
