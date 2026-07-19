@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hmac
 import os
 import secrets
 from datetime import datetime, timedelta, timezone
@@ -16,6 +17,12 @@ _JWT_EXPIRY_DAYS = 7
 _COOKIE_NAME = "spire_session"
 _STATE_PURPOSE = "oauth_state"
 _STATE_TTL_SECONDS = 600
+# Cookie that binds an OAuth `state` value to the browser that started the
+# flow. verify_oauth_state alone only proves WE minted the state, not that it
+# was minted for THIS browser — so without this a signed state could be
+# replayed in a CSRF/forced-link attack. The /start handlers set it; the
+# /callback handlers require the returned state to equal it.
+_OAUTH_STATE_COOKIE = "spire_oauth_state"
 
 
 def _get_secret() -> str:
@@ -74,6 +81,51 @@ def verify_oauth_state(token: str) -> bool:
     except (jwt.ExpiredSignatureError, jwt.InvalidTokenError):
         return False
     return payload.get("purpose") == _STATE_PURPOSE
+
+
+def set_oauth_state_cookie(response, state: str) -> None:
+    """Pin the freshly minted OAuth `state` to the browser starting the flow.
+
+    SameSite=Lax so the cookie survives the top-level redirect back from the
+    OAuth provider (the callback is a GET navigation), while still not riding
+    along on cross-site subrequests."""
+    is_prod = os.environ.get("ENVIRONMENT", "").lower() in ("production", "prod")
+    response.set_cookie(
+        key=_OAUTH_STATE_COOKIE,
+        value=state,
+        httponly=True,
+        secure=is_prod,
+        samesite="lax",
+        path="/",
+        max_age=_STATE_TTL_SECONDS,
+    )
+
+
+def clear_oauth_state_cookie(response) -> None:
+    is_prod = os.environ.get("ENVIRONMENT", "").lower() in ("production", "prod")
+    response.delete_cookie(
+        key=_OAUTH_STATE_COOKIE,
+        path="/",
+        secure=is_prod,
+        samesite="lax",
+    )
+
+
+def oauth_state_cookie(request: Request) -> str:
+    return request.cookies.get(_OAUTH_STATE_COOKIE, "")
+
+
+def verify_oauth_state_bound(state: str, cookie_state: str) -> bool:
+    """CSRF-safe state check: the returned `state` must be a valid, unexpired,
+    server-signed token AND must match the value stashed in the browser's
+    cookie at /start. The cookie match is what stops an attacker from replaying
+    a state they minted themselves into a victim's session (forced account
+    linking / login CSRF). Constant-time compare avoids leaking the cookie."""
+    if not state or not cookie_state:
+        return False
+    if not hmac.compare_digest(state, cookie_state):
+        return False
+    return verify_oauth_state(state)
 
 
 def set_auth_cookie(response: JSONResponse, token: str) -> None:

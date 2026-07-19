@@ -24,7 +24,13 @@ from slowapi import Limiter
 
 from ..dependencies import client_ip
 from ..services import rate_limit_config
-from ..services.auth_jwt import create_oauth_state, verify_oauth_state
+from ..services.auth_jwt import (
+    clear_oauth_state_cookie,
+    create_oauth_state,
+    oauth_state_cookie,
+    set_oauth_state_cookie,
+    verify_oauth_state_bound,
+)
 
 logger = logging.getLogger("spire-codex.auth")
 
@@ -81,7 +87,11 @@ async def start(request: Request):
         "force_verify": "true",
     }
     url = f"{_TWITCH_AUTHORIZE}?{urllib.parse.urlencode(params)}"
-    return RedirectResponse(url)
+    response = RedirectResponse(url)
+    # Bind the state to this browser so the callback can reject a state that
+    # wasn't minted for it (CSRF / forced-link protection).
+    set_oauth_state_cookie(response, state)
+    return response
 
 
 @router.get("/callback")
@@ -99,8 +109,10 @@ async def callback(request: Request):
     if not code or not state:
         return RedirectResponse(f"{base}/settings?error=invalid_response")
 
-    if not verify_oauth_state(state):
-        return RedirectResponse(f"{base}/settings?error=invalid_session")
+    if not verify_oauth_state_bound(state, oauth_state_cookie(request)):
+        resp = RedirectResponse(f"{base}/settings?error=invalid_session")
+        clear_oauth_state_cookie(resp)
+        return resp
 
     client_id, client_secret = _get_twitch_config()
     redirect_uri = f"{base}/api/auth/twitch/callback"
@@ -216,6 +228,7 @@ async def callback(request: Request):
 
         response = RedirectResponse(f"{base}/settings?linked=twitch")
         set_auth_cookie(response, token)
+        clear_oauth_state_cookie(response)
 
         logger.info(
             "twitch-auth ok twitch_id=%s login=%s user=%s linked=%s",

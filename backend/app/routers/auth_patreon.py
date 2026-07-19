@@ -33,7 +33,14 @@ from slowapi import Limiter
 
 from ..dependencies import client_ip
 from ..services import rate_limit_config
-from ..services.auth_jwt import create_oauth_state, get_current_user, verify_oauth_state
+from ..services.auth_jwt import (
+    clear_oauth_state_cookie,
+    create_oauth_state,
+    get_current_user,
+    oauth_state_cookie,
+    set_oauth_state_cookie,
+    verify_oauth_state_bound,
+)
 
 logger = logging.getLogger("spire-codex.auth")
 
@@ -92,7 +99,13 @@ async def start(request: Request):
         "scope": "identity identity.memberships",
         "state": state,
     }
-    return RedirectResponse(f"{_PATREON_AUTHORIZE}?{urllib.parse.urlencode(params)}")
+    response = RedirectResponse(
+        f"{_PATREON_AUTHORIZE}?{urllib.parse.urlencode(params)}"
+    )
+    # Bind the state to this browser so the callback can reject a state that
+    # wasn't minted for it (CSRF / forced-link protection).
+    set_oauth_state_cookie(response, state)
+    return response
 
 
 @router.get("/callback")
@@ -105,8 +118,10 @@ async def callback(request: Request):
     state = request.query_params.get("state")
     if not code or not state:
         return RedirectResponse(f"{base}/settings?error=invalid_response")
-    if not verify_oauth_state(state):
-        return RedirectResponse(f"{base}/settings?error=invalid_session")
+    if not verify_oauth_state_bound(state, oauth_state_cookie(request)):
+        resp = RedirectResponse(f"{base}/settings?error=invalid_session")
+        clear_oauth_state_cookie(resp)
+        return resp
 
     user = get_current_user(request)
     if not user:
@@ -169,7 +184,9 @@ async def callback(request: Request):
             f"{base}/settings?error={urllib.parse.quote(result['error'])}"
         )
     _apply_paid(user["_id"], paid)
-    return RedirectResponse(f"{base}/settings?linked=patreon")
+    response = RedirectResponse(f"{base}/settings?linked=patreon")
+    clear_oauth_state_cookie(response)
+    return response
 
 
 @router.post("/disconnect")
