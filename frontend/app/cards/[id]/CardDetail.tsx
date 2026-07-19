@@ -18,6 +18,7 @@ import EntityPairings from "@/app/components/EntityPairings";
 import EntityDraftRecs from "@/app/components/EntityDraftRecs";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
+import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
@@ -179,6 +180,9 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
   const [statsBracket, setStatsBracket] = useState("all");
+  const hasStatVersions = Object.keys(miniStats?.brackets ?? {}).some((k) =>
+    /^v\d/.test(k),
+  );
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
@@ -766,6 +770,12 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
                   <>
                     Beta art{isUpgraded ? " + Upgraded" : ""}
                   </>
+                ) : hasStatVersions ? (
+                  <EntityVersionSelect
+                    brackets={miniStats?.brackets}
+                    bracket={statsBracket}
+                    onBracketChange={setStatsBracket}
+                  />
                 ) : (
                   <>
                     {isUpgraded ? "Upgraded" : "Normal"}

@@ -14,6 +14,7 @@ import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
 import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
+import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import "../../card-revamp.css";
@@ -273,6 +274,14 @@ export default function PotionDetail({
                 crossOrigin="anonymous"
               />
             )}
+
+            <div className="mb-2 text-center">
+              <EntityVersionSelect
+                brackets={miniStats?.brackets}
+                bracket={statsBracket}
+                onBracketChange={setStatsBracket}
+              />
+            </div>
 
             {/* Facts table */}
             <div className="facts">
