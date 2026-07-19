@@ -60,9 +60,14 @@ export default function HomeStatsLive({
         .catch(() => null);
     };
     const timer = setInterval(load, POLL_MS);
+    const onVisible = () => {
+      if (!document.hidden) load();
+    };
+    document.addEventListener("visibilitychange", onVisible);
     return () => {
       active = false;
       clearInterval(timer);
+      document.removeEventListener("visibilitychange", onVisible);
     };
   }, [pollBase]);
 
