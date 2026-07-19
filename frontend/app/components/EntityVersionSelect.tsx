@@ -58,7 +58,7 @@ export default function EntityVersionSelect({
 
   return (
     <select
-      className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[11px] text-[var(--text-secondary)] focus:outline-none"
+      className="ench-select"
       aria-label="Game version"
       value={selected}
       onChange={(e) => pick(e.target.value)}
