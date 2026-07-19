@@ -121,6 +121,7 @@ def build_run_vectors() -> dict:
 
     _VEC_DIR.mkdir(parents=True, exist_ok=True)
     total = 0
+    archetypes: dict[str, list] = {}
     for ch, acc in per_char.items():
         n = len(acc["meta"])
         if n == 0:
@@ -137,6 +138,26 @@ def build_run_vectors() -> dict:
         with gzip.open(_VEC_DIR / f"{ch}_meta.json.gz", "wt", encoding="utf-8") as f:
             json.dump(acc["meta"], f, ensure_ascii=False)
         total += n
+        k = max(4, min(14, n // 3000))
+        if n >= 200 and k >= 2:
+            try:
+                clusters, _labels, dists = _cluster_shard(
+                    ch, mat, acc["meta"], vocab_list, k
+                )
+                np.save(_VEC_DIR / f"{ch}_dists.npy", dists)
+                archetypes[ch] = clusters
+            except Exception:
+                logger.warning("archetype clustering failed for %s", ch, exc_info=True)
+    if archetypes:
+        (_VEC_DIR / "archetypes.json").write_text(
+            json.dumps(
+                {
+                    "characters": archetypes,
+                    "built_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                }
+            ),
+            encoding="utf-8",
+        )
     tmp = _VEC_DIR / "vocab.json.tmp"
     tmp.write_text(
         json.dumps(
@@ -282,3 +303,113 @@ def similar_runs(run_hash: str, limit: int = 5) -> dict | None:
         "winners_also_took": winners_also_took,
         "neighbors": len(items),
     }
+
+
+def _spherical_kmeans(mat, k: int, iters: int = 25, seed: int = 0):
+    import numpy as np
+
+    rng = np.random.default_rng(seed)
+    n = mat.shape[0]
+    first = int(rng.integers(n))
+    centroid_rows = [first]
+    sims = mat.dot(mat[first].T.toarray().ravel())
+    for _ in range(k - 1):
+        d = 1.0 - sims
+        d = np.clip(d, 0, None) ** 2
+        total = float(d.sum())
+        if total <= 0:
+            centroid_rows.append(int(rng.integers(n)))
+            continue
+        pick = int(rng.choice(n, p=d / total))
+        centroid_rows.append(pick)
+        sims = np.maximum(sims, mat.dot(mat[pick].T.toarray().ravel()))
+    centers = mat[centroid_rows].toarray()
+    labels = None
+    for _ in range(iters):
+        scores = mat.dot(centers.T)
+        new_labels = np.asarray(scores.argmax(axis=1)).ravel()
+        if labels is not None and (new_labels == labels).all():
+            break
+        labels = new_labels
+        for j in range(k):
+            members = mat[labels == j]
+            if members.shape[0] == 0:
+                continue
+            c = np.asarray(members.mean(axis=0)).ravel()
+            norm = np.linalg.norm(c)
+            centers[j] = c / norm if norm > 0 else c
+    dists = 1.0 - np.asarray(mat.dot(centers.T))[np.arange(n), labels]
+    return labels, centers, dists
+
+
+def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: int):
+    import numpy as np
+
+    labels, centers, dists = _spherical_kmeans(mat, k)
+    global_mean = np.asarray(mat.mean(axis=0)).ravel()
+    wins = np.array([m["win"] for m in meta], dtype=np.int32)
+    out = []
+    for j in range(k):
+        mask = labels == j
+        size = int(mask.sum())
+        if size == 0:
+            continue
+        lift = centers[j] / (global_mean + 1e-6)
+        lift[centers[j] < 0.02] = 0
+        top = np.argsort(lift)[::-1]
+        cards, relics = [], []
+        for idx in top:
+            if lift[idx] <= 1.0 or (len(cards) >= 3 and len(relics) >= 2):
+                break
+            term = vocab_list[idx]
+            if term.startswith("R:"):
+                if len(relics) < 2:
+                    relics.append(term[2:])
+            elif len(cards) < 3:
+                cards.append(term)
+        member_idx = np.flatnonzero(mask)
+        win_members = member_idx[wins[member_idx] == 1]
+        pool = win_members if win_members.size else member_idx
+        examples = pool[np.argsort(dists[pool])][:3]
+        out.append(
+            {
+                "character": character,
+                "size": size,
+                "wins": int(wins[mask].sum()),
+                "win_rate": round(float(wins[mask].mean()) * 100, 1) if size else 0.0,
+                "defining_cards": cards,
+                "defining_relics": relics,
+                "example_runs": [meta[int(i)]["hash"] for i in examples],
+            }
+        )
+    out.sort(key=lambda c: -c["size"])
+    return out, labels, dists
+
+
+def load_archetypes() -> dict | None:
+    try:
+        return json.loads((_VEC_DIR / "archetypes.json").read_text(encoding="utf-8"))
+    except OSError:
+        return None
+
+
+def anomalous_runs(limit: int = 30) -> list[dict]:
+    """Runs farthest from every archetype centroid: nothing else looks like them."""
+    import numpy as np
+
+    out: list[dict] = []
+    for ch in _OFFICIAL_CHARACTERS:
+        try:
+            dists = np.load(_VEC_DIR / f"{ch}_dists.npy")
+            with gzip.open(
+                _VEC_DIR / f"{ch}_meta.json.gz", "rt", encoding="utf-8"
+            ) as f:
+                meta = json.load(f)
+        except OSError:
+            continue
+        n = min(len(meta), len(dists))
+        for i in np.argsort(dists[:n])[::-1][:limit]:
+            m = meta[int(i)]
+            out.append({"run_hash": m["hash"], "distance": round(float(dists[i]), 3)})
+    out.sort(key=lambda r: -r["distance"])
+    return out[:limit]

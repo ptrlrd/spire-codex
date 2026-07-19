@@ -1655,3 +1655,71 @@ def get_similar_runs(
     app_cache.set_json(cache_key, payload, ttl_seconds=6 * 3600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
+
+
+@router.get("/archetypes", tags=["Runs"])
+@limiter.limit("60/minute")
+def get_archetypes(request: Request, response: Response, lang: str = "eng"):
+    """Community deck archetypes, clustered nightly from run-composition
+    vectors: defining cards/relics, share, and win rate per build."""
+    cache_key = f"archetypes:{lang}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=600"
+        return cached
+    from ..services.run_vectors import load_archetypes
+
+    data = load_archetypes()
+    if not data:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "characters": {}}
+    from ..services import data_service
+
+    try:
+        cards = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relics = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        cards, relics = {}, {}
+
+    def _name(catalog: dict, eid: str) -> str:
+        return catalog.get(eid) or eid.replace("_", " ").title()
+
+    out_chars: dict[str, list] = {}
+    for ch, clusters in (data.get("characters") or {}).items():
+        char_total = sum(c["size"] for c in clusters) or 1
+        rows = []
+        for c in clusters:
+            if c["size"] < 50:
+                continue
+            rows.append(
+                {
+                    "name": " + ".join(_name(cards, i) for i in c["defining_cards"][:2])
+                    or ch.title(),
+                    "size": c["size"],
+                    "share": round(c["size"] / char_total * 100, 1),
+                    "win_rate": c["win_rate"],
+                    "defining_cards": [
+                        {"id": i, "name": _name(cards, i)} for i in c["defining_cards"]
+                    ],
+                    "defining_relics": [
+                        {"id": i, "name": _name(relics, i)}
+                        for i in c["defining_relics"]
+                    ],
+                    "example_runs": c["example_runs"],
+                }
+            )
+        out_chars[ch] = rows
+    payload = {
+        "available": True,
+        "built_at": data.get("built_at"),
+        "characters": out_chars,
+    }
+    app_cache.set_json(cache_key, payload, ttl_seconds=1800)
+    response.headers["Cache-Control"] = "public, max-age=600"
+    return payload
