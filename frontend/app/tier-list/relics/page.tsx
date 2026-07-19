@@ -97,6 +97,28 @@ function parseAncient(raw?: string): string {
   return ANCIENT_FILTERS.some((a) => a.value && a.value === v) ? v : "";
 }
 
+// Same cutoffs as TierList's TIERS bands.
+function relativeTier(rel: number): "S" | "A" | "B" | "C" | "D" | "F" {
+  if (rel >= 90) return "S";
+  if (rel >= 78) return "A";
+  if (rel >= 65) return "B";
+  if (rel >= 50) return "C";
+  if (rel >= 35) return "D";
+  return "F";
+}
+
+function applyRelativeTiers(entities: TierEntity[]): boolean {
+  const scored = entities.filter((e) => e.score != null);
+  if (scored.length < 2) return false;
+  const min = Math.min(...scored.map((e) => e.score as number));
+  const max = Math.max(...scored.map((e) => e.score as number));
+  if (max - min < 10) return false;
+  for (const e of scored) {
+    e.tier = relativeTier((((e.score as number) - min) / (max - min)) * 100);
+  }
+  return true;
+}
+
 interface PageProps {
   searchParams: Promise<{ pool?: string; rarity?: string; act?: string; bracket?: string; ancient?: string }>;
 }
@@ -182,6 +204,10 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
       score: scores[r.id.toUpperCase()]?.score ?? null,
     }));
 
+  // Ancient views band tiers relative to the pool (tiles keep the absolute
+  // score); skipped when the pool's spread is too flat to mean anything.
+  const relativeTiers = !!ancient && applyRelativeTiers(entities);
+
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
   const actPrefix = act ? `Act ${act} ` : "";
@@ -228,7 +254,16 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
         <span className="text-sm text-[var(--text-muted)]">{entities.length.toLocaleString()} relics</span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {act ? (
+        {relativeTiers ? (
+          <>
+            Graded within {ancientLabel}&apos;s pool: S is the best of these offers and F
+            the worst, relative to each other rather than the whole game. You always
+            pick from exactly these options, so relative placement answers the actual
+            decision. Tiles still show the absolute{" "}
+            <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">Codex Score</Link>.
+            Click any relic for full stats.
+          </>
+        ) : act ? (
           <>
             Ranked by the win rate of runs that picked each relic up during Act {act},
             Bayesian-shrunk and graded against other Act {act} pickups, so reaching a
