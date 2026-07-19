@@ -554,8 +554,18 @@ def _propagate_username(user_id: str, new_username: str) -> None:
 
 
 def _try_claim_run(run_hash: str, user: dict) -> None:
-    """Claim a run for the user. Also clears deleted_at so re-uploading
-    a previously deleted run restores it to My Runs."""
+    """Claim a run for the user, but ONLY when it isn't already owned.
+
+    The `user_id: None` guard is load-bearing security, not an optimization:
+    run hashes are content-derived (sha256 of public run fields) and every
+    run's full JSON is served by the unauthenticated GET /api/runs/shared/
+    {hash}, so any signed-in user could otherwise fetch another user's run,
+    re-POST it to /api/auth/runs/upload, and have this claim silently
+    reassign ownership to themselves (the duplicate-insert path in
+    submit_run already refuses to reassign for exactly this reason). Scoping
+    the update to unowned runs preserves the legitimate "attach my name to a
+    run I uploaded anonymously" flow while making cross-user theft impossible.
+    """
     if not os.environ.get("MONGO_URL", "").strip() or not run_hash:
         return
     try:
@@ -564,7 +574,7 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
 
         coll = _get_collection()
         coll.update_one(
-            {"_id": run_hash},
+            {"_id": run_hash, "user_id": None},
             {
                 "$set": {
                     "user_id": ObjectId(user["_id"]),
