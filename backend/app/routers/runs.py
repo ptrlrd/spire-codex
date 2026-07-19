@@ -1742,6 +1742,11 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
         for c in clusters:
             if c["size"] < 50:
                 continue
+            # No draftable identity after the starter filter = not a build
+            # (the starter-deck early-exit clusters); real archetypes' share
+            # stays computed against ALL runs so the numbers remain honest.
+            if not c["defining_cards"] and not c["defining_relics"]:
+                continue
             trend = None
             if len(recent) == 2:
                 now_v, prev_v = recent[1], recent[0]
