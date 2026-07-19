@@ -41,6 +41,7 @@ interface Archetype {
   defining_cards: NamedEntity[];
   defining_relics: NamedEntity[];
   example_runs: string[];
+  trend?: { version: string; delta: number } | null;
 }
 
 interface ArchetypesResponse {
@@ -126,6 +127,15 @@ export default async function ArchetypesPage() {
                     </div>
                     <div className="text-xs text-[var(--text-muted)] mb-3">
                       {a.share}% of {characterLabel(ch)} runs · {a.size.toLocaleString()} decks
+                      {a.trend && Math.abs(a.trend.delta) >= 0.5 && (
+                        <span
+                          className="ml-2 font-semibold"
+                          style={{ color: a.trend.delta > 0 ? "#22c55e" : "#ef4444" }}
+                          title={`Share change in ${a.trend.version} vs the previous version`}
+                        >
+                          {a.trend.delta > 0 ? "▲" : "▼"} {Math.abs(a.trend.delta)}%
+                        </span>
+                      )}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {a.defining_cards.map((e) => (

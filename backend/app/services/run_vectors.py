@@ -141,10 +141,11 @@ def build_run_vectors() -> dict:
         k = max(4, min(14, n // 3000))
         if n >= 200 and k >= 2:
             try:
-                clusters, _labels, dists = _cluster_shard(
+                clusters, _labels, dists, centers = _cluster_shard(
                     ch, mat, acc["meta"], vocab_list, k
                 )
                 np.save(_VEC_DIR / f"{ch}_dists.npy", dists)
+                np.save(_VEC_DIR / f"{ch}_centroids.npy", centers)
                 archetypes[ch] = clusters
             except Exception:
                 logger.warning("archetype clustering failed for %s", ch, exc_info=True)
@@ -302,6 +303,9 @@ def similar_runs(run_hash: str, limit: int = 5) -> dict | None:
         "items": items,
         "winners_also_took": winners_also_took,
         "neighbors": len(items),
+        "archetype": match_archetype(
+            doc["character"], doc.get("deck"), doc.get("relics")
+        ),
     }
 
 
@@ -348,7 +352,9 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
     labels, centers, dists = _spherical_kmeans(mat, k)
     global_mean = np.asarray(mat.mean(axis=0)).ravel()
     wins = np.array([m["win"] for m in meta], dtype=np.int32)
+    vers = [m.get("ver") or "" for m in meta]
     out = []
+    kept_centers = []
     for j in range(k):
         mask = labels == j
         size = int(mask.sum())
@@ -371,6 +377,14 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
         win_members = member_idx[wins[member_idx] == 1]
         pool = win_members if win_members.size else member_idx
         examples = pool[np.argsort(dists[pool])][:3]
+        by_ver: dict[str, list[int]] = {}
+        for i in member_idx:
+            v = vers[int(i)]
+            if not v:
+                continue
+            slot = by_ver.setdefault(v, [0, 0])
+            slot[0] += 1
+            slot[1] += int(wins[int(i)])
         out.append(
             {
                 "character": character,
@@ -380,10 +394,14 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
                 "defining_cards": cards,
                 "defining_relics": relics,
                 "example_runs": [meta[int(i)]["hash"] for i in examples],
+                "versions": by_ver,
             }
         )
-    out.sort(key=lambda c: -c["size"])
-    return out, labels, dists
+        kept_centers.append(centers[j])
+    order = sorted(range(len(out)), key=lambda i: -out[i]["size"])
+    out = [out[i] for i in order]
+    kept = np.array([kept_centers[i] for i in order], dtype=np.float32)
+    return out, labels, dists, kept
 
 
 def load_archetypes() -> dict | None:
@@ -413,3 +431,93 @@ def anomalous_runs(limit: int = 30) -> list[dict]:
             out.append({"run_hash": m["hash"], "distance": round(float(dists[i]), 3)})
     out.sort(key=lambda r: -r["distance"])
     return out[:limit]
+
+
+def _query_vector(character: str, deck: list, relics: list):
+    import numpy as np
+
+    vocab = _load_vocab()
+    if vocab is None:
+        return None
+    loaded = _load_shard(character)
+    if loaded is None:
+        return None
+    mat, meta = loaded
+    terms = _row_terms(deck, relics)
+    q = np.zeros(mat.shape[1], dtype=np.float32)
+    for t, v in terms.items():
+        idx = vocab.get(t)
+        if idx is not None:
+            q[idx] = v
+    norm = float(np.linalg.norm(q))
+    if norm == 0:
+        return None
+    return q / norm, mat, meta, set(terms)
+
+
+def match_archetype(character: str, deck: list, relics: list) -> dict | None:
+    """Nearest archetype for a deck: the cluster dict plus match similarity."""
+    import numpy as np
+
+    arch = load_archetypes()
+    clusters = ((arch or {}).get("characters") or {}).get(character)
+    if not clusters:
+        return None
+    try:
+        centers = np.load(_VEC_DIR / f"{character}_centroids.npy")
+    except OSError:
+        return None
+    if centers.shape[0] != len(clusters):
+        return None
+    built = _query_vector(character, deck, relics)
+    if built is None:
+        return None
+    q = built[0]
+    sims = centers.dot(q)
+    j = int(np.argmax(sims))
+    total = sum(c["size"] for c in clusters) or 1
+    c = clusters[j]
+    return {
+        "defining_cards": c["defining_cards"],
+        "win_rate": c["win_rate"],
+        "share": round(c["size"] / total * 100, 1),
+        "similarity": round(float(sims[j]) * 100, 1),
+    }
+
+
+def deck_advisor(
+    character: str, deck: list, relics: list, limit: int = 8
+) -> list[dict] | None:
+    """Most common cards/relics among the winning decks nearest this draft
+    that the draft doesn't have yet, with the share of neighbors carrying each."""
+    import numpy as np
+
+    built = _query_vector(character, deck, relics)
+    if built is None:
+        return None
+    q, mat, meta, own_terms = built
+    sims = np.asarray(mat.dot(q))
+    wins = np.array([m["win"] for m in meta], dtype=bool)
+    win_idx = np.flatnonzero(wins & (sims > 0))
+    if win_idx.size == 0:
+        return []
+    top = win_idx[np.argsort(sims[win_idx])[::-1][:150]]
+    vocab = _load_vocab() or {}
+    inv = {i: t for t, i in vocab.items()}
+    counts: dict[str, int] = {}
+    for row in top:
+        start, end = mat.indptr[int(row)], mat.indptr[int(row) + 1]
+        for c in mat.indices[start:end]:
+            term = inv[int(c)]
+            if term not in own_terms:
+                counts[term] = counts.get(term, 0) + 1
+    ranked = sorted(counts.items(), key=lambda tn: -tn[1])[:limit]
+    n = int(top.size)
+    return [
+        {
+            "id": t[2:] if t.startswith("R:") else t,
+            "etype": "relics" if t.startswith("R:") else "cards",
+            "support": round(cnt / n * 100, 1),
+        }
+        for t, cnt in ranked
+    ]
