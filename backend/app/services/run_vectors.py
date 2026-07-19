@@ -313,8 +313,9 @@ def similar_runs(run_hash: str, limit: int = 5) -> dict | None:
             if term not in own_terms:
                 counts[term] = counts.get(term, 0) + 1
     threshold = max(2, (len(items) + 1) // 2)
+    skip = _nondraftable()
     also = sorted(
-        ((t, n) for t, n in counts.items() if n >= threshold),
+        ((t, n) for t, n in counts.items() if n >= threshold and t not in skip),
         key=lambda tn: -tn[1],
     )[:6]
     winners_also_took = [
@@ -374,6 +375,7 @@ def _spherical_kmeans(mat, k: int, iters: int = 25, seed: int = 0):
 
 
 def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: int):
+    vocab_index = {t: i for i, t in enumerate(vocab_list)}
     import numpy as np
 
     labels, centers, dists = _spherical_kmeans(mat, k)
@@ -389,6 +391,10 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
             continue
         lift = centers[j] / (global_mean + 1e-6)
         lift[centers[j] < 0.02] = 0
+        for term in _nondraftable():
+            idx = vocab_index.get(term)
+            if idx is not None:
+                lift[idx] = 0
         top = np.argsort(lift)[::-1]
         cards, relics = [], []
         for idx in top:
@@ -540,7 +546,11 @@ def deck_advisor(
             term = inv[int(c)]
             if term not in own_terms:
                 counts[term] = counts.get(term, 0) + 1
-    ranked = sorted(counts.items(), key=lambda tn: -tn[1])[:limit]
+    skip = _nondraftable()
+    ranked = sorted(
+        ((t, n) for t, n in counts.items() if t not in skip),
+        key=lambda tn: -tn[1],
+    )[:limit]
     n = int(top.size)
     return [
         {
@@ -550,3 +560,28 @@ def deck_advisor(
         }
         for t, cnt in ranked
     ]
+
+
+_nondraftable_cache: frozenset[str] | None = None
+
+
+def _nondraftable() -> frozenset[str]:
+    """Vocab terms that sit in ~every deck by default (Basic cards, Ascender's
+    Bane, starter relics) — excluded from names/suggestions, never vectors."""
+    global _nondraftable_cache
+    if _nondraftable_cache is None:
+        try:
+            from . import data_service
+
+            terms: set[str] = {"ASCENDERS_BANE"}
+            for c in data_service.load_cards("eng"):
+                if c.get("rarity_key") == "Basic" or c.get("rarity") == "Basic":
+                    terms.add(str(c.get("id", "")).upper())
+            for r in data_service.load_relics("eng"):
+                if "Starter" in str(r.get("rarity") or ""):
+                    terms.add(f"R:{str(r.get('id', '')).upper()}")
+            _nondraftable_cache = frozenset(terms - {""})
+        except Exception:
+            logger.warning("nondraftable set load failed", exc_info=True)
+            _nondraftable_cache = frozenset()
+    return _nondraftable_cache
