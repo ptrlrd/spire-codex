@@ -32,6 +32,17 @@
         admin_ip: "{{ lookup('pipe', 'op read \"op://Spire Codex/Peter''s Machine/ip\"') }}"
       no_log: true
 
+    # Cloudflare-origin verification secret. Uncomment once you've added a
+    # Cloudflare Transform Rule that injects `X-Origin-Verify: <secret>` on
+    # every proxied request AND stored that same secret in 1Password. With it
+    # set, nginx.conf.j2 refuses direct-to-origin traffic that bypasses
+    # Cloudflare (WAF / rate-limit / Access bypass). Leave commented to keep
+    # the check a no-op (default origin_verify_secret is "" in group_vars).
+    # - name: Fetch Cloudflare origin-verify secret from 1Password
+    #   set_fact:
+    #     origin_verify_secret: "{{ lookup('pipe', 'op read \"op://Spire Codex/Server/origin-verify-secret\"') }}"
+    #   no_log: true
+
     - name: Ensure QA host directory exists
       become: true
       file:

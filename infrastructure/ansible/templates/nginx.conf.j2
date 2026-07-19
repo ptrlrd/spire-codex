@@ -56,7 +56,15 @@ http {
     set_real_ip_from 2a06:98c0::/29;
     set_real_ip_from 2c0f:f248::/32;
     real_ip_header CF-Connecting-IP;
-    # Allow Cloudflare IPs
+    # NOTE: these `allow` directives do NOT restrict the origin to Cloudflare.
+    # Because `real_ip_header CF-Connecting-IP` rewrites $remote_addr to the
+    # real visitor IP BEFORE the access phase runs (see the umami block below),
+    # allow/deny here compares the visitor IP, not Cloudflare's edge — so an
+    # `allow <CF ranges>; deny all;` would block every legitimate user, not
+    # direct-to-origin traffic. Locking the origin to Cloudflare must happen at
+    # the cloud firewall (restrict inbound tcp/80,443 to Cloudflare's ranges)
+    # and/or via the `origin_verify_secret` check below. These `allow` lines are
+    # effectively a no-op today; kept only to document intent.
     allow 173.245.48.0/20;
     allow 103.21.244.0/22;
     allow 103.22.200.0/22;
@@ -73,10 +81,34 @@ http {
     allow 172.64.0.0/13;
     allow 131.0.72.0/22;
 
+{% if origin_verify_secret | default('') %}
+    # Cloudflare-origin verification. Cloudflare injects a secret header on
+    # every proxied request (configure a Transform Rule / Managed Transform to
+    # add `X-Origin-Verify: <secret>`); a request that arrives WITHOUT the
+    # matching value skipped the edge (direct-to-origin) and is refused below.
+    # This is the belt to the cloud-firewall's suspenders and, unlike an IP
+    # allow-list, is unaffected by the real_ip rewrite. Enforced only when
+    # `origin_verify_secret` is set in the ansible vars; unset = no-op, so
+    # deploying this template without the matching Cloudflare rule changes
+    # nothing.
+    map $http_x_origin_verify $origin_verify_ok {
+        default 0;
+        "{{ origin_verify_secret }}" 1;
+    }
+{% endif %}
 
  server {
       listen 80;
       server_name spire-codex.com www.spire-codex.com;
+
+{% if origin_verify_secret | default('') %}
+      # Refuse requests that didn't come through Cloudflare (missing/incorrect
+      # origin-verify header). Applies to the public apex only — the LB health
+      # origins and the IP-gated umami dashboard have their own blocks.
+      if ($origin_verify_ok = 0) {
+          return 403;
+      }
+{% endif %}
 
       location ~ /\. {
           return 404;

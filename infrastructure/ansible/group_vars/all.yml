@@ -28,3 +28,12 @@ compose_file: "{{ prod_compose_file }}"
 # before invoking sync-secrets.yml.
 env_template_path: "{{ playbook_dir }}/../files/.env.tpl"
 remote_env_path: "{{ spire_codex_dir }}/.env"
+
+# Cloudflare-origin verification secret. When set (and a matching Cloudflare
+# Transform Rule adds `X-Origin-Verify: <this value>` to every proxied
+# request), nginx refuses direct-to-origin traffic that bypasses Cloudflare —
+# closing the WAF / rate-limit / Access bypass you'd otherwise have if the
+# origin IP leaks. Empty by default = no enforcement (safe no-op), so this can
+# ship before the Cloudflare side is wired up. To enable, override in
+# sync-config.yml from 1Password (see the commented task there) or set it here.
+origin_verify_secret: ""
