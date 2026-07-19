@@ -362,8 +362,28 @@ _recent_stat_versions: list[str] = []
 # How many game versions get their own per-version bucket. None = every
 # release version that has a submitted run (the dropdowns go back to the
 # first patch, not just the recent window). Per-version buckets are small,
-# so unbounded growth tracks the game's release cadence, not run volume.
-_RECENT_VERSIONS_N: int | None = None
+# so unbounded growth tracks the game's release cadence, not run volume —
+# but every version also multiplies the per-bracket Elo fits and blob
+# shards, so ENTITY_STATS_RECENT_VERSIONS_N caps it when that cost
+# outgrows the box. Capping to N hides versions older than the newest N
+# from every stats-page version dropdown (stat_versions in
+# /api/runs/versions) AND makes /api/runs/list reject a build_id filter
+# naming a dropped version, so the default stays unbounded.
+
+
+def _env_recent_versions_n() -> int | None:
+    raw = (os.environ.get("ENTITY_STATS_RECENT_VERSIONS_N") or "").strip()
+    if not raw:
+        return None
+    try:
+        n = int(raw)
+    except ValueError:
+        logger.warning("ignoring non-integer ENTITY_STATS_RECENT_VERSIONS_N=%r", raw)
+        return None
+    return n if n > 0 else None
+
+
+_RECENT_VERSIONS_N: int | None = _env_recent_versions_n()
 _cache_built_at: float = 0.0
 _building: bool = False
 # The snapshot_version of whatever is currently loaded (None = nothing
@@ -1858,7 +1878,15 @@ def _build_cache_data(stash: bool = False) -> tuple[dict, dict, dict, dict]:
             "blob_final_memo": _incr["blob_final_memo"],
             "elo_memo": _incr["elo_memo"],
         }
+    _t_fin = time.time()
     result = _finalize(**raw, **fin_kwargs)
+    # The finalize used to be an unlogged gap between the walk-done line above
+    # and the "snapshot rebuilt" line; time it like the incremental tick does.
+    logger.info(
+        "snapshot rebuild: finalize done in %.1fs (%d brackets)",
+        time.time() - _t_fin,
+        len(raw["bracket_accs"]),
+    )
     # Advertise which versions actually got their own bucket, so the read path
     # and the version dropdown only offer versions that have data. result[3] is
     # the bracket_meta dict.
@@ -2699,16 +2727,20 @@ def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
     cache, totals, baselines, bracket_meta = _build_cache_data(
         stash=_INCREMENTAL_ENABLED
     )
+    _t_persist = time.time()
     _persist_snapshot(cache, totals, baselines, bracket_meta)
+    _persist_secs = time.time() - _t_persist
     _apply_cache(cache, totals, baselines, bracket_meta)
     _cache_snapshot_version = SNAPSHOT_VERSION
     # Best-effort: the snapshot + cache are already committed above; this only
     # appends the daily Score/Elo history and never raises into the rebuild.
     _archive_metric_history()
     logger.info(
-        "entity-stats snapshot rebuilt: %d entities across %d runs",
+        "entity-stats snapshot rebuilt: %d entities across %d runs "
+        "(persist %.1fs)",
         len(cache),
         totals["total_runs"],
+        _persist_secs,
     )
     if _INCREMENTAL_ENABLED and _USING_MONGO:
         save_stats_checkpoint()

@@ -40,6 +40,13 @@ services:
       # (the serial ~80min walk); capped at the box's CPU count. Set the value
       # in the box .env after validating with scripts/validate_parallel_rebuild.py.
       - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
+      # Optional cap on how many release versions keep their own per-version
+      # stats bucket. Empty = code default (unbounded: every release version
+      # with a run stays in the stats-page version dropdowns). Setting N drops
+      # versions older than the newest N from the dropdowns and the
+      # /api/runs/list version filter, in exchange for fewer per-version Elo
+      # fits and blob shards per rebuild/persist.
+      - ENTITY_STATS_RECENT_VERSIONS_N=${ENTITY_STATS_RECENT_VERSIONS_N:-}
       # How often the leader may rerun the heavy walk (seconds). Default 7200
       # (2h). With the parallel rebuild on, lower it for fresher public numbers,
       # but keep it well above the observed walk time so the box isn't always
@@ -166,6 +173,9 @@ services:
       - BETA_DATA_DIR=/data-beta
       - STATS_REFRESHER=on
       - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
+      # See the backend service: optional cap on per-version stats buckets.
+      # Must match the backend's value so both build the same snapshot shape.
+      - ENTITY_STATS_RECENT_VERSIONS_N=${ENTITY_STATS_RECENT_VERSIONS_N:-}
       - ENTITY_STATS_REBUILD_INTERVAL_SECONDS=${ENTITY_STATS_REBUILD_INTERVAL_SECONDS:-7200}
       - MONGO_URL=${MONGO_URL:-}
       - REDIS_URL=${REDIS_URL:-redis://spire-codex-redis:6379/0}
