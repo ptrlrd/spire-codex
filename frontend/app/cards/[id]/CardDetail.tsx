@@ -180,9 +180,7 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
   const [statsBracket, setStatsBracket] = useState("all");
-  const hasStatVersions = Object.keys(miniStats?.brackets ?? {}).some((k) =>
-    /^v\d/.test(k),
-  );
+  const [dataVersion, setDataVersion] = useState("");
   const [powerData, setPowerData] = useState<Record<string, { id: string; name: string; description: string; type: string; image_url: string | null }>>({});
   const [keywordData, setKeywordData] = useState<Record<string, { id: string; name: string; description: string }>>({});
   const [glossaryData, setGlossaryData] = useState<Record<string, { id: string; name: string; description: string }>>({});
@@ -749,40 +747,30 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
                 </select>
               )}
 
-              {hasBetaArt && (
-                <button
-                  type="button"
-                  className={`betabtn${betaArt ? " on" : ""}`}
-                  aria-pressed={betaArt}
-                  onClick={() => setBetaArt(!betaArt)}
-                >
-                  {t("Beta art", lang)}
-                </button>
-              )}
-
               <div className="variant-cap">
                 {enchActive ? (
                   <>
                     {enchMeta[selectedEnch]?.name ?? selectedEnch}
                     {isUpgraded ? " + Upgraded" : ""}
                   </>
-                ) : betaArt ? (
-                  <>
-                    Beta art{isUpgraded ? " + Upgraded" : ""}
-                  </>
-                ) : hasStatVersions ? (
+                ) : (
                   <EntityVersionSelect
-                    brackets={miniStats?.brackets}
+                    entityType="cards"
+                    entityId={id}
                     bracket={statsBracket}
                     onBracketChange={setStatsBracket}
+                    onEntityData={(d, v) => {
+                      if (d) setCard(d as Card);
+                      setDataVersion(v);
+                    }}
                   />
-                ) : (
-                  <>
-                    {isUpgraded ? "Upgraded" : "Normal"}
-                    {activeVariant ? ` · ${activeVariant.type}` : ""} render
-                  </>
                 )}
               </div>
+              {dataVersion && (
+                <div className="variant-cap">
+                  {dataVersion} {t("data", lang)} · {t("current render shown", lang)}
+                </div>
+              )}
             </div>
 
             {/* Facts table */}

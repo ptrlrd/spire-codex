@@ -342,9 +342,13 @@ export default function RelicDetail({
 
             <div className="mb-2 text-center">
               <EntityVersionSelect
-                brackets={miniStats?.brackets}
+                entityType="relics"
+                entityId={id}
                 bracket={statsBracket}
                 onBracketChange={setStatsBracket}
+                onEntityData={(d) => {
+                  if (d) setRelic(d as Relic);
+                }}
               />
             </div>
 

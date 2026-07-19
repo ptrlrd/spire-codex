@@ -785,13 +785,19 @@ def get_run_versions(request: Request):
     per-version encounter slice for — the options the stats-page version
     dropdown should offer, since only these have version-filtered data.
     """
+    from ..services.data_service import list_data_versions
     from ..services.run_entity_stats import get_recent_stat_versions
 
     stat_versions = get_recent_stat_versions()
+    data_versions = list_data_versions()
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import distinct_build_ids
 
-        return {"versions": distinct_build_ids(), "stat_versions": stat_versions}
+        return {
+            "versions": distinct_build_ids(),
+            "stat_versions": stat_versions,
+            "data_versions": data_versions,
+        }
 
     from ..services.runs_db import get_conn
 
