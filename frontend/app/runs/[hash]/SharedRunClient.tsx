@@ -8,6 +8,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RunSummary, { type PotionInfo } from "./RunSummary";
+import SimilarRuns from "./SimilarRuns";
 import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -303,6 +304,8 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
           ))}
         </div>
       </div>
+
+      <SimilarRuns hash={hash} />
       </>}
     </div>
   );
