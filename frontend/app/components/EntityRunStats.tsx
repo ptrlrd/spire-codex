@@ -159,13 +159,6 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
   // A10 selected reads the "solo:a10" composite block. Only offered when the
   // API response carries player-count brackets (post-update snapshots).
   const availablePlayers = PLAYER_BRACKETS.filter((b) => brackets[b.key]);
-  // Version slices ride the same brackets dict (build_id keys). The version
-  // is a third axis (v20 snapshots): it composes with the player/skill pair
-  // (solo:a10:v0.107.1) instead of replacing it.
-  const availableVersions = Object.keys(brackets)
-    .filter((k) => /^v\d/.test(k))
-    .sort()
-    .reverse();
   const {
     player: selPlayer,
     skill: selSkill,
@@ -175,8 +168,6 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
     setSelectedBracket(combineBracket(p, selSkill, selVersion));
   const pickSkill = (sk: string) =>
     setSelectedBracket(combineBracket(selPlayer, sk === "all" ? "" : sk, selVersion));
-  const pickVersion = (v: string) =>
-    setSelectedBracket(combineBracket(selPlayer, selSkill, v));
   const sel = brackets[selectedBracket] ?? brackets["all"];
   // Everything below scopes to the selected bracket, with a fall back to the
   // global figures for a pre-update API response that lacks the per-bracket data.
@@ -249,19 +240,6 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
                   </button>
                 ))}
               </div>
-            )}
-            {availableVersions.length > 0 && (
-              <select
-                value={selVersion}
-                onChange={(e) => pickVersion(e.target.value)}
-                className="ml-1 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[11px] text-[var(--text-secondary)] focus:outline-none"
-                aria-label="Game version"
-              >
-                <option value="">{t("All versions", lang)}</option>
-                {availableVersions.map((v) => (
-                  <option key={v} value={v}>{v}</option>
-                ))}
-              </select>
             )}
 
             <div className="tiles">
