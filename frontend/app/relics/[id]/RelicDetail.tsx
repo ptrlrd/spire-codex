@@ -15,6 +15,7 @@ import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
 import EntityDraftRecs from "@/app/components/EntityDraftRecs";
 import EntityRunStats, { type EntityStats } from "@/app/components/EntityRunStats";
+import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import { imageUrl } from "@/lib/image-url";
 import { useLangPrefix } from "@/lib/use-lang-prefix";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
@@ -338,6 +339,14 @@ export default function RelicDetail({
                 </div>
               );
             })()}
+
+            <div className="mb-2 text-center">
+              <EntityVersionSelect
+                brackets={miniStats?.brackets}
+                bracket={statsBracket}
+                onBracketChange={setStatsBracket}
+              />
+            </div>
 
             {/* Facts table */}
             <div className="facts">
