@@ -548,8 +548,7 @@ def get_run_blobs(hashes: list[str]) -> dict[str, dict]:
             # Callers fall back to per-file reads for whatever we don't
             # return, so this degrades quietly — log how much was left.
             logger.warning(
-                "run blob batch fetch failed, %d of %d ids left to file "
-                "fallback: %s",
+                "run blob batch fetch failed, %d of %d ids left to file fallback: %s",
                 len(hashes) - i,
                 len(hashes),
                 e,
@@ -621,9 +620,7 @@ def backfill_run_blobs(batch: int = 500) -> dict:
                         coll.replace_one({"_id": d["_id"]}, d, upsert=True)
                         inserted += 1
                     except Exception as e:
-                        logger.warning(
-                            "run blob backfill: failed %s: %s", d["_id"], e
-                        )
+                        logger.warning("run blob backfill: failed %s: %s", d["_id"], e)
                         failed += 1
     logger.info(
         "run blob backfill: done, %d inserted, %d skipped, %d failed in %.0fs",

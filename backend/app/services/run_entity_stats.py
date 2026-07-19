@@ -2736,8 +2736,7 @@ def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
     # appends the daily Score/Elo history and never raises into the rebuild.
     _archive_metric_history()
     logger.info(
-        "entity-stats snapshot rebuilt: %d entities across %d runs "
-        "(persist %.1fs)",
+        "entity-stats snapshot rebuilt: %d entities across %d runs (persist %.1fs)",
         len(cache),
         totals["total_runs"],
         _persist_secs,
