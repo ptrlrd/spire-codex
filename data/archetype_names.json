@@ -1,0 +1,4 @@
+{
+  "_readme": "Community names for discovered archetypes. Key = the archetype's top-2 defining card ids, sorted alphabetically, joined with '+'. Unmapped clusters fall back to their card-pair name automatically, so entries here are pure polish and can never go stale-wrong: if a patch shifts a cluster's signature, the alias just stops matching.",
+  "CATALYST+NOXIOUS_FUMES": "Poison Silent"
+}
