@@ -2073,7 +2073,16 @@ def _archive_metric_history() -> None:
                     etype, _baseline_win_rate()
                 )
                 points[bkey] = (
-                    _compute_score(bd.get("wins", 0), bd.get("picks", 0), baseline),
+                    _compute_score(
+                        bd.get("wins", 0),
+                        bd.get("picks", 0),
+                        baseline,
+                        _bracket_prior(
+                            _bracket_totals.get(bkey, {}).get("total_runs", 0)
+                        )
+                        if etype == "relics"
+                        else None,
+                    ),
                     bd.get("elo"),
                 )
             for bkey, (score, elo) in points.items():
@@ -2847,13 +2856,29 @@ def _type_baseline(entity_type: str) -> float:
     return _type_baselines.get(entity_type, _baseline_win_rate())
 
 
-def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
+def _bracket_prior(bracket_total: int) -> float:
+    """Shrinkage prior for a bracket-scoped score, scaled to the bracket's
+    share of all runs. The fixed 50-pick prior was tuned against the full
+    dataset; against a small bracket (wr75 is ~0.1% of runs, so a
+    well-sampled relic has ~30 picks there) it swamps the data and
+    compresses every score toward the baseline — the "everything is B/C
+    in the wr75 tier list" deflation. Floor of 10 keeps a lucky 5-pick
+    streak from topping a bracket."""
+    all_total = _global_totals.get("total_runs", 0)
+    if not all_total or not bracket_total or bracket_total >= all_total:
+        return _SCORE_PRIOR_WEIGHT
+    return max(10.0, _SCORE_PRIOR_WEIGHT * bracket_total / all_total)
+
+
+def _compute_score(
+    wins: int, picks: int, baseline: float, prior: float | None = None
+) -> int | None:
     """0-100 Codex Score for an entity.
 
     Step 1 — Bayesian shrinkage: blend the entity's wins/picks with
-    `_SCORE_PRIOR_WEIGHT` virtual picks at the baseline win rate. This
-    keeps a 5-pick card at 100% win rate from outranking a 500-pick
-    card at 60% (the high-confidence one wins).
+    `prior` (default `_SCORE_PRIOR_WEIGHT`) virtual picks at the baseline
+    win rate. This keeps a 5-pick card at 100% win rate from outranking a
+    500-pick card at 60% (the high-confidence one wins).
 
     Step 2 — Map the shrunk delta to 0-100. baseline → 50 (neutral),
     +SCORE_SCALE_RANGE → 100 (S-tier), -SCORE_SCALE_RANGE → 0 (F-tier).
@@ -2861,7 +2886,8 @@ def _compute_score(wins: int, picks: int, baseline: float) -> int | None:
     """
     if picks <= 0:
         return None
-    shrunk = (wins + baseline * _SCORE_PRIOR_WEIGHT) / (picks + _SCORE_PRIOR_WEIGHT)
+    weight = _SCORE_PRIOR_WEIGHT if prior is None else prior
+    shrunk = (wins + baseline * weight) / (picks + weight)
     delta = shrunk - baseline
     raw = (delta / _SCORE_SCALE_RANGE + 1) * 50
     return max(0, min(100, round(raw)))
@@ -3038,6 +3064,7 @@ def get_all_entity_scores(
             entity_type, _baseline_win_rate()
         )
         btot = _bracket_totals.get(bracket, {}).get("total_runs", 0)
+        prior = _bracket_prior(btot) if entity_type == "relics" else None
         bracket_out: dict[str, dict[str, Any]] = {}
         for (etype, eid), agg in _cache.items():
             if etype != entity_type or eid in excluded:
@@ -3050,7 +3077,7 @@ def get_all_entity_scores(
             cpicks = data.get("picks", 0)
             cwins = data.get("wins", 0)
             bracket_out[eid] = {
-                "score": _compute_score(cwins, cpicks, c_baseline),
+                "score": _compute_score(cwins, cpicks, c_baseline, prior),
                 "elo": data.get("elo"),
                 "picks": cpicks,
                 "wins": cwins,
@@ -3171,6 +3198,9 @@ def get_entity_metrics_table(
         bracket = "all"
         baseline = _type_baseline(entity_type)
         total_runs = _global_totals["total_runs"]
+    prior = (
+        _bracket_prior(total_runs) if use_bracket and entity_type == "relics" else None
+    )
 
     # Player=All rows blend the per-player Elos (equal weight) instead of the
     # pooled fit, so a card's "All players" rating reflects every mode rather
@@ -3197,7 +3227,7 @@ def get_entity_metrics_table(
     z3 = [0] * _ACT_BUCKETS
 
     def _row(eid, picks, wins, *, elo, offered, picked, off_act, pick_act, upgraded):
-        score = _compute_score(wins, picks, baseline)
+        score = _compute_score(wins, picks, baseline, prior)
         return {
             "id": eid,
             "upgraded": upgraded,
@@ -3466,7 +3496,12 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             "wins": cw,
             "win_rate": round(cw / cp * 100, 1) if cp else 0.0,
             "elo": cd.get("elo"),
-            "score": _compute_score(cw, cp, cbase),
+            "score": _compute_score(
+                cw,
+                cp,
+                cbase,
+                _bracket_prior(ctot) if entity_type == "relics" else None,
+            ),
             "total_runs": ctot,
             "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
             "by_character": _shape_chars(cd.get("by_character") or {}),
