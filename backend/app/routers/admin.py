@@ -230,6 +230,7 @@ def runs_search(
     seed: str | None = None,
     run_hash: str | None = None,
     max_win_seconds: int | None = None,
+    anomalies: bool = False,
     limit: int = 25,
 ):
     """Find submitted runs to inspect, hide, or delete. run_hash wins when given.
@@ -254,6 +255,54 @@ def runs_search(
             d.pop("_id", None)
             d.pop("raw", None)
         return {"runs": docs, "total": len(docs)}
+    if anomalies:
+        # Combined implausibility queue: each rule contributes up to 50 rows
+        # with a reason tag; a run tripping several rules carries them all.
+        coll = get_database()["runs"]
+        proj = {
+            "run_hash": 1,
+            "run_time": 1,
+            "character": 1,
+            "ascension": 1,
+            "username": 1,
+            "win": 1,
+            "hidden": 1,
+            "submitted_at": 1,
+            "deck_size": {"$size": {"$ifNull": ["$deck", []]}},
+        }
+        flagged: dict[str, dict] = {}
+
+        def _collect(query: dict, reason: str, sort: list) -> None:
+            for d in coll.find(query, proj).sort(sort).limit(50):
+                h = d.get("run_hash") or d.get("_id")
+                row = flagged.setdefault(h, {**d, "reasons": []})
+                row["reasons"].append(reason)
+
+        _collect(
+            {"win": {"$in": [True, 1]}, "run_time": {"$gt": 0, "$lt": 420}},
+            "win under 7 minutes",
+            [("run_time", 1)],
+        )
+        _collect(
+            {"run_time": {"$gt": 7 * 24 * 3600}},
+            "run_time over 7 days",
+            [("run_time", -1)],
+        )
+        _collect(
+            {"$expr": {"$gt": [{"$size": {"$ifNull": ["$deck", []]}}, 150]}},
+            "deck over 150 cards",
+            [("submitted_at", -1)],
+        )
+        runs = []
+        for h, d in flagged.items():
+            d["run_hash"] = h
+            d.pop("_id", None)
+            sa = d.get("submitted_at")
+            if hasattr(sa, "isoformat"):
+                d["submitted_at"] = sa.isoformat()
+            runs.append(d)
+        runs.sort(key=lambda r: (bool(r.get("hidden")), -len(r["reasons"])))
+        return {"runs": runs[: max(1, min(limit, 200))], "total": len(runs)}
     if max_win_seconds is not None:
         # The review queue: implausibly fast "wins", fastest first, hidden ones
         # included so an admin can tell what's already been flagged.

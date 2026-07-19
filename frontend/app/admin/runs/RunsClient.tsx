@@ -21,6 +21,8 @@ interface RunRow {
   build_id?: string | null;
   submitted_at?: string | null;
   seed?: string | null;
+  deck_size?: number | null;
+  reasons?: string[];
 }
 
 // Wins faster than this many seconds are flagged for review - no legit full run
@@ -73,6 +75,26 @@ export default function RunsClient() {
         (data.runs ?? []).length
           ? `Wins under ${FAST_WIN_SECONDS / 60} min, fastest first. Hide the fake ones.`
           : "No suspiciously fast wins found.",
+      );
+    } catch (e) {
+      setNote(String((e as Error)?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function findAnomalies() {
+    setBusy(true);
+    setNote(null);
+    try {
+      const data = await adminFetch<{ runs: RunRow[] }>(
+        `/api/admin/runs/search?anomalies=true&limit=100`,
+      );
+      setRows(data.runs ?? []);
+      setNote(
+        (data.runs ?? []).length
+          ? "Implausible runs: fast wins, marathon times, giant decks. Hide the fake ones."
+          : "No anomalous runs found.",
       );
     } catch (e) {
       setNote(String((e as Error)?.message || e));
@@ -139,6 +161,14 @@ export default function RunsClient() {
         >
           Fast wins &lt;5m
         </button>
+        <button
+          onClick={findAnomalies}
+          disabled={busy}
+          className="px-4 py-1.5 rounded-lg border border-[var(--border-subtle)] text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)] disabled:opacity-50"
+          title="Fast wins, marathon run times, and giant decks in one queue"
+        >
+          Anomalies
+        </button>
       </div>
 
       {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
@@ -176,6 +206,15 @@ export default function RunsClient() {
                         hidden
                       </span>
                     )}
+                    {(r.reasons ?? []).map((reason) => (
+                      <span
+                        key={reason}
+                        className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-amber-950/50 text-amber-300 border-amber-900/50"
+                      >
+                        {reason}
+                        {reason.startsWith("deck") && r.deck_size ? ` (${r.deck_size})` : ""}
+                      </span>
+                    ))}
                   </td>
                   <td className="px-3 py-2">{r.username ?? "-"}</td>
                   <td className="px-3 py-2">{(r.character ?? "-").replace("CHARACTER.", "")}</td>
