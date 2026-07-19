@@ -13,13 +13,13 @@ from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
-    _BRACKET_KEYS,
     get_all_entity_scores,
     get_community_stats as get_community_fun_stats,
     get_entity_metric_history,
     get_entity_metrics_table,
     get_entity_stats,
     get_top_entities_for_character,
+    is_valid_stat_bracket,
     snapshot_loaded,
     snapshot_status,
 )
@@ -998,7 +998,9 @@ def get_entity_scores(
         description=(
             "Content bracket: grade scores within one run bracket instead of all "
             "runs. a10 = Ascension 10; wr30/wr50/wr75 = A10 runs from players "
-            "above that overall win rate. Does not combine with act or character."
+            "above that overall win rate; also a game version (v0.108.0) or a "
+            "key:version composite (a10:v0.108.0). Does not combine with act "
+            "or character."
         ),
     ),
     stat_filter: str | None = Query(
@@ -1049,7 +1051,7 @@ def get_entity_scores(
         bracket = _STAT_FILTER_TO_BRACKET.get(stat_filter.strip().lower(), bracket)
     # Unknown bracket -> None so it grades against all runs (and shares that
     # cache slot) rather than 400ing.
-    brk = bracket if bracket in _BRACKET_KEYS else None
+    brk = bracket if is_valid_stat_bracket(bracket) else None
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
     cache_key = app_cache.entity_scores_key(
