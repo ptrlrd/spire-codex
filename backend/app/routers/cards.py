@@ -41,6 +41,22 @@ def _resolve_trivia(card: dict, cards: list[dict]) -> str | None:
     return None
 
 
+def _matches_cost(card: dict, want: str) -> bool:
+    if want == "x":
+        return bool(card.get("is_x_cost"))
+    if want == "starx":
+        return bool(card.get("is_x_star_cost"))
+    if want.startswith("star"):
+        sc = card.get("star_cost")
+        if not isinstance(sc, int):
+            return False
+        return sc >= 4 if want == "star4plus" else want == f"star{sc}"
+    c = card.get("cost")
+    if not isinstance(c, int) or c < 0:
+        return False
+    return c >= 4 if want == "4plus" else want == str(c)
+
+
 @router.get("", response_model=list[Card])
 def get_cards(
     request: Request,
@@ -64,6 +80,13 @@ def get_cards(
     spawns: str | None = Query(
         None,
         description="Only cards that create or reference this card id (e.g. SOUL lists every Soul generator)",
+    ),
+    cost: str | None = Query(
+        None,
+        description=(
+            "Filter by cost: energy as 0, 1, 2, 3, 4plus, or x; star cost "
+            "(Regent) as star1, star2, star3, star4plus, or starx"
+        ),
     ),
     search: str | None = Query(None, description="Search by name or description"),
     lang: str = Depends(get_lang),
@@ -89,6 +112,9 @@ def get_cards(
     if spawns:
         want = spawns.strip().upper()
         cards = [c for c in cards if want in (c.get("spawns_cards") or [])]
+    if cost:
+        want_cost = cost.strip().lower()
+        cards = [c for c in cards if _matches_cost(c, want_cost)]
     if search:
         cards = [
             c

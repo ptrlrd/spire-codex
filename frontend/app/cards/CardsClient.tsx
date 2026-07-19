@@ -51,6 +51,32 @@ const rarityOptions = [
   { label: "Token", value: "Token" },
 ];
 
+const costOptions = [
+  { label: "0", value: "0", group: "Energy" },
+  { label: "1", value: "1", group: "Energy" },
+  { label: "2", value: "2", group: "Energy" },
+  { label: "3", value: "3", group: "Energy" },
+  { label: "4+", value: "4plus", group: "Energy" },
+  { label: "X", value: "x", group: "Energy" },
+  { label: "1", value: "star1", group: "Star" },
+  { label: "2", value: "star2", group: "Star" },
+  { label: "3", value: "star3", group: "Star" },
+  { label: "4+", value: "star4plus", group: "Star" },
+  { label: "X", value: "starx", group: "Star" },
+];
+
+function matchesCost(c: Card, want: string): boolean {
+  if (!want) return true;
+  if (want === "x") return !!c.is_x_cost;
+  if (want === "starx") return !!c.is_x_star_cost;
+  if (want.startsWith("star")) {
+    if (typeof c.star_cost !== "number") return false;
+    return want === "star4plus" ? c.star_cost >= 4 : want === `star${c.star_cost}`;
+  }
+  if (typeof c.cost !== "number" || c.cost < 0) return false;
+  return want === "4plus" ? c.cost >= 4 : want === String(c.cost);
+}
+
 const keywordOptions = [
   { label: "Exhaust", value: "Exhaust" },
   { label: "Innate", value: "Innate" },
@@ -72,6 +98,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   const [type, setType] = useState(searchParams.get("type") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
   const [keyword, setKeyword] = useState(searchParams.get("keyword") || "");
+  const [cost, setCost] = useState(searchParams.get("cost") || "");
   const [sort, setSort] = useState(searchParams.get("sort") || "az");
   // "card" = full game-rendered card images (default), "detail" = data tiles.
   const [view, setView] = useState<"card" | "detail">("card");
@@ -103,10 +130,10 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   // Wrap setters to also update URL
   const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
     setter(value);
-    const current: Record<string, string> = { search, color, type, rarity, keyword, sort };
+    const current: Record<string, string> = { search, color, type, rarity, keyword, cost, sort };
     current[key] = value;
     updateUrl(current);
-  }, [search, color, type, rarity, keyword, sort, updateUrl]);
+  }, [search, color, type, rarity, keyword, cost, sort, updateUrl]);
 
   // Pull the discrete filters back out of the URL whenever it changes from
   // outside this component, e.g. clicking a "Browse cards by character"
@@ -121,6 +148,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     setType(searchParams.get("type") || "");
     setRarity(searchParams.get("rarity") || "");
     setKeyword(searchParams.get("keyword") || "");
+    setCost(searchParams.get("cost") || "");
     setSort(searchParams.get("sort") || "az");
   }, [searchParams]);
 
@@ -130,7 +158,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !color && !type && !rarity && !keyword && !search && initialCards.length > 0) {
+      if (channel !== "beta" && lang === "eng" && !color && !type && !rarity && !keyword && !cost && !search && initialCards.length > 0) {
         return;
       }
     }
@@ -139,11 +167,12 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     if (type) params.set("type", type);
     if (rarity) params.set("rarity", rarity);
     if (keyword) params.set("keyword", keyword);
+    if (cost) params.set("cost", cost);
     if (search) params.set("search", search);
     params.set("lang", lang);
     cachedFetch<Card[]>(`${API}/api/cards?${params}`)
       .then(setCards);
-  }, [color, type, rarity, keyword, search, lang, channel]);
+  }, [color, type, rarity, keyword, cost, search, lang, channel]);
 
   const scores = useEntityScores("cards");
 
@@ -159,11 +188,12 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
           (!type || c.type === type) &&
           (!rarity || c.rarity === rarity) &&
           (!keyword || (c.keywords ?? []).some((k) => k.toLowerCase() === keyword.toLowerCase())) &&
+          matchesCost(c, cost) &&
           (!search || c.name.toLowerCase().includes(search.toLowerCase())),
       )
       .map((c) => ({ ...c, beta: true }));
     return [...cards.filter((c) => !ids.has(c.id)), ...additions];
-  }, [cards, betaAdditions, color, type, rarity, keyword, search]);
+  }, [cards, betaAdditions, color, type, rarity, keyword, cost, search]);
 
   const sortedCards = useMemo(() => {
     const sorted = [...withBeta];
@@ -219,6 +249,12 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
             value: rarity,
             options: rarityOptions,
             onChange: (v) => setFilterAndUrl("rarity", v, setRarity),
+          },
+          {
+            label: "All Costs",
+            value: cost,
+            options: costOptions,
+            onChange: (v) => setFilterAndUrl("cost", v, setCost),
           },
           {
             label: "All Keywords",

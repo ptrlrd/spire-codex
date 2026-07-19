@@ -7,11 +7,22 @@ import { t } from "@/lib/ui-translations";
 interface FilterOption {
   label: string;
   value: string;
+  group?: string;
 }
 
 interface SortOption {
   label: string;
   value: string;
+}
+
+function groupOptions(options: FilterOption[]): { group?: string; opts: FilterOption[] }[] {
+  const segments: { group?: string; opts: FilterOption[] }[] = [];
+  for (const opt of options) {
+    const last = segments[segments.length - 1];
+    if (last && last.group === opt.group) last.opts.push(opt);
+    else segments.push({ group: opt.group, opts: [opt] });
+  }
+  return segments;
 }
 
 interface SearchFilterProps {
@@ -86,11 +97,23 @@ export default function SearchFilter({
           className="px-3 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 cursor-pointer text-sm"
         >
           {!filter.noEmptyOption && <option value="">{filter.label}</option>}
-          {filter.options.map((opt) => (
-            <option key={opt.value} value={opt.value}>
-              {opt.label}
-            </option>
-          ))}
+          {groupOptions(filter.options).map((seg, i) =>
+            seg.group ? (
+              <optgroup key={`${seg.group}-${i}`} label={seg.group}>
+                {seg.opts.map((opt) => (
+                  <option key={opt.value} value={opt.value}>
+                    {opt.label}
+                  </option>
+                ))}
+              </optgroup>
+            ) : (
+              seg.opts.map((opt) => (
+                <option key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))
+            ),
+          )}
         </select>
       ))}
       {sortOptions && onSortChange && (
