@@ -143,6 +143,10 @@ services:
       # Only matters if BACKEND_STATS_REFRESHER=on (lease holders run the
       # run_blobs startup backfill); see the rebuilder service.
       - RUN_BLOBS_STARTUP_BACKFILL=${RUN_BLOBS_STARTUP_BACKFILL:-on}
+      # Workers AI credentials for /api/search/semantic and the
+      # build_embeddings corpus script; unset leaves semantic search off.
+      - WORKERS_AI_TOKEN=${WORKERS_AI_TOKEN:-}
+      - CF_ACCOUNT_ID=${CF_ACCOUNT_ID:-}
     # Ordering only (no health condition): the backend must boot fine with
     # Redis down, since the cache layer is fail-safe by design.
     depends_on:
