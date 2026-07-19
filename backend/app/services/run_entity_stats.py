@@ -1719,7 +1719,7 @@ def _build_cache_data(stash: bool = False) -> tuple[dict, dict, dict, dict]:
         coll = _get_collection()
         rows = list(
             coll.find(
-                {},
+                {"hidden": {"$ne": True}},
                 {
                     "_id": 1,
                     "character": 1,
@@ -2411,10 +2411,11 @@ def _load_rows_after(last_key: tuple) -> list[dict]:
         _get_collection()
         .find(
             {
+                "hidden": {"$ne": True},
                 "$or": [
                     {"submitted_at": {"$gt": ts}},
                     {"submitted_at": ts, "_id": {"$gt": h}},
-                ]
+                ],
             },
             {
                 "_id": 1,
