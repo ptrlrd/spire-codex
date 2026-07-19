@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import gzip
 import json
 import logging
 import os
@@ -86,8 +85,10 @@ def build_run_vectors() -> dict:
             "relics.id": 1,
         },
     )
-    per_char: dict[str, dict[str, list]] = {
-        ch: {"rows": [], "cols": [], "vals": [], "meta": []}
+    from array import array
+
+    per_char: dict[str, dict] = {
+        ch: {"rows": array("i"), "cols": array("i"), "vals": array("f"), "meta": []}
         for ch in _OFFICIAL_CHARACTERS
     }
     for doc in cursor:
@@ -127,16 +128,34 @@ def build_run_vectors() -> dict:
         if n == 0:
             continue
         mat = sparse.csr_matrix(
-            (acc["vals"], (acc["rows"], acc["cols"])),
+            (
+                np.asarray(acc["vals"], dtype=np.float32),
+                (
+                    np.asarray(acc["rows"], dtype=np.int32),
+                    np.asarray(acc["cols"], dtype=np.int32),
+                ),
+            ),
             shape=(n, len(vocab_list)),
-            dtype=np.float32,
         )
         norms = sparse.linalg.norm(mat, axis=1)
         norms[norms == 0] = 1.0
         mat = sparse.diags(1.0 / norms).dot(mat).tocsr()
-        sparse.save_npz(_VEC_DIR / f"{ch}.npz", mat)
-        with gzip.open(_VEC_DIR / f"{ch}_meta.json.gz", "wt", encoding="utf-8") as f:
-            json.dump(acc["meta"], f, ensure_ascii=False)
+        # Raw .npy components instead of one .npz: workers reload them with
+        # mmap_mode="r", so all four share a single page-cache copy.
+        np.save(_VEC_DIR / f"{ch}_vdata.npy", mat.data.astype(np.float32))
+        np.save(_VEC_DIR / f"{ch}_vindices.npy", mat.indices.astype(np.int32))
+        np.save(_VEC_DIR / f"{ch}_vindptr.npy", mat.indptr.astype(np.int32))
+        m = acc["meta"]
+        np.savez(
+            _VEC_DIR / f"{ch}_meta.npz",
+            hash=np.array([r["hash"] for r in m], dtype="S24"),
+            win=np.array([r["win"] for r in m], dtype=np.uint8),
+            asc=np.array([r["asc"] for r in m], dtype=np.int8),
+            time=np.array([r["time"] for r in m], dtype=np.int32),
+            user=np.array([r["user"] or "" for r in m], dtype="S32"),
+            date=np.array([r["date"] for r in m], dtype="S10"),
+            ver=np.array([r.get("ver") or "" for r in m], dtype="S16"),
+        )
         total += n
         k = max(4, min(14, n // 3000))
         if n >= 200 and k >= 2:
@@ -201,18 +220,27 @@ def _load_vocab() -> dict[str, int] | None:
 
 
 def _load_shard(character: str):
+    import numpy as np
     from scipy import sparse
 
     with _lock:
         hit = _shards.get(character)
         if hit is not None:
             return hit
+    vocab = _load_vocab()
+    if vocab is None:
+        return None
     try:
-        mat = sparse.load_npz(_VEC_DIR / f"{character}.npz")
-        with gzip.open(
-            _VEC_DIR / f"{character}_meta.json.gz", "rt", encoding="utf-8"
-        ) as f:
-            meta = json.load(f)
+        data = np.load(_VEC_DIR / f"{character}_vdata.npy", mmap_mode="r")
+        indices = np.load(_VEC_DIR / f"{character}_vindices.npy", mmap_mode="r")
+        indptr = np.load(_VEC_DIR / f"{character}_vindptr.npy", mmap_mode="r")
+        mat = sparse.csr_matrix(
+            (data, indices, indptr),
+            shape=(len(indptr) - 1, len(vocab)),
+            copy=False,
+        )
+        with np.load(_VEC_DIR / f"{character}_meta.npz") as z:
+            meta = {k: z[k] for k in z.files}
     except OSError:
         return None
     with _lock:
@@ -253,34 +281,33 @@ def similar_runs(run_hash: str, limit: int = 5) -> dict | None:
     sims = mat.dot(q)
     order = np.argsort(sims)[::-1]
     items = []
+    picked_rows: list[int] = []
     seen_hashes = {run_hash}
     for i in order:
         if len(items) >= limit or sims[i] <= 0:
             break
-        m = meta[int(i)]
-        if not m["win"] or m["hash"] in seen_hashes:
+        ri = int(i)
+        h = meta["hash"][ri].decode()
+        if not meta["win"][ri] or h in seen_hashes:
             continue
-        seen_hashes.add(m["hash"])
+        seen_hashes.add(h)
+        picked_rows.append(ri)
         items.append(
             {
-                "run_hash": m["hash"],
-                "ascension": m["asc"],
-                "run_time": m["time"],
-                "username": m["user"],
-                "date": m["date"],
-                "build_id": m.get("ver"),
+                "run_hash": h,
+                "ascension": int(meta["asc"][ri]),
+                "run_time": int(meta["time"][ri]),
+                "username": meta["user"][ri].decode() or None,
+                "date": meta["date"][ri].decode(),
+                "build_id": meta["ver"][ri].decode() or None,
                 "similarity": round(float(sims[i]) * 100, 1),
             }
         )
     own_terms = set(terms)
     counts: dict[str, int] = {}
-    hash_to_row = {m["hash"]: idx for idx, m in enumerate(meta)}
     inv = {i: t for t, i in vocab.items()}
-    for it in items:
-        row = hash_to_row.get(it["run_hash"])
-        if row is None:
-            continue
-        start, end = mat.indptr[row], mat.indptr[row + 1]
+    for row in picked_rows:
+        start, end = int(mat.indptr[row]), int(mat.indptr[row + 1])
         for c in mat.indices[start:end]:
             term = inv[int(c)]
             if term not in own_terms:
@@ -419,16 +446,18 @@ def anomalous_runs(limit: int = 30) -> list[dict]:
     for ch in _OFFICIAL_CHARACTERS:
         try:
             dists = np.load(_VEC_DIR / f"{ch}_dists.npy")
-            with gzip.open(
-                _VEC_DIR / f"{ch}_meta.json.gz", "rt", encoding="utf-8"
-            ) as f:
-                meta = json.load(f)
+            with np.load(_VEC_DIR / f"{ch}_meta.npz") as z:
+                hashes = z["hash"]
         except OSError:
             continue
-        n = min(len(meta), len(dists))
+        n = min(len(hashes), len(dists))
         for i in np.argsort(dists[:n])[::-1][:limit]:
-            m = meta[int(i)]
-            out.append({"run_hash": m["hash"], "distance": round(float(dists[i]), 3)})
+            out.append(
+                {
+                    "run_hash": hashes[int(i)].decode(),
+                    "distance": round(float(dists[int(i)]), 3),
+                }
+            )
     out.sort(key=lambda r: -r["distance"])
     return out[:limit]
 
@@ -497,7 +526,7 @@ def deck_advisor(
         return None
     q, mat, meta, own_terms = built
     sims = np.asarray(mat.dot(q))
-    wins = np.array([m["win"] for m in meta], dtype=bool)
+    wins = meta["win"].astype(bool)
     win_idx = np.flatnonzero(wins & (sims > 0))
     if win_idx.size == 0:
         return []
