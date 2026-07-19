@@ -33,7 +33,6 @@ import os
 from collections import defaultdict
 from datetime import datetime, timezone
 from functools import lru_cache
-from itertools import combinations
 from typing import Any
 
 logger = logging.getLogger("spire-codex")
@@ -144,39 +143,62 @@ def compute_pairings(runs_iter=None) -> dict[str, Any]:
     if runs_iter is None:
         runs_iter = _iter_official_runs()
 
-    # Item -> compact int index (keeps the pair dict keys small and hashing
-    # cheap over the ~500M pair increments).
+    # With X the binary runs x items matrix, X^T X is every co-occurrence
+    # count at once in compiled code (~1k items -> a small dense result).
+    import numpy as np
+    from array import array
+    from scipy import sparse
+
     idx_of: dict[tuple[str, str], int] = {}
     items_list: list[tuple[str, str]] = []
-
-    count = defaultdict(int)  # idx -> runs containing it
-    wins = defaultdict(int)  # idx -> winning runs containing it
-    co = defaultdict(int)  # (i, j) i<j -> runs containing both
-    co_win = defaultdict(int)  # (i, j) -> winning runs containing both
+    rows = array("i")
+    cols = array("i")
+    win_flags = array("b")
     n_runs = 0
 
     for run in runs_iter:
         item_set = _run_items(run, official)
         if len(item_set) < 2:
             continue
-        n_runs += 1
         won = bool(run.get("win"))
-        idxs = []
         for it in item_set:
             i = idx_of.get(it)
             if i is None:
                 i = len(items_list)
                 idx_of[it] = i
                 items_list.append(it)
-            idxs.append(i)
-            count[i] += 1
-            if won:
-                wins[i] += 1
-        idxs.sort()
-        for a, b in combinations(idxs, 2):
-            co[(a, b)] += 1
-            if won:
-                co_win[(a, b)] += 1
+            rows.append(n_runs)
+            cols.append(i)
+        win_flags.append(1 if won else 0)
+        n_runs += 1
+
+    count: dict[int, int] = {}
+    wins: dict[int, int] = {}
+    co: dict[tuple[int, int], int] = {}
+    co_win: dict[tuple[int, int], int] = {}
+    if n_runs:
+        x = sparse.csr_matrix(
+            (
+                np.ones(len(rows), dtype=np.int32),
+                (np.asarray(rows, dtype=np.int32), np.asarray(cols, dtype=np.int32)),
+            ),
+            shape=(n_runs, len(items_list)),
+        )
+        won_mask = np.asarray(win_flags, dtype=np.int8).astype(bool)
+        c_all = (x.T @ x).toarray()
+        xw = x[won_mask]
+        c_win = (xw.T @ xw).toarray()
+        diag_all = c_all.diagonal()
+        diag_win = c_win.diagonal()
+        for i in range(len(items_list)):
+            count[i] = int(diag_all[i])
+            wins[i] = int(diag_win[i])
+        iu, ju = np.triu_indices(len(items_list), k=1)
+        nz = c_all[iu, ju] > 0
+        for a, b, v, vw in zip(iu[nz], ju[nz], c_all[iu, ju][nz], c_win[iu, ju][nz]):
+            co[(int(a), int(b))] = int(v)
+            if vw:
+                co_win[(int(a), int(b))] = int(vw)
 
     logger.info(
         "item-pairings: walked %d runs, %d distinct items, %d distinct pairs",
@@ -252,9 +274,9 @@ def _score_and_rank(items_list, count, wins, co, co_win, n_runs) -> dict[str, An
             # Cards/relics rank by synergy (NPMI); potions by raw frequency
             # (they're "commonly seen with", not a synergy claim).
             if pk == "potions":
-                lst.sort(key=lambda d: (d["co"], d["conf"]), reverse=True)
+                lst.sort(key=lambda d: (-d["co"], -d["conf"], d["id"]))
             else:
-                lst.sort(key=lambda d: (d["npmi"], d["co"]), reverse=True)
+                lst.sort(key=lambda d: (-d["npmi"], -d["co"], d["id"]))
             out_kinds[pk] = lst[:_TOP_N]
         if out_kinds:
             docs.append(
@@ -268,6 +290,7 @@ def _score_and_rank(items_list, count, wins, co, co_win, n_runs) -> dict[str, An
                     "built_at": now,
                 }
             )
+    docs.sort(key=lambda d: d["_id"])
     return {"docs": docs, "n_runs": n_runs, "built_at": now}
 
 
