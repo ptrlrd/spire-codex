@@ -291,6 +291,23 @@ function MoveCard({
   );
 }
 
+const BUILD_CHAR_DOT: Record<string, string> = {
+  IRONCLAD: "var(--color-ironclad)",
+  SILENT: "var(--color-silent)",
+  DEFECT: "var(--color-defect)",
+  NECROBINDER: "var(--color-necrobinder)",
+  REGENT: "var(--color-regent)",
+};
+
+interface EncounterBuild {
+  character: string;
+  name: string;
+  size: number;
+  win_rate: number;
+  deaths: number;
+  death_rate: number;
+}
+
 export default function MonsterDetail({
   initialMonster,
   encounterStats,
@@ -305,6 +322,44 @@ export default function MonsterDetail({
   const [notFound, setNotFound] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("stats");
+  const [builds, setBuilds] = useState<EncounterBuild[]>([]);
+
+  useEffect(() => {
+    const encs = monster?.encounters?.map((e) => e.encounter_id) ?? [];
+    if (encs.length === 0) {
+      setBuilds([]);
+      return;
+    }
+    let dead = false;
+    Promise.all(
+      encs.map((eid) =>
+        cachedFetch<{ available: boolean; builds: EncounterBuild[] }>(
+          `${API}/api/runs/encounter-builds?encounter=${eid}&lang=${lang}`,
+        ).catch(() => null),
+      ),
+    ).then((results) => {
+      if (dead) return;
+      const merged = new Map<string, EncounterBuild>();
+      for (const r of results) {
+        if (!r?.available) continue;
+        for (const b of r.builds) {
+          const k = `${b.character}:${b.name}`;
+          const prev = merged.get(k);
+          if (prev) prev.deaths += b.deaths;
+          else merged.set(k, { ...b });
+        }
+      }
+      const rows = [...merged.values()].map((b) => ({
+        ...b,
+        death_rate: b.size ? Math.round((b.deaths / b.size) * 10000) / 100 : 0,
+      }));
+      rows.sort((x, y) => y.death_rate - x.death_rate);
+      setBuilds(rows);
+    });
+    return () => {
+      dead = true;
+    };
+  }, [monster, lang]);
 
   useEffect(() => {
     if (!id) return;
@@ -439,9 +494,18 @@ export default function MonsterDetail({
   const hasMoves = !!(monster.moves && monster.moves.length > 0);
   const hasEncounters = !!(monster.encounters && monster.encounters.length > 0);
 
+  const struggles = builds.filter((b) => b.deaths >= 5).slice(0, 5);
+  const struggleKeys = new Set(struggles.map((b) => `${b.character}:${b.name}`));
+  const handles = [...builds]
+    .sort((a, b) => a.death_rate - b.death_rate)
+    .filter((b) => b.size >= 500 && !struggleKeys.has(`${b.character}:${b.name}`))
+    .slice(0, 5);
+  const hasBuilds = struggles.length > 0;
+
   const tocItems: { id: string; label: string }[] = [
     ...(hasStats ? [{ id: "stats", label: t("Stats", lang) }] : []),
     ...(hasMoves ? [{ id: "moves", label: t("Moves", lang) }] : []),
+    ...(hasBuilds ? [{ id: "builds", label: t("Builds", lang) }] : []),
     ...(hasEncounters ? [{ id: "encounters", label: t("Encounters", lang) }] : []),
     { id: "history", label: t("Version history", lang) },
   ];
@@ -589,6 +653,61 @@ export default function MonsterDetail({
                 {monster.moves!.map((move) => (
                   <MoveCard key={move.id} move={move} powerData={powerData} lp={lp} isEnglish={isEnglish} />
                 ))}
+              </div>
+            </section>
+          )}
+
+          {/* Which archetypes die to this monster vs walk past, joined from
+              the nightly run-vector build across all of its encounters. */}
+          {hasBuilds && (
+            <section id="builds">
+              <h2>{t("Builds", lang)}</h2>
+              <p className="h-note">
+                Of the community archetypes that face {monster.name}, the share
+                of each build's runs that end here, next to that build's
+                overall win rate.
+              </p>
+              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+                <div>
+                  <p className="h-note" style={{ color: "var(--warn, #ef4444)" }}>
+                    {t("Dies here most", lang)}
+                  </p>
+                  {struggles.map((b) => (
+                    <div
+                      key={`s-${b.character}-${b.name}`}
+                      style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0", fontSize: "0.85rem" }}
+                    >
+                      <span
+                        style={{ width: 7, height: 7, borderRadius: "50%", background: BUILD_CHAR_DOT[b.character] || "#888", flexShrink: 0 }}
+                      />
+                      <span className="cn" style={{ flexGrow: 1 }}>{b.name}</span>
+                      <span style={{ color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>
+                        {b.death_rate}% {t("die here", lang)} · {b.win_rate}% WR
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {handles.length > 0 && (
+                  <div>
+                    <p className="h-note" style={{ color: "var(--good, #22c55e)" }}>
+                      {t("Handles it best", lang)}
+                    </p>
+                    {handles.map((b) => (
+                      <div
+                        key={`h-${b.character}-${b.name}`}
+                        style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0", fontSize: "0.85rem" }}
+                      >
+                        <span
+                          style={{ width: 7, height: 7, borderRadius: "50%", background: BUILD_CHAR_DOT[b.character] || "#888", flexShrink: 0 }}
+                        />
+                        <span className="cn" style={{ flexGrow: 1 }}>{b.name}</span>
+                        <span style={{ color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>
+                          {b.death_rate}% {t("die here", lang)} · {b.win_rate}% WR
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </section>
           )}

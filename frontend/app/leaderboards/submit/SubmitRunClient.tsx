@@ -166,7 +166,12 @@ export default function SubmitRunClient() {
             const result = await res.json().catch(() => null);
             if (result?.duplicate) {
               dupes++;
-              if (result?.run_hash) lastHash = result.run_hash;
+              if (result?.run_hash) {
+                lastHash = result.run_hash;
+                lastResult = result;
+                lastCharacter = String(data?.players?.[0]?.character || "");
+                lastWin = Boolean(data?.win);
+              }
             } else if (!res.ok) {
               errors++;
               failures.push({
