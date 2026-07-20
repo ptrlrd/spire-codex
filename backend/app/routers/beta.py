@@ -21,7 +21,7 @@ limiter = Limiter(key_func=client_ip, **rate_limit_config.storage_kwargs())
 
 
 @router.get("/diff")
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("beta.beta_diff", "120/minute"))
 def beta_diff(request: Request):
     """What the current beta adds, changes, and removes, per entity type.
 
@@ -34,7 +34,7 @@ def beta_diff(request: Request):
 
 
 @router.get("/version")
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("beta.beta_version", "120/minute"))
 def beta_version(request: Request):
     """The current beta version (from the data-beta latest pointer)."""
     return {"beta_version": get_beta_version()}

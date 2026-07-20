@@ -93,6 +93,7 @@ def _fallback() -> dict:
         "default_limit": _DEFAULT_LIMIT,
         "tiers": dict(_DEFAULT_TIERS),
         "overrides": [],
+        "endpoint_limits": {},
         "enabled": True,
     }
 
@@ -124,6 +125,11 @@ def get_config() -> dict:
                 "default_limit": doc.get("default_limit") or _DEFAULT_LIMIT,
                 "tiers": tiers,
                 "overrides": overrides,
+                "endpoint_limits": {
+                    k: v
+                    for k, v in (doc.get("endpoint_limits") or {}).items()
+                    if isinstance(k, str) and isinstance(v, str) and v
+                },
                 "enabled": bool(doc.get("enabled", True)),
             }
     except Exception:
@@ -229,6 +235,38 @@ def tier_limit_value() -> str:
     return _limit_for_tier(_current_tier.get() or "browse", cfg)
 
 
+# Every endpoint-limit knob registered via endpoint_limit(), name -> hardcoded
+# default. Populated at import time as routers load, so by the time the admin
+# surface reads it every knob is present.
+_ENDPOINT_DEFAULTS: dict[str, str] = {}
+
+
+def endpoint_limit(name: str, default: str):
+    """Admin-tunable replacement for a hardcoded ``@limiter.limit("...")``.
+
+    Returns a no-arg limit callable (same slowapi constraint as
+    tier_limit_value) that reads ``endpoint_limits[name]`` from the config doc
+    and falls back to ``default``. These caps deliberately ignore the global
+    ``enabled`` kill switch, matching the old behavior where per-endpoint
+    limits survived turning blanket limiting off; to effectively disable one,
+    set it to something huge in the dashboard."""
+    if name in _ENDPOINT_DEFAULTS:
+        raise ValueError(f"duplicate endpoint limit name '{name}'")
+    _ENDPOINT_DEFAULTS[name] = _validate_limit(default, name)
+
+    def _value() -> str:
+        cfg = get_config()
+        return (cfg.get("endpoint_limits") or {}).get(name) or default
+
+    _value.__name__ = f"limit_{name.replace('.', '_')}"
+    return _value
+
+
+def endpoint_defaults() -> dict[str, str]:
+    """Registered endpoint-limit knobs and their hardcoded defaults."""
+    return dict(_ENDPOINT_DEFAULTS)
+
+
 # Back-compat: the browse cap on its own (a handy helper; the limiter uses
 # tier_limit_value now).
 def default_limit_value(*_args, **_kwargs) -> str:
@@ -256,6 +294,7 @@ def set_config(
     enabled: bool | None = None,
     tiers: dict | None = None,
     overrides: list[dict] | None = None,
+    endpoint_limits: dict | None = None,
 ) -> dict:
     """Update the config. Validates every limit string and raises ValueError on a
     bad one. ``overrides`` replaces the whole list (the admin page edits it as a
@@ -268,6 +307,7 @@ def set_config(
         "default_limit": current["default_limit"],
         "tiers": dict(current["tiers"]),
         "overrides": list(current.get("overrides") or []),
+        "endpoint_limits": dict(current.get("endpoint_limits") or {}),
         "enabled": current["enabled"],
     }
     if default_limit is not None:
@@ -294,6 +334,16 @@ def set_config(
                 }
             )
         new["overrides"] = cleaned
+    if endpoint_limits is not None:
+        cleaned_ep: dict[str, str] = {}
+        for name, value in endpoint_limits.items():
+            if name not in _ENDPOINT_DEFAULTS:
+                raise ValueError(f"unknown endpoint limit '{name}'")
+            value = (value or "").strip()
+            # Empty value = back to the hardcoded default (drop the entry).
+            if value:
+                cleaned_ep[name] = _validate_limit(value, name)
+        new["endpoint_limits"] = cleaned_ep
     if enabled is not None:
         new["enabled"] = bool(enabled)
     _coll().replace_one({"_id": _DOC_ID}, {"_id": _DOC_ID, **new}, upsert=True)

@@ -45,7 +45,9 @@ class QAFeedback(BaseModel):
 # second without tripping the limiter, and gives headroom for several
 # reviewers behind one NAT/office IP. Discord's own per-webhook cap
 # (~5 / 2s) is the real ceiling above this.
-@limiter.limit("60/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("qa_feedback.submit_qa_feedback", "60/minute")
+)
 async def submit_qa_feedback(request: Request, body: QAFeedback):
     webhook = os.environ.get("FEEDBACK_WEBHOOK_URL", "")
     if not webhook:

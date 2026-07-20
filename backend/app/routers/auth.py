@@ -51,7 +51,7 @@ def me(request: Request):
 
 
 @router.post("/steam/disconnect")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.disconnect_steam", "10/minute"))
 def disconnect_steam(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_steam
@@ -63,7 +63,7 @@ def disconnect_steam(request: Request):
 
 
 @router.post("/discord/disconnect")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.disconnect_discord", "10/minute"))
 def disconnect_discord(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_discord
@@ -75,7 +75,7 @@ def disconnect_discord(request: Request):
 
 
 @router.post("/twitch/disconnect")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.disconnect_twitch", "10/minute"))
 def disconnect_twitch(request: Request):
     user = require_user(request)
     from ..services.users_db import unlink_twitch
@@ -94,7 +94,7 @@ def logout(request: Request):
 
 
 @router.post("/set-cookie")
-@limiter.limit("20/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.set_cookie", "20/minute"))
 async def set_cookie(request: Request):
     """Accept a JWT token and set it as an httpOnly cookie.
 
@@ -122,7 +122,7 @@ async def set_cookie(request: Request):
 
 
 @router.patch("/username")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.update_username", "10/minute"))
 async def update_username(request: Request):
     user = require_user(request)
     try:
@@ -160,7 +160,7 @@ def check_username(username: str):
 
 
 @router.patch("/email")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.update_email", "10/minute"))
 async def update_email(request: Request):
     user = require_user(request)
     try:
@@ -182,7 +182,7 @@ async def update_email(request: Request):
 
 
 @router.get("/runs")
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.get_my_runs", "60/minute"))
 def get_my_runs(
     request: Request,
     page: int = 1,
@@ -203,7 +203,7 @@ def get_my_runs(
 
 
 @router.delete("/runs/{run_hash}")
-@limiter.limit("30/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.delete_run", "30/minute"))
 def delete_run(run_hash: str, request: Request):
     user = require_user(request)
 
@@ -225,7 +225,7 @@ def delete_run(run_hash: str, request: Request):
 
 
 @router.get("/stats")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.user_stats", "10/minute"))
 def user_stats(request: Request):
     user = require_user(request)
     username = user.get("username")
@@ -320,7 +320,7 @@ def _compute_personal_bests(username: str) -> dict:
 
 
 @router.get("/personal-bests")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.personal_bests", "10/minute"))
 def personal_bests(request: Request):
     user = require_user(request)
     username = user.get("username")
@@ -330,7 +330,7 @@ def personal_bests(request: Request):
 
 
 @router.get("/competitive")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.competitive_stats", "10/minute"))
 def competitive_stats(request: Request):
     user = require_user(request)
     username = user.get("username")
@@ -391,7 +391,7 @@ def competitive_stats(request: Request):
 
 
 @router.post("/runs/upload")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.upload_runs", "10/minute"))
 async def upload_runs(request: Request, files: list[UploadFile] = File(...)):
     user = require_user(request)
 
@@ -514,7 +514,7 @@ async def upload_runs(request: Request, files: list[UploadFile] = File(...)):
 
 
 @router.get("/runs/stats")
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.get_my_stats", "60/minute"))
 def get_my_stats(request: Request):
     user = require_user(request)
     username = user.get("username")

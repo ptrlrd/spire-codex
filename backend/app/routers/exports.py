@@ -230,7 +230,10 @@ def _stream_runs_jsonl(hashes):
 # Declared BEFORE the /{lang} route so FastAPI matches the literal
 # path "runs" instead of treating it as a language code.
 @router.get("/runs")
-@limiter.limit("120/hour", cost=_export_cost)
+@limiter.limit(
+    rate_limit_config.endpoint_limit("exports.export_runs", "120/hour"),
+    cost=_export_cost,
+)
 def export_runs(
     request: Request,
     limit: int | None = Query(
@@ -292,7 +295,7 @@ def export_runs(
 
 
 @router.get("/{lang}")
-@limiter.limit("10/hour")
+@limiter.limit(rate_limit_config.endpoint_limit("exports.export_language", "10/hour"))
 def export_language(lang: str, request: Request):
     if lang not in VALID_LANGUAGES:
         lang = "eng"

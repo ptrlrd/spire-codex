@@ -81,7 +81,7 @@ def _apply_paid(user_id: str, paid: bool) -> None:
 
 
 @router.get("/start")
-@limiter.limit("20/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth_patreon.start", "20/minute"))
 async def start(request: Request):
     base = _frontend_url(request)
     if not get_current_user(request):
@@ -190,7 +190,7 @@ async def callback(request: Request):
 
 
 @router.post("/disconnect")
-@limiter.limit("10/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth_patreon.disconnect", "10/minute"))
 async def disconnect(request: Request):
     from ..services.auth_jwt import require_user
     from ..services.users_db import unlink_patreon
