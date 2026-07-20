@@ -5,6 +5,17 @@ const LANGS = "deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  // NitroPay hosts our ads.txt so exchange entries stay current without
+  // deploys; the 301 is their recommended setup.
+  async redirects() {
+    return [
+      {
+        source: "/ads.txt",
+        destination: "https://api.nitropay.com/v1/ads-2467.txt",
+        permanent: true,
+      },
+    ];
+  },
   // The /beta section itself is wired up in middleware.ts, which rewrites
   // /beta/cards/x to /cards/x?channel=beta. Only the SEO shielding lives
   // here. Decision: /beta carries zero SEO risk, so every beta URL gets a

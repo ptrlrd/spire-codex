@@ -108,6 +108,23 @@ export default function RootLayout({
           RTTs that's a few hundred ms off every art-heavy page. */}
       <link rel="preconnect" href="https://cdn.spire-codex.com" crossOrigin="anonymous" />
       <link rel="dns-prefetch" href="https://cdn.spire-codex.com" />
+      {/* NitroPay: the queue stub must exist before any createAd call, and
+          the loader wants <head> placement so the auction starts early.
+          beforeInteractive injects both into <head>. Production builds only —
+          Nitro authorizes spire-codex.com, so dev would just log errors. */}
+      {process.env.NODE_ENV === "production" && (
+        <>
+          <Script id="nitro-stub" strategy="beforeInteractive">
+            {`window.nitroAds=window.nitroAds||{createAd:function(){return new Promise(e=>{window.nitroAds.queue.push(["createAd",arguments,e])})},addUserToken:function(){window.nitroAds.queue.push(["addUserToken",arguments])},queue:[]};`}
+          </Script>
+          <Script
+            src="https://s.nitropay.com/ads-2467.js"
+            strategy="beforeInteractive"
+            data-cfasync="false"
+            async
+          />
+        </>
+      )}
       <body
         className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
