@@ -1741,9 +1741,10 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
         for c in clusters:
             for v, sw in (c.get("versions") or {}).items():
                 ver_totals[v] = ver_totals.get(v, 0) + sw[0]
-        recent = sorted((v for v, n in ver_totals.items() if n >= 200), key=_ver_key)[
-            -2:
+        tracked = sorted((v for v, n in ver_totals.items() if n >= 200), key=_ver_key)[
+            -6:
         ]
+        recent = tracked[-2:]
         rows = []
         for c in clusters:
             if c["size"] < 50:
@@ -1768,9 +1769,20 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
                 }
             from ..services.run_vectors import archetype_alias
 
+            history = []
+            for v in tracked:
+                size_v, wins_v = c.get("versions", {}).get(v, [0, 0])[:2]
+                history.append(
+                    {
+                        "version": v,
+                        "share": round(size_v / ver_totals[v] * 100, 1),
+                        "win_rate": round(wins_v / size_v * 100, 1) if size_v else 0.0,
+                    }
+                )
             rows.append(
                 {
                     "trend": trend,
+                    "history": history,
                     "name": archetype_alias(c["defining_cards"])
                     or " + ".join(_name(cards, i) for i in c["defining_cards"][:2])
                     or ch.title(),

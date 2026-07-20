@@ -42,6 +42,7 @@ interface Archetype {
   defining_relics: NamedEntity[];
   example_runs: string[];
   trend?: { version: string; delta: number } | null;
+  history?: { version: string; share: number; win_rate: number }[];
 }
 
 interface ArchetypesResponse {
@@ -61,6 +62,47 @@ function winRateColor(pct: number): string {
   if (pct >= 15) return "#84cc16";
   if (pct >= 5) return "#eab308";
   return "#ef4444";
+}
+
+function Sparkline({ history, color }: { history: { version: string; share: number }[]; color: string }) {
+  if (history.length < 2) return null;
+  const w = 96;
+  const h = 26;
+  const pad = 3;
+  const shares = history.map((p) => p.share);
+  const min = Math.min(...shares);
+  const max = Math.max(...shares);
+  const span = max - min || 1;
+  const step = (w - pad * 2) / (shares.length - 1);
+  const xy = shares.map((s, i) => [
+    pad + i * step,
+    h - pad - ((s - min) / span) * (h - pad * 2),
+  ]);
+  const d = xy
+    .map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`)
+    .join(" ");
+  const [lx, ly] = xy[xy.length - 1];
+  return (
+    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="flex-shrink-0">
+      <title>{history.map((p) => `${p.version}: ${p.share}%`).join("\n")}</title>
+      <path
+        d={d}
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0.85"
+      />
+      <circle cx={lx} cy={ly} r="2.2" fill={color} />
+    </svg>
+  );
+}
+
+function trendColor(a: Archetype): string {
+  if (a.trend && a.trend.delta >= 0.5) return "#22c55e";
+  if (a.trend && a.trend.delta <= -0.5) return "#ef4444";
+  return "#8b8b96";
 }
 
 async function loadArchetypes(): Promise<ArchetypesResponse | null> {
@@ -84,6 +126,23 @@ export default async function ArchetypesPage() {
     ]),
   ];
 
+  const movers = !data?.available
+    ? []
+    : Object.entries(data.characters).flatMap(([ch, list]) =>
+        list
+          .filter((a) => a.trend && Math.abs(a.trend.delta) >= 0.5)
+          .map((a) => ({ ch, arch: a }))
+      );
+  const risers = movers
+    .filter((m) => m.arch.trend!.delta > 0)
+    .sort((x, y) => y.arch.trend!.delta - x.arch.trend!.delta)
+    .slice(0, 4);
+  const fallers = movers
+    .filter((m) => m.arch.trend!.delta < 0)
+    .sort((x, y) => x.arch.trend!.delta - y.arch.trend!.delta)
+    .slice(0, 4);
+  const moversVersion = movers[0]?.arch.trend?.version;
+
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
@@ -95,6 +154,34 @@ export default async function ArchetypesPage() {
         clustered by their cards and relics, so every archetype below is something
         players actually pilot, with its real popularity and win rate. Rebuilt daily.
       </p>
+
+      {data?.available && (risers.length > 0 || fallers.length > 0) && (
+        <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 mb-8">
+          <div className="text-xs uppercase tracking-wide text-[var(--text-tertiary)] mb-2">
+            Meta movers{moversVersion ? ` · ${moversVersion}` : ""}
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {[...risers, ...fallers].map(({ ch, arch }, i) => (
+              <span
+                key={`${ch}-mover-${i}`}
+                className="inline-flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)]"
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: characterHex(ch) || "#888" }}
+                />
+                <span className="text-[var(--text-secondary)]">{arch.name}</span>
+                <span
+                  className="font-semibold tabular-nums"
+                  style={{ color: arch.trend!.delta > 0 ? "#22c55e" : "#ef4444" }}
+                >
+                  {arch.trend!.delta > 0 ? "▲" : "▼"} {Math.abs(arch.trend!.delta)}%
+                </span>
+              </span>
+            ))}
+          </div>
+        </div>
+      )}
 
       {!data?.available ? (
         <p className="text-sm text-[var(--text-muted)]">
@@ -125,16 +212,21 @@ export default async function ArchetypesPage() {
                         {a.win_rate}%
                       </span>
                     </div>
-                    <div className="text-xs text-[var(--text-muted)] mb-3">
-                      {a.share}% of {characterLabel(ch)} runs · {a.size.toLocaleString()} decks
-                      {a.trend && Math.abs(a.trend.delta) >= 0.5 && (
-                        <span
-                          className="ml-2 font-semibold"
-                          style={{ color: a.trend.delta > 0 ? "#22c55e" : "#ef4444" }}
-                          title={`Share change in ${a.trend.version} vs the previous version`}
-                        >
-                          {a.trend.delta > 0 ? "▲" : "▼"} {Math.abs(a.trend.delta)}%
-                        </span>
+                    <div className="flex items-end justify-between gap-2 mb-3">
+                      <div className="text-xs text-[var(--text-muted)]">
+                        {a.share}% of {characterLabel(ch)} runs · {a.size.toLocaleString()} decks
+                        {a.trend && Math.abs(a.trend.delta) >= 0.5 && (
+                          <span
+                            className="ml-2 font-semibold"
+                            style={{ color: a.trend.delta > 0 ? "#22c55e" : "#ef4444" }}
+                            title={`Share change in ${a.trend.version} vs the previous version`}
+                          >
+                            {a.trend.delta > 0 ? "▲" : "▼"} {Math.abs(a.trend.delta)}%
+                          </span>
+                        )}
+                      </div>
+                      {a.history && a.history.length > 1 && (
+                        <Sparkline history={a.history} color={trendColor(a)} />
                       )}
                     </div>
                     <div className="flex flex-wrap gap-1.5">
