@@ -17,6 +17,7 @@ interface RunRow {
   win?: boolean | number | null;
   run_time?: number | null;
   hidden?: boolean | null;
+  hidden_reason?: string | null;
   player_count?: number | null;
   build_id?: string | null;
   submitted_at?: string | null;
@@ -137,6 +138,50 @@ export default function RunsClient() {
     }
   }
 
+  async function findHidden() {
+    setBusy(true);
+    setNote(null);
+    try {
+      const data = await adminFetch<{ runs: RunRow[] }>(
+        `/api/admin/runs/search?hidden_only=true&limit=100`,
+      );
+      setRows(data.runs ?? []);
+      setNote(
+        (data.runs ?? []).length
+          ? "Everything currently hidden, newest first. auto: reasons come from the cheat detector."
+          : "Nothing is hidden right now.",
+      );
+    } catch (e) {
+      setNote(String((e as Error)?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function cheatSweep(dryRun: boolean) {
+    if (!dryRun && !confirm("Hide every run the sweep flags? They leave all stats and leaderboards.")) return;
+    setBusy(true);
+    setNote(null);
+    try {
+      const data = await adminFetch<{ flagged: { run_hash: string; reason: string }[]; hidden: number; dry_run: boolean }>(
+        `/api/admin/runs/cheat-sweep?dry_run=${dryRun}`,
+        { method: "POST" },
+      );
+      setRows(
+        data.flagged.map((f) => ({ run_hash: f.run_hash, hidden_reason: f.reason, hidden: !data.dry_run })),
+      );
+      setNote(
+        data.dry_run
+          ? `Sweep would hide ${data.flagged.length} runs (stacked relics, boss teleports). Run it for real to hide them.`
+          : `Hid ${data.hidden} runs.`,
+      );
+    } catch (e) {
+      setNote(String((e as Error)?.message || e));
+    } finally {
+      setBusy(false);
+    }
+  }
+
   const inputClass =
     "px-3 py-1.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50";
 
@@ -168,6 +213,30 @@ export default function RunsClient() {
           title="Fast wins, marathon run times, and giant decks in one queue"
         >
           Anomalies
+        </button>
+        <button
+          onClick={findHidden}
+          disabled={busy}
+          className="px-4 py-1.5 rounded-lg border border-[var(--border-subtle)] text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)] disabled:opacity-50"
+          title="Everything currently hidden, with the auto-hide reason"
+        >
+          Hidden only
+        </button>
+        <button
+          onClick={() => cheatSweep(true)}
+          disabled={busy}
+          className="px-4 py-1.5 rounded-lg border border-[var(--border-subtle)] text-sm font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)] disabled:opacity-50"
+          title="Scan for stacked relic copies and boss-teleport wins; dry run first"
+        >
+          Cheat sweep (dry)
+        </button>
+        <button
+          onClick={() => cheatSweep(false)}
+          disabled={busy}
+          className="px-4 py-1.5 rounded-lg border border-red-500/40 text-sm font-semibold text-red-400 hover:bg-red-500/10 disabled:opacity-50"
+          title="Hide everything the sweep flags"
+        >
+          Sweep & hide
         </button>
       </div>
 
@@ -201,6 +270,11 @@ export default function RunsClient() {
                         {r.run_hash.slice(0, 12)}...
                       </Link>
                     ) : "-"}
+                    {r.hidden_reason && (
+                      <span className="block text-[10px] text-red-400/80 font-mono" title="auto-hide reason">
+                        {r.hidden_reason}
+                      </span>
+                    )}
                     {r.hidden && (
                       <span className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-rose-950/50 text-rose-300 border-rose-900/50">
                         hidden

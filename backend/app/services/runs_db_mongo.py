@@ -813,10 +813,19 @@ def _submit_player_run(
         if dmg:
             doc["damage"] = dmg
 
+    from .cheat_detect import detect_cheats
+
+    cheat_reasons = detect_cheats(data)
+    if cheat_reasons:
+        doc["hidden"] = True
+        doc["hidden_reason"] = "auto:" + ",".join(cheat_reasons[:4])
+        logger.info("auto-hid cheated run %s: %s", run_hash, doc["hidden_reason"])
+
     coll = _get_collection()
     try:
         coll.insert_one(doc)
-        bump_stats_counters(doc)
+        if not doc.get("hidden"):
+            bump_stats_counters(doc)
     except DuplicateKeyError:
         # The run already exists (commonly: it was submitted anonymously
         # before the client started sending an identity). Re-submitting with
