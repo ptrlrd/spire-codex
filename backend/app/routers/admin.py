@@ -390,7 +390,11 @@ def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
     _audit(request)
     if not os.environ.get("MONGO_URL", "").strip():
         return {"dry_run": dry_run, "flagged": [], "hidden": 0}
-    from ..services.cheat_detect import MAX_RELIC_COPIES, MIN_ACT_FLOORS
+    from ..services.cheat_detect import (
+        MAX_RELIC_COPIES,
+        MIN_ACT_FLOORS,
+        MIN_WIN_SECONDS,
+    )
     from ..services.runs_db_mongo import get_database, set_run_hidden
 
     db = get_database()["runs"]
@@ -444,6 +448,18 @@ def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
                 h = d.get("run_hash") or d["_id"]
                 flagged[h] = f"boss_teleport:act{i + 1}:{len(floors)}floors"
                 break
+
+    # Impossible-time wins: pure doc query, no verification needed.
+    for d in db.find(
+        {
+            "hidden": {"$ne": True},
+            "win": True,
+            "run_time": {"$gt": 0, "$lt": MIN_WIN_SECONDS},
+        },
+        {"run_time": 1, "run_hash": 1},
+    ).limit(2000):
+        h = d.get("run_hash") or d["_id"]
+        flagged.setdefault(h, f"impossible_time:{int(d.get('run_time') or 0)}s")
 
     items = sorted(flagged.items())[:limit]
     hidden = 0
