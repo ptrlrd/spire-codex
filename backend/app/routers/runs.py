@@ -1829,7 +1829,9 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
 
 
 @router.get("/encounter-builds", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_encounter_builds", "60/minute")
+)
 def get_encounter_builds(
     request: Request, response: Response, encounter: str, lang: str = "eng"
 ):
@@ -1954,7 +1956,7 @@ def get_deck_advisor(
 
 
 @router.get("/pick-coach", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_pick_coach", "120/minute"))
 def get_pick_coach(
     request: Request,
     response: Response,
