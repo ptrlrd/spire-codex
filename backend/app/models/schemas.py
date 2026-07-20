@@ -492,6 +492,10 @@ class GuideSummary(BaseModel):
     bluesky: str | None = None
     twitter: str | None = None
     twitch: str | None = None
+    # "beta" points the page's hovertip widget (and entity links) at the beta
+    # channel; absent/None serves stable. Without this field the response
+    # model silently strips what guides.json carries.
+    channel: str | None = None
 
 
 class Guide(GuideSummary):
