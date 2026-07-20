@@ -24,6 +24,20 @@ interface Run {
   submitted_at: string;
 }
 
+interface RunInsight {
+  runHash: string;
+  character: string;
+  win: boolean;
+  archetype: {
+    name: string;
+    win_rate: number;
+    share: number;
+    similarity: number;
+  } | null;
+  seedRank: number | null;
+  seedTotal: number | null;
+}
+
 export default function SubmitRunClient() {
   const router = useRouter();
   const lp = useLangPrefix();
@@ -40,6 +54,7 @@ export default function SubmitRunClient() {
     dupes: number;
     errors: number;
   } | null>(null);
+  const [insight, setInsight] = useState<RunInsight | null>(null);
   const uploadInFlight = useRef(false);
 
   function isValidRunFile(data: any): boolean {
@@ -108,6 +123,7 @@ export default function SubmitRunClient() {
       uploadInFlight.current = true;
       setUploadProgress({ total, done: 0, dupes: 0, errors: 0 });
       setError("");
+      setInsight(null);
 
       let done = 0,
         dupes = 0,
@@ -124,6 +140,9 @@ export default function SubmitRunClient() {
         : `${API}/api/runs`;
 
       let lastHash: string | null = null;
+      let lastResult: any = null;
+      let lastCharacter = "";
+      let lastWin = false;
 
       for (const file of Array.from(files)) {
         try {
@@ -158,6 +177,9 @@ export default function SubmitRunClient() {
               });
             } else if (result?.run_hash) {
               lastHash = result.run_hash;
+              lastResult = result;
+              lastCharacter = String(data?.players?.[0]?.character || "");
+              lastWin = Boolean(data?.win);
             }
           }
         } catch (e) {
@@ -175,9 +197,21 @@ export default function SubmitRunClient() {
         reportInvalidRuns(failures);
       }
 
-      // If single file uploaded successfully, redirect to run detail
+      // If single file uploaded successfully, show the insight card
+      // (falling back to the old redirect when there is nothing to show)
       if (total === 1 && errors === 0 && lastHash) {
-        router.push(`${lp}/runs/${lastHash}`);
+        if (lastResult?.archetype || lastResult?.seed_rank) {
+          setInsight({
+            runHash: lastHash,
+            character: lastCharacter,
+            win: lastWin,
+            archetype: lastResult?.archetype || null,
+            seedRank: lastResult?.seed_rank ?? null,
+            seedTotal: lastResult?.seed_total ?? null,
+          });
+        } else {
+          router.push(`${lp}/runs/${lastHash}`);
+        }
       }
       uploadInFlight.current = false;
     },
@@ -287,6 +321,61 @@ export default function SubmitRunClient() {
       )}
 
       <RunDropZone onFiles={handleFileUpload} uploadProgress={uploadProgress} />
+
+      {insight && (
+        <div
+          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 sm:p-5"
+          style={{
+            borderLeft: `3px solid ${characterHex(insight.character) || "var(--accent-gold)"}`,
+          }}
+        >
+          <div className="flex items-center gap-2 mb-3">
+            <span
+              className={`text-xs px-1.5 py-0.5 rounded ${
+                insight.win
+                  ? "bg-green-500/15 text-green-400"
+                  : "bg-[var(--bg-primary)] text-[var(--text-secondary)]"
+              }`}
+            >
+              {insight.win ? t("Victory", lang) : t("Defeat", lang)}
+            </span>
+            <h2 className="text-sm font-semibold text-[var(--text-primary)]">
+              {t("Run uploaded", lang)}
+            </h2>
+          </div>
+
+          {insight.archetype && (
+            <div className="mb-3">
+              <p className="text-xs uppercase tracking-wide text-[var(--text-tertiary)] mb-1">
+                {t("Build", lang)}
+              </p>
+              <p className="text-lg font-semibold text-[var(--accent-gold)]">
+                {insight.archetype.name}
+              </p>
+              <p className="text-sm text-[var(--text-secondary)]">
+                {insight.archetype.win_rate}% {t("community win rate", lang)} ·{" "}
+                {insight.archetype.share}% {t("of runs", lang)}
+              </p>
+            </div>
+          )}
+
+          {insight.seedRank != null && insight.seedTotal != null && insight.seedTotal > 0 && (
+            <p className="text-sm text-[var(--text-secondary)] mb-3">
+              {t("Seed standing", lang)}:{" "}
+              <span className="text-[var(--text-primary)] font-medium">
+                #{insight.seedRank} / {insight.seedTotal}
+              </span>
+            </p>
+          )}
+
+          <Link
+            href={`${lp}/runs/${insight.runHash}`}
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-[var(--accent-gold)] text-black font-medium hover:opacity-90 transition-opacity"
+          >
+            {t("See the full breakdown", lang)} →
+          </Link>
+        </div>
+      )}
 
       {error && (
         <p className="text-[var(--color-ironclad)] text-sm">{error}</p>
