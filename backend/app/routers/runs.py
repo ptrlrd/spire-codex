@@ -83,7 +83,9 @@ def _load_run_blob(run_hash: str) -> str | None:
 
 
 @router.post("", tags=["Runs"])
-@limiter.limit("3000/hour")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.submit_run_endpoint", "3000/hour")
+)
 async def submit_run_endpoint(
     request: Request,
     username: str | None = None,
@@ -274,7 +276,9 @@ MAX_CLAIM_HASHES = 5000
 
 
 @router.post("/claim", tags=["Runs"])
-@limiter.limit("10/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.claim_runs_endpoint", "10/minute")
+)
 async def claim_runs_endpoint(request: Request):
     """Attach a username to previously-submitted runs by hash.
 
@@ -323,7 +327,7 @@ async def claim_runs_endpoint(request: Request):
 
 
 @router.get("/list", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.list_runs", "120/minute"))
 def list_runs(
     request: Request,
     response: Response,
@@ -512,7 +516,7 @@ def list_runs(
 
 
 @router.get("/leaderboard", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_leaderboard", "120/minute"))
 def get_leaderboard(
     request: Request,
     response: Response,
@@ -642,7 +646,7 @@ def get_leaderboard(
 
 
 @router.get("/leaderboard/seed-rank", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_rank", "120/minute"))
 def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
     """Seed + global standing for the in-game mod (F9 panel, post-run card).
 
@@ -676,7 +680,7 @@ def get_seed_rank(request: Request, seed: str, steam_id: str | None = None):
 
 
 @router.get("/leaderboard/rank/{run_hash}", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_run_rank", "120/minute"))
 def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
     """Rank of a single winning run within its character's leaderboard.
 
@@ -730,7 +734,9 @@ def get_run_rank(request: Request, run_hash: str, category: str = "fastest"):
 
 
 @router.get("/encounter-stats", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_encounter_stats_endpoint", "60/minute")
+)
 def get_encounter_stats_endpoint(
     request: Request,
     act: str | None = None,
@@ -845,7 +851,7 @@ def get_run_versions(request: Request):
 # Per-IP cap. Legitimate share-link traffic is one request per run; this
 # only bites scrapers enumerating hashes — which was sustaining ~8 req/s
 # against this single endpoint and pegging the worker at 100% CPU.
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_shared_run", "60/minute"))
 def get_shared_run(run_hash: str, request: Request):
     """Retrieve a shared run by its hash, merged with DB-side username.
 
@@ -964,7 +970,9 @@ _ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
 
 
 @router.get("/stats/{entity_type}/{entity_id}", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_entity_run_stats", "120/minute")
+)
 def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
@@ -996,7 +1004,11 @@ def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
 
 
 @router.get("/stats/{entity_type}/{entity_id}/history", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit(
+        "runs.get_entity_metric_history_endpoint", "120/minute"
+    )
+)
 def get_entity_metric_history_endpoint(
     request: Request,
     entity_type: str,
@@ -1021,7 +1033,7 @@ def get_entity_metric_history_endpoint(
 
 
 @router.get("/scores/{entity_type}", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_entity_scores", "60/minute"))
 def get_entity_scores(
     request: Request,
     entity_type: str,
@@ -1112,7 +1124,9 @@ def get_entity_scores(
 
 
 @router.get("/snapshot-status", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.runs_snapshot_status", "120/minute")
+)
 def runs_snapshot_status(request: Request, response: Response):
     """Whether the stats snapshot is loaded, rebuilding after a deploy, or
     serving a previous version while the current one builds. Lets the UI
@@ -1123,7 +1137,7 @@ def runs_snapshot_status(request: Request, response: Response):
 
 
 @router.get("/pulse", tags=["Runs"])
-@limiter.limit("240/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.runs_pulse", "240/minute"))
 def runs_pulse(request: Request, response: Response):
     """Live community totals: the snapshot baseline plus the hot overlay's
     counters, which update within milliseconds of each accepted upload.
@@ -1144,7 +1158,7 @@ def runs_pulse(request: Request, response: Response):
 
 
 @router.get("/community-stats", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.community_stats", "60/minute"))
 def community_stats(request: Request, response: Response, bracket: str | None = None):
     """Community / fun stats for the /community-stats page: per-event player
     decision breakdowns, deadliest encounters/events, headline totals by
@@ -1172,7 +1186,7 @@ def community_stats(request: Request, response: Response, bracket: str | None = 
 
 
 @router.get("/me/picks", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.my_picks", "60/minute"))
 def my_picks(request: Request, response: Response):
     """The signed-in player's own pick rates across decision surfaces (card
     rewards + ancient 3-relic offers for now). Scoped to the JWT's verified
@@ -1193,7 +1207,7 @@ def my_picks(request: Request, response: Response):
 
 
 @router.get("/metrics/{entity_type}", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_entity_metrics", "60/minute"))
 def get_entity_metrics(
     request: Request,
     response: Response,
@@ -1241,7 +1255,9 @@ def get_entity_metrics(
 
 
 @router.get("/top/{entity_type}/{character}", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_top_for_character", "120/minute")
+)
 def get_top_for_character(
     request: Request, entity_type: str, character: str, limit: int = 5
 ):
@@ -1507,7 +1523,9 @@ def start_stats_refresher() -> None:
 
 
 @router.get("/stats", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_community_stats", "120/minute")
+)
 def get_community_stats(
     request: Request,
     character: str | None = None,
@@ -1634,7 +1652,7 @@ def get_community_stats(
 
 
 @router.get("/{run_hash}/similar", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_similar_runs", "60/minute"))
 def get_similar_runs(
     request: Request, response: Response, run_hash: str, lang: str = "eng"
 ):
@@ -1696,7 +1714,7 @@ def get_similar_runs(
 
 
 @router.get("/archetypes", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_archetypes", "60/minute"))
 def get_archetypes(request: Request, response: Response, lang: str = "eng"):
     """Community deck archetypes, clustered nightly from run-composition
     vectors: defining cards/relics, share, and win rate per build."""
@@ -1811,7 +1829,9 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
 
 
 @router.get("/encounter-builds", tags=["Runs"])
-@limiter.limit("60/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_encounter_builds", "60/minute")
+)
 def get_encounter_builds(
     request: Request, response: Response, encounter: str, lang: str = "eng"
 ):
@@ -1874,7 +1894,7 @@ def get_encounter_builds(
 
 
 @router.get("/deck-advisor", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_deck_advisor", "120/minute"))
 def get_deck_advisor(
     request: Request,
     response: Response,
@@ -1936,7 +1956,7 @@ def get_deck_advisor(
 
 
 @router.get("/pick-coach", tags=["Runs"])
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_pick_coach", "120/minute"))
 def get_pick_coach(
     request: Request,
     response: Response,

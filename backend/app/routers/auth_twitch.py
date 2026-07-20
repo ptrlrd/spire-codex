@@ -59,7 +59,7 @@ def _frontend_url(request: Request) -> str:
 
 
 @router.get("/start")
-@limiter.limit("20/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth_twitch.start", "20/minute"))
 async def start(request: Request):
     base = _frontend_url(request)
     try:

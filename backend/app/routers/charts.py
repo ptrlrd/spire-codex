@@ -271,7 +271,7 @@ CHARTS: dict[str, dict] = {
 
 
 @router.get("/meta")
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("charts.charts_meta", "120/minute"))
 def charts_meta(request: Request):
     """Everything the explorer UI needs to draw its controls, including the
     event list (events actually present in the data) for the outcome chart."""
@@ -629,7 +629,7 @@ def prewarm_charts(budget_s: float | None = None) -> int:
 
 
 @router.get("/{chart_key}")
-@limiter.limit("120/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("charts.get_chart", "120/minute"))
 def get_chart(
     request: Request,
     response: Response,

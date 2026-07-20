@@ -66,7 +66,7 @@ def _public_base(request: Request) -> str:
 
 
 @router.post("/start")
-@limiter.limit("20/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth_steam.start", "20/minute"))
 async def start(request: Request) -> dict:
     """Begin a Steam OpenID sign-in flow.
 
@@ -99,7 +99,9 @@ async def start(request: Request) -> dict:
 
 
 @router.get("/redirect")
-@limiter.limit("20/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("auth_steam.redirect_to_steam", "20/minute")
+)
 async def redirect_to_steam(request: Request):
     """Direct browser redirect to Steam login. For mobile and popup-blocked flows."""
     sid = auth_session_store.create_session()
@@ -527,7 +529,7 @@ class TicketBody(BaseModel):
 
 
 @router.post("/ticket")
-@limiter.limit("30/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("auth_steam.ticket_auth", "30/minute"))
 async def ticket_auth(request: Request, body: TicketBody) -> JSONResponse:
     """Silent sign-in for the in-game mod: exchanges a Steamworks Web API auth
     ticket (`SteamUser.GetAuthTicketForWebApi("spire-codex")`) for the same JWT

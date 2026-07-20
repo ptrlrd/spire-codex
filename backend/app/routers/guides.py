@@ -117,7 +117,7 @@ def _validate_url(url: str | None) -> str | None:
 
 
 @router.post("")
-@limiter.limit("3/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("guides.submit_guide", "3/minute"))
 async def submit_guide(request: Request, body: GuideSubmission):
     if not WEBHOOK_URL:
         raise HTTPException(status_code=503, detail="Guide submissions not configured")

@@ -138,7 +138,9 @@ async def _send_via_resend(
 
 
 @router.post("")
-@limiter.limit("5/minute")
+@limiter.limit(
+    rate_limit_config.endpoint_limit("uninstall.submit_uninstall_feedback", "5/minute")
+)
 async def submit_uninstall_feedback(request: Request, body: UninstallFeedback):
     # Drop completely-empty submissions — Overwolf can flash the window
     # past a user and we don't want auto-blank rows piling up.

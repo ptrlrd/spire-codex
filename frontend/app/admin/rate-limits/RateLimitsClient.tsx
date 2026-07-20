@@ -17,6 +17,8 @@ interface Config {
   default_limit: string;
   tiers: Record<string, string>;
   overrides: Override[];
+  endpoint_limits: Record<string, string>;
+  endpoint_defaults: Record<string, string>;
   enabled: boolean;
 }
 
@@ -35,6 +37,9 @@ export default function RateLimitsClient() {
   const [enabled, setEnabled] = useState(true);
   const [tiers, setTiers] = useState<Record<string, string>>({});
   const [overrides, setOverrides] = useState<Override[]>([]);
+  const [epLimits, setEpLimits] = useState<Record<string, string>>({});
+  const [epDefaults, setEpDefaults] = useState<Record<string, string>>({});
+  const [epFilter, setEpFilter] = useState("");
   const [note, setNote] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -44,6 +49,8 @@ export default function RateLimitsClient() {
     setEnabled(c.enabled);
     setTiers(c.tiers || {});
     setOverrides(c.overrides || []);
+    setEpLimits(c.endpoint_limits || {});
+    if (c.endpoint_defaults) setEpDefaults(c.endpoint_defaults);
   };
 
   useEffect(() => {
@@ -266,6 +273,74 @@ export default function RateLimitsClient() {
                 Save clamps
               </button>
             </div>
+          </div>
+
+          <div className={card}>
+            <label className="block text-sm font-semibold text-[var(--text-primary)]">
+              Endpoint caps
+            </label>
+            <div className="text-xs text-[var(--text-muted)] mb-3">
+              Every endpoint&apos;s own cap (formerly hardcoded). Empty means the
+              built-in default shown in grey. These always apply, even with
+              limiting off.
+            </div>
+            <input
+              type="text"
+              value={epFilter}
+              onChange={(e) => setEpFilter(e.target.value)}
+              placeholder="Filter (e.g. runs, auth, export)…"
+              className={`w-full mb-3 ${input}`}
+            />
+            <div className="space-y-1.5 max-h-96 overflow-y-auto pr-1">
+              {Object.keys(epDefaults)
+                .sort()
+                .filter((k) => k.toLowerCase().includes(epFilter.trim().toLowerCase()))
+                .map((k) => (
+                  <div key={k} className="flex items-center gap-2">
+                    <div className="flex-1 min-w-0">
+                      <div className="text-xs font-mono text-[var(--text-primary)] truncate">{k}</div>
+                      <div className="text-[10px] text-[var(--text-muted)]">
+                        default {epDefaults[k]}
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      value={epLimits[k] ?? ""}
+                      onChange={(e) =>
+                        setEpLimits({ ...epLimits, [k]: e.target.value })
+                      }
+                      placeholder={epDefaults[k]}
+                      className={`w-36 ${input} ${
+                        (epLimits[k] ?? "").trim()
+                          ? "border-[var(--accent-gold)]/50"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                ))}
+              {Object.keys(epDefaults).length === 0 && (
+                <p className="text-xs text-[var(--text-muted)]">
+                  No endpoint caps registered (backend predates this panel).
+                </p>
+              )}
+            </div>
+            <button
+              type="button"
+              disabled={saving}
+              onClick={() => {
+                const cleaned: Record<string, string> = {};
+                for (const [k, v] of Object.entries(epLimits)) {
+                  if (v.trim()) cleaned[k] = v.trim();
+                }
+                save({ endpoint_limits: cleaned });
+              }}
+              className={`mt-3 ${goldBtn}`}
+            >
+              Save endpoint caps
+            </button>
+            <p className="mt-2 text-xs text-[var(--text-muted)]">
+              Clear a field and save to fall back to the hardcoded default.
+            </p>
           </div>
         </div>
       )}

@@ -21,9 +21,13 @@ router = APIRouter(
 
 @router.get("")
 def get_rate_limits(request: Request):
-    """Current browse cap, per-tier caps, and whether limiting is on."""
+    """Current browse cap, per-tier caps, per-endpoint caps (with their
+    hardcoded defaults), and whether limiting is on."""
     _audit(request)
-    return rate_limit_config.get_config()
+    return {
+        **rate_limit_config.get_config(),
+        "endpoint_defaults": rate_limit_config.endpoint_defaults(),
+    }
 
 
 class OverrideItem(BaseModel):
@@ -47,6 +51,15 @@ class RateLimitUpdate(BaseModel):
             "wins and applies to every tier; /api/admin can't be clamped."
         ),
     )
+    endpoint_limits: dict[str, str] | None = Field(
+        default=None,
+        description=(
+            "Per-endpoint caps keyed by knob name (replaces the whole map). "
+            "An empty value reverts that endpoint to its hardcoded default. "
+            "These ignore the enabled kill switch, like the old hardcoded "
+            "limits did."
+        ),
+    )
     enabled: bool | None = Field(
         default=None,
         description="False turns limiting off (per-endpoint limits stay).",
@@ -55,8 +68,9 @@ class RateLimitUpdate(BaseModel):
 
 @router.put("")
 def set_rate_limits(body: RateLimitUpdate, request: Request):
-    """Change the browse cap, tier caps, endpoint clamps, and/or toggle limiting.
-    Takes effect across workers within the config cache window (~15s)."""
+    """Change the browse cap, tier caps, endpoint clamps, per-endpoint caps,
+    and/or toggle limiting. Takes effect across workers within the config
+    cache window (~15s)."""
     _audit(request)
     try:
         return rate_limit_config.set_config(
@@ -66,6 +80,7 @@ def set_rate_limits(body: RateLimitUpdate, request: Request):
             [o.model_dump() for o in body.overrides]
             if body.overrides is not None
             else None,
+            body.endpoint_limits,
         )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

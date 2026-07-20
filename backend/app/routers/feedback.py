@@ -29,7 +29,7 @@ class FeedbackRequest(BaseModel):
 
 
 @router.post("")
-@limiter.limit("5/minute")
+@limiter.limit(rate_limit_config.endpoint_limit("feedback.submit_feedback", "5/minute"))
 async def submit_feedback(request: Request, body: FeedbackRequest):
     if not WEBHOOK_URL:
         raise HTTPException(status_code=503, detail="Feedback not configured")
