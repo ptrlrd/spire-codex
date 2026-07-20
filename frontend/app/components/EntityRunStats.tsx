@@ -121,6 +121,107 @@ function characterPretty(c: string): string {
   return c[0] + c.slice(1).toLowerCase();
 }
 
+function versionSortKey(v: string): number[] {
+  return v
+    .replace(/^v/, "")
+    .split(".")
+    .map((x) => parseInt(x, 10) || 0);
+}
+
+function VersionScoreChart({ brackets, lang }: { brackets: Record<string, BracketStat>; lang: string }) {
+  const points = Object.keys(brackets)
+    .filter((k) => /^v\d+(\.\d+)*$/.test(k) && brackets[k].score != null)
+    .sort((a, b) => {
+      const ka = versionSortKey(a);
+      const kb = versionSortKey(b);
+      for (let i = 0; i < Math.max(ka.length, kb.length); i++) {
+        const d = (ka[i] || 0) - (kb[i] || 0);
+        if (d) return d;
+      }
+      return 0;
+    })
+    .map((k) => ({ version: k, ...brackets[k] }));
+  if (points.length < 2) return null;
+
+  const w = 560;
+  const h = 96;
+  const padX = 10;
+  const padTop = 12;
+  const padBottom = 22;
+  const scores = points.map((p) => p.score as number);
+  const min = Math.max(0, Math.min(...scores) - 5);
+  const max = Math.min(100, Math.max(...scores) + 5);
+  const span = max - min || 1;
+  const step = (w - padX * 2) / (points.length - 1);
+  const xy = points.map((p, i) => [
+    padX + i * step,
+    padTop + (1 - ((p.score as number) - min) / span) * (h - padTop - padBottom),
+  ]);
+  const d = xy
+    .map(([x, y], i) => `${i ? "L" : "M"}${x.toFixed(1)},${y.toFixed(1)}`)
+    .join(" ");
+  const labelEvery = Math.max(1, Math.ceil(points.length / 6));
+
+  return (
+    <div className="pb-4 border-b border-[var(--border-subtle)]">
+      <div className="text-xs text-[var(--text-muted)] font-semibold mb-1.5">
+        {t("Score by patch", lang)}
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="w-full" role="img">
+        <line
+          x1={padX}
+          y1={h - padBottom}
+          x2={w - padX}
+          y2={h - padBottom}
+          stroke="var(--border-subtle)"
+          strokeWidth="1"
+        />
+        <path
+          d={d}
+          fill="none"
+          stroke="var(--accent-gold)"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          opacity="0.9"
+        />
+        {points.map((p, i) => (
+          <g key={p.version}>
+            <circle cx={xy[i][0]} cy={xy[i][1]} r="3" fill="var(--accent-gold)">
+              <title>
+                {`${p.version} · ${t("Codex Score", lang)} ${p.score}` +
+                  (p.elo != null ? ` · Elo ${Math.round(p.elo)}` : "") +
+                  ` · ${p.win_rate}% ${t("win rate", lang)} · ${p.picks.toLocaleString()} ${t("picks", lang)}`}
+              </title>
+            </circle>
+            <text
+              x={xy[i][0]}
+              y={xy[i][1] - 7}
+              textAnchor="middle"
+              fontSize="10"
+              fill="var(--text-secondary)"
+              className="tabular-nums"
+            >
+              {p.score}
+            </text>
+            {(i % labelEvery === 0 || i === points.length - 1) && (
+              <text
+                x={xy[i][0]}
+                y={h - 7}
+                textAnchor={i === 0 ? "start" : i === points.length - 1 ? "end" : "middle"}
+                fontSize="9"
+                fill="var(--text-muted)"
+              >
+                {p.version}
+              </text>
+            )}
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}
+
 /**
  * "Stats" tab content, community-run aggregates for one entity.
  * Layout: factual prose summary on top (doubles as SEO body content),
@@ -417,6 +518,8 @@ export default function EntityRunStats({ entityType, entityId, entityName, varia
           </div>
         </div>
       )}
+
+      {!empty && <VersionScoreChart brackets={brackets} lang={lang} />}
 
       {/* Prose summary, also serves as crawlable SEO body content. */}
       <p className="text-sm leading-relaxed text-[var(--text-secondary)]">
