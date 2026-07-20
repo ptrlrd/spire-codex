@@ -79,6 +79,8 @@ def _official_sets() -> dict[str, frozenset[str]]:
                     for c in load_cards()
                     if c.get("id")
                     and c.get("rarity") != "Basic"
+                    and c.get("rarity") != "Quest"
+                    and c.get("type") not in ("Quest", "Curse")
                     and up(c["id"]) != "ASCENDERS_BANE"
                 ),
                 "relics": frozenset(

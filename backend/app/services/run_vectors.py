@@ -762,7 +762,15 @@ def _nondraftable() -> frozenset[str]:
 
             terms: set[str] = {"ASCENDERS_BANE"}
             for c in data_service.load_cards("eng"):
-                if c.get("rarity_key") == "Basic" or c.get("rarity") == "Basic":
+                # Basic = starters; Quest/Curse = granted by events and
+                # ancients, never drafted (Spoils Map was naming archetypes).
+                if (
+                    c.get("rarity_key") == "Basic"
+                    or c.get("rarity") == "Basic"
+                    or c.get("rarity_key") == "Quest"
+                    or c.get("type_key") == "Quest"
+                    or c.get("type_key") == "Curse"
+                ):
                     terms.add(str(c.get("id", "")).upper())
             for r in data_service.load_relics("eng"):
                 if "Starter" in str(r.get("rarity") or ""):
