@@ -1789,6 +1789,69 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
     return payload
 
 
+@router.get("/encounter-builds", tags=["Runs"])
+@limiter.limit("60/minute")
+def get_encounter_builds(
+    request: Request, response: Response, encounter: str, lang: str = "eng"
+):
+    """Which community archetypes die to an encounter and which walk past it:
+    per-archetype death rate at this encounter from the nightly vector build."""
+    enc = encounter.strip().upper()
+    cache_key = f"encbuilds:{enc}:{lang}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=600"
+        return cached
+    from ..services.run_vectors import encounter_builds
+
+    try:
+        rows = encounter_builds(enc)
+    except Exception:
+        logger.warning("encounter builds failed", exc_info=True)
+        rows = None
+    if rows is None or not any(r["deaths"] for r in rows):
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "encounter": enc, "builds": []}
+    from ..services import data_service
+
+    try:
+        card_names = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relic_names = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        card_names, relic_names = {}, {}
+
+    def _cname(i: str) -> str:
+        return card_names.get(i) or i.replace("_", " ").title()
+
+    try:
+        from ..services.run_vectors import archetype_alias
+    except ImportError:
+        archetype_alias = None
+
+    for r in rows:
+        raw = r["defining_cards"]
+        alias = archetype_alias(raw) if archetype_alias else None
+        r["name"] = (
+            alias or " + ".join(_cname(i) for i in raw[:2]) or r["character"].title()
+        )
+        r["defining_cards"] = [{"id": i, "name": _cname(i)} for i in raw]
+        r["defining_relics"] = [
+            {"id": i, "name": relic_names.get(i) or i.replace("_", " ").title()}
+            for i in r["defining_relics"]
+        ]
+    rows.sort(key=lambda r: -r["death_rate"])
+    payload = {"available": True, "encounter": enc, "builds": rows}
+    app_cache.set_json(cache_key, payload, ttl_seconds=1800)
+    response.headers["Cache-Control"] = "public, max-age=600"
+    return payload
+
+
 @router.get("/deck-advisor", tags=["Runs"])
 @limiter.limit("120/minute")
 def get_deck_advisor(

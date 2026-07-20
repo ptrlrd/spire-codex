@@ -23,6 +23,7 @@ _lock = threading.Lock()
 _vocab: dict[str, int] | None = None
 _vocab_mtime: float = 0.0
 _shards: dict[str, tuple[Any, dict]] = {}
+_labels_cache: dict[str, Any] = {}
 
 
 def available() -> bool:
@@ -81,6 +82,7 @@ def build_run_vectors() -> dict:
             "username": 1,
             "submitted_at": 1,
             "build_id": 1,
+            "killed_by": 1,
             "deck.id": 1,
             "relics.id": 1,
         },
@@ -117,6 +119,7 @@ def build_run_vectors() -> dict:
                 if hasattr(sub, "strftime")
                 else str(sub or "")[:10],
                 "ver": doc.get("build_id"),
+                "kb": doc.get("killed_by") or "",
             }
         )
 
@@ -155,15 +158,17 @@ def build_run_vectors() -> dict:
             user=np.array([r["user"] or "" for r in m], dtype="S32"),
             date=np.array([r["date"] for r in m], dtype="S10"),
             ver=np.array([r.get("ver") or "" for r in m], dtype="S16"),
+            kb=np.array([r.get("kb") or "" for r in m], dtype="S48"),
         )
         total += n
         k = max(4, min(14, n // 3000))
         if n >= 200 and k >= 2:
             try:
-                clusters, _labels, dists, centers = _cluster_shard(
+                clusters, labels, dists, centers = _cluster_shard(
                     ch, mat, acc["meta"], vocab_list, k
                 )
                 np.save(_VEC_DIR / f"{ch}_dists.npy", dists)
+                np.save(_VEC_DIR / f"{ch}_labels.npy", labels)
                 np.save(_VEC_DIR / f"{ch}_centroids.npy", centers)
                 archetypes[ch] = clusters
             except Exception:
@@ -191,6 +196,7 @@ def build_run_vectors() -> dict:
     tmp.replace(_VEC_DIR / "vocab.json")
     with _lock:
         _shards.clear()
+        _labels_cache.clear()
         global _vocab
         _vocab = None
     logger.info(
@@ -216,6 +222,7 @@ def _load_vocab() -> dict[str, int] | None:
         _vocab = {t: i for i, t in enumerate(data.get("terms", []))}
         _vocab_mtime = mtime
         _shards.clear()
+        _labels_cache.clear()
         return _vocab
 
 
@@ -384,6 +391,7 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
     vers = [m.get("ver") or "" for m in meta]
     out = []
     kept_centers = []
+    kept_j = []
     for j in range(k):
         mask = labels == j
         size = int(mask.sum())
@@ -431,10 +439,15 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
             }
         )
         kept_centers.append(centers[j])
+        kept_j.append(j)
     order = sorted(range(len(out)), key=lambda i: -out[i]["size"])
     out = [out[i] for i in order]
     kept = np.array([kept_centers[i] for i in order], dtype=np.float32)
-    return out, labels, dists, kept
+    # Remap raw kmeans labels to the size-sorted cluster order so the saved
+    # labels file indexes straight into archetypes.json / the centroids file.
+    remap = {kept_j[old_pos]: new_pos for new_pos, old_pos in enumerate(order)}
+    sorted_labels = np.array([remap.get(int(lb), -1) for lb in labels], dtype=np.int16)
+    return out, sorted_labels, dists, kept
 
 
 def load_archetypes() -> dict | None:
@@ -466,6 +479,67 @@ def anomalous_runs(limit: int = 30) -> list[dict]:
             )
     out.sort(key=lambda r: -r["distance"])
     return out[:limit]
+
+
+def _load_labels(character: str):
+    import numpy as np
+
+    with _lock:
+        hit = _labels_cache.get(character)
+        if hit is not None:
+            return hit
+    try:
+        labels = np.load(_VEC_DIR / f"{character}_labels.npy", mmap_mode="r")
+    except OSError:
+        return None
+    with _lock:
+        _labels_cache[character] = labels
+    return labels
+
+
+def encounter_builds(encounter: str) -> list[dict] | None:
+    """Per-archetype death counts at one encounter, joined from the stored
+    run->cluster labels and the killed_by column of the shard meta."""
+    import numpy as np
+
+    arch = load_archetypes()
+    if not arch:
+        return None
+    enc = encounter.strip().upper().encode()
+    out: list[dict] = []
+    for ch, clusters in (arch.get("characters") or {}).items():
+        loaded = _load_shard(ch)
+        labels = _load_labels(ch)
+        if loaded is None or labels is None:
+            continue
+        kb = loaded[1].get("kb")
+        if kb is None:
+            continue
+        n = min(len(kb), len(labels))
+        lab = np.asarray(labels[:n])
+        sel = (np.asarray(kb[:n]) == enc) & (lab >= 0)
+        counts = np.bincount(lab[sel].astype(np.int64), minlength=len(clusters))
+        total = sum(c["size"] for c in clusters) or 1
+        for j, c in enumerate(clusters):
+            if not c["defining_cards"] and not c["defining_relics"]:
+                continue
+            if c["size"] < 200:
+                continue
+            deaths = int(counts[j]) if j < len(counts) else 0
+            out.append(
+                {
+                    "character": ch,
+                    "key": "+".join(sorted(c["defining_cards"][:2])),
+                    "defining_cards": c["defining_cards"],
+                    "defining_relics": c["defining_relics"],
+                    "size": c["size"],
+                    "share": round(c["size"] / total * 100, 1),
+                    "win_rate": c["win_rate"],
+                    "deaths": deaths,
+                    "death_rate": round(deaths / c["size"] * 100, 2),
+                }
+            )
+    return out
 
 
 def _query_vector(character: str, deck: list, relics: list):
