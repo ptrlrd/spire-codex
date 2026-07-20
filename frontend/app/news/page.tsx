@@ -5,6 +5,8 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
+import { ANNOUNCEMENTS } from "@/lib/announcements";
+import MarkAnnouncementsSeen from "./MarkAnnouncementsSeen";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -41,17 +43,18 @@ export const metadata: Metadata = {
   },
 };
 
-type Tab = "community" | "press" | "all";
+type Tab = "community" | "codex" | "press" | "all";
 
 const TABS: { key: Tab; label: string; sublabel: string; feedType: number | null }[] = [
   { key: "community", label: "Mega Crit", sublabel: "Steam announcements", feedType: 1 },
+  { key: "codex", label: "Spire Codex", sublabel: "Site updates & new features", feedType: null },
   { key: "press", label: "Press", sublabel: "PCGamesN, RPS, GamingOnLinux…", feedType: 0 },
   { key: "all", label: "All", sublabel: "Everything", feedType: null },
 ];
 
 function tabFromParam(value: string | string[] | undefined): Tab {
   const v = Array.isArray(value) ? value[0] : value;
-  if (v === "press" || v === "all") return v;
+  if (v === "codex" || v === "press" || v === "all") return v;
   return "community";
 }
 
@@ -75,7 +78,10 @@ export default async function NewsPage({
   const sp = await searchParams;
   const activeTab = tabFromParam(sp.tab);
   const tabConfig = TABS.find((t) => t.key === activeTab) ?? TABS[0];
-  const data = await loadNews(tabConfig.feedType);
+  const isCodex = activeTab === "codex";
+  const data = isCodex
+    ? { total: 0, limit: 0, offset: 0, items: [] }
+    : await loadNews(tabConfig.feedType);
   const items = data.items;
   const latest = items[0];
 
@@ -128,7 +134,31 @@ export default async function NewsPage({
         })}
       </div>
 
-      {items.length === 0 ? (
+      {isCodex ? (
+        <>
+          <MarkAnnouncementsSeen />
+          <ul className="space-y-3">
+            {ANNOUNCEMENTS.map((a) => (
+              <li key={a.id}>
+                <Link
+                  href={a.href}
+                  className="block bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 hover:border-[var(--border-accent)] transition-colors"
+                >
+                  <div className="flex items-baseline justify-between gap-3 mb-1">
+                    <h2 className="text-lg font-semibold text-[var(--text-primary)]">{a.title}</h2>
+                    <time className="text-xs text-[var(--text-muted)] shrink-0">{a.date}</time>
+                  </div>
+                  <p className="text-xs text-[var(--text-muted)] mb-2">Spire Codex</p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{a.body}</p>
+                  <span className="inline-block mt-3 text-sm text-[var(--accent-gold)]">
+                    Check it out →
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </>
+      ) : items.length === 0 ? (
         <p className="text-[var(--text-muted)]">No news available right now. Check back soon.</p>
       ) : (
         <ul className="space-y-3">

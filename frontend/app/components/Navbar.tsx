@@ -7,6 +7,7 @@ import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
 import LiveNavButton from "./LiveNavButton";
+import AnnouncementBadge from "./AnnouncementBadge";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
@@ -395,6 +396,7 @@ export default function Navbar() {
             <div className="hidden lg:flex items-center gap-1">
               {NAV_GROUPS.map((group, i) => renderMega(group, i === NAV_GROUPS.length - 1))}
               <LiveNavButton />
+              <AnnouncementBadge />
             </div>
           </div>
 
@@ -648,6 +650,7 @@ export default function Navbar() {
 
                   <div className="border-b border-[var(--border-subtle)] px-5 py-3">
                     <LiveNavButton variant="mobile" />
+                    <AnnouncementBadge variant="mobile" />
                   </div>
 
                   <ThemeToggle variant="segmented" />
