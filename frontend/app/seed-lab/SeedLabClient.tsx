@@ -160,6 +160,7 @@ export default function SeedLabClient() {
   const [eventCatalog, setEventCatalog] = useState<CatalogItem[]>([]);
   const [result, setResult] = useState<FinderResponse | null>(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let dead = false;
@@ -198,6 +199,8 @@ export default function SeedLabClient() {
   async function search() {
     if (!hasPredicates || loading) return;
     setLoading(true);
+    setResult(null);
+    setError(null);
     try {
       const url = new URL(`${API}/api/runs/seed-finder`);
       if (character !== "ANY") url.searchParams.set("character", character);
@@ -220,9 +223,27 @@ export default function SeedLabClient() {
         if (ancientAct) url.searchParams.set("ancient_act", String(ancientAct));
       }
       const res = await fetch(url.toString());
-      setResult(await res.json());
+      if (res.status === 429) {
+        setError("Rate limited — give it a minute and try again.");
+        return;
+      }
+      if (!res.ok) {
+        setError(`Search failed (${res.status}). Try again in a moment.`);
+        return;
+      }
+      const data = (await res.json()) as FinderResponse;
+      if (!data.available) {
+        setError(
+          data.detail ||
+            "The finder isn't available right now (vector data may still be building).",
+        );
+        return;
+      }
+      setResult(data);
     } catch {
-      setResult(null);
+      setError(
+        "The search didn't come back — it may have timed out. A cold query can take a while; try again, the result gets cached.",
+      );
     } finally {
       setLoading(false);
     }
@@ -414,8 +435,34 @@ export default function SeedLabClient() {
         onClick={search}
         className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-black hover:opacity-90 transition-opacity disabled:opacity-40 mb-6"
       >
-        {loading ? "Searching…" : "Find seeds"}
+        {loading ? (
+          <span className="inline-flex items-center gap-2">
+            <span className="w-3.5 h-3.5 rounded-full border-2 border-black/30 border-t-black animate-spin" />
+            Searching…
+          </span>
+        ) : (
+          "Find seeds"
+        )}
       </button>
+
+      {loading && (
+        <div className={`${card} animate-pulse`}>
+          <p className="text-sm text-[var(--text-secondary)]">
+            Digging through the community runs — combing candidate decks, then
+            verifying offers, events, and ancient rolls.
+          </p>
+          <p className="text-xs text-[var(--text-muted)] mt-1">
+            A cold query can take up to a minute; repeats are cached and come
+            back instantly.
+          </p>
+        </div>
+      )}
+
+      {error && !loading && (
+        <div className={`${card} border-red-500/40`}>
+          <p className="text-sm text-red-400">{error}</p>
+        </div>
+      )}
 
       {result && result.available && (
         <div className={card}>
