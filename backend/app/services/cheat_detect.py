@@ -16,6 +16,10 @@ MAX_RELIC_COPIES = 5
 # A completed act's visited path is ~16 floors; the teleport cheat shows 1.
 MIN_ACT_FLOORS = 8
 
+# Fastest conceivable legitimate win is well past this; a 51-second "win"
+# from a savegame edit is not.
+MIN_WIN_SECONDS = 300
+
 
 def _bare(raw: str) -> str:
     parts = str(raw or "").split(".")
@@ -35,6 +39,9 @@ def detect_cheats(data: dict) -> list[str]:
             if n > MAX_RELIC_COPIES:
                 reasons.append(f"duplicate_relics:{rid}x{n}")
     if data.get("win"):
+        run_time = data.get("run_time") or 0
+        if 0 < run_time < MIN_WIN_SECONDS:
+            reasons.append(f"impossible_time:{int(run_time)}s")
         for i, act in enumerate(data.get("map_point_history") or []):
             floors = act or []
             has_boss = any(
