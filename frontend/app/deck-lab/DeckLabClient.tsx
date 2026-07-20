@@ -171,15 +171,18 @@ export default function DeckLabClient() {
     const cardsParam = deck.join(",");
     const relicsParam = relics.join(",");
     try {
-      const coachUrl = new URL(`${API}/api/runs/pick-coach`);
-      coachUrl.searchParams.set("character", character);
-      coachUrl.searchParams.set("cards", cardsParam);
-      coachUrl.searchParams.set("relics", relicsParam);
-      if (offer.length) coachUrl.searchParams.set("offer", offer.join(","));
-      if (target) coachUrl.searchParams.set("target", target);
+      // `new URL` throws when NEXT_PUBLIC_API_URL is empty (prod uses
+      // same-origin relative fetches) — build the query string standalone.
+      const coachParams = new URLSearchParams({
+        character,
+        cards: cardsParam,
+        relics: relicsParam,
+      });
+      if (offer.length) coachParams.set("offer", offer.join(","));
+      if (target) coachParams.set("target", target);
       const advisorUrl = `${API}/api/runs/deck-advisor?character=${character}&cards=${encodeURIComponent(cardsParam)}&relics=${encodeURIComponent(relicsParam)}`;
       const [c, a] = await Promise.all([
-        fetch(coachUrl.toString()).then((r) => r.json()),
+        fetch(`${API}/api/runs/pick-coach?${coachParams.toString()}`).then((r) => r.json()),
         fetch(advisorUrl).then((r) => r.json()),
       ]);
       setCoach(c?.available ? c : null);

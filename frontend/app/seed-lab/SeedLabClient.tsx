@@ -202,27 +202,30 @@ export default function SeedLabClient() {
     setResult(null);
     setError(null);
     try {
-      const url = new URL(`${API}/api/runs/seed-finder`);
-      if (character !== "ANY") url.searchParams.set("character", character);
+      // NEXT_PUBLIC_API_URL is empty in prod (same-origin relative fetches),
+      // and `new URL` throws on a base-less relative path — build the query
+      // string standalone instead.
+      const params = new URLSearchParams();
+      if (character !== "ANY") params.set("character", character);
       if (deckPicks.length)
-        url.searchParams.set(
+        params.set(
           "deck",
           deckPicks.map((p) => (p.count > 1 ? `${p.id}:${p.count}` : p.id)).join(","),
         );
       if (offerPicks.length)
-        url.searchParams.set(
+        params.set(
           "offered",
           offerPicks.map((p) => (p.count > 1 ? `${p.id}:${p.count}` : p.id)).join(","),
         );
       if (relicPicks.length)
-        url.searchParams.set("relics", relicPicks.map((p) => p.id).join(","));
+        params.set("relics", relicPicks.map((p) => p.id).join(","));
       if (eventPicks.length)
-        url.searchParams.set("events", eventPicks.map((p) => p.id).join(","));
+        params.set("events", eventPicks.map((p) => p.id).join(","));
       if (ancientPick) {
-        url.searchParams.set("ancient", ancientPick.id);
-        if (ancientAct) url.searchParams.set("ancient_act", String(ancientAct));
+        params.set("ancient", ancientPick.id);
+        if (ancientAct) params.set("ancient_act", String(ancientAct));
       }
-      const res = await fetch(url.toString());
+      const res = await fetch(`${API}/api/runs/seed-finder?${params.toString()}`);
       if (res.status === 429) {
         setError("Rate limited — give it a minute and try again.");
         return;
