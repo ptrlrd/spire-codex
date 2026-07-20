@@ -390,11 +390,7 @@ def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
     _audit(request)
     if not os.environ.get("MONGO_URL", "").strip():
         return {"dry_run": dry_run, "flagged": [], "hidden": 0}
-    from ..services.cheat_detect import (
-        MAX_RELIC_COPIES,
-        MIN_ACT_FLOORS,
-        MIN_WIN_SECONDS,
-    )
+    from ..services.cheat_detect import MAX_RELIC_COPIES, MIN_WIN_SECONDS
     from ..services.runs_db_mongo import get_database, set_run_hidden
 
     db = get_database()["runs"]
@@ -424,30 +420,33 @@ def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
             h = d.get("run_hash") or d["_id"]
             flagged[h] = f"duplicate_relics:{worst[0]}x{worst[1]}"
 
-    # Boss-teleport wins: cheap floors_reached prefilter, then the same
-    # per-act check submit-time detection uses, from the stored history.
-    tele_candidates = db.find(
+    # Path-shaped win cheats (boss teleports, missing act bosses): cheap doc
+    # prefilters, then the exact submit-time detector over the stored history.
+    from ..services.cheat_detect import detect_cheats
+
+    win_candidates = db.find(
         {
             "hidden": {"$ne": True},
             "win": True,
-            "floors_reached": {"$gt": 0, "$lt": 40},
+            "$or": [
+                {"floors_reached": {"$gt": 0, "$lt": 40}},
+                {"acts_completed": {"$lt": 3}},
+            ],
         },
-        {"map_point_history": 1, "run_hash": 1},
-    ).limit(2000)
-    for d in tele_candidates:
-        for i, act in enumerate(d.get("map_point_history") or []):
-            floors = act or []
-            has_boss = any(
-                (room.get("room_type") or "").lower() == "boss"
-                for fl in floors
-                if isinstance(fl, dict)
-                for room in fl.get("rooms") or []
-                if isinstance(room, dict)
-            )
-            if has_boss and len(floors) < MIN_ACT_FLOORS:
-                h = d.get("run_hash") or d["_id"]
-                flagged[h] = f"boss_teleport:act{i + 1}:{len(floors)}floors"
-                break
+        {"map_point_history": 1, "run_time": 1, "game_mode": 1, "run_hash": 1},
+    ).limit(4000)
+    for d in win_candidates:
+        reasons = detect_cheats(
+            {
+                "win": True,
+                "run_time": d.get("run_time"),
+                "game_mode": d.get("game_mode"),
+                "map_point_history": d.get("map_point_history") or [],
+            }
+        )
+        if reasons:
+            h = d.get("run_hash") or d["_id"]
+            flagged.setdefault(h, reasons[0])
 
     # Impossible-time wins: pure doc query, no verification needed.
     for d in db.find(
