@@ -8,6 +8,7 @@ import AlertTicker from "./components/AlertTicker";
 import Footer from "./components/Footer";
 import GlobalSearch from "./components/GlobalSearch";
 import FloatingFeedback from "./components/FloatingFeedback";
+import NitroAnchor from "./components/NitroAnchor";
 import HighlightFeedback from "./components/HighlightFeedback";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
@@ -167,6 +168,7 @@ export default function RootLayout({
               <Footer />
               <GlobalSearch />
               <FloatingFeedback />
+              {process.env.NODE_ENV === "production" && <NitroAnchor />}
               <HighlightFeedback />
               </ToastProvider>
               </AuthProvider>
