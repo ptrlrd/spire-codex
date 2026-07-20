@@ -19,16 +19,8 @@ export const ANNOUNCEMENTS: Announcement[] = [
     date: "2026-07-20",
     title: "What beats each boss",
     body:
-      "Encounter pages now show which community builds die to a fight the most and which walk past it, joined from half a million analyzed runs. Check any boss page for the new Builds section.",
-    href: "/encounters/aeonglass_boss",
-  },
-  {
-    id: "deck-archetypes",
-    date: "2026-07-19",
-    title: "Community deck archetypes",
-    body:
-      "Every build the community actually pilots, discovered automatically from submitted runs: defining cards and relics, real win rates, popularity trends per patch, and the biggest meta movers.",
-    href: "/archetypes",
+      "Boss pages now show which community builds die to a fight the most and which walk past it, joined from half a million analyzed runs. Check any boss's page for the new Builds section.",
+    href: "/monsters/aeonglass",
   },
   {
     id: "score-by-patch",

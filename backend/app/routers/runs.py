@@ -177,26 +177,30 @@ async def submit_run_endpoint(
         "/"
     )
 
+    is_duplicate = False
     if result.get("error"):
         if result.get("duplicate"):
             run_submissions.labels(status="duplicate").inc()
-            dup_hash = result.get("run_hash")
-            return {
+            # Fall through to the enrichment below: a re-upload should still
+            # get the archetype + seed-rank insight card, just not the live
+            # overlay re-apply.
+            is_duplicate = True
+            result = {
                 "success": True,
                 "duplicate": True,
-                "run_hash": dup_hash,
-                "url": f"{site_base}/runs/{dup_hash}" if dup_hash else None,
+                "run_hash": result.get("run_hash"),
             }
-        run_submissions.labels(status="error").inc()
-        run_errors.labels(reason="missing_fields").inc()
-        raise HTTPException(status_code=400, detail=result["error"])
+        else:
+            run_submissions.labels(status="error").inc()
+            run_errors.labels(reason="missing_fields").inc()
+            raise HTTPException(status_code=400, detail=result["error"])
 
     # Enrich for the in-game post-run card: the shareable page URL, and (when this
     # run is itself a completed upload on a known seed) its seed standing.
     run_hash = result.get("run_hash")
     if run_hash:
         result["url"] = f"{site_base}/runs/{run_hash}"
-        if os.environ.get("MONGO_URL", "").strip():
+        if not is_duplicate and os.environ.get("MONGO_URL", "").strip():
             try:
                 from ..services.live_overlay import apply_run_async
 
