@@ -31,6 +31,23 @@ const roomTypeBadge: Record<string, string> = {
   Boss: "bg-red-950/50 text-red-300 border-red-900/30",
 };
 
+const CHAR_DOT: Record<string, string> = {
+  IRONCLAD: "var(--color-ironclad)",
+  SILENT: "var(--color-silent)",
+  DEFECT: "var(--color-defect)",
+  NECROBINDER: "var(--color-necrobinder)",
+  REGENT: "var(--color-regent)",
+};
+
+interface EncounterBuild {
+  character: string;
+  name: string;
+  size: number;
+  win_rate: number;
+  deaths: number;
+  death_rate: number;
+}
+
 export default function EncounterDetail({ initialEncounter, encounterStat }: { initialEncounter?: Encounter | null; encounterStat?: EncounterStat | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -47,6 +64,16 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
       .then((data) => setEncounter(data))
       .catch(() => setNotFound(true))
       .finally(() => setLoading(false));
+  }, [id, lang]);
+
+  const [builds, setBuilds] = useState<EncounterBuild[]>([]);
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<{ available: boolean; builds: EncounterBuild[] }>(
+      `${API}/api/runs/encounter-builds?encounter=${id}&lang=${lang}`,
+    )
+      .then((data) => setBuilds(data?.available ? data.builds : []))
+      .catch(() => setBuilds([]));
   }, [id, lang]);
 
   // ToC scroll-spy: highlight the section currently in view.
@@ -102,8 +129,17 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
 
   const hasCommunity = !!(encounterStat && encounterStat.total > 0);
 
+  const struggles = builds.filter((b) => b.deaths >= 5).slice(0, 5);
+  const struggleKeys = new Set(struggles.map((b) => `${b.character}:${b.name}`));
+  const handles = [...builds]
+    .sort((a, b) => a.death_rate - b.death_rate)
+    .filter((b) => b.size >= 500 && !struggleKeys.has(`${b.character}:${b.name}`))
+    .slice(0, 5);
+  const hasBuilds = struggles.length > 0;
+
   const tocItems: { id: string; label: string }[] = [
     ...(hasCommunity ? [{ id: "community", label: t("Community", lang) }] : []),
+    ...(hasBuilds ? [{ id: "builds", label: t("Builds", lang) }] : []),
     ...(hasMonsters ? [{ id: "composition", label: t("Monsters", lang) }] : []),
     ...(hasLoss ? [{ id: "loss", label: "Loss Text" }] : []),
     { id: "history", label: t("Version history", lang) },
@@ -172,6 +208,65 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
                   over <b>{encounterStat!.avg_turns}</b> turns.
                 </p>
               )}
+            </section>
+          )}
+
+          {/* Which archetypes die here vs walk past — from the nightly
+              run-vector build (labels x killed_by join). */}
+          {hasBuilds && (
+            <section id="builds">
+              <h2>{t("Builds", lang)}</h2>
+              <p className="h-note">
+                Of the community archetypes that face this fight, the share of
+                each build&apos;s runs that end here, next to that build&apos;s
+                overall win rate.
+              </p>
+              <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
+                <div>
+                  <p className="h-note" style={{ color: "var(--warn, #ef4444)" }}>
+                    {t("Dies here most", lang)}
+                  </p>
+                  {struggles.map((b) => (
+                    <div
+                      key={`s-${b.character}-${b.name}`}
+                      style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0", fontSize: "0.85rem" }}
+                    >
+                      <span
+                        style={{ width: 7, height: 7, borderRadius: "50%", background: CHAR_DOT[b.character] || "#888", flexShrink: 0 }}
+                      />
+                      <Link href={`${lp}/archetypes`} className="cn" style={{ flexGrow: 1 }}>
+                        {b.name}
+                      </Link>
+                      <span style={{ color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>
+                        {b.death_rate}% {t("die here", lang)} · {b.win_rate}% WR
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                {handles.length > 0 && (
+                  <div>
+                    <p className="h-note" style={{ color: "var(--good, #22c55e)" }}>
+                      {t("Handles it best", lang)}
+                    </p>
+                    {handles.map((b) => (
+                      <div
+                        key={`h-${b.character}-${b.name}`}
+                        style={{ display: "flex", alignItems: "center", gap: "0.5rem", padding: "0.25rem 0", fontSize: "0.85rem" }}
+                      >
+                        <span
+                          style={{ width: 7, height: 7, borderRadius: "50%", background: CHAR_DOT[b.character] || "#888", flexShrink: 0 }}
+                        />
+                        <Link href={`${lp}/archetypes`} className="cn" style={{ flexGrow: 1 }}>
+                          {b.name}
+                        </Link>
+                        <span style={{ color: "var(--text-muted)", fontVariantNumeric: "tabular-nums" }}>
+                          {b.death_rate}% {t("die here", lang)} · {b.win_rate}% WR
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </section>
           )}
 
