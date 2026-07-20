@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ANNOUNCEMENT_SEEN_KEY, LATEST_ANNOUNCEMENT_ID } from "@/lib/announcements";
 
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
 function MegaphoneIcon() {
   return (
     <svg
@@ -35,19 +37,32 @@ export default function AnnouncementBadge({
   variant?: "desktop" | "mobile";
 }) {
   const [unread, setUnread] = useState(false);
+  const [latestId, setLatestId] = useState(LATEST_ANNOUNCEMENT_ID);
 
   useEffect(() => {
+    let current = LATEST_ANNOUNCEMENT_ID;
     const check = () => {
       try {
         setUnread(
-          !!LATEST_ANNOUNCEMENT_ID &&
-            localStorage.getItem(ANNOUNCEMENT_SEEN_KEY) !== LATEST_ANNOUNCEMENT_ID,
+          !!current && localStorage.getItem(ANNOUNCEMENT_SEEN_KEY) !== current,
         );
       } catch {
         setUnread(false);
       }
     };
     check();
+    // Admin-published entries beat the committed seed list: ask the API for
+    // the newest id so publishing lights the megaphone without a deploy.
+    fetch(`${API}/api/news/codex`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => {
+        if (d?.latest_id) {
+          current = d.latest_id;
+          setLatestId(d.latest_id);
+          check();
+        }
+      })
+      .catch(() => {});
     window.addEventListener("sc-news-seen", check);
     return () => window.removeEventListener("sc-news-seen", check);
   }, []);
@@ -56,7 +71,7 @@ export default function AnnouncementBadge({
 
   const markSeen = () => {
     try {
-      localStorage.setItem(ANNOUNCEMENT_SEEN_KEY, LATEST_ANNOUNCEMENT_ID);
+      localStorage.setItem(ANNOUNCEMENT_SEEN_KEY, latestId);
     } catch {}
     setUnread(false);
   };
