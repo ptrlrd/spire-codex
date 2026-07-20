@@ -174,7 +174,11 @@ def build_run_vectors() -> dict:
             except Exception:
                 logger.warning("archetype clustering failed for %s", ch, exc_info=True)
     if archetypes:
-        (_VEC_DIR / "archetypes.json").write_text(
+        # tmp + replace like vocab.json below: a reader catching a direct
+        # write_text mid-flight got truncated JSON, which cascaded into
+        # "available: false" getting baked into page caches for hours.
+        arch_tmp = _VEC_DIR / "archetypes.json.tmp"
+        arch_tmp.write_text(
             json.dumps(
                 {
                     "characters": archetypes,
@@ -183,6 +187,7 @@ def build_run_vectors() -> dict:
             ),
             encoding="utf-8",
         )
+        arch_tmp.replace(_VEC_DIR / "archetypes.json")
     tmp = _VEC_DIR / "vocab.json.tmp"
     tmp.write_text(
         json.dumps(
@@ -453,7 +458,7 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
 def load_archetypes() -> dict | None:
     try:
         return json.loads((_VEC_DIR / "archetypes.json").read_text(encoding="utf-8"))
-    except OSError:
+    except (OSError, ValueError):
         return None
 
 

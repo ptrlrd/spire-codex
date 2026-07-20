@@ -1727,6 +1727,13 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
 
     data = load_archetypes()
     if not data:
+        # Mid-rebuild the file can be briefly unreadable; a transient
+        # "available: false" here gets baked into ISR and edge caches for
+        # hours, so serve the last good payload instead when we have one.
+        last_good = app_cache.get_json(f"archetypes:lastgood:{lang}")
+        if last_good is not None:
+            response.headers["Cache-Control"] = "public, max-age=120"
+            return last_good
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "characters": {}}
     from ..services import data_service
@@ -1824,6 +1831,7 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
         "characters": out_chars,
     }
     app_cache.set_json(cache_key, payload, ttl_seconds=1800)
+    app_cache.set_json(f"archetypes:lastgood:{lang}", payload, ttl_seconds=7 * 86400)
     response.headers["Cache-Control"] = "public, max-age=600"
     return payload
 
