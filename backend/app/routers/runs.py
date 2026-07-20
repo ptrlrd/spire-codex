@@ -1870,3 +1870,102 @@ def get_deck_advisor(
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
+
+
+@router.get("/pick-coach", tags=["Runs"])
+@limiter.limit("120/minute")
+def get_pick_coach(
+    request: Request,
+    response: Response,
+    character: str,
+    cards: str = "",
+    relics: str = "",
+    offer: str = "",
+    target: str | None = None,
+    lang: str = "eng",
+):
+    """Build coach: nearest archetypes for a partial deck, and when cards are
+    offered, a per-card score from commitment delta toward the target
+    archetype, support among nearby winning decks, and offer-conditioned lift."""
+    import hashlib
+
+    char = character.strip().upper()
+    card_ids = sorted(c.strip().upper() for c in cards.split(",") if c.strip())
+    relic_ids = sorted(r.strip().upper() for r in relics.split(",") if r.strip())
+    offer_ids = [o.strip().upper() for o in offer.split(",") if o.strip()][:5]
+    key_src = f"{char}|{','.join(card_ids)}|{','.join(relic_ids)}|{','.join(offer_ids)}|{target or ''}|{lang}"
+    cache_key = "pickcoach:" + hashlib.sha1(key_src.encode()).hexdigest()
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    from ..services.run_vectors import pick_coach
+
+    try:
+        coach = pick_coach(
+            char,
+            [{"id": c} for c in card_ids],
+            [{"id": r} for r in relic_ids],
+            offer_ids,
+            target=(target or "").strip().upper() or None,
+        )
+    except Exception:
+        logger.warning("pick coach failed", exc_info=True)
+        coach = None
+    if coach is None:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False}
+
+    if offer_ids:
+        try:
+            from ..services.draft_recs import score_offer
+
+            held = [f"cards:{c}" for c in card_ids] + [f"relics:{r}" for r in relic_ids]
+            lift = {
+                r["id"]: r
+                for r in (score_offer(held, offer_ids, lang) or {}).get("ranked", [])
+            }
+            for o in coach["offers"]:
+                lr = lift.get(o["id"])
+                o["take_score"] = lr.get("score") if lr else None
+                o["take_base"] = lr.get("base") if lr else None
+        except Exception:
+            logger.warning("pick coach lift blend failed", exc_info=True)
+
+    from ..services import data_service
+
+    try:
+        card_names = {
+            str(c.get("id", "")).upper(): c.get("name")
+            for c in data_service.load_cards(lang)
+        }
+        relic_names = {
+            str(r.get("id", "")).upper(): r.get("name")
+            for r in data_service.load_relics(lang)
+        }
+    except Exception:
+        card_names, relic_names = {}, {}
+
+    def _cname(i: str) -> str:
+        return card_names.get(i) or i.replace("_", " ").title()
+
+    try:
+        from ..services.run_vectors import archetype_alias
+    except ImportError:
+        archetype_alias = None
+
+    for o in coach["offers"]:
+        o["name"] = _cname(o["id"])
+    for grp in [coach["target"], *coach["candidates"]]:
+        raw = grp["defining_cards"]
+        alias = archetype_alias(raw) if archetype_alias else None
+        grp["name"] = alias or " + ".join(_cname(i) for i in raw[:2]) or char.title()
+        grp["defining_cards"] = [{"id": i, "name": _cname(i)} for i in raw]
+        grp["defining_relics"] = [
+            {"id": i, "name": relic_names.get(i) or i.replace("_", " ").title()}
+            for i in grp["defining_relics"]
+        ]
+    payload = {"available": True, "character": char, **coach}
+    app_cache.set_json(cache_key, payload, ttl_seconds=600)
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return payload

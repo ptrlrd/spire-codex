@@ -562,6 +562,119 @@ def deck_advisor(
     ]
 
 
+def pick_coach(
+    character: str,
+    deck: list,
+    relics: list,
+    offer: list[str],
+    target: str | None = None,
+) -> dict | None:
+    """Score offered cards by commitment delta toward a target archetype's
+    centroid plus how many nearby winning decks carry them."""
+    import numpy as np
+
+    arch = load_archetypes()
+    clusters = ((arch or {}).get("characters") or {}).get(character)
+    if not clusters:
+        return None
+    try:
+        centers = np.load(_VEC_DIR / f"{character}_centroids.npy")
+    except OSError:
+        return None
+    if centers.shape[0] != len(clusters):
+        return None
+    built = _query_vector(character, deck, relics)
+    if built is None:
+        return None
+    q, mat, meta, _own = built
+    vocab = _load_vocab() or {}
+    total = sum(c["size"] for c in clusters) or 1
+
+    def _key(c: dict) -> str:
+        return "+".join(sorted(c["defining_cards"][:2]))
+
+    sims = centers.dot(q)
+    candidates = sorted(
+        (
+            {
+                "key": _key(c),
+                "defining_cards": c["defining_cards"],
+                "defining_relics": c["defining_relics"],
+                "win_rate": c["win_rate"],
+                "share": round(c["size"] / total * 100, 1),
+                "similarity": round(float(sims[i]) * 100, 1),
+            }
+            for i, c in enumerate(clusters)
+            if c["defining_cards"] or c["defining_relics"]
+        ),
+        key=lambda c: -c["similarity"],
+    )[:5]
+
+    t_idx = None
+    if target:
+        for i, c in enumerate(clusters):
+            if _key(c) == target:
+                t_idx = i
+                break
+    if t_idx is None:
+        for i in np.argsort(sims)[::-1]:
+            c = clusters[int(i)]
+            if c["defining_cards"] or c["defining_relics"]:
+                t_idx = int(i)
+                break
+    if t_idx is None:
+        return None
+    center = centers[t_idx]
+    base_sim = float(center.dot(q))
+
+    neigh = np.asarray(mat.dot(q))
+    wins = meta["win"].astype(bool)
+    win_idx = np.flatnonzero(wins & (neigh > 0))
+    top = win_idx[np.argsort(neigh[win_idx])[::-1][:150]]
+    n_top = int(top.size)
+    offer_cols = {o: vocab.get(o) for o in offer}
+    support = dict.fromkeys(offer, 0)
+    for row in top:
+        start, end = mat.indptr[int(row)], mat.indptr[int(row) + 1]
+        row_cols = set(int(x) for x in mat.indices[start:end])
+        for oid, ci in offer_cols.items():
+            if ci is not None and ci in row_cols:
+                support[oid] += 1
+
+    offers = []
+    for oid in offer:
+        built2 = _query_vector(character, deck + [{"id": oid}], relics)
+        delta = None
+        if built2 is not None:
+            delta = round((float(center.dot(built2[0])) - base_sim) * 100, 2)
+        sup = round(support[oid] / n_top * 100, 1) if n_top else None
+        score = max(0.0, delta or 0.0) * 10 + (sup or 0.0) * 0.5
+        offers.append(
+            {
+                "id": oid,
+                "commitment_delta": delta,
+                "winner_support": sup,
+                "coach_score": round(score, 1),
+            }
+        )
+    offers.sort(key=lambda o: -o["coach_score"])
+
+    tc = clusters[t_idx]
+    return {
+        "target": {
+            "key": _key(tc),
+            "locked": bool(target) and _key(tc) == target,
+            "defining_cards": tc["defining_cards"],
+            "defining_relics": tc["defining_relics"],
+            "win_rate": tc["win_rate"],
+            "share": round(tc["size"] / total * 100, 1),
+            "similarity": round(float(sims[t_idx]) * 100, 1),
+        },
+        "candidates": candidates,
+        "offers": offers,
+    }
+
+
 _nondraftable_cache: frozenset[str] | None = None
 
 
