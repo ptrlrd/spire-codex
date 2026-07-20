@@ -173,6 +173,55 @@ def delete_run(run_hash: str, runs_dir: Path) -> dict[str, Any]:
 # ── Announcements (the site banner) ──────────────────────────
 
 
+_SITE_NEWS_COLLECTION = "site_news"
+
+
+def list_site_news(published_only: bool = False) -> list[dict]:
+    """Spire Codex news entries (announcements and articles), newest first.
+    _id is the slug; `href` set = link card, `body` set = markdown article."""
+    if not _enabled():
+        return []
+    query = {"published": True} if published_only else {}
+    rows = list(_db()[_SITE_NEWS_COLLECTION].find(query).sort("date", -1).limit(200))
+    for r in rows:
+        r["id"] = r.pop("_id")
+        r.pop("updated_at", None)
+    return rows
+
+
+def get_site_news(slug: str, published_only: bool = True) -> dict | None:
+    if not _enabled():
+        return None
+    doc = _db()[_SITE_NEWS_COLLECTION].find_one({"_id": slug})
+    if not doc or (published_only and not doc.get("published")):
+        return None
+    doc["id"] = doc.pop("_id")
+    doc.pop("updated_at", None)
+    return doc
+
+
+def upsert_site_news(entry: dict) -> dict:
+    slug = entry["id"]
+    doc = {
+        "title": entry.get("title", "").strip(),
+        "date": entry.get("date", "").strip(),
+        "body": entry.get("body", ""),
+        "href": entry.get("href", "").strip(),
+        "published": bool(entry.get("published")),
+        "updated_at": datetime.now(timezone.utc),
+    }
+    _db()[_SITE_NEWS_COLLECTION].replace_one(
+        {"_id": slug}, {"_id": slug, **doc}, upsert=True
+    )
+    return {"id": slug, **{k: v for k, v in doc.items() if k != "updated_at"}}
+
+
+def delete_site_news(slug: str) -> bool:
+    if not _enabled():
+        return False
+    return _db()[_SITE_NEWS_COLLECTION].delete_one({"_id": slug}).deleted_count > 0
+
+
 _ANNOUNCEMENTS_COLLECTION = "announcements"
 
 

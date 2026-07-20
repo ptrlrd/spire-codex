@@ -115,6 +115,7 @@ const SECTIONS = [
   { href: "/admin/feedback", label: "Feedback" },
   { href: "/admin/guides", label: "Guides" },
   { href: "/admin/banners", label: "Banners" },
+  { href: "/admin/news", label: "Site news" },
   { href: "/admin/analytics", label: "Analytics" },
   { href: "/admin/searches", label: "Searches" },
   { href: "/admin/cache", label: "Cache" },

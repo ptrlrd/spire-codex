@@ -5,8 +5,22 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
-import { ANNOUNCEMENTS } from "@/lib/announcements";
+import { ANNOUNCEMENTS, type Announcement } from "@/lib/announcements";
 import MarkAnnouncementsSeen from "./MarkAnnouncementsSeen";
+
+async function loadCodexNews(): Promise<{ items: Announcement[]; latestId: string }> {
+  try {
+    const res = await fetch(`${API}/api/news/codex`, { next: { revalidate: 300 } });
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data.items) && data.items.length > 0) {
+        return { items: data.items as Announcement[], latestId: data.latest_id ?? "" };
+      }
+    }
+  } catch {}
+  // Fallback: the committed seed list, until admin-published entries exist.
+  return { items: ANNOUNCEMENTS, latestId: ANNOUNCEMENTS[0]?.id ?? "" };
+}
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -79,6 +93,7 @@ export default async function NewsPage({
   const activeTab = tabFromParam(sp.tab);
   const tabConfig = TABS.find((t) => t.key === activeTab) ?? TABS[0];
   const isCodex = activeTab === "codex";
+  const codex = isCodex ? await loadCodexNews() : { items: [], latestId: "" };
   const data = isCodex
     ? { total: 0, limit: 0, offset: 0, items: [] }
     : await loadNews(tabConfig.feedType);
@@ -136,12 +151,12 @@ export default async function NewsPage({
 
       {isCodex ? (
         <>
-          <MarkAnnouncementsSeen />
+          <MarkAnnouncementsSeen latestId={codex.latestId} />
           <ul className="space-y-3">
-            {ANNOUNCEMENTS.map((a) => (
+            {codex.items.map((a) => (
               <li key={a.id}>
                 <Link
-                  href={a.href}
+                  href={a.href || `/news/codex/${a.id}`}
                   className="block bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 hover:border-[var(--border-accent)] transition-colors"
                 >
                   <div className="flex items-baseline justify-between gap-3 mb-1">
@@ -149,9 +164,11 @@ export default async function NewsPage({
                     <time className="text-xs text-[var(--text-muted)] shrink-0">{a.date}</time>
                   </div>
                   <p className="text-xs text-[var(--text-muted)] mb-2">Spire Codex</p>
-                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">{a.body}</p>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+                    {newsExcerpt(a.body, 220)}
+                  </p>
                   <span className="inline-block mt-3 text-sm text-[var(--accent-gold)]">
-                    Check it out →
+                    {a.href ? "Check it out →" : "Read more →"}
                   </span>
                 </Link>
               </li>

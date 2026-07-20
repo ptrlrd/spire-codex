@@ -6,11 +6,44 @@ router is a thin read-only view over that archive plus a couple of
 filters; everything is in-memory after first load.
 """
 
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, Response
 
+from ..services import cache as app_cache
 from ..services.data_service import load_news_index, load_news_item
 
 router = APIRouter(prefix="/api/news", tags=["News"])
+
+
+@router.get("/codex")
+def codex_news(response: Response) -> dict:
+    """Published Spire Codex site news (admin-authored), newest first, plus
+    the newest entry's id for the navbar unread megaphone."""
+    cached = app_cache.get_json("sitenews:feed")
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=60"
+        return cached
+    from ..services import admin_db
+
+    items = admin_db.list_site_news(published_only=True)
+    result = {
+        "items": items,
+        "latest_id": items[0]["id"] if items else None,
+    }
+    app_cache.set_json("sitenews:feed", result, ttl_seconds=120)
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return result
+
+
+@router.get("/codex/{slug}")
+def codex_news_entry(slug: str, response: Response) -> dict:
+    """One published Spire Codex news entry, for article pages."""
+    from ..services import admin_db
+
+    doc = admin_db.get_site_news(slug)
+    if not doc:
+        raise HTTPException(status_code=404, detail="No such entry")
+    response.headers["Cache-Control"] = "public, max-age=120"
+    return doc
 
 
 @router.get("")
