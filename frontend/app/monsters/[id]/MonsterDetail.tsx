@@ -664,8 +664,8 @@ export default function MonsterDetail({
               <h2>{t("Builds", lang)}</h2>
               <p className="h-note">
                 Of the community archetypes that face {monster.name}, the share
-                of each build's runs that end here, next to that build's
-                overall win rate.
+                of each build&apos;s runs that end here, next to that
+                build&apos;s overall win rate.
               </p>
               <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))" }}>
                 <div>
