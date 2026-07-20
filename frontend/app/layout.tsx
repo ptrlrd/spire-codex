@@ -121,6 +121,7 @@ export default function RootLayout({
             src="https://s.nitropay.com/ads-2467.js"
             strategy="beforeInteractive"
             data-cfasync="false"
+            data-spa="auto"
             async
           />
         </>
