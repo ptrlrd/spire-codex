@@ -1828,6 +1828,79 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
     return payload
 
 
+@router.get("/seed-finder", tags=["Runs"], include_in_schema=False)
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_finder", "20/minute"))
+def get_seed_finder(
+    request: Request,
+    response: Response,
+    character: str | None = None,
+    deck: str = "",
+    offered: str = "",
+    relics: str = "",
+    events: str = "",
+    ancient: str | None = None,
+    ancient_act: int | None = Query(None, ge=1, le=4),
+    limit: int = Query(20, ge=1, le=50),
+):
+    """Find community runs whose seed demonstrated a combination of content:
+    cards kept or offered (ID or ID:count), relics obtained, events seen, and
+    ancient relic offers. Ranked by how many predicates matched."""
+    import hashlib
+
+    def _counted(raw: str) -> list[tuple[str, int]]:
+        out = []
+        for part in raw.split(","):
+            part = part.strip().upper()
+            if not part:
+                continue
+            pid, _, n = part.partition(":")
+            try:
+                out.append((pid, max(1, int(n)) if n else 1))
+            except ValueError:
+                out.append((pid, 1))
+        return out
+
+    char = (character or "").strip().upper() or None
+    deck_cards = _counted(deck)
+    offered_cards = _counted(offered)
+    relic_ids = sorted(r.strip().upper() for r in relics.split(",") if r.strip())
+    event_ids = sorted(e.strip().upper() for e in events.split(",") if e.strip())
+    ancient_id = (ancient or "").strip().upper() or None
+    if not (deck_cards or offered_cards or relic_ids or event_ids or ancient_id):
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "detail": "give me at least one predicate"}
+
+    key_src = f"{char}|{deck_cards}|{offered_cards}|{relic_ids}|{event_ids}|{ancient_id}|{ancient_act}|{limit}"
+    cache_key = "seedfind:" + hashlib.sha1(key_src.encode()).hexdigest()
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    from ..services.seed_finder import find_seeds
+
+    try:
+        found = find_seeds(
+            char,
+            deck_cards,
+            offered_cards,
+            relic_ids,
+            event_ids,
+            ancient_id,
+            ancient_act,
+            limit=limit,
+        )
+    except Exception:
+        logger.warning("seed finder failed", exc_info=True)
+        found = None
+    if found is None:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False}
+    payload = {"available": True, **found}
+    app_cache.set_json(cache_key, payload, ttl_seconds=600)
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return payload
+
+
 @router.get("/encounter-builds", tags=["Runs"])
 @limiter.limit(
     rate_limit_config.endpoint_limit("runs.get_encounter_builds", "60/minute")
