@@ -3,7 +3,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { t } from "@/lib/ui-translations";
 
-const LAST_UPDATED = "May 6, 2026";
+const LAST_UPDATED = "July 20, 2026";
 
 export default function PrivacyBody({ lang }: { lang: string }) {
   const prefix = lang === "eng" ? "" : `/${lang}`;
@@ -80,7 +80,7 @@ export default function PrivacyBody({ lang }: { lang: string }) {
           <ul className="list-disc pl-6 space-y-1">
             <li>{t("No password, OAuth token, or Steam session token. Steam sign-in is one-shot OpenID; we never see your credentials.", lang)}</li>
             <li>{t("No email address (unless you voluntarily provide one as a contact value when submitting feedback).", lang)}</li>
-            <li>{t("No third-party advertising or behavioral tracking. The site does not use Google Analytics, Meta Pixel, or similar.", lang)}</li>
+            <li>{t("No cross-site tracking beyond what's described in the Advertising section. We use Google Analytics and self-hosted Umami for aggregate traffic statistics, and NitroPay for advertising, nothing else, no Meta Pixel, no data brokers.", lang)}</li>
             <li>{t("No payment information. Donations are handled by Ko-fi on its own site.", lang)}</li>
           </ul>
         </section>
@@ -93,6 +93,36 @@ export default function PrivacyBody({ lang }: { lang: string }) {
             <li>{t("Server logs are used to debug issues, monitor performance, and stop abuse.", lang)}</li>
             <li>{t("Feedback is forwarded to a private Discord channel and a GitHub issue tracker so we can act on it.", lang)}</li>
           </ul>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">{t("Advertising", lang)}</h2>
+          <p>
+            {t(
+              "The website shows ads served by NitroPay (GG Software, Ltd). To serve and measure ads, NitroPay and its advertising partners may process: your IP address, approximate (city-level) location derived from it, device and browser information, and cookies or similar identifiers used to cap ad frequency, detect fraud, and, where you have consented, personalize ads.",
+              lang,
+            )}
+          </p>
+          <p className="mt-2">
+            <strong className="text-[var(--text-primary)]">{t("If you are in the EEA, UK, or Switzerland", lang)}</strong>
+            {t(
+              ", a consent dialog appears before any personalized advertising happens. Personalized ads run only if you opt in; declining shows non-personalized ads instead. You can change your answer at any time using the Manage Consent link in the footer of every page, which reopens the consent dialog with the full list of advertising partners and purposes.",
+              lang,
+            )}
+          </p>
+          <p className="mt-2">
+            <strong className="text-[var(--text-primary)]">{t("If you are a California resident", lang)}</strong>
+            {t(
+              ", some of this ad-related data sharing may be considered a “sale” or “sharing” of personal information under the CCPA/CPRA. You can opt out at any time using the Do Not Sell My Personal Information link in the footer of every page. Opting out stops the sale/sharing of your data for personalized advertising; you will still see ads, just not personalized ones. We do not knowingly sell or share the personal information of anyone under 16.",
+              lang,
+            )}
+          </p>
+          <p className="mt-2">
+            {t(
+              "Ads appear only on the website. The API, widgets, desktop app, and overlay carry no advertising.",
+              lang,
+            )}
+          </p>
         </section>
 
         <section>
@@ -109,7 +139,7 @@ export default function PrivacyBody({ lang }: { lang: string }) {
           <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">{t("Sharing", lang)}</h2>
           <p>
             {t(
-              "We do not sell or rent any data. Submitted runs and persona names are public by design, they appear on leaderboards and on the public API at",
+              "Outside of the advertising described above, we do not sell or rent any data. Submitted runs and persona names are public by design, they appear on leaderboards and on the public API at",
               lang,
             )}{" "}
             <a href="https://spire-codex.com/api/runs/list" className="text-[var(--accent-gold)] hover:underline">
@@ -119,7 +149,7 @@ export default function PrivacyBody({ lang }: { lang: string }) {
           </p>
           <p className="mt-2">
             {t(
-              "Sub-processors used by the Service: Steam (OpenID sign-in and persona lookup), GitHub (issue tracking for feedback), Discord (real-time feedback notifications), Ko-fi (donations, optional).",
+              "Sub-processors used by the Service: Steam (OpenID sign-in and persona lookup), GitHub (issue tracking for feedback), Discord (real-time feedback notifications), Ko-fi (donations, optional), NitroPay (advertising), Google (analytics).",
               lang,
             )}
           </p>
@@ -142,6 +172,23 @@ export default function PrivacyBody({ lang }: { lang: string }) {
               GitHub
             </a>
             {t(". Include the SteamID or run hash you’d like removed. We process requests within a reasonable time and confirm by reply.", lang)}
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">{t("Your California privacy rights", lang)}</h2>
+          <p>
+            {t(
+              "California residents have the right to know what personal information we collect (described above), the right to request deletion, the right to opt out of the sale or sharing of personal information (the footer link, or the Global Privacy Control signal, which we honor), and the right not to be discriminated against for exercising any of these rights. To exercise the know or delete rights, email",
+              lang,
+            )}{" "}
+            <a href="mailto:im@ptrlrd.com" className="text-[var(--accent-gold)] hover:underline">
+              im@ptrlrd.com
+            </a>
+            {t(
+              ". We verify requests by asking you to demonstrate control of the SteamID or run hashes involved, and respond within 45 days.",
+              lang,
+            )}
           </p>
         </section>
 
