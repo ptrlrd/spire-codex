@@ -231,6 +231,7 @@ def runs_search(
     run_hash: str | None = None,
     max_win_seconds: int | None = None,
     anomalies: bool = False,
+    hidden_only: bool = False,
     limit: int = 25,
 ):
     """Find submitted runs to inspect, hide, or delete. run_hash wins when given.
@@ -255,6 +256,37 @@ def runs_search(
             d.pop("_id", None)
             d.pop("raw", None)
         return {"runs": docs, "total": len(docs)}
+    if hidden_only:
+        # Everything currently hidden (manual or auto), newest first, with
+        # the auto-hide reason so the queue explains itself.
+        cursor = (
+            get_database()["runs"]
+            .find(
+                {"hidden": True},
+                {
+                    "seed": 1,
+                    "character": 1,
+                    "win": 1,
+                    "ascension": 1,
+                    "run_time": 1,
+                    "username": 1,
+                    "submitted_at": 1,
+                    "hidden": 1,
+                    "hidden_reason": 1,
+                    "run_hash": 1,
+                },
+            )
+            .sort([("submitted_at", -1)])
+            .limit(limit)
+        )
+        runs = list(cursor)
+        for d in runs:
+            d["run_hash"] = d.get("run_hash") or d.pop("_id", None)
+            d.pop("_id", None)
+            sa = d.get("submitted_at")
+            if hasattr(sa, "isoformat"):
+                d["submitted_at"] = sa.isoformat()
+        return {"runs": runs, "total": len(runs)}
     if anomalies:
         # Combined implausibility queue: each rule contributes up to 50 rows
         # with a reason tag; a run tripping several rules carries them all.
@@ -348,6 +380,86 @@ def runs_search(
         include_hidden=True,
     )
     return result
+
+
+@router.post("/runs/cheat-sweep")
+def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
+    """Scan existing runs for the submit-time cheat signals (stacked relic
+    copies, boss-teleport wins) and hide the matches. dry_run=true (the
+    default) only lists what would be hidden."""
+    _audit(request)
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"dry_run": dry_run, "flagged": [], "hidden": 0}
+    from ..services.cheat_detect import MAX_RELIC_COPIES, MIN_ACT_FLOORS
+    from ..services.runs_db_mongo import get_database, set_run_hidden
+
+    db = get_database()["runs"]
+    flagged: dict[str, str] = {}
+
+    # Stacked relics: any doc whose relics.id list has duplicates at all
+    # (cheap server-side set test), then verify the real ceiling in Python.
+    dupe_candidates = db.find(
+        {
+            "hidden": {"$ne": True},
+            "$expr": {
+                "$gt": [
+                    {"$size": {"$ifNull": ["$relics", []]}},
+                    {"$size": {"$setUnion": [{"$ifNull": ["$relics.id", []]}, []]}},
+                ]
+            },
+        },
+        {"relics.id": 1, "run_hash": 1},
+    ).limit(2000)
+    for d in dupe_candidates:
+        counts: dict[str, int] = {}
+        for r in d.get("relics") or []:
+            rid = str(r.get("id") or "")
+            counts[rid] = counts.get(rid, 0) + 1
+        worst = max(counts.items(), key=lambda kv: kv[1], default=("", 0))
+        if worst[1] > MAX_RELIC_COPIES:
+            h = d.get("run_hash") or d["_id"]
+            flagged[h] = f"duplicate_relics:{worst[0]}x{worst[1]}"
+
+    # Boss-teleport wins: cheap floors_reached prefilter, then the same
+    # per-act check submit-time detection uses, from the stored history.
+    tele_candidates = db.find(
+        {
+            "hidden": {"$ne": True},
+            "win": True,
+            "floors_reached": {"$gt": 0, "$lt": 40},
+        },
+        {"map_point_history": 1, "run_hash": 1},
+    ).limit(2000)
+    for d in tele_candidates:
+        for i, act in enumerate(d.get("map_point_history") or []):
+            floors = act or []
+            has_boss = any(
+                (room.get("room_type") or "").lower() == "boss"
+                for fl in floors
+                if isinstance(fl, dict)
+                for room in fl.get("rooms") or []
+                if isinstance(room, dict)
+            )
+            if has_boss and len(floors) < MIN_ACT_FLOORS:
+                h = d.get("run_hash") or d["_id"]
+                flagged[h] = f"boss_teleport:act{i + 1}:{len(floors)}floors"
+                break
+
+    items = sorted(flagged.items())[:limit]
+    hidden = 0
+    if not dry_run:
+        for h, reason in items:
+            set_run_hidden(h, True)
+            db.update_many(
+                {"$or": [{"_id": h}, {"run_hash": h}]},
+                {"$set": {"hidden_reason": "auto:" + reason}},
+            )
+            hidden += 1
+    return {
+        "dry_run": dry_run,
+        "flagged": [{"run_hash": h, "reason": r} for h, r in items],
+        "hidden": hidden,
+    }
 
 
 @router.delete("/runs/{run_hash}")
