@@ -585,3 +585,27 @@ def _nondraftable() -> frozenset[str]:
             logger.warning("nondraftable set load failed", exc_info=True)
             _nondraftable_cache = frozenset()
     return _nondraftable_cache
+
+
+_alias_cache: tuple[float, dict] | None = None
+
+
+def archetype_alias(defining_cards: list[str]) -> str | None:
+    """Community name for a cluster signature from data/archetype_names.json."""
+    global _alias_cache
+    path = _VEC_DIR.parent / "archetype_names.json"
+    try:
+        mtime = path.stat().st_mtime
+    except OSError:
+        return None
+    if _alias_cache is None or _alias_cache[0] != mtime:
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+            _alias_cache = (
+                mtime,
+                {k: v for k, v in data.items() if not k.startswith("_")},
+            )
+        except Exception:
+            _alias_cache = (mtime, {})
+    key = "+".join(sorted(defining_cards[:2]))
+    return _alias_cache[1].get(key)

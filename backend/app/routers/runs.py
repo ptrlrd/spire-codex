@@ -216,11 +216,15 @@ async def submit_run_endpoint(
                     [{"id": clean_id(r.get("id", ""))} for r in p.get("relics") or []],
                 )
                 if arch:
+                    from ..services.run_vectors import archetype_alias
+
                     names = {
                         str(c.get("id", "")).upper(): c.get("name")
                         for c in data_service.load_cards("eng")
                     }
-                    arch["name"] = " + ".join(
+                    arch["name"] = archetype_alias(
+                        arch["defining_cards"]
+                    ) or " + ".join(
                         names.get(i) or i.replace("_", " ").title()
                         for i in arch["defining_cards"][:2]
                     )
@@ -1679,7 +1683,9 @@ def get_similar_runs(
         w["name"] = catalog.get(w["id"]) or w["id"].replace("_", " ").title()
     arch = result.get("archetype")
     if arch:
-        arch["name"] = " + ".join(
+        from ..services.run_vectors import archetype_alias
+
+        arch["name"] = archetype_alias(arch["defining_cards"]) or " + ".join(
             cards.get(i) or i.replace("_", " ").title()
             for i in arch["defining_cards"][:2]
         )
@@ -1760,10 +1766,13 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
                     "version": now_v,
                     "delta": round((share_now - share_prev) * 100, 1),
                 }
+            from ..services.run_vectors import archetype_alias
+
             rows.append(
                 {
                     "trend": trend,
-                    "name": " + ".join(_name(cards, i) for i in c["defining_cards"][:2])
+                    "name": archetype_alias(c["defining_cards"])
+                    or " + ".join(_name(cards, i) for i in c["defining_cards"][:2])
                     or ch.title(),
                     "size": c["size"],
                     "share": round(c["size"] / char_total * 100, 1),
