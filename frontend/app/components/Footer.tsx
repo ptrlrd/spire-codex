@@ -8,6 +8,13 @@ import { t } from "@/lib/ui-translations";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+declare global {
+  interface Window {
+    __tcfapi?: (command: string, version: number, callback: () => void) => void;
+    __uspapi?: (command: string) => void;
+  }
+}
+
 function FeedbackModal({ onClose, page }: { onClose: () => void; page: string }) {
   const { lang } = useLanguage();
   const [type, setType] = useState("Bug");
@@ -200,6 +207,20 @@ export default function Footer() {
         >
           Privacy
         </Link>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <button
+          onClick={() => window.__tcfapi?.("displayConsentUi", 2, () => {})}
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Manage Consent
+        </button>
+        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <button
+          onClick={() => window.__uspapi?.("displayUspUi")}
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
+          Do Not Sell My Personal Information
+        </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <Link
           href="/terms"
