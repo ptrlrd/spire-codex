@@ -32,6 +32,7 @@ interface FinderResponse {
   scanned?: number;
   predicates?: number;
   results?: SeedResult[];
+  unknown?: string[];
   detail?: string;
 }
 
@@ -422,7 +423,12 @@ export default function SeedLabClient() {
             Scanned {result.scanned?.toLocaleString()} candidate runs
             {result.sampled ? " (sampled — add a card kept or relic to search everything)" : ""}.
           </div>
-          {(result.results ?? []).length === 0 ? (
+          {(result.unknown ?? []).length > 0 ? (
+            <p className="text-sm text-red-400">
+              Unknown ids: {result.unknown!.join(", ")} — these don&apos;t exist
+              in the game data, check the spelling.
+            </p>
+          ) : (result.results ?? []).length === 0 ? (
             <p className="text-sm text-[var(--text-secondary)]">
               Nothing matched. Loosen a predicate or drop the character filter.
             </p>

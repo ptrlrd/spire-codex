@@ -119,8 +119,39 @@ def find_seeds(
     limit: int = 20,
 ) -> dict | None:
     """Rank submitted runs by how many predicates their seed demonstrated."""
+    from . import data_service
     from .run_vectors import _OFFICIAL_CHARACTERS
     from .runs_db_mongo import _get_collection, get_run_blobs
+
+    # A typo'd id can never match anything, which reads as "no seeds found";
+    # call it out instead so API callers learn the real id (THE_COURIER, not
+    # COURIER). Beta-only ids flag too: runs are stable-channel only.
+    unknown: list[str] = []
+    try:
+        known_cards = {
+            str(c.get("id", "")).upper() for c in data_service.load_cards("eng")
+        }
+        known_relics = {
+            str(r.get("id", "")).upper() for r in data_service.load_relics("eng")
+        }
+        known_events = {
+            str(e.get("id", "")).upper() for e in data_service.load_events("eng")
+        }
+        for cid, _ in deck_cards + offered_cards:
+            if cid not in known_cards:
+                unknown.append(f"card:{cid}")
+        for rid in relics:
+            if rid not in known_relics:
+                unknown.append(f"relic:{rid}")
+        for eid in events:
+            if eid not in known_events:
+                unknown.append(f"event:{eid}")
+        if ancient_relic and ancient_relic not in known_relics:
+            unknown.append(f"relic:{ancient_relic}")
+    except Exception:
+        logger.warning("seed finder id validation failed", exc_info=True)
+    if unknown:
+        return {"sampled": False, "scanned": 0, "results": [], "unknown": unknown}
 
     characters = (
         [character] if character in _OFFICIAL_CHARACTERS else list(_OFFICIAL_CHARACTERS)
