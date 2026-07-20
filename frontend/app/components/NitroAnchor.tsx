@@ -10,16 +10,20 @@ declare global {
   }
 }
 
-/** The site's single ad unit: a dismissible bottom anchor. The head stub
- * queues this call if the loader hasn't arrived yet, and data-spa="auto"
- * keeps it fresh across client-side navigations. */
+/** The site's single ad unit: the dashboard-configured "scnp-anchor"
+ * floating bottom anchor. The head stub queues this call if the loader
+ * hasn't arrived yet, and data-spa="auto" keeps it fresh across
+ * client-side navigations. Config mirrors the placement builder output. */
 export default function NitroAnchor() {
   useEffect(() => {
-    window.nitroAds?.createAd("anchor", {
-      format: "anchor",
+    window.nitroAds?.createAd("scnp-anchor", {
+      format: "anchor-v2",
       anchor: "bottom",
-      anchorPersistClose: true,
-      mediaQuery: "(min-width: 320px)",
+      anchorBgColor: "rgb(0 0 0 / 80%)",
+      anchorClose: true,
+      anchorPersistClose: false,
+      anchorStickyOffset: 0,
+      mediaQuery: "(min-width: 0px)",
       report: {
         enabled: true,
         icon: true,
