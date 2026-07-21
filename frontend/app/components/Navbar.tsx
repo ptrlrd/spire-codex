@@ -103,6 +103,11 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Tools",
     links: [
       { href: "/tier-list-maker", label: "Tier List Maker" },
+      // Absolute URL: the Workshop page lives on Steam, not the site.
+      {
+        href: "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911",
+        label: "Steam Mod",
+      },
       { href: "/overlay", label: "Overlay (Overwolf)" },
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon", badge: "discord-bot" },
@@ -175,7 +180,7 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
   ],
   Tools: [
     { title: "Make & share", labels: ["Tier List Maker", "Showcase"] },
-    { title: "Companion apps", labels: ["Overlay (Overwolf)", "Knowledge Demon"] },
+    { title: "Companion apps", labels: ["Steam Mod", "Overlay (Overwolf)", "Knowledge Demon"] },
     { title: "Build with the data", labels: ["Developers", "API"] },
   ],
   About: [
