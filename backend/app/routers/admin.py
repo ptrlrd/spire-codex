@@ -15,6 +15,8 @@ Every hit is audit-logged with the admin's identity.
 
 import logging
 import os
+import threading
+import time
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, Request
@@ -382,99 +384,166 @@ def runs_search(
     return result
 
 
-@router.post("/runs/cheat-sweep")
-def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
-    """Scan existing runs for the submit-time cheat signals (stacked relic
-    copies, boss-teleport wins) and hide the matches. dry_run=true (the
-    default) only lists what would be hidden."""
-    _audit(request)
-    if not os.environ.get("MONGO_URL", "").strip():
-        return {"dry_run": dry_run, "flagged": [], "hidden": 0}
+_SWEEP_STATE_KEY = "cheatsweep:state"
+_SWEEP_STARTING = threading.Lock()
+
+
+def _sweep_set(state: dict) -> None:
+    app_cache.set_json(_SWEEP_STATE_KEY, state, ttl_seconds=3600)
+
+
+def _run_cheat_sweep(dry_run: bool, limit: int) -> None:
+    """The actual scans, on a background thread: they walk the whole runs
+    collection (minutes, not seconds), and a synchronous response died at
+    Cloudflare's 100-second ceiling. State lives in Redis so any worker can
+    answer the status poll."""
     from ..services.cheat_detect import MAX_RELIC_COPIES, MIN_WIN_SECONDS
     from ..services.runs_db_mongo import get_database, set_run_hidden
 
-    db = get_database()["runs"]
-    flagged: dict[str, str] = {}
+    t0 = time.time()
+    try:
+        db = get_database()["runs"]
+        flagged: dict[str, str] = {}
 
-    # Stacked relics: any doc whose relics.id list has duplicates at all
-    # (cheap server-side set test), then verify the real ceiling in Python.
-    dupe_candidates = db.find(
-        {
-            "hidden": {"$ne": True},
-            "$expr": {
-                "$gt": [
-                    {"$size": {"$ifNull": ["$relics", []]}},
-                    {"$size": {"$setUnion": [{"$ifNull": ["$relics.id", []]}, []]}},
-                ]
-            },
-        },
-        {"relics.id": 1, "run_hash": 1},
-    ).limit(2000)
-    for d in dupe_candidates:
-        counts: dict[str, int] = {}
-        for r in d.get("relics") or []:
-            rid = str(r.get("id") or "")
-            counts[rid] = counts.get(rid, 0) + 1
-        worst = max(counts.items(), key=lambda kv: kv[1], default=("", 0))
-        if worst[1] > MAX_RELIC_COPIES:
+        # Stacked relics: any doc whose relics.id list has duplicates at all
+        # (cheap server-side set test), then verify the real ceiling in Python.
+        dupe_candidates = (
+            db.find(
+                {
+                    "hidden": {"$ne": True},
+                    "$expr": {
+                        "$gt": [
+                            {"$size": {"$ifNull": ["$relics", []]}},
+                            {
+                                "$size": {
+                                    "$setUnion": [{"$ifNull": ["$relics.id", []]}, []]
+                                }
+                            },
+                        ]
+                    },
+                },
+                {"relics.id": 1, "run_hash": 1},
+            )
+            .limit(2000)
+            .max_time_ms(300_000)
+        )
+        for d in dupe_candidates:
+            counts: dict[str, int] = {}
+            for r in d.get("relics") or []:
+                rid = str(r.get("id") or "")
+                counts[rid] = counts.get(rid, 0) + 1
+            worst = max(counts.items(), key=lambda kv: kv[1], default=("", 0))
+            if worst[1] > MAX_RELIC_COPIES:
+                h = d.get("run_hash") or d["_id"]
+                flagged[h] = f"duplicate_relics:{worst[0]}x{worst[1]}"
+
+        # Path-shaped win cheats (boss teleports, missing act bosses): cheap doc
+        # prefilters, then the exact submit-time detector over the stored history.
+        from ..services.cheat_detect import detect_cheats
+
+        win_candidates = (
+            db.find(
+                {
+                    "hidden": {"$ne": True},
+                    "win": True,
+                    "$or": [
+                        {"floors_reached": {"$gt": 0, "$lt": 40}},
+                        {"acts_completed": {"$lt": 3}},
+                    ],
+                },
+                {"map_point_history": 1, "run_time": 1, "game_mode": 1, "run_hash": 1},
+            )
+            .limit(4000)
+            .max_time_ms(300_000)
+        )
+        for d in win_candidates:
+            reasons = detect_cheats(
+                {
+                    "win": True,
+                    "run_time": d.get("run_time"),
+                    "game_mode": d.get("game_mode"),
+                    "map_point_history": d.get("map_point_history") or [],
+                }
+            )
+            if reasons:
+                h = d.get("run_hash") or d["_id"]
+                flagged.setdefault(h, reasons[0])
+
+        # Impossible-time wins: pure doc query, no verification needed.
+        for d in (
+            db.find(
+                {
+                    "hidden": {"$ne": True},
+                    "win": True,
+                    "run_time": {"$gt": 0, "$lt": MIN_WIN_SECONDS},
+                },
+                {"run_time": 1, "run_hash": 1},
+            )
+            .limit(2000)
+            .max_time_ms(300_000)
+        ):
             h = d.get("run_hash") or d["_id"]
-            flagged[h] = f"duplicate_relics:{worst[0]}x{worst[1]}"
+            flagged.setdefault(h, f"impossible_time:{int(d.get('run_time') or 0)}s")
 
-    # Path-shaped win cheats (boss teleports, missing act bosses): cheap doc
-    # prefilters, then the exact submit-time detector over the stored history.
-    from ..services.cheat_detect import detect_cheats
-
-    win_candidates = db.find(
-        {
-            "hidden": {"$ne": True},
-            "win": True,
-            "$or": [
-                {"floors_reached": {"$gt": 0, "$lt": 40}},
-                {"acts_completed": {"$lt": 3}},
-            ],
-        },
-        {"map_point_history": 1, "run_time": 1, "game_mode": 1, "run_hash": 1},
-    ).limit(4000)
-    for d in win_candidates:
-        reasons = detect_cheats(
+        items = sorted(flagged.items())[:limit]
+        hidden = 0
+        if not dry_run:
+            for h, reason in items:
+                set_run_hidden(h, True)
+                db.update_many(
+                    {"$or": [{"_id": h}, {"run_hash": h}]},
+                    {"$set": {"hidden_reason": "auto:" + reason}},
+                )
+                hidden += 1
+        _sweep_set(
             {
-                "win": True,
-                "run_time": d.get("run_time"),
-                "game_mode": d.get("game_mode"),
-                "map_point_history": d.get("map_point_history") or [],
+                "state": "done",
+                "dry_run": dry_run,
+                "flagged": [{"run_hash": h, "reason": r} for h, r in items],
+                "hidden": hidden,
+                "seconds": round(time.time() - t0, 1),
             }
         )
-        if reasons:
-            h = d.get("run_hash") or d["_id"]
-            flagged.setdefault(h, reasons[0])
+    except Exception as exc:
+        logger.warning("cheat sweep failed", exc_info=True)
+        _sweep_set(
+            {
+                "state": "error",
+                "error": str(exc),
+                "seconds": round(time.time() - t0, 1),
+            }
+        )
 
-    # Impossible-time wins: pure doc query, no verification needed.
-    for d in db.find(
-        {
-            "hidden": {"$ne": True},
-            "win": True,
-            "run_time": {"$gt": 0, "$lt": MIN_WIN_SECONDS},
-        },
-        {"run_time": 1, "run_hash": 1},
-    ).limit(2000):
-        h = d.get("run_hash") or d["_id"]
-        flagged.setdefault(h, f"impossible_time:{int(d.get('run_time') or 0)}s")
 
-    items = sorted(flagged.items())[:limit]
-    hidden = 0
-    if not dry_run:
-        for h, reason in items:
-            set_run_hidden(h, True)
-            db.update_many(
-                {"$or": [{"_id": h}, {"run_hash": h}]},
-                {"$set": {"hidden_reason": "auto:" + reason}},
-            )
-            hidden += 1
-    return {
-        "dry_run": dry_run,
-        "flagged": [{"run_hash": h, "reason": r} for h, r in items],
-        "hidden": hidden,
-    }
+@router.post("/runs/cheat-sweep")
+def runs_cheat_sweep(request: Request, dry_run: bool = True, limit: int = 500):
+    """Kick the cheat sweep on a background thread; poll the GET endpoint for
+    progress and results. dry_run=true (the default) only lists what would
+    be hidden."""
+    _audit(request)
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"state": "unavailable"}
+    with _SWEEP_STARTING:
+        current = app_cache.get_json(_SWEEP_STATE_KEY) or {}
+        if current.get("state") == "running":
+            return current
+        state = {"state": "running", "dry_run": dry_run, "started_at": time.time()}
+        _sweep_set(state)
+    threading.Thread(
+        target=_run_cheat_sweep, args=(dry_run, limit), daemon=True
+    ).start()
+    return state
+
+
+@router.get("/runs/cheat-sweep")
+def runs_cheat_sweep_status(request: Request):
+    """Current sweep state: running (with elapsed seconds), done (with the
+    flagged list), error, or idle if none has been kicked."""
+    _audit(request)
+    out = app_cache.get_json(_SWEEP_STATE_KEY) or {"state": "idle"}
+    if out.get("state") == "running" and out.get("started_at"):
+        out["seconds"] = round(time.time() - out["started_at"], 1)
+    return out
 
 
 @router.delete("/runs/{run_hash}")
