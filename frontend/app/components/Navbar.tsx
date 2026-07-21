@@ -7,7 +7,7 @@ import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
 import LiveNavButton from "./LiveNavButton";
-import AnnouncementBadge from "./AnnouncementBadge";
+import AnnouncementBadge, { useAnnouncementUnread } from "./AnnouncementBadge";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
@@ -196,6 +196,7 @@ export default function Navbar() {
   const { user, loading: authLoading, loginSteam, loginDiscord, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const { unread: newsUnread } = useAnnouncementUnread();
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -540,7 +541,7 @@ export default function Navbar() {
             <button
               ref={buttonRef}
               onClick={() => setOpen(!open)}
-              className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+              className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
               aria-label={t("Toggle menu", lang)}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -550,6 +551,12 @@ export default function Navbar() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 )}
               </svg>
+              {newsUnread && !open && (
+                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5" aria-hidden>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-gold)] opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent-gold)]" />
+                </span>
+              )}
             </button>
 
             {/* Dropdown menu, `right-0` anchors to the burger's relative
@@ -648,9 +655,10 @@ export default function Navbar() {
                     );
                   })}
 
+                  <AnnouncementBadge variant="mobile" />
+
                   <div className="border-b border-[var(--border-subtle)] px-5 py-3">
                     <LiveNavButton variant="mobile" />
-                    <AnnouncementBadge variant="mobile" />
                   </div>
 
                   <ThemeToggle variant="segmented" />
