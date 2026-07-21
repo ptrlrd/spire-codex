@@ -103,11 +103,7 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Tools",
     links: [
       { href: "/tier-list-maker", label: "Tier List Maker" },
-      // Absolute URL: the Workshop page lives on Steam, not the site.
-      {
-        href: "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911",
-        label: "Steam Mod",
-      },
+      { href: "/mod", label: "Steam Mod" },
       { href: "/overlay", label: "Overlay (Overwolf)" },
       { href: "/showcase", label: "Showcase" },
       { href: "/knowledge-demon", label: "Knowledge Demon", badge: "discord-bot" },
