@@ -158,23 +158,60 @@ export default function RunsClient() {
     }
   }
 
+  interface SweepState {
+    state: "idle" | "running" | "done" | "error" | "unavailable";
+    dry_run?: boolean;
+    flagged?: { run_hash: string; reason: string }[];
+    hidden?: number;
+    seconds?: number;
+    error?: string;
+  }
+
   async function cheatSweep(dryRun: boolean) {
     if (!dryRun && !confirm("Hide every run the sweep flags? They leave all stats and leaderboards.")) return;
     setBusy(true);
     setNote(null);
     try {
-      const data = await adminFetch<{ flagged: { run_hash: string; reason: string }[]; hidden: number; dry_run: boolean }>(
-        `/api/admin/runs/cheat-sweep?dry_run=${dryRun}`,
-        { method: "POST" },
-      );
-      setRows(
-        data.flagged.map((f) => ({ run_hash: f.run_hash, hidden_reason: f.reason, hidden: !data.dry_run })),
-      );
-      setNote(
-        data.dry_run
-          ? `Sweep would hide ${data.flagged.length} runs (stacked relics, boss teleports). Run it for real to hide them.`
-          : `Hid ${data.hidden} runs.`,
-      );
+      // The sweep walks the whole collection on a background thread; poll
+      // the status endpoint instead of holding one request open past the
+      // edge's 100s ceiling.
+      await adminFetch<SweepState>(`/api/admin/runs/cheat-sweep?dry_run=${dryRun}`, {
+        method: "POST",
+      });
+      const t0 = Date.now();
+      for (;;) {
+        await new Promise((r) => setTimeout(r, 3000));
+        const st = await adminFetch<SweepState>(`/api/admin/runs/cheat-sweep`);
+        if (st.state === "done") {
+          setRows(
+            (st.flagged ?? []).map((f) => ({
+              run_hash: f.run_hash,
+              hidden_reason: f.reason,
+              hidden: !st.dry_run,
+            })),
+          );
+          setNote(
+            st.dry_run
+              ? `Sweep would hide ${st.flagged?.length ?? 0} runs (took ${st.seconds}s). Run it for real to hide them.`
+              : `Hid ${st.hidden ?? 0} runs in ${st.seconds}s.`,
+          );
+          return;
+        }
+        if (st.state === "error") {
+          setNote(`Sweep failed: ${st.error ?? "unknown"}`);
+          return;
+        }
+        if (st.state !== "running") {
+          setNote("Sweep state lost; kick it again.");
+          return;
+        }
+        const elapsed = Math.round((Date.now() - t0) / 1000);
+        setNote(`Sweep running… ${elapsed}s`);
+        if (elapsed > 600) {
+          setNote("Sweep still running after 10 minutes; reload later to check.");
+          return;
+        }
+      }
     } catch (e) {
       setNote(String((e as Error)?.message || e));
     } finally {
