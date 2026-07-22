@@ -11,31 +11,9 @@ import { ANNOUNCEMENT_SEEN_KEY, LATEST_ANNOUNCEMENT_ID } from "@/lib/announcemen
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-function MegaphoneIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden
-    >
-      <path d="M3 11v3a1 1 0 0 0 1 1h2l3.5 4.5a1 1 0 0 0 1.8-.6V5.1a1 1 0 0 0-1.8-.6L6 9H4a1 1 0 0 0-1 1z" />
-      <path d="M15 9c1.2 1.6 1.2 4.4 0 6" />
-      <path d="M18 6c2.7 3.2 2.7 8.8 0 12" />
-    </svg>
-  );
-}
-
-export default function AnnouncementBadge({
-  variant = "desktop",
-}: {
-  variant?: "desktop" | "mobile";
-}) {
+/** Shared unread state for the megaphone and the mobile burger dot: latest
+ * announcement id (API-first, committed seed as fallback) vs localStorage. */
+export function useAnnouncementUnread() {
   const [unread, setUnread] = useState(false);
   const [latestId, setLatestId] = useState(LATEST_ANNOUNCEMENT_ID);
 
@@ -67,25 +45,62 @@ export default function AnnouncementBadge({
     return () => window.removeEventListener("sc-news-seen", check);
   }, []);
 
-  if (!unread) return null;
-
   const markSeen = () => {
     try {
       localStorage.setItem(ANNOUNCEMENT_SEEN_KEY, latestId);
     } catch {}
     setUnread(false);
+    window.dispatchEvent(new Event("sc-news-seen"));
   };
+
+  return { unread, markSeen };
+}
+
+function MegaphoneIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M3 11v3a1 1 0 0 0 1 1h2l3.5 4.5a1 1 0 0 0 1.8-.6V5.1a1 1 0 0 0-1.8-.6L6 9H4a1 1 0 0 0-1 1z" />
+      <path d="M15 9c1.2 1.6 1.2 4.4 0 6" />
+      <path d="M18 6c2.7 3.2 2.7 8.8 0 12" />
+    </svg>
+  );
+}
+
+export default function AnnouncementBadge({
+  variant = "desktop",
+}: {
+  variant?: "desktop" | "mobile";
+}) {
+  const { unread, markSeen } = useAnnouncementUnread();
+
+  if (!unread) return null;
 
   if (variant === "mobile") {
     return (
-      <Link
-        href="/news?tab=codex"
-        onClick={markSeen}
-        className="flex items-center gap-2 text-lg font-semibold text-[var(--accent-gold)]"
-      >
-        <MegaphoneIcon />
-        <span>What&apos;s new</span>
-      </Link>
+      <div className="border-b border-[var(--border-subtle)] px-5 py-3">
+        <Link
+          href="/news?tab=codex"
+          onClick={markSeen}
+          className="flex items-center gap-2 text-lg font-semibold text-[var(--accent-gold)]"
+        >
+          <MegaphoneIcon />
+          <span>What&apos;s new</span>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-gold)] opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-gold)]" />
+          </span>
+        </Link>
+      </div>
     );
   }
 
