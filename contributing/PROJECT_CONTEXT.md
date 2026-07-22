@@ -160,7 +160,6 @@ spire-codex/
     showcase.json           # Community project gallery data
   docker-compose.yml        # Local dev
   docker-compose.prod.yml   # Production (Docker Hub images + nginx network)
-  docker-compose.beta.yml   # Beta site (beta.spire-codex.com, :beta images + data-beta)
 ```
 
 ## Data Parsed (stable — beta counts may vary)
@@ -191,7 +190,6 @@ spire-codex/
 - `GET /api/keywords` / `GET /api/orbs` / `GET /api/afflictions` / `GET /api/intents`
 - `GET /api/modifiers` / `GET /api/achievements`
 - `GET /api/names/{entity_type}/{entity_id}` — Cross-language name lookup
-- `GET /api/search?q=&lang=`: Unified site search (entities, reference entries, mechanics pages, guides, news) powering the global cmd-K modal
 - `GET /api/exports/{lang}` — ZIP download of all entity JSON for a language
 - `GET /api/history/{entity_type}/{entity_id}` — Per-entity version history
 - `GET /api/changelogs` / `GET /api/changelogs/{tag}` — Version changelogs
@@ -199,22 +197,19 @@ spire-codex/
 - `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
 - `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
 - `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
-- `GET /api/runs/scores/{type}`: Bulk Codex Scores + Codex Elo for cards/relics/potions (Bayesian-shrunk win rate mapped 0-100 to S/A/B/C/D/F; non-reward cards + starters excluded; relics accept `?act=1|2|3` for acquisition-act views graded per-act; materialized to Mongo by a single leader)
+- `GET /api/runs/scores/{type}`: Bulk Codex Scores + Codex Elo for cards/relics/potions (Bayesian-shrunk win rate mapped 0-100 to S/A/B/C/D/F; non-reward cards + starters excluded; materialized to Mongo by a single leader)
 - `GET /api/runs/community-stats`: Fun community datasets for `/community-stats` (per-event decision splits, deadliest encounters/events, win rates by ascension/character, records; official content only)
-- `GET /api/charts/meta` + `GET /api/charts/{chart}`: Pre-aggregated run charts for `/charts` (win rates by floor/time/stat/ascension, run curves, encounter damage, event outcomes, per-entity weekly stats; filters: players/ascension/game_mode/username, series splits)
-- Every data endpoint accepts `?channel=beta|stable` (or a `beta.*` Host header) to pick the content channel; `GET /api/beta/diff` + `/api/beta/version` describe the current beta branch (see BETA-MIGRATION-PLAN.md at the workspace root)
-- Every data endpoint accepts `?channel=beta|stable` (or a `beta.*` Host header) to pick the content channel; `GET /api/beta/diff` + `/api/beta/version` describe the current beta branch (see BETA-MIGRATION-PLAN.md)
 - `GET /api/runs/leaderboard/rank/{hash}` — rank of one winning run; `POST /api/runs/claim` — attach username to prior runs
 - `GET /api/runs/encounter-stats` — per-encounter aggregates (Mongo-only)
 - `GET /api/runs/versions` — distinct build_ids across submitted runs
 - `/api/auth/*` — user accounts: Steam/Discord sign-in, `me`, `runs`, `runs/upload`, `stats`, `personal-bests`, `competitive` (cookie/JWT session)
 - `GET /api/news?feed_type=&feedname=&tag=&since=&search=&limit=&offset=` / `GET /api/news/{gid}` — Steam announcements (locally archived)
 - `GET /api/merchant/config` — Auto-extracted merchant pricing
-- `GET /api/versions` — Available data versions (beta multi-version browsing)
+- `GET /api/versions` — Version metadata exposed by the active data root
 - `GET /api/unlocks` — Aggregated unlockables grouped by type
 - `GET /api/languages` / `GET /api/translations`
 - All endpoints accept `?lang=` (default: eng) — 14 languages supported
-- Beta endpoints accept `?version=` for multi-version browsing
+- Public beta entity requests use `?channel=beta`; beta image archives accept `?version=`
 - Docs: `http://localhost:8000/docs`
 
 ## Merchant Pricing (from decompiled C#)
@@ -301,8 +296,9 @@ docker compose up -d --build
 # Parse all data (all 14 languages)
 cd backend/app/parsers && python3 parse_all.py
 
-# Parse beta data (from Steam beta branch extraction)
-cd backend/app/parsers && EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py
+# Parse one beta version from the repo root
+VERSION=vX.Y.Z
+(cd backend/app/parsers && EXTRACTION_DIR=../../../extraction/beta DATA_DIR="../../../data-beta/$VERSION" python3 parse_all.py)
 
 # Generate changelog diff
 python3 tools/diff_data.py v1.0.4 --format json --game-version 1.0.5 --date 2026-03-21 --title "Update title"
@@ -320,26 +316,18 @@ for dir in ../../backend/static/images/renders/monsters/*/; do name=$(basename "
 
 # Deploy (production)
 python3 tools/deploy.py
-
-# Deploy (beta — tags images as :beta, skips IndexNow)
-python3 tools/deploy.py --beta
-
-# Start beta on server
-docker compose -f docker-compose.beta.yml up -d
 ```
 
-## Beta Site (beta.spire-codex.com)
+## Beta Channel (spire-codex.com/beta)
 
-Parallel deployment for Steam beta branch data. Uses same codebase/images but separate containers and `data-beta/` volume.
+The public application serves both channels: the backend resolves `?channel=beta|stable` into a request-local `ContextVar` and loads beta data from `data-beta/<latest>/`, with per-file fallback to stable. Beta pages live at `spire-codex.com/beta`. Cloudflare redirects `beta.spire-codex.com` to the same path on the apex without adding `/beta` or `channel=beta`, so clients must use the main beta route or explicit query parameter. The standalone beta images and `docker-compose.beta.yml` stack are still retained by CI and autodeploy, but are not the public beta site while that redirect is active.
 
 - **Extraction**: `extraction/beta/raw/` + `extraction/beta/decompiled/`
-- **Parsed data**: `data-beta/` (14 languages)
-- **Docker**: `docker-compose.beta.yml` with `:beta` tagged images
+- **Parsed data**: `data-beta/` (14 languages, versioned dirs + `latest` pointer)
 - **Parser env vars**: `EXTRACTION_DIR` and `DATA_DIR` via `parser_paths.py`
 
 ## Versioning
 Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
-Current: **v1.1.3** (Y rolled with user accounts, MongoDB migration, Codex Score tier lists, Cloudflare CDN, encounter stats, the /runs browser, and self-hosted analytics)
 
 ## Known Limitations
 - 6 monsters lack images entirely (Crusher, Doormaker, Flyconid, Ovicopter, Rocket, Decimillipede)
@@ -379,7 +367,7 @@ Current: **v1.1.3** (Y rolled with user accounts, MongoDB migration, Codex Score
 - ~~Event dynamic values~~ ✅ — escalating costs, gold ranges, heal-to-full resolved correctly
 - ~~Event preconditions~~ ✅ — `IsAllowed` bodies translated to human-readable strings (gold thresholds, act restrictions, deck requirements); handles both `RunState` and `IRunState` signatures
 - ~~Monster attack patterns~~ ✅ — cycle/random/conditional move-machine parsing from `GenerateMoveStateMachine`
-- ~~Multi-version beta browsing~~ ✅ — versioned `data-beta/vX.Y.Z/` dirs with `latest` symlink, version-aware loader
+- ~~Beta data archives~~ ✅ — versioned `data-beta/vX.Y.Z/` directories with a `latest` pointer; the public `/beta` channel serves the active version
 - ~~Leaderboards + run browser revamp~~ ✅ — `/leaderboards` 3-tab page (Fastest Wins, Highest Ascension, Browse), drag-and-drop submit, ranked-table stats replacing `/meta`, filter by seed/username/character/win/version/sort
 - ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid; shows "by {username}" link
 - ~~TinyCard primitive + docs~~ ✅ — shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`

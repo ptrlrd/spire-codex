@@ -116,7 +116,7 @@ Cookie/JWT session. Sign in with Steam (OpenID) or Discord (OAuth). Requires `MO
 | `GET /api/images/{category}/download` | ZIP download of image category. Beta categories accept `?version=` to scope the zip to a specific patch. |
 | `GET /api/changelogs` | Changelog summaries |
 | `GET /api/changelogs/{tag}` | Full changelog for a version |
-| `GET /api/versions` | Available data versions (drives the beta-site version selector) |
+| `GET /api/versions` | Version metadata exposed by the active data root. Public beta clients should use `channel=beta`; archived beta image versions are listed by `/api/images/beta/versions`. |
 | `GET /api/unlocks` | Aggregated unlockables grouped by entity type with epoch + score thresholds |
 | `GET /api/news` | Steam announcements + community news (locally archived). Filters: `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
 | `GET /api/news/{gid}` | Single Steam news article with raw HTML/BBCode body |

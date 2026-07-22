@@ -1,6 +1,6 @@
-# Codex / AI Assistant Context
+# Contributor Quick Start
 
-This file provides context for AI coding assistants (GitHub Copilot, Cursor, Codex, etc.) working on Spire Codex.
+This file provides concise project context for contributors and coding assistants working on Spire Codex.
 
 ## Project Summary
 
