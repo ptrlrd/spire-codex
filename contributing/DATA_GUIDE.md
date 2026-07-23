@@ -65,9 +65,12 @@ cd backend/app/parsers && python3 parse_all.py --lang eng
 cd backend/app/parsers && python3 card_parser.py
 cd backend/app/parsers && python3 monster_parser.py
 
-# Parse beta data (from Steam beta branch)
-cd backend/app/parsers
-EXTRACTION_DIR=extraction/beta DATA_DIR=data-beta python3 parse_all.py
+# Parse one beta version from the repo root
+VERSION=vX.Y.Z
+(cd backend/app/parsers && \
+  EXTRACTION_DIR=../../../extraction/beta \
+  DATA_DIR="../../../data-beta/$VERSION" \
+  python3 parse_all.py)
 ```
 
 Parsers support `EXTRACTION_DIR` and `DATA_DIR` environment variables (via `parser_paths.py`) to target alternate extraction sources and output directories.

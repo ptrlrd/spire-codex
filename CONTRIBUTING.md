@@ -136,7 +136,7 @@ mistake at PR review rather than after-the-fact.
 - **Python**: Standard formatting, type hints where practical
 - **TypeScript**: Strict mode, prefer `const`, use our CSS variables for colors
 - **No unnecessary dependencies**: Keep it lean
-- **No AI-generated comments**: Don't add docstrings or comments to code you didn't change
+- **No unrelated comments**: Don't add docstrings or comments to code you didn't change
 
 ## Colors
 
@@ -180,10 +180,9 @@ docker compose up --build
 - **[Data Guide](contributing/DATA_GUIDE.md)** — what data is parsed, file structure, parsing commands, rich text tags, merchant pricing
 - **[API Reference](contributing/API_REFERENCE.md)** — all endpoints with filters and descriptions
 
-## AI Tools and IDE
-- This project is OK with using AI tools and assistance via the IDE. It's up to you to validate that the fix works and read the code you're submitted. Code that is not tested or validated will be denied.
-- The `contributing/` folder includes sample Claude & Codex files that you can use as context.
-- Ideally I would prefer to keep AI files within the contributing folder.
+## Development Assistance
+
+AI-assisted contributions are welcome. Contributors are responsible for understanding, testing, and validating every change before submission. Generic project context is available in [PROJECT_CONTEXT.md](contributing/PROJECT_CONTEXT.md) and [CONTRIBUTOR_QUICKSTART.md](contributing/CONTRIBUTOR_QUICKSTART.md); keep tool-specific configuration local and out of commits.
 
 ## License
 
