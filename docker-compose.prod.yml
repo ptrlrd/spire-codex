@@ -23,13 +23,45 @@ services:
       - >-
         mkdir -p "$$PROMETHEUS_MULTIPROC_DIR" &&
         rm -rf "$$PROMETHEUS_MULTIPROC_DIR"/* &&
-        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${BACKEND_WEB_WORKERS:-4}
     volumes:
       - ./data:/data
+      - ./data-beta:/data-beta:ro
+      # The static tree (gallery PNG sources, ZIP downloads, audio) is
+      # bind-mounted instead of baked into the image; it arrives via git
+      # pull at deploy, exactly like data/. Image bytes themselves are
+      # served from the CDN (nginx 301s /static/images/*).
+      - ./backend/static:/app/static:ro
       - ./.secrets:/secrets:ro
     environment:
       - DATA_DIR=/data
+      - BETA_DATA_DIR=/data-beta
+      # Parallelize the entity-stats snapshot rebuild across N cores. 1 = off
+      # (the serial ~80min walk); capped at the box's CPU count. Set the value
+      # in the box .env after validating with scripts/validate_parallel_rebuild.py.
+      - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
+      # Optional cap on how many release versions keep their own per-version
+      # stats bucket. Empty = code default (unbounded: every release version
+      # with a run stays in the stats-page version dropdowns). Setting N drops
+      # versions older than the newest N from the dropdowns and the
+      # /api/runs/list version filter, in exchange for fewer per-version Elo
+      # fits and blob shards per rebuild/persist.
+      - ENTITY_STATS_RECENT_VERSIONS_N=${ENTITY_STATS_RECENT_VERSIONS_N:-}
+      # How often the leader may rerun the heavy walk (seconds). Default 7200
+      # (2h). With the parallel rebuild on, lower it for fresher public numbers,
+      # but keep it well above the observed walk time so the box isn't always
+      # mid-rebuild. Floored at 300s in code.
+      - ENTITY_STATS_REBUILD_INTERVAL_SECONDS=${ENTITY_STATS_REBUILD_INTERVAL_SECONDS:-7200}
       - FEEDBACK_WEBHOOK_URL=${FEEDBACK_WEBHOOK_URL:-}
+      # Cloudflare purge from the admin cache tab. Same token/zone the
+      # autodeploy script uses; set them in the box's .env.
+      - CF_TOKEN=${CF_TOKEN:-}
+      - CF_ZONE=${CF_ZONE:-}
+      # Umami analytics on the admin overview, proxied server-side.
+      - UMAMI_URL=${UMAMI_URL:-}
+      - UMAMI_USERNAME=${UMAMI_USERNAME:-}
+      - UMAMI_PASSWORD=${UMAMI_PASSWORD:-}
+      - UMAMI_WEBSITE_ID=${UMAMI_WEBSITE_ID:-}
       - GUIDE_WEBHOOK_URL=${GUIDE_WEBHOOK_URL:-}
       - RESEND_API_KEY=${RESEND_API_KEY:-}
       - UNINSTALL_FORWARD_FROM=${UNINSTALL_FORWARD_FROM:-}
@@ -40,6 +72,17 @@ services:
       - R2_BUCKET=${R2_BUCKET:-}
       - R2_PUBLIC_BASE_URL=${R2_PUBLIC_BASE_URL:-}
       - SENTRY_DSN=${SENTRY_DSN:-}
+      - ADMIN_IDS=${ADMIN_IDS:-}
+      # Server-side secret (in neither repo) so the stored daily DAU hashes
+      # aren't brute-forceable back to steam ids. The count works without it,
+      # but set it. See routers/telemetry.py.
+      - TELEMETRY_SALT=${TELEMETRY_SALT:-}
+      # Min times a relic must be offered at an Ancient screen before its
+      # community take-rate is published to the in-game tip. Empty here ->
+      # the code default (20); the beta .env sets it to 1 so take-rates show
+      # on a small corpus. See services/community_stats.py.
+      - COMMUNITY_ANCIENT_MIN_OFFERS=${COMMUNITY_ANCIENT_MIN_OFFERS:-}
+      - STEAM_WEB_API_KEY=${STEAM_WEB_API_KEY:-}
       - GITHUB_APP_ID=${GITHUB_APP_ID:-}
       - GITHUB_APP_INSTALLATION_ID=${GITHUB_APP_INSTALLATION_ID:-}
       - GITHUB_APP_REPO=${GITHUB_APP_REPO:-}
@@ -54,15 +97,28 @@ services:
       - TURSO_URL=
       - TURSO_AUTH_TOKEN=
       - TURSO_LOCAL_REPLICA=
-      # MongoDB is the production runs/accounts store when MONGO_URL is set.
-      # Without it, runs_db.py keeps the SQLite fallback for local and
-      # offline deployments.
+      # MongoDB — when MONGO_URL is set, runs_db.py uses the Mongo
+      # path. Falls through to local /data/runs.db SQLite otherwise
+      # (the current state while the migration is in progress).
       - MONGO_URL=${MONGO_URL:-}
-      # User accounts (Steam/Discord OAuth + JWT sessions). Values live
+      # Application cache (issue #388). Fail-safe: unset or unreachable ->
+      # cache calls no-op and the existing data paths run unchanged. Uses the
+      # container name (not the service alias) because prod and beta share
+      # the external nginx_web-network and a bare "redis" alias would be
+      # ambiguous between the two stacks.
+      - REDIS_URL=${REDIS_URL:-redis://spire-codex-redis:6379/0}
+      # User accounts (Steam/Discord/Twitch OAuth + JWT sessions). Values live
       # in the host .env; passed through so the auth endpoints work.
       - JWT_SECRET=${JWT_SECRET:-}
       - DISCORD_CLIENT_ID=${DISCORD_CLIENT_ID:-}
       - DISCORD_CLIENT_SECRET=${DISCORD_CLIENT_SECRET:-}
+      - TWITCH_CLIENT_ID=${TWITCH_CLIENT_ID:-}
+      - TWITCH_CLIENT_SECRET=${TWITCH_CLIENT_SECRET:-}
+      # Patreon link for the paid API-key tier (auth_patreon router). Unset =
+      # the feature stays dormant (connect bounces with patreon_unconfigured).
+      - PATREON_CLIENT_ID=${PATREON_CLIENT_ID:-}
+      - PATREON_CLIENT_SECRET=${PATREON_CLIENT_SECRET:-}
+      - PATREON_WEBHOOK_SECRET=${PATREON_WEBHOOK_SECRET:-}
       - FRONTEND_URL=${FRONTEND_URL:-https://spire-codex.com}
       - SPIRE_CODEX_PUBLIC_BASE=${SPIRE_CODEX_PUBLIC_BASE:-https://spire-codex.com}
       - ENVIRONMENT=${ENVIRONMENT:-production}
@@ -78,6 +134,87 @@ services:
       # to node_exporter (`node_cpu_*`, `node_memory_*`) or cAdvisor
       # (`container_cpu_*`, `container_memory_*`).
       - PROMETHEUS_MULTIPROC_DIR=/tmp/prom_multiproc
+      # The heavy stats walk runs only in the rebuilder service below, so a
+      # web deploy recreating this container no longer kills an in-flight
+      # rebuild (which is how the snapshot sat stale for days). Set
+      # BACKEND_STATS_REFRESHER=on in the box .env to revert to the old
+      # single-container behavior.
+      - STATS_REFRESHER=${BACKEND_STATS_REFRESHER:-off}
+      # Only matters if BACKEND_STATS_REFRESHER=on (lease holders run the
+      # run_blobs startup backfill); see the rebuilder service.
+      - RUN_BLOBS_STARTUP_BACKFILL=${RUN_BLOBS_STARTUP_BACKFILL:-on}
+      # Workers AI credentials for /api/search/semantic and the
+      # build_embeddings corpus script; unset leaves semantic search off.
+      - WORKERS_AI_TOKEN=${WORKERS_AI_TOKEN:-}
+      - CF_ACCOUNT_ID=${CF_ACCOUNT_ID:-}
+    # Ordering only (no health condition): the backend must boot fine with
+    # Redis down, since the cache layer is fail-safe by design.
+    depends_on:
+      - redis
+    networks:
+      - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+  # Dedicated stats-rebuild worker. Same image as the backend, no published
+  # port, single process: it alone holds the refresh lease, so the
+  # 80-minute-plus snapshot walk survives web deploys (compose only
+  # recreates this container when the backend image itself changes).
+  # KEEP THIS SERVICE IN THE DEPLOY SCRIPT'S `up` LIST - a rebuilder left
+  # on an old image would keep writing old-version snapshots and the
+  # current version would never build.
+  rebuilder:
+    image: ptrlrd/spire-codex-backend:latest
+    container_name: spire-codex-rebuilder
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
+    volumes:
+      - ./data:/data
+      - ./data-beta:/data-beta:ro
+      - ./backend/static:/app/static:ro
+      - ./.secrets:/secrets:ro
+    environment:
+      - DATA_DIR=/data
+      - BETA_DATA_DIR=/data-beta
+      - STATS_REFRESHER=on
+      # One-shot files -> run_blobs backfill on the first lease cycle after
+      # boot. Set to off to skip (e.g. while diagnosing Mongo load).
+      - RUN_BLOBS_STARTUP_BACKFILL=${RUN_BLOBS_STARTUP_BACKFILL:-on}
+      - ENTITY_STATS_REBUILD_WORKERS=${ENTITY_STATS_REBUILD_WORKERS:-1}
+      # See the backend service: optional cap on per-version stats buckets.
+      # Must match the backend's value so both build the same snapshot shape.
+      - ENTITY_STATS_RECENT_VERSIONS_N=${ENTITY_STATS_RECENT_VERSIONS_N:-}
+      - ENTITY_STATS_REBUILD_INTERVAL_SECONDS=${ENTITY_STATS_REBUILD_INTERVAL_SECONDS:-7200}
+      - MONGO_URL=${MONGO_URL:-}
+      - REDIS_URL=${REDIS_URL:-redis://spire-codex-redis:6379/0}
+      - SENTRY_DSN=${SENTRY_DSN:-}
+      - ENVIRONMENT=${ENVIRONMENT:-production}
+    depends_on:
+      - redis
+    networks:
+      - nginx_web-network
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+
+
+  redis:
+    image: redis:7-alpine
+    container_name: spire-codex-redis
+    # Cache only: hard memory cap with LRU eviction, no persistence (no AOF,
+    # no RDB snapshots). Everything in here is rebuildable from Mongo / the
+    # run files on a miss, so losing it on restart costs one warmup, not data.
+    command: redis-server --maxmemory 2gb --maxmemory-policy allkeys-lru --appendonly no --save ""
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
     networks:
       - nginx_web-network
     logging:
