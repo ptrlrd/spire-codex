@@ -41,6 +41,19 @@ def _resolve_trivia(card: dict, cards: list[dict]) -> str | None:
     return None
 
 
+@lru_cache(maxsize=1)
+def _card_histories() -> dict[str, list]:
+    """Per-card game-patch history scraped from the STS2 wiki (CC BY-SA 4.0)
+    by tools/wiki_card_history.py. English-only; empty if the file's absent."""
+    try:
+        with open(DATA_DIR / "card_history.json", "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    cards = data.get("cards") if isinstance(data, dict) else None
+    return cards if isinstance(cards, dict) else {}
+
+
 def _matches_cost(card: dict, want: str) -> bool:
     if want == "x":
         return bool(card.get("is_x_cost"))
@@ -134,6 +147,19 @@ def get_cards(
             )
         ]
     return cards
+
+
+@router.get("/{card_id}/history")
+def get_card_history(card_id: str):
+    """Update history for one card as documented on the wiki, newest first.
+    404s when the wiki has no table for the card yet, so the frontend can
+    fall back to the site-changelog timeline."""
+    entries = _card_histories().get(card_id.upper())
+    if not entries:
+        raise HTTPException(
+            status_code=404, detail=f"No update history for '{card_id}'"
+        )
+    return entries
 
 
 @router.get("/{card_id}", response_model=Card)

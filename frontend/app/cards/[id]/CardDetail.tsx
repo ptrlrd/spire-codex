@@ -11,7 +11,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import LocalizedNames from "@/app/components/LocalizedNames";
-import EntityHistory from "@/app/components/EntityHistory";
+import CardUpdateHistory from "@/app/components/CardUpdateHistory";
 import RelatedCards from "@/app/components/RelatedCards";
 import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
@@ -684,7 +684,7 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
 
           {/* Version history + localized names */}
           <LocalizedNames entityType="cards" entityId={id} />
-          <EntityHistory entityType="cards" entityId={id} />
+          <CardUpdateHistory cardId={id} />
         </main>
 
         {/* ===== INFOBOX column (sticky) ===== */}
