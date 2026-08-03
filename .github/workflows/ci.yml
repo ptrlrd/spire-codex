@@ -50,7 +50,14 @@ jobs:
 
       - name: TruffleHog secret scan
         # Version-pinned so a hijacked :latest can't silently defeat the gate.
+        # Docker Hub rate-limits anonymous pulls from the shared GitHub
+        # runner IPs, so the pull retries with backoff before the scan.
         run: |
+          for i in 1 2 3 4 5; do
+            docker pull -q trufflesecurity/trufflehog:3.96.0 && break
+            [ "$i" = 5 ] && exit 1
+            sleep $((i * 15))
+          done
           docker run --rm -v "$GITHUB_WORKSPACE:/repo:ro" trufflesecurity/trufflehog:3.96.0 \
             filesystem /repo --only-verified --fail
 
