@@ -294,7 +294,7 @@ export default function HomeLeaderboardLive({
                           </td>
                           <td className="num">
                             {result === "win" && <span className="wr-sg" title="Win">W</span>}
-                            {result === "loss" && <span className="wr-loss" title="Loss">R</span>}
+                            {result === "loss" && <span className="wr-loss" title="Loss">L</span>}
                             {result === "abandoned" && <span className="dim" title="Abandoned">A</span>}
                           </td>
                           <td className="num dim">{formatRelativeDate(r.submitted_at)}</td>
