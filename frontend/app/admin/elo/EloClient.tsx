@@ -8,19 +8,8 @@
 // any of this.
 
 import { Fragment, useEffect, useState } from "react";
-import {
-  Chart as ChartJS,
-  LineElement,
-  PointElement,
-  LinearScale,
-  CategoryScale,
-  Tooltip,
-  Filler,
-} from "chart.js";
-import { Line } from "react-chartjs-2";
+import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
 import { AdminShell, adminFetch } from "../shared";
-
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
 
 interface EloRow {
   user_id: string;
@@ -38,16 +27,9 @@ interface Board {
   building?: boolean;
 }
 
-interface HistoryPoint {
-  n: number;
-  t: string | null;
-  elo: number;
-  win: boolean;
-}
-
 interface History {
   username: string | null;
-  history: HistoryPoint[];
+  history: EloPoint[];
 }
 
 function TrajectoryChart({ userId }: { userId: string }) {
@@ -63,59 +45,9 @@ function TrajectoryChart({ userId }: { userId: string }) {
   if (err) return <p className="text-xs text-rose-400 py-3">{err}</p>;
   if (!hist) return <p className="text-xs text-[var(--text-muted)] py-3">Loading trajectory…</p>;
 
-  const pts = hist.history;
   return (
-    <div style={{ height: 200 }} className="py-2">
-      <Line
-        data={{
-          labels: pts.map((p) => p.n),
-          datasets: [
-            {
-              data: pts.map((p) => p.elo),
-              borderColor: "#e8b830",
-              backgroundColor: "rgba(232, 184, 48, 0.12)",
-              fill: true,
-              borderWidth: 2,
-              tension: 0.2,
-              pointRadius: 0,
-              pointHitRadius: 8,
-            },
-          ],
-        }}
-        options={{
-          responsive: true,
-          maintainAspectRatio: false,
-          animation: false,
-          interaction: { mode: "index", intersect: false },
-          scales: {
-            x: {
-              grid: { display: false },
-              border: { display: false },
-              ticks: { color: "#8a8a93", font: { size: 10 }, maxTicksLimit: 14 },
-              title: { display: true, text: "rated run #", color: "#8a8a93", font: { size: 10 } },
-            },
-            y: {
-              border: { display: false },
-              grid: { color: "rgba(138,138,147,0.15)" },
-              ticks: { color: "#8a8a93", font: { size: 10 } },
-            },
-          },
-          plugins: {
-            tooltip: {
-              callbacks: {
-                title: (items) => {
-                  const p = pts[items[0]?.dataIndex ?? 0];
-                  return `Run ${p?.n}${p?.t ? ` · ${new Date(p.t).toLocaleDateString()}` : ""}`;
-                },
-                label: (item) => {
-                  const p = pts[item.dataIndex];
-                  return `${Math.round(item.parsed.y ?? 0)} Elo · ${p?.win ? "win" : "loss"}`;
-                },
-              },
-            },
-          },
-        }}
-      />
+    <div className="py-2">
+      <EloTrajectory points={hist.history} />
     </div>
   );
 }

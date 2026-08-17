@@ -4,8 +4,10 @@ Each rated run is a match against a per-character difficulty anchor: the
 anchor rating is chosen so a 1000-rated player's expected win chance equals
 the community's A10 win rate for that character (from the snapshot's
 ascension_matrix). Runs are walked in played order; K is 32 for a player's
-first 30 rated runs, 16 after. Results persist as ``hidden_elo`` on the user
-doc and serve ONLY through the admin router — no public endpoint reads them.
+first 30 rated runs, 16 after. The admin board serves the full leaderboard;
+profiles surface each account's own rating, peak, and trajectory through the
+insights payload (public since 2026-08-17). ``hidden_elo`` persists on the
+user doc for future use.
 """
 
 import logging
@@ -254,6 +256,32 @@ def compute_player_history(user_id: str) -> dict | None:
     rec["user_id"] = user_id
     rec["username"] = (user or {}).get("username")
     return rec
+
+
+def elo_block_from_rows(rows: list[dict]) -> dict | None:
+    """Profile-payload Elo block from already-loaded run rows (the insights
+    walk's row set): current rating, the peak ever reached, the Wilson
+    lifetime rating, and the full trajectory. Only the A10 standard subset
+    rates; None when the account has no rated runs."""
+    rated = [
+        r
+        for r in rows
+        if (r.get("ascension") or 0) == 10
+        and (r.get("game_mode") or "standard") == "standard"
+    ]
+    if not rated:
+        return None
+    floor = datetime(1970, 1, 1)
+    rated.sort(key=lambda r: r.get("played_at") or r.get("submitted_at") or floor)
+    p_by_char, default_p = _difficulty_anchors()
+    rec = rate_runs(rated, p_by_char, default_p, collect_history=True)
+    return {
+        "current": rec["elo"],
+        "peak": round(max((h["elo"] for h in rec["history"]), default=START_ELO), 1),
+        "lifetime": rec["lifetime"],
+        "runs": rec["runs"],
+        "history": rec["history"][-2000:],
+    }
 
 
 def get_player_elos(refresh: bool = False) -> dict:

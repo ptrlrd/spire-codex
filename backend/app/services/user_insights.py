@@ -607,6 +607,15 @@ def _compute_insights(
     from .runs_db_mongo import get_run_blobs, get_user_run_rows
 
     rows = get_user_run_rows(user_id, limit=_MAX_RUNS)
+    # Elo rates the account's whole A10 standard history — it ignores the
+    # active filter axes so the profile shows one rating on every slice.
+    try:
+        from .player_elo import elo_block_from_rows
+
+        elo_block = elo_block_from_rows(rows)
+    except Exception:
+        logger.warning("profile elo block failed", exc_info=True)
+        elo_block = None
     rows = _apply_row_filters(rows, character, ascension, version, players)
     filtered = bool(
         character or ascension is not None or version or players is not None
@@ -663,6 +672,7 @@ def _compute_insights(
         logger.warning("user-insights relic deltas failed", exc_info=True)
         mine["relic_picks"] = {"over_carried": [], "under_carried": []}
     mine["streaks"] = _streaks(rows)
+    mine["elo"] = elo_block
     mine["activity"] = _activity(rows)
     if filtered:
         mine["percentiles"] = None

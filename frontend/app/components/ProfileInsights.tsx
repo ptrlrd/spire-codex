@@ -21,6 +21,7 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import IconSelect from "@/app/components/IconSelect";
 import AscensionHeatmap, { type AscensionMatrix } from "@/app/components/AscensionHeatmap";
+import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
 
 ChartJS.register(BarElement, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
 
@@ -173,6 +174,13 @@ export interface Insights {
   relic_picks?: { over_carried: RelicDelta[]; under_carried: RelicDelta[] };
   map_danger?: { act: number; types: Record<string, DangerCell> }[];
   streaks?: { current_win_streak: number; best_win_streak: number };
+  elo?: {
+    current: number;
+    peak: number;
+    lifetime: number;
+    runs: number;
+    history: EloPoint[];
+  } | null;
   activity?: ActivityWeek[];
   percentiles?: {
     win_rate: number;
@@ -778,6 +786,7 @@ export function InsightsPanels({
   const activity = (data.activity || []).filter((r) => r.runs > 0);
   const pct = data.percentiles;
   const streaks = data.streaks;
+  const elo = data.elo;
   const hasRecords = records.fastest_win || records.longest_run || records.biggest_deck;
   const hasBests = bests && Object.values(bests).some(Boolean);
   const characters = (data.by_character || [])
@@ -804,7 +813,7 @@ export function InsightsPanels({
         ))}
       </div>
 
-      {(pct || streaks) && (
+      {(pct || streaks || elo) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {pct && (
             <Section title={t("How you rank", lang)}>
@@ -824,6 +833,20 @@ export function InsightsPanels({
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{streaks.best_win_streak}</p>
                   <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Best win streak", lang)}</p>
+                </div>
+              </div>
+            </Section>
+          )}
+          {elo && (
+            <Section title={t("Elo", lang)}>
+              <div className="grid grid-cols-2 gap-3">
+                <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.current)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current Elo", lang)}</p>
+                </div>
+                <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.peak)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Highest Elo Score Achieved", lang)}</p>
                 </div>
               </div>
             </Section>
@@ -935,6 +958,18 @@ export function InsightsPanels({
       {activity.length >= 2 && (
         <Section title={t("Weekly activity", lang)}>
           <ActivityChart rows={activity} lang={lang} />
+        </Section>
+      )}
+
+      {(elo?.history?.length ?? 0) >= 2 && (
+        <Section title={t("Elo over time", lang)}>
+          <EloTrajectory
+            points={elo!.history}
+            runLabel={t("Run", lang)}
+            winLabel={t("win", lang)}
+            lossLabel={t("loss", lang)}
+            axisLabel={t("rated A10 run", lang)}
+          />
         </Section>
       )}
 
