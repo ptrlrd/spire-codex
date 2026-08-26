@@ -607,7 +607,7 @@ def build_entity_store() -> dict | None:
                 a = entry(etype, eid)
                 a["picks"] += picks
                 a["wins"] += wins
-                ch = (char or "").lower()
+                ch = char or ""
                 sub = a["by_character"].setdefault(ch, {"picks": 0, "wins": 0})
                 sub["picks"] += picks
                 sub["wins"] += wins
