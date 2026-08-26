@@ -1982,6 +1982,9 @@ def _apply_cache(
     _encounter_blob_stats = bracket_meta.get("encounters") or {}
     _recent_stat_versions = bracket_meta.get("recent_versions") or []
     _cache_built_at = time.time()
+    global _lake_overlay_mtime, _lake_overlay_checked
+    _lake_overlay_mtime = 0.0
+    _lake_overlay_checked = 0.0
 
 
 def _build_cache() -> None:
@@ -2938,6 +2941,48 @@ def snapshot_status() -> dict[str, Any]:
     }
 
 
+_LAKE_ENTITY_SERVE = (os.environ.get("LAKE_ENTITY_STATS", "") or "").lower() == "serve"
+_lake_overlay_mtime = 0.0
+_lake_overlay_checked = 0.0
+
+
+def _maybe_overlay_lake_entities() -> None:
+    """Overlay the ingest-built lake aggregates onto the snapshot cache:
+    the all-bracket fields (picks/wins/by_character/reward metrics/Elos/
+    base-upg/act buckets) go lake-fresh while the bracket blocks keep
+    serving from the snapshot until they convert. No-op without
+    LAKE_ENTITY_STATS=serve or without a built store."""
+    global _lake_overlay_mtime, _lake_overlay_checked
+    if not _LAKE_ENTITY_SERVE:
+        return
+    now = time.time()
+    if now - _lake_overlay_checked < 30:
+        return
+    _lake_overlay_checked = now
+    try:
+        from . import lake_stats
+
+        loaded = lake_stats.entity_store_with_mtime()
+        if not loaded or loaded[0] == _lake_overlay_mtime:
+            return
+        mtime, store = loaded
+        n = 0
+        for etype, entries in (store.get("entities") or {}).items():
+            for eid, entry in entries.items():
+                key = (etype, eid)
+                old = _cache.get(key)
+                new_entry = dict(entry)
+                if old and old.get("brackets"):
+                    new_entry["brackets"] = old["brackets"]
+                _cache[key] = new_entry
+                n += 1
+        _type_baselines.update(store.get("baselines") or {})
+        _lake_overlay_mtime = mtime
+        logger.info("lake entity overlay applied: %d entities", n)
+    except Exception:
+        logger.warning("lake entity overlay failed", exc_info=True)
+
+
 def _maybe_rebuild() -> None:
     """Kick a background (re)load of the cache when it's stale. Never blocks:
     the caller reads whatever is in memory right now. The load used to run
@@ -2945,6 +2990,7 @@ def _maybe_rebuild() -> None:
     stats request after a worker boot — and one unlucky request every
     _SNAPSHOT_LOAD_SECONDS per worker, forever — hung for the full multi-
     thousand-doc snapshot read."""
+    _maybe_overlay_lake_entities()
     global _building
     age = time.time() - _cache_built_at
     if age < _SNAPSHOT_LOAD_SECONDS:

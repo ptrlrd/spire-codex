@@ -762,3 +762,26 @@ def build_entity_store() -> dict | None:
         (LAKE_DIR / _ENTITY_STORE_NAME).stat().st_size,
     )
     return store
+
+
+_entity_store_cache: tuple[float, dict] | None = None
+
+
+def entity_store_with_mtime() -> tuple[float, dict] | None:
+    """Mtime-cached load of the ingest-built entity store, or None."""
+    global _entity_store_cache
+    try:
+        path = LAKE_DIR / _ENTITY_STORE_NAME
+        if not path.exists():
+            return None
+        mtime = path.stat().st_mtime
+        if _entity_store_cache and _entity_store_cache[0] == mtime:
+            return _entity_store_cache
+        import json
+
+        store = json.loads(path.read_text())
+        _entity_store_cache = (mtime, store)
+        return _entity_store_cache
+    except Exception:
+        logger.warning("entity store load failed", exc_info=True)
+        return None

@@ -21,6 +21,7 @@ x-shared-env: &shared-env
   # summary cycle. Set values in the box .env.
   LAKE_COMMUNITY_STATS: ${LAKE_COMMUNITY_STATS:-}
   LAKE_STATS_SHADOW: ${LAKE_STATS_SHADOW:-}
+  LAKE_ENTITY_STATS: ${LAKE_ENTITY_STATS:-}
   # How often the leader may rerun the heavy walk (seconds). Default 7200
   # (2h). With the parallel rebuild on, lower it for fresher public numbers,
   # but keep it well above the observed walk time so the box isn't always
