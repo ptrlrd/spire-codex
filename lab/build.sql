@@ -127,6 +127,27 @@ FROM read_ndjson('/lake/staging/*.jsonl.gz',
   LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p
 ) TO '/lake/players.parquet' (FORMAT parquet, COMPRESSION zstd);
 
+-- Per-user rollups: profile pages become point reads instead of
+-- per-request blob walks. Grouped once per ingest; keyed by user_id.
+COPY (
+SELECT user_id, character, coalesce(ascension, 0) AS ascension,
+  count(*) AS runs, count(*) FILTER (win) AS wins,
+  count(*) FILTER (was_abandoned) AS abandoned,
+  max(submitted_at) AS last_submitted_at,
+  min(run_time) FILTER (win AND game_mode = 'standard' AND NOT has_modifiers AND run_time > 0) AS fastest_win
+FROM read_parquet('/lake/runs.parquet')
+WHERE user_id IS NOT NULL
+GROUP BY 1, 2, 3
+) TO '/lake/user_rollup.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+COPY (
+SELECT user_id, killed_by_encounter AS encounter, count(*) AS deaths
+FROM read_parquet('/lake/runs.parquet')
+WHERE user_id IS NOT NULL AND NOT win
+  AND killed_by_encounter IS NOT NULL AND killed_by_encounter NOT LIKE 'NONE%'
+GROUP BY 1, 2
+) TO '/lake/user_deaths.parquet' (FORMAT parquet, COMPRESSION zstd);
+
 SELECT 'runs' AS t, count(*) AS n FROM read_parquet('/lake/runs.parquet')
 UNION ALL SELECT 'excluded', count(*) FROM read_parquet('/lake/excluded.parquet')
 UNION ALL SELECT 'floor_events', count(*) FROM read_parquet('/lake/floor_events.parquet')
