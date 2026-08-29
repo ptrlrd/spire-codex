@@ -61,11 +61,12 @@ SELECT run_hash FROM read_ndjson('/lake/excluded_current.jsonl.gz',
 -- mutable username/hidden, so frame.parquet builds from the lake.
 COPY (
 SELECT run_hash, floors_reached, deck_size, relic_count, acts_completed,
-  username, hidden
+  username, hidden, character, build_id
 FROM read_ndjson('/lake/run_scalars_current.jsonl.gz',
   columns={run_hash: 'VARCHAR', floors_reached: 'INTEGER',
            deck_size: 'INTEGER', relic_count: 'INTEGER',
-           acts_completed: 'INTEGER', username: 'VARCHAR', hidden: 'BOOLEAN'})
+           acts_completed: 'INTEGER', username: 'VARCHAR', hidden: 'BOOLEAN',
+           character: 'VARCHAR', build_id: 'VARCHAR'})
 ) TO '/lake/run_scalars.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 COPY (

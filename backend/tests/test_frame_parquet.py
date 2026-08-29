@@ -78,12 +78,12 @@ def _write_lake_frame_fixtures(tmp_path):
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 45, 30, 12, 3, 'Yitsy', false),
-        ('r2', 12, 15, 3, 1, NULL, false),
-        ('r3', 1, 1, 1, 1, 'cheat', true),
-        ('r4', 1, 1, 1, 1, 'x', false))
+        ('r1', 45, 30, 12, 3, 'Yitsy', false, 'CHARACTER.REGENT', NULL::VARCHAR),
+        ('r2', 12, 15, 3, 1, NULL, false, NULL::VARCHAR, '0.112.0'),
+        ('r3', 1, 1, 1, 1, 'cheat', true, NULL::VARCHAR, NULL::VARCHAR),
+        ('r4', 1, 1, 1, 1, 'x', false, NULL::VARCHAR, NULL::VARCHAR))
         t(run_hash, floors_reached, deck_size, relic_count, acts_completed,
-          username, hidden))
+          username, hidden, character, build_id))
         TO '{tmp_path}/run_scalars.parquet' (FORMAT parquet)"""
     )
     con.close()
@@ -109,19 +109,34 @@ def test_store_frame_from_lake(monkeypatch, tmp_path):
         ).fetchall()
     }
     con.close()
-    r1 = rows["IRONCLAD"]
+    # r1's sidecar character overrides the stale parquet attribution.
+    r1 = rows["REGENT"]
     # 2026-08-28 05:30 UTC is 22:30 Pacific on the 27th; epoch day of 08-27.
     from datetime import date
 
     assert r1[:15] == (
-        "IRONCLAD", 1, 10, "standard", 1, 3600, 45, 30, 12,
+        "REGENT",
+        1,
+        10,
+        "standard",
+        1,
+        3600,
+        45,
+        30,
+        12,
         date(2026, 8, 27).toordinal() - date(1970, 1, 1).toordinal(),
-        "yitsy", 0, 3, "", "0.111.0",
+        "yitsy",
+        0,
+        3,
+        "",
+        "0.111.0",
     )
     r2 = rows["SILENT"]
     assert r2[3] == "daily" and r2[13] == "2026-08-26"
     assert r2[9] == date(2026, 8, 28).toordinal() - date(1970, 1, 1).toordinal()
     assert r2[10] == "" and r2[11] == 1
+    # r2's build_id comes from the sidecar (doc truth), not the parquet.
+    assert r2[14] == "0.112.0"
     r5 = rows["NECROBINDER"]
     assert r5[6:9] == (0, 0, 0) and r5[12] == 0
-    assert "DEFECT" not in rows and "REGENT" not in rows
+    assert "DEFECT" not in rows and "IRONCLAD" not in rows

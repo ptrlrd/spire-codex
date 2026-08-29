@@ -95,7 +95,12 @@ def _lake_frame_select(runs_p: Path, scalars_p: Path, with_hash: bool = False) -
     hash_col = "r.run_hash AS run_hash, " if with_hash else ""
     return f"""
         SELECT {hash_col}
-          upper(split_part(coalesce(r.character, ''), '.', -1)) AS character,
+          -- Doc-truth character/build_id via the fresh sidecar: pages
+          -- extracted before _meta.character existed fall back to players[1]
+          -- and misattribute co-op party members (369/2000 in the 2026-08-29
+          -- validation).
+          upper(split_part(coalesce(s.character, r.character, ''), '.', -1))
+            AS character,
           (CASE WHEN coalesce(try_cast(r.win AS BOOLEAN), false)
             THEN 1 ELSE 0 END)::TINYINT AS win,
           r.ascension::INT AS ascension,
@@ -119,7 +124,7 @@ def _lake_frame_select(runs_p: Path, scalars_p: Path, with_hash: bool = False) -
               || lpad(string_split(r.seed, '_')[2], 2, '0') || '-'
               || lpad(string_split(r.seed, '_')[1], 2, '0')
             ELSE '' END AS daily_date,
-          trim(coalesce(r.build_id, '')) AS build_id
+          trim(coalesce(s.build_id, r.build_id, '')) AS build_id
         FROM read_parquet('{runs_p}') r
         LEFT JOIN read_parquet('{scalars_p}') s USING (run_hash)
         WHERE coalesce(s.hidden, false) = false

@@ -90,6 +90,8 @@ def _refresh_scalars(coll) -> None:
                 "acts_completed": 1,
                 "username": 1,
                 "hidden": 1,
+                "character": 1,
+                "build_id": 1,
             },
         ):
             out.write(
@@ -102,6 +104,8 @@ def _refresh_scalars(coll) -> None:
                         "acts_completed": doc.get("acts_completed"),
                         "username": doc.get("username"),
                         "hidden": bool(doc.get("hidden")),
+                        "character": doc.get("character"),
+                        "build_id": doc.get("build_id"),
                     }
                 )
                 + "\n"
