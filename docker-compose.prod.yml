@@ -195,15 +195,16 @@ services:
       # Build frame.parquet from the lake (one COPY) instead of the 3h Mongo
       # doc walk. Flip in .env after lab/validate_frame_lake.py passes.
       FRAME_FROM_LAKE: ${FRAME_FROM_LAKE:-}
-    # 5g container / 3.5g duckdb: with the rebuilder headed for deletion the
-    # ingest is the box's main computer, so it gets real memory instead of
-    # spilling every heavy aggregate to disk.
-    mem_limit: 5g
+    # Defaults fit the shared serving box; the dedicated ingest box raises
+    # them in its .env. The container cap must clear LAKE_BUILD_MEMORY plus
+    # ~1.5g of Python-side headroom, and cpus must not exceed the box's
+    # cores or docker refuses to start the container.
+    mem_limit: ${LAKE_INGEST_MEM_LIMIT:-5g}
     # Serving always wins the box: 5 of the 8 cores at most (the hostname's
     # "4vcpu" is the droplet's birth name — nproc says 8), and an eighth of
     # the default CPU weight so under contention the kernel hands cycles to
     # the backend/Mongo first. An idle box still runs the ingest full speed.
-    cpus: 5
+    cpus: ${LAKE_INGEST_CPUS:-5}
     cpu_shares: 128
     volumes:
       - ./lab:/lab:ro
