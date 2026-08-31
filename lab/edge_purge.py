@@ -10,6 +10,7 @@ PREFIX_PATHS = (
     "/api/runs/scores/",
     "/api/runs/metrics/",
     "/api/runs/encounter-stats",
+    "/api/charts",
 )
 
 
