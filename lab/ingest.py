@@ -157,43 +157,57 @@ def main() -> None:
         stage_seconds[name] = round(time.time() - ts, 1)
         ts = time.time()
 
-    try:
-        from app.services import lake_stats
+    from app.services import lake_stats
 
+    try:
         session = lake_stats.prepare_build_session()
         session.close()
         print("build session prepared (pfloors materialized)", flush=True)
         _mark("prepare_session")
-        lake_stats.build_and_store_payload()
-        print("community payload stored", flush=True)
-        _mark("community_payload")
-        lake_stats.build_entity_store()
-        print("entity store stored", flush=True)
-        _mark("entity_store")
-        lake_stats.build_encounter_store()
-        print("encounter store stored", flush=True)
-        _mark("encounter_store")
-        lake_stats.build_entity_cube()
-        print("entity cube stored", flush=True)
-        _mark("entity_cube")
-        n_deep = lake_stats.build_deep_tables()
-        print(f"deep tables stored ({n_deep} combos)", flush=True)
-        _mark("deep_tables")
-        from app.services import charts_blob_lake
-
-        charts_blob_lake.build_charts_blob()
-        print("charts blob stored", flush=True)
-        _mark("charts_blob")
-        from app.services.run_entity_stats import (
-            archive_entity_metric_history_from_lake,
-        )
-
-        n_hist = archive_entity_metric_history_from_lake()
-        print(f"metric history archived ({n_hist} rows)", flush=True)
-        _mark("metric_history")
-        lake_stats.cleanup_build_session()
     except Exception as e:
-        print(f"community payload build failed: {e}", flush=True)
+        print(f"prepare_session failed: {e}", flush=True)
+
+    # Isolated per stage: one store OOMing must not skip the independent
+    # stores after it (a charts OOM used to swallow the metric-history
+    # append and report itself as "community payload build failed").
+    def _stage(name, label, fn):
+        try:
+            out = fn()
+            print(label(out) if callable(label) else label, flush=True)
+            _mark(name)
+        except Exception as e:
+            print(f"{name} failed: {e}", flush=True)
+
+    from app.services import charts_blob_lake
+    from app.services.run_entity_stats import (
+        archive_entity_metric_history_from_lake,
+    )
+
+    _stage(
+        "community_payload",
+        "community payload stored",
+        lake_stats.build_and_store_payload,
+    )
+    _stage("entity_store", "entity store stored", lake_stats.build_entity_store)
+    _stage(
+        "encounter_store", "encounter store stored", lake_stats.build_encounter_store
+    )
+    _stage("entity_cube", "entity cube stored", lake_stats.build_entity_cube)
+    _stage(
+        "deep_tables",
+        lambda n: f"deep tables stored ({n} combos)",
+        lake_stats.build_deep_tables,
+    )
+    _stage("charts_blob", "charts blob stored", charts_blob_lake.build_charts_blob)
+    _stage(
+        "metric_history",
+        lambda n: f"metric history archived ({n} rows)",
+        archive_entity_metric_history_from_lake,
+    )
+    try:
+        lake_stats.cleanup_build_session()
+    except Exception:
+        pass
     # The rebuilder is retired, so the materialized summaries that fed the
     # home overview and the leaderboards move here: plain Mongo aggregations
     # plus a Redis warm, no snapshot involved.
