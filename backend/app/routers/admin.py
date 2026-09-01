@@ -81,49 +81,38 @@ def _users_info() -> dict:
 
 
 def _snapshot_info() -> dict:
-    """The persisted snapshot's vitals (the shared truth all workers serve
-    from), falling back to this worker's in-process cache on SQLite."""
-    try:
-        if os.environ.get("MONGO_URL", "").strip():
-            from ..services.run_entity_stats import SNAPSHOT_COLLECTION_NAME
-            from ..services.runs_db_mongo import _get_collection
+    """Lake generation vitals: which generation the box is serving, its
+    age, and the key artifact freshness — the snapshot's replacement."""
+    import json
+    from pathlib import Path
 
-            db = _get_collection().database
-            meta = db[SNAPSHOT_COLLECTION_NAME].find_one({"_id": "__meta__"}) or {}
-            built = meta.get("built_at")
-            built_iso = built.isoformat() if hasattr(built, "isoformat") else built
-            age = None
-            if hasattr(built, "timestamp"):
-                if built.tzinfo is None:
-                    built = built.replace(tzinfo=timezone.utc)
-                age = int(datetime.now(timezone.utc).timestamp() - built.timestamp())
-            return {
-                "built_at": built_iso,
-                "age_seconds": age,
-                "version": meta.get("snapshot_version"),
-                "total_runs": (meta.get("global_totals") or {}).get("total_runs"),
-                # The blobs were moved out of __meta__ into their own
-                # sharded docs (charts / charts:<bracket>), so the old
-                # meta.get("charts") probe reported "building" forever.
-                "has_charts": bool(
-                    (
-                        db[SNAPSHOT_COLLECTION_NAME].find_one(
-                            {"_id": "charts"}, {"keys": 1}
-                        )
-                        or {}
-                    ).get("keys")
-                    or meta.get("charts")
-                ),
-            }
+    try:
+        lake = Path(os.environ.get("LAKE_DIR", "/lake"))
+        gen = {}
+        try:
+            gen = json.loads((lake / "generation.json").read_text())
+        except Exception:
+            pass
+        published = gen.get("published_at")
+        age = None
+        if published:
+            try:
+                dt = datetime.fromisoformat(published.replace("Z", "+00:00"))
+                age = int(datetime.now(timezone.utc).timestamp() - dt.timestamp())
+            except Exception:
+                pass
         from ..services import run_entity_stats as res
 
         return {
-            "built_at": res._cache_built_at or None,
-            "version": res.SNAPSHOT_VERSION,
+            "generation_id": gen.get("generation_id"),
+            "published_at": published,
+            "age_seconds": age,
+            "source_watermark": gen.get("source_watermark"),
             "total_runs": (res._global_totals or {}).get("total_runs"),
+            "has_charts": (lake / "charts_blob.json.gz").exists(),
         }
     except Exception:
-        logger.warning("admin snapshot info failed", exc_info=True)
+        logger.warning("admin lake info failed", exc_info=True)
         return {}
 
 

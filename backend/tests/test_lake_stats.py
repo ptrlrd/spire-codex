@@ -6,13 +6,6 @@ def test_available_false_without_lake(monkeypatch, tmp_path):
     assert lake_stats.available() is False
 
 
-def test_shadow_check_never_raises_without_lake(monkeypatch, tmp_path, caplog):
-    caplog.set_level("INFO")
-    monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path / "missing")
-    lake_stats.shadow_check()
-    assert any("lake" in r.message for r in caplog.records)
-
-
 def test_flag_parses_common_forms(monkeypatch):
     for raw, want in (
         ("on", True),
@@ -24,20 +17,13 @@ def test_flag_parses_common_forms(monkeypatch):
         assert ((raw or "").lower() in ("1", "on", "true")) is want
 
 
-def test_community_payload_none_when_disabled(monkeypatch):
-    monkeypatch.setattr(lake_stats, "SERVE_ENABLED", False)
-    assert lake_stats.community_payload() is None
-
-
 def test_community_payload_none_without_lake(monkeypatch, tmp_path):
-    monkeypatch.setattr(lake_stats, "SERVE_ENABLED", True)
     monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
     assert lake_stats.community_payload() is None
 
 
 def test_community_payload_none_for_unsupported_bracket(monkeypatch, tmp_path):
     # wr50 is cube-served now; versions and unknown keys are the fallbacks.
-    monkeypatch.setattr(lake_stats, "SERVE_ENABLED", True)
     monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
     monkeypatch.setattr(lake_stats, "_cube_cache", None)
     assert lake_stats.community_payload("v0.1.0") is None
@@ -66,7 +52,6 @@ def test_lake_entity_overlay(monkeypatch, tmp_path):
         "baselines": {"cards": 0.5},
     }
     (tmp_path / "entity_store.json").write_text(json.dumps(store))
-    monkeypatch.setattr(res, "_LAKE_ENTITY_SERVE", True)
     monkeypatch.setattr(res, "_lake_overlay_checked", 0.0)
     monkeypatch.setattr(res, "_lake_overlay_mtime", 0.0)
     res._cache[("cards", "ZAP")] = {
@@ -350,7 +335,6 @@ def test_overlay_carries_store_totals(monkeypatch, tmp_path):
             }
         )
     )
-    monkeypatch.setattr(res, "_LAKE_ENTITY_SERVE", True)
     monkeypatch.setattr(res, "_lake_overlay_checked", 0.0)
     monkeypatch.setattr(res, "_lake_overlay_mtime", 0.0)
     old = dict(res._global_totals)
@@ -372,7 +356,6 @@ def test_recent_versions_include_cube_and_validate(monkeypatch):
         "offers": {},
     }
     monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: (1.0, cube))
-    monkeypatch.setattr(res, "_LAKE_ENTITY_SERVE", True)
     monkeypatch.setattr(res, "_recent_stat_versions", ["v0.110.2"])
     monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
     assert res.get_recent_stat_versions() == ["v0.112.0", "v0.110.2"]

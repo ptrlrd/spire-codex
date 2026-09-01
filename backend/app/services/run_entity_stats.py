@@ -256,95 +256,12 @@ class _BlobProvider:
         return _read_blob_file(run_hash)
 
 
-# Materialized-snapshot config. The expensive 100k-file walk runs in a
-# SINGLE leader process (via the existing stats-refresher lease) and is
-# persisted to Mongo. Every worker reads that shared snapshot instead of
-# walking the files itself — this is what stops N workers each pegging a
-# CPU rebuilding the same data. Mirrors the stats_summary pattern.
-SNAPSHOT_COLLECTION_NAME = "entity_stats_snapshot"
 # Time-series archive of per-entity Codex Score + Elo: one row per
 # entity/bracket/day, appended at the end of each snapshot rebuild. Powers the
 # entity-page score/elo trend charts. TTL-pruned, and it only accumulates going
 # forward (no backfill) because the live snapshot is overwritten each rebuild.
 HISTORY_COLLECTION_NAME = "entity_metric_history"
 _HISTORY_RETENTION_DAYS = 90
-# Bump whenever the snapshot shape changes (fields the readers depend on).
-# Guards against an out-of-date writer (e.g. a stale container sharing the
-# Mongo) clobbering the snapshot: loaders reject a mismatched version and
-# keep serving what they have, and the leader rebuilds right over it instead
-# of trusting its freshness. Version 2 = elo + base/upg + brackets + community.
-# Version 3 adds per-act relic pickup splits (act_picks / act_wins).
-# Version 4 = community map_danger (per act/node-type damage + death rates),
-# rest-site win/HP-band stats, and ancient offer take rates for the mod.
-# Version 5 adds precomputed per-encounter combat cells for
-# /api/runs/encounter-stats (folds the old per-request aggregation in).
-# Version 6 adds the win-rate skill-bracket brackets (wr30/wr50/wr75): A10-gated
-# per-submitter win-rate tiers in the bracket blocks.
-# Version 7 makes the charts blob per-bracket (all/a10/wr30/wr50/wr75) and moves
-# it to its own "charts" snapshot doc, so blob charts re-slice by content bracket.
-# Version 8 renames the persisted cohort_* fields to bracket_* (and each entity's
-# "cohorts" sub-tree to "brackets"); the loader reads either for back-compat.
-# Version 9 makes the community and encounter blobs per-bracket (like charts) and
-# moves each to its own snapshot doc; the loader falls back to the old inline
-# __meta__ fields and to a flat blob for a pre-v9 snapshot.
-# Version 10 adds a per-character split to each entity's win-rate/A10 bracket data
-# so the detail page's character table re-slices by bracket (additive).
-# Version 11 adds solo/2p/3p/4p player-count brackets to the community and
-# encounter blobs so those pages can filter by co-op size.
-# Version 12 adds player-count x skill composite brackets (solo:wr50, ...) to the
-# entity cache so the metrics table and tier list can filter by both at once.
-# These landed in the same deploy as v11 but reused version 11, so the leader
-# considered its (composite-less) v11 snapshot current and never rebuilt them in;
-# the bump forces the rebuild.
-# Version 13: composites skip the reward-pairwise / Codex Elo build (they keep
-# Score + Win% only). The full-Elo v12 build over 26 brackets x ~740k runs was
-# too heavy to finish, so the snapshot never advanced past v10; this cuts the
-# walk back to a healthy duration. The bump forces the (now cheap) rebuild.
-# Version 14: the community blob also carries the player x skill composites so
-# /community-stats can combine both axes (additive; the bump forces the rebuild).
-# Version 15: the encounter blob also carries per-game-version buckets (keyed
-# "ver:<build_id>") for the most recent few versions, so the stats pages can
-# compare an enemy across balance patches (additive; the bump forces the rebuild).
-# Version 16: composites get the reward-pairwise / Codex Elo + Pick% build back
-# (v13 had cut it as too heavy) so solo:a10, 2p:wr50, ... carry a real Elo, not a
-# blank. Requires the parallel rebuild — it's the heaviest bracket set. The
-# metrics table's player=All rows average the per-player Elos at read time.
-# Version 17: every bracket block carries a by_character split (previously only
-# the skill tiers), so ?character= combines with any bracket on the metrics
-# endpoint — e.g. bracket=solo:a10&character=IRONCLAD (additive; the bump
-# forces the rebuild).
-# Version 21: community records (fastest win / longest run / biggest deck) only
-# count standard, modifier-free runs, so custom games can't hold them (the bump
-# forces the rebuild that drops the already-baked custom-run records).
-# Version 22: the official-id filters accept beta-catalog entities (beta-only
-# cards/relics were read as modded and vanished from the tier list); the bump
-# forces the rebuild that restores their walk-time per-act relic data.
-# 25: chart time buckets re-keyed to played-date Pacific days — a full
-# rebuild is required or old runs keep their UTC upload-day keys.
-# 26: mode brackets actually accumulate (they were allowlist-dropped since
-# v24, so Standard/Daily/Custom community blobs sat empty).
-# 27 was an attempt to force the full walk that backfills the charts blob.
-# Held back on 2026-08-25: the walk cannot complete on this box yet (it
-# OOM-looped for five hours), and a version that can never finish means the
-# rebuilder retries forever and nothing else gets to run. Staying on 26 keeps
-# the incremental fold working and the box stable. The charts blob stays
-# empty until the walk is affordable; the fix for that is memory work, not a
-# version bump.
-SNAPSHOT_VERSION = 26
-# Serialized-byte budget per persisted chunk doc. With version-composable
-# brackets a popular entity carries hundreds of per-bracket blocks and
-# entity sizes vary wildly (a card dwarfs an affliction), so chunks are
-# packed by measured BSON size, not entity count — a fixed count crossed
-# Mongo's 16MB document cap once version brackets multiplied per-entity
-# payloads. Half the cap leaves headroom for command overhead and growth.
-_CHUNK_MAX_BYTES = 8 * 1024 * 1024
-# The oldest snapshot version readers can still serve. Bump SNAPSHOT_VERSION
-# on every shape change; bump this floor ONLY when a change actually breaks
-# readers (a removed/retyped field). Everything in between is additive, and
-# serving a slightly-stale snapshot for the ~15 minutes a version-bump
-# rebuild takes beats serving nothing: to users an empty stats page is
-# indistinguishable from the site losing its data.
-SNAPSHOT_MIN_COMPAT = 3
 
 
 # Leader rebuilds the heavy walk at most this often. The walk reads every run
@@ -356,15 +273,6 @@ SNAPSHOT_MIN_COMPAT = 3
 # ENTITY_STATS_REBUILD_INTERVAL_SECONDS; keep it comfortably above the observed
 # walk duration so the box isn't perpetually mid-rebuild (the walk now pegs all
 # the rebuild workers, not one core). Floored at 300s against a runaway loop.
-def _rebuild_interval_seconds() -> int:
-    try:
-        v = int(os.environ.get("ENTITY_STATS_REBUILD_INTERVAL_SECONDS", "7200"))
-    except ValueError:
-        v = 2 * 60 * 60
-    return max(300, v)
-
-
-_SNAPSHOT_REBUILD_SECONDS = _rebuild_interval_seconds()
 # Workers reload the snapshot from Mongo this often (cheap read).
 _SNAPSHOT_LOAD_SECONDS = 5 * 60
 
@@ -426,10 +334,6 @@ def _env_recent_versions_n() -> int | None:
 _RECENT_VERSIONS_N: int | None = _env_recent_versions_n()
 _cache_built_at: float = 0.0
 _building: bool = False
-# The snapshot_version of whatever is currently loaded (None = nothing
-# loaded yet). Differs from SNAPSHOT_VERSION while serving a compatible
-# older snapshot during a post-deploy rebuild.
-_cache_snapshot_version: int | None = None
 # (submitted_at, run_hash) the loaded snapshot is current through; the anchor
 # for the live-overlay stage and the "stats current through" UI.
 _data_through: list | None = None
@@ -2042,10 +1946,8 @@ def _build_cache() -> None:
 
     Only used when the Mongo snapshot is unavailable (SQLite path, or a
     cold start before the leader has written the first snapshot)."""
-    global _cache_snapshot_version
     cache, totals, baselines, bracket_meta = _build_cache_data()
     _apply_cache(cache, totals, baselines, bracket_meta)
-    _cache_snapshot_version = SNAPSHOT_VERSION
     logger.info(
         "run-entity-stats cache rebuilt (local): %d entities across %d runs",
         len(cache),
@@ -2054,81 +1956,6 @@ def _build_cache() -> None:
 
 
 # ── Shared Mongo snapshot ────────────────────────────────────────────────
-
-
-def _snapshot_coll():
-    from .runs_db_mongo import _get_collection
-
-    return _get_collection().database[SNAPSHOT_COLLECTION_NAME]
-
-
-class _LazyBlobMap:
-    """Read-through view over one blob's per-key shard docs. Workers used to
-    eager-load every shard (hundreds of keys, most never requested) into RAM
-    on every snapshot load; this fetches a key on first use and keeps a small
-    bounded cache, so a worker holds only what its traffic touches."""
-
-    _MAX_KEYS = max(8, int(os.environ.get("STATS_BLOB_CACHE_KEYS", "") or 48))
-
-    def __init__(self, blob_id: str, keys):
-        self._blob_id = blob_id
-        self._keys = set(keys)
-        self._cache: dict[str, Any] = {}
-        self._lock = threading.Lock()
-
-    def __bool__(self) -> bool:
-        return bool(self._keys)
-
-    def __len__(self) -> int:
-        return len(self._keys)
-
-    def __contains__(self, key) -> bool:
-        return key in self._keys
-
-    def keys(self):
-        return set(self._keys)
-
-    def get(self, key, default=None):
-        if key not in self._keys:
-            return default
-        with self._lock:
-            if key in self._cache:
-                return self._cache[key]
-        try:
-            doc = _snapshot_coll().find_one({"_id": f"{self._blob_id}:{key}"}) or {}
-        except Exception:
-            logger.warning(
-                "lazy blob fetch failed for %s:%s", self._blob_id, key, exc_info=True
-            )
-            return default
-        blob = doc.get("blob")
-        if blob is None:
-            return default
-        with self._lock:
-            if len(self._cache) >= self._MAX_KEYS:
-                self._cache.pop(next(iter(self._cache)))
-            self._cache[key] = blob
-        return blob
-
-
-def _size_chunks(entities: list[dict]) -> list[list[dict]]:
-    """Split an entity array into chunks whose serialized size stays under
-    _CHUNK_MAX_BYTES each. Always returns at least one (possibly empty)
-    chunk so an empty entity type still gets its chunk:0 doc."""
-    from bson import encode as bson_encode
-
-    chunks: list[list[dict]] = []
-    cur: list[dict] = []
-    cur_bytes = 0
-    for entry in entities:
-        size = len(bson_encode({"e": entry}))
-        if cur and cur_bytes + size > _CHUNK_MAX_BYTES:
-            chunks.append(cur)
-            cur, cur_bytes = [], 0
-        cur.append(entry)
-        cur_bytes += size
-    chunks.append(cur)
-    return chunks
 
 
 _history_indexes_ready = False
@@ -2315,588 +2142,6 @@ def get_entity_metric_history(
         return []
 
 
-def _persist_data_through() -> list | None:
-    global _data_through
-    if _incr and _incr.get("last_key"):
-        _data_through = list(_incr["last_key"])
-    return _data_through
-
-
-def _persist_snapshot(
-    cache: dict,
-    totals: dict,
-    baselines: dict,
-    bracket_meta: dict | None = None,
-    changed_blobs: dict | None = None,
-) -> None:
-    """Write the built cache to Mongo as one doc per entity type plus a
-    meta doc. Entities are stored as arrays (not dicts) so entity IDs
-    never collide with Mongo field-name restrictions."""
-    coll = _snapshot_coll()
-    # Never overwrite a snapshot written by NEWER code (a deploy-time
-    # prewarm, or the new containers mid rolling deploy). Without this, the
-    # outgoing leader's final rebuild can clobber the new version's snapshot
-    # and force a second full walk.
-    existing = coll.find_one({"_id": "__meta__"}, {"snapshot_version": 1})
-    if existing and (existing.get("snapshot_version") or 0) > SNAPSHOT_VERSION:
-        logger.warning(
-            "not overwriting entity-stats snapshot version %s with older version %s",
-            existing.get("snapshot_version"),
-            SNAPSHOT_VERSION,
-        )
-        return
-    by_type: dict[str, list] = {}
-    for (etype, eid), agg in cache.items():
-        entry = {
-            "id": eid,
-            "picks": agg["picks"],
-            "wins": agg["wins"],
-            "by_character": [
-                {"character": ch, "picks": s["picks"], "wins": s["wins"]}
-                for ch, s in agg["by_character"].items()
-            ],
-            "last_submitted_at": agg["last_submitted_at"],
-            "last_run_hash": agg["last_run_hash"],
-        }
-        # Card-reward metrics (cards only; absent on relics/potions).
-        if "offered" in agg:
-            entry["offered"] = agg["offered"]
-            entry["picked"] = agg["picked"]
-            entry["off_act"] = agg["off_act"]
-            entry["pick_act"] = agg["pick_act"]
-            entry["elo"] = agg.get("elo")
-        # Per-bracket metrics (nested; only brackets this entity appears in).
-        if agg.get("brackets"):
-            entry["brackets"] = agg["brackets"]
-        # Base vs upgraded deck membership (cards only).
-        if agg.get("base") is not None:
-            entry["base"] = agg["base"]
-        if agg.get("upg") is not None:
-            entry["upg"] = agg["upg"]
-        # Per-act pickup splits (relics only).
-        if agg.get("act_picks") is not None:
-            entry["act_picks"] = agg["act_picks"]
-            entry["act_wins"] = agg.get("act_wins") or [0] * _ACT_BUCKETS
-        by_type.setdefault(etype, []).append(entry)
-    now = datetime.now(timezone.utc)
-    for etype, entities in by_type.items():
-        # Chunked storage: with version-composable brackets every popular
-        # entity carries hundreds of per-bracket blocks, so one doc per
-        # entity type can cross Mongo's 16MB document cap. The index doc
-        # keeps the chunk count; stale higher-numbered chunks from a
-        # previous (larger) snapshot are deleted so a shrink can't leave
-        # phantom entities behind.
-        prev = coll.find_one({"_id": etype}, {"chunk_count": 1}) or {}
-        chunks = _size_chunks(entities)
-        for ci, chunk in enumerate(chunks):
-            coll.replace_one(
-                {"_id": f"{etype}:chunk:{ci}"},
-                {"_id": f"{etype}:chunk:{ci}", "entities": chunk, "updated_at": now},
-                upsert=True,
-            )
-        coll.replace_one(
-            {"_id": etype},
-            {"_id": etype, "chunk_count": len(chunks), "updated_at": now},
-            upsert=True,
-        )
-        stale = [
-            f"{etype}:chunk:{ci}"
-            for ci in range(len(chunks), prev.get("chunk_count") or 0)
-        ]
-        if stale:
-            coll.delete_many({"_id": {"$in": stale}})
-    bracket_meta = bracket_meta or {}
-    # The community, charts, and encounter blobs are per-bracket AND
-    # per-version-composite now (hundreds of keys), far past the 16MB
-    # single-doc cap, so each shards one doc per bracket key with the key
-    # list in its index doc. Stale keys from a previous (larger) snapshot
-    # are deleted the same way as entity chunks.
-    for blob_id in ("community", "charts", "encounters"):
-        blob = bracket_meta.get(blob_id, {}) or {}
-        touched = None if changed_blobs is None else changed_blobs.get(blob_id, set())
-        prev_doc = coll.find_one({"_id": blob_id}, {"keys": 1}) or {}
-        for bkey, acc in blob.items():
-            if touched is not None and bkey not in touched:
-                continue
-            coll.replace_one(
-                {"_id": f"{blob_id}:{bkey}"},
-                {"_id": f"{blob_id}:{bkey}", "blob": acc, "updated_at": now},
-                upsert=True,
-            )
-        coll.replace_one(
-            {"_id": blob_id},
-            {"_id": blob_id, "keys": sorted(blob.keys()), "updated_at": now},
-            upsert=True,
-        )
-        if touched is None:
-            stale = [
-                f"{blob_id}:{k}" for k in (prev_doc.get("keys") or []) if k not in blob
-            ]
-            if stale:
-                coll.delete_many({"_id": {"$in": stale}})
-    coll.replace_one(
-        {"_id": "__meta__"},
-        {
-            "_id": "__meta__",
-            "global_totals": totals,
-            "type_baselines": baselines,
-            "bracket_baselines": bracket_meta.get("baselines", {}),
-            "bracket_totals": bracket_meta.get("totals", {}),
-            "entity_types": list(by_type.keys()),
-            "built_at": now,
-            # The (submitted_at, run_hash) keyset this snapshot is current
-            # through — the anchor the live-overlay stage merges from.
-            "data_through": _persist_data_through(),
-            "snapshot_version": SNAPSHOT_VERSION,
-            # The recent versions the encounter blob carries per-version buckets
-            # for — the dropdown options for the stats-page version filter.
-            "recent_versions": bracket_meta.get("recent_versions", []),
-        },
-        upsert=True,
-    )
-
-
-def _snapshot_boot_disabled() -> bool:
-    """ENTITY_SNAPSHOT_LOAD=off skips the ~1.1GB-per-worker snapshot load;
-    only lake-served surfaces keep data."""
-    return os.environ.get("ENTITY_SNAPSHOT_LOAD", "on").strip().lower() == "off"
-
-
-def _load_snapshot() -> bool:
-    """Load the shared snapshot from Mongo into module globals. Returns
-    False if no snapshot exists yet (caller falls back to local build)."""
-    global _cache_snapshot_version
-    if _snapshot_boot_disabled():
-        return False
-    coll = _snapshot_coll()
-    started = time.monotonic()
-    meta = coll.find_one({"_id": "__meta__"})
-    if not meta:
-        return False
-    meta_version = meta.get("snapshot_version") or 0
-    if meta_version < SNAPSHOT_MIN_COMPAT:
-        # Too old to read safely (a truly breaking shape change). Keep
-        # whatever this worker already serves rather than regressing to a
-        # snapshot missing fields the readers depend on.
-        logger.warning(
-            "ignoring entity-stats snapshot with version %s (min compatible %s)",
-            meta_version,
-            SNAPSHOT_MIN_COMPAT,
-        )
-        return False
-    if meta_version != SNAPSHOT_VERSION:
-        # Compatible but not current: written by a different code version
-        # (a pre-bump snapshot right after a deploy, or a newer writer mid
-        # rolling deploy). Serve it anyway - the loader and readers default
-        # every version-specific field - and let the leader rebuild the
-        # current version over it. Stats stay populated instead of every
-        # surface going empty for the length of the rebuild.
-        logger.info(
-            "serving entity-stats snapshot version %s while %s rebuilds",
-            meta_version,
-            SNAPSHOT_VERSION,
-        )
-    new_cache: dict[tuple[str, str], dict[str, Any]] = {}
-    for etype in meta.get("entity_types", []):
-        doc = coll.find_one({"_id": etype})
-        if not doc:
-            continue
-        # v20+ snapshots chunk the entity array across docs (16MB cap);
-        # older ones keep it inline. Read whichever shape this doc has.
-        entities = doc.get("entities", [])
-        if not entities and doc.get("chunk_count"):
-            # One batched query instead of a round trip per chunk; chunk
-            # order doesn't matter, the cache is keyed by (etype, id).
-            ids = [f"{etype}:chunk:{ci}" for ci in range(int(doc["chunk_count"]))]
-            for cdoc in coll.find({"_id": {"$in": ids}}):
-                entities.extend(cdoc.get("entities", []))
-        for e in entities:
-            by_char = {
-                c["character"]: {"picks": c["picks"], "wins": c["wins"]}
-                for c in e.get("by_character", [])
-            }
-            agg: dict[str, Any] = {
-                "picks": e["picks"],
-                "wins": e["wins"],
-                "by_character": by_char,
-                "last_submitted_at": e.get("last_submitted_at"),
-                "last_run_hash": e.get("last_run_hash"),
-            }
-            if "offered" in e:
-                agg["offered"] = e["offered"]
-                agg["picked"] = e["picked"]
-                agg["off_act"] = e.get("off_act", [0] * _ACT_BUCKETS)
-                agg["pick_act"] = e.get("pick_act", [0] * _ACT_BUCKETS)
-                agg["elo"] = e.get("elo")
-            # Back-compat: the entity bracket sub-tree was the "cohorts" field
-            # before the rename; read either so a pre-rename snapshot still loads.
-            if e.get("brackets") or e.get("cohorts"):
-                agg["brackets"] = e.get("brackets") or e.get("cohorts")
-            if e.get("base") is not None:
-                agg["base"] = e["base"]
-            if e.get("upg") is not None:
-                agg["upg"] = e["upg"]
-            if e.get("act_picks") is not None:
-                agg["act_picks"] = e["act_picks"]
-                agg["act_wins"] = e.get("act_wins") or [0] * _ACT_BUCKETS
-            new_cache[(etype, e["id"])] = agg
-
-    # The charts, community, and encounter blobs each live in their own doc (see
-    # _persist_snapshot). Back-compat: a pre-split snapshot kept community and
-    # encounters inline in __meta__, so fall back to that. A genuinely missing
-    # blob stays empty until the leader rebuilds the new shape.
-    def _blob_doc(blob_id: str):
-        # v20+ shards each blob one doc per bracket key (the key list lives
-        # in the index doc — hundreds of keys with version composites, far
-        # past the single-doc cap); older snapshots kept the whole map in
-        # one doc's "blob" (or inline in __meta__ before that).
-        doc = coll.find_one({"_id": blob_id}) or {}
-        keys = doc.get("keys")
-        if not keys:
-            return doc.get("blob") or meta.get(blob_id) or {}
-        return _LazyBlobMap(blob_id, keys)
-
-    community = _blob_doc("community")
-    charts = _blob_doc("charts")
-    encounters = _blob_doc("encounters")
-    _apply_cache(
-        new_cache,
-        meta.get("global_totals", {"total_runs": 0, "total_wins": 0}),
-        meta.get("type_baselines", {}),
-        {
-            # Back-compat: these meta fields were cohort_* before the rename.
-            "baselines": meta.get("bracket_baselines")
-            or meta.get("cohort_baselines")
-            or {},
-            "totals": meta.get("bracket_totals") or meta.get("cohort_totals") or {},
-            "community": community,
-            "charts": charts,
-            "encounters": encounters,
-            "recent_versions": meta.get("recent_versions") or [],
-        },
-    )
-    _cache_snapshot_version = meta_version
-    global _data_through
-    _data_through = meta.get("data_through")
-    logger.info(
-        "entity-stats snapshot loaded: %d entities, %d/%d/%d blob keys in %.1fs",
-        len(new_cache),
-        len(community),
-        len(charts),
-        len(encounters),
-        time.monotonic() - started,
-    )
-    return True
-
-
-_incr: dict[str, Any] | None = None
-_INCREMENTAL_ENABLED = os.environ.get("STATS_INCREMENTAL", "on").lower() not in (
-    "off",
-    "0",
-    "false",
-    "no",
-)
-_STATS_PERSIST_SECONDS = max(
-    60, int(os.environ.get("STATS_PERSIST_SECONDS", "") or 600)
-)
-_STATS_REPAIR_SECONDS = max(
-    3600, int(os.environ.get("STATS_REPAIR_INTERVAL_SECONDS", "") or 86400)
-)
-# A bracket's Elo refits only after this many new runs land in it; counters
-# still update every tick, only the rating fit defers.
-_ELO_REFIT_MIN_RUNS = max(1, int(os.environ.get("STATS_ELO_REFIT_MIN_RUNS", "") or 20))
-_RELEASE_VERSION_RE = None
-
-
-def _is_release_version(build_id: str) -> bool:
-    global _RELEASE_VERSION_RE
-    if _RELEASE_VERSION_RE is None:
-        import re
-
-        _RELEASE_VERSION_RE = re.compile(r"v\d+(\.\d+)*$")
-    return bool(_RELEASE_VERSION_RE.fullmatch(build_id or ""))
-
-
-def _load_rows_after(last_key: tuple) -> list[dict]:
-    """New run rows past the (submitted_at, run_hash) keyset cursor, in
-    submission order — the same ordering contract the run export uses."""
-    from .runs_db_mongo import _get_collection
-
-    ts, h = last_key
-    docs = list(
-        _get_collection()
-        .find(
-            {
-                "hidden": {"$ne": True},
-                "$or": [
-                    {"submitted_at": {"$gt": ts}},
-                    {"submitted_at": ts, "_id": {"$gt": h}},
-                ],
-            },
-            {
-                "_id": 1,
-                "character": 1,
-                "win": 1,
-                "submitted_at": 1,
-                "played_at": 1,
-                "player_count": 1,
-                "ascension": 1,
-                "game_mode": 1,
-                "killed_by": 1,
-                "username": 1,
-                "build_id": 1,
-            },
-        )
-        .sort([("submitted_at", 1), ("_id", 1)])
-    )
-    return [
-        {
-            "run_hash": d["_id"],
-            "character": d.get("character") or "",
-            "win": bool(d.get("win")),
-            "submitted_at": d.get("submitted_at"),
-            "played_at": d.get("played_at"),
-            "player_count": d.get("player_count") or 1,
-            "ascension": d.get("ascension") or 0,
-            "game_mode": d.get("game_mode") or "standard",
-            "killed_by": d.get("killed_by"),
-            "username": d.get("username") or "",
-            "build_id": d.get("build_id") or "",
-        }
-        for d in docs
-    ]
-
-
-_CHECKPOINT_PATH = (
-    Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
-    / "stats_checkpoint.pkl.gz"
-)
-_CHECKPOINT_INTERVAL = max(
-    300, int(os.environ.get("STATS_CHECKPOINT_INTERVAL_SECONDS", "") or 3600)
-)
-_last_checkpoint_ts = 0.0
-
-
-def save_stats_checkpoint() -> bool:
-    """Snapshot the incremental base to disk so a restarted rebuilder can
-    resume by tailing instead of rewalking every run."""
-    if _incr is None or _incr.get("last_key") is None:
-        return False
-    import gzip
-    import pickle
-
-    global _last_checkpoint_ts
-    t0 = time.time()
-    tmp = _CHECKPOINT_PATH.with_suffix(".tmp")
-    try:
-        with gzip.open(tmp, "wb", compresslevel=1) as f:
-            pickle.dump(
-                {"snapshot_version": SNAPSHOT_VERSION, "incr": _incr},
-                f,
-                protocol=pickle.HIGHEST_PROTOCOL,
-            )
-        tmp.replace(_CHECKPOINT_PATH)
-    except Exception:
-        logger.warning("stats checkpoint save failed", exc_info=True)
-        tmp.unlink(missing_ok=True)
-        return False
-    _last_checkpoint_ts = time.time()
-    logger.info(
-        "stats checkpoint saved: %d MB in %.1fs",
-        _CHECKPOINT_PATH.stat().st_size // (1024 * 1024),
-        time.time() - t0,
-    )
-    return True
-
-
-def _load_stats_checkpoint() -> bool:
-    if not _CHECKPOINT_PATH.exists():
-        return False
-    # A checkpoint from a different snapshot version is discarded a few lines
-    # below anyway, but gzip+pickle has to inflate the WHOLE thing (gigabytes
-    # of raw accumulators) before that field is readable. Doing that on top of
-    # the snapshot this process already holds is what OOM-killed the rebuilder
-    # in a restart loop on 2026-08-25, before it ever reached the walk. The
-    # persisted meta carries the same version and costs one indexed lookup, so
-    # check there first and skip the load entirely when it can't match.
-    try:
-        meta = _snapshot_coll().find_one({"_id": "__meta__"}, {"snapshot_version": 1})
-        if meta and meta.get("snapshot_version") not in (None, SNAPSHOT_VERSION):
-            logger.info(
-                "persisted snapshot is version %s (want %s); skipping the "
-                "checkpoint load and going straight to a full walk",
-                meta.get("snapshot_version"),
-                SNAPSHOT_VERSION,
-            )
-            return False
-    except Exception:
-        # Can't tell — fall through and let the existing version check handle
-        # it, which is the old behavior.
-        logger.warning("checkpoint version pre-check failed", exc_info=True)
-
-    import gzip
-    import pickle
-
-    global _incr
-    t0 = time.time()
-    try:
-        with gzip.open(_CHECKPOINT_PATH, "rb") as f:
-            data = pickle.load(f)
-    except Exception:
-        logger.warning("stats checkpoint unreadable; falling back to a full walk")
-        return False
-    if data.get("snapshot_version") != SNAPSHOT_VERSION:
-        logger.info(
-            "stats checkpoint is snapshot version %s (want %s); full walk instead",
-            data.get("snapshot_version"),
-            SNAPSHOT_VERSION,
-        )
-        return False
-    incr = data.get("incr")
-    if not incr or incr.get("last_key") is None:
-        return False
-    if time.time() - incr.get("last_full_ts", 0) >= _STATS_REPAIR_SECONDS:
-        logger.info("stats checkpoint is past the repair interval; full walk instead")
-        return False
-    incr["pending"] = incr.get("pending", 0) + 1
-    incr["last_persist_ts"] = 0.0
-    _incr = incr
-    logger.info(
-        "stats checkpoint loaded in %.1fs; resuming from %s",
-        time.time() - t0,
-        incr["last_key"][0],
-    )
-    return True
-
-
-def _incremental_tick() -> int:
-    """Fold newly submitted runs into the retained raw accumulators and
-    re-finalize + persist on the _STATS_PERSIST_SECONDS cadence. The raw
-    state is merge-and-refinalize safe: every finalize output field is
-    recomputed from the accumulators, never consumed from them."""
-    global _cache_snapshot_version
-    assert _incr is not None
-    rows = _load_rows_after(_incr["last_key"])
-    if rows:
-        rec = set(_incr["recent_versions"])
-        for r in rows:
-            b = (r.get("build_id") or "").strip()
-            if b and b not in rec and _is_release_version(b):
-                logger.info(
-                    "incremental stats: new game version %s; running a full "
-                    "rebuild to seed its buckets",
-                    b,
-                )
-                return refresh_entity_stats_snapshot(force_full=True)
-        for r in rows:
-            u = (r.get("username") or "").lower()
-            if u:
-                c = _incr["wr_counts"].setdefault(u, [0, 0])
-                c[0] += 1
-                if r.get("win"):
-                    c[1] += 1
-        wr_map = {
-            u: (w / t)
-            for u, (t, w) in _incr["wr_counts"].items()
-            if t >= _incr["wr_min"] and t > 0
-        }
-        partial = _accumulate(
-            rows, _incr["official_chars"], wr_map, _incr["recent_versions"]
-        )
-        _merge_raw(_incr["raw"], partial)
-        pb = _incr.setdefault("pending_brackets", set())
-        epend = _incr.setdefault("elo_pending", {})
-        for ck, acc in partial["bracket_accs"].items():
-            n = acc["totals"]["total_runs"]
-            if n:
-                pb.add(ck)
-                epend[ck] = epend.get(ck, 0) + n
-        blobs = _incr.setdefault(
-            "pending_blobs", {"community": set(), "charts": set(), "encounters": set()}
-        )
-        for k, sub in partial["community_acc"].items():
-            if sub.get("total_runs"):
-                blobs["community"].add(k)
-        for k, sub in partial["charts_acc"].items():
-            if any(bool(v) for v in sub.values()):
-                blobs["charts"].add(k)
-        for k, sub in partial["encounter_acc"].items():
-            if sub.get("cells"):
-                blobs["encounters"].add(k)
-        tail = rows[-1]
-        _incr["last_key"] = (tail["submitted_at"], str(tail["run_hash"]))
-        _incr["pending"] += len(rows)
-
-    if (
-        _incr["pending"]
-        and time.time() - _incr["last_persist_ts"] >= _STATS_PERSIST_SECONDS
-    ):
-        changed_brackets = _incr.get("pending_brackets")
-        changed_blobs = _incr.get("pending_blobs")
-        if _incr.get("bracket_baselines_memo") is None:
-            _incr["bracket_baselines_memo"] = {}
-            _incr["blob_final_memo"] = {}
-            changed_brackets = None
-            changed_blobs = None
-        epend = _incr.setdefault("elo_pending", {})
-        if changed_brackets is None:
-            refit = None
-        else:
-            refit = {
-                ck for ck in changed_brackets if epend.get(ck, 0) >= _ELO_REFIT_MIN_RUNS
-            }
-        _t0 = time.time()
-        cache, totals, baselines, bracket_meta = _finalize(
-            **_incr["raw"],
-            changed_brackets=changed_brackets,
-            changed_blobs=changed_blobs,
-            bracket_baselines_memo=_incr["bracket_baselines_memo"],
-            blob_final_memo=_incr["blob_final_memo"],
-            elo_memo=_incr.setdefault("elo_memo", {}),
-            elo_refit=refit,
-        )
-        fin_s = time.time() - _t0
-        if refit is None:
-            epend.clear()
-        else:
-            for ck in refit:
-                epend[ck] = 0
-        bracket_meta["recent_versions"] = _incr["recent_versions"]
-        _t1 = time.time()
-        _persist_snapshot(
-            cache, totals, baselines, bracket_meta, changed_blobs=changed_blobs
-        )
-        _apply_cache(cache, totals, baselines, bracket_meta)
-        _cache_snapshot_version = SNAPSHOT_VERSION
-        logger.info(
-            "incremental stats: folded %d new runs (%d brackets touched), "
-            "finalize %.1fs + persist %.1fs (%d runs total)",
-            _incr["pending"],
-            len(changed_brackets) if changed_brackets is not None else -1,
-            fin_s,
-            time.time() - _t1,
-            totals["total_runs"],
-        )
-        try:
-            from . import live_overlay
-
-            live_overlay.rebase_after_persist(_incr["last_key"], _incr["pending"])
-        except Exception:
-            logger.warning("live overlay rebase failed", exc_info=True)
-        _incr["pending"] = 0
-        _incr["pending_brackets"] = set()
-        _incr["pending_blobs"] = {
-            "community": set(),
-            "charts": set(),
-            "encounters": set(),
-        }
-        _incr["last_persist_ts"] = time.time()
-        if time.time() - _last_checkpoint_ts >= _CHECKPOINT_INTERVAL:
-            save_stats_checkpoint()
-        return len(cache)
-    return 0
-
-
 _full_walk_active = False
 
 
@@ -2905,113 +2150,6 @@ def full_walk_in_progress() -> bool:
     to hold off other memory-hungry background work (the chart prewarm loads
     a 1.37M-row frame of its own) until the walk is done."""
     return _full_walk_active
-
-
-def _release_snapshot_for_full_walk() -> None:
-    """Free this process's in-memory snapshot before a full walk replaces it.
-
-    No-op unless this instance is the stats refresher, so an API worker that
-    somehow reaches a full walk keeps serving its cache instead of blanking
-    the tier list. The load timestamp is left fresh so the background
-    reloader doesn't pull the old snapshot straight back in mid-walk;
-    _apply_cache repopulates everything when the walk lands."""
-    if os.environ.get("STATS_REFRESHER", "on").strip().lower() in (
-        "off",
-        "0",
-        "false",
-        "no",
-    ):
-        return
-    global _cache, _community_stats, _charts_blob_stats, _encounter_blob_stats
-    global _cache_built_at
-    import gc
-
-    had = len(_cache or {})
-    _cache = {}
-    _community_stats = {}
-    _charts_blob_stats = {}
-    _encounter_blob_stats = {}
-    _cache_built_at = time.time()
-    gc.collect()
-    logger.info(
-        "released the in-memory snapshot (%d entities) before the full walk", had
-    )
-
-
-def refresh_entity_stats_snapshot(force_full: bool = False) -> int:
-    """Leader-only. With a retained incremental base, folds new runs in and
-    persists every _STATS_PERSIST_SECONDS; otherwise (boot, repair due, new
-    game version, incremental disabled) runs the full walk and retains its
-    raw state as the new base. Returns entities persisted, 0 if nothing."""
-    coll = _snapshot_coll()
-    if not force_full and _INCREMENTAL_ENABLED and _USING_MONGO and _incr is None:
-        _load_stats_checkpoint()
-    if (
-        not force_full
-        and _INCREMENTAL_ENABLED
-        and _USING_MONGO
-        and _incr is not None
-        and _incr.get("last_key") is not None
-        and time.time() - _incr["last_full_ts"] < _STATS_REPAIR_SECONDS
-    ):
-        return _incremental_tick()
-
-    if not _INCREMENTAL_ENABLED:
-        meta = coll.find_one(
-            {"_id": "__meta__"}, {"built_at": 1, "snapshot_version": 1}
-        )
-        # Only honor the freshness skip for a snapshot this code version
-        # wrote. A stale writer keeps built_at young forever, which would
-        # otherwise pin the leader on an old-shape snapshot.
-        if (
-            meta
-            and meta.get("built_at")
-            and meta.get("snapshot_version") == SNAPSHOT_VERSION
-        ):
-            built = meta["built_at"]
-            if built.tzinfo is None:
-                built = built.replace(tzinfo=timezone.utc)
-            if (datetime.now(timezone.utc) - built).total_seconds() < (
-                _SNAPSHOT_REBUILD_SECONDS
-            ):
-                return 0  # snapshot still fresh
-
-    global _cache_snapshot_version
-    # A full walk builds a complete replacement, so the copy this process is
-    # already holding is dead weight for the walk's entire duration. On the
-    # dedicated rebuilder that copy is the whole snapshot (13.5k entities,
-    # ~1000 blob keys) which it never serves a request from, and carrying it
-    # alongside the walk's own allocations is what cgroup-OOM-killed the
-    # container 13 times on 2026-08-25 at 4.18GB anon-rss, only 30s in.
-    # Only the refresher instance reaches here (the API workers run with
-    # STATS_REFRESHER=off and never take the lease), so nothing being read
-    # by traffic is dropped.
-    _release_snapshot_for_full_walk()
-    global _full_walk_active
-    _full_walk_active = True
-    try:
-        cache, totals, baselines, bracket_meta = _build_cache_data(
-            stash=_INCREMENTAL_ENABLED
-        )
-    finally:
-        _full_walk_active = False
-    _t_persist = time.time()
-    _persist_snapshot(cache, totals, baselines, bracket_meta)
-    _persist_secs = time.time() - _t_persist
-    _apply_cache(cache, totals, baselines, bracket_meta)
-    _cache_snapshot_version = SNAPSHOT_VERSION
-    # Best-effort: the snapshot + cache are already committed above; this only
-    # appends the daily Score/Elo history and never raises into the rebuild.
-    _archive_metric_history()
-    logger.info(
-        "entity-stats snapshot rebuilt: %d entities across %d runs (persist %.1fs)",
-        len(cache),
-        totals["total_runs"],
-        _persist_secs,
-    )
-    if _INCREMENTAL_ENABLED and _USING_MONGO:
-        save_stats_checkpoint()
-    return len(cache)
 
 
 def global_totals() -> dict[str, int]:
@@ -3027,18 +2165,10 @@ def snapshot_loaded() -> bool:
 
 def snapshot_status() -> dict[str, Any]:
     """Cheap in-memory status so the UI can tell "no data" apart from
-    "warming up after a deploy". No Mongo round-trip: this gets hit by
-    every stats page while a rebuild runs."""
+    "warming up after a deploy". Lake-era: the only warm-up is the entity
+    overlay loading from the pulled artifacts."""
     return {
-        # Nothing loaded yet: a rebuild or first snapshot load is pending,
-        # and snapshot-backed endpoints are serving empty in the meantime.
         "building": not _cache,
-        # Serving an older-but-compatible snapshot while the current
-        # version rebuilds (post-deploy window).
-        "stale_version": bool(_cache)
-        and _cache_snapshot_version not in (None, SNAPSHOT_VERSION),
-        "version": _cache_snapshot_version,
-        "want_version": SNAPSHOT_VERSION,
         "built_at": _cache_built_at or None,
         "data_through": _data_through[0].isoformat()
         if _data_through and hasattr(_data_through[0], "isoformat")
@@ -3047,7 +2177,6 @@ def snapshot_status() -> dict[str, Any]:
     }
 
 
-_LAKE_ENTITY_SERVE = (os.environ.get("LAKE_ENTITY_STATS", "") or "").lower() == "serve"
 _lake_overlay_mtime = 0.0
 _lake_overlay_checked = 0.0
 
@@ -3055,12 +2184,9 @@ _lake_overlay_checked = 0.0
 def _maybe_overlay_lake_entities() -> None:
     """Overlay the ingest-built lake aggregates onto the snapshot cache:
     the all-bracket fields (picks/wins/by_character/reward metrics/Elos/
-    base-upg/act buckets) go lake-fresh while the bracket blocks keep
-    serving from the snapshot until they convert. No-op without
-    LAKE_ENTITY_STATS=serve or without a built store."""
+    base-upg/act buckets) come from the store each cycle; per-bracket
+    blocks fold from the cube at read time. No-op without a built store."""
     global _lake_overlay_mtime, _lake_overlay_checked
-    if not _LAKE_ENTITY_SERVE:
-        return
     now = time.time()
     if now - _lake_overlay_checked < 30:
         return
@@ -3096,14 +2222,11 @@ def _maybe_overlay_lake_entities() -> None:
 
 
 def _maybe_rebuild() -> None:
-    """Kick a background (re)load of the cache when it's stale. Never blocks:
-    the caller reads whatever is in memory right now. The load used to run
-    synchronously on the triggering request thread, which meant the first
-    stats request after a worker boot — and one unlucky request every
-    _SNAPSHOT_LOAD_SECONDS per worker, forever — hung for the full multi-
-    thousand-doc snapshot read."""
+    """Refresh the in-memory entity cache. On Mongo (prod) the lake overlay
+    is the only source — the frozen snapshot is gone. The SQLite dev path
+    keeps its background local build."""
     _maybe_overlay_lake_entities()
-    if _USING_MONGO and _snapshot_boot_disabled():
+    if _USING_MONGO:
         return
     global _building
     age = time.time() - _cache_built_at
@@ -3119,33 +2242,17 @@ def _maybe_rebuild() -> None:
     def _run() -> None:
         global _building
         try:
-            # On the Mongo path, request threads NEVER walk the run files.
-            # They only load the shared snapshot the leader refresher builds.
-            # If the snapshot doesn't exist yet (cold start before the first
-            # leader cycle), we leave the cache as-is and let the next read
-            # pick it up once the refresher has written it — a few seconds of
-            # an empty tier list beats every worker pegging a CPU.
-            if _USING_MONGO:
-                try:
-                    _load_snapshot()
-                except Exception as e:
-                    logger.warning("entity-stats snapshot load failed: %s", e)
-                return
-            # SQLite path: no shared snapshot, build locally.
             _build_cache()
         finally:
             with _lock:
                 _building = False
 
-    threading.Thread(
-        target=_run, name="entity-stats-snapshot-load", daemon=True
-    ).start()
+    threading.Thread(target=_run, name="entity-stats-local-build", daemon=True).start()
 
 
 def kick_snapshot_load() -> None:
-    """Start the first snapshot load in the background. Called at worker
-    startup so the load runs during the deploy window instead of starting
-    on (and delaying) the first visitor's stats request."""
+    """Warm the entity cache at worker startup (the lake overlay on prod,
+    the local build on dev) instead of on the first visitor's request."""
     _maybe_rebuild()
 
 
@@ -3289,7 +2396,7 @@ def get_recent_stat_versions() -> list[str]:
     the old blob can still slice stays reachable."""
     _maybe_rebuild()
     merged = list(_recent_stat_versions)
-    if _LAKE_ENTITY_SERVE:
+    if True:
         try:
             from . import lake_stats
 
@@ -3337,7 +2444,7 @@ def get_encounter_stats(
     # Lake path: the ingest-built encounter store carries the same finalized
     # per-bracket shape, refreshed every cycle — the snapshot below froze
     # when the rebuilder retired. Missing store or key falls through.
-    if _LAKE_ENTITY_SERVE:
+    if True:
         try:
             from . import lake_stats
 
@@ -3428,7 +2535,7 @@ def get_all_entity_scores(
     # mode with the other axes. Elo comes from the all-runs store (it isn't
     # refit per bracket in the lake). Unknown brackets or a missing cube
     # fall through to the snapshot buckets below.
-    if bracket and _LAKE_ENTITY_SERVE:
+    if bracket:
         try:
             from . import lake_stats
 
@@ -3608,7 +2715,7 @@ def get_entity_metrics_table(
     # never materialized for current versions. Character views keep the
     # snapshot path (the cube doesn't track per-character splits yet), and
     # a missing cube or unknown bracket falls through unchanged.
-    if bracket != "all" and character is None and _LAKE_ENTITY_SERVE:
+    if bracket != "all" and character is None:
         try:
             from . import lake_stats
 
@@ -4062,7 +3169,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     # fossil where present (the cube has no per-character cells), and the
     # version keys come from the cube so new patches appear without a
     # snapshot rebuild. Skill brackets read the store's per-bracket Elo.
-    if _LAKE_ENTITY_SERVE:
+    if True:
         try:
             from . import lake_stats
 

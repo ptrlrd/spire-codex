@@ -1885,65 +1885,6 @@ def _pick_stalest_keys(ages: dict[str, datetime | None], k: int) -> list[str]:
     return sorted(ages, key=_age)[:k]
 
 
-@_instrument("refresh_stats_summary", collection="stats_summary")
-def refresh_stats_summary() -> int:
-    """Compute the hot filter combos plus a rotating slice of the ascension
-    tier and write them to stats_summary. Returns count of docs written.
-    Called by the leader-only loop."""
-    summary = _summary_coll()
-
-    # 120s per combo was calibrated to a smaller corpus; at 1.4M runs the
-    # heavy combos time out and write nothing (2026-08-26: 15 minutes of
-    # aggregation, zero docs). The refresher runs off-request, so a long
-    # budget only costs the cron cycle, never a user.
-    max_time = int(os.environ.get("STATS_SUMMARY_MAX_TIME_MS", "") or 600_000)
-
-    def _refresh_one(filters: dict) -> int:
-        try:
-            result = get_stats(**filters, max_time_ms=max_time)
-            key = _filter_key(**filters)
-            doc = {**result, "_id": key, "updated_at": datetime.now(timezone.utc)}
-            summary.replace_one({"_id": key}, doc, upsert=True)
-            if not filters:
-                seed_stats_counters(result)
-            # Proactive warm: write the fresh result straight into Redis so
-            # readers hit the cache instead of Mongo. Refreshed every cycle;
-            # the long TTL is only a safety net if this loop dies.
-            app_cache.set_json(
-                app_cache.stats_key(**filters),
-                result,
-                ttl_seconds=app_cache.WARM_TTL_SECONDS,
-            )
-            return 1
-        except Exception:
-            # Best-effort; if one filter combo fails, keep going.
-            return 0
-
-    written = 0
-    for filters in HOT_FILTER_COMBOS:
-        written += _refresh_one(filters)
-
-    # Ascension tier: refresh the stalest K this cycle (issue #868 — these
-    # can never compute on the request path, so the rotation is their only
-    # source of freshness).
-    if os.environ.get("STATS_ASCENSION_TIER", "on").strip().lower() in (
-        "off",
-        "0",
-        "false",
-    ):
-        return written
-    keyed = {_filter_key(**f): f for f in ASCENSION_FILTER_COMBOS}
-    ages: dict[str, datetime | None] = dict.fromkeys(keyed)
-    try:
-        for doc in summary.find({"_id": {"$in": list(keyed)}}, {"updated_at": 1}):
-            ages[doc["_id"]] = doc.get("updated_at")
-    except Exception:
-        pass
-    for key in _pick_stalest_keys(ages, _ASCENSION_COMBOS_PER_CYCLE):
-        written += _refresh_one(keyed[key])
-    return written
-
-
 def _stats_counters_coll():
     return _get_collection().database["stats_counters"]
 

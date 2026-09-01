@@ -5,10 +5,6 @@ name: spire-codex
 x-shared-env: &shared-env
   DATA_DIR: /data
   BETA_DATA_DIR: /data-beta
-  # Parallelize the entity-stats snapshot rebuild across N cores. 1 = off
-  # (the serial ~80min walk); capped at the box's CPU count. Set the value
-  # in the box .env after validating with scripts/validate_parallel_rebuild.py.
-  ENTITY_STATS_REBUILD_WORKERS: ${ENTITY_STATS_REBUILD_WORKERS:-1}
   # Optional cap on how many release versions keep their own per-version
   # stats bucket. Empty = code default (unbounded: every release version
   # with a run stays in the stats-page version dropdowns). Setting N drops
@@ -16,22 +12,9 @@ x-shared-env: &shared-env
   # /api/runs/list version filter, in exchange for fewer per-version Elo
   # fits and blob shards per rebuild/persist.
   ENTITY_STATS_RECENT_VERSIONS_N: ${ENTITY_STATS_RECENT_VERSIONS_N:-}
-  # Lake migration flags: "serve" points /api/runs/community-stats at the
-  # parquet lake; LAKE_STATS_SHADOW=on logs lake-vs-snapshot drift each
-  # summary cycle. Set values in the box .env.
-  LAKE_COMMUNITY_STATS: ${LAKE_COMMUNITY_STATS:-}
-  LAKE_STATS_SHADOW: ${LAKE_STATS_SHADOW:-}
-  LAKE_ENTITY_STATS: ${LAKE_ENTITY_STATS:-}
-  # off = workers skip the frozen snapshot load (~1.1GB per worker).
-  ENTITY_SNAPSHOT_LOAD: ${ENTITY_SNAPSHOT_LOAD:-on}
   # on = stats_core merges the lake-built deep item tables (deep_tables.json)
   # into the summary docs; off keeps the legacy tables in place.
   LAKE_DEEP_TABLES: ${LAKE_DEEP_TABLES:-}
-  # How often the leader may rerun the heavy walk (seconds). Default 7200
-  # (2h). With the parallel rebuild on, lower it for fresher public numbers,
-  # but keep it well above the observed walk time so the box isn't always
-  # mid-rebuild. Floored at 300s in code.
-  ENTITY_STATS_REBUILD_INTERVAL_SECONDS: ${ENTITY_STATS_REBUILD_INTERVAL_SECONDS:-7200}
   # Startup files -> run_blobs backfill on the first lease cycle after
   # boot; only the refresh-lease holder runs it. Set to off to skip (e.g.
   # while diagnosing Mongo load).
