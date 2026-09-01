@@ -236,7 +236,7 @@ GROUP BY 1, 2
 """
 
 _CUBE_MEMBERSHIP_SQL = """
-SELECT c.cell, m.{col}, coalesce(el.character, ''),
+SELECT c.cell, m.{col}, coalesce(c.character, ''),
   count(*), count(*) FILTER (c.win)
 FROM (
   SELECT DISTINCT run_hash, {col}
@@ -244,7 +244,6 @@ FROM (
   WHERE {col} IS NOT NULL AND {col} <> ''
 ) m
 JOIN cells c ON m.run_hash = c.run_hash
-JOIN eligible el ON m.run_hash = el.run_hash
 GROUP BY 1, 2, 3
 """
 
@@ -763,23 +762,12 @@ def reward_pair_counts_by_tier(
     try:
         _ensure_choice_rows(con)
         _ensure_run_tiers(con)
-        # Screen-level lists instead of the 50M-row pairwise self-join (the
-        # cycle's spill heavyweight): one grouped pass builds each screen's
-        # picked/passed card lists, and two lateral unnests expand them to
-        # pairs. A real table in the scratch db, same reasoning as
-        # choice_rows; dropped at the end, and a crash leaves it for the
-        # next cycle's scratch reset.
-        con.execute(
-            """
-            CREATE OR REPLACE TABLE pair_screens AS
-            SELECT t.a10, t.band, t.ver,
-              list(c.cid) FILTER (c.picked) AS picks,
-              list(c.cid) FILTER (NOT c.picked) AS passes
-            FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
-            GROUP BY c.run_hash, c.act, c.floor_idx, c.pidx,
-              t.a10, t.band, t.ver
-            """
-        )
+        # Relational form: a pick beats each pass on its own screen, so a
+        # 1-to-K join on the screen key streams straight into a compact
+        # count() hash. The previous per-screen list build (pair_screens)
+        # pinned list-aggregate state for every screen at once and OOM'd
+        # the 4.5GB cap on the first full-corpus run (2026-09-01); plain
+        # count aggregates and hash joins spill, lists don't.
         tiers: dict[tuple[int, int], dict[tuple[str, str], int]] = {}
 
         def cell(a10, band, ver):
@@ -787,33 +775,41 @@ def reward_pair_counts_by_tier(
 
         for a10, band, ver, w, lo, n in con.execute(
             """
-            SELECT s.a10, s.band, s.ver, wp.w, lp.l, count(*)
-            FROM pair_screens s,
-              LATERAL (SELECT unnest(s.picks) AS w) wp,
-              LATERAL (SELECT unnest(s.passes) AS l) lp
-            WHERE wp.w <> lp.l
+            SELECT t.a10, t.band, t.ver, p.cid, q.cid, count(*)
+            FROM choice_rows p
+            JOIN choice_rows q
+              ON q.run_hash = p.run_hash AND q.act = p.act
+             AND q.floor_idx = p.floor_idx AND q.pidx = p.pidx
+            JOIN run_tiers t ON t.run_hash = p.run_hash
+            WHERE p.picked AND NOT q.picked AND p.cid <> q.cid
             GROUP BY 1, 2, 3, 4, 5
             """
         ).fetchall():
             cell(a10, band, ver)[(w, lo)] = n
         for a10, band, ver, cid, n in con.execute(
             """
-            SELECT s.a10, s.band, s.ver, wp.w, count(*)
-            FROM pair_screens s, LATERAL (SELECT unnest(s.picks) AS w) wp
+            SELECT t.a10, t.band, t.ver, c.cid, count(*)
+            FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
+            WHERE c.picked
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
             cell(a10, band, ver)[(cid, SKIP_ID)] = n
         for a10, band, ver, cid, n in con.execute(
             """
-            SELECT s.a10, s.band, s.ver, lp.l, count(*)
-            FROM pair_screens s, LATERAL (SELECT unnest(s.passes) AS l) lp
-            WHERE len(coalesce(s.picks, [])) = 0
+            SELECT t.a10, t.band, t.ver, c.cid, count(*)
+            FROM choice_rows c
+            JOIN run_tiers t ON t.run_hash = c.run_hash
+            ANTI JOIN (
+              SELECT DISTINCT run_hash, act, floor_idx, pidx
+              FROM choice_rows WHERE picked
+            ) ps ON c.run_hash = ps.run_hash AND c.act = ps.act
+                AND c.floor_idx = ps.floor_idx AND c.pidx = ps.pidx
+            WHERE NOT c.picked
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
             cell(a10, band, ver)[(SKIP_ID, cid)] = n
-        con.execute("DROP TABLE IF EXISTS pair_screens")
         return tiers
     finally:
         if own:

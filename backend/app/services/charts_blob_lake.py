@@ -109,8 +109,21 @@ def _history_from_nested(floors) -> list[list[dict]]:
     return acts
 
 
+# Hash-bucketed: each pass aggregates the nested lists for 1/N of the
+# runs, bounding the pinned list-aggregate state that OOM'd the 4.5GB cap
+# on the first full-corpus run (2026-09-01) — list aggregation can't
+# spill. Joining chunk_cells inside every CTE also stops the CTEs from
+# building lists for ineligible runs the final join would have dropped.
+_BUCKETS = 8
+
 _NESTED_SQL = """
-    WITH fl AS (
+    WITH chunk_cells AS (
+      SELECT run_hash, character, win, was_abandoned, player_count,
+        played_at, submitted_at, cell
+      FROM cells
+      WHERE hash(run_hash) % {buckets} = {bucket}
+    ),
+    fl AS (
       SELECT f.run_hash,
         list(struct_pack(
           act := f.act, floor_idx := f.floor_idx, room_type := f.room_type,
@@ -124,28 +137,35 @@ _NESTED_SQL = """
           ) FOR p IN f.players]
         ) ORDER BY f.act, f.floor_idx) AS floors
       FROM read_parquet('{lake}/floors.parquet') f
+      JOIN chunk_cells c ON f.run_hash = c.run_hash
       GROUP BY 1
     ),
     dk AS (
-      SELECT run_hash, list(struct_pack(pidx := player_idx, card := card,
-        fa := floor_added, ench := enchantment)) AS deck
-      FROM read_parquet('{lake}/deck.parquet') GROUP BY 1
+      SELECT d.run_hash, list(struct_pack(pidx := d.player_idx,
+        card := d.card, fa := d.floor_added, ench := d.enchantment)) AS deck
+      FROM read_parquet('{lake}/deck.parquet') d
+      JOIN chunk_cells c ON d.run_hash = c.run_hash
+      GROUP BY 1
     ),
     rl AS (
-      SELECT run_hash, list(struct_pack(pidx := player_idx, relic := relic))
-        AS relics
-      FROM read_parquet('{lake}/relics.parquet') GROUP BY 1
+      SELECT r.run_hash, list(struct_pack(pidx := r.player_idx,
+        relic := r.relic)) AS relics
+      FROM read_parquet('{lake}/relics.parquet') r
+      JOIN chunk_cells c ON r.run_hash = c.run_hash
+      GROUP BY 1
     ),
     pt AS (
-      SELECT run_hash, list(struct_pack(pidx := player_idx, potion := potion))
-        AS potions
-      FROM read_parquet('{lake}/potions.parquet') GROUP BY 1
+      SELECT p.run_hash, list(struct_pack(pidx := p.player_idx,
+        potion := p.potion)) AS potions
+      FROM read_parquet('{lake}/potions.parquet') p
+      JOIN chunk_cells c ON p.run_hash = c.run_hash
+      GROUP BY 1
     )
     SELECT c.run_hash, coalesce(c.character, ''), coalesce(c.win, false),
       coalesce(c.was_abandoned, false), coalesce(c.player_count, 1),
       coalesce(c.played_at, c.submitted_at), c.cell,
       fl.floors, dk.deck, rl.relics, pt.potions
-    FROM cells c
+    FROM chunk_cells c
     LEFT JOIN fl USING (run_hash)
     LEFT JOIN dk USING (run_hash)
     LEFT JOIN rl USING (run_hash)
@@ -164,36 +184,41 @@ def build_charts_blob() -> dict | None:
         vset = set(versions)
         acc = charts_stats.new_accumulator(versions)
         bracket_cache: dict[str, list[str]] = {}
-        res = con.execute(_NESTED_SQL.format(lake=LAKE_DIR))
         n = 0
-        while True:
-            rows = res.fetchmany(500)
-            if not rows:
-                break
-            for row in rows:
-                _h, ch, win, ab, pc, played, cellv = row[:7]
-                floors, deck, relics, potions = row[7:]
-                brs = bracket_cache.get(cellv)
-                if brs is None:
-                    brs = _run_brackets(cellv, vset)
-                    bracket_cache[cellv] = brs
-                blob = {
-                    "map_point_history": _history_from_nested(floors or []),
-                    "players": _players_from_nested(
-                        deck or [], relics or [], potions or []
-                    ),
-                    "was_abandoned": bool(ab),
-                }
-                charts_stats.accumulate(
-                    acc,
-                    blob,
-                    brackets=brs,
-                    is_win=bool(win),
-                    character=ch,
-                    player_count=int(pc),
-                    played=played if isinstance(played, datetime) else None,
-                )
-                n += 1
+        for bucket in range(_BUCKETS):
+            res = con.execute(
+                _NESTED_SQL.format(lake=LAKE_DIR, buckets=_BUCKETS, bucket=bucket)
+            )
+            while True:
+                # Each row is one complete nested run (~50 floor structs);
+                # 500 of those in flight was its own memory spike.
+                rows = res.fetchmany(64)
+                if not rows:
+                    break
+                for row in rows:
+                    _h, ch, win, ab, pc, played, cellv = row[:7]
+                    floors, deck, relics, potions = row[7:]
+                    brs = bracket_cache.get(cellv)
+                    if brs is None:
+                        brs = _run_brackets(cellv, vset)
+                        bracket_cache[cellv] = brs
+                    blob = {
+                        "map_point_history": _history_from_nested(floors or []),
+                        "players": _players_from_nested(
+                            deck or [], relics or [], potions or []
+                        ),
+                        "was_abandoned": bool(ab),
+                    }
+                    charts_stats.accumulate(
+                        acc,
+                        blob,
+                        brackets=brs,
+                        is_win=bool(win),
+                        character=ch,
+                        player_count=int(pc),
+                        played=played if isinstance(played, datetime) else None,
+                    )
+                    n += 1
     finally:
         con.close()
     if not n:
