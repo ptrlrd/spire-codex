@@ -24,6 +24,51 @@ def _utc(ts: float) -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ts))
 
 
+def _sidecar_digest() -> str:
+    """Content hash of the two mutable sidecars, ignoring gzip headers
+    (they embed a timestamp, so identical content still differs on bytes)."""
+    import gzip
+    import hashlib
+
+    h = hashlib.sha256()
+    for name in ("excluded_current.jsonl.gz", "run_scalars_current.jsonl.gz"):
+        try:
+            with gzip.open(LAKE / name, "rb") as f:
+                for chunk in iter(lambda: f.read(1 << 20), b""):
+                    h.update(chunk)
+        except OSError:
+            h.update(b"missing")
+    return h.hexdigest()
+
+
+def _no_source_change(rows_added: int, generation_id: str, t0: float) -> bool:
+    """True when this cycle can be skipped outright: no new runs and no
+    hidden/deleted/username mutations since the last completed cycle. The
+    heavy rebuild would reproduce the exact artifacts already serving."""
+    state_path = LAKE / "change_state.json"
+    digest = _sidecar_digest()
+    prev = None
+    try:
+        prev = json.loads(state_path.read_text()).get("sidecar_digest")
+    except Exception:
+        pass
+    # Recorded every cycle (even ones that run) so the comparison is always
+    # against the last extract, not the last skip.
+    state_path.write_text(json.dumps({"sidecar_digest": digest}))
+    if rows_added or prev != digest:
+        return False
+    record = {
+        "generation_id": generation_id,
+        "cycle_started_at": _utc(t0),
+        "skipped": "no source change",
+        "complete": True,
+        "published_at": _utc(time.time()),
+    }
+    with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, separators=(",", ":")) + "\n")
+    return True
+
+
 def main() -> None:
     # One ingest at a time: an overlapping cron start would race the shared
     # scratch DB and double the box's memory pressure. The lock lives for
@@ -57,6 +102,13 @@ def main() -> None:
     try:
         extracted = extract.main() or (0, 0)
         t_extract = time.time()
+        if _no_source_change(extracted[0], generation_id, t0):
+            print(
+                f"generation {generation_id} skipped: no source change since "
+                "the last cycle",
+                flush=True,
+            )
+            return
 
         import duckdb
 
