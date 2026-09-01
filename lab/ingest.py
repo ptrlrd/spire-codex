@@ -159,24 +159,65 @@ def main() -> None:
 
     from app.services import lake_stats
 
+    def _mem_line(name: str) -> None:
+        # The cgroup number is what the kernel kills on; the DuckDB cap only
+        # bounds its buffer pool, and a cycle sat at 6.985/7GiB while DuckDB
+        # reported 4.1GiB (2026-09-01).
+        import resource
+
+        peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
+        rss = cg = "?"
+        try:
+            for line in open("/proc/self/status"):
+                if line.startswith("VmRSS:"):
+                    rss = int(line.split()[1]) // 1024
+        except OSError:
+            pass
+        try:
+            cg = int(open("/sys/fs/cgroup/memory.current").read()) // (1 << 20)
+        except (OSError, ValueError):
+            pass
+        print(
+            f"mem after {name}: rss={rss}MB peak_rss={peak}MB cgroup={cg}MB",
+            flush=True,
+        )
+
     try:
         session = lake_stats.prepare_build_session()
         session.close()
         print("build session prepared (pfloors materialized)", flush=True)
         _mark("prepare_session")
     except Exception as e:
-        print(f"prepare_session failed: {e}", flush=True)
+        # Every store stage reads the session's pfloors; without it they
+        # would each fail in turn and the cycle would still reach publish.
+        record = {
+            "generation_id": generation_id,
+            "cycle_started_at": _utc(t0),
+            "failed_stage": "prepare_session",
+            "error": str(e)[:500],
+            "complete": False,
+            "published_at": _utc(time.time()),
+        }
+        with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, separators=(",", ":")) + "\n")
+        print(f"generation {generation_id} FAILED in prepare_session: {e}", flush=True)
+        sys.exit(1)
+    _mem_line("prepare_session")
 
     # Isolated per stage: one store OOMing must not skip the independent
     # stores after it (a charts OOM used to swallow the metric-history
     # append and report itself as "community payload build failed").
+    failed_stages: dict[str, str] = {}
+
     def _stage(name, label, fn):
         try:
             out = fn()
             print(label(out) if callable(label) else label, flush=True)
             _mark(name)
         except Exception as e:
+            failed_stages[name] = str(e)[:200]
             print(f"{name} failed: {e}", flush=True)
+        _mem_line(name)
 
     from app.services import charts_blob_lake
     from app.services.run_entity_stats import (
@@ -296,6 +337,7 @@ def main() -> None:
         "build_sql_seconds": round(t_build - t_extract, 1),
         "stores_seconds": round(published - t_build, 1),
         "stage_seconds": stage_seconds,
+        "failed_stages": failed_stages,
         "total_seconds": round(published - t0, 1),
         "profiles_refreshed": profiles,
         "purge_ok": purge_ok,
@@ -328,7 +370,16 @@ def main() -> None:
         tmp = LAKE / "generation.json.tmp"
         tmp.write_text(json.dumps(manifest, indent=1))
         tmp.replace(LAKE / "generation.json")
-        print(f"generation {generation_id} published", flush=True)
+        if failed_stages:
+            # Non-required stores keep their previous artifact on failure
+            # (the fallback ruling); say so where the log is read.
+            print(
+                f"generation {generation_id} published with FAILED stages: "
+                + ", ".join(failed_stages),
+                flush=True,
+            )
+        else:
+            print(f"generation {generation_id} published", flush=True)
         # A failed publish doesn't void the local cycle; the puller's age
         # warning is the staleness alarm.
         import os
