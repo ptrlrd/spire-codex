@@ -159,32 +159,78 @@ def main() -> None:
 
     from app.services import lake_stats
 
-    def _mem_line(name: str) -> None:
-        # The cgroup number is what the kernel kills on; the DuckDB cap only
-        # bounds its buffer pool, and a cycle sat at 6.985/7GiB while DuckDB
-        # reported 4.1GiB (2026-09-01).
-        import resource
+    def _stage_memory(name: str, fn):
+        """Run fn while a sampler tracks peak RSS, cgroup usage (what the
+        kernel kills on), DuckDB-tracked memory, and spill. ru_maxrss is
+        process-lifetime, so an early big stage would hide every later
+        stage's own peak; sampling at 0.5s is what makes the per-stage
+        numbers real (a cycle sat at 6.985/7GiB while DuckDB reported
+        4.1GiB, 2026-09-01)."""
+        import os
+        import threading
 
-        peak = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss // 1024
-        rss = cg = "?"
+        page = os.sysconf("SC_PAGE_SIZE")
+        peak = {"rss": 0, "cgroup": 0, "duckdb": 0, "temp": 0, "err": ""}
+        stop = threading.Event()
+
+        def sample() -> None:
+            try:
+                with open("/proc/self/statm") as f:
+                    peak["rss"] = max(peak["rss"], int(f.read().split()[1]) * page)
+            except OSError:
+                pass
+            try:
+                with open("/sys/fs/cgroup/memory.current") as f:
+                    peak["cgroup"] = max(peak["cgroup"], int(f.read()))
+            except (OSError, ValueError):
+                pass
+
+        def watch() -> None:
+            import duckdb
+
+            mon = None
+            try:
+                mon = duckdb.connect("/lake/build.duckdb")
+                while not stop.wait(0.5):
+                    sample()
+                    mem, temp = mon.execute(
+                        "SELECT coalesce(sum(memory_usage_bytes), 0),"
+                        " coalesce(sum(temporary_storage_bytes), 0)"
+                        " FROM duckdb_memory()"
+                    ).fetchone()
+                    peak["duckdb"] = max(peak["duckdb"], int(mem))
+                    peak["temp"] = max(peak["temp"], int(temp))
+            except Exception as e:
+                peak["err"] = repr(e)[:120]
+                while not stop.wait(0.5):
+                    sample()
+            finally:
+                if mon is not None:
+                    mon.close()
+
+        t = threading.Thread(target=watch, name=f"mem-{name}", daemon=True)
+        t.start()
         try:
-            for line in open("/proc/self/status"):
-                if line.startswith("VmRSS:"):
-                    rss = int(line.split()[1]) // 1024
-        except OSError:
-            pass
-        try:
-            cg = int(open("/sys/fs/cgroup/memory.current").read()) // (1 << 20)
-        except (OSError, ValueError):
-            pass
-        print(
-            f"mem after {name}: rss={rss}MB peak_rss={peak}MB cgroup={cg}MB",
-            flush=True,
-        )
+            return fn()
+        finally:
+            stop.set()
+            t.join()
+            mib = 1 << 20
+            print(
+                f"mem {name}: rss_peak={peak['rss'] // mib}MB"
+                f" duckdb_peak={peak['duckdb'] // mib}MB"
+                f" cgroup_peak={peak['cgroup'] // mib}MB"
+                f" spill_peak={peak['temp'] // mib}MB"
+                + (f" probe_error={peak['err']}" if peak["err"] else ""),
+                flush=True,
+            )
 
     try:
-        session = lake_stats.prepare_build_session()
-        session.close()
+
+        def _prepare() -> None:
+            lake_stats.prepare_build_session().close()
+
+        _stage_memory("prepare_session", _prepare)
         print("build session prepared (pfloors materialized)", flush=True)
         _mark("prepare_session")
     except Exception as e:
@@ -202,7 +248,6 @@ def main() -> None:
             f.write(json.dumps(record, separators=(",", ":")) + "\n")
         print(f"generation {generation_id} FAILED in prepare_session: {e}", flush=True)
         sys.exit(1)
-    _mem_line("prepare_session")
 
     # Isolated per stage: one store OOMing must not skip the independent
     # stores after it (a charts OOM used to swallow the metric-history
@@ -211,18 +256,26 @@ def main() -> None:
 
     def _stage(name, label, fn):
         try:
-            out = fn()
+            out = _stage_memory(name, fn)
             print(label(out) if callable(label) else label, flush=True)
             _mark(name)
         except Exception as e:
             failed_stages[name] = str(e)[:200]
             print(f"{name} failed: {e}", flush=True)
-        _mem_line(name)
 
-    from app.services import charts_blob_lake
-    from app.services.run_entity_stats import (
-        archive_entity_metric_history_from_lake,
-    )
+    # Imported lazily inside their stages: a module import failure here
+    # would skip every stage below it.
+    def _charts_blob():
+        from app.services import charts_blob_lake
+
+        return charts_blob_lake.build_charts_blob()
+
+    def _metric_history():
+        from app.services.run_entity_stats import (
+            archive_entity_metric_history_from_lake,
+        )
+
+        return archive_entity_metric_history_from_lake()
 
     _stage(
         "community_payload",
@@ -239,16 +292,16 @@ def main() -> None:
         lambda n: f"deep tables stored ({n} combos)",
         lake_stats.build_deep_tables,
     )
-    _stage("charts_blob", "charts blob stored", charts_blob_lake.build_charts_blob)
+    _stage("charts_blob", "charts blob stored", _charts_blob)
     _stage(
         "metric_history",
         lambda n: f"metric history archived ({n} rows)",
-        archive_entity_metric_history_from_lake,
+        _metric_history,
     )
     try:
         lake_stats.cleanup_build_session()
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"build session cleanup failed: {e}", flush=True)
     # The rebuilder is retired, so the materialized summaries that fed the
     # home overview and the leaderboards move here: plain Mongo aggregations
     # plus a Redis warm, no snapshot involved.
