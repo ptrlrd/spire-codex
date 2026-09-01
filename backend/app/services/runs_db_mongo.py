@@ -2056,13 +2056,30 @@ def refresh_leaderboard_summary() -> int:
     the leader-only loop alongside refresh_stats_summary."""
     summary = _leaderboard_summary_coll()
     written = 0
+    # One lake pass for all combos (seconds) instead of 24 Mongo
+    # aggregations (~10 minutes); per-combo live fallback keeps the boards
+    # fresh when the lake is unavailable.
+    boards: dict[str, dict] | None = None
+    try:
+        from . import lake_stats
+
+        boards = lake_stats.leaderboard_boards()
+    except Exception:
+        logger.warning("lake leaderboard boards failed", exc_info=True)
     for combo in HOT_LEADERBOARD_COMBOS:
         try:
             category = combo.get("category", "fastest")
             character = combo.get("character")
             players = combo.get("players")
             game_mode = combo.get("game_mode")
-            result = _leaderboard_live(
+            result = (boards or {}).get(
+                _leaderboard_key(
+                    category=category,
+                    character=character,
+                    players=players,
+                    game_mode=game_mode,
+                )
+            ) or _leaderboard_live(
                 category=category,
                 character=character,
                 players=players,

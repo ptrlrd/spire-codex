@@ -2284,6 +2284,123 @@ def build_deep_tables() -> int:
     return len(combos)
 
 
+def leaderboard_boards() -> dict[str, dict] | None:
+    """Every HOT leaderboard combo computed from the lake in one pass over
+    a shared winning-runs table (the Mongo aggregation took ~10 minutes per
+    cycle; this takes seconds). Row shape mirrors _row_to_dict; the total
+    mirrors the legacy 10k count cap. None when the lake is incomplete."""
+    from .runs_db_mongo import (
+        HOT_LEADERBOARD_COMBOS,
+        OFFICIAL_CHARACTERS,
+        _leaderboard_key,
+    )
+
+    if not available():
+        return None
+    con = _connect(build=True)
+    try:
+        con.execute(
+            f"""
+            CREATE OR REPLACE TEMP TABLE lb AS
+            SELECT r.run_hash, upper(r.character) AS character,
+              coalesce(r.ascension, 0)::INT AS ascension,
+              lower(coalesce(r.game_mode, 'standard')) AS game_mode,
+              r.run_time, coalesce(r.player_count, 1)::INT AS player_count,
+              s.floors_reached, s.deck_size, s.relic_count, s.username,
+              r.submitted_at, r.build_id,
+              coalesce(r.was_abandoned, false) AS was_abandoned
+            FROM read_parquet('{LAKE_DIR}/runs.parquet') r
+            LEFT JOIN read_parquet('{LAKE_DIR}/run_scalars.parquet') s
+              USING (run_hash)
+            ANTI JOIN read_parquet('{LAKE_DIR}/excluded.parquet') x
+              ON r.run_hash = x.run_hash
+            WHERE coalesce(try_cast(r.win AS BOOLEAN), false)
+              AND r.ascension BETWEEN 0 AND 10
+            """
+        )
+        cols = (
+            "run_hash, character, ascension, game_mode, run_time,"
+            " floors_reached, deck_size, relic_count, username, submitted_at,"
+            " build_id, was_abandoned"
+        )
+        out: dict[str, dict] = {}
+        for combo in HOT_LEADERBOARD_COMBOS:
+            cat = combo.get("category", "fastest")
+            ch, pl, gm = (
+                combo.get("character"),
+                combo.get("players"),
+                combo.get("game_mode"),
+            )
+            where: list[str] = []
+            args: list = []
+            if ch:
+                where.append("character = ?")
+                args.append(ch.upper())
+            else:
+                ph = ", ".join("?" for _ in OFFICIAL_CHARACTERS)
+                where.append(f"character IN ({ph})")
+                args.extend(OFFICIAL_CHARACTERS)
+            if pl in ("single", "1"):
+                where.append("player_count = 1")
+            elif pl in ("2", "3"):
+                where.append("player_count = ?")
+                args.append(int(pl))
+            elif pl == "4":
+                where.append("player_count >= 4")
+            elif pl == "multi":
+                where.append("player_count > 1")
+            if gm:
+                where.append("game_mode = ?")
+                args.append(gm)
+            wsql = " AND ".join(where)
+            order = (
+                "ascension DESC, run_time ASC"
+                if cat == "highest_ascension"
+                else "run_time ASC"
+            )
+            rows = con.execute(
+                f"SELECT {cols} FROM lb WHERE {wsql} ORDER BY {order} LIMIT 50",
+                args,
+            ).fetchall()
+            total = min(
+                con.execute(f"SELECT count(*) FROM lb WHERE {wsql}", args).fetchone()[
+                    0
+                ],
+                10_000,
+            )
+            runs = [
+                {
+                    "run_hash": r[0],
+                    "character": r[1],
+                    "win": 1,
+                    "was_abandoned": int(bool(r[11])),
+                    "ascension": r[2],
+                    "game_mode": r[3],
+                    "run_time": r[4],
+                    "floors_reached": r[5],
+                    "deck_size": r[6],
+                    "relic_count": r[7],
+                    "username": r[8],
+                    "submitted_at": r[9].isoformat() if r[9] is not None else None,
+                    "build_id": r[10],
+                }
+                for r in rows
+            ]
+            out[
+                _leaderboard_key(category=cat, character=ch, players=pl, game_mode=gm)
+            ] = {
+                "runs": runs,
+                "total": total,
+                "page": 1,
+                "per_page": 50,
+                "total_pages": (total + 49) // 50,
+                "category": cat,
+            }
+        return out
+    finally:
+        con.close()
+
+
 def deep_tables_by_key() -> dict[str, dict]:
     """{summary-doc key: tables} from the stored artifact; {} when absent."""
     import json as _json
