@@ -95,7 +95,6 @@ SELECT r.run_hash, p.i AS player_idx,
 FROM raw r,
   LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
   LATERAL (SELECT unnest(p.u.deck) AS u) c
-ORDER BY 1
 ) TO '/lake/deck.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Location-level table (one row per visited map point, players kept as a
@@ -106,15 +105,12 @@ SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx,
   lower(loc.u.map_point_type) AS map_point_type,
   loc.u.player_stats AS players,
   [x.model_id FOR x IN loc.u.rooms] AS room_models,
-  -- First-room fields + run_hash ordering: the charts-blob builder streams
-  -- this file in one pass and needs each run's floors contiguous.
   lower(loc.u.rooms[1].room_type) AS room_type,
   loc.u.rooms[1].model_id AS room_model,
   loc.u.rooms[1].turns_taken AS room_turns
 FROM raw r,
   LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
   LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc
-ORDER BY 1, 2, 3
 ) TO '/lake/floors.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 COPY (
@@ -125,7 +121,6 @@ SELECT r.run_hash, p.i AS player_idx,
 FROM raw r,
   LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
   LATERAL (SELECT unnest(p.u.relics) AS u) rel
-ORDER BY 1
 ) TO '/lake/relics.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 COPY (
@@ -136,7 +131,6 @@ SELECT r.run_hash, p.i AS player_idx,
 FROM raw r,
   LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
   LATERAL (SELECT unnest(p.u.potions) AS u) pot
-ORDER BY 1
 ) TO '/lake/potions.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Shop-shelf potion offers only (a combat-drop "pick rate" measures slot
