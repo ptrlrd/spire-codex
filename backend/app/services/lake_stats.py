@@ -219,6 +219,35 @@ FROM eligible e
 LEFT JOIN user_wr u ON lower(e.username) = u.uname
 """
 
+# Entity membership is RUN-SET, not per-copy: DISTINCT (run, entity) is the
+# walk's per-run dedupe — a deck with 5 Strikes is ONE pick, so win rate
+# stays "win rate when X is in your deck" instead of copy-weighted, and a
+# co-op run where two players hold the same relic still counts once.
+_MEMBERSHIP_SQL = """
+SELECT m.{col}, e.character, count(*), count(*) FILTER (e.win),
+  max(e.submitted_at), arg_max(m.run_hash, e.submitted_at)
+FROM (
+  SELECT DISTINCT run_hash, {col}
+  FROM read_parquet('{lake}/{table}.parquet')
+  WHERE {col} IS NOT NULL AND {col} <> ''
+) m
+JOIN eligible e ON m.run_hash = e.run_hash
+GROUP BY 1, 2
+"""
+
+_CUBE_MEMBERSHIP_SQL = """
+SELECT c.cell, m.{col}, coalesce(el.character, ''),
+  count(*), count(*) FILTER (c.win)
+FROM (
+  SELECT DISTINCT run_hash, {col}
+  FROM read_parquet('{lake}/{table}.parquet')
+  WHERE {col} IS NOT NULL AND {col} <> ''
+) m
+JOIN cells c ON m.run_hash = c.run_hash
+JOIN eligible el ON m.run_hash = el.run_hash
+GROUP BY 1, 2, 3
+"""
+
 
 _MODE_KEYS = frozenset(("standard", "daily", "custom"))
 _PLAYER_KEYS = {"solo": "1", "2p": "2", "3p": "3", "4p": "4"}
@@ -1011,22 +1040,15 @@ def build_entity_store() -> dict | None:
                 },
             )
 
-        # Per-instance membership + per-character splits + last-seen, one
-        # query per membership table.
+        # Run-set membership + per-character splits + last-seen, one query
+        # per membership table.
         for etype, table, col in (
             ("cards", "deck", "card"),
             ("relics", "relics", "relic"),
             ("potions", "potions", "potion"),
         ):
             for eid, char, picks, wins, last_ts, last_hash in con.execute(
-                f"""
-                SELECT m.{col}, e.character, count(*), count(*) FILTER (e.win),
-                  max(e.submitted_at), arg_max(m.run_hash, e.submitted_at)
-                FROM read_parquet('{LAKE_DIR}/{table}.parquet') m
-                JOIN eligible e ON m.run_hash = e.run_hash
-                WHERE m.{col} IS NOT NULL AND m.{col} <> ''
-                GROUP BY 1, 2
-                """
+                _MEMBERSHIP_SQL.format(col=col, table=table, lake=LAKE_DIR)
             ).fetchall():
                 a = entry(etype, eid)
                 a["picks"] += picks
@@ -1379,18 +1401,13 @@ def build_entity_cube(con=None) -> dict:
         ):
             per: dict[str, dict] = {}
             per_char: dict[str, dict] = {}
-            # One scan grouped by character yields both sections: the
-            # entity cells (summed over characters) and the character axis
-            # that gives bracketed by-character views a live source.
+            # One scan yields both sections: the entity cells (summed over
+            # characters) and the character axis that gives bracketed
+            # by-character views a live source. The character is the RUN's
+            # (matching the store and the fossil), so each run contributes
+            # exactly once to its cell total.
             for cell, eid, ch, p, w in con.execute(
-                f"""
-                SELECT e.cell, m.{col}, coalesce(m.character, ''),
-                  count(*), count(*) FILTER (e.win)
-                FROM read_parquet('{LAKE_DIR}/{table}.parquet') m
-                JOIN cells e ON m.run_hash = e.run_hash
-                WHERE m.{col} IS NOT NULL AND m.{col} <> ''
-                GROUP BY 1, 2, 3
-                """
+                _CUBE_MEMBERSHIP_SQL.format(col=col, table=table, lake=LAKE_DIR)
             ).fetchall():
                 cur = per.setdefault(cell, {}).setdefault(eid, [0, 0])
                 cur[0] += p

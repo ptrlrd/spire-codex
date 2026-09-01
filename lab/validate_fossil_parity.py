@@ -78,6 +78,9 @@ def main() -> None:
         sys.exit(1)
     store = loaded[1]
     versions = set(lake_stats.cube_versions())
+    fossil_runs = (meta.get("global_totals") or {}).get("total_runs") or 0
+    lake_runs = (store.get("totals") or {}).get("total_runs") or 0
+    growth = (lake_runs / fossil_runs) if fossil_runs else 1.0
     failures = 0
     print(
         f"fossil: version={meta.get('snapshot_version')}"
@@ -103,7 +106,7 @@ def main() -> None:
         fossil = _fossil_entities(coll, etype)
         lake = (store.get("entities") or {}).get(etype) or {}
         official = _official_entity_ids(etype)
-        missing, shrunk, no_elo, field_gaps = [], [], [], {}
+        missing, shrunk, inflated, no_elo, field_gaps = [], [], [], [], {}
         for e in fossil:
             eid = e["id"]
             for bk in e.get("brackets") or e.get("cohorts") or {}:
@@ -117,6 +120,16 @@ def main() -> None:
                 continue
             if le.get("picks", 0) < e.get("picks", 0) * 0.98 - 5:
                 shrunk.append(f"{eid} fossil={e.get('picks')} lake={le.get('picks')}")
+            # Copy-counting shows up as growth far past the corpus's own:
+            # a multi-copy card jumps 3-5x while total_runs grew maybe 1.2x.
+            if (
+                e.get("picks", 0) >= 100
+                and le.get("picks", 0) > e["picks"] * growth * 1.35 + 50
+            ):
+                inflated.append(
+                    f"{eid} fossil={e['picks']} lake={le.get('picks')}"
+                    f" (corpus grew {growth:.2f}x)"
+                )
             if e.get("elo") is not None and le.get("elo") is None:
                 if le.get("picks", 0) > 200:
                     no_elo.append(eid)
@@ -127,6 +140,7 @@ def main() -> None:
         for label, bad in (
             ("missing from lake", missing),
             ("picks shrank", shrunk),
+            ("picks inflated past corpus growth", inflated),
             ("lost elo", no_elo),
         ):
             if bad:
