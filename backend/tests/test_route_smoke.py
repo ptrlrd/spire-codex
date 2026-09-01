@@ -23,6 +23,7 @@ def test_stats_routes_never_500():
         "/api/runs/metrics/cards?bracket=a10",
         "/api/runs/encounter-stats",
         "/api/runs/stats/cards/STRIKE/history",
+        "/api/auth/steam/callback?session=nope",
     ):
         r = client.get(path)
         assert r.status_code < 500, f"{path} -> {r.status_code}"

@@ -39,6 +39,11 @@ from pydantic import BaseModel
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
 from ..services import auth_session_store
+from ..services.auth_jwt import (
+    clear_oauth_state_cookie,
+    oauth_state_cookie,
+    set_oauth_state_cookie,
+)
 from ..services.auth_session_store import SESSION_TTL_SECONDS
 
 logger = logging.getLogger("spire-codex.auth")
@@ -47,6 +52,16 @@ router = APIRouter(prefix="/api/auth/steam", tags=["Auth"])
 limiter = shared_limiter
 
 _REALM_ENV_KEY = "SPIRE_CODEX_PUBLIC_BASE"
+
+
+def web_flow_bound(session_id: str, cookie_sid: str) -> bool:
+    """The website flow may only link Steam to the signed-in account when the
+    browser presenting the callback is the one that started at /redirect."""
+    import hmac
+
+    if not session_id or not cookie_sid:
+        return False
+    return hmac.compare_digest(session_id, cookie_sid)
 
 
 def _public_base(request: Request) -> str:
@@ -124,7 +139,13 @@ async def redirect_to_steam(request: Request):
         params
     )
     logger.info("steam-auth redirect session=%s", sid[:8])
-    return RedirectResponse(login_url)
+    response = RedirectResponse(login_url)
+    # Pin the session to this browser: the callback only links Steam to the
+    # signed-in account when the same browser started the flow. Without it,
+    # an unused callback URL minted for an attacker's Steam id could be
+    # handed to a logged-in victim and link the attacker's Steam to them.
+    set_oauth_state_cookie(response, sid)
+    return response
 
 
 @router.get("/callback", response_class=HTMLResponse)
@@ -203,7 +224,19 @@ async def callback(request: Request) -> HTMLResponse:
         # Steam-only one. The Discord connector already links this way; the Steam
         # side used to always create-or-find, which is exactly how a Discord-first
         # user ended up with a duplicate Steam-only account.
-        existing_user = get_current_user(request) if session.get("web") else None
+        existing_user = None
+        if session.get("web"):
+            if not web_flow_bound(session_id, oauth_state_cookie(request)):
+                auth_session_store.pop_session(session_id)
+                logger.warning(
+                    "steam-auth rejected: web session %s not bound to this browser",
+                    session_id[:8],
+                )
+                return _close_page(
+                    error="This sign-in link wasn't started from this browser. "
+                    "Please start again."
+                )
+            existing_user = get_current_user(request)
         if existing_user and not existing_user.get("steam_id"):
             result = link_steam(existing_user["_id"], steamid)
             if result.get("error"):
@@ -288,6 +321,7 @@ async def callback(request: Request) -> HTMLResponse:
         response = RedirectResponse(dest)
         response.headers["Cache-Control"] = "no-store, no-cache"
         response.headers["Pragma"] = "no-cache"
+        clear_oauth_state_cookie(response)
         return response
 
     return _close_page(name=persona, steamid=steamid)
