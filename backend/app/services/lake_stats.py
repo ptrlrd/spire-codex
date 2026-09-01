@@ -2133,6 +2133,10 @@ def build_deep_tables() -> int:
             WHERE r.ascension BETWEEN 0 AND 10
               AND NOT coalesce(r.win, false)
               AND coalesce(r.killed_by_encounter, r.killed_by_event) IS NOT NULL
+              -- The game stamps ENCOUNTER.NONE on deaths with no killer;
+              -- counting it crowned "NONE" the deadliest encounter.
+              AND coalesce(r.killed_by_encounter, r.killed_by_event)
+                  NOT IN ('NONE', '')
             GROUP BY 1, 2, 3
             """
         ).fetchall()

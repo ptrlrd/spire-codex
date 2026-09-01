@@ -48,7 +48,17 @@ def main() -> None:
             ("deadliest", "encounter"),
         ):
             lake_ids = _ids(tables.get(section), id_key)
-            doc_ids = _ids(doc.get(section), id_key)
+            doc_rows = doc.get(section) or []
+            if section == "top_potions":
+                # The legacy potion list was never sorted and is full of
+                # mod-namespaced ids (MARTHCHARACTERMOD-..., KNOWLEDGEDEMON-...)
+                # the frontend filtered; sort by offers and drop them so the
+                # comparison judges the lake, not the legacy junk.
+                doc_rows = sorted(
+                    (r for r in doc_rows if "-" not in (r.get(id_key) or "")),
+                    key=lambda r: -(r.get("offered") or 0),
+                )
+            doc_ids = _ids(doc_rows, id_key)
             if not lake_ids:
                 print(f"  {section}: lake EMPTY ({len(doc_ids)} legacy rows)")
                 if section != "top_potions":  # absent until the new columns build
