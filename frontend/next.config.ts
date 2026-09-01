@@ -30,6 +30,18 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        // The 4.6MB sitemap regenerates every 30 min (ISR) but shipped
+        // with max-age=0, so every crawler fetch streamed the whole body
+        // from origin. Let the edge hold it between regenerations.
+        source: "/sitemap.xml",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=86400",
+          },
+        ],
+      },
+      {
         source: "/beta/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
