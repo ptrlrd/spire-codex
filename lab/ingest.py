@@ -373,12 +373,14 @@ def main() -> None:
         purge_ok = False
         print(f"edge purge failed: {e}", flush=True)
 
-    # Cycle record. Stages publish independently (each store is its own
+    # Cycle record. Stages write independently (each store is its own
     # atomic rename), so the generation manifest is the completeness
-    # contract: it only advances when every serving artifact this cycle
-    # owns was rebuilt after the cycle started. /health reports it; a
-    # cycle that lost a stage leaves the previous manifest in place and
-    # shows up in ingest_metrics.jsonl with complete=false.
+    # contract: it only advances when every required artifact was rebuilt
+    # after the cycle started AND no store stage failed — a generation
+    # never ships a stale non-required store under a new id (ruled
+    # 2026-09-01). /health reports it; a cycle that lost a stage leaves the
+    # previous manifest in place, shows up in ingest_metrics.jsonl with
+    # complete=false, and exits non-zero for cron.
     published = time.time()
     manifest: dict = {
         "generation_id": generation_id,
@@ -416,23 +418,16 @@ def main() -> None:
             manifest["artifacts"][name] = None
     # Numeric comparison: the ISO strings are second-truncated, so an old
     # artifact written earlier in the cycle's start second could pass.
-    manifest["complete"] = all(mtimes.get(n, 0.0) >= t0 for n in required)
+    manifest["complete"] = (
+        all(mtimes.get(n, 0.0) >= t0 for n in required) and not failed_stages
+    )
     with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
         f.write(json.dumps(manifest, separators=(",", ":")) + "\n")
     if manifest["complete"]:
         tmp = LAKE / "generation.json.tmp"
         tmp.write_text(json.dumps(manifest, indent=1))
         tmp.replace(LAKE / "generation.json")
-        if failed_stages:
-            # Non-required stores keep their previous artifact on failure
-            # (the fallback ruling); say so where the log is read.
-            print(
-                f"generation {generation_id} published with FAILED stages: "
-                + ", ".join(failed_stages),
-                flush=True,
-            )
-        else:
-            print(f"generation {generation_id} published", flush=True)
+        print(f"generation {generation_id} published", flush=True)
         # A failed publish doesn't void the local cycle; the puller's age
         # warning is the staleness alarm.
         import os
@@ -446,12 +441,14 @@ def main() -> None:
                 print(f"lake publish failed: {e}", flush=True)
         print("ingest complete", flush=True)
     else:
-        missing = [n for n in required if mtimes.get(n, 0.0) < t0]
+        reasons = [f"stale {n}" for n in required if mtimes.get(n, 0.0) < t0]
+        reasons += [f"{n} failed: {err}" for n, err in failed_stages.items()]
         print(
-            f"generation {generation_id} INCOMPLETE (stale: {', '.join(missing)}); "
+            f"generation {generation_id} INCOMPLETE ({'; '.join(reasons)}); "
             "manifest not advanced",
             flush=True,
         )
+        sys.exit(1)
         sys.exit(1)
 
 
