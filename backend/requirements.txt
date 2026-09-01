@@ -6,9 +6,9 @@ httpx==0.28.1
 python-frontmatter==1.1.0
 sentry-sdk[fastapi]==2.19.2
 prometheus-fastapi-instrumentator==7.0.2
-pyjwt[crypto]==2.10.1
+pyjwt[crypto]==2.13.0
 pymongo==4.10.1
-python-multipart==0.0.20
+python-multipart==0.0.32
 boto3>=1.34,<2
 redis==5.2.1
 numpy==2.2.6
