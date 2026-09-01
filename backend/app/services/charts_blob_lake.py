@@ -109,101 +109,175 @@ def _history_from_nested(floors) -> list[list[dict]]:
     return acts
 
 
-# Hash-bucketed: each pass aggregates the nested lists for 1/N of the
-# runs, bounding the pinned list-aggregate state that OOM'd the 4.5GB cap
-# on the first full-corpus run (2026-09-01) — list aggregation can't
-# spill. Joining chunk_cells inside every CTE also stops the CTEs from
-# building lists for ineligible runs the final join would have dropped.
-_BUCKETS = 8
+# Staged build: every source is written ONCE to hash-bucketed parquet
+# (eligible runs only, columns pre-projected, the per-floor player list
+# pre-shaped), then each bucket is aggregated and streamed on its own.
+# The nested list() aggregates cannot spill, and an ordered list(...)
+# buffers its whole input first: the first full-corpus run OOM'd the
+# 4.5GB cap even at 1/8 of the runs (2026-09-01). Lists are unordered
+# here and each run's floors are sorted in Python instead.
+_BUCKETS = 32
+_STAGE_DIR = "charts_stage"
 
-_NESTED_SQL = """
-    WITH chunk_cells AS (
-      SELECT run_hash, character, win, was_abandoned, player_count,
-        played_at, submitted_at, cell
-      FROM cells
-      WHERE hash(run_hash) % {buckets} = {bucket}
-    ),
-    fl AS (
-      SELECT f.run_hash,
-        list(struct_pack(
-          act := f.act, floor_idx := f.floor_idx, room_type := f.room_type,
-          room_model := f.room_model, room_turns := f.room_turns,
-          players := [struct_pack(
-            max_hp := p.max_hp, current_hp := p.current_hp,
-            current_gold := p.current_gold, damage_taken := p.damage_taken,
-            smiths := len(list_filter(p.rest_site_choices, x -> x = 'SMITH')),
-            events := [t."key" FOR t IN [e.title FOR e IN p.event_choices]
-                       IF t."table" = 'events']
-          ) FOR p IN f.players]
-        ) ORDER BY f.act, f.floor_idx) AS floors
+_STAGE_META_SQL = """
+    COPY (
+      SELECT (hash(c.run_hash) % {n})::UTINYINT AS bucket, c.run_hash,
+        coalesce(c.character, '') AS character, coalesce(c.win, false) AS win,
+        coalesce(c.was_abandoned, false) AS was_abandoned,
+        coalesce(c.player_count, 1) AS player_count,
+        coalesce(c.played_at, c.submitted_at) AS played, c.cell
+      FROM cells c
+    ) TO '{stage}/meta' (FORMAT PARQUET, PARTITION_BY (bucket), COMPRESSION ZSTD, ROW_GROUP_SIZE 20000)
+"""
+
+_STAGE_FLOORS_SQL = """
+    COPY (
+      SELECT (hash(f.run_hash) % {n})::UTINYINT AS bucket, f.run_hash, f.act,
+        f.floor_idx, f.room_type, f.room_model, f.room_turns,
+        [struct_pack(
+          max_hp := p.max_hp, current_hp := p.current_hp,
+          current_gold := p.current_gold, damage_taken := p.damage_taken,
+          smiths := len(list_filter(p.rest_site_choices, x -> x = 'SMITH')),
+          events := [t."key" FOR t IN [e.title FOR e IN p.event_choices]
+                     IF t."table" = 'events']
+        ) FOR p IN f.players] AS players
       FROM read_parquet('{lake}/floors.parquet') f
-      JOIN chunk_cells c ON f.run_hash = c.run_hash
-      GROUP BY 1
-    ),
-    dk AS (
-      SELECT d.run_hash, list(struct_pack(pidx := d.player_idx,
-        card := d.card, fa := d.floor_added, ench := d.enchantment)) AS deck
-      FROM read_parquet('{lake}/deck.parquet') d
-      JOIN chunk_cells c ON d.run_hash = c.run_hash
-      GROUP BY 1
-    ),
-    rl AS (
-      SELECT r.run_hash, list(struct_pack(pidx := r.player_idx,
-        relic := r.relic)) AS relics
-      FROM read_parquet('{lake}/relics.parquet') r
-      JOIN chunk_cells c ON r.run_hash = c.run_hash
-      GROUP BY 1
-    ),
-    pt AS (
-      SELECT p.run_hash, list(struct_pack(pidx := p.player_idx,
-        potion := p.potion)) AS potions
-      FROM read_parquet('{lake}/potions.parquet') p
-      JOIN chunk_cells c ON p.run_hash = c.run_hash
-      GROUP BY 1
-    )
-    SELECT c.run_hash, coalesce(c.character, ''), coalesce(c.win, false),
-      coalesce(c.was_abandoned, false), coalesce(c.player_count, 1),
-      coalesce(c.played_at, c.submitted_at), c.cell,
-      fl.floors, dk.deck, rl.relics, pt.potions
-    FROM chunk_cells c
+      SEMI JOIN cells c ON c.run_hash = f.run_hash
+    ) TO '{stage}/floors' (FORMAT PARQUET, PARTITION_BY (bucket), COMPRESSION ZSTD, ROW_GROUP_SIZE 20000)
+"""
+
+_STAGE_ROWS_SQL = """
+    COPY (
+      SELECT (hash(t.run_hash) % {n})::UTINYINT AS bucket, t.run_hash,
+        t.player_idx, {cols}
+      FROM read_parquet('{lake}/{table}.parquet') t
+      SEMI JOIN cells c ON c.run_hash = t.run_hash
+    ) TO '{stage}/{table}' (FORMAT PARQUET, PARTITION_BY (bucket), COMPRESSION ZSTD, ROW_GROUP_SIZE 20000)
+"""
+
+_STAGE_CHILD_COLS = {
+    "deck": "t.card, t.floor_added AS fa, t.enchantment AS ench",
+    "relics": "t.relic",
+    "potions": "t.potion",
+}
+
+# Per-bucket assembly. Child CTEs are substituted per bucket so a table
+# with no rows in a bucket becomes a typed empty relation instead of a
+# read_parquet() over zero files.
+_BUCKET_SQL = """
+    WITH fl AS ({floors}),
+    dk AS ({deck}),
+    rl AS ({relics}),
+    pt AS ({potions})
+    SELECT m.run_hash, m.character, m.win, m.was_abandoned, m.player_count,
+      m.played, m.cell, fl.floors, dk.deck, rl.relics, pt.potions
+    FROM read_parquet('{stage}/meta/*/*.parquet', hive_partitioning = true) m
     LEFT JOIN fl USING (run_hash)
     LEFT JOIN dk USING (run_hash)
     LEFT JOIN rl USING (run_hash)
     LEFT JOIN pt USING (run_hash)
+    WHERE m.bucket = {b}
 """
+
+_CHILD_AGG = {
+    "floors": (
+        "SELECT run_hash, list(struct_pack(act := act, floor_idx := floor_idx,"
+        " room_type := room_type, room_model := room_model,"
+        " room_turns := room_turns, players := players)) AS floors"
+        " FROM read_parquet('{stage}/floors/*/*.parquet', hive_partitioning = true)"
+        " WHERE bucket = {b} GROUP BY 1",
+        "SELECT NULL::VARCHAR AS run_hash, NULL::STRUCT(act BIGINT, floor_idx BIGINT,"
+        " room_type VARCHAR, room_model VARCHAR, room_turns BIGINT,"
+        " players STRUCT(max_hp BIGINT, current_hp BIGINT, current_gold BIGINT,"
+        " damage_taken BIGINT, smiths BIGINT, events VARCHAR[])[])[] AS floors"
+        " WHERE false",
+    ),
+    "deck": (
+        "SELECT run_hash, list(struct_pack(pidx := player_idx, card := card,"
+        " fa := fa, ench := ench)) AS deck"
+        " FROM read_parquet('{stage}/deck/*/*.parquet', hive_partitioning = true)"
+        " WHERE bucket = {b} GROUP BY 1",
+        "SELECT NULL::VARCHAR AS run_hash, NULL::STRUCT(pidx BIGINT, card VARCHAR,"
+        " fa BIGINT, ench VARCHAR)[] AS deck WHERE false",
+    ),
+    "relics": (
+        "SELECT run_hash, list(struct_pack(pidx := player_idx, relic := relic))"
+        " AS relics"
+        " FROM read_parquet('{stage}/relics/*/*.parquet', hive_partitioning = true)"
+        " WHERE bucket = {b} GROUP BY 1",
+        "SELECT NULL::VARCHAR AS run_hash, NULL::STRUCT(pidx BIGINT,"
+        " relic VARCHAR)[] AS relics WHERE false",
+    ),
+    "potions": (
+        "SELECT run_hash, list(struct_pack(pidx := player_idx, potion := potion))"
+        " AS potions"
+        " FROM read_parquet('{stage}/potions/*/*.parquet', hive_partitioning = true)"
+        " WHERE bucket = {b} GROUP BY 1",
+        "SELECT NULL::VARCHAR AS run_hash, NULL::STRUCT(pidx BIGINT,"
+        " potion VARCHAR)[] AS potions WHERE false",
+    ),
+}
+
+
+def _stage_sources(con, stage) -> None:
+    import shutil
+
+    shutil.rmtree(stage, ignore_errors=True)
+    stage.mkdir(parents=True)
+    lake, st, n = str(LAKE_DIR), str(stage), _BUCKETS
+    con.execute(_STAGE_META_SQL.format(n=n, stage=st))
+    con.execute(_STAGE_FLOORS_SQL.format(n=n, stage=st, lake=lake))
+    for table, cols in _STAGE_CHILD_COLS.items():
+        con.execute(
+            _STAGE_ROWS_SQL.format(n=n, stage=st, lake=lake, table=table, cols=cols)
+        )
+
+
+def _bucket_query(stage, b: int) -> str:
+    parts = {}
+    for table, (agg, empty) in _CHILD_AGG.items():
+        has_files = any((stage / table).rglob("*.parquet"))
+        parts[table] = agg.format(stage=str(stage), b=b) if has_files else empty
+    return _BUCKET_SQL.format(stage=str(stage), b=b, **parts)
 
 
 def build_charts_blob() -> dict | None:
     """Build and store the finalized charts blob from the lake. Returns the
     blob or None when the lake is incomplete."""
+    import shutil
+
     con = _connect(build=True)
+    stage = LAKE_DIR / "tmp" / _STAGE_DIR
     try:
         con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
         _ensure_cells(con, str(LAKE_DIR))
+        # Fewer threads: parallel hash aggregation keeps thread-local list
+        # state; the budget here is memory, not wall clock.
+        con.execute("SET threads=3")
+        _stage_sources(con, stage)
         versions = cube_versions()
         vset = set(versions)
         acc = charts_stats.new_accumulator(versions)
         bracket_cache: dict[str, list[str]] = {}
         n = 0
-        for bucket in range(_BUCKETS):
-            res = con.execute(
-                _NESTED_SQL.format(lake=LAKE_DIR, buckets=_BUCKETS, bucket=bucket)
-            )
+        for b in range(_BUCKETS):
+            res = con.execute(_bucket_query(stage, b))
             while True:
-                # Each row is one complete nested run (~50 floor structs);
-                # 500 of those in flight was its own memory spike.
                 rows = res.fetchmany(64)
                 if not rows:
                     break
                 for row in rows:
                     _h, ch, win, ab, pc, played, cellv = row[:7]
                     floors, deck, relics, potions = row[7:]
+                    floors = sorted(
+                        floors or [], key=lambda fl: (fl["act"], fl["floor_idx"])
+                    )
                     brs = bracket_cache.get(cellv)
                     if brs is None:
                         brs = _run_brackets(cellv, vset)
                         bracket_cache[cellv] = brs
                     blob = {
-                        "map_point_history": _history_from_nested(floors or []),
+                        "map_point_history": _history_from_nested(floors),
                         "players": _players_from_nested(
                             deck or [], relics or [], potions or []
                         ),
@@ -220,7 +294,12 @@ def build_charts_blob() -> dict | None:
                     )
                     n += 1
     finally:
+        try:
+            con.execute("SET threads=5")
+        except Exception:
+            pass
         con.close()
+        shutil.rmtree(stage, ignore_errors=True)
     if not n:
         return None
 
