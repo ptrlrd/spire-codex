@@ -5,6 +5,7 @@ const LANGS = "deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  poweredByHeader: false,
   // Without this, dynamic-route prefetches are stale on arrival
   // (staleTimes.dynamic defaults to 0), so the router re-issues the same
   // origin request for every visible link on each ping — measured 8-9
@@ -29,6 +30,32 @@ const nextConfig: NextConfig = {
   // header-level noindex without touching the shared pages.
   async headers() {
     return [
+      {
+        // Baseline browser hardening on every response. HSTS is a year
+        // without preload (preload is irreversible); the frame lockdown
+        // lives on the widget-excluded rule below because /widget/* is
+        // meant to be embedded by other sites.
+        source: "/:path*",
+        headers: [
+          {
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
+          },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=(), payment=()",
+          },
+        ],
+      },
+      {
+        source: "/((?!widget/).*)",
+        headers: [
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "Content-Security-Policy", value: "frame-ancestors 'self'" },
+        ],
+      },
       {
         // The 4.6MB sitemap regenerates every 30 min (ISR) but shipped
         // with max-age=0, so every crawler fetch streamed the whole body

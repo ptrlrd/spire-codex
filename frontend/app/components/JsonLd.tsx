@@ -6,7 +6,10 @@ export default function JsonLd({ data }: { data: unknown | unknown[] }) {
         <script
           key={i}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          dangerouslySetInnerHTML={{
+            // "<" can't be allowed to close the script element.
+            __html: JSON.stringify(item).replace(/</g, "\\u003c"),
+          }}
         />
       ))}
     </>

@@ -357,6 +357,11 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Strict-Transport-Security"] = (
+            "max-age=31536000; includeSubDomains"
+        )
         if request.method != "GET" or response.status_code >= 400:
             return response
         # A handler that declared its own Cache-Control knows better than

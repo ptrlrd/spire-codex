@@ -1,0 +1,5 @@
+Contact: https://github.com/ptrlrd/spire-codex/security/advisories/new
+Expires: 2027-09-01T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://spire-codex.com/.well-known/security.txt
+Policy: https://github.com/ptrlrd/spire-codex/blob/main/SECURITY.md
