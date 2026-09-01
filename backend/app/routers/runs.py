@@ -1295,11 +1295,10 @@ def community_stats(request: Request, response: Response, bracket: str | None = 
     # validation can 400 them. Any miss falls through unchanged.
     from ..services import lake_stats
 
-    if lake_stats.SERVE_ENABLED:
-        lake_payload = lake_stats.community_payload(bracket)
-        if lake_payload is not None:
-            response.headers["Cache-Control"] = "public, max-age=300"
-            return lake_payload
+    lake_payload = lake_stats.community_payload(bracket)
+    if lake_payload is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return lake_payload
     if bracket is not None:
         from ..services.run_entity_stats import is_valid_stat_bracket
 
