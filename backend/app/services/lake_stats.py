@@ -708,7 +708,8 @@ def _ensure_run_tiers(con) -> None:
     con.execute(
         "CREATE TABLE IF NOT EXISTS run_tiers AS "
         "SELECT run_hash, split_part(cell, '|', 3)::INT AS a10, "
-        "split_part(cell, '|', 4)::INT AS band FROM cells"
+        "split_part(cell, '|', 4)::INT AS band, "
+        "split_part(cell, '|', 5) AS ver FROM cells"
     )
 
 
@@ -742,46 +743,47 @@ def reward_pair_counts_by_tier(
         con.execute(
             """
             CREATE OR REPLACE TABLE pair_screens AS
-            SELECT t.a10, t.band,
+            SELECT t.a10, t.band, t.ver,
               list(c.cid) FILTER (c.picked) AS picks,
               list(c.cid) FILTER (NOT c.picked) AS passes
             FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
-            GROUP BY c.run_hash, c.act, c.floor_idx, c.pidx, t.a10, t.band
+            GROUP BY c.run_hash, c.act, c.floor_idx, c.pidx,
+              t.a10, t.band, t.ver
             """
         )
         tiers: dict[tuple[int, int], dict[tuple[str, str], int]] = {}
 
-        def cell(a10, band):
-            return tiers.setdefault((int(a10), int(band)), {})
+        def cell(a10, band, ver):
+            return tiers.setdefault((int(a10), int(band), ver or ""), {})
 
-        for a10, band, w, lo, n in con.execute(
+        for a10, band, ver, w, lo, n in con.execute(
             """
-            SELECT s.a10, s.band, wp.w, lp.l, count(*)
+            SELECT s.a10, s.band, s.ver, wp.w, lp.l, count(*)
             FROM pair_screens s,
               LATERAL (SELECT unnest(s.picks) AS w) wp,
               LATERAL (SELECT unnest(s.passes) AS l) lp
             WHERE wp.w <> lp.l
+            GROUP BY 1, 2, 3, 4, 5
+            """
+        ).fetchall():
+            cell(a10, band, ver)[(w, lo)] = n
+        for a10, band, ver, cid, n in con.execute(
+            """
+            SELECT s.a10, s.band, s.ver, wp.w, count(*)
+            FROM pair_screens s, LATERAL (SELECT unnest(s.picks) AS w) wp
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
-            cell(a10, band)[(w, lo)] = n
-        for a10, band, cid, n in con.execute(
+            cell(a10, band, ver)[(cid, SKIP_ID)] = n
+        for a10, band, ver, cid, n in con.execute(
             """
-            SELECT s.a10, s.band, wp.w, count(*)
-            FROM pair_screens s, LATERAL (SELECT unnest(s.picks) AS w) wp
-            GROUP BY 1, 2, 3
-            """
-        ).fetchall():
-            cell(a10, band)[(cid, SKIP_ID)] = n
-        for a10, band, cid, n in con.execute(
-            """
-            SELECT s.a10, s.band, lp.l, count(*)
+            SELECT s.a10, s.band, s.ver, lp.l, count(*)
             FROM pair_screens s, LATERAL (SELECT unnest(s.passes) AS l) lp
             WHERE len(coalesce(s.picks, [])) = 0
-            GROUP BY 1, 2, 3
+            GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
-            cell(a10, band)[(SKIP_ID, cid)] = n
+            cell(a10, band, ver)[(SKIP_ID, cid)] = n
         con.execute("DROP TABLE IF EXISTS pair_screens")
         return tiers
     finally:
@@ -790,17 +792,20 @@ def reward_pair_counts_by_tier(
 
 
 def fold_tier_pairs(
-    tiers: dict[tuple[int, int], dict[tuple[str, str], int]],
+    tiers: dict[tuple[int, int, str], dict[tuple[str, str], int]],
     a10_only: bool = False,
     min_band: int = 0,
+    version: str | None = None,
 ) -> dict[tuple[str, str], int]:
     """Cumulative fold of tiered pair counts: the all-runs pairs with the
-    defaults, or a skill-ladder bracket's subset."""
+    defaults, a skill-ladder bracket's subset, or one game version's."""
     out: dict[tuple[str, str], int] = {}
-    for (a10, band), d in tiers.items():
+    for (a10, band, ver), d in tiers.items():
         if a10_only and a10 != 1:
             continue
         if band < min_band:
+            continue
+        if version is not None and ver != version:
             continue
         for k, n in d.items():
             out[k] = out.get(k, 0) + n
@@ -1219,6 +1224,16 @@ def build_entity_store() -> dict | None:
                 )
                 skip_by_bracket[name] = be.pop(SKIP_ID, None)
                 bracket_elo[name] = be
+            # Per-version fits so the metrics page's version charts carry a
+            # real per-patch Elo (the fossil snapshot's composite fits did
+            # this; the lake owes the same).
+            for ver in cube_versions():
+                bev, _pv = res._compute_codex_elo(
+                    fold_tier_pairs(tiers, version=ver), warm=card_p
+                )
+                bev.pop(SKIP_ID, None)
+                if bev:
+                    bracket_elo[f"ver:{ver}"] = bev
             if skip_block is not None:
                 skip_block["elo"] = card_elo.get(SKIP_ID)
                 skip_block["elo_by_bracket"] = skip_by_bracket
@@ -1816,20 +1831,24 @@ _SKILL_BRACKET_NAMES = {0: "a10", 1: "wr30", 2: "wr50", 3: "wr75"}
 
 
 def bracket_elo_for(bracket: str | None) -> dict | None:
-    """Per-bracket card Elo map for the skill component of a lake bracket
-    (a10/wr30/wr50/wr75, alone or inside a composite), or None when the
-    bracket has no skill part or the store predates per-bracket fits —
+    """Per-bracket card Elo map for a lake bracket: the skill component's
+    fit when the bracket has one (a10/wr30/wr50/wr75, alone or composite),
+    else the game version's fit for version brackets. None otherwise —
     callers then fall back to the all-runs Elo. A card absent from a
     returned map is below the head-to-head floor in that slice."""
     parsed = _parse_lake_bracket(bracket)
-    if not parsed or parsed[2] is None:
+    if not parsed:
         return None
     hit = entity_store_with_mtime()
     if not hit:
         return None
-    return (hit[1].get("bracket_elo") or {}).get(
-        _SKILL_BRACKET_NAMES[parsed[2]]
-    ) or None
+    bmap = hit[1].get("bracket_elo") or {}
+    _mode, _player, skill, version = parsed
+    if skill is not None:
+        return bmap.get(_SKILL_BRACKET_NAMES[skill]) or None
+    if version is not None:
+        return bmap.get(f"ver:{version}") or None
+    return None
 
 
 # ── Stats-summary core: the homepage numbers, from the lake ──────────────────
