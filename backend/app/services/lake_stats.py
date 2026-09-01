@@ -1715,14 +1715,14 @@ def build_encounter_store(con=None) -> dict:
         con = _connect(build=True)
     try:
         _prepare_sources(con, str(LAKE_DIR))
-        recent = frozenset(
-            r[0]
-            for r in con.execute(
-                "SELECT build_id FROM eligible WHERE build_id IS NOT NULL "
-                "AND trim(build_id) <> '' GROUP BY 1 "
-                "ORDER BY max(submitted_at) DESC LIMIT 6"
-            ).fetchall()
-        )
+        # The version window must match the folds and the version pickers
+        # (cube_versions: release-shaped, >=500 runs, natural-sorted).
+        # Recency over raw build_ids let beta builds and stragglers crowd
+        # out real versions — every version still gets submissions daily,
+        # so max(submitted_at) is a near-tie across all of them. Reads the
+        # previous cycle's cube (this store builds before the cube in the
+        # cycle); a brand-new version appears one cycle later.
+        recent = frozenset(cube_versions())
         rows = con.execute(
             f"""
             SELECT f.encounter, f.act, f.room_type, upper(e.character) AS ch,
