@@ -1494,6 +1494,15 @@ def _entity_cube_with_mtime() -> tuple[float, dict] | None:
 _fold_cache: dict[tuple[str, str], tuple[float, dict | None]] = {}
 
 
+def _fold_cache_put(key, val) -> None:
+    # Evict oldest entries instead of wiping the dict: a wholesale clear
+    # past the cap stampeded every hot bracket back through a full cube
+    # fold at once (2026-09-01 perf survey).
+    while len(_fold_cache) >= 512:
+        _fold_cache.pop(next(iter(_fold_cache)))
+    _fold_cache[key] = val
+
+
 def entity_bracket_fold(entity_type: str, bracket: str) -> dict | None:
     """Cached fold: the entity detail page reads ~20 brackets per request
     and every entity shares the same folds, so cache per (type, bracket)
@@ -1506,9 +1515,7 @@ def entity_bracket_fold(entity_type: str, bracket: str) -> dict | None:
     if cached is not None and cached[0] == hit[0]:
         return cached[1]
     fold = _entity_bracket_fold_uncached(entity_type, bracket)
-    if len(_fold_cache) > 512:
-        _fold_cache.clear()
-    _fold_cache[key] = (hit[0], fold)
+    _fold_cache_put(key, (hit[0], fold))
     return fold
 
 
@@ -1543,9 +1550,7 @@ def entity_character_fold(entity_type: str, bracket: str) -> dict | None:
                         cur[1] += pw[1]
         if not fold:
             fold = None
-    if len(_fold_cache) > 512:
-        _fold_cache.clear()
-    _fold_cache[key] = (hit[0], fold)
+    _fold_cache_put(key, (hit[0], fold))
     return fold
 
 
@@ -2387,3 +2392,54 @@ def deep_tables_by_key() -> dict[str, dict]:
         _filter_key(**c.get("filters", {})): c.get("tables", {})
         for c in doc.get("combos", [])
     }
+
+
+_warmer_started = False
+
+
+def start_artifact_warmer(interval: int = 60) -> None:
+    """Per-worker daemon that re-reads every serving artifact on a timer,
+    so the multi-MB gunzip+parse after a pull happens here instead of in
+    the first visitor's request. Accessors are mtime-cached: an unchanged
+    artifact costs one stat() per tick, and the hot folds only recompute
+    when the cube's mtime moved."""
+    global _warmer_started
+    if _warmer_started:
+        return
+    _warmer_started = True
+    import threading
+    import time
+
+    def _tick() -> None:
+        for load in (
+            lambda: community_payload(None),
+            lambda: community_payload("a10"),
+            _entity_cube_with_mtime,
+            entity_store_with_mtime,
+            encounter_store_with_mtime,
+            deep_tables_by_key,
+        ):
+            try:
+                load()
+            except Exception:
+                pass
+        try:
+            from . import charts_blob_lake
+
+            charts_blob_lake.charts_blob_with_mtime()
+        except Exception:
+            pass
+        try:
+            hot = ["a10", "wr30", "wr50", "wr75", "solo", "2p", *cube_versions()]
+            for etype in ("cards", "relics", "potions"):
+                for bk in hot:
+                    entity_bracket_fold(etype, bk)
+        except Exception:
+            pass
+
+    def _loop() -> None:
+        while True:
+            _tick()
+            time.sleep(interval)
+
+    threading.Thread(target=_loop, daemon=True, name="lake-warmer").start()

@@ -1027,12 +1027,23 @@ _ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
 @limiter.limit(
     rate_limit_config.endpoint_limit("runs.get_entity_run_stats", "120/minute")
 )
-def get_entity_run_stats(request: Request, entity_type: str, entity_id: str):
+def get_entity_run_stats(
+    request: Request, response: Response, entity_type: str, entity_id: str
+):
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
+    # Changes only when a lake generation applies, and the pull purges the
+    # /api/runs/stats prefix — so serve it long-lived with background
+    # revalidation instead of inheriting the generic 30s /api/runs default
+    # (whose expiry kept the edge permanently EXPIRED on entity pages).
+    response.headers["Cache-Control"] = (
+        "public, max-age=300, stale-while-revalidate=3600"
+        if snapshot_loaded()
+        else "no-store"
+    )
     stats = get_entity_stats(entity_type, entity_id)
     if stats is None:
         # Entity hasn't appeared in any submitted run yet — return a

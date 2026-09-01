@@ -226,6 +226,15 @@ def _warm_run_entity_stats() -> None:
             kick_snapshot_load()
         except Exception:
             pass
+        # Pre-parse the lake serving artifacts and keep them warm across
+        # pulls; without this each pull cold-starts every worker's caches
+        # inside a visitor's request.
+        try:
+            from .services import lake_stats
+
+            lake_stats.start_artifact_warmer()
+        except Exception:
+            pass
         return
     import threading
 
