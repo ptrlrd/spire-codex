@@ -8,7 +8,6 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { t } from "@/lib/ui-translations";
 import RunDropZone from "@/app/components/RunDropZone";
-import DiscordIcon from "@/app/components/DiscordIcon";
 import { characterHex } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -41,7 +40,7 @@ export default function SubmitRunClient() {
   const router = useRouter();
   const lp = useLangPrefix();
   const { lang } = useLanguage();
-  const { user, loading: authLoading, loginSteam, loginDiscord } = useAuth();
+  const { user, loading: authLoading, loginSteam } = useAuth();
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
   const [runs, setRuns] = useState<Run[]>([]);
@@ -267,13 +266,6 @@ export default function SubmitRunClient() {
             >
               <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
               Steam
-            </button>
-            <button
-              onClick={loginDiscord}
-              className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
-            >
-              <DiscordIcon className="w-4 h-4 shrink-0" />
-              Discord
             </button>
           </div>
         </div>

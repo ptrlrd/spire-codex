@@ -154,7 +154,7 @@ async def callback(request: Request):
     try:
         from ..services.auth_jwt import get_current_user, create_token, set_auth_cookie
         from ..services.users_db import (
-            find_or_create_by_discord,
+            get_user_by_discord_id,
             link_discord,
             update_email as _update_email,
         )
@@ -170,7 +170,14 @@ async def callback(request: Request):
             user = existing_user
             user["discord_id"] = discord_id
         else:
-            user = find_or_create_by_discord(discord_id, discord_username, email)
+            # Steam is the only way to create an account; Discord is a
+            # connector. An account that already carries this Discord id
+            # still signs in with it, a new visitor is sent to Steam.
+            user = get_user_by_discord_id(discord_id)
+            if not user:
+                response = RedirectResponse(f"{base}/?auth=steam_required")
+                clear_oauth_state_cookie(response)
+                return response
 
         token = create_token(
             user_id=user["_id"],

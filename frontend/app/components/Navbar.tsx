@@ -193,7 +193,7 @@ export default function Navbar() {
   const langPrefix = currentLang ? `/${currentLang}` : "";
   const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
   const isHome = strippedPath === "/";
-  const { user, loading: authLoading, loginSteam, loginDiscord, logout } = useAuth();
+  const { user, loading: authLoading, loginSteam, logout } = useAuth();
   const [open, setOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const { unread: newsUnread } = useAnnouncementUnread();
@@ -474,13 +474,6 @@ export default function Navbar() {
                   >
                     <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
                     Steam
-                  </button>
-                  <button
-                    onClick={() => { setUserMenuOpen(false); loginDiscord(); }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    <DiscordIcon className="w-4 h-4 shrink-0" />
-                    Discord
                   </button>
                 </div>
               )}

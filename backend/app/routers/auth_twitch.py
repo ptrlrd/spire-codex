@@ -178,7 +178,7 @@ async def callback(request: Request):
     try:
         from ..services.auth_jwt import create_token, get_current_user, set_auth_cookie
         from ..services.users_db import (
-            find_or_create_by_twitch,
+            get_user_by_twitch_id,
             link_twitch,
             update_email as _update_email,
         )
@@ -196,9 +196,12 @@ async def callback(request: Request):
             user = existing_user
             user["twitch_id"] = twitch_id
         else:
-            user = find_or_create_by_twitch(
-                twitch_id, twitch_login, twitch_display, email
-            )
+            # Same rule as Discord: connector only, no account creation.
+            user = get_user_by_twitch_id(twitch_id)
+            if not user:
+                response = RedirectResponse(f"{base}/?auth=steam_required")
+                clear_oauth_state_cookie(response)
+                return response
 
         token = create_token(
             user_id=user["_id"],

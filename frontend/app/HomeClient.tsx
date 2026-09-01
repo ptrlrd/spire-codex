@@ -58,7 +58,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
   const [stats, setStats] = useState<Stats | null>(initialStats);
   const [translations, setTranslations] = useState<Translations>(initialTranslations);
   const { lang } = useLanguage();
-  const { user, loginSteam, loginDiscord } = useAuth();
+  const { user, loginSteam } = useAuth();
   const initialRender = useRef(true);
   const pathname = usePathname();
   const pathLang = pathname.split("/")[1];
@@ -231,7 +231,6 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
               <span className="act-d">{t("Spire Codex keeps track of your runs and tier lists, all while not tracking you.", lang)}</span>
               <div className="act-logins">
                 <button onClick={loginSteam} className="act-login act-steam">{t("Steam", lang)}</button>
-                <button onClick={loginDiscord} className="act-login act-discord">{t("Discord", lang)}</button>
               </div>
             </div>
           )}

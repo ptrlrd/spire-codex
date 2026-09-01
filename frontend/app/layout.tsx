@@ -14,6 +14,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { BetaVersionProvider } from "./contexts/BetaVersionContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ToastProvider } from "./components/Toast";
+import AuthNotice from "./components/AuthNotice";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Self-hosted Umami analytics. Both values are public-by-design, the
@@ -154,6 +155,7 @@ export default function RootLayout({
             <BetaVersionProvider>
               <AuthProvider>
               <ToastProvider>
+              <AuthNotice />
               <Navbar />
               <div className="pt-16">
                 <AlertTicker />
