@@ -800,11 +800,22 @@ def reward_pair_counts_by_tier(
     try:
         _ensure_choice_rows(con)
         _ensure_run_tiers(con)
-        # Three sequential statements, NOT one UNION ALL: bundled, the
-        # pairwise self-join and the skip-screens join run concurrently and
-        # split the memory budget, which wedged the stage in a spill loop
-        # (2026-08-28). Alone, each join gets the full cap — the pairwise
-        # one is the shape that ran for months.
+        # Screen-level lists instead of the 50M-row pairwise self-join (the
+        # cycle's spill heavyweight): one grouped pass builds each screen's
+        # picked/passed card lists, and two lateral unnests expand them to
+        # pairs. A real table in the scratch db, same reasoning as
+        # choice_rows; dropped at the end, and a crash leaves it for the
+        # next cycle's scratch reset.
+        con.execute(
+            """
+            CREATE OR REPLACE TABLE pair_screens AS
+            SELECT t.a10, t.band,
+              list(c.cid) FILTER (c.picked) AS picks,
+              list(c.cid) FILTER (NOT c.picked) AS passes
+            FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
+            GROUP BY c.run_hash, c.act, c.floor_idx, c.pidx, t.a10, t.band
+            """
+        )
         tiers: dict[tuple[int, int], dict[tuple[str, str], int]] = {}
 
         def cell(a10, band):
@@ -812,41 +823,33 @@ def reward_pair_counts_by_tier(
 
         for a10, band, w, lo, n in con.execute(
             """
-            SELECT t.a10, t.band, w.cid, l.cid, count(*)
-            FROM choice_rows w
-            JOIN choice_rows l ON w.run_hash = l.run_hash AND w.act = l.act
-              AND w.floor_idx = l.floor_idx AND w.pidx = l.pidx
-            JOIN run_tiers t ON t.run_hash = w.run_hash
-            WHERE w.picked AND NOT l.picked AND w.cid <> l.cid
+            SELECT s.a10, s.band, wp.w, lp.l, count(*)
+            FROM pair_screens s,
+              LATERAL (SELECT unnest(s.picks) AS w) wp,
+              LATERAL (SELECT unnest(s.passes) AS l) lp
+            WHERE wp.w <> lp.l
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
             cell(a10, band)[(w, lo)] = n
         for a10, band, cid, n in con.execute(
             """
-            SELECT t.a10, t.band, c.cid, count(*)
-            FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
-            WHERE c.picked GROUP BY 1, 2, 3
+            SELECT s.a10, s.band, wp.w, count(*)
+            FROM pair_screens s, LATERAL (SELECT unnest(s.picks) AS w) wp
+            GROUP BY 1, 2, 3
             """
         ).fetchall():
             cell(a10, band)[(cid, SKIP_ID)] = n
         for a10, band, cid, n in con.execute(
             """
-            WITH skipped_screens AS (
-              SELECT run_hash, act, floor_idx, pidx
-              FROM choice_rows GROUP BY 1, 2, 3, 4
-              HAVING NOT bool_or(picked)
-            )
-            SELECT t.a10, t.band, c.cid, count(*)
-            FROM choice_rows c
-            JOIN skipped_screens s ON c.run_hash = s.run_hash
-              AND c.act = s.act AND c.floor_idx = s.floor_idx
-              AND c.pidx = s.pidx
-            JOIN run_tiers t ON t.run_hash = c.run_hash
+            SELECT s.a10, s.band, lp.l, count(*)
+            FROM pair_screens s, LATERAL (SELECT unnest(s.passes) AS l) lp
+            WHERE len(coalesce(s.picks, [])) = 0
             GROUP BY 1, 2, 3
             """
         ).fetchall():
             cell(a10, band)[(SKIP_ID, cid)] = n
+        con.execute("DROP TABLE IF EXISTS pair_screens")
         return tiers
     finally:
         if own:
