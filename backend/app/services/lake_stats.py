@@ -260,10 +260,10 @@ def _parse_lake_bracket(bracket: str | None):
 
 def community_payload(bracket: str | None = None) -> dict | None:
     """Community-stats payload from the ingest-built store: the plain
-    payload file for the all bracket, or any mode x players x skill
-    combination folded from the cube. None (snapshot fallback) for
-    version brackets, unknown keys, missing stores, or any error.
-    Serving never builds from parquet inline."""
+    payload file for the all bracket, or any mode x players x skill x
+    version combination folded from the cube. None (snapshot fallback)
+    for unknown keys, missing stores, or any error. Serving never builds
+    from parquet inline."""
     try:
         parsed = _parse_lake_bracket(bracket)
         if parsed is None:
