@@ -741,6 +741,9 @@ def _ensure_run_tiers(con) -> None:
     )
 
 
+_PAIR_BUCKETS = 8
+
+
 def reward_pair_counts_by_tier(
     con=None,
 ) -> dict[tuple[int, int], dict[tuple[str, str], int]]:
@@ -773,19 +776,32 @@ def reward_pair_counts_by_tier(
         def cell(a10, band, ver):
             return tiers.setdefault((int(a10), int(band), ver or ""), {})
 
-        for a10, band, ver, w, lo, n in con.execute(
-            """
-            SELECT t.a10, t.band, t.ver, p.cid, q.cid, count(*)
-            FROM choice_rows p
-            JOIN choice_rows q
-              ON q.run_hash = p.run_hash AND q.act = p.act
-             AND q.floor_idx = p.floor_idx AND q.pidx = p.pidx
-            JOIN run_tiers t ON t.run_hash = p.run_hash
-            WHERE p.picked AND NOT q.picked AND p.cid <> q.cid
-            GROUP BY 1, 2, 3, 4, 5
-            """
-        ).fetchall():
-            cell(a10, band, ver)[(w, lo)] = n
+        # The pick x pass join is run in hash-bucketed passes on two
+        # threads: its grouped result (pairs x tier cells) is tens of
+        # millions of groups, and the per-thread aggregate state for the
+        # whole corpus at once needed ~4GB (OOM'd the 3500MB cap,
+        # 2026-09-02). Buckets partition by screen, so each pass's counts
+        # are disjoint and simply add up.
+        con.execute("SET threads=2")
+        try:
+            for b in range(_PAIR_BUCKETS):
+                for a10, band, ver, w, lo, n in con.execute(
+                    f"""
+                    SELECT t.a10, t.band, t.ver, p.cid, q.cid, count(*)
+                    FROM choice_rows p
+                    JOIN choice_rows q
+                      ON q.run_hash = p.run_hash AND q.act = p.act
+                     AND q.floor_idx = p.floor_idx AND q.pidx = p.pidx
+                    JOIN run_tiers t ON t.run_hash = p.run_hash
+                    WHERE p.picked AND NOT q.picked AND p.cid <> q.cid
+                      AND hash(p.run_hash) % {_PAIR_BUCKETS} = {b}
+                    GROUP BY 1, 2, 3, 4, 5
+                    """
+                ).fetchall():
+                    d = cell(a10, band, ver)
+                    d[(w, lo)] = d.get((w, lo), 0) + n
+        finally:
+            con.execute("SET threads=5")
         for a10, band, ver, cid, n in con.execute(
             """
             SELECT t.a10, t.band, t.ver, c.cid, count(*)
