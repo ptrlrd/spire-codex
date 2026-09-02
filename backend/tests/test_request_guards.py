@@ -31,3 +31,9 @@ def test_metrics_requires_token_when_configured(monkeypatch):
 def test_metrics_open_when_no_token(monkeypatch):
     monkeypatch.setattr(m, "_METRICS_TOKEN", "")
     assert client.get("/metrics").status_code == 200
+
+
+def test_body_cap_clears_the_upload_routes_own_maximum():
+    from app.routers.auth import _MAX_UPLOAD_FILES, _MAX_UPLOAD_SIZE
+
+    assert m._MAX_BODY_BYTES > _MAX_UPLOAD_FILES * _MAX_UPLOAD_SIZE * 1.1

@@ -614,9 +614,10 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
 # Reject oversized bodies by Content-Length before Starlette parses them:
 # the upload route's per-file/file-count checks only run after the whole
-# multipart body has been read. 20 files x 512KB plus form overhead fits
-# comfortably under 16MB; nothing else POSTs anywhere near that.
-_MAX_BODY_BYTES = int(os.environ.get("MAX_REQUEST_BODY_BYTES", "") or 16 * 1024 * 1024)
+# multipart body has been read. The cap must clear the route's own maximum
+# (100 files x 512KB) plus multipart overhead — a 16MB cap shipped on
+# 2026-09-02 and 413'd every batch upload over ~30 runs.
+_MAX_BODY_BYTES = int(os.environ.get("MAX_REQUEST_BODY_BYTES", "") or 64 * 1024 * 1024)
 
 
 class BodyLimitMiddleware(BaseHTTPMiddleware):
