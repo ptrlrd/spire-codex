@@ -700,7 +700,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                 )}
                 {char.unlocks_after && (
                   <div className="frow">
-                    <dt>{t("Unlocks after", lang)}</dt>
+                    <dt>{t("Unlocks After", lang)}</dt>
                     <dd>{char.unlocks_after}</dd>
                   </div>
                 )}
