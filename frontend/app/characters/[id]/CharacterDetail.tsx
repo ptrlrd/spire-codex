@@ -565,7 +565,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                       <div className="kit-body">
                         <div className="kit-name">
                           {relic.name}
-                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${rarityBadgeColors[relic.rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-gray-600/30 text-gray-300"}`}>
                             {relic.rarity}
                           </span>
                         </div>
