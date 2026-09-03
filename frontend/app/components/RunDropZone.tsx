@@ -78,7 +78,12 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
       />
 
       {uploading ? (
-        <p className="text-[var(--text-secondary)]">Uploading...</p>
+        <p className="text-[var(--text-secondary)]">
+          {uploadProgress
+            ? `${t("Uploading", lang)} ${uploadProgress.done} / ${uploadProgress.total}` +
+              (uploadProgress.errors ? ` (${uploadProgress.errors} ${t("errors", lang)})` : "")
+            : "Uploading..."}
+        </p>
       ) : isDragging ? (
         <p className="text-[var(--text-primary)] font-medium">
           {t("Drop files here...", lang)}

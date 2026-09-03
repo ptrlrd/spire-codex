@@ -43,6 +43,12 @@ export default function ProfileClient() {
   const [runsLoading, setRunsLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadResults, setUploadResults] = useState<UploadResult[] | null>(null);
+  const [uploadProgress, setUploadProgress] = useState<{
+    total: number;
+    done: number;
+    dupes: number;
+    errors: number;
+  } | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
   const [profilePrivate, setProfilePrivate] = useState<boolean | null>(null);
 
@@ -95,43 +101,87 @@ export default function ProfileClient() {
     if (user) fetchRuns(page);
   }, [user, page, fetchRuns]);
 
+  // Batches go up in chunks of 10, sequentially: one request for 100
+  // files was a single point of failure (a proxy body cap or a dropped
+  // connection lost the whole batch), and 10 chunks a minute is exactly
+  // the endpoint's rate limit. A failed chunk is retried twice before its
+  // files are reported as errors and the rest keep going.
+  const UPLOAD_CHUNK = 10;
+
   const handleUpload = async (files: FileList | File[]) => {
-    if (!files.length) return;
+    const all = Array.from(files);
+    if (!all.length) return;
     setUploading(true);
     setUploadResults(null);
+    const progress = { total: all.length, done: 0, dupes: 0, errors: 0 };
+    setUploadProgress({ ...progress });
+    const results: UploadResult[] = [];
+    const summary = { claimed: 0, duplicates: 0, errors: 0 };
+    let signedOut = false;
 
-    const formData = new FormData();
-    Array.from(files).forEach((f) => formData.append("files", f));
-
-    try {
-      const res = await fetch(`${API_BASE}/api/auth/runs/upload`, {
+    const send = async (chunk: File[]): Promise<Response> => {
+      const formData = new FormData();
+      chunk.forEach((f) => formData.append("files", f));
+      return fetch(`${API_BASE}/api/auth/runs/upload`, {
         method: "POST",
         credentials: "include",
         body: formData,
       });
-      if (res.ok) {
+    };
+
+    for (let i = 0; i < all.length && !signedOut; i += UPLOAD_CHUNK) {
+      const chunk = all.slice(i, i + UPLOAD_CHUNK);
+      let res: Response | null = null;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        try {
+          res = await send(chunk);
+        } catch {
+          res = null;
+        }
+        // Retry only what a retry can fix: network drops and 5xx.
+        if (res && (res.ok || res.status < 500)) break;
+        await new Promise((r) => setTimeout(r, 1500 * (attempt + 1)));
+      }
+      if (res?.ok) {
         const data = await res.json();
-        setUploadResults(data.results);
-        const s = data.summary;
-        toast(
-          `${s.claimed} ${t("claimed", lang)}, ${s.duplicates} ${t("duplicates", lang)}, ${s.errors} ${t("errors", lang)}`,
-          s.errors > 0 ? "error" : "success"
+        results.push(...(data.results || []));
+        summary.claimed += data.summary?.claimed || 0;
+        summary.duplicates += data.summary?.duplicates || 0;
+        summary.errors += data.summary?.errors || 0;
+      } else if (res?.status === 401) {
+        signedOut = true;
+      } else {
+        const err = res ? await res.json().catch(() => null) : null;
+        const detail =
+          res?.status === 413
+            ? t("Too many files or file too large", lang)
+            : err?.detail || (res ? t("Upload failed", lang) : t("Network error during upload", lang));
+        chunk.forEach((f) =>
+          results.push({ filename: f.name, status: "error", detail })
         );
+        summary.errors += chunk.length;
+      }
+      progress.done = Math.min(all.length, i + chunk.length);
+      progress.dupes = summary.duplicates;
+      progress.errors = summary.errors;
+      setUploadProgress({ ...progress });
+      setUploadResults([...results]);
+    }
+
+    if (signedOut) {
+      toast(t("Please sign in to upload runs", lang), "error");
+    } else {
+      toast(
+        `${summary.claimed} ${t("claimed", lang)}, ${summary.duplicates} ${t("duplicates", lang)}, ${summary.errors} ${t("errors", lang)}`,
+        summary.errors > 0 ? "error" : "success"
+      );
+      if (summary.claimed > 0) {
         fetchRuns(1);
         setPage(1);
-      } else if (res.status === 401) {
-        toast(t("Please sign in to upload runs", lang), "error");
-      } else if (res.status === 413) {
-        toast(t("Too many files or file too large", lang), "error");
-      } else {
-        const err = await res.json().catch(() => null);
-        toast(err?.detail || t("Upload failed", lang), "error");
       }
-    } catch {
-      toast(t("Network error during upload", lang), "error");
-    } finally {
-      setUploading(false);
     }
+    setUploadProgress(null);
+    setUploading(false);
   };
 
   const handleDelete = async (runHash: string) => {
@@ -202,7 +252,7 @@ export default function ProfileClient() {
       {/* Claim Runs */}
       <section>
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Claim Runs", lang)}</h2>
-        <RunDropZone onFiles={(files) => handleUpload(files)} uploading={uploading} />
+        <RunDropZone onFiles={(files) => handleUpload(files)} uploading={uploading} uploadProgress={uploadProgress} />
 
         {uploadResults && uploadResults.length > 0 && (
           <div className="mt-3 space-y-1 max-h-40 overflow-y-auto">
