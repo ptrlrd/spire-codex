@@ -161,7 +161,6 @@
 .rvmp .charp-art img.charp-icon { object-fit: contain; object-position: center; }
 .rvmp .charp::after { display: none; }
 .rvmp .charp-meta { display: none; }
-.rvmp .gs-grid { grid-template-columns: 1fr; }
 }
 .rvmp .btile:hover { background: var(--surface-2); }
 .rvmp .bt-top { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
@@ -177,8 +176,19 @@
 .rvmp .promo-d { font-size: 13px; line-height: 1.5; color: var(--text-2); max-width: 60ch; }
 .rvmp .promo-more { display: inline-block; margin-top: 5px; font-size: 13px; font-weight: 600; color: var(--gold); }
 @media (max-width: 640px) {
-.rvmp .promo { flex-direction: column; align-items: flex-start; }
-.rvmp .promo-img { width: 100%; height: 120px; }
+.rvmp .promo { grid-column: span 2; gap: 12px; padding: 12px; margin-top: 0; }
+.rvmp .promo-img { width: 56px; height: 56px; border-radius: 8px; }
+.rvmp .promo-t { font-size: 15px; margin: 2px 0; }
+.rvmp .promo-d { display: none; }
+.rvmp .promo-more { margin-top: 2px; font-size: 12px; }
+}
+.rvmp .gs-dots { display: none; }
+@media (max-width: 640px) {
+.rvmp .gs-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 10px;
+    padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.rvmp .gs-grid::-webkit-scrollbar { display: none; }
+.rvmp .gs-grid > .act { flex: 0 0 84%; scroll-snap-align: start; }
+.rvmp .gs-dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 10px; }
 }
 
 /* sign-in tile in Get started (Steam/Discord login buttons) */

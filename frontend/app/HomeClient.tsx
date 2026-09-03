@@ -60,6 +60,23 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
   const { lang } = useLanguage();
   const { user, loginSteam } = useAuth();
   const initialRender = useRef(true);
+  const gsTrack = useRef<HTMLDivElement>(null);
+  const [gsIndex, setGsIndex] = useState(0);
+  const gsCount = (user ? 0 : 1) + 5;
+
+  const onGsScroll = () => {
+    const el = gsTrack.current;
+    if (!el || !el.firstElementChild) return;
+    const step = (el.firstElementChild as HTMLElement).offsetWidth + 10;
+    setGsIndex(Math.min(gsCount - 1, Math.max(0, Math.round(el.scrollLeft / step))));
+  };
+
+  const gsGoTo = (i: number) => {
+    const el = gsTrack.current;
+    if (!el || !el.firstElementChild) return;
+    const step = (el.firstElementChild as HTMLElement).offsetWidth + 10;
+    el.scrollTo({ left: i * step, behavior: "smooth" });
+  };
   const pathname = usePathname();
   const pathLang = pathname.split("/")[1];
   const langPrefix = LANG_CODES.has(pathLang) ? `/${pathLang}` : lang !== "eng" ? `/${lang}` : "";
@@ -223,7 +240,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
           <h2>{t("Get started", lang)}</h2>
           <p>{t("Everything you need to climb the Spire. Track your runs, rank your favorites, and join the community.", lang)}</p>
         </div>
-        <div className="gs-grid">
+        <div className="gs-grid" ref={gsTrack} onScroll={onGsScroll}>
           {!user && (
             <div className="act act-signin">
               <span className="act-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7"><circle cx="12" cy="8" r="4" /><path strokeLinecap="round" strokeLinejoin="round" d="M4 20c0-3.6 3.6-6.5 8-6.5s8 2.9 8 6.5" /></svg></span>
@@ -240,6 +257,20 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
               ? (<a key={c.title} href={c.href} target="_blank" rel="noopener noreferrer" className="act">{inner}</a>)
               : (<Link prefetch={false} key={c.title} href={c.href} className="act">{inner}</Link>);
           })}
+        </div>
+        <div className="gs-dots" role="tablist" aria-label={t("Get started", lang)}>
+          {Array.from({ length: gsCount }, (_, i) => (
+            <button
+              key={i}
+              type="button"
+              onClick={() => gsGoTo(i)}
+              aria-label={`${i + 1} / ${gsCount}`}
+              aria-current={i === gsIndex}
+              className={`h-1.5 rounded-full transition-all ${
+                i === gsIndex ? "w-4 bg-white/80" : "w-1.5 bg-white/30 hover:bg-white/50"
+              }`}
+            />
+          ))}
         </div>
       </section>
 
