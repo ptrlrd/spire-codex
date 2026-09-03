@@ -316,7 +316,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
             );
             // Break the long grid up: drop the full-width Overwolf promo band in
             // the middle so it splits the entities into two groups.
-            if (i === 6) {
+            if (i === 5) {
               return [
                 tile,
                 <Link prefetch={false} key="ow-promo" href={`${langPrefix}/overlay`} className="promo">
