@@ -177,7 +177,7 @@ export default function SearchFilter({
           </div>
         )}
       </div>
-      {resultCount === 0 && <div className="text-center py-12 text-[var(--text-muted)]">
+      {draft !== "" && resultCount === 0 && <div className="text-center py-12 text-[var(--text-muted)]">
         {t("No results found for", lang)} &ldquo;{draft}&rdquo;
       </div>}
     </div>
