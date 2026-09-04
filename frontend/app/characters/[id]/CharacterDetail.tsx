@@ -303,10 +303,10 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   });
 
   const rarityBadgeColors: Record<string, string> = {
-    Common: "bg-gray-600/30 text-gray-300",
+    Common: "bg-gray-500/30 text-white",
     Uncommon: "bg-blue-600/30 text-blue-300",
-    Rare: "bg-amber-600/30 text-amber-300",
-    Basic: "bg-gray-700/30 text-gray-400",
+    Rare: "bg-amber-600/30 text-amber-300", 
+    Basic: "bg-gray-700/30 text-white",
     Shop: "bg-green-600/30 text-green-300",
     Event: "bg-purple-600/30 text-purple-300",
     Starter: "bg-yellow-600/30 text-yellow-300",
