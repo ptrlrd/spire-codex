@@ -2311,6 +2311,34 @@ def is_valid_stat_bracket(bracket: str | None) -> bool:
     return bool(sep) and ver in versions and base in _BRACKET_KEYS
 
 
+_SERIES_BRACKETS = ("all", "a10", "wr30", "wr50", "wr75", "solo", "2p", "3p", "4p")
+
+
+def get_encounter_series(encounters: list[str]) -> dict[str, Any]:
+    """One call for a monster page: the requested encounters rolled up per
+    skill/player bracket and per recent game version, so the page can draw
+    its charts without a request per slice."""
+    from . import encounter_stats, lake_stats
+
+    hit = lake_stats.encounter_store_with_mtime()
+    store = hit[1] if hit else {}
+
+    def slice_for(key: str) -> list[dict]:
+        sub = store.get(key)
+        if sub is None:
+            return []
+        return encounter_stats.rollup(sub, limit=50, encounters=encounters)[
+            "encounters"
+        ]
+
+    versions = get_recent_stat_versions()
+    return {
+        "brackets": {k: slice_for(k) for k in _SERIES_BRACKETS},
+        "versions": {v: slice_for(f"ver:{v}") for v in versions},
+        "version_order": versions,
+    }
+
+
 def get_recent_stat_versions() -> list[str]:
     """Game versions for the version dropdowns, newest first. Lake-first:
     the cube's versions keep new patches selectable (the snapshot's frozen
@@ -2342,6 +2370,7 @@ def get_encounter_stats(
     limit: int = 50,
     bracket: str | None = None,
     build_id: str | None = None,
+    encounters: list[str] | None = None,
 ) -> dict[str, Any]:
     """Per-encounter combat stats for /api/runs/encounter-stats, rolled up
     from the precomputed snapshot cells for one content bracket. Same lifecycle
@@ -2382,6 +2411,7 @@ def get_encounter_stats(
                         multiplayer=multiplayer,
                         page=page,
                         limit=limit,
+                        encounters=encounters,
                     )
         except Exception:
             logger.warning(
@@ -2398,6 +2428,7 @@ def get_encounter_stats(
         room_types=room_types,
         multiplayer=multiplayer,
         page=page,
+        encounters=encounters,
         limit=limit,
     )
 

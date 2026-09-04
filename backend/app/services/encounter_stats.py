@@ -278,6 +278,7 @@ def rollup(
     multiplayer: str | None = None,
     page: int = 1,
     limit: int = 50,
+    encounters: list[str] | None = None,
 ) -> dict[str, Any]:
     """Slice the precomputed encounter cells into the API response shape.
 
@@ -300,6 +301,7 @@ def rollup(
     # Modded-id scrub: drop encounter ids not in the official (main + beta)
     # catalog, like charts_stats.encounter_ranking. Empty set -> don't filter.
     official = _official_encounter_ids()
+    wanted = {e.upper() for e in encounters} if encounters else None
 
     # (encounter, act, room_type) -> aggregate with a nested per-character map.
     grouped: dict[tuple[str, int, str], dict[str, Any]] = {}
@@ -309,6 +311,8 @@ def rollup(
         # fight isn't split into two half-sized entries.
         enc_id = ENCOUNTER_ID_RENAMES.get(enc_id, enc_id)
         if official and enc_id not in official:
+            continue
+        if wanted is not None and enc_id not in wanted:
             continue
         if mp not in mp_keep:
             continue

@@ -22,6 +22,7 @@ def test_stats_routes_never_500():
         "/api/runs/metrics/cards",
         "/api/runs/metrics/cards?bracket=a10",
         "/api/runs/encounter-stats",
+        "/api/runs/encounter-series?encounter=AXEBOTS_NORMAL",
         "/api/runs/stats/cards/STRIKE/history",
         "/api/auth/steam/callback?session=nope",
     ):

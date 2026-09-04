@@ -16,6 +16,7 @@ import EntityProse from "@/app/components/EntityProse";
 import { imageUrl } from "@/lib/image-url";
 import "../../card-revamp.css";
 import "../../monster-encounter-extra.css";
+import MonsterEncounterStats from "./MonsterEncounterStats";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -746,7 +747,14 @@ export default function MonsterDetail({
                   })}
                 </div>
               )}
-              <div className="enc-list">
+              <MonsterEncounterStats
+                encounters={monster.encounters!.map((e) => ({
+                  encounter_id: e.encounter_id,
+                  encounter_name: e.encounter_name,
+                }))}
+                lp={lp}
+              />
+              <div className="enc-list mt-4">
                 {monster.encounters!.map((enc) => (
                   <Link
                     key={enc.encounter_id}

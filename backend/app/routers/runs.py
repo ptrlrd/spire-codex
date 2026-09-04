@@ -786,6 +786,7 @@ def get_encounter_stats_endpoint(
     limit: int = 50,
     bracket: str | None = None,
     build_id: str | None = None,
+    encounter: str | None = None,
 ):
     """Per-encounter combat stats over submitted runs.
 
@@ -807,6 +808,8 @@ def get_encounter_stats_endpoint(
         applied after grouping, sorted by sample size descending.
       * `bracket` — content bracket: `a10`, `wr30`, `wr50`, `wr75`
         (A10-gated win-rate tiers). Omit for all runs.
+      * `encounter` — comma-separated encounter ids to keep (a monster
+        page asks for just its own fights). Omit for all.
 
     Each row contains the encounter's total appearances, fatal count,
     avg damage taken, avg turns, plus a `characters` array with the
@@ -842,6 +845,11 @@ def get_encounter_stats_endpoint(
         if room_type
         else None
     )
+    encounters = (
+        [e.strip().upper() for e in encounter.split(",") if e.strip()][:50]
+        if encounter
+        else None
+    )
     result = _get_encounter_stats(
         acts=acts,
         room_types=room_types,
@@ -850,11 +858,35 @@ def get_encounter_stats_endpoint(
         limit=limit,
         bracket=bracket,
         build_id=build_id,
+        encounters=encounters,
     )
     # A not-yet-built snapshot answers empty; don't let the edge cache that
     # for an hour and keep serving zeros after the data lands.
     if not result.get("encounters"):
         response.headers["Cache-Control"] = "no-store"
+    return result
+
+
+@router.get("/encounter-series", tags=["Runs"])
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_encounter_series_endpoint", "60/minute")
+)
+def get_encounter_series_endpoint(request: Request, response: Response, encounter: str):
+    """The given encounters (comma-separated ids, max 20) rolled up per
+    bracket and per recent game version in one response, for the bestiary
+    charts. Rows carry the same fields as /encounter-stats."""
+    ids = [e.strip().upper() for e in encounter.split(",") if e.strip()][:20]
+    if not ids:
+        raise HTTPException(status_code=400, detail="encounter required")
+    from ..services.run_entity_stats import get_encounter_series
+
+    result = get_encounter_series(ids)
+    if not any(result["brackets"].values()):
+        response.headers["Cache-Control"] = "no-store"
+    else:
+        response.headers["Cache-Control"] = (
+            "public, max-age=300, stale-while-revalidate=3600"
+        )
     return result
 
 
