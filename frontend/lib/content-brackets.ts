@@ -37,10 +37,19 @@ export const MODE_BRACKETS: ContentBracket[] = [
   { key: "custom", param: "custom", label: "Custom" },
 ];
 
+export const CHARACTER_BRACKETS: ContentBracket[] = [
+  { key: "ironclad", param: "ironclad", label: "Ironclad" },
+  { key: "silent", param: "silent", label: "Silent" },
+  { key: "defect", param: "defect", label: "Defect" },
+  { key: "necrobinder", param: "necrobinder", label: "Necrobinder" },
+  { key: "regent", param: "regent", label: "Regent" },
+];
+
 // Both axes are valid ?bracket= values, so normalizeBracket must recognize them.
 const _BY_KEY = new Map(
-  [...CONTENT_BRACKETS, ...PLAYER_BRACKETS, ...MODE_BRACKETS].map((b) => [b.key, b]),
+  [...CONTENT_BRACKETS, ...PLAYER_BRACKETS, ...MODE_BRACKETS, ...CHARACTER_BRACKETS].map((b) => [b.key, b]),
 );
+const _CHARACTER_KEYS = new Set(CHARACTER_BRACKETS.map((b) => b.key));
 
 const _PLAYER_KEYS = new Set(PLAYER_BRACKETS.map((b) => b.key));
 const _SKILL_KEYS = new Set(
@@ -86,17 +95,19 @@ const _MODE_KEYS = new Set(MODE_BRACKETS.map((b) => b.key));
 export function isCompositeBracket(raw: string | undefined | null): boolean {
   if (!raw || !raw.includes(":")) return false;
   const parts = raw.split(":");
-  if (parts.length < 2 || parts.length > 3) return false;
+  if (parts.length < 2 || parts.length > 4) return false;
   let player = 0,
     skill = 0,
-    mode = 0;
+    mode = 0,
+    character = 0;
   for (const part of parts) {
     if (_PLAYER_KEYS.has(part)) player++;
     else if (_SKILL_KEYS.has(part)) skill++;
     else if (_MODE_KEYS.has(part)) mode++;
+    else if (_CHARACTER_KEYS.has(part)) character++;
     else return false;
   }
-  return player <= 1 && skill <= 1 && mode <= 1;
+  return player <= 1 && skill <= 1 && mode <= 1 && character <= 1;
 }
 
 /** Split a bracket value into its player + skill + mode + version axes. A
@@ -106,19 +117,22 @@ export function splitBracket(raw: string | undefined | null): {
   player: string;
   skill: string;
   mode: string;
+  character: string;
   version: string;
 } {
   const b = normalizeBracket(raw);
   const { base, version } = splitVersion(b === "all" ? "" : b);
   let player = "",
     skill = "",
-    mode = "";
+    mode = "",
+    character = "";
   for (const part of base ? base.split(":") : []) {
     if (_PLAYER_KEYS.has(part)) player = part;
     else if (_SKILL_KEYS.has(part)) skill = part;
     else if (_MODE_KEYS.has(part)) mode = part;
+    else if (_CHARACTER_KEYS.has(part)) character = part;
   }
-  return { player, skill, mode, version };
+  return { player, skill, mode, character, version };
 }
 
 /** Combine player + skill + mode + version selections into one ?bracket=
@@ -129,8 +143,9 @@ export function combineBracket(
   skill: string,
   version = "",
   mode = "",
+  character = "",
 ): string {
-  const base = [player, skill, mode].filter(Boolean).join(":");
+  const base = [player, skill, mode, character].filter(Boolean).join(":");
   if (base && version) return `${base}:${version}`;
   return base || version || "all";
 }

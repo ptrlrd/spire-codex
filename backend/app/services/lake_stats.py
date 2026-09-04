@@ -286,6 +286,24 @@ def _parse_lake_bracket(bracket: str | None):
     return (mode, player, skill, version)
 
 
+_CHARACTER_KEYS = frozenset(("ironclad", "silent", "defect", "necrobinder", "regent"))
+
+
+def _split_character(bracket: str | None) -> tuple[str | None, str | None]:
+    """Peel a character token ("solo:a10:ironclad") off a bracket: the
+    community cube carries the run's character as a sixth cell part."""
+    if not bracket:
+        return bracket, None
+    parts = bracket.split(":")
+    chars = [p for p in parts if p in _CHARACTER_KEYS]
+    if len(chars) > 1:
+        return None, None
+    if not chars:
+        return bracket, None
+    rest = ":".join(p for p in parts if p not in _CHARACTER_KEYS)
+    return rest or "all", chars[0]
+
+
 def community_payload(bracket: str | None = None) -> dict | None:
     """Community-stats payload from the ingest-built store: the plain
     payload file for the all bracket, or any mode x players x skill x
@@ -293,13 +311,14 @@ def community_payload(bracket: str | None = None) -> dict | None:
     for unknown keys, missing stores, or any error. Serving never builds
     from parquet inline."""
     try:
+        bracket, character = _split_character(bracket)
         parsed = _parse_lake_bracket(bracket)
         if parsed is None:
             return None
         import json
 
         mode, player, skill, version = parsed
-        if parsed == (None, None, None, None):
+        if parsed == (None, None, None, None) and character is None:
             path = LAKE_DIR / _PAYLOAD_PATH_NAME
             if not path.exists():
                 return None
@@ -322,7 +341,7 @@ def community_payload(bracket: str | None = None) -> dict | None:
             with gzip.open(path, "rt", encoding="utf-8") as f:
                 _cube_cache = (mtime, json.load(f), {})
         _, raw, folded = _cube_cache
-        ckey = f"{mode}|{player}|{skill}|{version}"
+        ckey = f"{mode}|{player}|{skill}|{version}|{character}"
         hit = folded.get(ckey)
         if hit is not None:
             return hit
@@ -330,8 +349,11 @@ def community_payload(bracket: str | None = None) -> dict | None:
         for cell_id, acc_raw in (raw.get("cells") or {}).items():
             parts = cell_id.split("|")
             if len(parts) == 4 and version is not None:
-                # pre-version cube on disk: can't answer version slices yet
                 return None
+            if character is not None and (len(parts) < 6 or parts[5] != character):
+                if len(parts) < 6:
+                    return None
+                continue
             m, pc, a10, band = parts[:4]
             ver = parts[4] if len(parts) > 4 else ""
             if mode is not None and m != mode:
@@ -498,10 +520,11 @@ def _build_community_cube() -> dict[str, dict]:
     con = _connect(build=True)
     accs: dict[str, dict] = {}
 
-    def acc_for(cell: str) -> dict:
-        a = accs.get(cell)
+    def acc_for(cell: str, char: str | None) -> dict:
+        key = f"{cell}|{(char or '').lower()}"
+        a = accs.get(key)
         if a is None:
-            a = accs[cell] = cs._new_acc_one()
+            a = accs[key] = cs._new_acc_one()
         return a
 
     try:
@@ -511,7 +534,7 @@ def _build_community_cube() -> dict[str, dict]:
             "SELECT cell, lower(character), coalesce(ascension, 0)::INT, count(*),"
             " count(*) FILTER (win) FROM cells GROUP BY 1, 2, 3"
         ).fetchall():
-            acc = acc_for(cell)
+            acc = acc_for(cell, char)
             acc["total_runs"] += runs
             acc["total_wins"] += wins
             for rec in (
@@ -523,59 +546,62 @@ def _build_community_cube() -> dict[str, dict]:
                 rec[1] += wins
 
         for col, key in (("encounter", "deaths_encounter"), ("event", "deaths_event")):
-            for cell, eid, n in con.execute(
-                f"SELECT cell, killed_by_{col}, count(*) FROM cells"
+            for cell, char, eid, n in con.execute(
+                f"SELECT cell, lower(character), killed_by_{col}, count(*) FROM cells"
                 f" WHERE NOT win AND killed_by_{col} IS NOT NULL"
-                f" AND killed_by_{col} NOT LIKE 'NONE%' GROUP BY 1, 2"
+                f" AND killed_by_{col} NOT LIKE 'NONE%' GROUP BY 1, 2, 3"
             ).fetchall():
-                acc_for(cell)[key][eid] = n
+                acc_for(cell, char)[key][eid] = n
 
-        for cell, floors, runs, wins in con.execute(
+        for cell, char, floors, runs, wins in con.execute(
             "WITH per_run AS (SELECT f.run_hash, count(*) AS n"
             f" FROM read_parquet('{lake}/floors.parquet') f"
             " JOIN cells e ON f.run_hash = e.run_hash GROUP BY 1)"
-            " SELECT e.cell, p.n, count(*), count(*) FILTER (e.win) FROM per_run p"
-            " JOIN cells e ON p.run_hash = e.run_hash GROUP BY 1, 2"
+            " SELECT e.cell, lower(e.character), p.n, count(*),"
+            " count(*) FILTER (e.win) FROM per_run p"
+            " JOIN cells e ON p.run_hash = e.run_hash GROUP BY 1, 2, 3"
         ).fetchall():
-            acc_for(cell)["floors"][int(floors)] = [runs, wins]
+            acc_for(cell, char)["floors"][int(floors)] = [runs, wins]
 
-        for cell, act, ptype, visits, dmg, deaths in con.execute(
-            "WITH typed AS (SELECT f.*, e.cell AS cell,"
+        for cell, char, act, ptype, visits, dmg, deaths in con.execute(
+            "WITH typed AS (SELECT f.*, e.cell AS cell, lower(e.character) AS ch,"
             " coalesce(e.killed_by_encounter, '') <> ''"
             "  OR coalesce(e.killed_by_event, '') <> '' AS died"
             f" FROM read_parquet('{lake}/floors.parquet') f"
             " JOIN cells e ON f.run_hash = e.run_hash"
             " WHERE f.map_point_type IS NOT NULL AND f.map_point_type <> '')"
-            ", visits AS (SELECT cell, act, map_point_type, count(*) AS v,"
+            ", visits AS (SELECT cell, ch, act, map_point_type, count(*) AS v,"
             " sum(least(100.0, greatest(0, coalesce(ps.u.damage_taken, 0)) * 100.0"
             " / ps.u.max_hp)) AS dmg FROM typed,"
             " LATERAL (SELECT unnest(players) AS u) ps"
-            " WHERE coalesce(ps.u.max_hp, 0) > 0 GROUP BY 1, 2, 3)"
-            ", lastf AS (SELECT cell, run_hash, arg_max(act, act * 10000 + floor_idx)"
+            " WHERE coalesce(ps.u.max_hp, 0) > 0 GROUP BY 1, 2, 3, 4)"
+            ", lastf AS (SELECT cell, ch, run_hash, arg_max(act, act * 10000 + floor_idx)"
             " AS act, arg_max(map_point_type, act * 10000 + floor_idx) AS mpt"
-            " FROM typed WHERE died GROUP BY 1, 2)"
-            ", deaths AS (SELECT cell, act, mpt, count(*) AS d FROM lastf GROUP BY 1, 2, 3)"
-            " SELECT v.cell, v.act, v.map_point_type, v.v, v.dmg, coalesce(d.d, 0)"
+            " FROM typed WHERE died GROUP BY 1, 2, 3)"
+            ", deaths AS (SELECT cell, ch, act, mpt, count(*) AS d FROM lastf"
+            " GROUP BY 1, 2, 3, 4)"
+            " SELECT v.cell, v.ch, v.act, v.map_point_type, v.v, v.dmg, coalesce(d.d, 0)"
             " FROM visits v LEFT JOIN deaths d"
-            " ON v.cell = d.cell AND v.act = d.act AND v.map_point_type = d.mpt"
+            " ON v.cell = d.cell AND v.ch = d.ch AND v.act = d.act"
+            " AND v.map_point_type = d.mpt"
         ).fetchall():
-            acc_for(cell)["map_danger"][(int(act), ptype)] = [
+            acc_for(cell, char)["map_danger"][(int(act), ptype)] = [
                 visits,
                 float(dmg or 0.0),
                 deaths,
             ]
 
-        for cell, eid, oid, n in con.execute(
-            "SELECT cell, split_part((ec.u).title.\"key\", '.', 1),"
+        for cell, char, eid, oid, n in con.execute(
+            "SELECT cell, run_char, split_part((ec.u).title.\"key\", '.', 1),"
             " split_part(split_part((ec.u).title.\"key\", '.options.', 2), '.', 1),"
             " count(*) FROM pfloors, LATERAL (SELECT unnest((p).event_choices) AS u) ec"
             " WHERE (ec.u).title.\"table\" = 'events'"
-            " AND (ec.u).title.\"key\" LIKE '%.options.%' GROUP BY 1, 2, 3"
+            " AND (ec.u).title.\"key\" LIKE '%.options.%' GROUP BY 1, 2, 3, 4"
         ).fetchall():
             if eid and oid:
-                acc_for(cell)["events"].setdefault(eid, {})[oid] = n
+                acc_for(cell, char)["events"].setdefault(eid, {})[oid] = n
 
-        for cell, choice, ps_char, n, wins, low in con.execute(
+        for cell, char, choice, ps_char, n, wins, low in con.execute(
             "WITH hp AS (SELECT run_hash, cell, act, floor_idx, p, win, run_char,"
             " last_value(CASE WHEN (p).current_hp IS NOT NULL"
             " AND coalesce((p).max_hp, 0) > 0 THEN"
@@ -583,7 +609,7 @@ def _build_community_cube() -> dict[str, dict]:
             " OVER (PARTITION BY run_hash, (p).player_id ORDER BY act, floor_idx"
             " ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS hp_prev"
             " FROM pfloors)"
-            ", choices AS (SELECT h.cell, rc.u AS choice, h.win,"
+            ", choices AS (SELECT h.cell, h.run_char, rc.u AS choice, h.win,"
             " coalesce(h.hp_prev, struct_pack(hp := (h.p).current_hp,"
             " mx := coalesce((h.p).max_hp, 0))) AS ref,"
             " coalesce(pc.character, h.run_char) AS ps_char FROM hp h"
@@ -591,11 +617,11 @@ def _build_community_cube() -> dict[str, dict]:
             " AND (h.p).player_id = pc.player_id,"
             " LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc"
             " WHERE rc.u IS NOT NULL AND rc.u <> '')"
-            " SELECT cell, choice, ps_char, count(*), count(*) FILTER (win),"
+            " SELECT cell, run_char, choice, ps_char, count(*), count(*) FILTER (win),"
             " count(*) FILTER (ref.mx > 0 AND ref.hp IS NOT NULL"
-            " AND ref.hp * 2 < ref.mx) FROM choices GROUP BY 1, 2, 3"
+            " AND ref.hp * 2 < ref.mx) FROM choices GROUP BY 1, 2, 3, 4"
         ).fetchall():
-            acc = acc_for(cell)
+            acc = acc_for(cell, char)
             rec = acc["rest"].setdefault(choice, [0, 0, 0])
             rec[0] += n
             rec[1] += wins
@@ -603,20 +629,20 @@ def _build_community_cube() -> dict[str, dict]:
             crest = acc["char_rest"].setdefault(ps_char, {})
             crest[choice] = crest.get(choice, 0) + n
 
-        for cell, rid, chosen, offered in con.execute(
-            "WITH offers AS (SELECT cell, coalesce((ac.u).TextKey,"
+        for cell, char, rid, chosen, offered in con.execute(
+            "WITH offers AS (SELECT cell, run_char, coalesce((ac.u).TextKey,"
             " CASE WHEN (ac.u).title.\"key\" LIKE '%.%' THEN"
             ' substr((ac.u).title."key", strpos((ac.u).title."key", \'.\') + 1)'
             ' ELSE (ac.u).title."key" END) AS rid, (ac.u).was_chosen AS wc'
             " FROM pfloors, LATERAL (SELECT unnest((p).ancient_choice) AS u) ac)"
-            " SELECT cell, rid, count(*) FILTER (coalesce(wc, false)), count(*)"
+            " SELECT cell, run_char, rid, count(*) FILTER (coalesce(wc, false)), count(*)"
             " FROM offers WHERE rid IS NOT NULL AND rid <> ''"
-            " AND upper(rid) NOT LIKE 'NONE%' GROUP BY 1, 2"
+            " AND upper(rid) NOT LIKE 'NONE%' GROUP BY 1, 2, 3"
         ).fetchall():
-            acc_for(cell)["ancient"][rid] = [chosen, offered]
+            acc_for(cell, char)["ancient"][rid] = [chosen, offered]
 
-        for cell, cid, hopper, ps_char, n in con.execute(
-            "WITH rem AS (SELECT cell, hopper_floor,"
+        for cell, char, cid, hopper, ps_char, n in con.execute(
+            "WITH rem AS (SELECT cell, run_char, hopper_floor,"
             " coalesce(pc.character, f.run_char) AS ps_char,"
             " coalesce(json_extract_string(cr.u, '$.card.id'),"
             " json_extract_string(cr.u, '$.id'),"
@@ -624,41 +650,42 @@ def _build_community_cube() -> dict[str, dict]:
             " FROM pfloors f LEFT JOIN pid_char pc ON f.run_hash = pc.run_hash"
             " AND (f.p).player_id = pc.player_id,"
             " LATERAL (SELECT unnest((f.p).cards_removed) AS u) cr)"
-            " SELECT cell, CASE WHEN upper(split_part(raw, '.', -1)) LIKE 'STRIKE_%'"
+            " SELECT cell, run_char, CASE WHEN upper(split_part(raw, '.', -1)) LIKE 'STRIKE_%'"
             " THEN 'STRIKE' WHEN upper(split_part(raw, '.', -1)) LIKE 'DEFEND_%'"
             " THEN 'DEFEND' ELSE upper(split_part(raw, '.', -1)) END,"
             " hopper_floor, ps_char, count(*) FROM rem"
             " WHERE raw IS NOT NULL AND raw <> ''"
-            " AND upper(split_part(raw, '.', -1)) NOT LIKE 'NONE%' GROUP BY 1, 2, 3, 4"
+            " AND upper(split_part(raw, '.', -1)) NOT LIKE 'NONE%' GROUP BY 1, 2, 3, 4, 5"
         ).fetchall():
-            acc = acc_for(cell)
+            acc = acc_for(cell, char)
             if hopper:
                 acc["stolen"][cid] = acc["stolen"].get(cid, 0) + n
             else:
                 acc["removed"][cid] = acc["removed"].get(cid, 0) + n
                 acc["char_removes"][ps_char] = acc["char_removes"].get(ps_char, 0) + n
 
-        for cell, screens, skips in con.execute(
-            "SELECT cell, count(*), count(*) FILTER (NOT list_bool_or(picks_list))"
-            " FROM pfloors WHERE len(picks_list) > 0 GROUP BY 1"
+        for cell, char, screens, skips in con.execute(
+            "SELECT cell, run_char, count(*),"
+            " count(*) FILTER (NOT list_bool_or(picks_list))"
+            " FROM pfloors WHERE len(picks_list) > 0 GROUP BY 1, 2"
         ).fetchall():
-            acc = acc_for(cell)
+            acc = acc_for(cell, char)
             acc["reward_screens"] = screens
             acc["reward_skips"] = skips
 
-        for cell, fw, fwh, lr, lrh, bd, bdh in con.execute(
+        for cell, char, fw, fwh, lr, lrh, bd, bdh in con.execute(
             "WITH rr AS (SELECT * FROM cells WHERE game_mode = 'standard'"
             " AND NOT has_modifiers)"
-            " SELECT cell,"
+            " SELECT cell, lower(rr.character),"
             " min(run_time) FILTER (win AND run_time > 0),"
             " arg_min(rr.run_hash, run_time) FILTER (win AND run_time > 0),"
             " max(run_time) FILTER (run_time > 0),"
             " arg_max(rr.run_hash, run_time) FILTER (run_time > 0),"
             " max(p.deck_size), arg_max(p.run_hash, p.deck_size)"
             f" FROM rr LEFT JOIN read_parquet('{lake}/players.parquet') p"
-            " ON rr.run_hash = p.run_hash GROUP BY 1"
+            " ON rr.run_hash = p.run_hash GROUP BY 1, 2"
         ).fetchall():
-            acc = acc_for(cell)
+            acc = acc_for(cell, char)
             if fw is not None:
                 acc["fastest_win"] = (int(fw), fwh)
             if lr is not None:

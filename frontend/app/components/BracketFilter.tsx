@@ -3,6 +3,7 @@ import {
   CONTENT_BRACKETS,
   PLAYER_BRACKETS,
   MODE_BRACKETS,
+  CHARACTER_BRACKETS,
   normalizeBracket,
   splitBracket,
   combineBracket,
@@ -10,6 +11,7 @@ import {
   type ContentBracket,
 } from "@/lib/content-brackets";
 import VersionSelectNav from "@/app/components/VersionSelectNav";
+import { imageUrl } from "@/lib/image-url";
 
 /**
  * Bracket pill rows (All / Asc 10 / win-rate tiers, plus player count) for
@@ -40,7 +42,7 @@ export default function BracketFilter({
   modeComposes?: boolean;
 }) {
   const active = normalizeBracket(current);
-  const { player, skill, mode, version } = splitBracket(active);
+  const { player, skill, mode, character, version } = splitBracket(active);
 
   const hrefFor = (bracketValue: string) => {
     const params = new URLSearchParams();
@@ -134,7 +136,7 @@ export default function BracketFilter({
             <Link
               prefetch={false}
               key={b.key}
-              href={hrefFor(combineBracket(player, targetSkill, version, modeComposes ? mode : ""))}
+              href={hrefFor(combineBracket(player, targetSkill, version, modeComposes ? mode : "", modeComposes ? character : ""))}
               className={pillCls(skill === targetSkill)}
             >
               {b.label}
@@ -148,7 +150,7 @@ export default function BracketFilter({
           <Link
             prefetch={false}
             key={b.key || "all"}
-            href={hrefFor(combineBracket(b.key, skill, version, modeComposes ? mode : ""))}
+            href={hrefFor(combineBracket(b.key, skill, version, modeComposes ? mode : "", modeComposes ? character : ""))}
             className={pillCls(player === b.key)}
           >
             {b.label}
@@ -163,7 +165,7 @@ export default function BracketFilter({
                 keeps the player + skill selection and vice versa. */}
             <Link
               prefetch={false}
-              href={hrefFor(combineBracket(player, skill, version))}
+              href={hrefFor(combineBracket(player, skill, version, "", character))}
               className={pillCls(!mode)}
             >
               All
@@ -172,7 +174,7 @@ export default function BracketFilter({
               <Link
                 prefetch={false}
                 key={m.key}
-                href={hrefFor(combineBracket(player, skill, version, m.key))}
+                href={hrefFor(combineBracket(player, skill, version, m.key, character))}
                 className={pillCls(mode === m.key)}
               >
                 {m.label}
@@ -207,8 +209,36 @@ export default function BracketFilter({
           </>
         )}
       </div>
-      {/* Game version is a third axis: it composes with the player and
-          skill selections instead of replacing them. */}
+      {modeComposes && (
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="w-14 text-xs text-[var(--text-muted)]">Character</span>
+          <Link
+            prefetch={false}
+            href={hrefFor(combineBracket(player, skill, version, mode))}
+            className={pillCls(!character)}
+          >
+            All
+          </Link>
+          {CHARACTER_BRACKETS.map((c) => (
+            <Link
+              prefetch={false}
+              key={c.key}
+              href={hrefFor(combineBracket(player, skill, version, mode, c.key))}
+              className={`${pillCls(character === c.key)} inline-flex items-center gap-1.5`}
+            >
+              <img
+                src={imageUrl(`/static/images/characters/character_icon_${c.key}.webp`)}
+                alt=""
+                width={16}
+                height={16}
+                className="w-4 h-4 rounded-sm"
+                crossOrigin="anonymous"
+              />
+              {c.label}
+            </Link>
+          ))}
+        </div>
+      )}
       <VersionSelectNav
         basePath={basePath}
         current={active}
