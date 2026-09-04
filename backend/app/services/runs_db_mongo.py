@@ -429,6 +429,49 @@ def init_db():
 
 
 # ── public surface ──────────────────────────────────────────────────────
+_STEAMID64_LEN = 17
+
+
+def _steamid64(value) -> str | None:
+    sid = str(value or "")
+    return sid if len(sid) == _STEAMID64_LEN and sid.isdigit() else None
+
+
+def uploader_player_index(players: list, steam_id: str | None) -> int | None:
+    """Which slot of a submitted run is the uploader's: the player whose
+    SteamID64 (players[i].id in the run file) matches. Slot 0 for solo runs
+    and files without player ids. None when a multiplayer file carries ids
+    and the uploader is unknown or matches none of them: crediting the
+    host's slot to whoever holds the file is the bug."""
+    if steam_id:
+        for idx, player in enumerate(players):
+            if str((player or {}).get("id") or "") == steam_id:
+                return idx
+    has_ids = any(_steamid64((p or {}).get("id")) for p in players)
+    if len(players) > 1 and has_ids:
+        return None
+    return 0
+
+
+def _teammate_identity(player: dict) -> tuple[str | None, str | None, str | None]:
+    """(username, steam_id, user_id) for a co-op slot the uploader doesn't
+    own. Tagged with that player's own SteamID64 and linked to their account
+    when one exists, so the run lands on their profile instead of the
+    uploader's; unlinked slots get claimed by backfill_user_runs on sign-in."""
+    own_sid = _steamid64(player.get("id"))
+    if not own_sid:
+        return (None, None, None)
+    try:
+        from .users_db import get_user_by_steam_id
+
+        owner = get_user_by_steam_id(own_sid)
+    except Exception:
+        owner = None
+    if owner:
+        return (owner.get("username"), own_sid, owner["_id"])
+    return (None, own_sid, None)
+
+
 @_instrument("submit_run")
 def submit_run(
     data: dict,
@@ -436,8 +479,10 @@ def submit_run(
     steam_id: str | None = None,
     discord_id: str | None = None,
 ) -> dict:
-    """Parse a run and store one document per player. Returns status dict
-    matching the SQLite implementation.
+    """Parse a run and store one document per player. Returns the uploader's
+    slot's status dict (plus ``player_idx``), matching the SQLite
+    implementation. In co-op only the uploader's slot carries their
+    identity; teammates' slots are tagged with their own SteamID64s.
 
     When ``steam_id`` / ``discord_id`` is provided (the overlay / Compendium
     pass the signed-in player's SteamID64), the run is tagged with it and,
@@ -451,6 +496,7 @@ def submit_run(
     # parity so any client that knows it links the same way.
     linked_user_id = None
     linked_username = None
+    owner = None
     if steam_id or discord_id:
         try:
             from .users_db import get_user_by_steam_id, get_user_by_discord_id
@@ -482,6 +528,9 @@ def submit_run(
         except Exception:
             pass
 
+    if not steam_id and linked_user_id is not None:
+        steam_id = _steamid64((owner or {}).get("steam_id"))
+
     missing: list[str] = []
     if not data.get("players"):
         missing.append("players")
@@ -502,10 +551,20 @@ def submit_run(
         if killed_by_raw and killed_by_raw != "NONE.NONE"
         else None
     )
-    player_count = len(data.get("players", []))
+    players = data["players"]
+    player_count = len(players)
+    uploader_idx = uploader_player_index(players, steam_id)
 
     results = []
-    for player_idx, player in enumerate(data["players"]):
+    owners: list[tuple[str | None, str | None]] = []
+    for player_idx, player in enumerate(players):
+        if player_idx == uploader_idx:
+            p_username = linked_username or username
+            p_steam_id, p_discord_id, p_user_id = steam_id, discord_id, linked_user_id
+        else:
+            p_username, p_steam_id, p_user_id = _teammate_identity(player)
+            p_discord_id = None
+        owners.append((p_user_id, p_username))
         result = _submit_player_run(
             data,
             player,
@@ -514,10 +573,11 @@ def submit_run(
             total_floors,
             killed_by,
             player_count,
-            linked_username or username,
-            steam_id,
-            discord_id,
-            linked_user_id,
+            p_username,
+            p_steam_id,
+            p_discord_id,
+            p_user_id,
+            is_uploader=player_idx == uploader_idx,
         )
         results.append(result)
 
@@ -530,7 +590,8 @@ def submit_run(
             run_hash = result.get("run_hash", "")
             if run_hash:
                 run_file = runs_dir / f"{run_hash}.json"
-                if not run_file.exists():
+                fresh = bool(result.get("success"))
+                if fresh and not run_file.exists():
                     try:
                         with open(run_file, "w", encoding="utf-8") as f:
                             json.dump(data, f, ensure_ascii=False)
@@ -539,36 +600,66 @@ def submit_run(
                 # Outside the exists-gate on purpose: blob write failures are
                 # swallowed, so gating on the file would make one transient
                 # Mongo hiccup permanent (resubmission would skip the repair).
-                # The upsert inside makes the duplicate-submission case cheap.
-                save_run_blob(run_hash, data)
+                save_run_blob(
+                    run_hash,
+                    data,
+                    replace=fresh,
+                    seed_path=None if fresh else run_file,
+                )
 
-    if linked_user_id is not None and any(r.get("success") for r in results):
-        try:
-            from .user_insights import invalidate_user_insights, note_profile_activity
+    for result, (owner_id, owner_name) in zip(results, owners):
+        if owner_id is not None and result.get("success"):
+            try:
+                from .user_insights import (
+                    invalidate_user_insights,
+                    note_profile_activity,
+                )
 
-            invalidate_user_insights(str(linked_user_id))
-            note_profile_activity(str(linked_user_id), linked_username)
-        except Exception:
-            pass
+                invalidate_user_insights(str(owner_id))
+                note_profile_activity(str(owner_id), owner_name)
+            except Exception:
+                pass
 
-    return results[0]
+    primary = uploader_idx if uploader_idx is not None else 0
+    out = dict(results[primary])
+    out["player_idx"] = primary
+    return out
 
 
 def _blob_collection():
     return _get_collection().database["run_blobs"]
 
 
-def save_run_blob(run_hash: str, data: dict) -> None:
+def save_run_blob(
+    run_hash: str, data: dict, replace: bool = True, seed_path=None
+) -> None:
+    """Store the submitted JSON. A duplicate submission (replace=False) never
+    overwrites: an existing blob wins, then the run file already on disk,
+    then the submitted JSON, which is stored flagged untrusted. The blob is
+    the ownership evidence for each co-op slot and player ids aren't part
+    of the hash, so an edited re-upload must not become evidence."""
+    now = datetime.now(timezone.utc)
     try:
-        _blob_collection().replace_one(
-            {"_id": run_hash},
-            {
-                "_id": run_hash,
-                "blob": data,
-                "updated_at": datetime.now(timezone.utc),
-            },
-            upsert=True,
-        )
+        coll = _blob_collection()
+        if replace:
+            coll.replace_one(
+                {"_id": run_hash},
+                {"_id": run_hash, "blob": data, "updated_at": now},
+                upsert=True,
+            )
+            return
+        if coll.count_documents({"_id": run_hash}, limit=1):
+            return
+        fields: dict = {"blob": data, "updated_at": now, "untrusted": True}
+        if seed_path is not None and seed_path.exists():
+            try:
+                fields = {
+                    "blob": json.loads(seed_path.read_text(encoding="utf-8")),
+                    "updated_at": now,
+                }
+            except Exception:
+                pass
+        coll.update_one({"_id": run_hash}, {"$setOnInsert": fields}, upsert=True)
     except Exception as e:
         logger.warning("failed to save run blob %s: %s", run_hash, e)
 
@@ -751,9 +842,16 @@ def _submit_player_run(
     steam_id: str | None = None,
     discord_id: str | None = None,
     linked_user_id: str | None = None,
+    is_uploader: bool = True,
 ) -> dict:
     """One Mongo insert per player. The full nested structure goes into
-    a single document — no joins required at query time."""
+    a single document — no joins required at query time. The mod's damage
+    summary is the uploader's own, so only their slot carries it.
+
+    A duplicate fills identity fields that are still null, and only on a
+    slot whose steam_id and user_id are null or the caller's own: every
+    run's JSON is public and player ids aren't in the hash, so re-posting
+    an edited blob must not reassign or touch another player's slot."""
     from bson import ObjectId
 
     seed = data.get("seed", "")
@@ -872,10 +970,7 @@ def _submit_player_run(
         "map_point_history": data.get("map_point_history", []),
     }
 
-    # DPS tracking: `_spirecodex_damage` is the whole-run total from the local
-    # player's mod, so attach it only to player 0 (avoids co-op double-counting
-    # in the per-character damage aggregates). Absent / invalid -> no field.
-    if player_idx == 0:
+    if is_uploader:
         dmg = clean_damage(data.get("_spirecodex_damage"))
         if dmg:
             doc["damage"] = dmg
@@ -894,24 +989,27 @@ def _submit_player_run(
         if not doc.get("hidden"):
             bump_stats_counters(doc)
     except DuplicateKeyError:
-        # Re-uploading the exact run file restores a soft-deleted run:
-        # holding the file is ownership proof, and delete only ever meant
-        # "hide from my profile" — without this, a delete-then-reupload
-        # leaves the list empty while every upload reports "duplicate".
-        _undelete_on_reupload(coll, run_hash)
-        # The run already exists (commonly: it was submitted anonymously
-        # before the client started sending an identity). Re-submitting with
-        # a steam_id / discord_id becomes a migration path — tag the existing
-        # doc so a later sign-in can link it. Each $set is guarded on the
-        # field being null so we never reassign a run another account owns.
+        steam_ok: dict = (
+            {"$or": [{"steam_id": None}, {"steam_id": steam_id}]}
+            if steam_id
+            else {"steam_id": None}
+        )
+        user_ok: dict = {
+            "user_id": (
+                {"$in": [None, ObjectId(linked_user_id)]} if linked_user_id else None
+            )
+        }
+        own_slot = {**steam_ok, **user_ok}
+        if is_uploader:
+            _undelete_on_reupload(coll, run_hash, own_slot)
         if steam_id:
             coll.update_one(
-                {"_id": run_hash, "steam_id": None},
+                {"_id": run_hash, "steam_id": None, **user_ok},
                 {"$set": {"steam_id": steam_id}},
             )
         if discord_id:
             coll.update_one(
-                {"_id": run_hash, "discord_id": None},
+                {"_id": run_hash, "discord_id": None, **own_slot},
                 {"$set": {"discord_id": discord_id}},
             )
         if linked_user_id:
@@ -920,8 +1018,13 @@ def _submit_player_run(
                 owner_set["username"] = username
                 owner_set["username_lower"] = username.lower()
             coll.update_one(
-                {"_id": run_hash, "user_id": None},
+                {"_id": run_hash, "user_id": None, **steam_ok},
                 {"$set": owner_set},
+            )
+        if is_uploader and doc.get("damage"):
+            coll.update_one(
+                {"_id": run_hash, "damage": {"$exists": False}, **own_slot},
+                {"$set": {"damage": doc["damage"]}},
             )
         return {
             "error": "This run has already been submitted",
@@ -1171,44 +1274,67 @@ def backfill_bought() -> int:
 
 @_instrument("claim_runs")
 def claim_runs(username: str, hashes: list[str]) -> dict:
-    """Attach `username` to any runs whose _id matches and whose current
-    username is null/empty. Matches the SQLite implementation: never
-    overwrites an existing claim."""
+    """Attach `username` to runs whose _id matches and that nobody owns yet:
+    username and user_id null, steam_id null or the claimant account's own.
+    A co-op teammate's slot carries their SteamID64, so another player can't
+    claim it by hash."""
     if not hashes:
         return {"claimed": 0, "already_claimed": 0, "unknown": 0}
 
-    coll = _get_collection()
-    existing = list(coll.find({"_id": {"$in": hashes}}, {"_id": 1, "username": 1}))
-    by_hash = {d["_id"]: d.get("username") for d in existing}
+    owner = None
+    try:
+        from .users_db import get_user_by_username
 
-    unclaimed = [h for h, u in by_hash.items() if not u]
-    already_claimed = len(by_hash) - len(unclaimed)
-    unknown = len(hashes) - len(by_hash)
+        owner = get_user_by_username(username)
+    except Exception:
+        owner = None
+    owner_sid = str((owner or {}).get("steam_id") or "") or None
+
+    coll = _get_collection()
+    existing = list(
+        coll.find(
+            {"_id": {"$in": hashes}},
+            {"_id": 1, "username": 1, "user_id": 1, "steam_id": 1},
+        )
+    )
+    unclaimed = [
+        d["_id"]
+        for d in existing
+        if not d.get("username")
+        and not d.get("user_id")
+        and d.get("steam_id") in (None, owner_sid)
+    ]
+    already_claimed = len(existing) - len(unclaimed)
+    unknown = len(hashes) - len(existing)
 
     if unclaimed:
+        update: dict = {"username": username, "username_lower": username.lower()}
+        if owner:
+            from bson import ObjectId
+
+            update["user_id"] = ObjectId(str(owner["_id"]))
+        if owner_sid:
+            update["steam_id"] = owner_sid
         coll.update_many(
-            {"_id": {"$in": unclaimed}, "$or": [{"username": None}, {"username": ""}]},
-            {"$set": {"username": username, "username_lower": username.lower()}},
+            {
+                "_id": {"$in": unclaimed},
+                "user_id": None,
+                "steam_id": {"$in": [None, owner_sid]},
+                "$or": [{"username": None}, {"username": ""}],
+            },
+            {"$set": update},
         )
-        try:
-            from .user_insights import invalidate_user_insights, note_profile_activity
-            from .users_db import get_user_by_username
-
-            owner = get_user_by_username(username)
-            if owner:
-                from bson import ObjectId
-
-                # The profile walk matches user_id, not username, so a claim
-                # must link both or the runs stay profile-invisible until
-                # the next sign-in backfill.
-                coll.update_many(
-                    {"_id": {"$in": unclaimed}, "user_id": None},
-                    {"$set": {"user_id": ObjectId(str(owner["_id"]))}},
+        if owner:
+            try:
+                from .user_insights import (
+                    invalidate_user_insights,
+                    note_profile_activity,
                 )
+
                 invalidate_user_insights(str(owner["_id"]))
                 note_profile_activity(str(owner["_id"]), username)
-        except Exception:
-            pass
+            except Exception:
+                pass
 
     return {
         "claimed": len(unclaimed),
@@ -3304,12 +3430,12 @@ def get_user_runs(
     return {"runs": runs, "total": total, "page": page, "limit": limit}
 
 
-def _undelete_on_reupload(coll, run_hash: str) -> None:
-    """Clear a soft delete when the same run file comes back in. Guarded on
-    deleted_at being set so the common duplicate (never-deleted) is a no-op
-    matching zero docs."""
+def _undelete_on_reupload(coll, run_hash: str, extra: dict | None = None) -> None:
+    """Clear a soft delete when the owner re-uploads the same run file.
+    Guarded on deleted_at being set so the common duplicate (never-deleted)
+    is a no-op matching zero docs."""
     coll.update_one(
-        {"_id": run_hash, "deleted_at": {"$ne": None}},
+        {"_id": run_hash, "deleted_at": {"$ne": None}, **(extra or {})},
         {"$unset": {"deleted_at": ""}},
     )
 

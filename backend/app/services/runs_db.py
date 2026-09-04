@@ -185,9 +185,10 @@ def submit_run(
 ) -> dict:
     """Parse and store a run. Returns status dict.
 
-    ``steam_id`` / ``discord_id`` are accepted for signature parity with the
-    Mongo implementation (the production path). The SQLite fallback doesn't
-    track per-account run ownership, so they're ignored here."""
+    ``steam_id`` picks the uploader's slot in a co-op file; ``discord_id`` is
+    accepted for signature parity with the Mongo implementation (the
+    production path). The SQLite fallback doesn't track per-account run
+    ownership beyond the username."""
     # Validate structure. Errors call out the specific field so failed
     # batch uploads (issue #151) can be triaged without re-running with
     # a debugger — previously every rejection collapsed to the same
@@ -217,7 +218,9 @@ def submit_run(
     )
     player_count = len(data.get("players", []))
 
-    # Process each player as a separate run entry (multiplayer support)
+    from .runs_db_mongo import uploader_player_index
+
+    uploader_idx = uploader_player_index(data["players"], steam_id)
     results = []
     for player_idx, player in enumerate(data["players"]):
         result = _submit_player_run(
@@ -228,7 +231,7 @@ def submit_run(
             total_floors,
             killed_by,
             player_count,
-            username,
+            username if player_idx == uploader_idx else None,
         )
         results.append(result)
 
@@ -247,8 +250,10 @@ def submit_run(
                     except Exception as e:
                         print(f"Warning: failed to save run {run_hash}: {e}")
 
-    # Return first player's result (for hash/sharing)
-    return results[0]
+    primary = uploader_idx if uploader_idx is not None else 0
+    out = dict(results[primary])
+    out["player_idx"] = primary
+    return out
 
 
 def _submit_player_run(

@@ -205,6 +205,7 @@ async def submit_run_endpoint(
                 "success": True,
                 "duplicate": True,
                 "run_hash": result.get("run_hash"),
+                "player_idx": result.get("player_idx", 0),
             }
         else:
             run_submissions.labels(status="error").inc()
@@ -271,7 +272,8 @@ async def submit_run_endpoint(
 
     # Track successful submission metrics
     run_submissions.labels(status="success").inc()
-    player = data.get("players", [{}])[0]
+    players = data.get("players") or [{}]
+    player = players[min(result.get("player_idx", 0), len(players) - 1)]
     char = player.get("character", "").replace("CHARACTER.", "")
     if char:
         run_character.labels(character=char).inc()
