@@ -16,3 +16,5 @@ scipy==1.14.1
 tzdata==2025.2
 # Analytics lake (pinned exactly; see lab/README.md)
 duckdb==1.5.5
+pyarrow==21.0.0
+orjson==3.11.3

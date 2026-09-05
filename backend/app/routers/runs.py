@@ -983,6 +983,7 @@ def get_shared_run(run_hash: str, request: Request):
                 blob["username"] = meta["username"]
             if meta.get("hidden"):
                 blob["hidden"] = True
+            blob["has_replay"] = bool(meta.get("has_replay"))
             return blob
 
         from ..services.runs_db import get_conn

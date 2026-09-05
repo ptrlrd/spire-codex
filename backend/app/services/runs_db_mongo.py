@@ -2123,6 +2123,7 @@ def _projection_row() -> dict:
         "submitted_at": 1,
         "build_id": 1,
         "hidden": 1,
+        "has_replay": 1,
     }
 
 
@@ -3054,11 +3055,14 @@ def get_username_for_hash(run_hash: str) -> str | None:
 def get_share_meta_for_hash(run_hash: str) -> dict:
     """Username + hidden flag for the share page in one lookup, so the page
     can banner runs excluded from leaderboards and aggregates."""
-    doc = _get_collection().find_one({"_id": run_hash}, {"username": 1, "hidden": 1})
+    doc = _get_collection().find_one(
+        {"_id": run_hash}, {"username": 1, "hidden": 1, "has_replay": 1}
+    )
     return {
         "exists": doc is not None,
         "username": (doc or {}).get("username"),
         "hidden": bool((doc or {}).get("hidden")),
+        "has_replay": bool((doc or {}).get("has_replay")),
     }
 
 
