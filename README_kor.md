@@ -382,7 +382,7 @@ API를 직접 사용하는 경우 `\[/?[a-z]+(?::\d+)?\]` 같은 정규식으로
 ### 사전 요구 사항
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### 백엔드
 
@@ -464,7 +464,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | DLL 디컴파일 | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | 데이터 파싱 | Python 3.10+ | 내장 |
 | 이미지 복사 | Python 3.10+ | 내장 |
-| Spine 렌더링 | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine 렌더링 | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### 수동 단계
 

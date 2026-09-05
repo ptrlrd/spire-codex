@@ -382,7 +382,7 @@ API'yi doğrudan kullanıyorsanız bunları `\[/?[a-z]+(?::\d+)?\]` gibi bir dü
 ### Ön Koşullar
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Arka Uç
 
@@ -464,7 +464,7 @@ Betik işletim sisteminizi otomatik olarak algılar ve Steam kurulum dizinini bu
 | DLL tersine derleme | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Veri ayrıştırma | Python 3.10+ | Yerleşik |
 | Görsel kopyalama | Python 3.10+ | Yerleşik |
-| Spine işleme | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine işleme | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Elle Uygulanan Adımlar
 

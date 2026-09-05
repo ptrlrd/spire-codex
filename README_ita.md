@@ -382,7 +382,7 @@ Se utilizzi direttamente l'API, puoi rimuoverli con un'espressione regolare come
 ### Prerequisiti
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -464,7 +464,7 @@ Lo script rileva automaticamente il sistema operativo e individua la directory d
 | Decompilazione DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Analisi dei dati | Python 3.10+ | Integrato |
 | Copia delle immagini | Python 3.10+ | Integrato |
-| Rendering Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Rendering Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Passaggi manuali
 

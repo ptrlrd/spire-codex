@@ -382,7 +382,7 @@ CDN 和梯队榜主机是对象存储而非可浏览的网站，因此在任一�
 ### 前置要求
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### 后端
 
@@ -464,7 +464,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | DLL 反编译 | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | 数据解析 | Python 3.10+ | 内置 |
 | 图像复制 | Python 3.10+ | 内置 |
-| Spine 渲染 | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine 渲染 | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### 手动步骤
 
