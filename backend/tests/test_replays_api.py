@@ -402,3 +402,17 @@ def test_if_none_match_parses_entity_tags_not_commas(env):
     assert _etag_matches("*", f'"{sha}"')
     assert not _etag_matches(f'w/"{sha}"', f'"{sha}"')
     assert not _etag_matches(f'"{sha}" garbage', f'"{sha}"')
+
+
+def test_storage_failure_is_a_503_not_a_500(env, monkeypatch):
+    from pymongo.errors import OperationFailure
+
+    class Unauthorized:
+        def insert_one(self, doc):
+            raise OperationFailure("not authorized on spire_replays", 13)
+
+    monkeypatch.setattr(replays_db, "_coll", lambda: Unauthorized())
+    r = _post(_gz())
+    assert r.status_code == 503
+    assert r.json()["detail"]["code"] == "storage"
+    assert "has_replay" not in env[0].docs[RUN_HASH]

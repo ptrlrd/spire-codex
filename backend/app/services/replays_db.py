@@ -15,12 +15,15 @@ exploder's publication identity (run_hash + sha256) stable.
 import hashlib
 import json
 import os
+import logging
 import zlib
 from datetime import datetime, timezone
 
 from bson import Binary
 from pymongo import ASCENDING, DESCENDING
-from pymongo.errors import DuplicateKeyError
+from pymongo.errors import DuplicateKeyError, PyMongoError
+
+logger = logging.getLogger(__name__)
 
 REPLAY_DB_NAME = os.environ.get("REPLAY_DB_NAME", "spire_replays")
 MAX_GZ_BYTES = int(os.environ.get("REPLAY_MAX_GZ_BYTES", "") or 2 * 1024 * 1024)
@@ -223,7 +226,11 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
     from .runs_db_mongo import get_run_blob
 
     player_idx = check_header(info["header"], run_doc, get_run_blob(run_hash), run_hash)
-    return store_replay(run_hash, gz, info, run_doc, user, player_idx)
+    try:
+        return store_replay(run_hash, gz, info, run_doc, user, player_idx)
+    except PyMongoError as e:
+        logger.error("replay storage failed for %s: %s", run_hash, str(e)[:300])
+        raise ReplayRejected(503, "replay storage is unavailable", "storage")
 
 
 def store_replay(
