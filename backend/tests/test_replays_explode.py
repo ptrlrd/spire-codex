@@ -666,7 +666,6 @@ def test_new_journal_shapes_link_by_option_index_not_instance_id():
     assert inst[6]["acquired_via"] == "start" and inst[6]["in_final_deck"] is True
     assert inst[14]["acquired_via"] == "reward" and inst[14]["card_id"] == "GUILTY"
     assert inst[14]["acquired_decision_id"] == 1 and inst[14]["in_final_deck"] is True
-    assert ()
     assert 15 not in inst and 16 not in inst
     assert inst[17]["acquired_via"] == "granted"
     assert (
