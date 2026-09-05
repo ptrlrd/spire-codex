@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "check-lang-pages": "node scripts/check-lang-pages.mts",
     "test": "vitest run"
   },
   "dependencies": {
