@@ -223,6 +223,12 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
           &larr; {t("Back to", lang)}
         </Link>
         <div className="flex items-center gap-2">
+          {run.has_replay && (
+            <Link href={`/runs/${hash}/replay`}
+              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)] text-[var(--accent-gold)] hover:bg-[var(--accent-gold)] hover:text-[var(--bg-primary)] transition-colors font-semibold">
+              {t("Replay", lang)}
+            </Link>
+          )}
           {run.hidden && user?.is_admin && (
             <button onClick={unhideRun} disabled={unhiding}
               className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50">
