@@ -167,7 +167,7 @@ export default function SearchFilter({
           </label>
         )}
         {resultCount !== undefined && (
-          <span className="text-sm text-[var(--text-muted)] whitespace-nowrap shrink-0 ml-auto text-left w-16">
+          <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
             {resultCount} {t("results", lang)}
           </span>
         )}
