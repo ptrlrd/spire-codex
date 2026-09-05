@@ -255,6 +255,8 @@ export default function LiveMap({
   encounters,
   floorHistory,
   cat,
+  selected,
+  onSelect,
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
@@ -265,6 +267,8 @@ export default function LiveMap({
   encounters?: EncounterMap;
   floorHistory?: FloorSummary[];
   cat?: Partial<LiveCatalogs>;
+  selected?: Coord | null;
+  onSelect?: (coord: Coord) => void;
 }) {
   const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
   const t = useT();
@@ -284,6 +288,7 @@ export default function LiveMap({
   const visited = new Set((path ?? []).map(([c, r]) => key(c, r)));
   const onPath = (c: number, r: number) => visited.has(key(c, r));
   const isPos = (c: number, r: number) => !!pos && pos[0] === c && pos[1] === r;
+  const isSelected = (c: number, r: number) => !!selected && selected[0] === c && selected[1] === r;
 
   const edges = map?.edges ?? [];
 
@@ -395,12 +400,18 @@ export default function LiveMap({
           const portrait = portraitFor(c, r, type);
           const dim = !(seen || here);
           const hasFloor = !!floorAt(c, r);
+          const clickable = !!onSelect && seen;
+          const picked = isSelected(c, r);
           return (
             <g
               key={`n-${c}-${r}`}
               onMouseEnter={() => setHovered({ c, r })}
-              style={{ cursor: hasFloor ? "help" : "default" }}
+              onClick={clickable ? () => onSelect([c, r]) : undefined}
+              style={{ cursor: clickable ? "pointer" : hasFloor ? "help" : "default" }}
             >
+              {picked && (
+                <circle cx={x(c)} cy={y(r)} r={R + 5} fill="none" stroke="var(--accent-gold)" strokeWidth={3} />
+              )}
               {/* Opaque backing so the connector lines never show through a
                   node -- dim/unvisited nodes are drawn at 0.55 opacity, which
                   otherwise lets the white edges bleed through and look like
