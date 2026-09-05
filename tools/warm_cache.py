@@ -39,7 +39,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 UA = "SpireCodexWarmer/1.0 (+https://spire-codex.com)"
 LANG_PREFIXES = {
-    "deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb",
+    "eng", "deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb",
     "rus", "spa", "tha", "tur", "zhs", "zht",
 }
 # Detail-page route -> API list endpoint. The id field is "id" unless noted.

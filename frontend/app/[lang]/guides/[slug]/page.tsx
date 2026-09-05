@@ -1,14 +1,7 @@
-import { permanentRedirect } from "next/navigation";
-
-type Props = { params: Promise<{ lang: string; slug: string }> };
-
-// Guides are English-language content; the localized wrappers served the
-// same English body on 13 URLs per guide, which crawlers flagged as
-// language mismatches and near-duplicates (same pattern as /<lang>/runs).
-// Collapse them onto the canonical English guide. The viewer's language
-// preference survives the redirect through the language context, so
-// navigation from the guide stays in their locale.
-export default async function LangGuideRedirect({ params }: Props) {
-  const { slug } = await params;
-  permanentRedirect(`/guides/${slug}`);
-}
+// Guides are English-language content; localized requests render the same
+// canonical page (see app/guides/[slug]/page.tsx) rather than force-
+// redirecting to it. buildPageMetadata's supressLanguageAlternates keeps
+// the canonical pointed at the English URL and noindexes every non-English
+// request automatically, based on the resolved lang param this route
+// passes through.
+export { generateMetadata, default } from "@/app/guides/[slug]/page";

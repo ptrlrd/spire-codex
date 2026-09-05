@@ -162,169 +162,169 @@ spire-codex/
 
 ## Public Services
 
-| Host | Purpose |
-|---|---|
-| [`spire-codex.com`](https://spire-codex.com) | Public website and same-origin API. The active beta channel lives under `/beta`. |
-| `cdn.spire-codex.com` | Cloudflare R2 object host for game art, full card renders, localized renders, and archived beta assets. |
+| Host                                                 | Purpose                                                                                                      |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`spire-codex.com`](https://spire-codex.com)         | Public website and same-origin API. The active beta channel lives under `/beta`.                             |
+| `cdn.spire-codex.com`                                | Cloudflare R2 object host for game art, full card renders, localized renders, and archived beta assets.      |
 | [`bot.spire-codex.com`](https://bot.spire-codex.com) | Knowledge Demon landing page and Discord-authenticated staff dashboard. The bot consumes the main Codex API. |
-| `analytics.spire-codex.com` | Self-hosted Umami script and dashboard. Its PostgreSQL database stays on a private Docker network. |
-| `tierlists.spire-codex.com` | Dedicated R2 object host for generated tier-list preview images. |
-| `beta.spire-codex.com` | Retired public host. Cloudflare redirects requests to the same path on the apex domain. |
+| `analytics.spire-codex.com`                          | Self-hosted Umami script and dashboard. Its PostgreSQL database stays on a private Docker network.           |
+| `tierlists.spire-codex.com`                          | Dedicated R2 object host for generated tier-list preview images.                                             |
+| `beta.spire-codex.com`                               | Retired public host. Cloudflare redirects requests to the same path on the apex domain.                      |
 
 The CDN and tier-list hosts are object stores rather than browsable websites, so a `404` at either root is expected.
 
 ## Website Pages
 
-| Page | Route | Description |
-|---|---|---|
-| Home | `/` | Dashboard with entity counts, category cards, character links |
-| Cards | `/cards` | Filterable card grid with modal detail view |
-| Card Detail | `/cards/[id]` | Full card stats, upgrade info, image |
-| Characters | `/characters` | Character overview grid |
-| Character Detail | `/characters/[id]` | Stats, starting deck/relics, quotes, NPC dialogue trees |
-| Relics | `/relics` | Filterable relic grid |
-| Relic Detail | `/relics/[id]` | Full relic info with rich text flavor |
-| Monsters | `/monsters` | Monster grid with HP, moves, Spine renders |
-| Monster Detail | `/monsters/[id]` | HP, moves with intents/damage/powers/block, encounter links, power tooltips |
-| Potions | `/potions` | Filterable potion grid (rarity, character pool) |
-| Potion Detail | `/potions/[id]` | Full potion info |
-| Enchantments | `/enchantments` | Enchantment list with card type filters |
-| Enchantment Detail | `/enchantments/[id]` | Full enchantment info |
-| Encounters | `/encounters` | Encounter compositions by act/room type |
-| Encounter Detail | `/encounters/[id]` | Monster lineup, room type, tags |
-| Events | `/events` | Multi-page event trees with expandable choices |
-| Event Detail | `/events/[id]` | Full event pages, options, Ancient dialogue |
-| Powers | `/powers` | Buffs, debuffs, and neutral powers |
-| Power Detail | `/powers/[id]` | Power info with cards that apply this power |
-| Keywords | `/keywords` | Card keyword list |
-| Keyword Detail | `/keywords/[id]` | Keyword description with filterable card grid |
-| Merchant | `/merchant` | Card/relic/potion pricing, card removal costs, fake merchant |
-| Compare | `/compare` | Character comparison hub (10 pairs) |
-| Compare Detail | `/compare/[pair]` | Side-by-side character comparison |
-| Developers | `/developers` | API docs, widget docs, data exports |
-| Showcase | `/showcase` | Community project gallery |
-| Timeline | `/timeline` | Epoch progression with era grouping, unlock requirements |
-| Act Detail | `/acts/[id]` | Bosses, encounters, events, ancients for an act |
-| Ascension Detail | `/ascensions/[id]` | Ascension level description with prev/next navigation |
-| Intent Detail | `/intents/[id]` | Intent icon, description |
-| Orb Detail | `/orbs/[id]` | Orb icon, passive/evoke description |
-| Affliction Detail | `/afflictions/[id]` | Affliction description, stackability |
-| Modifier Detail | `/modifiers/[id]` | Run modifier description |
-| Achievement Detail | `/achievements/[id]` | Achievement description |
-| Badges | `/badges` | All 25 run-end badges grouped by tiered / single-tier / multiplayer-only |
-| Badge Detail | `/badges/[id]` | Per-tier breakdown (Bronze / Silver / Gold), requires-win + multiplayer flags, icon |
-| Mechanics | `/mechanics` | Game mechanics hub - 27 clickable sections with individual SEO pages |
-| Mechanic Detail | `/mechanics/[slug]` | Card odds, relic distribution, potion drops, map generation, boss pools, combat, secrets & trivia |
-| Guides | `/guides` | Community strategy guides with search/filter |
-| Guide Detail | `/guides/[slug]` | Full guide with markdown rendering + tooltip widget |
-| Submit Guide | `/guides/submit` | Guide submission form (Discord webhook) |
-| Leaderboards | `/leaderboards` | Fastest Wins and Highest Ascension ladders with single/co-op and game-mode filters (standard / daily / Today / custom). All filter state is in the URL so any view is shareable |
-| Browse Runs | `/runs` | Full run browser with an expression search bar (`user:`, `char:`, `asc:` ranges, `card:`/`relic:` multi-value AND, `version:` ranges, `mode:`, `result:`, `players:`) plus dropdown filters, sort, and shareable URLs |
-| Submit a Run | `/leaderboards/submit` | Drag-and-drop `.run` upload with Overwolf companion link, Steam/Discord sign-in to auto-associate runs, and your recent runs |
-| Stats | `/leaderboards/stats` | Ranked tables (pick rate, win rate, count) for cards, relics, potions, encounters. Filter by character / ascension / outcome |
-| Profile | `/profile` | Signed-in user's stats (top cards/relics/potions, character breakdown), personal bests, competitive comparison (today's daily leaderboard, global ranks, win rate vs community), and run management |
-| Settings | `/settings` | Account settings: username, email, linked Steam/Discord |
-| Shared Run | `/runs/[hash]` | In-game-style victory/defeat summary with clickable map-node icons, relic strip, and tiny-card grid |
-| Reference | `/reference` | All items clickable - acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements |
-| Images | `/images` | Browsable game assets with ZIP download per category |
-| Changelog | `/changelog` | Data diffs between game updates |
-| About | `/about` | Project info, stats, pipeline visualization |
-| Thank You | `/thank-you` | Ko-fi supporters and community contributors (split from About so the page can be linked directly) |
-| Knowledge Demon | `/knowledge-demon` | Info page for the Discord bot - slash commands, moderation features, install CTA |
-| News | `/news` | Mirrored Steam announcements feed; canonical links back to Steam so it's additive, not duplicative |
-| News article | `/news/[gid]` | Single Steam announcement with sanitized BBCode body and `NewsArticle` JSON-LD |
-| Tier List | `/tier-list` | Codex Score tier-list hub (S → F tiers) for cards / relics / potions |
-| Tier List Detail | `/tier-list/[type]` | Visual S/A/B/C/D/F rows for one entity type, sourced from `/api/runs/scores/{type}` |
-| Scoring | `/leaderboards/scoring` | Codex Score methodology page - Bayesian shrinkage, prior weight, scale range, tier cutoffs |
+| Page               | Route                   | Description                                                                                                                                                                                                           |
+| ------------------ | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Home               | `/`                     | Dashboard with entity counts, category cards, character links                                                                                                                                                         |
+| Cards              | `/cards`                | Filterable card grid with modal detail view                                                                                                                                                                           |
+| Card Detail        | `/cards/[id]`           | Full card stats, upgrade info, image                                                                                                                                                                                  |
+| Characters         | `/characters`           | Character overview grid                                                                                                                                                                                               |
+| Character Detail   | `/characters/[id]`      | Stats, starting deck/relics, quotes, NPC dialogue trees                                                                                                                                                               |
+| Relics             | `/relics`               | Filterable relic grid                                                                                                                                                                                                 |
+| Relic Detail       | `/relics/[id]`          | Full relic info with rich text flavor                                                                                                                                                                                 |
+| Monsters           | `/monsters`             | Monster grid with HP, moves, Spine renders                                                                                                                                                                            |
+| Monster Detail     | `/monsters/[id]`        | HP, moves with intents/damage/powers/block, encounter links, power tooltips                                                                                                                                           |
+| Potions            | `/potions`              | Filterable potion grid (rarity, character pool)                                                                                                                                                                       |
+| Potion Detail      | `/potions/[id]`         | Full potion info                                                                                                                                                                                                      |
+| Enchantments       | `/enchantments`         | Enchantment list with card type filters                                                                                                                                                                               |
+| Enchantment Detail | `/enchantments/[id]`    | Full enchantment info                                                                                                                                                                                                 |
+| Encounters         | `/encounters`           | Encounter compositions by act/room type                                                                                                                                                                               |
+| Encounter Detail   | `/encounters/[id]`      | Monster lineup, room type, tags                                                                                                                                                                                       |
+| Events             | `/events`               | Multi-page event trees with expandable choices                                                                                                                                                                        |
+| Event Detail       | `/events/[id]`          | Full event pages, options, Ancient dialogue                                                                                                                                                                           |
+| Powers             | `/powers`               | Buffs, debuffs, and neutral powers                                                                                                                                                                                    |
+| Power Detail       | `/powers/[id]`          | Power info with cards that apply this power                                                                                                                                                                           |
+| Keywords           | `/keywords`             | Card keyword list                                                                                                                                                                                                     |
+| Keyword Detail     | `/keywords/[id]`        | Keyword description with filterable card grid                                                                                                                                                                         |
+| Merchant           | `/merchant`             | Card/relic/potion pricing, card removal costs, fake merchant                                                                                                                                                          |
+| Compare            | `/compare`              | Character comparison hub (10 pairs)                                                                                                                                                                                   |
+| Compare Detail     | `/compare/[pair]`       | Side-by-side character comparison                                                                                                                                                                                     |
+| Developers         | `/developers`           | API docs, widget docs, data exports                                                                                                                                                                                   |
+| Showcase           | `/showcase`             | Community project gallery                                                                                                                                                                                             |
+| Timeline           | `/timeline`             | Epoch progression with era grouping, unlock requirements                                                                                                                                                              |
+| Act Detail         | `/acts/[id]`            | Bosses, encounters, events, ancients for an act                                                                                                                                                                       |
+| Ascension Detail   | `/ascensions/[id]`      | Ascension level description with prev/next navigation                                                                                                                                                                 |
+| Intent Detail      | `/intents/[id]`         | Intent icon, description                                                                                                                                                                                              |
+| Orb Detail         | `/orbs/[id]`            | Orb icon, passive/evoke description                                                                                                                                                                                   |
+| Affliction Detail  | `/afflictions/[id]`     | Affliction description, stackability                                                                                                                                                                                  |
+| Modifier Detail    | `/modifiers/[id]`       | Run modifier description                                                                                                                                                                                              |
+| Achievement Detail | `/achievements/[id]`    | Achievement description                                                                                                                                                                                               |
+| Badges             | `/badges`               | All 25 run-end badges grouped by tiered / single-tier / multiplayer-only                                                                                                                                              |
+| Badge Detail       | `/badges/[id]`          | Per-tier breakdown (Bronze / Silver / Gold), requires-win + multiplayer flags, icon                                                                                                                                   |
+| Mechanics          | `/mechanics`            | Game mechanics hub - 27 clickable sections with individual SEO pages                                                                                                                                                  |
+| Mechanic Detail    | `/mechanics/[slug]`     | Card odds, relic distribution, potion drops, map generation, boss pools, combat, secrets & trivia                                                                                                                     |
+| Guides             | `/guides`               | Community strategy guides with search/filter                                                                                                                                                                          |
+| Guide Detail       | `/guides/[slug]`        | Full guide with markdown rendering + tooltip widget                                                                                                                                                                   |
+| Submit Guide       | `/guides/submit`        | Guide submission form (Discord webhook)                                                                                                                                                                               |
+| Leaderboards       | `/leaderboards`         | Fastest Wins and Highest Ascension ladders with single/co-op and game-mode filters (standard / daily / Today / custom). All filter state is in the URL so any view is shareable                                       |
+| Browse Runs        | `/runs`                 | Full run browser with an expression search bar (`user:`, `char:`, `asc:` ranges, `card:`/`relic:` multi-value AND, `version:` ranges, `mode:`, `result:`, `players:`) plus dropdown filters, sort, and shareable URLs |
+| Submit a Run       | `/leaderboards/submit`  | Drag-and-drop `.run` upload with Overwolf companion link, Steam/Discord sign-in to auto-associate runs, and your recent runs                                                                                          |
+| Stats              | `/leaderboards/stats`   | Ranked tables (pick rate, win rate, count) for cards, relics, potions, encounters. Filter by character / ascension / outcome                                                                                          |
+| Profile            | `/profile`              | Signed-in user's stats (top cards/relics/potions, character breakdown), personal bests, competitive comparison (today's daily leaderboard, global ranks, win rate vs community), and run management                   |
+| Settings           | `/settings`             | Account settings: username, email, linked Steam/Discord                                                                                                                                                               |
+| Shared Run         | `/runs/[hash]`          | In-game-style victory/defeat summary with clickable map-node icons, relic strip, and tiny-card grid                                                                                                                   |
+| Reference          | `/reference`            | All items clickable - acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements                                                                                                                 |
+| Images             | `/images`               | Browsable game assets with ZIP download per category                                                                                                                                                                  |
+| Changelog          | `/changelog`            | Data diffs between game updates                                                                                                                                                                                       |
+| About              | `/about`                | Project info, stats, pipeline visualization                                                                                                                                                                           |
+| Thank You          | `/thank-you`            | Ko-fi supporters and community contributors (split from About so the page can be linked directly)                                                                                                                     |
+| Knowledge Demon    | `/knowledge-demon`      | Info page for the Discord bot - slash commands, moderation features, install CTA                                                                                                                                      |
+| News               | `/news`                 | Mirrored Steam announcements feed; canonical links back to Steam so it's additive, not duplicative                                                                                                                    |
+| News article       | `/news/[gid]`           | Single Steam announcement with sanitized BBCode body and `NewsArticle` JSON-LD                                                                                                                                        |
+| Tier List          | `/tier-list`            | Codex Score tier-list hub (S → F tiers) for cards / relics / potions                                                                                                                                                  |
+| Tier List Detail   | `/tier-list/[type]`     | Visual S/A/B/C/D/F rows for one entity type, sourced from `/api/runs/scores/{type}`                                                                                                                                   |
+| Scoring            | `/leaderboards/scoring` | Codex Score methodology page - Bayesian shrinkage, prior weight, scale range, tier cutoffs                                                                                                                            |
 
 ## API Endpoints
 
 All data endpoints accept an optional `?lang=` query parameter (default: `eng`). Responses are **GZip-compressed** and cached with `Cache-Control: public, max-age=300`.
 
-| Endpoint | Description | Filters |
-|---|---|---|
-| `GET /api/cards` | All cards | `color`, `type`, `rarity`, `keyword`, `search`, `lang` |
-| `GET /api/cards/{id}` | Single card | `lang` |
-| `GET /api/characters` | All characters | `search`, `lang` |
-| `GET /api/characters/{id}` | Single character (with quotes, dialogues) | `lang` |
-| `GET /api/relics` | All relics | `rarity`, `pool`, `search`, `lang` |
-| `GET /api/relics/{id}` | Single relic | `lang` |
-| `GET /api/monsters` | All monsters | `type`, `search`, `lang` |
-| `GET /api/monsters/{id}` | Single monster | `lang` |
-| `GET /api/potions` | All potions | `rarity`, `pool`, `search`, `lang` |
-| `GET /api/potions/{id}` | Single potion | `lang` |
-| `GET /api/enchantments` | All enchantments | `card_type`, `search`, `lang` |
-| `GET /api/enchantments/{id}` | Single enchantment | `lang` |
-| `GET /api/encounters` | All encounters | `room_type`, `act`, `search`, `lang` |
-| `GET /api/encounters/{id}` | Single encounter | `lang` |
-| `GET /api/events` | All events | `type`, `act`, `search`, `lang` |
-| `GET /api/events/{id}` | Single event | `lang` |
-| `GET /api/powers` | All powers | `type`, `stack_type`, `search`, `lang` |
-| `GET /api/powers/{id}` | Single power | `lang` |
-| `GET /api/keywords` | Card keyword definitions | `lang` |
-| `GET /api/keywords/{id}` | Single keyword | `lang` |
-| `GET /api/intents` | Monster intent types | `lang` |
-| `GET /api/intents/{id}` | Single intent | `lang` |
-| `GET /api/orbs` | All orbs | `lang` |
-| `GET /api/orbs/{id}` | Single orb | `lang` |
-| `GET /api/afflictions` | Card afflictions | `lang` |
-| `GET /api/afflictions/{id}` | Single affliction | `lang` |
-| `GET /api/modifiers` | Run modifiers | `lang` |
-| `GET /api/modifiers/{id}` | Single modifier | `lang` |
-| `GET /api/achievements` | All achievements | `lang` |
-| `GET /api/achievements/{id}` | Single achievement | `lang` |
-| `GET /api/badges` | All run-end badges | `tiered`, `multiplayer_only`, `requires_win`, `search`, `lang` |
-| `GET /api/badges/{id}` | Single badge with tier breakdown | `lang` |
-| `GET /api/history/{entity_type}/{entity_id}` | Per-entity version history (case-insensitive, newest first) | - |
-| `GET /api/epochs` | Timeline epochs | `era`, `search`, `lang` |
-| `GET /api/epochs/{id}` | Single epoch | `lang` |
-| `GET /api/stories` | Story entries | `lang` |
-| `GET /api/stories/{id}` | Single story | `lang` |
-| `GET /api/acts` | All acts | `lang` |
-| `GET /api/acts/{id}` | Single act | `lang` |
-| `GET /api/ascensions` | Ascension levels (0–10) | `lang` |
-| `GET /api/ascensions/{id}` | Single ascension level | `lang` |
-| `GET /api/stats` | Entity counts across all categories | `lang` |
-| `GET /api/languages` | Available languages with display names | - |
-| `GET /api/translations` | Translation maps for filter values and UI strings | `lang` |
-| `GET /api/images` | Image categories with file lists. Beta-prefixed categories accept `?version=`. | - |
-| `GET /api/images/beta/versions` | Available beta image archive versions + `latest` symlink target | - |
-| `GET /api/images/{category}/download` | ZIP download of image category. Beta categories accept `?version=`. | - |
-| `GET /api/changelogs` | Changelog summaries (all versions) | - |
-| `GET /api/changelogs/{tag}` | Full changelog for a version tag | - |
-| `GET /api/guides` | Community guides | `category`, `difficulty`, `tag`, `search` |
-| `GET /api/guides/{slug}` | Single guide (with markdown content) | - |
-| `POST /api/guides` | Submit guide (proxied to Discord) | - |
-| `POST /api/runs` | Submit a run (.run file JSON) | `username` |
-| `GET /api/runs/list` | List/browse submitted runs | `character`, `win`, `username`, `seed`, `build_id`, `build_ids`, `players`, `game_mode`, `ascension`, `ascension_min`, `ascension_max`, `card`, `relic`, `today`, `sort`, `page`, `limit` |
-| `GET /api/runs/shared/{hash}` | Full run data by hash (merges `username` from DB) | - |
-| `GET /api/runs/stats` | Aggregated community stats | `character`, `win`, `ascension`, `game_mode`, `players` |
-| `GET /api/runs/leaderboard` | Ranked wins-only leaderboard | `category` (`fastest`, `highest_ascension`), `character`, `players`, `game_mode`, `today`, `page`, `limit` |
-| `GET /api/runs/leaderboard/rank/{hash}` | Rank of a single winning run within its ladder | `category` |
-| `GET /api/runs/scores/{type}` | Codex Score (Bayesian-shrunk win-rate score + S/A/B/C/D/F tier) per entity | `type` = `cards`/`relics`/`potions` |
-| `GET /api/runs/encounter-stats` | Per-encounter aggregates (appearance, fatal rate, avg damage/turns) | `act`, `room_type`, `multiplayer`, `page`, `limit` |
-| `POST /api/runs/claim` | Attach a username to previously-submitted runs by hash | - |
-| `GET /api/runs/versions` | Distinct game versions across submitted runs | - |
-| `GET /api/exports/{lang}` | ZIP of all entity JSON for one language | `lang` |
-| `GET /api/news` | Steam announcements + community news (locally archived) | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset` |
-| `GET /api/news/{gid}` | Single news article (raw HTML/BBCode body) | - |
-| `GET /api/merchant/config` | Auto-extracted merchant pricing config | - |
-| `POST /api/feedback` | Submit feedback (proxied to Discord) | - |
-| `GET /api/versions` | Version metadata exposed by the active data root | - |
+| Endpoint                                     | Description                                                                    | Filters                                                                                                                                                                                   |
+| -------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `GET /api/cards`                             | All cards                                                                      | `color`, `type`, `rarity`, `keyword`, `search`, `lang`                                                                                                                                    |
+| `GET /api/cards/{id}`                        | Single card                                                                    | `lang`                                                                                                                                                                                    |
+| `GET /api/characters`                        | All characters                                                                 | `search`, `lang`                                                                                                                                                                          |
+| `GET /api/characters/{id}`                   | Single character (with quotes, dialogues)                                      | `lang`                                                                                                                                                                                    |
+| `GET /api/relics`                            | All relics                                                                     | `rarity`, `pool`, `search`, `lang`                                                                                                                                                        |
+| `GET /api/relics/{id}`                       | Single relic                                                                   | `lang`                                                                                                                                                                                    |
+| `GET /api/monsters`                          | All monsters                                                                   | `type`, `search`, `lang`                                                                                                                                                                  |
+| `GET /api/monsters/{id}`                     | Single monster                                                                 | `lang`                                                                                                                                                                                    |
+| `GET /api/potions`                           | All potions                                                                    | `rarity`, `pool`, `search`, `lang`                                                                                                                                                        |
+| `GET /api/potions/{id}`                      | Single potion                                                                  | `lang`                                                                                                                                                                                    |
+| `GET /api/enchantments`                      | All enchantments                                                               | `card_type`, `search`, `lang`                                                                                                                                                             |
+| `GET /api/enchantments/{id}`                 | Single enchantment                                                             | `lang`                                                                                                                                                                                    |
+| `GET /api/encounters`                        | All encounters                                                                 | `room_type`, `act`, `search`, `lang`                                                                                                                                                      |
+| `GET /api/encounters/{id}`                   | Single encounter                                                               | `lang`                                                                                                                                                                                    |
+| `GET /api/events`                            | All events                                                                     | `type`, `act`, `search`, `lang`                                                                                                                                                           |
+| `GET /api/events/{id}`                       | Single event                                                                   | `lang`                                                                                                                                                                                    |
+| `GET /api/powers`                            | All powers                                                                     | `type`, `stack_type`, `search`, `lang`                                                                                                                                                    |
+| `GET /api/powers/{id}`                       | Single power                                                                   | `lang`                                                                                                                                                                                    |
+| `GET /api/keywords`                          | Card keyword definitions                                                       | `lang`                                                                                                                                                                                    |
+| `GET /api/keywords/{id}`                     | Single keyword                                                                 | `lang`                                                                                                                                                                                    |
+| `GET /api/intents`                           | Monster intent types                                                           | `lang`                                                                                                                                                                                    |
+| `GET /api/intents/{id}`                      | Single intent                                                                  | `lang`                                                                                                                                                                                    |
+| `GET /api/orbs`                              | All orbs                                                                       | `lang`                                                                                                                                                                                    |
+| `GET /api/orbs/{id}`                         | Single orb                                                                     | `lang`                                                                                                                                                                                    |
+| `GET /api/afflictions`                       | Card afflictions                                                               | `lang`                                                                                                                                                                                    |
+| `GET /api/afflictions/{id}`                  | Single affliction                                                              | `lang`                                                                                                                                                                                    |
+| `GET /api/modifiers`                         | Run modifiers                                                                  | `lang`                                                                                                                                                                                    |
+| `GET /api/modifiers/{id}`                    | Single modifier                                                                | `lang`                                                                                                                                                                                    |
+| `GET /api/achievements`                      | All achievements                                                               | `lang`                                                                                                                                                                                    |
+| `GET /api/achievements/{id}`                 | Single achievement                                                             | `lang`                                                                                                                                                                                    |
+| `GET /api/badges`                            | All run-end badges                                                             | `tiered`, `multiplayer_only`, `requires_win`, `search`, `lang`                                                                                                                            |
+| `GET /api/badges/{id}`                       | Single badge with tier breakdown                                               | `lang`                                                                                                                                                                                    |
+| `GET /api/history/{entity_type}/{entity_id}` | Per-entity version history (case-insensitive, newest first)                    | -                                                                                                                                                                                         |
+| `GET /api/epochs`                            | Timeline epochs                                                                | `era`, `search`, `lang`                                                                                                                                                                   |
+| `GET /api/epochs/{id}`                       | Single epoch                                                                   | `lang`                                                                                                                                                                                    |
+| `GET /api/stories`                           | Story entries                                                                  | `lang`                                                                                                                                                                                    |
+| `GET /api/stories/{id}`                      | Single story                                                                   | `lang`                                                                                                                                                                                    |
+| `GET /api/acts`                              | All acts                                                                       | `lang`                                                                                                                                                                                    |
+| `GET /api/acts/{id}`                         | Single act                                                                     | `lang`                                                                                                                                                                                    |
+| `GET /api/ascensions`                        | Ascension levels (0–10)                                                        | `lang`                                                                                                                                                                                    |
+| `GET /api/ascensions/{id}`                   | Single ascension level                                                         | `lang`                                                                                                                                                                                    |
+| `GET /api/stats`                             | Entity counts across all categories                                            | `lang`                                                                                                                                                                                    |
+| `GET /api/languages`                         | Available languages with display names                                         | -                                                                                                                                                                                         |
+| `GET /api/translations`                      | Translation maps for filter values and UI strings                              | `lang`                                                                                                                                                                                    |
+| `GET /api/images`                            | Image categories with file lists. Beta-prefixed categories accept `?version=`. | -                                                                                                                                                                                         |
+| `GET /api/images/beta/versions`              | Available beta image archive versions + `latest` symlink target                | -                                                                                                                                                                                         |
+| `GET /api/images/{category}/download`        | ZIP download of image category. Beta categories accept `?version=`.            | -                                                                                                                                                                                         |
+| `GET /api/changelogs`                        | Changelog summaries (all versions)                                             | -                                                                                                                                                                                         |
+| `GET /api/changelogs/{tag}`                  | Full changelog for a version tag                                               | -                                                                                                                                                                                         |
+| `GET /api/guides`                            | Community guides                                                               | `category`, `difficulty`, `tag`, `search`                                                                                                                                                 |
+| `GET /api/guides/{slug}`                     | Single guide (with markdown content)                                           | -                                                                                                                                                                                         |
+| `POST /api/guides`                           | Submit guide (proxied to Discord)                                              | -                                                                                                                                                                                         |
+| `POST /api/runs`                             | Submit a run (.run file JSON)                                                  | `username`                                                                                                                                                                                |
+| `GET /api/runs/list`                         | List/browse submitted runs                                                     | `character`, `win`, `username`, `seed`, `build_id`, `build_ids`, `players`, `game_mode`, `ascension`, `ascension_min`, `ascension_max`, `card`, `relic`, `today`, `sort`, `page`, `limit` |
+| `GET /api/runs/shared/{hash}`                | Full run data by hash (merges `username` from DB)                              | -                                                                                                                                                                                         |
+| `GET /api/runs/stats`                        | Aggregated community stats                                                     | `character`, `win`, `ascension`, `game_mode`, `players`                                                                                                                                   |
+| `GET /api/runs/leaderboard`                  | Ranked wins-only leaderboard                                                   | `category` (`fastest`, `highest_ascension`), `character`, `players`, `game_mode`, `today`, `page`, `limit`                                                                                |
+| `GET /api/runs/leaderboard/rank/{hash}`      | Rank of a single winning run within its ladder                                 | `category`                                                                                                                                                                                |
+| `GET /api/runs/scores/{type}`                | Codex Score (Bayesian-shrunk win-rate score + S/A/B/C/D/F tier) per entity     | `type` = `cards`/`relics`/`potions`                                                                                                                                                       |
+| `GET /api/runs/encounter-stats`              | Per-encounter aggregates (appearance, fatal rate, avg damage/turns)            | `act`, `room_type`, `multiplayer`, `page`, `limit`                                                                                                                                        |
+| `POST /api/runs/claim`                       | Attach a username to previously-submitted runs by hash                         | -                                                                                                                                                                                         |
+| `GET /api/runs/versions`                     | Distinct game versions across submitted runs                                   | -                                                                                                                                                                                         |
+| `GET /api/exports/{lang}`                    | ZIP of all entity JSON for one language                                        | `lang`                                                                                                                                                                                    |
+| `GET /api/news`                              | Steam announcements + community news (locally archived)                        | `feed_type`, `feedname`, `tag`, `since`, `search`, `limit`, `offset`                                                                                                                      |
+| `GET /api/news/{gid}`                        | Single news article (raw HTML/BBCode body)                                     | -                                                                                                                                                                                         |
+| `GET /api/merchant/config`                   | Auto-extracted merchant pricing config                                         | -                                                                                                                                                                                         |
+| `POST /api/feedback`                         | Submit feedback (proxied to Discord)                                           | -                                                                                                                                                                                         |
+| `GET /api/versions`                          | Version metadata exposed by the active data root                               | -                                                                                                                                                                                         |
 
 **User accounts** (cookie/JWT session; sign in with Steam or Discord):
 
-| Endpoint | Description |
-|---|---|
-| `GET /api/auth/me` | Current signed-in user |
-| `GET /api/auth/steam/redirect` | Start Steam OpenID sign-in |
-| `GET /api/auth/discord/start` | Start Discord OAuth sign-in |
-| `POST /api/auth/logout` | Clear the session cookie |
-| `PATCH /api/auth/username` / `PATCH /api/auth/email` | Update profile fields |
-| `GET /api/auth/runs` / `POST /api/auth/runs/upload` / `DELETE /api/auth/runs/{hash}` | List, upload, and remove the user's runs |
-| `GET /api/auth/stats` | Per-user aggregated stats (profile page) |
-| `GET /api/auth/personal-bests` | Fastest solo/co-op, highest ascension, today's and all-time daily |
-| `GET /api/auth/competitive` | Today's daily leaderboard, global ranks, win rate vs community |
+| Endpoint                                                                             | Description                                                       |
+| ------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| `GET /api/auth/me`                                                                   | Current signed-in user                                            |
+| `GET /api/auth/steam/redirect`                                                       | Start Steam OpenID sign-in                                        |
+| `GET /api/auth/discord/start`                                                        | Start Discord OAuth sign-in                                       |
+| `POST /api/auth/logout`                                                              | Clear the session cookie                                          |
+| `PATCH /api/auth/username` / `PATCH /api/auth/email`                                 | Update profile fields                                             |
+| `GET /api/auth/runs` / `POST /api/auth/runs/upload` / `DELETE /api/auth/runs/{hash}` | List, upload, and remove the user's runs                          |
+| `GET /api/auth/stats`                                                                | Per-user aggregated stats (profile page)                          |
+| `GET /api/auth/personal-bests`                                                       | Fastest solo/co-op, highest ascension, today's and all-time daily |
+| `GET /api/auth/competitive`                                                          | Today's daily leaderboard, global ranks, win rate vs community    |
 
 Rate limited to **60 requests per minute** per IP. Feedback and guide submission limited to **3-5 per minute** per IP. Interactive docs at `/docs` (Swagger UI).
 
@@ -332,16 +332,16 @@ Rate limited to **60 requests per minute** per IP. Feedback and guide submission
 
 All game data is served in 15 languages using Slay the Spire 2's own localization files. Pass `?lang=` to any data endpoint. Use `?channel=beta` for the active public beta data; archived beta image sets use `?version=`.
 
-| Code | Language | Code | Language |
-|------|----------|------|----------|
-| `eng` | English | `kor` | 한국어 |
-| `deu` | Deutsch | `pol` | Polski |
+| Code  | Language     | Code  | Language       |
+| ----- | ------------ | ----- | -------------- |
+| `eng` | English      | `kor` | 한국어         |
+| `deu` | Deutsch      | `pol` | Polski         |
 | `esp` | Español (ES) | `ptb` | Português (BR) |
-| `fra` | Français | `rus` | Русский |
-| `ita` | Italiano | `spa` | Español (LA) |
-| `jpn` | 日本語 | `tha` | ไทย |
-| `tur` | Türkçe | `zhs` | 简体中文 |
-| `zht` | 繁體中文 | | |
+| `fra` | Français     | `rus` | Русский        |
+| `ita` | Italiano     | `spa` | Español (LA)   |
+| `jpn` | 日本語       | `tha` | ไทย            |
+| `tur` | Türkçe       | `zhs` | 简体中文       |
+| `zht` | 繁體中文     |       |                |
 
 **What's localized**: Game-sourced entity names and descriptions, card types, rarities, keywords, powers, encounters, character names, section titles, localized routes, and most shared UI labels.
 
@@ -355,23 +355,23 @@ Example: `GET /api/cards?lang=kor&type=Attack` returns Korean card data where ty
 
 Text fields (`description`, `loss_text`, `flavor`, dialogue `text`, option `title`/`description`) may contain Godot BBCode-style tags preserved from the game's localization data:
 
-| Tag | Type | Example | Rendered as |
-|---|---|---|---|
-| `[gold]...[/gold]` | Color | `[gold]Enchant[/gold]` | Gold colored text |
-| `[red]...[/red]` | Color | `[red]blood[/red]` | Red colored text |
-| `[blue]...[/blue]` | Color | `[blue]2[/blue]` | Blue colored text |
-| `[green]...[/green]` | Color | `[green]healed[/green]` | Green colored text |
-| `[purple]...[/purple]` | Color | `[purple]Sharp[/purple]` | Purple colored text |
-| `[orange]...[/orange]` | Color | `[orange]hulking figure[/orange]` | Orange colored text |
-| `[pink]...[/pink]` | Color | - | Pink colored text |
-| `[aqua]...[/aqua]` | Color | `[aqua]Ascending Spirit[/aqua]` | Cyan colored text |
-| `[sine]...[/sine]` | Effect | `[sine]swirling vortex[/sine]` | Wavy animated text |
-| `[jitter]...[/jitter]` | Effect | `[jitter]CLANG![/jitter]` | Shaking animated text |
-| `[b]...[/b]` | Effect | `[b]bold text[/b]` | Bold text |
-| `[i]...[/i]` | Effect | `[i]whispers[/i]` | Italic text |
-| `[energy:N]` | Icon | `[energy:2]` | Energy icon(s) |
-| `[star:N]` | Icon | `[star:1]` | Star icon(s) |
-| `[Card]`, `[Relic]` | Placeholder | `[Card]` | Runtime-dynamic (italic) |
+| Tag                    | Type        | Example                           | Rendered as              |
+| ---------------------- | ----------- | --------------------------------- | ------------------------ |
+| `[gold]...[/gold]`     | Color       | `[gold]Enchant[/gold]`            | Gold colored text        |
+| `[red]...[/red]`       | Color       | `[red]blood[/red]`                | Red colored text         |
+| `[blue]...[/blue]`     | Color       | `[blue]2[/blue]`                  | Blue colored text        |
+| `[green]...[/green]`   | Color       | `[green]healed[/green]`           | Green colored text       |
+| `[purple]...[/purple]` | Color       | `[purple]Sharp[/purple]`          | Purple colored text      |
+| `[orange]...[/orange]` | Color       | `[orange]hulking figure[/orange]` | Orange colored text      |
+| `[pink]...[/pink]`     | Color       | -                                 | Pink colored text        |
+| `[aqua]...[/aqua]`     | Color       | `[aqua]Ascending Spirit[/aqua]`   | Cyan colored text        |
+| `[sine]...[/sine]`     | Effect      | `[sine]swirling vortex[/sine]`    | Wavy animated text       |
+| `[jitter]...[/jitter]` | Effect      | `[jitter]CLANG![/jitter]`         | Shaking animated text    |
+| `[b]...[/b]`           | Effect      | `[b]bold text[/b]`                | Bold text                |
+| `[i]...[/i]`           | Effect      | `[i]whispers[/i]`                 | Italic text              |
+| `[energy:N]`           | Icon        | `[energy:2]`                      | Energy icon(s)           |
+| `[star:N]`             | Icon        | `[star:1]`                        | Star icon(s)             |
+| `[Card]`, `[Relic]`    | Placeholder | `[Card]`                          | Runtime-dynamic (italic) |
 
 Tags can be nested: `[b][jitter]CLANG![/jitter][/b]`, `[gold][sine]swirling vortex[/sine][/gold]`.
 
@@ -387,9 +387,9 @@ If you're consuming the API directly, you can strip these with a regex like `\[/
 ### Backend
 
 ```bash
-python -m venv venv
+python3 -m venv venv
 source venv/bin/activate      # Windows: venv\Scripts\activate
-pip install -r backend/requirements.txt
+pip3 install -r backend/requirements.txt
 
 cd backend
 uvicorn app.main:app --host 0.0.0.0 --port 8000
@@ -420,16 +420,16 @@ Starts both services (backend on 8000, frontend on 3000).
 The core read-only API needs no configuration. The optional features below are
 enabled by env vars (set in the backend's environment or the compose file):
 
-| Variable | Used by | Notes |
-|---|---|---|
-| `MONGO_URL` | Backend | Runs database (community stats, leaderboards, accounts). When unset, the backend falls back to the legacy SQLite path (`data/runs.db`). |
-| `JWT_SECRET` | Backend | Signs user-account session tokens. |
-| `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` | Backend | Discord OAuth sign-in. |
-| `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE` | Backend | OAuth redirect / return URLs. |
-| `ENVIRONMENT` | Backend | `production` toggles secure-cookie behavior. |
-| `NEXT_PUBLIC_API_URL` | Frontend (build) | API base; empty in prod so images/data resolve same-origin. |
-| `NEXT_PUBLIC_CDN_URL` | Frontend (build) | When set (e.g. `https://cdn.spire-codex.com`), images load from the CDN instead of `/static`. |
-| `NEXT_PUBLIC_SITE_URL` | Frontend (build) | Canonical site URL for metadata. |
+| Variable                                     | Used by          | Notes                                                                                                                                   |
+| -------------------------------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `MONGO_URL`                                  | Backend          | Runs database (community stats, leaderboards, accounts). When unset, the backend falls back to the legacy SQLite path (`data/runs.db`). |
+| `JWT_SECRET`                                 | Backend          | Signs user-account session tokens.                                                                                                      |
+| `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` | Backend          | Discord OAuth sign-in.                                                                                                                  |
+| `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE`    | Backend          | OAuth redirect / return URLs.                                                                                                           |
+| `ENVIRONMENT`                                | Backend          | `production` toggles secure-cookie behavior.                                                                                            |
+| `NEXT_PUBLIC_API_URL`                        | Frontend (build) | API base; empty in prod so images/data resolve same-origin.                                                                             |
+| `NEXT_PUBLIC_CDN_URL`                        | Frontend (build) | When set (e.g. `https://cdn.spire-codex.com`), images load from the CDN instead of `/static`.                                           |
+| `NEXT_PUBLIC_SITE_URL`                       | Frontend (build) | Canonical site URL for metadata.                                                                                                        |
 
 User accounts and the CDN are off by default, so the project runs end-to-end
 without any of these.
@@ -460,13 +460,13 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 
 The script auto-detects your OS and finds the Steam install directory. Requirements per step:
 
-| Step | Tool | Install |
-|---|---|---|
-| PCK extraction | `gdre_tools` | [GDRE Tools releases](https://github.com/bruvzg/gdsdecomp/releases) |
-| DLL decompilation | `ilspycmd` | `dotnet tool install ilspycmd -g` |
-| Data parsing | Python 3.10+ | Built-in |
-| Image copying | Python 3.10+ | Built-in |
-| Spine rendering | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Step              | Tool         | Install                                                             |
+| ----------------- | ------------ | ------------------------------------------------------------------- |
+| PCK extraction    | `gdre_tools` | [GDRE Tools releases](https://github.com/bruvzg/gdsdecomp/releases) |
+| DLL decompilation | `ilspycmd`   | `dotnet tool install ilspycmd -g`                                   |
+| Data parsing      | Python 3.10+ | Built-in                                                            |
+| Image copying     | Python 3.10+ | Built-in                                                            |
+| Spine rendering   | Node.js 20+  | [nodejs.org](https://nodejs.org)                                    |
 
 ### Manual Steps
 
@@ -530,17 +530,17 @@ python3 tools/diff_data.py HEAD~1 --format md
 
 Each changelog JSON file contains:
 
-| Field | Description |
-|---|---|
-| `app_id` | Steam App ID (2868840) |
-| `game_version` | Steam game version (e.g. `"0.98.2"`) |
-| `build_id` | Steam build ID |
-| `tag` | Unique version key (e.g. `"1.0.3"`) |
-| `date` | Date of the update |
-| `title` | Human-readable title |
-| `summary` | Counts: `{ added, removed, changed }` |
-| `features` / `fixes` / `api_changes` | Hand-curated release notes. Preserved through `diff_data.py` regenerations of an existing tag - the data diff is overwritten but these arrays merge through. |
-| `categories` | Per-category diffs with added/removed/changed entities. Field changes recurse into nested dicts/lists so each leaf is its own row (e.g. `vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. |
+| Field                                | Description                                                                                                                                                                                                      |
+| ------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `app_id`                             | Steam App ID (2868840)                                                                                                                                                                                           |
+| `game_version`                       | Steam game version (e.g. `"0.98.2"`)                                                                                                                                                                             |
+| `build_id`                           | Steam build ID                                                                                                                                                                                                   |
+| `tag`                                | Unique version key (e.g. `"1.0.3"`)                                                                                                                                                                              |
+| `date`                               | Date of the update                                                                                                                                                                                               |
+| `title`                              | Human-readable title                                                                                                                                                                                             |
+| `summary`                            | Counts: `{ added, removed, changed }`                                                                                                                                                                            |
+| `features` / `fixes` / `api_changes` | Hand-curated release notes. Preserved through `diff_data.py` regenerations of an existing tag - the data diff is overwritten but these arrays merge through.                                                     |
+| `categories`                         | Per-category diffs with added/removed/changed entities. Field changes recurse into nested dicts/lists so each leaf is its own row (e.g. `vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. |
 
 ### Write-once retention
 
@@ -650,6 +650,7 @@ Monster sprites in StS2 are [Spine](http://esotericsoftware.com/) skeletal anima
 The WebGL renderer (`render_webgl.mjs`, `render_all_webgl.mjs`) uses **Playwright + spine-webgl** to render skeletons via headless Chrome's GPU. This produces clean renders with **no triangle seam artifacts**.
 
 **How it works:**
+
 1. Launches headless Chrome via Playwright with WebGL enabled
 2. Loads skeleton data + atlas + textures as base64 into the browser page
 3. Creates a WebGL canvas, sets up spine-webgl shader + polygon batcher
@@ -659,31 +660,34 @@ The WebGL renderer (`render_webgl.mjs`, `render_all_webgl.mjs`) uses **Playwrigh
 7. Writes PNG via node-canvas to preserve transparency
 
 **Single skeleton:**
+
 ```bash
 node render_webgl.mjs <skel_dir> <output_path> [size]
 node render_webgl.mjs ../../extraction/raw/animations/backgrounds/neow_room ../../backend/static/images/misc/neow.png 2048
 ```
 
 **Batch all skeletons:**
+
 ```bash
 node render_all_webgl.mjs  # Renders 138 skeletons to backend/static/images/renders/
 ```
 
 ### Render coverage
 
-| Category | Rendered | Total | Notes |
-|---|---|---|---|
-| Monsters | 99 | 103 dirs | All 111 game monsters have images (99 rendered + aliases/static) |
-| Characters | 16 | 16 | Combat, rest site, and select poses |
-| Backgrounds/NPCs | 14 | 17 | Neow, Tezcatara, merchant rooms, main menu |
-| VFX/UI | 9 | 22 | Most VFX need specific animation frames |
-| **Total** | **138** | **158** | 20 skipped (no atlas, VFX-only, blank) |
+| Category         | Rendered | Total    | Notes                                                            |
+| ---------------- | -------- | -------- | ---------------------------------------------------------------- |
+| Monsters         | 99       | 103 dirs | All 111 game monsters have images (99 rendered + aliases/static) |
+| Characters       | 16       | 16       | Combat, rest site, and select poses                              |
+| Backgrounds/NPCs | 14       | 17       | Neow, Tezcatara, merchant rooms, main menu                       |
+| VFX/UI           | 9        | 22       | Most VFX need specific animation frames                          |
+| **Total**        | **138**  | **158**  | 20 skipped (no atlas, VFX-only, blank)                           |
 
 ### Animation Renderer
 
 The animation renderer (`render_gif.mjs`) renders Spine idle/attack animations as animated WebP, GIF, or APNG. Supports skin variants, animation selection, and streaming frame-to-disk for large animations.
 
 **Supported output formats:**
+
 - **`.webp`** (recommended) - lossless animated WebP with full alpha, ~33% smaller than APNG. Frames streamed to disk to avoid OOM.
 - **`.gif`** - 256 colors, binary transparency. Smallest files but lowest quality.
 - **`.apng`** - full alpha like WebP but larger files.
@@ -703,6 +707,7 @@ node render_gif.mjs <skel_dir> output.webp 256 --white
 ```
 
 **Animation library:** 209 lossless animated WebPs:
+
 - 15 character animations (combat/select/rest × 5 characters) at 512×512
 - 103 monster idle animations at 256×256
 - 91 monster attack animations at 256×256
@@ -710,6 +715,7 @@ node render_gif.mjs <skel_dir> output.webp 256 --white
 **Skin variants:** 13 monsters have skin variants (bowlbug, cubex_construct, cultists, etc.). Use `--skin=` to select. Default skin often shows only the base skeleton without body.
 
 **Boss map node shader:** The game uses `boss_map_point.gdshader` which treats RGB channels as masks:
+
 - **Red channel** × `map_color` (default: beige `0.671, 0.58, 0.478`) → fill color
 - **Blue channel** × `black_layer_color` (default: black `0, 0, 0`) → outline color
 - **Green channel** × white `1, 1, 1` → highlights
@@ -740,6 +746,7 @@ ilspycmd -p -o extraction/decompiled "/path/to/sts2.dll"
 ```
 
 Steam install locations:
+
 - **Windows**: `C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2\`
 - **macOS**: `~/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/`
 - **Linux**: `~/.local/share/Steam/steamapps/common/Slay the Spire 2/`
@@ -748,11 +755,11 @@ Steam install locations:
 
 Spire Codex uses **`1.X.Y`** semantic versioning:
 
-| Segment | Meaning |
-|---------|---------|
-| **1** | Spire Codex major version (stays unless a full rewrite) |
-| **X** | Bumps when Mega Crit releases a game patch |
-| **Y** | Bumps for our own parser/frontend fixes and improvements |
+| Segment | Meaning                                                  |
+| ------- | -------------------------------------------------------- |
+| **1**   | Spire Codex major version (stays unless a full rewrite)  |
+| **X**   | Bumps when Mega Crit releases a game patch               |
+| **Y**   | Bumps for our own parser/frontend fixes and improvements |
 
 Examples: `v1.0.0` = initial release, `v1.0.1` = our bug fixes, `v1.1.0` = first Mega Crit patch incorporated.
 
@@ -771,14 +778,18 @@ Examples: `v1.0.0` = initial release, `v1.0.1` = our bug fixes, `v1.1.0` = first
 ## Embeddable Widgets
 
 ### Tooltip Widget
+
 Add hoverable tooltips for all 13 entity types to any website:
+
 ```html
 <script src="https://spire-codex.com/widget/spire-codex-tooltip.js"></script>
 <p>Start with [[Bash]] and [[relic:Burning Blood]].</p>
 ```
 
 ### Changelog Widget
+
 Embed an interactive changelog viewer:
+
 ```html
 <div id="scx-changelog"></div>
 <script src="https://spire-codex.com/widget/spire-codex-changelog.js"></script>

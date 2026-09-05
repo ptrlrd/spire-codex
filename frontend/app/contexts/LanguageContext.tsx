@@ -27,7 +27,7 @@ export const LANGUAGES: { code: string; name: string }[] = [
   { code: "zht", name: "繁體中文" },
 ];
 
-export const LANG_CODES = new Set(
+const LANG_CODES = new Set(
   LANGUAGES.map((l) => l.code).filter((c) => c !== "eng"),
 );
 const STORAGE_KEY = "spire-codex-lang";

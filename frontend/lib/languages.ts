@@ -5,6 +5,7 @@
  */
 
 export const SUPPORTED_LANGS = [
+  "eng",
   "deu",
   "esp",
   "fra",
@@ -34,6 +35,7 @@ export const LANG_PREFIXES: ReadonlySet<string> = new Set(SUPPORTED_LANGS);
 
 /** Maps 3-letter game codes to BCP-47 / hreflang codes */
 export const LANG_HREFLANG: Record<LangCode, string> = {
+  eng: "en",
   deu: "de",
   esp: "es-ES",
   fra: "fr",
@@ -56,6 +58,7 @@ export const LANG_HREFLANG: Record<LangCode, string> = {
 
 /** Human-readable native language names */
 export const LANG_NAMES: Record<LangCode, string> = {
+  eng: "English",
   deu: "Deutsch",
   esp: "Espanol (ES)",
   fra: "Francais",
@@ -80,6 +83,7 @@ export const LANG_NAMES: Record<LangCode, string> = {
  * this single source ships the abbreviation to all 52+ localized pages.
  */
 export const LANG_GAME_NAME: Record<LangCode, string> = {
+  eng: "Slay the Spire 2 (STS2)",
   deu: "Slay the Spire 2 (STS2)",
   esp: "Slay the Spire 2 (STS2)",
   fra: "Slay the Spire 2 (STS2)",
@@ -98,6 +102,7 @@ export const LANG_GAME_NAME: Record<LangCode, string> = {
 
 /** Localized "Database" for title/descriptions */
 export const LANG_DATABASE: Record<LangCode, string> = {
+  eng: "Database",
   deu: "Datenbank",
   esp: "Base de datos",
   fra: "Base de donnees",
@@ -116,6 +121,7 @@ export const LANG_DATABASE: Record<LangCode, string> = {
 
 /** Localized "Cards" label */
 export const LANG_CARDS: Record<LangCode, string> = {
+  eng: "Cards",
   deu: "Karten",
   esp: "Cartas",
   fra: "Cartes",
@@ -134,6 +140,7 @@ export const LANG_CARDS: Record<LangCode, string> = {
 
 /** Localized "Relics" label */
 export const LANG_RELICS: Record<LangCode, string> = {
+  eng: "Relics",
   deu: "Relikte",
   esp: "Reliquias",
   fra: "Reliques",
@@ -152,4 +159,8 @@ export const LANG_RELICS: Record<LangCode, string> = {
 
 export function isValidLang(lang: string): lang is LangCode {
   return (SUPPORTED_LANGS as readonly string[]).includes(lang);
+}
+
+export function getLangOrDefault(lang?: string): LangCode {
+  return lang && isValidLang(lang) ? lang : "eng";
 }

@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 
-const LANGS = "deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
+const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
 const nextConfig: NextConfig = {
   output: "standalone",

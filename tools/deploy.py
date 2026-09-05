@@ -313,7 +313,7 @@ def build_indexnow_urls() -> list[str]:
         urls.append(f"{SITE_URL}/keywords/{kw}")
 
     # Localized pages (13 languages)
-    LANGS = ["deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]
+    LANGS = ["eng", "deu", "esp", "fra", "ita", "jpn", "kor", "pol", "ptb", "rus", "spa", "tha", "tur", "zhs"]
     LANG_ENTITY_ROUTES = ["cards", "relics", "potions", "monsters", "powers", "events", "characters", "enchantments", "encounters", "acts", "ascensions", "keywords", "intents", "orbs", "afflictions", "modifiers", "achievements"]
 
     for lang in LANGS:
