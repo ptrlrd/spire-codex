@@ -6,7 +6,6 @@ import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const SAVE_IMPORTER_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3747503308";
-const MOD_FAQ_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911";
 const DISCORD_URL = "https://discord.gg/xMsTBeh";
 const SAVE_DIR = "%APPDATA%\\SlayTheSpire2\\steam";
 
@@ -130,9 +129,6 @@ export default function UninstallFormClient() {
         <div className="flex flex-wrap justify-center gap-2">
           <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent-gold)]">
             {t("Join the Discord", lang)}
-          </a>
-          <a href={MOD_FAQ_URL} target="_blank" rel="noopener noreferrer" className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent-gold)]">
-            {t("Read the FAQ", lang)}
           </a>
         </div>
       </div>
