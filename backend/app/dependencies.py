@@ -1,5 +1,7 @@
 """Shared FastAPI dependencies."""
 
+import ipaddress
+
 from fastapi import Query, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
@@ -29,6 +31,40 @@ def client_ip(request: Request) -> str:
     return get_remote_address(request)
 
 
+_PROXY_HEADERS = ("x-real-ip", "cf-connecting-ip", "x-forwarded-for")
+
+
+def is_internal_request(request: Request) -> bool:
+    """True for traffic that reached uvicorn without passing through nginx:
+    the frontend's server-side fetches, ingest jobs, and other containers on
+    the private network. nginx always sets X-Real-IP and the backend port is
+    not published, so no proxy header plus a private peer address can only
+    be one of those."""
+    h = request.headers
+    if any(h.get(name) for name in _PROXY_HEADERS):
+        return False
+    host = request.client.host if request.client else None
+    if not host:
+        return False
+    try:
+        addr = ipaddress.ip_address(host)
+    except ValueError:
+        return False
+    return addr.is_private or addr.is_loopback
+
+
+def limiter_key(request: Request) -> str:
+    """key_func for the shared per-IP limiter: the visitor IP, or an
+    ``internal|<peer>`` bucket for in-network callers so a crawl of the
+    site can't exhaust the frontend container's per-endpoint caps for every
+    page render at once."""
+    from .services.rate_limit_config import INTERNAL_BUCKET_PREFIX
+
+    if is_internal_request(request):
+        return f"{INTERNAL_BUCKET_PREFIX}{get_remote_address(request)}"
+    return client_ip(request)
+
+
 def _make_shared_limiter() -> Limiter:
     # Imported lazily: rate_limit_config itself imports client_ip from this
     # module inside a function, so a top-level import here would be the only
@@ -40,7 +76,7 @@ def _make_shared_limiter() -> Limiter:
     # path its own bucket, so caps on parameterized routes like
     # /shared/{run_hash} were per-hash and never actually bit.
     return Limiter(
-        key_func=client_ip,
+        key_func=limiter_key,
         key_style="endpoint",
         **rate_limit_config.storage_kwargs(),
     )

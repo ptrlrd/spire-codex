@@ -21,6 +21,15 @@ export default function robots(): MetadataRoute.Robots {
           "/api/",       // backend JSON + download endpoints
           "/static/",    // static asset trees (CDN-served)
           "/uninstall",  // Overwolf post-uninstall survey, entered only by the OW client
+          // Tier-list filter variants canonicalize to the unfiltered page and
+          // each one is a full server render; the bracket cube alone is
+          // thousands of URLs per list. Keep crawlers on the canonical pages.
+          "/tier-list/*bracket=",
+          "/tier-list/*rarity=",
+          "/tier-list/*sort=",
+          "/*/tier-list/*bracket=",
+          "/*/tier-list/*rarity=",
+          "/*/tier-list/*sort=",
         ],
       },
     ],

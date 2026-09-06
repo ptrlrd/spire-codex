@@ -307,6 +307,7 @@ export default async function RelicsTierListPage({ searchParams }: PageProps) {
           return (
             <Link
               key={opt.value || "all-rarities"}
+              rel="nofollow"
               href={relicHref(pool, opt.value || undefined, act, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
