@@ -15,6 +15,9 @@ http {
     types_hash_max_size 2048;
     server_tokens off;
 
+    # HTML cache for the tier-list pages (see the location block below).
+    proxy_cache_path /var/cache/nginx/pages levels=1:2 keys_zone=pages:10m max_size=256m inactive=10m use_temp_path=off;
+
     include /etc/nginx/mime.types;
     default_type application/octet-stream;
 
@@ -248,6 +251,34 @@ http {
           proxy_set_header X-Real-IP $remote_addr;
           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
           proxy_set_header X-Forwarded-Proto $scheme;
+      }
+
+      # Tier-list pages render on every request (they read search params), so
+      # a crawl of the filter cube costs one full Next render per URL and a
+      # scraper walking it pegged the frontend (2026-09-06). Cache the HTML
+      # here for a few minutes, collapse concurrent misses onto one render,
+      # and serve stale while refreshing. Next's Vary (RSC, Next-Router-*)
+      # keeps client navigations and full loads as separate variants; the key
+      # carries the two headers that matter in case Vary is ever dropped.
+      # Set-Cookie responses are never cached (nginx default), so nothing
+      # user-specific can leak between visitors.
+      location ~ ^/(?:[a-z]{3}/)?tier-list(?:/|$) {
+          proxy_pass $codex_frontend;
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_cache pages;
+          proxy_cache_key "$scheme$host$request_uri|$http_rsc|$http_next_router_prefetch";
+          proxy_cache_valid 200 5m;
+          proxy_cache_valid 404 1m;
+          proxy_cache_lock on;
+          proxy_cache_lock_timeout 15s;
+          proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+          proxy_cache_background_update on;
+          proxy_ignore_headers Cache-Control Expires;
+          add_header X-Cache-Status $upstream_cache_status always;
       }
 
       # Everything else -> frontend container

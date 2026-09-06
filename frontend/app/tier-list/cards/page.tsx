@@ -257,6 +257,7 @@ export default async function CardsTierListPage({ searchParams }: PageProps) {
           return (
             <Link
               key={opt.value}
+              rel="nofollow"
               href={sortHref(opt.value)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
