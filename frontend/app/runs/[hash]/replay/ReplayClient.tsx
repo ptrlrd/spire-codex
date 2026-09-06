@@ -220,7 +220,10 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                   encounters={encounters}
                   actName={model.actNames[act]}
                   character={character}
-                  route={map.boss ? { boss: { id: map.boss } } : null}
+                  route={{
+                    boss: map.boss ? { id: map.boss } : undefined,
+                    ancient: map.ancient ? { id: map.ancient } : undefined,
+                  }}
                   onSelect={(c) => {
                     const floor = coordToFloor.get(`${c[0]},${c[1]}`);
                     if (floor !== undefined) pick(floor);

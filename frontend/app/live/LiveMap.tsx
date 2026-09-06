@@ -106,6 +106,13 @@ function roomArt(name: string): string {
   return imageUrl(`/static/images/ui/map_rooms/${name}.webp`);
 }
 
+// The act's Ancient has its own map art per ancient (Neow, Darv, ...).
+const ANCIENT_ART = new Set(["neow", "darv", "nonupeipe", "orobas", "pael", "tanx", "tezcatara", "vakuu"]);
+function ancientArt(id?: string | null): string | null {
+  const key = (id || "").toLowerCase().replace(/^ancient\./, "");
+  return ANCIENT_ART.has(key) ? imageUrl(`/static/images/ui/map_ancients/ancient_node_${key}.webp`) : null;
+}
+
 // The game marks a cleared node with a brush-drawn ink circle: one thick
 // stroke that starts at about ten o'clock, sweeps almost all the way round
 // with a slight outward drift, and stops short so the ends never meet.
@@ -366,7 +373,7 @@ export default function LiveMap({
     if (baseType === "boss" && route?.boss?.id) {
       return imageUrl(`/static/images/misc/bosses/${route.boss.id.toLowerCase()}.png`);
     }
-    if (baseType === "ancient" && route?.ancient?.id) {
+    if (baseType === "ancient" && route?.ancient?.id && !ancientArt(route.ancient.id)) {
       return imageUrl(`/static/images/misc/ancients/${route.ancient.id.toLowerCase()}.png`);
     }
     return null;
@@ -435,7 +442,9 @@ export default function LiveMap({
           const here = isPos(c, r);
           const seen = onPath(c, r);
           const portrait = portraitFor(c, r, type);
-          const icon = portrait ? null : nodeIcon(type, rv ? rv[2] : null);
+          const ancient = type === "ancient" ? ancientArt(route?.ancient?.id) : null;
+          const icon = portrait || ancient ? null : nodeIcon(type, rv ? rv[2] : null);
+          const big = type === "boss" ? R + 6 : R + 1;
           const dim = !(seen || here);
           const hasFloor = !!floorAt(c, r);
           const clickable = !!onSelect && seen;
@@ -454,30 +463,53 @@ export default function LiveMap({
                   <animate attributeName="stroke-opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite" />
                 </circle>
               )}
-              {portrait ? (
+              {ancient ? (
                 <>
-                  <circle cx={x(c)} cy={y(r)} r={R + 2} fill="var(--bg-primary)" />
+                  <image
+                    href={ancient}
+                    x={x(c) - ICON * 0.8}
+                    y={y(r) - ICON * 0.8}
+                    width={ICON * 1.6}
+                    height={ICON * 1.6}
+                    opacity={dim ? 0.6 : 1}
+                  />
+                  {(seen || picked) && (
+                    <path
+                      d={inkCircle(x(c), y(r), R + 15, c * 13 + r * 7)}
+                      fill="none"
+                      stroke="var(--map-ink)"
+                      strokeWidth={3.6}
+                      strokeOpacity={0.92}
+                      strokeLinecap="round"
+                    />
+                  )}
+                </>
+              ) : portrait ? (
+                <>
+                  <circle cx={x(c)} cy={y(r)} r={big + 1} fill="var(--bg-primary)" />
                   <clipPath id={`lm-${c}-${r}`}>
-                    <circle cx={x(c)} cy={y(r)} r={R + 1} />
+                    <circle cx={x(c)} cy={y(r)} r={big} />
                   </clipPath>
                   <image
                     href={portrait}
-                    x={x(c) - R - 1}
-                    y={y(r) - R - 1}
-                    width={(R + 1) * 2}
-                    height={(R + 1) * 2}
+                    x={x(c) - big}
+                    y={y(r) - big}
+                    width={big * 2}
+                    height={big * 2}
                     clipPath={`url(#lm-${c}-${r})`}
                     preserveAspectRatio="xMidYMid slice"
                     opacity={dim ? 0.55 : 1}
                   />
-                  <circle
-                    cx={x(c)}
-                    cy={y(r)}
-                    r={R + 1}
-                    fill="none"
-                    stroke={seen || picked ? "var(--accent-gold)" : s.ring}
-                    strokeWidth={picked ? 3 : seen ? 2 : 1}
-                  />
+                  {(seen || picked) && (
+                    <path
+                      d={inkCircle(x(c), y(r), big + 8, c * 13 + r * 7)}
+                      fill="none"
+                      stroke="var(--map-ink)"
+                      strokeWidth={3.6}
+                      strokeOpacity={0.92}
+                      strokeLinecap="round"
+                    />
+                  )}
                 </>
               ) : icon ? (
                 <>

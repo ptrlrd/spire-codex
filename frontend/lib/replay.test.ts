@@ -11,7 +11,9 @@ describe("parseReplay on the real journal", () => {
   it("splits the run into floors with the act map", () => {
     expect(model.lineCount).toBe(994);
     expect(model.floors).toHaveLength(17);
-    expect(model.maps[1].nodes).toHaveLength(56);
+    expect(model.maps[1].nodes).toHaveLength(58);
+    expect(model.maps[1].boss).toBe("VANTOM_BOSS");
+    expect(model.maps[1].ancient).toBe("NEOW");
     expect(model.maps[1].edges.length).toBeGreaterThan(56);
     expect(model.actNames[1]).toBe("OVERGROWTH");
     expect(model.startingDeck).toHaveLength(13);
@@ -57,9 +59,10 @@ describe("parseReplay on the real journal", () => {
 
   it("places every mapped floor on a row without coords", () => {
     const route = routeForAct(model, 1);
-    const mapped = model.floors.filter((f) => f.act === 1 && f.id !== "NEOW" && f.kind !== "combat" || (f.kind === "combat" && !f.id?.includes("BOSS")));
-    expect(route.size).toBeGreaterThanOrEqual(mapped.length - 1);
+    expect(route.size).toBe(17);
+    expect(route.get(1)?.[1]).toBe(0);
     expect(route.get(2)?.[1]).toBe(1);
+    expect(route.get(17)?.[1]).toBe(16);
     const rows = [...route.values()].map((c) => c[1]);
     expect(rows).toEqual([...rows].sort((a, b) => a - b));
     expect(new Set(rows).size).toBe(rows.length);
@@ -95,6 +98,7 @@ describe("parseReplay on the Regent journal (deck_c, end_turn, exact identity)",
 
   it("places the seven floors on the map", () => {
     const route = routeForAct(model, 1);
-    expect(route.size).toBe(6);
+    expect(route.size).toBe(7);
+    expect(model.maps[1].ancient).toBe("NEOW");
   });
 });
