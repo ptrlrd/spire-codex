@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
@@ -144,6 +144,14 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     return () => window.removeEventListener("keydown", onKey);
   }, [floors, selected, pick]);
 
+  const mapBox = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const box = mapBox.current;
+    if (!box || !selectedCoord) return;
+    const node = box.querySelector<SVGGElement>(`g[data-coord="${selectedCoord[0]},${selectedCoord[1]}"]`);
+    node?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
+  }, [selectedCoord]);
+
   const cat: Catalog = { cards, relics, potions, monsters, encounters, cardScores, relicScores };
   const header = model?.header ?? {};
   const character = cleanId(run.players?.[run.player_index ?? 0]?.character ?? String(header.character ?? ""));
@@ -210,7 +218,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
               </div>
             )}
             {map && map.nodes.length > 0 && (
-              <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2 overflow-x-auto">
+              <div ref={mapBox} className="max-h-[70vh] overflow-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
                 <LiveMap
                   map={map}
                   path={path}
