@@ -101,6 +101,9 @@ jobs:
       - name: TypeScript type-check
         run: npx tsc --noEmit
 
+      - name: Check [lang] page coverage
+        run: npm run check-lang-pages
+
   # ── Backend checks ─────────────────────────────────────
   backend-lint:
     name: Backend lint
