@@ -68,12 +68,14 @@ const ROOM_LABEL: Record<string, string> = {
   unknown: "Unknown",
 };
 
-const COL = 54; // horizontal spacing between lanes
-const ROW = 56; // vertical spacing between depths
-const PAD = 26;
+// The game spaces rows about two and a half icon widths apart and lets the
+// map scroll, so keep those proportions rather than squeezing rows to fit.
+const COL = 62; // horizontal spacing between lanes
+const ROW = 84; // vertical spacing between depths
+const PAD = 34;
 const HEADROOM = 30; // space above the top row for the character marker
-const R = 13; // hit radius; the game's node art draws a little larger
-const ICON = 36; // rendered size of a node icon (the art is 128px square)
+const R = 14; // hit radius; the game's node art draws a little larger
+const ICON = 40; // rendered size of a node icon (the art is 128px square)
 
 // The game's own map art (extracted to ui/map_rooms, ui/map_nodes and
 // ui/map_backgrounds). A node type maps to its icon; an unknown "?" node
@@ -428,9 +430,9 @@ export default function LiveMap({
               x2={x(cc)}
               y2={y(cr)}
               stroke="var(--map-ink)"
-              strokeWidth={lit ? 3 : 2.2}
-              strokeOpacity={lit ? 0.9 : 0.35}
-              strokeDasharray={lit ? "1 6" : "1 7"}
+              strokeWidth={lit ? 3.4 : 2.6}
+              strokeOpacity={lit ? 0.9 : 0.4}
+              strokeDasharray={lit ? "1 8" : "1 9"}
               strokeLinecap="round"
             />
           );
@@ -453,6 +455,7 @@ export default function LiveMap({
           return (
             <g
               key={`n-${c}-${r}`}
+              data-coord={`${c},${r}`}
               onMouseEnter={() => setHovered({ c, r })}
               onClick={clickable ? () => onSelect([c, r]) : undefined}
               style={{ cursor: clickable ? "pointer" : hasFloor ? "help" : "default" }}
