@@ -382,7 +382,7 @@ Wenn Sie die API direkt verwenden, können Sie diese mit einem regulären Ausdru
 ### Voraussetzungen
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -464,7 +464,7 @@ Das Skript erkennt Ihr Betriebssystem automatisch und findet das Steam-Installat
 | DLL-Dekompilierung | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Datenparsing | Python 3.10+ | Integriert |
 | Kopieren von Bildern | Python 3.10+ | Integriert |
-| Spine-Rendering | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine-Rendering | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Manuelle Schritte
 

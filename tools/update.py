@@ -134,7 +134,7 @@ def step_extract_pck(pck_path: Path):
     """Extract the Godot .pck file using GDRE Tools."""
     info("Step 1a: Extracting PCK with GDRE Tools")
 
-    gdre = find_executable("gdre_tools", ["gdre_tools.exe", "gdre"])
+    gdre = find_executable("gdre_tools", ["gdre_tools.exe", "gdre", "gdre_tools.x86_64"])
     if not gdre:
         print("  ERROR: gdre_tools not found on PATH.")
         print("  Install from: https://github.com/bruvzg/gdsdecomp/releases")

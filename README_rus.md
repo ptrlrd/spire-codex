@@ -382,7 +382,7 @@ spire-codex/
 ### Предварительные требования
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Бэкенд
 
@@ -466,7 +466,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | Декомпиляция DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Анализ данных | Python 3.10+ | Встроено |
 | Копирование изображений | Python 3.10+ | Встроено |
-| Рендеринг Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Рендеринг Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Ручное выполнение этапов
 

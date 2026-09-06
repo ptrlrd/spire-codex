@@ -382,7 +382,7 @@ Si vous utilisez directement l’API, vous pouvez supprimer ces balises avec une
 ### Prérequis
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -464,7 +464,7 @@ Le script détecte automatiquement votre système d’exploitation et trouve le 
 | Décompilation de la DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Analyse des données | Python 3.10+ | Intégré |
 | Copie des images | Python 3.10+ | Intégré |
-| Rendu Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Rendu Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Étapes manuelles
 

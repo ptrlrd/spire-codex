@@ -82,7 +82,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           # No `cache: npm` here on purpose. Self-hosted runners give
           # us free compute, but setup-node's npm cache still uploads
           # ~/.npm to GitHub-managed storage (Next.js + sharp + swc
