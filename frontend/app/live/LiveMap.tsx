@@ -70,12 +70,13 @@ const ROOM_LABEL: Record<string, string> = {
 
 // The game spaces rows about two and a half icon widths apart and lets the
 // map scroll, so keep those proportions rather than squeezing rows to fit.
-const COL = 62; // horizontal spacing between lanes
+const COL = 72; // horizontal spacing between lanes
 const ROW = 84; // vertical spacing between depths
-const PAD = 34;
-const HEADROOM = 30; // space above the top row for the character marker
+const PAD = 40;
+const HEADROOM = 40; // space above the top row for the character marker
 const R = 14; // hit radius; the game's node art draws a little larger
 const ICON = 40; // rendered size of a node icon (the art is 128px square)
+const MARKER_H = 32; // rendered height of the character marker
 
 // The game's own map art, the painterly set the in-game map draws
 // (extracted to ui/map_nodes; ui/map_rooms is the flat legend set). A node
@@ -123,31 +124,28 @@ function ancientArt(id?: string | null): string | null {
   return ANCIENT_ART.has(key) ? imageUrl(`/static/images/ui/map_ancients/ancient_node_${key}.webp`) : null;
 }
 
-// The game marks a cleared node with a brush-drawn ink circle: one thick
-// stroke that starts at about ten o'clock, sweeps almost all the way round
-// with a slight outward drift, and stops short so the ends never meet.
-function inkCircle(cx: number, cy: number, r: number, seed: number): string {
-  const wobble = (i: number) => 1 + (((seed * 31 + i * 17) % 7) - 3) * 0.008;
-  const steps = 16;
-  const start = -Math.PI * 0.6 + ((seed % 5) - 2) * 0.08;
-  const sweep = Math.PI * 1.88;
-  const pts: [number, number][] = [];
-  for (let i = 0; i <= steps; i++) {
-    const a = start + (i / steps) * sweep;
-    const rr = r * (0.96 + 0.07 * (i / steps)) * wobble(i);
-    pts.push([cx + rr * Math.cos(a), cy + rr * Math.sin(a)]);
-  }
-  const k = 0.34;
-  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
-  for (let i = 0; i < steps; i++) {
-    const [x0, y0] = pts[i];
-    const [x1, y1] = pts[i + 1];
-    const a0 = Math.atan2(y0 - cy, x0 - cx) + Math.PI / 2;
-    const a1 = Math.atan2(y1 - cy, x1 - cx) - Math.PI / 2;
-    const l = Math.hypot(x1 - x0, y1 - y0) * k;
-    d += ` C${(x0 + l * Math.cos(a0)).toFixed(1)},${(y0 + l * Math.sin(a0)).toFixed(1)} ${(x1 + l * Math.cos(a1)).toFixed(1)},${(y1 + l * Math.sin(a1)).toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
-  }
-  return d;
+// The game marks a cleared node with a brush circle. Proportions follow the
+// in-game drawing: radius 0.9x the visible glyph, stroke 2/7 of the radius,
+// and the stroke covers 90% of the circumference with round caps so the ends
+// never meet. Rotated so the gap sits near the top like the brush lift-off.
+function InkRing({ cx, cy, size, seed }: { cx: number; cy: number; size: number; seed: number }) {
+  const r = size * 0.9;
+  const circumference = 2 * Math.PI * r;
+  const angle = -70 + ((seed % 5) - 2) * 7;
+  return (
+    <circle
+      cx={cx}
+      cy={cy}
+      r={r}
+      fill="none"
+      stroke="var(--map-ink)"
+      strokeOpacity={0.92}
+      strokeWidth={(2 / 7) * r}
+      strokeLinecap="round"
+      strokeDasharray={`${circumference * 0.9} ${circumference}`}
+      transform={`rotate(${angle} ${cx} ${cy})`}
+    />
+  );
 }
 
 const ACT_BACKGROUND: Record<string, string> = {
@@ -426,7 +424,7 @@ export default function LiveMap({
         width={width}
         height={height}
         viewBox={`0 0 ${width} ${height}`}
-        className="block max-w-full"
+        className="block h-auto max-w-full"
         role="img"
         aria-label="Act map showing the player's route"
         onMouseLeave={() => setHovered(null)}
@@ -500,16 +498,7 @@ export default function LiveMap({
                     filter="url(#map-ink-tint)"
                     onError={() => markMissing(boss)}
                   />
-                  {(seen || picked) && (
-                    <path
-                      d={inkCircle(x(c), y(r), R + 17, c * 13 + r * 7)}
-                      fill="none"
-                      stroke="var(--map-ink)"
-                      strokeWidth={3.6}
-                      strokeOpacity={0.92}
-                      strokeLinecap="round"
-                    />
-                  )}
+                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 1.05} seed={c * 13 + r * 7} />}
                 </>
               ) : ancient ? (
                 <>
@@ -521,16 +510,7 @@ export default function LiveMap({
                     height={ICON * 1.6}
                     opacity={dim ? 0.6 : 1}
                   />
-                  {(seen || picked) && (
-                    <path
-                      d={inkCircle(x(c), y(r), R + 15, c * 13 + r * 7)}
-                      fill="none"
-                      stroke="var(--map-ink)"
-                      strokeWidth={3.6}
-                      strokeOpacity={0.92}
-                      strokeLinecap="round"
-                    />
-                  )}
+                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 0.95} seed={c * 13 + r * 7} />}
                 </>
               ) : portrait ? (
                 <>
@@ -548,16 +528,7 @@ export default function LiveMap({
                     preserveAspectRatio="xMidYMid slice"
                     opacity={dim ? 0.55 : 1}
                   />
-                  {(seen || picked) && (
-                    <path
-                      d={inkCircle(x(c), y(r), big + 8, c * 13 + r * 7)}
-                      fill="none"
-                      stroke="var(--map-ink)"
-                      strokeWidth={3.6}
-                      strokeOpacity={0.92}
-                      strokeLinecap="round"
-                    />
-                  )}
+                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={big * 1.6} seed={c * 13 + r * 7} />}
                 </>
               ) : icon ? (
                 <>
@@ -571,17 +542,7 @@ export default function LiveMap({
                     opacity={dim ? 0.55 : 1}
                     style={dim ? { filter: "saturate(0.35)" } : undefined}
                   />
-                  {(seen || picked) && (
-                    <path
-                      d={inkCircle(x(c), y(r), R + 11, c * 13 + r * 7)}
-                      fill="none"
-                      stroke="var(--map-ink)"
-                      strokeWidth={3.6}
-                      strokeOpacity={0.92}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  )}
+                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 0.7} seed={c * 13 + r * 7} />}
                 </>
               ) : (
                 <>
@@ -621,9 +582,9 @@ export default function LiveMap({
           <image
             href={marker}
             x={x(markerAt[0]) - 12}
-            y={y(markerAt[1]) - ICON / 2 - 30}
+            y={y(markerAt[1]) - ICON / 2 - MARKER_H + 6}
             width={24}
-            height={32}
+            height={MARKER_H}
             preserveAspectRatio="xMidYMid meet"
             pointerEvents="none"
           />
