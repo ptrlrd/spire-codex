@@ -109,6 +109,13 @@ function roomArt(name: string): string {
   return imageUrl(`/static/images/ui/map_nodes/${name}.png`);
 }
 
+// The boss node draws the game's boss map icon (ui/map_bosses, keyed by the
+// boss encounter id); a missing icon falls back to the boss portrait.
+function bossArt(id?: string | null): string | null {
+  const key = (id || "").toLowerCase().replace(/^encounter\./, "");
+  return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon.webp`) : null;
+}
+
 // The act's Ancient has its own map art per ancient (Neow, Darv, ...).
 const ANCIENT_ART = new Set(["neow", "darv", "nonupeipe", "orobas", "pael", "tanx", "tezcatara", "vakuu"]);
 function ancientArt(id?: string | null): string | null {
@@ -313,6 +320,9 @@ export default function LiveMap({
   character?: string | null;
 }) {
   const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
+  const [missingArt, setMissingArt] = useState<Set<string>>(() => new Set());
+  const markMissing = (src: string) =>
+    setMissingArt((prev) => (prev.has(src) ? prev : new Set(prev).add(src)));
 
   const nodes = map?.nodes ?? [];
   if (!nodes.length) return null;
@@ -421,6 +431,14 @@ export default function LiveMap({
         aria-label="Act map showing the player's route"
         onMouseLeave={() => setHovered(null)}
       >
+        <defs>
+          {/* The boss map icon ships as a white silhouette; the game tints it
+              with the act's ink colour at draw time, so do the same. */}
+          <filter id="map-ink-tint" x="-10%" y="-10%" width="120%" height="120%">
+            <feFlood style={{ floodColor: "var(--map-ink)" }} result="ink" />
+            <feComposite in="ink" in2="SourceAlpha" operator="in" />
+          </filter>
+        </defs>
         {edges.map(([c, r, cc, cr], i) => {
           const lit = onPath(c, r) && onPath(cc, cr);
           return (
@@ -446,7 +464,9 @@ export default function LiveMap({
           const seen = onPath(c, r);
           const portrait = portraitFor(c, r, type);
           const ancient = type === "ancient" ? ancientArt(route?.ancient?.id) : null;
-          const icon = portrait || ancient ? null : nodeIcon(type, rv ? rv[2] : null);
+          const bossIcon = type === "boss" ? bossArt(route?.boss?.id) : null;
+          const boss = bossIcon && !missingArt.has(bossIcon) ? bossIcon : null;
+          const icon = portrait || ancient || boss ? null : nodeIcon(type, rv ? rv[2] : null);
           const big = type === "boss" ? R + 6 : R + 1;
           const dim = !(seen || here);
           const hasFloor = !!floorAt(c, r);
@@ -467,7 +487,31 @@ export default function LiveMap({
                   <animate attributeName="stroke-opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite" />
                 </circle>
               )}
-              {ancient ? (
+              {boss ? (
+                <>
+                  <image
+                    href={boss}
+                    x={x(c) - ICON * 0.9}
+                    y={y(r) - ICON * 0.9}
+                    width={ICON * 1.8}
+                    height={ICON * 1.8}
+                    preserveAspectRatio="xMidYMid meet"
+                    opacity={dim ? 0.5 : 0.9}
+                    filter="url(#map-ink-tint)"
+                    onError={() => markMissing(boss)}
+                  />
+                  {(seen || picked) && (
+                    <path
+                      d={inkCircle(x(c), y(r), R + 17, c * 13 + r * 7)}
+                      fill="none"
+                      stroke="var(--map-ink)"
+                      strokeWidth={3.6}
+                      strokeOpacity={0.92}
+                      strokeLinecap="round"
+                    />
+                  )}
+                </>
+              ) : ancient ? (
                 <>
                   <image
                     href={ancient}
