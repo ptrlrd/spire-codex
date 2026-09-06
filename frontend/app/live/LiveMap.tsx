@@ -77,24 +77,25 @@ const HEADROOM = 30; // space above the top row for the character marker
 const R = 14; // hit radius; the game's node art draws a little larger
 const ICON = 40; // rendered size of a node icon (the art is 128px square)
 
-// The game's own map art (extracted to ui/map_rooms, ui/map_nodes and
-// ui/map_backgrounds). A node type maps to its icon; an unknown "?" node
-// that resolved to something else uses the game's revealed variant.
+// The game's own map art, the painterly set the in-game map draws
+// (extracted to ui/map_nodes; ui/map_rooms is the flat legend set). A node
+// type maps to its icon; an unknown "?" node that resolved to something
+// else uses the game's revealed variant.
 const NODE_ICON: Record<string, string> = {
-  monster: "monster",
-  elite: "elite",
-  shop: "shop",
-  treasure: "treasure",
-  restsite: "rest_site",
-  event: "event",
-  unknown: "event",
-  ancient: "ancient",
+  monster: "map_monster",
+  burly_monster: "map_burly_monster",
+  elite: "map_elite",
+  shop: "map_shop",
+  treasure: "map_chest",
+  restsite: "map_rest",
+  event: "map_unknown",
+  unknown: "map_unknown",
 };
 const REVEALED_UNKNOWN: Record<string, string> = {
-  monster: "unknown_monster",
-  elite: "unknown_elite",
-  shop: "unknown_shop",
-  treasure: "unknown_treasure",
+  monster: "map_unknown_monster",
+  elite: "map_unknown_elite",
+  shop: "map_unknown_shop",
+  treasure: "map_unknown_chest",
 };
 
 function nodeIcon(baseType: string, revealedType: string | null): string | null {
@@ -105,7 +106,7 @@ function nodeIcon(baseType: string, revealedType: string | null): string | null 
 }
 
 function roomArt(name: string): string {
-  return imageUrl(`/static/images/ui/map_rooms/${name}.webp`);
+  return imageUrl(`/static/images/ui/map_nodes/${name}.png`);
 }
 
 // The act's Ancient has its own map art per ancient (Neow, Darv, ...).
@@ -522,6 +523,7 @@ export default function LiveMap({
                     y={y(r) - half}
                     width={ICON}
                     height={ICON}
+                    preserveAspectRatio="xMidYMid meet"
                     opacity={dim ? 0.55 : 1}
                     style={dim ? { filter: "saturate(0.35)" } : undefined}
                   />
