@@ -68,8 +68,8 @@ const ROOM_LABEL: Record<string, string> = {
   unknown: "Unknown",
 };
 
-const COL = 46; // horizontal spacing between lanes
-const ROW = 46; // vertical spacing between depths
+const COL = 54; // horizontal spacing between lanes
+const ROW = 56; // vertical spacing between depths
 const PAD = 26;
 const HEADROOM = 30; // space above the top row for the character marker
 const R = 13; // hit radius; the game's node art draws a little larger
@@ -102,8 +102,35 @@ function nodeIcon(baseType: string, revealedType: string | null): string | null 
   return NODE_ICON[revealedType && NODE_ICON[revealedType] ? revealedType : baseType] ?? null;
 }
 
-function roomArt(name: string, outline = false): string {
-  return imageUrl(`/static/images/ui/map_rooms/${name}${outline ? "_outline" : ""}.webp`);
+function roomArt(name: string): string {
+  return imageUrl(`/static/images/ui/map_rooms/${name}.webp`);
+}
+
+// The game marks a cleared node with a brush-drawn ink circle: one thick
+// stroke that starts at about ten o'clock, sweeps almost all the way round
+// with a slight outward drift, and stops short so the ends never meet.
+function inkCircle(cx: number, cy: number, r: number, seed: number): string {
+  const wobble = (i: number) => 1 + (((seed * 31 + i * 17) % 7) - 3) * 0.008;
+  const steps = 16;
+  const start = -Math.PI * 0.6 + ((seed % 5) - 2) * 0.08;
+  const sweep = Math.PI * 1.88;
+  const pts: [number, number][] = [];
+  for (let i = 0; i <= steps; i++) {
+    const a = start + (i / steps) * sweep;
+    const rr = r * (0.96 + 0.07 * (i / steps)) * wobble(i);
+    pts.push([cx + rr * Math.cos(a), cy + rr * Math.sin(a)]);
+  }
+  const k = 0.34;
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < steps; i++) {
+    const [x0, y0] = pts[i];
+    const [x1, y1] = pts[i + 1];
+    const a0 = Math.atan2(y0 - cy, x0 - cx) + Math.PI / 2;
+    const a1 = Math.atan2(y1 - cy, x1 - cx) - Math.PI / 2;
+    const l = Math.hypot(x1 - x0, y1 - y0) * k;
+    d += ` C${(x0 + l * Math.cos(a0)).toFixed(1)},${(y0 + l * Math.sin(a0)).toFixed(1)} ${(x1 + l * Math.cos(a1)).toFixed(1)},${(y1 + l * Math.sin(a1)).toFixed(1)} ${x1.toFixed(1)},${y1.toFixed(1)}`;
+  }
+  return d;
 }
 
 const ACT_BACKGROUND: Record<string, string> = {
@@ -393,10 +420,10 @@ export default function LiveMap({
               y1={y(r)}
               x2={x(cc)}
               y2={y(cr)}
-              stroke={lit ? "var(--accent-gold)" : "var(--text-primary)"}
-              strokeWidth={lit ? 3 : 2}
-              strokeOpacity={lit ? 0.95 : 0.45}
-              strokeDasharray={lit ? undefined : "3 4"}
+              stroke="var(--map-ink)"
+              strokeWidth={lit ? 3 : 2.2}
+              strokeOpacity={lit ? 0.9 : 0.35}
+              strokeDasharray={lit ? "1 6" : "1 7"}
               strokeLinecap="round"
             />
           );
@@ -460,17 +487,18 @@ export default function LiveMap({
                     y={y(r) - half}
                     width={ICON}
                     height={ICON}
-                    opacity={dim ? 0.5 : 1}
-                    style={dim ? { filter: "grayscale(0.6)" } : undefined}
+                    opacity={dim ? 0.55 : 1}
+                    style={dim ? { filter: "saturate(0.35)" } : undefined}
                   />
                   {(seen || picked) && (
-                    <image
-                      href={roomArt(icon, true)}
-                      x={x(c) - half}
-                      y={y(r) - half}
-                      width={ICON}
-                      height={ICON}
-                      opacity={picked ? 1 : 0.75}
+                    <path
+                      d={inkCircle(x(c), y(r), R + 11, c * 13 + r * 7)}
+                      fill="none"
+                      stroke="var(--map-ink)"
+                      strokeWidth={3.6}
+                      strokeOpacity={0.92}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
                     />
                   )}
                 </>
