@@ -1,6 +1,14 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import { link } from "node:fs";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -23,21 +31,25 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  loginSteam: () => void;
-  loginDiscord: () => void;
-  loginTwitch: () => void;
-  loginPatreon: () => void;
+  loginSteam: string;
+  loginDiscord: string;
+  loginTwitch: string;
+  loginPatreon: string;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
 
+const links = {
+  loginSteam: `${API_BASE}/api/auth/steam/redirect`,
+  loginDiscord: `${API_BASE}/api/auth/steam/redirect`,
+  loginTwitch: `${API_BASE}/api/auth/steam/redirect`,
+  loginPatreon: `${API_BASE}/api/auth/steam/redirect`,
+};
+
 const AuthContext = createContext<AuthContextType>({
+  ...links,
   user: null,
   loading: true,
-  loginSteam: () => {},
-  loginDiscord: () => {},
-  loginTwitch: () => {},
-  loginPatreon: () => {},
   logout: async () => {},
   refresh: async () => {},
 });
@@ -97,30 +109,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
-      }).catch(() => {}).finally(() => fetchMe());
+      })
+        .catch(() => {})
+        .finally(() => fetchMe());
     } else {
       fetchMe();
     }
     // Run only once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const loginSteam = useCallback(() => {
-    // Always use redirect flow -- popups are unreliable on mobile
-    // and get blocked by many browsers
-    window.location.href = `${API_BASE}/api/auth/steam/redirect`;
-  }, []);
-
-  const loginDiscord = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/discord/start`;
-  }, []);
-
-  const loginTwitch = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/twitch/start`;
-  }, []);
-
-  const loginPatreon = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/patreon/start`;
   }, []);
 
   const logout = useCallback(async () => {
@@ -138,7 +134,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, loginSteam, loginDiscord, loginTwitch, loginPatreon, logout, refresh: fetchMe }}
+      value={{ ...links, user, loading, logout, refresh: fetchMe }}
     >
       {children}
     </AuthContext.Provider>

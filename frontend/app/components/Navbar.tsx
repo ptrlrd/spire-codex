@@ -12,7 +12,14 @@ import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
 import ThemeToggle from "./ThemeToggle";
-import { recordRecent, getRecent, isRecentType, ENTITY_SINGULAR, prettyRecentName, type RecentEntity } from "@/lib/recent-entities";
+import {
+  recordRecent,
+  getRecent,
+  isRecentType,
+  ENTITY_SINGULAR,
+  prettyRecentName,
+  type RecentEntity,
+} from "@/lib/recent-entities";
 import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { SITE_URL } from "@/lib/seo";
@@ -40,7 +47,15 @@ function isLinkActive(strippedPath: string, href: string): boolean {
 /** Renders a nav-link label, with a compact Discord-icon + "bot" tag after
  * it for `badge: "discord-bot"` links (shorter than spelling out "(Discord
  * Bot)", which clipped the menu). */
-function NavLinkLabel({ label, badge, lang }: { label: string; badge?: "discord-bot"; lang: string }) {
+function NavLinkLabel({
+  label,
+  badge,
+  lang,
+}: {
+  label: string;
+  badge?: "discord-bot";
+  lang: string;
+}) {
   if (badge === "discord-bot") {
     return (
       <span className="inline-flex items-center gap-1.5">
@@ -105,7 +120,11 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/exporter", label: "Art Exporter" },
       { href: "/overlay", label: "Overlay (Overwolf)" },
       { href: "/showcase", label: "Showcase" },
-      { href: "/knowledge-demon", label: "Knowledge Demon", badge: "discord-bot" },
+      {
+        href: "/knowledge-demon",
+        label: "Knowledge Demon",
+        badge: "discord-bot",
+      },
       { href: "/developers", label: "Developers" },
       // Absolute URL on purpose: bare "/docs" reads as an internal route and
       // gets the language prefix, but the FastAPI docs only exist at the
@@ -131,7 +150,6 @@ const NAV_GROUPS: NavGroup[] = [
     ],
   },
 ];
-
 
 // Color + live-count metadata so the Database mega reads like a compendium
 // index (color chip + count) instead of a plain link list, matching the redesign.
@@ -163,23 +181,70 @@ const DB_META: Record<string, { color: string; count?: string }> = {
 // their (English) label so beta-hidden links drop out automatically.
 const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
   Compendium: [
-    { title: "Cards & Combat", labels: ["Card Library", "Relic Collection", "Potion Lab", "Enchantments", "Powers", "Keywords"] },
-    { title: "The Run", labels: ["Characters", "Bestiary", "Encounters", "Events", "Ancients", "Merchant"] },
-    { title: "Systems & Meta", labels: ["Custom Mode", "Mechanics", "Unlockables"] },
-    { title: "Reference", labels: ["Timeline", "Images", "Reference", "Badges", "Compare Characters", "Guides"] },
+    {
+      title: "Cards & Combat",
+      labels: [
+        "Card Library",
+        "Relic Collection",
+        "Potion Lab",
+        "Enchantments",
+        "Powers",
+        "Keywords",
+      ],
+    },
+    {
+      title: "The Run",
+      labels: [
+        "Characters",
+        "Bestiary",
+        "Encounters",
+        "Events",
+        "Ancients",
+        "Merchant",
+      ],
+    },
+    {
+      title: "Systems & Meta",
+      labels: ["Custom Mode", "Mechanics", "Unlockables"],
+    },
+    {
+      title: "Reference",
+      labels: [
+        "Timeline",
+        "Images",
+        "Reference",
+        "Badges",
+        "Compare Characters",
+        "Guides",
+      ],
+    },
   ],
   Stats: [
     { title: "Rankings", labels: ["Tier List", "Card Metrics", "Scoring"] },
-    { title: "Aggregate data", labels: ["Community Stats", "Charts", "Stats", "Encounters"] },
+    {
+      title: "Aggregate data",
+      labels: ["Community Stats", "Charts", "Stats", "Encounters"],
+    },
     { title: "Runs", labels: ["Leaderboards", "Browse Runs", "Submit a Run"] },
   ],
   Tools: [
     { title: "Make & share", labels: ["Tier List Maker", "Showcase"] },
-    { title: "Companion apps", labels: ["Steam Mod", "Art Exporter", "Overlay (Overwolf)", "Knowledge Demon"] },
+    {
+      title: "Companion apps",
+      labels: [
+        "Steam Mod",
+        "Art Exporter",
+        "Overlay (Overwolf)",
+        "Knowledge Demon",
+      ],
+    },
     { title: "Build with the data", labels: ["Developers", "API"] },
   ],
   About: [
-    { title: "Project", labels: ["Spire Codex", "Changelog", "News", "Thank You"] },
+    {
+      title: "Project",
+      labels: ["Spire Codex", "Changelog", "News", "Thank You"],
+    },
     { title: "Support", labels: ["Patreon", "Ko-fi", "Feedback", "Email"] },
     { title: "Elsewhere", labels: ["Discord", "GitHub", "Privacy", "Terms"] },
   ],
@@ -191,7 +256,9 @@ export default function Navbar() {
   const pathLang = pathname.split("/")[1];
   const currentLang = LANG_CODES.has(pathLang) ? pathLang : null;
   const langPrefix = currentLang ? `/${currentLang}` : "";
-  const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
+  const strippedPath = currentLang
+    ? pathname.replace(`/${currentLang}`, "") || "/"
+    : pathname;
   const isHome = strippedPath === "/";
   const { user, loading: authLoading, loginSteam, logout } = useAuth();
   const [open, setOpen] = useState(false);
@@ -260,21 +327,31 @@ export default function Navbar() {
   const [recents, setRecents] = useState<RecentEntity[]>([]);
   useEffect(() => {
     const parts = strippedPath.split("/").filter(Boolean);
-    if (parts.length === 2 && isRecentType(parts[0])) recordRecent(parts[0], parts[1]);
+    if (parts.length === 2 && isRecentType(parts[0]))
+      recordRecent(parts[0], parts[1]);
     setRecents(getRecent());
   }, [strippedPath]);
 
   const renderMega = (group: NavGroup, isLast: boolean) => {
     const links = group.links;
     if (links.length === 0) return null;
-    const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
+    const hasActive = links.some(
+      (link) =>
+        !link.href.startsWith("http") && isLinkActive(strippedPath, link.href),
+    );
     const linkByLabel = new Map(links.map((l) => [l.label, l]));
-    const cols = (NAV_COLUMNS[group.label] ?? [{ title: "", labels: links.map((l) => l.label) }])
+    const cols = (
+      NAV_COLUMNS[group.label] ?? [
+        { title: "", labels: links.map((l) => l.label) },
+      ]
+    )
       .map((c) => ({
         title: c.title,
-        links: c.labels
-          .map((lbl) => linkByLabel.get(lbl))
-          .filter(Boolean) as { href: string; label: string; badge?: "discord-bot" }[],
+        links: c.labels.map((lbl) => linkByLabel.get(lbl)).filter(Boolean) as {
+          href: string;
+          label: string;
+          badge?: "discord-bot";
+        }[],
       }))
       .filter((c) => c.links.length > 0);
     return (
@@ -290,12 +367,26 @@ export default function Navbar() {
           } group-hover:bg-[var(--bg-card)] group-focus-within:bg-[var(--bg-card)]`}
         >
           {t(group.label, lang)}
-          <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180">
-            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
+          <svg
+            aria-hidden
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+              clipRule="evenodd"
+            />
           </svg>
         </button>
-        <div className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}>
-          <div role="menu" className="flex gap-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/40 p-4">
+        <div
+          className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}
+        >
+          <div
+            role="menu"
+            className="flex gap-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/40 p-4"
+          >
             {cols.map((col, ci) => (
               <div key={ci} className="min-w-[9.5rem]">
                 {col.title && (
@@ -307,10 +398,15 @@ export default function Navbar() {
                   {col.links.map((link) => {
                     const isInternal = link.href.startsWith("/");
                     const isHttp = link.href.startsWith("http");
-                    const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
-                    const isActive = isInternal && isLinkActive(strippedPath, link.href);
+                    const fullHref = isInternal
+                      ? `${langPrefix}${link.href}`
+                      : link.href;
+                    const isActive =
+                      isInternal && isLinkActive(strippedPath, link.href);
                     const meta = DB_META[link.href];
-                    const countVal = meta?.count ? navStats?.[meta.count] : undefined;
+                    const countVal = meta?.count
+                      ? navStats?.[meta.count]
+                      : undefined;
                     const className = `flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-medium whitespace-nowrap transition-colors ${
                       isActive
                         ? "text-[var(--accent-gold)] bg-[var(--bg-card)]"
@@ -318,15 +414,51 @@ export default function Navbar() {
                     }`;
                     const inner = (
                       <>
-                        {meta && <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: meta.color }} aria-hidden />}
-                        <span className="flex-1"><NavLinkLabel label={link.label} badge={link.badge} lang={lang} /></span>
-                        {countVal != null && <span className="font-mono text-xs tabular-nums text-[var(--text-muted)]">{countVal}</span>}
+                        {meta && (
+                          <span
+                            className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
+                            style={{ background: meta.color }}
+                            aria-hidden
+                          />
+                        )}
+                        <span className="flex-1">
+                          <NavLinkLabel
+                            label={link.label}
+                            badge={link.badge}
+                            lang={lang}
+                          />
+                        </span>
+                        {countVal != null && (
+                          <span className="font-mono text-xs tabular-nums text-[var(--text-muted)]">
+                            {countVal}
+                          </span>
+                        )}
                       </>
                     );
                     return isInternal ? (
-                      <Link prefetch={false} key={link.href} href={fullHref} role="menuitem" className={className} onMouseDown={(e) => e.preventDefault()}>{inner}</Link>
+                      <Link
+                        prefetch={false}
+                        key={link.href}
+                        href={fullHref}
+                        role="menuitem"
+                        className={className}
+                        onMouseDown={(e) => e.preventDefault()}
+                      >
+                        {inner}
+                      </Link>
                     ) : (
-                      <a key={link.href} href={fullHref} {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})} role="menuitem" onMouseDown={(e) => e.preventDefault()} className={className}>{inner}</a>
+                      <a
+                        key={link.href}
+                        href={fullHref}
+                        {...(isHttp
+                          ? { target: "_blank", rel: "noopener noreferrer" }
+                          : {})}
+                        role="menuitem"
+                        onMouseDown={(e) => e.preventDefault()}
+                        className={className}
+                      >
+                        {inner}
+                      </a>
                     );
                   })}
                 </div>
@@ -349,16 +481,28 @@ export default function Navbar() {
                         onMouseDown={(e) => e.preventDefault()}
                         className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 hover:bg-[var(--bg-card)] transition-colors"
                       >
-                        <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: rmeta?.color ?? "var(--text-muted)" }} aria-hidden />
+                        <span
+                          className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
+                          style={{
+                            background: rmeta?.color ?? "var(--text-muted)",
+                          }}
+                          aria-hidden
+                        />
                         <span className="flex min-w-0 flex-col">
-                          <span className="truncate text-sm font-medium text-[var(--text-primary)]">{prettyRecentName(r.id)}</span>
-                          <span className="text-xs text-[var(--text-muted)]">{ENTITY_SINGULAR[r.type] ?? r.type}</span>
+                          <span className="truncate text-sm font-medium text-[var(--text-primary)]">
+                            {prettyRecentName(r.id)}
+                          </span>
+                          <span className="text-xs text-[var(--text-muted)]">
+                            {ENTITY_SINGULAR[r.type] ?? r.type}
+                          </span>
                         </span>
                       </Link>
                     );
                   })}
                   {recents.length === 0 && (
-                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-muted)]">{t("Pages you open show up here.", lang)}</p>
+                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-muted)]">
+                      {t("Pages you open show up here.", lang)}
+                    </p>
                   )}
                 </div>
               </div>
@@ -375,7 +519,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-3 sm:gap-4 h-16">
           {/* Left: logo + nav pushed tight together; the cluster is pushed right */}
           <div className="flex items-center gap-2 sm:gap-6 min-w-0">
-            <Link prefetch={false} href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
+            <Link
+              prefetch={false}
+              href={`${langPrefix}/`}
+              className="flex items-center gap-2 shrink-0"
+            >
               <img
                 src="/spire-codex-white-final.webp"
                 alt="Spire Codex"
@@ -396,7 +544,9 @@ export default function Navbar() {
             </Link>
             {/* Desktop nav (lg+): groups + Live, tight against the logo */}
             <div className="hidden lg:flex items-center gap-1">
-              {NAV_GROUPS.map((group, i) => renderMega(group, i === NAV_GROUPS.length - 1))}
+              {NAV_GROUPS.map((group, i) =>
+                renderMega(group, i === NAV_GROUPS.length - 1),
+              )}
               <LiveNavButton />
               <AnnouncementBadge />
             </div>
@@ -423,245 +573,374 @@ export default function Navbar() {
               <SearchTrigger variant="icon" />
             </div>
 
-          {!authLoading && (
-            <div className="relative">
-              <button
-                ref={userButtonRef}
-                onClick={() => {
-                  if (user) {
-                    setUserMenuOpen(!userMenuOpen);
-                  }
-                }}
-                className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
-                aria-label={user ? t("Account menu", lang) : t("Sign in", lang)}
-              >
-                <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                {user ? (
-                  <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
-                    {user.username || t("Account", lang)}
-                  </span>
-                ) : null}
-              </button>
-
-              {/* Signed-out: login options */}
-              {!user && !userMenuOpen && (
-                <div
-                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 hidden"
-                  id="login-options"
-                />
-              )}
-
-              {!user && (
+            {!authLoading && (
+              <div className="relative">
                 <button
-                  onClick={() => setUserMenuOpen(!userMenuOpen)}
-                  className="absolute inset-0 w-full h-full opacity-0"
-                  aria-label={t("Sign in options", lang)}
-                  tabIndex={-1}
-                />
-              )}
-
-              {userMenuOpen && !user && (
-                <div
-                  ref={userMenuRef}
-                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                  ref={userButtonRef}
+                  onClick={() => {
+                    if (user) {
+                      setUserMenuOpen(!userMenuOpen);
+                    }
+                  }}
+                  className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
+                  aria-label={
+                    user ? t("Account menu", lang) : t("Sign in", lang)
+                  }
                 >
-                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">{t("Sign in with", lang)}</p>
+                  <svg
+                    className="w-4 h-4 shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                  {user ? (
+                    <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
+                      {user.username || t("Account", lang)}
+                    </span>
+                  ) : null}
+                </button>
+
+                {/* Signed-out: login options */}
+                {!user && !userMenuOpen && (
+                  <div
+                    className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 hidden"
+                    id="login-options"
+                  />
+                )}
+
+                {!user && (
                   <button
-                    onClick={() => { setUserMenuOpen(false); loginSteam(); }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
-                    Steam
-                  </button>
-                </div>
-              )}
+                    onClick={() => setUserMenuOpen(!userMenuOpen)}
+                    className="absolute inset-0 w-full h-full opacity-0"
+                    aria-label={t("Sign in options", lang)}
+                    tabIndex={-1}
+                  />
+                )}
 
-              {/* Signed-in: account dropdown */}
-              {userMenuOpen && user && (
-                <div
-                  ref={userMenuRef}
-                  className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
-                >
-                  <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
-                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || t("User", lang)}</p>
-                    {user.email && <p className="text-xs text-[var(--text-tertiary)] truncate">{user.email}</p>}
+                {userMenuOpen && !user && (
+                  <div
+                    ref={userMenuRef}
+                    className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                  >
+                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">
+                      {t("Sign in with", lang)}
+                    </p>
+                    <a
+                      href={loginSteam}
+                      className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    >
+                      <svg
+                        className="w-4 h-4 shrink-0"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                      >
+                        <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z" />
+                      </svg>
+                      Steam
+                    </a>
                   </div>
-                  <Link
-                    prefetch={false}
-                    href={`${langPrefix}/profile`}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                )}
+
+                {/* Signed-in: account dropdown */}
+                {userMenuOpen && user && (
+                  <div
+                    ref={userMenuRef}
+                    className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
                   >
-                    {t("Profile", lang)}
-                  </Link>
-                  <Link
-                    prefetch={false}
-                    href={`${langPrefix}/settings`}
-                    onClick={() => setUserMenuOpen(false)}
-                    className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    {t("Settings", lang)}
-                  </Link>
-                  {/* Admin pages are unlocalized, so no langPrefix here. The
-                      link is cosmetic gating only; /admin itself 404s for
-                      anyone not on the server-side allowlist. */}
-                  {user.is_admin && (
+                    <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
+                      <p className="text-sm font-medium text-[var(--text-primary)] truncate">
+                        {user.username || t("User", lang)}
+                      </p>
+                      {user.email && (
+                        <p className="text-xs text-[var(--text-tertiary)] truncate">
+                          {user.email}
+                        </p>
+                      )}
+                    </div>
                     <Link
                       prefetch={false}
-                      href="/admin"
+                      href={`${langPrefix}/profile`}
                       onClick={() => setUserMenuOpen(false)}
-                      className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
+                      className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                     >
-                      {t("Admin", lang)}
+                      {t("Profile", lang)}
                     </Link>
-                  )}
-                  <button
-                    onClick={() => { setUserMenuOpen(false); logout(); }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
-                  >
-                    {t("Sign Out", lang)}
-                  </button>
-                </div>
-              )}
-            </div>
-          )}
+                    <Link
+                      prefetch={false}
+                      href={`${langPrefix}/settings`}
+                      onClick={() => setUserMenuOpen(false)}
+                      className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
+                    >
+                      {t("Settings", lang)}
+                    </Link>
+                    {/* Admin pages are unlocalized, so no langPrefix here. The
+                      link is cosmetic gating only; /admin itself 404s for
+                      anyone not on the server-side allowlist. */}
+                    {user.is_admin && (
+                      <Link
+                        prefetch={false}
+                        href="/admin"
+                        onClick={() => setUserMenuOpen(false)}
+                        className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
+                      >
+                        {t("Admin", lang)}
+                      </Link>
+                    )}
+                    <button
+                      onClick={() => {
+                        setUserMenuOpen(false);
+                        logout();
+                      }}
+                      className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
+                    >
+                      {t("Sign Out", lang)}
+                    </button>
+                  </div>
+                )}
+              </div>
+            )}
 
             <div className="hidden lg:flex">
               <ThemeToggle />
             </div>
 
-          {/* Burger button -- hidden at lg+ where the secondary nav row below takes over */}
-          <div className="relative lg:hidden">
-            <button
-              ref={buttonRef}
-              onClick={() => setOpen(!open)}
-              className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-              aria-label={t("Toggle menu", lang)}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                {open ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            {/* Burger button -- hidden at lg+ where the secondary nav row below takes over */}
+            <div className="relative lg:hidden">
+              <button
+                ref={buttonRef}
+                onClick={() => setOpen(!open)}
+                className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+                aria-label={t("Toggle menu", lang)}
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  {open ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+                {newsUnread && !open && (
+                  <span
+                    className="absolute -top-1 -right-1 flex h-2.5 w-2.5"
+                    aria-hidden
+                  >
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-gold)] opacity-75" />
+                    <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent-gold)]" />
+                  </span>
                 )}
-              </svg>
-              {newsUnread && !open && (
-                <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5" aria-hidden>
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-gold)] opacity-75" />
-                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[var(--accent-gold)]" />
-                </span>
-              )}
-            </button>
+              </button>
 
-            {/* Dropdown menu, `right-0` anchors to the burger's relative
+              {/* Dropdown menu, `right-0` anchors to the burger's relative
                 parent. Layout shifts (e.g. the SiteSwitcher button text
                 growing on beta after /api/versions resolves) used to push
                 the parent past the viewport edge, dragging the dropdown
                 off-screen. The `max-w-[calc(100vw-1rem)]` clamps the
                 dropdown width to viewport-minus-1rem so even if the
                 anchor drifts, the menu stays reachable. */}
-            {open && (
-              <div
-                ref={menuRef}
-                className="fixed top-0 left-0 z-50 h-screen w-screen flex flex-col bg-[var(--bg-primary)]"
-              >
-                <div className="flex items-center justify-between h-16 px-5 border-b border-[var(--border-subtle)] shrink-0">
-                  <span className="text-xl font-bold">
-                    <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
-                    <span className="text-[var(--text-primary)]">CODEX</span>
-                  </span>
-                  <button
-                    onClick={() => setOpen(false)}
-                    aria-label={t("Close menu", lang)}
-                    className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto pb-10">
-                  {NAV_GROUPS.map((group) => {
-                    const links = group.links;
-                    if (links.length === 0) return null;
-                    const isExpanded = expandedGroups.has(group.label);
-                    const hasActive = links.some((link) => !link.href.startsWith("http") && isLinkActive(strippedPath, link.href));
-                    const linkByLabel = new Map(links.map((l) => [l.label, l]));
-                    const cols = (NAV_COLUMNS[group.label] ?? [{ title: "", labels: links.map((l) => l.label) }])
-                      .map((c) => ({
-                        title: c.title,
-                        links: c.labels
-                          .map((lbl) => linkByLabel.get(lbl))
-                          .filter(Boolean) as { href: string; label: string; badge?: "discord-bot" }[],
-                      }))
-                      .filter((c) => c.links.length > 0);
-                    return (
-                      <div key={group.label} className="border-b border-[var(--border-subtle)]">
-                        <button
-                          onClick={() => toggleGroup(group.label)}
-                          className={`w-full flex items-center justify-between px-5 py-4 text-lg font-semibold transition-colors ${
-                            hasActive ? "text-[var(--accent-gold)]" : "text-[var(--text-primary)]"
-                          }`}
-                        >
-                          {t(group.label, lang)}
-                          <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${isExpanded ? "rotate-180" : ""}`}>
-                            <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
-                          </svg>
-                        </button>
-                        {isExpanded && (
-                          <div className="px-5 pb-4">
-                            {cols.map((col, ci) => (
-                              <div key={ci}>
-                                {col.title && (
-                                  <div className="pt-3 pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
-                                    {t(col.title, lang)}
-                                  </div>
-                                )}
-                                {col.links.map((link) => {
-                                  const isInternal = link.href.startsWith("/");
-                                  const isHttp = link.href.startsWith("http");
-                                  const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
-                                  const isActive = isInternal && isLinkActive(strippedPath, link.href);
-                                  const meta = DB_META[link.href];
-                                  const countVal = meta?.count ? navStats?.[meta.count] : undefined;
-                                  const cls = `flex items-center gap-3 py-2.5 text-[15px] transition-colors ${
-                                    isActive ? "text-[var(--accent-gold)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                                  }`;
-                                  const inner = (
-                                    <>
-                                      {meta && <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: meta.color }} aria-hidden />}
-                                      <span className="flex-1"><NavLinkLabel label={link.label} badge={link.badge} lang={lang} /></span>
-                                      {countVal != null && <span className="font-mono text-sm tabular-nums text-[var(--text-muted)]">{countVal}</span>}
-                                    </>
-                                  );
-                                  return isInternal ? (
-                                    <Link prefetch={false} key={link.href} href={fullHref} className={cls}>{inner}</Link>
-                                  ) : (
-                                    <a key={link.href} href={fullHref} {...(isHttp ? { target: "_blank", rel: "noopener noreferrer" } : {})} className={cls}>{inner}</a>
-                                  );
-                                })}
-                              </div>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-
-                  <AnnouncementBadge variant="mobile" />
-
-                  <div className="border-b border-[var(--border-subtle)] px-5 py-3">
-                    <LiveNavButton variant="mobile" />
+              {open && (
+                <div
+                  ref={menuRef}
+                  className="fixed top-0 left-0 z-50 h-screen w-screen flex flex-col bg-[var(--bg-primary)]"
+                >
+                  <div className="flex items-center justify-between h-16 px-5 border-b border-[var(--border-subtle)] shrink-0">
+                    <span className="text-xl font-bold">
+                      <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
+                      <span className="text-[var(--text-primary)]">CODEX</span>
+                    </span>
+                    <button
+                      onClick={() => setOpen(false)}
+                      aria-label={t("Close menu", lang)}
+                      className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+                    >
+                      <svg
+                        className="w-5 h-5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
                   </div>
 
-                  <ThemeToggle variant="segmented" />
+                  <div className="flex-1 overflow-y-auto pb-10">
+                    {NAV_GROUPS.map((group) => {
+                      const links = group.links;
+                      if (links.length === 0) return null;
+                      const isExpanded = expandedGroups.has(group.label);
+                      const hasActive = links.some(
+                        (link) =>
+                          !link.href.startsWith("http") &&
+                          isLinkActive(strippedPath, link.href),
+                      );
+                      const linkByLabel = new Map(
+                        links.map((l) => [l.label, l]),
+                      );
+                      const cols = (
+                        NAV_COLUMNS[group.label] ?? [
+                          { title: "", labels: links.map((l) => l.label) },
+                        ]
+                      )
+                        .map((c) => ({
+                          title: c.title,
+                          links: c.labels
+                            .map((lbl) => linkByLabel.get(lbl))
+                            .filter(Boolean) as {
+                            href: string;
+                            label: string;
+                            badge?: "discord-bot";
+                          }[],
+                        }))
+                        .filter((c) => c.links.length > 0);
+                      return (
+                        <div
+                          key={group.label}
+                          className="border-b border-[var(--border-subtle)]"
+                        >
+                          <button
+                            onClick={() => toggleGroup(group.label)}
+                            className={`w-full flex items-center justify-between px-5 py-4 text-lg font-semibold transition-colors ${
+                              hasActive
+                                ? "text-[var(--accent-gold)]"
+                                : "text-[var(--text-primary)]"
+                            }`}
+                          >
+                            {t(group.label, lang)}
+                            <svg
+                              aria-hidden
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                              className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${isExpanded ? "rotate-180" : ""}`}
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          </button>
+                          {isExpanded && (
+                            <div className="px-5 pb-4">
+                              {cols.map((col, ci) => (
+                                <div key={ci}>
+                                  {col.title && (
+                                    <div className="pt-3 pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
+                                      {t(col.title, lang)}
+                                    </div>
+                                  )}
+                                  {col.links.map((link) => {
+                                    const isInternal =
+                                      link.href.startsWith("/");
+                                    const isHttp = link.href.startsWith("http");
+                                    const fullHref = isInternal
+                                      ? `${langPrefix}${link.href}`
+                                      : link.href;
+                                    const isActive =
+                                      isInternal &&
+                                      isLinkActive(strippedPath, link.href);
+                                    const meta = DB_META[link.href];
+                                    const countVal = meta?.count
+                                      ? navStats?.[meta.count]
+                                      : undefined;
+                                    const cls = `flex items-center gap-3 py-2.5 text-[15px] transition-colors ${
+                                      isActive
+                                        ? "text-[var(--accent-gold)]"
+                                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                                    }`;
+                                    const inner = (
+                                      <>
+                                        {meta && (
+                                          <span
+                                            className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
+                                            style={{ background: meta.color }}
+                                            aria-hidden
+                                          />
+                                        )}
+                                        <span className="flex-1">
+                                          <NavLinkLabel
+                                            label={link.label}
+                                            badge={link.badge}
+                                            lang={lang}
+                                          />
+                                        </span>
+                                        {countVal != null && (
+                                          <span className="font-mono text-sm tabular-nums text-[var(--text-muted)]">
+                                            {countVal}
+                                          </span>
+                                        )}
+                                      </>
+                                    );
+                                    return isInternal ? (
+                                      <Link
+                                        prefetch={false}
+                                        key={link.href}
+                                        href={fullHref}
+                                        className={cls}
+                                      >
+                                        {inner}
+                                      </Link>
+                                    ) : (
+                                      <a
+                                        key={link.href}
+                                        href={fullHref}
+                                        {...(isHttp
+                                          ? {
+                                              target: "_blank",
+                                              rel: "noopener noreferrer",
+                                            }
+                                          : {})}
+                                        className={cls}
+                                      >
+                                        {inner}
+                                      </a>
+                                    );
+                                  })}
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+
+                    <AnnouncementBadge variant="mobile" />
+
+                    <div className="border-b border-[var(--border-subtle)] px-5 py-3">
+                      <LiveNavButton variant="mobile" />
+                    </div>
+
+                    <ThemeToggle variant="segmented" />
+                  </div>
                 </div>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
