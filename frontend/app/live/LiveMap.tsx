@@ -68,10 +68,56 @@ const ROOM_LABEL: Record<string, string> = {
   unknown: "Unknown",
 };
 
-const COL = 44; // horizontal spacing between lanes
-const ROW = 44; // vertical spacing between depths
-const PAD = 22;
-const R = 13; // node radius
+const COL = 46; // horizontal spacing between lanes
+const ROW = 46; // vertical spacing between depths
+const PAD = 26;
+const HEADROOM = 30; // space above the top row for the character marker
+const R = 13; // hit radius; the game's node art draws a little larger
+const ICON = 36; // rendered size of a node icon (the art is 128px square)
+
+// The game's own map art (extracted to ui/map_rooms, ui/map_nodes and
+// ui/map_backgrounds). A node type maps to its icon; an unknown "?" node
+// that resolved to something else uses the game's revealed variant.
+const NODE_ICON: Record<string, string> = {
+  monster: "monster",
+  elite: "elite",
+  shop: "shop",
+  treasure: "treasure",
+  restsite: "rest_site",
+  event: "event",
+  unknown: "event",
+  ancient: "ancient",
+};
+const REVEALED_UNKNOWN: Record<string, string> = {
+  monster: "unknown_monster",
+  elite: "unknown_elite",
+  shop: "unknown_shop",
+  treasure: "unknown_treasure",
+};
+
+function nodeIcon(baseType: string, revealedType: string | null): string | null {
+  if ((baseType === "unknown" || baseType === "event") && revealedType && REVEALED_UNKNOWN[revealedType]) {
+    return REVEALED_UNKNOWN[revealedType];
+  }
+  return NODE_ICON[revealedType && NODE_ICON[revealedType] ? revealedType : baseType] ?? null;
+}
+
+function roomArt(name: string, outline = false): string {
+  return imageUrl(`/static/images/ui/map_rooms/${name}${outline ? "_outline" : ""}.webp`);
+}
+
+const ACT_BACKGROUND: Record<string, string> = {
+  overgrowth: "overgrowth",
+  hive: "hive",
+  underdocks: "underdocks",
+  glory: "glory",
+};
+
+function actBackground(actName?: string | null): string | null {
+  const k = (actName || "").toLowerCase().replace(/^act\./, "");
+  const region = Object.keys(ACT_BACKGROUND).find((r) => k.includes(r));
+  return region ? imageUrl(`/static/images/ui/map_backgrounds/map_middle_${region}.webp`) : null;
+}
 
 function key(col: number, row: number): string {
   return `${col},${row}`;
@@ -213,6 +259,8 @@ export default function LiveMap({
   floorHistory,
   selected,
   onSelect,
+  actName,
+  character,
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
@@ -224,6 +272,8 @@ export default function LiveMap({
   floorHistory?: FloorSummary[];
   selected?: Coord | null;
   onSelect?: (coord: Coord) => void;
+  actName?: string | null;
+  character?: string | null;
 }) {
   const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
 
@@ -232,12 +282,13 @@ export default function LiveMap({
 
   const maxCol = Math.max(...nodes.map((n) => n[0]), 0);
   const maxRow = Math.max(...nodes.map((n) => n[1]), 0);
+  const minRow = Math.min(...nodes.map((n) => n[1]), 0);
   const width = maxCol * COL + PAD * 2;
-  const height = maxRow * ROW + PAD * 2;
+  const height = (maxRow - minRow) * ROW + PAD * 2 + HEADROOM;
 
   // row 0 at the bottom: y grows downward in SVG, so flip.
   const x = (col: number) => PAD + col * COL;
-  const y = (row: number) => height - PAD - row * ROW;
+  const y = (row: number) => height - PAD - (row - minRow) * ROW;
 
   const visited = new Set((path ?? []).map(([c, r]) => key(c, r)));
   const onPath = (c: number, r: number) => visited.has(key(c, r));
@@ -315,8 +366,15 @@ export default function LiveMap({
     below ? "14px" : "calc(-100% - 14px)"
   })`;
 
+  const background = actBackground(actName);
+  const marker = character ? imageUrl(`/static/images/ui/map_nodes/map_marker_${character.toLowerCase()}.png`) : null;
+  const markerAt = pos ?? selected ?? null;
+
   return (
-    <div className="relative inline-block max-w-full">
+    <div
+      className="relative inline-block max-w-full overflow-hidden rounded-lg"
+      style={background ? { backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+    >
       <svg
         width={width}
         height={height}
@@ -335,11 +393,11 @@ export default function LiveMap({
               y1={y(r)}
               x2={x(cc)}
               y2={y(cr)}
-              // White + thicker so the node connectors read clearly against the
-              // dark map (the traveled route stays gold and a touch heavier).
-              stroke={lit ? "var(--accent-gold)" : "#ffffff"}
+              stroke={lit ? "var(--accent-gold)" : "var(--text-primary)"}
               strokeWidth={lit ? 3 : 2}
-              strokeOpacity={lit ? 0.95 : 0.7}
+              strokeOpacity={lit ? 0.95 : 0.45}
+              strokeDasharray={lit ? undefined : "3 4"}
+              strokeLinecap="round"
             />
           );
         })}
@@ -350,10 +408,12 @@ export default function LiveMap({
           const here = isPos(c, r);
           const seen = onPath(c, r);
           const portrait = portraitFor(c, r, type);
+          const icon = portrait ? null : nodeIcon(type, rv ? rv[2] : null);
           const dim = !(seen || here);
           const hasFloor = !!floorAt(c, r);
           const clickable = !!onSelect && seen;
           const picked = isSelected(c, r);
+          const half = ICON / 2;
           return (
             <g
               key={`n-${c}-${r}`}
@@ -361,31 +421,24 @@ export default function LiveMap({
               onClick={clickable ? () => onSelect([c, r]) : undefined}
               style={{ cursor: clickable ? "pointer" : hasFloor ? "help" : "default" }}
             >
-              {picked && (
-                <circle cx={x(c)} cy={y(r)} r={R + 5} fill="none" stroke="var(--accent-gold)" strokeWidth={3} />
-              )}
-              {/* Opaque backing so the connector lines never show through a
-                  node -- dim/unvisited nodes are drawn at 0.55 opacity, which
-                  otherwise lets the white edges bleed through and look like
-                  they sit on top of the circle. */}
-              <circle cx={x(c)} cy={y(r)} r={R} fill="var(--bg-primary)" />
               {here && (
-                <circle cx={x(c)} cy={y(r)} r={R + 4} fill="none" stroke="var(--accent-gold)" strokeWidth={2}>
-                  <animate attributeName="r" values={`${R + 2};${R + 6};${R + 2}`} dur="1.4s" repeatCount="indefinite" />
+                <circle cx={x(c)} cy={y(r)} r={R + 6} fill="none" stroke="var(--accent-gold)" strokeWidth={2}>
+                  <animate attributeName="r" values={`${R + 4};${R + 8};${R + 4}`} dur="1.4s" repeatCount="indefinite" />
                   <animate attributeName="stroke-opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite" />
                 </circle>
               )}
               {portrait ? (
                 <>
+                  <circle cx={x(c)} cy={y(r)} r={R + 2} fill="var(--bg-primary)" />
                   <clipPath id={`lm-${c}-${r}`}>
-                    <circle cx={x(c)} cy={y(r)} r={R} />
+                    <circle cx={x(c)} cy={y(r)} r={R + 1} />
                   </clipPath>
                   <image
                     href={portrait}
-                    x={x(c) - R}
-                    y={y(r) - R}
-                    width={R * 2}
-                    height={R * 2}
+                    x={x(c) - R - 1}
+                    y={y(r) - R - 1}
+                    width={(R + 1) * 2}
+                    height={(R + 1) * 2}
                     clipPath={`url(#lm-${c}-${r})`}
                     preserveAspectRatio="xMidYMid slice"
                     opacity={dim ? 0.55 : 1}
@@ -393,14 +446,37 @@ export default function LiveMap({
                   <circle
                     cx={x(c)}
                     cy={y(r)}
-                    r={R}
+                    r={R + 1}
                     fill="none"
-                    stroke={seen ? "var(--accent-gold)" : s.ring}
-                    strokeWidth={seen ? 2 : 1}
+                    stroke={seen || picked ? "var(--accent-gold)" : s.ring}
+                    strokeWidth={picked ? 3 : seen ? 2 : 1}
                   />
+                </>
+              ) : icon ? (
+                <>
+                  <image
+                    href={roomArt(icon)}
+                    x={x(c) - half}
+                    y={y(r) - half}
+                    width={ICON}
+                    height={ICON}
+                    opacity={dim ? 0.5 : 1}
+                    style={dim ? { filter: "grayscale(0.6)" } : undefined}
+                  />
+                  {(seen || picked) && (
+                    <image
+                      href={roomArt(icon, true)}
+                      x={x(c) - half}
+                      y={y(r) - half}
+                      width={ICON}
+                      height={ICON}
+                      opacity={picked ? 1 : 0.75}
+                    />
+                  )}
                 </>
               ) : (
                 <>
+                  <circle cx={x(c)} cy={y(r)} r={R} fill="var(--bg-primary)" />
                   <circle
                     cx={x(c)}
                     cy={y(r)}
@@ -425,10 +501,24 @@ export default function LiveMap({
                   )}
                 </>
               )}
+              {picked && !portrait && !icon && (
+                <circle cx={x(c)} cy={y(r)} r={R + 5} fill="none" stroke="var(--accent-gold)" strokeWidth={3} />
+              )}
               <title>{titleFor(c, r, type, effType)}</title>
             </g>
           );
         })}
+        {marker && markerAt && (
+          <image
+            href={marker}
+            x={x(markerAt[0]) - 12}
+            y={y(markerAt[1]) - ICON / 2 - 30}
+            width={24}
+            height={32}
+            preserveAspectRatio="xMidYMid meet"
+            pointerEvents="none"
+          />
+        )}
       </svg>
       {hovered && hoverFloor && (
         <div
