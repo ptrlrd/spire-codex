@@ -80,6 +80,7 @@ export interface ReplayMap {
   nodes: MapNode[];
   edges: MapEdge[];
   boss?: string;
+  ancient?: string;
 }
 
 export interface ReplayModel {
@@ -104,7 +105,7 @@ const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
   restsite: ["restsite"],
   rest: ["restsite"],
   treasure: ["treasure"],
-  event: ["event", "unknown"],
+  event: ["event", "unknown", "ancient"],
   unknown: ["unknown", "event"],
   ancient: ["ancient"],
 };
@@ -381,6 +382,9 @@ export function parseReplay(text: string): ReplayModel {
   for (const dec of decisions.values()) {
     if (!dec.outcome) dec.outcome = dec.options.some((o) => o.chosen) ? "chosen" : "unresolved";
   }
+  for (const map of Object.values(maps)) {
+    completeMap(map, floors.filter((f) => f.act === map.act));
+  }
 
   const deckOf = (v: unknown) =>
     Array.isArray(v)
@@ -399,6 +403,39 @@ export function parseReplay(text: string): ReplayModel {
     finalDeck: deckOf(end?.final_deck),
     lineCount: lines.length,
   };
+}
+
+/** The journal's map carries the walkable grid only. The game draws the
+ * act's Ancient below the first row and the boss above the last, so add
+ * both as nodes (unless the recorder already placed the boss), wired to
+ * every node on the neighbouring row, and name them from the floors. */
+function completeMap(map: ReplayMap, actFloors: ReplayFloor[]): void {
+  if (!map.nodes.length) return;
+  const rows = map.nodes.map((n) => n[1]);
+  const minRow = Math.min(...rows);
+  const maxRow = Math.max(...rows);
+  const centre = (row: number) => {
+    const cols = map.nodes.filter((n) => n[1] === row).map((n) => n[0]);
+    return Math.round(cols.reduce((a, b) => a + b, 0) / Math.max(1, cols.length));
+  };
+  if (!map.nodes.some((n) => n[2] === "boss")) {
+    const col = centre(maxRow);
+    map.nodes.push([col, maxRow + 1, "boss"]);
+    for (const n of map.nodes.filter((n) => n[1] === maxRow)) map.edges.push([n[0], n[1], col, maxRow + 1]);
+  }
+  if (!map.boss) {
+    const bossFloor = [...actFloors].reverse().find((f) => isCombatKind(f.kind) && (f.id ?? "").includes("BOSS"));
+    if (bossFloor?.id) map.boss = bossFloor.id;
+  }
+  if (!map.nodes.some((n) => n[2] === "ancient")) {
+    const col = centre(minRow);
+    map.nodes.push([col, minRow - 1, "ancient"]);
+    for (const n of map.nodes.filter((n) => n[1] === minRow)) map.edges.push([col, minRow - 1, n[0], n[1]]);
+  }
+  if (!map.ancient) {
+    const first = actFloors[0];
+    if (first && first.kind === "event" && first.id) map.ancient = first.id;
+  }
 }
 
 /** Rows climb from 0 at the act's first map node. Floors that carry a coord
@@ -426,7 +463,6 @@ export function routeForAct(model: ReplayModel, act: number): Map<number, Coord>
       nextRow = f.coord[1] + 1;
       continue;
     }
-    if (f.kind === "event" && f.id === "NEOW") continue;
     const candidates = rows.get(nextRow) ?? [];
     if (!candidates.length) continue;
     const kinds = NODE_KINDS_FOR_ROOM[f.kind] ?? [f.kind];
