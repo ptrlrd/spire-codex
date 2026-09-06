@@ -921,6 +921,8 @@ export default function LiveScene({
               monsters={monsters}
               encounters={encounters}
               floorHistory={p.floor_history}
+              actName={p.act_name}
+              character={p.character}
             />
           </div>
         </div>
