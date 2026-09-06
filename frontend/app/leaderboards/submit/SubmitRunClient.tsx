@@ -83,7 +83,7 @@ export default function SubmitRunClient() {
       keys?: string[];
       schema?: number;
       build?: string;
-    }[]
+    }[],
   ) {
     if (failures.length === 0) return;
     try {
@@ -218,7 +218,7 @@ export default function SubmitRunClient() {
       }
       uploadInFlight.current = false;
     },
-    [username, lp, router]
+    [username, lp, router],
   );
 
   const fetchRuns = useCallback(async () => {
@@ -232,7 +232,8 @@ export default function SubmitRunClient() {
         setRuns(data.runs || []);
         setRunsTotal(data.total || 0);
       }
-    } catch {} finally {
+    } catch {
+    } finally {
       setRunsLoading(false);
     }
   }, []);
@@ -241,12 +242,13 @@ export default function SubmitRunClient() {
     if (user) fetchRuns();
   }, [user, fetchRuns]);
 
-
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6 space-y-8">
       <div>
         <h1 className="text-3xl font-bold mb-2">
-          <span className="text-[var(--accent-gold)]">{t("Submit a Run", lang)}</span>
+          <span className="text-[var(--accent-gold)]">
+            {t("Submit a Run", lang)}
+          </span>
         </h1>
         <p className="text-sm text-[var(--text-muted)]">
           {t("submit_tagline", lang)}
@@ -260,13 +262,19 @@ export default function SubmitRunClient() {
             Sign in to automatically associate runs with your account.
           </p>
           <div className="flex flex-wrap gap-2">
-            <button
-              onClick={loginSteam}
+            <a
+              href={loginSteam}
               className="inline-flex items-center gap-2 px-4 py-2 text-sm rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card-hover)] transition-colors"
             >
-              <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
+              <svg
+                className="w-4 h-4 shrink-0"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z" />
+              </svg>
               Steam
-            </button>
+            </a>
           </div>
         </div>
       )}
@@ -322,14 +330,16 @@ export default function SubmitRunClient() {
             </div>
           )}
 
-          {insight.seedRank != null && insight.seedTotal != null && insight.seedTotal > 0 && (
-            <p className="text-sm text-[var(--text-secondary)] mb-3">
-              {t("Seed standing", lang)}:{" "}
-              <span className="text-[var(--text-primary)] font-medium">
-                #{insight.seedRank} / {insight.seedTotal}
-              </span>
-            </p>
-          )}
+          {insight.seedRank != null &&
+            insight.seedTotal != null &&
+            insight.seedTotal > 0 && (
+              <p className="text-sm text-[var(--text-secondary)] mb-3">
+                {t("Seed standing", lang)}:{" "}
+                <span className="text-[var(--text-primary)] font-medium">
+                  #{insight.seedRank} / {insight.seedTotal}
+                </span>
+              </p>
+            )}
 
           <Link
             href={`${lp}/runs/${insight.runHash}`}
@@ -340,16 +350,19 @@ export default function SubmitRunClient() {
         </div>
       )}
 
-      {error && (
-        <p className="text-[var(--color-ironclad)] text-sm">{error}</p>
-      )}
+      {error && <p className="text-[var(--color-ironclad)] text-sm">{error}</p>}
 
       {/* Your Runs (signed in only) */}
       {user && (
         <section>
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-lg font-semibold text-[var(--text-primary)]">
-              Your Runs {runsTotal > 0 && <span className="text-sm font-normal text-[var(--text-tertiary)]">({runsTotal})</span>}
+              Your Runs{" "}
+              {runsTotal > 0 && (
+                <span className="text-sm font-normal text-[var(--text-tertiary)]">
+                  ({runsTotal})
+                </span>
+              )}
             </h2>
             {runsTotal > 5 && (
               <Link
@@ -364,7 +377,10 @@ export default function SubmitRunClient() {
           {runsLoading ? (
             <div className="space-y-2">
               {[...Array(3)].map((_, i) => (
-                <div key={i} className="h-12 bg-[var(--bg-card)] rounded animate-pulse" />
+                <div
+                  key={i}
+                  className="h-12 bg-[var(--bg-card)] rounded animate-pulse"
+                />
               ))}
             </div>
           ) : runs.length === 0 ? (
@@ -381,18 +397,22 @@ export default function SubmitRunClient() {
                 >
                   <span
                     className="w-2 h-2 rounded-full shrink-0"
-                    style={{ backgroundColor: characterHex(run.character) || "#888" }}
+                    style={{
+                      backgroundColor: characterHex(run.character) || "#888",
+                    }}
                   />
                   <span className="font-medium text-[var(--text-primary)] w-20 sm:w-24 truncate">
                     {run.character}
                   </span>
-                  <span className={`shrink-0 text-xs px-1.5 py-0.5 rounded ${
-                    run.win
-                      ? "bg-green-500/15 text-green-400"
-                      : run.was_abandoned
-                        ? "bg-yellow-500/15 text-yellow-400"
-                        : "bg-red-500/15 text-red-400"
-                  }`}>
+                  <span
+                    className={`shrink-0 text-xs px-1.5 py-0.5 rounded ${
+                      run.win
+                        ? "bg-green-500/15 text-green-400"
+                        : run.was_abandoned
+                          ? "bg-yellow-500/15 text-yellow-400"
+                          : "bg-red-500/15 text-red-400"
+                    }`}
+                  >
                     {run.win ? "W" : run.was_abandoned ? "A" : "L"}
                   </span>
                   <span className="text-[var(--text-tertiary)] text-xs hidden sm:inline">
