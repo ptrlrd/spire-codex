@@ -219,10 +219,10 @@
 .card-rvmp .variant-cap .muted { opacity: .55; }
 
 /* facts table */
-.card-rvmp .facts { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.card-rvmp .facts { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .card-rvmp .facts .fh { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; text-transform: uppercase;
   color: var(--text-2); padding: 11px 15px; border-bottom: 1px solid var(--border); background: var(--spine-soft); }
-.card-rvmp .facts dl { margin: 0; padding: 6px 15px 12px; }
+.card-rvmp .facts dl { margin: 0; padding: 6px 15px 6px; }
 .card-rvmp .frow { display: flex; justify-content: space-between; gap: 12px; padding: 7px 0;
   border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); font-size: 13.5px; }
 .card-rvmp .frow:last-child { border-bottom: 0; }

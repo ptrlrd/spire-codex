@@ -95,86 +95,91 @@ export default function SearchFilter({
   );
 
   return (
-    <div className="flex flex-wrap gap-2 items-end mb-6">
-      <div className="relative flex-1 min-w-[140px]">
-        <input
-          type="text"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          placeholder={placeholder}
-          className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
-        />
-      </div>
-      {filters?.map((filter) => (
-        <label key={filter.label} className="flex flex-col gap-1">
-          {filter.name && caption(filter.name)}
-          {filter.options.some((o) => o.icon) ? (
-            <IconSelect
-              label={t(filter.label, lang)}
+    <div>
+      <div className="flex flex-wrap gap-2 items-end mb-6">
+        <div className="relative flex-1 min-w-[140px]">
+          <input
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder={placeholder}
+            className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
+          />
+        </div>
+        {filters?.map((filter) => (
+          <label key={filter.label} className="flex flex-col gap-1">
+            {filter.name && caption(filter.name)}
+            {filter.options.some((o) => o.icon) ? (
+              <IconSelect
+                label={t(filter.label, lang)}
+                value={filter.value}
+                options={filter.options}
+                onChange={filter.onChange}
+              />
+            ) : (
+            <select
               value={filter.value}
-              options={filter.options}
-              onChange={filter.onChange}
-            />
-          ) : (
-          <select
-            value={filter.value}
-            onChange={(e) => filter.onChange(e.target.value)}
-            aria-label={t(filter.name ?? filter.label, lang)}
-            className={selectClass}
-          >
-            {!filter.noEmptyOption && (
-              <option className="filter-option" value="">
-                {t(filter.label, lang)}
-              </option>
-            )}
-            {groupOptions(filter.options).map((seg, i) =>
-              seg.group ? (
-                <optgroup key={`${seg.group}-${i}`} label={seg.group}>
-                  {seg.opts.map((opt) => (
+              onChange={(e) => filter.onChange(e.target.value)}
+              aria-label={t(filter.name ?? filter.label, lang)}
+              className={selectClass}
+            >
+              {!filter.noEmptyOption && (
+                <option className="filter-option" value="">
+                  {t(filter.label, lang)}
+                </option>
+              )}
+              {groupOptions(filter.options).map((seg, i) =>
+                seg.group ? (
+                  <optgroup key={`${seg.group}-${i}`} label={seg.group}>
+                    {seg.opts.map((opt) => (
+                      <option className="filter-option" key={opt.value} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </optgroup>
+                ) : (
+                  seg.opts.map((opt) => (
                     <option className="filter-option" key={opt.value} value={opt.value}>
                       {opt.label}
                     </option>
-                  ))}
-                </optgroup>
-              ) : (
-                seg.opts.map((opt) => (
-                  <option className="filter-option" key={opt.value} value={opt.value}>
-                    {opt.label}
-                  </option>
-                ))
-              ),
+                  ))
+                ),
+              )}
+            </select>
             )}
-          </select>
-          )}
-        </label>
-      ))}
-      {sortOptions && onSortChange && (
-        <label className="flex flex-col gap-1">
-          {caption("Sort by")}
-          <select
-            value={sortValue}
-            onChange={(e) => onSortChange(e.target.value)}
-            aria-label={t("Sort by", lang)}
-            className={selectClass}
-          >
-            {sortOptions.map((opt) => (
-              <option className="filter-option" key={opt.value} value={opt.value}>
-                {opt.label}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
-      {resultCount !== undefined && (
-        <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
-          {resultCount} {t("results", lang)}
-        </span>
-      )}
-      {extra && (
-        <div className="flex items-center gap-2 ml-auto">
-          {extra}
-        </div>
-      )}
+          </label>
+        ))}
+        {sortOptions && onSortChange && (
+          <label className="flex flex-col gap-1">
+            {caption("Sort by")}
+            <select
+              value={sortValue}
+              onChange={(e) => onSortChange(e.target.value)}
+              aria-label={t("Sort by", lang)}
+              className={selectClass}
+            >
+              {sortOptions.map((opt) => (
+                <option className="filter-option" key={opt.value} value={opt.value}>
+                  {opt.label}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {resultCount !== undefined && (
+          <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
+            {resultCount} {t("results", lang)}
+          </span>
+        )}
+        {extra && (
+          <div className="flex items-center gap-2 ml-auto">
+            {extra}
+          </div>
+        )}
+      </div>
+      {draft !== "" && resultCount === 0 && <div className="text-center py-12 text-[var(--text-muted)]">
+        {t("No results found for", lang)} &ldquo;{draft}&rdquo;
+      </div>}
     </div>
   );
 }
