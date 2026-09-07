@@ -184,87 +184,47 @@ const DYNAMIC_ROUTES = [
   { endpoint: "/api/guides", prefix: "/guides", priority: 0.6, localized: true },
 ];
 
+// A failed list fetch throws instead of yielding an empty section: an empty
+// section silently drops hundreds of URLs from the sitemap, and Next keeps
+// serving the last good sitemap when a regeneration fails.
 async function fetchEntities(endpoint: string): Promise<EntityWithImage[]> {
-  // Internal API base like every other server fetch in this file —
-  // imageUrl() resolved these through the public edge. Cached so a
-  // sitemap regen inside the revalidate window is free.
-  try {
-    const res = await fetch(`${API}${endpoint}`, { next: { revalidate: 1800 } });
-    if (!res.ok) return [];
-    return res.json();
-  } catch {
-    return [];
-  }
+  const res = await fetch(`${API}${endpoint}`, { next: { revalidate: 1800 } });
+  if (!res.ok) throw new Error(`sitemap: ${endpoint} returned ${res.status}`);
+  const body: unknown = await res.json();
+  if (!Array.isArray(body)) throw new Error(`sitemap: ${endpoint} did not return a list`);
+  return body as EntityWithImage[];
 }
 
-/**
- * Per-section freshness signal. Different content updates at different
- * cadences, slamming every URL with the same `now` timestamp on every
- * sitemap fetch defeats `lastmod`'s purpose (Google deprioritizes URLs
- * whose timestamp never changes). We bucket lastmod by content type
- * and pull a real signal from `/api/changelogs` for entity content.
- */
-async function getLastModBuckets(now: Date): Promise<{
-  content: Date; // entity data, last game patch / data parse
-  community: Date; // runs, leaderboards, refresh roughly hourly
-  static: Date; // hub pages, dev docs, week-stable
-}> {
-  // Default fallbacks if the backend is unreachable (frontend build under
-  // network-isolated CI shouldn't hard-fail the sitemap).
-  let contentDate = new Date(now);
-  contentDate.setUTCHours(0, 0, 0, 0);
-  const staticDate = new Date(contentDate);
-
+// The only truthful lastmod we have is the latest game-data changelog date,
+// which is when entity pages last changed. Hub and community pages carry no
+// lastmod: a synthetic "today" or "this hour" on every fetch tells Google
+// the page changed when it didn't, and it stops trusting the field.
+async function contentLastMod(): Promise<Date | undefined> {
   try {
     const res = await fetch(`${API}/api/changelogs`, { next: { revalidate: 1800 } });
-    if (res.ok) {
-      const log = (await res.json()) as Array<{ date?: string }>;
-      // Most recent entry first per /api/changelogs ordering.
-      const latest = log.find((e) => e.date);
-      if (latest?.date) {
-        const parsed = new Date(latest.date);
-        if (!Number.isNaN(parsed.getTime())) {
-          contentDate = parsed;
-        }
-      }
-    }
+    if (!res.ok) return undefined;
+    const log = (await res.json()) as Array<{ date?: string }>;
+    const latest = log.find((e) => e.date);
+    if (!latest?.date) return undefined;
+    const parsed = new Date(latest.date);
+    return Number.isNaN(parsed.getTime()) ? undefined : parsed;
   } catch {
-    // keep fallback
+    return undefined;
   }
-
-  // Community pages tick more often, bucket to the hour so we get a
-  // moving lastmod without burning crawl budget on every-minute changes.
-  const community = new Date(now);
-  community.setUTCMinutes(0, 0, 0);
-
-  return { content: contentDate, community, static: staticDate };
 }
 
+// Ancient offer pools on the relic tier list, mirrored from ANCIENT_FILTERS in
+// app/tier-list/relics/page.tsx. Each is its own canonical page and several
+// rank on page one, so they are listed explicitly instead of left to crawl
+// discovery; every other filter combination canonicalizes to one of these.
+const TIER_RELIC_ANCIENTS = ["neow", "tezcatara", "pael", "orobas", "darv", "nonupeipe", "tanx", "vakuu"];
+const TIER_RELIC_ACTS = ["1", "2", "3"];
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
-  const lastMod = await getLastModBuckets(now);
-
-  const COMMUNITY_PATHS = new Set([
-    "/leaderboards",
-    "/leaderboards/submit",
-    "/leaderboards/stats",
-    "/community-stats",
-    "/leaderboards/scoring",
-    "/tier-list",
-    "/tier-list/cards",
-    "/tier-list/relics",
-    "/tier-list/potions",
-    "/news",
-  ]);
-
-  const pickLastMod = (path: string): Date => {
-    if (COMMUNITY_PATHS.has(path)) return lastMod.community;
-    return lastMod.static;
-  };
+  const contentDate = await contentLastMod();
 
   const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
     url: `${SITE_URL}${p.path}`,
-    lastModified: pickLastMod(p.path),
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
@@ -284,7 +244,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route.entities.map((entity) => {
       const entry: MetadataRoute.Sitemap[number] = {
         url: `${SITE_URL}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: lastMod.content,
+        lastModified: contentDate,
         changeFrequency: "weekly",
         priority: route.priority,
       };
@@ -309,7 +269,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     : [];
   const mechanicsEntries: MetadataRoute.Sitemap = mechanicSections.map((s) => ({
     url: `${SITE_URL}/mechanics/${s.slug}`,
-    lastModified: lastMod.static,
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
@@ -328,22 +287,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const tierListVariants: MetadataRoute.Sitemap = [
     ...TIER_CARD_COLORS.map((c) => ({
       url: `${SITE_URL}/tier-list/cards?color=${c}`,
-      lastModified: lastMod.community,
       changeFrequency: "daily" as const,
       priority: 0.8,
     })),
     ...TIER_RELIC_POOLS.map((p) => ({
       url: `${SITE_URL}/tier-list/relics?pool=${p}`,
-      lastModified: lastMod.community,
       changeFrequency: "daily" as const,
       priority: 0.8,
     })),
+    ...TIER_RELIC_ACTS.map((a) => ({
+      url: `${SITE_URL}/tier-list/relics?act=${a}`,
+      changeFrequency: "daily" as const,
+      priority: 0.7,
+    })),
+    ...TIER_RELIC_ANCIENTS.map((a) => ({
+      url: `${SITE_URL}/tier-list/relics?ancient=${a}`,
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    })),
+    ...TIER_RELIC_ACTS.flatMap((act) =>
+      TIER_RELIC_ANCIENTS.map((a) => ({
+        url: `${SITE_URL}/tier-list/relics?act=${act}&ancient=${a}`,
+        changeFrequency: "daily" as const,
+        priority: 0.6,
+      })),
+    ),
   ];
 
   // Card browse pages (programmatic SEO)
   const browseEntries: MetadataRoute.Sitemap = ALL_BROWSE_SLUGS.map((slug) => ({
     url: `${SITE_URL}/cards/browse/${slug}`,
-    lastModified: lastMod.content,
+    lastModified: contentDate,
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
@@ -356,13 +330,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
     {
       url: `${SITE_URL}/${lang}`,
-      lastModified: lastMod.static,
       changeFrequency: "weekly" as const,
       priority: 0.6,
     },
     ...LANG_LIST_ROUTES.map((route) => ({
       url: `${SITE_URL}/${lang}/${route}`,
-      lastModified: lastMod.static,
       changeFrequency: "weekly" as const,
       priority: 0.5,
     })),
@@ -374,7 +346,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const langMechanicsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
     mechanicSections.map((s) => ({
       url: `${SITE_URL}/${lang}/mechanics/${s.slug}`,
-      lastModified: lastMod.static,
       changeFrequency: "monthly" as const,
       priority: 0.4,
     }))
@@ -391,13 +362,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     localizedDynamicRoutes.flatMap((route) =>
       route.entities.map((entity) => ({
         url: `${SITE_URL}/${lang}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: lastMod.content,
+        lastModified: contentDate,
         changeFrequency: "weekly" as const,
         priority: 0.4,
       }))
     )
   );
 
+  const seen = new Set<string>();
   return [
     ...staticEntries,
     ...mechanicsEntries,
@@ -407,5 +379,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...langMechanicsEntries,
     ...langDetailEntries,
     ...englishDetailEntries,
-  ];
+  ].filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }
