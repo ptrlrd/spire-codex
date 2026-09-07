@@ -1,16 +1,16 @@
 import type { ReactElement, ReactNode } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-vi.mock("@/app/cards/[id]/CardDetail", () => ({ default: function CardDetail() { return null; } }));
-vi.mock("@/app/events/[id]/EventDetail", () => ({ default: function EventDetail() { return null; } }));
+vi.mock("@/app/[locale]/cards/[id]/CardDetail", () => ({ default: function CardDetail() { return null; } }));
+vi.mock("@/app/[locale]/events/[id]/EventDetail", () => ({ default: function EventDetail() { return null; } }));
 vi.mock("@/app/components/JsonLd", () => ({ default: function JsonLd() { return null; } }));
 vi.mock("next/navigation", () => ({ notFound: vi.fn(), permanentRedirect: vi.fn() }));
 
-import CardDetail from "@/app/cards/[id]/CardDetail";
-import EventDetail from "@/app/events/[id]/EventDetail";
+import CardDetail from "@/app/[locale]/cards/[id]/CardDetail";
+import EventDetail from "@/app/[locale]/events/[id]/EventDetail";
 import JsonLd from "@/app/components/JsonLd";
-import CardPage from "@/app/[lang]/cards/[id]/page";
-import EventPage from "@/app/[lang]/events/[id]/page";
+import CardPage from "@/app/[locale]/cards/[id]/page";
+import EventPage from "@/app/[locale]/events/[id]/page";
 
 const ok = (body: unknown) => new Response(JSON.stringify(body), { status: 200 });
 
@@ -38,7 +38,7 @@ function elements(node: ReactNode, out: ReactElement[] = []): ReactElement[] {
   return out;
 }
 
-const props = (lang: string, id: string) => ({ params: Promise.resolve({ lang, id }), searchParams: Promise.resolve({}) });
+const props = (locale: string, id: string) => ({ params: Promise.resolve({ locale, id }), searchParams: Promise.resolve({}) });
 
 afterEach(() => vi.unstubAllGlobals());
 

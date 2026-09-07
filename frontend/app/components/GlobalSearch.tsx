@@ -1,10 +1,9 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { useLanguage } from "../contexts/LanguageContext";
 import { buildApiUrl } from "@/lib/fetch-cache";
-import { t } from "@/lib/ui-translations";
 import { imageUrl } from "@/lib/image-url";
 
 // The route inventory is GENERATED from the App Router file tree by
@@ -255,7 +254,8 @@ export default function GlobalSearch() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const abortRef = useRef<AbortController | null>(null);
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
 
   // Filter matching pages
   const matchedPages = query.trim()
@@ -416,7 +416,7 @@ export default function GlobalSearch() {
             external: true,
           }));
         if (imageItems.length > 0)
-          next.push({ label: "Images", items: imageItems });
+          next.push({ label: t("Images"), items: imageItems });
         const already = new Set(
           next.flatMap((s) => s.items.map((it) => it.path)),
         );
@@ -425,7 +425,7 @@ export default function GlobalSearch() {
         ).filter((it) => !already.has(it.path));
         if (semanticItems.length > 0) {
           next.push({
-            label: t("Best matches", lang),
+            label: t("Best matches"),
             items: semanticItems.slice(0, MAX_PER_CATEGORY),
           });
         }
@@ -518,14 +518,14 @@ export default function GlobalSearch() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder={t("Search cards, relics, monsters...", lang)}
+            placeholder={t("Search cards, relics, monsters...")}
             className="flex-1 bg-transparent text-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none"
           />
           {loading && (
             <div className="w-4 h-4 border-2 border-[var(--text-muted)] border-t-transparent rounded-full animate-spin" />
           )}
           <kbd className="hidden sm:inline-block text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5">
-            ESC
+            {t("ESC")}
           </kbd>
         </div>
 
@@ -533,20 +533,20 @@ export default function GlobalSearch() {
         <div className="max-h-[60vh] overflow-y-auto">
           {!query.trim() && (
             <div className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-              {t("Type to search across all categories", lang)}
+              {t("Type to search across all categories")}
             </div>
           )}
 
           {query.trim() && !loading && totalResults === 0 && (
             <div className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-              {t("No results found for", lang)} &ldquo;{query}&rdquo;
+              {t("No results found for")} &ldquo;{query}&rdquo;
             </div>
           )}
 
           {matchedPages.length > 0 && (
             <div className="py-2">
               <div className="px-4 py-1 text-xs uppercase tracking-wider text-[var(--text-muted)] font-medium">
-                {t("Pages", lang)}
+                {t("Pages")}
               </div>
               {matchedPages.map((p, i) => {
                 const isSelected = i === selectedIndex;
@@ -581,7 +581,7 @@ export default function GlobalSearch() {
                       />
                     </svg>
                     <span className="text-sm text-[var(--text-primary)]">
-                      {p.name}
+                      {t(p.name)}
                     </span>
                     <span className="text-xs text-[var(--text-muted)]">
                       {p.path}
@@ -652,7 +652,7 @@ export default function GlobalSearch() {
         {totalResults > 0 && (
           <div className="px-4 py-2 border-t border-[var(--border-subtle)] text-xs text-[var(--text-muted)] flex items-center gap-4">
             <span>
-              {totalResults} result{totalResults !== 1 ? "s" : ""}
+              {totalResults === 1 ? t("{n} result", { n: 1 }) : t("{n} results", { n: totalResults })}
             </span>
             <span className="ml-auto flex items-center gap-1">
               <kbd className="border border-[var(--border-subtle)] rounded px-1 py-0.5">
@@ -661,11 +661,11 @@ export default function GlobalSearch() {
               <kbd className="border border-[var(--border-subtle)] rounded px-1 py-0.5">
                 &darr;
               </kbd>
-              to navigate
+              {t("to navigate")}
               <kbd className="border border-[var(--border-subtle)] rounded px-1 py-0.5 ml-1">
                 &crarr;
               </kbd>
-              to select
+              {t("to select")}
             </span>
           </div>
         )}

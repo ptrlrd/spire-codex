@@ -1,8 +1,7 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 
 /** Light/dark theme toggle for the redesign. Flips `data-theme` on <html> and
  * the Tailwind `dark` class, persists the choice, and (via the inline script in
@@ -12,7 +11,7 @@ import { t } from "@/lib/ui-translations";
  * variants: "icon" = compact nav-cluster button (desktop); "segmented" =
  * a "Theme" row with a Light/Dark switch for the mobile drawer. */
 export default function ThemeToggle({ variant = "icon" }: { variant?: "icon" | "segmented" }) {
-  const { lang } = useLanguage();
+  const t = useT();
   const [theme, setTheme] = useState<"dark" | "light">("dark");
   useEffect(() => {
     setTheme(document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark");
@@ -58,10 +57,10 @@ export default function ThemeToggle({ variant = "icon" }: { variant?: "icon" | "
     );
     return (
       <div className="flex items-center justify-between px-5 py-4">
-        <span className="text-lg font-semibold text-[var(--text-primary)]">{t("Theme", lang)}</span>
+        <span className="text-lg font-semibold text-[var(--text-primary)]">{t("Theme")}</span>
         <div className="flex gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-1">
-          {seg("light", t("Light", lang), sun)}
-          {seg("dark", t("Dark", lang), moon)}
+          {seg("light", t("Light"), sun)}
+          {seg("dark", t("Dark"), moon)}
         </div>
       </div>
     );
@@ -71,7 +70,7 @@ export default function ThemeToggle({ variant = "icon" }: { variant?: "icon" | "
     <button
       type="button"
       onClick={toggle}
-      aria-label={t("Toggle light and dark theme", lang)}
+      aria-label={t("Toggle light and dark theme")}
       className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
     >
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>

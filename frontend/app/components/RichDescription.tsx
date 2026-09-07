@@ -1,11 +1,11 @@
 "use client";
 
+import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
-import { useLanguage } from "../contexts/LanguageContext";
 
 export interface RelatedCard {
   id: string;
@@ -152,13 +152,14 @@ let keyCounter = 0;
 function renderNode(
   node: StyledNode,
   energyIcon: string,
+  t: TFn,
   relatedCards?: RelatedCard[]
 ): React.ReactNode {
   const key = keyCounter++;
 
   if (node.isEnergy) {
     if (node.count === -1) {
-      return <span key={key}><img src={imageUrl(`/static/images/icons/${energyIcon}_energy_icon.webp`)} alt="energy" className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />X</span>;
+      return <span key={key}><img src={imageUrl(`/static/images/icons/${energyIcon}_energy_icon.webp`)} alt={t("energy")} className="inline-block w-4 h-4 align-text-bottom" crossOrigin="anonymous" />X</span>;
     }
     const icons = [];
     for (let i = 0; i < (node.count ?? 1); i++) {
@@ -166,7 +167,7 @@ function renderNode(
         <img
           key={i}
           src={imageUrl(`/static/images/icons/${energyIcon}_energy_icon.webp`)}
-          alt="energy"
+          alt={t("energy")}
           className="inline-block w-4 h-4 align-text-bottom"
           crossOrigin="anonymous"
         />
@@ -182,7 +183,7 @@ function renderNode(
         <img
           key={i}
           src={imageUrl("/static/images/icons/star_icon.webp")}
-          alt="star"
+          alt={t("star")}
           className="inline-block w-4 h-4 align-text-bottom"
           crossOrigin="anonymous"
         />
@@ -222,7 +223,7 @@ function renderNode(
   }
 
   const children = (node.children ?? []).map((child) =>
-    renderNode(child, energyIcon, relatedCards)
+    renderNode(child, energyIcon, t, relatedCards)
   );
 
   if (node.classes.length === 0) {
@@ -294,9 +295,10 @@ function cleanTemplateVars(text: string): string {
 }
 
 function CardHoverTip({ card, isUpgraded, children }: { card: RelatedCard; isUpgraded?: boolean; children: React.ReactNode }) {
+  const t = useT();
   const [show, setShow] = useState(false);
   const [failed, setFailed] = useState(false);
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
   const displayName = isUpgraded ? `${card.name}+` : card.name;
 
   return (
@@ -322,7 +324,7 @@ function CardHoverTip({ card, isUpgraded, children }: { card: RelatedCard; isUpg
                 ? imageUrl(card.image_url)
                 : fullCardUrl(card.id.toLowerCase(), !!isUpgraded, "stable", lang)
             }
-            alt={`${displayName} - Slay the Spire 2 Card`}
+            alt={t("{name} - Slay the Spire 2 Card", { name: displayName })}
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
             crossOrigin="anonymous"
             loading="lazy"
@@ -404,11 +406,12 @@ function WordTooltip({ word, info, children }: { word: string; info: Interactive
 
 /** Simple renderer without interactive words (for tooltips to avoid infinite recursion) */
 export function RichDescriptionSimple({ text }: { text: string }) {
+  const t = useT();
   keyCounter = 0;
   const cleaned = cleanTemplateVars(text);
   const tokens = tokenize(cleaned);
   const tree = buildTree(tokens);
-  return <>{renderNode(tree, "colorless")}</>;
+  return <>{renderNode(tree, "colorless", t)}</>;
 }
 
 function splitWithInteractiveWords(text: string, words: Record<string, InteractiveWord>): { text: string; word?: string; info?: InteractiveWord }[] {
@@ -447,6 +450,7 @@ export default function RichDescription({
   relatedCards?: RelatedCard[];
   interactiveWords?: Record<string, InteractiveWord>;
 }) {
+  const t = useT();
   keyCounter = 0;
   const cleaned = cleanTemplateVars(text);
   const tokens = tokenize(cleaned);
@@ -456,7 +460,7 @@ export default function RichDescription({
     const key = keyCounter++;
 
     if (node.isEnergy || node.isStar || node.isPlaceholder) {
-      return renderNode(node, energyIcon, relatedCards);
+      return renderNode(node, energyIcon, t, relatedCards);
     }
 
     if (node.text !== undefined) {
@@ -502,5 +506,5 @@ export default function RichDescription({
   if (interactiveWords && Object.keys(interactiveWords).length > 0) {
     return <>{renderWithInteractive(tree)}</>;
   }
-  return <>{renderNode(tree, energyIcon, relatedCards)}</>;
+  return <>{renderNode(tree, energyIcon, t, relatedCards)}</>;
 }

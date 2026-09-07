@@ -1,11 +1,11 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { useLanguage, LANGUAGES } from "../contexts/LanguageContext";
-import { LANG_PREFIXES } from "../../lib/languages";
-
-const LANG_CODES = LANG_PREFIXES;
+import { useRouter as useNextRouter, useSearchParams } from "next/navigation";
+import { useGameLocale, useT } from "@/lib/i18n";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { routing, type Locale } from "@/i18n/routing";
+import { LANG_NAMES } from "@/lib/languages";
 
 const CODE_TO_SHORT: Record<string, string> = {
   deu: "DE",
@@ -25,34 +25,20 @@ const CODE_TO_SHORT: Record<string, string> = {
   zht: "TW",
 };
 
-/**
- * Convert a path to its equivalent in another language.
- * /cards/bash → /jpn/cards/bash
- * /jpn/cards/bash → /fra/cards/bash
- * /jpn/cards/bash → /cards/bash (for English)
- */
-function switchLangInPath(pathname: string, newLang: string): string {
-  const parts = pathname.split("/").filter(Boolean);
-
-  // Strip current lang prefix if present
-  if (parts.length > 0 && LANG_CODES.has(parts[0])) {
-    parts.shift();
-  }
-
-  // Add new lang prefix (unless English)
-  if (newLang === "eng") {
-    return "/" + parts.join("/") || "/";
-  }
-  return `/${newLang}/${parts.join("/")}`;
-}
+const LANGUAGES: { code: Locale; name: string }[] = routing.locales
+  .map((code) => ({ code, name: code === "eng" ? "English" : LANG_NAMES[code] }))
+  .sort((a, b) => a.code.localeCompare(b.code));
 
 export default function LanguageSelector() {
-  const { lang, setLang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
+  const nextRouter = useNextRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -70,11 +56,14 @@ export default function LanguageSelector() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
-  function handleLangChange(newLang: string) {
-    setLang(newLang);
+  function handleLangChange(locale: Locale) {
     setOpen(false);
-    const newPath = switchLangInPath(pathname, newLang);
-    router.push(newPath);
+    const query = searchParams.toString();
+    const href = query ? `${pathname}?${query}` : pathname;
+    // English lives at the bare path; next-intl would prefix it with /eng and
+    // rely on a redirect, so go straight to the canonical URL instead.
+    if (locale === routing.defaultLocale) nextRouter.replace(href);
+    else router.replace(href, { locale });
   }
 
   return (
@@ -87,24 +76,12 @@ export default function LanguageSelector() {
         // (EN / JP / DE) alongside the globe so the active language is
         // visible without opening the menu.
         className="inline-flex items-center gap-0 sm:gap-1.5 h-9 w-9 sm:w-auto sm:px-3 justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-        aria-label={`Select language (current: ${CODE_TO_SHORT[lang] || "EN"})`}
+        aria-label={t("Select language (current: {code})", { code: CODE_TO_SHORT[lang] || "EN" })}
       >
-        <svg
-          className="w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-          />
+        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
         </svg>
-        <span className="hidden sm:inline text-xs font-medium">
-          {CODE_TO_SHORT[lang] || "EN"}
-        </span>
+        <span className="hidden sm:inline text-xs font-medium">{CODE_TO_SHORT[lang] || "EN"}</span>
       </button>
 
       {open && (
@@ -124,9 +101,7 @@ export default function LanguageSelector() {
                 }`}
               >
                 <span className="font-medium">{l.name}</span>
-                <span className="text-xs text-[var(--text-muted)] ml-2">
-                  {CODE_TO_SHORT[l.code]}
-                </span>
+                <span className="text-xs text-[var(--text-muted)] ml-2">{CODE_TO_SHORT[l.code]}</span>
               </button>
             ))}
           </div>

@@ -23,6 +23,7 @@
     "chartjs-plugin-datalabels": "^2.2.0",
     "html-to-image": "^1.11.13",
     "next": "16.3.4",
+    "next-intl": "^4.14.2",
     "react": "19.2.3",
     "react-chartjs-2": "^5.3.1",
     "react-dom": "19.2.3",

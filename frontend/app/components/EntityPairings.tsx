@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 // "Often drafted with" — the cards / relics / potions that show up in the same
 // community runs as this entity, from the cached item-pairings job. Reads
 // /api/pairings/{kind}/{id}; renders nothing until data arrives or if the item
@@ -7,13 +8,12 @@
 // "commonly seen with" (RNG, ranked by frequency). Each row names both sides so
 // the two confidence directions read plainly, and shows the pair win rate.
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useEffect, useState } from "react";
 
 import CardHover from "@/app/components/CardHover";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -43,14 +43,15 @@ export default function EntityPairings({
   id,
   name,
   lang,
-  lp,
+  bp,
 }: {
   kind: Kind;
   id: string;
   name: string;
   lang: string;
-  lp: string;
+  bp: string;
 }) {
+  const t = useT();
   const [data, setData] = useState<Pairings | null>(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -75,11 +76,11 @@ export default function EntityPairings({
   // Potions aren't drafted, so they're framed as "commonly seen with" rather
   // than a synergy claim.
   const allGroups: { key: Kind; heading: string; items: Partner[] }[] = [
-    { key: "cards", heading: t("Cards", lang), items: (p.cards || []).slice(0, TOP) },
-    { key: "relics", heading: t("Relics", lang), items: (p.relics || []).slice(0, TOP) },
+    { key: "cards", heading: t("Cards"), items: (p.cards || []).slice(0, TOP) },
+    { key: "relics", heading: t("Relics"), items: (p.relics || []).slice(0, TOP) },
     {
       key: "potions",
-      heading: t("Commonly seen with", lang),
+      heading: t("Commonly seen with"),
       items: (p.potions || []).slice(0, TOP),
     },
   ];
@@ -91,7 +92,7 @@ export default function EntityPairings({
   // tooltip from their description.
   const withHover = (g: Kind, it: Partner) => {
     const link = (
-      <Link href={`${lp}/${g}/${it.id.toLowerCase()}`} className="pair-name">
+      <Link href={`${bp}/${g}/${it.id.toLowerCase()}`} className="pair-name">
         {it.name}
       </Link>
     );
@@ -105,16 +106,16 @@ export default function EntityPairings({
 
   return (
     <section id="pairings">
-      <h2>{t("Often drafted with", lang)}</h2>
+      <h2>{t("Often drafted with")}</h2>
       <p className="h-note">
-        {t("How often each shows up in the same community runs as", lang)} {name}.
+        {t("How often each shows up in the same community runs as")} {name}.
       </p>
       <div className="pair-groups">
         {groups.map((g) => {
           // Cards/relics are drafted into a deck ("also run"); potions aren't
           // deckbuilt, they just turn up in a run ("also had").
-          const unit = g.key === "potions" ? t("runs", lang) : t("decks", lang);
-          const verb = g.key === "potions" ? t("also had", lang) : t("also run", lang);
+          const unit = g.key === "potions" ? t("runs") : t("decks");
+          const verb = g.key === "potions" ? t("also had") : t("also run");
           return (
             <div key={g.key} className="pair-group">
               <h3 className="subh">{g.heading}</h3>
@@ -124,15 +125,15 @@ export default function EntityPairings({
                     <div className="pair-head">
                       {withHover(g.key, it)}
                       <span className="pair-wr">
-                        {pct(it.winrate)} {t("win rate together", lang)}
+                        {pct(it.winrate)} {t("win rate together")}
                       </span>
                     </div>
                     <span className="pair-stats">
                       <span>
-                        {pct(it.conf)} {t("of", lang)} {name} {unit} {verb} {it.name}
+                        {pct(it.conf)} {t("of")} {name} {unit} {verb} {it.name}
                       </span>
                       <span>
-                        {pct(it.conf_rev)} {t("of", lang)} {it.name} {unit} {verb} {name}
+                        {pct(it.conf_rev)} {t("of")} {it.name} {unit} {verb} {name}
                       </span>
                     </span>
                   </li>

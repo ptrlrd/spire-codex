@@ -1,7 +1,7 @@
+import { getT } from "@/lib/i18n-server";
 import JsonLd from "./JsonLd";
 import { buildFAQPageJsonLd } from "@/lib/jsonld";
 import type { Stats } from "@/lib/api";
-import { t } from "@/lib/ui-translations";
 
 /** Plain-English answers to the questions a first-time visitor most often
  * lands on the home page asking. The visible copy doubles as the source
@@ -51,13 +51,14 @@ function buildFaqs(stats: Stats | null): { question: string; answer: string }[] 
   ];
 }
 
-export default function HomeFAQ({
+export default async function HomeFAQ({
   stats,
   lang = "eng",
 }: {
   stats: Stats | null;
   lang?: string;
 }) {
+  const t = await getT();
   const faqs = buildFaqs(stats);
   return (
     <div className="rvmp">
@@ -65,7 +66,7 @@ export default function HomeFAQ({
         <div className="hsec">
           <JsonLd data={buildFAQPageJsonLd(faqs)} />
           <div className="s-head">
-            <h2>{t("home_faq_heading", lang)}</h2>
+            <h2>{t("home_faq_heading")}</h2>
           </div>
           <div className="faqs">
             {faqs.map((faq) => (

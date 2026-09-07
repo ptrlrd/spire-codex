@@ -6,7 +6,8 @@
 // sc-news-seen event MarkAnnouncementsSeen dispatches).
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useT } from "@/lib/i18n";
 import { ANNOUNCEMENT_SEEN_KEY, LATEST_ANNOUNCEMENT_ID } from "@/lib/announcements";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -82,6 +83,7 @@ export default function AnnouncementBadge({
   variant?: "desktop" | "mobile";
 }) {
   const { unread, markSeen } = useAnnouncementUnread();
+  const t = useT();
 
   if (!unread) return null;
 
@@ -94,7 +96,7 @@ export default function AnnouncementBadge({
           className="flex items-center gap-2 text-lg font-semibold text-[var(--accent-gold)]"
         >
           <MegaphoneIcon />
-          <span>What&apos;s new</span>
+          <span>{t("What's new")}</span>
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent-gold)] opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--accent-gold)]" />
@@ -108,8 +110,8 @@ export default function AnnouncementBadge({
     <Link
       href="/news?tab=codex"
       onClick={markSeen}
-      title="New on Spire Codex"
-      aria-label="New Spire Codex announcement"
+      title={t("New on Spire Codex")}
+      aria-label={t("New Spire Codex announcement")}
       className="relative inline-flex items-center px-2 py-2 rounded-md text-[var(--accent-gold)] hover:bg-[var(--bg-card)] transition-colors shrink-0"
     >
       <MegaphoneIcon />

@@ -56,6 +56,24 @@ export const LANG_HREFLANG: Record<LangCode, string> = {
   zht: "zh-Hant",
 };
 
+/** Open Graph locale codes (language_TERRITORY), distinct from the hreflang tags above. */
+export const LANG_OG_LOCALE: Record<LangCode, string> = {
+  deu: "de_DE",
+  esp: "es_ES",
+  fra: "fr_FR",
+  ita: "it_IT",
+  jpn: "ja_JP",
+  kor: "ko_KR",
+  pol: "pl_PL",
+  ptb: "pt_BR",
+  rus: "ru_RU",
+  spa: "es_LA",
+  tha: "th_TH",
+  tur: "tr_TR",
+  zhs: "zh_CN",
+  zht: "zh_TW",
+};
+
 /** Human-readable native language names */
 export const LANG_NAMES: Record<LangCode, string> = {
   eng: "English",

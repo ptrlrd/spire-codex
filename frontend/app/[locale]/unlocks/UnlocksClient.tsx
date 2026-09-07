@@ -1,0 +1,302 @@
+"use client";
+
+import { useGameLocale, useT } from "@/lib/i18n";
+import { useState, useEffect } from "react";
+import { Link } from "@/i18n/navigation";
+import { cachedFetch } from "@/lib/fetch-cache";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import RichDescription from "@/app/components/RichDescription";
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { imageUrl, fullCardUrl } from "@/lib/image-url";
+
+interface UnlockEntity {
+  id: string;
+  name: string;
+  type?: string;
+  rarity?: string;
+  color?: string;
+  character: string;
+  image_url: string | null;
+  epoch_id: string;
+  epoch_title: string;
+  era: string;
+  unlock_info: string;
+  sort_order: number;
+}
+
+interface CharacterUnlock {
+  id: string;
+  name: string;
+  epoch_id: string;
+  epoch_title: string;
+  era: string;
+  unlock_info: string;
+  sort_order: number;
+}
+
+interface UnlocksData {
+  characters: CharacterUnlock[];
+  cards: UnlockEntity[];
+  relics: UnlockEntity[];
+  potions: UnlockEntity[];
+  events: UnlockEntity[];
+}
+
+type Tab = "all" | "characters" | "cards" | "relics" | "potions";
+type CharFilter = "all" | "ironclad" | "silent" | "defect" | "regent" | "necrobinder" | "shared";
+
+const CHAR_COLORS: Record<string, string> = {
+  Ironclad: "var(--color-ironclad)",
+  Silent: "var(--color-silent)",
+  Defect: "var(--color-defect)",
+  Regent: "var(--color-regent)",
+  Necrobinder: "var(--color-necrobinder)",
+  Shared: "var(--text-muted)",
+};
+
+function EntityCard({ entity, type, bp }: { entity: UnlockEntity; type: string; bp: string }) {
+  const href = `${bp}/${type}/${entity.id.toLowerCase()}`;
+  const charColor = CHAR_COLORS[entity.character] || "var(--text-muted)";
+  const [cardFailed, setCardFailed] = useState(false);
+  const lang = useGameLocale();
+  const t = useT();
+
+  return (
+    <Link
+      prefetch={false}
+      href={href}
+      className="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors group"
+    >
+      {type === "cards" && !cardFailed ? (
+        // Full game-rendered card in the picture area (falls back to the
+        // portrait art for anything without a full render, e.g. mad_science).
+        // Hovering pops a larger copy.
+        <span className="relative flex-shrink-0 group/pop">
+          <img
+            src={fullCardUrl(entity.id.toLowerCase(), false, "stable", lang)}
+            alt={entity.name}
+            className="w-10 h-auto drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]"
+            crossOrigin="anonymous"
+            loading="lazy"
+            onError={() => setCardFailed(true)}
+          />
+          <span className="pointer-events-none absolute left-0 bottom-full mb-2 w-44 opacity-0 group-hover/pop:opacity-100 transition-opacity z-30">
+            <img
+              src={fullCardUrl(entity.id.toLowerCase(), false, "stable", lang)}
+              alt=""
+              className="w-44 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
+              crossOrigin="anonymous"
+            />
+          </span>
+        </span>
+      ) : entity.image_url ? (
+        <img
+          src={imageUrl(entity.image_url)}
+          alt={entity.name}
+          className="w-8 h-8 object-contain flex-shrink-0"
+          crossOrigin="anonymous"
+        />
+      ) : null}
+      <div className="min-w-0 flex-1">
+        <div className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors truncate">
+          {entity.name}
+        </div>
+        <div className="flex items-center gap-2 text-[11px] text-[var(--text-muted)]">
+          {entity.rarity && <span>{t(entity.rarity)}</span>}
+          {entity.type && <span>{t(entity.type)}</span>}
+          <span>&middot;</span>
+          <span style={{ color: charColor }}>{t(entity.character)}</span>
+        </div>
+        {entity.unlock_info && (
+          <div className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+            <RichDescription text={entity.unlock_info} />
+          </div>
+        )}
+      </div>
+    </Link>
+  );
+}
+
+export default function UnlocksClient() {
+  const lang = useGameLocale();
+  const t = useT();
+  const bp = useBetaPrefix();
+  const [data, setData] = useState<UnlocksData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [tab, setTab] = useState<Tab>("all");
+  const [charFilter, setCharFilter] = useState<CharFilter>("all");
+
+  useEffect(() => {
+    cachedFetch<UnlocksData>(`${API}/api/unlocks?lang=${lang}`)
+      .then(setData)
+      .catch(() => {})
+      .finally(() => setLoading(false));
+  }, [lang]);
+
+  if (loading) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-8">
+        <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+      </div>
+    );
+  }
+
+  if (!data) return null;
+
+  const filterByChar = (entities: UnlockEntity[]) =>
+    charFilter === "all" ? entities : entities.filter((e) => e.character.toLowerCase() === charFilter);
+
+  const filteredCards = filterByChar(data.cards);
+  const filteredRelics = filterByChar(data.relics);
+  const filteredPotions = filterByChar(data.potions);
+
+  const tabs: { key: Tab; label: string; count: number }[] = [
+    { key: "all", label: "All", count: data.characters.length + data.cards.length + data.relics.length + data.potions.length },
+    { key: "characters", label: "Characters", count: data.characters.length },
+    { key: "cards", label: "Cards", count: data.cards.length },
+    { key: "relics", label: "Relics", count: data.relics.length },
+    { key: "potions", label: "Potions", count: data.potions.length },
+  ];
+
+  const charFilters: { key: CharFilter; label: string }[] = [
+    { key: "all", label: "All" },
+    { key: "ironclad", label: "Ironclad" },
+    { key: "silent", label: "Silent" },
+    { key: "defect", label: "Defect" },
+    { key: "regent", label: "Regent" },
+    { key: "necrobinder", label: "Necrobinder" },
+    { key: "shared", label: "Shared" },
+  ];
+
+  const showCharacters = tab === "all" || tab === "characters";
+  const showCards = tab === "all" || tab === "cards";
+  const showRelics = tab === "all" || tab === "relics";
+  const showPotions = tab === "all" || tab === "potions";
+
+  return (
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 className="text-3xl font-bold mb-2">
+        <span className="text-[var(--accent-gold)]">{t("Unlocks")}</span>
+      </h1>
+      <p className="text-sm text-[var(--text-muted)] mb-6">
+        {t("All unlockable content in Slay the Spire 2, earned through timeline progression.")}
+      </p>
+
+      {/* Tabs */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {tabs.map((tb) => (
+          <button
+            key={tb.key}
+            onClick={() => setTab(tb.key)}
+            className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+              tab === tb.key
+                ? "bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border-[var(--accent-gold)]/30"
+                : "bg-[var(--bg-card)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)]"
+            }`}
+          >
+            {t(tb.label)} ({tb.count})
+          </button>
+        ))}
+      </div>
+
+      {/* Character filter */}
+      {(tab === "all" || tab === "cards" || tab === "relics" || tab === "potions") && (
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {charFilters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setCharFilter(f.key)}
+              className={`text-xs px-2.5 py-1 rounded border transition-colors ${
+                charFilter === f.key
+                  ? "bg-[var(--bg-card)] text-[var(--text-primary)] border-[var(--text-muted)]"
+                  : "text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)]"
+              }`}
+              style={charFilter === f.key && f.key !== "all" ? { borderColor: CHAR_COLORS[f.label] || undefined, color: CHAR_COLORS[f.label] || undefined } : undefined}
+            >
+              {t(f.label)}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Characters */}
+      {showCharacters && data.characters.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t("Characters")} ({data.characters.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {data.characters.map((char) => (
+              <Link
+                prefetch={false}
+                key={char.id}
+                href={`${bp}/characters/${char.id.toLowerCase()}`}
+                className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors group"
+              >
+                <img
+                  src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
+                  alt={char.name}
+                  className="w-12 h-12 object-contain flex-shrink-0"
+                  crossOrigin="anonymous"
+                />
+                <div>
+                  <div className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] transition-colors">
+                    {char.name}
+                  </div>
+                  {char.unlock_info && (
+                    <div className="text-[11px] text-[var(--text-secondary)] mt-0.5">
+                      <RichDescription text={char.unlock_info} />
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Cards */}
+      {showCards && filteredCards.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t("Cards")} ({filteredCards.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {filteredCards.map((e) => (
+              <EntityCard key={e.id} entity={e} type="cards" bp={bp} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Relics */}
+      {showRelics && filteredRelics.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t("Relics")} ({filteredRelics.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {filteredRelics.map((e) => (
+              <EntityCard key={e.id} entity={e} type="relics" bp={bp} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Potions */}
+      {showPotions && filteredPotions.length > 0 && (
+        <section className="mb-8">
+          <h2 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wide mb-3">
+            {t("Potions")} ({filteredPotions.length})
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {filteredPotions.map((e) => (
+              <EntityCard key={e.id} entity={e} type="potions" bp={bp} />
+            ))}
+          </div>
+        </section>
+      )}
+    </div>
+  );
+}

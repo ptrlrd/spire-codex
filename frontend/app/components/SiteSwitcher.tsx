@@ -2,11 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { setBetaRenderVersion } from "@/lib/image-url";
 import { useChannel } from "@/lib/use-lang-prefix";
 import { LANG_PREFIXES } from "@/lib/languages";
+import { useT } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -21,6 +22,7 @@ function stripSuffix(v: string): string {
  * beta is supported, and the channel indicator lives here and in the
  * per-page beta banner, never next to the logo. */
 export default function SiteSwitcher() {
+  const t = useT();
   const [betaVersion, setBetaVersion] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
@@ -33,17 +35,16 @@ export default function SiteSwitcher() {
   // switch looked like it did nothing.
   const onBeta = useChannel() === "beta";
 
-  // Path-preserving counterparts, keeping the language prefix: /jpn/cards/x
-  // <-> /jpn/beta/cards/x. The proxy.ts serves any /beta/<page> via
+  // Path-preserving counterparts; the Link adds the language prefix back:
+  // /jpn/cards/x <-> /jpn/beta/cards/x. The proxy.ts serves any /beta/<page> via
   // rewrite, and entity pages missing on the other channel already bounce
   // to their hub, so switching never has to dump the visitor on the root.
   const parts = pathname.split("/");
-  const langSeg = LANG_PREFIXES.has(parts[1]) ? parts[1] : "";
-  const restStart = (langSeg ? 2 : 1) + (onBeta ? 1 : 0);
+  const langSeg = LANG_PREFIXES.has(parts[1]) ? 1 : 0;
+  const restStart = 1 + langSeg + (onBeta ? 1 : 0);
   const rest = parts.slice(restStart).filter(Boolean).join("/");
-  const langPrefix = langSeg ? `/${langSeg}` : "";
-  const mainHref = `${langPrefix}${rest ? `/${rest}` : ""}` || "/";
-  const betaHref = `${langPrefix}/beta${rest ? `/${rest}` : ""}`;
+  const mainHref = rest ? `/${rest}` : "/";
+  const betaHref = `/beta${rest ? `/${rest}` : ""}`;
 
   useEffect(() => {
     cachedFetch<{
@@ -77,7 +78,7 @@ export default function SiteSwitcher() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
-  const betaLabel = betaVersion ? `beta ${stripSuffix(betaVersion)}` : "beta";
+  const betaLabel = betaVersion ? t("beta {version}", { version: stripSuffix(betaVersion) }) : t("beta");
 
   // min-w on the beta state so first-paint "beta" -> post-fetch
   // "beta v0.107.0" doesn't widen the navbar and push the mobile burger
@@ -92,10 +93,10 @@ export default function SiteSwitcher() {
         ref={buttonRef}
         onClick={() => setOpen(!open)}
         className={`inline-flex items-center gap-1.5 transition-colors ${buttonClasses}`}
-        aria-label="Switch between main and beta content"
+        aria-label={t("Switch between main and beta content")}
         aria-expanded={open}
       >
-        <span>{onBeta ? betaLabel : "main"}</span>
+        <span>{onBeta ? betaLabel : t("main")}</span>
         <svg
           className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
           fill="none"
@@ -124,7 +125,7 @@ export default function SiteSwitcher() {
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium text-[var(--accent-gold)] transition-colors hover:bg-[var(--bg-card)]"
               >
-                <span>main</span>
+                <span>{t("main")}</span>
               </Link>
             ) : (
               <Link
@@ -133,7 +134,7 @@ export default function SiteSwitcher() {
                 className="flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium text-emerald-400 transition-colors hover:bg-[var(--bg-card)] hover:text-emerald-300"
               >
                 <span>{betaLabel}</span>
-                <span className="text-xs">what&apos;s new</span>
+                <span className="text-xs">{t("what's new")}</span>
               </Link>
             )}
           </div>

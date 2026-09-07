@@ -1,5 +1,7 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
+
 interface ScoreBadgeProps {
   score: number | null | undefined;
   /** sm = inline pill, md = list-row chip, lg = detail-page hero badge. */
@@ -31,6 +33,7 @@ function scoreToTier(score: number): Tier {
 }
 
 export default function ScoreBadge({ score, size = "md", showNumber = false }: ScoreBadgeProps) {
+  const t = useT();
   if (score == null) return null;
   const tier = scoreToTier(score);
 
@@ -49,7 +52,7 @@ export default function ScoreBadge({ score, size = "md", showNumber = false }: S
   return (
     <span
       className={`inline-flex items-center justify-center font-bold rounded border ${sizeClasses} ${tier.className}`}
-      title={`Codex Score: ${score} (${tier.label})`}
+      title={t("Codex Score: {score} ({tier})", { score, tier: t(tier.label) })}
     >
       {tier.letter}
       {showNumber && <span className={`font-mono font-medium opacity-80 ${numberSize}`}>{score}</span>}

@@ -1,9 +1,8 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import EntityHistory from "./EntityHistory";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -48,7 +47,7 @@ export default function EntityUpdateHistory({
   entityType: string;
   entityId: string;
 }) {
-  const { lang } = useLanguage();
+  const t = useT();
   const [entries, setEntries] = useState<UpdateEntry[] | null | "none">(null);
 
   useEffect(() => {
@@ -63,9 +62,9 @@ export default function EntityUpdateHistory({
 
   return (
     <section id="history">
-      <h2>{t("Version history", lang)}</h2>
+      <h2>{t("Version history")}</h2>
       {entries === null ? (
-        <p className="text-xs text-[var(--text-muted)] m-0">Loading…</p>
+        <p className="text-xs text-[var(--text-muted)] m-0">{t("Loading…")}</p>
       ) : (
         <div className="relative ml-2">
           <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
@@ -79,7 +78,7 @@ export default function EntityUpdateHistory({
                   />
                   <div className="flex items-center gap-2 text-xs">
                     <span className="font-semibold text-[var(--text-primary)]">
-                      {entry.version ?? t("Unknown", lang)}
+                      {entry.version ?? t("Unknown")}
                     </span>
                     {entry.type && <span className={kindText[kind]}>{entry.type}</span>}
                     {entry.date && (

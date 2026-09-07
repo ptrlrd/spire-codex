@@ -1,19 +1,18 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import LanguageSelector from "./LanguageSelector";
 import SearchTrigger from "./SearchTrigger";
 import SiteSwitcher from "./SiteSwitcher";
 import LiveNavButton from "./LiveNavButton";
 import AnnouncementBadge, { useAnnouncementUnread } from "./AnnouncementBadge";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
 import ThemeToggle from "./ThemeToggle";
 import { recordRecent, getRecent, isRecentType, ENTITY_SINGULAR, prettyRecentName, type RecentEntity } from "@/lib/recent-entities";
-import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { SITE_URL } from "@/lib/seo";
 import { LANG_PREFIXES } from "@/lib/languages";
@@ -41,18 +40,19 @@ function isLinkActive(strippedPath: string, href: string): boolean {
  * it for `badge: "discord-bot"` links (shorter than spelling out "(Discord
  * Bot)", which clipped the menu). */
 function NavLinkLabel({ label, badge, lang }: { label: string; badge?: "discord-bot"; lang: string }) {
+  const t = useT();
   if (badge === "discord-bot") {
     return (
       <span className="inline-flex items-center gap-1.5">
-        {t(label, lang)}
+        {t(label)}
         <span className="inline-flex items-center gap-0.5 text-[var(--text-muted)]">
           <DiscordIcon className="w-3.5 h-3.5 shrink-0" />
-          <span className="text-xs">bot</span>
+          <span className="text-xs">{t("bot")}</span>
         </span>
       </span>
     );
   }
-  return <>{t(label, lang)}</>;
+  return <>{t(label)}</>;
 }
 
 const NAV_GROUPS: NavGroup[] = [
@@ -187,10 +187,10 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const pathLang = pathname.split("/")[1];
   const currentLang = LANG_CODES.has(pathLang) ? pathLang : null;
-  const langPrefix = currentLang ? `/${currentLang}` : "";
   const strippedPath = currentLang ? pathname.replace(`/${currentLang}`, "") || "/" : pathname;
   const isHome = strippedPath === "/";
   const { user, loading: authLoading, loginSteam, logout } = useAuth();
@@ -289,7 +289,7 @@ export default function Navbar() {
               : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-card)]"
           } group-hover:bg-[var(--bg-card)] group-focus-within:bg-[var(--bg-card)]`}
         >
-          {t(group.label, lang)}
+          {t(group.label)}
           <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 text-[var(--text-secondary)] transition-transform group-hover:rotate-180 group-focus-within:rotate-180">
             <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
           </svg>
@@ -300,14 +300,14 @@ export default function Navbar() {
               <div key={ci} className="min-w-[9.5rem]">
                 {col.title && (
                   <div className="mb-1.5 border-b border-[var(--border-subtle)] px-2.5 pb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
-                    {t(col.title, lang)}
+                    {t(col.title)}
                   </div>
                 )}
                 <div className="flex flex-col gap-0.5">
                   {col.links.map((link) => {
                     const isInternal = link.href.startsWith("/");
                     const isHttp = link.href.startsWith("http");
-                    const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                    const fullHref = link.href;
                     const isActive = isInternal && isLinkActive(strippedPath, link.href);
                     const meta = DB_META[link.href];
                     const countVal = meta?.count ? navStats?.[meta.count] : undefined;
@@ -335,7 +335,7 @@ export default function Navbar() {
             {group.label === "Compendium" && (
               <div className="min-w-[12rem] border-l border-[var(--border-subtle)] pl-6">
                 <div className="mb-1.5 border-b border-[var(--border-subtle)] px-2.5 pb-1.5 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
-                  {t("Jump back in", lang)}
+                  {t("Jump back in")}
                 </div>
                 <div className="flex flex-col gap-0.5">
                   {recents.slice(0, 3).map((r) => {
@@ -344,7 +344,7 @@ export default function Navbar() {
                       <Link
                         prefetch={false}
                         key={`${r.type}-${r.id}`}
-                        href={`${langPrefix}/${r.type}/${r.id}`}
+                        href={`/${r.type}/${r.id}`}
                         role="menuitem"
                         onMouseDown={(e) => e.preventDefault()}
                         className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 hover:bg-[var(--bg-card)] transition-colors"
@@ -352,13 +352,13 @@ export default function Navbar() {
                         <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: rmeta?.color ?? "var(--text-muted)" }} aria-hidden />
                         <span className="flex min-w-0 flex-col">
                           <span className="truncate text-sm font-medium text-[var(--text-primary)]">{prettyRecentName(r.id)}</span>
-                          <span className="text-xs text-[var(--text-muted)]">{ENTITY_SINGULAR[r.type] ?? r.type}</span>
+                          <span className="text-xs text-[var(--text-muted)]">{t(ENTITY_SINGULAR[r.type] ?? r.type)}</span>
                         </span>
                       </Link>
                     );
                   })}
                   {recents.length === 0 && (
-                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-muted)]">{t("Pages you open show up here.", lang)}</p>
+                    <p className="px-2.5 py-1.5 text-xs text-[var(--text-muted)]">{t("Pages you open show up here.")}</p>
                   )}
                 </div>
               </div>
@@ -375,7 +375,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between gap-3 sm:gap-4 h-16">
           {/* Left: logo + nav pushed tight together; the cluster is pushed right */}
           <div className="flex items-center gap-2 sm:gap-6 min-w-0">
-            <Link prefetch={false} href={`${langPrefix}/`} className="flex items-center gap-2 shrink-0">
+            <Link prefetch={false} href="/" className="flex items-center gap-2 shrink-0">
               <img
                 src="/spire-codex-white-final.webp"
                 alt="Spire Codex"
@@ -433,14 +433,14 @@ export default function Navbar() {
                   }
                 }}
                 className="inline-flex items-center justify-center h-9 min-w-[2.25rem] px-1.5 sm:px-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors gap-1.5"
-                aria-label={user ? t("Account menu", lang) : t("Sign in", lang)}
+                aria-label={user ? t("Account menu") : t("Sign in")}
               >
                 <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
                 {user ? (
                   <span className="hidden sm:inline text-xs font-medium truncate max-w-[80px]">
-                    {user.username || t("Account", lang)}
+                    {user.username || t("Account")}
                   </span>
                 ) : null}
               </button>
@@ -457,7 +457,7 @@ export default function Navbar() {
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   className="absolute inset-0 w-full h-full opacity-0"
-                  aria-label={t("Sign in options", lang)}
+                  aria-label={t("Sign in options")}
                   tabIndex={-1}
                 />
               )}
@@ -467,7 +467,7 @@ export default function Navbar() {
                   ref={userMenuRef}
                   className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
                 >
-                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">{t("Sign in with", lang)}</p>
+                  <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">{t("Sign in with")}</p>
                   <button
                     onClick={() => { setUserMenuOpen(false); loginSteam(); }}
                     className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
@@ -485,26 +485,26 @@ export default function Navbar() {
                   className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
                 >
                   <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
-                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || t("User", lang)}</p>
+                    <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || t("User")}</p>
                     {user.email && <p className="text-xs text-[var(--text-tertiary)] truncate">{user.email}</p>}
                   </div>
                   <Link
                     prefetch={false}
-                    href={`${langPrefix}/profile`}
+                    href="/profile"
                     onClick={() => setUserMenuOpen(false)}
                     className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   >
-                    {t("Profile", lang)}
+                    {t("Profile")}
                   </Link>
                   <Link
                     prefetch={false}
-                    href={`${langPrefix}/settings`}
+                    href="/settings"
                     onClick={() => setUserMenuOpen(false)}
                     className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
                   >
-                    {t("Settings", lang)}
+                    {t("Settings")}
                   </Link>
-                  {/* Admin pages are unlocalized, so no langPrefix here. The
+                  {/* Admin pages are unlocalized. The
                       link is cosmetic gating only; /admin itself 404s for
                       anyone not on the server-side allowlist. */}
                   {user.is_admin && (
@@ -514,14 +514,14 @@ export default function Navbar() {
                       onClick={() => setUserMenuOpen(false)}
                       className="flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
                     >
-                      {t("Admin", lang)}
+                      {t("Admin")}
                     </Link>
                   )}
                   <button
                     onClick={() => { setUserMenuOpen(false); logout(); }}
                     className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
                   >
-                    {t("Sign Out", lang)}
+                    {t("Sign Out")}
                   </button>
                 </div>
               )}
@@ -538,7 +538,7 @@ export default function Navbar() {
               ref={buttonRef}
               onClick={() => setOpen(!open)}
               className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-              aria-label={t("Toggle menu", lang)}
+              aria-label={t("Toggle menu")}
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {open ? (
@@ -574,7 +574,7 @@ export default function Navbar() {
                   </span>
                   <button
                     onClick={() => setOpen(false)}
-                    aria-label={t("Close menu", lang)}
+                    aria-label={t("Close menu")}
                     className="inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -606,7 +606,7 @@ export default function Navbar() {
                             hasActive ? "text-[var(--accent-gold)]" : "text-[var(--text-primary)]"
                           }`}
                         >
-                          {t(group.label, lang)}
+                          {t(group.label)}
                           <svg aria-hidden viewBox="0 0 20 20" fill="currentColor" className={`w-4 h-4 text-[var(--text-muted)] transition-transform ${isExpanded ? "rotate-180" : ""}`}>
                             <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 0 1 1.06.02L10 11.168l3.71-3.938a.75.75 0 1 1 1.08 1.04l-4.25 4.5a.75.75 0 0 1-1.08 0l-4.25-4.5a.75.75 0 0 1 .02-1.06z" clipRule="evenodd" />
                           </svg>
@@ -617,13 +617,13 @@ export default function Navbar() {
                               <div key={ci}>
                                 {col.title && (
                                   <div className="pt-3 pb-1 font-mono text-[10px] font-medium uppercase tracking-[0.09em] text-[var(--color-silent)]">
-                                    {t(col.title, lang)}
+                                    {t(col.title)}
                                   </div>
                                 )}
                                 {col.links.map((link) => {
                                   const isInternal = link.href.startsWith("/");
                                   const isHttp = link.href.startsWith("http");
-                                  const fullHref = isInternal ? `${langPrefix}${link.href}` : link.href;
+                                  const fullHref = link.href;
                                   const isActive = isInternal && isLinkActive(strippedPath, link.href);
                                   const meta = DB_META[link.href];
                                   const countVal = meta?.count ? navStats?.[meta.count] : undefined;

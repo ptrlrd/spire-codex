@@ -1,0 +1,114 @@
+"use client";
+
+import { useT, useGameLocale } from "@/lib/i18n";
+import { useState, useEffect } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import type { Intent } from "@/lib/api";
+import RichDescription from "@/app/components/RichDescription";
+import { cachedFetch } from "@/lib/fetch-cache";
+import LocalizedNames from "@/app/components/LocalizedNames";
+import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
+import EntityProse from "@/app/components/EntityProse";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { imageUrl } from "@/lib/image-url";
+import "@/app/card-revamp.css";
+import "@/app/reference-extra.css";
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+export default function IntentDetail({ initialIntent }: { initialIntent?: Intent | null } = {}) {
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const lang = useGameLocale();
+  const t = useT();
+  const bp = useBetaPrefix();
+  const [intent, setIntent] = useState<Intent | null>(initialIntent ?? null);
+  const [loading, setLoading] = useState(!initialIntent);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<Intent>(`${API}/api/intents/${id}?lang=${lang}`)
+      .then((data) => setIntent(data))
+      .catch(() => {
+        if (!initialIntent) setNotFound(true);
+      })
+      .finally(() => setLoading(false));
+  }, [id, lang]);
+
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
+        {t("Loading...")}
+      </div>
+    );
+  }
+
+  if (notFound || !intent) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-12 text-center">
+        <p className="text-[var(--text-muted)] mb-4">{t("Intent not found.")}</p>
+        <Link href={`${bp}/reference`} className="text-[var(--accent-gold)] hover:underline">
+          &larr; {t("Back to")} {t("Reference")}
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="card-rvmp">
+      <div className="cd-top">
+        <button onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to")} {t("Reference")}
+        </button>
+      </div>
+
+      <div className={`wrap${intent.image_url ? "" : " solo narrow"}`}>
+        <main className="main">
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              <span>{t("Intent")}</span>
+            </p>
+            <h1>{intent.name}</h1>
+            <EntityProse kind="intent" intent={intent} lead />
+          </div>
+
+          <section id="description">
+            <h2>{t("Description")}</h2>
+            <div className="desc-quote">
+              <RichDescription text={intent.description} />
+            </div>
+          </section>
+
+          <LocalizedNames entityType="intents" entityId={id} />
+          <EntityUpdateHistory entityType="intents" entityId={id} />
+        </main>
+
+        {intent.image_url && (
+          <aside className="aside">
+            <div className="box">
+              <div className="ref-icon">
+                <img
+                  src={imageUrl(intent.image_url)}
+                  alt={t("{name} - Slay the Spire 2 Intent", { name: intent.name })}
+                  crossOrigin="anonymous"
+                />
+              </div>
+              <div className="facts">
+                <div className="fh">{t("At a glance")}</div>
+                <dl>
+                  <div className="frow">
+                    <dt>{t("Type")}</dt>
+                    <dd>{t("Intent")}</dd>
+                  </div>
+                </dl>
+              </div>
+            </div>
+          </aside>
+        )}
+      </div>
+    </div>
+  );
+}

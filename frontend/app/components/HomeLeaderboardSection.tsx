@@ -78,11 +78,9 @@ async function loadDailyClimb(): Promise<RunRow[]> {
 }
 
 export default async function HomeLeaderboardSection({
-  langPrefix = "",
   lang = "eng",
   characterNames,
 }: {
-  langPrefix?: string;
   lang?: string;
   characterNames?: Record<string, string>;
 }) {
@@ -99,7 +97,6 @@ export default async function HomeLeaderboardSection({
       initialFastest={fastest}
       initialDaily={daily}
       initialRecent={recent}
-      langPrefix={langPrefix}
       lang={lang}
       characterNames={characterNames}
       runsHost={RUNS_HOST}

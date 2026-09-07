@@ -1,8 +1,8 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { t } from "@/lib/ui-translations";
+import { Link } from "@/i18n/navigation";
 import { characterHex } from "@/lib/character-colors";
 import type { CommunityStats } from "./HomeStatsSection";
 
@@ -33,19 +33,18 @@ function winRateColor(pct: number): string {
 
 export default function HomeStatsLive({
   initialStats,
-  langPrefix = "",
   lang = "eng",
   characterNames,
   runsHost,
   pollBase,
 }: {
   initialStats: CommunityStats;
-  langPrefix?: string;
   lang?: string;
   characterNames?: Record<string, string>;
   runsHost: string;
   pollBase: string;
 }) {
+  const t = useT();
   const [stats, setStats] = useState<CommunityStats>(initialStats);
 
   useEffect(() => {
@@ -82,33 +81,33 @@ export default function HomeStatsLive({
       <section className="hb">
         <section className="panel">
           <div className="s-head">
-            <span className="s-kick">{t("Overview", lang)}</span>
-            <h2>{t("Stats", lang)}</h2>
-            <Link prefetch={false} className="viewmore" href={`${runsHost}${langPrefix}/leaderboards/stats`}>
-              {t("View all stats", lang)} {ARROW}
+            <span className="s-kick">{t("Overview")}</span>
+            <h2>{t("Stats")}</h2>
+            <Link prefetch={false} className="viewmore" href={`${runsHost}/leaderboards/stats`}>
+              {t("View all stats")} {ARROW}
             </Link>
           </div>
 
           <div className="statgrid six">
             <div className="stat">
               <span className="stat-v">{stats.total_runs}</span>
-              <span className="stat-k">{t("Runs", lang)}</span>
+              <span className="stat-k">{t("Runs")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--good)" }}>{stats.total_wins}</span>
-              <span className="stat-k">{t("Wins", lang)}</span>
+              <span className="stat-k">{t("Wins")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--warn)" }}>{losses}</span>
-              <span className="stat-k">{t("Losses", lang)}</span>
+              <span className="stat-k">{t("Losses")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--text-3)" }}>{stats.total_abandoned || 0}</span>
-              <span className="stat-k">{t("Abandoned", lang)}</span>
+              <span className="stat-k">{t("Abandoned")}</span>
             </div>
             <div className="stat">
               <span className="stat-v">{stats.win_rate}%</span>
-              <span className="stat-k">{t("Win %", lang)}</span>
+              <span className="stat-k">{t("Win %")}</span>
             </div>
             <div className="stat">
               <span
@@ -118,13 +117,13 @@ export default function HomeStatsLive({
               >
                 {mostPlayed ? characterLabel(mostPlayed.character, characterNames) : "—"}
               </span>
-              <span className="stat-k">{t("Most Played", lang)}</span>
+              <span className="stat-k">{t("Most Played")}</span>
             </div>
           </div>
 
           {stats.characters.length > 0 && (
             <div>
-              <div className="wr-title">{t("Character Win Rates", lang)}</div>
+              <div className="wr-title">{t("Character Win Rates")}</div>
               {stats.characters.map((c) => {
                 const charColor = characterHex(c.character) || "var(--text-3)";
                 const relPct = (c.win_rate / maxWinRate) * 100;

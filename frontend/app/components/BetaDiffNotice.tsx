@@ -6,10 +6,11 @@
 // Driven entirely by the /api/beta/diff index, so it costs one cached fetch.
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useChannel } from "@/lib/use-lang-prefix";
+import { useT, type TFn } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -38,8 +39,8 @@ const FIELD_LABELS: Record<string, string> = {
   powers_applied: "applied powers",
 };
 
-function summarize(fields: string[]): string {
-  const labels = [...new Set(fields.map((f) => FIELD_LABELS[f] ?? f.replace(/_/g, " ")))];
+function summarize(fields: string[], t: TFn): string {
+  const labels = [...new Set(fields.map((f) => t(FIELD_LABELS[f] ?? f.replace(/_/g, " "))))];
   return labels.slice(0, 5).join(", ") + (labels.length > 5 ? ", ..." : "");
 }
 
@@ -50,6 +51,7 @@ export default function BetaDiffNotice({
   entityType: string;
   entityId: string;
 }) {
+  const t = useT();
   const channel = useChannel();
   const pathname = usePathname();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
@@ -62,11 +64,11 @@ export default function BetaDiffNotice({
   }, []);
 
   if (!diff?.beta_version) return null;
-  const t = diff.types?.[entityType];
+  const td = diff.types?.[entityType];
   const id = entityId.toUpperCase();
-  const changedFields = t?.changed[id];
-  const isAdded = !!t?.added.includes(id);
-  const isRemoved = !!t?.removed.includes(id);
+  const changedFields = td?.changed[id];
+  const isAdded = !!td?.added.includes(id);
+  const isRemoved = !!td?.removed.includes(id);
 
   const counterpartPath =
     channel === "beta"
@@ -79,13 +81,13 @@ export default function BetaDiffNotice({
     // On main, only flag entities that differ from (or are gone in) beta; a
     // matching entity needs no notice here.
     if (isRemoved) {
-      body = <>Removed in the current beta.</>;
+      body = <>{t("Removed in the current beta.")}</>;
     } else if (changedFields) {
       body = (
         <>
-          This is different in the current beta: {summarize(changedFields)} changed.{" "}
+          {t("This is different in the current beta: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
           <Link href={counterpartPath} className="text-emerald-300 hover:underline">
-            View the beta version →
+            {t("View the beta version")} →
           </Link>
         </>
       );
@@ -97,22 +99,22 @@ export default function BetaDiffNotice({
     // on these detail routes), so it always renders, carrying both the channel
     // line and the per-entity status.
     if (isAdded) {
-      body = <>New in this beta. There is no main version of this yet.</>;
+      body = <>{t("New in this beta. There is no main version of this yet.")}</>;
     } else if (changedFields) {
       body = (
         <>
-          Differs from main: {summarize(changedFields)} changed.{" "}
+          {t("Differs from main: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
           <Link href={counterpartPath} className="text-emerald-300 hover:underline">
-            View the main version →
+            {t("View the main version")} →
           </Link>
         </>
       );
     } else {
       body = (
         <>
-          Viewing the beta version of this {noun}.{" "}
+          {t("Viewing the beta version of this {noun}.", { noun: t(noun) })}{" "}
           <Link href={counterpartPath} className="text-emerald-300 hover:underline">
-            Switch to main →
+            {t("Switch to main")} →
           </Link>
         </>
       );
@@ -122,7 +124,7 @@ export default function BetaDiffNotice({
   return (
     <div className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 my-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs text-[var(--text-secondary)]">
       <span className="font-semibold text-emerald-300">
-        Beta{diff.beta_version ? ` ${diff.beta_version}` : ""}
+        {t("Beta")}{diff.beta_version ? ` ${diff.beta_version}` : ""}
       </span>
       {body}
     </div>

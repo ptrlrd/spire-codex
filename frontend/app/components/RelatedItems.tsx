@@ -1,11 +1,10 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { imageUrl } from "@/lib/image-url";
 
@@ -61,8 +60,8 @@ export default function RelatedItems({
   heading,
   groups,
 }: RelatedItemsProps) {
-  const { lang } = useLanguage();
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   const [results, setResults] = useState<{ label: string; items: RelatedItem[] }[]>([]);
 
   // Stringify the groups' paths into a stable dependency key, the
@@ -101,7 +100,7 @@ export default function RelatedItems({
             clipRule="evenodd"
           />
         </svg>
-        {t(heading, lang)}
+        {t(heading)}
       </summary>
       {results.length > 0 ? (
         <div className="mt-3 space-y-4">
@@ -115,7 +114,7 @@ export default function RelatedItems({
                   <li key={item.id}>
                     <HoverTooltip title={item.name} content={item.description} image={item.image_url}>
                       <Link
-                        href={`${lp}/${route}/${item.id.toLowerCase()}`}
+                        href={`${bp}/${route}/${item.id.toLowerCase()}`}
                         className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
                       >
                         {item.name}
@@ -128,7 +127,7 @@ export default function RelatedItems({
           ))}
         </div>
       ) : (
-        <p className="text-xs text-[var(--text-muted)] mt-2">Loading…</p>
+        <p className="text-xs text-[var(--text-muted)] mt-2">{t("Loading…")}</p>
       )}
     </details>
   );

@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getT } from "@/lib/i18n-server";
+import { Link } from "@/i18n/navigation";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import {
   firstNewsImage,
@@ -6,7 +7,6 @@ import {
   formatNewsDate,
   newsSlugForArticle,
 } from "@/lib/steam-news";
-import { t } from "@/lib/ui-translations";
 import "../home-sections.css";
 
 const ARROW = (
@@ -56,15 +56,14 @@ async function loadLatestCommunityNews(): Promise<NewsArticle[]> {
 }
 
 export default async function HomeNewsSection({
-  langPrefix = "",
   lang = "eng",
 }: {
-  langPrefix?: string;
   lang?: string;
 }) {
+  const t = await getT();
   const items = await loadLatestCommunityNews();
   if (items.length === 0) return null;
-  const newsBase = `${langPrefix}/news`;
+  const newsBase = `/news`;
 
   return (
     <div className="rvmp">
@@ -72,11 +71,11 @@ export default async function HomeNewsSection({
         <div className="hsec">
           <div className="s-head">
             <h2>
-              {t("home_news_heading_prefix", lang)}{" "}
+              {t("home_news_heading_prefix")}{" "}
               <span style={{ color: "var(--gold)" }}>Mega Crit</span>
             </h2>
             <Link prefetch={false} className="viewmore" href={newsBase}>
-              {t("View more", lang)} {ARROW}
+              {t("View more")} {ARROW}
             </Link>
           </div>
 

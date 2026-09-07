@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import { useT } from "@/lib/i18n";
 
 type ToastType = "success" | "error" | "info";
 
@@ -25,6 +26,7 @@ export function useToast() {
 let nextId = 0;
 
 export function ToastProvider({ children }: { children: ReactNode }) {
+  const t = useT();
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const addToast = useCallback((message: string, type: ToastType = "info") => {
@@ -50,17 +52,17 @@ export function ToastProvider({ children }: { children: ReactNode }) {
       {children}
       {toasts.length > 0 && (
         <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-[calc(100vw-2rem)] sm:max-w-sm">
-          {toasts.map((t) => (
+          {toasts.map((item) => (
             <div
-              key={t.id}
-              className={`px-4 py-3 rounded-lg border text-sm shadow-lg shadow-black/20 flex items-start gap-2 animate-in slide-in-from-right ${colors[t.type]}`}
+              key={item.id}
+              className={`px-4 py-3 rounded-lg border text-sm shadow-lg shadow-black/20 flex items-start gap-2 animate-in slide-in-from-right ${colors[item.type]}`}
               role="alert"
             >
-              <span className="flex-1 break-words">{t.message}</span>
+              <span className="flex-1 break-words">{item.message}</span>
               <button
-                onClick={() => dismiss(t.id)}
+                onClick={() => dismiss(item.id)}
                 className="shrink-0 opacity-60 hover:opacity-100 transition-opacity"
-                aria-label="Dismiss"
+                aria-label={t("Dismiss")}
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

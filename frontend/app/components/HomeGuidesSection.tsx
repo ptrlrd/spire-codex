@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { t } from "@/lib/ui-translations";
+import { getT } from "@/lib/i18n-server";
+import { Link } from "@/i18n/navigation";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -42,24 +42,23 @@ async function loadLatestGuides(): Promise<GuideStub[]> {
 }
 
 export default async function HomeGuidesSection({
-  langPrefix = "",
   lang = "eng",
 }: {
-  langPrefix?: string;
   lang?: string;
 }) {
+  const t = await getT();
   const guides = await loadLatestGuides();
   if (guides.length === 0) return null;
-  const guidesBase = `${langPrefix}/guides`;
+  const guidesBase = `/guides`;
 
   return (
     <div className="rvmp">
       <section className="hb">
         <div className="hsec">
           <div className="s-head">
-            <h2>{t("Guides", lang)}</h2>
+            <h2>{t("Guides")}</h2>
             <Link prefetch={false} className="viewmore" href={guidesBase}>
-              {t("View more", lang)} {ARROW}
+              {t("View more")} {ARROW}
             </Link>
           </div>
 
@@ -78,7 +77,7 @@ export default async function HomeGuidesSection({
                     <span className="gcard-by">
                       By <span style={{ color: "var(--text-2)" }}>{g.author}</span>
                     </span>
-                    <span className="gcard-more">{t("View more", lang)} {ARROW}</span>
+                    <span className="gcard-more">{t("View more")} {ARROW}</span>
                   </span>
                 </Link>
               );

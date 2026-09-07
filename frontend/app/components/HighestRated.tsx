@@ -1,6 +1,7 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { getT } from "@/lib/i18n-server";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -46,6 +47,7 @@ export default async function HighestRated({
   tierHref: string; // "/tier-list/cards"
   lang?: string; // card render language
 }) {
+  const t = await getT();
   const isCards = entityType === "cards";
   let scoresRaw: Record<string, ScoreEntry> = {};
   try {
@@ -74,24 +76,21 @@ export default async function HighestRated({
       <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
         <div>
           <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)] bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 rounded px-2 py-0.5 mb-2">
-            ★ Top tier · live
+            ★ {t("Top tier · live")}
           </span>
           <h2 className="text-xl font-semibold">
-            Highest-rated sts2 {label} right now
+            {t("Highest-rated sts2 {label} right now", { label: t(label) })}
           </h2>
         </div>
         <Link
           href={tierHref}
           className="text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap"
         >
-          Full tier list →
+          {t("Full tier list")} →
         </Link>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-4 max-w-3xl">
-        Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for
-        sample size, so a {label.replace(/s$/, "")} with a 60% win rate over 5
-        runs doesn&apos;t outrank one with a 55% win rate over 5,000. Updates
-        continuously from submitted runs.
+        {t("Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a 60% win rate over 5 runs doesn't outrank a 55% win rate over 5,000. Updates continuously from submitted runs.")}
       </p>
       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {top.map(({ e, s }) => (
@@ -108,7 +107,7 @@ export default async function HighestRated({
                 // Full game card art (localized), the render carries the name.
                 <img
                   src={fullCardUrl(e.id.toLowerCase(), false, "stable", lang)}
-                  alt={`${e.name} - Slay the Spire 2 card`}
+                  alt={t("{name} - Slay the Spire 2 card", { name: e.name })}
                   className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                   loading="lazy"
                   crossOrigin="anonymous"
@@ -118,7 +117,7 @@ export default async function HighestRated({
                   {e.image_url && (
                     <img
                       src={imageUrl(e.image_url)}
-                      alt={`${e.name} - Slay the Spire 2`}
+                      alt={t("{name} - Slay the Spire 2", { name: e.name })}
                       className="w-full h-20 object-contain transition-transform group-hover:scale-[1.05]"
                       loading="lazy"
                       crossOrigin="anonymous"
@@ -131,10 +130,10 @@ export default async function HighestRated({
               )}
               <div className="mt-1.5 flex items-center justify-center gap-2 text-xs">
                 <span className="font-semibold text-[var(--accent-gold)]">
-                  {s.win_rate.toFixed(0)}% WR
+                  {t("{pct}% WR", { pct: s.win_rate.toFixed(0) })}
                 </span>
                 <span className="text-[var(--text-muted)]">
-                  {s.picks.toLocaleString()} picks
+                  {s.picks.toLocaleString()} {t("picks")}
                 </span>
                 {s.score != null && <ScoreBadge score={s.score} size="sm" />}
               </div>

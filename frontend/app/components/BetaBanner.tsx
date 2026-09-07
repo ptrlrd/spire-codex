@@ -1,18 +1,18 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 // The unmissable strip at the top of every /beta page. Channel indication
 // lives here and in the navbar pill, never next to the logo.
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { t } from "@/lib/ui-translations";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }) {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [version, setVersion] = useState<string | null>(null);
 
   useEffect(() => {
@@ -28,15 +28,13 @@ export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }
       </span>
       <span className="text-[var(--text-muted)] truncate">
         {t(
-          "Preview content; numbers and text can change before they reach main.",
-          lang,
-        )}
+          "Preview content; numbers and text can change before they reach main.")}
       </span>
       <Link
         href={stablePath}
         className="ml-auto shrink-0 text-emerald-300 hover:text-emerald-200 hover:underline"
       >
-        {t("Switch to main", lang)} →
+        {t("Switch to main")} →
       </Link>
     </div>
   );

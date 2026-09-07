@@ -3,12 +3,8 @@
  * Every key MUST have an "eng" entry, that's the fallback.
  */
 
-import { X1 } from "./i18n-x1";
-import { X2 } from "./i18n-x2";
-import { X3 } from "./i18n-x3";
-import { X4 } from "./i18n-x4";
 
-const UI: Record<string, Record<string, string>> = {
+export const UI_TRANSLATIONS: Record<string, Record<string, string>> = {
   // Tabs
   "Overview":        { eng: "Overview", deu: "Übersicht", esp: "Resumen", fra: "Aperçu", ita: "Panoramica", jpn: "概要", kor: "개요", pol: "Przegląd", ptb: "Visão geral", rus: "Обзор", spa: "Resumen", tha: "ภาพรวม", tur: "Genel Bakış", zhs: "概览", zht: "概覽" },
   "Details":         { eng: "Details", deu: "Details", esp: "Detalles", fra: "Détails", ita: "Dettagli", jpn: "詳細", kor: "상세", pol: "Szczegóły", ptb: "Detalhes", rus: "Детали", spa: "Detalles", tha: "รายละเอียด", tur: "Detaylar", zhs: "详情", zht: "詳情" },
@@ -555,8 +551,3 @@ const UI: Record<string, Record<string, string>> = {
  * Get a translated UI string.
  * Keys are the English display text (e.g., "Back to", "Overview").
  */
-export function t(key: string, lang: string): string {
-  const entry = UI[key] ?? X1[key] ?? X2[key] ?? X3[key] ?? X4[key];
-  if (!entry) return key;
-  return entry[lang] || entry.eng || key;
-}
