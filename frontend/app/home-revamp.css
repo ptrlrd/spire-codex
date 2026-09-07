@@ -23,8 +23,8 @@
   --mono: var(--font-geist-mono), ui-monospace, monospace;
   --radius: 10px;
   --wrap: 80rem;
-  --good: #35c07a;
-  --warn: #d08a3a;
+  --good: var(--success);
+  --warn: var(--warning);
 }
 .rvmp a { text-decoration: none; }
 
@@ -104,9 +104,9 @@
 .rvmp .dtable .num.mono { font-family: var(--mono); font-weight: 500; }
 .rvmp .dtable .dim { color: var(--text-3); font-weight: 500; }
 .rvmp .dot2 { width: 9px; height: 9px; border-radius: 3px; flex: none; }
-.rvmp .wr-sg { color: #35c07a; }
+.rvmp .wr-sg { color: var(--success); }
 .rvmp .wr-loss { color: #e5484d; }
-.rvmp .wr-g { color: #6fae4f; }
+.rvmp .wr-g { color: color-mix(in srgb, var(--success) 70%, var(--text-secondary)); }
 /* Recent runs: fixed layout so the long "died to …" subline truncates in its
    cell instead of widening the table and forcing a horizontal scroll. */
 .rvmp .dtable-fixed { table-layout: fixed; }
