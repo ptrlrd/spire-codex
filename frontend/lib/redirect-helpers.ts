@@ -21,7 +21,7 @@
  * to the parent-hub redirect.
  */
 
-import { permanentRedirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 
 export type EntityKind =
   | "cards"
@@ -93,37 +93,29 @@ const LEGACY_IDS: Partial<Record<EntityKind, Record<string, string>>> = {
 };
 
 /**
- * Send a request to the entity's parent hub, preserving an optional
- * locale prefix. Server-side `redirect()`, emits a real HTTP 307 by
- * default. We use `permanentRedirect()` (308) for entity-not-found
- * because the old URL is never coming back as a valid entity page,
- * which matches the rules for 308: link equity transfers, search
- * engines re-target their index entry to the destination.
+ * What to do with an entity detail URL whose ID the API does not know.
  *
- * IMPORTANT: must be called from a Server Component / route handler
- *, it throws a special internal error that Next intercepts. Don't
- * try to call it from a Client Component.
+ * A documented rename gets a 308 to the new ID, locale prefix preserved,
+ * so the old URL's authority moves with it. Anything else is a real 404:
+ * redirecting an unknown ID to the category hub was recorded by Google as
+ * a Soft 404 on the original URL, which is worse for the index than an
+ * honest not-found and made transient API failures look like removals.
+ *
+ * Only call this after a definitive 404 from the API; `fetchEntityRes`
+ * throws on every other failure so a sick backend never reaches here.
+ * Server Components / route handlers only: both calls throw an internal
+ * error Next intercepts.
  */
 export function redirectMissingEntity(
   entity: EntityKind,
   id: string,
   lang?: string,
 ): never {
-  // Tier 2: explicit legacy rename → new ID. Preserve the locale
-  // prefix and use a permanent redirect so search engines transfer
-  // the old URL's authority to the new one.
   const renamed = LEGACY_IDS[entity]?.[id];
   if (renamed) {
     const prefix = lang ? `/${lang}` : "";
     permanentRedirect(`${prefix}/${entity}/${renamed}`);
   }
-
-  // Tier 1: unknown ID → parent hub. 308 (permanent) because the
-  // unknown ID is never going to start resolving on its own, better
-  // to hand the equity to the hub than to keep returning 404 every
-  // crawl.
-  const prefix = lang ? `/${lang}` : "";
-  const target = `${prefix}${PARENT_PATH[entity]}`;
-  permanentRedirect(target);
+  notFound();
 }
 

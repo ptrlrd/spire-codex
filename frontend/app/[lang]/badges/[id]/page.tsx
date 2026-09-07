@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { fetchEntityRes } from "@/lib/entity-fetch";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags, stripTagsFlat, clipMetaDescription, SITE_NAME, SITE_URL, buildLanguageAlternates } from "@/lib/seo";
@@ -51,11 +52,8 @@ const RARITY_BORDER: Record<string, string> = {
 };
 
 async function fetchBadge(id: string, lang: string): Promise<Badge | null> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/badges/${id}?lang=${lang}`);
-    if (res.ok) return await res.json();
-  } catch {}
-  return null;
+  const res = await fetchEntityRes(`${API_INTERNAL}/api/badges/${id}?lang=${lang}`);
+  return res.ok ? await res.json() : null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -102,9 +100,6 @@ export default async function LangBadgePage({ params }: Props) {
   const langCode = lang as LangCode;
 
   const badge = await fetchBadge(id, lang);
-  // Unknown badge ID → 308 back to the badges hub (locale-prefixed)
-  // instead of serving a hard 404. See `redirectMissingEntity` for the
-  // SEO reasoning.
   if (!badge) redirectMissingEntity("badges", id, lang);
 
   const desc = stripTags(badge.description);
