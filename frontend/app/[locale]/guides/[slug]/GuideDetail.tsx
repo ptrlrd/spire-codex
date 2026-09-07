@@ -22,9 +22,9 @@ declare global {
 }
 
 const difficultyColors: Record<string, string> = {
-  beginner: "bg-emerald-900/40 text-emerald-400 border-emerald-700/40",
-  intermediate: "bg-amber-900/40 text-amber-400 border-amber-700/40",
-  advanced: "bg-red-900/40 text-red-400 border-red-700/40",
+  beginner: "bg-success/10 text-success border-success/40",
+  intermediate: "bg-warning/10 text-warning border-warning/40",
+  advanced: "bg-danger/10 text-danger border-danger/40",
 };
 
 const categoryLabels: Record<string, string> = {
@@ -191,7 +191,7 @@ export default function GuideDetail({ slug, initialGuide }: { slug: string; init
                 </a>
               )}
               {guide.bluesky && (
-                <a href={guide.bluesky.startsWith("http") ? guide.bluesky : `https://bsky.app/profile/${guide.bluesky}`} target="_blank" rel="noopener noreferrer" title="Bluesky" className="text-[var(--text-muted)] hover:text-[#0085ff] transition-colors">
+                <a href={guide.bluesky.startsWith("http") ? guide.bluesky : `https://bsky.app/profile/${guide.bluesky}`} target="_blank" rel="noopener noreferrer" title="Bluesky" className="text-[var(--text-muted)] hover:text-bluesky transition-colors">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479.785 2.627 3.6 3.476 6.178 3.126-4.476.742-8.463 3.08-4.724 8.02 4.139 4.476 6.932-1.347 7.922-4.07.99 2.723 2.503 8.198 7.478 4.07 3.738-4.94-.249-7.278-4.724-8.02 2.578.35 5.392-.5 6.178-3.126C19.622 9.418 20 4.458 20 3.768c0-.69-.139-1.86-.902-2.203-.659-.3-1.664-.62-4.3 1.24C12.046 4.747 9.087 8.686 8 10.8h4z" transform="translate(2 2) scale(0.833)"/></svg>
                 </a>
               )}
@@ -201,7 +201,7 @@ export default function GuideDetail({ slug, initialGuide }: { slug: string; init
                 </a>
               )}
               {guide.twitch && (
-                <a href={guide.twitch.startsWith("http") ? guide.twitch : `https://twitch.tv/${guide.twitch}`} target="_blank" rel="noopener noreferrer" title="Twitch" className="text-[var(--text-muted)] hover:text-[#9146FF] transition-colors">
+                <a href={guide.twitch.startsWith("http") ? guide.twitch : `https://twitch.tv/${guide.twitch}`} target="_blank" rel="noopener noreferrer" title="Twitch" className="text-[var(--text-muted)] hover:text-twitch transition-colors">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0 1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z" /></svg>
                 </a>
               )}

@@ -25,9 +25,9 @@ const API =
 const STATIC_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const TOP_TIER_BORDER: Record<string, string> = {
-  bronze: "border-[#a87a3d]",
-  silver: "border-[#9ca6b4]",
-  gold: "border-[var(--accent-gold)]",
+  bronze: "border-bronze",
+  silver: "border-silver",
+  gold: "border-accent",
 };
 
 type Props = { params: Promise<{ locale: string }> };

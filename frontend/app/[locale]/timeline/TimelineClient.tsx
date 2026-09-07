@@ -22,36 +22,36 @@ function storyKey(id: string): string {
 }
 
 const storyColors: Record<string, string> = {
-  ironclad: "border-red-600/40",
-  silent: "border-green-600/40",
-  defect: "border-blue-600/40",
-  necrobinder: "border-pink-600/40",
-  regent: "border-orange-600/40",
-  magnumopus: "border-purple-600/40",
-  talesfromthespire: "border-cyan-600/40",
-  reopening: "border-amber-600/40",
+  ironclad: "border-danger/40",
+  silent: "border-success/40",
+  defect: "border-info/40",
+  necrobinder: "border-special/40",
+  regent: "border-warning/40",
+  magnumopus: "border-special/40",
+  talesfromthespire: "border-info/40",
+  reopening: "border-warning/40",
 };
 
 const storyAccent: Record<string, string> = {
-  ironclad: "text-red-400",
-  silent: "text-emerald-400",
-  defect: "text-blue-400",
-  necrobinder: "text-pink-400",
-  regent: "text-orange-400",
-  magnumopus: "text-purple-400",
-  talesfromthespire: "text-cyan-400",
-  reopening: "text-amber-400",
+  ironclad: "text-danger",
+  silent: "text-success",
+  defect: "text-info",
+  necrobinder: "text-special",
+  regent: "text-warning",
+  magnumopus: "text-special",
+  talesfromthespire: "text-info",
+  reopening: "text-warning",
 };
 
 const storyBorderLeft: Record<string, string> = {
-  ironclad: "border-l-red-500/60",
-  silent: "border-l-emerald-500/60",
-  defect: "border-l-blue-500/60",
-  necrobinder: "border-l-pink-500/60",
-  regent: "border-l-orange-500/60",
-  magnumopus: "border-l-purple-500/60",
-  talesfromthespire: "border-l-cyan-500/60",
-  reopening: "border-l-amber-500/60",
+  ironclad: "border-l-danger/60",
+  silent: "border-l-success/60",
+  defect: "border-l-info/60",
+  necrobinder: "border-l-special/60",
+  regent: "border-l-warning/60",
+  magnumopus: "border-l-special/60",
+  talesfromthespire: "border-l-info/60",
+  reopening: "border-l-warning/60",
 };
 
 const storyOptions = [
@@ -80,9 +80,9 @@ function UnlockBadge({
 }) {
   const t = useT();
   const colors = {
-    cards: "bg-blue-950/40 text-blue-300 border-blue-900/20",
-    relics: "bg-amber-950/40 text-amber-300 border-amber-900/20",
-    potions: "bg-emerald-950/40 text-emerald-300 border-emerald-900/20",
+    cards: "bg-info/10 text-info border-info/30",
+    relics: "bg-warning/10 text-warning border-warning/30",
+    potions: "bg-success/10 text-success border-success/30",
   };
   return (
     <div className="flex flex-wrap gap-1">
@@ -279,7 +279,7 @@ export default function TimelineClient({
             const sk = storyKey(storyId);
             const borderColor = storyColors[sk] || "border-[var(--border-subtle)]";
             const accent = storyAccent[sk] || "text-[var(--accent-gold)]";
-            const leftBorder = storyBorderLeft[sk] || "border-l-gray-500/60";
+            const leftBorder = storyBorderLeft[sk] || "border-l-line-strong/60";
 
             return (
               <div key={storyId}>
@@ -394,7 +394,7 @@ export default function TimelineClient({
                                 {epoch.expands_timeline.map((id) => (
                                   <span
                                     key={id}
-                                    className="text-[10px] px-1.5 py-0.5 rounded bg-purple-950/40 text-purple-300 border border-purple-900/20"
+                                    className="text-[10px] px-1.5 py-0.5 rounded bg-special/10 text-special border border-special/30"
                                   >
                                     {epochTitleMap[id] || id.replace(/_EPOCH$/, "").replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
                                   </span>

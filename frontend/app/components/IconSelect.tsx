@@ -106,7 +106,7 @@ export default function IconSelect({ label, value, options, onChange }: IconSele
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute left-0 top-full mt-1 min-w-full w-max rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50 py-1"
+          className="absolute left-0 top-full mt-1 min-w-full w-max rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50 py-1"
         >
           {flat.map((opt, i) => {
             const header =

@@ -27,23 +27,23 @@ const SPINE_BY_TYPE: Record<string, string> = {
 };
 
 const typeBadge: Record<string, string> = {
-  Normal: "bg-gray-800 text-gray-300",
-  Elite: "bg-amber-900/50 text-amber-400",
-  Boss: "bg-red-900/50 text-red-400",
+  Normal: "bg-surface text-fg-secondary",
+  Elite: "bg-warning/10 text-warning",
+  Boss: "bg-danger/10 text-danger",
 };
 
 const intentColors: Record<string, string> = {
-  Attack: "text-red-400",
-  Defend: "text-blue-400",
-  Buff: "text-green-400",
-  Debuff: "text-purple-400",
-  Status: "text-yellow-400",
-  Summon: "text-cyan-400",
-  Heal: "text-emerald-400",
-  Escape: "text-gray-400",
-  Sleep: "text-indigo-400",
-  Stun: "text-orange-400",
-  Special: "text-pink-400",
+  Attack: "text-danger",
+  Defend: "text-info",
+  Buff: "text-success",
+  Debuff: "text-special",
+  Status: "text-warning",
+  Summon: "text-info",
+  Heal: "text-success",
+  Escape: "text-fg-muted",
+  Sleep: "text-info",
+  Stun: "text-warning",
+  Special: "text-special",
   Unknown: "text-[var(--text-muted)]",
 };
 
@@ -83,8 +83,8 @@ function PowerPill({
       href={`${bp}/powers/${p.power_id.toLowerCase()}`}
       className={`relative text-xs px-2 py-0.5 rounded-full border transition-colors ${
         p.target === "player"
-          ? "border-red-800/50 bg-red-950/30 text-red-300 hover:bg-red-900/40"
-          : "border-green-800/50 bg-green-950/30 text-green-300 hover:bg-green-900/40"
+          ? "border-danger/30 bg-danger/10 text-danger hover:bg-danger/10"
+          : "border-success/30 bg-success/10 text-success hover:bg-success/10"
       }`}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
@@ -105,7 +105,7 @@ function PowerPill({
               {power.name}
             </span>
             <span className={`text-[10px] px-1.5 py-0.5 rounded-full ml-auto ${
-              power.type === "Debuff" ? "bg-red-900/50 text-red-300" : "bg-green-900/50 text-green-300"
+              power.type === "Debuff" ? "bg-danger/10 text-danger" : "bg-success/10 text-success"
             }`}>
               {power.type}
             </span>
@@ -243,7 +243,7 @@ function MoveCard({
         {move.damage && (
           <div className="mrow">
             <span className="mk">{t("Damage")}</span>
-            <span className="mval text-red-400">
+            <span className="mval text-danger">
               {move.damage.normal}
               {move.damage.hit_count && move.damage.hit_count > 1
                 ? ` × ${move.damage.hit_count} = ${move.damage.normal * move.damage.hit_count}`
@@ -264,7 +264,7 @@ function MoveCard({
         {move.block != null && (
           <div className="mrow">
             <span className="mk">{t("Block")}</span>
-            <span className="mval text-blue-400">{move.block}</span>
+            <span className="mval text-info">{move.block}</span>
           </div>
         )}
 
@@ -272,7 +272,7 @@ function MoveCard({
         {move.heal != null && (
           <div className="mrow">
             <span className="mk">{t("Heal")}</span>
-            <span className="mval text-emerald-400">{move.heal}</span>
+            <span className="mval text-success">{move.heal}</span>
           </div>
         )}
 
@@ -618,7 +618,7 @@ export default function MonsterDetail({
                           bp={bp}
                         />
                         {p.amount_ascension != null && p.amount_ascension !== p.amount && (
-                          <span className="text-xs text-orange-400">(A: {p.amount_ascension})</span>
+                          <span className="text-xs text-warning">(A: {p.amount_ascension})</span>
                         )}
                       </span>
                     ))}
@@ -772,7 +772,7 @@ export default function MonsterDetail({
                         {enc.room_type}
                       </span>
                       {enc.is_weak && (
-                        <span className="badge bg-green-900/30 text-green-400">{t("Weak")}</span>
+                        <span className="badge bg-success/10 text-success">{t("Weak")}</span>
                       )}
                     </div>
                   </Link>

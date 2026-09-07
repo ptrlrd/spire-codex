@@ -51,9 +51,9 @@ export function LiveEventPanel({
   const id = cleanId(ev.id);
   const titleText = ev.title || displayName(`EVENT.${id}`);
   return (
-    <div className="rounded-lg border border-purple-900/50 bg-purple-950/20 p-4">
+    <div className="rounded-lg border border-special/30 bg-special/10 p-4">
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-purple-300">{t("Event")}</span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-special">{t("Event")}</span>
         {safeId(id) ? (
           <Link
             href={`${bp}/events/${id.toLowerCase()}`}
@@ -231,7 +231,7 @@ function ShopSection({
                 {upgraded ? "+" : ""}
               </span>
               {it.on_sale && !sold && (
-                <span className="text-[9px] font-bold uppercase rounded bg-emerald-600 px-1 text-white shrink-0">
+                <span className="text-[9px] font-bold uppercase rounded bg-success-fill px-1 text-on-fill shrink-0">
                   {t("sale")}
                 </span>
               )}
@@ -321,9 +321,9 @@ export function LiveLootPanel({
     return null;
   }
   return (
-    <div className="rounded-lg border border-amber-900/50 bg-amber-950/20 p-4">
+    <div className="rounded-lg border border-warning/30 bg-warning/10 p-4">
       <div className="mb-2 flex items-center gap-2">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-amber-300">
+        <span className="text-[10px] font-bold uppercase tracking-wider text-warning">
           {t("Rewards")}
         </span>
         {hasGold && (
@@ -370,7 +370,7 @@ export function LiveLootPanel({
         <div className="space-y-2">
           {packs.map((pack, pi) => (
             <div key={`pack-${pi}`}>
-              <div className="mb-1 text-[10px] font-bold uppercase tracking-wide text-amber-300/80">
+              <div className="mb-1 text-[10px] font-bold uppercase tracking-wide text-warning/80">
                 {t("Pack {n}", { n: pi + 1 })}
               </div>
               <div className="flex flex-wrap items-start gap-1.5">

@@ -199,16 +199,16 @@ export default function SettingsClient() {
               <span className="absolute right-3 top-2.5 text-xs text-[var(--text-tertiary)]">...</span>
             )}
             {!checkingUsername && usernameAvailable === false && usernameChanged && (
-              <span className="absolute right-3 top-2.5 text-xs text-red-400">{t("Taken")}</span>
+              <span className="absolute right-3 top-2.5 text-xs text-danger">{t("Taken")}</span>
             )}
             {!checkingUsername && usernameAvailable === true && usernameChanged && (
-              <span className="absolute right-3 top-2.5 text-xs text-green-400">{t("Available")}</span>
+              <span className="absolute right-3 top-2.5 text-xs text-success">{t("Available")}</span>
             )}
           </div>
           <button
             onClick={saveUsername}
             disabled={!usernameChanged || saving === "username" || usernameAvailable === false}
-            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-white hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-on-fill hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
           >
             {saving === "username" ? t("Saving...") : t("Save")}
           </button>
@@ -232,13 +232,13 @@ export default function SettingsClient() {
           <button
             onClick={saveEmail}
             disabled={!emailChanged || saving === "email"}
-            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-white hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
+            className="px-4 py-2 text-sm font-medium rounded-lg bg-[var(--border-accent)] text-on-fill hover:opacity-90 disabled:opacity-30 transition-opacity shrink-0"
           >
             {saving === "email" ? t("Saving...") : t("Save")}
           </button>
         </div>
         {user.needs_email && (
-          <p className="text-xs text-yellow-400">
+          <p className="text-xs text-warning">
             {t("Add an email to unlock API keys and future features.")}
           </p>
         )}
@@ -259,7 +259,7 @@ export default function SettingsClient() {
                 <button
                   onClick={() => disconnect("steam")}
                   disabled={disconnecting === "steam"}
-                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                  className="text-xs text-[var(--text-secondary)] hover:text-danger disabled:opacity-40"
                 >
                   {disconnecting === "steam" ? "..." : t("Disconnect")}
                 </button>
@@ -288,7 +288,7 @@ export default function SettingsClient() {
                 <button
                   onClick={() => disconnect("discord")}
                   disabled={disconnecting === "discord"}
-                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                  className="text-xs text-[var(--text-secondary)] hover:text-danger disabled:opacity-40"
                 >
                   {disconnecting === "discord" ? "..." : t("Disconnect")}
                 </button>
@@ -309,20 +309,20 @@ export default function SettingsClient() {
           {user.twitch_id ? (
             <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
               <div className="flex items-center gap-2 min-w-0">
-                <TwitchIcon className="w-4 h-4 text-[#9146FF]" />
+                <TwitchIcon className="w-4 h-4 text-twitch" />
                 <span className="text-sm text-[var(--text-primary)] shrink-0">Twitch</span>
                 {user.twitch_login && (
                   <a
                     href={`https://twitch.tv/${user.twitch_login}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-[var(--text-muted)] truncate hover:text-[#9146FF]"
+                    className="text-xs text-[var(--text-muted)] truncate hover:text-twitch"
                   >
                     @{user.twitch_login}
                   </a>
                 )}
                 {user.is_partner && (
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#9146FF]/15 text-[#9146FF] border border-[#9146FF]/30 shrink-0">
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-twitch/15 text-twitch border border-twitch/30 shrink-0">
                     {t("Partner")}
                   </span>
                 )}
@@ -332,7 +332,7 @@ export default function SettingsClient() {
                 <button
                   onClick={() => disconnect("twitch")}
                   disabled={disconnecting === "twitch"}
-                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                  className="text-xs text-[var(--text-secondary)] hover:text-danger disabled:opacity-40"
                 >
                   {disconnecting === "twitch" ? "..." : t("Disconnect")}
                 </button>
@@ -353,7 +353,7 @@ export default function SettingsClient() {
           {user.patreon_id ? (
             <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
               <div className="flex items-center gap-2 min-w-0">
-                <svg className="w-4 h-4 text-[#FF424D]" viewBox="0 0 24 24" fill="currentColor" aria-hidden><circle cx="14.5" cy="9.5" r="7.5" /><rect x="2" y="2" width="4" height="20" /></svg>
+                <svg className="w-4 h-4 text-patreon" viewBox="0 0 24 24" fill="currentColor" aria-hidden><circle cx="14.5" cy="9.5" r="7.5" /><rect x="2" y="2" width="4" height="20" /></svg>
                 <span className="text-sm text-[var(--text-primary)] shrink-0">Patreon</span>
                 {user.is_paid && (
                   <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 shrink-0">
@@ -366,7 +366,7 @@ export default function SettingsClient() {
                 <button
                   onClick={() => disconnect("patreon")}
                   disabled={disconnecting === "patreon"}
-                  className="text-xs text-[var(--text-secondary)] hover:text-red-400 disabled:opacity-40"
+                  className="text-xs text-[var(--text-secondary)] hover:text-danger disabled:opacity-40"
                 >
                   {disconnecting === "patreon" ? "..." : t("Disconnect")}
                 </button>

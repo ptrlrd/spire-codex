@@ -121,55 +121,55 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       href: "/cards",
       key: "cards",
       count: stats?.cards ?? "–",
-      color: "#d53b27",  // ironclad red
+      color: "var(--color-ironclad)",
     },
     {
       href: "/characters",
       key: "characters",
       count: stats?.characters ?? "–",
-      color: "#e8b830",  // gold
+      color: "var(--accent-gold)",
     },
     {
       href: "/relics",
       key: "relics",
       count: stats?.relics ?? "–",
-      color: "#bf5a85",  // necrobinder rose
+      color: "var(--color-necrobinder)",
     },
     {
       href: "/monsters",
       key: "monsters",
       count: stats?.monsters ?? "–",
-      color: "#23935b",  // silent green
+      color: "var(--color-silent)",
     },
     {
       href: "/potions",
       key: "potions",
       count: stats?.potions ?? "–",
-      color: "#3873a9",  // defect blue
+      color: "var(--color-defect)",
     },
     {
       href: "/enchantments",
       key: "enchantments",
       count: stats?.enchantments ?? "–",
-      color: "#45cfd8",  // teal
+      color: "var(--accent-teal)",
     },
     {
       href: "/encounters",
       key: "encounters",
       count: stats?.encounters ?? "–",
-      color: "#ac6345",  // spire orange
+      color: "var(--color-spire)",
     },
     {
       href: "/events",
       key: "events",
       count: stats?.events ?? "–",
-      color: "#6b5b8a",  // atmosphere purple
+      color: "var(--color-ancient)",
     },
     {
       href: "/powers",
       key: "powers",
       count: stats?.powers ?? "–",
-      color: "#45cfd8",  // teal
+      color: "var(--accent-teal)",
     },
     {
       href: "/timeline",
@@ -181,7 +181,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       href: "/images",
       key: "images",
       count: stats?.images ?? "–",
-      color: "#f07c1e",  // regent orange
+      color: "var(--color-regent)",
     },
     {
       href: "/reference",
@@ -202,7 +202,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
       href: "/badges",
       key: "badges",
       count: stats?.badges ?? "–",
-      color: "#c5894a",  // bronze
+      color: "var(--color-merchant)",
     },
   ];
 
@@ -257,7 +257,7 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
               aria-label={`${i + 1} / ${gsCount}`}
               aria-current={i === gsIndex}
               className={`h-1.5 rounded-full transition-all ${
-                i === gsIndex ? "w-4 bg-white/80" : "w-1.5 bg-white/30 hover:bg-white/50"
+                i === gsIndex ? "w-4 bg-on-fill/80" : "w-1.5 bg-on-fill/30 hover:bg-on-fill/50"
               }`}
             />
           ))}

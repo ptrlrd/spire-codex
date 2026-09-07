@@ -28,17 +28,17 @@ export function SummaryBadge({
   return (
     <div className="flex gap-2 text-xs">
       {added > 0 && (
-        <span className="px-2 py-0.5 rounded bg-emerald-950/50 text-emerald-400 border border-emerald-900/30">
+        <span className="px-2 py-0.5 rounded bg-success/10 text-success border border-success/30">
           +{added} added
         </span>
       )}
       {removed > 0 && (
-        <span className="px-2 py-0.5 rounded bg-red-950/50 text-red-400 border border-red-900/30">
+        <span className="px-2 py-0.5 rounded bg-danger/10 text-danger border border-danger/30">
           -{removed} removed
         </span>
       )}
       {changed > 0 && (
-        <span className="px-2 py-0.5 rounded bg-amber-950/50 text-amber-400 border border-amber-900/30">
+        <span className="px-2 py-0.5 rounded bg-warning/10 text-warning border border-warning/30">
           ~{changed} changed
         </span>
       )}
@@ -93,13 +93,13 @@ export default function DiffSection({
         <div className="border-t border-[var(--border-subtle)] px-4 py-3 space-y-3">
           {added.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-success uppercase tracking-wider mb-1.5">
                 Added ({added.length})
               </h4>
               <ul className="space-y-1">
                 {added.map((e) => (
                   <li key={e.id} className="text-sm">
-                    <EntryLink entry={e} className="font-medium text-emerald-300" />
+                    <EntryLink entry={e} className="font-medium text-success" />
                   </li>
                 ))}
               </ul>
@@ -108,13 +108,13 @@ export default function DiffSection({
 
           {removed.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-danger uppercase tracking-wider mb-1.5">
                 Removed ({removed.length})
               </h4>
               <ul className="space-y-1">
                 {removed.map((e) => (
                   <li key={e.id} className="text-sm">
-                    <EntryLink entry={e} className="text-red-300 line-through" />
+                    <EntryLink entry={e} className="text-danger line-through" />
                   </li>
                 ))}
               </ul>
@@ -123,7 +123,7 @@ export default function DiffSection({
 
           {changed.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-warning uppercase tracking-wider mb-1.5">
                 Changed ({changed.length})
               </h4>
               <ul className="space-y-1.5">

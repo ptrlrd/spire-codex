@@ -78,7 +78,7 @@ export default function FeedbackClient() {
               {!i.resolved && (
                 <button
                   onClick={() => resolve(i.id)}
-                  className="px-2.5 py-1 rounded text-xs font-semibold bg-emerald-950/60 text-emerald-300 border border-emerald-900/40 hover:bg-emerald-900/60 shrink-0"
+                  className="px-2.5 py-1 rounded text-xs font-semibold bg-success/10 text-success border border-success/30 hover:bg-success/10 shrink-0"
                 >
                   Resolve
                 </button>

@@ -138,7 +138,7 @@ function CountedChips({
           <button
             type="button"
             onClick={() => onRemove(p.id)}
-            className="text-[var(--text-muted)] hover:text-red-400"
+            className="text-[var(--text-muted)] hover:text-danger"
             aria-label={t("Remove")}
           >
             ✕
@@ -362,7 +362,7 @@ export default function SeedLabClient() {
                   key={p.id}
                   type="button"
                   onClick={() => setRelicPicks((ps) => ps.filter((x) => x.id !== p.id))}
-                  className="text-xs px-2 py-0.5 rounded-md border border-sky-900/50 bg-[var(--bg-primary)] text-sky-300 hover:border-red-500/50"
+                  className="text-xs px-2 py-0.5 rounded-md border border-info/30 bg-[var(--bg-primary)] text-info hover:border-danger/50"
                 >
                   {p.name} ✕
                 </button>
@@ -386,7 +386,7 @@ export default function SeedLabClient() {
                   key={p.id}
                   type="button"
                   onClick={() => setEventPicks((ps) => ps.filter((x) => x.id !== p.id))}
-                  className="text-xs px-2 py-0.5 rounded-md border border-purple-900/50 bg-[var(--bg-primary)] text-purple-300 hover:border-red-500/50"
+                  className="text-xs px-2 py-0.5 rounded-md border border-special/30 bg-[var(--bg-primary)] text-special hover:border-danger/50"
                 >
                   {p.name} ✕
                 </button>
@@ -426,7 +426,7 @@ export default function SeedLabClient() {
               <button
                 type="button"
                 onClick={() => setAncientPick(null)}
-                className="text-xs px-2 py-0.5 rounded-md border border-[var(--accent-gold)]/40 bg-[var(--bg-primary)] text-[var(--accent-gold)] hover:border-red-500/50"
+                className="text-xs px-2 py-0.5 rounded-md border border-[var(--accent-gold)]/40 bg-[var(--bg-primary)] text-[var(--accent-gold)] hover:border-danger/50"
               >
                 {ancientPick.name} ✕
               </button>
@@ -439,11 +439,11 @@ export default function SeedLabClient() {
         type="button"
         disabled={!hasPredicates || loading}
         onClick={search}
-        className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-black hover:opacity-90 transition-opacity disabled:opacity-40 mb-6"
+        className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-on-accent hover:opacity-90 transition-opacity disabled:opacity-40 mb-6"
       >
         {loading ? (
           <span className="inline-flex items-center gap-2">
-            <span className="w-3.5 h-3.5 rounded-full border-2 border-black/30 border-t-black animate-spin" />
+            <span className="w-3.5 h-3.5 rounded-full border-2 border-scrim/30 border-t-scrim animate-spin" />
             {t("Searching…")}
           </span>
         ) : (
@@ -463,8 +463,8 @@ export default function SeedLabClient() {
       )}
 
       {error && !loading && (
-        <div className={`${card} border-red-500/40`}>
-          <p className="text-sm text-red-400">{error}</p>
+        <div className={`${card} border-danger/40`}>
+          <p className="text-sm text-danger">{error}</p>
         </div>
       )}
 
@@ -475,7 +475,7 @@ export default function SeedLabClient() {
             {result.sampled ? ` ${t("(sampled — add a card kept or relic to search everything)")}` : ""}.
           </div>
           {(result.unknown ?? []).length > 0 ? (
-            <p className="text-sm text-red-400">
+            <p className="text-sm text-danger">
               {t("Unknown ids: {ids} — these don't exist in the game data, check the spelling.", { ids: result.unknown!.join(", ") })}
             </p>
           ) : (result.results ?? []).length === 0 ? (
@@ -511,7 +511,7 @@ export default function SeedLabClient() {
                   </span>
                   <span className="flex flex-wrap gap-1 text-[11px]">
                     {r.matched.map((t) => (
-                      <span key={t} className="px-1.5 py-0.5 rounded bg-green-500/10 text-green-400">
+                      <span key={t} className="px-1.5 py-0.5 rounded bg-success/10 text-success">
                         ✓ {labelFor(t)}
                       </span>
                     ))}

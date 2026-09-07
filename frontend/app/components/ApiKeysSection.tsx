@@ -144,7 +144,7 @@ export default function ApiKeysSection() {
         </div>
       )}
 
-      {error && <p className="text-sm text-red-400 mb-3">{error}</p>}
+      {error && <p className="text-sm text-danger mb-3">{error}</p>}
 
       {/* Existing keys */}
       {keys === null ? (
@@ -180,7 +180,7 @@ export default function ApiKeysSection() {
                 type="button"
                 disabled={busy}
                 onClick={() => revokeKey(k.id)}
-                className="shrink-0 text-xs px-2.5 py-1 rounded-lg border border-red-500/40 bg-red-500/10 text-red-400 disabled:opacity-50"
+                className="shrink-0 text-xs px-2.5 py-1 rounded-lg border border-danger/40 bg-danger/10 text-danger disabled:opacity-50"
               >
                 {t("Revoke")}
               </button>

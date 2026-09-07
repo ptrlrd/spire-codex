@@ -271,7 +271,7 @@ export default function RunsClient() {
         <button
           onClick={() => cheatSweep(false)}
           disabled={busy}
-          className="px-4 py-1.5 rounded-lg border border-red-500/40 text-sm font-semibold text-red-400 hover:bg-red-500/10 disabled:opacity-50"
+          className="px-4 py-1.5 rounded-lg border border-danger/40 text-sm font-semibold text-danger hover:bg-danger/10 disabled:opacity-50"
           title="Hide everything the sweep flags"
         >
           Sweep & hide
@@ -309,19 +309,19 @@ export default function RunsClient() {
                       </Link>
                     ) : "-"}
                     {r.hidden_reason && (
-                      <span className="block text-[10px] text-red-400/80 font-mono" title="auto-hide reason">
+                      <span className="block text-[10px] text-danger/80 font-mono" title="auto-hide reason">
                         {r.hidden_reason}
                       </span>
                     )}
                     {r.hidden && (
-                      <span className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-rose-950/50 text-rose-300 border-rose-900/50">
+                      <span className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-danger/10 text-danger border-danger/30">
                         hidden
                       </span>
                     )}
                     {(r.reasons ?? []).map((reason) => (
                       <span
                         key={reason}
-                        className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-amber-950/50 text-amber-300 border-amber-900/50"
+                        className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-warning/10 text-warning border-warning/30"
                       >
                         {reason}
                         {reason.startsWith("deck") && r.deck_size ? ` (${r.deck_size})` : ""}
@@ -350,7 +350,7 @@ export default function RunsClient() {
                       {r.run_hash && (
                         <button
                           onClick={() => remove(r.run_hash!)}
-                          className="px-2.5 py-1 rounded text-xs font-semibold bg-rose-950/60 text-rose-300 border border-rose-900/40 hover:bg-rose-900/60"
+                          className="px-2.5 py-1 rounded text-xs font-semibold bg-danger/10 text-danger border border-danger/30 hover:bg-danger/10"
                         >
                           Delete
                         </button>

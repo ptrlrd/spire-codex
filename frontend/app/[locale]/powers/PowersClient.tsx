@@ -15,9 +15,9 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const typeColors: Record<string, string> = {
-  Buff: "border-emerald-600/40 text-emerald-400",
-  Debuff: "border-red-600/40 text-red-400",
-  None: "border-gray-500/40 text-gray-400",
+  Buff: "border-success/40 text-success",
+  Debuff: "border-danger/40 text-danger",
+  None: "border-line-strong/40 text-fg-muted",
 };
 
 const typeOptions = [
@@ -103,7 +103,7 @@ export default function PowersClient({ initialPowers }: { initialPowers: Power[]
         {merged.map((power) => {
           const style =
             typeColors[power.type] ||
-            "border-[var(--border-subtle)] text-gray-400";
+            "border-[var(--border-subtle)] text-fg-muted";
           return (
             <Link
               prefetch={false}

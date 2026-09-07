@@ -84,7 +84,7 @@ export default function SiteSwitcher() {
   // "beta v0.107.0" doesn't widen the navbar and push the mobile burger
   // past the viewport edge.
   const buttonClasses = onBeta
-    ? "h-9 px-3 min-w-[7.5rem] rounded-lg text-xs font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 hover:bg-emerald-500/25"
+    ? "h-9 px-3 min-w-[7.5rem] rounded-lg text-xs font-semibold bg-success/15 text-success border border-success/30 hover:bg-success/25"
     : "h-9 px-3 rounded-lg text-xs font-semibold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 hover:bg-[var(--accent-gold)]/25";
 
   return (
@@ -116,7 +116,7 @@ export default function SiteSwitcher() {
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
+          className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50"
         >
           <div className="py-1">
             {onBeta ? (
@@ -131,7 +131,7 @@ export default function SiteSwitcher() {
               <Link
                 href={betaHref}
                 onClick={() => setOpen(false)}
-                className="flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium text-emerald-400 transition-colors hover:bg-[var(--bg-card)] hover:text-emerald-300"
+                className="flex items-center justify-between gap-3 px-4 py-2 text-sm font-medium text-success transition-colors hover:bg-[var(--bg-card)] hover:text-success"
               >
                 <span>{betaLabel}</span>
                 <span className="text-xs">{t("what's new")}</span>

@@ -136,27 +136,27 @@ const NAV_GROUPS: NavGroup[] = [
 // Color + live-count metadata so the Database mega reads like a compendium
 // index (color chip + count) instead of a plain link list, matching the redesign.
 const DB_META: Record<string, { color: string; count?: string }> = {
-  "/cards": { color: "#e8b830", count: "cards" },
-  "/relics": { color: "#f07c1e", count: "relics" },
-  "/potions": { color: "#3873a9", count: "potions" },
-  "/enchantments": { color: "#6b5b8a", count: "enchantments" },
-  "/powers": { color: "#bf5a85", count: "powers" },
-  "/keywords": { color: "#23935b", count: "keywords" },
-  "/characters": { color: "#d53b27", count: "characters" },
-  "/monsters": { color: "#d53b27", count: "monsters" },
-  "/encounters": { color: "#3873a9", count: "encounters" },
-  "/events": { color: "#23935b", count: "events" },
-  "/ancients": { color: "#6b5b8a" },
-  "/merchant": { color: "#c5894a" },
-  "/modifiers": { color: "#6b5b8a", count: "modifiers" },
+  "/cards": { color: "var(--accent-gold)", count: "cards" },
+  "/relics": { color: "var(--color-regent)", count: "relics" },
+  "/potions": { color: "var(--color-defect)", count: "potions" },
+  "/enchantments": { color: "var(--color-ancient)", count: "enchantments" },
+  "/powers": { color: "var(--color-necrobinder)", count: "powers" },
+  "/keywords": { color: "var(--color-silent)", count: "keywords" },
+  "/characters": { color: "var(--color-ironclad)", count: "characters" },
+  "/monsters": { color: "var(--color-ironclad)", count: "monsters" },
+  "/encounters": { color: "var(--color-defect)", count: "encounters" },
+  "/events": { color: "var(--color-silent)", count: "events" },
+  "/ancients": { color: "var(--color-ancient)" },
+  "/merchant": { color: "var(--color-merchant)" },
+  "/modifiers": { color: "var(--color-ancient)", count: "modifiers" },
   "/mechanics": { color: "#596068" },
-  "/unlocks": { color: "#c5894a" },
+  "/unlocks": { color: "var(--color-merchant)" },
   "/timeline": { color: "#8a6b3a", count: "epochs" },
-  "/images": { color: "#f07c1e", count: "images" },
+  "/images": { color: "var(--color-regent)", count: "images" },
   "/reference": { color: "#596068" },
-  "/badges": { color: "#c5894a", count: "badges" },
-  "/compare": { color: "#3873a9" },
-  "/guides": { color: "#23935b" },
+  "/badges": { color: "var(--color-merchant)", count: "badges" },
+  "/compare": { color: "var(--color-defect)" },
+  "/guides": { color: "var(--color-silent)" },
 };
 
 // Each nav group opens a multi-column mega panel. Columns reference links by
@@ -295,7 +295,7 @@ export default function Navbar() {
           </svg>
         </button>
         <div className={`absolute ${isLast ? "right-0" : "left-0"} top-full pt-2 hidden group-hover:block group-focus-within:block`}>
-          <div role="menu" className="flex gap-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-2xl shadow-black/40 p-4">
+          <div role="menu" className="flex gap-6 rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-secondary)] shadow-2xl shadow-scrim/40 p-4">
             {cols.map((col, ci) => (
               <div key={ci} className="min-w-[9.5rem]">
                 {col.title && (
@@ -448,7 +448,7 @@ export default function Navbar() {
               {/* Signed-out: login options */}
               {!user && !userMenuOpen && (
                 <div
-                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 hidden"
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 p-1.5 hidden"
                   id="login-options"
                 />
               )}
@@ -465,7 +465,7 @@ export default function Navbar() {
               {userMenuOpen && !user && (
                 <div
                   ref={userMenuRef}
-                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                  className="absolute right-0 top-full mt-2 w-44 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 p-1.5 z-50"
                 >
                   <p className="px-2.5 py-1.5 text-xs text-[var(--text-tertiary)] font-medium">{t("Sign in with")}</p>
                   <button
@@ -482,7 +482,7 @@ export default function Navbar() {
               {userMenuOpen && user && (
                 <div
                   ref={userMenuRef}
-                  className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 p-1.5 z-50"
+                  className="absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 p-1.5 z-50"
                 >
                   <div className="px-2.5 py-1.5 border-b border-[var(--border-subtle)] mb-1">
                     <p className="text-sm font-medium text-[var(--text-primary)] truncate">{user.username || t("User")}</p>
@@ -519,7 +519,7 @@ export default function Navbar() {
                   )}
                   <button
                     onClick={() => { setUserMenuOpen(false); logout(); }}
-                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-red-400 hover:text-red-300 transition-colors"
+                    className="w-full flex items-center gap-2 px-2.5 py-2 text-sm rounded-md hover:bg-[var(--bg-card)] text-danger hover:text-danger transition-colors"
                   >
                     {t("Sign Out")}
                   </button>

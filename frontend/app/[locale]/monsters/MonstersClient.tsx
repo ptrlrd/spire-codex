@@ -15,15 +15,15 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const typeColors: Record<string, string> = {
-  Normal: "border-gray-600/40",
-  Elite: "border-amber-600/50",
-  Boss: "border-red-600/50",
+  Normal: "border-line-strong/40",
+  Elite: "border-warning/50",
+  Boss: "border-danger/50",
 };
 
 const typeBadge: Record<string, string> = {
-  Normal: "bg-gray-800 text-gray-300",
-  Elite: "bg-amber-900/50 text-amber-400",
-  Boss: "bg-red-900/50 text-red-400",
+  Normal: "bg-surface text-fg-secondary",
+  Elite: "bg-warning/10 text-warning",
+  Boss: "bg-danger/10 text-danger",
 };
 
 const typeOptions = [
@@ -178,7 +178,7 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center gap-1.5">
                   <span className="text-xs text-[var(--text-muted)]">{t("HP")}</span>
-                  <span className="text-sm font-medium text-red-400">
+                  <span className="text-sm font-medium text-danger">
                     {monster.min_hp}
                     {monster.max_hp && monster.max_hp !== monster.min_hp
                       ? `–${monster.max_hp}`
@@ -190,7 +190,7 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
                     <span className="text-xs text-[var(--text-muted)]">
                       {t("A+ HP")}
                     </span>
-                    <span className="text-sm font-medium text-orange-400">
+                    <span className="text-sm font-medium text-warning">
                       {monster.min_hp_ascension}
                       {monster.max_hp_ascension &&
                       monster.max_hp_ascension !== monster.min_hp_ascension
@@ -233,7 +233,7 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
                       ([name, val]) => (
                         <span
                           key={name}
-                          className="text-xs px-2 py-0.5 rounded bg-red-950/40 text-red-300 border border-red-900/30"
+                          className="text-xs px-2 py-0.5 rounded bg-danger/10 text-danger border border-danger/30"
                         >
                           {name}: {val.normal}
                           {val.ascension ? ` (A: ${val.ascension})` : ""}

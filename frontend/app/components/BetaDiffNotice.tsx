@@ -86,7 +86,7 @@ export default function BetaDiffNotice({
       body = (
         <>
           {t("This is different in the current beta: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
-          <Link href={counterpartPath} className="text-emerald-300 hover:underline">
+          <Link href={counterpartPath} className="text-success hover:underline">
             {t("View the beta version")} →
           </Link>
         </>
@@ -104,7 +104,7 @@ export default function BetaDiffNotice({
       body = (
         <>
           {t("Differs from main: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
-          <Link href={counterpartPath} className="text-emerald-300 hover:underline">
+          <Link href={counterpartPath} className="text-success hover:underline">
             {t("View the main version")} →
           </Link>
         </>
@@ -113,7 +113,7 @@ export default function BetaDiffNotice({
       body = (
         <>
           {t("Viewing the beta version of this {noun}.", { noun: t(noun) })}{" "}
-          <Link href={counterpartPath} className="text-emerald-300 hover:underline">
+          <Link href={counterpartPath} className="text-success hover:underline">
             {t("Switch to main")} →
           </Link>
         </>
@@ -122,8 +122,8 @@ export default function BetaDiffNotice({
   }
 
   return (
-    <div className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-3 py-2 my-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs text-[var(--text-secondary)]">
-      <span className="font-semibold text-emerald-300">
+    <div className="rounded-md border border-success/40 bg-success/10 px-3 py-2 my-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs text-[var(--text-secondary)]">
+      <span className="font-semibold text-success">
         {t("Beta")}{diff.beta_version ? ` ${diff.beta_version}` : ""}
       </span>
       {body}

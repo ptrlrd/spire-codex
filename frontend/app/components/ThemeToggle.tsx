@@ -48,7 +48,7 @@ export default function ThemeToggle({ variant = "icon" }: { variant?: "icon" | "
         type="button"
         onClick={() => apply(mode)}
         className={`flex items-center gap-1.5 rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-          theme === mode ? "bg-[var(--accent-gold)] text-[#1a1205]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+          theme === mode ? "bg-[var(--accent-gold)] text-on-accent" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
         }`}
       >
         {icon}

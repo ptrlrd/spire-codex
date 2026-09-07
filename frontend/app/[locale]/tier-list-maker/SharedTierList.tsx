@@ -44,7 +44,7 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">
         <p>{error || t("Not found")}</p>
-        <Link href="/tier-list-maker" className="mt-3 inline-block text-sky-400 hover:underline">
+        <Link href="/tier-list-maker" className="mt-3 inline-block text-info hover:underline">
           {t("Make your own tier list")}
         </Link>
       </div>
@@ -76,7 +76,7 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
         )}
         <Link
           href="/tier-list-maker"
-          className="inline-block rounded bg-sky-600 px-4 py-2 font-semibold text-white hover:bg-sky-500"
+          className="inline-block rounded bg-info-fill px-4 py-2 font-semibold text-on-fill hover:bg-info-fill"
         >
           {t("Make your own")}
         </Link>

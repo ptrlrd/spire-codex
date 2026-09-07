@@ -358,7 +358,7 @@ export default async function DevelopersPage({ params }: Props) {
               <div className="space-y-1.5 text-sm font-mono">
                 {group.endpoints.map((ep) => (
                   <div key={ep.path} className="flex items-start gap-3">
-                    <span className={`${ep.method === "POST" ? "text-cyan-400" : "text-emerald-400"} w-10 flex-shrink-0`}>{ep.method}</span>
+                    <span className={`${ep.method === "POST" ? "text-info" : "text-success"} w-10 flex-shrink-0`}>{ep.method}</span>
                     <span className="text-[var(--text-primary)]">{ep.path}</span>
                     <span className="text-[var(--text-muted)] font-sans text-xs ml-auto text-right">{ep.desc}</span>
                   </div>

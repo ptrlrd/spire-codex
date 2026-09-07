@@ -138,7 +138,7 @@ function PlayerCard({
             </span>
           </div>
           <div className="h-1.5 rounded bg-[var(--bg-primary)]">
-            <div className="h-1.5 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+            <div className="h-1.5 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
           </div>
         </div>
       )}

@@ -131,9 +131,9 @@ export default function HighlightFeedback() {
 
       {open && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setOpen(false)}>
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
           <div
-            className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-black/50 p-6"
+            className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">{t("Request a change")}</h2>
@@ -195,7 +195,7 @@ export default function HighlightFeedback() {
                     type="button"
                     onClick={submit}
                     disabled={sending || !suggestion.trim() || !contact.trim()}
-                    className="rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-[#1a1205] disabled:opacity-50"
+                    className="rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-on-accent disabled:opacity-50"
                   >
                     {sending ? t("Sending...") : t("Send")}
                   </button>

@@ -601,7 +601,7 @@ function ChartsClientInner() {
       {/* Chart card */}
       <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
         {error ? (
-          <p className="text-sm text-rose-400 py-12 text-center">{error}</p>
+          <p className="text-sm text-danger py-12 text-center">{error}</p>
         ) : !data || loading ? (
           <div className="h-[420px] flex items-center justify-center text-sm text-[var(--text-muted)]">
             {t("Crunching runs…")}

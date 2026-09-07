@@ -153,7 +153,7 @@ export default function NewsAdminClient() {
                     ev.stopPropagation();
                     remove(e.id);
                   }}
-                  className="px-2 py-1 rounded text-xs border border-red-500/40 bg-red-500/10 text-red-400 shrink-0"
+                  className="px-2 py-1 rounded text-xs border border-danger/40 bg-danger/10 text-danger shrink-0"
                 >
                   ✕
                 </button>

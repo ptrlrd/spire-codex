@@ -144,7 +144,7 @@ function RewardList({
               crossOrigin="anonymous"
               onError={hideImg}
             />
-            <span className="tabular-nums text-amber-300">{t("{n} Gold", { n: gold })}</span>
+            <span className="tabular-nums text-warning">{t("{n} Gold", { n: gold })}</span>
           </li>
         ) : null}
         {(items ?? []).map((it, i) => (
@@ -167,10 +167,10 @@ function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterM
     <div>
       <div className="text-sm font-bold text-[var(--accent-gold)]">{t("Floor {n}", { n: f.floor })}</div>
       <div className="mt-0.5 flex gap-3 text-[11px] tabular-nums">
-        <span className="text-rose-300">
+        <span className="text-danger">
           {f.hp}/{f.max_hp} {t("HP")}
         </span>
-        <span className="text-amber-300">{t("{n} Gold", { n: f.gold })}</span>
+        <span className="text-warning">{t("{n} Gold", { n: f.gold })}</span>
       </div>
 
       <div className="mt-1 text-[11px]">
@@ -180,7 +180,7 @@ function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterM
               {t(ROOM_LABEL[f.type] ?? "Enemy")}: {encName ?? t("Enemy")}
             </div>
             {f.damage_taken ? (
-              <div className="tabular-nums text-rose-300">{t("{n} Damage", { n: f.damage_taken })}</div>
+              <div className="tabular-nums text-danger">{t("{n} Damage", { n: f.damage_taken })}</div>
             ) : null}
             {f.turns != null ? (
               <div className="tabular-nums text-[var(--text-muted)]">{t("{n} Turns", { n: f.turns })}</div>
@@ -192,10 +192,10 @@ function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterM
           <div className="text-[var(--text-secondary)]">{t(ROOM_LABEL[f.type] ?? "Room")}</div>
         )}
         {f.healed ? (
-          <div className="tabular-nums text-emerald-300">{t("{n} Healed", { n: f.healed })}</div>
+          <div className="tabular-nums text-success">{t("{n} Healed", { n: f.healed })}</div>
         ) : null}
         {f.gold_spent ? (
-          <div className="tabular-nums text-amber-300/80">{t("Spent {n} Gold", { n: f.gold_spent })}</div>
+          <div className="tabular-nums text-warning/80">{t("Spent {n} Gold", { n: f.gold_spent })}</div>
         ) : null}
       </div>
 

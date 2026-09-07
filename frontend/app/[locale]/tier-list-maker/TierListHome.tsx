@@ -25,7 +25,7 @@ export default function TierListHome() {
           <select
             value={type}
             onChange={(e) => setType(e.target.value as EntityType)}
-            className="rounded border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-3 py-2 text-[var(--text-primary)] outline-none focus:border-sky-500"
+            className="rounded border border-[var(--border-subtle)] bg-[var(--bg-secondary)] px-3 py-2 text-[var(--text-primary)] outline-none focus:border-info"
           >
             {ENTITY_TYPES.map((t) => (
               <option key={t.value} value={t.value}>
@@ -36,7 +36,7 @@ export default function TierListHome() {
         </label>
         <button
           onClick={() => router.push(`/tier-list-maker/new?type=${type}`)}
-          className="rounded bg-sky-600 px-4 py-2 font-semibold text-white hover:bg-sky-500"
+          className="rounded bg-info-fill px-4 py-2 font-semibold text-on-fill hover:bg-info-fill"
         >
           {t("Create tier list")}
         </button>

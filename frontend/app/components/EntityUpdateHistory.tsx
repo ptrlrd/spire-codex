@@ -23,15 +23,15 @@ function patchKind(type: string | null): "beta" | "main" | "pre" {
 }
 
 const kindText: Record<string, string> = {
-  beta: "text-emerald-400",
+  beta: "text-success",
   main: "text-[var(--accent-gold)]",
   pre: "text-[var(--text-muted)]",
 };
 
 const kindDot: Record<string, string> = {
-  beta: "bg-emerald-500",
+  beta: "bg-success-fill",
   main: "bg-[var(--accent-gold)]",
-  pre: "bg-gray-500",
+  pre: "bg-line-strong",
 };
 
 /**

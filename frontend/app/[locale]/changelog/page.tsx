@@ -81,17 +81,17 @@ function SummaryBadge({ added, removed, changed }: { added: number; removed: num
   return (
     <div className="flex gap-2 text-xs">
       {added > 0 && (
-        <span className="px-2 py-0.5 rounded bg-emerald-950/50 text-emerald-400 border border-emerald-900/30">
+        <span className="px-2 py-0.5 rounded bg-success/10 text-success border border-success/30">
           +{t("{n} added", { n: added })}
         </span>
       )}
       {removed > 0 && (
-        <span className="px-2 py-0.5 rounded bg-red-950/50 text-red-400 border border-red-900/30">
+        <span className="px-2 py-0.5 rounded bg-danger/10 text-danger border border-danger/30">
           -{t("{n} removed", { n: removed })}
         </span>
       )}
       {changed > 0 && (
-        <span className="px-2 py-0.5 rounded bg-amber-950/50 text-amber-400 border border-amber-900/30">
+        <span className="px-2 py-0.5 rounded bg-warning/10 text-warning border border-warning/30">
           ~{t("{n} changed", { n: changed })}
         </span>
       )}
@@ -131,7 +131,7 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
         <div className="border-t border-[var(--border-subtle)] px-4 py-3 space-y-3">
           {cat.added && cat.added.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-success uppercase tracking-wider mb-1.5">
                 {t("Added")} ({cat.added.length})
               </h4>
               <div className="space-y-1.5">
@@ -142,14 +142,14 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
                   return (
                     <details key={e.id} className="group">
                       <summary className="text-xs text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] transition-colors">
-                        <span className="font-medium text-emerald-300">{e.name}</span>
+                        <span className="font-medium text-success">{e.name}</span>
                       </summary>
                       {fields.length > 0 && (
                         <div className="ml-4 mt-1 space-y-0.5">
                           {fields.map(([k, v]) => (
                             <div key={k} className="text-[11px] text-[var(--text-muted)]">
                               <span className="text-[var(--text-secondary)]">{k}:</span>{" "}
-                              <span className="text-emerald-400/70">{String(v)}</span>
+                              <span className="text-success/70">{String(v)}</span>
                             </div>
                           ))}
                         </div>
@@ -163,12 +163,12 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
 
           {cat.removed && cat.removed.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-red-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-danger uppercase tracking-wider mb-1.5">
                 {t("Removed")} ({cat.removed.length})
               </h4>
               <ul className="list-disc list-inside space-y-1">
                 {cat.removed.map((e) => (
-                  <li key={e.id} className="text-sm text-red-300 line-through">
+                  <li key={e.id} className="text-sm text-danger line-through">
                     {e.name}
                   </li>
                 ))}
@@ -178,7 +178,7 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
 
           {cat.changed && cat.changed.length > 0 && (
             <div>
-              <h4 className="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-1.5">
+              <h4 className="text-xs font-semibold text-warning uppercase tracking-wider mb-1.5">
                 {t("Changed")} ({cat.changed.length})
               </h4>
               <div className="space-y-1.5">
@@ -196,9 +196,9 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
                       {e.changes.map((c) => (
                         <div key={c.field} className="text-[11px] text-[var(--text-muted)]">
                           <span className="text-[var(--text-secondary)]">{c.field}:</span>{" "}
-                          <span className="text-red-400/70 line-through">{c.old}</span>{" "}
+                          <span className="text-danger/70 line-through">{c.old}</span>{" "}
                           <span className="text-[var(--text-muted)]">→</span>{" "}
-                          <span className="text-emerald-400/70">{c.new}</span>
+                          <span className="text-success/70">{c.new}</span>
                         </div>
                       ))}
                     </div>
@@ -386,13 +386,13 @@ export default function ChangelogPage() {
                   {selected.features && selected.features.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-emerald-400">{t("Features")}</span>
+                        <span className="font-semibold text-success">{t("Features")}</span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.features.map((f, i) => (
                             <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                              <span className="text-emerald-400 shrink-0">+</span>
+                              <span className="text-success shrink-0">+</span>
                               {f}
                             </li>
                           ))}
@@ -404,13 +404,13 @@ export default function ChangelogPage() {
                   {selected.fixes && selected.fixes.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-amber-400">{t("Fixes")}</span>
+                        <span className="font-semibold text-warning">{t("Fixes")}</span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.fixes.map((f, i) => (
                             <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                              <span className="text-amber-400 shrink-0">~</span>
+                              <span className="text-warning shrink-0">~</span>
                               {f}
                             </li>
                           ))}
@@ -422,13 +422,13 @@ export default function ChangelogPage() {
                   {selected.api_changes && selected.api_changes.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-cyan-400">{t("API Changes")}</span>
+                        <span className="font-semibold text-info">{t("API Changes")}</span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.api_changes.map((f, i) => (
                             <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
-                              <span className="text-cyan-400 shrink-0">&gt;</span>
+                              <span className="text-info shrink-0">&gt;</span>
                               {f}
                             </li>
                           ))}

@@ -65,17 +65,17 @@ export default async function RecentlyAdded({
   }
 
   return (
-    <section className="mb-8 rounded-xl border border-emerald-700/30 bg-emerald-950/20 p-4 sm:p-6">
+    <section className="mb-8 rounded-xl border border-success/30 bg-success/10 p-4 sm:p-6">
       <div className="flex items-center gap-2 mb-3">
-        <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-        <h2 className="text-lg font-bold text-emerald-300">
+        <span className="inline-block w-2 h-2 rounded-full bg-success-fill animate-pulse" />
+        <h2 className="text-lg font-bold text-success">
           {t("Recently Added {items}", { items: t(`${label}s`) })}
         </h2>
       </div>
 
       {[...byVersion.entries()].map(([version, group]) => (
         <div key={version} className="mb-3 last:mb-0">
-          <p className="text-xs uppercase tracking-wider text-emerald-400/70 mb-2">
+          <p className="text-xs uppercase tracking-wider text-success/70 mb-2">
             {t("New in v{version}", { version })}
           </p>
           <ul className="flex flex-wrap gap-2">
@@ -84,7 +84,7 @@ export default async function RecentlyAdded({
                 <Link
                   prefetch={false}
                   href={`${pathPrefix}/${item.id.toLowerCase()}`}
-                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--bg-card)] border border-emerald-800/40 hover:border-emerald-500/60 text-sm text-[var(--text-primary)] hover:text-emerald-300 transition-colors"
+                  className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[var(--bg-card)] border border-success/30 hover:border-success/60 text-sm text-[var(--text-primary)] hover:text-success transition-colors"
                 >
                   <span className="font-medium">{item.name}</span>
                   {item.rarity && (

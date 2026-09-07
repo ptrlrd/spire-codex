@@ -124,18 +124,18 @@ function BarComparison({
   const pctB = maxVal > 0 ? (countB / maxVal) * 100 : 0;
 
   const barColorA: Record<string, string> = {
-    red: "bg-red-500/70",
-    green: "bg-green-500/70",
-    blue: "bg-blue-500/70",
-    purple: "bg-purple-500/70",
-    orange: "bg-orange-500/70",
+    red: "bg-danger/70",
+    green: "bg-success/70",
+    blue: "bg-info/70",
+    purple: "bg-special/70",
+    orange: "bg-warning/70",
   };
   const barColorB: Record<string, string> = {
-    red: "bg-red-500/70",
-    green: "bg-green-500/70",
-    blue: "bg-blue-500/70",
-    purple: "bg-purple-500/70",
-    orange: "bg-orange-500/70",
+    red: "bg-danger/70",
+    green: "bg-success/70",
+    blue: "bg-info/70",
+    purple: "bg-special/70",
+    orange: "bg-warning/70",
   };
 
   return (
@@ -148,13 +148,13 @@ function BarComparison({
       <div className="flex gap-1 h-2">
         <div className="flex-1 flex justify-end">
           <div
-            className={`h-full rounded-l ${barColorA[colorA] || "bg-gray-500/70"} transition-all`}
+            className={`h-full rounded-l ${barColorA[colorA] || "bg-line-strong/70"} transition-all`}
             style={{ width: `${pctA}%` }}
           />
         </div>
         <div className="flex-1">
           <div
-            className={`h-full rounded-r ${barColorB[colorB] || "bg-gray-500/70"} transition-all`}
+            className={`h-full rounded-r ${barColorB[colorB] || "bg-line-strong/70"} transition-all`}
             style={{ width: `${pctB}%` }}
           />
         </div>
@@ -301,11 +301,11 @@ export default function CompareDetail({
         </div>
         <div className="flex items-center justify-center gap-6 mt-2 text-xs text-[var(--text-muted)]">
           <span className="flex items-center gap-1">
-            <span className={`inline-block w-2 h-2 rounded-full ${colorA === "red" ? "bg-red-400" : colorA === "green" ? "bg-green-400" : colorA === "blue" ? "bg-blue-400" : colorA === "purple" ? "bg-purple-400" : "bg-orange-400"}`} />
+            <span className={`inline-block w-2 h-2 rounded-full ${colorA === "red" ? "bg-danger-fill" : colorA === "green" ? "bg-success-fill" : colorA === "blue" ? "bg-info-fill" : colorA === "purple" ? "bg-special-fill" : "bg-warning-fill"}`} />
             {nameA}
           </span>
           <span className="flex items-center gap-1">
-            <span className={`inline-block w-2 h-2 rounded-full ${colorB === "red" ? "bg-red-400" : colorB === "green" ? "bg-green-400" : colorB === "blue" ? "bg-blue-400" : colorB === "purple" ? "bg-purple-400" : "bg-orange-400"}`} />
+            <span className={`inline-block w-2 h-2 rounded-full ${colorB === "red" ? "bg-danger-fill" : colorB === "green" ? "bg-success-fill" : colorB === "blue" ? "bg-info-fill" : colorB === "purple" ? "bg-special-fill" : "bg-warning-fill"}`} />
             {nameB}
           </span>
         </div>

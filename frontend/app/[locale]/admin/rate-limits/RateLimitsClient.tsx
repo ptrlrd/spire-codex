@@ -112,8 +112,8 @@ export default function RateLimitsClient() {
               onClick={() => save({ enabled: !enabled })}
               className={`px-3 py-1.5 rounded-lg text-sm border transition-colors disabled:opacity-50 ${
                 enabled
-                  ? "bg-emerald-500/15 border-emerald-500/40 text-emerald-400"
-                  : "bg-red-500/15 border-red-500/40 text-red-400"
+                  ? "bg-success/15 border-success/40 text-success"
+                  : "bg-danger/15 border-danger/40 text-danger"
               }`}
             >
               {enabled ? "Enabled" : "Disabled"}
@@ -242,7 +242,7 @@ export default function RateLimitsClient() {
                     type="button"
                     disabled={saving}
                     onClick={() => setOverrides(overrides.filter((_, j) => j !== i))}
-                    className="px-2.5 py-2 rounded-lg text-sm border border-red-500/40 bg-red-500/10 text-red-400 disabled:opacity-50"
+                    className="px-2.5 py-2 rounded-lg text-sm border border-danger/40 bg-danger/10 text-danger disabled:opacity-50"
                     aria-label="Remove clamp"
                   >
                     ✕

@@ -252,7 +252,7 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
         </div>
       </div>
       {showReport && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center p-4"
+        <div className="fixed inset-0 z-50 bg-scrim/60 flex items-center justify-center p-4"
           onClick={() => reportState !== "sending" && setShowReport(false)}>
           <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-xl p-5 w-full max-w-md"
             onClick={(e) => e.stopPropagation()}>

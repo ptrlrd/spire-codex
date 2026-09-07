@@ -43,7 +43,7 @@ function TrajectoryChart({ userId }: { userId: string }) {
       .catch((e) => setErr(String((e as Error)?.message || e)));
   }, [userId]);
 
-  if (err) return <p className="text-xs text-rose-400 py-3">{err}</p>;
+  if (err) return <p className="text-xs text-danger py-3">{err}</p>;
   if (!hist) return <p className="text-xs text-[var(--text-muted)] py-3">Loading trajectory…</p>;
 
   return (
@@ -130,7 +130,7 @@ export default function EloClient() {
               : ""}
           </span>
         )}
-        {note && <span className="text-xs text-rose-400">{note}</span>}
+        {note && <span className="text-xs text-danger">{note}</span>}
       </div>
 
       <div className="overflow-x-auto">

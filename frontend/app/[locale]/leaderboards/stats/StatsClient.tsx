@@ -1152,11 +1152,11 @@ function OverviewTab({
             <div className="text-xs text-[var(--text-muted)]">{t("Runs")}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-emerald-400">{stats.total_wins}</div>
+            <div className="text-2xl font-bold text-success">{stats.total_wins}</div>
             <div className="text-xs text-[var(--text-muted)]">{t("Wins")}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
-            <div className="text-2xl font-bold text-red-400">{losses}</div>
+            <div className="text-2xl font-bold text-danger">{losses}</div>
             <div className="text-xs text-[var(--text-muted)]">{t("Losses")}</div>
           </div>
           <div className="bg-[var(--bg-primary)] rounded-lg p-3">
@@ -1262,8 +1262,8 @@ function OverviewTab({
                   <td className="py-2 text-right text-[var(--text-secondary)] tabular-nums">
                     {a.total}
                   </td>
-                  <td className="py-2 text-right text-emerald-400 tabular-nums">{a.wins}</td>
-                  <td className="py-2 text-right text-red-400 tabular-nums">
+                  <td className="py-2 text-right text-success tabular-nums">{a.wins}</td>
+                  <td className="py-2 text-right text-danger tabular-nums">
                     {a.total - a.wins - (a.abandoned || 0)}
                   </td>
                   <td className="py-2 text-right text-[var(--text-secondary)] tabular-nums">
@@ -1896,7 +1896,7 @@ function EncountersTab({ bp, lang }: { bp: string; lang: string }) {
                   {displayName(`ENCOUNTER.${r.encounter_id}`)}
                 </Link>
               </td>
-              <td className="py-2 text-right text-red-400 tabular-nums font-semibold">
+              <td className="py-2 text-right text-danger tabular-nums font-semibold">
                 {r.rate.toFixed(1)}%
               </td>
               <td className="py-2 text-right text-[var(--text-secondary)] tabular-nums text-xs">
@@ -1905,7 +1905,7 @@ function EncountersTab({ bp, lang }: { bp: string; lang: string }) {
               <td className="py-2 pl-4">
                 <div className="h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                   <div
-                    className="h-full rounded-full bg-red-400/70"
+                    className="h-full rounded-full bg-danger/70"
                     style={{ width: `${(r.rate / maxRate) * 100}%` }}
                   />
                 </div>

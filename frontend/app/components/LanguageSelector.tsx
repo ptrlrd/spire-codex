@@ -87,7 +87,7 @@ export default function LanguageSelector() {
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-black/30 z-50"
+          className="absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50"
         >
           <div className="py-1">
             {LANGUAGES.map((l) => (

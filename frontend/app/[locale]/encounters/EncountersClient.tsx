@@ -15,15 +15,15 @@ import BetaBadge from "@/app/components/BetaBadge";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const roomTypeColors: Record<string, string> = {
-  Monster: "border-gray-600/40",
-  Elite: "border-amber-600/40",
-  Boss: "border-red-600/40",
+  Monster: "border-line-strong/40",
+  Elite: "border-warning/40",
+  Boss: "border-danger/40",
 };
 
 const roomTypeBadge: Record<string, string> = {
-  Monster: "bg-gray-800 text-gray-300 border-gray-700",
-  Elite: "bg-amber-950/50 text-amber-300 border-amber-900/30",
-  Boss: "bg-red-950/50 text-red-300 border-red-900/30",
+  Monster: "bg-surface text-fg-secondary border-line-strong",
+  Elite: "bg-warning/10 text-warning border-warning/30",
+  Boss: "bg-danger/10 text-danger border-danger/30",
 };
 
 const roomTypeOptions = [
@@ -152,7 +152,7 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
               </h3>
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded border flex-shrink-0 ml-2 ${
-                  roomTypeBadge[enc.room_type] || "bg-gray-800 text-gray-300 border-gray-700"
+                  roomTypeBadge[enc.room_type] || "bg-surface text-fg-secondary border-line-strong"
                 }`}
               >
                 {t(enc.room_type)}
@@ -184,7 +184,7 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
                 {enc.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] px-1.5 py-0.5 rounded bg-rose-950/40 text-rose-300 border border-rose-900/20"
+                    className="text-[10px] px-1.5 py-0.5 rounded bg-danger/10 text-danger border border-danger/30"
                   >
                     {tag}
                   </span>

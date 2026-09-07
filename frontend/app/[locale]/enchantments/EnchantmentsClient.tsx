@@ -14,9 +14,9 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const cardTypeColors: Record<string, string> = {
-  Attack: "bg-red-950/50 text-red-300 border-red-900/30",
-  Skill: "bg-blue-950/50 text-blue-300 border-blue-900/30",
-  Power: "bg-purple-950/50 text-purple-300 border-purple-900/30",
+  Attack: "bg-danger/10 text-danger border-danger/30",
+  Skill: "bg-info/10 text-info border-info/30",
+  Power: "bg-special/10 text-special border-special/30",
 };
 
 const cardTypeOptions = [
@@ -93,7 +93,7 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
             prefetch={false}
             key={ench.id}
             href={`${bp}/enchantments/${ench.id.toLowerCase()}`}
-            className="bg-[var(--bg-card)] rounded-lg border border-cyan-800/40 p-4 hover:bg-[var(--bg-card-hover)] transition-all block"
+            className="bg-[var(--bg-card)] rounded-lg border border-info/30 p-4 hover:bg-[var(--bg-card-hover)] transition-all block"
           >
             <div className="flex items-start gap-3 mb-2">
               {ench.image_url && (
@@ -115,14 +115,14 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
                     key={type}
                     className={`text-[10px] px-1.5 py-0.5 rounded border ${
                       cardTypeColors[type] ||
-                      "bg-gray-800 text-gray-300 border-gray-700"
+                      "bg-surface text-fg-secondary border-line-strong"
                     }`}
                   >
                     {t(type)}
                   </span>
                 ))}
                 {ench.is_stackable && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded border bg-cyan-950/50 text-cyan-300 border-cyan-900/30">
+                  <span className="text-[10px] px-1.5 py-0.5 rounded border bg-info/10 text-info border-info/30">
                     {t("Stackable")}
                   </span>
                 )}

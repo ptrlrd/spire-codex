@@ -37,12 +37,12 @@ interface Tier {
 // Tier bands match _compute_score in run_entity_stats.py and the
 // scoreToTier function in ScoreBadge. Keep the three in sync.
 const TIERS: Tier[] = [
-  { letter: "S", min: 90, className: "bg-amber-950/40 border-amber-700/60 text-amber-300",     label: "Top tier" },
-  { letter: "A", min: 78, className: "bg-emerald-950/40 border-emerald-700/60 text-emerald-300", label: "Strong" },
-  { letter: "B", min: 65, className: "bg-sky-950/40 border-sky-700/60 text-sky-300",           label: "Solid" },
-  { letter: "C", min: 50, className: "bg-zinc-800/60 border-zinc-600/60 text-zinc-300",        label: "Average" },
-  { letter: "D", min: 35, className: "bg-orange-950/40 border-orange-700/60 text-orange-300",  label: "Below average" },
-  { letter: "F", min: 0,  className: "bg-rose-950/40 border-rose-800/60 text-rose-300",        label: "Underperforming" },
+  { letter: "S", min: 90, className: "bg-warning/10 border-warning/60 text-warning",     label: "Top tier" },
+  { letter: "A", min: 78, className: "bg-success/10 border-success/60 text-success", label: "Strong" },
+  { letter: "B", min: 65, className: "bg-info/10 border-info/60 text-info",           label: "Solid" },
+  { letter: "C", min: 50, className: "bg-surface/60 border-line-strong/60 text-fg-secondary",        label: "Average" },
+  { letter: "D", min: 35, className: "bg-warning/10 border-warning/60 text-warning",  label: "Below average" },
+  { letter: "F", min: 0,  className: "bg-danger/10 border-danger/30 text-danger",        label: "Underperforming" },
 ];
 
 function tierForScore(score: number): Tier {
@@ -135,7 +135,7 @@ export default async function TierList({ route, entities, showUnrated = true, va
             className={`flex-shrink-0 flex sm:flex-col items-center justify-center sm:w-24 px-4 py-3 sm:py-4 border-b sm:border-b-0 sm:border-r ${
               tier
                 ? `${tier.className} border-current/20`
-                : "bg-zinc-900/40 border-zinc-700/40 text-zinc-500"
+                : "bg-surface/40 border-line-strong/40 text-fg-muted"
             }`}
           >
             <span className="text-3xl sm:text-4xl font-bold leading-none">

@@ -53,7 +53,7 @@ export default async function GuidesPage({ params }: Props) {
         </h1>
         <Link
           href="/guides/submit"
-          className="flex-shrink-0 px-4 py-2 rounded-lg bg-[var(--accent-gold)] text-black font-semibold text-sm hover:brightness-110 transition-all"
+          className="flex-shrink-0 px-4 py-2 rounded-lg bg-[var(--accent-gold)] text-on-accent font-semibold text-sm hover:brightness-110 transition-all"
         >
           {t("Submit a Guide")}
         </Link>

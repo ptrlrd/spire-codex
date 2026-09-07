@@ -19,12 +19,12 @@ interface ShowcaseProject {
 }
 
 const CATEGORY_COLORS: Record<string, string> = {
-  api: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
-  widget: "bg-purple-500/20 text-purple-400 border-purple-500/30",
-  bot: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-  app: "bg-amber-500/20 text-amber-400 border-amber-500/30",
-  tool: "bg-rose-500/20 text-rose-400 border-rose-500/30",
-  content: "bg-red-500/20 text-red-400 border-red-500/30",
+  api: "bg-success/20 text-success border-success/30",
+  widget: "bg-special/20 text-special border-special/30",
+  bot: "bg-info/20 text-info border-info/30",
+  app: "bg-warning/20 text-warning border-warning/30",
+  tool: "bg-danger/20 text-danger border-danger/30",
+  content: "bg-danger/20 text-danger border-danger/30",
 };
 
 async function getShowcaseData(): Promise<ShowcaseProject[]> {
@@ -114,7 +114,7 @@ export default async function ShowcasePage({ params }: Props) {
                 <span
                   className={`text-xs font-medium px-2 py-0.5 rounded-full border ${
                     CATEGORY_COLORS[project.category] ||
-                    "bg-gray-500/20 text-gray-400 border-gray-500/30"
+                    "bg-line-strong/20 text-fg-muted border-line-strong/30"
                   }`}
                 >
                   {project.category}

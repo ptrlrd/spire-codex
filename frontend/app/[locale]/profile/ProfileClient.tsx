@@ -261,10 +261,10 @@ export default function ProfileClient() {
                 key={i}
                 className={`text-xs px-3 py-1.5 rounded flex items-center justify-between ${
                   r.status === "claimed"
-                    ? "bg-green-500/10 text-green-300"
+                    ? "bg-success/10 text-success"
                     : r.status === "duplicate"
-                      ? "bg-yellow-500/10 text-yellow-300"
-                      : "bg-red-500/10 text-red-300"
+                      ? "bg-warning/10 text-warning"
+                      : "bg-danger/10 text-danger"
                 }`}
               >
                 <span className="truncate">{r.filename}</span>

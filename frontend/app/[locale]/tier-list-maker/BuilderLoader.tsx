@@ -57,8 +57,8 @@ export default function BuilderLoader({
   if (error !== null) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 text-center">
-        <p className="text-red-400">{error || t("Failed to load")}</p>
-        <p className="mt-2 text-sm text-neutral-400">
+        <p className="text-danger">{error || t("Failed to load")}</p>
+        <p className="mt-2 text-sm text-fg-muted">
           {t("If this is your tier list, make sure you are signed in.")}
         </p>
       </div>
@@ -66,7 +66,7 @@ export default function BuilderLoader({
   }
 
   if (!entities || !type) {
-    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-neutral-400">{t("Loading…")}</div>;
+    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-fg-muted">{t("Loading…")}</div>;
   }
 
   return <TierListBuilder entityType={type} entities={entities} initial={initial} />;

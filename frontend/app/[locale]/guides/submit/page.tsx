@@ -103,8 +103,8 @@ export default function SubmitGuidePage() {
   if (status === "success") {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-[var(--bg-card)] rounded-lg border border-emerald-700/40 p-8 text-center">
-          <h1 className="text-2xl font-bold text-emerald-400 mb-3">{t("Guide Submitted!")}</h1>
+        <div className="bg-[var(--bg-card)] rounded-lg border border-success/40 p-8 text-center">
+          <h1 className="text-2xl font-bold text-success mb-3">{t("Guide Submitted!")}</h1>
           <p className="text-[var(--text-secondary)] mb-6">
             {t("Thanks for your contribution! We'll review your guide and publish it soon.")}
           </p>
@@ -205,13 +205,13 @@ export default function SubmitGuidePage() {
         </div>
 
         {status === "error" && errorMsg && (
-          <p className="text-sm text-red-400">{errorMsg}</p>
+          <p className="text-sm text-danger">{errorMsg}</p>
         )}
 
         <button
           type="submit"
           disabled={status === "sending"}
-          className="w-full py-2.5 rounded-lg bg-[var(--accent-gold)] text-black font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full py-2.5 rounded-lg bg-[var(--accent-gold)] text-on-accent font-semibold text-sm hover:brightness-110 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status === "sending" ? t("Submitting...") : t("Submit Guide")}
         </button>

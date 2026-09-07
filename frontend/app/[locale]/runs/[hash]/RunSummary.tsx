@@ -130,10 +130,10 @@ const TIER_LABELS: Record<string, string> = {
 };
 
 const TIER_OUTLINE: Record<string, string> = {
-  weak: "ring-1 ring-emerald-500/40",
-  normal: "ring-1 ring-amber-500/40",
-  elite: "ring-1 ring-orange-500/60",
-  boss: "ring-2 ring-rose-500/60",
+  weak: "ring-1 ring-success/40",
+  normal: "ring-1 ring-warning/40",
+  elite: "ring-1 ring-warning/60",
+  boss: "ring-2 ring-danger/60",
 };
 
 
@@ -358,7 +358,7 @@ export default function RunSummary({ run, player, cardData, relicData, potionDat
                 relicId={rid}
                 relicData={relicData}
                 bp={bp}
-                className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-black/30 flex items-center justify-center hover:bg-black/50 transition-colors"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-scrim/30 flex items-center justify-center hover:bg-scrim/50 transition-colors"
               >
                 {info?.image_url ? (
                   <img
@@ -523,13 +523,13 @@ function MapNode({
     </div>
   );
 
-  const wrapClass = `relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-black/30 flex items-center justify-center ${TIER_OUTLINE[tier] ?? ""}`;
+  const wrapClass = `relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-scrim/30 flex items-center justify-center ${TIER_OUTLINE[tier] ?? ""}`;
 
   if (href) {
     return (
       <Link
         href={href}
-        className={`${wrapClass} hover:bg-black/50 hover:ring-2 hover:ring-[var(--accent-gold)]/60 transition-all`}
+        className={`${wrapClass} hover:bg-scrim/50 hover:ring-2 hover:ring-[var(--accent-gold)]/60 transition-all`}
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
       >

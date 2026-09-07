@@ -291,7 +291,7 @@ export default function DeckLabClient() {
                     type="button"
                     onClick={() => removeOne(deck, setDeck, id)}
                     title={t("Click to remove one copy")}
-                    className="text-xs px-2 py-0.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:border-red-500/50"
+                    className="text-xs px-2 py-0.5 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-secondary)] hover:border-danger/50"
                   >
                     {names[id] || id}
                     {n > 1 ? ` ×${n}` : ""}
@@ -303,7 +303,7 @@ export default function DeckLabClient() {
                     type="button"
                     onClick={() => removeOne(relics, setRelics, id)}
                     title={t("Click to remove")}
-                    className="text-xs px-2 py-0.5 rounded-md border border-sky-900/50 bg-[var(--bg-primary)] text-sky-300 hover:border-red-500/50"
+                    className="text-xs px-2 py-0.5 rounded-md border border-info/30 bg-[var(--bg-primary)] text-info hover:border-danger/50"
                   >
                     {names[id] || id}
                   </button>
@@ -335,7 +335,7 @@ export default function DeckLabClient() {
                     key={id}
                     type="button"
                     onClick={() => setOffer((o) => o.filter((x) => x !== id))}
-                    className="text-xs px-2 py-0.5 rounded-md border border-[var(--accent-gold)]/40 bg-[var(--bg-primary)] text-[var(--accent-gold)] hover:border-red-500/50"
+                    className="text-xs px-2 py-0.5 rounded-md border border-[var(--accent-gold)]/40 bg-[var(--bg-primary)] text-[var(--accent-gold)] hover:border-danger/50"
                   >
                     {names[id] || id}
                   </button>
@@ -460,7 +460,7 @@ export default function DeckLabClient() {
                     href={`/${it.etype}/${it.id.toLowerCase()}`}
                     className={`text-xs px-2 py-0.5 rounded-md border bg-[var(--bg-primary)] transition-colors ${
                       it.etype === "relics"
-                        ? "border-sky-900/50 text-sky-300 hover:border-sky-500/60"
+                        ? "border-info/30 text-info hover:border-info/60"
                         : "border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--accent-gold)]/50 hover:text-[var(--accent-gold)]"
                     }`}
                   >

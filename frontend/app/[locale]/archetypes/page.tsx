@@ -258,7 +258,7 @@ export default async function ArchetypesPage({ params }: Props) {
                           prefetch={false}
                           key={e.id}
                           href={`/relics/${e.id.toLowerCase()}`}
-                          className="text-xs px-2 py-0.5 rounded-md border border-sky-900/50 bg-[var(--bg-primary)] text-sky-300 hover:border-sky-500/60 transition-colors"
+                          className="text-xs px-2 py-0.5 rounded-md border border-info/30 bg-[var(--bg-primary)] text-info hover:border-info/60 transition-colors"
                         >
                           {e.name}
                         </Link>

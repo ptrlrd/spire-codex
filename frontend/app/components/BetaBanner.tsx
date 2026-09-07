@@ -22,8 +22,8 @@ export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }
   }, []);
 
   return (
-    <div className="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-3 py-1.5 mb-4 flex items-center gap-2 text-xs">
-      <span className="font-semibold text-emerald-300 shrink-0">
+    <div className="rounded-md border border-success/40 bg-success/10 px-3 py-1.5 mb-4 flex items-center gap-2 text-xs">
+      <span className="font-semibold text-success shrink-0">
         Beta{version ? ` ${version}` : ""}
       </span>
       <span className="text-[var(--text-muted)] truncate">
@@ -32,7 +32,7 @@ export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }
       </span>
       <Link
         href={stablePath}
-        className="ml-auto shrink-0 text-emerald-300 hover:text-emerald-200 hover:underline"
+        className="ml-auto shrink-0 text-success hover:text-success hover:underline"
       >
         {t("Switch to main")} →
       </Link>

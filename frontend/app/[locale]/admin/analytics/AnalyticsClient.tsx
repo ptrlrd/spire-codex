@@ -72,13 +72,13 @@ export default function AnalyticsClient() {
           </div>
 
           <div className="mb-8 flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-3 rounded-lg border border-emerald-500/30 bg-emerald-500/5 px-5 py-4">
+            <div className="flex items-center gap-3 rounded-lg border border-success/30 bg-success/5 px-5 py-4">
               <span className="relative flex h-3 w-3">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success-fill opacity-75" />
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-success-fill" />
               </span>
               <div>
-                <div className="text-2xl font-bold tabular-nums text-emerald-400">
+                <div className="text-2xl font-bold tabular-nums text-success">
                   {(data.active ?? 0).toLocaleString()}
                 </div>
                 <div className="text-xs uppercase tracking-wider text-[var(--text-muted)]">

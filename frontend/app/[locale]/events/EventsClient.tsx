@@ -14,15 +14,15 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const typeColors: Record<string, string> = {
-  Event: "border-indigo-600/40",
-  Ancient: "border-purple-600/40",
-  Shared: "border-gray-600/40",
+  Event: "border-info/40",
+  Ancient: "border-special/40",
+  Shared: "border-line-strong/40",
 };
 
 const typeBadge: Record<string, string> = {
-  Event: "bg-indigo-950/50 text-indigo-300 border-indigo-900/30",
-  Ancient: "bg-purple-950/50 text-purple-300 border-purple-900/30",
-  Shared: "bg-gray-800 text-gray-300 border-gray-700",
+  Event: "bg-info/10 text-info border-info/30",
+  Ancient: "bg-special/10 text-special border-special/30",
+  Shared: "bg-surface text-fg-secondary border-line-strong",
 };
 
 const typeOptions = [
@@ -39,16 +39,16 @@ const actOptions = [
 ];
 
 const PAGE_COLORS = [
-  "border-l-indigo-500/60",
-  "border-l-cyan-500/60",
-  "border-l-emerald-500/60",
-  "border-l-amber-500/60",
-  "border-l-rose-500/60",
-  "border-l-purple-500/60",
-  "border-l-blue-500/60",
-  "border-l-orange-500/60",
-  "border-l-teal-500/60",
-  "border-l-pink-500/60",
+  "border-l-info/60",
+  "border-l-info/60",
+  "border-l-success/60",
+  "border-l-warning/60",
+  "border-l-danger/60",
+  "border-l-special/60",
+  "border-l-info/60",
+  "border-l-warning/60",
+  "border-l-success/60",
+  "border-l-special/60",
 ];
 
 
@@ -236,7 +236,7 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
                       {event.name}
                     </h3>
                     {event.epithet && (
-                      <p className="text-xs text-purple-400 italic">
+                      <p className="text-xs text-special italic">
                         {event.epithet}
                       </p>
                     )}
@@ -254,7 +254,7 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
                   <span
                     className={`text-[10px] px-1.5 py-0.5 rounded border ${
                       typeBadge[event.type] ||
-                      "bg-gray-800 text-gray-300 border-gray-700"
+                      "bg-surface text-fg-secondary border-line-strong"
                     }`}
                   >
                     {t(event.type)}
@@ -399,8 +399,8 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
                           onClick={(e) => { e.stopPropagation(); toggleDialogue(event.id, group); }}
                           className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
                             expandedDialogue[event.id] === group
-                              ? "bg-purple-950/60 text-purple-300 border-purple-800/50"
-                              : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-purple-800/30"
+                              ? "bg-special/10 text-special border-special/30"
+                              : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-special/30"
                           }`}
                         >
                           {group}
@@ -416,8 +416,8 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
                                 key={i}
                                 className={`text-xs px-2.5 py-1.5 rounded ${
                                   line.speaker === "ancient"
-                                    ? "bg-purple-950/30 text-purple-200 border-l-2 border-purple-700/50"
-                                    : "bg-indigo-950/30 text-indigo-200 border-l-2 border-indigo-700/50 ml-4"
+                                    ? "bg-special/10 text-special border-l-2 border-special/50"
+                                    : "bg-info/10 text-info border-l-2 border-info/50 ml-4"
                                 }`}
                               >
                                 <span className="whitespace-pre-line">
