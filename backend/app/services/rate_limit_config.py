@@ -58,9 +58,8 @@ _DEFAULT_TIERS = {
 # Effectively unlimited: what caps become when an operator toggles limiting off
 # (per-endpoint limits still apply).
 _DISABLED_LIMIT = "1000000/minute"
-INTERNAL_BUCKET_PREFIX = "internal|"
 INTERNAL_TIER = "internal"
-_INTERNAL_LIMIT = os.environ.get("INTERNAL_RATE_LIMIT", "").strip() or "6000/minute"
+INTERNAL_BUCKET_PREFIX = f"{INTERNAL_TIER}|"
 _CACHE_TTL_SECONDS = 15.0
 _MAX_OVERRIDES = 50
 # Paths an override may never clamp (so an aggressive override can't lock the
@@ -245,13 +244,10 @@ def tier_limit_value() -> str:
     cfg = get_config()
     if not cfg.get("enabled", True):
         return _DISABLED_LIMIT
-    tier = _current_tier.get() or "browse"
-    if tier == INTERNAL_TIER:
-        return _INTERNAL_LIMIT
     override = _match_override(_current_path.get(), cfg.get("overrides") or [])
     if override:
         return override
-    return _limit_for_tier(tier, cfg)
+    return _limit_for_tier(_current_tier.get() or "browse", cfg)
 
 
 # Every endpoint-limit knob registered via endpoint_limit(), name -> hardcoded
@@ -277,9 +273,12 @@ def endpoint_limit(name: str, default: str):
     _ENDPOINT_DEFAULTS[name] = _validate_limit(default, name)
 
     def _value(key: str = "") -> str:
+        cfg = get_config()
+        override = _match_override(_current_path.get(), cfg.get("overrides") or [])
+        if override:
+            return override
         if key.startswith(INTERNAL_BUCKET_PREFIX):
             return _INTERNAL_LIMIT
-        cfg = get_config()
         return (cfg.get("endpoint_limits") or {}).get(name) or default
 
     _value.__name__ = f"limit_{name.replace('.', '_')}"
@@ -302,6 +301,15 @@ def _validate_limit(value: str, field: str) -> str:
             f"'{value}' is not a valid {field} limit (try e.g. 300/minute)"
         ) from exc
     return candidate
+
+
+# Validated at import so a typo in the env fails the process at startup, not
+# on the first rate-limited request. Path overrides from the admin page still
+# clamp internal traffic: an emergency clamp has to clamp everyone.
+_INTERNAL_LIMIT = _validate_limit(
+    os.environ.get("INTERNAL_RATE_LIMIT", "").strip() or "6000/minute",
+    "INTERNAL_RATE_LIMIT",
+)
 
 
 def set_config(

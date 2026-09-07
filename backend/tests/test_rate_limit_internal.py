@@ -64,12 +64,20 @@ def test_default_limit_for_internal_bucket():
     assert rate_limit_config.tier_limit_value() == rate_limit_config._DEFAULT_LIMIT
 
 
-def test_internal_bucket_skips_path_overrides(monkeypatch):
+def test_path_overrides_clamp_internal_traffic_too(monkeypatch):
     cfg = rate_limit_config._fallback()
     cfg["overrides"] = [{"path": "/api/runs", "limit": "5/minute"}]
     monkeypatch.setattr(rate_limit_config, "get_config", lambda: cfg)
 
     rate_limit_config.prepare_request(_request("172.18.0.5"))
+    assert rate_limit_config.tier_limit_value() == "5/minute"
+    limit = rate_limit_config.endpoint_limit("test.override_probe", "60/minute")
+    try:
+        assert limit("internal|172.18.0.5") == "5/minute"
+    finally:
+        rate_limit_config._ENDPOINT_DEFAULTS.pop("test.override_probe", None)
+
+    rate_limit_config.prepare_request(_request("172.18.0.5", path="/api/cards"))
     assert rate_limit_config.tier_limit_value() == rate_limit_config._INTERNAL_LIMIT
 
     rate_limit_config.prepare_request(
