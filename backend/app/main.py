@@ -360,6 +360,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["X-Content-Type-Options"] = "nosniff"
+        if request.url.path.startswith("/api/"):
+            response.headers["X-Robots-Tag"] = "noindex"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Strict-Transport-Security"] = (
             "max-age=31536000; includeSubDomains"

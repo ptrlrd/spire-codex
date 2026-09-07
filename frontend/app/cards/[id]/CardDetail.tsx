@@ -204,7 +204,9 @@ export default function CardDetail({ initialCard, initialEnchantments, initialSt
           ).then((results) => setSpawnedCards(results.filter(Boolean) as Card[]));
         }
       })
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialCard) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

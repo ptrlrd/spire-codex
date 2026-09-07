@@ -46,7 +46,9 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
     if (!id) return;
     cachedFetch<Power>(`${API}/api/powers/${id}?lang=${lang}`)
       .then((data) => setPower(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialPower) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

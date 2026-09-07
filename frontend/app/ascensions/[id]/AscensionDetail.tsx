@@ -37,7 +37,9 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
         setAscension(asc);
         setAllAscensions(all);
       })
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialAscension) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

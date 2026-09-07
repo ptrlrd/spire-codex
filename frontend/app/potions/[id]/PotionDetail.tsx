@@ -70,7 +70,9 @@ export default function PotionDetail({
     if (!id) return;
     cachedFetch<Potion>(`${API}/api/potions/${id}?lang=${lang}`)
       .then((data) => setPotion(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialPotion) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

@@ -84,7 +84,9 @@ export default function EventDetail({
     if (!id) return;
     cachedFetch<GameEvent>(`${API}/api/events/${id}?lang=${lang}`)
       .then((data) => setEvent(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialEvent) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

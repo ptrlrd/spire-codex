@@ -31,7 +31,9 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
     if (!id) return;
     cachedFetch<Orb>(`${API}/api/orbs/${id}?lang=${lang}`)
       .then((data) => setOrb(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialOrb) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

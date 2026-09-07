@@ -80,7 +80,9 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
         // Not a keyword, try glossary
         return cachedFetch<GlossaryTerm>(`${API}/api/glossary/${id}?lang=${lang}`)
           .then((term) => setGlossary(term))
-          .catch(() => setNotFound(true));
+          .catch(() => {
+            if (!initialResult) setNotFound(true);
+          });
       })
       .finally(() => setLoading(false));
   }, [id, lang]);
