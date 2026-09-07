@@ -79,10 +79,17 @@ _TIER_BANDS = (
 #   geometric mean of 1, then mapped to ANCHOR + SPREAD*log10(strength),
 #   so a card picked 10x as often as the field average sits ~SPREAD above
 #   the anchor. MIN_GAMES drops cards with too few head-to-heads to rate.
+#   PRIOR_GAMES is the Bayesian shrinkage: every card also "plays" this many
+#   virtual head-to-heads against a fixed average card (strength 1, Elo
+#   1500) and splits them, so a card seen on a handful of screens sits near
+#   the anchor until real contests move it, instead of a near-undefeated
+#   thin-bracket card running away to the top of the chart. With thousands
+#   of real contests the prior is a rounding error.
 #   MAX_ITERS / TOL bound the MM solver.
 _ELO_ANCHOR = 1500.0
 _ELO_SPREAD = 400.0
 _ELO_MIN_GAMES = 20
+_ELO_PRIOR_GAMES = 20.0
 _ELO_MAX_ITERS = 200
 _ELO_TOL = 1e-6
 # How many act buckets the per-act pick-rate split tracks (A1/A2/A3).
@@ -772,6 +779,8 @@ def _walk_rest_upgrade_choices(blob: dict) -> Iterable[tuple[list[str], list[str
 def _compute_codex_elo(
     pair_wins: dict[tuple[str, str], int],
     warm: dict[str, float] | None = None,
+    *,
+    backend: str = "auto",
 ) -> tuple[dict[str, float], dict[str, float]]:
     """Bradley-Terry MM solver → Codex Elo per card.
 
@@ -779,13 +788,18 @@ def _compute_codex_elo(
     taken over card j. We fit latent strengths p_i maximizing the
     Bradley-Terry likelihood via the standard minorization-maximization
     update p_i ← W_i / Σ_j n_ij/(p_i+p_j), where W_i is i's total wins and
-    n_ij the total i-vs-j comparisons. Strengths are renormalized to a
-    geometric mean of 1 each iteration (the model is scale-invariant), and
-    finally mapped to a readable Elo via ANCHOR + SPREAD·log10(p).
+    n_ij the total i-vs-j comparisons, plus `_ELO_PRIOR_GAMES` virtual
+    contests per card against a fixed average card of strength 1, split
+    evenly, so thin samples shrink toward the anchor. Strengths are
+    renormalized to a geometric mean of 1 each iteration (the model is
+    scale-invariant), and finally mapped to a readable Elo via
+    ANCHOR + SPREAD·log10(p).
 
     Cards with fewer than `_ELO_MIN_GAMES` total head-to-heads are dropped
     (too thin to rate). `warm` seeds the strengths from a previous fit so
     near-identical data converges in a few iterations instead of hundreds.
+    `backend` is "auto" (numpy when installed), "numpy", or "python"; both
+    paths compute the same update.
     Returns (elo, strengths); strengths feed the next warm start.
     """
     if not pair_wins:
@@ -815,10 +829,15 @@ def _compute_codex_elo(
     # float ops per fit and the store now runs five fits per cycle. Same
     # update, same normalization, same stopping rule -- float summation
     # order can move a rating by at most the display rounding.
-    try:
-        import numpy as _np
-    except Exception:
-        _np = None
+    _np = None
+    if backend != "python":
+        try:
+            import numpy as _np
+        except Exception:
+            if backend == "numpy":
+                raise
+            _np = None
+    prior_wins = _ELO_PRIOR_GAMES / 2.0
     if _np is not None:
         idx = {n: k for k, n in enumerate(nodes)}
         edges = [(idx[i], idx[j], c) for (i, j), c in pair_wins.items() if c > 0]
@@ -834,13 +853,13 @@ def _compute_codex_elo(
                 if v is not None and v > 0:
                     p_arr[k] = v
         w_arr = _np.fromiter(
-            (wins.get(n, 0.0) + 1e-3 for n in nodes),
+            (wins.get(n, 0.0) + 1e-3 + prior_wins for n in nodes),
             dtype=_np.float64,
             count=len(nodes),
         )
         for _ in range(_ELO_MAX_ITERS):
             contrib = en / (p_arr[ei] + p_arr[ej])
-            denom = _np.zeros(len(nodes), dtype=_np.float64)
+            denom = _ELO_PRIOR_GAMES / (p_arr + 1.0)
             _np.add.at(denom, ei, contrib)
             _np.add.at(denom, ej, contrib)
             new_p = _np.where(denom > 0, w_arr / denom, p_arr)
@@ -872,14 +891,14 @@ def _compute_codex_elo(
             v = warm.get(n)
             if v is not None and v > 0:
                 p[n] = v
-    w = {n: wins.get(n, 0.0) + eps for n in nodes}
+    w = {n: wins.get(n, 0.0) + eps + prior_wins for n in nodes}
 
     for _ in range(_ELO_MAX_ITERS):
         new_p: dict[str, float] = {}
         for i in nodes:
-            denom = 0.0
-            gi = games[i]
             pi = p[i]
+            denom = _ELO_PRIOR_GAMES / (pi + 1.0)
+            gi = games[i]
             for j, n_ij in gi.items():
                 denom += n_ij / (pi + p[j])
             new_p[i] = w[i] / denom if denom > 0 else p[i]
