@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { ALL_BROWSE_SLUGS } from "./cards/browse/slug-map";
 import { SUPPORTED_LANGS } from "@/lib/languages";
 import { imageUrl } from "@/lib/image-url";
+import { TIER_CARD_COLORS, TIER_RELIC_ACTS, TIER_RELIC_ANCIENTS, TIER_RELIC_POOLS } from "@/lib/tier-list-filters";
 
 // Regenerate at most every 30 minutes: crawler fetches between ticks are
 // served from cache instead of re-running ~21 API list fetches each hit.
@@ -184,16 +185,22 @@ const DYNAMIC_ROUTES = [
   { endpoint: "/api/guides", prefix: "/guides", priority: 0.6, localized: true },
 ];
 
-// A failed list fetch throws instead of yielding an empty section: an empty
-// section silently drops hundreds of URLs from the sitemap, and Next keeps
+function isEntity(x: unknown): x is EntityWithImage {
+  return !!x && typeof x === "object" && typeof (x as { id?: unknown }).id === "string";
+}
+
+// A failed or malformed list fetch throws instead of yielding an empty
+// section: an empty section silently drops hundreds of URLs, and Next keeps
 // serving the last good sitemap when a regeneration fails.
-async function fetchEntities(endpoint: string): Promise<EntityWithImage[]> {
-  const res = await fetch(`${API}${endpoint}`, { next: { revalidate: 1800 } });
+async function fetchList<T>(endpoint: string, guard: (x: unknown) => x is T, revalidate = 1800): Promise<T[]> {
+  const res = await fetch(`${API}${endpoint}`, { next: { revalidate } });
   if (!res.ok) throw new Error(`sitemap: ${endpoint} returned ${res.status}`);
   const body: unknown = await res.json();
-  if (!Array.isArray(body)) throw new Error(`sitemap: ${endpoint} did not return a list`);
-  return body as EntityWithImage[];
+  if (!Array.isArray(body) || !body.every(guard)) throw new Error(`sitemap: ${endpoint} returned a malformed list`);
+  return body;
 }
+
+const fetchEntities = (endpoint: string) => fetchList(endpoint, isEntity);
 
 // The only truthful lastmod we have is the latest game-data changelog date,
 // which is when entity pages last changed. Hub and community pages carry no
@@ -213,12 +220,9 @@ async function contentLastMod(): Promise<Date | undefined> {
   }
 }
 
-// Ancient offer pools on the relic tier list, mirrored from ANCIENT_FILTERS in
-// app/tier-list/relics/page.tsx. Each is its own canonical page and several
-// rank on page one, so they are listed explicitly instead of left to crawl
-// discovery; every other filter combination canonicalizes to one of these.
-const TIER_RELIC_ANCIENTS = ["neow", "tezcatara", "pael", "orobas", "darv", "nonupeipe", "tanx", "vakuu"];
-const TIER_RELIC_ACTS = ["1", "2", "3"];
+// Routes whose pages change with the game data and so carry the changelog
+// date; everything else (guides are edited on their own schedule) is undated.
+const GAME_DATA_PREFIXES = new Set(DYNAMIC_ROUTES.map((r) => r.prefix).filter((p) => p !== "/guides"));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const contentDate = await contentLastMod();
@@ -244,7 +248,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     route.entities.map((entity) => {
       const entry: MetadataRoute.Sitemap[number] = {
         url: `${SITE_URL}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: contentDate,
+        lastModified: GAME_DATA_PREFIXES.has(route.prefix) ? contentDate : undefined,
         changeFrequency: "weekly",
         priority: route.priority,
       };
@@ -261,12 +265,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // adding/removing a slug only requires a markdown file in
   // data/mechanics_pages/, no sitemap edit.
   type MechanicSectionMeta = { slug: string };
-  const mechanicsRes = await fetch(`${API}/api/mechanics/sections`, {
-    next: { revalidate: 300 },
-  }).catch(() => null);
-  const mechanicSections: MechanicSectionMeta[] = mechanicsRes && mechanicsRes.ok
-    ? ((await mechanicsRes.json()) as MechanicSectionMeta[])
-    : [];
+  const mechanicSections = await fetchList(
+    "/api/mechanics/sections",
+    (x): x is MechanicSectionMeta => !!x && typeof x === "object" && typeof (x as { slug?: unknown }).slug === "string",
+    300,
+  );
   const mechanicsEntries: MetadataRoute.Sitemap = mechanicSections.map((s) => ({
     url: `${SITE_URL}/mechanics/${s.slug}`,
     changeFrequency: "monthly" as const,
@@ -282,8 +285,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // its own generateMetadata title + canonical, so they need their
   // own sitemap entries to surface in search. Targets long-tail
   // queries like "ironclad tier list", "necrobinder relic tier list".
-  const TIER_CARD_COLORS = ["ironclad", "silent", "defect", "necrobinder", "regent", "colorless"];
-  const TIER_RELIC_POOLS = ["shared", "ironclad", "silent", "defect", "necrobinder", "regent"];
   const tierListVariants: MetadataRoute.Sitemap = [
     ...TIER_CARD_COLORS.map((c) => ({
       url: `${SITE_URL}/tier-list/cards?color=${c}`,
@@ -362,7 +363,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     localizedDynamicRoutes.flatMap((route) =>
       route.entities.map((entity) => ({
         url: `${SITE_URL}/${lang}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: contentDate,
+        lastModified: GAME_DATA_PREFIXES.has(route.prefix) ? contentDate : undefined,
         changeFrequency: "weekly" as const,
         priority: 0.4,
       }))

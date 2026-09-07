@@ -6,6 +6,7 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
 import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -60,15 +61,8 @@ const ACT_FILTERS = [
 // relics one ancient can offer, so "which Neow relic should I take" gets
 // a direct answer.
 const ANCIENT_FILTERS = [
-  { value: "",          label: "All" },
-  { value: "neow",      label: "Neow" },
-  { value: "tezcatara", label: "Tezcatara" },
-  { value: "pael",      label: "Pael" },
-  { value: "orobas",    label: "Orobas" },
-  { value: "darv",      label: "Darv" },
-  { value: "nonupeipe", label: "Nonupeipe" },
-  { value: "tanx",      label: "Tanx" },
-  { value: "vakuu",     label: "Vakuu" },
+  { value: "", label: "All" },
+  ...TIER_RELIC_ANCIENTS.map((a) => ({ value: a, label: a.charAt(0).toUpperCase() + a.slice(1) })),
 ];
 
 function relicHref(
