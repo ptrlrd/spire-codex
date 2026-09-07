@@ -69,6 +69,7 @@ export default async function Page({ params, searchParams }: Props) {
   const qs = await channelQS(searchParams);
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
+  const statsPromise: Promise<EntityStats | null> = fetchEntityStats("cards", id);
   let jsonLd = null;
   let card = null;
   let apiUnreachable = false;
@@ -91,7 +92,7 @@ export default async function Page({ params, searchParams }: Props) {
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!card) redirectMissingEntity("cards", id, lang);
-  const initialStats: EntityStats | null = await fetchEntityStats("cards", id);
+  const initialStats = await statsPromise;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

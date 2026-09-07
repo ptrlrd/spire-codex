@@ -51,6 +51,7 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
+  const votesPromise = fetchEventVotes(id);
   let jsonLd = null;
   let data = null;
   let apiUnreachable = false;
@@ -74,7 +75,7 @@ export default async function Page({ params }: Props) {
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!data) redirectMissingEntity("events", id, lang);
-  const voteStats = await fetchEventVotes(id);
+  const voteStats = await votesPromise;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
