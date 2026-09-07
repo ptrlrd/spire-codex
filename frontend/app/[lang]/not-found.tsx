@@ -9,13 +9,11 @@ import { t } from "@/lib/ui-translations";
  *   1. Tell the user what happened in a friendly way and give them a
  *      one-click route home.
  *
- * NOTE: This file only handles routes that don't match any segment at
- * all (`/some-bogus-page`). Entity-detail routes with unknown IDs
- * (`/cards/<unknown>`) now redirect to the entity list via
- * `redirectMissingEntity()` instead of rendering this page, so search
- * engines see a 308 on those URLs and forward the link equity.
+ * NOTE: Entity-detail routes with unknown IDs (`/cards/<unknown>`) also
+ * land here via `redirectMissingEntity()` calling `notFound()`; only a
+ * documented rename gets a 308.
  *
- * Note: this currently can't localise properly because it dosn't have access to the client side localisation contexts etc (and AFAIK is prebaked once for all usages).
+ * Note: this currently can't localise properly because it doesn't have access to the client side localisation contexts etc (and AFAIK is prebaked once for all usages).
  * The simplest way to get a localised version will probably be to utilise i18n-next which (hopefully?) provides server side locales.
  * We'll also need [...notfound] catchalls to route unmatched paths to the localised paths so i18n-next can provide locale information.
  * See https://next-intl.dev/docs/environments/error-files and https://github.com/vercel/next.js/discussions/50518
