@@ -355,7 +355,7 @@ export interface ReplayDecision {
   goldOnHand?: number;
   options: ReplayOption[];
   outcome?: string;
-  paid?: { kind: string; id?: string; cost: number; resource: string };
+  paid?: { kind: string; id?: string; cost?: number; resource: string };
   resolutions: ResolutionLine[];
   s: number;
 }
@@ -411,12 +411,14 @@ export interface ReplayModel {
   resumes: ResumeLine[];
   reloads: number;
   lineCount: number;
+  malformedLines: number;
 }
 
-const COMBAT_KINDS = new Set(["combat", "monster", "elite", "boss"]);
+const COMBAT_KINDS = new Set(["combat", "monster", "burly_monster", "elite", "boss"]);
 const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
-  combat: ["monster", "elite", "boss"],
-  monster: ["monster"],
+  combat: ["monster", "burly_monster", "elite", "boss"],
+  monster: ["monster", "burly_monster"],
+  burly_monster: ["burly_monster", "monster"],
   elite: ["elite"],
   boss: ["boss"],
   merchant: ["shop"],
@@ -445,14 +447,19 @@ function objects(v: unknown): Raw[] {
   return Array.isArray(v) ? v.filter((x): x is Raw => !!x && typeof x === "object") : [];
 }
 
+const COORD = /^\s*(-?\d+)\s*,\s*(-?\d+)\s*$/;
+
 export function parseCoord(v: unknown): Coord | undefined {
   if (typeof v !== "string") return undefined;
-  const [c, r] = v.split(",").map((x) => parseInt(x.trim(), 10));
-  return Number.isFinite(c) && Number.isFinite(r) ? [c, r] : undefined;
+  const m = COORD.exec(v);
+  return m ? [parseInt(m[1], 10), parseInt(m[2], 10)] : undefined;
 }
 
 function deckOf(v: unknown): DeckCard[] {
-  return objects(v).map((x) => ({ c: num(x.c) ?? -1, id: str(x.id) ?? "" }));
+  return objects(v).flatMap((x) => {
+    const id = str(x.id);
+    return id ? [{ c: num(x.c) ?? -1, id }] : [];
+  });
 }
 
 function shopItems(v: unknown): ShopItem[] {
@@ -687,22 +694,25 @@ function narrow(raw: Raw): ReplayLine | undefined {
 }
 
 /** Every well-formed line of the journal, in file order (which is `s`
- * order: the sequence is monotonic across resumes even though `ms` is not). */
-export function parseReplayLines(text: string): ReplayLine[] {
+ * order: the sequence is monotonic across resumes even though `ms` is not).
+ * A torn final line is expected after a crash and is not counted; any other
+ * unparseable line is counted in `malformed` so the viewer can say the
+ * replay has gaps instead of presenting it as complete. */
+export function parseReplayLines(text: string): { lines: ReplayLine[]; malformed: number } {
   const out: ReplayLine[] = [];
-  for (const raw of text.split("\n")) {
-    const line = raw.trim();
-    if (!line) continue;
+  const raws = text.split("\n").map((l) => l.trim()).filter(Boolean);
+  let malformed = 0;
+  raws.forEach((line, i) => {
     try {
       const obj: unknown = JSON.parse(line);
-      if (!obj || typeof obj !== "object") continue;
+      if (!obj || typeof obj !== "object" || Array.isArray(obj)) throw new Error("not a record");
       const typed = narrow(obj as Raw);
       if (typed) out.push(typed);
     } catch {
-      // a torn line at the end of a crashed recording is expected; skip it
+      if (i < raws.length - 1) malformed += 1;
     }
-  }
-  return out;
+  });
+  return { lines: out, malformed };
 }
 
 function buildMap(line: MapLine): ReplayMap {
@@ -765,7 +775,7 @@ function choiceKeys(line: OutcomeLine | ResolutionLine): ChoiceKeys {
     case "upgrade":
       return { instance: line.c, id: line.id };
     case "transform":
-      return { instance: line.fromC, id: line.toId };
+      return { instance: line.fromC, id: line.fromId };
     case "relic":
       return { id: line.id };
     default:
@@ -807,7 +817,7 @@ function isResolution(line: ReplayLine): line is ResolutionLine {
 }
 
 export function parseReplay(text: string): ReplayModel {
-  const lines = parseReplayLines(text);
+  const { lines, malformed } = parseReplayLines(text);
   const header = lines.find((l): l is HeaderLine => l.t === "header");
   const maps: Record<number, ReplayMap> = {};
   const actNames: Record<number, string> = {};
@@ -823,8 +833,19 @@ export function parseReplay(text: string): ReplayModel {
 
   const floorFor = (line: ReplayLine): ReplayFloor | undefined => {
     if (line.floor === undefined) return current;
-    if (current && current.floor === line.floor) return current;
-    return floors.find((x) => x.floor === line.floor) ?? current;
+    const sameAct = (f: ReplayFloor) => line.act === undefined || f.act === line.act;
+    if (current && current.floor === line.floor && sameAct(current)) return current;
+    return floors.find((x) => x.floor === line.floor && sameAct(x)) ?? current;
+  };
+  const snapshot = (floor: ReplayFloor | undefined, nextHp?: number, nextGold?: number) => {
+    if (nextHp !== undefined) {
+      hp = nextHp;
+      if (floor) floor.hpAfter = nextHp;
+    }
+    if (nextGold !== undefined) {
+      gold = nextGold;
+      if (floor) floor.goldAfter = nextGold;
+    }
   };
 
   for (const line of lines) {
@@ -870,18 +891,13 @@ export function parseReplay(text: string): ReplayModel {
 
     switch (line.t) {
       case "hp":
-        hp = line.hp;
-        if (floor) floor.hpAfter = hp;
+        snapshot(floor, line.hp);
         break;
       case "gold":
-        gold = line.gold;
-        if (floor) floor.goldAfter = gold;
+        snapshot(floor, undefined, line.gold);
         break;
       case "buy":
-        if (line.costResource === "gold" && line.goldOnHand !== undefined) {
-          gold = line.goldOnHand;
-          if (floor) floor.goldAfter = gold;
-        }
+        if (line.costResource === "gold") snapshot(floor, undefined, line.goldOnHand);
         break;
       case "shop":
         if (floor && !floor.shop) floor.shop = line;
@@ -889,8 +905,7 @@ export function parseReplay(text: string): ReplayModel {
       case "resume":
         resumes.push(line);
         if (floor) floor.resumes.push(line);
-        if (line.hp !== undefined) hp = line.hp;
-        if (line.gold !== undefined) gold = line.gold;
+        snapshot(floor, line.hp, line.gold);
         break;
     }
 
@@ -908,14 +923,17 @@ export function parseReplay(text: string): ReplayModel {
     }
     if (combat) {
       if (line.t === "turn") {
-        turn = { n: line.n || combat.turns.length + 1, side: line.side, lines: [] };
+        turn = { n: line.n, side: line.side, lines: [] };
         combat.turns.push(turn);
         continue;
       }
       if (line.t === "combat_end") {
         combat.result = line.result ?? "victory";
         combat.turnCount = line.turns;
-        if (line.hp !== undefined) combat.hpEnd = line.hp;
+        if (line.hp !== undefined) {
+          combat.hpEnd = line.hp;
+          snapshot(floor, line.hp);
+        }
         combat = undefined;
         turn = undefined;
         continue;
@@ -942,11 +960,13 @@ export function parseReplay(text: string): ReplayModel {
       continue;
     }
     if (isResolution(line)) {
-      const dec = line.decisionId ? decisions.get(line.decisionId) : undefined;
+      const dec = line.decisionId !== undefined ? decisions.get(line.decisionId) : undefined;
       if (dec) {
         dec.resolutions.push(line);
         if (line.t === "buy") {
-          dec.paid = { kind: line.kind, id: line.id, cost: line.costCurrent ?? 0, resource: line.costResource };
+          dec.paid = { kind: line.kind, id: line.id, cost: line.costCurrent, resource: line.costResource };
+          const bySlot = line.slot !== undefined ? dec.options.find((o) => o.index === line.slot) : undefined;
+          if (bySlot) bySlot.chosen = true;
         } else {
           markChoice(dec, line);
           if (!dec.outcome) dec.outcome = "chosen";
@@ -959,6 +979,7 @@ export function parseReplay(text: string): ReplayModel {
     combat.result = end.terminalReason ?? "unfinished";
     if (end.hp !== undefined) combat.hpEnd = end.hp;
   }
+  if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
   for (const dec of decisions.values()) {
     if (!dec.outcome) dec.outcome = dec.options.some((o) => o.chosen) ? "chosen" : "unresolved";
   }
@@ -977,6 +998,7 @@ export function parseReplay(text: string): ReplayModel {
     resumes,
     reloads: resumes.reduce((max, r) => Math.max(max, r.reloads), 0),
     lineCount: lines.length,
+    malformedLines: malformed,
   };
 }
 
@@ -993,15 +1015,20 @@ function completeMap(map: ReplayMap, actFloors: ReplayFloor[]): void {
     const cols = map.nodes.filter((n) => n[1] === row).map((n) => n[0]);
     return Math.round(cols.reduce((a, b) => a + b, 0) / Math.max(1, cols.length));
   };
-  if (!map.nodes.some((n) => n[2] === "boss")) {
+  const bossNode = map.nodes.find((n) => n[2] === "boss");
+  if (!bossNode) {
     const col = centre(maxRow);
     map.nodes.push([col, maxRow + 1, "boss"]);
     for (const n of map.nodes.filter((n) => n[1] === maxRow)) map.edges.push([n[0], n[1], col, maxRow + 1]);
+  } else if (!map.edges.some((e) => e[2] === bossNode[0] && e[3] === bossNode[1])) {
+    const walkableMax = Math.max(...map.nodes.filter((n) => n[2] !== "boss").map((n) => n[1]));
+    for (const n of map.nodes.filter((n) => n[1] === walkableMax)) map.edges.push([n[0], n[1], bossNode[0], bossNode[1]]);
   }
   if (!map.boss) {
     const bossFloor = [...actFloors].reverse().find((f) => isCombatKind(f.kind) && (f.id ?? "").includes("BOSS"));
     if (bossFloor?.id) map.boss = bossFloor.id;
   }
+  if (map.act !== 1) return;
   if (!map.nodes.some((n) => n[2] === "ancient")) {
     const col = centre(minRow);
     map.nodes.push([col, minRow - 1, "ancient"]);
@@ -1027,15 +1054,22 @@ export function routeForAct(model: ReplayModel, act: number): Map<number, Coord>
     list.push(n);
     rows.set(n[1], list);
   }
-  const firstRow = Math.min(...map.nodes.map((n) => n[1]));
-  let nextRow = firstRow;
+  const ancientNode = map.nodes.find((n) => n[2] === "ancient");
+  const walkable = map.nodes.filter((n) => n[2] !== "ancient");
+  let nextRow = Math.min(...(walkable.length ? walkable : map.nodes).map((n) => n[1]));
   let prev: Coord | undefined;
   const edgeSet = new Set(map.edges.map((e) => `${e[0]},${e[1]}>${e[2]},${e[3]}`));
-  for (const f of model.floors.filter((x) => x.act === act)) {
+  const actFloors = model.floors.filter((x) => x.act === act);
+  for (const f of actFloors) {
     if (f.coord) {
       out.set(f.floor, f.coord);
       prev = f.coord;
       nextRow = f.coord[1] + 1;
+      continue;
+    }
+    if (f === actFloors[0] && ancientNode && f.kind === "event" && f.id === map.ancient) {
+      prev = [ancientNode[0], ancientNode[1]];
+      out.set(f.floor, prev);
       continue;
     }
     const candidates = rows.get(nextRow) ?? [];

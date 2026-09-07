@@ -24,6 +24,8 @@ import { imageUrl } from "@/lib/image-url";
 import { useT } from "@/lib/i18n";
 import { useState } from "react";
 import { cleanId, displayName } from "@/lib/display-name";
+import { useId, useState } from "react";
+import { cleanId, displayName } from "../runs/[hash]/RunPills";
 import {
   enemyName,
   findMonster,
@@ -43,6 +45,7 @@ import {
 // back to the neutral "node" entry so a new map symbol never breaks rendering.
 const NODE_STYLE: Record<string, { fill: string; ring: string; glyph: string }> = {
   monster: { fill: "#9aa0a6", ring: "#c5c9ce", glyph: "M" },
+  burly_monster: { fill: "#9aa0a6", ring: "#c5c9ce", glyph: "M" },
   elite: { fill: "#e0843a", ring: "#ffb37a", glyph: "E" },
   boss: { fill: "#d53b27", ring: "#ff7a6a", glyph: "B" },
   shop: { fill: "#e8b830", ring: "#ffe08a", glyph: "$" },
@@ -62,6 +65,7 @@ function styleFor(type: string) {
 // "Elite:" / "Boss:" prefix in the card; the rest use the label directly.
 const ROOM_LABEL: Record<string, string> = {
   monster: "Enemy",
+  burly_monster: "Enemy",
   elite: "Elite",
   boss: "Boss",
   shop: "Shop",
@@ -118,8 +122,13 @@ function roomArt(name: string): string {
 
 // The boss node draws the game's boss map icon (ui/map_bosses, keyed by the
 // boss encounter id); a missing icon falls back to the boss portrait.
+function assetKey(id: string | null | undefined, prefix: RegExp): string | null {
+  const key = (id || "").toLowerCase().replace(prefix, "");
+  return key && safeId(key) ? key : null;
+}
+
 function bossArt(id?: string | null): string | null {
-  const key = (id || "").toLowerCase().replace(/^encounter\./, "");
+  const key = assetKey(id, /^encounter\./);
   return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon.webp`) : null;
 }
 
@@ -127,21 +136,17 @@ function bossArt(id?: string | null): string | null {
 // so the ink lines read against the parchment; the animated bosses bake that
 // into the drawing itself and ship no silhouette.
 function bossBackingArt(id?: string | null): string | null {
-  const key = (id || "").toLowerCase().replace(/^encounter\./, "");
+  const key = assetKey(id, /^encounter\./);
   return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon_outline.webp`) : null;
 }
 
 // The act's Ancient has its own map art per ancient (Neow, Darv, ...).
 const ANCIENT_ART = new Set(["neow", "darv", "nonupeipe", "orobas", "pael", "tanx", "tezcatara", "vakuu"]);
 function ancientArt(id?: string | null): string | null {
-  const key = (id || "").toLowerCase().replace(/^ancient\./, "");
-  return ANCIENT_ART.has(key) ? imageUrl(`/static/images/ui/map_ancients/ancient_node_${key}.webp`) : null;
+  const key = assetKey(id, /^ancient\./);
+  return key && ANCIENT_ART.has(key) ? imageUrl(`/static/images/ui/map_ancients/ancient_node_${key}.webp`) : null;
 }
 
-// The game marks a cleared node with a brush circle. Proportions follow the
-// in-game drawing: radius 0.9x the visible glyph, stroke 2/7 of the radius,
-// and the stroke covers 90% of the circumference with round caps so the ends
-// never meet. Rotated so the gap sits near the top like the brush lift-off.
 const CIRCLE_ART = imageUrl("/static/images/ui/map_circle/map_circle_4.webp");
 
 // The game marks a cleared node with NMapCircleVfx: a five-frame brush
@@ -149,7 +154,7 @@ const CIRCLE_ART = imageUrl("/static/images/ui/map_circle/map_circle_4.webp");
 // at 0.95 alpha, with a per-node seeded rotation and a final scale between
 // 0.85 and 0.9. This is the static state the game shows when the map is
 // reopened; the flipbook itself can animate a newly selected floor later.
-function BrushCircle({ cx, cy, size, seed }: { cx: number; cy: number; size: number; seed: number }) {
+function BrushCircle({ cx, cy, size, seed, filterId }: { cx: number; cy: number; size: number; seed: number; filterId: string }) {
   const rotation = (seed * 137) % 360;
   const box = size * (0.85 + ((seed * 31) % 100) / 2000);
   return (
@@ -161,12 +166,15 @@ function BrushCircle({ cx, cy, size, seed }: { cx: number; cy: number; size: num
       height={box}
       opacity={0.95}
       preserveAspectRatio="xMidYMid meet"
-      filter="url(#map-ink-tint)"
+      filter={`url(#${filterId})`}
       transform={`rotate(${rotation} ${cx} ${cy})`}
+      pointerEvents="none"
     />
   );
 }
 
+// Drawn stand-in for the brush sprite while it is missing on the CDN: same
+// proportions (radius 0.9x the glyph, stroke 2/7 of the radius, 90% arc).
 function InkRing({ cx, cy, size, seed, stroke }: { cx: number; cy: number; size: number; seed: number; stroke?: number }) {
   const r = size * 0.9;
   const circumference = 2 * Math.PI * r;
@@ -183,6 +191,7 @@ function InkRing({ cx, cy, size, seed, stroke }: { cx: number; cy: number; size:
       strokeLinecap="round"
       strokeDasharray={`${circumference * 0.9} ${circumference}`}
       transform={`rotate(${angle} ${cx} ${cy})`}
+      pointerEvents="none"
     />
   );
 }
@@ -323,6 +332,8 @@ function FloorCard({
 }) {
   const t = useT();
   const isCombat = f.type === "monster" || f.type === "elite" || f.type === "boss";
+function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterMap }) {
+  const isCombat = f.type === "monster" || f.type === "burly_monster" || f.type === "elite" || f.type === "boss";
   const encName = f.encounter_id
     ? roomName(f.encounter_id, encounters, monsters, cat)
     : null;
@@ -399,6 +410,7 @@ export default function LiveMap({
 }) {
   const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
   const t = useT();
+  const uid = useId().replace(/:/g, "");
   const [missingArt, setMissingArt] = useState<Set<string>>(() => new Set());
   const markMissing = (src: string) =>
     setMissingArt((prev) => (prev.has(src) ? prev : new Set(prev).add(src)));
@@ -406,11 +418,13 @@ export default function LiveMap({
   const nodes = map?.nodes ?? [];
   if (!nodes.length) return null;
   const circleMissing = missingArt.has(CIRCLE_ART);
-  const cleared = (cx: number, cy: number, size: number, seed: number, ringSize: number, stroke?: number) =>
+  const inkTint = `ink-${uid}`;
+  const paperTint = `paper-${uid}`;
+  const clearedMark = (cx: number, cy: number, size: number, seed: number, ringSize: number, stroke?: number) =>
     circleMissing ? (
       <InkRing cx={cx} cy={cy} size={ringSize} seed={seed} stroke={stroke} />
     ) : (
-      <BrushCircle cx={cx} cy={cy} size={size} seed={seed} />
+      <BrushCircle cx={cx} cy={cy} size={size} seed={seed} filterId={inkTint} />
     );
 
   const maxCol = Math.max(...nodes.map((n) => n[0]), 0);
@@ -508,7 +522,10 @@ export default function LiveMap({
   return (
     <div
       className="relative inline-block max-w-full overflow-hidden rounded-lg"
-      style={background ? { backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" } : undefined}
+      style={{
+        backgroundColor: "var(--map-paper)",
+        ...(background ? { backgroundImage: `url(${background})`, backgroundSize: "cover", backgroundPosition: "center" } : {}),
+      }}
     >
       <svg
         width={width}
@@ -517,17 +534,19 @@ export default function LiveMap({
         className="block h-auto max-w-full"
         role="img"
         aria-label={t("Act map showing the player's route")}
+        role="group"
+        aria-label="Act map showing the player's route"
         onMouseLeave={() => setHovered(null)}
       >
         <image href={CIRCLE_ART} width={0} height={0} onError={() => markMissing(CIRCLE_ART)} />
         <defs>
           {/* The boss map icon ships as a white silhouette; the game tints it
               with the act's ink colour at draw time, so do the same. */}
-          <filter id="map-ink-tint" x="-10%" y="-10%" width="120%" height="120%">
+          <filter id={inkTint} x="-10%" y="-10%" width="120%" height="120%">
             <feFlood style={{ floodColor: "var(--map-ink)" }} result="ink" />
             <feComposite in="ink" in2="SourceAlpha" operator="in" />
           </filter>
-          <filter id="map-paper-tint" x="-10%" y="-10%" width="120%" height="120%">
+          <filter id={paperTint} x="-10%" y="-10%" width="120%" height="120%">
             <feFlood style={{ floodColor: "var(--map-paper)" }} result="paper" />
             <feComposite in="paper" in2="SourceAlpha" operator="in" />
           </filter>
@@ -572,9 +591,24 @@ export default function LiveMap({
             <g
               key={`n-${c}-${r}`}
               data-coord={`${c},${r}`}
+              role={clickable ? "button" : undefined}
+              tabIndex={clickable ? 0 : undefined}
+              aria-label={clickable ? titleFor(c, r, type, effType) : undefined}
+              aria-pressed={clickable ? picked : undefined}
               onMouseEnter={() => setHovered({ c, r })}
+              onFocus={() => setHovered({ c, r })}
               onClick={clickable ? () => onSelect([c, r]) : undefined}
-              style={{ cursor: clickable ? "pointer" : hasFloor ? "help" : "default" }}
+              onKeyDown={
+                clickable
+                  ? (e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        onSelect([c, r]);
+                      }
+                    }
+                  : undefined
+              }
+              style={{ cursor: clickable ? "pointer" : hasFloor ? "help" : "default", outline: "none" }}
             >
               {here && (
                 <circle cx={x(c)} cy={y(r)} r={R + 6} fill="none" stroke="var(--accent-gold)" strokeWidth={2}>
@@ -593,7 +627,7 @@ export default function LiveMap({
                       height={BOSS}
                       preserveAspectRatio="xMidYMid meet"
                       opacity={dim ? 0.5 : 0.9}
-                      filter="url(#map-paper-tint)"
+                      filter={`url(#${paperTint})`}
                       onError={() => markMissing(backing)}
                     />
                   )}
@@ -605,10 +639,10 @@ export default function LiveMap({
                     height={BOSS}
                     preserveAspectRatio="xMidYMid meet"
                     opacity={dim ? 0.5 : 0.9}
-                    filter="url(#map-ink-tint)"
+                    filter={`url(#${inkTint})`}
                     onError={() => markMissing(boss)}
                   />
-                  {(seen || picked) && cleared(x(c), y(r), BOSS * 1.6, c * 13 + r * 7, BOSS * 0.66, 9)}
+                  {(seen || picked) && clearedMark(x(c), y(r), BOSS * 1.6, c * 13 + r * 7, BOSS * 0.66, 9)}
                 </>
               ) : ancient ? (
                 <>
@@ -619,14 +653,14 @@ export default function LiveMap({
                     width={ICON * 1.6}
                     height={ICON * 1.6}
                     opacity={dim ? 0.6 : 1}
-                    filter="url(#map-ink-tint)"
+                    filter={`url(#${inkTint})`}
                   />
-                  {(seen || picked) && cleared(x(c), y(r), ICON * 2.8, c * 13 + r * 7, ICON * 0.95)}
+                  {(seen || picked) && clearedMark(x(c), y(r), ICON * 2.8, c * 13 + r * 7, ICON * 0.95)}
                 </>
               ) : portrait ? (
                 <>
                   <circle cx={x(c)} cy={y(r)} r={big + 1} fill="var(--bg-primary)" />
-                  <clipPath id={`lm-${c}-${r}`}>
+                  <clipPath id={`clip-${uid}-${c}-${r}`}>
                     <circle cx={x(c)} cy={y(r)} r={big} />
                   </clipPath>
                   <image
@@ -635,11 +669,11 @@ export default function LiveMap({
                     y={y(r) - big}
                     width={big * 2}
                     height={big * 2}
-                    clipPath={`url(#lm-${c}-${r})`}
+                    clipPath={`url(#clip-${uid}-${c}-${r})`}
                     preserveAspectRatio="xMidYMid slice"
                     opacity={dim ? 0.55 : 1}
                   />
-                  {(seen || picked) && cleared(x(c), y(r), CIRCLE, c * 13 + r * 7, big * 1.6)}
+                  {(seen || picked) && clearedMark(x(c), y(r), CIRCLE, c * 13 + r * 7, big * 1.6)}
                 </>
               ) : icon ? (
                 <>
@@ -653,7 +687,7 @@ export default function LiveMap({
                     opacity={dim ? 0.55 : 1}
                     style={dim ? { filter: "saturate(0.35)" } : undefined}
                   />
-                  {(seen || picked) && cleared(x(c), y(r), CIRCLE, c * 13 + r * 7, ICON * 0.7)}
+                  {(seen || picked) && clearedMark(x(c), y(r), CIRCLE, c * 13 + r * 7, ICON * 0.7)}
                 </>
               ) : (
                 <>
@@ -682,8 +716,17 @@ export default function LiveMap({
                   )}
                 </>
               )}
-              {picked && !portrait && !icon && (
-                <circle cx={x(c)} cy={y(r)} r={R + 5} fill="none" stroke="var(--accent-gold)" strokeWidth={3} />
+              {picked && (
+                <circle
+                  cx={x(c)}
+                  cy={y(r)}
+                  r={boss ? BOSS / 2 + 6 : ancient ? ICON * 0.8 + 6 : R + 7}
+                  fill="none"
+                  stroke="var(--accent-gold)"
+                  strokeWidth={2}
+                  strokeOpacity={0.9}
+                  pointerEvents="none"
+                />
               )}
               <title>{titleFor(c, r, type, effType)}</title>
             </g>

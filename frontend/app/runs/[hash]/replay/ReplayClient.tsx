@@ -75,17 +75,19 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
 }
 
 function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor[]; selected: number; onPick: (floor: number) => void }) {
+  const { lang } = useLanguage();
   const w = 100;
   const h = 32;
-  const n = floors.length;
-  const xs = (i: number) => (n > 1 ? (i / (n - 1)) * w : w / 2);
+  const n = Math.max(1, floors.length);
+  const slotW = w / n;
+  const xs = (i: number) => (i + 0.5) * slotW;
   const present = s.values.map((v, i) => [v, i] as const).filter((p): p is readonly [number, number] => p[0] !== undefined);
   if (!present.length) return null;
   const top = Math.max(s.max ?? 0, ...present.map(([v]) => v), 1);
   const y = (v: number) => h - 1 - (v / top) * (h - 3);
   const sel = floors.findIndex((f) => f.floor === selected);
   const selVal = sel >= 0 ? s.values[sel] : undefined;
-  const bw = Math.max(1.2, (w / Math.max(1, n)) * 0.6);
+  const bw = Math.max(1.2, slotW * 0.6);
   const actStarts = floors.map((f, i) => (i > 0 && f.act !== floors[i - 1].act ? i : -1)).filter((i) => i > 0);
   return (
     <div className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 pb-0.5 pt-1">
@@ -95,7 +97,7 @@ function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor
       </div>
       <svg viewBox={`0 0 ${w} ${h}`} className="h-10 w-full" preserveAspectRatio="none" aria-label={s.label}>
         {actStarts.map((i) => (
-          <line key={i} x1={xs(i) - w / Math.max(1, n) / 2} x2={xs(i) - w / Math.max(1, n) / 2} y1={0} y2={h} stroke="var(--border-subtle)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+          <line key={i} x1={i * slotW} x2={i * slotW} y1={0} y2={h} stroke="var(--border-subtle)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
         ))}
         {s.kind === "line" ? (
           <path
@@ -112,7 +114,9 @@ function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor
         )}
         {sel >= 0 && <line x1={xs(sel)} x2={xs(sel)} y1={0} y2={h} stroke="var(--accent-gold)" strokeWidth={1} vectorEffect="non-scaling-stroke" />}
         {floors.map((f, i) => (
-          <rect key={f.floor} x={xs(i) - w / Math.max(1, n) / 2} y={0} width={w / Math.max(1, n)} height={h} fill="transparent" onClick={() => onPick(f.floor)} style={{ cursor: "pointer" }} />
+          <rect key={f.floor} x={i * slotW} y={0} width={slotW} height={h} fill="transparent" onClick={() => onPick(f.floor)} style={{ cursor: "pointer" }}>
+            <title>{`${t("floor", lang)} ${f.floor}`}</title>
+          </rect>
         ))}
       </svg>
     </div>
@@ -149,7 +153,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
 
   useEffect(() => {
     let alive = true;
-    fetch(`${API}/api/runs/${hash}/replay`)
+    fetch(`${API}/api/runs/${encodeURIComponent(hash)}/replay`)
       .then(async (res) => {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.text();
@@ -169,15 +173,26 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
   }, [hash]);
 
   useEffect(() => {
+    let alive = true;
     const index = <T extends { id: string }>(items: T[]) => {
       const out: Record<string, T> = {};
-      for (const x of items) out[x.id] = x;
+      for (const x of Array.isArray(items) ? items : []) out[x.id] = x;
       return out;
     };
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).then((x) => setCards(index(x))).catch(() => {});
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then((x) => setRelics(index(x))).catch(() => {});
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then((x) => setPotions(index(x))).catch(() => {});
-    cachedFetch<EventInfo[]>(`${API}/api/events?lang=${lang}`).then((x) => setEvents(index(x))).catch(() => {});
+    const load = <T extends { id: string }>(path: string) =>
+      cachedFetch<T[]>(`${API}/api/${path}?lang=${encodeURIComponent(lang)}`).then(index, () => ({}) as Record<string, T>);
+    Promise.all([load<CardInfo>("cards"), load<RelicInfo>("relics"), load<PotionInfo>("potions"), load<EventInfo>("events")]).then(
+      ([c, r, p, e]) => {
+        if (!alive) return;
+        setCards(c);
+        setRelics(r);
+        setPotions(p);
+        setEvents(e);
+      },
+    );
+    return () => {
+      alive = false;
+    };
   }, [lang]);
 
   const floors = useMemo(() => model?.floors ?? [], [model]);
@@ -208,6 +223,9 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     const onKey = (e: KeyboardEvent) => {
       if (!floors.length || selected === null) return;
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.defaultPrevented) return;
+      const target = e.target as HTMLElement | null;
+      if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.tagName === "SELECT" || target.isContentEditable)) return;
       const i = floors.findIndex((f) => f.floor === selected);
       const next = floors[i + (e.key === "ArrowRight" ? 1 : -1)];
       if (next) {
@@ -224,7 +242,14 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     const box = mapBox.current;
     if (!box || !selectedCoord) return;
     const node = box.querySelector<SVGGElement>(`g[data-coord="${selectedCoord[0]},${selectedCoord[1]}"]`);
-    node?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
+    if (!node) return;
+    const boxRect = box.getBoundingClientRect();
+    const nodeRect = node.getBoundingClientRect();
+    box.scrollTo({
+      top: box.scrollTop + (nodeRect.top - boxRect.top) - box.clientHeight / 2 + nodeRect.height / 2,
+      left: box.scrollLeft + (nodeRect.left - boxRect.left) - box.clientWidth / 2 + nodeRect.width / 2,
+      behavior: "smooth",
+    });
   }, [selectedCoord]);
 
   const cat: Catalog = { cards, relics, potions, events, monsters, encounters, cardScores, relicScores };
@@ -251,7 +276,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
         )}
         <div className="min-w-0">
           <h1 className="text-xl font-bold text-[var(--text-primary)]">
-            {who} · {character ? character.charAt(0) + character.slice(1).toLowerCase() : ""} · A{run.ascension ?? 0}
+            {[who, character ? character.charAt(0) + character.slice(1).toLowerCase() : "", `A${run.ascension ?? 0}`].filter(Boolean).join(" · ")}
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
             <span className={run.win ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{result}</span>

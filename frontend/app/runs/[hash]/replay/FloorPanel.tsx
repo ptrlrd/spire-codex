@@ -86,19 +86,30 @@ const MARKUP_TONE: Record<string, string> = {
 // the map colours use and drop the rest (images, unknown tags).
 function Markup({ text }: { text: string }) {
   const parts: ReactNode[] = [];
-  const re = /\[(\/?)([a-z]+)[^\]]*\]/g;
-  let tone: string | null = null;
+  const re = /\[(\/?)([a-z]+)[^\]]*\]/gi;
+  const stack: string[] = [];
   let last = 0;
   let m: RegExpExecArray | null;
+  const flush = (end: number) => {
+    if (end <= last) return;
+    const chunk = text.slice(last, end);
+    const tone = stack.length ? MARKUP_TONE[stack[stack.length - 1]] : undefined;
+    parts.push(tone ? <span key={parts.length} className={tone}>{chunk}</span> : chunk);
+  };
   while ((m = re.exec(text))) {
-    if (m.index > last) {
-      const chunk = text.slice(last, m.index);
-      parts.push(tone ? <span key={parts.length} className={tone}>{chunk}</span> : chunk);
+    flush(m.index);
+    const tag = m[2].toLowerCase();
+    if (tag in MARKUP_TONE) {
+      if (m[1]) {
+        const i = stack.lastIndexOf(tag);
+        if (i >= 0) stack.splice(i, 1);
+      } else {
+        stack.push(tag);
+      }
     }
-    tone = m[1] ? null : (MARKUP_TONE[m[2]] ?? null);
     last = re.lastIndex;
   }
-  if (last < text.length) parts.push(text.slice(last));
+  flush(text.length);
   return <>{parts}</>;
 }
 
@@ -110,7 +121,12 @@ function itemName(kind: string, id: string, cat: Catalog): string {
 }
 
 function costLabel(l: BuyLine): string {
-  return `${l.costCurrent ?? 0} ${l.costResource}`;
+  return `${l.costCurrent ?? "?"} ${l.costResource}`;
+}
+
+const SHOP_KINDS = new Set(["merchant", "shop"]);
+export function isShopKind(kind: string): boolean {
+  return SHOP_KINDS.has(kind);
 }
 
 function describeLine(l: ReplayLine, cat: Catalog, lang: string): string | undefined {
@@ -192,19 +208,19 @@ function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat:
       {!o.selectable && o.reason && <span className="text-[10px] uppercase tracking-wider">{o.reason}</span>}
       {isCard && <ScoreChip id={o.id} scores={cat.cardScores} />}
       {isRelic && <ScoreChip id={o.grantsRelic || o.id} scores={cat.relicScores} />}
-      {dec.paid && o.chosen && dec.paid.kind !== "removal_service" && (
+      {dec.paid && o.chosen && dec.paid.kind !== "removal_service" && dec.paid.cost !== undefined && (
         <span className="text-[10px] text-[var(--text-muted)]">{dec.paid.cost} {dec.paid.resource}</span>
       )}
     </li>
   );
 }
 
-function decisionTitle(d: ReplayDecision): string {
+function decisionTitle(d: ReplayDecision, cat: Catalog): string {
   if (d.type === "card_reward") return "Card reward";
   if (d.selectKind === "transform") return "Transform a card";
   if (d.selectKind === "upgrade") return "Upgrade a card";
   if (d.selectKind === "remove" || d.paid?.kind === "removal_service") return "Remove a card";
-  if (d.type === "event") return d.eventId ? displayName(`EVENT.${d.eventId}`) : "Event";
+  if (d.type === "event") return d.eventId ? cat.events[cleanId(d.eventId)]?.name || displayName(`EVENT.${d.eventId}`) : "Event";
   if (d.type === "relic_reward") return "Relic reward";
   if (d.type === "potion_reward") return "Potion reward";
   return displayName(d.type);
@@ -218,7 +234,7 @@ function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t(decisionTitle(d), lang)}</h4>
+        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t(decisionTitle(d, cat), lang)}</h4>
         <span className="text-xs text-[var(--text-muted)]">
           {shown.length} {t("offered", lang)}
           {d.nSelectable < d.nPresented && ` · ${d.nSelectable} ${t("selectable", lang)}`}
@@ -284,7 +300,9 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
   const buys = f.lines.filter((l): l is BuyLine => l.t === "buy");
   const removed = f.lines.flatMap((l) => (l.t === "remove" ? [l.id] : []));
   const goldIn = f.shop?.gold ?? prev?.goldAfter;
-  const spent = buys.reduce((sum, l) => sum + (l.costResource === "gold" ? (l.costCurrent ?? 0) : 0), 0);
+  const goldBuys = buys.filter((l) => l.costResource === "gold");
+  const spentKnown = goldBuys.every((l) => l.costCurrent !== undefined);
+  const spent = goldBuys.reduce((sum, l) => sum + (l.costCurrent ?? 0), 0);
   const stock = f.shop;
   const groups = stock
     ? ([
@@ -298,7 +316,7 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tabular-nums text-[var(--text-muted)]">
         <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t("Shop", lang)}</h4>
         {goldIn !== undefined && <span>{t("Gold in", lang)} {goldIn}</span>}
-        <span>{t("Spent", lang)} {spent}</span>
+        <span>{t("Spent", lang)} {spentKnown ? spent : "?"}</span>
         {f.goldAfter !== undefined && <span>{t("Gold out", lang)} {f.goldAfter}</span>}
       </header>
       {stock && (
@@ -324,7 +342,7 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
         <ul className="grid gap-1.5 sm:grid-cols-2">
           {buys.map((l, i) => {
             const removal = l.kind === "removal_service";
-            const target = removal ? removed[Math.min(i, removed.length - 1)] : l.id;
+            const target = removal ? removed[buys.slice(0, i).filter((b) => b.kind === "removal_service").length] : l.id;
             const label = removal ? `${t("Card removal", lang)}${target ? `: ${cardName(target, cat)}` : ""}` : itemName(l.kind, l.id ?? "", cat);
             return (
               <li key={`${l.s}-${i}`} className="flex items-center gap-2 rounded-md border border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] px-2.5 py-1.5 text-sm text-[var(--text-primary)]">
@@ -359,7 +377,8 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
 
 function describePlay(play: PlayLine, hits: HitLine[], cat: Catalog): string {
   const name = `${cardName(play.id, cat)}${play.up ? "+" : ""}`;
-  const dmg = hits.reduce((sum, h) => sum + (h.dmg ?? 0), 0);
+  const own = hits.filter((h) => (h.card ? h.card === play.id : true) && h.dmg !== undefined);
+  const dmg = own.reduce((sum, h) => sum + (h.dmg ?? 0), 0);
   const parts = [name];
   if (play.target && play.target !== "player") parts.push(`→ ${monsterName(play.target, cat)}`);
   if (dmg > 0) parts.push(`${dmg} dmg`);
@@ -402,15 +421,15 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
     }
   } else {
     for (const l of lines) {
-      if (l.t === "hit" && l.dst === "player") {
+      if (l.t === "hit" && l.dst === "player" && l.dmg !== undefined) {
         const src = l.src ?? "";
-        items.push(`${src === "effect" ? t("Effect", lang) : monsterName(src, cat)} ${t("hit for", lang)} ${l.dmg ?? 0}${l.blocked ? ` (${l.blocked} ${t("blocked", lang)})` : ""}`);
+        items.push(`${src === "effect" ? t("Effect", lang) : monsterName(src, cat)} ${t("hit for", lang)} ${l.dmg}${l.blocked ? ` (${l.blocked} ${t("blocked", lang)})` : ""}`);
       } else if (l.t === "power" && l.tgt === "player") {
         items.push(`${displayName(l.id.replace(/_POWER$/, ""))} ${l.n ?? ""}`);
       }
     }
   }
-  const hpLine = [...lines].reverse().find((l) => l.t === "hp");
+  const hpLine = lines.findLast((l) => l.t === "hp");
   return (
     <li className="grid grid-cols-[auto_1fr] gap-x-3 py-1.5">
       <span className={`text-xs font-semibold tabular-nums ${turn.side === "player" ? "text-[var(--accent-gold)]" : "text-[var(--text-muted)]"}`}>
@@ -446,8 +465,13 @@ function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
         <div className="text-sm">
           <div className="font-semibold text-[var(--text-primary)]">{c.enemies.map((e) => monsterName(e.id, cat)).join(", ")}</div>
           <div className="text-xs text-[var(--text-muted)]">
-            <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : c.result, lang)}</span>
-            {" · "}{c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns", lang)}
+            {c.result && (
+              <>
+                <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : displayName(c.result), lang)}</span>
+                {" · "}
+              </>
+            )}
+            {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns", lang)}
             {" · "}{c.damageTaken} {t("damage taken", lang)}
             {c.hpEnd !== undefined && ` · HP ${c.hpEnd}`}
           </div>
@@ -468,8 +492,9 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
   const bits: string[] = [];
   for (const l of f.lines) {
     if (decided.has(l.s)) continue;
-    if (f.kind === "merchant" && (l.t === "buy" || l.t === "remove" || l.t === "acquire")) continue;
+    if (isShopKind(f.kind) && (l.t === "buy" || l.t === "remove" || l.t === "acquire")) continue;
     if (l.t === "resume") continue;
+    if (f.combat && (l.t === "hp" || l.t === "hp_loss")) continue;
     const text = describeLine(l, cat, lang);
     if (text) bits.push(text);
   }
@@ -487,7 +512,7 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
   const { lang } = useLanguage();
   // An event's "Proceed" page is recorded as a decision with nothing to
   // pick; it adds nothing the previous card didn't say.
-  const combatDecisions = f.decisions.filter((d) => !(d.type === "event" && d.nPresented === 0 && d.resolutions.length === 0));
+  const visibleDecisions = f.decisions.filter((d) => !(d.type === "event" && d.nPresented === 0 && d.resolutions.length === 0));
   const hpDelta = prev?.hpAfter !== undefined && f.hpAfter !== undefined ? f.hpAfter - prev.hpAfter : 0;
   const goldDelta = prev?.goldAfter !== undefined && f.goldAfter !== undefined ? f.goldAfter - prev.goldAfter : 0;
   return (
@@ -509,8 +534,8 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
         </span>
       </header>
       {f.combat && <CombatBlock f={f} cat={cat} />}
-      {f.kind === "merchant" && <ShopBlock f={f} prev={prev} cat={cat} />}
-      {combatDecisions.map((d) => (
+      {isShopKind(f.kind) && <ShopBlock f={f} prev={prev} cat={cat} />}
+      {visibleDecisions.map((d) => (
         <DecisionCard key={d.id} d={d} cat={cat} />
       ))}
       <LootLine f={f} cat={cat} />

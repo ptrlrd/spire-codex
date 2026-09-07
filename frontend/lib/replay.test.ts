@@ -1,9 +1,12 @@
 import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { isCombatKind, parseReplay, routeForAct, type PlayLine } from "./replay";
+import { isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
 
-const JOURNAL = readFileSync(resolve(__dirname, "../../backend/tests/fixtures/real-replay.jsonl"), "utf-8");
+const JOURNAL = readFileSync(new URL("../../backend/tests/fixtures/real-replay.jsonl", import.meta.url), "utf-8");
+
+function journal(records: Record<string, unknown>[]): string {
+  return records.map((r) => JSON.stringify(r)).join("\n");
+}
 
 describe("parseReplay on the real journal", () => {
   const model = parseReplay(JOURNAL);
@@ -76,9 +79,7 @@ describe("parseReplay on the real journal", () => {
 });
 
 describe("parseReplay on the Regent journal (deck_c, end_turn, exact identity)", () => {
-  const model = parseReplay(
-    readFileSync(resolve(__dirname, "../../backend/tests/fixtures/real-replay-regent.jsonl"), "utf-8"),
-  );
+  const model = parseReplay(readFileSync(new URL("../../backend/tests/fixtures/real-replay-regent.jsonl", import.meta.url), "utf-8"));
 
   it("keeps the identity fields the backend matches on", () => {
     expect(model.header?.seed).toBe("FHM18MSNRX8V");
@@ -159,5 +160,105 @@ describe("parseReplay on the records added after the first draft", () => {
     expect(odd && odd.t === "unknown" ? odd.kind : undefined).toBe("wibble");
     expect(model.end?.maxHp).toBe(80);
     expect(model.finalDeck).toHaveLength(2);
+  });
+});
+
+describe("parseReplay edge cases the reviewers named", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, starting_deck: [{ c: 1, id: "STRIKE_REGENT" }, { c: 2, id: "DEFEND_REGENT" }] };
+
+  it("pairs resolutions with decision id 0", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "event", id: "NEOW" },
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 0, decision_type: "event", source: "event", options: [{ option_index: 0, option_id: "A" }, { option_index: 1, option_id: "B" }] },
+        { t: "acquire", s: 3, floor: 1, act: 1, decision_id: 0, id: "STRIKE_REGENT", c: 9, option_index: 1 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.resolutions).toHaveLength(1);
+  });
+
+  it("marks the transformed source card when from_c is absent", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "event", id: "X" },
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 4, decision_type: "card_select", select_kind: "transform", source: "event", options: [{ option_index: 0, option_kind: "transform", option_id: "STRIKE_REGENT" }, { option_index: 1, option_kind: "transform", option_id: "DEFEND_REGENT" }] },
+        { t: "transform", s: 3, floor: 1, act: 1, decision_id: 4, from_id: "DEFEND_REGENT", to_id: "STRIKE_REGENT" },
+      ]),
+    );
+    expect(model.floors[0].decisions[0].options.map((o) => o.chosen)).toEqual([false, true]);
+  });
+
+  it("gives only act 1 an ancient node and wires a recorder-placed boss", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "map", s: 1, floor: 0, act: 1, boss: "B1", boss_coord: "1,3", nodes: [{ coord: "1,1", kind: "monster", children: ["1,2"] }, { coord: "1,2", kind: "elite", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "event", id: "NEOW" },
+        { t: "room", s: 3, floor: 2, act: 1, kind: "combat", id: "M", coord: "1,1" },
+        { t: "act", s: 4, floor: 3, act: 2, name: "HIVE" },
+        { t: "map", s: 5, floor: 3, act: 2, boss: "B2", nodes: [{ coord: "0,1", kind: "event", children: [] }] },
+        { t: "room", s: 6, floor: 3, act: 2, kind: "event", id: "CURSED_TOME", coord: "0,1" },
+      ]),
+    );
+    expect(model.maps[1].nodes.some((n) => n[2] === "ancient")).toBe(true);
+    expect(model.maps[1].ancient).toBe("NEOW");
+    expect(model.maps[1].edges).toContainEqual([1, 2, 1, 3]);
+    expect(model.maps[2].nodes.some((n) => n[2] === "ancient")).toBe(false);
+    expect(model.maps[2].ancient).toBeUndefined();
+    const route = routeForAct(model, 1);
+    expect(route.get(1)).toEqual([1, 0]);
+    expect(route.get(2)).toEqual([1, 1]);
+  });
+
+  it("keeps turn 0, snapshots hp from resume and combat end, and routes burly monsters as combat", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "map", s: 1, floor: 0, act: 1, nodes: [{ coord: "0,0", kind: "burly_monster", children: [] }, { coord: "1,0", kind: "shop", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "combat", id: "BIG" },
+        { t: "combat_start", s: 3, floor: 1, act: 1, encounter: "BIG", enemies: [] },
+        { t: "turn", s: 4, floor: 1, act: 1, n: 0, side: "player" },
+        { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp: 41 },
+        { t: "resume", s: 6, floor: 1, act: 1, reloads: 1, hp: 35, gold: 12 },
+      ]),
+    );
+    const f = model.floors[0];
+    expect(f.combat?.turns[0].n).toBe(0);
+    expect(f.resumes[0].hp).toBe(35);
+    expect(f.hpAfter).toBe(35);
+    expect(f.goldAfter).toBe(12);
+    expect(isCombatKind("burly_monster")).toBe(true);
+    expect(routeForAct(model, 1).get(1)).toEqual([0, 0]);
+  });
+
+  it("counts malformed interior lines but tolerates a torn tail", () => {
+    const text = journal([header, { t: "room", s: 1, floor: 1, act: 1, kind: "event" }]) + "\n{not json\n" + JSON.stringify({ t: "gold", s: 2, floor: 1, act: 1, gold: 5 }) + "\n{\"t\":\"hp\",\"s\":3,\"h";
+    const parsed = parseReplayLines(text);
+    expect(parsed.malformed).toBe(1);
+    expect(parsed.lines).toHaveLength(3);
+    expect(parseReplay(text).malformedLines).toBe(1);
+  });
+
+  it("marks a shop purchase by slot so duplicate shelf cards resolve to the right one", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "merchant" },
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 7, decision_type: "shop", source: "shop", options: [{ option_index: 0, option_kind: "card", option_id: "FASTEN" }, { option_index: 1, option_kind: "card", option_id: "FASTEN" }] },
+        { t: "buy", s: 3, floor: 1, act: 1, decision_id: 7, kind: "card", slot: 1, id: "FASTEN", cost_current: 52, cost_resource: "gold", gold_on_hand: 88 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.paid?.cost).toBe(52);
+  });
+
+  it("rejects partial coordinates", () => {
+    const model = parseReplay(journal([header, { t: "room", s: 1, floor: 1, act: 1, kind: "event", coord: "3" }, { t: "room", s: 2, floor: 2, act: 1, kind: "event", coord: "3,4,5" }]));
+    expect(model.floors.map((f) => f.coord)).toEqual([undefined, undefined]);
   });
 });
