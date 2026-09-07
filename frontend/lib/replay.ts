@@ -2,23 +2,338 @@
 // line) into the shape the replay page renders: one entry per floor, the act
 // maps, the decisions with their offered options and what was picked, and
 // each combat broken into turns. Pure: no fetching, no React.
+//
+// The journal is narrowed once, here, into the discriminated union below.
+// Every consumer switches on `t` and gets real fields; nothing downstream
+// re-checks types. Unknown record kinds survive as UnknownLine so a newer
+// mod build degrades instead of crashing. The journal omits null fields, so
+// absence is always "not known", never zero.
 
 import type { Coord, MapEdge, MapNode } from "@/app/live/live-shared";
 
-export interface ReplayLine {
-  t: string;
+type Raw = Record<string, unknown>;
+
+interface LineBase {
   s: number;
   ms?: number;
   floor?: number;
   act?: number;
-  [key: string]: unknown;
 }
+
+export interface DeckCard {
+  c: number;
+  id: string;
+}
+
+export interface HeaderLine extends LineBase {
+  t: "header";
+  seed?: string;
+  startTime?: number;
+  buildId?: string;
+  character?: string;
+  ascension?: number;
+  gameMode?: string;
+  playerCount?: number;
+  modVersion?: string;
+  startingDeck: DeckCard[];
+}
+export interface ActLine extends LineBase {
+  t: "act";
+  name?: string;
+}
+export interface MapNodeLine {
+  coord: Coord;
+  kind: string;
+  children: Coord[];
+}
+export interface MapLine extends LineBase {
+  t: "map";
+  boss?: string;
+  bossCoord?: Coord;
+  boss2Coord?: Coord;
+  nodes: MapNodeLine[];
+}
+export interface RoomLine extends LineBase {
+  t: "room";
+  kind: string;
+  id?: string;
+  coord?: Coord;
+}
+export interface DecisionOptionLine {
+  optionIndex: number;
+  kind: string;
+  id: string;
+  label?: string;
+  desc?: string;
+  grantsRelic?: string;
+  instanceId?: number;
+  up: number;
+  presented: boolean;
+  selectable: boolean;
+  reason?: string;
+}
+export interface DecisionLine extends LineBase {
+  t: "decision";
+  decisionId: number;
+  decisionType: string;
+  source: string;
+  selectKind?: string;
+  eventId?: string;
+  nPresented: number;
+  nSelectable: number;
+  declineAvailable?: boolean;
+  goldOnHand?: number;
+  offerGeneration?: number;
+  options: DecisionOptionLine[];
+}
+export interface OutcomeLine extends LineBase {
+  t: "outcome";
+  decisionId: number;
+  outcome?: string;
+  optionIndex?: number;
+  optionId?: string;
+  label?: string;
+}
+export interface ResolveLine extends LineBase {
+  t: "resolve";
+  decisionId?: number;
+  rewardKind?: string;
+  gold?: number;
+}
+export interface AcquireLine extends LineBase {
+  t: "acquire";
+  id: string;
+  c?: number;
+  source?: string;
+  decisionId?: number;
+  optionIndex?: number;
+}
+export interface RemoveLine extends LineBase {
+  t: "remove";
+  id: string;
+  c?: number;
+  decisionId?: number;
+}
+export interface UpgradeLine extends LineBase {
+  t: "upgrade";
+  id: string;
+  c?: number;
+  decisionId?: number;
+}
+export interface TransformLine extends LineBase {
+  t: "transform";
+  fromId: string;
+  toId: string;
+  fromC?: number;
+  toC?: number;
+  decisionId?: number;
+}
+export interface RelicLine extends LineBase {
+  t: "relic";
+  id: string;
+  decisionId?: number;
+}
+export interface PotionGotLine extends LineBase {
+  t: "potion_got";
+  id: string;
+}
+export interface PotionUsedLine extends LineBase {
+  t: "potion_used";
+  id: string;
+}
+export interface BuyLine extends LineBase {
+  t: "buy";
+  kind: string;
+  id?: string;
+  slot?: number;
+  decisionId?: number;
+  costCurrent?: number;
+  costResource: string;
+  goldOnHand?: number;
+}
+export interface ShopItem {
+  slot: number;
+  id: string;
+  cost?: number;
+  stocked: boolean;
+  sale: boolean;
+  pool?: string;
+}
+export interface ShopLine extends LineBase {
+  t: "shop";
+  gold?: number;
+  removalCost?: number;
+  removalStocked?: boolean;
+  cards: ShopItem[];
+  relics: ShopItem[];
+  potions: ShopItem[];
+}
+export interface GoldLine extends LineBase {
+  t: "gold";
+  gold: number;
+}
+export interface HpLine extends LineBase {
+  t: "hp";
+  d?: number;
+  hp: number;
+}
+export interface HpLossLine extends LineBase {
+  t: "hp_loss";
+  dmg?: number;
+  blocked?: number;
+}
+export interface RestLine extends LineBase {
+  t: "rest";
+  option?: string;
+}
+export interface CombatEnemy {
+  i: number;
+  id: string;
+  hp: number;
+  maxHp: number;
+}
+export interface CombatStartLine extends LineBase {
+  t: "combat_start";
+  encounter?: string;
+  enemies: CombatEnemy[];
+}
+export interface CombatEndLine extends LineBase {
+  t: "combat_end";
+  result?: string;
+  turns?: number;
+  hp?: number;
+}
+export interface TurnLine extends LineBase {
+  t: "turn";
+  n: number;
+  side: string;
+}
+export interface EndTurnLine extends LineBase {
+  t: "end_turn";
+  n?: number;
+  side?: string;
+}
+export interface DrawLine extends LineBase {
+  t: "draw";
+  id: string;
+  c?: number;
+  deckC?: number;
+}
+export interface PlayLine extends LineBase {
+  t: "play";
+  id: string;
+  c?: number;
+  deckC?: number;
+  up?: number;
+  target?: string;
+  costPaid?: number;
+  starsPaid?: number;
+  auto?: boolean;
+}
+export interface HitLine extends LineBase {
+  t: "hit";
+  src?: string;
+  dst?: string;
+  dmg?: number;
+  blocked?: number;
+  killed?: boolean;
+  card?: string;
+}
+export interface BlockLine extends LineBase {
+  t: "block";
+  n?: number;
+  card?: string;
+}
+export interface PowerLine extends LineBase {
+  t: "power";
+  id: string;
+  n?: number;
+  tgt?: string;
+}
+export interface ExhaustLine extends LineBase {
+  t: "exhaust";
+  id: string;
+  c?: number;
+  deckC?: number;
+}
+export interface GenerateLine extends LineBase {
+  t: "generate";
+  id: string;
+  c?: number;
+}
+export interface ShuffleLine extends LineBase {
+  t: "shuffle";
+}
+export interface ResumeLine extends LineBase {
+  t: "resume";
+  reloads: number;
+  wallClock?: number;
+  runTime?: number;
+  hp?: number;
+  gold?: number;
+  deckSize?: number;
+}
+export interface EndLine extends LineBase {
+  t: "end";
+  terminalReason?: string;
+  runTime?: number;
+  floors?: number;
+  isGameOver?: boolean;
+  hp?: number;
+  maxHp?: number;
+  finalDeck: DeckCard[];
+}
+export interface UnknownLine extends LineBase {
+  t: "unknown";
+  kind: string;
+  raw: Raw;
+}
+
+export type ReplayLine =
+  | HeaderLine
+  | ActLine
+  | MapLine
+  | RoomLine
+  | DecisionLine
+  | OutcomeLine
+  | ResolveLine
+  | AcquireLine
+  | RemoveLine
+  | UpgradeLine
+  | TransformLine
+  | RelicLine
+  | PotionGotLine
+  | PotionUsedLine
+  | BuyLine
+  | ShopLine
+  | GoldLine
+  | HpLine
+  | HpLossLine
+  | RestLine
+  | CombatStartLine
+  | CombatEndLine
+  | TurnLine
+  | EndTurnLine
+  | DrawLine
+  | PlayLine
+  | HitLine
+  | BlockLine
+  | PowerLine
+  | ExhaustLine
+  | GenerateLine
+  | ShuffleLine
+  | ResumeLine
+  | EndLine
+  | UnknownLine;
+
+export type ResolutionLine = AcquireLine | RemoveLine | UpgradeLine | TransformLine | RelicLine | ResolveLine | BuyLine;
 
 export interface ReplayOption {
   index: number;
   kind: string;
   id: string;
   label?: string;
+  desc?: string;
   grantsRelic?: string;
   instanceId?: number;
   upgraded: boolean;
@@ -39,9 +354,9 @@ export interface ReplayDecision {
   declineAvailable?: boolean;
   goldOnHand?: number;
   options: ReplayOption[];
-  outcome: string | null;
+  outcome?: string;
   paid?: { kind: string; id?: string; cost: number; resource: string };
-  resolutions: ReplayLine[];
+  resolutions: ResolutionLine[];
   s: number;
 }
 
@@ -53,26 +368,28 @@ export interface ReplayTurn {
 
 export interface ReplayCombat {
   encounter: string;
-  enemies: { i: number; id: string; hp: number; maxHp: number }[];
+  enemies: CombatEnemy[];
   turns: ReplayTurn[];
   result: string;
-  turnCount: number | null;
+  turnCount?: number;
   damageTaken: number;
-  hpEnd: number | null;
+  hpEnd?: number;
 }
 
 export interface ReplayFloor {
   floor: number;
   act: number;
   kind: string;
-  id: string | null;
-  coord: Coord | null;
+  id?: string;
+  coord?: Coord;
   s: number;
   lines: ReplayLine[];
   decisions: ReplayDecision[];
-  combat: ReplayCombat | null;
-  hpAfter: number | null;
-  goldAfter: number | null;
+  combat?: ReplayCombat;
+  shop?: ShopLine;
+  resumes: ResumeLine[];
+  hpAfter?: number;
+  goldAfter?: number;
 }
 
 export interface ReplayMap {
@@ -84,13 +401,15 @@ export interface ReplayMap {
 }
 
 export interface ReplayModel {
-  header: Record<string, unknown>;
-  end: Record<string, unknown> | null;
+  header?: HeaderLine;
+  end?: EndLine;
   maps: Record<number, ReplayMap>;
   floors: ReplayFloor[];
   actNames: Record<number, string>;
-  startingDeck: { c: number; id: string }[];
-  finalDeck: { c: number; id: string }[];
+  startingDeck: DeckCard[];
+  finalDeck: DeckCard[];
+  resumes: ResumeLine[];
+  reloads: number;
   lineCount: number;
 }
 
@@ -109,30 +428,276 @@ const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
   unknown: ["unknown", "event"],
   ancient: ["ancient"],
 };
-const RESOLUTIONS = new Set(["acquire", "remove", "upgrade", "transform", "relic", "resolve", "buy"]);
 
-function num(v: unknown): number | null {
-  return typeof v === "number" && Number.isFinite(v) ? v : null;
+function num(v: unknown): number | undefined {
+  return typeof v === "number" && Number.isFinite(v) ? v : undefined;
 }
 
-function str(v: unknown): string | null {
-  return typeof v === "string" ? v : null;
+function str(v: unknown): string | undefined {
+  return typeof v === "string" ? v : undefined;
 }
 
-export function parseCoord(v: unknown): Coord | null {
-  if (typeof v !== "string") return null;
+function bool(v: unknown): boolean | undefined {
+  return typeof v === "boolean" ? v : undefined;
+}
+
+function objects(v: unknown): Raw[] {
+  return Array.isArray(v) ? v.filter((x): x is Raw => !!x && typeof x === "object") : [];
+}
+
+export function parseCoord(v: unknown): Coord | undefined {
+  if (typeof v !== "string") return undefined;
   const [c, r] = v.split(",").map((x) => parseInt(x.trim(), 10));
-  return Number.isFinite(c) && Number.isFinite(r) ? [c, r] : null;
+  return Number.isFinite(c) && Number.isFinite(r) ? [c, r] : undefined;
 }
 
+function deckOf(v: unknown): DeckCard[] {
+  return objects(v).map((x) => ({ c: num(x.c) ?? -1, id: str(x.id) ?? "" }));
+}
+
+function shopItems(v: unknown): ShopItem[] {
+  return objects(v).map((x, i) => ({
+    slot: num(x.slot) ?? i,
+    id: str(x.id) ?? "",
+    cost: num(x.cost),
+    stocked: bool(x.stocked) ?? true,
+    sale: bool(x.sale) ?? false,
+    pool: str(x.pool),
+  }));
+}
+
+function narrow(raw: Raw): ReplayLine | undefined {
+  const t = str(raw.t);
+  const s = num(raw.s);
+  if (t === undefined || s === undefined) return undefined;
+  const base: LineBase = { s, ms: num(raw.ms), floor: num(raw.floor), act: num(raw.act) };
+  const id = str(raw.id) ?? "";
+  switch (t) {
+    case "header":
+      return {
+        ...base,
+        t,
+        seed: str(raw.seed),
+        startTime: num(raw.start_time),
+        buildId: str(raw.build_id),
+        character: str(raw.character),
+        ascension: num(raw.ascension),
+        gameMode: str(raw.game_mode),
+        playerCount: num(raw.player_count),
+        modVersion: str(raw.mod_version),
+        startingDeck: deckOf(raw.starting_deck),
+      };
+    case "act":
+      return { ...base, t, name: str(raw.name) };
+    case "map":
+      return {
+        ...base,
+        t,
+        boss: str(raw.boss),
+        bossCoord: parseCoord(raw.boss_coord),
+        boss2Coord: parseCoord(raw.boss2_coord),
+        nodes: objects(raw.nodes).flatMap((n) => {
+          const coord = parseCoord(n.coord);
+          if (!coord) return [];
+          const children = (Array.isArray(n.children) ? n.children : []).map(parseCoord).filter((c): c is Coord => !!c);
+          return [{ coord, kind: (str(n.kind) ?? "node").toLowerCase(), children }];
+        }),
+      };
+    case "room":
+      return { ...base, t, kind: (str(raw.kind) ?? "unknown").toLowerCase(), id: str(raw.id), coord: parseCoord(raw.coord) };
+    case "decision": {
+      const options = objects(raw.options).map((o, i) => ({
+        optionIndex: num(o.option_index) ?? i,
+        kind: str(o.option_kind) ?? "option",
+        id: str(o.option_id) ?? "",
+        label: str(o.label),
+        desc: str(o.desc),
+        grantsRelic: str(o.grants_relic),
+        instanceId: num(o.instance_id),
+        up: num(o.up) ?? 0,
+        presented: bool(o.presented) ?? true,
+        selectable: bool(o.selectable) ?? true,
+        reason: str(o.selectable_reason),
+      }));
+      return {
+        ...base,
+        t,
+        decisionId: num(raw.decision_id) ?? 0,
+        decisionType: str(raw.decision_type) ?? "unknown",
+        source: str(raw.source) ?? "",
+        selectKind: str(raw.select_kind),
+        eventId: str(raw.event_id),
+        nPresented: num(raw.n_presented) ?? options.length,
+        nSelectable: num(raw.n_selectable) ?? options.length,
+        declineAvailable: bool(raw.decline_available),
+        goldOnHand: num(raw.gold_on_hand),
+        offerGeneration: num(raw.offer_generation),
+        options,
+      };
+    }
+    case "outcome":
+      return {
+        ...base,
+        t,
+        decisionId: num(raw.decision_id) ?? 0,
+        outcome: str(raw.outcome),
+        optionIndex: num(raw.option_index),
+        optionId: str(raw.option_id),
+        label: str(raw.label),
+      };
+    case "resolve":
+      return { ...base, t, decisionId: num(raw.decision_id), rewardKind: str(raw.reward_kind), gold: num(raw.gold) };
+    case "acquire":
+      return { ...base, t, id, c: num(raw.c), source: str(raw.source), decisionId: num(raw.decision_id), optionIndex: num(raw.option_index) };
+    case "remove":
+      return { ...base, t, id, c: num(raw.c), decisionId: num(raw.decision_id) };
+    case "upgrade":
+      return { ...base, t, id, c: num(raw.c), decisionId: num(raw.decision_id) };
+    case "transform":
+      return {
+        ...base,
+        t,
+        fromId: str(raw.from_id) ?? "",
+        toId: str(raw.to_id) ?? "",
+        fromC: num(raw.from_c),
+        toC: num(raw.to_c),
+        decisionId: num(raw.decision_id),
+      };
+    case "relic":
+      return { ...base, t, id, decisionId: num(raw.decision_id) };
+    case "potion_got":
+      return { ...base, t, id };
+    case "potion_used":
+      return { ...base, t, id };
+    case "buy":
+      return {
+        ...base,
+        t,
+        kind: str(raw.kind) ?? "other",
+        id: str(raw.id),
+        slot: num(raw.slot),
+        decisionId: num(raw.decision_id),
+        costCurrent: num(raw.cost_current),
+        costResource: str(raw.cost_resource) ?? "gold",
+        goldOnHand: num(raw.gold_on_hand),
+      };
+    case "shop":
+      return {
+        ...base,
+        t,
+        gold: num(raw.gold),
+        removalCost: num(raw.removal_cost),
+        removalStocked: bool(raw.removal_stocked),
+        cards: shopItems(raw.cards),
+        relics: shopItems(raw.relics),
+        potions: shopItems(raw.potions),
+      };
+    case "gold": {
+      const gold = num(raw.gold);
+      return gold === undefined ? { ...base, t: "unknown", kind: t, raw } : { ...base, t, gold };
+    }
+    case "hp": {
+      const hp = num(raw.hp);
+      return hp === undefined ? { ...base, t: "unknown", kind: t, raw } : { ...base, t, d: num(raw.d), hp };
+    }
+    case "hp_loss":
+      return { ...base, t, dmg: num(raw.dmg) ?? num(raw.d), blocked: num(raw.blocked) };
+    case "rest":
+      return { ...base, t, option: str(raw.option) };
+    case "combat_start":
+      return {
+        ...base,
+        t,
+        encounter: str(raw.encounter),
+        enemies: objects(raw.enemies).map((e, i) => ({
+          i: num(e.i) ?? i,
+          id: str(e.id) ?? "",
+          hp: num(e.hp) ?? 0,
+          maxHp: num(e.max_hp) ?? num(e.hp) ?? 0,
+        })),
+      };
+    case "combat_end":
+      return { ...base, t, result: str(raw.result), turns: num(raw.turns), hp: num(raw.hp) };
+    case "turn":
+      return { ...base, t, n: num(raw.n) ?? 0, side: str(raw.side) ?? "player" };
+    case "end_turn":
+      return { ...base, t, n: num(raw.n), side: str(raw.side) };
+    case "draw":
+      return { ...base, t, id, c: num(raw.c), deckC: num(raw.deck_c) };
+    case "play":
+      return {
+        ...base,
+        t,
+        id,
+        c: num(raw.c),
+        deckC: num(raw.deck_c),
+        up: num(raw.up),
+        target: str(raw.target),
+        costPaid: num(raw.cost_paid),
+        starsPaid: num(raw.stars_paid),
+        auto: bool(raw.auto),
+      };
+    case "hit":
+      return {
+        ...base,
+        t,
+        src: str(raw.src),
+        dst: str(raw.dst),
+        dmg: num(raw.dmg),
+        blocked: num(raw.blocked),
+        killed: bool(raw.killed),
+        card: str(raw.card),
+      };
+    case "block":
+      return { ...base, t, n: num(raw.n), card: str(raw.card) };
+    case "power":
+      return { ...base, t, id, n: num(raw.n), tgt: str(raw.tgt) };
+    case "exhaust":
+      return { ...base, t, id, c: num(raw.c), deckC: num(raw.deck_c) };
+    case "generate":
+      return { ...base, t, id, c: num(raw.c) };
+    case "shuffle":
+      return { ...base, t };
+    case "resume":
+      return {
+        ...base,
+        t,
+        reloads: num(raw.reloads) ?? 1,
+        wallClock: num(raw.wall_clock),
+        runTime: num(raw.run_time),
+        hp: num(raw.hp),
+        gold: num(raw.gold),
+        deckSize: num(raw.deck_size),
+      };
+    case "end":
+      return {
+        ...base,
+        t,
+        terminalReason: str(raw.terminal_reason),
+        runTime: num(raw.run_time),
+        floors: num(raw.floors),
+        isGameOver: bool(raw.is_game_over),
+        hp: num(raw.hp),
+        maxHp: num(raw.max_hp),
+        finalDeck: deckOf(raw.final_deck),
+      };
+    default:
+      return { ...base, t: "unknown", kind: t, raw };
+  }
+}
+
+/** Every well-formed line of the journal, in file order (which is `s`
+ * order: the sequence is monotonic across resumes even though `ms` is not). */
 export function parseReplayLines(text: string): ReplayLine[] {
   const out: ReplayLine[] = [];
   for (const raw of text.split("\n")) {
     const line = raw.trim();
     if (!line) continue;
     try {
-      const obj = JSON.parse(line);
-      if (obj && typeof obj === "object" && typeof obj.t === "string") out.push(obj as ReplayLine);
+      const obj: unknown = JSON.parse(line);
+      if (!obj || typeof obj !== "object") continue;
+      const typed = narrow(obj as Raw);
+      if (typed) out.push(typed);
     } catch {
       // a torn line at the end of a crashed recording is expected; skip it
     }
@@ -140,107 +705,126 @@ export function parseReplayLines(text: string): ReplayLine[] {
   return out;
 }
 
-function buildMap(line: ReplayLine): ReplayMap {
+function buildMap(line: MapLine): ReplayMap {
   const nodes: MapNode[] = [];
   const edges: MapEdge[] = [];
-  const rawNodes = Array.isArray(line.nodes) ? (line.nodes as Record<string, unknown>[]) : [];
-  for (const n of rawNodes) {
-    const c = parseCoord(n.coord);
-    if (!c) continue;
-    nodes.push([c[0], c[1], String(n.kind ?? "node").toLowerCase()]);
-    for (const child of Array.isArray(n.children) ? n.children : []) {
-      const cc = parseCoord(child);
-      if (cc) edges.push([c[0], c[1], cc[0], cc[1]]);
-    }
+  for (const n of line.nodes) {
+    nodes.push([n.coord[0], n.coord[1], n.kind]);
+    for (const child of n.children) edges.push([n.coord[0], n.coord[1], child[0], child[1]]);
   }
-  for (const key of ["boss_coord", "boss2_coord"]) {
-    const bc = parseCoord(line[key]);
+  for (const bc of [line.bossCoord, line.boss2Coord]) {
     if (bc && !nodes.some((n) => n[0] === bc[0] && n[1] === bc[1])) nodes.push([bc[0], bc[1], "boss"]);
   }
-  return { act: num(line.act) ?? 1, nodes, edges, boss: str(line.boss) ?? undefined };
+  return { act: line.act ?? 1, nodes, edges, boss: line.boss };
 }
 
-function buildDecision(line: ReplayLine): ReplayDecision {
-  const raw = Array.isArray(line.options) ? (line.options as Record<string, unknown>[]) : [];
+function buildDecision(line: DecisionLine): ReplayDecision {
   return {
-    id: num(line.decision_id) ?? 0,
-    type: str(line.decision_type) ?? "unknown",
-    source: str(line.source) ?? "",
-    selectKind: str(line.select_kind) ?? undefined,
-    eventId: str(line.event_id) ?? undefined,
-    nPresented: num(line.n_presented) ?? raw.length,
-    nSelectable: num(line.n_selectable) ?? raw.length,
-    declineAvailable: typeof line.decline_available === "boolean" ? line.decline_available : undefined,
-    goldOnHand: num(line.gold_on_hand) ?? undefined,
-    options: raw.map((o, i) => ({
-      index: num(o.option_index) ?? i,
-      kind: str(o.option_kind) ?? "option",
-      id: str(o.option_id) ?? "",
-      label: str(o.label) ?? undefined,
-      grantsRelic: str(o.grants_relic) ?? undefined,
-      instanceId: num(o.instance_id) ?? undefined,
-      upgraded: (num(o.up) ?? 0) > 0,
-      presented: o.presented !== false,
-      selectable: o.selectable !== false,
-      reason: str(o.selectable_reason) ?? undefined,
+    id: line.decisionId,
+    type: line.decisionType,
+    source: line.source,
+    selectKind: line.selectKind,
+    eventId: line.eventId,
+    nPresented: line.nPresented,
+    nSelectable: line.nSelectable,
+    declineAvailable: line.declineAvailable,
+    goldOnHand: line.goldOnHand,
+    options: line.options.map((o) => ({
+      index: o.optionIndex,
+      kind: o.kind,
+      id: o.id,
+      label: o.label,
+      desc: o.desc,
+      grantsRelic: o.grantsRelic,
+      instanceId: o.instanceId,
+      upgraded: o.up > 0,
+      presented: o.presented,
+      selectable: o.selectable,
+      reason: o.reason,
       chosen: false,
     })),
-    outcome: null,
     resolutions: [],
     s: line.s,
   };
 }
 
-function markChoice(dec: ReplayDecision, line: ReplayLine): void {
-  const idx = num(line.option_index);
-  const byIndex = idx !== null ? dec.options.find((o) => o.index === idx) : undefined;
+interface ChoiceKeys {
+  optionIndex?: number;
+  optionId?: string;
+  instance?: number;
+  id?: string;
+}
+
+function choiceKeys(line: OutcomeLine | ResolutionLine): ChoiceKeys {
+  switch (line.t) {
+    case "outcome":
+      return { optionIndex: line.optionIndex, optionId: line.optionId };
+    case "acquire":
+      return { optionIndex: line.optionIndex, instance: line.c, id: line.id };
+    case "remove":
+    case "upgrade":
+      return { instance: line.c, id: line.id };
+    case "transform":
+      return { instance: line.fromC, id: line.toId };
+    case "relic":
+      return { id: line.id };
+    default:
+      return {};
+  }
+}
+
+function markChoice(dec: ReplayDecision, line: OutcomeLine | ResolutionLine): void {
+  const keys = choiceKeys(line);
+  const byIndex = keys.optionIndex !== undefined ? dec.options.find((o) => o.index === keys.optionIndex) : undefined;
   if (byIndex) {
     byIndex.chosen = true;
     return;
   }
-  const optId = str(line.option_id);
-  if (optId) {
-    const byId = dec.options.find((o) => o.id === optId);
-    if (byId) {
-      byId.chosen = true;
-      return;
-    }
+  const byId = keys.optionId ? dec.options.find((o) => o.id === keys.optionId) : undefined;
+  if (byId) {
+    byId.chosen = true;
+    return;
   }
-  for (const key of ["c", "from_c"]) {
-    const cid = num(line[key]);
-    if (cid === null) continue;
-    const byInst = dec.options.find((o) => o.instanceId === cid);
-    if (byInst) {
-      byInst.chosen = true;
-      return;
-    }
+  const byInst = keys.instance !== undefined ? dec.options.find((o) => o.instanceId === keys.instance) : undefined;
+  if (byInst) {
+    byInst.chosen = true;
+    return;
   }
-  const rid = str(line.id) ?? str(line.to_id);
-  if (rid && line.t !== "buy") {
-    const same = dec.options.find((o) => o.id === rid || o.grantsRelic === rid);
-    if (same) same.chosen = true;
-  }
+  const same = keys.id ? dec.options.find((o) => o.id === keys.id || o.grantsRelic === keys.id) : undefined;
+  if (same) same.chosen = true;
+}
+
+function isResolution(line: ReplayLine): line is ResolutionLine {
+  return (
+    line.t === "acquire" ||
+    line.t === "remove" ||
+    line.t === "upgrade" ||
+    line.t === "transform" ||
+    line.t === "relic" ||
+    line.t === "resolve" ||
+    line.t === "buy"
+  );
 }
 
 export function parseReplay(text: string): ReplayModel {
   const lines = parseReplayLines(text);
-  const header = (lines.find((l) => l.t === "header") ?? {}) as Record<string, unknown>;
+  const header = lines.find((l): l is HeaderLine => l.t === "header");
   const maps: Record<number, ReplayMap> = {};
   const actNames: Record<number, string> = {};
   const floors: ReplayFloor[] = [];
+  const resumes: ResumeLine[] = [];
   const decisions = new Map<number, ReplayDecision>();
-  let current: ReplayFloor | null = null;
-  let combat: ReplayCombat | null = null;
-  let turn: ReplayTurn | null = null;
-  let hp: number | null = null;
-  let gold: number | null = null;
-  let end: Record<string, unknown> | null = null;
+  let current: ReplayFloor | undefined;
+  let combat: ReplayCombat | undefined;
+  let turn: ReplayTurn | undefined;
+  let hp: number | undefined;
+  let gold: number | undefined;
+  let end: EndLine | undefined;
 
-  const floorFor = (line: ReplayLine): ReplayFloor | null => {
-    const f = num(line.floor);
-    if (f === null) return current;
-    if (current && current.floor === f) return current;
-    return floors.find((x) => x.floor === f) ?? current;
+  const floorFor = (line: ReplayLine): ReplayFloor | undefined => {
+    if (line.floor === undefined) return current;
+    if (current && current.floor === line.floor) return current;
+    return floors.find((x) => x.floor === line.floor) ?? current;
   };
 
   for (const line of lines) {
@@ -248,8 +832,8 @@ export function parseReplay(text: string): ReplayModel {
       case "header":
         continue;
       case "act": {
-        const a = num(line.act) ?? 1;
-        actNames[a] = str(line.name) ?? `Act ${a}`;
+        const a = line.act ?? 1;
+        actNames[a] = line.name ?? `Act ${a}`;
         continue;
       }
       case "map": {
@@ -259,83 +843,86 @@ export function parseReplay(text: string): ReplayModel {
       }
       case "room": {
         current = {
-          floor: num(line.floor) ?? floors.length + 1,
-          act: num(line.act) ?? 1,
-          kind: (str(line.kind) ?? "unknown").toLowerCase(),
-          id: str(line.id),
-          coord: parseCoord(line.coord),
+          floor: line.floor ?? floors.length + 1,
+          act: line.act ?? 1,
+          kind: line.kind,
+          id: line.id,
+          coord: line.coord,
           s: line.s,
           lines: [],
           decisions: [],
-          combat: null,
+          resumes: [],
           hpAfter: hp,
           goldAfter: gold,
         };
         floors.push(current);
-        combat = null;
-        turn = null;
+        combat = undefined;
+        turn = undefined;
         continue;
       }
       case "end":
-        end = line as Record<string, unknown>;
+        end = line;
         continue;
     }
 
     const floor = floorFor(line);
     if (floor) floor.lines.push(line);
 
-    if (line.t === "hp") {
-      const v = num(line.hp);
-      if (v !== null) {
-        hp = v;
-        if (floor) floor.hpAfter = v;
-      }
-    } else if (line.t === "gold") {
-      const v = num(line.gold);
-      if (v !== null) {
-        gold = v;
-        if (floor) floor.goldAfter = v;
-      }
+    switch (line.t) {
+      case "hp":
+        hp = line.hp;
+        if (floor) floor.hpAfter = hp;
+        break;
+      case "gold":
+        gold = line.gold;
+        if (floor) floor.goldAfter = gold;
+        break;
+      case "buy":
+        if (line.costResource === "gold" && line.goldOnHand !== undefined) {
+          gold = line.goldOnHand;
+          if (floor) floor.goldAfter = gold;
+        }
+        break;
+      case "shop":
+        if (floor && !floor.shop) floor.shop = line;
+        break;
+      case "resume":
+        resumes.push(line);
+        if (floor) floor.resumes.push(line);
+        if (line.hp !== undefined) hp = line.hp;
+        if (line.gold !== undefined) gold = line.gold;
+        break;
     }
 
     if (line.t === "combat_start") {
-      const rawEnemies = Array.isArray(line.enemies) ? (line.enemies as Record<string, unknown>[]) : [];
       combat = {
-        encounter: str(line.encounter) ?? floor?.id ?? "",
-        enemies: rawEnemies.map((e, i) => ({
-          i: num(e.i) ?? i,
-          id: str(e.id) ?? "",
-          hp: num(e.hp) ?? 0,
-          maxHp: num(e.max_hp) ?? num(e.hp) ?? 0,
-        })),
+        encounter: line.encounter ?? floor?.id ?? "",
+        enemies: line.enemies,
         turns: [],
         result: "",
-        turnCount: null,
         damageTaken: 0,
-        hpEnd: null,
       };
-      turn = null;
+      turn = undefined;
       if (floor) floor.combat = combat;
       continue;
     }
     if (combat) {
       if (line.t === "turn") {
-        turn = { n: num(line.n) ?? combat.turns.length + 1, side: str(line.side) ?? "player", lines: [] };
+        turn = { n: line.n || combat.turns.length + 1, side: line.side, lines: [] };
         combat.turns.push(turn);
         continue;
       }
       if (line.t === "combat_end") {
-        combat.result = str(line.result) ?? "victory";
-        combat.turnCount = num(line.turns);
-        if (num(line.hp) !== null) combat.hpEnd = num(line.hp);
-        combat = null;
-        turn = null;
+        combat.result = line.result ?? "victory";
+        combat.turnCount = line.turns;
+        if (line.hp !== undefined) combat.hpEnd = line.hp;
+        combat = undefined;
+        turn = undefined;
         continue;
       }
       if (line.t === "hp") {
-        const d = num(line.d);
-        if (d !== null && d < 0) combat.damageTaken -= d;
-        combat.hpEnd = num(line.hp);
+        if (line.d !== undefined && line.d < 0) combat.damageTaken -= line.d;
+        combat.hpEnd = line.hp;
       }
       if (turn) turn.lines.push(line);
     }
@@ -347,26 +934,19 @@ export function parseReplay(text: string): ReplayModel {
       continue;
     }
     if (line.t === "outcome") {
-      const dec = decisions.get(num(line.decision_id) ?? -1);
+      const dec = decisions.get(line.decisionId);
       if (dec) {
-        dec.outcome = str(line.outcome);
+        dec.outcome = line.outcome;
         markChoice(dec, line);
       }
       continue;
     }
-    if (RESOLUTIONS.has(line.t)) {
-      const did = num(line.decision_id);
-      const dec = did ? decisions.get(did) : undefined;
+    if (isResolution(line)) {
+      const dec = line.decisionId ? decisions.get(line.decisionId) : undefined;
       if (dec) {
         dec.resolutions.push(line);
         if (line.t === "buy") {
-          dec.paid = {
-            kind: str(line.kind) ?? "item",
-            id: str(line.id) ?? undefined,
-            cost: num(line.cost_current) ?? 0,
-            resource: str(line.cost_resource) ?? "gold",
-          };
-          if (str(line.id)) markChoice(dec, line);
+          dec.paid = { kind: line.kind, id: line.id, cost: line.costCurrent ?? 0, resource: line.costResource };
         } else {
           markChoice(dec, line);
           if (!dec.outcome) dec.outcome = "chosen";
@@ -376,8 +956,8 @@ export function parseReplay(text: string): ReplayModel {
   }
 
   if (combat && end) {
-    combat.result = str(end.terminal_reason) ?? "unfinished";
-    if (num(end.hp) !== null) combat.hpEnd = num(end.hp);
+    combat.result = end.terminalReason ?? "unfinished";
+    if (end.hp !== undefined) combat.hpEnd = end.hp;
   }
   for (const dec of decisions.values()) {
     if (!dec.outcome) dec.outcome = dec.options.some((o) => o.chosen) ? "chosen" : "unresolved";
@@ -386,21 +966,16 @@ export function parseReplay(text: string): ReplayModel {
     completeMap(map, floors.filter((f) => f.act === map.act));
   }
 
-  const deckOf = (v: unknown) =>
-    Array.isArray(v)
-      ? (v as Record<string, unknown>[])
-          .filter((x) => x && typeof x === "object")
-          .map((x) => ({ c: num(x.c) ?? -1, id: str(x.id) ?? "" }))
-      : [];
-
   return {
     header,
     end,
     maps,
     floors,
     actNames,
-    startingDeck: deckOf(header.starting_deck),
-    finalDeck: deckOf(end?.final_deck),
+    startingDeck: header?.startingDeck ?? [],
+    finalDeck: end?.finalDeck ?? [],
+    resumes,
+    reloads: resumes.reduce((max, r) => Math.max(max, r.reloads), 0),
     lineCount: lines.length,
   };
 }
@@ -454,7 +1029,7 @@ export function routeForAct(model: ReplayModel, act: number): Map<number, Coord>
   }
   const firstRow = Math.min(...map.nodes.map((n) => n[1]));
   let nextRow = firstRow;
-  let prev: Coord | null = null;
+  let prev: Coord | undefined;
   const edgeSet = new Set(map.edges.map((e) => `${e[0]},${e[1]}>${e[2]},${e[3]}`));
   for (const f of model.floors.filter((x) => x.act === act)) {
     if (f.coord) {

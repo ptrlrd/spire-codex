@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
+import { useLangPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import { parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
@@ -11,7 +12,7 @@ import { useEntityScores } from "@/lib/use-entity-scores";
 import LiveMap from "@/app/live/LiveMap";
 import { useEncounterMap, useMonsterMap, type Coord } from "@/app/live/live-shared";
 import { cleanId, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
-import FloorPanel, { KIND_LABEL, floorTitle, type Catalog } from "./FloorPanel";
+import FloorPanel, { KIND_LABEL, floorTitle, type Catalog, type EventInfo } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -38,35 +39,108 @@ function formatTime(sec: number | undefined): string {
   return h ? `${h}h ${m % 60}m` : `${m}m`;
 }
 
-function Sparkline({ floors, maxHp, selected, onPick }: { floors: ReplayFloor[]; maxHp: number | null; selected: number; onPick: (floor: number) => void }) {
-  const pts = floors.filter((f) => f.hpAfter !== null);
-  if (pts.length < 2) return null;
-  const top = Math.max(maxHp ?? 0, ...pts.map((f) => f.hpAfter ?? 0), 1);
+interface Series {
+  key: string;
+  label: string;
+  kind: "line" | "bar";
+  color: string;
+  values: (number | undefined)[];
+  max?: number;
+  suffix?: string;
+}
+
+function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | undefined, lang: string): Series[] {
+  let deck = model.startingDeck.length;
+  const deckSizes: number[] = [];
+  for (const f of floors) {
+    for (const l of f.lines) {
+      if (l.t === "acquire") deck += 1;
+      else if (l.t === "remove") deck -= 1;
+    }
+    deckSizes.push(deck);
+  }
+  return [
+    { key: "hp", label: "HP", kind: "line", color: "var(--accent-red)", values: floors.map((f) => f.hpAfter), max: maxHp, suffix: maxHp ? `/${maxHp}` : "" },
+    { key: "gold", label: t("Gold", lang), kind: "line", color: "var(--accent-gold)", values: floors.map((f) => f.goldAfter) },
+    { key: "deck", label: t("Deck size", lang), kind: "line", color: "var(--text-secondary)", values: deckSizes },
+    { key: "dmg", label: t("Damage per fight", lang), kind: "bar", color: "var(--accent-red)", values: floors.map((f) => f.combat?.damageTaken) },
+    {
+      key: "turns",
+      label: t("Turns per fight", lang),
+      kind: "bar",
+      color: "var(--text-secondary)",
+      values: floors.map((f) => (f.combat ? (f.combat.turnCount ?? f.combat.turns.filter((x) => x.side === "player").length) : undefined)),
+    },
+  ];
+}
+
+function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor[]; selected: number; onPick: (floor: number) => void }) {
   const w = 100;
-  const h = 28;
-  const x = (i: number) => (i / Math.max(1, floors.length - 1)) * w;
-  const y = (hp: number) => h - (hp / top) * (h - 2) - 1;
-  const path = pts.map((f, i) => `${i === 0 ? "M" : "L"}${x(floors.indexOf(f)).toFixed(1)},${y(f.hpAfter ?? 0).toFixed(1)}`).join(" ");
+  const h = 32;
+  const n = floors.length;
+  const xs = (i: number) => (n > 1 ? (i / (n - 1)) * w : w / 2);
+  const present = s.values.map((v, i) => [v, i] as const).filter((p): p is readonly [number, number] => p[0] !== undefined);
+  if (!present.length) return null;
+  const top = Math.max(s.max ?? 0, ...present.map(([v]) => v), 1);
+  const y = (v: number) => h - 1 - (v / top) * (h - 3);
   const sel = floors.findIndex((f) => f.floor === selected);
+  const selVal = sel >= 0 ? s.values[sel] : undefined;
+  const bw = Math.max(1.2, (w / Math.max(1, n)) * 0.6);
+  const actStarts = floors.map((f, i) => (i > 0 && f.act !== floors[i - 1].act ? i : -1)).filter((i) => i > 0);
   return (
-    <svg viewBox={`0 0 ${w} ${h}`} className="h-8 w-full" preserveAspectRatio="none" aria-label="HP over the run">
-      <path d={path} fill="none" stroke="var(--accent-red)" strokeWidth={1.2} vectorEffect="non-scaling-stroke" />
-      {sel >= 0 && <line x1={x(sel)} x2={x(sel)} y1={0} y2={h} stroke="var(--accent-gold)" strokeWidth={1} vectorEffect="non-scaling-stroke" />}
-      {floors.map((f, i) => (
-        <rect key={f.floor} x={x(i) - w / floors.length / 2} y={0} width={w / floors.length} height={h} fill="transparent" onClick={() => onPick(f.floor)} style={{ cursor: "pointer" }} />
+    <div className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 pb-0.5 pt-1">
+      <div className="flex justify-between text-[10px] text-[var(--text-muted)]">
+        <span>{s.label}</span>
+        <span className="tabular-nums text-[var(--text-secondary)]">{selVal !== undefined ? `${selVal}${s.suffix ?? ""}` : ""}</span>
+      </div>
+      <svg viewBox={`0 0 ${w} ${h}`} className="h-10 w-full" preserveAspectRatio="none" aria-label={s.label}>
+        {actStarts.map((i) => (
+          <line key={i} x1={xs(i) - w / Math.max(1, n) / 2} x2={xs(i) - w / Math.max(1, n) / 2} y1={0} y2={h} stroke="var(--border-subtle)" strokeWidth={1} vectorEffect="non-scaling-stroke" />
+        ))}
+        {s.kind === "line" ? (
+          <path
+            d={present.map(([v, i], k) => `${k === 0 ? "M" : "L"}${xs(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ")}
+            fill="none"
+            stroke={s.color}
+            strokeWidth={1.4}
+            vectorEffect="non-scaling-stroke"
+          />
+        ) : (
+          present.map(([v, i]) => (
+            <rect key={i} x={xs(i) - bw / 2} y={y(v)} width={bw} height={Math.max(0.5, h - 1 - y(v))} fill={s.color} opacity={i === sel ? 1 : 0.7} />
+          ))
+        )}
+        {sel >= 0 && <line x1={xs(sel)} x2={xs(sel)} y1={0} y2={h} stroke="var(--accent-gold)" strokeWidth={1} vectorEffect="non-scaling-stroke" />}
+        {floors.map((f, i) => (
+          <rect key={f.floor} x={xs(i) - w / Math.max(1, n) / 2} y={0} width={w / Math.max(1, n)} height={h} fill="transparent" onClick={() => onPick(f.floor)} style={{ cursor: "pointer" }} />
+        ))}
+      </svg>
+    </div>
+  );
+}
+
+function RunCharts({ model, floors, maxHp, selected, onPick }: { model: ReplayModel; floors: ReplayFloor[]; maxHp?: number; selected: number; onPick: (floor: number) => void }) {
+  const { lang } = useLanguage();
+  if (floors.length < 2) return null;
+  return (
+    <section className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5" aria-label={t("Run progress", lang)}>
+      {seriesFor(model, floors, maxHp, lang).map((s) => (
+        <Chart key={s.key} s={s} floors={floors} selected={selected} onPick={onPick} />
       ))}
-    </svg>
+    </section>
   );
 }
 
 export default function ReplayClient({ hash, run }: { hash: string; run: ReplayRunInfo }) {
   const { lang } = useLanguage();
+  const lp = useLangPrefix();
   const [model, setModel] = useState<ReplayModel | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [cards, setCards] = useState<Record<string, CardInfo>>({});
   const [relics, setRelics] = useState<Record<string, RelicInfo>>({});
   const [potions, setPotions] = useState<Record<string, PotionInfo>>({});
+  const [events, setEvents] = useState<Record<string, EventInfo>>({});
   const monsters = useMonsterMap(true);
   const encounters = useEncounterMap(true);
   const bracket = (run.ascension ?? 0) >= 10 ? "a10" : "all";
@@ -103,15 +177,16 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`).then((x) => setCards(index(x))).catch(() => {});
     cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then((x) => setRelics(index(x))).catch(() => {});
     cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then((x) => setPotions(index(x))).catch(() => {});
+    cachedFetch<EventInfo[]>(`${API}/api/events?lang=${lang}`).then((x) => setEvents(index(x))).catch(() => {});
   }, [lang]);
 
   const floors = useMemo(() => model?.floors ?? [], [model]);
-  const current = floors.find((f) => f.floor === selected) ?? null;
+  const current = floors.find((f) => f.floor === selected);
   const act = current?.act ?? floors[0]?.act ?? 1;
   const acts = Array.from(new Set(floors.map((f) => f.act))).sort((a, b) => a - b);
   const route: Map<number, Coord> = model ? routeForAct(model, act) : new Map<number, Coord>();
   const path = [...route.values()];
-  const selectedCoord = current ? (route.get(current.floor) ?? null) : null;
+  const selectedCoord = current ? route.get(current.floor) : undefined;
   const coordToFloor = new Map<string, number>();
   for (const [floor, c] of route) coordToFloor.set(`${c[0]},${c[1]}`, floor);
 
@@ -152,18 +227,18 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     node?.scrollIntoView({ block: "center", inline: "center", behavior: "smooth" });
   }, [selectedCoord]);
 
-  const cat: Catalog = { cards, relics, potions, monsters, encounters, cardScores, relicScores };
-  const header = model?.header ?? {};
-  const character = cleanId(run.players?.[run.player_index ?? 0]?.character ?? String(header.character ?? ""));
-  const maxHp = typeof model?.end?.max_hp === "number" ? (model.end.max_hp as number) : null;
+  const cat: Catalog = { cards, relics, potions, events, monsters, encounters, cardScores, relicScores };
+  const header = model?.header;
+  const character = cleanId(run.players?.[run.player_index ?? 0]?.character ?? header?.character ?? "");
+  const maxHp = model?.end?.maxHp;
   const result = run.win ? t("Victory", lang) : run.was_abandoned ? t("Abandoned", lang) : t("Defeat", lang);
   const who = run.username?.trim() || t("Anonymous", lang);
-  const map = model?.maps[act] ?? null;
+  const map = model?.maps[act];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <Link href={`/runs/${hash}`} className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]">
+        <Link href={`${lp}/runs/${hash}`} className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]">
           &larr; {t("Back to run", lang)}
         </Link>
         <span className="text-xs text-[var(--text-muted)]">{t("Use ← → to step floors", lang)}</span>
@@ -182,17 +257,13 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
             <span className={run.win ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{result}</span>
             {" · "}{floors.length} {t("floors", lang)}
             {run.run_time ? ` · ${formatTime(run.run_time)}` : ""}
-            {header.build_id ? ` · ${String(header.build_id)}` : ""}
+            {header?.buildId ? ` · ${header.buildId}` : ""}
+            {model && model.reloads > 0 ? ` · ${model.reloads} ${t("reloads", lang)}` : ""}
             {model ? ` · ${floors.reduce((n, f) => n + f.decisions.length, 0)} ${t("decisions", lang)}` : ""}
           </p>
         </div>
-        {model && (
-          <div className="ml-auto w-full sm:w-64">
-            <Sparkline floors={floors} maxHp={maxHp} selected={selected ?? -1} onPick={pick} />
-            <div className="flex justify-between text-[10px] text-[var(--text-muted)]"><span>HP</span><span>{t("floor", lang)} {floors[floors.length - 1]?.floor ?? ""}</span></div>
-          </div>
-        )}
       </header>
+      {model && <RunCharts model={model} floors={floors} maxHp={maxHp} selected={selected ?? -1} onPick={pick} />}
 
       {error && <p className="text-sm text-[var(--accent-red)]">{t("Couldn't load the replay.", lang)} {error}</p>}
       {!model && !error && <p className="text-sm text-[var(--text-muted)]">{t("Loading replay…", lang)}</p>}
@@ -222,7 +293,6 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                 <LiveMap
                   map={map}
                   path={path}
-                  pos={null}
                   selected={selectedCoord}
                   monsters={monsters}
                   encounters={encounters}
@@ -251,9 +321,9 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                     >
                       <span className="w-6 text-right text-xs tabular-nums text-[var(--text-muted)]">{f.floor}</span>
                       <span className="w-5 text-center text-xs" aria-hidden>{KIND_GLYPH[f.kind] ?? "·"}</span>
-                      <span className="min-w-0 flex-1 truncate">{floorTitle(f, cat)}</span>
+                      <span className="min-w-0 flex-1 truncate">{floorTitle(f, cat, lang)}</span>
                       <span className="text-[10px] text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind, lang)}</span>
-                      {f.hpAfter !== null && <span className="w-8 text-right text-[10px] tabular-nums text-[var(--text-muted)]">{f.hpAfter}</span>}
+                      {f.hpAfter !== undefined && <span className="w-8 text-right text-[10px] tabular-nums text-[var(--text-muted)]">{f.hpAfter}</span>}
                     </button>
                   </li>
                 );
@@ -261,7 +331,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
             </ol>
           </aside>
           <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-            {current ? <FloorPanel f={current} cat={cat} maxHp={maxHp} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.", lang)}</p>}
+            {current ? <FloorPanel f={current} prev={floors[floors.indexOf(current) - 1]} cat={cat} maxHp={maxHp} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.", lang)}</p>}
           </main>
         </div>
       )}

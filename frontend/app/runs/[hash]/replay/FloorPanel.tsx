@@ -1,18 +1,25 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { imageUrl } from "@/lib/image-url";
 import type { ScoresMap } from "@/lib/use-entity-scores";
-import type { ReplayDecision, ReplayFloor, ReplayLine, ReplayOption } from "@/lib/replay";
+import type { BuyLine, HitLine, PlayLine, ReplayDecision, ReplayFloor, ReplayLine, ReplayOption, ReplayTurn, ShopItem } from "@/lib/replay";
 import { isCombatKind } from "@/lib/replay";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 import { t } from "@/lib/ui-translations";
 import { type EncounterMap, type MonsterMap, LiveCardImg, safeId } from "@/app/live/live-shared";
 import { cleanId, displayName, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
 
+export interface EventInfo {
+  id: string;
+  name: string;
+}
+
 export interface Catalog {
   cards: Record<string, CardInfo>;
   relics: Record<string, RelicInfo>;
   potions: Record<string, PotionInfo>;
+  events: Record<string, EventInfo>;
   monsters: MonsterMap;
   encounters: EncounterMap;
   cardScores: ScoresMap;
@@ -34,13 +41,6 @@ export const KIND_LABEL: Record<string, string> = {
   ancient: "Ancient",
 };
 
-function n(v: unknown): number | null {
-  return typeof v === "number" ? v : null;
-}
-function s(v: unknown): string {
-  return typeof v === "string" ? v : "";
-}
-
 function cardName(id: string, cat: Catalog): string {
   return cat.cards[id]?.name || displayName(`CARD.${id}`);
 }
@@ -53,15 +53,15 @@ function potionName(id: string, cat: Catalog): string {
 function monsterName(id: string, cat: Catalog): string {
   return cat.monsters[cleanId(id)]?.name || displayName(`MONSTER.${id}`);
 }
-export function encounterName(id: string | null, cat: Catalog): string {
+export function encounterName(id: string | undefined, cat: Catalog): string {
   if (!id) return "";
   return cat.encounters[id]?.name || displayName(`ENCOUNTER.${id}`);
 }
 
-export function floorTitle(f: ReplayFloor, cat: Catalog): string {
-  if (isCombatKind(f.kind)) return encounterName(f.id, cat) || t("Combat", "eng");
-  if (f.kind === "event" && f.id) return displayName(`EVENT.${f.id}`);
-  return KIND_LABEL[f.kind] ?? displayName(f.kind);
+export function floorTitle(f: ReplayFloor, cat: Catalog, lang: string): string {
+  if (isCombatKind(f.kind)) return encounterName(f.id, cat) || t("Combat", lang);
+  if (f.kind === "event" && f.id) return cat.events[cleanId(f.id)]?.name || displayName(`EVENT.${f.id}`);
+  return t(KIND_LABEL[f.kind] ?? displayName(f.kind), lang);
 }
 
 function ScoreChip({ id, scores }: { id: string; scores: ScoresMap }) {
@@ -71,6 +71,84 @@ function ScoreChip({ id, scores }: { id: string; scores: ScoresMap }) {
     <span className="ml-auto flex items-center gap-2 text-[10px] tabular-nums text-[var(--text-muted)]">
       <span title="Codex score">{sc.score}</span>
       <span title="Win rate at this bracket">{sc.win_rate.toFixed(0)}%</span>
+    </span>
+  );
+}
+
+const MARKUP_TONE: Record<string, string> = {
+  gold: "text-[var(--accent-gold)]",
+  red: "text-[var(--accent-red)]",
+  green: "font-semibold text-[var(--text-primary)]",
+  blue: "font-semibold text-[var(--text-primary)]",
+};
+
+// The game's option text uses [gold]..[/gold] style tags; colour the ones
+// the map colours use and drop the rest (images, unknown tags).
+function Markup({ text }: { text: string }) {
+  const parts: ReactNode[] = [];
+  const re = /\[(\/?)([a-z]+)[^\]]*\]/g;
+  let tone: string | null = null;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text))) {
+    if (m.index > last) {
+      const chunk = text.slice(last, m.index);
+      parts.push(tone ? <span key={parts.length} className={tone}>{chunk}</span> : chunk);
+    }
+    tone = m[1] ? null : (MARKUP_TONE[m[2]] ?? null);
+    last = re.lastIndex;
+  }
+  if (last < text.length) parts.push(text.slice(last));
+  return <>{parts}</>;
+}
+
+function itemName(kind: string, id: string, cat: Catalog): string {
+  if (kind === "card") return cardName(id, cat);
+  if (kind === "relic") return relicName(id, cat);
+  if (kind === "potion") return potionName(id, cat);
+  return displayName(id);
+}
+
+function costLabel(l: BuyLine): string {
+  return `${l.costCurrent ?? 0} ${l.costResource}`;
+}
+
+function describeLine(l: ReplayLine, cat: Catalog, lang: string): string | undefined {
+  switch (l.t) {
+    case "relic":
+      return `${t("Relic", lang)}: ${relicName(l.id, cat)}`;
+    case "potion_got":
+      return `${t("Potion", lang)}: ${potionName(l.id, cat)}`;
+    case "acquire":
+      return `${t("Card", lang)}: ${cardName(l.id, cat)}`;
+    case "upgrade":
+      return `${t("Upgraded", lang)} ${cardName(l.id, cat)}`;
+    case "remove":
+      return `${t("Removed", lang)} ${cardName(l.id, cat)}`;
+    case "transform":
+      return `${cardName(l.fromId, cat)} → ${cardName(l.toId, cat)}`;
+    case "rest":
+      return `${t("Rest", lang)}: ${displayName(l.option ?? "")}`;
+    case "buy":
+      return l.kind === "removal_service"
+        ? `${t("Card removal", lang)} (${costLabel(l)})`
+        : `${t("Bought", lang)} ${itemName(l.kind, l.id ?? "", cat)} (${costLabel(l)})`;
+    case "hp":
+      return l.d ? `HP ${l.d > 0 ? "+" : ""}${l.d}` : undefined;
+    case "hp_loss":
+      return l.dmg ? `HP -${Math.abs(l.dmg)}` : undefined;
+    case "resume":
+      return `${t("Reloaded from a save", lang)}${l.reloads > 1 ? ` (${l.reloads})` : ""}`;
+    default:
+      return undefined;
+  }
+}
+
+function Delta({ value }: { value: number }) {
+  if (!value) return null;
+  return (
+    <span className={`ml-1 ${value > 0 ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}`}>
+      ({value > 0 ? "+" : ""}{value})
     </span>
   );
 }
@@ -94,7 +172,7 @@ function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat:
       ? "border-[var(--border-subtle)] text-[var(--text-secondary)]"
       : "border-[var(--border-subtle)] text-[var(--text-muted)] opacity-60";
   return (
-    <li className={`flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm ${tone}`}>
+    <li className={`flex items-start gap-2 rounded-md border px-2.5 py-1.5 text-sm ${tone}`}>
       {isCard && safeId(o.id) && (
         <LiveCardImg id={o.id} upgraded={o.upgraded} alt={label} className="h-9 w-auto rounded-sm" portrait={cat.cards[o.id]?.image_url} />
       )}
@@ -102,7 +180,14 @@ function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat:
         // eslint-disable-next-line @next/next/no-img-element
         <img src={imageUrl(cat.relics[o.grantsRelic || o.id]?.image_url || `/static/images/relics/${(o.grantsRelic || o.id).toLowerCase()}.png`)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
       )}
-      <span className="min-w-0 truncate">{label}</span>
+      <span className="min-w-0 flex-1">
+        <span className="block truncate">{label}</span>
+        {o.desc && (
+          <span className="block text-xs leading-snug text-[var(--text-muted)]">
+            <Markup text={o.desc} />
+          </span>
+        )}
+      </span>
       {o.chosen && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Taken", lang)}</span>}
       {!o.selectable && o.reason && <span className="text-[10px] uppercase tracking-wider">{o.reason}</span>}
       {isCard && <ScoreChip id={o.id} scores={cat.cardScores} />}
@@ -129,6 +214,7 @@ function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
   const { lang } = useLanguage();
   const shown = d.options.filter((o) => o.presented);
   const picked = shown.some((o) => o.chosen);
+  const effects = d.resolutions.map((l) => describeLine(l, cat, lang)).filter((e): e is string => !!e);
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -150,53 +236,177 @@ function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
           <OptionRow key={`${d.id}-${o.index}`} o={o} dec={d} cat={cat} />
         ))}
       </ul>
+      {effects.length > 0 && (
+        <ul className="mt-2 flex flex-wrap items-center gap-1.5">
+          <li className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Outcome", lang)}</li>
+          {effects.map((e, i) => (
+            <li key={i} className="rounded-md border border-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--text-secondary)]">{e}</li>
+          ))}
+        </ul>
+      )}
     </section>
   );
 }
 
-function describePlay(play: ReplayLine, hits: ReplayLine[], cat: Catalog): string {
-  const name = `${cardName(s(play.id), cat)}${n(play.up) ? "+" : ""}`;
-  const dmg = hits.reduce((sum, h) => sum + (n(h.dmg) ?? 0), 0);
-  const target = s(play.target);
+function boughtSlots(buys: BuyLine[], kind: string): Set<number> {
+  return new Set(buys.filter((b) => b.kind === kind && b.slot !== undefined).map((b) => b.slot as number));
+}
+
+function StockRow({ item, kind, bought, cat }: { item: ShopItem; kind: string; bought: boolean; cat: Catalog }) {
+  const { lang } = useLanguage();
+  const name = itemName(kind, item.id, cat);
+  const tone = bought
+    ? "border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] text-[var(--text-primary)]"
+    : "border-[var(--border-subtle)] text-[var(--text-secondary)]";
+  return (
+    <li className={`flex items-center gap-2 rounded-md border px-2.5 py-1.5 text-sm ${tone}`}>
+      {kind === "card" && safeId(item.id) && <LiveCardImg id={item.id} alt={name} className="h-9 w-auto rounded-sm" portrait={cat.cards[item.id]?.image_url} />}
+      {kind === "relic" && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={imageUrl(cat.relics[item.id]?.image_url || `/static/images/relics/${item.id.toLowerCase()}.png`)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
+      )}
+      {kind === "potion" && cat.potions[item.id]?.image_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={imageUrl(cat.potions[item.id].image_url)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
+      )}
+      <span className="min-w-0 flex-1 truncate">{name}</span>
+      {item.sale && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Sale", lang)}</span>}
+      {item.cost !== undefined && <span className="text-xs tabular-nums text-[var(--text-muted)]">{item.cost} {t("gold", lang)}</span>}
+      {bought && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Bought", lang)}</span>}
+      {kind === "card" && <ScoreChip id={item.id} scores={cat.cardScores} />}
+      {kind === "relic" && <ScoreChip id={item.id} scores={cat.relicScores} />}
+    </li>
+  );
+}
+
+function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: Catalog }) {
+  const { lang } = useLanguage();
+  const buys = f.lines.filter((l): l is BuyLine => l.t === "buy");
+  const removed = f.lines.flatMap((l) => (l.t === "remove" ? [l.id] : []));
+  const goldIn = f.shop?.gold ?? prev?.goldAfter;
+  const spent = buys.reduce((sum, l) => sum + (l.costResource === "gold" ? (l.costCurrent ?? 0) : 0), 0);
+  const stock = f.shop;
+  const groups = stock
+    ? ([
+        ["card", stock.cards],
+        ["relic", stock.relics],
+        ["potion", stock.potions],
+      ] as const)
+    : [];
+  return (
+    <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
+      <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tabular-nums text-[var(--text-muted)]">
+        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t("Shop", lang)}</h4>
+        {goldIn !== undefined && <span>{t("Gold in", lang)} {goldIn}</span>}
+        <span>{t("Spent", lang)} {spent}</span>
+        {f.goldAfter !== undefined && <span>{t("Gold out", lang)} {f.goldAfter}</span>}
+      </header>
+      {stock && (
+        <div className="mb-3 space-y-2">
+          {groups.map(([kind, items]) =>
+            items.length ? (
+              <ul key={kind} className="grid gap-1.5 sm:grid-cols-2">
+                {items.map((item) => (
+                  <StockRow key={`${kind}-${item.slot}`} item={item} kind={kind} bought={boughtSlots(buys, kind).has(item.slot)} cat={cat} />
+                ))}
+              </ul>
+            ) : null,
+          )}
+          {stock.removalCost !== undefined && (
+            <p className="text-xs text-[var(--text-muted)]">
+              {t("Card removal", lang)}: {stock.removalCost} {t("gold", lang)}
+              {removed.length > 0 && ` · ${t("Removed", lang)} ${removed.map((id) => cardName(id, cat)).join(", ")}`}
+            </p>
+          )}
+        </div>
+      )}
+      {buys.length ? (
+        <ul className="grid gap-1.5 sm:grid-cols-2">
+          {buys.map((l, i) => {
+            const removal = l.kind === "removal_service";
+            const target = removal ? removed[Math.min(i, removed.length - 1)] : l.id;
+            const label = removal ? `${t("Card removal", lang)}${target ? `: ${cardName(target, cat)}` : ""}` : itemName(l.kind, l.id ?? "", cat);
+            return (
+              <li key={`${l.s}-${i}`} className="flex items-center gap-2 rounded-md border border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] px-2.5 py-1.5 text-sm text-[var(--text-primary)]">
+                {(l.kind === "card" || removal) && target && safeId(target) && (
+                  <LiveCardImg id={target} alt={label} className="h-9 w-auto rounded-sm" portrait={cat.cards[target]?.image_url} />
+                )}
+                {l.kind === "relic" && l.id && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={imageUrl(cat.relics[l.id]?.image_url || `/static/images/relics/${l.id.toLowerCase()}.png`)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
+                )}
+                {l.kind === "potion" && l.id && cat.potions[l.id]?.image_url && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={imageUrl(cat.potions[l.id].image_url)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
+                )}
+                <span className="min-w-0 flex-1 truncate">{label}</span>
+                <span className="text-xs tabular-nums text-[var(--text-muted)]">
+                  -{costLabel(l)}
+                  {l.goldOnHand !== undefined && ` · ${l.goldOnHand} ${t("after", lang)}`}
+                </span>
+                {l.kind === "card" && l.id && <ScoreChip id={l.id} scores={cat.cardScores} />}
+                {l.kind === "relic" && l.id && <ScoreChip id={l.id} scores={cat.relicScores} />}
+              </li>
+            );
+          })}
+        </ul>
+      ) : (
+        <p className="text-sm text-[var(--text-muted)]">{t("Nothing bought", lang)}</p>
+      )}
+    </section>
+  );
+}
+
+function describePlay(play: PlayLine, hits: HitLine[], cat: Catalog): string {
+  const name = `${cardName(play.id, cat)}${play.up ? "+" : ""}`;
+  const dmg = hits.reduce((sum, h) => sum + (h.dmg ?? 0), 0);
   const parts = [name];
-  if (target && target !== "player") parts.push(`→ ${monsterName(target, cat)}`);
+  if (play.target && play.target !== "player") parts.push(`→ ${monsterName(play.target, cat)}`);
   if (dmg > 0) parts.push(`${dmg} dmg`);
-  if (n(play.cost_paid) !== null) parts.push(`${play.cost_paid}⚡`);
+  if (play.costPaid !== undefined) parts.push(`${play.costPaid}⚡`);
   return parts.join(" ");
 }
 
-function TurnBlock({ turn, cat }: { turn: { n: number; side: string; lines: ReplayLine[] }; cat: Catalog }) {
+function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
   const { lang } = useLanguage();
   const items: string[] = [];
   const lines = turn.lines;
   if (turn.side === "player") {
-    const drawn = lines.filter((l) => l.t === "draw").map((l) => cardName(s(l.id), cat));
+    const drawn = lines.flatMap((l) => (l.t === "draw" ? [cardName(l.id, cat)] : []));
     if (drawn.length) items.push(`${t("Drew", lang)}: ${drawn.join(", ")}`);
     for (let i = 0; i < lines.length; i++) {
       const l = lines[i];
-      if (l.t === "play") {
-        const hits: ReplayLine[] = [];
-        for (let j = i + 1; j < lines.length && lines[j].t !== "play"; j++) {
-          if (lines[j].t === "hit" && s(lines[j].src) === "player") hits.push(lines[j]);
+      switch (l.t) {
+        case "play": {
+          const hits: HitLine[] = [];
+          for (let j = i + 1; j < lines.length && lines[j].t !== "play"; j++) {
+            const h = lines[j];
+            if (h.t === "hit" && h.src === "player") hits.push(h);
+          }
+          items.push(`${t("Played", lang)} ${describePlay(l, hits, cat)}`);
+          break;
         }
-        items.push(`${t("Played", lang)} ${describePlay(l, hits, cat)}`);
-      } else if (l.t === "block" && n(l.n)) {
-        items.push(`${t("Block", lang)} +${l.n}${l.card ? ` (${cardName(s(l.card), cat)})` : ""}`);
-      } else if (l.t === "power" && s(l.id)) {
-        items.push(`${displayName(s(l.id).replace(/_POWER$/, ""))} ${n(l.n) ?? ""}${l.tgt && l.tgt !== "player" ? ` → ${monsterName(s(l.tgt), cat)}` : ""}`);
-      } else if (l.t === "potion_used") {
-        items.push(`${t("Used", lang)} ${potionName(s(l.id), cat)}`);
-      } else if (l.t === "exhaust") {
-        items.push(`${t("Exhausted", lang)} ${cardName(s(l.id), cat)}`);
+        case "block":
+          if (l.n) items.push(`${t("Block", lang)} +${l.n}${l.card ? ` (${cardName(l.card, cat)})` : ""}`);
+          break;
+        case "power":
+          items.push(`${displayName(l.id.replace(/_POWER$/, ""))} ${l.n ?? ""}${l.tgt && l.tgt !== "player" ? ` → ${monsterName(l.tgt, cat)}` : ""}`);
+          break;
+        case "potion_used":
+          items.push(`${t("Used", lang)} ${potionName(l.id, cat)}`);
+          break;
+        case "exhaust":
+          items.push(`${t("Exhausted", lang)} ${cardName(l.id, cat)}`);
+          break;
       }
     }
   } else {
     for (const l of lines) {
-      if (l.t === "hit" && s(l.dst) === "player") {
-        const src = s(l.src);
-        items.push(`${src === "effect" ? t("Effect", lang) : monsterName(src, cat)} ${t("hit for", lang)} ${n(l.dmg) ?? 0}${n(l.blocked) ? ` (${l.blocked} ${t("blocked", lang)})` : ""}`);
-      } else if (l.t === "power" && s(l.tgt) === "player") {
-        items.push(`${displayName(s(l.id).replace(/_POWER$/, ""))} ${n(l.n) ?? ""}`);
+      if (l.t === "hit" && l.dst === "player") {
+        const src = l.src ?? "";
+        items.push(`${src === "effect" ? t("Effect", lang) : monsterName(src, cat)} ${t("hit for", lang)} ${l.dmg ?? 0}${l.blocked ? ` (${l.blocked} ${t("blocked", lang)})` : ""}`);
+      } else if (l.t === "power" && l.tgt === "player") {
+        items.push(`${displayName(l.id.replace(/_POWER$/, ""))} ${l.n ?? ""}`);
       }
     }
   }
@@ -208,7 +418,7 @@ function TurnBlock({ turn, cat }: { turn: { n: number; side: string; lines: Repl
       </span>
       <span className="text-sm text-[var(--text-secondary)]">
         {items.length ? items.join(" · ") : <span className="text-[var(--text-muted)]">{t("Nothing recorded", lang)}</span>}
-        {hpLine && n(hpLine.hp) !== null && <span className="ml-2 text-xs text-[var(--text-muted)]">HP {n(hpLine.hp)}</span>}
+        {hpLine && <span className="ml-2 text-xs text-[var(--text-muted)]">HP {hpLine.hp}</span>}
       </span>
     </li>
   );
@@ -239,7 +449,7 @@ function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
             <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : c.result, lang)}</span>
             {" · "}{c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns", lang)}
             {" · "}{c.damageTaken} {t("damage taken", lang)}
-            {c.hpEnd !== null && ` · HP ${c.hpEnd}`}
+            {c.hpEnd !== undefined && ` · HP ${c.hpEnd}`}
           </div>
         </div>
       </header>
@@ -258,15 +468,10 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
   const bits: string[] = [];
   for (const l of f.lines) {
     if (decided.has(l.s)) continue;
-    if (l.t === "relic") bits.push(`${t("Relic", lang)}: ${relicName(s(l.id), cat)}`);
-    else if (l.t === "potion_got") bits.push(`${t("Potion", lang)}: ${potionName(s(l.id), cat)}`);
-    else if (l.t === "acquire") bits.push(`${t("Card", lang)}: ${cardName(s(l.id), cat)}`);
-    else if (l.t === "upgrade") bits.push(`${t("Upgraded", lang)} ${cardName(s(l.id), cat)}`);
-    else if (l.t === "remove") bits.push(`${t("Removed", lang)} ${cardName(s(l.id), cat)}`);
-    else if (l.t === "transform") bits.push(`${cardName(s(l.from_id), cat)} → ${cardName(s(l.to_id), cat)}`);
-    else if (l.t === "rest") bits.push(`${t("Rest", lang)}: ${displayName(s(l.option))}`);
-    else if (l.t === "buy" && s(l.kind) !== "removal_service") bits.push(`${t("Bought", lang)} ${s(l.kind) === "card" ? cardName(s(l.id), cat) : s(l.kind) === "relic" ? relicName(s(l.id), cat) : s(l.kind) === "potion" ? potionName(s(l.id), cat) : displayName(s(l.id))} (${n(l.cost_current) ?? 0} ${s(l.cost_resource) || "gold"})`);
-    else if (l.t === "hp_loss" && n(l.d)) bits.push(`HP ${l.d}`);
+    if (f.kind === "merchant" && (l.t === "buy" || l.t === "remove" || l.t === "acquire")) continue;
+    if (l.t === "resume") continue;
+    const text = describeLine(l, cat, lang);
+    if (text) bits.push(text);
   }
   if (!bits.length) return null;
   return (
@@ -278,22 +483,33 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
   );
 }
 
-export default function FloorPanel({ f, cat, maxHp }: { f: ReplayFloor; cat: Catalog; maxHp: number | null }) {
+export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; prev?: ReplayFloor; cat: Catalog; maxHp?: number }) {
   const { lang } = useLanguage();
-  const combatDecisions = f.decisions;
+  // An event's "Proceed" page is recorded as a decision with nothing to
+  // pick; it adds nothing the previous card didn't say.
+  const combatDecisions = f.decisions.filter((d) => !(d.type === "event" && d.nPresented === 0 && d.resolutions.length === 0));
+  const hpDelta = prev?.hpAfter !== undefined && f.hpAfter !== undefined ? f.hpAfter - prev.hpAfter : 0;
+  const goldDelta = prev?.goldAfter !== undefined && f.goldAfter !== undefined ? f.goldAfter - prev.goldAfter : 0;
   return (
     <div className="space-y-3">
       <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-          {t("Floor", lang)} {f.floor} · {floorTitle(f, cat)}
+          {t("Floor", lang)} {f.floor} · {floorTitle(f, cat, lang)}
         </h3>
         <span className="text-xs text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind, lang)}</span>
+        {f.resumes.length > 0 && (
+          <span className="rounded-md border border-[var(--accent-red)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-red)]">
+            {t("Reloaded from a save", lang)}
+            {f.resumes[f.resumes.length - 1].reloads > 1 ? ` ×${f.resumes[f.resumes.length - 1].reloads}` : ""}
+          </span>
+        )}
         <span className="ml-auto text-xs tabular-nums text-[var(--text-muted)]">
-          {f.hpAfter !== null && <>HP {f.hpAfter}{maxHp ? `/${maxHp}` : ""}</>}
-          {f.goldAfter !== null && <> · {f.goldAfter} {t("gold", lang)}</>}
+          {f.hpAfter !== undefined && <>HP {f.hpAfter}{maxHp ? `/${maxHp}` : ""}<Delta value={hpDelta} /></>}
+          {f.goldAfter !== undefined && <> · {f.goldAfter} {t("gold", lang)}<Delta value={goldDelta} /></>}
         </span>
       </header>
       {f.combat && <CombatBlock f={f} cat={cat} />}
+      {f.kind === "merchant" && <ShopBlock f={f} prev={prev} cat={cat} />}
       {combatDecisions.map((d) => (
         <DecisionCard key={d.id} d={d} cat={cat} />
       ))}

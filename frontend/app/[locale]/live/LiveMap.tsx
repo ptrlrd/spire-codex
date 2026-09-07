@@ -81,6 +81,8 @@ const HEADROOM = 40; // space above the top row for the character marker
 const R = 14; // hit radius; the game's node art draws a little larger
 const ICON = 40; // rendered size of a node icon (the art is 128px square)
 const MARKER_H = 32; // rendered height of the character marker
+const BOSS = ICON * 2.6; // the game draws the boss node about this much larger than a room
+const CIRCLE = ICON * 2.4; // box for the game's 192px brush-circle sprite around a room node
 
 // The game's own map art, the painterly set the in-game map draws
 // (extracted to ui/map_nodes; ui/map_rooms is the flat legend set). A node
@@ -121,6 +123,14 @@ function bossArt(id?: string | null): string | null {
   return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon.webp`) : null;
 }
 
+// The game backs the boss drawing with its solid silhouette in a paper tone
+// so the ink lines read against the parchment; the animated bosses bake that
+// into the drawing itself and ship no silhouette.
+function bossBackingArt(id?: string | null): string | null {
+  const key = (id || "").toLowerCase().replace(/^encounter\./, "");
+  return key ? imageUrl(`/static/images/ui/map_bosses/${key}_icon_outline.webp`) : null;
+}
+
 // The act's Ancient has its own map art per ancient (Neow, Darv, ...).
 const ANCIENT_ART = new Set(["neow", "darv", "nonupeipe", "orobas", "pael", "tanx", "tezcatara", "vakuu"]);
 function ancientArt(id?: string | null): string | null {
@@ -132,7 +142,32 @@ function ancientArt(id?: string | null): string | null {
 // in-game drawing: radius 0.9x the visible glyph, stroke 2/7 of the radius,
 // and the stroke covers 90% of the circumference with round caps so the ends
 // never meet. Rotated so the gap sits near the top like the brush lift-off.
-function InkRing({ cx, cy, size, seed }: { cx: number; cy: number; size: number; seed: number }) {
+const CIRCLE_ART = imageUrl("/static/images/ui/map_circle/map_circle_4.webp");
+
+// The game marks a cleared node with NMapCircleVfx: a five-frame brush
+// flipbook whose last frame is the finished circle, tinted with the map ink,
+// at 0.95 alpha, with a per-node seeded rotation and a final scale between
+// 0.85 and 0.9. This is the static state the game shows when the map is
+// reopened; the flipbook itself can animate a newly selected floor later.
+function BrushCircle({ cx, cy, size, seed }: { cx: number; cy: number; size: number; seed: number }) {
+  const rotation = (seed * 137) % 360;
+  const box = size * (0.85 + ((seed * 31) % 100) / 2000);
+  return (
+    <image
+      href={CIRCLE_ART}
+      x={cx - box / 2}
+      y={cy - box / 2}
+      width={box}
+      height={box}
+      opacity={0.95}
+      preserveAspectRatio="xMidYMid meet"
+      filter="url(#map-ink-tint)"
+      transform={`rotate(${rotation} ${cx} ${cy})`}
+    />
+  );
+}
+
+function InkRing({ cx, cy, size, seed, stroke }: { cx: number; cy: number; size: number; seed: number; stroke?: number }) {
   const r = size * 0.9;
   const circumference = 2 * Math.PI * r;
   const angle = -70 + ((seed % 5) - 2) * 7;
@@ -144,7 +179,7 @@ function InkRing({ cx, cy, size, seed }: { cx: number; cy: number; size: number;
       fill="none"
       stroke="var(--map-ink)"
       strokeOpacity={0.92}
-      strokeWidth={(2 / 7) * r}
+      strokeWidth={stroke ?? (2 / 7) * r}
       strokeLinecap="round"
       strokeDasharray={`${circumference * 0.9} ${circumference}`}
       transform={`rotate(${angle} ${cx} ${cy})`}
@@ -370,6 +405,13 @@ export default function LiveMap({
 
   const nodes = map?.nodes ?? [];
   if (!nodes.length) return null;
+  const circleMissing = missingArt.has(CIRCLE_ART);
+  const cleared = (cx: number, cy: number, size: number, seed: number, ringSize: number, stroke?: number) =>
+    circleMissing ? (
+      <InkRing cx={cx} cy={cy} size={ringSize} seed={seed} stroke={stroke} />
+    ) : (
+      <BrushCircle cx={cx} cy={cy} size={size} seed={seed} />
+    );
 
   const maxCol = Math.max(...nodes.map((n) => n[0]), 0);
   const maxRow = Math.max(...nodes.map((n) => n[1]), 0);
@@ -477,12 +519,17 @@ export default function LiveMap({
         aria-label={t("Act map showing the player's route")}
         onMouseLeave={() => setHovered(null)}
       >
+        <image href={CIRCLE_ART} width={0} height={0} onError={() => markMissing(CIRCLE_ART)} />
         <defs>
           {/* The boss map icon ships as a white silhouette; the game tints it
               with the act's ink colour at draw time, so do the same. */}
           <filter id="map-ink-tint" x="-10%" y="-10%" width="120%" height="120%">
             <feFlood style={{ floodColor: "var(--map-ink)" }} result="ink" />
             <feComposite in="ink" in2="SourceAlpha" operator="in" />
+          </filter>
+          <filter id="map-paper-tint" x="-10%" y="-10%" width="120%" height="120%">
+            <feFlood style={{ floodColor: "var(--map-paper)" }} result="paper" />
+            <feComposite in="paper" in2="SourceAlpha" operator="in" />
           </filter>
         </defs>
         {edges.map(([c, r, cc, cr], i) => {
@@ -512,6 +559,8 @@ export default function LiveMap({
           const ancient = type === "ancient" ? ancientArt(route?.ancient?.id) : null;
           const bossIcon = type === "boss" ? bossArt(route?.boss?.id) : null;
           const boss = bossIcon && !missingArt.has(bossIcon) ? bossIcon : null;
+          const backingIcon = boss ? bossBackingArt(route?.boss?.id) : null;
+          const backing = backingIcon && !missingArt.has(backingIcon) ? backingIcon : null;
           const icon = portrait || ancient || boss ? null : nodeIcon(type, rv ? rv[2] : null);
           const big = type === "boss" ? R + 6 : R + 1;
           const dim = !(seen || here);
@@ -535,18 +584,31 @@ export default function LiveMap({
               )}
               {boss ? (
                 <>
+                  {backing && (
+                    <image
+                      href={backing}
+                      x={x(c) - BOSS / 2}
+                      y={y(r) - BOSS / 2}
+                      width={BOSS}
+                      height={BOSS}
+                      preserveAspectRatio="xMidYMid meet"
+                      opacity={dim ? 0.5 : 0.9}
+                      filter="url(#map-paper-tint)"
+                      onError={() => markMissing(backing)}
+                    />
+                  )}
                   <image
                     href={boss}
-                    x={x(c) - ICON * 0.9}
-                    y={y(r) - ICON * 0.9}
-                    width={ICON * 1.8}
-                    height={ICON * 1.8}
+                    x={x(c) - BOSS / 2}
+                    y={y(r) - BOSS / 2}
+                    width={BOSS}
+                    height={BOSS}
                     preserveAspectRatio="xMidYMid meet"
                     opacity={dim ? 0.5 : 0.9}
                     filter="url(#map-ink-tint)"
                     onError={() => markMissing(boss)}
                   />
-                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 1.05} seed={c * 13 + r * 7} />}
+                  {(seen || picked) && cleared(x(c), y(r), BOSS * 1.6, c * 13 + r * 7, BOSS * 0.66, 9)}
                 </>
               ) : ancient ? (
                 <>
@@ -557,8 +619,9 @@ export default function LiveMap({
                     width={ICON * 1.6}
                     height={ICON * 1.6}
                     opacity={dim ? 0.6 : 1}
+                    filter="url(#map-ink-tint)"
                   />
-                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 0.95} seed={c * 13 + r * 7} />}
+                  {(seen || picked) && cleared(x(c), y(r), ICON * 2.8, c * 13 + r * 7, ICON * 0.95)}
                 </>
               ) : portrait ? (
                 <>
@@ -576,7 +639,7 @@ export default function LiveMap({
                     preserveAspectRatio="xMidYMid slice"
                     opacity={dim ? 0.55 : 1}
                   />
-                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={big * 1.6} seed={c * 13 + r * 7} />}
+                  {(seen || picked) && cleared(x(c), y(r), CIRCLE, c * 13 + r * 7, big * 1.6)}
                 </>
               ) : icon ? (
                 <>
@@ -590,7 +653,7 @@ export default function LiveMap({
                     opacity={dim ? 0.55 : 1}
                     style={dim ? { filter: "saturate(0.35)" } : undefined}
                   />
-                  {(seen || picked) && <InkRing cx={x(c)} cy={y(r)} size={ICON * 0.7} seed={c * 13 + r * 7} />}
+                  {(seen || picked) && cleared(x(c), y(r), CIRCLE, c * 13 + r * 7, ICON * 0.7)}
                 </>
               ) : (
                 <>
@@ -626,17 +689,31 @@ export default function LiveMap({
             </g>
           );
         })}
-        {marker && markerAt && (
-          <image
-            href={marker}
-            x={x(markerAt[0]) - 12}
-            y={y(markerAt[1]) - ICON / 2 - MARKER_H + 6}
-            width={24}
-            height={MARKER_H}
-            preserveAspectRatio="xMidYMid meet"
-            pointerEvents="none"
-          />
-        )}
+        {markerAt && (() => {
+          const mx = x(markerAt[0]);
+          const isBoss = nodes.some((n) => n[0] === markerAt[0] && n[1] === markerAt[1] && n[2] === "boss");
+          const tip = y(markerAt[1]) - (isBoss ? BOSS : ICON) / 2 + 6;
+          return marker && !missingArt.has(marker) ? (
+            <image
+              href={marker}
+              x={mx - 12}
+              y={tip - MARKER_H}
+              width={24}
+              height={MARKER_H}
+              preserveAspectRatio="xMidYMid meet"
+              pointerEvents="none"
+              onError={() => markMissing(marker)}
+            />
+          ) : (
+            <path
+              d={`M${mx},${tip} l-8,-13 a8,8 0 1,1 16,0 z`}
+              fill="var(--accent-gold)"
+              stroke="var(--map-ink)"
+              strokeWidth={1.5}
+              pointerEvents="none"
+            />
+          );
+        })()}
       </svg>
       {hovered && hoverFloor && (
         <div
