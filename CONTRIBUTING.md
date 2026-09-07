@@ -140,17 +140,31 @@ mistake at PR review rather than after-the-fact.
 
 ## Colors
 
-We use game-accurate colors sampled from the actual game assets. Don't use generic Tailwind colors for character-specific UI:
+Every color comes from a design token in `frontend/app/globals.css`. Tokens are named by what they mean, not what they look like, so a component says "this is a warning" and the theme (dark or light) picks the color. Never write a raw Tailwind palette class (`text-red-400`, `bg-emerald-950/50`) or a hex value in a component; `frontend/lib/design-tokens.test.ts` fails on both.
 
-| Character   | Color     | Source            |
-|-------------|-----------|-------------------|
-| Ironclad    | `#d53b27` | Energy icon       |
-| Silent      | `#23935b` | Energy icon       |
-| Defect      | `#3873a9` | Energy icon       |
-| Necrobinder | `#bf5a85` | Energy icon       |
-| Regent      | `#f07c1e` | Energy icon       |
+Use the Tailwind utility for the token. Opacity modifiers work on all of them (`bg-danger/10`, `border-info/40`, `text-success/70`).
 
-These are defined as CSS variables (`--color-ironclad`, etc.) in `globals.css`.
+| Meaning | Utilities | Use for |
+|---|---|---|
+| Surfaces | `bg-background`, `bg-surface`, `bg-surface-hover`, `bg-scrim/60` | page ground, cards, hover state, dimming layers over art |
+| Text | `text-fg`, `text-fg-secondary`, `text-fg-muted` | body, supporting, quiet text on a surface |
+| Text on fills | `text-on-accent`, `text-on-fill` | labels on a gold button; labels on a status fill or a scrim |
+| Borders | `border-line`, `border-line-strong` | dividers, inputs, chips |
+| Accent | `text-accent`, `bg-accent`, `text-accent-light` | the site gold, primary buttons, links |
+| Status text/tints | `success`, `danger`, `warning`, `info`, `special` | won / lost / caution / neutral highlight / events and curses. Text, borders and translucent tints only |
+| Status fills | `bg-success-fill` ... `bg-special-fill` | solid backgrounds, paired with `text-on-fill` |
+| Game | `keyword`, `upgrade`, `ironclad`, `silent`, `defect`, `necrobinder`, `regent`, `ancient`, `merchant`, `spire` | anything that must match the game's own colors |
+| Brands | `twitch`, `twitch-light`, `bluesky`, `patreon` | only on that service's sign-in button or link |
+
+Rules of thumb:
+
+- Text goes on its matching surface: `text-fg-*` on `bg-surface`, `text-on-fill` on a `-fill` or scrim, `text-on-accent` on gold.
+- A status color says something happened (a win is `success`, a death is `danger`). Do not pick one because it looks nice.
+- Need a new color? Add a token to both theme blocks in `globals.css` and register it in `@theme inline`, then use the utility. Check the light value against white for WCAG AA (4.5:1).
+- Canvas and chart code cannot read CSS classes. Resolve the token at runtime with `getComputedStyle(document.documentElement).getPropertyValue("--success")` the way `charts/ChartsClient.tsx` does.
+- Legacy `var(--bg-card)` style arbitrary values still work and mean the same thing; prefer the utility in new code.
+
+The character colors are sampled from the game's energy icons: Ironclad `#d53b27`, Silent `#23935b`, Defect `#3873a9`, Necrobinder `#bf5a85`, Regent `#f07c1e`.
 
 ## Localization
 
