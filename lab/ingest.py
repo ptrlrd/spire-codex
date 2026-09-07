@@ -24,6 +24,49 @@ def _utc(ts: float) -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ts))
 
 
+def _append_metric(record: dict) -> None:
+    with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
+        f.write(json.dumps(record, separators=(",", ":")) + "\n")
+
+
+def _last_metric() -> dict | None:
+    try:
+        with open(LAKE / "ingest_metrics.jsonl", "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 65536))
+            lines = [ln for ln in f.read().splitlines() if ln.strip()]
+        return json.loads(lines[-1]) if lines else None
+    except (OSError, ValueError):
+        return None
+
+
+def mark_cycle_started(generation_id: str, t0: float) -> None:
+    """Append a start record, and first close out a previous cycle that
+    started but never wrote a completion, failure, or skip record: the
+    kernel's OOM killer leaves no trace of its own, so the only evidence
+    of a killed cycle is a start record with nothing after it."""
+    prev = _last_metric()
+    if prev and prev.get("started") and not prev.get("complete"):
+        _append_metric(
+            {
+                "generation_id": prev.get("generation_id"),
+                "cycle_started_at": prev.get("cycle_started_at"),
+                "failed_stage": "killed",
+                "error": "no completion record; the process was killed or the box restarted",
+                "complete": False,
+                "published_at": _utc(t0),
+            }
+        )
+    _append_metric(
+        {
+            "generation_id": generation_id,
+            "cycle_started_at": _utc(t0),
+            "started": True,
+            "complete": False,
+        }
+    )
+
+
 def _sidecar_digest() -> str:
     """Content hash of the two mutable sidecars, ignoring gzip headers
     (they embed a timestamp, so identical content still differs on bytes)."""
@@ -85,6 +128,7 @@ def main() -> None:
     t0 = time.time()
     generation_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime(t0))
     print(f"generation {generation_id} starting", flush=True)
+    mark_cycle_started(generation_id, t0)
 
     # Fresh scratch every cycle: a DuckDB file never returns freed pages to
     # the OS, so a persistent scratch keeps last cycle's high-water mark on
