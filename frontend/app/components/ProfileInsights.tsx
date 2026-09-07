@@ -1044,10 +1044,11 @@ export function InsightsPanels({
 }
 
 function useEntityMap(path: string): Record<string, EntityInfo> {
+  const { lang } = useLanguage();
   const [map, setMap] = useState<Record<string, EntityInfo>>({});
   useEffect(() => {
     let alive = true;
-    cachedFetch<EntityInfo[]>(`${API}${path}`)
+    cachedFetch<EntityInfo[]>(`${API}${path}?lang=${lang}`)
       .then((rows) => {
         if (!alive) return;
         const m: Record<string, EntityInfo> = {};
@@ -1058,7 +1059,7 @@ function useEntityMap(path: string): Record<string, EntityInfo> {
     return () => {
       alive = false;
     };
-  }, [path]);
+  }, [path, lang]);
   return map;
 }
 
