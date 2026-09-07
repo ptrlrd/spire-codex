@@ -1043,25 +1043,33 @@ export function InsightsPanels({
   );
 }
 
+// The map is keyed by the request it came from, so a language switch shows
+// nothing (rather than the previous language's names) until the new catalog
+// has arrived, and a failed request leaves the map empty instead of stale.
 function useEntityMap(path: string): Record<string, EntityInfo> {
   const { lang } = useLanguage();
-  const [map, setMap] = useState<Record<string, EntityInfo>>({});
+  const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}`;
+  const [state, setState] = useState<{ url: string; map: Record<string, EntityInfo> }>({ url: "", map: {} });
   useEffect(() => {
     let alive = true;
-    cachedFetch<EntityInfo[]>(`${API}${path}?lang=${lang}`)
+    cachedFetch<EntityInfo[]>(url)
       .then((rows) => {
         if (!alive) return;
         const m: Record<string, EntityInfo> = {};
-        for (const c of rows) m[c.id.toUpperCase()] = c;
-        setMap(m);
+        for (const c of Array.isArray(rows) ? rows : []) m[c.id.toUpperCase()] = c;
+        setState({ url, map: m });
       })
-      .catch(() => {});
+      .catch(() => {
+        if (alive) setState({ url, map: {} });
+      });
     return () => {
       alive = false;
     };
-  }, [path, lang]);
-  return map;
+  }, [url]);
+  return state.url === url ? state.map : EMPTY_ENTITY_MAP;
 }
+
+const EMPTY_ENTITY_MAP: Record<string, EntityInfo> = {};
 
 export function useCardMap(): Record<string, EntityInfo> {
   return useEntityMap("/api/cards");
