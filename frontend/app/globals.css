@@ -131,6 +131,9 @@
 :root[data-theme="light"] :is(.text-red-300, .text-red-400) {
   color: #b91c1c; /* red-700 */
 }
+:root[data-theme="light"] :is(.text-blue-300) {
+  color: #193cb8; /* blue-800 */
+}
 :root[data-theme="light"] :is([class*="bg-green-900/"], [class*="bg-green-950/"],
   [class*="bg-emerald-900/"], [class*="bg-emerald-950/"], [class*="bg-green-500/"],
   [class*="bg-green-600/"], [class*="bg-emerald-500/"], [class*="bg-emerald-600/"]) {

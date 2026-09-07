@@ -66,7 +66,7 @@
   text-align: left;
   color: var(--text);
 }
-.card-rvmp .sec-toggle .sec-count { font-family: var(--mono); font-size: 15px; font-weight: 400; color: var(--text-3); margin-left: 8px; }
+.card-rvmp .sec-count { font-family: var(--mono); font-size: 15px; font-weight: 400; color: var(--text-3); margin-left: 8px; }
 .card-rvmp .sec-toggle .chev { color: var(--text-3); font-size: 12px; flex: none; }
 .card-rvmp .rar-group { margin-top: 20px; }
 .card-rvmp .rar-group:first-child { margin-top: 14px; }
