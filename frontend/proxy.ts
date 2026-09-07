@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { LANG_PREFIXES } from "@/lib/languages";
+import { ENGLISH_ONLY_PATHS, ENGLISH_ONLY_SECTIONS, LANG_PREFIXES } from "@/lib/languages";
 import { routing } from "@/i18n/routing";
 
 /** Canonicalise news article URLs.
@@ -46,6 +46,14 @@ function gidFromEncoded(seg: string): string | null {
 }
 
 const LANG_CODES = LANG_PREFIXES;
+const LOCALE_HEADER = "X-NEXT-INTL-LOCALE";
+
+/** Pass or rewrite the request with the URL's locale on the request header next-intl reads when no layout has set it yet (RSC navigations render pages without their layout). */
+function withLocale(req: NextRequest, locale: string, rewriteTo?: URL): NextResponse {
+  const headers = new Headers(req.headers);
+  headers.set(LOCALE_HEADER, locale);
+  return rewriteTo ? NextResponse.rewrite(rewriteTo, { request: { headers } }) : NextResponse.next({ request: { headers } });
+}
 
 // Detail routes whose slugs are canonically lowercase (what the sitemap
 // declares). Any other casing serves the same page and self-canonicalises,
@@ -141,19 +149,16 @@ function betaRewrite(req: NextRequest): NextResponse | null {
   const locale = lang || routing.defaultLocale;
   if (rest.length === 0) {
     url.pathname = `/${locale}/beta`;
-    return NextResponse.rewrite(url);
+    return withLocale(req, locale, url);
   }
   url.pathname = `/${locale}/${rest.join("/")}`;
   url.searchParams.set("channel", "beta");
-  return NextResponse.rewrite(url);
+  return withLocale(req, locale, url);
 }
 
 // Sections that only exist in English (no translated data behind them). A
 // localized URL for one of these 308s to the English page so crawlers see
 // one canonical instead of thirteen chrome-only duplicates.
-const ENGLISH_ONLY_SECTIONS = new Set(["admin", "players"]);
-const ENGLISH_ONLY_PATHS = new Set(["news/codex", "cards/browse"]);
-
 function englishOnly(parts: string[]): boolean {
   if (ENGLISH_ONLY_SECTIONS.has(parts[2])) return true;
   if (ENGLISH_ONLY_PATHS.has(`${parts[2]}/${parts[3]}`)) return true;
@@ -182,10 +187,10 @@ function localeRewrite(req: NextRequest): NextResponse {
     url.pathname = pathname.slice(first.length + 1) || "/";
     return NextResponse.redirect(url, 308);
   }
-  if (LANG_CODES.has(first)) return NextResponse.next();
+  if (LANG_CODES.has(first)) return withLocale(req, first);
   const url = req.nextUrl.clone();
   url.pathname = `/${routing.defaultLocale}${pathname === "/" ? "" : pathname}`;
-  return NextResponse.rewrite(url);
+  return withLocale(req, routing.defaultLocale, url);
 }
 
 export function proxy(req: NextRequest) {
@@ -219,7 +224,8 @@ function newsRedirect(req: NextRequest): NextResponse | null {
 
 export const config = {
   // Every page request: the locale rewrite has to see all of them. Route
-  // handlers under /api, Next internals, and files with an extension
-  // (favicon, sitemap.xml, robots.txt, .well-known) are left alone.
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // handlers under /api, Next internals, and static files are left alone.
+  // Only real asset extensions are excluded: legacy news URLs carry an
+  // encoded Steam hostname with dots and still need the redirect.
+  matcher: ["/((?!api/|_next/|_vercel/|\\.well-known/|.*\\.(?:ico|png|jpe?g|gif|webp|svg|css|js|map|txt|xml|json|woff2?|ttf|mp3|webmanifest)$).*)"],
 };

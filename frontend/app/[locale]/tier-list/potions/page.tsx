@@ -7,7 +7,7 @@ import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
 import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
-import { gameNameFor, localeOf, localePath } from "@/lib/locale";
+import { gameNameFor, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -56,12 +56,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 async function fetchData(
+  locale: Locale,
   param?: string | null,
 ): Promise<{ potions: ApiPotion[]; scores: ScoresMap }> {
   try {
     const scoresUrl = `${API_INTERNAL}/api/runs/scores/potions${param ? `?bracket=${param}` : ""}`;
     const [potionsRes, scoresRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/potions`, { next: { revalidate: 1800 } }),
+      fetch(`${API_INTERNAL}/api/potions${langQuery(locale)}`, { next: { revalidate: 1800 } }),
       fetch(scoresUrl, { next: { revalidate: 300 } }),
     ]);
     const potions = potionsRes.ok ? ((await potionsRes.json()) as ApiPotion[]) : [];
@@ -78,7 +79,7 @@ export default async function PotionsTierListPage({ params, searchParams }: Page
   const sp = await searchParams;
   const bracket = normalizeBracket(sp.bracket);
   const param = bracketParam(bracket);
-  const { potions, scores } = await fetchData(param);
+  const { potions, scores } = await fetchData(locale, param);
 
   const entities: TierEntity[] = potions.map((p) => ({
     id: p.id,
@@ -95,19 +96,19 @@ export default async function PotionsTierListPage({ params, searchParams }: Page
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
-      path: `/potions/${e.id.toLowerCase()}`,
+      path: localePath(locale, `/potions/${e.id.toLowerCase()}`),
     }));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
-      { name: t("Home"), href: "/" },
-      { name: t("Tier List"), href: "/tier-list" },
-      { name: t("Potion Tier List"), href: "/tier-list/potions" },
+      { name: t("Home"), href: localePath(locale, "/") },
+      { name: t("Tier List"), href: localePath(locale, "/tier-list") },
+      { name: t("Potion Tier List"), href: localePath(locale, "/tier-list/potions") },
     ]),
     buildCollectionPageJsonLd({
       name: t("Potion Tier List"),
       description: t("Every {game} potion ranked by Codex Score from community-submitted run win rates.", { game: gameNameFor(locale) }),
-      path: "/tier-list/potions",
+      path: localePath(locale, "/tier-list/potions"),
       items: rankedItems,
     }),
   ];

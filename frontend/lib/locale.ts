@@ -104,7 +104,7 @@ export function listMetadata(
       url: `${SITE_URL}${url}`,
       title: page.title,
       description: page.description,
-      locale: hreflangOf(locale),
+      locale: ogLocaleOf(locale),
       images: [{ url: page.image ?? DEFAULT_OG_IMAGE }],
     },
     twitter: { card: "summary_large_image", title: page.title, description: page.description },

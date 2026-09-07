@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { NextRequest } from "next/server";
-import { proxy } from "./proxy";
+import { config, proxy } from "./proxy";
 
 function run(path: string) {
   const res = proxy(new NextRequest(`https://spire-codex.com${path}`));
@@ -64,5 +64,24 @@ describe("existing redirects", () => {
     const encoded = encodeURIComponent("https://store.steampowered.com/news/app/2868840/view/123456789");
     expect(run(`/news/${encoded}`)).toMatchObject({ status: 308, location: "/news/123456789" });
     expect(run(`/jpn/news/${encoded}`)).toMatchObject({ status: 308, location: "/jpn/news/123456789" });
+  });
+});
+
+describe("matcher", () => {
+  const pattern = new RegExp("^" + config.matcher[0].replace(/^\/\((.*)\)$/, "/$1") + "$");
+  it("lets encoded legacy Steam news URLs (they contain dots) reach the redirect", () => {
+    const encoded = encodeURIComponent("https://store.steampowered.com/news/app/2868840/view/123456789");
+    expect(pattern.test(`/news/${encoded}`)).toBe(true);
+    expect(run(`/news/${encoded}`)).toMatchObject({ status: 308, location: "/news/123456789" });
+  });
+  it("still skips static files, route handlers and Next internals", () => {
+    for (const p of ["/favicon.ico", "/sitemap.xml", "/robots.txt", "/api/cards", "/_next/static/x.js", "/.well-known/x"]) expect(pattern.test(p)).toBe(false);
+    expect(pattern.test("/jpn/cards/bash")).toBe(true);
+  });
+  it("tags every rendered request with the locale header next-intl reads", () => {
+    const res = proxy(new NextRequest("http://localhost/jpn/cards"));
+    expect(res.headers.get("x-middleware-request-x-next-intl-locale")).toBe("jpn");
+    const bare = proxy(new NextRequest("http://localhost/cards"));
+    expect(bare.headers.get("x-middleware-request-x-next-intl-locale")).toBe("eng");
   });
 });

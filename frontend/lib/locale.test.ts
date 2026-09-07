@@ -53,7 +53,7 @@ describe("locale helpers", () => {
   it("gives list pages a canonical on their own locale and hreflang for all", () => {
     const meta = listMetadata("jpn", { path: "/cards", title: "T", description: "D" });
     expect(meta.alternates?.canonical).toBe("/jpn/cards");
-    expect(meta.openGraph).toMatchObject({ locale: "ja", url: expect.stringMatching(/\/jpn\/cards$/) });
+    expect(meta.openGraph).toMatchObject({ locale: "ja_JP", url: expect.stringMatching(/\/jpn\/cards$/) });
     const languages = meta.alternates?.languages as Record<string, string>;
     expect(languages["x-default"]).toMatch(/\/cards$/);
     expect(languages.ja).toMatch(/\/jpn\/cards$/);

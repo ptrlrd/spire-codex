@@ -21,6 +21,7 @@ import { BetaVersionProvider } from "@/app/contexts/BetaVersionContext";
 import { AuthProvider } from "@/app/contexts/AuthContext";
 import { ToastProvider } from "@/app/components/Toast";
 import AuthNotice from "@/app/components/AuthNotice";
+import LocaleSuggestToast from "@/app/components/LocaleSuggestToast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 // Self-hosted Umami analytics. Both values are public-by-design, the
@@ -181,6 +182,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
               <ToastProvider>
               <AuthNotice />
               <Navbar />
+              <LocaleSuggestToast />
               <div className="pt-16">
                 <AlertTicker />
                 {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear

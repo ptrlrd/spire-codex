@@ -9,7 +9,7 @@ import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
 import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
-import { gameNameFor, localeOf, localePath, type Locale } from "@/lib/locale";
+import { gameNameFor, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -159,12 +159,14 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 }
 
 async function fetchData(
+  locale: Locale,
   pool?: string,
   act?: string,
   param?: string | null,
   ancient?: string,
 ): Promise<{ relics: ApiRelic[]; scores: ScoresMap }> {
   const relicParams = new URLSearchParams();
+  if (locale !== "eng") relicParams.set("lang", locale);
   if (pool) relicParams.set("pool", pool);
   if (ancient) relicParams.set("ancient", ancient);
   const relicQs = relicParams.toString();
@@ -196,7 +198,7 @@ export default async function RelicsTierListPage({ params, searchParams }: PageP
   const ancient = parseAncient(sp.ancient);
   const bracket = normalizeBracket(sp.bracket);
   const param = bracketParam(bracket);
-  const { relics, scores } = await fetchData(pool, act, param, ancient);
+  const { relics, scores } = await fetchData(locale, pool, act, param, ancient);
 
   const entities: TierEntity[] = relics
     .filter((r) => !rarity || (r.rarity_key ?? "").toLowerCase() === rarity)
@@ -227,19 +229,19 @@ export default async function RelicsTierListPage({ params, searchParams }: PageP
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
-      path: `/relics/${e.id.toLowerCase()}`,
+      path: localePath(locale, `/relics/${e.id.toLowerCase()}`),
     }));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
-      { name: t("Home"), href: "/" },
-      { name: t("Tier List"), href: "/tier-list" },
-      { name: heading, href: path },
+      { name: t("Home"), href: localePath(locale, "/") },
+      { name: t("Tier List"), href: localePath(locale, "/tier-list") },
+      { name: heading, href: localePath(locale, path) },
     ]),
     buildCollectionPageJsonLd({
       name: heading,
       description: t("{game} {heading} ranked by Codex Score from community-submitted run win rates.", { game: gameNameFor(locale), heading }),
-      path,
+      path: localePath(locale, path),
       items: rankedItems,
     }),
   ];

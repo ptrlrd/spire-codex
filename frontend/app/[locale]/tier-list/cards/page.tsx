@@ -7,7 +7,7 @@ import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
 import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
-import { gameNameFor, localeOf, localePath } from "@/lib/locale";
+import { gameNameFor, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -120,6 +120,7 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
 }
 
 async function fetchData(
+  locale: Locale,
   color?: string,
   param?: string | null,
 ): Promise<{ cards: ApiCard[]; scores: ScoresMap }> {
@@ -127,7 +128,7 @@ async function fetchData(
   // to keep payloads small) + the bulk-scores map. Failures degrade
   // gracefully to empty so the page still renders the "no data" state
   // instead of a 500 (e.g. during cold-start cache miss).
-  const cardsUrl = `${API_INTERNAL}/api/cards${color ? `?color=${color}` : ""}`;
+  const cardsUrl = `${API_INTERNAL}/api/cards${color ? `?color=${color}${langQuery(locale, "&")}` : langQuery(locale)}`;
   const scoresUrl = `${API_INTERNAL}/api/runs/scores/cards${param ? `?bracket=${param}` : ""}`;
   try {
     const [cardsRes, scoresRes] = await Promise.all([
@@ -150,7 +151,7 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
   const sort: SortMode = sp.sort === "elo" ? "elo" : "score";
   const bracket = normalizeBracket(sp.bracket);
   const param = bracketParam(bracket);
-  const { cards, scores } = await fetchData(color, param);
+  const { cards, scores } = await fetchData(locale, color, param);
 
   const base: BaseCard[] = cards
     // mad_science is a multi-type event card with no full render; hide it.
@@ -205,19 +206,19 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
-      path: `/cards/${e.id.toLowerCase()}`,
+      path: localePath(locale, `/cards/${e.id.toLowerCase()}`),
     }));
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
-      { name: t("Home"), href: "/" },
-      { name: t("Tier List"), href: "/tier-list" },
-      { name: heading, href: path },
+      { name: t("Home"), href: localePath(locale, "/") },
+      { name: t("Tier List"), href: localePath(locale, "/tier-list") },
+      { name: heading, href: localePath(locale, path) },
     ]),
     buildCollectionPageJsonLd({
       name: heading,
       description: t("{game} {heading} ranked by {metric} from community-submitted run data.", { game: gameNameFor(locale), heading, metric }),
-      path,
+      path: localePath(locale, path),
       items: rankedItems,
     }),
   ];
