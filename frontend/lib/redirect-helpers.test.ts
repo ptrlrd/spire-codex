@@ -19,8 +19,10 @@ describe("redirectMissingEntity", () => {
     expect(permanentRedirect).not.toHaveBeenCalled();
   });
 
-  it("does the same on a localized route", () => {
-    expect(() => redirectMissingEntity("events", "no_such_event", "fra")).toThrow("NEXT_NOT_FOUND");
-    expect(permanentRedirect).not.toHaveBeenCalled();
+  it("308s a documented rename to the new id, keeping the locale prefix", () => {
+    const legacy = { cards: { old_slug: "new_slug" } };
+    expect(() => redirectMissingEntity("cards", "old_slug", "fra", legacy)).toThrow("NEXT_REDIRECT:/fra/cards/new_slug");
+    expect(() => redirectMissingEntity("cards", "old_slug", undefined, legacy)).toThrow("NEXT_REDIRECT:/cards/new_slug");
+    expect(() => redirectMissingEntity("relics", "old_slug", "fra", legacy)).toThrow("NEXT_NOT_FOUND");
   });
 });

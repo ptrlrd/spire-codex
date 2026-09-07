@@ -37,7 +37,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const title = `${gameName} ${dbWord} - Spire Codex (${nativeName})`;
   const description = `Spire Codex, ${gameName} ${dbWord}. ${nativeName}.`;
 
-
   return {
     title,
     description,

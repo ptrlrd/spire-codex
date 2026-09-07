@@ -13,9 +13,9 @@ describe("fetchEntityRes", () => {
     expect((await fetchEntityRes("http://api/x")).status).toBe(200);
   });
 
-  it("returns a 404 so the page can decide the entity is missing", async () => {
-    stub(404);
-    expect((await fetchEntityRes("http://api/x")).status).toBe(404);
+  it.each([404, 410])("returns a %i so the page can decide the entity is missing", async (status) => {
+    stub(status);
+    expect((await fetchEntityRes("http://api/x")).status).toBe(status);
   });
 
   it.each([429, 401, 403, 500, 502, 503])("throws on %i instead of reading it as missing", async (status) => {
