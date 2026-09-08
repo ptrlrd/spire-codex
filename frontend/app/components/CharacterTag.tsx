@@ -22,13 +22,15 @@ export default function CharacterTag({
   id,
   showName = true,
   size = 16,
+  name: nameOverride,
 }: {
   id: string;
   showName?: boolean;
   size?: number;
+  name?: string;
 }) {
   const key = id.toLowerCase();
-  const name = characterName(key);
+  const name = nameOverride ?? characterName(key);
   return (
     <span className="inline-flex items-center gap-1.5 min-w-0">
       <img

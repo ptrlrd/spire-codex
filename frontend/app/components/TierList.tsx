@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
-import { getT } from "@/lib/i18n-server";
+import { imageUrl } from "@/lib/image-url";
+import { getGameLocale, getT } from "@/lib/i18n-server";
+import LocalizedCardImage from "@/app/components/LocalizedCardImage";
 
 // Use ?? not ||, production sets NEXT_PUBLIC_API_URL="" intentionally
 // so URLs resolve same-origin (nginx proxies /static to the backend
@@ -73,6 +74,7 @@ interface TierListProps {
  */
 export default async function TierList({ route, entities, showUnrated = true, valueLabel = "Score" }: TierListProps) {
   const t = await getT();
+  const lang = await getGameLocale();
   // Group entities by tier, the unrated go to the bottom in a separate
   // "Unrated" row so they're still discoverable but don't pollute the
   // tier signal. Within each tier, sort by value desc, then by name
@@ -158,12 +160,11 @@ export default async function TierList({ route, entities, showUnrated = true, va
                   title={tileValue(ent) != null ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})` : ent.name}
                   className="group relative flex flex-col items-center gap-0.5 w-[130px] sm:w-[150px] hover:scale-[1.04] transition-transform"
                 >
-                  <img
-                    src={fullCardUrl(ent.id.toLowerCase())}
+                  <LocalizedCardImage
+                    id={ent.id}
+                    lang={lang}
                     alt={ent.name}
                     className="w-full h-auto aspect-[400/520] drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]"
-                    loading="lazy"
-                    crossOrigin="anonymous"
                   />
                   {tileValue(ent) != null && (
                     <span className="text-[9px] font-mono tabular-nums text-[var(--text-muted)]">

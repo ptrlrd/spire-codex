@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { CSSProperties } from "react";
 import JsonLd from "@/app/components/JsonLd";
@@ -100,6 +100,50 @@ async function fetchMerchantConfig(): Promise<MerchantConfig> {
   }
 }
 
+interface RarityWords {
+  card_rarities?: Record<string, string>;
+  relic_rarities?: Record<string, string>;
+  potion_rarities?: Record<string, string>;
+}
+
+async function fetchRarityWords(locale: Locale): Promise<RarityWords> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/translations${langQuery(locale)}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return {};
+    return (await res.json()) as RarityWords;
+  } catch {
+    return {};
+  }
+}
+
+async function fetchRelicNames(locale: Locale): Promise<Record<string, string>> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return {};
+    const relics = (await res.json()) as { id: string; name: string }[];
+    const names: Record<string, string> = {};
+    for (const r of relics) names[r.id.toUpperCase()] = r.name;
+    return names;
+  } catch {
+    return {};
+  }
+}
+
+const BLACKLISTED = ["THE_COURIER", "OLD_COIN", "LUCKY_FYSH", "BOWLER_HAT", "AMETHYST_AUBERGINE"];
+
+const FAKE_RELICS: { fakeId: string; realId: string | null; realName: string; effect: string }[] = [
+  { fakeId: "FAKE_ANCHOR", realId: "ANCHOR", realName: "Anchor", effect: "Gain 4 Block at the start of combat (real: 10)" },
+  { fakeId: "FAKE_BLOOD_VIAL", realId: "BLOOD_VIAL", realName: "Blood Vial", effect: "Heal 1 HP at the start of turn 1 only" },
+  { fakeId: "FAKE_HAPPY_FLOWER", realId: "HAPPY_FLOWER", realName: "Happy Flower", effect: "Gain 1 Energy every 5 turns (real: every 3)" },
+  { fakeId: "FAKE_LEES_WAFFLE", realId: "LEES_WAFFLE", realName: "Lee's Waffle", effect: "Heal 10% Max HP on pickup (real: raise Max HP)" },
+  { fakeId: "FAKE_MANGO", realId: "MANGO", realName: "Mango", effect: "Gain 3 Max HP on pickup (real: 14)" },
+  { fakeId: "FAKE_ORICHALCUM", realId: "ORICHALCUM", realName: "Orichalcum", effect: "Gain 3 Block at end of turn if no Block (real: 6)" },
+  { fakeId: "FAKE_SNECKO_EYE", realId: "SNECKO_EYE", realName: "Snecko Eye", effect: "Applies Confused (randomizes card costs) with no draw bonus" },
+  { fakeId: "FAKE_STRIKE_DUMMY", realId: "STRIKE_DUMMY", realName: "Strike Dummy", effect: "Strike cards deal 1 extra damage (real: 3)" },
+  { fakeId: "FAKE_VENERABLE_TEA_SET", realId: "VENERABLE_TEA_SET", realName: "Venerable Tea Set", effect: "Gain 1 Energy next combat after resting (real: 2)" },
+  { fakeId: "FAKE_MERCHANTS_RUG", realId: null, realName: "Merchant's Rug", effect: "No effect. Purely decorative." },
+];
+
 // Display order for the rarity tiers, matches the previous hand-coded
 // page so we don't surprise readers with a different sort. Rarities not
 // in this list fall through alphabetically at the end.
@@ -137,7 +181,10 @@ export default async function MerchantPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const heading = pageHeading(locale, t("Merchant Guide"));
-  const cfg = await fetchMerchantConfig();
+  const [cfg, rarityWords, relicNames] = await Promise.all([fetchMerchantConfig(), fetchRarityWords(locale), fetchRelicNames(locale)]);
+  const blacklisted = BLACKLISTED.map((id) => relicNames[id] ?? id).join(", ");
+  const rarityLabel = (kind: "card" | "relic" | "potion", rarity: string) =>
+    rarityWords[`${kind}_rarities`]?.[rarity] ?? t(rarity);
 
   const jsonLd = [
     ...buildDetailPageJsonLd({
@@ -258,7 +305,7 @@ export default async function MerchantPage({ params }: Props) {
                 <span className="tr-title">{t("Relics")}</span>
                 <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;3</span>
               </div>
-              <p className="tr-desc">{t("2 random rarity rolls + 1 guaranteed Shop relic. The Courier, Old Coin, Lucky Fysh, Bowler Hat, and Amethyst Aubergine are blacklisted (gold-generating relics removed in Major Update #1).")}</p>
+              <p className="tr-desc">{t("2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).", { list: blacklisted })}</p>
             </div>
             <div className="trow">
               <div className="tr-head">
@@ -299,7 +346,7 @@ export default async function MerchantPage({ params }: Props) {
                     const saleMax = Math.round(r.max / cfg.cards.on_sale_divisor);
                     return (
                       <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarity}</td>
+                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("card", rarity)}</td>
                         <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
                         <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
                         <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessMin}–{colorlessMax}</td>
@@ -333,7 +380,7 @@ export default async function MerchantPage({ params }: Props) {
                     const r = cfg.relics.by_rarity[rarity];
                     return (
                       <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarity}</td>
+                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("relic", rarity)}</td>
                         <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
                         <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
                         <td className="p-3 text-right text-[var(--text-muted)]">×{cfg.relics.variance.min}–{cfg.relics.variance.max}</td>
@@ -343,7 +390,7 @@ export default async function MerchantPage({ params }: Props) {
                 </tbody>
               </table>
               <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-                {t("Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine.", { relicVar: variancePct(cfg.relics.variance), cardVar: variancePct(cfg.cards.variance) })}
+                {t("Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: {list}.", { relicVar: variancePct(cfg.relics.variance), cardVar: variancePct(cfg.cards.variance), list: blacklisted })}
               </div>
             </div>
           </section>
@@ -365,7 +412,7 @@ export default async function MerchantPage({ params }: Props) {
                     const r = cfg.potions.by_rarity[rarity];
                     return (
                       <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarity}</td>
+                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("potion", rarity)}</td>
                         <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
                         <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
                       </tr>
@@ -439,19 +486,15 @@ export default async function MerchantPage({ params }: Props) {
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    { fake: "Fake Anchor", real: "Anchor", effect: t("Gain 4 Block at the start of combat (real: 10)") },
-                    { fake: "Fake Blood Vial", real: "Blood Vial", effect: t("Heal 1 HP at the start of turn 1 only") },
-                    { fake: "Fake Happy Flower", real: "Happy Flower", effect: t("Gain 1 Energy every 5 turns (real: every 3)") },
-                    { fake: "Fake Lee's Waffle", real: "Lee's Waffle", effect: t("Heal 10% Max HP on pickup (real: raise Max HP)") },
-                    { fake: "Fake Mango", real: "Mango", effect: t("Gain 3 Max HP on pickup (real: 14)") },
-                    { fake: "Fake Orichalcum", real: "Orichalcum", effect: t("Gain 3 Block at end of turn if no Block (real: 6)") },
-                    { fake: "Fake Snecko Eye", real: "Snecko Eye", effect: t("Applies Confused (randomizes card costs) with no draw bonus") },
-                    { fake: "Fake Strike Dummy", real: "Strike Dummy", effect: t("Strike cards deal 1 extra damage (real: 3)") },
-                    { fake: "Fake Venerable Tea Set", real: "Venerable Tea Set", effect: t("Gain 1 Energy next combat after resting (real: 2)") },
-                    { fake: "Fake Merchant's Rug", real: "—", effect: t("No effect. Purely decorative.") },
-                  ].map((row) => (
-                    <tr key={row.fake} className="border-b border-[var(--border-subtle)]/50 last:border-0">
+                  {FAKE_RELICS.map((row) => (
+                    {
+                      fakeId: row.fakeId,
+                      fake: relicNames[row.fakeId] ?? t("Fake {relic}", { relic: row.realName }),
+                      real: row.realId ? relicNames[row.realId] ?? row.realName : "—",
+                      effect: t(row.effect),
+                    }
+                  )).map((row) => (
+                    <tr key={row.fakeId} className="border-b border-[var(--border-subtle)]/50 last:border-0">
                       <td className="p-3 text-[var(--text-primary)] font-medium">{row.fake}</td>
                       <td className="p-3 text-[var(--text-muted)]">{row.real}</td>
                       <td className="p-3 text-right text-[var(--accent-gold)]">{cfg.fake_merchant.relic_cost}g</td>

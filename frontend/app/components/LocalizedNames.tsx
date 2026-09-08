@@ -2,7 +2,7 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 
@@ -83,13 +83,10 @@ export default function LocalizedNames({
         .map(([apiName, name]) => {
           const code = API_NAME_TO_LANG[apiName];
           const isEnglish = apiName === "English";
-          const href = isEnglish
-            ? `/${route}/${idSlug}`
-            : code
-              ? `/${code}/${route}/${idSlug}`
-              : null;
+          const linkLocale = isEnglish ? "eng" : code;
+          const href = linkLocale ? `/${route}/${idSlug}` : null;
           const hrefLang = isEnglish ? "en" : code ? LANG_HREFLANG[code] : undefined;
-          return { apiName, name, href, hrefLang };
+          return { apiName, name, href, hrefLang, linkLocale };
         })
     : [];
 
@@ -102,11 +99,12 @@ export default function LocalizedNames({
       <h2>{t("Other languages")}</h2>
       {rows.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm list-none p-0 m-0">
-          {rows.map(({ apiName, name, href, hrefLang }) => (
+          {rows.map(({ apiName, name, href, hrefLang, linkLocale }) => (
             <li key={apiName}>
-              {href ? (
+              {href && linkLocale ? (
                 <Link
                   href={href}
+                  locale={linkLocale}
                   hrefLang={hrefLang}
                   className="flex justify-between gap-3 rounded px-1.5 -mx-1.5 py-1 hover:bg-[var(--bg-card)] transition-colors"
                 >

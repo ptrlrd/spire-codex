@@ -2,7 +2,7 @@
 
 import { useT } from "@/lib/i18n";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import MyTierLists from "./MyTierLists";
 import { ENTITY_TYPES } from "./types";
 import type { EntityType } from "./types";

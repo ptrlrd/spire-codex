@@ -5,6 +5,7 @@ import { useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import RichDescription from "@/app/components/RichDescription";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
+import { displayName } from "@/lib/display-name";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -35,13 +36,7 @@ export interface PotionInfo {
   image_url: string | null;
 }
 
-export function cleanId(id: string): string {
-  return id.replace(/^(CARD|RELIC|ENCHANTMENT|MONSTER|ENCOUNTER|CHARACTER|ACT|POTION|EVENT)\./, "");
-}
-
-export function displayName(id: string): string {
-  return cleanId(id).replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
+export { cleanId, displayName } from "@/lib/display-name";
 
 export function CardPill({
   cardId,

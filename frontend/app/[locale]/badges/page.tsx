@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
@@ -45,7 +45,7 @@ export default async function BadgesPage({ params }: Props) {
   const tagline = t("badges_tagline");
   let badges: Badge[] = [];
   try {
-    const res = await fetch(`${API}/api/badges`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API}/api/badges${langQuery(locale)}`, { next: { revalidate: 3600 } });
     if (res.ok) badges = await res.json();
   } catch {}
 

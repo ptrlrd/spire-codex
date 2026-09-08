@@ -70,9 +70,11 @@ function cellStyle(wr: number, lo: number, hi: number) {
 export default async function AscensionHeatmap({
   matrix,
   lang,
+  names = {},
 }: {
   matrix: AscensionMatrix;
   lang: string;
+  names?: Record<string, string>;
 }) {
   const t = await getT();
   const rows = CHARS.filter((id) => Object.keys(matrix[id] || {}).length > 0);
@@ -106,7 +108,7 @@ export default async function AscensionHeatmap({
         {rows.map((id) => (
           <Fragment key={id}>
             <div className="flex items-center pr-2 text-xs">
-              <CharacterTag id={id} />
+              <CharacterTag id={id} name={names[id]} />
             </div>
             {Array.from({ length: 11 }, (_, a) => {
               const cell = matrix[id]?.[String(a)];
@@ -123,7 +125,7 @@ export default async function AscensionHeatmap({
                   key={`${id}-${a}`}
                   className="rounded min-h-[36px] flex items-center justify-center text-[11px] tabular-nums"
                   style={cellStyle(cell.win_rate, lo, hi)}
-                  title={`${characterName(id)} · A${a} — ${cell.win_rate}% ${t("win rate")} · ${cell.runs.toLocaleString()} ${t("runs")}`}
+                  title={`${names[id] ?? characterName(id)} · A${a} — ${cell.win_rate}% ${t("win rate")} · ${cell.runs.toLocaleString()} ${t("runs")}`}
                 >
                   {cell.win_rate}
                 </div>

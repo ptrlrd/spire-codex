@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
@@ -61,8 +61,8 @@ export default async function KeywordsPage({ params }: Props) {
   let glossary: GlossaryTerm[] = [];
   try {
     const [kwRes, glRes] = await Promise.all([
-      fetch(`${API}/api/keywords`, { next: { revalidate: 3600 } }),
-      fetch(`${API}/api/glossary`, { next: { revalidate: 3600 } }),
+      fetch(`${API}/api/keywords${langQuery(locale)}`, { next: { revalidate: 3600 } }),
+      fetch(`${API}/api/glossary${langQuery(locale)}`, { next: { revalidate: 3600 } }),
     ]);
     if (kwRes.ok) keywords = await kwRes.json();
     if (glRes.ok) glossary = await glRes.json();

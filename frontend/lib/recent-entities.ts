@@ -2,10 +2,14 @@
 // the visitor has recently opened, surfaced in the Compendium mega menu. Pure
 // client-side; nothing is sent anywhere.
 
-export type RecentEntity = { type: string; id: string };
+import { cachedFetch } from "./fetch-cache";
+
+export type RecentEntity = { type: string; id: string; names?: Record<string, string> };
 
 const KEY = "sc-recent-entities";
 const MAX = 12;
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+const API_PATH: Record<string, string> = { timeline: "epochs" };
 
 /** Singular display label per entity route, and the set of routes that count. */
 export const ENTITY_SINGULAR: Record<string, string> = {
@@ -47,13 +51,35 @@ export function recordRecent(type: string, id: string): void {
   if (!isRecentType(type) || !id) return;
   try {
     const raw = localStorage.getItem(KEY);
-    let list: RecentEntity[] = raw ? JSON.parse(raw) : [];
-    list = list.filter((e) => !(e.type === type && e.id === id));
-    list.unshift({ type, id });
-    localStorage.setItem(KEY, JSON.stringify(list.slice(0, MAX)));
+    const list: RecentEntity[] = raw ? JSON.parse(raw) : [];
+    const prev = list.find((e) => e.type === type && e.id === id);
+    const rest = list.filter((e) => !(e.type === type && e.id === id));
+    rest.unshift({ type, id, ...(prev?.names ? { names: prev.names } : {}) });
+    localStorage.setItem(KEY, JSON.stringify(rest.slice(0, MAX)));
   } catch {
     /* storage disabled / quota */
   }
+}
+
+export function rememberRecentName(type: string, id: string, lang: string, name: string): void {
+  try {
+    const raw = localStorage.getItem(KEY);
+    const list: RecentEntity[] = raw ? JSON.parse(raw) : [];
+    const entry = list.find((e) => e.type === type && e.id === id);
+    if (!entry) return;
+    entry.names = { ...(entry.names ?? {}), [lang]: name };
+    localStorage.setItem(KEY, JSON.stringify(list));
+  } catch {
+    /* storage disabled / quota */
+  }
+}
+
+/** The entity's display name in `lang`, from the same detail endpoint its page reads. */
+export function fetchRecentName(type: string, id: string, lang: string): Promise<string | null> {
+  const path = API_PATH[type] ?? type;
+  return cachedFetch<{ name?: string; title?: string }>(`${API}/api/${path}/${id}?lang=${lang}`)
+    .then((d) => d?.name || d?.title || null)
+    .catch(() => null);
 }
 
 export function getRecent(): RecentEntity[] {

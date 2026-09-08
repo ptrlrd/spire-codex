@@ -33,6 +33,10 @@ const CHAR_COLORS: Record<string, string> = {
   regent: "Orange",
 };
 
+function entityIdOf(camel: string): string {
+  return camel.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
+}
+
 function parsePair(pair: string): { a: string; b: string } | null {
   const match = pair.match(/^(\w+)-vs-(\w+)$/);
   if (!match) return null;
@@ -44,6 +48,31 @@ function parsePair(pair: string): { a: string; b: string } | null {
 
 type Props = { params: Promise<{ locale: string; pair: string }> };
 
+async function fetchCharacterName(charId: string, locale: Locale): Promise<string> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`, { next: { revalidate: 300 } });
+    if (!res.ok) return CHAR_NAMES[charId];
+    const character: Character = await res.json();
+    return character.name || CHAR_NAMES[charId];
+  } catch {
+    return CHAR_NAMES[charId];
+  }
+}
+
+async function fetchRelicNames(ids: string[], locale: Locale): Promise<Record<string, string>> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, { next: { revalidate: 300 } });
+    if (!res.ok) return {};
+    const relics: { id: string; name: string }[] = await res.json();
+    const wanted = new Set(ids);
+    const names: Record<string, string> = {};
+    for (const r of relics) if (wanted.has(r.id.toUpperCase())) names[r.id.toUpperCase()] = r.name;
+    return names;
+  } catch {
+    return {};
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, pair } = await params;
   const locale = localeOf(rawLocale);
@@ -52,8 +81,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const parsed = parsePair(pair);
   if (!parsed) return buildPageMetadata({ locale, path, title: t("Comparison Not Found"), noIndex: true });
 
-  const nameA = CHAR_NAMES[parsed.a];
-  const nameB = CHAR_NAMES[parsed.b];
+  const [nameA, nameB] = await Promise.all([fetchCharacterName(parsed.a, locale), fetchCharacterName(parsed.b, locale)]);
   return buildPageMetadata({
     locale,
     path,
@@ -100,9 +128,13 @@ export default async function Page({ params }: Props) {
     fetchCharacterAndCards(parsed.b, locale),
   ]);
 
-  const nameA = CHAR_NAMES[parsed.a];
-  const nameB = CHAR_NAMES[parsed.b];
+  const nameA = dataA?.character.name || CHAR_NAMES[parsed.a];
+  const nameB = dataB?.character.name || CHAR_NAMES[parsed.b];
   const gameName = gameNameFor(locale, "Slay the Spire 2");
+  const relicNames = await fetchRelicNames(
+    [...(dataA?.character.starting_relics ?? []), ...(dataB?.character.starting_relics ?? [])].map(entityIdOf),
+    locale,
+  );
 
   let jsonLd = null;
   if (dataA && dataB) {
@@ -129,6 +161,7 @@ export default async function Page({ params }: Props) {
         initialCharB={dataB?.character ?? null}
         initialCardsA={dataA?.cards ?? []}
         initialCardsB={dataB?.cards ?? []}
+        initialRelicNames={relicNames}
       />
     </>
   );

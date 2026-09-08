@@ -41,7 +41,7 @@ function PageBlock({ page }: { page: EventPage }) {
       <p className="pl">{isInitial ? t("Start") : pageName}</p>
       {page.description && (
         <div className="pdesc">
-          <RichDescription text={page.description} />
+          <RichDescription text={siteAuthored(page.description) ? t(page.description) : page.description} />
         </div>
       )}
       {page.options && page.options.length > 0 && (
@@ -64,6 +64,15 @@ function PageBlock({ page }: { page: EventPage }) {
   );
 }
 
+
+// The event parser writes one English description into every language for
+// FAKE_MERCHANT (backend/app/parsers/event_parser.py::_fix_fake_merchant), so
+// that single string is translated here. Every other description is already
+// localized game text and must not be reinterpreted as a UI message.
+const SITE_AUTHORED_PREFIX = "A suspicious merchant offers 6 fake relics";
+function siteAuthored(text: string | undefined): boolean {
+  return !!text && text.startsWith(SITE_AUTHORED_PREFIX);
+}
 export default function EventDetail({
   initialEvent,
   voteStats,

@@ -18,34 +18,33 @@ import {
   RelicPill,
   cleanId,
   displayName,
-  type CardInfo,
-  type PotionInfo,
-  type RelicInfo,
 } from "../../runs/[hash]/RunPills";
 import {
   CharacterIcon,
   EnemyCircle,
   LiveCardImg,
+  characterName,
+  enemyName,
+  intentTitle,
   monsterName,
+  namedOr,
   parseDeckId,
+  powerName,
+  screenLabel,
   withOrdinalKeys,
   type EncounterMap,
   type Enemy,
   type EnemyIntent,
+  type LiveCatalogs,
   type LiveOrb,
   type LivePet,
   type LivePlayer,
   type LivePower,
   type LiveSeat,
   type MonsterMap,
+  type NamedMap,
 } from "../live-shared";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
-
-interface Catalogs {
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
-}
 
 // Map an intent category to its icon file (a few names differ from the type).
 const INTENT_FILE: Record<string, string> = {
@@ -78,8 +77,8 @@ function IntentBadge({ intent }: { intent: EnemyIntent }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={intentSrc(intent.type)}
-        alt={intent.type || t("Intent")}
-        title={intent.type || t("Intent")}
+        alt={intentTitle(intent.type, t)}
+        title={intentTitle(intent.type, t)}
         className="h-7 w-7 object-contain drop-shadow"
         crossOrigin="anonymous"
         onError={(e) => {
@@ -101,18 +100,18 @@ function IntentBadge({ intent }: { intent: EnemyIntent }) {
 }
 
 /** Buff/debuff chips as the game's power icons with their stack count. */
-function PowerRow({ powers }: { powers: LivePower[] }) {
+function PowerRow({ powers, names }: { powers: LivePower[]; names: NamedMap }) {
   if (!powers.length) return null;
   return (
     <div className="flex flex-wrap justify-center gap-1">
       {powers.map((pw) => (
-        <span key={pw.id} className="relative inline-flex" title={displayName(pw.id)}>
+        <span key={pw.id} className="relative inline-flex" title={powerName(pw.id, names)}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             // power ids already end in _POWER (e.g. DEXTERITY_POWER), and the
             // asset is dexterity_power.png -- so no extra _power suffix.
             src={imageUrl(`/static/images/powers/${pw.id.toLowerCase()}.png`)}
-            alt={displayName(pw.id)}
+            alt={powerName(pw.id, names)}
             className="h-5 w-5 object-contain"
             crossOrigin="anonymous"
             onError={(e) => {
@@ -132,7 +131,15 @@ function PowerRow({ powers }: { powers: LivePower[] }) {
 
 /** The player's channeled orbs: a row of orb icons (filled + empty slots), each
  * with its passive (per-turn) value. */
-function OrbRow({ orbs, slots }: { orbs: LiveOrb[]; slots?: number | null }) {
+function OrbRow({
+  orbs,
+  slots,
+  names,
+}: {
+  orbs: LiveOrb[];
+  slots?: number | null;
+  names: NamedMap;
+}) {
   const t = useT();
   const total = Math.max(slots ?? 0, orbs.length);
   if (total <= 0) return null;
@@ -144,7 +151,7 @@ function OrbRow({ orbs, slots }: { orbs: LiveOrb[]; slots?: number | null }) {
           <span
             key={i}
             className="relative inline-flex"
-            title={orb ? displayName(orb.id) : t("Empty orb slot")}
+            title={orb ? namedOr(orb.id, names) : t("Empty orb slot")}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -220,9 +227,11 @@ function Vitals({
 function PartyMate({
   seat,
   turnSide,
+  names,
 }: {
   seat: LiveSeat;
   turnSide?: string | null;
+  names: Record<string, string>;
 }) {
   const t = useT();
   const down = seat.alive === false;
@@ -244,7 +253,7 @@ function PartyMate({
       </span>
       <div className="flex items-center gap-1 text-xs font-semibold text-[var(--text-primary)]">
         <span className="max-w-[7rem] truncate">
-          {displayName(`CHARACTER.${seat.character ?? ""}`)}
+          {characterName(seat.character, names)}
         </span>
         {down && (
           <span className="text-[10px] font-bold uppercase text-danger">
@@ -277,7 +286,7 @@ function PetRow({ pets, monsters }: { pets: LivePet[]; monsters: MonsterMap }) {
             className="h-16 w-16 ring-2 ring-success/60"
           />
           <div className="max-w-[6rem] truncate text-xs font-medium text-success">
-            {pt.name || (pt.id ? monsterName(pt.id, monsters) : t("Pet"))}
+            {enemyName(pt, monsters) || t("Pet")}
           </div>
           <Vitals hp={pt.hp} maxHp={pt.max_hp} block={pt.block} />
         </div>
@@ -345,7 +354,7 @@ export default function LiveScene({
   bp,
 }: {
   p: LivePlayer;
-  cat: Catalogs;
+  cat: LiveCatalogs;
   monsters: MonsterMap;
   encounters: EncounterMap;
   bp: string;
@@ -470,7 +479,7 @@ export default function LiveScene({
           {p.route?.boss?.id && (
             <span
               className="inline-flex items-center gap-1"
-              title={t("Act boss: {name}", { name: p.route.boss.name || p.route.boss.id })}
+              title={t("Act boss: {name}", { name: enemyName(p.route.boss, monsters, encounters) })}
             >
               <span className="text-[var(--text-muted)]">→</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -478,7 +487,7 @@ export default function LiveScene({
                 src={imageUrl(
                   `/static/images/misc/bosses/${p.route.boss.id.toLowerCase()}.png`,
                 )}
-                alt={p.route.boss.name || t("Boss")}
+                alt={enemyName(p.route.boss, monsters, encounters) || t("Boss")}
                 className="h-9 w-9 object-contain"
                 crossOrigin="anonymous"
                 onError={(e) => {
@@ -635,16 +644,16 @@ export default function LiveScene({
                   <CharacterIcon character={p.character} className="h-[88%] w-[88%]" />
                 </span>
                 <div className="text-sm font-semibold text-[var(--text-primary)]">
-                  {p.username || displayName(`CHARACTER.${p.character ?? ""}`)}
+                  {p.username || characterName(p.character, cat.characterNames)}
                 </div>
                 <Vitals hp={p.hp} maxHp={p.max_hp} block={p.block} />
-                <PowerRow powers={p.player_powers ?? []} />
-                <OrbRow orbs={p.orbs ?? []} slots={p.orb_slots} />
+                <PowerRow powers={p.player_powers ?? []} names={cat.powers} />
+                <OrbRow orbs={p.orbs ?? []} slots={p.orb_slots} names={cat.orbs} />
                 <PetRow pets={p.pets ?? []} monsters={monsters} />
                 {mates.length > 0 && (
                   <div className="mt-2 flex max-w-[16rem] flex-wrap justify-center gap-4">
                     {mates.map((s, i) => (
-                      <PartyMate key={i} seat={s} turnSide={p.turn_side} />
+                      <PartyMate key={i} seat={s} turnSide={p.turn_side} names={cat.characterNames} />
                     ))}
                   </div>
                 )}
@@ -674,10 +683,10 @@ export default function LiveScene({
                       }`}
                     />
                     <div className="max-w-[8rem] truncate text-sm font-semibold text-[var(--text-primary)]">
-                      {e.name || monsterName(e.id || "", monsters)}
+                      {enemyName(e, monsters)}
                     </div>
                     <Vitals hp={e.hp} maxHp={e.max_hp} block={e.block} />
-                    <PowerRow powers={e.powers ?? []} />
+                    <PowerRow powers={e.powers ?? []} names={cat.powers} />
                   </div>
                 ))}
               </div>
@@ -689,6 +698,7 @@ export default function LiveScene({
                 bp={bp}
                 cards={cat.cards}
                 relics={cat.relics}
+                events={cat.events}
               />
             </div>
           ) : p.shop ? (
@@ -749,7 +759,7 @@ export default function LiveScene({
             </div>
           ) : (
             <div className="py-12 text-center text-sm text-on-fill/70">
-              {p.screen ? t("On the {screen} screen", { screen: p.screen }) : t("Between rooms")}
+              {p.screen ? t("On the {screen} screen", { screen: screenLabel(p.screen, t) }) : t("Between rooms")}
             </div>
           )}
         </div>
@@ -929,6 +939,7 @@ export default function LiveScene({
               monsters={monsters}
               encounters={encounters}
               floorHistory={p.floor_history}
+              cat={cat}
             />
           </div>
         </div>

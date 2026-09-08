@@ -2,7 +2,7 @@
 
 import { useT } from "@/lib/i18n";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { Link } from "@/i18n/navigation";
 import {
   DndContext,
