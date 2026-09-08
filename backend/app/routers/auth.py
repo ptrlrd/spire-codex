@@ -6,6 +6,7 @@ import json
 import os
 
 from fastapi import APIRouter, HTTPException, Request, Response, UploadFile, File
+from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 
 from ..dependencies import shared_limiter
@@ -234,42 +235,34 @@ def delete_run(run_hash: str, request: Request):
 MAX_BULK_DELETE = 50
 
 
+class BulkDeleteRequest(BaseModel):
+    run_hashes: list[str] = Field(..., min_length=1, max_length=MAX_BULK_DELETE)
+
+
 @router.post("/runs/bulk-delete")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_delete_runs", "10/minute"))
-async def bulk_delete_runs(request: Request):
+def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
     """Soft-delete several of the caller's own runs in one request.
 
-    Body: {"run_hashes": [...]}. Each hash goes through the same ownership check
-    as the single delete, so a hash the caller does not own is reported back
-    rather than failing the whole call.
+    Each hash goes through the same ownership check as the single delete, so a
+    hash the caller does not own is reported back rather than failing the whole
+    call. Sync on purpose: soft_delete_run talks to Mongo synchronously, and an
+    async route would run the whole batch on the event loop.
     """
     user = require_user(request)
 
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=404, detail="Run not found")
 
-    try:
-        body = await request.json()
-    except Exception:
-        body = {}
-    raw = body.get("run_hashes")
-    if not isinstance(raw, list):
-        raise HTTPException(status_code=400, detail="run_hashes must be a list")
-
     hashes: list[str] = []
-    for value in raw:
-        if not isinstance(value, str):
-            continue
+    seen: set[str] = set()
+    for value in payload.run_hashes:
         cleaned = value.strip()
-        if cleaned and cleaned not in hashes:
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
             hashes.append(cleaned)
     if not hashes:
         raise HTTPException(status_code=400, detail="run_hashes must not be empty")
-    if len(hashes) > MAX_BULK_DELETE:
-        raise HTTPException(
-            status_code=400,
-            detail=f"run_hashes accepts at most {MAX_BULK_DELETE} runs per request",
-        )
 
     from ..services.runs_db_mongo import soft_delete_run
 

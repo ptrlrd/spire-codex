@@ -148,6 +148,7 @@ export default function ProfileStats({
   const toggleSelected = (hash: string) =>
     setSelected((prev) => (prev.includes(hash) ? prev.filter((h) => h !== hash) : [...prev, hash]));
   const allSelected = runs.length > 0 && selected.length === runs.length;
+  const someSelected = selected.length > 0 && !allSelected;
   const toggleAll = () => setSelected(allSelected ? [] : runs.map((r) => r.run_hash));
 
   async function deleteSelected() {
@@ -308,7 +309,11 @@ export default function ProfileStats({
                   <input
                     type="checkbox"
                     checked={allSelected}
+                    ref={(el) => {
+                      if (el) el.indeterminate = someSelected;
+                    }}
                     onChange={toggleAll}
+                    disabled={bulkDeleting}
                     aria-label={t("Select every run on this page")}
                     className="accent-accent"
                   />
@@ -351,7 +356,11 @@ export default function ProfileStats({
                       type="checkbox"
                       checked={selected.includes(run.run_hash)}
                       onChange={() => toggleSelected(run.run_hash)}
-                      aria-label={t("Select this run")}
+                      disabled={bulkDeleting}
+                      aria-label={t("Select the {character} run that reached floor {floor}", {
+                        character: run.character,
+                        floor: run.floors_reached,
+                      })}
                       className="accent-accent shrink-0"
                     />
                     <span className="font-medium w-20 sm:w-24 truncate" style={{ color: characterHex(run.character) || "var(--text-primary)" }}>

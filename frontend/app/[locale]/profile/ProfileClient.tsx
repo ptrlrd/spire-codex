@@ -224,8 +224,15 @@ export default function ProfileClient() {
       const body = (await res.json()) as { deleted: string[]; failed: Record<string, string> };
       const removed = new Set(body.deleted);
       if (removed.size > 0) {
-        setRuns((prev) => prev.filter((r) => !removed.has(r.run_hash)));
-        setTotal((prev) => Math.max(0, prev - removed.size));
+        // Count what this update actually drops rather than what the server
+        // reported, so a row a single delete already removed is not subtracted
+        // from the total twice.
+        setRuns((prev) => {
+          const next = prev.filter((r) => !removed.has(r.run_hash));
+          const dropped = prev.length - next.length;
+          if (dropped > 0) setTotal((current) => Math.max(0, current - dropped));
+          return next;
+        });
       }
       const failedCount = Object.keys(body.failed ?? {}).length;
       if (failedCount > 0) {
