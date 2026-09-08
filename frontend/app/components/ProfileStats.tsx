@@ -123,16 +123,45 @@ interface ProfileStatsProps {
   onDeleteRun: (hash: string) => void;
   deleteConfirm: string | null;
   onDeleteConfirm: (hash: string | null) => void;
+  onDeleteRuns: (hashes: string[]) => Promise<void> | void;
 }
 
 type Tab = "overview" | "runs" | "cards" | "relics" | "potions" | "tierlists";
 
 export default function ProfileStats({
   runs, runsTotal, runsLoading, runsPage, runsTotalPages,
-  onPageChange, onDeleteRun, deleteConfirm, onDeleteConfirm,
+  onPageChange, onDeleteRun, deleteConfirm, onDeleteConfirm, onDeleteRuns,
 }: ProfileStatsProps) {
   const t = useT();
   const bp = useBetaPrefix();
+  // Bulk delete: selection is per page, so paging away clears it rather than
+  // silently carrying hashes the user can no longer see.
+  const [selected, setSelected] = useState<string[]>([]);
+  const [bulkDeleting, setBulkDeleting] = useState(false);
+  const [confirmBulk, setConfirmBulk] = useState(false);
+  const pageHashes = runs.map((r) => r.run_hash).join(",");
+  useEffect(() => {
+    setSelected([]);
+    setConfirmBulk(false);
+  }, [pageHashes]);
+
+  const toggleSelected = (hash: string) =>
+    setSelected((prev) => (prev.includes(hash) ? prev.filter((h) => h !== hash) : [...prev, hash]));
+  const allSelected = runs.length > 0 && selected.length === runs.length;
+  const someSelected = selected.length > 0 && !allSelected;
+  const toggleAll = () => setSelected(allSelected ? [] : runs.map((r) => r.run_hash));
+
+  async function deleteSelected() {
+    if (selected.length === 0) return;
+    setBulkDeleting(true);
+    try {
+      await onDeleteRuns(selected);
+      setSelected([]);
+    } finally {
+      setBulkDeleting(false);
+      setConfirmBulk(false);
+    }
+  }
   const [stats, setStats] = useState<Stats | null>(null);
   const [bests, setBests] = useState<PersonalBests | null>(null);
   const [competitive, setCompetitive] = useState<CompetitiveData | null>(null);
@@ -275,12 +304,65 @@ export default function ProfileStats({
             </p>
           ) : (
             <>
+              <div className="flex flex-wrap items-center gap-2 mb-2 text-xs">
+                <label className="inline-flex items-center gap-1.5 text-[var(--text-secondary)] cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={allSelected}
+                    ref={(el) => {
+                      if (el) el.indeterminate = someSelected;
+                    }}
+                    onChange={toggleAll}
+                    disabled={bulkDeleting}
+                    aria-label={t("Select every run on this page")}
+                    className="accent-accent"
+                  />
+                  {t("Select all")}
+                </label>
+                {selected.length > 0 && (
+                  <>
+                    <span className="text-[var(--text-tertiary)]">{t("{n} selected", { n: selected.length })}</span>
+                    {confirmBulk ? (
+                      <span className="inline-flex items-center gap-2">
+                        <button
+                          onClick={deleteSelected}
+                          disabled={bulkDeleting}
+                          className="text-danger hover:text-danger disabled:opacity-50"
+                        >
+                          {bulkDeleting ? t("Deleting...") : t("Delete {n} runs", { n: selected.length })}
+                        </button>
+                        <button onClick={() => setConfirmBulk(false)} className="text-[var(--text-tertiary)]">
+                          {t("Cancel")}
+                        </button>
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => setConfirmBulk(true)}
+                        className="text-[var(--text-tertiary)] hover:text-danger transition-colors"
+                      >
+                        {t("Delete selected")}
+                      </button>
+                    )}
+                  </>
+                )}
+              </div>
               <div className="space-y-1.5">
                 {runs.map((run) => (
                   <div
                     key={run.run_hash}
                     className="flex items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] text-sm"
                   >
+                    <input
+                      type="checkbox"
+                      checked={selected.includes(run.run_hash)}
+                      onChange={() => toggleSelected(run.run_hash)}
+                      disabled={bulkDeleting}
+                      aria-label={t("Select the {character} run that reached floor {floor}", {
+                        character: run.character,
+                        floor: run.floors_reached,
+                      })}
+                      className="accent-accent shrink-0"
+                    />
                     <span className="font-medium w-20 sm:w-24 truncate" style={{ color: characterHex(run.character) || "var(--text-primary)" }}>
                       {run.character}
                     </span>

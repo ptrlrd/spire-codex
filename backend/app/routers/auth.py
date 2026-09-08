@@ -6,6 +6,7 @@ import json
 import os
 
 from fastapi import APIRouter, HTTPException, Request, Response, UploadFile, File
+from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 
 from ..dependencies import shared_limiter
@@ -229,6 +230,52 @@ def delete_run(run_hash: str, request: Request):
         raise HTTPException(status_code=status, detail=result["error"])
 
     return {"success": True}
+
+
+MAX_BULK_DELETE = 50
+
+
+class BulkDeleteRequest(BaseModel):
+    run_hashes: list[str] = Field(..., min_length=1, max_length=MAX_BULK_DELETE)
+
+
+@router.post("/runs/bulk-delete")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_delete_runs", "10/minute"))
+def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
+    """Soft-delete several of the caller's own runs in one request.
+
+    Each hash goes through the same ownership check as the single delete, so a
+    hash the caller does not own is reported back rather than failing the whole
+    call. Sync on purpose: soft_delete_run talks to Mongo synchronously, and an
+    async route would run the whole batch on the event loop.
+    """
+    user = require_user(request)
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    hashes: list[str] = []
+    seen: set[str] = set()
+    for value in payload.run_hashes:
+        cleaned = value.strip()
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            hashes.append(cleaned)
+    if not hashes:
+        raise HTTPException(status_code=400, detail="run_hashes must not be empty")
+
+    from ..services.runs_db_mongo import soft_delete_run
+
+    deleted: list[str] = []
+    failed: dict[str, str] = {}
+    for run_hash in hashes:
+        result = soft_delete_run(run_hash, user["_id"])
+        if result.get("error"):
+            failed[run_hash] = result["error"]
+        else:
+            deleted.append(run_hash)
+
+    return {"deleted": deleted, "failed": failed, "requested": len(hashes)}
 
 
 @router.get("/stats")
