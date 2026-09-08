@@ -1,36 +1,24 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 import { LANG_PREFIXES } from "./languages";
 
-const LANG_CODES = LANG_PREFIXES;
+function inBeta(pathname: string): boolean {
+  const parts = pathname.split("/");
+  return parts[1] === "beta" || (LANG_PREFIXES.has(parts[1]) && parts[2] === "beta");
+}
 
 /** "beta" when the current path sits in the beta section
  *  (/beta/... or /<lang>/beta/...), else "stable". */
 export function useChannel(): "beta" | "stable" {
-  const pathname = usePathname();
-  const parts = pathname.split("/");
-  if (parts[1] === "beta") return "beta";
-  if (LANG_CODES.has(parts[1]) && parts[2] === "beta") return "beta";
-  return "stable";
+  return inBeta(usePathname()) ? "beta" : "stable";
 }
 
 /**
- * Returns the prefix for building same-section URLs.
- * On /jpn/cards → "/jpn"; on /cards → "" (English, no prefix).
- * Inside the beta section the prefix keeps navigation there:
- * /beta/cards → "/beta"; /jpn/beta/cards → "/jpn/beta". That one rule makes
- * every `${lp}/...` link in shared components channel-correct for free.
+ * "/beta" inside the beta section, "" elsewhere. Prefix same-section hrefs
+ * with it so navigation stays in beta; the locale prefix is added by the
+ * Link from @/i18n/navigation, never by hand.
  */
-export function useLangPrefix(): string {
-  const pathname = usePathname();
-  const { lang } = useLanguage();
-  const parts = pathname.split("/");
-  const beta = parts[1] === "beta" || (LANG_CODES.has(parts[1]) && parts[2] === "beta");
-  const suffix = beta ? "/beta" : "";
-  const pathLang = parts[1];
-  if (LANG_CODES.has(pathLang)) return `/${pathLang}${suffix}`;
-  if (lang !== "eng" && LANG_CODES.has(lang)) return `/${lang}${suffix}`;
-  return suffix;
+export function useBetaPrefix(): string {
+  return inBeta(usePathname()) ? "/beta" : "";
 }

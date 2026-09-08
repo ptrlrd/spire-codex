@@ -1,7 +1,7 @@
+import { getT } from "@/lib/i18n-server";
 import { Fragment } from "react";
 
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
-import { t } from "@/lib/ui-translations";
 
 // Character x ascension win-rate heatmap. Pure presentational (no hooks), so
 // the community page renders it on the server and the profile embeds it from
@@ -67,13 +67,14 @@ function cellStyle(wr: number, lo: number, hi: number) {
   return { backgroundColor: hex(c), color: hex(ink) };
 }
 
-export default function AscensionHeatmap({
+export default async function AscensionHeatmap({
   matrix,
   lang,
 }: {
   matrix: AscensionMatrix;
   lang: string;
 }) {
+  const t = await getT();
   const rows = CHARS.filter((id) => Object.keys(matrix[id] || {}).length > 0);
   if (rows.length === 0) return null;
   const values: number[] = [];
@@ -122,7 +123,7 @@ export default function AscensionHeatmap({
                   key={`${id}-${a}`}
                   className="rounded min-h-[36px] flex items-center justify-center text-[11px] tabular-nums"
                   style={cellStyle(cell.win_rate, lo, hi)}
-                  title={`${characterName(id)} · A${a} — ${cell.win_rate}% ${t("win rate", lang)} · ${cell.runs.toLocaleString()} ${t("runs", lang)}`}
+                  title={`${characterName(id)} · A${a} — ${cell.win_rate}% ${t("win rate")} · ${cell.runs.toLocaleString()} ${t("runs")}`}
                 >
                   {cell.win_rate}
                 </div>
@@ -138,7 +139,7 @@ export default function AscensionHeatmap({
           style={{ background: `linear-gradient(90deg, ${legend})` }}
         />
         <span className="tabular-nums">{hi}%</span>
-        <span className="ml-2">{t("lighter = higher win rate", lang)}</span>
+        <span className="ml-2">{t("lighter = higher win rate")}</span>
       </div>
     </div>
   );

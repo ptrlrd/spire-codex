@@ -1,8 +1,8 @@
+import { getT } from "@/lib/i18n-server";
 import { promises as fs } from "fs";
 import path from "path";
 import type { CSSProperties } from "react";
-import Link from "next/link";
-import { t } from "@/lib/ui-translations";
+import { Link } from "@/i18n/navigation";
 
 interface ShowcaseProject {
   id: string;
@@ -60,12 +60,11 @@ function pickRandom<T>(arr: T[], n: number): T[] {
 }
 
 export default async function HomeShowcaseSection({
-  langPrefix = "",
   lang = "eng",
 }: {
-  langPrefix?: string;
   lang?: string;
 }) {
+  const t = await getT();
   const all = await loadShowcase();
   const items = pickRandom(all, 3);
   if (items.length === 0) return null;
@@ -75,9 +74,9 @@ export default async function HomeShowcaseSection({
       <section className="hb">
         <div className="hsec">
           <div className="s-head">
-            <h2>{t("Showcase", lang)}</h2>
-            <Link prefetch={false} className="viewmore" href={`${langPrefix}/showcase`}>
-              {t("View more", lang)} {ARROW}
+            <h2>{t("Showcase")}</h2>
+            <Link prefetch={false} className="viewmore" href={`/showcase`}>
+              {t("View more")} {ARROW}
             </Link>
           </div>
 
@@ -97,7 +96,7 @@ export default async function HomeShowcaseSection({
                     <span className="scard-t">{p.name}</span>
                     <span className="scard-d">{p.description}</span>
                     <span className="scard-by">
-                      {p.category} · {t("by", lang)} {p.author}
+                      {p.category} · {t("by")} {p.author}
                     </span>
                   </span>
                 </a>

@@ -1,7 +1,8 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   Chart as ChartJS,
   BarElement,
@@ -16,9 +17,7 @@ import {
 import { Chart } from "react-chartjs-2";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import IconSelect from "@/app/components/IconSelect";
 import AscensionHeatmap, { type AscensionMatrix } from "@/app/components/AscensionHeatmap";
 import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
@@ -240,6 +239,7 @@ export function InsightsFilterBar({
   onChange: (f: InsightFilters) => void;
   lang: string;
 }) {
+  const t = useT();
   const [versions, setVersions] = useState<string[]>([]);
   useEffect(() => {
     fetch(`${API}/api/runs/versions`)
@@ -252,17 +252,17 @@ export function InsightsFilterBar({
   return (
     <div className="flex flex-wrap items-center gap-2">
       <IconSelect
-        label={t("Any Character", lang)}
+        label={t("Any Character")}
         value={value.character ?? ""}
         options={CHARACTERS.map((c) => ({
-          label: c.charAt(0).toUpperCase() + c.slice(1),
+          label: t(c.charAt(0).toUpperCase() + c.slice(1)),
           value: c.toUpperCase(),
           icon: `${CDN_BASE}/ui/characters/character_icon_${c}.webp`,
         }))}
         onChange={(v) => set({ character: v || null })}
       />
       <IconSelect
-        label={t("Any Ascension", lang)}
+        label={t("Any Ascension")}
         value={value.ascension}
         options={Array.from({ length: 11 }, (_, i) => ({
           label: `A${i}`,
@@ -271,19 +271,19 @@ export function InsightsFilterBar({
         onChange={(v) => set({ ascension: v })}
       />
       <IconSelect
-        label={t("All", lang)}
+        label={t("All")}
         value={value.players}
         options={[
-          { label: t("Solo", lang), value: "1" },
-          { label: "2P", value: "2" },
-          { label: "3P", value: "3" },
-          { label: "4P", value: "4" },
+          { label: t("Solo"), value: "1" },
+          { label: t("2P"), value: "2" },
+          { label: t("3P"), value: "3" },
+          { label: t("4P"), value: "4" },
         ]}
         onChange={(v) => set({ players: v })}
       />
       {versions.length > 0 && (
         <IconSelect
-          label={t("Any Version", lang)}
+          label={t("Any Version")}
           value={value.version}
           options={versions.map((v) => ({ label: v, value: v }))}
           onChange={(v) => set({ version: v })}
@@ -296,10 +296,11 @@ export function InsightsFilterBar({
 // Card-pool pill: the character whose pool the card belongs to, so players
 // grinding several characters can tell which one a pick-delta is about.
 function CharacterPill({ color }: { color: string | null | undefined }) {
+  const t = useT();
   const key = (color || "").toLowerCase();
   const hex = CHARACTER_HEX[key];
   if (!hex) return null;
-  const label = key.charAt(0).toUpperCase() + key.slice(1);
+  const label = t(key.charAt(0).toUpperCase() + key.slice(1));
   return (
     <span
       className="inline-flex items-center justify-center w-5 h-5 rounded-full border shrink-0"
@@ -344,17 +345,18 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 // The "you vs everyone" primitive: two thin bars on one scale.
 function CompareBars({ you, community, lang }: { you: number; community: number | null | undefined; lang: string }) {
+  const t = useT();
   return (
     <div className="space-y-0.5">
       <div className="flex items-center gap-2">
-        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You", lang)}</span>
+        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
         <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
           <div className="h-full rounded-full bg-[var(--accent-gold)]" style={{ width: `${Math.min(you, 100)}%` }} />
         </div>
         <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">{you}%</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community", lang)}</span>
+        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
         <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
           <div className="h-full rounded-full bg-[var(--accent-gold)] opacity-40" style={{ width: `${Math.min(community ?? 0, 100)}%` }} />
         </div>
@@ -368,6 +370,7 @@ function CompareBars({ you, community, lang }: { you: number; community: number 
 
 // Savant-style percentile slider: a track with a positioned, color-coded dot.
 function PercentileSlider({ label, valueText, percentile, lang }: { label: string; valueText: string; percentile: number; lang: string }) {
+  const t = useT();
   const hue = Math.round((percentile / 100) * 120); // red 0 → green 120
   const color = `hsl(${hue}, 65%, 52%)`;
   return (
@@ -386,7 +389,7 @@ function PercentileSlider({ label, valueText, percentile, lang }: { label: strin
         </div>
       </div>
       <p className="text-[10px] text-[var(--text-muted)]">
-        {t("Better than", lang)} {percentile}% {t("of ranked players", lang)}
+        {t("Better than")} {percentile}% {t("of ranked players")}
       </p>
     </div>
   );
@@ -403,9 +406,10 @@ function GapBadge({ gap }: { gap: number }) {
 }
 
 function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record<string, EntityInfo>; lang: string }) {
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   if (rows.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.", lang)}</p>;
+    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
   }
   return (
     <div className="space-y-1">
@@ -415,7 +419,7 @@ function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record
           <Link
             prefetch={false}
             key={d.id}
-            href={`${lp}/cards/${d.id.toLowerCase()}`}
+            href={`${bp}/cards/${d.id.toLowerCase()}`}
             className="flex items-center gap-3 py-1.5 hover:bg-[var(--bg-card-hover)] rounded px-2 -mx-2 transition-colors"
           >
             <span className="flex-shrink-0 w-10 h-[52px] flex items-center justify-center">
@@ -441,7 +445,7 @@ function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record
                 <CharacterPill color={info?.color} />
               </span>
               <span className="block text-[10px] text-[var(--text-muted)] tabular-nums">
-                {t("You", lang)} {d.your_pick_rate}% · {t("Community", lang)} {d.community_pick_rate}% · {d.picked}/{d.offered} {t("offers", lang)}
+                {t("You")} {d.your_pick_rate}% · {t("Community")} {d.community_pick_rate}% · {d.picked}/{d.offered} {t("offers")}
               </span>
             </span>
             <GapBadge gap={d.gap} />
@@ -453,9 +457,10 @@ function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record
 }
 
 function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Record<string, EntityInfo>; lang: string }) {
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   if (rows.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.", lang)}</p>;
+    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
   }
   return (
     <div className="space-y-1">
@@ -465,7 +470,7 @@ function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Re
           <Link
             prefetch={false}
             key={d.id}
-            href={`${lp}/relics/${d.id.toLowerCase()}`}
+            href={`${bp}/relics/${d.id.toLowerCase()}`}
             className="flex items-center gap-3 py-1.5 hover:bg-[var(--bg-card-hover)] rounded px-2 -mx-2 transition-colors"
           >
             <span className="flex-shrink-0 w-9 h-9 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] overflow-hidden flex items-center justify-center">
@@ -481,7 +486,7 @@ function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Re
                 <CharacterPill color={info?.pool} />
               </span>
               <span className="block text-[10px] text-[var(--text-muted)] tabular-nums">
-                {t("You", lang)} {d.your_rate}% · {t("Community", lang)} {d.community_rate}% · {d.runs_with}/{d.runs} {t("runs", lang)}
+                {t("You")} {d.your_rate}% · {t("Community")} {d.community_rate}% · {d.runs_with}/{d.runs} {t("runs")}
               </span>
             </span>
             <GapBadge gap={d.gap} />
@@ -495,13 +500,14 @@ function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Re
 // Weekly stacked run counts by mode, with the week's win rate as a line on
 // the right axis. Weeks are the real cadence of play; months hid too much.
 function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
+  const t = useT();
   const labels = rows.map((r) => r.week.slice(5));
   const modeKeys = ["solo", "coop", "daily", "custom"] as const;
   const modeLabels: Record<string, string> = {
-    solo: t("Solo", lang),
-    coop: t("Co-op", lang),
-    daily: t("Daily", lang),
-    custom: t("Custom", lang),
+    solo: t("Solo"),
+    coop: t("Co-op"),
+    daily: t("Daily"),
+    custom: t("Custom"),
   };
   const data = {
     labels,
@@ -519,7 +525,7 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
         })),
       {
         type: "line" as const,
-        label: t("Win rate", lang),
+        label: t("Win rate"),
         data: rows.map((r) => r.win_rate),
         borderColor: "#e0ddd8",
         backgroundColor: "#e0ddd8",
@@ -574,7 +580,7 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
           ))}
         <span className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]">
           <span className="w-2.5 h-0.5" style={{ background: "#e0ddd8" }} />
-          {t("Win rate", lang)}
+          {t("Win rate")}
         </span>
       </div>
     </div>
@@ -584,9 +590,10 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
 // Compact act x node-type table: your death rate per cell, community's under
 // it. Red when you die there more than the community, green when less.
 function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>; lang: string }) {
+  const t = useT();
   const acts = rows.filter((a) => Object.values(a.types || {}).some((c) => (c.visits || 0) >= 10));
   if (acts.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.", lang)}</p>;
+    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
   }
   const cols = DANGER_TYPES.filter((ty) => acts.some((a) => (a.types?.[ty]?.visits || 0) >= 10));
   return (
@@ -597,7 +604,7 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
             <th className="text-left font-normal text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] pb-2" />
             {cols.map((ty) => (
               <th key={ty} className="text-right font-normal text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] pb-2 pl-4">
-                {t(DANGER_LABELS[ty], lang)}
+                {t(DANGER_LABELS[ty])}
               </th>
             ))}
           </tr>
@@ -606,7 +613,7 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
           {acts.map((a) => (
             <tr key={a.act} className="border-t border-[var(--border-subtle)]">
               <td className="py-1.5 text-[var(--text-secondary)]">
-                {t("Act", lang)} {a.act + 1}
+                {t("Act")} {a.act + 1}
               </td>
               {cols.map((ty) => {
                 const cell = a.types?.[ty];
@@ -651,6 +658,7 @@ function RestStack({ rows, pctKey, dim }: { rows: ComparableRow[]; pctKey: "pct"
 }
 
 function RestSection({ mine, lang }: { mine: ComparableRow[]; lang: string }) {
+  const t = useT();
   // Community distribution rebuilt from the community_pct fields riding on
   // the personal rows (same ids, same order).
   const commAll: ComparableRow[] = mine.map((r) => ({ ...r, pct: r.community_pct ?? 0 }));
@@ -658,25 +666,25 @@ function RestSection({ mine, lang }: { mine: ComparableRow[]; lang: string }) {
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("All campfire visits", lang)}</p>
+        <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("All campfire visits")}</p>
         <div className="flex items-center gap-2">
-          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You", lang)}</span>
+          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
           <div className="flex-1"><RestStack rows={mine} pctKey="pct" /></div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community", lang)}</span>
+          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
           <div className="flex-1"><RestStack rows={commAll} pctKey="pct" dim /></div>
         </div>
       </div>
       {hasLowHp && (
         <div className="space-y-1.5">
-          <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("Arriving below half HP", lang)}</p>
+          <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("Arriving below half HP")}</p>
           <div className="flex items-center gap-2">
-            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You", lang)}</span>
+            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
             <div className="flex-1"><RestStack rows={mine} pctKey="pct_low_hp" /></div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community", lang)}</span>
+            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
             <div className="flex-1">
               <RestStack rows={mine.map((r) => ({ ...r, pct_low_hp: r.community_pct_low_hp ?? 0 }))} pctKey="pct_low_hp" dim />
             </div>
@@ -760,7 +768,8 @@ export function InsightsPanels({
   bests?: PersonalBests | null;
   personalRanks?: Record<string, { rank: number; total: number } | null>;
 }) {
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   const deathsEnc = data.deaths?.encounters || [];
   const bosses = deathsEnc.filter((d) => d.id.endsWith("_BOSS")).slice(0, 5);
   const elites = deathsEnc.filter((d) => d.id.endsWith("_ELITE")).slice(0, 5);
@@ -790,10 +799,10 @@ export function InsightsPanels({
     <div className="space-y-4">
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
         {[
-          [t("Runs", lang), data.total_runs],
-          [t("Wins", lang), data.total_wins ?? 0],
-          [t("Losses", lang), losses ?? 0],
-          [t("Win rate", lang), `${data.win_rate ?? 0}%`],
+          [t("Runs"), data.total_runs],
+          [t("Wins"), data.total_wins ?? 0],
+          [t("Losses"), losses ?? 0],
+          [t("Win rate"), `${data.win_rate ?? 0}%`],
         ].map(([label, value]) => (
           <div key={String(label)} className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 text-center">
             <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{value}</p>
@@ -805,37 +814,37 @@ export function InsightsPanels({
       {(pct || streaks || elo) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {pct && (
-            <Section title={t("How you rank", lang)}>
+            <Section title={t("How you rank")}>
               <div className="space-y-4">
-                <PercentileSlider label={t("Win rate", lang)} valueText={`${pct.win_rate}%`} percentile={pct.win_rate_percentile} lang={lang} />
-                <PercentileSlider label={t("Runs submitted", lang)} valueText={`${pct.runs}`} percentile={pct.runs_percentile} lang={lang} />
+                <PercentileSlider label={t("Win rate")} valueText={`${pct.win_rate}%`} percentile={pct.win_rate_percentile} lang={lang} />
+                <PercentileSlider label={t("Runs submitted")} valueText={`${pct.runs}`} percentile={pct.runs_percentile} lang={lang} />
               </div>
             </Section>
           )}
           {streaks && (
-            <Section title={t("Streaks", lang)}>
+            <Section title={t("Streaks")}>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{streaks.current_win_streak}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current win streak", lang)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current win streak")}</p>
                 </div>
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{streaks.best_win_streak}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Best win streak", lang)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Best win streak")}</p>
                 </div>
               </div>
             </Section>
           )}
           {elo && (
-            <Section title={t("Elo", lang)}>
+            <Section title={t("Elo")}>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.current)}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current Elo", lang)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current Elo")}</p>
                 </div>
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
                   <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.peak)}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Highest Elo Score Achieved", lang)}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Highest Elo Score Achieved")}</p>
                 </div>
               </div>
               {/* Each character is its own ladder; the tiles above blend them
@@ -850,7 +859,7 @@ export function InsightsPanels({
                         <span className="text-right shrink-0">
                           <span className="text-sm font-semibold tabular-nums text-[var(--text-primary)]">{Math.round(bc.elo)}</span>
                           <span className="text-[10px] text-[var(--text-muted)] ml-1.5">
-                            {bc.runs.toLocaleString()} {t("Runs", lang)}
+                            {bc.runs.toLocaleString()} {t("Runs")}
                           </span>
                         </span>
                       </div>
@@ -863,35 +872,35 @@ export function InsightsPanels({
       )}
 
       {(hasRecords || hasBests) && (
-        <Section title={t("Personal Bests", lang)}>
+        <Section title={t("Personal Bests")}>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {bests?.fastest_solo && (
-              <BestTile href={`${lp}/runs/${bests.fastest_solo.run_hash}`} value={formatTime(bests.fastest_solo.run_time)} label={t("Fastest Solo", lang)} sub={`${displayCharacter(bests.fastest_solo.character)} A${bests.fastest_solo.ascension}`} rank={personalRanks?.fastest_solo} />
+              <BestTile href={`${bp}/runs/${bests.fastest_solo.run_hash}`} value={formatTime(bests.fastest_solo.run_time)} label={t("Fastest Solo")} sub={`${displayCharacter(bests.fastest_solo.character)} A${bests.fastest_solo.ascension}`} rank={personalRanks?.fastest_solo} />
             )}
             {bests?.fastest_multi && (
-              <BestTile href={`${lp}/runs/${bests.fastest_multi.run_hash}`} value={formatTime(bests.fastest_multi.run_time)} label={t("Fastest Co-op", lang)} sub={`${displayCharacter(bests.fastest_multi.character)} A${bests.fastest_multi.ascension}`} rank={personalRanks?.fastest_multi} />
+              <BestTile href={`${bp}/runs/${bests.fastest_multi.run_hash}`} value={formatTime(bests.fastest_multi.run_time)} label={t("Fastest Co-op")} sub={`${displayCharacter(bests.fastest_multi.character)} A${bests.fastest_multi.ascension}`} rank={personalRanks?.fastest_multi} />
             )}
             {bests?.highest_ascension && (
-              <BestTile href={`${lp}/runs/${bests.highest_ascension.run_hash}`} value={`A${bests.highest_ascension.ascension}`} label={t("Highest Ascension", lang)} sub={displayCharacter(bests.highest_ascension.character)} rank={personalRanks?.highest_ascension} />
+              <BestTile href={`${bp}/runs/${bests.highest_ascension.run_hash}`} value={`A${bests.highest_ascension.ascension}`} label={t("Highest Ascension")} sub={displayCharacter(bests.highest_ascension.character)} rank={personalRanks?.highest_ascension} />
             )}
             {bests?.fastest_daily && (
-              <BestTile href={`${lp}/runs/${bests.fastest_daily.run_hash}`} value={formatTime(bests.fastest_daily.run_time)} label={t("Fastest Daily (All Time)", lang)} sub={displayCharacter(bests.fastest_daily.character)} rank={personalRanks?.fastest_daily} />
+              <BestTile href={`${bp}/runs/${bests.fastest_daily.run_hash}`} value={formatTime(bests.fastest_daily.run_time)} label={t("Fastest Daily (All Time)")} sub={displayCharacter(bests.fastest_daily.character)} rank={personalRanks?.fastest_daily} />
             )}
             {!bests?.fastest_solo && records.fastest_win && (
-              <BestTile href={`${lp}/runs/${records.fastest_win.run_hash}`} value={formatTime(records.fastest_win.run_time)} label={t("Fastest win", lang)} />
+              <BestTile href={`${bp}/runs/${records.fastest_win.run_hash}`} value={formatTime(records.fastest_win.run_time)} label={t("Fastest win")} />
             )}
             {records.longest_run && (
-              <BestTile href={`${lp}/runs/${records.longest_run.run_hash}`} value={formatTime(records.longest_run.run_time)} label={t("Longest run", lang)} />
+              <BestTile href={`${bp}/runs/${records.longest_run.run_hash}`} value={formatTime(records.longest_run.run_time)} label={t("Longest run")} />
             )}
             {records.biggest_deck && (
-              <BestTile href={`${lp}/runs/${records.biggest_deck.run_hash}`} value={`${records.biggest_deck.size} ${t("cards", lang)}`} label={t("Biggest deck", lang)} />
+              <BestTile href={`${bp}/runs/${records.biggest_deck.run_hash}`} value={`${records.biggest_deck.size} ${t("cards")}`} label={t("Biggest deck")} />
             )}
           </div>
         </Section>
       )}
 
       {characters.length > 0 && (
-        <Section title={t("Characters", lang)}>
+        <Section title={t("Characters")}>
           <div className="space-y-3">
             {characters.map((c) => {
               const hex = CHARACTER_HEX[c.id.toLowerCase()] || "var(--text-muted)";
@@ -902,19 +911,19 @@ export function InsightsPanels({
                       {(c.name || displayCharacter(c.id)).replace(/^The\s+/i, "")}
                     </span>
                     <span className="text-xs text-[var(--text-tertiary)] tabular-nums">
-                      {c.runs} {t("runs", lang)} · {c.share}%
+                      {c.runs} {t("runs")} · {c.share}%
                     </span>
                   </div>
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
-                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You", lang)}</span>
+                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
                       <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                         <div className="h-full rounded-full" style={{ width: `${Math.min(c.win_rate, 100)}%`, backgroundColor: hex }} />
                       </div>
                       <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">{c.win_rate}%</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community", lang)}</span>
+                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
                       <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
                         <div className="h-full rounded-full opacity-40" style={{ width: `${Math.min(c.community_win_rate ?? 0, 100)}%`, backgroundColor: hex }} />
                       </div>
@@ -931,49 +940,49 @@ export function InsightsPanels({
       )}
 
       {activity.length >= 2 && (
-        <Section title={t("Weekly activity", lang)}>
+        <Section title={t("Weekly activity")}>
           <ActivityChart rows={activity} lang={lang} />
         </Section>
       )}
 
       {(elo?.history?.length ?? 0) >= 2 && (
-        <Section title={t("Elo over time", lang)}>
+        <Section title={t("Elo over time")}>
           <EloTrajectory
             points={elo!.history}
-            runLabel={t("Run", lang)}
-            winLabel={t("win", lang)}
-            lossLabel={t("loss", lang)}
-            axisLabel={t("rated solo A10 run", lang)}
+            runLabel={t("Run")}
+            winLabel={t("win")}
+            lossLabel={t("loss")}
+            axisLabel={t("rated solo A10 run")}
           />
         </Section>
       )}
 
       {Object.keys(data.ascension_matrix || {}).length > 0 && (
-        <Section title={t("Win rate by character and ascension", lang)}>
+        <Section title={t("Win rate by character and ascension")}>
           <AscensionHeatmap matrix={data.ascension_matrix!} lang={lang} />
         </Section>
       )}
 
       {(bosses.length > 0 || elites.length > 0 || fights.length > 0) && (
-        <Section title={t("What kills you", lang)}>
-          <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("Share of your deaths. Gray = community share.", lang)}</p>
+        <Section title={t("What kills you")}>
+          <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("Share of your deaths. Gray = community share.")}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <DeathColumn title={t("Bosses", lang)} rows={bosses} lang={lang} />
-            <DeathColumn title={t("Elites", lang)} rows={elites} lang={lang} />
-            <DeathColumn title={t("Monsters", lang)} rows={fights} lang={lang} />
+            <DeathColumn title={t("Bosses")} rows={bosses} lang={lang} />
+            <DeathColumn title={t("Elites")} rows={elites} lang={lang} />
+            <DeathColumn title={t("Monsters")} rows={fights} lang={lang} />
           </div>
         </Section>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {(data.map_danger || []).length > 0 && (
-          <Section title={t("Where you die", lang)}>
-            <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("How often a visit kills you. Gray = community.", lang)}</p>
+          <Section title={t("Where you die")}>
+            <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("How often a visit kills you. Gray = community.")}</p>
             <DangerTable rows={data.map_danger!} lang={lang} />
           </Section>
         )}
         {restSites.length > 0 && (
-          <Section title={t("Your campfire choices", lang)}>
+          <Section title={t("Your campfire choices")}>
             <RestSection mine={restSites} lang={lang} />
           </Section>
         )}
@@ -981,10 +990,10 @@ export function InsightsPanels({
 
       {data.card_picks && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Section title={t("Cards you take more than most", lang)}>
+          <Section title={t("Cards you take more than most")}>
             <CardDeltaList rows={data.card_picks.over_picked || []} cards={cards} lang={lang} />
           </Section>
-          <Section title={t("Cards you take less than most", lang)}>
+          <Section title={t("Cards you take less than most")}>
             <CardDeltaList rows={data.card_picks.under_picked || []} cards={cards} lang={lang} />
           </Section>
         </div>
@@ -992,23 +1001,23 @@ export function InsightsPanels({
 
       {data.relic_picks && (data.relic_picks.over_carried.length > 0 || data.relic_picks.under_carried.length > 0) && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Section title={t("Relics you take more than most", lang)}>
+          <Section title={t("Relics you take more than most")}>
             <RelicDeltaList rows={data.relic_picks.over_carried || []} relics={relics} lang={lang} />
           </Section>
-          <Section title={t("Relics you take less than most", lang)}>
+          <Section title={t("Relics you take less than most")}>
             <RelicDeltaList rows={data.relic_picks.under_carried || []} relics={relics} lang={lang} />
           </Section>
         </div>
       )}
 
       {divergence.length > 0 && (
-        <Section title={t("Event choices where you differ", lang)}>
+        <Section title={t("Event choices where you differ")}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
             {divergence.map((d) => (
               <div key={`${d.event_id}-${d.option_id}`} className="space-y-1">
                 <div className="flex items-center justify-between text-sm gap-2">
                   <span className="min-w-0 truncate">
-                    <Link prefetch={false} href={`${lp}/events/${d.event_id.toLowerCase()}`} className="text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors">
+                    <Link prefetch={false} href={`${bp}/events/${d.event_id.toLowerCase()}`} className="text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors">
                       {d.event_name || d.event_id.replace(/_/g, " ")}
                     </Link>
                     <span className="text-[var(--text-muted)]"> · {d.option_label || d.option_id.replace(/_/g, " ")}</span>
@@ -1023,14 +1032,14 @@ export function InsightsPanels({
       )}
 
       {boons.length > 0 && (
-        <Section title={t("Your boon take rates", lang)}>
+        <Section title={t("Your boon take rates")}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
             {boons.map((b) => (
               <div key={b.id} className="space-y-1">
                 <div className="flex items-center justify-between text-sm">
                   <span className="text-[var(--text-primary)]">{b.name || b.id.replace(/_/g, " ")}</span>
                   <span className="text-xs text-[var(--text-tertiary)] tabular-nums">
-                    {b.count}/{b.offered} {t("offers", lang)}
+                    {b.count}/{b.offered} {t("offers")}
                   </span>
                 </div>
                 <CompareBars you={b.take_rate!} community={b.community_take_rate} lang={lang} />
@@ -1047,7 +1056,7 @@ export function InsightsPanels({
 // nothing (rather than the previous language's names) until the new catalog
 // has arrived, and a failed request leaves the map empty instead of stale.
 function useEntityMap(path: string): Record<string, EntityInfo> {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
   const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}`;
   const [state, setState] = useState<{ url: string; map: Record<string, EntityInfo> }>({ url: "", map: {} });
   useEffect(() => {
@@ -1086,7 +1095,8 @@ export default function ProfileInsights({
   bests?: PersonalBests | null;
   personalRanks?: Record<string, { rank: number; total: number } | null>;
 } = {}) {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [data, setData] = useState<Insights | null>(null);
   const [loading, setLoading] = useState(true);
   const [building, setBuilding] = useState(false);
@@ -1137,8 +1147,8 @@ export default function ProfileInsights({
       <div className="space-y-3">
         {building && (
           <p className="text-sm text-[var(--text-secondary)]">
-            {t("Crunching your runs. The first load can take a minute or two.", lang)}
-            {claimedRuns ? ` · ${claimedRuns.toLocaleString()} ${t("runs", lang)}` : ""}
+            {t("Crunching your runs. The first load can take a minute or two.")}
+            {claimedRuns ? ` · ${claimedRuns.toLocaleString()} ${t("runs")}` : ""}
           </p>
         )}
         {[...Array(4)].map((_, i) => (
@@ -1151,7 +1161,7 @@ export default function ProfileInsights({
   if (!filtered && (!data || !data.runs_walked)) {
     return (
       <p className="text-sm text-[var(--text-secondary)] py-4">
-        {t("No insights yet. Upload and claim runs to see how you play.", lang)}
+        {t("No insights yet. Upload and claim runs to see how you play.")}
       </p>
     );
   }
@@ -1160,8 +1170,8 @@ export default function ProfileInsights({
     <div className={`space-y-4 ${loading ? "opacity-60" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-[var(--text-muted)]">
-          {t("Your runs through the community lens. Every section compares you with all submitted runs.", lang)}
-          {data?.runs_capped ? ` ${t("Based on your most recent runs only.", lang)}` : ""}
+          {t("Your runs through the community lens. Every section compares you with all submitted runs.")}
+          {data?.runs_capped ? ` ${t("Based on your most recent runs only.")}` : ""}
         </p>
         <InsightsFilterBar value={filters} onChange={setFilters} lang={lang} />
       </div>
@@ -1175,7 +1185,7 @@ export default function ProfileInsights({
           personalRanks={filtered ? undefined : personalRanks}
         />
       ) : (
-        <p className="text-sm text-[var(--text-secondary)] py-4">{t("Not enough data yet.", lang)}</p>
+        <p className="text-sm text-[var(--text-secondary)] py-4">{t("Not enough data yet.")}</p>
       )}
     </div>
   );

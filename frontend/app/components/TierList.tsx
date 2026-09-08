@@ -1,5 +1,6 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { getT } from "@/lib/i18n-server";
 
 // Use ?? not ||, production sets NEXT_PUBLIC_API_URL="" intentionally
 // so URLs resolve same-origin (nginx proxies /static to the backend
@@ -70,7 +71,8 @@ interface TierListProps {
  * within the tier. Designed for the /tier-list/* pages but reusable
  * anywhere we want a tier-grouped display.
  */
-export default function TierList({ route, entities, showUnrated = true, valueLabel = "Score" }: TierListProps) {
+export default async function TierList({ route, entities, showUnrated = true, valueLabel = "Score" }: TierListProps) {
+  const t = await getT();
   // Group entities by tier, the unrated go to the bottom in a separate
   // "Unrated" row so they're still discoverable but don't pollute the
   // tier signal. Within each tier, sort by value desc, then by name
@@ -116,7 +118,7 @@ export default function TierList({ route, entities, showUnrated = true, valueLab
   if (rows.length === 0) {
     return (
       <p className="text-sm text-[var(--text-muted)] py-8 text-center">
-        No data available, submit a run to seed this tier list.
+        {t("No data available, submit a run to seed this tier list.")}
       </p>
     );
   }
@@ -140,7 +142,7 @@ export default function TierList({ route, entities, showUnrated = true, valueLab
               {tier?.letter ?? "—"}
             </span>
             <span className="text-[10px] uppercase tracking-wider opacity-70 ml-2 sm:ml-0 sm:mt-1.5">
-              {tier?.label ?? "Unrated"}
+              {tier ? t(tier.label) : t("Unrated")}
             </span>
           </div>
 
@@ -153,7 +155,7 @@ export default function TierList({ route, entities, showUnrated = true, valueLab
                   prefetch={false}
                   key={ent.id}
                   href={`/cards/${ent.id.toLowerCase()}`}
-                  title={tileValue(ent) != null ? `${ent.name} (${valueLabel} ${tileValue(ent)})` : ent.name}
+                  title={tileValue(ent) != null ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})` : ent.name}
                   className="group relative flex flex-col items-center gap-0.5 w-[130px] sm:w-[150px] hover:scale-[1.04] transition-transform"
                 >
                   <img
@@ -174,7 +176,7 @@ export default function TierList({ route, entities, showUnrated = true, valueLab
                   prefetch={false}
                   key={ent.id}
                   href={`/${route}/${ent.id.toLowerCase()}`}
-                  title={tileValue(ent) != null ? `${ent.name} (${valueLabel} ${tileValue(ent)})` : ent.name}
+                  title={tileValue(ent) != null ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})` : ent.name}
                   className="group relative flex flex-col items-center gap-1 w-16 sm:w-20 p-1.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
                 >
                   {ent.image_url ? (

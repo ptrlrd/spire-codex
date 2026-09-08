@@ -1,8 +1,7 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useState, useRef, useCallback } from "react";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import RunFileHelp from "./RunFileHelp";
 
 interface UploadProgress {
@@ -19,7 +18,7 @@ interface RunDropZoneProps {
 }
 
 export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunDropZoneProps) {
-  const { lang } = useLanguage();
+  const t = useT();
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -80,17 +79,17 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
       {uploading ? (
         <p className="text-[var(--text-secondary)]">
           {uploadProgress
-            ? `${t("Uploading", lang)} ${uploadProgress.done} / ${uploadProgress.total}` +
-              (uploadProgress.errors ? ` (${uploadProgress.errors} ${t("errors", lang)})` : "")
-            : "Uploading..."}
+            ? `${t("Uploading")} ${uploadProgress.done} / ${uploadProgress.total}` +
+              (uploadProgress.errors ? ` (${uploadProgress.errors} ${t("errors")})` : "")
+            : t("Uploading...")}
         </p>
       ) : isDragging ? (
         <p className="text-[var(--text-primary)] font-medium">
-          {t("Drop files here...", lang)}
+          {t("Drop files here...")}
         </p>
       ) : (
         <p className="text-[var(--text-primary)] font-medium mb-3">
-          Drop .run files here or click to browse
+          {t("Drop .run files here or click to browse")}
         </p>
       )}
 
@@ -102,7 +101,7 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
           >
-            Download Overwolf Companion App
+            {t("Download Overwolf Companion App")}
           </a>
           <a
             href="https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911"
@@ -110,10 +109,10 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity"
           >
-            Get the Mod
+            {t("Get the Mod")}
           </a>
           <label className="inline-flex items-center justify-center w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-lg text-sm font-medium bg-[var(--bg-primary)] text-[var(--text-primary)] border border-[var(--border-accent)] hover:bg-[var(--bg-card-hover)] transition-colors cursor-pointer">
-            {t("Choose Files", lang)}
+            {t("Choose Files")}
             <input
               type="file"
               multiple
@@ -139,19 +138,19 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
           <p className="text-xs text-[var(--text-muted)]">
             {uploadProgress.done === uploadProgress.total ? (
               <>
-                {t("Done!", lang)}{" "}
+                {t("Done!")}{" "}
                 {uploadProgress.total - uploadProgress.dupes - uploadProgress.errors}{" "}
-                {t("submitted", lang)}
+                {t("submitted")}
                 {uploadProgress.dupes > 0 && (
-                  <>, {uploadProgress.dupes} {t("duplicates skipped", lang)}</>
+                  <>, {uploadProgress.dupes} {t("duplicates skipped")}</>
                 )}
                 {uploadProgress.errors > 0 && (
-                  <>, {uploadProgress.errors} {t("invalid", lang)}</>
+                  <>, {uploadProgress.errors} {t("invalid")}</>
                 )}
               </>
             ) : (
               <>
-                {t("Processing", lang)} {uploadProgress.done} {t("of", lang)}{" "}
+                {t("Processing")} {uploadProgress.done} {t("of")}{" "}
                 {uploadProgress.total}...
               </>
             )}

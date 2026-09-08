@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 // Select any text on the page and a small "Request a change" chip appears by the
 // selection. Clicking it opens a lightweight correction form ("Is this worded
 // wrong or incorrect? What should it be?") that posts to the same /api/feedback
@@ -8,8 +9,6 @@
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -20,7 +19,7 @@ interface Chip {
 }
 
 export default function HighlightFeedback() {
-  const { lang } = useLanguage();
+  const t = useT();
   const pathname = usePathname();
   const [chip, setChip] = useState<Chip | null>(null);
   const [open, setOpen] = useState(false);
@@ -103,7 +102,7 @@ export default function HighlightFeedback() {
       setSent(true);
       window.setTimeout(() => setOpen(false), 1500);
     } catch {
-      setError(t("Failed to send. Please try again.", lang));
+      setError(t("Failed to send. Please try again."));
     } finally {
       setSending(false);
     }
@@ -126,7 +125,7 @@ export default function HighlightFeedback() {
           <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
             <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          {t("Request a change", lang)}
+          {t("Request a change")}
         </button>
       )}
 
@@ -137,60 +136,60 @@ export default function HighlightFeedback() {
             className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-black/50 p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">{t("Request a change", lang)}</h2>
+            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">{t("Request a change")}</h2>
             <p className="text-sm text-[var(--text-secondary)] mb-4">
-              {t("Is this worded wrong or incorrect? What should it be?", lang)}
+              {t("Is this worded wrong or incorrect? What should it be?")}
             </p>
 
             {sent ? (
               <p className="py-6 text-center text-[var(--color-silent)] font-medium">
-                {t("Thanks! We'll take a look.", lang)}
+                {t("Thanks! We'll take a look.")}
               </p>
             ) : (
               <div className="flex flex-col gap-3">
                 <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Selected text", lang)}</label>
+                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Selected text")}</label>
                   <div className="max-h-24 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm italic text-[var(--text-secondary)]">
                     &ldquo;{selected}&rdquo;
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("What should it say?", lang)} <span className="text-[var(--color-ironclad)]">*</span>
+                    {t("What should it say?")} <span className="text-[var(--color-ironclad)]">*</span>
                   </label>
                   <textarea
                     value={suggestion}
                     onChange={(e) => setSuggestion(e.target.value)}
                     rows={4}
                     className={inputCls}
-                    placeholder={t("What should it say?", lang)}
+                    placeholder={t("What should it say?")}
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Supporting material", lang)}</label>
+                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Supporting material")}</label>
                   <textarea
                     value={material}
                     onChange={(e) => setMaterial(e.target.value)}
                     rows={2}
                     className={inputCls}
-                    placeholder={t("Link, source, or reference (optional)", lang)}
+                    placeholder={t("Link, source, or reference (optional)")}
                   />
                 </div>
                 <div>
                   <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("Discord Username or Email", lang)} <span className="text-[var(--color-ironclad)]">*</span>
+                    {t("Discord Username or Email")} <span className="text-[var(--color-ironclad)]">*</span>
                   </label>
                   <input
                     value={contact}
                     onChange={(e) => setContact(e.target.value)}
                     className={inputCls}
-                    placeholder="username#1234 or email@example.com"
+                    placeholder={t("username#1234 or email@example.com")}
                   />
                 </div>
                 {error && <p className="text-sm text-[var(--color-ironclad)]">{error}</p>}
                 <div className="flex items-center justify-end gap-3 pt-1">
                   <button type="button" onClick={() => setOpen(false)} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
-                    {t("Cancel", lang)}
+                    {t("Cancel")}
                   </button>
                   <button
                     type="button"
@@ -198,7 +197,7 @@ export default function HighlightFeedback() {
                     disabled={sending || !suggestion.trim() || !contact.trim()}
                     className="rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-[#1a1205] disabled:opacity-50"
                   >
-                    {sending ? t("Sending...", lang) : t("Send", lang)}
+                    {sending ? t("Sending...") : t("Send")}
                   </button>
                 </div>
               </div>

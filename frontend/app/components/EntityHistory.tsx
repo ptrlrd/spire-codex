@@ -1,11 +1,10 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
-import { t } from "@/lib/ui-translations";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -97,8 +96,8 @@ function ChangeValue({ raw, color }: { raw: string; color: string }) {
 }
 
 export default function EntityHistory({ entityType, entityId }: EntityHistoryProps) {
-  const { lang } = useLanguage();
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   const [history, setHistory] = useState<HistoryEntry[] | null>(null);
 
   // Fetch on mount and render the full timeline directly (no drawer) so the
@@ -112,7 +111,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
 
   return (
     <section id="history">
-      <h2>{t("Version history", lang)}</h2>
+      <h2>{t("Version history")}</h2>
       {history && history.length > 0 ? (
           <div className="relative ml-2">
             {/* Timeline line */}
@@ -129,13 +128,13 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                   <div>
                     <div className="flex items-center gap-2 text-xs">
                       <Link
-                        href={`${lp}/changelog#${entry.version}`}
+                        href={`${bp}/changelog#${entry.version}`}
                         className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
                       >
                         v{entry.version}
                       </Link>
                       <span className={actionColors[entry.action] || "text-gray-400"}>
-                        {actionLabels[entry.action] || entry.action}
+                        {actionLabels[entry.action] ? t(actionLabels[entry.action]) : entry.action}
                       </span>
                       <span className="text-[var(--text-muted)]">{entry.date}</span>
                     </div>
@@ -163,13 +162,13 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
                                   <div>
                                     <div className="text-[10px] uppercase tracking-wider text-red-400/70 mb-0.5">
-                                      Before
+                                      {t("Before")}
                                     </div>
                                     <ChangeValue raw={oldStr} color="text-red-400/80" />
                                   </div>
                                   <div>
                                     <div className="text-[10px] uppercase tracking-wider text-emerald-400/70 mb-0.5">
-                                      After
+                                      {t("After")}
                                     </div>
                                     <ChangeValue raw={newStr} color="text-emerald-400/80" />
                                   </div>
@@ -202,17 +201,17 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
           </div>
         ) : history && history.length === 0 ? (
           <p className="text-xs text-[var(--text-muted)] m-0">
-            {t("No version history recorded for this entity.", lang)}
+            {t("No version history recorded for this entity.")}
           </p>
         ) : (
-          <p className="text-xs text-[var(--text-muted)] m-0">Loading…</p>
+          <p className="text-xs text-[var(--text-muted)] m-0">{t("Loading…")}</p>
         )}
 
         <Link
-          href={`${lp}/changelog`}
+          href={`${bp}/changelog`}
           className="mt-4 inline-block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
         >
-          {t("View the full changelog", lang)} &rarr;
+          {t("View the full changelog")} &rarr;
         </Link>
     </section>
   );

@@ -7,7 +7,8 @@
 // its own tiny poll rather than pulling in the live-page module chain.
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useT } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 // Gentle: this runs on every page for every visitor, and a live count does
@@ -28,6 +29,7 @@ export default function LiveNavButton({
 }: {
   variant?: "desktop" | "mobile";
 }) {
+  const t = useT();
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -61,7 +63,7 @@ export default function LiveNavButton({
     return (
       <Link prefetch={false} href="/live" className="flex items-center gap-2 text-lg font-semibold text-[var(--color-silent)]">
         <LiveCircle />
-        <span className="tabular-nums">{count > 0 ? `(${count}) Live` : "Live"}</span>
+        <span className="tabular-nums">{count > 0 ? t("({n}) Live", { n: count }) : t("Live")}</span>
       </Link>
     );
   }
@@ -70,11 +72,11 @@ export default function LiveNavButton({
     <Link
       prefetch={false}
       href="/live"
-      title="Watch players live"
+      title={t("Watch players live")}
       className="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-silent)] hover:bg-[var(--bg-card)] transition-colors shrink-0"
     >
       <LiveCircle />
-      <span className="tabular-nums">{count > 0 ? `(${count}) Live` : "Live"}</span>
+      <span className="tabular-nums">{count > 0 ? t("({n}) Live", { n: count }) : t("Live")}</span>
     </Link>
   );
 }

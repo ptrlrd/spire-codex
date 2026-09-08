@@ -1,8 +1,8 @@
 "use client";
 
+import { useT, type TFn } from "@/lib/i18n";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import { t } from "@/lib/ui-translations";
+import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
 import { characterHex } from "@/lib/character-colors";
 import type { FastestBlock, RunRow } from "./HomeLeaderboardSection";
@@ -42,21 +42,21 @@ function formatRunTime(seconds: number): string {
   return m > 0 ? `${m}m ${s.toString().padStart(2, "0")}s` : `${s}s`;
 }
 
-function formatRelativeDate(submittedAt: string): string {
+function formatRelativeDate(submittedAt: string, t: TFn): string {
   // submitted_at is `YYYY-MM-DD HH:MM:SS` UTC. Treat as UTC then diff.
   const d = new Date(submittedAt.replace(" ", "T") + "Z");
   const diffMs = Date.now() - d.getTime();
   const sec = Math.floor(diffMs / 1000);
-  if (sec < 60) return "just now";
+  if (sec < 60) return t("just now");
   const min = Math.floor(sec / 60);
-  if (min < 60) return `${min}m ago`;
+  if (min < 60) return t("{n}m ago", { n: min });
   const hr = Math.floor(min / 60);
-  if (hr < 24) return `${hr}h ago`;
+  if (hr < 24) return t("{n}h ago", { n: hr });
   const day = Math.floor(hr / 24);
-  if (day < 30) return `${day}d ago`;
+  if (day < 30) return t("{n}d ago", { n: day });
   const mo = Math.floor(day / 30);
-  if (mo < 12) return `${mo}mo ago`;
-  return `${Math.floor(mo / 12)}y ago`;
+  if (mo < 12) return t("{n}mo ago", { n: mo });
+  return t("{n}y ago", { n: Math.floor(mo / 12) });
 }
 
 function killedByLabel(killedBy: string | null): string | null {
@@ -74,7 +74,6 @@ export default function HomeLeaderboardLive({
   initialFastest,
   initialDaily,
   initialRecent,
-  langPrefix = "",
   lang = "eng",
   characterNames,
   runsHost,
@@ -83,12 +82,12 @@ export default function HomeLeaderboardLive({
   initialFastest: FastestBlock;
   initialDaily: RunRow[];
   initialRecent: RunRow[];
-  langPrefix?: string;
   lang?: string;
   characterNames?: Record<string, string>;
   runsHost: string;
   pollBase: string;
 }) {
+  const t = useT();
   const [fastest, setFastest] = useState<FastestBlock>(initialFastest);
   const [daily, setDaily] = useState<RunRow[]>(initialDaily);
   const [recent, setRecent] = useState<RunRow[]>(initialRecent);
@@ -127,9 +126,8 @@ export default function HomeLeaderboardLive({
   // On beta, point all in-page links at stable's absolute URL, the data
   // shown in this section came from stable, so the run-detail / browse /
   // submit pages need to live there too. On stable, stay relative so
-  // the langPrefix stays meaningful.
-  const lbBase = `${runsHost}${langPrefix}/leaderboards`;
-  const runsBase = `${runsHost}${langPrefix}/runs`;
+  const lbBase = `${runsHost}/leaderboards`;
+  const runsBase = `${runsHost}/runs`;
   const ascLabel =
     fastest.ascension === TARGET_ASCENSION
       ? `A${TARGET_ASCENSION}`
@@ -146,9 +144,9 @@ export default function HomeLeaderboardLive({
       <section className="hb">
         <div className="hsec">
           <div className="s-head">
-            <h2>{t("Leaderboards", lang)}</h2>
+            <h2>{t("Leaderboards")}</h2>
             <Link prefetch={false} className="viewmore" href={`${lbBase}/submit`}>
-              {t("Upload your runs", lang)} {ARROW}
+              {t("Upload your runs")} {ARROW}
             </Link>
           </div>
 
@@ -157,21 +155,21 @@ export default function HomeLeaderboardLive({
             <section className="panel">
               <div className="s-head">
                 {ascLabel && <span className="s-kick">{ascLabel}</span>}
-                <h2>{t("Fastest Wins", lang)}</h2>
+                <h2>{t("Fastest Wins")}</h2>
                 <Link prefetch={false} className="viewmore" href={runsBase}>
-                  {t("View more", lang)} {ARROW}
+                  {t("View more")} {ARROW}
                 </Link>
               </div>
               {fastest.runs.length === 0 ? (
-                <p className="lb-empty">{t("No A10 wins submitted yet, be the first.", lang)}</p>
+                <p className="lb-empty">{t("No A10 wins submitted yet, be the first.")}</p>
               ) : (
                 <div className="overflow-x-auto"><table className="dtable">
                   <thead>
                     <tr>
                       <th className="rk">#</th>
-                      <th>Character</th>
-                      <th className="num">Asc</th>
-                      <th className="num">Time</th>
+                      <th>{t("Character")}</th>
+                      <th className="num">{t("Asc")}</th>
+                      <th className="num">{t("Time")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -185,7 +183,7 @@ export default function HomeLeaderboardLive({
                               <span className="lb-name" style={{ color: characterHex(r.character) || undefined }}>
                                 {characterLabel(r.character, characterNames)}
                               </span>
-                              <span className="lb-sub">{r.username ?? "anon"} · fl{r.floors_reached}</span>
+                              <span className="lb-sub">{r.username ?? t("Anonymous")} · fl{r.floors_reached}</span>
                             </span>
                           </Link>
                         </td>
@@ -201,22 +199,22 @@ export default function HomeLeaderboardLive({
             {/* Daily Climb: top wins on today's shared daily seed, resets 00:00 UTC */}
             <section className="panel">
               <div className="s-head">
-                <span className="s-kick">{t("resets 00:00 UTC", lang)}</span>
-                <h2>{t("Daily Climb", lang)}</h2>
+                <span className="s-kick">{t("resets 00:00 UTC")}</span>
+                <h2>{t("Daily Climb")}</h2>
                 <Link prefetch={false} className="viewmore" href={`${runsBase}?win=true&game_mode=daily_today&sort=ascension_desc`}>
-                  {t("View more", lang)} {ARROW}
+                  {t("View more")} {ARROW}
                 </Link>
               </div>
               {daily.length === 0 ? (
-                <p className="lb-empty">{t("No daily runs yet today.", lang)}</p>
+                <p className="lb-empty">{t("No daily runs yet today.")}</p>
               ) : (
                 <div className="overflow-x-auto"><table className="dtable">
                   <thead>
                     <tr>
                       <th className="rk">#</th>
-                      <th>Character</th>
-                      <th className="num">Asc</th>
-                      <th className="num">Time</th>
+                      <th>{t("Character")}</th>
+                      <th className="num">{t("Asc")}</th>
+                      <th className="num">{t("Time")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -230,7 +228,7 @@ export default function HomeLeaderboardLive({
                               <span className="lb-name" style={{ color: characterHex(r.character) || undefined }}>
                                 {characterLabel(r.character, characterNames)}
                               </span>
-                              <span className="lb-sub">{r.username ?? "anon"} · fl{r.floors_reached}</span>
+                              <span className="lb-sub">{r.username ?? t("Anonymous")} · fl{r.floors_reached}</span>
                             </span>
                           </Link>
                         </td>
@@ -246,20 +244,20 @@ export default function HomeLeaderboardLive({
             {/* Recent runs */}
             <section className="panel">
               <div className="s-head">
-                <h2>{t("Recent Runs", lang)}</h2>
+                <h2>{t("Recent Runs")}</h2>
                 <Link prefetch={false} className="viewmore" href={runsBase}>
-                  {t("View more", lang)} {ARROW}
+                  {t("View more")} {ARROW}
                 </Link>
               </div>
               {recent.length === 0 ? (
-                <p className="lb-empty">{t("No runs submitted yet.", lang)}</p>
+                <p className="lb-empty">{t("No runs submitted yet.")}</p>
               ) : (
                 <table className="dtable dtable-fixed">
                   <thead>
                     <tr>
-                      <th>Character</th>
-                      <th className="num" style={{ width: "2.75rem" }}>Result</th>
-                      <th className="num" style={{ width: "5rem" }}>When</th>
+                      <th>{t("Character")}</th>
+                      <th className="num" style={{ width: "2.75rem" }}>{t("Result")}</th>
+                      <th className="num" style={{ width: "5rem" }}>{t("When")}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -288,17 +286,17 @@ export default function HomeLeaderboardLive({
                                 </span>
                                 <span className="lb-sub">
                                   fl{r.floors_reached} · {formatRunTime(r.run_time)}
-                                  {killerShort && result === "loss" ? ` · died to ${killerShort}` : ""}
+                                  {killerShort && result === "loss" ? ` · ${t("died to {name}", { name: killerShort })}` : ""}
                                 </span>
                               </span>
                             </Link>
                           </td>
                           <td className="num">
-                            {result === "win" && <span className="wr-sg" title="Win">W</span>}
-                            {result === "loss" && <span className="wr-loss" title="Loss">L</span>}
-                            {result === "abandoned" && <span className="dim" title="Abandoned">A</span>}
+                            {result === "win" && <span className="wr-sg" title={t("Win")}>W</span>}
+                            {result === "loss" && <span className="wr-loss" title={t("Loss")}>L</span>}
+                            {result === "abandoned" && <span className="dim" title={t("Abandoned")}>A</span>}
                           </td>
-                          <td className="num dim">{formatRelativeDate(r.submitted_at)}</td>
+                          <td className="num dim">{formatRelativeDate(r.submitted_at, t)}</td>
                         </tr>
                       );
                     })}

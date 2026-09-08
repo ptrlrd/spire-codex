@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { LANG_PREFIXES } from "@/lib/languages";
+import { ENGLISH_ONLY_PATHS, ENGLISH_ONLY_SECTIONS, LANG_PREFIXES } from "@/lib/languages";
+import { routing } from "@/i18n/routing";
 
 /** Canonicalise news article URLs.
  *
@@ -45,6 +46,14 @@ function gidFromEncoded(seg: string): string | null {
 }
 
 const LANG_CODES = LANG_PREFIXES;
+const LOCALE_HEADER = "X-NEXT-INTL-LOCALE";
+
+/** Pass or rewrite the request with the URL's locale on the request header next-intl reads when no layout has set it yet (RSC navigations render pages without their layout). */
+function withLocale(req: NextRequest, locale: string, rewriteTo?: URL): NextResponse {
+  const headers = new Headers(req.headers);
+  headers.set(LOCALE_HEADER, locale);
+  return rewriteTo ? NextResponse.rewrite(rewriteTo, { request: { headers } }) : NextResponse.next({ request: { headers } });
+}
 
 // Detail routes whose slugs are canonically lowercase (what the sitemap
 // declares). Any other casing serves the same page and self-canonicalises,
@@ -131,19 +140,57 @@ function betaRewrite(req: NextRequest): NextResponse | null {
   } else {
     return null;
   }
-  // Real routes under /beta (the landing page and the force-dynamic
-  // detail pages, which can't share the stable pages because those are
-  // ISR-cached) are served as-is.
-  if (!lang && rest.length === 0) return null;
+  // Real routes under /beta (the landing page in every locale, and the
+  // English force-dynamic detail pages, which can't share the main pages
+  // because those are ISR-cached) only need the locale segment.
+  if (rest.length === 0) return null;
   if (!lang && rest.length === 2 && BETA_DETAIL_TYPES.has(rest[0])) return null;
   const url = req.nextUrl.clone();
+  const locale = lang || routing.defaultLocale;
   if (rest.length === 0) {
-    url.pathname = "/beta";
-    return NextResponse.rewrite(url);
+    url.pathname = `/${locale}/beta`;
+    return withLocale(req, locale, url);
   }
-  url.pathname = `${lang ? `/${lang}` : ""}/${rest.join("/")}`;
+  url.pathname = `/${locale}/${rest.join("/")}`;
   url.searchParams.set("channel", "beta");
-  return NextResponse.rewrite(url);
+  return withLocale(req, locale, url);
+}
+
+// Sections that only exist in English (no translated data behind them). A
+// localized URL for one of these 308s to the English page so crawlers see
+// one canonical instead of thirteen chrome-only duplicates.
+function englishOnly(parts: string[]): boolean {
+  if (ENGLISH_ONLY_SECTIONS.has(parts[2])) return true;
+  if (ENGLISH_ONLY_PATHS.has(`${parts[2]}/${parts[3]}`)) return true;
+  return parts[2] === "timeline" && parts.length > 3 && parts[3] !== "";
+}
+
+/** Every page lives under app/[locale]. English is the bare URL, so a
+ * request without a language prefix is rewritten to the `eng` segment, and
+ * an explicit /eng/ prefix redirects to the bare canonical. Other prefixes
+ * pass straight through unless the section is English-only. */
+function metaRedirect(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.split("/");
+  const i = LANG_CODES.has(parts[1]) ? 2 : 1;
+  if (parts[i] !== "meta" || parts.length !== i + 1) return null;
+  const url = req.nextUrl.clone();
+  url.pathname = [...parts.slice(0, i), "leaderboards", "stats"].join("/");
+  return NextResponse.redirect(url, 308);
+}
+
+function localeRewrite(req: NextRequest): NextResponse {
+  const { pathname } = req.nextUrl;
+  const parts = pathname.split("/");
+  const first = parts[1];
+  if (first === routing.defaultLocale || (LANG_CODES.has(first) && englishOnly(parts))) {
+    const url = req.nextUrl.clone();
+    url.pathname = pathname.slice(first.length + 1) || "/";
+    return NextResponse.redirect(url, 308);
+  }
+  if (LANG_CODES.has(first)) return withLocale(req, first);
+  const url = req.nextUrl.clone();
+  url.pathname = `/${routing.defaultLocale}${pathname === "/" ? "" : pathname}`;
+  return withLocale(req, routing.defaultLocale, url);
 }
 
 export function proxy(req: NextRequest) {
@@ -151,15 +198,23 @@ export function proxy(req: NextRequest) {
   // URL and only then gets rewritten.
   const lower = lowercaseRedirect(req);
   if (lower) return lower;
+  const news = newsRedirect(req);
+  if (news) return news;
+  const meta = metaRedirect(req);
+  if (meta) return meta;
   const beta = betaRewrite(req);
   if (beta) return beta;
+  return localeRewrite(req);
+}
+
+function newsRedirect(req: NextRequest): NextResponse | null {
   const m = req.nextUrl.pathname.match(NEWS_PATH);
-  if (!m) return NextResponse.next();
+  if (!m) return null;
   const langPrefix = m[1] ?? "";
   const slug = m[2];
-  if (!ENCODED_STEAM.test(slug)) return NextResponse.next();
+  if (!ENCODED_STEAM.test(slug)) return null;
   const gid = gidFromEncoded(slug);
-  if (!gid) return NextResponse.next();
+  if (!gid) return null;
   const url = req.nextUrl.clone();
   url.pathname = `${langPrefix}/news/${gid}`;
   // 308 (permanent) so search engines transfer the existing index entries
@@ -168,13 +223,9 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/news/:slug*",
-    "/:lang/news/:slug*",
-    "/beta/:path*",
-    "/:lang/beta/:path*",
-    // Keep in sync with LOWERCASE_DETAIL_TYPES above.
-    "/:type(achievements|acts|afflictions|ascensions|badges|cards|characters|enchantments|encounters|events|guides|intents|keywords|mechanics|modifiers|monsters|orbs|potions|powers|relics|timeline)/:slug+",
-    "/:lang/:type(achievements|acts|afflictions|ascensions|badges|cards|characters|enchantments|encounters|events|guides|intents|keywords|mechanics|modifiers|monsters|orbs|potions|powers|relics|timeline)/:slug+",
-  ],
+  // Every page request: the locale rewrite has to see all of them. Route
+  // handlers under /api, Next internals, and static files are left alone.
+  // Only real asset extensions are excluded: legacy news URLs carry an
+  // encoded Steam hostname with dots and still need the redirect.
+  matcher: ["/((?!api/|_next/|_vercel/|\\.well-known/|.*\\.(?:ico|png|jpe?g|gif|webp|svg|css|js|map|txt|xml|json|woff2?|ttf|mp3|webmanifest)$).*)"],
 };

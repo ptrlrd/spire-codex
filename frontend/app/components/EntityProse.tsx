@@ -1,8 +1,8 @@
 "use client";
 
+import { useGameLocale } from "@/lib/i18n";
 import { Fragment, type ReactNode } from "react";
 import { getCardProseFacts } from "@/lib/card-display";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 import type {
   Relic,
   Potion,
@@ -119,7 +119,7 @@ function listNodes(items: ReactNode[]): ReactNode {
 }
 
 export default function EntityProse(props: Props) {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
   const isEnglish = lang === "eng";
 
   if (props.kind === "relic") {

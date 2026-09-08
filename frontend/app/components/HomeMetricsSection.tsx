@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { t } from "@/lib/ui-translations";
+import { getT } from "@/lib/i18n-server";
+import { Link } from "@/i18n/navigation";
 
 const ARROW = (
   <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -83,12 +83,11 @@ function pct(v: number | null): string {
  * the home page never shows an empty block.
  */
 export default async function HomeMetricsSection({
-  langPrefix = "",
   lang = "eng",
 }: {
-  langPrefix?: string;
   lang?: string;
 }) {
+  const t = await getT();
   const [metrics, cards] = await Promise.all([
     fetchJson<{ rows: ApiMetricRow[] }>(`${API}/api/runs/metrics/cards?bracket=a10`),
     fetchJson<ApiCard[]>(`${API}/api/cards?lang=${lang}`),
@@ -105,17 +104,17 @@ export default async function HomeMetricsSection({
     .slice(0, 8);
   if (top.length === 0) return null;
 
-  const href = `${langPrefix}/leaderboards/metrics?bracket=a10`;
+  const href = `/leaderboards/metrics?bracket=a10`;
 
   return (
     <div className="rvmp">
       <section className="hb">
         <section className="panel">
           <div className="s-head">
-            <span className="s-kick">{t("A10 · by Codex Elo", lang)}</span>
-            <h2>{t("Card Metrics", lang)}</h2>
+            <span className="s-kick">{t("A10 · by Codex Elo")}</span>
+            <h2>{t("Card Metrics")}</h2>
             <Link prefetch={false} className="viewmore" href={href}>
-              {t("View Card metrics", lang)} {ARROW}
+              {t("View Card metrics")} {ARROW}
             </Link>
           </div>
 
@@ -123,10 +122,10 @@ export default async function HomeMetricsSection({
             <thead>
               <tr>
                 <th className="rk">#</th>
-                <th>{t("Card", lang)}</th>
-                <th className="num">{t("Codex Elo", lang)}</th>
-                <th className="num">Win%</th>
-                <th className="num">Pick%</th>
+                <th>{t("Card")}</th>
+                <th className="num">{t("Codex Elo")}</th>
+                <th className="num">{t("Win%")}</th>
+                <th className="num">{t("Pick%")}</th>
               </tr>
             </thead>
             <tbody>
@@ -134,7 +133,7 @@ export default async function HomeMetricsSection({
                 <tr key={c.id}>
                   <td className="rk">{i + 1}</td>
                   <td className="ent">
-                    <Link prefetch={false} href={`${langPrefix}/cards/${c.id.toLowerCase()}`} style={{ color: cardHex(c.color) }}>
+                    <Link prefetch={false} href={`/cards/${c.id.toLowerCase()}`} style={{ color: cardHex(c.color) }}>
                       {c.name}
                     </Link>
                   </td>

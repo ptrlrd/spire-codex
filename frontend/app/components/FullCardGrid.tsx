@@ -1,11 +1,11 @@
 "use client";
 
+import { useGameLocale, useT } from "@/lib/i18n";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useChannel, useLangPrefix } from "@/lib/use-lang-prefix";
-import { useLanguage } from "../contexts/LanguageContext";
+import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
 import BetaBadge from "./BetaBadge";
 
 /**
@@ -22,8 +22,9 @@ interface CardStat {
 }
 
 function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
-  const lp = useLangPrefix();
-  const { lang } = useLanguage();
+  const t = useT();
+  const bp = useBetaPrefix();
+  const lang = useGameLocale();
   const channel = useChannel();
   const [upgraded, setUpgraded] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -32,7 +33,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const showUpgraded = upgraded && hasUpgrade;
   // card.beta marks a beta-only card surfaced in a stable list; its render
   // and detail page live on the beta channel.
-  const href = card.beta ? `${lp}/beta/cards/${id}` : `${lp}/cards/${id}`;
+  const href = card.beta ? `${bp}/beta/cards/${id}` : `${bp}/cards/${id}`;
 
   const src = failed
     ? imageUrl(card.image_url || card.beta_image_url)
@@ -48,7 +49,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
       <Link prefetch={false} href={href} className="block">
         <img
           src={src}
-          alt={`${card.name}${showUpgraded ? "+" : ""} - Slay the Spire 2`}
+          alt={t("{name} - Slay the Spire 2", { name: `${card.name}${showUpgraded ? "+" : ""}` })}
           className="w-full h-auto aspect-[400/520] transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
           loading="lazy"
           crossOrigin="anonymous"

@@ -4,7 +4,8 @@
  * the main entity list. Renders nothing if no recent additions exist.
  */
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { getT } from "@/lib/i18n-server";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -38,6 +39,7 @@ export default async function RecentlyAdded({
   pathPrefix,
   limit = 8,
 }: Props) {
+  const t = await getT();
   let items: RecentItem[] = [];
   try {
     const res = await fetch(
@@ -67,14 +69,14 @@ export default async function RecentlyAdded({
       <div className="flex items-center gap-2 mb-3">
         <span className="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
         <h2 className="text-lg font-bold text-emerald-300">
-          Recently Added {label}s
+          {t("Recently Added {items}", { items: t(`${label}s`) })}
         </h2>
       </div>
 
       {[...byVersion.entries()].map(([version, group]) => (
         <div key={version} className="mb-3 last:mb-0">
           <p className="text-xs uppercase tracking-wider text-emerald-400/70 mb-2">
-            New in v{version}
+            {t("New in v{version}", { version })}
           </p>
           <ul className="flex flex-wrap gap-2">
             {group.map((item) => (

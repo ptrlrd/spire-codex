@@ -1,16 +1,15 @@
 "use client";
 
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
+import { useT } from "@/lib/i18n";
 
 export default function RunFileHelp() {
-  const { lang } = useLanguage();
+  const t = useT();
 
   return (
     <div className="text-left text-xs text-[var(--text-muted)]" onClick={(e) => e.stopPropagation()}>
       <div className="space-y-1.5">
         <p className="text-[var(--text-secondary)]">
-          {t("Your .run files live here:", lang)}
+          {t("Your .run files live here:")}
         </p>
         <div>
           <strong className="text-[var(--text-secondary)] block sm:inline">Windows</strong>

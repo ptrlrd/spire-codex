@@ -1,0 +1,266 @@
+"use client";
+
+import { useT, useGameLocale } from "@/lib/i18n";
+import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
+import { useParams, useRouter } from "next/navigation";
+import { Link } from "@/i18n/navigation";
+import type { Encounter } from "@/lib/api";
+import RichDescription from "@/app/components/RichDescription";
+import { cachedFetch } from "@/lib/fetch-cache";
+import LocalizedNames from "@/app/components/LocalizedNames";
+import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
+import EntityProse from "@/app/components/EntityProse";
+import type { EncounterStat } from "@/lib/encounter-stats";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import "@/app/card-revamp.css";
+import "@/app/monster-encounter-extra.css";
+
+const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+
+// Per-entity spine accent for the wiki page (--spine), keyed by room type.
+const SPINE_BY_ROOM: Record<string, string> = {
+  Boss: "var(--color-ironclad)",
+  Elite: "var(--accent-gold)",
+  Monster: "var(--color-silent)",
+};
+
+const roomTypeBadge: Record<string, string> = {
+  Monster: "bg-gray-800 text-gray-300 border-gray-700",
+  Elite: "bg-amber-950/50 text-amber-300 border-amber-900/30",
+  Boss: "bg-red-950/50 text-red-300 border-red-900/30",
+};
+
+
+export default function EncounterDetail({ initialEncounter, encounterStat }: { initialEncounter?: Encounter | null; encounterStat?: EncounterStat | null } = {}) {
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const lang = useGameLocale();
+  const t = useT();
+  const bp = useBetaPrefix();
+  const [encounter, setEncounter] = useState<Encounter | null>(initialEncounter ?? null);
+  const [loading, setLoading] = useState(!initialEncounter);
+  const [notFound, setNotFound] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("composition");
+
+  useEffect(() => {
+    if (!id) return;
+    cachedFetch<Encounter>(`${API}/api/encounters/${id}?lang=${lang}`)
+      .then((data) => setEncounter(data))
+      .catch(() => {
+        if (!initialEncounter) setNotFound(true);
+      })
+      .finally(() => setLoading(false));
+  }, [id, lang]);
+
+
+  // ToC scroll-spy: highlight the section currently in view.
+  useEffect(() => {
+    if (!encounter) return;
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
+    if (secs.length === 0) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection((e.target as HTMLElement).id);
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px" },
+    );
+    secs.forEach((s) => obs.observe(s));
+    return () => obs.disconnect();
+  }, [encounter]);
+
+  const handleTocClick = (e: ReactMouseEvent, secId: string) => {
+    e.preventDefault();
+    const el = document.getElementById(secId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(secId);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
+        {t("Loading...")}
+      </div>
+    );
+  }
+
+  if (notFound || !encounter) {
+    return (
+      <div className="max-w-2xl mx-auto px-4 py-12 text-center">
+        <p className="text-[var(--text-muted)] mb-4">{t("Encounter not found.")}</p>
+        <Link prefetch={false} href={`${bp}/encounters`} className="text-[var(--accent-gold)] hover:underline">
+          &larr; {t("Back to")} {t("Encounters")}
+        </Link>
+      </div>
+    );
+  }
+
+  const spineColor = SPINE_BY_ROOM[encounter.room_type] ?? "var(--accent-gold)";
+  const hasMonsters = !!(encounter.monsters && encounter.monsters.length > 0);
+  const hasLoss = !!encounter.loss_text;
+
+  const hasCommunity = !!(encounterStat && encounterStat.total > 0);
+
+
+  const tocItems: { id: string; label: string }[] = [
+    ...(hasCommunity ? [{ id: "community", label: t("Community") }] : []),
+    ...(hasMonsters ? [{ id: "composition", label: t("Monsters") }] : []),
+    ...(hasLoss ? [{ id: "loss", label: t("Loss Text") }] : []),
+    { id: "history", label: t("Version history") },
+  ];
+
+  return (
+    <div className="card-rvmp" style={{ "--spine": spineColor } as CSSProperties}>
+      <div className="cd-top">
+        <button type="button" onClick={() => router.back()} className="cd-back">
+          &larr; {t("Back to")} {t("Encounters")}
+        </button>
+      </div>
+
+      <div className="wrap">
+        {/* ===== MAIN column: unrolled sections ===== */}
+        <main className="main">
+          {/* Hero */}
+          <div className="hero">
+            <p className="eyebrow">
+              <span className="dot">&#9670;</span>
+              {encounter.act && (
+                <>
+                  <span>{encounter.act}</span>
+                  <span>&middot;</span>
+                </>
+              )}
+              <span>
+                {encounter.room_type}
+                {encounter.is_weak && ` (${t("Weak")})`}
+              </span>
+            </p>
+            <h1>{encounter.name}</h1>
+            <EntityProse kind="encounter" encounter={encounter} lead />
+          </div>
+
+          {/* Sticky ToC */}
+          <nav className="toc" aria-label={t("On this page")}>
+            <span className="toc-label">{t("On this page")}</span>
+            {tocItems.map((it) => (
+              <a
+                key={it.id}
+                href={`#${it.id}`}
+                className={activeSection === it.id ? "on" : undefined}
+                onClick={(e) => handleTocClick(e, it.id)}
+              >
+                {it.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Community deadliness — how often this fight is entered and how
+              many runs it ends. Data from /api/runs/encounter-stats. */}
+          {hasCommunity && (
+            <section id="community">
+              <h2>{t("Community")}</h2>
+              <p className="desc-body">
+                {t("In community-submitted runs, {name} has been encountered {total} times and killed {fatal} players ({pct}% of the runs that reach it).", {
+                  name: encounter.name,
+                  total: encounterStat!.total.toLocaleString(),
+                  fatal: encounterStat!.fatal.toLocaleString(),
+                  pct: ((encounterStat!.fatal / encounterStat!.total) * 100).toFixed(1),
+                })}
+              </p>
+              {(encounterStat!.avg_damage > 0 || encounterStat!.avg_turns > 0) && (
+                <p className="h-note">
+                  {t("It deals an average of {dmg} damage over {turns} turns.", { dmg: encounterStat!.avg_damage, turns: encounterStat!.avg_turns })}
+                </p>
+              )}
+            </section>
+          )}
+
+
+          {/* Composition (monsters in the fight) */}
+          {hasMonsters && (
+            <section id="composition">
+              <h2>{t("Monsters")}</h2>
+              <p className="h-note">{t("The enemies you fight in this encounter.")}</p>
+              <div className="chips">
+                {encounter.monsters!.map((m) => (
+                  <Link prefetch={false} key={m.id} href={`${bp}/monsters/${m.id}`} className="chip">
+                    <span className="pip" />
+                    <span className="cn">{m.name}</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Loss text */}
+          {hasLoss && (
+            <section id="loss">
+              <h2>{t("Loss Text")}</h2>
+              <p className="desc-body" style={{ fontStyle: "italic" }}>
+                <RichDescription text={encounter.loss_text!} />
+              </p>
+            </section>
+          )}
+
+          {/* Version history + localized names */}
+          <LocalizedNames entityType="encounters" entityId={id} />
+          <EntityUpdateHistory entityType="encounters" entityId={id} />
+        </main>
+
+        {/* ===== INFOBOX column (sticky) ===== */}
+        <aside className="aside">
+          <div className="box">
+            <div className="facts">
+              <div className="fh">{t("At a glance")}</div>
+              <dl>
+                <div className="frow">
+                  <dt>{t("Type")}</dt>
+                  <dd>
+                    <span className={`badge ${roomTypeBadge[encounter.room_type] || ""}`}>
+                      {encounter.room_type}
+                    </span>
+                  </dd>
+                </div>
+                {encounter.is_weak && (
+                  <div className="frow">
+                    <dt>{t("Variant")}</dt>
+                    <dd style={{ color: "var(--good)" }}>{t("Weak")}</dd>
+                  </div>
+                )}
+                {encounter.act && (
+                  <div className="frow">
+                    <dt>{t("Act")}</dt>
+                    <dd>{encounter.act}</dd>
+                  </div>
+                )}
+                {hasMonsters && (
+                  <div className="frow">
+                    <dt>{t("Monsters")}</dt>
+                    <dd>{encounter.monsters!.length}</dd>
+                  </div>
+                )}
+                {encounter.tags && encounter.tags.length > 0 && (
+                  <div className="frow">
+                    <dt>{t("Tags")}</dt>
+                    <dd>
+                      {encounter.tags.map((tag) => (
+                        <span className="kw" key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                    </dd>
+                  </div>
+                )}
+              </dl>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}

@@ -1,8 +1,7 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 import { useEffect, useState } from "react";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { splitBracket, combineBracket } from "@/lib/content-brackets";
 
@@ -26,7 +25,8 @@ export default function EntityVersionSelect({
   onBracketChange: (b: string) => void;
   onEntityData?: (data: unknown | null, version: string) => void;
 }) {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [versions, setVersions] = useState<VersionsResponse | null>(null);
   const [selected, setSelected] = useState("");
 
@@ -59,12 +59,12 @@ export default function EntityVersionSelect({
   return (
     <select
       className="ench-select"
-      aria-label="Game version"
+      aria-label={t("Game version")}
       value={selected}
       onChange={(e) => pick(e.target.value)}
-      title={t("View this entity's data and stats as of a game version", lang)}
+      title={t("View this entity's data and stats as of a game version")}
     >
-      <option value="">{t("Current version", lang)}</option>
+      <option value="">{t("Current version")}</option>
       {dataVersions.map((v) => (
         <option key={v} value={v}>
           {v}

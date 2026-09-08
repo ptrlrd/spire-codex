@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 // Weekly trend charts under an entity's stats: win rate (with it vs the overall
 // baseline) and pick rate over the recent weeks. Data comes from the existing
 // /api/charts/entity-over-time endpoint (all ascensions and modes). Renders
@@ -18,7 +19,6 @@ import {
   type ChartOptions,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
-import { t } from "@/lib/ui-translations";
 import { bracketParam, CONTENT_BRACKETS } from "@/lib/content-brackets";
 
 ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
@@ -89,6 +89,7 @@ export default function EntityTrends({
   bracket: string;
   lang: string;
 }) {
+  const t = useT();
   const [series, setSeries] = useState<Series[] | null>(null);
 
   useEffect(() => {
@@ -151,7 +152,7 @@ export default function EntityTrends({
     labels: weeks,
     datasets: [
       {
-        label: t("Win rate with it", lang),
+        label: t("Win rate with it"),
         data: y(withPts),
         borderColor: "#34d399",
         backgroundColor: "rgba(52,211,153,0.12)",
@@ -159,7 +160,7 @@ export default function EntityTrends({
         spanGaps: true,
       },
       {
-        label: t("Overall win rate", lang),
+        label: t("Overall win rate"),
         data: y(basePts),
         borderColor: "#8b8b93",
         borderDash: [4, 4],
@@ -173,7 +174,7 @@ export default function EntityTrends({
     labels: weeks,
     datasets: [
       {
-        label: t("% of runs holding it", lang),
+        label: t("% of runs holding it"),
         data: y(pickPts),
         borderColor: "#38bdf8",
         backgroundColor: "rgba(56,189,248,0.12)",
@@ -186,21 +187,21 @@ export default function EntityTrends({
   const bp = bracketParam(bracket);
   const bracketLabel = bp
     ? CONTENT_BRACKETS.find((b) => b.key === bracket)?.label
-    : t("all ascensions and modes", lang);
+    : t("all ascensions and modes");
 
   return (
     <div className="et-trends">
-      <h3 className="subh">{t("Trends over time", lang)}</h3>
+      <h3 className="subh">{t("Trends over time")}</h3>
       <p className="h-note">
-        {t("Weekly", lang)} · {bracketLabel} · {t("last", lang)} {weeks.length}{" "}
-        {t("weeks", lang)}
+        {t("Weekly")} · {bracketLabel} · {t("last")} {weeks.length}{" "}
+        {t("weeks")}
       </p>
       <div className="et-trend-grid">
         {hasWin && (
           <figure className="et-trend">
             <figcaption>
               <span className="et-dot" style={{ background: "#34d399" }} />{" "}
-              {t("Win rate over time", lang)}
+              {t("Win rate over time")}
             </figcaption>
             <div className="et-canvas">
               <Line data={winData} options={makeOpts()} />
@@ -211,7 +212,7 @@ export default function EntityTrends({
           <figure className="et-trend">
             <figcaption>
               <span className="et-dot" style={{ background: "#38bdf8" }} />{" "}
-              {t("Pick rate over time", lang)}
+              {t("Pick rate over time")}
             </figcaption>
             <div className="et-canvas">
               <Line data={pickData} options={makeOpts()} />

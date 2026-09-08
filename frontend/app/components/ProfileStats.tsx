@@ -1,15 +1,14 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
-import MyTierLists from "../tier-list-maker/MyTierLists";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import MyTierLists from "@/app/[locale]/tier-list-maker/MyTierLists";
 import ProfileInsights from "./ProfileInsights";
 import { characterHex } from "@/lib/character-colors";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -132,8 +131,8 @@ export default function ProfileStats({
   runs, runsTotal, runsLoading, runsPage, runsTotalPages,
   onPageChange, onDeleteRun, deleteConfirm, onDeleteConfirm,
 }: ProfileStatsProps) {
-  const lp = useLangPrefix();
-  const { lang } = useLanguage();
+  const t = useT();
+  const bp = useBetaPrefix();
   const [stats, setStats] = useState<Stats | null>(null);
   const [bests, setBests] = useState<PersonalBests | null>(null);
   const [competitive, setCompetitive] = useState<CompetitiveData | null>(null);
@@ -213,18 +212,18 @@ export default function ProfileStats({
   if (!stats || stats.total_runs === 0) {
     return (
       <p className="text-sm text-[var(--text-secondary)] py-4">
-        {t("No stats yet. Upload runs to see your personal stats here.", lang)}
+        {t("No stats yet. Upload runs to see your personal stats here.")}
       </p>
     );
   }
 
   const tabs: { key: Tab; label: string }[] = [
-    { key: "overview", label: t("Overview", lang) },
-    { key: "runs", label: t("Runs", lang) },
-    { key: "cards", label: t("Cards", lang) },
-    { key: "relics", label: t("Relics", lang) },
-    { key: "potions", label: t("Potions", lang) },
-    { key: "tierlists", label: t("Tier Lists", lang) },
+    { key: "overview", label: t("Overview") },
+    { key: "runs", label: t("Runs") },
+    { key: "cards", label: t("Cards") },
+    { key: "relics", label: t("Relics") },
+    { key: "potions", label: t("Potions") },
+    { key: "tierlists", label: t("Tier Lists") },
   ];
 
   const topCards = (stats.top_cards || [])
@@ -272,7 +271,7 @@ export default function ProfileStats({
             </div>
           ) : runs.length === 0 ? (
             <p className="text-sm text-[var(--text-secondary)] py-4">
-              {t("No runs yet. Upload .run files to get started.", lang)}
+              {t("No runs yet. Upload .run files to get started.")}
             </p>
           ) : (
             <>
@@ -306,7 +305,7 @@ export default function ProfileStats({
                       href={`/runs/${run.run_hash}`}
                       className="text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors shrink-0"
                     >
-                      {t("View", lang)}
+                      {t("View")}
                     </Link>
                     {deleteConfirm === run.run_hash ? (
                       <div className="flex items-center gap-1 shrink-0">
@@ -314,13 +313,13 @@ export default function ProfileStats({
                           onClick={() => onDeleteRun(run.run_hash)}
                           className="text-xs text-red-400 hover:text-red-300"
                         >
-                          {t("Confirm", lang)}
+                          {t("Confirm")}
                         </button>
                         <button
                           onClick={() => onDeleteConfirm(null)}
                           className="text-xs text-[var(--text-tertiary)]"
                         >
-                          {t("Cancel", lang)}
+                          {t("Cancel")}
                         </button>
                       </div>
                     ) : (
@@ -328,7 +327,7 @@ export default function ProfileStats({
                         onClick={() => onDeleteConfirm(run.run_hash)}
                         className="text-xs text-[var(--text-tertiary)] hover:text-red-400 transition-colors shrink-0"
                       >
-                        {t("Delete", lang)}
+                        {t("Delete")}
                       </button>
                     )}
                   </div>
@@ -342,7 +341,7 @@ export default function ProfileStats({
                     disabled={runsPage <= 1}
                     className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] disabled:opacity-30"
                   >
-                    {t("Prev", lang)}
+                    {t("Prev")}
                   </button>
                   <span className="text-sm text-[var(--text-tertiary)]">
                     {runsPage} / {runsTotalPages}
@@ -352,7 +351,7 @@ export default function ProfileStats({
                     disabled={runsPage >= runsTotalPages}
                     className="px-3 py-1.5 text-sm rounded border border-[var(--border-subtle)] disabled:opacity-30"
                   >
-                    {t("Next", lang)}
+                    {t("Next")}
                   </button>
                 </div>
               )}
@@ -363,9 +362,9 @@ export default function ProfileStats({
 
       {tab === "cards" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Cards", lang)}</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Cards")}</h3>
           {topCards.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">{t("No card data yet.", lang)}</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No card data yet.")}</p>
           ) : (
             <div className="space-y-0.5">
               {topCards.map((c) => {
@@ -375,8 +374,8 @@ export default function ProfileStats({
                     key={c.card_id}
                     name={info?.name || displayName(c.card_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${c.count} ${t("copies", lang)}`}
-                    href={`${lp}/cards/${c.card_id.toLowerCase()}`}
+                    stat={`${c.count} ${t("copies")}`}
+                    href={`${bp}/cards/${c.card_id.toLowerCase()}`}
                   />
                 );
               })}
@@ -387,9 +386,9 @@ export default function ProfileStats({
 
       {tab === "relics" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Relics", lang)}</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Used Relics")}</h3>
           {topRelics.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">{t("No relic data yet.", lang)}</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No relic data yet.")}</p>
           ) : (
             <div className="space-y-0.5">
               {topRelics.map((r) => {
@@ -399,8 +398,8 @@ export default function ProfileStats({
                     key={r.relic_id}
                     name={info?.name || displayName(r.relic_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${r.total_runs_with} ${t("runs", lang)}`}
-                    href={`${lp}/relics/${r.relic_id.toLowerCase()}`}
+                    stat={`${r.total_runs_with} ${t("runs")}`}
+                    href={`${bp}/relics/${r.relic_id.toLowerCase()}`}
                   />
                 );
               })}
@@ -411,9 +410,9 @@ export default function ProfileStats({
 
       {tab === "potions" && (
         <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Picked Potions", lang)}</h3>
+          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{t("Most Picked Potions")}</h3>
           {topPotions.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">{t("No potion data yet.", lang)}</p>
+            <p className="text-sm text-[var(--text-tertiary)]">{t("No potion data yet.")}</p>
           ) : (
             <div className="space-y-0.5">
               {topPotions.map((p) => {
@@ -423,8 +422,8 @@ export default function ProfileStats({
                     key={p.potion_id}
                     name={info?.name || displayName(p.potion_id)}
                     imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${p.pick_rate}% ${t("pick", lang)}`}
-                    href={`${lp}/potions/${p.potion_id.toLowerCase()}`}
+                    stat={`${p.pick_rate}% ${t("pick")}`}
+                    href={`${bp}/potions/${p.potion_id.toLowerCase()}`}
                   />
                 );
               })}
@@ -441,7 +440,7 @@ export default function ProfileStats({
               href="/tier-list-maker"
               className="text-sm text-sky-400 hover:underline"
             >
-              {t("New tier list", lang)}
+              {t("New tier list")}
             </Link>
           </div>
           <MyTierLists />

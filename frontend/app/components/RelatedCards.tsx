@@ -1,11 +1,11 @@
 "use client";
 
+import { useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -23,8 +23,8 @@ interface RelatedGroup {
 }
 
 export default function RelatedCards({ currentId, keywords, tags, color }: RelatedCardsProps) {
-  const { lang } = useLanguage();
-  const lp = useLangPrefix();
+  const lang = useGameLocale();
+  const bp = useBetaPrefix();
   // null while loading so a card with no relations at all renders nothing
   // instead of a permanent "Loading" stub.
   const [groups, setGroups] = useState<RelatedGroup[] | null>(null);
@@ -96,7 +96,7 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
                 <HoverTooltip title={card.name} content={card.description} image={card.image_url}>
                   <Link
                     prefetch={false}
-                    href={`${lp}/cards/${card.id.toLowerCase()}`}
+                    href={`${bp}/cards/${card.id.toLowerCase()}`}
                     className="text-sm text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
                   >
                     {card.name}

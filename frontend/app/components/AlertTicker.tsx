@@ -1,5 +1,6 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 // One unclosable banner that cycles through a small fixed set of promos plus
 // any live admin announcements, 5 seconds each, looping. Replaces the old
 // stack of separately-dismissible banners (Overwolf / Mod / Donation) and the
@@ -12,10 +13,8 @@
 // There is intentionally no dismiss control: the ticker is always present.
 
 import { useState, useEffect, type ReactNode } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
-import { t } from "@/lib/ui-translations";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const MOD_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911";
@@ -63,7 +62,8 @@ function renderAnnouncement(message: string): ReactNode[] {
 }
 
 export default function AlertTicker() {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [announcements, setAnnouncements] = useState<Announcement[]>([]);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -91,20 +91,18 @@ export default function AlertTicker() {
           />
           <span className="flex-1 min-w-0 text-sm text-white/90 line-clamp-2">
             <span className="font-semibold text-white">
-              {t("Spire Codex is now on Overwolf.", lang)}
+              {t("Spire Codex is now on Overwolf.")}
             </span>{" "}
             <span className="hidden sm:inline">
               {t(
-                "Get the in-game overlay with live card lookups and one-click run uploads.",
-                lang,
-              )}{" "}
+                "Get the in-game overlay with live card lookups and one-click run uploads.")}{" "}
             </span>
             <Link
               prefetch={false}
               href="/overlay"
               className="text-[var(--accent-gold)] hover:underline font-medium whitespace-nowrap"
             >
-              {t("Learn more", lang)} →
+              {t("Learn more")} →
             </Link>
           </span>
         </>
@@ -123,13 +121,11 @@ export default function AlertTicker() {
           />
           <span className="flex-1 min-w-0 text-sm text-[#c7d5e0] line-clamp-2">
             <span className="font-semibold text-white">
-              {t("Spire Codex now has a mod.", lang)}
+              {t("Spire Codex now has a mod.")}
             </span>{" "}
             <span className="hidden sm:inline">
               {t(
-                "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner",
-                lang,
-              )}
+                "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner")}
               .{" "}
             </span>
             <a
@@ -138,7 +134,7 @@ export default function AlertTicker() {
               rel="noopener noreferrer"
               className="text-[var(--accent-gold)] hover:underline font-medium whitespace-nowrap"
             >
-              {t("Learn more", lang)} →
+              {t("Learn more")} →
             </a>
           </span>
         </>
@@ -157,23 +153,22 @@ export default function AlertTicker() {
             crossOrigin="anonymous"
           />
           <span className="flex-1 min-w-0 text-sm text-emerald-200 italic line-clamp-2">
-            &ldquo;I haven&apos;t had a visitor in a millennia! If you wish to
-            support Spire Codex, consider{" "}
+            &ldquo;{t("I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider")}{" "}
             <a
               href="https://www.patreon.com/cw/SpireCodex"
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium not-italic text-emerald-200 underline hover:text-white transition-colors"
             >
-              supporting us on Patreon
+              {t("supporting us on Patreon")}
             </a>
-            . Servants! Fetch tea for{" "}
+            . {t("Servants! Fetch tea for")}{" "}
             <Link
               prefetch={false}
               href="/thank-you"
               className="font-medium not-italic text-emerald-200 underline hover:text-white transition-colors"
             >
-              those who&apos;ve supported us
+              {t("those who've supported us")}
             </Link>
             .&rdquo;
           </span>
@@ -194,7 +189,7 @@ export default function AlertTicker() {
           <span className="flex-1 min-w-0 text-sm text-green-200 line-clamp-2">
             {/* green-700, not green-500: white on green-500 is 2.3:1 in every theme */}
             <span className="mr-2 rounded bg-green-700 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
-              {t("New", lang)}
+              {t("New")}
             </span>
             {renderAnnouncement(a.message)}
           </span>
@@ -222,7 +217,7 @@ export default function AlertTicker() {
     <div
       className={`${active.bg} border-b ${active.border}`}
       role="region"
-      aria-label="Announcements"
+      aria-label={t("Announcements")}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
@@ -237,7 +232,7 @@ export default function AlertTicker() {
                 key={s.key}
                 type="button"
                 onClick={() => setIndex(i)}
-                aria-label={`Show announcement ${i + 1} of ${count}`}
+                aria-label={t("Show announcement {i} of {n}", { i: i + 1, n: count })}
                 aria-current={i === safeIndex}
                 className={`h-1.5 rounded-full transition-all ${
                   i === safeIndex

@@ -27,11 +27,9 @@ async function loadStats(): Promise<CommunityStats | null> {
 }
 
 export default async function HomeStatsSection({
-  langPrefix = "",
   lang = "eng",
   characterNames,
 }: {
-  langPrefix?: string;
   lang?: string;
   characterNames?: Record<string, string>;
 }) {
@@ -41,7 +39,6 @@ export default async function HomeStatsSection({
   return (
     <HomeStatsLive
       initialStats={stats}
-      langPrefix={langPrefix}
       lang={lang}
       characterNames={characterNames}
       runsHost={RUNS_HOST}

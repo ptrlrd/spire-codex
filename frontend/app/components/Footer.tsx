@@ -1,10 +1,9 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -16,7 +15,7 @@ declare global {
 }
 
 function FeedbackModal({ onClose, page }: { onClose: () => void; page: string }) {
-  const { lang } = useLanguage();
+  const t = useT();
   const [type, setType] = useState("Bug");
   const [contact, setContact] = useState("");
   const [contents, setContents] = useState("");
@@ -42,7 +41,7 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
       setSent(true);
       setTimeout(onClose, 1500);
     } catch {
-      setError(t("Failed to send. Please try again.", lang));
+      setError(t("Failed to send. Please try again."));
     } finally {
       setSending(false);
     }
@@ -55,13 +54,13 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
         className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-black/50 p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">{t("Submit Feedback", lang)}</h2>
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">{t("Submit Feedback")}</h2>
 
         {sent ? (
-          <p className="text-emerald-400 text-sm py-4">{t("Sent successfully. Thank you!", lang)}</p>
+          <p className="text-emerald-400 text-sm py-4">{t("Sent successfully. Thank you!")}</p>
         ) : (
           <>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Page", lang)}</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Page")}</label>
             <input
               type="text"
               value={page}
@@ -69,32 +68,32 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Type", lang)}</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Type")}</label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
             >
-              <option value="Bug">{t("Bug", lang)}</option>
-              <option value="Feature Request">{t("Feature Request", lang)}</option>
-              <option value="Localization">{t("Localization", lang)}</option>
+              <option value="Bug">{t("Bug")}</option>
+              <option value="Feature Request">{t("Feature Request")}</option>
+              <option value="Localization">{t("Localization")}</option>
             </select>
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Discord Username or Email", lang)} <span className="text-red-400">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Discord Username or Email")} <span className="text-red-400">*</span></label>
             <input
               type="text"
               value={contact}
               onChange={(e) => setContact(e.target.value)}
-              placeholder="username#1234 or email@example.com"
+              placeholder={t("username#1234 or email@example.com")}
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Contents", lang)} <span className="text-red-400">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Contents")} <span className="text-red-400">*</span></label>
             <textarea
               value={contents}
               onChange={(e) => setContents(e.target.value)}
               rows={5}
-              placeholder={t("Describe the bug or feature request...", lang)}
+              placeholder={t("Describe the bug or feature request...")}
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] resize-none"
             />
 
@@ -105,14 +104,14 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
                 onClick={onClose}
                 className="px-4 py-2 rounded-lg text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
               >
-                {t("Cancel", lang)}
+                {t("Cancel")}
               </button>
               <button
                 onClick={handleSubmit}
                 disabled={sending || !contents.trim() || !contact.trim()}
                 className="px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
               >
-                {sending ? t("Sending...", lang) : t("Submit", lang)}
+                {sending ? t("Sending...") : t("Submit")}
               </button>
             </div>
           </>
@@ -123,7 +122,7 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
 }
 
 export default function Footer() {
-  const { lang } = useLanguage();
+  const t = useT();
   const pathname = usePathname();
   const [showFeedback, setShowFeedback] = useState(false);
 
@@ -157,7 +156,7 @@ export default function Footer() {
           rel="noopener noreferrer"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          API
+          {t("API")}
         </a>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <Link
@@ -165,7 +164,7 @@ export default function Footer() {
           href="/developers"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          {t("Developers", lang)}
+          {t("Developers")}
         </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <a
@@ -199,7 +198,7 @@ export default function Footer() {
           onClick={() => setShowFeedback(true)}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          {t("Submit Feedback", lang)}
+          {t("Submit Feedback")}
         </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <Link
@@ -207,21 +206,21 @@ export default function Footer() {
           href="/privacy"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Privacy
+          {t("Privacy")}
         </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <button
           onClick={() => window.__tcfapi?.("displayConsentUi", 2, () => {})}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Manage Consent
+          {t("Manage Consent")}
         </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <button
           onClick={() => window.__uspapi?.("displayUspUi")}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Do Not Sell My Personal Information
+          {t("Do Not Sell My Personal Information")}
         </button>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <Link
@@ -229,7 +228,7 @@ export default function Footer() {
           href="/terms"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          Terms
+          {t("Terms")}
         </Link>
         <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
         <Link
@@ -237,7 +236,7 @@ export default function Footer() {
           href="/beta"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
-          {t("Beta Site", lang)}
+          {t("Beta Site")}
         </Link>
       </div>
       {showFeedback && <FeedbackModal onClose={closeFeedback} page={pathname} />}

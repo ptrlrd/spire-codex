@@ -1,5 +1,6 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 // API key manager (settings page, "API Key" tab). One key per account:
 // create it (the raw key is shown
 // exactly once, with a copy button), list your keys, revoke them. Keys are sent
@@ -7,8 +8,6 @@
 // registered tier.
 
 import { useCallback, useEffect, useState } from "react";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import { fmtDate as fmtPacificDate } from "@/lib/pacific";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -31,13 +30,14 @@ const TIER_LABELS: Record<string, string> = {
   paid: "Paid",
 };
 
-function fmtDate(iso: string | null): string {
-  if (!iso) return "never";
+function fmtDate(iso: string | null, never: string): string {
+  if (!iso) return never;
   return fmtPacificDate(iso);
 }
 
 export default function ApiKeysSection() {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [keys, setKeys] = useState<ApiKey[] | null>(null);
   const [label, setLabel] = useState("");
   const [newKey, setNewKey] = useState<string | null>(null);
@@ -52,9 +52,9 @@ export default function ApiKeysSection() {
       .catch(() => {
         // A failed load is not "you have no keys" - say so instead.
         setKeys([]);
-        setError("Could not load your keys. Refresh to retry.");
+        setError(t("Could not load your keys. Refresh to retry."));
       });
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     load();
@@ -106,23 +106,21 @@ export default function ApiKeysSection() {
   return (
     <section>
       <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-1">
-        {t("API Key", lang)}
+        {t("API Key")}
       </h2>
       <p className="text-sm text-[var(--text-secondary)] mb-3 max-w-2xl">
         {t(
-          "For scripts and tools that call the API directly. Send the key as the X-API-Key header to get your own rate limit instead of the shared per-IP cap.",
-          lang,
-        )}
+          "For scripts and tools that call the API directly. Send the key as the X-API-Key header to get your own rate limit instead of the shared per-IP cap.")}
       </p>
 
       {/* The raw key, shown exactly once after creation. */}
       {newKey && (
         <div className="mb-4 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/5 p-4">
           <div className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Your new key", lang)}
+            {t("Your new key")}
           </div>
           <div className="text-xs text-[var(--text-secondary)] mb-2">
-            {t("Copy it now. For your security it is only shown this once.", lang)}
+            {t("Copy it now. For your security it is only shown this once.")}
           </div>
           <div className="flex gap-2">
             <code className="flex-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-xs font-mono text-[var(--text-primary)] break-all">
@@ -133,14 +131,14 @@ export default function ApiKeysSection() {
               onClick={copy}
               className="shrink-0 px-3 py-2 rounded-lg text-sm border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]"
             >
-              {copied ? t("Copied", lang) : t("Copy", lang)}
+              {copied ? t("Copied") : t("Copy")}
             </button>
             <button
               type="button"
               onClick={() => setNewKey(null)}
               className="shrink-0 px-3 py-2 rounded-lg text-sm border border-[var(--border-subtle)] text-[var(--text-secondary)]"
             >
-              {t("Done", lang)}
+              {t("Done")}
             </button>
           </div>
         </div>
@@ -150,7 +148,7 @@ export default function ApiKeysSection() {
 
       {/* Existing keys */}
       {keys === null ? (
-        <p className="text-sm text-[var(--text-muted)]">Loading…</p>
+        <p className="text-sm text-[var(--text-muted)]">{t("Loading…")}</p>
       ) : active.length > 0 ? (
         <div className="mb-4 rounded-lg border border-[var(--border-subtle)] overflow-hidden">
           {active.map((k) => (
@@ -160,23 +158,23 @@ export default function ApiKeysSection() {
             >
               <div className="flex-1 min-w-0">
                 <div className="text-sm text-[var(--text-primary)] truncate">
-                  {k.label || t("Unnamed key", lang)}
+                  {k.label || t("Unnamed key")}
                 </div>
                 <div className="text-xs text-[var(--text-muted)]">
-                  {t("created", lang)} {fmtDate(k.created_at)} · {t("last used", lang)}{" "}
-                  {fmtDate(k.last_used_at)}
+                  {t("created")} {fmtDate(k.created_at, t("never"))} · {t("last used")}{" "}
+                  {fmtDate(k.last_used_at, t("never"))}
                 </div>
               </div>
               <div className="shrink-0 text-right tabular-nums text-xs">
                 <div className="text-[var(--text-primary)]">
-                  {(k.requests_today ?? 0).toLocaleString()} {t("today", lang)}
+                  {(k.requests_today ?? 0).toLocaleString()} {t("today")}
                 </div>
                 <div className="text-[var(--text-muted)]">
-                  {(k.requests_week ?? 0).toLocaleString()} / 7d
+                  {t("{n} / 7d", { n: (k.requests_week ?? 0).toLocaleString() })}
                 </div>
               </div>
               <span className="shrink-0 text-xs px-2 py-0.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)]">
-                {TIER_LABELS[k.tier] ?? k.tier}
+                {t(TIER_LABELS[k.tier] ?? k.tier)}
               </span>
               <button
                 type="button"
@@ -184,7 +182,7 @@ export default function ApiKeysSection() {
                 onClick={() => revokeKey(k.id)}
                 className="shrink-0 text-xs px-2.5 py-1 rounded-lg border border-red-500/40 bg-red-500/10 text-red-400 disabled:opacity-50"
               >
-                {t("Revoke", lang)}
+                {t("Revoke")}
               </button>
             </div>
           ))}
@@ -194,7 +192,7 @@ export default function ApiKeysSection() {
       {/* One key per account: only offer creation when there is none. */}
       {keys !== null && active.length > 0 && (
         <p className="text-xs text-[var(--text-muted)]">
-          {t("One key per account. Revoke it to create a new one.", lang)}
+          {t("One key per account. Revoke it to create a new one.")}
         </p>
       )}
       {keys !== null && active.length === 0 && (
@@ -204,7 +202,7 @@ export default function ApiKeysSection() {
           value={label}
           onChange={(e) => setLabel(e.target.value)}
           maxLength={80}
-          placeholder={t("Label (e.g. my script)", lang)}
+          placeholder={t("Label (e.g. my script)")}
           className="flex-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text-primary)]"
         />
         <button
@@ -213,7 +211,7 @@ export default function ApiKeysSection() {
           onClick={createKey}
           className="shrink-0 px-4 py-2 rounded-lg text-sm border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] disabled:opacity-50"
         >
-          {t("Create key", lang)}
+          {t("Create key")}
         </button>
       </div>
       )}

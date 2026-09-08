@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import {
   CONTENT_BRACKETS,
   PLAYER_BRACKETS,
@@ -12,6 +12,7 @@ import {
 } from "@/lib/content-brackets";
 import VersionSelectNav from "@/app/components/VersionSelectNav";
 import { imageUrl } from "@/lib/image-url";
+import { getT } from "@/lib/i18n-server";
 
 /**
  * Bracket pill rows (All / Asc 10 / win-rate tiers, plus player count) for
@@ -29,7 +30,7 @@ import { imageUrl } from "@/lib/image-url";
  * ?bracket= slot and are mutually exclusive (blob-backed pages like community
  * stats, which have no composites).
  */
-export default function BracketFilter({
+export default async function BracketFilter({
   basePath,
   current,
   extraParams,
@@ -44,6 +45,7 @@ export default function BracketFilter({
    * so the mode row composes with player + skill instead of replacing them. */
   modeComposes?: boolean;
 }) {
+  const t = await getT();
   const active = normalizeBracket(current);
   const { player, skill, mode, character, version } = splitBracket(active);
 
@@ -76,21 +78,21 @@ export default function BracketFilter({
         href={hrefFor(b.key === "all" ? version || "all" : version ? `${b.key}:${version}` : b.key)}
         className={pillCls(base === b.key || (b.key === "all" && !base))}
       >
-        {b.label}
+        {t(b.label)}
       </Link>
     );
     return (
       <div className="mb-5 space-y-1.5">
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-[var(--text-muted)] mr-1">Bracket</span>
+          <span className="text-xs text-[var(--text-muted)] mr-1">{t("Bracket")}</span>
           {CONTENT_BRACKETS.map(renderPill)}
           {/* Player count shares the ?bracket= slot, so picking one clears the
               content bracket and vice versa. */}
-          <span className="text-xs text-[var(--text-muted)] mx-1">Players</span>
+          <span className="text-xs text-[var(--text-muted)] mx-1">{t("Players")}</span>
           {PLAYER_BRACKETS.map(renderPill)}
         </div>
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="w-14 text-xs text-[var(--text-muted)]">Mode</span>
+        <span className="w-14 text-xs text-[var(--text-muted)]">{t("Mode")}</span>
         <Link
           prefetch={false}
           rel="nofollow"
@@ -103,7 +105,7 @@ export default function BracketFilter({
           )}
           className={pillCls(!MODE_BRACKETS.some((m) => m.key === base))}
         >
-          All
+          {t("All")}
         </Link>
         {MODE_BRACKETS.map((m) => (
           <Link
@@ -113,7 +115,7 @@ export default function BracketFilter({
             href={hrefFor(version ? `${m.key}:${version}` : m.key)}
             className={pillCls(base === m.key)}
           >
-            {m.label}
+            {t(m.label)}
           </Link>
         ))}
       </div>
@@ -135,7 +137,7 @@ export default function BracketFilter({
   return (
     <div className="mb-5 space-y-1.5">
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="w-14 text-xs text-[var(--text-muted)]">Bracket</span>
+        <span className="w-14 text-xs text-[var(--text-muted)]">{t("Bracket")}</span>
         {CONTENT_BRACKETS.map((b) => {
           const targetSkill = b.key === "all" ? "" : b.key;
           return (
@@ -146,13 +148,13 @@ export default function BracketFilter({
               href={hrefFor(combineBracket(player, targetSkill, version, modeComposes ? mode : "", modeComposes ? character : ""))}
               className={pillCls(skill === targetSkill)}
             >
-              {b.label}
+              {t(b.label)}
             </Link>
           );
         })}
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="w-14 text-xs text-[var(--text-muted)]">Players</span>
+        <span className="w-14 text-xs text-[var(--text-muted)]">{t("Players")}</span>
         {playerOpts.map((b) => (
           <Link
             prefetch={false}
@@ -161,12 +163,12 @@ export default function BracketFilter({
             href={hrefFor(combineBracket(b.key, skill, version, modeComposes ? mode : "", modeComposes ? character : ""))}
             className={pillCls(player === b.key)}
           >
-            {b.label}
+            {t(b.label)}
           </Link>
         ))}
       </div>
       <div className="flex flex-wrap items-center gap-1.5">
-        <span className="w-14 text-xs text-[var(--text-muted)]">Mode</span>
+        <span className="w-14 text-xs text-[var(--text-muted)]">{t("Mode")}</span>
         {modeComposes ? (
           <>
             {/* Cube-backed page: mode is a real axis, so every mode pill
@@ -177,7 +179,7 @@ export default function BracketFilter({
               href={hrefFor(combineBracket(player, skill, version, "", character))}
               className={pillCls(!mode)}
             >
-              All
+              {t("All")}
             </Link>
             {MODE_BRACKETS.map((m) => (
               <Link
@@ -187,7 +189,7 @@ export default function BracketFilter({
                 href={hrefFor(combineBracket(player, skill, version, m.key, character))}
                 className={pillCls(mode === m.key)}
               >
-                {m.label}
+                {t(m.label)}
               </Link>
             ))}
           </>
@@ -205,7 +207,7 @@ export default function BracketFilter({
               )}
               className={pillCls(!MODE_BRACKETS.some((m) => m.key === base))}
             >
-              All
+              {t("All")}
             </Link>
             {MODE_BRACKETS.map((m) => (
               <Link
@@ -215,7 +217,7 @@ export default function BracketFilter({
                 href={hrefFor(version ? `${m.key}:${version}` : m.key)}
                 className={pillCls(base === m.key)}
               >
-                {m.label}
+                {t(m.label)}
               </Link>
             ))}
           </>
@@ -223,14 +225,14 @@ export default function BracketFilter({
       </div>
       {modeComposes && (
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="w-14 text-xs text-[var(--text-muted)]">Character</span>
+          <span className="w-14 text-xs text-[var(--text-muted)]">{t("Character")}</span>
           <Link
             prefetch={false}
             rel="nofollow"
             href={hrefFor(combineBracket(player, skill, version, mode))}
             className={pillCls(!character)}
           >
-            All
+            {t("All")}
           </Link>
           {CHARACTER_BRACKETS.map((c) => (
             <Link
@@ -248,7 +250,7 @@ export default function BracketFilter({
                 className="w-4 h-4 rounded-sm"
                 crossOrigin="anonymous"
               />
-              {c.label}
+              {t(c.label)}
             </Link>
           ))}
         </div>

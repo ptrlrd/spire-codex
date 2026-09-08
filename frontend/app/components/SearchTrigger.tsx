@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/lib/i18n";
 /**
  * Input-styled trigger that opens the GlobalSearch modal.
  *
@@ -7,8 +8,6 @@
  * event, dispatching that event is how we open it from anywhere.
  */
 
-import { t } from "@/lib/ui-translations";
-import { useLanguage } from "@/app/contexts/LanguageContext";
 
 type Variant = "hero" | "nav" | "icon";
 
@@ -36,14 +35,14 @@ interface Props {
 }
 
 export default function SearchTrigger({ variant, className = "", placeholder }: Props) {
-  const { lang } = useLanguage();
+  const t = useT();
 
   if (variant === "icon") {
     return (
       <button
         type="button"
         onClick={openGlobalSearch}
-        aria-label={t("Search", lang)}
+        aria-label={t("Search")}
         className={`inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors ${className}`}
       >
         <SearchIcon className="w-5 h-5" />
@@ -60,10 +59,10 @@ export default function SearchTrigger({ variant, className = "", placeholder }: 
       >
         <SearchIcon className="w-5 h-5 text-[var(--text-muted)] group-hover:text-[var(--accent-gold)] transition-colors shrink-0" />
         <span className="flex-1 text-base text-[var(--text-muted)] truncate">
-          {placeholder ?? t("Find your next card, relic, or potion...", lang)}
+          {placeholder ?? t("Find your next card, relic, or potion...")}
         </span>
         <kbd className="hidden sm:inline-block text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5 shrink-0">
-          {t("Press .", lang)}
+          {t("Press .")}
         </kbd>
       </button>
     );
@@ -78,7 +77,7 @@ export default function SearchTrigger({ variant, className = "", placeholder }: 
     >
       <SearchIcon className="w-4 h-4 text-[var(--text-muted)] group-hover:text-[var(--accent-gold)] transition-colors shrink-0" />
       <span className="flex-1 text-left text-[var(--text-muted)] truncate">
-        {placeholder ?? t("Search cards, relics, monsters...", lang)}
+        {placeholder ?? t("Search cards, relics, monsters...")}
       </span>
       <kbd className="text-xs text-[var(--text-muted)] border border-[var(--border-subtle)] rounded px-1.5 py-0.5 shrink-0">
         .

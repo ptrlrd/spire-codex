@@ -5,7 +5,6 @@
  */
 
 export const SUPPORTED_LANGS = [
-  "eng",
   "deu",
   "esp",
   "fra",
@@ -33,9 +32,23 @@ export type LangCode = (typeof SUPPORTED_LANGS)[number];
  */
 export const LANG_PREFIXES: ReadonlySet<string> = new Set(SUPPORTED_LANGS);
 
+/** Sections and paths that only exist in English: localized URLs 308 to the bare path. */
+export const ENGLISH_ONLY_SECTIONS: ReadonlySet<string> = new Set(["admin", "players"]);
+export const ENGLISH_ONLY_PATHS: ReadonlySet<string> = new Set(["news/codex", "cards/browse"]);
+
+/** Browser language (BCP-47) to the game code it should be offered, most specific first. */
+export function langFromBrowser(tag: string): LangCode | "eng" | null {
+  const t = tag.toLowerCase();
+  if (t.startsWith("en")) return "eng";
+  if (t.startsWith("zh")) return /hant|tw|hk|mo/.test(t) ? "zht" : "zhs";
+  if (t.startsWith("es")) return t === "es" || t.startsWith("es-es") ? "esp" : "spa";
+  if (t.startsWith("pt")) return "ptb";
+  const two: Record<string, LangCode> = { de: "deu", fr: "fra", it: "ita", ja: "jpn", ko: "kor", pl: "pol", ru: "rus", th: "tha", tr: "tur" };
+  return two[t.slice(0, 2)] ?? null;
+}
+
 /** Maps 3-letter game codes to BCP-47 / hreflang codes */
 export const LANG_HREFLANG: Record<LangCode, string> = {
-  eng: "en",
   deu: "de",
   esp: "es-ES",
   fra: "fr",
@@ -56,9 +69,26 @@ export const LANG_HREFLANG: Record<LangCode, string> = {
   zht: "zh-Hant",
 };
 
+/** Open Graph locale codes (language_TERRITORY), distinct from the hreflang tags above. */
+export const LANG_OG_LOCALE: Record<LangCode, string> = {
+  deu: "de_DE",
+  esp: "es_ES",
+  fra: "fr_FR",
+  ita: "it_IT",
+  jpn: "ja_JP",
+  kor: "ko_KR",
+  pol: "pl_PL",
+  ptb: "pt_BR",
+  rus: "ru_RU",
+  spa: "es_LA",
+  tha: "th_TH",
+  tur: "tr_TR",
+  zhs: "zh_CN",
+  zht: "zh_TW",
+};
+
 /** Human-readable native language names */
 export const LANG_NAMES: Record<LangCode, string> = {
-  eng: "English",
   deu: "Deutsch",
   esp: "Espanol (ES)",
   fra: "Francais",
@@ -83,7 +113,6 @@ export const LANG_NAMES: Record<LangCode, string> = {
  * this single source ships the abbreviation to all 52+ localized pages.
  */
 export const LANG_GAME_NAME: Record<LangCode, string> = {
-  eng: "Slay the Spire 2 (STS2)",
   deu: "Slay the Spire 2 (STS2)",
   esp: "Slay the Spire 2 (STS2)",
   fra: "Slay the Spire 2 (STS2)",
@@ -102,7 +131,6 @@ export const LANG_GAME_NAME: Record<LangCode, string> = {
 
 /** Localized "Database" for title/descriptions */
 export const LANG_DATABASE: Record<LangCode, string> = {
-  eng: "Database",
   deu: "Datenbank",
   esp: "Base de datos",
   fra: "Base de donnees",
@@ -121,7 +149,6 @@ export const LANG_DATABASE: Record<LangCode, string> = {
 
 /** Localized "Cards" label */
 export const LANG_CARDS: Record<LangCode, string> = {
-  eng: "Cards",
   deu: "Karten",
   esp: "Cartas",
   fra: "Cartes",
@@ -140,7 +167,6 @@ export const LANG_CARDS: Record<LangCode, string> = {
 
 /** Localized "Relics" label */
 export const LANG_RELICS: Record<LangCode, string> = {
-  eng: "Relics",
   deu: "Relikte",
   esp: "Reliquias",
   fra: "Reliques",
@@ -157,10 +183,4 @@ export const LANG_RELICS: Record<LangCode, string> = {
   zht: "遺物",
 };
 
-export function isValidLang(lang: string): lang is LangCode {
-  return (SUPPORTED_LANGS as readonly string[]).includes(lang);
-}
 
-export function getLangOrDefault(lang?: string): LangCode {
-  return lang && isValidLang(lang) ? lang : "eng";
-}

@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
+import createNextIntlPlugin from "next-intl/plugin";
 
 const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
@@ -105,7 +106,9 @@ const nextConfig: NextConfig = {
   productionBrowserSourceMaps: true,
 };
 
-export default withSentryConfig(nextConfig, {
+const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
+export default withSentryConfig(withNextIntl(nextConfig), {
   // For all available options, see:
   // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 

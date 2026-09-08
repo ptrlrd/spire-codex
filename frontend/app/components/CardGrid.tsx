@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api";
 import { getCardDisplayModel } from "@/lib/card-display";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "./RichDescription";
 import BetaBadge from "./BetaBadge";
+import { useT } from "@/lib/i18n";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
@@ -52,7 +53,8 @@ function renderDescription(card: Card, text: string): React.ReactNode {
 }
 
 function CardItem({ card }: { card: Card }) {
-  const lp = useLangPrefix();
+  const t = useT();
+  const bp = useBetaPrefix();
   const [upgraded, setUpgraded] = useState(false);
   const [betaArt, setBetaArt] = useState(false);
   const display = getCardDisplayModel(card, upgraded);
@@ -71,8 +73,8 @@ function CardItem({ card }: { card: Card }) {
         prefetch={false}
         href={
           card.beta
-            ? `${lp}/beta/cards/${card.id.toLowerCase()}`
-            : `${lp}/cards/${card.id.toLowerCase()}`
+            ? `${bp}/beta/cards/${card.id.toLowerCase()}`
+            : `${bp}/cards/${card.id.toLowerCase()}`
         }
         className="absolute inset-0 z-10"
       />
@@ -83,7 +85,7 @@ function CardItem({ card }: { card: Card }) {
           <div className="mb-3 -mx-4 -mt-4">
             <img
               src={imageUrl(imgUrl)}
-              alt={`${card.name} - Slay the Spire 2 Card`}
+              alt={t("{name} - Slay the Spire 2 Card", { name: card.name })}
               className="w-full h-32 object-cover rounded-t-lg"
               loading="lazy"
               crossOrigin="anonymous"
@@ -108,7 +110,7 @@ function CardItem({ card }: { card: Card }) {
             <span className="inline-flex items-center gap-0.5 h-7 px-2 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
               {card.is_x_star_cost ? "X" : card.star_cost}
               <img src={imageUrl("/static/images/icons/star_icon.webp")}
-                alt="star" className="w-3.5 h-3.5" crossOrigin="anonymous" />
+                alt={t("star")} className="w-3.5 h-3.5" crossOrigin="anonymous" />
             </span>
           )}
         </div>
@@ -150,7 +152,7 @@ function CardItem({ card }: { card: Card }) {
                   ? "bg-amber-950/60 border border-amber-700/50"
                   : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
               }`}
-              title={betaArt ? "Show normal art" : "Show beta art"}
+              title={betaArt ? t("Show normal art") : t("Show beta art")}
             >
               ✏️
             </button>
@@ -163,7 +165,7 @@ function CardItem({ card }: { card: Card }) {
                   ? "bg-emerald-950/60 border border-emerald-700/50"
                   : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
               }`}
-              title={upgraded ? "Show base card" : "Show upgraded"}
+              title={upgraded ? t("Show base card") : t("Show upgraded")}
             >
               🔨
             </button>

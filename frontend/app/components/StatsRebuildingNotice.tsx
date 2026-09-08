@@ -7,10 +7,12 @@
 // minute and removes itself when the snapshot lands.
 
 import { useEffect, useState } from "react";
+import { useT } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export default function StatsRebuildingNotice() {
+  const t = useT();
   const [building, setBuilding] = useState(false);
 
   useEffect(() => {
@@ -49,9 +51,8 @@ export default function StatsRebuildingNotice() {
   if (!building) return null;
   return (
     <div className="rounded-lg border border-amber-500/40 bg-amber-500/10 px-4 py-2.5 mb-4 text-sm text-[var(--text-secondary)]">
-      <span className="font-semibold text-amber-300 mr-2">Heads up</span>
-      Stats are rebuilding after an update. Charts, metrics, and scores
-      usually fill back in within 15 minutes; no data is lost.
+      <span className="font-semibold text-amber-300 mr-2">{t("Heads up")}</span>
+      {t("Stats are rebuilding after an update. Charts, metrics, and scores usually fill back in within 15 minutes; no data is lost.")}
     </div>
   );
 }

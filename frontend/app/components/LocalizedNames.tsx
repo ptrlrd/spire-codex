@@ -1,10 +1,9 @@
 "use client";
 
+import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -53,7 +52,8 @@ export default function LocalizedNames({
   entityType,
   entityId,
 }: LocalizedNamesProps) {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
+  const t = useT();
   const [names, setNames] = useState<Record<string, string> | null>(null);
 
   // Fetch once on mount and render the links directly (no drawer) so the
@@ -99,7 +99,7 @@ export default function LocalizedNames({
 
   return (
     <section id="other-languages">
-      <h2>{t("Other languages", lang)}</h2>
+      <h2>{t("Other languages")}</h2>
       {rows.length > 0 ? (
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm list-none p-0 m-0">
           {rows.map(({ apiName, name, href, hrefLang }) => (
@@ -127,7 +127,7 @@ export default function LocalizedNames({
           ))}
         </ul>
       ) : (
-        <p className="text-xs text-[var(--text-muted)] m-0">Loading…</p>
+        <p className="text-xs text-[var(--text-muted)] m-0">{t("Loading…")}</p>
       )}
     </section>
   );

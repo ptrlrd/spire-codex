@@ -1,8 +1,8 @@
 "use client";
 
+import { useGameLocale } from "@/lib/i18n";
 import { useState } from "react";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useLanguage } from "../contexts/LanguageContext";
 
 /**
  * Wraps any inline element and pops the full game-rendered card image on hover
@@ -22,7 +22,7 @@ export default function CardHover({
   children: React.ReactNode;
 }) {
   const [failed, setFailed] = useState(false);
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
   return (
     <span className={`relative group/cardhover ${className}`}>
       {children}

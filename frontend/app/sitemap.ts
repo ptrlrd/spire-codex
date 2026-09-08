@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ALL_BROWSE_SLUGS } from "./cards/browse/slug-map";
+import { ALL_BROWSE_SLUGS } from "@/app/[locale]/cards/browse/slug-map";
 import { SUPPORTED_LANGS } from "@/lib/languages";
 import { imageUrl } from "@/lib/image-url";
 import { TIER_CARD_COLORS, TIER_RELIC_ACTS, TIER_RELIC_ANCIENTS, TIER_RELIC_POOLS } from "@/lib/tier-list-filters";
@@ -13,13 +13,13 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 
 /**
  * Locale-prefixed routes are only emitted when the route ACTUALLY exists
- * under `app/[lang]/`. Routes that have a list page (page.tsx) but no
+ * under `app/[locale]/`. Routes that have a list page (page.tsx) but no
  * detail folder, or vice versa, are tracked here so we don't ship 404s
- * to Google. Verified 2026-05-19 against `frontend/app/[lang]/` tree.
+ * to Google. Verified 2026-05-19 against `frontend/app/[locale]/` tree.
  *
  * Categories:
- *  - `LANG_LIST_ROUTES`, routes with `app/[lang]/{route}/page.tsx`
- *  - `LANG_DETAIL_ROUTES`, routes with `app/[lang]/{route}/[id]/page.tsx`
+ *  - `LANG_LIST_ROUTES`, routes with `app/[locale]/{route}/page.tsx`
+ *  - `LANG_DETAIL_ROUTES`, routes with `app/[locale]/{route}/[id]/page.tsx`
  *
  * The intersection gets both list + detail URLs in the sitemap; the
  * list-only entries get only the index page.
@@ -27,8 +27,8 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
  * Re-verified 2026-07-25 against the tree: added the hubs that had
  * landed since May (charts, community-stats, tier-list, mod, overlay,
  * knowledge-demon, giveaway, meta) plus modifiers, which always had a
- * localized list page but was only in the detail set. `/{lang}/runs`
- * stays out on purpose: it 308s to /runs.
+ * localized list page but was only in the detail set. `runs` joined
+ * when the localized runs pages became real translations (next-intl).
  */
 const LANG_LIST_ROUTES = [
   "cards",
@@ -67,10 +67,13 @@ const LANG_LIST_ROUTES = [
   "overlay",
   "knowledge-demon",
   "giveaway",
-  "meta",
+  "runs",
+  "tier-list/cards",
+  "tier-list/relics",
+  "tier-list/potions",
 ] as const;
 
-// Routes with a working `app/[lang]/{route}/[id]/page.tsx` (or `[slug]`).
+// Routes with a working `app/[locale]/{route}/[id]/page.tsx` (or `[slug]`).
 // Excludes timeline, no [id] folder under [lang]/timeline so localized
 // epoch URLs 404. Includes acts/ascensions/intents/orbs/afflictions/
 // modifiers/achievements even though their LIST pages don't exist under
@@ -95,7 +98,7 @@ const LANG_DETAIL_ROUTES = new Set([
   "afflictions",
   "modifiers",
   "achievements",
-  // app/[lang]/guides/[slug]/page.tsx exists; localized guide URLs were
+  // app/[locale]/guides/[slug]/page.tsx exists; localized guide URLs were
   // never emitted even though the pages render.
   "guides",
 ]);
@@ -144,6 +147,13 @@ const STATIC_PAGES = [
   // missing from the sitemap, fixed 2026-05-19.
   { path: "/news", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/unlocks", priority: 0.6, changeFrequency: "weekly" as const },
+  { path: "/runs", priority: 0.7, changeFrequency: "daily" as const },
+  { path: "/charts", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/mod", priority: 0.5, changeFrequency: "monthly" as const },
+  { path: "/exporter", priority: 0.5, changeFrequency: "monthly" as const },
+  { path: "/overlay", priority: 0.5, changeFrequency: "monthly" as const },
+  { path: "/knowledge-demon", priority: 0.4, changeFrequency: "monthly" as const },
+  { path: "/giveaway", priority: 0.3, changeFrequency: "monthly" as const },
 ];
 
 interface EntityWithImage {
@@ -156,7 +166,7 @@ interface EntityWithImage {
  * Dynamic entity routes. `prefix` is the URL path; the `id.toLowerCase()`
  * is appended to form the detail URL. `localized` controls whether the
  * `/{lang}/{prefix}/{id}` variants are also emitted, this is gated by
- * whether the actual page file exists under `app/[lang]/`.
+ * whether the actual page file exists under `app/[locale]/`.
  */
 const DYNAMIC_ROUTES = [
   { endpoint: "/api/cards", prefix: "/cards", priority: 0.8, localized: true },
@@ -349,7 +359,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Localized mechanics detail pages, page.tsx lives at
-  // `app/[lang]/mechanics/[slug]/page.tsx`, so each slug × each lang
+  // `app/[locale]/mechanics/[slug]/page.tsx`, so each slug × each lang
   // is a real URL.
   const langMechanicsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
     mechanicSections.map((s) => ({
@@ -360,7 +370,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   // Localized entity detail pages, only for routes that have a real
-  // [id]/page.tsx under `app/[lang]/`. Previously this expanded ALL
+  // [id]/page.tsx under `app/[locale]/`. Previously this expanded ALL
   // DYNAMIC_ROUTES including timeline/acts/etc, producing 13 × 57 = 741
   // dead `/{lang}/timeline/{epoch}` URLs and similar.
   const localizedDynamicRoutes = dynamicResults.filter(
