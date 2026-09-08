@@ -45,7 +45,9 @@ export default function EnchantmentDetail({
     if (!id) return;
     cachedFetch<Enchantment>(`${API}/api/enchantments/${id}?lang=${lang}`)
       .then((data) => setEnchantment(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialEnchantment) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

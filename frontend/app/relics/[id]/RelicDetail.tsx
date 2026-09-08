@@ -70,7 +70,9 @@ export default function RelicDetail({
           }
         }
       })
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialRelic) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

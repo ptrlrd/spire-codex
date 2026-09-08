@@ -131,7 +131,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     if (!id) return;
     Promise.all([
       cachedFetch<Character>(`${API}/api/characters/${id}?lang=${lang}`).catch(() => {
-        setNotFound(true);
+        if (!initialCharacter) setNotFound(true);
         return null;
       }),
       cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),

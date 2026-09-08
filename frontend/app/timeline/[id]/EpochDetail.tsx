@@ -51,7 +51,9 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
     if (!id) return;
     cachedFetch<Epoch>(`${API}/api/epochs/${id}?lang=${lang}`)
       .then(setEpoch)
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialEpoch) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

@@ -46,7 +46,9 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
     if (!id) return;
     cachedFetch<Encounter>(`${API}/api/encounters/${id}?lang=${lang}`)
       .then((data) => setEncounter(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialEncounter) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

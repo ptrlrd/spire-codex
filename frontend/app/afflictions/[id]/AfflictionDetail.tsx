@@ -30,7 +30,9 @@ export default function AfflictionDetail({ initialAffliction }: { initialAfflict
     if (!id) return;
     cachedFetch<Affliction>(`${API}/api/afflictions/${id}?lang=${lang}`)
       .then((data) => setAffliction(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialAffliction) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 
