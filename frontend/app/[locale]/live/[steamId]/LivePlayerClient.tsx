@@ -119,7 +119,7 @@ function TickerRow({
     case "remove": {
       // A card left the deck (purge at a shop, event, etc.).
       if (!e.v) {
-        body = <span className="text-rose-300">{t("Removed a card")}</span>;
+        body = <span className="text-danger">{t("Removed a card")}</span>;
         break;
       }
       const { id, upgraded } = parseDeckId(e.v);
@@ -137,7 +137,7 @@ function TickerRow({
       }
       body = (
         <>
-          <span className="text-rose-300">{t("Removed")}</span>{" "}
+          <span className="text-danger">{t("Removed")}</span>{" "}
           <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} bp={bp} className={TICKER_LINK}>
             {info?.name || displayName(`CARD.${id}`)}
             {upgraded ? "+" : ""}
@@ -231,13 +231,13 @@ function TickerRow({
       const verb = e.k === "ancient" ? t("Ancient relic:") : t("Got");
       body = id ? (
         <>
-          <span className="text-amber-300">{verb}</span>{" "}
+          <span className="text-warning">{verb}</span>{" "}
           <RelicPill relicId={id} relicData={cat.relics} bp={bp} className={TICKER_LINK}>
             {info?.name || displayName(`RELIC.${id}`)}
           </RelicPill>
         </>
       ) : (
-        <span className="text-amber-300">
+        <span className="text-warning">
           {e.k === "ancient" ? t("Took an ancient relic") : t("Got a relic")}
         </span>
       );
@@ -296,13 +296,13 @@ function TickerRow({
     }
     case "rest": {
       // Campfire rest (heal). Lights up when the mod ships {"k": "rest"}.
-      body = <span className="text-emerald-300">{t("Rested at a campfire")}</span>;
+      body = <span className="text-success">{t("Rested at a campfire")}</span>;
       break;
     }
     case "upgrade": {
       // A card was upgraded (campfire smith, event, or relic).
       if (!e.v) {
-        body = <span className="text-sky-300">{t("Upgraded a card")}</span>;
+        body = <span className="text-info">{t("Upgraded a card")}</span>;
         break;
       }
       const { id } = parseDeckId(e.v);
@@ -320,7 +320,7 @@ function TickerRow({
       }
       body = (
         <>
-          <span className="text-sky-300">{t("Upgraded")}</span>{" "}
+          <span className="text-info">{t("Upgraded")}</span>{" "}
           <CardPill cardId={id} upgraded cardData={cat.cards} bp={bp} className={TICKER_LINK}>
             {info?.name || displayName(`CARD.${id}`)}
           </CardPill>
@@ -333,15 +333,15 @@ function TickerRow({
       // lights up as soon as the mod ships {"k": "event", "v": EVENT_ID}.
       const id = cleanId(e.v ?? "");
       if (!id) {
-        body = <span className="text-purple-300">{t("Visited an event")}</span>;
+        body = <span className="text-special">{t("Visited an event")}</span>;
         break;
       }
       body = (
         <>
-          <span className="text-purple-300">{t("Event:")}</span>{" "}
+          <span className="text-special">{t("Event:")}</span>{" "}
           <Link
             href={`${bp}/events/${id.toLowerCase()}`}
-            className="inline text-purple-300 hover:text-purple-100"
+            className="inline text-special hover:text-special"
           >
             {cat.events[id]?.name || displayName(`EVENT.${id}`)}
           </Link>
@@ -355,7 +355,7 @@ function TickerRow({
       const encId = e.v ? cleanId(e.v) : "";
       const monId = encId ? encounters[encId]?.monsters?.[0]?.id || encId : "";
       body = (
-        <span className="inline-flex items-center gap-1.5 text-amber-300">
+        <span className="inline-flex items-center gap-1.5 text-warning">
           {t("Fight started")}
           {monId &&<EnemyCircle id={monId} monsters={monsters} className="h-5 w-5" />}
         </span>
@@ -369,7 +369,7 @@ function TickerRow({
         ? encounters[cleanId(won)]?.name || monsterName(won, monsters)
         : "";
       body = (
-        <span className="text-emerald-300">
+        <span className="text-success">
           {wonName ? t("Won the fight against {name}", { name: wonName }) : t("Won the fight")}
         </span>
       );
@@ -378,13 +378,13 @@ function TickerRow({
     case "choice":
       // An event option the player picked; `v` is the resolved option label.
       body = (
-        <span className="text-purple-300">
+        <span className="text-special">
           {e.v ? t("Picked: {option}", { option: e.v }) : t("Picked an option")}
         </span>
       );
       break;
     case "death":
-      body = <span className="text-rose-400 font-semibold">{t("Died")}</span>;
+      body = <span className="text-danger font-semibold">{t("Died")}</span>;
       break;
     case "act":
       body = (
@@ -533,7 +533,7 @@ function LiveCombatPanel({
             const hasCards = (pileCards[label]?.length ?? 0) > 0;
             const chip =
               label === "Exhaust" ? (
-                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-purple-600 text-[11px] font-bold tabular-nums text-white">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-special-fill text-[11px] font-bold tabular-nums text-on-fill">
                   {v}
                 </span>
               ) : (
@@ -574,7 +574,7 @@ function LiveCombatPanel({
       )}
       {openPile && (
         <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/60 p-4"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
           onClick={() => setOpenPile(null)}
         >
           <div
@@ -664,13 +664,13 @@ function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
                     </span>
                   )}
                   {s.alive === false && (
-                    <span className="text-[10px] text-rose-400">{t("dead")}</span>
+                    <span className="text-[10px] text-danger">{t("dead")}</span>
                   )}
                 </div>
                 {hpPct != null && (
                   <div className="mt-1 h-1.5 rounded bg-[var(--bg-card)]">
                     <div
-                      className="h-1.5 rounded bg-rose-500"
+                      className="h-1.5 rounded bg-danger-fill"
                       style={{ width: `${hpPct}%` }}
                     />
                   </div>
@@ -680,7 +680,7 @@ function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
                     <span>{t("{hp}/{max} HP", { hp: s.hp, max: s.max_hp ?? "?" })}</span>
                   )}
                   {(s.block ?? 0) > 0 && (
-                    <span className="text-sky-300">{t("Block {n}", { n: s.block ?? 0 })}</span>
+                    <span className="text-info">{t("Block {n}", { n: s.block ?? 0 })}</span>
                   )}
                   {s.gold != null && <span>{t("{n}g", { n: s.gold })}</span>}
                   {s.deck_size != null && <span>{t("{n} cards", { n: s.deck_size })}</span>}
@@ -975,13 +975,13 @@ export default function LivePlayerClient() {
             </span>
           </div>
           <div className="h-2 rounded bg-[var(--bg-primary)]">
-            <div className="h-2 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+            <div className="h-2 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
           </div>
         </div>
       )}
       {(p.block ?? 0) > 0 && (
         <div className="mt-2 text-xs tabular-nums">
-          <span className="text-sky-300" title={t("Block")}>
+          <span className="text-info" title={t("Block")}>
             {t("Block {n}", { n: p.block ?? 0 })}
           </span>
         </div>

@@ -14,14 +14,14 @@ import "@/app/meta-extra.css";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const storyAccent: Record<string, string> = {
-  ironclad: "text-red-400",
-  silent: "text-emerald-400",
-  defect: "text-blue-400",
-  necrobinder: "text-pink-400",
-  regent: "text-orange-400",
-  magnumopus: "text-purple-400",
-  talesfromthespire: "text-cyan-400",
-  reopening: "text-amber-400",
+  ironclad: "text-danger",
+  silent: "text-success",
+  defect: "text-info",
+  necrobinder: "text-special",
+  regent: "text-warning",
+  magnumopus: "text-special",
+  talesfromthespire: "text-info",
+  reopening: "text-warning",
 };
 
 function storyKey(id: string): string {

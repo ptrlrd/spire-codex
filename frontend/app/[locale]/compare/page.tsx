@@ -88,7 +88,7 @@ export default async function ComparePage({ params }: Props) {
           <Link
             key={pair.slug}
             href={`/compare/${pair.slug}`}
-            className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 transition-all hover:shadow-lg hover:shadow-black/20 hover:border-[var(--accent-gold)]/40"
+            className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5 transition-all hover:shadow-lg hover:shadow-scrim/20 hover:border-[var(--accent-gold)]/40"
           >
             <div className="flex items-center justify-between gap-3">
               <div className="flex-1 text-center">

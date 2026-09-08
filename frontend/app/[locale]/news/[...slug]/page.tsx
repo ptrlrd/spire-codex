@@ -186,7 +186,7 @@ export default async function NewsArticlePage({ params }: Props) {
             href={canonicalSteamUrl(article.gid)}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline text-[var(--accent-gold)] hover:text-white"
+            className="underline text-[var(--accent-gold)] hover:text-on-fill"
           >
             {canonicalSteamUrl(article.gid)}
           </a>

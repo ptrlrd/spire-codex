@@ -120,8 +120,8 @@ function sortByOrder(rarities: string[], order: string[]): string[] {
 
 const RARITY_COLOR: Record<string, string> = {
   Common: "text-[var(--text-secondary)]",
-  Shop: "text-emerald-400",
-  Uncommon: "text-blue-400",
+  Shop: "text-success",
+  Uncommon: "text-info",
   Rare: "text-[var(--accent-gold)]",
 };
 
@@ -303,7 +303,7 @@ export default async function MerchantPage({ params }: Props) {
                         <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
                         <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
                         <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessMin}–{colorlessMax}</td>
-                        <td className="p-3 text-right text-emerald-400">{saleMin}–{saleMax}</td>
+                        <td className="p-3 text-right text-success">{saleMin}–{saleMax}</td>
                       </tr>
                     );
                   })}

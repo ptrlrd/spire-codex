@@ -373,8 +373,8 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
           nothing once the beta promotes (the section empties server-side). */}
       {((stats.beta?.deaths?.encounters?.length ?? 0) > 0 || (stats.beta?.deaths?.events?.length ?? 0) > 0) && (
         <section className="mb-10">
-          <h2 className="text-lg font-semibold text-emerald-300 mb-3">{t("From the beta branch")}</h2>
-          <div className="rounded-lg border border-emerald-500/40 bg-emerald-500/10 p-4">
+          <h2 className="text-lg font-semibold text-success mb-3">{t("From the beta branch")}</h2>
+          <div className="rounded-lg border border-success/40 bg-success/10 p-4">
             <p className="text-xs text-[var(--text-muted)] mb-3">
               {t("Deaths to content that only exists in the current beta, counted from beta-branch runs.")}
             </p>
@@ -383,7 +383,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                 <div key={e.id} className="flex items-center justify-between rounded bg-[var(--bg-card)] px-3 py-2 text-sm">
                   <span className="text-[var(--text-primary)]">
                     {e.name}
-                    <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full font-semibold bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">{t("Beta")}</span>
+                    <span className="ml-2 text-[10px] px-1.5 py-0.5 rounded-full font-semibold bg-success/15 text-success border border-success/30">{t("Beta")}</span>
                   </span>
                   <span className="text-[var(--text-secondary)] tabular-nums">{e.count.toLocaleString()} {t("kills")}</span>
                 </div>

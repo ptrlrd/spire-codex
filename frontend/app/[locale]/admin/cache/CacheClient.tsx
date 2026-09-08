@@ -70,7 +70,7 @@ export default function CacheClient() {
         <button
           onClick={() => purge(true)}
           disabled={busy}
-          className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-rose-950/60 text-rose-300 border border-rose-900/40 hover:bg-rose-900/60 disabled:opacity-50"
+          className="px-4 py-1.5 rounded-lg text-sm font-semibold bg-danger/10 text-danger border border-danger/30 hover:bg-danger/10 disabled:opacity-50"
         >
           Purge everything
         </button>

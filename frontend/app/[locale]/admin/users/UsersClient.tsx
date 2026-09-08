@@ -37,7 +37,7 @@ function IdentityBadges({ u }: { u: UserRow }) {
     <span className="flex flex-wrap gap-1">
       {u.steam_id && (
         <span
-          className={`${badge} bg-sky-950/50 text-sky-300 border-sky-900/50`}
+          className={`${badge} bg-info/10 text-info border-info/30`}
           title={`Steam ${u.steam_id}`}
         >
           Steam
@@ -45,7 +45,7 @@ function IdentityBadges({ u }: { u: UserRow }) {
       )}
       {u.discord_id && (
         <span
-          className={`${badge} bg-indigo-950/50 text-indigo-300 border-indigo-900/50`}
+          className={`${badge} bg-info/10 text-info border-info/30`}
           title={`Discord ${u.discord_id}`}
         >
           Discord
@@ -53,14 +53,14 @@ function IdentityBadges({ u }: { u: UserRow }) {
       )}
       {u.twitch_id && (
         <span
-          className={`${badge} bg-[#9146FF]/15 text-[#b794ff] border-[#9146FF]/40`}
+          className={`${badge} bg-twitch/15 text-twitch-light border-twitch/40`}
           title={`Twitch ${u.twitch_login ?? u.twitch_id}`}
         >
           Twitch
         </span>
       )}
       {u.is_partner && (
-        <span className={`${badge} bg-amber-950/50 text-amber-300 border-amber-900/50`}>
+        <span className={`${badge} bg-warning/10 text-warning border-warning/30`}>
           Partner
         </span>
       )}
@@ -315,7 +315,7 @@ export default function UsersClient() {
                                 onClick={() => togglePartner(u)}
                                 className={
                                   u.is_partner
-                                    ? "px-2.5 py-1 rounded text-xs font-semibold bg-[#9146FF]/20 text-[#b794ff] border border-[#9146FF]/40 hover:bg-[#9146FF]/30"
+                                    ? "px-2.5 py-1 rounded text-xs font-semibold bg-twitch/20 text-twitch-light border border-twitch/40 hover:bg-twitch/30"
                                     : actionBtn
                                 }
                                 title={
@@ -329,7 +329,7 @@ export default function UsersClient() {
                             )}
                             <button
                               onClick={() => remove(u)}
-                              className="px-2.5 py-1 rounded text-xs font-semibold bg-rose-950/60 text-rose-300 border border-rose-900/40 hover:bg-rose-900/60"
+                              className="px-2.5 py-1 rounded text-xs font-semibold bg-danger/10 text-danger border border-danger/30 hover:bg-danger/10"
                             >
                               Delete
                             </button>

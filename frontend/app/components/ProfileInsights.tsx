@@ -382,7 +382,7 @@ function PercentileSlider({ label, valueText, percentile, lang }: { label: strin
       <div className="relative h-2 rounded-full bg-[var(--bg-primary)]">
         <div className="absolute inset-y-0 left-0 rounded-full opacity-25" style={{ width: `${percentile}%`, backgroundColor: color }} />
         <div
-          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-[var(--bg-card)] flex items-center justify-center text-[8px] font-bold text-white"
+          className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-[var(--bg-card)] flex items-center justify-center text-[8px] font-bold text-on-fill"
           style={{ left: `${Math.min(Math.max(percentile, 3), 97)}%`, backgroundColor: color }}
         >
           {percentile}
@@ -396,7 +396,7 @@ function PercentileSlider({ label, valueText, percentile, lang }: { label: strin
 }
 
 function GapBadge({ gap }: { gap: number }) {
-  const cls = gap > 0 ? "text-green-400" : gap < 0 ? "text-red-400" : "text-[var(--text-muted)]";
+  const cls = gap > 0 ? "text-success" : gap < 0 ? "text-danger" : "text-[var(--text-muted)]";
   return (
     <span className={`text-xs font-medium tabular-nums ${cls}`}>
       {gap > 0 ? "+" : ""}
@@ -629,7 +629,7 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
                 const better = comm != null && cell.death_rate < comm;
                 return (
                   <td key={ty} className="py-1.5 pl-4 text-right tabular-nums">
-                    <span className={worse ? "text-red-400" : better ? "text-green-400" : "text-[var(--text-primary)]"}>
+                    <span className={worse ? "text-danger" : better ? "text-success" : "text-[var(--text-primary)]"}>
                       {cell.death_rate}%
                     </span>
                     {comm != null && <span className="block text-[10px] text-[var(--text-muted)]">{comm}%</span>}

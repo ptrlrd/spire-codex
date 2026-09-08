@@ -137,7 +137,7 @@ export default function AdminClient() {
         ))}
       </div>
 
-      {error && <p className="text-sm text-rose-400 mb-4">{error}</p>}
+      {error && <p className="text-sm text-danger mb-4">{error}</p>}
       {!data && !error && (
         <p className="text-sm text-[var(--text-muted)]">Loading overview...</p>
       )}

@@ -33,7 +33,7 @@ function StepCard({
     <div
       className={`rounded-xl border p-5 transition-colors ${
         done
-          ? "border-emerald-600/40 bg-emerald-950/15"
+          ? "border-success/40 bg-success/10"
           : "border-[var(--border-subtle)] bg-[var(--bg-card)]"
       }`}
     >
@@ -41,7 +41,7 @@ function StepCard({
         <div
           className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold ${
             done
-              ? "bg-emerald-500 text-[var(--bg-primary)]"
+              ? "bg-success-fill text-[var(--bg-primary)]"
               : "bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
           }`}
           aria-hidden
@@ -90,10 +90,10 @@ export default function GiveawayClient() {
 
   const phaseBadge =
     phase === "upcoming"
-      ? { text: t("Opens July 7"), cls: "bg-amber-500/15 text-amber-300 border-amber-500/30" }
+      ? { text: t("Opens July 7"), cls: "bg-warning/15 text-warning border-warning/30" }
       : phase === "ended"
         ? { text: t("Closed"), cls: "bg-[var(--bg-card)] text-[var(--text-muted)] border-[var(--border-subtle)]" }
-        : { text: t("Open now"), cls: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30" };
+        : { text: t("Open now"), cls: "bg-success/15 text-success border-success/30" };
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -149,7 +149,7 @@ export default function GiveawayClient() {
       <div
         className={`rounded-xl border p-4 mb-8 ${
           entered
-            ? "border-emerald-600/40 bg-emerald-950/20"
+            ? "border-success/40 bg-success/10"
             : "border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/10"
         }`}
       >
@@ -157,7 +157,7 @@ export default function GiveawayClient() {
           <p className="text-sm text-[var(--text-secondary)]">{t("Checking your entry status...")}</p>
         ) : entered ? (
           <p className="text-sm">
-            <span className="font-semibold text-emerald-300">{t("You are entered.")}</span>{" "}
+            <span className="font-semibold text-success">{t("You are entered.")}</span>{" "}
             <span className="text-[var(--text-secondary)]">
               {t("Good luck. You can keep playing and uploading runs as usual.")}
             </span>
@@ -186,7 +186,7 @@ export default function GiveawayClient() {
             {t("Your Steam sign-in is how we identify your entry and match your uploaded runs.")}
           </p>
           {hasSteam ? (
-            <p className="text-emerald-300">{t("Signed in as")} {user?.username ?? t("your account")}.</p>
+            <p className="text-success">{t("Signed in as")} {user?.username ?? t("your account")}.</p>
           ) : (
             <button onClick={loginSteam} className={primaryBtn}>
               {user ? t("Connect Steam") : t("Sign in with Steam")}
@@ -211,7 +211,7 @@ export default function GiveawayClient() {
             {t("file from your profile.")}
           </p>
           {hasRun ? (
-            <p className="text-emerald-300">
+            <p className="text-success">
               {runCount === 1
                 ? t("{n} run on your account. You are good.", { n: 1 })
                 : t("{n} runs on your account. You are good.", { n: runCount ?? 0 })}

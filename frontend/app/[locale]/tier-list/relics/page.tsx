@@ -306,7 +306,7 @@ export default async function RelicsTierListPage({ params, searchParams }: PageP
               href={relicHref(pool, opt.value || undefined, act, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
-                  ? "bg-sky-500/10 border-sky-500/40 text-sky-300"
+                  ? "bg-info/10 border-info/40 text-info"
                   : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
               }`}
             >
@@ -326,7 +326,7 @@ export default async function RelicsTierListPage({ params, searchParams }: PageP
               href={relicHref(pool, rarity, act, bracket, opt.value || undefined)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
-                  ? "bg-purple-500/10 border-purple-500/40 text-purple-300"
+                  ? "bg-special/10 border-special/40 text-special"
                   : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
               }`}
             >
@@ -346,7 +346,7 @@ export default async function RelicsTierListPage({ params, searchParams }: PageP
               href={relicHref(pool, rarity, opt.value || undefined, bracket, ancient)}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
                 isActive
-                  ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
+                  ? "bg-success/10 border-success/40 text-success"
                   : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
               }`}
             >

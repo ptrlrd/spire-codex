@@ -100,7 +100,7 @@ function QueryTable({
                   {showZeroRate && (
                     <td
                       className={`px-2 py-2 text-right tabular-nums whitespace-nowrap ${
-                        r.zero_rate > 0 ? "text-red-400" : "text-[var(--text-muted)]"
+                        r.zero_rate > 0 ? "text-danger" : "text-[var(--text-muted)]"
                       }`}
                     >
                       {pct(r.zero_rate)} empty
@@ -140,7 +140,7 @@ function VolumeChart({ volume }: { volume: VolRow[] }) {
               className="flex-1 min-w-[2px] flex flex-col justify-end"
             >
               <div
-                className="bg-red-500/70 rounded-t-sm"
+                className="bg-danger/70 rounded-t-sm"
                 style={{ height: `${(v.zero / max) * 100}%` }}
               />
               <div
@@ -198,7 +198,7 @@ export default function SearchesClient() {
         ))}
       </div>
 
-      {note && <p className="text-sm text-red-400 mb-4">{note}</p>}
+      {note && <p className="text-sm text-danger mb-4">{note}</p>}
 
       {s && (
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
@@ -245,7 +245,7 @@ export default function SearchesClient() {
                 <span className="text-xs text-[var(--text-muted)] uppercase">{r.lang}</span>
                 <span
                   className={`text-xs tabular-nums whitespace-nowrap ${
-                    r.results === 0 ? "text-red-400" : "text-[var(--text-secondary)]"
+                    r.results === 0 ? "text-danger" : "text-[var(--text-secondary)]"
                   }`}
                 >
                   {r.results} hit{r.results === 1 ? "" : "s"}

@@ -517,13 +517,13 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
         <input
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="flex-1 min-w-[200px] rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-lg font-semibold text-[var(--text-primary)] outline-none focus:border-sky-500"
+          className="flex-1 min-w-[200px] rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-lg font-semibold text-[var(--text-primary)] outline-none focus:border-info"
           placeholder={t("Tier list name")}
           aria-label={t("Tier list name")}
         />
         <button
           onClick={resetBoard}
-          className="rounded border border-[var(--border-accent)] px-4 py-2 font-semibold text-[var(--text-primary)] hover:border-red-500 hover:text-[var(--text-primary)]"
+          className="rounded border border-[var(--border-accent)] px-4 py-2 font-semibold text-[var(--text-primary)] hover:border-danger hover:text-[var(--text-primary)]"
         >
           {t("Reset")}
         </button>
@@ -537,13 +537,13 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
         <button
           onClick={handleSave}
           disabled={saving || authLoading}
-          className="rounded bg-sky-600 px-4 py-2 font-semibold text-white hover:bg-sky-500 disabled:opacity-50"
+          className="rounded bg-info-fill px-4 py-2 font-semibold text-on-fill hover:bg-info-fill disabled:opacity-50"
         >
           {saving ? t("Saving…") : user ? t("Save") : t("Sign in with Steam to save")}
         </button>
       </div>
 
-      {error && <p className="mb-3 text-sm text-red-400">{error}</p>}
+      {error && <p className="mb-3 text-sm text-danger">{error}</p>}
 
       {shareUrl && (
         <div className="mb-4 flex flex-wrap items-center gap-2 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
@@ -561,7 +561,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               setTimeout(() => setCopied(false), 1500);
             }}
             className={`rounded px-3 py-1 text-sm text-[var(--text-primary)] ${
-              copied ? "bg-green-600" : "bg-[var(--bg-card-hover)] hover:bg-[var(--border-accent)]"
+              copied ? "bg-success-fill" : "bg-[var(--bg-card-hover)] hover:bg-[var(--border-accent)]"
             }`}
           >
             {copied ? t("Copied!") : t("Copy")}
@@ -635,7 +635,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <select
                   value={cardLang}
                   onChange={(e) => setCardLang(e.target.value)}
-                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-info"
                   aria-label={t("Card language")}
                   title={t("Render the cards in this language")}
                 >
@@ -650,7 +650,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <select
                   value={rarityFilter}
                   onChange={(e) => setRarityFilter(e.target.value)}
-                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+                  className="rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-info"
                   aria-label={t("Filter by rarity")}
                 >
                   <option value="">{t("All rarities")}</option>
@@ -665,7 +665,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder={t("Search…")}
-                className="w-40 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+                className="w-40 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2 py-1 text-sm text-[var(--text-primary)] outline-none focus:border-info"
               />
             </div>
           </div>
@@ -718,7 +718,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
       {commentFor && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-scrim/60 p-4"
           onClick={() => setCommentFor(null)}
         >
           <div
@@ -748,7 +748,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               maxLength={500}
               rows={4}
               placeholder={t("Why is it ranked here?")}
-              className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-sky-500"
+              className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-info"
             />
             <div className="mt-3 flex items-center justify-between gap-2">
               <span className="text-[11px] text-[var(--text-muted)]">{commentDraft.length}/500</span>
@@ -761,7 +761,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 </button>
                 <button
                   onClick={saveComment}
-                  className="rounded bg-sky-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-sky-500"
+                  className="rounded bg-info-fill px-3 py-1.5 text-sm font-semibold text-on-fill hover:bg-info-fill"
                 >
                   {commentDraft.trim() ? t("Save note") : t("Remove note")}
                 </button>
@@ -791,7 +791,7 @@ function GroupPill({
       onClick={onClick}
       className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
         active
-          ? "border-sky-500 bg-sky-600 text-white"
+          ? "border-info bg-info-fill text-on-fill"
           : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
       }`}
     >
@@ -811,7 +811,7 @@ function DropArea({
 }) {
   const { setNodeRef, isOver } = useDroppable({ id });
   return (
-    <div ref={setNodeRef} className={`${className ?? ""} ${isOver ? "ring-2 ring-sky-400" : ""}`}>
+    <div ref={setNodeRef} className={`${className ?? ""} ${isOver ? "ring-2 ring-info" : ""}`}>
       {children}
     </div>
   );
@@ -876,7 +876,7 @@ function TierRow({
     <div className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0">
       <div
         style={{ background: tier.color }}
-        className="relative flex w-20 shrink-0 flex-col items-center justify-center gap-1 p-1 text-black"
+        className="relative flex w-20 shrink-0 flex-col items-center justify-center gap-1 p-1 text-on-accent"
       >
         <textarea
           ref={labelRef}
@@ -949,7 +949,7 @@ function TierRow({
                 }}
                 placeholder="#rrggbb"
                 spellCheck={false}
-                className="w-full rounded border border-[var(--border-accent)] bg-[var(--bg-secondary)] px-1.5 py-0.5 text-xs text-[var(--text-primary)] outline-none focus:border-sky-500"
+                className="w-full rounded border border-[var(--border-accent)] bg-[var(--bg-secondary)] px-1.5 py-0.5 text-xs text-[var(--text-primary)] outline-none focus:border-info"
                 aria-label={t("Hex color")}
               />
             </div>
@@ -957,7 +957,7 @@ function TierRow({
               <button onClick={() => onMove(tier.id, -1)} disabled={isFirst} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↑</button>
               <button onClick={() => onMove(tier.id, 1)} disabled={isLast} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↓</button>
               <button onClick={() => onClear(tier.id)} className="rounded bg-[var(--bg-card-hover)] px-2 py-1">{t("Clear")}</button>
-              <button onClick={() => onRemove(tier.id)} className="rounded bg-red-700 px-2 py-1">{t("Delete")}</button>
+              <button onClick={() => onRemove(tier.id)} className="rounded bg-danger-fill px-2 py-1">{t("Delete")}</button>
             </div>
           </div>
         )}

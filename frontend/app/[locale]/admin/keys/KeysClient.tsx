@@ -34,7 +34,7 @@ function fmt(iso: string | null): string {
 const TIER_BADGE: Record<string, string> = {
   general: "text-[var(--text-secondary)] border-[var(--border-subtle)]",
   registered: "text-[var(--text-primary)] border-[var(--border-subtle)]",
-  academia: "text-blue-400 border-blue-500/40",
+  academia: "text-info border-info/40",
   paid: "text-[var(--accent-gold)] border-[var(--accent-gold)]/40",
 };
 
@@ -117,7 +117,7 @@ export default function KeysClient() {
         )}
       </div>
 
-      {note && <p className="text-sm text-red-400 mb-4">{note}</p>}
+      {note && <p className="text-sm text-danger mb-4">{note}</p>}
       {data === null && !note && (
         <p className="text-sm text-[var(--text-muted)]">Loading…</p>
       )}
@@ -156,7 +156,7 @@ export default function KeysClient() {
                 </div>
               </div>
               {k.revoked ? (
-                <span className="shrink-0 text-xs px-2 py-0.5 rounded-full border border-red-500/40 text-red-400">
+                <span className="shrink-0 text-xs px-2 py-0.5 rounded-full border border-danger/40 text-danger">
                   revoked
                 </span>
               ) : (
@@ -177,7 +177,7 @@ export default function KeysClient() {
                     type="button"
                     disabled={busy === k.id}
                     onClick={() => revoke(k)}
-                    className="shrink-0 text-xs px-2.5 py-1 rounded-lg border border-red-500/40 bg-red-500/10 text-red-400 disabled:opacity-50"
+                    className="shrink-0 text-xs px-2.5 py-1 rounded-lg border border-danger/40 bg-danger/10 text-danger disabled:opacity-50"
                   >
                     Revoke
                   </button>

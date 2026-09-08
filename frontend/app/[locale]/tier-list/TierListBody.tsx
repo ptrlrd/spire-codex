@@ -20,19 +20,19 @@ function sections(t: TFn) {
       href: "/tier-list/cards",
       label: t("Card Tier List"),
       description: "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent).",
-      accent: "from-amber-500/20 to-amber-700/10 border-amber-700/40",
+      accent: "from-warning/20 to-warning/10 border-warning/40",
     },
     {
       href: "/tier-list/relics",
       label: t("Relic Tier List"),
       description: "289 relics ranked across every pool. Filter by Shared, Boss, Shop, Event, or character.",
-      accent: "from-emerald-500/20 to-emerald-700/10 border-emerald-700/40",
+      accent: "from-success/20 to-success/10 border-success/40",
     },
     {
       href: "/tier-list/potions",
       label: t("Potion Tier List"),
       description: "All 63 potions ranked. Smaller pool, easier to memorize the top picks.",
-      accent: "from-sky-500/20 to-sky-700/10 border-sky-700/40",
+      accent: "from-info/20 to-info/10 border-info/40",
     },
   ];
 }
@@ -339,12 +339,12 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           {t("Each entity is given a 0–100 Codex Score based on the win rate of runs that included it, shrunk toward the global baseline so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one. Scores map to letter grades:")}
         </p>
         <div className="text-xs text-[var(--text-muted)] space-y-1">
-          <div><strong className="text-amber-300">S (90+)</strong> · {t("top of the win-rate signal")}</div>
-          <div><strong className="text-emerald-300">A (78–89)</strong> · {t("wins above baseline reliably")}</div>
-          <div><strong className="text-sky-300">B (65–77)</strong> · {t("above-average")}</div>
-          <div><strong className="text-zinc-300">C (50–64)</strong> · {t("average")}</div>
-          <div><strong className="text-orange-300">D (35–49)</strong> · {t("below average, often niche")}</div>
-          <div><strong className="text-rose-300">F (0–34)</strong> · {t("bottom of the signal, often a high-exposure staple")}</div>
+          <div><strong className="text-warning">S (90+)</strong> · {t("top of the win-rate signal")}</div>
+          <div><strong className="text-success">A (78–89)</strong> · {t("wins above baseline reliably")}</div>
+          <div><strong className="text-info">B (65–77)</strong> · {t("above-average")}</div>
+          <div><strong className="text-fg-secondary">C (50–64)</strong> · {t("average")}</div>
+          <div><strong className="text-warning">D (35–49)</strong> · {t("below average, often niche")}</div>
+          <div><strong className="text-danger">F (0–34)</strong> · {t("bottom of the signal, often a high-exposure staple")}</div>
         </div>
         <p className="text-xs text-[var(--text-muted)] leading-relaxed mt-3">
           {t("This is a naive win-rate signal, not a ruling. It carries known biases, heavily-used staples sink even when they're fine, and late-game rares float because they only show up in runs already going well. Read a low grade as \"high exposure\" as often as \"weak.\"")}

@@ -62,7 +62,7 @@ export default function MyTierLists() {
         >
           <Link
             href={`/tier-list-maker/${tl.id}`}
-            className="flex-1 truncate text-[var(--text-primary)] hover:text-sky-400"
+            className="flex-1 truncate text-[var(--text-primary)] hover:text-info"
           >
             {tl.title}
             <span className="ml-2 text-xs text-[var(--text-muted)]">
@@ -79,7 +79,7 @@ export default function MyTierLists() {
           )}
           <button
             onClick={() => handleDelete(tl.id)}
-            className="text-sm text-red-400 hover:text-red-300"
+            className="text-sm text-danger hover:text-danger"
           >
             {t("Delete")}
           </button>

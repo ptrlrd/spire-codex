@@ -40,7 +40,7 @@ function renderAnnouncement(message: string): ReactNode[] {
   const re = /\[([^\]]+)\]\(([^)\s]+)\)/g;
   let last = 0;
   let m: RegExpExecArray | null;
-  const linkClass = "font-medium text-green-100 underline hover:text-white transition-colors";
+  const linkClass = "font-medium text-success underline hover:text-on-fill transition-colors";
   while ((m = re.exec(message)) !== null) {
     if (m.index > last) out.push(message.slice(last, m.index));
     const [, label, href] = m;
@@ -80,8 +80,8 @@ export default function AlertTicker() {
   const slots: Slot[] = [
     {
       key: "overwolf",
-      bg: "bg-black/85 backdrop-blur-sm",
-      border: "border-white/10",
+      bg: "bg-scrim/85 backdrop-blur-sm",
+      border: "border-on-fill/10",
       node: (
         <>
           <img
@@ -89,8 +89,8 @@ export default function AlertTicker() {
             alt="Overwolf"
             className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0 rounded"
           />
-          <span className="flex-1 min-w-0 text-sm text-white/90 line-clamp-2">
-            <span className="font-semibold text-white">
+          <span className="flex-1 min-w-0 text-sm text-on-fill/90 line-clamp-2">
+            <span className="font-semibold text-on-fill">
               {t("Spire Codex is now on Overwolf.")}
             </span>{" "}
             <span className="hidden sm:inline">
@@ -110,8 +110,8 @@ export default function AlertTicker() {
     },
     {
       key: "mod",
-      bg: "bg-[#1b2838]",
-      border: "border-[#2a475e]",
+      bg: "bg-steam",
+      border: "border-steam-line",
       node: (
         <>
           <img
@@ -119,8 +119,8 @@ export default function AlertTicker() {
             alt="Steam Workshop"
             className="w-7 h-7 sm:w-8 sm:h-8 flex-shrink-0"
           />
-          <span className="flex-1 min-w-0 text-sm text-[#c7d5e0] line-clamp-2">
-            <span className="font-semibold text-white">
+          <span className="flex-1 min-w-0 text-sm text-steam-light line-clamp-2">
+            <span className="font-semibold text-on-fill">
               {t("Spire Codex now has a mod.")}
             </span>{" "}
             <span className="hidden sm:inline">
@@ -142,8 +142,8 @@ export default function AlertTicker() {
     },
     {
       key: "patreon",
-      bg: "bg-emerald-900/40",
-      border: "border-emerald-700/30",
+      bg: "bg-success/10",
+      border: "border-success/30",
       node: (
         <>
           <img
@@ -152,13 +152,13 @@ export default function AlertTicker() {
             className="w-7 h-7 sm:w-8 sm:h-8 object-contain flex-shrink-0 hidden sm:block"
             crossOrigin="anonymous"
           />
-          <span className="flex-1 min-w-0 text-sm text-emerald-200 italic line-clamp-2">
+          <span className="flex-1 min-w-0 text-sm text-success italic line-clamp-2">
             &ldquo;{t("I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider")}{" "}
             <a
               href="https://www.patreon.com/cw/SpireCodex"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium not-italic text-emerald-200 underline hover:text-white transition-colors"
+              className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
             >
               {t("supporting us on Patreon")}
             </a>
@@ -166,7 +166,7 @@ export default function AlertTicker() {
             <Link
               prefetch={false}
               href="/thank-you"
-              className="font-medium not-italic text-emerald-200 underline hover:text-white transition-colors"
+              className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
             >
               {t("those who've supported us")}
             </Link>
@@ -177,8 +177,8 @@ export default function AlertTicker() {
     },
     ...announcements.map((a) => ({
       key: `ann-${a.id}`,
-      bg: "bg-green-900/40",
-      border: "border-green-700/30",
+      bg: "bg-success/10",
+      border: "border-success/30",
       node: (
         <>
           <img
@@ -186,9 +186,9 @@ export default function AlertTicker() {
             alt="Spire Codex"
             className="w-7 h-7 sm:w-8 sm:h-8 object-contain flex-shrink-0 hidden sm:block"
           />
-          <span className="flex-1 min-w-0 text-sm text-green-200 line-clamp-2">
+          <span className="flex-1 min-w-0 text-sm text-success line-clamp-2">
             {/* green-700, not green-500: white on green-500 is 2.3:1 in every theme */}
-            <span className="mr-2 rounded bg-green-700 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-white">
+            <span className="mr-2 rounded bg-success-fill px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-on-fill">
               {t("New")}
             </span>
             {renderAnnouncement(a.message)}
@@ -236,8 +236,8 @@ export default function AlertTicker() {
                 aria-current={i === safeIndex}
                 className={`h-1.5 rounded-full transition-all ${
                   i === safeIndex
-                    ? "w-4 bg-white/80"
-                    : "w-1.5 bg-white/30 hover:bg-white/50"
+                    ? "w-4 bg-on-fill/80"
+                    : "w-1.5 bg-on-fill/30 hover:bg-on-fill/50"
                 }`}
               />
             ))}

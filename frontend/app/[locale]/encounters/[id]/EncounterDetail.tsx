@@ -25,9 +25,9 @@ const SPINE_BY_ROOM: Record<string, string> = {
 };
 
 const roomTypeBadge: Record<string, string> = {
-  Monster: "bg-gray-800 text-gray-300 border-gray-700",
-  Elite: "bg-amber-950/50 text-amber-300 border-amber-900/30",
-  Boss: "bg-red-950/50 text-red-300 border-red-900/30",
+  Monster: "bg-surface text-fg-secondary border-line-strong",
+  Elite: "bg-warning/10 text-warning border-warning/30",
+  Boss: "bg-danger/10 text-danger border-danger/30",
 };
 
 

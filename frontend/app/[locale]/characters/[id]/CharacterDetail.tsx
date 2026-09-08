@@ -304,14 +304,14 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   });
 
   const rarityBadgeColors: Record<string, string> = {
-    Common: "bg-gray-500/30 text-white",
-    Uncommon: "bg-blue-600/30 text-blue-300",
-    Rare: "bg-amber-600/30 text-amber-300", 
-    Basic: "bg-gray-700/30 text-white",
-    Shop: "bg-green-600/30 text-green-300",
-    Event: "bg-purple-600/30 text-purple-300",
-    Starter: "bg-yellow-600/30 text-yellow-300",
-    Ancient: "bg-red-600/30 text-red-300",
+    Common: "bg-line-strong/30 text-on-fill",
+    Uncommon: "bg-info/30 text-info",
+    Rare: "bg-warning/30 text-warning", 
+    Basic: "bg-surface-hover/30 text-on-fill",
+    Shop: "bg-success/30 text-success",
+    Event: "bg-special/30 text-special",
+    Starter: "bg-warning/30 text-warning",
+    Ancient: "bg-danger/30 text-danger",
   };
 
   const hasDeck = char.starting_deck.length > 0;
@@ -518,7 +518,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                   {sortedRarities.map((rarity) => (
                     <div key={rarity} className="rar-group">
                       <h3 className="rgh">
-                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-gray-600/30 text-gray-300"}`}>
+                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-line-strong/30 text-fg-secondary"}`}>
                           {rarity}
                         </span>
                         <span className="rgn">({cardsByRarity[rarity].length})</span>
@@ -564,7 +564,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                       <div className="kit-body">
                         <div className="kit-name">
                           {relic.name}
-                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-gray-600/30 text-gray-300"}`}>
+                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-line-strong/30 text-fg-secondary"}`}>
                             {relic.rarity}
                           </span>
                         </div>

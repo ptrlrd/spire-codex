@@ -20,20 +20,20 @@ const colorMap: Record<string, string> = {
   regent: "border-[var(--color-regent)]/60 hover:border-[var(--color-regent)]",
   colorless: "border-[var(--color-colorless)]/60 hover:border-[var(--color-colorless)]",
   curse: "border-[var(--color-curse)]/60 hover:border-[var(--color-curse)]",
-  status: "border-gray-700/60 hover:border-gray-500",
+  status: "border-line-strong/60 hover:border-line-strong",
 };
 
 const rarityColors: Record<string, string> = {
-  Basic: "text-gray-400",
-  Common: "text-gray-300",
-  Uncommon: "text-blue-400",
+  Basic: "text-fg-muted",
+  Common: "text-fg-secondary",
+  Uncommon: "text-info",
   Rare: "text-[var(--accent-gold)]",
-  Ancient: "text-purple-400",
-  Curse: "text-red-400",
-  Status: "text-gray-500",
-  Event: "text-emerald-400",
-  Token: "text-gray-500",
-  Quest: "text-amber-400",
+  Ancient: "text-special",
+  Curse: "text-danger",
+  Status: "text-fg-muted",
+  Event: "text-success",
+  Token: "text-fg-muted",
+  Quest: "text-warning",
 };
 
 const energyIconMap: Record<string, string> = {
@@ -66,8 +66,8 @@ function CardItem({ card }: { card: Card }) {
   return (
     <div
       className={`group relative flex flex-col bg-[var(--bg-card)] rounded-lg border-2 ${
-        isUpgraded ? "border-emerald-700/60 hover:border-emerald-500" : colorMap[card.color] || "border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
-      } p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-black/20`}
+        isUpgraded ? "border-success/60 hover:border-success" : colorMap[card.color] || "border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
+      } p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-scrim/20`}
     >
       <Link
         prefetch={false}
@@ -97,17 +97,17 @@ function CardItem({ card }: { card: Card }) {
       {/* Header */}
       <div className="flex items-start justify-between mb-2">
         <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
-          {card.name}{isUpgraded && <span className="text-emerald-400">+</span>}
+          {card.name}{isUpgraded && <span className="text-success">+</span>}
           {card.beta && <BetaBadge />}
         </h3>
         <div className="ml-2 flex-shrink-0 flex items-center gap-1">
           <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
-            isUpgraded && display.upgrade?.cost != null ? "border-emerald-700/50 text-emerald-400" : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
+            isUpgraded && display.upgrade?.cost != null ? "border-success/50 text-success" : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
           }`}>
             {card.is_x_cost ? "X" : display.cost != null && display.cost < 0 ? "U" : display.cost}
           </span>
           {(card.star_cost != null || card.is_x_star_cost) && (
-            <span className="inline-flex items-center gap-0.5 h-7 px-2 rounded-full bg-[var(--bg-primary)] border border-amber-700/40 text-sm font-bold text-amber-300">
+            <span className="inline-flex items-center gap-0.5 h-7 px-2 rounded-full bg-[var(--bg-primary)] border border-warning/40 text-sm font-bold text-warning">
               {card.is_x_star_cost ? "X" : card.star_cost}
               <img src={imageUrl("/static/images/icons/star_icon.webp")}
                 alt={t("star")} className="w-3.5 h-3.5" crossOrigin="anonymous" />
@@ -122,7 +122,7 @@ function CardItem({ card }: { card: Card }) {
           {card.type}
         </span>
         <span className="text-[var(--text-muted)]">·</span>
-        <span className={rarityColors[card.rarity] || "text-gray-400"}>
+        <span className={rarityColors[card.rarity] || "text-fg-muted"}>
           {card.rarity}
         </span>
         <span className="text-[var(--text-muted)]">·</span>
@@ -149,7 +149,7 @@ function CardItem({ card }: { card: Card }) {
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setBetaArt(!betaArt); }}
               className={`text-base w-7 h-7 flex items-center justify-center rounded transition-colors ${
                 betaArt
-                  ? "bg-amber-950/60 border border-amber-700/50"
+                  ? "bg-warning/10 border border-warning/50"
                   : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
               }`}
               title={betaArt ? t("Show normal art") : t("Show beta art")}
@@ -162,7 +162,7 @@ function CardItem({ card }: { card: Card }) {
               onClick={(e) => { e.preventDefault(); e.stopPropagation(); setUpgraded(!upgraded); }}
               className={`text-base w-7 h-7 flex items-center justify-center rounded transition-colors ${
                 upgraded
-                  ? "bg-emerald-950/60 border border-emerald-700/50"
+                  ? "bg-success/10 border border-success/50"
                   : "bg-[var(--bg-primary)] border border-[var(--border-subtle)] opacity-50 hover:opacity-100"
               }`}
               title={upgraded ? t("Show base card") : t("Show upgraded")}

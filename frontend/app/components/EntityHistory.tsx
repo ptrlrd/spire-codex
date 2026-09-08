@@ -27,9 +27,9 @@ interface EntityHistoryProps {
 }
 
 const actionColors: Record<string, string> = {
-  added: "text-emerald-400",
-  removed: "text-red-400",
-  changed: "text-amber-400",
+  added: "text-success",
+  removed: "text-danger",
+  changed: "text-warning",
 };
 
 const actionLabels: Record<string, string> = {
@@ -39,9 +39,9 @@ const actionLabels: Record<string, string> = {
 };
 
 const dotColors: Record<string, string> = {
-  added: "bg-emerald-500",
-  removed: "bg-red-500",
-  changed: "bg-amber-500",
+  added: "bg-success-fill",
+  removed: "bg-danger-fill",
+  changed: "bg-warning-fill",
 };
 
 /**
@@ -122,7 +122,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                 <div key={`${entry.version}-${i}`} className="relative pl-6">
                   {/* Timeline dot */}
                   <div
-                    className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${dotColors[entry.action] || "bg-gray-500"}`}
+                    className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${dotColors[entry.action] || "bg-line-strong"}`}
                   />
 
                   <div>
@@ -133,7 +133,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                       >
                         v{entry.version}
                       </Link>
-                      <span className={actionColors[entry.action] || "text-gray-400"}>
+                      <span className={actionColors[entry.action] || "text-fg-muted"}>
                         {actionLabels[entry.action] ? t(actionLabels[entry.action]) : entry.action}
                       </span>
                       <span className="text-[var(--text-muted)]">{entry.date}</span>
@@ -161,16 +161,16 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                                 </div>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
                                   <div>
-                                    <div className="text-[10px] uppercase tracking-wider text-red-400/70 mb-0.5">
+                                    <div className="text-[10px] uppercase tracking-wider text-danger/70 mb-0.5">
                                       {t("Before")}
                                     </div>
-                                    <ChangeValue raw={oldStr} color="text-red-400/80" />
+                                    <ChangeValue raw={oldStr} color="text-danger/80" />
                                   </div>
                                   <div>
-                                    <div className="text-[10px] uppercase tracking-wider text-emerald-400/70 mb-0.5">
+                                    <div className="text-[10px] uppercase tracking-wider text-success/70 mb-0.5">
                                       {t("After")}
                                     </div>
-                                    <ChangeValue raw={newStr} color="text-emerald-400/80" />
+                                    <ChangeValue raw={newStr} color="text-success/80" />
                                   </div>
                                 </div>
                               </div>
@@ -184,11 +184,11 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
                               <span className="text-[var(--text-secondary)] font-medium">
                                 {change.field}
                               </span>
-                              <span className="text-red-400/70 line-through">
+                              <span className="text-danger/70 line-through">
                                 {oldStr}
                               </span>
                               <span className="text-[var(--text-muted)]">&rarr;</span>
-                              <span className="text-emerald-400/70">{newStr}</span>
+                              <span className="text-success/70">{newStr}</span>
                             </div>
                           );
                         })}

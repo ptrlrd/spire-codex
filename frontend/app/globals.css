@@ -17,15 +17,69 @@
   src: url("/fonts/kreon_bold.ttf") format("truetype");
 }
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   Design tokens
+   ───────────────────────────────────────────────────────────────────────────
+   Every color on the site comes from one of these variables. They are named
+   by PURPOSE, never by value, so a component says what it means ("this is a
+   warning", "this is the card surface") and the theme decides the color.
+
+   Rules:
+     1. Never write a raw Tailwind palette class (text-red-400, bg-emerald-950/50)
+        or a hex color in a component. lib/design-tokens.test.ts fails the build.
+     2. Text goes on its matching surface: --text-* on --bg-*, --text-on-accent
+        on --accent-gold, --text-on-fill on a --<status>-fill or --scrim layer.
+     3. Status colors carry meaning, not decoration:
+          success  won, positive delta, upgraded/improved
+          danger   lost, died, destructive action, negative delta
+          warning  caution, pending, gold-adjacent emphasis
+          info     neutral highlight, links to tools, "new"
+          special  events, curses, rare/arcane, purple UI
+     4. Game colors (--keyword, --upgrade, --color-<character>) match the game
+        and are shared with the canvas renderers, which read them at runtime
+        with getComputedStyle.
+     5. Need a tint? Use the Tailwind opacity modifier on the token utility:
+        bg-success/10, border-danger/40, text-info/70.
+
+   Both themes define every token. Light values are checked for WCAG AA
+   (4.5:1) against --bg-card. See CONTRIBUTING.md, "Colors".
+   ═══════════════════════════════════════════════════════════════════════════ */
 :root {
+  /* Surfaces, darkest to lightest */
   --bg-primary: #0a1118;
   --bg-secondary: #0f1920;
   --bg-card: #132028;
   --bg-card-hover: #1a2b35;
-  --accent-red: #c41e3a;
+  --scrim: #000000;
+  /* Text on the surfaces above */
+  --text-primary: #e0ddd8;
+  --text-secondary: #bfc4ca;
+  --text-muted: #b1b7be;
+  --text-on-accent: #0a1118;
+  --text-on-fill: #ffffff;
+  /* Borders */
+  --border-subtle: #1e3040;
+  --border-accent: #2a4555;
+  /* Brand accents */
   --accent-gold: #e8b830;
   --accent-gold-light: #fbd91e;
   --accent-teal: #45cfd8;
+  --accent-red: #c41e3a;
+  /* Status: the plain token is for text, borders and tints on a surface;
+     the -fill token is a solid background that takes --text-on-fill */
+  --success: #34d399;
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --info: #38bdf8;
+  --special: #c084fc;
+  --success-fill: #059669;
+  --danger-fill: #dc2626;
+  --warning-fill: #d97706;
+  --info-fill: #0284c7;
+  --special-fill: #7c3aed;
+  /* Game semantics */
+  --keyword: var(--accent-gold);
+  --upgrade: var(--success);
   --color-ironclad: #d53b27;
   --color-silent: #23935b;
   --color-defect: #3873a9;
@@ -33,64 +87,64 @@
   --color-regent: #f07c1e;
   --color-colorless: #6b7280;
   --color-curse: #8b1a1a;
-  --text-primary: #e0ddd8;
-  /* secondary/muted were too dim on the dark ground: muted #506570 was ~2.7:1
-     on the card surface, well below WCAG AA (4.5:1) and hard to read wherever
-     quiet sub-text appears. Lifted both into a high-contrast 8-10:1 band
-     (secondary ~9.5:1, muted ~8.2:1 on the card surface) so sub-text reads
-     clearly everywhere, keeping a step down from primary. Light theme unchanged. */
-  --text-secondary: #bfc4ca;
-  --text-muted: #b1b7be;
-  --border-subtle: #1e3040;
-  --border-accent: #2a4555;
+  --color-ancient: #6b5b8a;
+  --color-merchant: #c5894a;
+  --color-spire: #ac6345;
+  --tier-bronze: #a87a3d;
+  --tier-silver: #9ca6b4;
+  /* Third-party brands, used only on their own sign-in buttons and links */
+  --brand-twitch: #9146ff;
+  --brand-twitch-light: #b794ff;
+  --brand-bluesky: #0085ff;
+  --brand-patreon: #ff424d;
+  --brand-steam: #1b2838;
+  --brand-steam-line: #2a475e;
+  --brand-steam-light: #c7d5e0;
+  --shadow-card: none;
 }
 
-/* Light theme (toggled from the nav). Only the palette flips; token-driven components follow. */
+/* Light theme (toggled from the nav). Catppuccin Latte for the ground and
+   text; status and accent colors are the deep end of each hue so they clear
+   AA on the white card surface. */
 :root[data-theme="light"] {
-  /* Catppuccin Latte (https://catppuccin.com). The page uses Crust as the
-     ground so Base-colored cards (helped by --shadow-card) lift above it;
-     text, borders, and accents are the standard Latte swatches. */
-  --bg-primary: #eff1f5;    /* Base (near-white ground) */
-  --bg-secondary: #e6e9ef;  /* Mantle   */
-  --bg-card: #ffffff;       /* pure white, lifts above the Base ground */
+  --bg-primary: #eff1f5;
+  --bg-secondary: #e6e9ef;
+  --bg-card: #ffffff;
   --bg-card-hover: #f2f4f8;
-  --accent-gold: #df8e1d;       /* Yellow   */
+  --scrim: #1e2030;
+  --text-primary: #4c4f69;
+  --text-secondary: #6c6f85;
+  --text-muted: #8c8fa1;
+  --text-on-accent: #221a05;
+  --text-on-fill: #ffffff;
+  --border-subtle: #ccd0da;
+  --border-accent: #bcc0cc;
+  --accent-gold: #df8e1d;
   --accent-gold-light: #eaa72f;
-  --text-primary: #4c4f69;      /* Text     */
-  --text-secondary: #6c6f85;    /* Subtext0 */
-  --text-muted: #8c8fa1;        /* Overlay1 */
-  --border-subtle: #ccd0da;     /* Surface0 */
-  --border-accent: #bcc0cc;     /* Surface1 */
-  /* Darker than Latte Green (#40a02b): --color-silent doubles as text (the
-     nav Live button, Silent-colored labels) and #40a02b is only 3.0:1 on the
-     Base ground. #2e7d32 clears WCAG AA (4.5:1) while staying clearly green. */
+  --accent-teal: #179299;
+  --success: #2e7d32;
+  --danger: #b91c1c;
+  --warning: #b45309;
+  --info: #1d4ed8;
+  --special: #6d28d9;
+  --success-fill: #2e7d32;
+  --danger-fill: #b91c1c;
+  --warning-fill: #b45309;
+  --info-fill: #1d4ed8;
+  --special-fill: #6d28d9;
   --color-silent: #2e7d32;
-  --accent-teal: #179299;       /* Teal     */
   --shadow-card: 0 1px 2px rgba(76, 79, 105, 0.10), 0 2px 6px rgba(76, 79, 105, 0.08);
 }
 
-/* ── Light-mode contrast fixes ────────────────────────────────────────────
-   The vibrant accent greens/teals that read well on the dark ground are too
-   light on the cream light-mode ground. Darken them (light mode only). */
-:root[data-theme="light"] .wr-sg { color: #40a02b; } /* Latte Green   */
-:root[data-theme="light"] .wr-g { color: #179299; }  /* Latte Teal    */
-:root[data-theme="light"] .wr-r { color: #d20f39; }  /* Latte Red     */
-:root[data-theme="light"] .rvmp,
-:root[data-theme="light"] .card-rvmp { --good: #40a02b; --spine: #40a02b; }
-/* Colored count numbers get their hue from an inline --cc (hardcoded per
-   entity, e.g. the bright teal on Enchantments/Powers). Darken it in light
-   mode without touching the dark theme. */
+/* Light-mode fixes that are about layout, not palette. Palette differences
+   live in the tokens above. */
 :root[data-theme="light"] .bt-count,
 :root[data-theme="light"] .ct-count {
   color: color-mix(in srgb, var(--cc, currentColor), #0a0f14 36%);
 }
-/* Character-card name + win rate are white text over a bottom fade that uses
-   --bg; in light mode that fade goes white and hides them. Force it dark. */
 :root[data-theme="light"] .charp::after {
   background: linear-gradient(180deg, transparent 38%, rgba(12, 18, 26, 0.9));
 }
-/* Slate light: cards, panels, and the search bar lift off the cool ground with
-   a soft shadow so figure/ground reads clearly (the flat cream theme didn't). */
 :root[data-theme="light"] .rvmp .btile,
 :root[data-theme="light"] .rvmp .act,
 :root[data-theme="light"] .rvmp .charp,
@@ -106,75 +160,57 @@
 :root[data-theme="light"] .card-rvmp .hero {
   box-shadow: var(--shadow-card);
 }
-/* The entity-render mat is tuned dark (30% black) for the dark ground; on the
-   light ground that reads as a pronounced gray box that clashes with the art.
-   Lighten the mat and soften its drop-shadow in light mode. */
 :root[data-theme="light"] .card-rvmp .cardimg.render {
   background: color-mix(in srgb, var(--text-primary) 6%, transparent);
   filter: drop-shadow(0 10px 24px rgba(76, 79, 105, 0.20));
 }
-/* ── Light-mode contrast: colored chips, banners, filled buttons ──────────
-   Green/amber/red chips and the announcement ticker hardcode the dark-theme
-   palette (…-900/40 fills with …-200/400 text). On the light ground those
-   fills turn pastel and the bright text disappears into them. Centralized
-   fix instead of editing ~60 components: darken the text utilities to the
-   deep end of each hue and swap the translucent dark fills for solid
-   pastels (light mode only; the dark theme keeps its palette). */
-:root[data-theme="light"] :is(.text-green-100, .text-green-200, .text-green-300,
-  .text-green-400, .text-emerald-200, .text-emerald-300, .text-emerald-400) {
-  color: #14532d; /* green-900 */
-}
-:root[data-theme="light"] :is(.text-amber-300, .text-amber-400, .text-orange-300,
-  .text-orange-400, .text-yellow-300, .text-yellow-400) {
-  color: #92400e; /* amber-800 */
-}
-:root[data-theme="light"] :is(.text-red-300, .text-red-400) {
-  color: #b91c1c; /* red-700 */
-}
-:root[data-theme="light"] :is(.text-blue-300) {
-  color: #193cb8; /* blue-800 */
-}
-:root[data-theme="light"] :is([class*="bg-green-900/"], [class*="bg-green-950/"],
-  [class*="bg-emerald-900/"], [class*="bg-emerald-950/"], [class*="bg-green-500/"],
-  [class*="bg-green-600/"], [class*="bg-emerald-500/"], [class*="bg-emerald-600/"]) {
-  background-color: #dcfce7; /* green-100 */
-}
-:root[data-theme="light"] :is([class*="bg-amber-900/"], [class*="bg-amber-950/"],
-  [class*="bg-orange-900/"], [class*="bg-orange-950/"]) {
-  background-color: #fef3c7; /* amber-100 */
-}
-:root[data-theme="light"] :is([class*="bg-red-900/"], [class*="bg-red-950/"]) {
-  background-color: #fee2e2; /* red-100 */
-}
-/* Solid green fills (giveaway toggles, status dots) keep their color but the
-   label flips dark: they pair with text-[var(--bg-primary)], which is
-   near-white in light mode (2.1:1 on emerald-500). */
-:root[data-theme="light"] :is([class*="bg-emerald-500"], [class*="bg-emerald-600"],
-  [class*="bg-green-500"], [class*="bg-green-600"]) {
-  color: #052e16;
-}
-/* Gold-filled buttons: same text-[var(--bg-primary)] pairing goes near-white
-   on the light theme's orange (#df8e1d), 2.5:1. Force a dark label. */
-:root[data-theme="light"] [class*="bg-[var(--accent-gold)]"] {
-  color: #221a05;
-}
-/* Ticker pager dots are white-on-dark; inside the pastel-ized green slots
-   they vanish. Re-ink them green where the container fill was swapped. */
-:root[data-theme="light"] :is([class*="bg-green-900/"], [class*="bg-emerald-900/"]) [class*="bg-white/80"] {
-  background-color: rgba(20, 83, 45, 0.85);
-}
-:root[data-theme="light"] :is([class*="bg-green-900/"], [class*="bg-emerald-900/"]) [class*="bg-white/30"] {
-  background-color: rgba(20, 83, 45, 0.35);
-}
-/* Links inside those slots hover to white on dark; on the pastel fill hover
-   to the same deep green as the body text instead. */
-:root[data-theme="light"] :is([class*="bg-green-900/"], [class*="bg-emerald-900/"]) a:hover {
-  color: #052e16;
-}
 
 @theme inline {
+  /* Tailwind utilities for the tokens: text-success, bg-danger/10, border-info/40,
+     bg-scrim/60, text-on-fill, text-on-accent, bg-surface, text-fg-muted... */
   --color-background: var(--bg-primary);
   --color-foreground: var(--text-primary);
+  --color-surface: var(--bg-card);
+  --color-surface-hover: var(--bg-card-hover);
+  --color-scrim: var(--scrim);
+  --color-fg: var(--text-primary);
+  --color-fg-secondary: var(--text-secondary);
+  --color-fg-muted: var(--text-muted);
+  --color-on-accent: var(--text-on-accent);
+  --color-on-fill: var(--text-on-fill);
+  --color-line: var(--border-subtle);
+  --color-line-strong: var(--border-accent);
+  --color-accent: var(--accent-gold);
+  --color-accent-light: var(--accent-gold-light);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
+  --color-special: var(--special);
+  --color-success-fill: var(--success-fill);
+  --color-danger-fill: var(--danger-fill);
+  --color-warning-fill: var(--warning-fill);
+  --color-info-fill: var(--info-fill);
+  --color-special-fill: var(--special-fill);
+  --color-keyword: var(--keyword);
+  --color-upgrade: var(--upgrade);
+  --color-ironclad: var(--color-ironclad);
+  --color-silent: var(--color-silent);
+  --color-defect: var(--color-defect);
+  --color-necrobinder: var(--color-necrobinder);
+  --color-regent: var(--color-regent);
+  --color-ancient: var(--color-ancient);
+  --color-merchant: var(--color-merchant);
+  --color-spire: var(--color-spire);
+  --color-bronze: var(--tier-bronze);
+  --color-silver: var(--tier-silver);
+  --color-twitch: var(--brand-twitch);
+  --color-twitch-light: var(--brand-twitch-light);
+  --color-bluesky: var(--brand-bluesky);
+  --color-patreon: var(--brand-patreon);
+  --color-steam: var(--brand-steam);
+  --color-steam-line: var(--brand-steam-line);
+  --color-steam-light: var(--brand-steam-light);
   /* Kreon (the Slay the Spire 2 typeface) is the site font; Geist stays as the
      sans fallback if Kreon fails to load. Mono keeps Geist Mono for tabular
      alignment of ids and numbers. */

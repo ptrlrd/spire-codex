@@ -17,13 +17,13 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const rarityColors: Record<string, string> = {
-  Starter: "border-gray-600/40 text-gray-400",
-  Common: "border-gray-500/40 text-gray-300",
-  Uncommon: "border-blue-600/40 text-blue-400",
-  Rare: "border-amber-600/40 text-[var(--accent-gold)]",
-  Shop: "border-emerald-600/40 text-emerald-400",
-  Event: "border-cyan-600/40 text-cyan-400",
-  Ancient: "border-purple-600/40 text-purple-400",
+  Starter: "border-line-strong/40 text-fg-muted",
+  Common: "border-line-strong/40 text-fg-secondary",
+  Uncommon: "border-info/40 text-info",
+  Rare: "border-warning/40 text-[var(--accent-gold)]",
+  Shop: "border-success/40 text-success",
+  Event: "border-info/40 text-info",
+  Ancient: "border-special/40 text-special",
 };
 
 const rarityOptions = [
@@ -191,7 +191,7 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
         {sortedRelics.map((relic) => {
           const style =
             rarityColors[relic.rarity] ||
-            "border-[var(--border-subtle)] text-gray-400";
+            "border-[var(--border-subtle)] text-fg-muted";
           return (
             <Link
               prefetch={false}

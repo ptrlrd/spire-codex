@@ -18,13 +18,13 @@ export interface RelatedCard {
 
 const COLOR_CLASSES: Record<string, string> = {
   gold: "text-[var(--accent-gold)]",
-  red: "text-red-400",
-  blue: "text-blue-400",
-  green: "text-emerald-400",
-  purple: "text-purple-400",
-  orange: "text-orange-400",
-  pink: "text-pink-400",
-  aqua: "text-cyan-400",
+  red: "text-danger",
+  blue: "text-info",
+  green: "text-success",
+  purple: "text-special",
+  orange: "text-warning",
+  pink: "text-special",
+  aqua: "text-info",
 };
 
 const EFFECT_CLASSES: Record<string, string> = {

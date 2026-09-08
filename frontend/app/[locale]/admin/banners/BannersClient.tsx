@@ -94,7 +94,7 @@ export default function BannersClient() {
                 <span
                   className={`px-1.5 py-0.5 rounded mr-2 font-semibold ${
                     a.active
-                      ? "bg-emerald-950/60 text-emerald-300 border border-emerald-900/40"
+                      ? "bg-success/10 text-success border border-success/30"
                       : "bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)]"
                   }`}
                 >
@@ -111,7 +111,7 @@ export default function BannersClient() {
                 </button>
                 <button
                   onClick={() => remove(a.id)}
-                  className="px-2.5 py-1 rounded text-xs font-semibold bg-rose-950/60 text-rose-300 border border-rose-900/40 hover:bg-rose-900/60"
+                  className="px-2.5 py-1 rounded text-xs font-semibold bg-danger/10 text-danger border border-danger/30 hover:bg-danger/10"
                 >
                   Delete
                 </button>

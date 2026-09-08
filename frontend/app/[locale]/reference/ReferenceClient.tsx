@@ -119,7 +119,7 @@ export default function ReferenceClient({
       <ReferenceSection<Act>
         title="Acts"
         endpoint="acts"
-        accent="text-emerald-400"
+        accent="text-success"
         initialData={initialData.acts}
         lang={lang}
         linkPrefix={`${bp}/acts`}
@@ -144,14 +144,14 @@ export default function ReferenceClient({
       <ReferenceSection<Ascension>
         title="Ascension Levels"
         endpoint="ascensions"
-        accent="text-rose-400"
+        accent="text-danger"
         initialData={initialData.ascensions}
         lang={lang}
         linkPrefix={`${bp}/ascensions`}
         render={(asc) => (
           <>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-lg font-bold text-rose-400">
+              <span className="text-lg font-bold text-danger">
                 {asc.level}
               </span>
               <h3 className="font-semibold text-[var(--text-primary)]">
@@ -168,7 +168,7 @@ export default function ReferenceClient({
       <ReferenceSection<Keyword>
         title="Keywords"
         endpoint="keywords"
-        accent="text-cyan-400"
+        accent="text-info"
         initialData={initialData.keywords}
         lang={lang}
         linkPrefix={`${bp}/keywords`}
@@ -187,7 +187,7 @@ export default function ReferenceClient({
       <ReferenceSection<Orb>
         title="Orbs"
         endpoint="orbs"
-        accent="text-blue-400"
+        accent="text-info"
         initialData={initialData.orbs}
         lang={lang}
         linkPrefix={`${bp}/orbs`}
@@ -216,7 +216,7 @@ export default function ReferenceClient({
       <ReferenceSection<Affliction>
         title="Afflictions"
         endpoint="afflictions"
-        accent="text-red-400"
+        accent="text-danger"
         initialData={initialData.afflictions}
         lang={lang}
         linkPrefix={`${bp}/afflictions`}
@@ -247,7 +247,7 @@ export default function ReferenceClient({
       <ReferenceSection<Intent>
         title="Intents"
         endpoint="intents"
-        accent="text-amber-400"
+        accent="text-warning"
         initialData={initialData.intents}
         lang={lang}
         linkPrefix={`${bp}/intents`}
@@ -276,7 +276,7 @@ export default function ReferenceClient({
       <ReferenceSection<Modifier>
         title="Modifiers"
         endpoint="modifiers"
-        accent="text-purple-400"
+        accent="text-special"
         initialData={initialData.modifiers}
         lang={lang}
         linkPrefix={`${bp}/modifiers`}
@@ -295,7 +295,7 @@ export default function ReferenceClient({
       <ReferenceSection<Achievement>
         title="Achievements"
         endpoint="achievements"
-        accent="text-yellow-400"
+        accent="text-warning"
         initialData={initialData.achievements}
         lang={lang}
         linkPrefix={`${bp}/achievements`}

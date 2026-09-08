@@ -15,9 +15,9 @@ import { imageUrl } from "@/lib/image-url";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const rarityColors: Record<string, string> = {
-  Common: "border-gray-500/40 text-gray-300",
-  Uncommon: "border-blue-600/40 text-blue-400",
-  Rare: "border-amber-600/40 text-[var(--accent-gold)]",
+  Common: "border-line-strong/40 text-fg-secondary",
+  Uncommon: "border-info/40 text-info",
+  Rare: "border-warning/40 text-[var(--accent-gold)]",
 };
 
 const rarityOptions = [
@@ -147,7 +147,7 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
           {sortedPotions.map((potion) => {
             const style =
               rarityColors[potion.rarity] ||
-              "border-[var(--border-subtle)] text-gray-400";
+              "border-[var(--border-subtle)] text-fg-muted";
             return (
               <Link
                 prefetch={false}

@@ -20,11 +20,11 @@ function cleanDescription(desc: string): string {
 }
 
 const colorStyles: Record<string, string> = {
-  red: "border-red-700/60 from-red-900/20",
-  green: "border-green-700/60 from-green-900/20",
-  blue: "border-blue-700/60 from-blue-900/20",
-  purple: "border-purple-700/60 from-purple-900/20",
-  orange: "border-orange-700/60 from-orange-900/20",
+  red: "border-danger/60 from-danger/10",
+  green: "border-success/60 from-success/10",
+  blue: "border-info/60 from-info/10",
+  purple: "border-special/60 from-special/10",
+  orange: "border-warning/60 from-warning/10",
 };
 
 export default function CharactersClient({ initialCharacters }: { initialCharacters: Character[] }) {
@@ -87,12 +87,12 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {characters.map((char) => {
-        const style = colorStyles[char.color || ""] || "border-[var(--border-subtle)] from-gray-900/20";
+        const style = colorStyles[char.color || ""] || "border-[var(--border-subtle)] from-line-strong/20";
         return (
           <Link
             href={`${bp}/characters/${char.id.toLowerCase()}`}
             key={char.id}
-            className={`rounded-xl border-2 ${style} bg-gradient-to-br to-transparent bg-[var(--bg-card)] p-6 transition-all hover:shadow-lg hover:shadow-black/20 cursor-pointer`}
+            className={`rounded-xl border-2 ${style} bg-gradient-to-br to-transparent bg-[var(--bg-card)] p-6 transition-all hover:shadow-lg hover:shadow-scrim/20 cursor-pointer`}
           >
             <div className="flex items-center gap-3 mb-2">
               <h2 className="text-2xl font-bold text-[var(--text-primary)]">
@@ -113,7 +113,7 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
             <div className="grid grid-cols-3 gap-3 mb-5">
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
                 <div className="text-xs text-[var(--text-muted)] mb-1">{t("HP")}</div>
-                <div className="text-xl font-bold text-red-400">
+                <div className="text-xl font-bold text-danger">
                   {char.starting_hp}
                 </div>
               </div>
@@ -125,7 +125,7 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
                 <div className="text-xs text-[var(--text-muted)] mb-1">{t("Energy")}</div>
-                <div className="text-xl font-bold text-amber-400">
+                <div className="text-xl font-bold text-warning">
                   {char.max_energy ?? 3}
                 </div>
               </div>

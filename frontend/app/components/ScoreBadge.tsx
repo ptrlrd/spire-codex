@@ -24,12 +24,12 @@ interface Tier {
  * backend/app/services/run_entity_stats.py for the underlying math.
  */
 function scoreToTier(score: number): Tier {
-  if (score >= 90) return { letter: "S", label: "Top tier", className: "bg-amber-950/40 border-amber-700/60 text-amber-300" };
-  if (score >= 78) return { letter: "A", label: "Strong",   className: "bg-emerald-950/40 border-emerald-700/60 text-emerald-300" };
-  if (score >= 65) return { letter: "B", label: "Solid",    className: "bg-sky-950/40 border-sky-700/60 text-sky-300" };
-  if (score >= 50) return { letter: "C", label: "Average",  className: "bg-zinc-800/60 border-zinc-600/60 text-zinc-300" };
-  if (score >= 35) return { letter: "D", label: "Below average", className: "bg-orange-950/40 border-orange-700/60 text-orange-300" };
-  return { letter: "F", label: "Underperforming", className: "bg-rose-950/40 border-rose-800/60 text-rose-300" };
+  if (score >= 90) return { letter: "S", label: "Top tier", className: "bg-warning/10 border-warning/60 text-warning" };
+  if (score >= 78) return { letter: "A", label: "Strong",   className: "bg-success/10 border-success/60 text-success" };
+  if (score >= 65) return { letter: "B", label: "Solid",    className: "bg-info/10 border-info/60 text-info" };
+  if (score >= 50) return { letter: "C", label: "Average",  className: "bg-surface/60 border-line-strong/60 text-fg-secondary" };
+  if (score >= 35) return { letter: "D", label: "Below average", className: "bg-warning/10 border-warning/60 text-warning" };
+  return { letter: "F", label: "Underperforming", className: "bg-danger/10 border-danger/30 text-danger" };
 }
 
 export default function ScoreBadge({ score, size = "md", showNumber = false }: ScoreBadgeProps) {

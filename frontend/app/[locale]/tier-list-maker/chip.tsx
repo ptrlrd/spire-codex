@@ -44,7 +44,7 @@ export const Chip = memo(function Chip({
         // so a commented chip doesn't show two overlapping tooltips.
         title={commentText ? undefined : entity.name}
         className={`relative h-full w-full overflow-hidden rounded ${
-          isCard ? "" : "bg-[var(--bg-secondary)] ring-1 ring-black/40"
+          isCard ? "" : "bg-[var(--bg-secondary)] ring-1 ring-scrim/40"
         } ${dragging ? "shadow-lg" : ""}`}
       >
         {entity.image ? (
@@ -68,13 +68,13 @@ export const Chip = memo(function Chip({
         {hasComment && (
           <span
             aria-label={t("Has a note")}
-            className="absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-sky-400 ring-1 ring-black/60"
+            className="absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-info-fill ring-1 ring-scrim/60"
           />
         )}
         {entity.beta && (
           <span
             aria-label={t("Beta-only")}
-            className="absolute left-0.5 top-0.5 rounded bg-emerald-500/90 px-1 text-[8px] font-bold leading-tight text-black ring-1 ring-black/60"
+            className="absolute left-0.5 top-0.5 rounded bg-success/90 px-1 text-[8px] font-bold leading-tight text-on-accent ring-1 ring-scrim/60"
           >
             β
           </span>

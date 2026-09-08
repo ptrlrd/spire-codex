@@ -422,8 +422,8 @@ export function LiveCardImg({
 export function LiveDot() {
   return (
     <span className="relative flex h-2 w-2">
-      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-success-fill opacity-75" />
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-success-fill" />
     </span>
   );
 }
@@ -432,7 +432,7 @@ export function LiveDot() {
 export function PartnerBadge() {
   const t = useT();
   return (
-    <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#9146FF]/15 text-[#b794ff] border border-[#9146FF]/40">
+    <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-twitch/15 text-twitch-light border border-twitch/40">
       {t("Partner")}
     </span>
   );
@@ -455,7 +455,7 @@ export function WatchOnTwitch({
       href={`https://twitch.tv/${login}`}
       target="_blank"
       rel="noopener noreferrer"
-      className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-[#9146FF] text-white text-xs font-semibold hover:bg-[#7d2ff5] transition-colors ${className}`}
+      className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-twitch text-on-fill text-xs font-semibold hover:bg-twitch/90 transition-colors ${className}`}
     >
       <TwitchIcon className="w-3.5 h-3.5" />
       {t("Watch on Twitch")}
@@ -590,7 +590,7 @@ export function FightingChip({
   const label =
     names.length <= 2 ? names.join(" & ") : `${names[0]} +${names.length - 1}`;
   return (
-    <span className="inline-flex min-w-0 max-w-full items-center gap-1.5 px-2 py-1 rounded-full bg-rose-950/50 border border-rose-900/50 text-xs text-rose-200">
+    <span className="inline-flex min-w-0 max-w-full items-center gap-1.5 px-2 py-1 rounded-full bg-danger/10 border border-danger/30 text-xs text-danger">
       <span className="flex -space-x-2 shrink-0">
         {withOrdinalKeys(groups.slice(0, 3).map((g) => g.id)).map(({ item, key }) => (
           <EnemyCircle key={key} id={item} monsters={monsters} className={circle} />
@@ -598,7 +598,7 @@ export function FightingChip({
       </span>
       <span className="min-w-0 truncate">{t("Fighting {label}", { label })}</span>
       {p.turn != null && p.turn > 0 && (
-        <span className="text-rose-400/80 whitespace-nowrap shrink-0">· {t("Turn {n}", { n: p.turn })}</span>
+        <span className="text-danger/80 whitespace-nowrap shrink-0">· {t("Turn {n}", { n: p.turn })}</span>
       )}
     </span>
   );
@@ -610,17 +610,17 @@ function intentLabel(it: EnemyIntent, t: TFn): { text: string; cls: string } {
   const kind = (it.type || "").toLowerCase();
   const hits = it.hits && it.hits > 1 ? `×${it.hits}` : "";
   const dmg = it.dmg != null ? `${it.dmg}${hits}` : "";
-  const rose = "text-rose-200 bg-rose-950/50 border-rose-900/50";
-  const sky = "text-sky-200 bg-sky-950/50 border-sky-900/50";
-  const emerald = "text-emerald-200 bg-emerald-950/50 border-emerald-900/50";
-  const fuchsia = "text-fuchsia-200 bg-fuchsia-950/50 border-fuchsia-900/50";
-  const amber = "text-amber-200 bg-amber-950/50 border-amber-900/50";
+  const rose = "text-danger bg-danger/10 border-danger/30";
+  const sky = "text-info bg-info/10 border-info/30";
+  const emerald = "text-success bg-success/10 border-success/30";
+  const fuchsia = "text-special bg-special/10 border-special/30";
+  const amber = "text-warning bg-warning/10 border-warning/30";
   const muted = "text-[var(--text-muted)] bg-[var(--bg-primary)] border-[var(--border-subtle)]";
   switch (kind) {
     case "attack":
       return { text: dmg ? t("ATK {dmg}", { dmg }) : t("ATK"), cls: rose };
     case "deathblow":
-      return { text: dmg ? t("LETHAL {dmg}", { dmg }) : t("LETHAL"), cls: "text-rose-100 bg-rose-900/60 border-rose-700/60" };
+      return { text: dmg ? t("LETHAL {dmg}", { dmg }) : t("LETHAL"), cls: "text-danger bg-danger/10 border-danger/60" };
     case "defend":
       return { text: t("BLOCK"), cls: sky };
     case "buff":
@@ -658,11 +658,11 @@ export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: Mon
   if (!enemies.length) return null;
 
   return (
-    <div className="rounded-lg border border-rose-900/50 bg-rose-950/20 p-4">
+    <div className="rounded-lg border border-danger/30 bg-danger/10 p-4">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-rose-300">{t("Fighting")}</span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-danger">{t("Fighting")}</span>
         {p.turn != null && p.turn > 0 && (
-          <span className="ml-auto text-xs text-rose-300 tabular-nums">{t("Turn {n}", { n: p.turn })}</span>
+          <span className="ml-auto text-xs text-danger tabular-nums">{t("Turn {n}", { n: p.turn })}</span>
         )}
       </div>
       <ul className="space-y-2.5">
@@ -683,9 +683,9 @@ export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: Mon
               )}
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm text-rose-100 truncate">{name}</span>
+                  <span className="text-sm text-danger truncate">{name}</span>
                   {(e.block ?? 0) > 0 && (
-                    <span className="text-[10px] text-sky-300 tabular-nums shrink-0" title={t("block")}>
+                    <span className="text-[10px] text-info tabular-nums shrink-0" title={t("block")}>
                       [{e.block}]
                     </span>
                   )}
@@ -705,14 +705,14 @@ export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: Mon
                 </div>
                 {hpPct != null ? (
                   <div className="mt-1">
-                    <div className="flex justify-between text-[9px] text-rose-300/70 tabular-nums">
+                    <div className="flex justify-between text-[9px] text-danger/70 tabular-nums">
                       <span>{t("HP")}</span>
                       <span>
                         {e.hp}/{e.max_hp}
                       </span>
                     </div>
                     <div className="h-1.5 rounded bg-[var(--bg-primary)]">
-                      <div className="h-1.5 rounded bg-rose-500" style={{ width: `${hpPct}%` }} />
+                      <div className="h-1.5 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
                     </div>
                   </div>
                 ) : null}

@@ -21,7 +21,7 @@ export default function TierListView({
         <div key={tier.id} className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0">
           <div
             style={{ background: tier.color }}
-            className={`flex w-16 shrink-0 items-center justify-center p-2 text-center text-lg font-bold text-black ${
+            className={`flex w-16 shrink-0 items-center justify-center p-2 text-center text-lg font-bold text-on-accent ${
               i === 0 ? "rounded-tl-lg" : ""
             } ${i === lastTier ? "rounded-bl-lg" : ""}`}
           >

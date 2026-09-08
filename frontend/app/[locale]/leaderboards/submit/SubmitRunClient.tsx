@@ -295,7 +295,7 @@ export default function SubmitRunClient() {
             <span
               className={`text-xs px-1.5 py-0.5 rounded ${
                 insight.win
-                  ? "bg-green-500/15 text-green-400"
+                  ? "bg-success/15 text-success"
                   : "bg-[var(--bg-primary)] text-[var(--text-secondary)]"
               }`}
             >
@@ -332,7 +332,7 @@ export default function SubmitRunClient() {
 
           <Link
             href={`${bp}/runs/${insight.runHash}`}
-            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-[var(--accent-gold)] text-black font-medium hover:opacity-90 transition-opacity"
+            className="inline-flex items-center gap-1.5 px-4 py-2 text-sm rounded-lg bg-[var(--accent-gold)] text-on-accent font-medium hover:opacity-90 transition-opacity"
           >
             {t("See the full breakdown")} →
           </Link>
@@ -387,10 +387,10 @@ export default function SubmitRunClient() {
                   </span>
                   <span className={`shrink-0 text-xs px-1.5 py-0.5 rounded ${
                     run.win
-                      ? "bg-green-500/15 text-green-400"
+                      ? "bg-success/15 text-success"
                       : run.was_abandoned
-                        ? "bg-yellow-500/15 text-yellow-400"
-                        : "bg-red-500/15 text-red-400"
+                        ? "bg-warning/15 text-warning"
+                        : "bg-danger/15 text-danger"
                   }`}>
                     {run.win ? "W" : run.was_abandoned ? "A" : "L"}
                   </span>

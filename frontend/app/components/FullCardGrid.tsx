@@ -78,8 +78,8 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
           }}
           className={`absolute bottom-[7%] right-[8%] z-20 w-8 h-8 flex items-center justify-center rounded-full text-base transition-colors ${
             showUpgraded
-              ? "bg-emerald-950/80 border border-emerald-600/60"
-              : "bg-black/50 border border-white/15 opacity-0 group-hover:opacity-100"
+              ? "bg-success/10 border border-success/60"
+              : "bg-scrim/50 border border-on-fill/15 opacity-0 group-hover:opacity-100"
           }`}
           title={showUpgraded ? "Show base card" : "Show upgraded"}
         >

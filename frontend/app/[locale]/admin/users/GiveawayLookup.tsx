@@ -236,7 +236,7 @@ export default function GiveawayLookup() {
                             </a>
                           ) : (
                             <span
-                              className={`${badge} bg-rose-950/50 text-rose-300 border-rose-900/50`}
+                              className={`${badge} bg-danger/10 text-danger border-danger/30`}
                             >
                               {r.valid ? "private / not found" : "invalid id"}
                             </span>
@@ -249,7 +249,7 @@ export default function GiveawayLookup() {
                           {r.member ? (
                             <span className="flex flex-wrap items-center gap-1">
                               <span
-                                className={`${badge} bg-emerald-950/50 text-emerald-300 border-emerald-900/50`}
+                                className={`${badge} bg-success/10 text-success border-success/30`}
                               >
                                 Member
                               </span>
@@ -259,7 +259,7 @@ export default function GiveawayLookup() {
                               </span>
                               {r.member.is_partner && (
                                 <span
-                                  className={`${badge} bg-amber-950/50 text-amber-300 border-amber-900/50`}
+                                  className={`${badge} bg-warning/10 text-warning border-warning/30`}
                                 >
                                   Partner
                                 </span>

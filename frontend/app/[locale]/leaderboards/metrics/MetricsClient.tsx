@@ -34,12 +34,12 @@ export interface MetricRow {
 
 // Tier badge colors, kept in sync with TierList.tsx / the scoring page.
 const TIER_CLASS: Record<string, string> = {
-  S: "bg-amber-950/50 border-amber-700/60 text-amber-300",
-  A: "bg-emerald-950/50 border-emerald-700/60 text-emerald-300",
-  B: "bg-sky-950/50 border-sky-700/60 text-sky-300",
-  C: "bg-zinc-800/70 border-zinc-600/60 text-zinc-300",
-  D: "bg-orange-950/50 border-orange-700/60 text-orange-300",
-  F: "bg-rose-950/50 border-rose-800/60 text-rose-300",
+  S: "bg-warning/10 border-warning/60 text-warning",
+  A: "bg-success/10 border-success/60 text-success",
+  B: "bg-info/10 border-info/60 text-info",
+  C: "bg-surface/70 border-line-strong/60 text-fg-secondary",
+  D: "bg-warning/10 border-warning/60 text-warning",
+  F: "bg-danger/10 border-danger/30 text-danger",
 };
 
 const COLOR_FILTERS = [

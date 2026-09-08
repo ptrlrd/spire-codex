@@ -187,7 +187,7 @@ export default function EntityProse(props: Props) {
     // render's green.
     const f = getCardProseFacts(c, !!props.upgraded);
     const green = (v: ReactNode, changed: boolean) =>
-      f.isUpgraded && changed ? <span className="text-emerald-400">{v}</span> : v;
+      f.isUpgraded && changed ? <span className="text-success">{v}</span> : v;
     const sentences: ReactNode[] = [];
     sentences.push(
       <>

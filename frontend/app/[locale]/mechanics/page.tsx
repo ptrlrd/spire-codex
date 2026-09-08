@@ -96,9 +96,9 @@ export default async function MechanicsPage({ params }: Props) {
           <Link
             key={s.slug}
             href={`/mechanics/${s.slug}`}
-            className="bg-[var(--bg-card)] rounded-lg border border-emerald-800/30 p-5 hover:bg-[var(--bg-card-hover)] hover:border-emerald-600/50 transition-all cursor-pointer block"
+            className="bg-[var(--bg-card)] rounded-lg border border-success/30 p-5 hover:bg-[var(--bg-card-hover)] hover:border-success/50 transition-all cursor-pointer block"
           >
-            <h3 className="font-semibold text-emerald-400 mb-2">{s.title}</h3>
+            <h3 className="font-semibold text-success mb-2">{s.title}</h3>
             <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{s.description}</p>
           </Link>
         ))}

@@ -87,12 +87,12 @@ function IntentBadge({ intent }: { intent: EnemyIntent }) {
         }}
       />
       {dmg != null ? (
-        <span className="text-xs font-bold tabular-nums text-rose-200">
+        <span className="text-xs font-bold tabular-nums text-danger">
           {dmg}
           {hits}
         </span>
       ) : intent.amount != null ? (
-        <span className="text-xs font-bold tabular-nums text-sky-200">
+        <span className="text-xs font-bold tabular-nums text-info">
           {intent.amount}
         </span>
       ) : null}
@@ -120,7 +120,7 @@ function PowerRow({ powers }: { powers: LivePower[] }) {
             }}
           />
           {pw.amount != null && pw.amount !== 0 && (
-            <span className="absolute -bottom-1 -right-1 rounded bg-black/70 px-0.5 text-[9px] font-bold leading-none text-white tabular-nums">
+            <span className="absolute -bottom-1 -right-1 rounded bg-scrim/70 px-0.5 text-[9px] font-bold leading-none text-on-fill tabular-nums">
               {pw.amount}
             </span>
           )}
@@ -161,7 +161,7 @@ function OrbRow({ orbs, slots }: { orbs: LiveOrb[]; slots?: number | null }) {
               }}
             />
             {orb?.passive != null && (
-              <span className="absolute -bottom-1 -right-1 rounded bg-black/70 px-0.5 text-[9px] font-bold leading-none text-white tabular-nums">
+              <span className="absolute -bottom-1 -right-1 rounded bg-scrim/70 px-0.5 text-[9px] font-bold leading-none text-on-fill tabular-nums">
                 {orb.passive}
               </span>
             )}
@@ -187,15 +187,15 @@ function Vitals({
   return (
     <div className="w-32 max-w-full">
       {pct != null && (
-        <div className="relative h-4 rounded bg-black/50 ring-1 ring-black/40">
-          <div className="h-4 rounded bg-rose-600" style={{ width: `${pct}%` }} />
-          <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white tabular-nums drop-shadow">
+        <div className="relative h-4 rounded bg-scrim/50 ring-1 ring-scrim/40">
+          <div className="h-4 rounded bg-danger-fill" style={{ width: `${pct}%` }} />
+          <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-fill tabular-nums drop-shadow">
             {hp}/{maxHp}
           </span>
         </div>
       )}
       {(block ?? 0) > 0 && (
-        <div className="mt-0.5 flex items-center justify-center gap-1 text-[11px] font-bold text-sky-200">
+        <div className="mt-0.5 flex items-center justify-center gap-1 text-[11px] font-bold text-info">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imageUrl("/static/images/intents/defend.png")}
@@ -236,7 +236,7 @@ function PartyMate({
           active
             ? "border-[var(--accent-gold)] ring-2 ring-[var(--accent-gold)]/60"
             : down
-              ? "border-rose-500/60 grayscale"
+              ? "border-danger/60 grayscale"
               : "border-[var(--accent-gold)]/40"
         }`}
       >
@@ -247,12 +247,12 @@ function PartyMate({
           {displayName(`CHARACTER.${seat.character ?? ""}`)}
         </span>
         {down && (
-          <span className="text-[10px] font-bold uppercase text-rose-400">
+          <span className="text-[10px] font-bold uppercase text-danger">
             {t("down")}
           </span>
         )}
         {!down && seat.ended_turn && turnSide === "player" && (
-          <span className="text-[10px] text-emerald-400" title={t("Turn locked in")}>
+          <span className="text-[10px] text-success" title={t("Turn locked in")}>
             ✓
           </span>
         )}
@@ -274,9 +274,9 @@ function PetRow({ pets, monsters }: { pets: LivePet[]; monsters: MonsterMap }) {
           <EnemyCircle
             id={pt.id || ""}
             monsters={monsters}
-            className="h-16 w-16 ring-2 ring-emerald-400/60"
+            className="h-16 w-16 ring-2 ring-success/60"
           />
-          <div className="max-w-[6rem] truncate text-xs font-medium text-emerald-200">
+          <div className="max-w-[6rem] truncate text-xs font-medium text-success">
             {pt.name || (pt.id ? monsterName(pt.id, monsters) : t("Pet"))}
           </div>
           <Vitals hp={pt.hp} maxHp={pt.max_hp} block={pt.block} />
@@ -416,10 +416,10 @@ export default function LiveScene({
         )}
         {p.hp != null && (
           <span className="inline-flex items-center gap-1.5">
-            <span className="relative block h-3.5 w-24 overflow-hidden rounded bg-black/40 ring-1 ring-black/30">
-              <span className="block h-full bg-rose-600" style={{ width: `${hpPct}%` }} />
+            <span className="relative block h-3.5 w-24 overflow-hidden rounded bg-scrim/40 ring-1 ring-scrim/30">
+              <span className="block h-full bg-danger-fill" style={{ width: `${hpPct}%` }} />
             </span>
-            <span className="text-xs font-semibold tabular-nums text-rose-200">
+            <span className="text-xs font-semibold tabular-nums text-danger">
               {p.hp}/{p.max_hp}
             </span>
           </span>
@@ -520,7 +520,7 @@ export default function LiveScene({
                 crossOrigin="anonymous"
               />
               {p.deck.length > 0 && (
-                <span className="absolute -bottom-1 -right-1 rounded bg-black/70 px-1 text-[10px] font-bold tabular-nums text-white">
+                <span className="absolute -bottom-1 -right-1 rounded bg-scrim/70 px-1 text-[10px] font-bold tabular-nums text-on-fill">
                   {p.deck.length}
                 </span>
               )}
@@ -585,20 +585,20 @@ export default function LiveScene({
             />
           ))}
           {sceneLayers.length > 0 && (
-            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 bg-scrim/20" />
           )}
           {dead && (
-            <div className="absolute inset-0 bg-gradient-to-t from-rose-950/80 via-rose-900/45 to-rose-900/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-danger/10 via-danger/10 to-danger/10" />
           )}
         </div>
         <div className="relative w-full px-6 py-8">
           {dead ? (
             <div className="mx-auto flex max-w-lg flex-col items-center gap-3 py-10 text-center">
-              <div className="text-xs font-bold uppercase tracking-[0.3em] text-rose-400">
+              <div className="text-xs font-bold uppercase tracking-[0.3em] text-danger">
                 {t("Defeated")}
               </div>
               {p.death?.line && (
-                <div className="text-2xl font-semibold italic leading-snug text-rose-200">
+                <div className="text-2xl font-semibold italic leading-snug text-danger">
                   “<RichDescriptionSimple text={p.death.line} />”
                 </div>
               )}
@@ -669,8 +669,8 @@ export default function LiveScene({
                       monsters={monsters}
                       className={`h-28 w-28 ring-2 transition ${
                         p.turn_side === "enemy"
-                          ? "ring-rose-400 shadow-[0_0_18px_rgba(244,63,94,0.6)]"
-                          : "ring-rose-500/50"
+                          ? "ring-danger shadow-[0_0_18px_rgba(244,63,94,0.6)]"
+                          : "ring-danger/50"
                       }`}
                     />
                     <div className="max-w-[8rem] truncate text-sm font-semibold text-[var(--text-primary)]">
@@ -722,7 +722,7 @@ export default function LiveScene({
               <span className="inline-flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--accent-gold)]/60 bg-[var(--bg-primary)]">
                 <CharacterIcon character={p.character} className="h-[88%] w-[88%]" />
               </span>
-              <div className="text-base font-semibold text-amber-200">
+              <div className="text-base font-semibold text-warning">
                 {t("Resting at a campfire")}
               </div>
               {p.hp != null && (
@@ -748,7 +748,7 @@ export default function LiveScene({
               ) : null}
             </div>
           ) : (
-            <div className="py-12 text-center text-sm text-white/70">
+            <div className="py-12 text-center text-sm text-on-fill/70">
               {p.screen ? t("On the {screen} screen", { screen: p.screen }) : t("Between rooms")}
             </div>
           )}
@@ -841,7 +841,7 @@ export default function LiveScene({
       {/* Deck / pile viewer (the Deck button + the pile buttons open this). */}
       {openCards && (
         <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/60 p-4"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
           onClick={() => setOpenCards(null)}
         >
           <div
@@ -900,7 +900,7 @@ export default function LiveScene({
       {/* Map viewer (the Map button opens this). */}
       {showMap && (
         <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-black/60 p-4"
+          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
           onClick={() => setShowMap(false)}
         >
           <div

@@ -72,7 +72,7 @@ export default async function HighestRated({
   if (top.length === 0) return null;
 
   return (
-    <section className="mb-10 rounded-2xl border border-[var(--accent-gold)]/25 bg-gradient-to-b from-[var(--accent-gold)]/[0.07] to-[var(--bg-card)] p-5 sm:p-6 shadow-lg shadow-black/20">
+    <section className="mb-10 rounded-2xl border border-[var(--accent-gold)]/25 bg-gradient-to-b from-[var(--accent-gold)]/[0.07] to-[var(--bg-card)] p-5 sm:p-6 shadow-lg shadow-scrim/20">
       <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
         <div>
           <span className="inline-block text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)] bg-[var(--accent-gold)]/10 border border-[var(--accent-gold)]/30 rounded px-2 py-0.5 mb-2">

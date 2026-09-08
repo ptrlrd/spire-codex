@@ -20,8 +20,8 @@
   --defect: var(--color-defect);
   --necro: var(--color-necrobinder);
   --regent: var(--color-regent);
-  --good: #35c07a;
-  --warn: #d08a3a;
+  --good: var(--success);
+  --warn: var(--warning);
   --serif: var(--font-kreon), Georgia, "Times New Roman", serif;
   --sans: var(--font-kreon), system-ui, -apple-system, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;

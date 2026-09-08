@@ -286,10 +286,10 @@ export default function ProfileStats({
                     </span>
                     <span className={`shrink-0 text-xs px-1.5 py-0.5 rounded ${
                       run.win
-                        ? "bg-green-500/15 text-green-400"
+                        ? "bg-success/15 text-success"
                         : run.was_abandoned
-                          ? "bg-yellow-500/15 text-yellow-400"
-                          : "bg-red-500/15 text-red-400"
+                          ? "bg-warning/15 text-warning"
+                          : "bg-danger/15 text-danger"
                     }`}>
                       {run.win ? "W" : run.was_abandoned ? "A" : "L"}
                     </span>
@@ -311,7 +311,7 @@ export default function ProfileStats({
                       <div className="flex items-center gap-1 shrink-0">
                         <button
                           onClick={() => onDeleteRun(run.run_hash)}
-                          className="text-xs text-red-400 hover:text-red-300"
+                          className="text-xs text-danger hover:text-danger"
                         >
                           {t("Confirm")}
                         </button>
@@ -325,7 +325,7 @@ export default function ProfileStats({
                     ) : (
                       <button
                         onClick={() => onDeleteConfirm(run.run_hash)}
-                        className="text-xs text-[var(--text-tertiary)] hover:text-red-400 transition-colors shrink-0"
+                        className="text-xs text-[var(--text-tertiary)] hover:text-danger transition-colors shrink-0"
                       >
                         {t("Delete")}
                       </button>
@@ -438,7 +438,7 @@ export default function ProfileStats({
             <Link
               prefetch={false}
               href="/tier-list-maker"
-              className="text-sm text-sky-400 hover:underline"
+              className="text-sm text-info hover:underline"
             >
               {t("New tier list")}
             </Link>

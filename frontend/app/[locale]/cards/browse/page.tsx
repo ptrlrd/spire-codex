@@ -16,24 +16,24 @@ const GROUPS: { title: string; category: SlugEntry["category"]; icon: string }[]
 ];
 
 const characterColors: Record<string, string> = {
-  ironclad: "border-red-700/40 hover:border-red-500",
-  silent: "border-green-700/40 hover:border-green-500",
-  defect: "border-blue-700/40 hover:border-blue-500",
-  necrobinder: "border-purple-700/40 hover:border-purple-500",
-  regent: "border-orange-700/40 hover:border-orange-500",
+  ironclad: "border-danger/40 hover:border-danger",
+  silent: "border-success/40 hover:border-success",
+  defect: "border-info/40 hover:border-info",
+  necrobinder: "border-special/40 hover:border-special",
+  regent: "border-warning/40 hover:border-warning",
 };
 
 const characterTextColors: Record<string, string> = {
-  ironclad: "text-red-400",
-  silent: "text-green-400",
-  defect: "text-blue-400",
-  necrobinder: "text-purple-400",
-  regent: "text-orange-400",
+  ironclad: "text-danger",
+  silent: "text-success",
+  defect: "text-info",
+  necrobinder: "text-special",
+  regent: "text-warning",
 };
 
 const rarityColors: Record<string, string> = {
-  common: "text-gray-300",
-  uncommon: "text-blue-400",
+  common: "text-fg-secondary",
+  uncommon: "text-info",
   rare: "text-[var(--accent-gold)]",
 };
 
@@ -111,7 +111,7 @@ export default async function BrowseHubPage({ params }: Props) {
                   <Link
                     key={slug}
                     href={`/cards/browse/${slug}`}
-                    className={`rounded-lg border ${style.border} bg-[var(--bg-card)] p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-black/20`}
+                    className={`rounded-lg border ${style.border} bg-[var(--bg-card)] p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-scrim/20`}
                   >
                     <h3 className={`font-semibold text-sm ${style.text}`}>
                       {entry.label}

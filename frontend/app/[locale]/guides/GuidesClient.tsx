@@ -12,9 +12,9 @@ import { useBetaPrefix } from "@/lib/use-lang-prefix";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const difficultyColors: Record<string, string> = {
-  beginner: "bg-emerald-900/40 text-emerald-400 border-emerald-700/40",
-  intermediate: "bg-amber-900/40 text-amber-400 border-amber-700/40",
-  advanced: "bg-red-900/40 text-red-400 border-red-700/40",
+  beginner: "bg-success/10 text-success border-success/40",
+  intermediate: "bg-warning/10 text-warning border-warning/40",
+  advanced: "bg-danger/10 text-danger border-danger/40",
 };
 
 const categoryLabels: Record<string, string> = {
@@ -140,7 +140,7 @@ function GuidesClientInner({ initialGuides }: { initialGuides: GuideSummary[] })
               <span className="text-[var(--text-muted)]">{t("by {author}", { author: guide.author })}</span>
               <span className="text-[var(--text-muted)]">&middot;</span>
               <span className="text-[var(--text-muted)]">{guide.date}</span>
-              <span className={`px-2 py-0.5 rounded border text-[10px] font-medium ${difficultyColors[guide.difficulty] || "bg-gray-800 text-gray-400 border-gray-700"}`}>
+              <span className={`px-2 py-0.5 rounded border text-[10px] font-medium ${difficultyColors[guide.difficulty] || "bg-surface text-fg-muted border-line-strong"}`}>
                 {guide.difficulty}
               </span>
               <span className="px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-muted)] border border-[var(--border-subtle)] text-[10px]">
