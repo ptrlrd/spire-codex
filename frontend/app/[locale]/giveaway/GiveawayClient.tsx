@@ -188,9 +188,9 @@ export default function GiveawayClient() {
           {hasSteam ? (
             <p className="text-emerald-300">{t("Signed in as")} {user?.username ?? t("your account")}.</p>
           ) : (
-            <button onClick={loginSteam} className={primaryBtn}>
+            <a href={loginSteam} className={primaryBtn}>
               {user ? t("Connect Steam") : t("Sign in with Steam")}
-            </button>
+            </a>
           )}
         </StepCard>
 

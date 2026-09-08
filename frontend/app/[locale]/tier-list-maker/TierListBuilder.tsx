@@ -331,7 +331,7 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
   async function handleSave() {
     if (!user) {
-      loginSteam();
+      window.location.href = loginSteam;
       return;
     }
     setSaving(true);

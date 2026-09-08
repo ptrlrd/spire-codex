@@ -266,16 +266,15 @@ export default function SettingsClient() {
               </div>
             </div>
           ) : (
-            <button
-              onClick={loginSteam}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
-            >
+            <a
+              href={loginSteam}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer">
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z"/></svg>
                 <span className="text-sm text-[var(--text-primary)]">Steam</span>
               </div>
               <span className="text-xs text-[var(--text-secondary)]">{t("Connect")}</span>
-            </button>
+            </a>
           )}
           {user.discord_id ? (
             <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
@@ -295,16 +294,15 @@ export default function SettingsClient() {
               </div>
             </div>
           ) : (
-            <button
-              onClick={loginDiscord}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
-            >
+            <a
+              href={loginDiscord}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer">
               <div className="flex items-center gap-2">
                 <DiscordIcon className="w-4 h-4 text-[var(--text-secondary)]" />
                 <span className="text-sm text-[var(--text-primary)]">Discord</span>
               </div>
               <span className="text-xs text-[var(--text-secondary)]">{t("Connect")}</span>
-            </button>
+            </a>
           )}
           {user.twitch_id ? (
             <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
@@ -339,16 +337,15 @@ export default function SettingsClient() {
               </div>
             </div>
           ) : (
-            <button
-              onClick={loginTwitch}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
-            >
+            <a
+              href={loginTwitch}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer">
               <div className="flex items-center gap-2">
                 <TwitchIcon className="w-4 h-4 text-[var(--text-secondary)]" />
                 <span className="text-sm text-[var(--text-primary)]">Twitch</span>
               </div>
               <span className="text-xs text-[var(--text-secondary)]">{t("Connect")}</span>
-            </button>
+            </a>
           )}
           {user.patreon_id ? (
             <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
@@ -373,16 +370,15 @@ export default function SettingsClient() {
               </div>
             </div>
           ) : (
-            <button
-              onClick={loginPatreon}
-              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
-            >
+            <a
+              href={loginPatreon}
+              className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer">
               <div className="flex items-center gap-2">
                 <svg className="w-4 h-4 text-[var(--text-secondary)]" viewBox="0 0 24 24" fill="currentColor" aria-hidden><circle cx="14.5" cy="9.5" r="7.5" /><rect x="2" y="2" width="4" height="20" /></svg>
                 <span className="text-sm text-[var(--text-primary)]">Patreon</span>
               </div>
               <span className="text-xs text-[var(--text-secondary)]">{t("Connect")}</span>
-            </button>
+            </a>
           )}
         </div>
         <p className="text-xs text-[var(--text-tertiary)]">
