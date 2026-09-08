@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath, type Locale } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type {
   Act,
   Ascension,
@@ -35,25 +34,17 @@ async function fetchSection<T>(endpoint: string, locale: Locale): Promise<T[]> {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Slay the Spire 2 Reference", title: "Slay the Spire 2 Reference | Spire Codex", description: "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels.", tagline: "Quick reference for Slay the Spire 2 game mechanics, keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels." };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Reference")}`;
-  const desc = `${gameName} ${t("Reference")} (${nativeName}). Keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascension levels all in one place.`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("reference_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/reference", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/reference", title: t("Reference"), description: t("reference_meta_description") });
 }
 
 export default async function ReferencePage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Reference"));
+  const tagline = t("reference_tagline");
   const [acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements] =
     await Promise.all([
       fetchSection<Act>("acts", locale),
@@ -95,9 +86,9 @@ export default async function ReferencePage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-6">{copy.tagline}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
       <ReferenceClient initialData={data} />
     </div>

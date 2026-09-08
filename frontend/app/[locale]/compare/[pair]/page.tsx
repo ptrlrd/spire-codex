@@ -3,10 +3,10 @@ import { permanentRedirect } from "next/navigation";
 import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { LANG_NAMES } from "@/lib/languages";
-import { gameNameFor, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
+import { getT } from "@/lib/i18n-server";
+import { gameNameFor, inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
-import { DEFAULT_OG_IMAGE, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 import CompareDetail from "./CompareDetail";
 
 export const dynamic = "force-static";
@@ -47,35 +47,20 @@ type Props = { params: Promise<{ locale: string; pair: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, pair } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/compare/${pair}`;
   const parsed = parsePair(pair);
-  if (!parsed) return { title: "Comparison Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+  if (!parsed) return buildPageMetadata({ locale, path, title: t("Comparison Not Found"), noIndex: true });
 
   const nameA = CHAR_NAMES[parsed.a];
   const nameB = CHAR_NAMES[parsed.b];
-  const title =
-    locale === "eng"
-      ? `${nameA} vs ${nameB} - Character Comparison - Slay the Spire 2 (sts2) | Spire Codex`
-      : `${gameNameFor(locale)} ${nameA} vs ${nameB} - Character Comparison | Spire Codex (${LANG_NAMES[locale]})`;
-  const description =
-    locale === "eng"
-      ? `Compare ${nameA} and ${nameB} in Slay the Spire 2. Side-by-side stats, card pool breakdowns by type and rarity, keyword distributions, and starting decks.`
-      : `Compare ${nameA} and ${nameB} in ${gameNameFor(locale)}. Side-by-side stats, card pool breakdowns by type and rarity, keyword distributions, and starting decks.`;
-
-  return {
-    title,
-    description,
-    openGraph: {
-      type: "article",
-      locale: ogLocaleOf(locale),
-      siteName: SITE_NAME,
-      url: `${SITE_URL}${localePath(locale, `/compare/${pair}`)}`,
-      title,
-      description,
-      images: [{ url: DEFAULT_OG_IMAGE }],
-    },
-    twitter: { card: "summary_large_image", title, description },
-    alternates: { canonical: localePath(locale, `/compare/${pair}`), languages: buildLanguageAlternates(`/compare/${pair}`) },
-  };
+  return buildPageMetadata({
+    locale,
+    path,
+    title: `${nameA} vs ${nameB} - ${t("Compare")}`,
+    description: t("compare_pair_meta_description", { a: nameA, b: nameB }),
+    ogType: "article",
+  });
 }
 
 async function fetchCharacterAndCards(
@@ -117,7 +102,7 @@ export default async function Page({ params }: Props) {
 
   const nameA = CHAR_NAMES[parsed.a];
   const nameB = CHAR_NAMES[parsed.b];
-  const gameName = locale === "eng" ? "Slay the Spire 2" : gameNameFor(locale);
+  const gameName = gameNameFor(locale, "Slay the Spire 2");
 
   let jsonLd = null;
   if (dataA && dataB) {

@@ -1,10 +1,11 @@
+import { getT } from "@/lib/i18n-server";
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
-import { entityDescription, entityFallbackDescription, entityTitle, uiText } from "@/lib/locale-server";
+import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
+import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import CardDetail from "./CardDetail";
 import type { EntityStats } from "@/app/components/EntityRunStats";
 import { fetchEntityStats } from "@/lib/entity-stats";
-import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
@@ -29,41 +30,39 @@ type Props = { params: Promise<{ locale: string; id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/cards/${id}`;
   try {
     const res = await fetch(`${API_INTERNAL}/api/cards/${id}${langQuery(locale)}`, {
       next: { revalidate: 3600 },
     });
-    if (!res.ok) return { title: "Card Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Card Not Found"), noIndex: true });
     const card = await res.json();
-    const desc = stripTags(card.description || "");
     const color = (card.color || "").replace(/^\w/, (c: string) => c.toUpperCase());
-    const title = locale === "eng" ? `${card.name} - Slay the Spire 2 ${card.rarity} ${card.type} | Spire Codex` : entityTitle(locale, card.name, "Card");
     const descFlat = stripTagsFlat(card.description || "");
     const keywords = card.keywords?.length ? ` Keywords: ${card.keywords.join(", ")}.` : "";
-    const metaDesc = locale === "eng"
-      ? clipMetaDescription(
-      `${card.name} is a ${card.cost ?? "X"}-cost ${color} ${card.rarity} ${card.type} card in Slay the Spire 2 (sts2). ${descFlat}${keywords}`,
-    )
-      : entityDescription(locale, card.name, "card", desc);
     // Full game-rendered card (base + upgraded) as the share image, English.
     const ogImages = cardOgImages(card, "eng");
-    return {
-      title,
-      description: metaDesc,
-      openGraph: {
-        type: "article",
-        locale: ogLocaleOf(locale),
-        siteName: SITE_NAME,
-        url: `${SITE_URL}${localePath(locale, `/cards/${id}`)}`,
-        title,
-        description: metaDesc,
-        images: ogImages,
-      },
-      twitter: { card: "summary_large_image", title, description: metaDesc, images: ogImages.map((i) => i.url) },
-      alternates: { canonical: localePath(locale, `/cards/${id}`), languages: buildLanguageAlternates(`/cards/${id}`) },
-    };
+    return buildPageMetadata({
+      locale,
+      path,
+      title: `${card.name} - ${t("Card")}`,
+      description: clipMetaDescription(
+        t("card_meta_description", {
+          name: card.name,
+          cost: String(card.cost ?? "X"),
+          color,
+          rarity: card.rarity,
+          type: card.type,
+          descFlat,
+          keywords,
+        }),
+      ),
+      ogType: "article",
+      image: ogImages[0]?.url,
+    });
   } catch {
-    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
+    return buildPageMetadata({ locale, path, title: t("Database"), noIndex: true });
   }
 }
 
@@ -115,7 +114,7 @@ export default async function Page({ params }: Props) {
   // link equity and humans land on something useful.
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
-  if (!card) redirectMissingEntity("cards", id, locale === "eng" ? undefined : locale);
+  if (!card) redirectMissingEntity("cards", id, locale);
   // Server-render the community stats into the HTML (unique, crawlable data).
   const initialStats: EntityStats | null = card ? await fetchEntityStats("cards", id) : null;
   return (

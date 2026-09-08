@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { CSSProperties } from "react";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -128,31 +127,16 @@ const RARITY_COLOR: Record<string, string> = {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng")
-    return {
-      heading: "Merchant Guide",
-      title: "Merchant Guide - Prices, Card Removal & Fake Merchant - Slay the Spire 2 (sts2) | Spire Codex",
-      description: "Complete Slay the Spire 2 (sts2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
-      tagline: "",
-    };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Merchant Guide")}`;
-  const desc = `${t("Complete {game} merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.", { game: gameName })} ${nativeName}.`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("merchant_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/merchant", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/merchant", title: t("Merchant Guide - Prices, Card Removal & Fake Merchant"), description: t("merchant_meta_description") });
 }
 
 export default async function MerchantPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Merchant Guide"));
   const cfg = await fetchMerchantConfig();
 
   const jsonLd = [
@@ -230,7 +214,7 @@ export default async function MerchantPage({ params }: Props) {
               <span>&middot;</span>
               <span>{t("Economy")}</span>
             </p>
-            <h1>{copy.heading}</h1>
+            <h1>{heading}</h1>
             <p className="lede">
               {t("All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.")}
             </p>

@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
-import {
-  SUPPORTED_LANGS,
-  LANG_HREFLANG,
-  isValidLang,
-  getLangOrDefault,
-  LangCode,
-} from "./languages";
+import { SUPPORTED_LANGS, LANG_HREFLANG, LANG_GAME_NAME, LANG_NAMES, LANG_OG_LOCALE } from "./languages";
+import type { Locale } from "@/i18n/routing";
 
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
@@ -23,32 +18,43 @@ export const DEFAULT_OG_IMAGE = `${SITE_URL}/spire-codex-white-silent-black-back
 export const HOME_OG_IMAGE = `${SITE_URL}/spire-codex-black-final.png`;
 
 /**
- * The English title suffix, as a Next `title.template`. Pages supply only
- * their own segment and this appends the rest.
- *
- * Any layout that sets a plain-string `title` **replaces** the inherited
- * template with nothing, silently un-suffixing every route beneath it — so
- * a section layout with children must re-declare the template alongside
- * its title: `title: { default: title, template: TITLE_TEMPLATE }`.
- * The localized equivalent is built per-locale in `app/[lang]/layout.tsx`.
+ * Title suffixes. English keeps the long-standing "%s - Slay the Spire 2 (sts2) |
+ * Spire Codex" shape; every other locale reads "<game name in that language>
+ * %s | Spire Codex (<native language name>)".
  */
 export const TITLE_TEMPLATE = `%s - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
 export const TITLE_DEFAULT = `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
 
+/** The game's name as the locale writes it. */
+export function gameName(locale: Locale): string {
+  return locale === "eng" ? "Slay the Spire 2 (sts2)" : LANG_GAME_NAME[locale];
+}
+
+/** `<title>` for a page from its own segment only ("Relics", "Bash - Card"). */
+export function pageTitle(locale: Locale, segment: string): string {
+  if (locale === "eng") return TITLE_TEMPLATE.replace("%s", segment);
+  return `${LANG_GAME_NAME[locale]} ${segment} | ${SITE_NAME} (${LANG_NAMES[locale]})`;
+}
+
+/** The h1 for a hub page: the game name in the reader's language plus the page's own name. */
+export function pageHeading(locale: Locale, segment: string): string {
+  return `${gameName(locale)} ${segment}`;
+}
+
+export function hreflangOf(locale: Locale): string {
+  return locale === "eng" ? "en" : LANG_HREFLANG[locale];
+}
+
+export function ogLocaleOf(locale: Locale): string {
+  return locale === "eng" ? "en_US" : LANG_OG_LOCALE[locale];
+}
+
 /**
- * Build the `alternates.languages` map for a given English-side path,
- * pointing to every supported locale variant + `x-default`.
- *
- * Bidirectional hreflang is the indexation signal Google uses to
- * disambiguate translated copies, without it, Google sees /cards and
- * /jpn/cards as competing for the same query and picks ONE to index,
- * dumping the rest into "Crawled - currently not indexed". With it,
- * each locale variant indexes on its own and gets served to its
- * matching audience.
- *
- * Pass the bare path with no /[lang]/ prefix (e.g. "/cards", "/relics"
- * or "/cards/strike"). Returns a Record<hreflang, fullURL> ready to
- * spread into Next.js `alternates.languages`.
+ * Build the `alternates.languages` map for a bare path, pointing to every
+ * locale variant plus `x-default`. Bidirectional hreflang is what lets each
+ * localized copy index on its own instead of competing with the English one.
+ * The home page localizes to `/<code>`, never `/<code>/`: the trailing-slash
+ * form 308s and hreflang must not point at a redirect.
  */
 export function buildLanguageAlternates(path: string): Record<string, string> {
   const trimmed = path.startsWith("/") ? path : `/${path}`;
@@ -56,126 +62,63 @@ export function buildLanguageAlternates(path: string): Record<string, string> {
     en: `${SITE_URL}${trimmed}`,
     "x-default": `${SITE_URL}${trimmed}`,
   };
-  // For the home page the localized URL is /<code>, not /<code>/ — the
-  // trailing-slash form 308s, and hreflang alternates must not redirect
-  // (every crawl flagged them as incorrect hreflang links).
   const suffix = trimmed === "/" ? "" : trimmed;
   for (const code of SUPPORTED_LANGS) {
-    // "eng" is a valid [lang] segment, but its canonical home is the bare
-    // path above, not /eng/... — skip it here so the loop doesn't clobber
-    // the `en` entry already seeded to the bare path with `/eng/...`.
-    if (code === "eng") continue;
     map[LANG_HREFLANG[code]] = `${SITE_URL}/${code}${suffix}`;
   }
   return map;
 }
 
-/**
- * Prefix a bare path with a locale segment, when one is present.
- *
- * The single implementation of locale prefixing, shared by
- * `buildPageMetadata` below and by JSON-LD call sites (whose builders take
- * an already-prefixed path, the opposite convention to
- * `buildLanguageAlternates`). Pass the bare path either way.
- *
- * `lang` is used exactly as given and never defaulted: an absent or
- * unrecognised segment yields the bare English path, never `/eng/...`.
- * `"eng"` itself also yields the bare path — it's a valid `[lang]` segment
- * (so `/eng/cards` renders), but /eng/... and the bare page are the same
- * English content, so canonical hands all the equity to one URL.
- */
-export function localizedPath(lang: string, path: string): string {
+/** The URL path for `path` in this locale: bare for English, prefixed otherwise. The one implementation, shared by metadata and JSON-LD. */
+export function localizedPath(locale: Locale, path: string): string {
   const bare = path.startsWith("/") ? path : `/${path}`;
-  if (!lang || lang === "eng" || !isValidLang(lang)) return bare;
-  // The home page localizes to `/<code>`, not `/<code>/` — the trailing
-  // slash form 308s, and neither canonicals nor hreflang may point at a
-  // redirect.
-  return bare === "/" ? `/${lang}` : `/${lang}${bare}`;
+  if (locale === "eng") return bare;
+  return bare === "/" ? `/${locale}` : `/${locale}${bare}`;
 }
 
 export interface PageMetadataInput {
-  /**
-   * `[lang]` parameter on those routes. You should pass the actual param as given, so the method knows whether to de-index any non-canonical paths we may allow to render.
-   */
-  langParam?: string;
+  locale: Locale;
   /** Bare path, never locale-prefixed: "/relics", "/cards/strike", "/". */
   path: string;
-  /**
-   * This segment only, never the full title — the layout's `title.template`
-   * appends the site suffix, and og/twitter titles inherit the resolved
-   * result. See `app/layout.tsx` and `app/[lang]/layout.tsx`.
-   */
+  /** This page's own segment, already translated ("Relics", "Bash - Card"). The helper adds the site suffix for the locale. */
   title: string;
   description?: string;
-  /** Defaults to "website". */
   ogType?: "website" | "article" | "profile";
-  /**
-   * Adds robots noindex for all languages, or explicitly prevents that from being added if it would be inferred from other parameters (with explicit false).
-   * By default we no-index when either langParam is `"eng"` (since undefined is the canonical path for English) or when supressLanguageAlternates is true and langParam is anything other than `undefined`.
-   */
+  image?: string;
+  /** Keep the page out of the index in every locale. */
   noIndex?: boolean;
   /**
-   * Whether this route self-canonicalizes per locale and advertises
-   * hreflang or will only index the english route.
-   *
-   * Used mostly as a temporary stopgap when SEO is suffering due to insufficient localisation coverage in the page body.
-   * When true, non-english routes will also have no-index robots added (unless no-index is explicitly false).
+   * The page body is English-only content (guides, run shares): every locale
+   * canonicalizes to the English URL, no hreflang is advertised, and the
+   * non-English copies are noindex so readers keep their chrome language
+   * without creating duplicates.
    */
   supressLanguageAlternates?: boolean;
 }
 
-/**
- * Build a page's Next.js `Metadata` in a standardised/templated way suitable typically for all routes and their [lang] counterparts
- * @see PageMetadataInput for parameter details
- */
-export function buildPageMetadata({
-  langParam,
-  path,
-  title,
-  description,
-  ogType,
-  noIndex,
-  supressLanguageAlternates,
-}: PageMetadataInput): Metadata {
-  const lang = getLangOrDefault(langParam);
-  noIndex ??=
-    langParam === "eng" ||
-    (supressLanguageAlternates && langParam !== undefined);
-
-  const canonical = localizedPath(
-    supressLanguageAlternates ? "eng" : lang,
-    path,
-  );
-  // because we are trying to incrementally introduce this now, and don't yet have the template applying at the layout level as such (and because it's almost moot when using a helper)
-  // we'll bridge the compatibility by having the helper manually apply the template and force an absolute override
-  const titleToApply = {
-    absolute: TITLE_TEMPLATE.replace("%s", title),
-  };
+/** Next `Metadata` for any page in any locale: title, description, Open Graph, Twitter, canonical, hreflang and robots from one call. */
+export function buildPageMetadata({ locale, path, title, description, ogType, image, noIndex, supressLanguageAlternates }: PageMetadataInput): Metadata {
+  const canonical = localizedPath(supressLanguageAlternates ? "eng" : locale, path);
+  const fullTitle = pageTitle(locale, title);
+  const hidden = noIndex ?? (supressLanguageAlternates === true && locale !== "eng");
   return {
-    metadataBase: SITE_URL,
-    title: titleToApply,
+    title: { absolute: fullTitle },
     description,
     openGraph: {
-      title: titleToApply,
+      title: fullTitle,
       description,
-      url: canonical,
+      url: `${SITE_URL}${canonical}`,
       type: ogType ?? "website",
       siteName: SITE_NAME,
-      locale: LANG_HREFLANG[lang],
-      images: [{ url: DEFAULT_OG_IMAGE }],
+      locale: ogLocaleOf(locale),
+      images: [{ url: image ?? DEFAULT_OG_IMAGE }],
     },
     alternates: {
       canonical,
-      languages: supressLanguageAlternates
-        ? undefined
-        : buildLanguageAlternates(path),
+      languages: supressLanguageAlternates ? undefined : buildLanguageAlternates(path),
     },
-    twitter: {
-      card: "summary_large_image",
-      title: titleToApply,
-      description,
-    },
-    ...(noIndex && { robots: { index: false, follow: false } }),
+    twitter: { card: "summary_large_image", title: fullTitle, description, ...(image ? { images: [image] } : {}) },
+    ...(hidden ? { robots: { index: false, follow: true } } : {}),
   };
 }
 

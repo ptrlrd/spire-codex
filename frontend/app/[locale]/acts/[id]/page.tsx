@@ -1,12 +1,13 @@
+import { getT } from "@/lib/i18n-server";
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
-import { entityDescription, entityTitle, uiText } from "@/lib/locale-server";
+import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 import ActDetail from "./ActDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { stripTags, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 
 export const dynamic = "force-static";
 export const revalidate = 3600;
@@ -18,35 +19,24 @@ type Props = { params: Promise<{ locale: string; id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/acts/${id}`;
   try {
     const res = await fetch(`${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`, {
       next: { revalidate: 3600 },
     });
-    if (!res.ok) return { title: "Act Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Act Not Found"), noIndex: true });
     const act = await res.json();
-    const title = locale === "eng" ? `${act.name} - Slay the Spire 2 Act | Spire Codex` : entityTitle(locale, act.name, "Act");
-    const desc = locale === "eng"
-      ? clipMetaDescription(
-          `${act.name} is an act in Slay the Spire 2 (sts2). ${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`,
-        )
-      : entityDescription(locale, act.name, "act", "");
-    return {
-      title,
-      description: desc,
-      openGraph: {
-        type: "article",
-        locale: ogLocaleOf(locale),
-        siteName: SITE_NAME,
-        url: `${SITE_URL}${localePath(locale, `/acts/${id}`)}`,
-        title,
-        description: desc,
-        images: [{ url: DEFAULT_OG_IMAGE }],
-      },
-      twitter: { card: "summary_large_image", title, description: desc },
-      alternates: { canonical: localePath(locale, `/acts/${id}`), languages: buildLanguageAlternates(`/acts/${id}`) },
-    };
+    const desc = `${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`;
+    return buildPageMetadata({
+      locale,
+      path,
+      title: `${act.name} - ${t("Act")}`,
+      description: clipMetaDescription(t("act_meta_description", { name: act.name, desc })),
+      ogType: "article",
+    });
   } catch {
-    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
+    return buildPageMetadata({ locale, path, title: t("Database"), noIndex: true });
   }
 }
 
@@ -80,7 +70,7 @@ export default async function Page({ params }: Props) {
   }
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
-  if (!act) redirectMissingEntity("acts", id, locale === "eng" ? undefined : locale);
+  if (!act) redirectMissingEntity("acts", id, locale);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}

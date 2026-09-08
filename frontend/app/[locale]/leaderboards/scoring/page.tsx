@@ -1,10 +1,9 @@
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { gameNameFor, inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
@@ -44,25 +43,16 @@ function tierRows(t: TFn) {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Codex Score", title: `Codex Score - How Tier Ratings Work - Slay the Spire 2 (sts2) | ${SITE_NAME}`, description: "How Codex Score ranks every Slay the Spire 2 (sts2) card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.", tagline: "" };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("How scoring works")}`;
-  const desc = `${t("How Codex Score ranks every {game} card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.", { game: gameName })} ${nativeName}.`;
-  return { heading, title: `Codex Score - ${t("How scoring works")} - ${gameName} | Spire Codex (${nativeName})`, description: desc, tagline: desc };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/leaderboards/scoring", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/leaderboards/scoring", title: t("Codex Score - How Tier Ratings Work"), description: t("leaderboards_scoring_meta_description") });
 }
 
 export default async function ScoringPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Codex Score"));
   const gameName = gameNameFor(locale, "Slay the Spire 2");
   const examples = exampleRows(t);
   const tiers = tierRows(t);
@@ -108,7 +98,7 @@ export default async function ScoringPage({ params }: Props) {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         {t("How every card, relic, and potion gets a 0–100 community-meta rating.")}

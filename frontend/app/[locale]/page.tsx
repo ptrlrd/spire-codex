@@ -13,16 +13,12 @@ import SearchTrigger from "@/app/components/SearchTrigger";
 import { buildWebSiteJsonLd, buildVideoGameJsonLd } from "@/lib/jsonld";
 import { fetchSteamMeta } from "@/lib/steam-meta";
 import { getT } from "@/lib/i18n-server";
-import { LANG_DATABASE, LANG_GAME_NAME, LANG_NAMES } from "@/lib/languages";
-import { localeOf, localePath, ogLocaleOf } from "@/lib/locale";
-import { SITE_NAME, buildLanguageAlternates, HOME_OG_IMAGE } from "@/lib/seo";
+import { localeOf } from "@/lib/locale";
+import { HOME_OG_IMAGE, buildPageMetadata } from "@/lib/seo";
 import "@/app/home-revamp.css";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-const ENGLISH_TITLE = `Database, Wiki & Guide - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
-const ENGLISH_DESCRIPTION =
-  "The complete Slay the Spire 2 (sts2) database. Browse cards, relics, characters, monsters, potions, events, and powers. Filter by character, rarity, and keyword.";
 
 // ISR with 60s revalidation. The HTML caches at CF edge for 60s so
 // most visits return without hitting Next.js at all. After 60s the
@@ -37,42 +33,12 @@ const ENGLISH_DESCRIPTION =
 // the next cache slot.
 export const revalidate = 60;
 
-// Home uses the bare-logo OG asset (transparent background, just the
-// silent + cultist mark) so the landing card reads as a logo, while
-// every other page inherits the branded composition from layout.tsx.
-const homeOgImage = { url: HOME_OG_IMAGE, width: 2006, height: 2251 };
-
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  let title = ENGLISH_TITLE;
-  let description = ENGLISH_DESCRIPTION;
-  if (locale !== "eng") {
-    const t = await getT(locale);
-    const gameName = LANG_GAME_NAME[locale];
-    const dbWord = LANG_DATABASE[locale];
-    const nativeName = LANG_NAMES[locale];
-    title = `Spire Codex - ${gameName} ${dbWord} (${nativeName})`;
-    // The tail sentence is translated: an English description on a localized
-    // page reads as a language mismatch to crawlers.
-    description = `${gameName} ${dbWord} (${nativeName}), Spire Codex. ${t("Browse cards, relics, characters, monsters, potions, events, and powers.")}`;
-  }
-  return {
-    title,
-    description,
-    openGraph: { type: "website", siteName: SITE_NAME, title, description, locale: ogLocaleOf(locale), images: [homeOgImage] },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [HOME_OG_IMAGE],
-    },
-    alternates: {
-      canonical: localePath(locale, "/"),
-      languages: buildLanguageAlternates("/"),
-    },
-  };
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/", title: t("Database, Wiki & Guide"), description: t("home_meta_description"), image: HOME_OG_IMAGE });
 }
 
 interface Translations {
@@ -111,11 +77,7 @@ export default async function Home({ params }: Props) {
             <h1 className="wordmark">
               SPIRE <span>CODEX</span>
             </h1>
-            <p className="htag">
-              {locale === "eng"
-                ? "The complete database for Slay the Spire 2, every card, relic, monster, and run, searchable and cross-referenced."
-                : t("The complete database for Slay the Spire 2")}
-            </p>
+            <p className="htag">{t("home_tagline")}</p>
             <div style={{ maxWidth: 540, margin: "18px auto 0" }}>
               <SearchTrigger variant="hero" />
             </div>

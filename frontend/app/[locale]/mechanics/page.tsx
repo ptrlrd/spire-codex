@@ -1,9 +1,7 @@
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import type { Metadata } from "next";
-import { SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { Link } from "@/i18n/navigation";
@@ -40,25 +38,16 @@ async function fetchSections(): Promise<MechanicSectionMeta[]> {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Game Mechanics", title: `Game Mechanics - Drop Rates, Combat & Map Data - Slay the Spire 2 (sts2) | ${SITE_NAME}`, description: "Slay the Spire 2 (sts2) mechanics, card and relic drop rates, gold rewards, map generation, combat formulas, and secrets. Pulled straight from the game's source.", tagline: "" };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Game Mechanics")}`;
-  const desc = t("mechanics_tagline");
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("mechanics_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/mechanics", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/mechanics", title: t("Game Mechanics - Drop Rates, Combat & Map Data"), description: t("mechanics_meta_description") });
 }
 
 export default async function MechanicsPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Game Mechanics"));
   const sections = await fetchSections();
   const mechanics = sections.filter((s) => s.category === "mechanics");
   const secrets = sections.filter((s) => s.category === "secrets");
@@ -81,7 +70,7 @@ export default async function MechanicsPage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         {t("Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.")}

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, stripTagsFlat, clipMetaDescription, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { buildPageMetadata, clipMetaDescription, pageHeading, stripTags, stripTagsFlat } from "@/lib/seo";
+import { getT } from "@/lib/i18n-server";
 import { localeOf } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 
@@ -13,32 +14,25 @@ const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API
 type Props = { params: Promise<{ id: string; locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { id } = await params;
+  const { id, locale: rawLocale } = await params;
+  const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/timeline/${id}`;
   try {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
-    if (!res.ok) return { title: "Epoch Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Epoch Not Found"), noIndex: true });
     const epoch = await res.json();
     const desc = stripTagsFlat(epoch.description || "");
-    const title = `Timeline - ${epoch.title} - Slay the Spire 2 (sts2) | Spire Codex`;
-    const metaDesc = clipMetaDescription(
-      `Slay the Spire 2 timeline epoch, ${epoch.title}${desc ? `: ${desc}` : ""}`,
-    );
-    return {
-      title,
-      description: metaDesc,
-      openGraph: {
-        type: "article",
-        siteName: SITE_NAME,
-        url: `${SITE_URL}/timeline/${id}`,
-        title,
-        description: metaDesc,
-        images: [{ url: DEFAULT_OG_IMAGE }],
-      },
-      twitter: { card: "summary_large_image", title, description: metaDesc },
-      alternates: { canonical: `/timeline/${id}` },
-    };
+    return buildPageMetadata({
+      locale,
+      path,
+      title: `${t("Timeline")} - ${epoch.title}`,
+      description: clipMetaDescription(`${pageHeading(locale, t("Timeline"))}, ${epoch.title}${desc ? `: ${desc}` : ""}`),
+      ogType: "article",
+      supressLanguageAlternates: true,
+    });
   } catch {
-    return { title: "Database - Slay the Spire 2 (sts2) | Spire Codex" };
+    return buildPageMetadata({ locale, path, title: t("Timeline"), noIndex: true });
   }
 }
 

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import type { Guide } from "@/lib/api";
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
+import { buildPageMetadata, stripTagsFlat, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "./GuideDetail";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
+import { getT } from "@/lib/i18n-server";
 import { localeOf } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 
@@ -16,29 +17,22 @@ type Props = { params: Promise<{ locale: string; slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/guides/${slug}`;
   try {
     const res = await fetch(`${API}/api/guides/${slug}`, { next: { revalidate: 300 } });
-    if (!res.ok) return { title: `Guide Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
+    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Guide Not Found"), noIndex: true });
     const guide: Guide = await res.json();
-    const title = `${guide.title} - Slay the Spire 2 Guide | ${SITE_NAME}`;
-    const description = clipMetaDescription(stripTagsFlat(guide.summary || ""));
-    return {
-      title,
-      description,
-      alternates: { canonical: `${SITE_URL}/guides/${slug}` },
-      openGraph: {
-        title,
-        description,
-        url: `${SITE_URL}/guides/${slug}`,
-        siteName: SITE_NAME,
-        type: "article",
-        images: [{ url: DEFAULT_OG_IMAGE }],
-      },
-      twitter: { card: "summary_large_image", title, description },
-      ...(locale === "eng" ? {} : { robots: { index: false, follow: true } }),
-    };
+    return buildPageMetadata({
+      locale,
+      path,
+      title: `${guide.title} - ${t("Guide")}`,
+      description: clipMetaDescription(stripTagsFlat(guide.summary || "")),
+      ogType: "article",
+      supressLanguageAlternates: true,
+    });
   } catch {
-    return { title: `Guide - Slay the Spire 2 (sts2) | ${SITE_NAME}` };
+    return buildPageMetadata({ locale, path, title: t("Guide"), noIndex: true });
   }
 }
 

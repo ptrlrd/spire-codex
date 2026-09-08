@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, buildLanguageAlternates } from "./seo";
+import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, buildLanguageAlternates, localizedPath, hreflangOf as hreflangOfShared, ogLocaleOf as ogLocaleOfShared } from "./seo";
 import type { Locale } from "@/i18n/routing";
 import { LANG_GAME_NAME, LANG_HREFLANG, LANG_NAMES, LANG_OG_LOCALE, SUPPORTED_LANGS } from "./languages";
 
@@ -17,20 +17,12 @@ export function langQuery(locale: Locale, separator: "?" | "&" = "?"): string {
 }
 
 /** The URL path for `path` in this locale: bare for English, prefixed otherwise. */
-export function localePath(locale: Locale, path: string): string {
-  const trimmed = path.startsWith("/") ? path : `/${path}`;
-  if (locale === "eng") return trimmed;
-  return trimmed === "/" ? `/${locale}` : `/${locale}${trimmed}`;
-}
+export const localePath = localizedPath;
 
-export function hreflangOf(locale: Locale): string {
-  return locale === "eng" ? "en" : LANG_HREFLANG[locale];
-}
+export const hreflangOf = hreflangOfShared;
 
 /** Open Graph `og:locale` for this locale (language_TERRITORY). */
-export function ogLocaleOf(locale: Locale): string {
-  return locale === "eng" ? "en_US" : LANG_OG_LOCALE[locale];
-}
+export const ogLocaleOf = ogLocaleOfShared;
 
 /** The game's name as the locale writes it; English keeps the site's own phrasing. */
 export function gameNameFor(locale: Locale, english = "Slay the Spire 2 (sts2)"): string {
@@ -52,31 +44,3 @@ export function inLanguageOf(locale: Locale): string | undefined {
   return locale === "eng" ? undefined : LANG_HREFLANG[locale];
 }
 
-/** Metadata for a page that only exists in English: other locales point at the English URL and stay out of the index. */
-export function englishOnlyMetadata(locale: Locale, path: string): Metadata {
-  if (locale === "eng") return {};
-  return { alternates: { canonical: path }, robots: { index: false, follow: true } };
-}
-
-/** Metadata for a list or hub page that exists in every locale: canonical on the locale's own URL, hreflang for all of them. */
-export function listMetadata(
-  locale: Locale,
-  page: { path: string; title: string; description: string; image?: string; ogType?: "website" | "article" },
-): Metadata {
-  const url = localePath(locale, page.path);
-  return {
-    title: page.title,
-    description: page.description,
-    openGraph: {
-      type: page.ogType ?? "website",
-      siteName: SITE_NAME,
-      url: `${SITE_URL}${url}`,
-      title: page.title,
-      description: page.description,
-      locale: ogLocaleOf(locale),
-      images: [{ url: page.image ?? DEFAULT_OG_IMAGE }],
-    },
-    twitter: { card: "summary_large_image", title: page.title, description: page.description },
-    alternates: { canonical: url, languages: buildLanguageAlternates(page.path) },
-  };
-}

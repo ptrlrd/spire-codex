@@ -9,6 +9,8 @@
  */
 
 import { notFound, permanentRedirect } from "next/navigation";
+import { localizedPath } from "./seo";
+import type { Locale } from "@/i18n/routing";
 
 export type EntityKind =
   | "cards"
@@ -75,14 +77,11 @@ const LEGACY_IDS: LegacyIdMap = {
 export function redirectMissingEntity(
   entity: EntityKind,
   id: string,
-  lang?: string,
+  locale: Locale = "eng",
   legacy: LegacyIdMap = LEGACY_IDS,
 ): never {
   const renamed = legacy[entity]?.[id];
-  if (renamed) {
-    const prefix = lang ? `/${lang}` : "";
-    permanentRedirect(`${prefix}/${entity}/${renamed}`);
-  }
+  if (renamed) permanentRedirect(localizedPath(locale, `/${entity}/${renamed}`));
   notFound();
 }
 

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES, LANG_CARDS } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { getT } from "@/lib/i18n-server";
 import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
@@ -71,25 +70,16 @@ type ScoreRow = ScoreEntry & { entity_id: string };
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Slay the Spire 2 (sts2) Cards", title: "Slay the Spire 2 (sts2) Cards | Spire Codex", description: "Slay the Spire 2 (sts2) Cards | Spire Codex", tagline: "" };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${LANG_CARDS[locale]}`;
-  const desc = `${gameName} ${LANG_CARDS[locale]} (${nativeName}). Every card across Ironclad, Silent, Defect, Necrobinder, and Regent, art, stats, upgrades, and keywords.`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("cards_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/cards", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/cards", title: t("Cards"), description: t("cards_meta_description") });
 }
 
 export default async function CardsPage({ params }: Props) {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
   const t = await getT(locale);
+  const heading = pageHeading(locale, t("Cards"));
   // The base /cards route renders in English; localized visitors get
   // app/[lang]/cards. Thread eng through t() so the wrapped UI strings
   // resolve to their English source here.
@@ -183,7 +173,7 @@ export default async function CardsPage({ params }: Props) {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-3">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
 
       {/* Server-rendered intro prose: this is what Google sees when it

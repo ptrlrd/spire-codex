@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
@@ -48,31 +47,16 @@ const CATEGORY_ORDER = ["combat", "mechanics", "zones", "rooms", "progression"];
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng")
-    return {
-      heading: "Keywords & Game Terms",
-      title: "Keywords & Game Terms - Slay the Spire 2 (sts2) | Spire Codex",
-      description: "Every Slay the Spire 2 (sts2) card keyword and game term, Exhaust, Ethereal, Innate, Retain, Sly, Eternal, and more, with all cards using each.",
-      tagline: "",
-    };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Card Keywords")}`;
-  const desc = `${heading} (${nativeName}). ${t("Every card keyword and game term, with all cards using each.")}`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("keywords_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/keywords", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/keywords", title: t("Keywords & Game Terms"), description: t("keywords_meta_description") });
 }
 
 export default async function KeywordsPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Keywords & Game Terms"));
   let keywords: Keyword[] = [];
   let glossary: GlossaryTerm[] = [];
   try {
@@ -104,7 +88,7 @@ export default async function KeywordsPage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        {copy.heading}
+        {heading}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
         {t("Keywords define special card behaviors. Game terms explain core mechanics referenced throughout Slay the Spire 2.")}

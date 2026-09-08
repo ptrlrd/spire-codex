@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
@@ -33,25 +32,17 @@ const TOP_TIER_BORDER: Record<string, string> = {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Slay the Spire 2 (sts2) Badges", title: "Slay the Spire 2 (sts2) Badges | Spire Codex", description: "Run-end badges are mini-achievements awarded on the Game Over screen. Some have Bronze / Silver / Gold tiers; a handful are only attainable in multiplayer. Badges contribute to your Daily Leaderboard score.", tagline: "Run-end badges are mini-achievements awarded on the Game Over screen. Some have Bronze / Silver / Gold tiers; a handful are only attainable in multiplayer. Badges contribute to your Daily Leaderboard score." };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Badges")}`;
-  const desc = `${gameName} ${t("Badges")}, ${t("badges_tagline")}`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("badges_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/badges", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/badges", title: t("Badges"), description: t("badges_meta_description") });
 }
 
 export default async function BadgesPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Badges"));
+  const tagline = t("badges_tagline");
   let badges: Badge[] = [];
   try {
     const res = await fetch(`${API}/api/badges`, { next: { revalidate: 3600 } });
@@ -84,9 +75,9 @@ export default async function BadgesPage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-6">{copy.tagline}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
       {tiered.length > 0 && (
         <section className="mb-10">

@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
-import { entityDescription, entityTitle, uiText } from "@/lib/locale-server";
+import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
+import { getT } from "@/lib/i18n-server";
 import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { buildPageMetadata, clipMetaDescription, stripTags, stripTagsFlat } from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
@@ -29,54 +30,31 @@ async function fetchKeywordOrGlossary(id: string, locale: Locale) {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/keywords/${id}`;
   const result = await fetchKeywordOrGlossary(id, locale);
-  if (!result) return { title: "Term Not Found - Slay the Spire 2 (sts2) | Spire Codex" };
+  if (!result) return buildPageMetadata({ locale, path, title: t("Term Not Found"), noIndex: true });
 
   const { type, data } = result;
   const desc = stripTagsFlat(data.description);
 
   if (type === "keyword") {
-    const title = locale === "eng" ? `${data.name} - Slay the Spire 2 Keyword | Spire Codex` : entityTitle(locale, data.name, "Keyword");
-    const metaDesc = locale === "eng"
-      ? clipMetaDescription(
-      `${data.name} is a card keyword in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."} See every card that uses ${data.name}.`,
-    )
-      : entityDescription(locale, data.name, "keyword", desc);
-    return {
-      title,
-      description: metaDesc,
-      openGraph: {
-        type: "article",
-        locale: ogLocaleOf(locale),
-        siteName: SITE_NAME,
-        url: `${SITE_URL}${localePath(locale, `/keywords/${id}`)}`,
-        title,
-        description: metaDesc,
-        images: [{ url: DEFAULT_OG_IMAGE }],
-      },
-      twitter: { card: "summary_large_image", title, description: metaDesc },
-      alternates: { canonical: localePath(locale, `/keywords/${id}`), languages: buildLanguageAlternates(`/keywords/${id}`) },
-    };
+    return buildPageMetadata({
+      locale,
+      path,
+      title: `${data.name} - ${t("Keyword")}`,
+      description: clipMetaDescription(t("keyword_meta_description", { name: data.name, desc: desc || "none" })),
+      ogType: "article",
+    });
   }
 
-  const title = `${data.name} - Slay the Spire 2 Term | Spire Codex`;
-  const metaDesc = clipMetaDescription(
-    `${data.name} is a game term in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
-  );
-  return {
-    title,
-    description: metaDesc,
-    openGraph: {
-      type: "article",
-      siteName: SITE_NAME,
-      url: `${SITE_URL}/keywords/${id}`,
-      title,
-      description: metaDesc,
-      images: [{ url: DEFAULT_OG_IMAGE }],
-    },
-    twitter: { card: "summary_large_image", title, description: metaDesc },
-    alternates: { canonical: `/keywords/${id}`, languages: buildLanguageAlternates(`/keywords/${id}`) },
-  };
+  return buildPageMetadata({
+    locale,
+    path,
+    title: `${data.name} - ${t("Game Term")}`,
+    description: clipMetaDescription(desc),
+    ogType: "article",
+  });
 }
 
 export default async function Page({ params }: Props) {

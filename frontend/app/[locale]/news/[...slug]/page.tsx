@@ -3,11 +3,10 @@ import { Link } from "@/i18n/navigation";
 import { redirect, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/jsonld";
-import { SITE_URL, SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, clipMetaDescription, pageHeading } from "@/lib/seo";
 import type { NewsArticle } from "@/lib/api";
-import { DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { getT } from "@/lib/i18n-server";
-import { gameNameFor, hreflangOf, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
+import { hreflangOf, localeOf, localePath } from "@/lib/locale";
 import {
   sanitizeSteamNews,
   newsExcerpt,
@@ -62,12 +61,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const gameName = gameNameFor(locale, "Slay the Spire 2");
-  const newsLabel = t("News");
-  const notFound =
-    locale === "eng"
-      ? { title: `News - Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` }
-      : { title: `${gameName} ${newsLabel} - ${t("Not Found")} | ${SITE_NAME}` };
+  const notFound = buildPageMetadata({ locale, path: "/news", title: `${t("News")} - ${t("Not Found")}`, noIndex: true });
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
   if (!gid) return notFound;
@@ -77,34 +71,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // identify the page as our archive of the Steam announcement, not just
   // the raw article body.
   const excerpt = newsExcerpt(article.contents ?? "", 160);
-  const description =
-    locale === "eng"
-      ? `Slay the Spire 2 news on Spire Codex, ${article.title}. ${excerpt}`.slice(0, 300)
-      : `${gameName} ${newsLabel}, ${article.title}. ${excerpt}`.slice(0, 160);
-  const title =
-    locale === "eng"
-      ? `${article.title} - Slay the Spire 2 News | ${SITE_NAME}`
-      : `${article.title} - ${gameName} ${newsLabel} | ${SITE_NAME}`;
-  const canonicalPath = localePath(locale, newsSlugForArticle(article.gid));
+  const meta = buildPageMetadata({
+    locale,
+    path: newsSlugForArticle(article.gid),
+    title: `${article.title} - ${t("News")}`,
+    description: clipMetaDescription(`${pageHeading(locale, t("News"))}, ${article.title}. ${excerpt}`),
+    ogType: "article",
+    image: firstNewsImage(article.contents) ?? undefined,
+    supressLanguageAlternates: true,
+  });
   return {
-    title,
-    description,
-    alternates: {
-      // External canonical → Steam, so search engines treat us as a mirror.
-      canonical: canonicalSteamUrl(article.gid),
-    },
+    ...meta,
+    // External canonical → Steam, so search engines treat us as a mirror.
+    alternates: { canonical: canonicalSteamUrl(article.gid) },
     openGraph: {
-      title: article.title,
-      description,
-      url: `${SITE_URL}${canonicalPath}`,
-      siteName: SITE_NAME,
+      ...meta.openGraph,
       type: "article",
-      locale: ogLocaleOf(locale),
       publishedTime: new Date(article.date * 1000).toISOString(),
       authors: article.author ? [article.author] : undefined,
-      images: [{ url: firstNewsImage(article.contents) ?? DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image", title: article.title, description, images: [firstNewsImage(article.contents) ?? DEFAULT_OG_IMAGE] },
   };
 }
 

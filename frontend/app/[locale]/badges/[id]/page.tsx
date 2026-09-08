@@ -1,7 +1,7 @@
 import { getT } from "@/lib/i18n-server";
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
-import { entityDescription, entityFallbackDescription, entityTitle } from "@/lib/locale-server";
+import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import { entityFallbackDescription } from "@/lib/locale-server";
 import type { CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
@@ -9,7 +9,7 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { stripTags, stripTagsFlat, clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 import type { Badge } from "@/lib/api";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
@@ -57,37 +57,21 @@ async function fetchBadge(id: string, locale: Locale): Promise<Badge | null> {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/badges/${id}`;
   const badge = await fetchBadge(id, locale);
-  if (!badge) {
-    const t = await getT(locale);
-    return { title: `${t("Badge Not Found")} - Slay the Spire 2 (sts2) | Spire Codex` };
-  }
+  if (!badge) return buildPageMetadata({ locale, path, title: t("Badge Not Found"), noIndex: true });
 
   const desc = stripTagsFlat(badge.description);
-  const subtype = badge.tiered ? "Tiered" : "Badge";
-  const title = locale === "eng" ? `${badge.name} - Slay the Spire 2 Badge | Spire Codex` : entityTitle(locale, badge.name, "Badge");
-  const metaDesc = locale === "eng"
-    ? clipMetaDescription(
-        `${badge.name} is a ${subtype.toLowerCase()} run-end badge in Slay the Spire 2 (sts2)${desc ? `: ${desc}` : "."}`,
-      )
-    : entityDescription(locale, badge.name, "badge", desc);
-  return {
-    title,
-    description: metaDesc,
-    openGraph: {
-      type: "article",
-      locale: ogLocaleOf(locale),
-      siteName: SITE_NAME,
-      url: `${SITE_URL}${localePath(locale, `/badges/${id}`)}`,
-      title,
-      description: metaDesc,
-      images: badge.image_url
-        ? [{ url: imageUrl(badge.image_url) }]
-        : [],
-    },
-    twitter: { card: "summary_large_image", title, description: metaDesc },
-    alternates: { canonical: localePath(locale, `/badges/${id}`), languages: buildLanguageAlternates(`/badges/${id}`) },
-  };
+  const subtype = badge.tiered ? "tiered" : "badge";
+  return buildPageMetadata({
+    locale,
+    path,
+    title: `${badge.name} - ${t("Badge")}`,
+    description: clipMetaDescription(t("badge_meta_description", { name: badge.name, subtype, desc: desc || "none" })),
+    ogType: "article",
+    image: badge.image_url ? imageUrl(badge.image_url) : undefined,
+  });
 }
 
 export default async function BadgePage({ params }: Props) {
@@ -95,7 +79,7 @@ export default async function BadgePage({ params }: Props) {
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
   const badge = await fetchBadge(id, locale);
-  if (!badge) redirectMissingEntity("badges", id, locale === "eng" ? undefined : locale);
+  if (!badge) redirectMissingEntity("badges", id, locale);
 
   const desc = stripTags(badge.description);
   const detailJsonLd = buildDetailPageJsonLd({

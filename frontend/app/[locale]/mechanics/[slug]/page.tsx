@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, clipMetaDescription, buildLanguageAlternates } from "@/lib/seo";
+import { buildPageMetadata, clipMetaDescription } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { Link } from "@/i18n/navigation";
 import MechanicMarkdown from "./MechanicMarkdown";
 import type { MechanicSectionMeta } from "../page";
@@ -35,29 +35,17 @@ async function fetchSection(slug: string): Promise<MechanicSectionDetail | null>
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
   const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/mechanics/${slug}`;
   const section = await fetchSection(slug);
-  if (!section) {
-    const t = await getT(locale);
-    return { title: locale === "eng" ? `Not Found - Slay the Spire 2 (sts2) | ${SITE_NAME}` : `${t("Not Found")} | ${SITE_NAME}` };
-  }
-  const title = `${section.title} - Slay the Spire 2 | ${SITE_NAME}`;
-  const description = clipMetaDescription(section.description);
-  const url = `${SITE_URL}${localePath(locale, `/mechanics/${slug}`)}`;
-  return {
-    title,
-    description,
-    alternates: { canonical: url, languages: buildLanguageAlternates(`/mechanics/${slug}`) },
-    openGraph: {
-      title,
-      description,
-      url,
-      siteName: SITE_NAME,
-      type: "article",
-      locale: ogLocaleOf(locale),
-      images: [{ url: DEFAULT_OG_IMAGE }],
-    },
-    twitter: { card: "summary_large_image", title, description },
-  };
+  if (!section) return buildPageMetadata({ locale, path, title: t("Not Found"), noIndex: true });
+  return buildPageMetadata({
+    locale,
+    path,
+    title: `${section.title} - ${t("Mechanic")}`,
+    description: clipMetaDescription(section.description),
+    ogType: "article",
+  });
 }
 
 export default async function MechanicDetailPage({ params }: Props) {

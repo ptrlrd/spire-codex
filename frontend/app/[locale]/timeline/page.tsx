@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
@@ -12,25 +11,17 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Slay the Spire 2 (sts2) Timeline", title: "Slay the Spire 2 (sts2) Timeline | Spire Codex", description: "Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions.", tagline: "Explore the full Slay the Spire 2 timeline across every epoch, story arc, and era. Track story progression, unlockable cards, relics, and potions." };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Timeline")}`;
-  const desc = `${gameName} ${t("Timeline")} (${nativeName}). All epochs, eras, and story arcs with cards, relics, and potions unlocked at each step.`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("timeline_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/timeline", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/timeline", title: t("Timeline"), description: t("timeline_meta_description") });
 }
 
 export default async function TimelinePage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Timeline"));
+  const tagline = t("timeline_tagline");
   let epochs: Epoch[] = [];
   let stories: Story[] = [];
   let cards: Card[] = [];
@@ -72,9 +63,9 @@ export default async function TimelinePage({ params }: Props) {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span>
+        <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-6">{copy.tagline}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
       <TimelineClient
         initialEpochs={epochs}

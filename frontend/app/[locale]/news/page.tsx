@@ -1,12 +1,10 @@
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import { SITE_NAME } from "@/lib/seo";
+import { buildPageMetadata, gameName } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api";
 import { newsExcerpt, formatNewsDate, newsSlugForArticle } from "@/lib/steam-news";
 import { ANNOUNCEMENTS, type Announcement } from "@/lib/announcements";
@@ -32,12 +30,6 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
 // doesn't need backend access, first request after deploy regenerates.
 export const revalidate = 1800;
 
-// Meta follows the standard `Slay the Spire 2 {Topic} - {Descriptor} | Spire Codex`
-// format used across the rest of the site (see /changelog, /cards, /relics, etc.).
-// The visible page tagline below is separate marketing copy.
-// Lead with the query people actually type ("slay the spire 2 patch notes",
-// "sts2 patch notes / updates") rather than a generic "News -".
-const NEWS_TITLE = `Slay the Spire 2 Patch Notes & Updates (sts2) | ${SITE_NAME}`;
 
 type Tab = "community" | "codex" | "press" | "all";
 
@@ -68,25 +60,15 @@ async function loadNews(feedType: number | null): Promise<NewsListResponse> {
 
 type Props = { params: Promise<{ locale: string }>; searchParams: Promise<{ tab?: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng") return { heading: "Slay the Spire 2", title: NEWS_TITLE, description: "Slay the Spire 2 (sts2) patch notes, dev announcements, and press coverage. Track every Mega Crit update plus external articles from PCGamesN, RPS, and more.", tagline: "" };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("News")}`;
-  const desc = t("news_meta_description");
-  return { heading, title: `${gameName} ${t("News")} - ${t("News - Subtitle")} | Spire Codex (${nativeName})`, description: desc, tagline: t("news_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/news", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/news", title: t("Patch Notes & Updates"), description: t("news_meta_description") });
 }
 
 export default async function NewsPage({ params, searchParams }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
   const sp = await searchParams;
   const activeTab = tabFromParam(sp.tab);
   const tabConfig = TABS.find((t) => t.key === activeTab) ?? TABS[0];
@@ -116,7 +98,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{copy.heading}</span> {t("Patch Notes")} &amp; {t("News")}
+        <span className="text-[var(--accent-gold)]">{gameName(locale)}</span> {t("Patch Notes")} &amp; {t("News")}
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Every Slay the Spire 2 (sts2) patch note, dev update, and announcement from Mega Crit,

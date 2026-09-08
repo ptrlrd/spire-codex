@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import type { TFn } from "@/lib/i18n";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, type Locale } from "@/lib/locale";
-import { LANG_NAMES } from "@/lib/languages";
+import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { promises as fs } from "fs";
 import path from "path";
 import JsonLd from "@/app/components/JsonLd";
@@ -47,31 +46,16 @@ async function getShowcaseData(): Promise<ShowcaseProject[]> {
 
 type Props = { params: Promise<{ locale: string }> };
 
-function pageCopy(locale: Locale, t: TFn) {
-  if (locale === "eng")
-    return {
-      heading: "Community Showcase",
-      title: "Community Showcase - Slay the Spire 2 (sts2) | Spire Codex",
-      description: "Bots, widgets, apps, and tools built with the Spire Codex API by the Slay the Spire 2 (sts2) community.",
-      tagline: "",
-    };
-  const gameName = gameNameFor(locale);
-  const nativeName = LANG_NAMES[locale];
-  const heading = `${gameName} ${t("Community Showcase")}`;
-  const desc = `${t("{game} community projects", { game: gameName })} (${nativeName}). ${t("Bots, widgets, apps, and tools built with the Spire Codex API by the Slay the Spire 2 community.")}`;
-  return { heading, title: `${heading} | Spire Codex (${nativeName})`, description: desc, tagline: t("showcase_tagline") };
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
-  const copy = pageCopy(locale, await getT(locale));
-  return listMetadata(locale, { path: "/showcase", title: copy.title, description: copy.description });
+  const t = await getT(locale);
+  return buildPageMetadata({ locale, path: "/showcase", title: t("Community Showcase"), description: t("showcase_meta_description") });
 }
 
 export default async function ShowcasePage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const copy = pageCopy(locale, t);
+  const heading = pageHeading(locale, t("Community Showcase"));
   const projects = await getShowcaseData();
 
   const jsonLd = [
@@ -96,7 +80,7 @@ export default async function ShowcasePage({ params }: Props) {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
-        {copy.heading}
+        {heading}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
         {t("Projects and tools built with the Spire Codex API. Want to add yours? Share it in the")}{" "}
