@@ -1,0 +1,10 @@
+# Spire Codex daily Mongo backup. Dumps, dry-run-verifies, rotates 14 days,
+# and offloads to R2 when /etc/spire-codex/backup-r2.env is present. See
+# /usr/local/bin/spire-codex-mongo-backup and /var/log/spire-codex-backup.log.
+#
+# 06:10 UTC: after the nightly stats quiet period, offset from the :03
+# autodeploy and anything firing on the hour.
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+10 6 * * * root /usr/local/bin/spire-codex-mongo-backup >> /var/log/spire-codex-backup.log 2>&1
