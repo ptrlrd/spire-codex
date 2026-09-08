@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
 import type { GameEvent } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
-import EventsClient from "./EventsClient";
+import EventsClient, { type ActOption } from "./EventsClient";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -25,9 +25,14 @@ export default async function EventsPage({ params }: Props) {
   const heading = pageHeading(locale, t("Events"));
   const tagline = t("events_tagline");
   let events: GameEvent[] = [];
+  let acts: ActOption[] = [];
   try {
-    const res = await fetch(`${API}/api/events?lang=${locale}`, { next: { revalidate: 300 } });
+    const [res, actsRes] = await Promise.all([
+      fetch(`${API}/api/events?lang=${locale}`, { next: { revalidate: 300 } }),
+      fetch(`${API}/api/acts${langQuery(locale)}`, { next: { revalidate: 3600 } }),
+    ]);
     if (res.ok) events = await res.json();
+    if (actsRes.ok) acts = ((await actsRes.json()) as ActOption[]).map((a) => ({ id: a.id, name: a.name, index: a.index }));
   } catch {}
 
   const jsonLd = [
@@ -55,7 +60,7 @@ export default async function EventsPage({ params }: Props) {
       <RecentlyAdded entityType="events" label="Event" pathPrefix="/events" />
 
       <Suspense>
-        <EventsClient initialEvents={events} />
+        <EventsClient initialEvents={events} acts={acts} />
       </Suspense>
     </div>
   );

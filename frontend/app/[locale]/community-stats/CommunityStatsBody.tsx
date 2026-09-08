@@ -1,4 +1,4 @@
-import { inLanguageOf, localePath, type Locale } from "@/lib/locale";
+import { inLanguageOf, langQuery, localePath, type Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
@@ -78,6 +78,57 @@ async function fetchStats(param?: string | null): Promise<CommunityStats | null>
   }
 }
 
+interface NamedEntity { id: string; name: string }
+interface LocalizedEvent {
+  id: string;
+  name: string;
+  options: { id: string; title: string }[] | null;
+  pages: { options: { id: string; title: string }[] | null }[] | null;
+}
+
+async function fetchList<T>(path: string, lang: Locale): Promise<T[]> {
+  try {
+    const res = await fetch(`${API_INTERNAL}${path}${langQuery(lang)}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return [];
+    return (await res.json()) as T[];
+  } catch {
+    return [];
+  }
+}
+
+async function fetchCharacterNames(lang: Locale): Promise<Record<string, string>> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/translations${langQuery(lang)}`, { next: { revalidate: 3600 } });
+    if (!res.ok) return {};
+    const body = (await res.json()) as { character_names?: Record<string, string> };
+    return body.character_names ?? {};
+  } catch {
+    return {};
+  }
+}
+
+function nameMap(list: NamedEntity[]): Record<string, string> {
+  const out: Record<string, string> = {};
+  for (const e of list) out[e.id.toUpperCase()] = e.name;
+  return out;
+}
+
+function stripTags(text: string): string {
+  return text.replace(/\[\/?[a-z_]+\]/gi, "").trim();
+}
+
+const REST_KEYS: Record<string, string> = {
+  SMITH: "Smith",
+  HEAL: "Heal",
+  MEND: "Mend",
+  DIG: "Dig",
+  CLONE: "Clone",
+  COOK: "Cook",
+  LIFT: "Lift",
+  HATCH: "Hatch",
+  KINDLE: "Kindle",
+};
+
 function fmtTime(sec?: number): string {
   if (!sec || sec <= 0) return "-";
   const h = Math.floor(sec / 3600);
@@ -127,7 +178,36 @@ async function Empty({ jsonLd, current, lang, basePath }: { jsonLd: object[]; cu
 // threaded through t() and the in-locale link base path differ.
 export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; bracket: string }) {
   const t = await getT(lang);
-  const stats = await fetchStats(bracketParam(bracket));
+  const [stats, charNames, eventList, relicList, cardList, encounterList, monsterList] = await Promise.all([
+    fetchStats(bracketParam(bracket)),
+    fetchCharacterNames(lang),
+    fetchList<LocalizedEvent>("/api/events", lang),
+    fetchList<NamedEntity>("/api/relics", lang),
+    fetchList<NamedEntity>("/api/cards", lang),
+    fetchList<NamedEntity>("/api/encounters", lang),
+    fetchList<NamedEntity>("/api/monsters", lang),
+  ]);
+  const eventNames = nameMap(eventList);
+  const relicNames = nameMap(relicList);
+  const cardNames = nameMap(cardList);
+  const encounterNames = nameMap(encounterList);
+  const monsterNames = nameMap(monsterList);
+  const choiceTitles: Record<string, Record<string, string>> = {};
+  for (const e of eventList) {
+    const titles: Record<string, string> = {};
+    for (const o of e.options ?? []) titles[o.id] = stripTags(o.title);
+    for (const p of e.pages ?? []) for (const o of p.options ?? []) titles[o.id] ??= stripTags(o.title);
+    choiceTitles[e.id.toUpperCase()] = titles;
+  }
+  const charName = (id: string) => charNames[id.toLowerCase()] ?? characterName(id);
+  const restLabel = (id: string) => (REST_KEYS[id.toUpperCase()] ? t(REST_KEYS[id.toUpperCase()]) : id.charAt(0) + id.slice(1).toLowerCase());
+  const choiceLabel = (eventId: string, choiceId: string, fallback: string) => {
+    const titles = choiceTitles[eventId.toUpperCase()];
+    if (!titles) return fallback;
+    return titles[choiceId] ?? titles[choiceId.replace(/_\d+$/, "")] ?? fallback;
+  };
+  const named = (rows: Ranked[], names: Record<string, string>) =>
+    rows.map((r) => ({ ...r, name: names[r.id.toUpperCase()] ?? r.name }));
 
   const basePath = "/community-stats";
   const inLanguage = inLanguageOf(lang);
@@ -186,7 +266,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
             vertical
             color={EMERALD}
             data={stats.by_character.map((c) => ({
-              name: c.name.replace(/^The\s+/i, ""),
+              name: charNames[c.id.toLowerCase()] ?? c.name.replace(/^The\s+/i, ""),
               value: c.win_rate,
               display: `${c.win_rate}%`,
               detail: `${c.win_rate}% ${t("win rate")} · ${c.share}% ${t("of runs")}`,
@@ -238,7 +318,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
         <section className="mb-10">
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-1">{t("Win rate by character and ascension")}</h2>
           <p className="text-sm text-[var(--text-muted)] mb-3">{t("Every character at every ascension. The pale band is where the community wins; the dark band is the wall.")}</p>
-          <AscensionHeatmap matrix={stats.ascension_matrix!} lang={lang} />
+          <AscensionHeatmap matrix={stats.ascension_matrix!} lang={lang} names={charNames} />
         </section>
       )}
 
@@ -257,7 +337,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                     size={132}
                     options={rows.map((c) => ({
                       id: c.id,
-                      label: characterName(c.id),
+                      label: charName(c.id),
                       pct: Math.round((c.removes / total) * 1000) / 10,
                     }))}
                     colors={rows.map((c) => `var(--color-${c.id})`)}
@@ -265,7 +345,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                   <ul className="space-y-1.5 min-w-0">
                     {rows.map((c) => (
                       <li key={c.id} className="flex items-center gap-3 text-xs">
-                        <CharacterTag id={c.id} />
+                        <CharacterTag id={c.id} name={charName(c.id)} />
                         <span className="tabular-nums text-[var(--text-primary)] font-semibold">
                           {c.removes_per_run.toFixed(2)}
                         </span>
@@ -291,12 +371,12 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                       size={84}
                       options={Object.entries(c.rest).map(([action, pct]) => ({
                         id: action,
-                        label: `${characterName(c.id)} · ${action.charAt(0) + action.slice(1).toLowerCase()}`,
+                        label: `${charName(c.id)} · ${restLabel(action)}`,
                         pct,
                       }))}
                       colors={Object.keys(c.rest).map((a) => REST_HEX[a] ?? OPTION_HEX[0])}
                     />
-                    <CharacterTag id={c.id} showName={false} size={18} />
+                    <CharacterTag id={c.id} showName={false} size={18} name={charName(c.id)} />
                   </div>
                 ))}
               </div>
@@ -304,7 +384,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                 {Object.entries(REST_HEX).slice(0, 6).map(([action, hex]) => (
                   <span key={action} className="inline-flex items-center gap-1.5">
                     <span className="inline-block w-2 h-2 rounded-sm" style={{ backgroundColor: hex }} />
-                    {action.charAt(0) + action.slice(1).toLowerCase()}
+                    {restLabel(action)}
                   </span>
                 ))}
               </div>
@@ -333,7 +413,13 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
           {t("What the community chooses at every event. The closer to 50/50, the more the community is torn.")}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {stats.events.map((e) => (
+          {stats.events.map((raw) => {
+            const e = {
+              ...raw,
+              name: eventNames[raw.id.toUpperCase()] ?? raw.name,
+              options: raw.options.map((o) => ({ ...o, label: choiceLabel(raw.id, o.id, o.label) })),
+            };
+            return (
             <div key={e.id} className="flex items-center gap-4 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
               <EventDonut options={e.options} />
               <div className="flex-1 min-w-0">
@@ -352,7 +438,8 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
                 </ul>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </section>
 
@@ -360,11 +447,11 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
       <section className="mb-10 grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Deadliest encounters")}</h2>
-          <RankBars color={ROSE} data={rankPct(stats.deaths.encounters)} />
+          <RankBars color={ROSE} data={rankPct(named(stats.deaths.encounters, encounterNames))} />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Deadliest events")}</h2>
-          <RankBars color={ROSE} data={rankPct(stats.deaths.events)} />
+          <RankBars color={ROSE} data={rankPct(named(stats.deaths.events, eventNames))} />
         </div>
       </section>
 
@@ -410,7 +497,7 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
           <RankBars
             color={GOLD}
             data={stats.rest_sites.map((r) => ({
-              name: r.label,
+              name: restLabel(r.id),
               value: r.count,
               display: `${r.pct}%`,
               detail: `${r.count.toLocaleString()} · ${r.pct}%`,
@@ -419,17 +506,17 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Most-removed cards")}</h2>
-          <RankBars color={GOLD} data={rankCount(stats.most_removed)} />
+          <RankBars color={GOLD} data={rankCount(named(stats.most_removed, cardNames))} />
         </div>
         {(stats.hopper_stolen?.length ?? 0) > 0 && (
           <div>
-            <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Stolen by the Thieving Hopper")}</h2>
-            <RankBars color={ROSE} data={rankCount(stats.hopper_stolen ?? [])} />
+            <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Stolen by the {monster}", { monster: monsterNames["THIEVING_HOPPER"] ?? "Thieving Hopper" })}</h2>
+            <RankBars color={ROSE} data={rankCount(named(stats.hopper_stolen ?? [], cardNames))} />
           </div>
         )}
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Favorite ancient relics")}</h2>
-          <RankBars color={GOLD} data={rankPct(stats.ancient_picks)} />
+          <RankBars color={GOLD} data={rankPct(named(stats.ancient_picks, relicNames))} />
         </div>
         <div>
           <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">{t("Card reward skip rate")}</h2>

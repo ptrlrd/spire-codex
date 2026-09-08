@@ -1,7 +1,7 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -66,6 +66,22 @@ const PLAYERS_TO_BRACKET: Record<string, string> = {
 };
 
 const CHARACTERS = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] as const;
+
+function useCharacterNames(lang: string): (id: string) => string {
+  const [names, setNames] = useState<Record<string, string>>({});
+  useEffect(() => {
+    cachedFetch<{ character_names?: Record<string, string> }>(`${API}/api/translations?lang=${lang}`)
+      .then((tr) => setNames(tr.character_names ?? {}))
+      .catch(() => {});
+  }, [lang]);
+  return useCallback(
+    (id: string) => {
+      const clean = id.replace(/^CHARACTER\./, "");
+      return names[clean.toLowerCase()] ?? clean.charAt(0).toUpperCase() + clean.slice(1).toLowerCase();
+    },
+    [names],
+  );
+}
 
 interface CardInfo {
   id: string;
@@ -301,6 +317,7 @@ export default function StatsClient({
   const t = useT();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
+  const charName = useCharacterNames(lang);
   // Server-fetched unfiltered payload so the initial HTML carries real
   // numbers (crawlable); the mount effect still refetches live data.
   const [stats, setStats] = useState<CommunityStats | null>(initialStats);
@@ -1005,7 +1022,7 @@ export default function StatsClient({
           <option value="">{t("All Characters")}</option>
           {CHARACTERS.map((c) => (
             <option key={c} value={c}>
-              {displayName(`CHARACTER.${c}`)}
+              {charName(c)}
             </option>
           ))}
         </select>
@@ -1136,6 +1153,7 @@ function OverviewTab({
   lang: string;
 }) {
   const t = useT();
+  const charName = useCharacterNames(lang);
   const losses =
     (stats.total_runs || 0) - (stats.total_wins || 0) - (stats.total_abandoned || 0);
 
@@ -1201,7 +1219,7 @@ function OverviewTab({
                       className="text-sm font-medium group-hover:text-[var(--accent-gold)] transition-colors"
                       style={{ color: charColor }}
                     >
-                      {displayName(`CHARACTER.${c.character}`).replace(/^The\s+/i, "")}
+                      {charName(c.character)}
                     </span>
                     <div className="flex items-center gap-3 text-xs">
                       <span className="text-[var(--text-muted)]">

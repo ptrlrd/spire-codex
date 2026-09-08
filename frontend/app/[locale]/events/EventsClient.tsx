@@ -31,12 +31,16 @@ const typeOptions = [
   { label: "Shared", value: "Shared" },
 ];
 
-const actOptions = [
-  { label: "Act 1 - Overgrowth", value: "overgrowth" },
-  { label: "Act 2 - Hive", value: "hive" },
-  { label: "Act 3 - Glory", value: "glory" },
-  { label: "Underdocks", value: "underdocks" },
-];
+export interface ActOption {
+  id: string;
+  name: string;
+  index: number;
+}
+
+const DIALOGUE_GROUP_KEYS: Record<string, string> = {
+  "First Visit": "First Visit",
+  Returning: "Returning",
+};
 
 const PAGE_COLORS = [
   "border-l-info/60",
@@ -101,7 +105,7 @@ function PageBlock({
   );
 }
 
-function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
+function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]; acts: ActOption[] }) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -119,10 +123,31 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
     Record<string, { id: string; name: string; description: string; image_url: string | null }>
   >({});
   const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
+  const [charNames, setCharNames] = useState<Record<string, string>>({});
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
   const initialRender = useRef(true);
+
+  const actOptions = acts.map((a) => ({
+    value: a.id.toLowerCase(),
+    label: `${t("Act {n}", { n: a.index + 1 })} - ${a.name}`,
+  }));
+  const actLabel = (raw: string) => {
+    const upper = raw.toUpperCase();
+    const names = acts.filter((a) => upper.includes(a.id)).map((a) => a.name);
+    return names.length ? names.join(" / ") : raw;
+  };
+  const dialogueGroupLabel = (group: string) => {
+    if (DIALOGUE_GROUP_KEYS[group]) return t(DIALOGUE_GROUP_KEYS[group]);
+    return charNames[group.toLowerCase()] ?? group;
+  };
+
+  useEffect(() => {
+    cachedFetch<{ character_names?: Record<string, string> }>(`${API}/api/translations?lang=${lang}`)
+      .then((tr) => setCharNames(tr.character_names ?? {}))
+      .catch(() => {});
+  }, [lang]);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
     const params = new URLSearchParams();
@@ -264,14 +289,14 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
 
               {event.act && (
                 <p className="text-xs text-[var(--text-muted)] mb-2">
-                  {event.act}
+                  {actLabel(event.act)}
                 </p>
               )}
 
               {event.description && (
                 <div className="mb-3">
                   <p className={`text-sm text-[var(--text-secondary)] leading-relaxed ${expandedDesc[event.id] ? "" : "line-clamp-3"}`}>
-                    <RichDescription text={event.description} />
+                    <RichDescription text={t(event.description)} />
                   </p>
                   {event.description.length > 150 && (
                     <button
@@ -403,7 +428,7 @@ function EventsClientInner({ initialEvents }: { initialEvents: GameEvent[] }) {
                               : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-special/30"
                           }`}
                         >
-                          {group}
+                          {dialogueGroupLabel(group)}
                         </button>
                       ))}
                     </div>

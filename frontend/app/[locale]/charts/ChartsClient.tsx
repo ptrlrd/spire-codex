@@ -5,7 +5,9 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 // (/api/charts/{key}); this component is controls + a Chart.js canvas.
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
+import { cachedFetch } from "@/lib/fetch-cache";
 import { CONTENT_BRACKETS, normalizeBracket } from "@/lib/content-brackets";
 import {
   Chart as ChartJS,
@@ -152,6 +154,8 @@ interface Series {
   points: Point[];
   total?: number;
   sampled_from?: number;
+  avg_minutes?: number;
+  median_minutes?: number;
 }
 interface ChartResponse {
   chart: string;
@@ -196,6 +200,77 @@ const ETYPES = [
   { value: "relics", label: "Relic" },
   { value: "potions", label: "Potion" },
 ];
+
+type NamedRow = { id?: string; name?: string; title?: string };
+type NamedPayload = NamedRow[] | { options?: NamedRow[]; pages?: { options?: NamedRow[] }[] };
+
+function namedRows(payload: NamedPayload): NamedRow[] {
+  if (Array.isArray(payload)) return payload;
+  return [...(payload.options ?? []), ...(payload.pages ?? []).flatMap((pg) => pg.options ?? [])];
+}
+
+function nameRemap(eng: NamedPayload, loc: NamedPayload): Record<string, string> {
+  const byId = new Map<string, string>();
+  for (const r of namedRows(loc)) {
+    const name = r.name || r.title;
+    if (r.id && name) byId.set(r.id, name);
+  }
+  const out: Record<string, string> = {};
+  for (const r of namedRows(eng)) {
+    const engName = r.name || r.title;
+    const locName = r.id ? byId.get(r.id) : undefined;
+    if (engName && locName) out[engName] = locName;
+  }
+  return out;
+}
+
+function remapUrls(spec: ChartSpec, event: string, lang: string): [string, string] | null {
+  const kind = spec.key.startsWith("encounter-")
+    ? "encounters"
+    : spec.key === "enchant-winrate"
+      ? "enchantments"
+      : spec.key === "event-outcomes" && event
+        ? `events/${event}`
+        : null;
+  if (!kind) return null;
+  return [`${API}/api/${kind}?lang=eng`, `${API}/api/${kind}?lang=${lang}`];
+}
+
+function localizeChart(
+  data: ChartResponse,
+  spec: ChartSpec,
+  t: TFn,
+  charNames: Record<string, string>,
+  xNames: Record<string, string>,
+): ChartResponse {
+  const seriesLabel = (s: Series) => {
+    const base = s.label.replace(/ \(avg .*\)$/, "");
+    const label = charNames[s.id.toLowerCase()] ?? xNames[base] ?? t(base);
+    if (s.avg_minutes != null && s.median_minutes != null) {
+      return t("{name} (avg {avg}m, median {med}m)", {
+        name: label,
+        avg: Math.round(s.avg_minutes),
+        med: Math.round(s.median_minutes),
+      });
+    }
+    return label;
+  };
+  const pointX = (x: number | string) => {
+    if (typeof x !== "string") return x;
+    if (spec.key === "deaths-by-room") return t(x.replace(/_/g, " "));
+    if (spec.key === "acts-funnel") return t(x);
+    return xNames[x] ?? x;
+  };
+  return {
+    ...data,
+    axis: { x: t(data.axis.x), y: t(data.axis.y) },
+    series: data.series.map((s) => ({
+      ...s,
+      label: seriesLabel(s),
+      points: s.points.map((p) => ({ ...p, x: pointX(p.x) })),
+    })),
+  };
+}
 
 function Pills({
   options,
@@ -268,6 +343,9 @@ function ChartsClientInner() {
 
   const [encounters, setEncounters] = useState<NamedOpt[]>([]);
   const [entityLists, setEntityLists] = useState<Record<string, NamedOpt[]>>({});
+  const [eventNames, setEventNames] = useState<Record<string, string>>({});
+  const [charNames, setCharNames] = useState<Record<string, string>>({});
+  const [xNames, setXNames] = useState<Record<string, string>>({});
 
   const [data, setData] = useState<ChartResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -294,7 +372,7 @@ function ChartsClientInner() {
   // Lazy-load selector lists the first time a chart needs them.
   useEffect(() => {
     if (spec?.needs.includes("encounter") && encounters.length === 0) {
-      fetchJson<{ id: string; name: string }[]>(`${API}/api/encounters?lang=eng`)
+      fetchJson<{ id: string; name: string }[]>(`${API}/api/encounters?lang=${lang}`)
         .then((rows) => {
           const opts = rows
             .map((r) => ({ id: r.id, name: r.name }))
@@ -309,7 +387,7 @@ function ChartsClientInner() {
 
   useEffect(() => {
     if (needsEntity && !entityLists[effEtype]) {
-      fetchJson<{ id: string; name: string }[]>(`${API}/api/${effEtype}?lang=eng`)
+      fetchJson<{ id: string; name: string }[]>(`${API}/api/${effEtype}?lang=${lang}`)
         .then((rows) => {
           const opts = rows
             .map((r) => ({ id: r.id, name: r.name }))
@@ -320,6 +398,35 @@ function ChartsClientInner() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [needsEntity, effEtype]);
+
+  useEffect(() => {
+    cachedFetch<{ character_names?: Record<string, string> }>(`${API}/api/translations?lang=${lang}`)
+      .then((d) => setCharNames(d?.character_names ?? {}))
+      .catch(() => {});
+  }, [lang]);
+
+  useEffect(() => {
+    if (!spec?.needs.includes("event") || lang === "eng") return;
+    cachedFetch<{ id: string; name: string }[]>(`${API}/api/events?lang=${lang}`)
+      .then((rows) => setEventNames(Object.fromEntries(rows.map((r) => [r.id, r.name]))))
+      .catch(() => {});
+  }, [spec, lang]);
+
+  useEffect(() => {
+    setXNames({});
+    if (!spec || lang === "eng") return;
+    const urls = remapUrls(spec, event, lang);
+    if (!urls) return;
+    let cancelled = false;
+    Promise.all(urls.map((u) => cachedFetch<NamedPayload>(u)))
+      .then(([eng, loc]) => {
+        if (!cancelled) setXNames(nameRemap(eng, loc));
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [spec, event, lang]);
 
   // A usable default entity/event once lists exist.
   useEffect(() => {
@@ -442,10 +549,10 @@ function ChartsClientInner() {
         <div className="flex flex-wrap items-center gap-3">
           <select className={selectCls} value={chart} onChange={(e) => setChart(e.target.value)} aria-label={t("Chart")}>
             {[...groups.entries()].map(([group, charts]) => (
-              <optgroup key={group} label={group}>
+              <optgroup key={group} label={t(group)}>
                 {charts.map((c) => (
                   <option key={c.key} value={c.key}>
-                    {c.label}
+                    {t(c.label)}
                   </option>
                 ))}
               </optgroup>
@@ -456,7 +563,7 @@ function ChartsClientInner() {
             <select className={selectCls} value={stat} onChange={(e) => setStat(e.target.value)} aria-label={t("Run stat")}>
               {(meta?.stats ?? []).map((s) => (
                 <option key={s.key} value={s.key}>
-                  {s.label}
+                  {t(s.label)}
                 </option>
               ))}
             </select>
@@ -466,14 +573,14 @@ function ChartsClientInner() {
               <select className={selectCls} value={xStat} onChange={(e) => setXStat(e.target.value)} aria-label={t("X stat")}>
                 {(meta?.stats ?? []).map((s) => (
                   <option key={s.key} value={s.key}>
-                    X: {s.label}
+                    X: {t(s.label)}
                   </option>
                 ))}
               </select>
               <select className={selectCls} value={yStat} onChange={(e) => setYStat(e.target.value)} aria-label={t("Y stat")}>
                 {(meta?.stats ?? []).map((s) => (
                   <option key={s.key} value={s.key}>
-                    Y: {s.label}
+                    Y: {t(s.label)}
                   </option>
                 ))}
               </select>
@@ -492,7 +599,7 @@ function ChartsClientInner() {
             <select className={selectCls} value={event} onChange={(e) => setEvent(e.target.value)} aria-label={t("Event")}>
               {(meta?.events ?? []).map((o) => (
                 <option key={o.id} value={o.id}>
-                  {o.name}
+                  {eventNames[o.id] ?? o.name}
                 </option>
               ))}
             </select>
@@ -567,7 +674,7 @@ function ChartsClientInner() {
           {/* Content bracket: works on both frame and blob charts (the blob is
               accumulated per bracket). Only the daily chart opts out. */}
           <Pills
-            options={BRACKET_OPTS}
+            options={BRACKET_OPTS.map((o) => ({ ...o, label: t(o.label) }))}
             value={bracket}
             onChange={setBracket}
             disabled={spec?.daily}
@@ -613,11 +720,11 @@ function ChartsClientInner() {
               : t("Not enough runs match these filters.")}
           </div>
         ) : (
-          <ExplorerChart spec={spec!} data={data} lang={lang} />
+          <ExplorerChart spec={spec!} data={localizeChart(data, spec!, t, charNames, xNames)} lang={lang} />
         )}
         {data && !loading && !error && (
           <p className="text-xs text-[var(--text-muted)] mt-3">
-            {data.desc} {t("Based on")} {data.total_runs.toLocaleString()} {t("runs matching the filters.")}{" "}
+            {t(data.desc)} {t("Based on {n} runs matching the filters.", { n: data.total_runs.toLocaleString() })}{" "}
             {t("Thin samples are hidden so lines don't whip around on noise.")}
           </p>
         )}
@@ -880,7 +987,7 @@ function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
         />
       </div>
       <p className="text-xs text-[var(--text-muted)] mt-2">
-        {t("Sampled from")} {sampled.toLocaleString()} {t("matching runs.")}
+        {t("Sampled from {n} matching runs.", { n: sampled.toLocaleString() })}
       </p>
     </>
   );

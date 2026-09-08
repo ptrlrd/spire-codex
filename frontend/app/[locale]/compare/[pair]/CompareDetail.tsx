@@ -169,6 +169,15 @@ interface CompareDetailProps {
   initialCharB: Character | null;
   initialCardsA: Card[];
   initialCardsB: Card[];
+  initialRelicNames?: Record<string, string>;
+}
+
+function entityIdOf(camel: string): string {
+  return camel.replace(/([a-z0-9])([A-Z])/g, "$1_$2").toUpperCase();
+}
+
+function spacedName(camel: string): string {
+  return camel.replace(/([A-Z])/g, " $1").trim();
 }
 
 export default function CompareDetail({
@@ -177,6 +186,7 @@ export default function CompareDetail({
   initialCharB,
   initialCardsA,
   initialCardsB,
+  initialRelicNames = {},
 }: CompareDetailProps) {
   const lang = useGameLocale();
   const t = useT();
@@ -184,6 +194,7 @@ export default function CompareDetail({
   const [charB, setCharB] = useState<Character | null>(initialCharB);
   const [cardsA, setCardsA] = useState<Card[]>(initialCardsA);
   const [cardsB, setCardsB] = useState<Card[]>(initialCardsB);
+  const [relicNames, setRelicNames] = useState<Record<string, string>>(initialRelicNames);
   const [loading, setLoading] = useState(false);
   const initialRender = useRef(true);
 
@@ -196,7 +207,7 @@ export default function CompareDetail({
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && initialCharA && initialCharB) return;
+      if (initialCharA && initialCharB && Object.keys(initialRelicNames).length > 0) return;
     }
 
     if (!parsed) return;
@@ -206,12 +217,16 @@ export default function CompareDetail({
       cachedFetch<Character>(`${API}/api/characters/${parsed.b}?lang=${lang}`),
       cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.a}&lang=${lang}`),
       cachedFetch<Card[]>(`${API}/api/cards?color=${parsed.b}&lang=${lang}`),
+      cachedFetch<{ id: string; name: string }[]>(`${API}/api/relics?lang=${lang}`),
     ])
-      .then(([cA, cB, crdsA, crdsB]) => {
+      .then(([cA, cB, crdsA, crdsB, relics]) => {
         setCharA(cA);
         setCharB(cB);
         setCardsA(crdsA);
         setCardsB(crdsB);
+        const names: Record<string, string> = {};
+        for (const r of relics) names[r.id.toUpperCase()] = r.name;
+        setRelicNames(names);
       })
       .finally(() => setLoading(false));
   }, [lang]);
@@ -242,6 +257,10 @@ export default function CompareDetail({
 
   const nameA = charA.name;
   const nameB = charB.name;
+  const cardNames: Record<string, string> = {};
+  for (const c of [...cardsA, ...cardsB]) cardNames[c.id.toUpperCase()] = c.name;
+  const cardLabel = (camel: string) => cardNames[entityIdOf(camel)] ?? spacedName(camel);
+  const relicLabel = (camel: string) => relicNames[entityIdOf(camel)] ?? spacedName(camel);
 
   // Card pool breakdowns
   const typeCountsA = countByField(cardsA, "type");
@@ -409,7 +428,7 @@ export default function CompareDetail({
                   key={`${cardName}-${i}`}
                   className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
                 >
-                  {cardName.replace(/([A-Z])/g, " $1").trim()}
+                  {cardLabel(cardName)}
                 </span>
               ))}
             </div>
@@ -426,7 +445,7 @@ export default function CompareDetail({
                   key={`${cardName}-${i}`}
                   className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)]"
                 >
-                  {cardName.replace(/([A-Z])/g, " $1").trim()}
+                  {cardLabel(cardName)}
                 </span>
               ))}
             </div>
@@ -452,7 +471,7 @@ export default function CompareDetail({
                   key={relicName}
                   className="text-xs px-2 py-1 rounded bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20"
                 >
-                  {relicName.replace(/([A-Z])/g, " $1").trim()}
+                  {relicLabel(relicName)}
                 </span>
               ))}
             </div>
@@ -469,7 +488,7 @@ export default function CompareDetail({
                   key={relicName}
                   className="text-xs px-2 py-1 rounded bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20"
                 >
-                  {relicName.replace(/([A-Z])/g, " $1").trim()}
+                  {relicLabel(relicName)}
                 </span>
               ))}
             </div>

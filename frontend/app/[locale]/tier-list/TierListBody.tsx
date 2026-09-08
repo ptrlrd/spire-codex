@@ -1,11 +1,12 @@
-import { gameNameFor, hreflangOf, inLanguageOf, localePath, type Locale } from "@/lib/locale";
+import { gameNameFor, hreflangOf, inLanguageOf, langQuery, localePath, type Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import LocalizedCardImage from "@/app/components/LocalizedCardImage";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 import { fmtDatePacific } from "@/lib/pacific";
 
@@ -63,10 +64,11 @@ async function fetchTopEntities(
   type: "cards" | "relics" | "potions",
   count: number,
   order: "top" | "bottom" = "top",
+  lang: Locale = "eng",
 ): Promise<TopEntity[]> {
   try {
     const [entitiesRes, scoresRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/${type}`, { next: { revalidate: 1800 } }),
+      fetch(`${API_INTERNAL}/api/${type}${langQuery(lang)}`, { next: { revalidate: 1800 } }),
       fetch(`${API_INTERNAL}/api/runs/scores/${type}`, { next: { revalidate: 300 } }),
     ]);
     if (!entitiesRes.ok || !scoresRes.ok) return [];
@@ -144,10 +146,10 @@ export async function TierListBody({ lang }: { lang: Locale }) {
   // above the fold (helps SEO crawlers understand the page is a
   // ranked tier list, not just a navigation hub).
   const [topCards, topRelics, topPotions, bottomCards] = await Promise.all([
-    fetchTopEntities("cards", 5),
-    fetchTopEntities("relics", 5),
-    fetchTopEntities("potions", 5),
-    fetchTopEntities("cards", 5, "bottom"),
+    fetchTopEntities("cards", 5, "top", lang),
+    fetchTopEntities("relics", 5, "top", lang),
+    fetchTopEntities("potions", 5, "top", lang),
+    fetchTopEntities("cards", 5, "bottom", lang),
   ]);
 
   // ISO 8601 date for the visible "updated" line. force-dynamic means
@@ -250,12 +252,11 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                           className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
                           title={ent.name}
                         >
-                          <img
-                            src={fullCardUrl(ent.id.toLowerCase())}
+                          <LocalizedCardImage
+                            id={ent.id}
+                            lang={lang}
                             alt={ent.name}
                             className="w-full h-auto aspect-[400/520] drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]"
-                            loading="lazy"
-                            crossOrigin="anonymous"
                           />
                           <ScoreBadge score={ent.score} size="sm" showNumber />
                         </Link>
@@ -316,12 +317,11 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                   className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
                   title={ent.name}
                 >
-                  <img
-                    src={fullCardUrl(ent.id.toLowerCase())}
+                  <LocalizedCardImage
+                    id={ent.id}
+                    lang={lang}
                     alt={ent.name}
                     className="w-full h-auto aspect-[400/520] drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]"
-                    loading="lazy"
-                    crossOrigin="anonymous"
                   />
                   <ScoreBadge score={ent.score} size="sm" showNumber />
                 </Link>

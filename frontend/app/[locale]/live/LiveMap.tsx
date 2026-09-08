@@ -23,11 +23,14 @@
 import { imageUrl } from "@/lib/image-url";
 import { useT } from "@/lib/i18n";
 import { useState } from "react";
-import { cleanId, displayName } from "../runs/[hash]/RunPills";
+import { cleanId, displayName } from "@/lib/display-name";
 import {
+  enemyName,
+  findMonster,
   safeId,
   type Coord,
   type EncounterMap,
+  type LiveCatalogs,
   type FloorReward,
   type FloorSummary,
   type LiveMapData,
@@ -84,16 +87,24 @@ function hideImg(e: React.SyntheticEvent<HTMLImageElement>) {
 
 // One taken/skipped item: a small icon (best-effort by convention, hidden on a
 // 404) plus its prettified name.
-function RewardRow({ item }: { item: FloorReward }) {
+function RewardRow({ item, cat }: { item: FloorReward; cat?: Partial<LiveCatalogs> }) {
   const id = cleanId(item.id);
+  const info =
+    item.kind === "card"
+      ? cat?.cards?.[id]
+      : item.kind === "relic"
+        ? cat?.relics?.[id]
+        : cat?.potions?.[id];
   const src =
     !safeId(id)
       ? ""
-      : item.kind === "card"
-        ? imageUrl(`/static/images/cards/${id.toLowerCase()}.webp`)
-        : item.kind === "relic"
-          ? imageUrl(`/static/images/relics/${id.toLowerCase()}.png`)
-          : imageUrl(`/static/images/potions/${id.toLowerCase()}.png`);
+      : info?.image_url
+        ? imageUrl(info.image_url)
+        : item.kind === "card"
+          ? imageUrl(`/static/images/cards/${id.toLowerCase()}.webp`)
+          : item.kind === "relic"
+            ? imageUrl(`/static/images/relics/${id.toLowerCase()}.png`)
+            : imageUrl(`/static/images/potions/${id.toLowerCase()}.png`);
   return (
     <li className="flex items-center gap-1.5">
       {src ? (
@@ -107,7 +118,7 @@ function RewardRow({ item }: { item: FloorReward }) {
       ) : (
         <span className="h-4 w-4 shrink-0" />
       )}
-      <span className="truncate text-[var(--text-secondary)]">{displayName(id)}</span>
+      <span className="truncate text-[var(--text-secondary)]">{info?.name || displayName(id)}</span>
     </li>
   );
 }
@@ -117,11 +128,13 @@ function RewardList({
   items,
   gold,
   tone,
+  cat,
 }: {
   label: string;
   items?: FloorReward[];
   gold?: number;
   tone: "reward" | "skip";
+  cat?: Partial<LiveCatalogs>;
 }) {
   const t = useT();
   if (!items?.length && !gold) return null;
@@ -148,20 +161,47 @@ function RewardList({
           </li>
         ) : null}
         {(items ?? []).map((it, i) => (
-          <RewardRow key={`${it.kind}-${it.id}-${i}`} item={it} />
+          <RewardRow key={`${it.kind}-${it.id}-${i}`} item={it} cat={cat} />
         ))}
       </ul>
     </div>
   );
 }
 
+// A revealed room's id (an encounter, an event, or an ancient/monster) in the
+// viewer's language, trying each catalog before prettifying the id.
+function roomName(
+  id: string,
+  encounters?: EncounterMap,
+  monsters?: MonsterMap,
+  cat?: Partial<LiveCatalogs>,
+): string {
+  const bare = cleanId(id);
+  return (
+    encounters?.[bare]?.name ||
+    cat?.events?.[bare]?.name ||
+    (monsters && findMonster(bare, monsters)?.name) ||
+    displayName(bare)
+  );
+}
+
 // The floating card shown when hovering a visited node: mirrors the game's own
 // previous-floor hover.
-function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterMap }) {
+function FloorCard({
+  f,
+  encounters,
+  monsters,
+  cat,
+}: {
+  f: FloorSummary;
+  encounters?: EncounterMap;
+  monsters?: MonsterMap;
+  cat?: Partial<LiveCatalogs>;
+}) {
   const t = useT();
   const isCombat = f.type === "monster" || f.type === "elite" || f.type === "boss";
   const encName = f.encounter_id
-    ? encounters?.[f.encounter_id]?.name || displayName(f.encounter_id)
+    ? roomName(f.encounter_id, encounters, monsters, cat)
     : null;
   return (
     <div>
@@ -199,8 +239,8 @@ function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterM
         ) : null}
       </div>
 
-      <RewardList label={t("Rewards")} items={f.rewards} gold={f.gold_gained} tone="reward" />
-      <RewardList label={t("Skipped")} items={f.skipped} tone="skip" />
+      <RewardList label={t("Rewards")} items={f.rewards} gold={f.gold_gained} tone="reward" cat={cat} />
+      <RewardList label={t("Skipped")} items={f.skipped} tone="skip" cat={cat} />
     </div>
   );
 }
@@ -214,6 +254,7 @@ export default function LiveMap({
   monsters,
   encounters,
   floorHistory,
+  cat,
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
@@ -223,6 +264,7 @@ export default function LiveMap({
   monsters?: MonsterMap;
   encounters?: EncounterMap;
   floorHistory?: FloorSummary[];
+  cat?: Partial<LiveCatalogs>;
 }) {
   const [hovered, setHovered] = useState<{ c: number; r: number } | null>(null);
   const t = useT();
@@ -295,10 +337,12 @@ export default function LiveMap({
 
   function titleFor(c: number, r: number, baseType: string, effType: string): string {
     const rv = revealMap.get(key(c, r));
-    if (rv && rv[3]) return encounters?.[rv[3]]?.name || rv[3];
-    if (baseType === "boss" && route?.boss) return route.boss.name || route.boss.id || t("Boss");
+    if (rv && rv[3]) return roomName(rv[3], encounters, monsters, cat);
+    if (baseType === "boss" && route?.boss) {
+      return enemyName(route.boss, monsters ?? {}, encounters) || t("Boss");
+    }
     if (baseType === "ancient" && route?.ancient) {
-      return route.ancient.name || route.ancient.id || t("Ancient");
+      return enemyName(route.ancient, monsters ?? {}, encounters) || t("Ancient");
     }
     return t(ROOM_LABEL[effType] ?? effType);
   }
@@ -428,7 +472,7 @@ export default function LiveMap({
           className="pointer-events-none absolute z-50 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-xs shadow-xl"
           style={{ left: `${lx}%`, top: `${ty}%`, transform: tipTransform }}
         >
-          <FloorCard f={hoverFloor} encounters={encounters} />
+          <FloorCard f={hoverFloor} encounters={encounters} monsters={monsters} cat={cat} />
         </div>
       )}
     </div>

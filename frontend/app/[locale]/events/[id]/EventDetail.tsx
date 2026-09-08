@@ -41,7 +41,7 @@ function PageBlock({ page }: { page: EventPage }) {
       <p className="pl">{isInitial ? t("Start") : pageName}</p>
       {page.description && (
         <div className="pdesc">
-          <RichDescription text={page.description} />
+          <RichDescription text={t(page.description)} />
         </div>
       )}
       {page.options && page.options.length > 0 && (

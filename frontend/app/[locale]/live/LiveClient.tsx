@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 // Live roster: who is in a run with the SpireCodex mod right now.
 // /api/presence/active gives identity + progress (heartbeats every ~30s,
 // 90s Mongo TTL); /api/presence/{steam_id} adds each player's deck and
@@ -10,10 +10,9 @@ import { useT, useGameLocale } from "@/lib/i18n";
 // palette and sitemap) but viewable by anyone with the URL. The presence
 // API only ever contains players who opted into sharing.
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
-import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import {
   CardPill,
@@ -31,8 +30,12 @@ import {
   LiveDot,
   PartnerBadge,
   WatchOnTwitch,
+  characterName,
   elapsed,
   parseDeckId,
+  screenLabel,
+  useCharacterNames,
+  useIdMap,
   useMonsterMap,
   usePoll,
   withOrdinalKeys,
@@ -51,12 +54,14 @@ function PlayerCard({
   p,
   cardData,
   relicData,
+  characterNames,
   monsters,
   bp,
 }: {
   p: LivePlayer;
   cardData: Record<string, CardInfo>;
   relicData: Record<string, RelicInfo>;
+  characterNames: Record<string, string>;
   monsters: MonsterMap;
   bp: string;
 }) {
@@ -92,8 +97,8 @@ function PlayerCard({
             {p.is_partner && <PartnerBadge />}
           </div>
           <div className="text-xs text-[var(--text-muted)] truncate">
-            {displayName(`CHARACTER.${p.character ?? ""}`)}
-            {p.screen ? ` · ${p.screen}` : ""}
+            {characterName(p.character, characterNames)}
+            {p.screen ? ` · ${screenLabel(p.screen, t)}` : ""}
             {p.started_at
               ? ` · ${t("climbing for {time}", { time: elapsed(p.started_at, t("under a minute")) })}`
               : ""}
@@ -220,32 +225,15 @@ function PlayerCard({
 
 export default function LiveClient() {
   const bp = useBetaPrefix();
-  const lang = useGameLocale();
   const t = useT();
   const [players, setPlayers] = useState<LivePlayer[] | null>(null);
   const [stale, setStale] = useState(false);
-  const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
-  const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
+  const cardData = useIdMap<CardInfo>("/api/cards");
+  const relicData = useIdMap<RelicInfo>("/api/relics");
+  const characterNames = useCharacterNames();
   const monsters = useMonsterMap(
     (players ?? []).some((p) => p.screen === "combat" && (p.fighting?.length ?? 0) > 0),
   );
-
-  useEffect(() => {
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`)
-      .then((cards) => {
-        const m: Record<string, CardInfo> = {};
-        for (const c of cards) m[c.id] = c;
-        setCardData(m);
-      })
-      .catch(() => {});
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`)
-      .then((relics) => {
-        const m: Record<string, RelicInfo> = {};
-        for (const r of relics) m[r.id] = r;
-        setRelicData(m);
-      })
-      .catch(() => {});
-  }, [lang]);
 
   usePoll(async () => {
     try {
@@ -308,6 +296,7 @@ export default function LiveClient() {
               p={p}
               cardData={cardData}
               relicData={relicData}
+              characterNames={characterNames}
               monsters={monsters}
               bp={bp}
             />

@@ -7,10 +7,11 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 // mod against new backend and vice versa), so everything here renders
 // defensively and disappears quietly when data is absent.
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
-import { cleanId, displayName } from "../runs/[hash]/RunPills";
+import { cleanId, displayName } from "@/lib/display-name";
+import type { CardInfo, PotionInfo, RelicInfo } from "../runs/[hash]/RunPills";
 import TwitchIcon from "@/app/components/TwitchIcon";
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -307,6 +308,147 @@ export interface EncounterInfo {
 
 export type EncounterMap = Record<string, EncounterInfo>;
 
+export interface NamedInfo {
+  id: string;
+  name?: string;
+  image_url?: string | null;
+}
+
+export type NamedMap = Record<string, NamedInfo>;
+
+/** Every localized catalog the live views resolve ids against, fetched once per
+ * locale. Names always come from here in the viewer's language; the mod's own
+ * strings (in the player's language) are only a fallback. */
+export interface LiveCatalogs {
+  cards: Record<string, CardInfo>;
+  relics: Record<string, RelicInfo>;
+  potions: Record<string, PotionInfo>;
+  events: NamedMap;
+  powers: NamedMap;
+  orbs: NamedMap;
+  acts: NamedMap;
+  modifiers: NamedMap;
+  characterNames: Record<string, string>;
+}
+
+export const EMPTY_CATALOGS: LiveCatalogs = {
+  cards: {},
+  relics: {},
+  potions: {},
+  events: {},
+  powers: {},
+  orbs: {},
+  acts: {},
+  modifiers: {},
+  characterNames: {},
+};
+
+const SCREEN_KEYS: Record<string, string> = {
+  combat: "Combat",
+  event: "Event",
+  map: "Map",
+  merchant: "Merchant",
+  rest: "Rest Site",
+  treasure: "Treasure",
+  "menu-or-transition": "Between rooms",
+};
+
+const INTENT_KEYS: Record<string, string> = {
+  attack: "Attack",
+  deathblow: "Lethal",
+  defend: "Block",
+  buff: "Buff",
+  heal: "Heal",
+  debuff: "Debuff",
+  carddebuff: "Card debuff",
+  escape: "Escape",
+  summon: "Summon",
+  sleep: "Sleep",
+  status: "Status",
+  hidden: "Hidden",
+  unknown: "Unknown",
+};
+
+/** The mod's coarse screen id as UI copy; an unknown id passes through. */
+export function screenLabel(screen: string | null | undefined, t: TFn): string {
+  if (!screen) return "";
+  const k = SCREEN_KEYS[screen];
+  return k ? t(k) : screen;
+}
+
+/** An intent category as UI copy for the icon's alt/title. */
+export function intentTitle(type: string | null | undefined, t: TFn): string {
+  const k = INTENT_KEYS[(type || "unknown").toLowerCase()];
+  return k ? t(k) : type || t("Intent");
+}
+
+export function characterName(
+  character: string | null | undefined,
+  names: Record<string, string>,
+): string {
+  const id = cleanId(character ?? "");
+  return names[id.toLowerCase()] || displayName(`CHARACTER.${id}`);
+}
+
+/** A power id (presence sends FRAIL_POWER, the catalog is keyed FRAIL). */
+export function powerName(id: string, powers: NamedMap): string {
+  const bare = cleanId(id);
+  const info = powers[bare] ?? powers[bare.replace(/_POWER$/, "")];
+  return info?.name || displayName(bare);
+}
+
+export function namedOr(id: string | null | undefined, map: NamedMap, fallback?: string): string {
+  const bare = cleanId(id ?? "");
+  return (bare && map[bare]?.name) || fallback || (bare ? displayName(bare) : "");
+}
+
+/** Lazy id -> item map from a localized list endpoint; refetches on a locale
+ * change and only once enabled. */
+export function useIdMap<T extends { id: string }>(path: string, enabled = true): Record<string, T> {
+  const lang = useGameLocale();
+  const [map, setMap] = useState<Record<string, T>>({});
+  useEffect(() => {
+    if (!enabled) return;
+    cachedFetch<T[]>(`${API}${path}?lang=${lang}`)
+      .then((items) => {
+        const m: Record<string, T> = {};
+        for (const x of items) m[x.id] = x;
+        setMap(m);
+      })
+      .catch(() => {});
+  }, [enabled, lang, path]);
+  return map;
+}
+
+export function useCharacterNames(): Record<string, string> {
+  const lang = useGameLocale();
+  const [names, setNames] = useState<Record<string, string>>({});
+  useEffect(() => {
+    cachedFetch<{ character_names?: Record<string, string> }>(
+      `${API}/api/translations?lang=${lang}`,
+    )
+      .then((d) => setNames(d.character_names ?? {}))
+      .catch(() => {});
+  }, [lang]);
+  return names;
+}
+
+export function useLiveCatalogs(): LiveCatalogs {
+  const cards = useIdMap<CardInfo>("/api/cards");
+  const relics = useIdMap<RelicInfo>("/api/relics");
+  const potions = useIdMap<PotionInfo>("/api/potions");
+  const events = useIdMap<NamedInfo>("/api/events");
+  const powers = useIdMap<NamedInfo>("/api/powers");
+  const orbs = useIdMap<NamedInfo>("/api/orbs");
+  const acts = useIdMap<NamedInfo>("/api/acts");
+  const modifiers = useIdMap<NamedInfo>("/api/modifiers");
+  const characterNames = useCharacterNames();
+  return useMemo(
+    () => ({ cards, relics, potions, events, powers, orbs, acts, modifiers, characterNames }),
+    [cards, relics, potions, events, powers, orbs, acts, modifiers, characterNames],
+  );
+}
+
 export function elapsed(startedAt?: string | null, underMinute = "under a minute"): string {
   if (!startedAt) return "";
   const ms = Date.now() - new Date(startedAt).getTime();
@@ -490,41 +632,44 @@ export function usePoll(fn: () => void, ms: number) {
 /** Lazy monster id -> {name, image_url} map; only fetches once enabled
  * (i.e. once somebody is actually in a fight). */
 export function useMonsterMap(enabled: boolean): MonsterMap {
-  const lang = useGameLocale();
-  const [map, setMap] = useState<MonsterMap>({});
-  useEffect(() => {
-    if (!enabled) return;
-    cachedFetch<MonsterInfo[]>(`${API}/api/monsters?lang=${lang}`)
-      .then((monsters) => {
-        const m: MonsterMap = {};
-        for (const x of monsters) m[x.id] = x;
-        setMap(m);
-      })
-      .catch(() => {});
-  }, [enabled, lang]);
-  return map;
+  return useIdMap<MonsterInfo>("/api/monsters", enabled);
 }
 
 /** Lazy encounter id -> {name, monsters} map, for resolving a map reveal's
  * encounter id to a representative monster portrait. Fetches once enabled. */
 export function useEncounterMap(enabled: boolean): EncounterMap {
-  const lang = useGameLocale();
-  const [map, setMap] = useState<EncounterMap>({});
-  useEffect(() => {
-    if (!enabled) return;
-    cachedFetch<EncounterInfo[]>(`${API}/api/encounters?lang=${lang}`)
-      .then((encs) => {
-        const m: EncounterMap = {};
-        for (const x of encs) m[x.id] = x;
-        setMap(m);
-      })
-      .catch(() => {});
-  }, [enabled, lang]);
-  return map;
+  return useIdMap<EncounterInfo>("/api/encounters", enabled);
+}
+
+/** The catalog monster for an id, also matching encounter-style ids
+ * (FROG_KNIGHT_NORMAL, BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER) by dropping
+ * trailing segments until a monster id is left. */
+export function findMonster(id: string, monsters: MonsterMap): MonsterInfo | undefined {
+  const parts = cleanId(id).split("_");
+  for (let n = parts.length; n > 0; n--) {
+    const hit = monsters[parts.slice(0, n).join("_")];
+    if (hit) return hit;
+  }
+  return undefined;
 }
 
 export function monsterName(id: string, monsters: MonsterMap): string {
-  return monsters[cleanId(id)]?.name || displayName(`MONSTER.${id}`);
+  return findMonster(id, monsters)?.name || displayName(`MONSTER.${id}`);
+}
+
+/** Viewer-locale catalog name first, the mod's (player-locale) name second,
+ * the prettified id last. Also fits pets and route nodes. */
+export function enemyName(
+  e: { id?: string | null; name?: string | null },
+  monsters: MonsterMap,
+  encounters?: EncounterMap,
+): string {
+  const id = e.id ? cleanId(e.id) : "";
+  return (
+    (id && (monsters[id]?.name || encounters?.[id]?.name || findMonster(id, monsters)?.name)) ||
+    e.name ||
+    (id ? displayName(id) : "")
+  );
 }
 
 export function EnemyCircle({
@@ -537,7 +682,7 @@ export function EnemyCircle({
   className?: string;
 }) {
   const mid = cleanId(id);
-  const info = monsters[mid];
+  const info = findMonster(mid, monsters);
   const fallback = safeId(mid)
     ? imageUrl(`/static/images/monsters/${mid.toLowerCase()}.webp`)
     : "";
@@ -668,7 +813,7 @@ export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: Mon
       <ul className="space-y-2.5">
         {withOrdinalKeys(enemies.map((e) => e.id || e.name || "?")).map(({ key }, i) => {
           const e = enemies[i];
-          const name = e.name || (e.id ? monsterName(e.id, monsters) : t("Enemy"));
+          const name = enemyName(e, monsters) || t("Enemy");
           const hpPct =
             e.hp != null && e.max_hp ? Math.max(0, Math.min(100, (e.hp / e.max_hp) * 100)) : null;
           const intents = e.intents ?? [];
@@ -732,12 +877,13 @@ export function CharacterIcon({
   character?: string | null;
   className?: string;
 }) {
+  const names = useCharacterNames();
   const slug = cleanId(character || "").toLowerCase();
   if (!slug || !safeId(slug)) return null;
   return (
     <img
       src={imageUrl(`/static/images/characters/character_icon_${slug}.webp`)}
-      alt={displayName(`CHARACTER.${character ?? ""}`)}
+      alt={characterName(character, names)}
       className={`${className} object-contain`}
       crossOrigin="anonymous"
       onError={(e) => {

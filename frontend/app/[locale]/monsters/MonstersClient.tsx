@@ -32,13 +32,18 @@ const typeOptions = [
   { label: "Boss", value: "Boss" },
 ];
 
-const actOptions = [
-  { label: "Act 1 - Overgrowth", value: "Act 1 - Overgrowth" },
-  { label: "Act 1 - Underdocks", value: "Act 1 - Underdocks" },
-  { label: "Act 2 - Hive", value: "Act 2 - Hive" },
-  { label: "Act 3 - Glory", value: "Act 3 - Glory" },
-  { label: "Weak Encounters", value: "weak" },
+const ACT_VALUES = [
+  { id: "OVERGROWTH", value: "Act 1 - Overgrowth" },
+  { id: "UNDERDOCKS", value: "Act 1 - Underdocks" },
+  { id: "HIVE", value: "Act 2 - Hive" },
+  { id: "GLORY", value: "Act 3 - Glory" },
 ];
+
+interface ActInfo {
+  id: string;
+  name: string;
+  index: number;
+}
 
 function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }) {
   const lang = useGameLocale();
@@ -52,7 +57,20 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
   const [act, setAct] = useState(searchParams.get("act") || "");
+  const [acts, setActs] = useState<ActInfo[]>([]);
   const initialRender = useRef(true);
+
+  useEffect(() => {
+    cachedFetch<ActInfo[]>(`${API}/api/acts?lang=${lang}`).then(setActs).catch(() => {});
+  }, [lang]);
+
+  const actOptions = [
+    ...ACT_VALUES.map((a) => {
+      const info = acts.find((x) => x.id === a.id);
+      return { value: a.value, label: info ? `${t("Act {n}", { n: info.index + 1 })} - ${info.name}` : a.value };
+    }),
+    { label: "Weak Encounters", value: "weak" },
+  ];
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
     const params = new URLSearchParams();

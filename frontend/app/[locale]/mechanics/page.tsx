@@ -62,7 +62,7 @@ export default async function MechanicsPage({ params }: Props) {
       description: "Complete game mechanics data extracted from the source code.",
       path: localePath(locale, "/mechanics"),
       inLanguage: inLanguageOf(locale),
-      items: sections.map((s) => ({ name: s.title, path: `/mechanics/${s.slug}` })),
+      items: sections.map((s) => ({ name: t(s.title), path: `/mechanics/${s.slug}` })),
     }),
   ];
 
@@ -84,8 +84,8 @@ export default async function MechanicsPage({ params }: Props) {
             href={`/mechanics/${s.slug}`}
             className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-5 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all cursor-pointer block"
           >
-            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] mb-2">{s.title}</h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{s.description}</p>
+            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] mb-2">{t(s.title)}</h3>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{t(s.description)}</p>
           </Link>
         ))}
       </div>
@@ -98,8 +98,8 @@ export default async function MechanicsPage({ params }: Props) {
             href={`/mechanics/${s.slug}`}
             className="bg-[var(--bg-card)] rounded-lg border border-success/30 p-5 hover:bg-[var(--bg-card-hover)] hover:border-success/50 transition-all cursor-pointer block"
           >
-            <h3 className="font-semibold text-success mb-2">{s.title}</h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{s.description}</p>
+            <h3 className="font-semibold text-success mb-2">{t(s.title)}</h3>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{t(s.description)}</p>
           </Link>
         ))}
       </div>

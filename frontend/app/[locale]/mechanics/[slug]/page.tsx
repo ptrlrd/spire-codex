@@ -38,13 +38,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/mechanics/${slug}`;
   const section = await fetchSection(slug);
-  if (!section) return buildPageMetadata({ locale, path, title: t("Not Found"), noIndex: true });
+  if (!section) return buildPageMetadata({ locale, path, title: t("Not Found"), noIndex: true, supressLanguageAlternates: true });
   return buildPageMetadata({
     locale,
     path,
-    title: `${section.title} - ${t("Mechanic")}`,
-    description: clipMetaDescription(section.description),
+    title: `${t(section.title)} - ${t("Mechanic")}`,
+    description: clipMetaDescription(t(section.description)),
     ogType: "article",
+    supressLanguageAlternates: true,
   });
 }
 
@@ -66,7 +67,7 @@ export default async function MechanicDetailPage({ params }: Props) {
     breadcrumbs: [
       { name: t("Home"), href: localePath(locale, "/") },
       { name: t("Mechanics"), href: localePath(locale, "/mechanics") },
-      { name: section.title, href: localePath(locale, `/mechanics/${slug}`) },
+      { name: t(section.title), href: localePath(locale, `/mechanics/${slug}`) },
     ],
     inLanguage: inLanguageOf(locale),
   });
@@ -81,9 +82,9 @@ export default async function MechanicDetailPage({ params }: Props) {
         <span>&larr;</span> {t("Back to")} {t("Mechanics")}
       </Link>
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{section.title}</span>
+        <span className="text-[var(--accent-gold)]">{t(section.title)}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-8">{section.description}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-8">{t(section.description)}</p>
       <MechanicMarkdown body={section.body_markdown} />
     </div>
   );

@@ -35,6 +35,113 @@ interface AncientPool {
   per_character_relics?: string[];
 }
 
+interface NoteTemplate {
+  key: string;
+  vars?: Record<string, string>;
+}
+
+const NOTES: Record<string, NoteTemplate> = {
+  "Offers one relic from each of three pools. Pool 1 includes a chance for Prismatic Gem or Sea Glass.": {
+    key: "Offers one relic from each of three pools. Pool 1 includes a chance for {relic} or {relic2}.",
+    vars: { relic: "relic:PRISMATIC_GEM", relic2: "relic:SEA_GLASS" },
+  },
+  "Has a large pool of powerful relics. 50% chance to get 3 options from the pool, 50% chance to get 2 options plus Dusty Tome.": {
+    key: "Has a large pool of powerful relics. 50% chance to get 3 options from the pool, 50% chance to get 2 options plus {relic}.",
+    vars: { relic: "relic:DUSTY_TOME" },
+  },
+  "Offers one relic from each of three pools. Pool 2 has conditional additions and Pael's Growth has a reduced chance.": {
+    key: "Offers one relic from each of three pools. Pool 2 has conditional additions and {relic} has a reduced chance.",
+    vars: { relic: "relic:PAELS_GROWTH" },
+  },
+  "50% chance: 3 from pool OR 2 from pool + Dusty Tome": {
+    key: "50% chance: 3 from pool OR 2 from pool + {relic}",
+    vars: { relic: "relic:DUSTY_TOME" },
+  },
+  "Dusty Tome": { key: "", vars: { relic: "relic:DUSTY_TOME" } },
+  "The pool is doubled before adding Pael's Growth, giving Growth a reduced chance.": {
+    key: "The pool is doubled before adding {relic}, giving it a reduced chance.",
+    vars: { relic: "relic:PAELS_GROWTH" },
+  },
+  "Includes either Prismatic Gem (33% chance) or Sea Glass (67% chance). Sea Glass picks from a random unlocked character other than the current one.": {
+    key: "Includes either {relic} (33% chance) or {relic2} (67% chance). {relic2} picks from a random unlocked character other than the current one.",
+    vars: { relic: "relic:PRISMATIC_GEM", relic2: "relic:SEA_GLASS" },
+  },
+  "50% chance (vs Neow's Talisman)": { key: "50% chance (vs {relic})", vars: { relic: "relic:NEOWS_TALISMAN" } },
+  "50% chance (vs Stone Humidifier)": { key: "50% chance (vs {relic})", vars: { relic: "relic:STONE_HUMIDIFIER" } },
+  "50% chance (vs Pomander)": { key: "50% chance (vs {relic})", vars: { relic: "relic:POMANDER" } },
+  "50% chance (vs Nutritious Oyster)": { key: "50% chance (vs {relic})", vars: { relic: "relic:NUTRITIOUS_OYSTER" } },
+  "Deck has 4+ cards that can be enchanted with Swift": {
+    key: "Deck has 4+ cards that can be enchanted with {enchant}",
+    vars: { enchant: "enchant:SWIFT" },
+  },
+  "Deck has 3+ cards that can be enchanted with Goopy": {
+    key: "Deck has 3+ cards that can be enchanted with {enchant}",
+    vars: { enchant: "enchant:GOOPY" },
+  },
+  "Excluded if Precarious Shears is the curse option": { key: "Excluded if {relic} is the curse option", vars: { relic: "relic:PRECARIOUS_SHEARS" } },
+  "Excluded if Leafy Poultice is the curse option": { key: "Excluded if {relic} is the curse option", vars: { relic: "relic:LEAFY_POULTICE" } },
+  "Excluded if Cursed Pearl is the curse option": { key: "Excluded if {relic} is the curse option", vars: { relic: "relic:CURSED_PEARL" } },
+  "Excluded if Hefty Tablet is the curse option": { key: "Excluded if {relic} is the curse option", vars: { relic: "relic:HEFTY_TABLET" } },
+  "Act 3 only; 50% chance (vs Velvet Choker)": { key: "Act 3 only; 50% chance (vs {relic})", vars: { relic: "relic:VELVET_CHOKER" } },
+  "Act 3 only; 50% chance (vs Philosopher's Stone)": { key: "Act 3 only; 50% chance (vs {relic})", vars: { relic: "relic:PHILOSOPHERS_STONE" } },
+  "Act 2 only; 50% chance (vs Ectoplasm)": { key: "Act 2 only; 50% chance (vs {relic})", vars: { relic: "relic:ECTOPLASM" } },
+  "Act 2 only; 50% chance (vs Sozu)": { key: "Act 2 only; 50% chance (vs {relic})", vars: { relic: "relic:SOZU" } },
+  "Excluded with Draft, Sealed Deck, or Insanity modifiers": {
+    key: "Excluded with the {a}, {b}, or {c} modifiers",
+    vars: { a: "modifier:DRAFT", b: "modifier:SEALED_DECK", c: "modifier:INSANITY" },
+  },
+  "50% chance (vs Lava Rock); excluded if Large Capsule is the curse option": {
+    key: "50% chance (vs {relic}); excluded if {relic2} is the curse option",
+    vars: { relic: "relic:LAVA_ROCK", relic2: "relic:LARGE_CAPSULE" },
+  },
+  "50% chance (vs Small Capsule); excluded if Large Capsule is the curse option": {
+    key: "50% chance (vs {relic}); excluded if {relic2} is the curse option",
+    vars: { relic: "relic:SMALL_CAPSULE", relic2: "relic:LARGE_CAPSULE" },
+  },
+  "67% chance (vs Prismatic Gem); character is random unlocked non-current": {
+    key: "67% chance (vs {relic}); character is random unlocked non-current",
+    vars: { relic: "relic:PRISMATIC_GEM" },
+  },
+  "33% chance (vs Sea Glass)": { key: "33% chance (vs {relic})", vars: { relic: "relic:SEA_GLASS" } },
+  "Player does not have an event pet (Byrdpip relic or Byrdonis Egg card)": {
+    key: "Player does not have an event pet ({relic} relic or {card} card)",
+    vars: { relic: "relic:BYRDPIP", card: "card:BYRDONIS_EGG" },
+  },
+  "Deck has 3+ Attack cards (the type filter Instinct enforces)": {
+    key: "Deck has 3+ Attack cards (the type filter {enchant} enforces)",
+    vars: { enchant: "enchant:INSTINCT" },
+  },
+};
+
+interface GameNames {
+  relics: Record<string, RelicInfo>;
+  enchants: Record<string, string>;
+  modifiers: Record<string, string>;
+  cards: Record<string, string>;
+}
+
+function fallbackName(id: string): string {
+  return id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function resolveName(ref: string, names: GameNames): string {
+  const [kind, id] = ref.split(":");
+  if (kind === "relic") return names.relics[id]?.name ?? fallbackName(id);
+  if (kind === "enchant") return names.enchants[id] ?? fallbackName(id);
+  if (kind === "modifier") return names.modifiers[id] ?? fallbackName(id);
+  if (kind === "card") return names.cards[id] ?? fallbackName(id);
+  return fallbackName(id);
+}
+
+function noteText(text: string, t: (key: string, values?: Record<string, string | number>) => string, names: GameNames): string {
+  const note = NOTES[text];
+  if (!note) return t(text);
+  const values: Record<string, string> = {};
+  for (const [k, ref] of Object.entries(note.vars ?? {})) values[k] = resolveName(ref, names);
+  if (!note.key) return Object.values(values)[0] ?? text;
+  return t(note.key, values);
+}
+
 interface RelicInfo {
   id: string;
   name: string;
@@ -49,17 +156,17 @@ interface RelicInfo {
 
 function RelicPill({
   relic,
-  relicData,
+  names,
   bp,
   isPerCharacter,
 }: {
   relic: PoolRelic;
-  relicData: Record<string, RelicInfo>;
+  names: GameNames;
   bp: string;
   isPerCharacter: boolean;
 }) {
-  const lang = useGameLocale();
   const t = useT();
+  const relicData = names.relics;
   const info = relicData[relic.id];
   const name = info?.name || relic.id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
   // Order matches how the game iterates ModelDb.AllCharacters.
@@ -79,7 +186,7 @@ function RelicPill({
         <span className="anc-relic-name">{name}</span>
       </Link>
       <div className="anc-relic-meta">
-        {relic.condition && <span className="anc-cond">{relic.condition}</span>}
+        {relic.condition && <span className="anc-cond">{noteText(relic.condition, t, names)}</span>}
         {isPerCharacter && variants.length > 0 && (
           <span className="anc-variants">
             <span className="lbl">{t("Shows as 5 separate options:")}</span>{" "}
@@ -99,45 +206,46 @@ function RelicPill({
 
 function AncientSection({
   ancient,
-  relicData,
+  names,
+  ancientName,
   bp,
 }: {
   ancient: AncientPool;
-  relicData: Record<string, RelicInfo>;
+  names: GameNames;
+  ancientName: string;
   bp: string;
 }) {
   const t = useT();
-  const lang = useGameLocale();
   // Every Ancient is shown on the page (navigated via the ToC submenu), so each
   // one renders fully expanded — no accordion toggle.
   return (
     <div className="anc-card">
       <div className="anc-head static">
         <div>
-          <h2>{ancient.name}</h2>
-          <p className="anc-sel">{ancient.selection}</p>
+          <h2>{ancientName}</h2>
+          <p className="anc-sel">{noteText(ancient.selection, t, names)}</p>
         </div>
       </div>
 
       <div className="anc-body">
-        <p className="anc-desc">{ancient.description}</p>
+        <p className="anc-desc">{noteText(ancient.description, t, names)}</p>
 
         <div className="anc-pools">
           {ancient.pools.map((pool, i) => (
             <div key={i} className="anc-pool">
               <div className="anc-pool-h">
-                <span>{pool.name}</span>
+                <span>{noteText(pool.name, t, names)}</span>
                 <span className="cnt">
                   {pool.relics.length} {pool.relics.length === 1 ? t("relic") : t("relics")}
                 </span>
               </div>
-              {pool.description && <p className="anc-pool-desc">{pool.description}</p>}
+              {pool.description && <p className="anc-pool-desc">{noteText(pool.description, t, names)}</p>}
               <div className="anc-relics">
                 {pool.relics.map((relic) => (
                   <RelicPill
                     key={relic.id}
                     relic={relic}
-                    relicData={relicData}
+                    names={names}
                     bp={bp}
                     isPerCharacter={!!ancient.per_character_relics?.includes(relic.id)}
                   />
@@ -156,25 +264,43 @@ export default function AncientsClient() {
   const lang = useGameLocale();
   const bp = useBetaPrefix();
   const [ancients, setAncients] = useState<AncientPool[]>([]);
-  const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
+  const [names, setNames] = useState<GameNames>({ relics: {}, enchants: {}, modifiers: {}, cards: {} });
+  const [ancientNames, setAncientNames] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const ancientName = (a: AncientPool) => ancientNames[a.id] ?? a.name;
   // Scroll-spy: which Ancient section is currently in view. Drives both the ToC
   // highlight AND the infobox art/background, so the "At a glance" image tracks
   // whichever Ancient you've scrolled to.
   const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
+    const optional = <T,>(p: Promise<T>, fallback: T) => p.catch(() => fallback);
     Promise.all([
       cachedFetch<AncientPool[]>(`${API}/api/ancient-pools`),
       cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`),
+      optional(cachedFetch<{ id: string; name: string }[]>(`${API}/api/events?type=Ancient&lang=${lang}`), []),
+      optional(cachedFetch<{ id: string; name: string }[]>(`${API}/api/enchantments?lang=${lang}`), []),
+      optional(cachedFetch<{ id: string; name: string }[]>(`${API}/api/modifiers?lang=${lang}`), []),
+      optional(cachedFetch<{ id: string; name: string }>(`${API}/api/cards/byrdonis_egg?lang=${lang}`), null),
     ])
-      .then(([pools, relics]) => {
+      .then(([pools, relics, ancientEvents, enchants, modifiers, egg]) => {
         setAncients(pools);
         const map: Record<string, RelicInfo> = {};
         for (const r of relics) {
           map[r.id] = r;
         }
-        setRelicData(map);
+        const byId = (list: { id: string; name: string }[]) => {
+          const out: Record<string, string> = {};
+          for (const x of list) out[x.id.toUpperCase()] = x.name;
+          return out;
+        };
+        setNames({
+          relics: map,
+          enchants: byId(enchants),
+          modifiers: byId(modifiers),
+          cards: egg ? { [egg.id.toUpperCase()]: egg.name } : {},
+        });
+        setAncientNames(byId(ancientEvents));
       })
       .catch(() => {})
       .finally(() => setLoading(false));
@@ -265,7 +391,7 @@ export default function AncientsClient() {
                     jumpTo(id);
                   }}
                 >
-                  {a.name}
+                  {ancientName(a)}
                 </a>
               );
             })}
@@ -274,7 +400,7 @@ export default function AncientsClient() {
           <div className="anc-list">
             {ancients.map((a) => (
               <section key={a.id} id={`ancient-${a.id}`} className="anc-sec">
-                <AncientSection ancient={a} relicData={relicData} bp={bp} />
+                <AncientSection ancient={a} names={names} ancientName={ancientName(a)} bp={bp} />
               </section>
             ))}
           </div>
@@ -286,7 +412,7 @@ export default function AncientsClient() {
             <img
               className="cardimg render relimg"
               src={portrait}
-              alt={imgSel?.name ?? t("Ancients")}
+              alt={imgSel ? ancientName(imgSel) : t("Ancients")}
               crossOrigin="anonymous"
               onError={(e) => {
                 if (e.currentTarget.src !== NEOW_IMG) e.currentTarget.src = NEOW_IMG;
@@ -303,7 +429,7 @@ export default function AncientsClient() {
             >
               {ancients.map((a) => (
                 <option key={a.id} value={a.id}>
-                  {a.name}
+                  {ancientName(a)}
                 </option>
               ))}
             </select>

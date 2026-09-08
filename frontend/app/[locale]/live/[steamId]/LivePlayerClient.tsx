@@ -1,6 +1,6 @@
 "use client";
 
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 // One player's live run, spectator-lite: the full deck, relics, potions,
 // current fight, and the play-by-play ticker from the mod's heartbeats
 // (cards played, potions used, fights, purchases, acts, deaths). The mod
@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
-import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
@@ -23,9 +22,6 @@ import {
   RelicPill,
   cleanId,
   displayName,
-  type CardInfo,
-  type PotionInfo,
-  type RelicInfo,
 } from "../../runs/[hash]/RunPills";
 import {
   API,
@@ -37,14 +33,20 @@ import {
   PartnerBadge,
   WatchOnTwitch,
   ago,
+  characterName,
   elapsed,
   monsterName,
+  namedOr,
   parseDeckId,
+  powerName,
+  screenLabel,
   useEncounterMap,
+  useLiveCatalogs,
   useMonsterMap,
   usePoll,
   withOrdinalKeys,
   type EncounterMap,
+  type LiveCatalogs,
   type LiveEvent,
   type LivePlayer,
   type LiveSeat,
@@ -52,18 +54,6 @@ import {
 } from "../live-shared";
 
 const POLL_MS = 4_000;
-
-interface EventInfo {
-  id: string;
-  name: string;
-}
-
-interface Catalogs {
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
-  events: Record<string, EventInfo>;
-}
 
 const TICKER_LINK = "inline text-[var(--accent-gold)] hover:underline";
 
@@ -76,7 +66,7 @@ function TickerRow({
   won,
 }: {
   e: LiveEvent;
-  cat: Catalogs;
+  cat: LiveCatalogs;
   monsters: MonsterMap;
   encounters: EncounterMap;
   bp: string;
@@ -389,7 +379,7 @@ function TickerRow({
     case "act":
       body = (
         <span className="text-[var(--accent-gold)]">
-          {e.v ? t("Entered {act}", { act: displayName(`ACT.${e.v}`) }) : t("Entered a new act")}
+          {e.v ? t("Entered {act}", { act: namedOr(e.v, cat.acts) }) : t("Entered a new act")}
         </span>
       );
       break;
@@ -397,8 +387,8 @@ function TickerRow({
       // Future event kinds render as plain text instead of vanishing.
       body = (
         <span className="text-[var(--text-secondary)]">
-          {displayName(`CARD.${e.k}`)}
-          {e.v ? ` ${displayName(`CARD.${e.v}`)}` : ""}
+          {displayName(e.k)}
+          {e.v ? ` ${displayName(e.v)}` : ""}
         </span>
       );
   }
@@ -434,7 +424,7 @@ function LiveCombatPanel({
   bp,
 }: {
   p: LivePlayer;
-  cat: Catalogs;
+  cat: LiveCatalogs;
   bp: string;
 }) {
   const t = useT();
@@ -476,10 +466,10 @@ function LiveCombatPanel({
           {powers.map((pw) => (
             <span
               key={pw.id}
-              title={displayName(pw.id)}
+              title={powerName(pw.id, cat.powers)}
               className="rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-1.5 py-0.5 text-[10px] tabular-nums text-[var(--text-secondary)]"
             >
-              {displayName(pw.id)}
+              {powerName(pw.id, cat.powers)}
               {pw.amount != null && pw.amount !== 0 ? ` ${pw.amount}` : ""}
             </span>
           ))}
@@ -631,7 +621,13 @@ function LiveCombatPanel({
 
 /** Co-op partner cards: one compact card per seat with vitals, the local seat
  * highlighted and dead seats dimmed. Only shown when 2+ players are in the run. */
-function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
+function LiveCoopPanel({
+  players,
+  names,
+}: {
+  players: LiveSeat[];
+  names: Record<string, string>;
+}) {
   const t = useT();
   if (!players.length) return null;
   return (
@@ -656,7 +652,7 @@ function LiveCoopPanel({ players }: { players: LiveSeat[] }) {
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-sm">
                   <span className="truncate text-[var(--text-secondary)]">
-                    {displayName(`CHARACTER.${s.character ?? ""}`)}
+                    {characterName(s.character, names)}
                   </span>
                   {s.is_me && (
                     <span className="rounded bg-[var(--accent-gold)]/20 px-1 text-[9px] font-bold uppercase text-[var(--accent-gold)]">
@@ -699,14 +695,13 @@ export default function LivePlayerClient() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
   const bp = useBetaPrefix();
-  const lang = useGameLocale();
   const t = useT();
 
   const [player, setPlayer] = useState<LivePlayer | null>(null);
   // null = still loading; afterwards: live, ended (was live, dropped off),
   // or missing (never seen this session).
   const [status, setStatus] = useState<"loading" | "live" | "ended" | "missing">("loading");
-  const [cat, setCat] = useState<Catalogs>({ cards: {}, relics: {}, potions: {}, events: {} });
+  const cat = useLiveCatalogs();
   const monsters = useMonsterMap(true);
   const encounters = useEncounterMap(true);
   // EXPERIMENTAL: ?scene=1 renders the game-like battle scene above the panels
@@ -721,37 +716,6 @@ export default function LivePlayerClient() {
       new URLSearchParams(window.location.search).get("scene") !== "0",
     );
   }, []);
-
-  useEffect(() => {
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}`)
-      .then((cards) => {
-        const m: Record<string, CardInfo> = {};
-        for (const c of cards) m[c.id] = c;
-        setCat((prev) => ({ ...prev, cards: m }));
-      })
-      .catch(() => {});
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`)
-      .then((relics) => {
-        const m: Record<string, RelicInfo> = {};
-        for (const r of relics) m[r.id] = r;
-        setCat((prev) => ({ ...prev, relics: m }));
-      })
-      .catch(() => {});
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`)
-      .then((potions) => {
-        const m: Record<string, PotionInfo> = {};
-        for (const p of potions) m[p.id] = p;
-        setCat((prev) => ({ ...prev, potions: m }));
-      })
-      .catch(() => {});
-    cachedFetch<EventInfo[]>(`${API}/api/events?lang=${lang}`)
-      .then((events) => {
-        const m: Record<string, EventInfo> = {};
-        for (const ev of events) m[ev.id] = ev;
-        setCat((prev) => ({ ...prev, events: m }));
-      })
-      .catch(() => {});
-  }, [lang]);
 
   usePoll(async () => {
     if (!steamId) {
@@ -851,6 +815,7 @@ export default function LivePlayerClient() {
           monsters={monsters}
           encounters={encounters}
           floorHistory={p.floor_history}
+          cat={cat}
         />
       </div>
     ) : null;
@@ -885,8 +850,8 @@ export default function LivePlayerClient() {
             )}
           </div>
           <div className="text-sm text-[var(--text-muted)] truncate">
-            {displayName(`CHARACTER.${p.character ?? ""}`)}
-            {p.screen ? ` · ${p.screen}` : ""}
+            {characterName(p.character, cat.characterNames)}
+            {p.screen ? ` · ${screenLabel(p.screen, t)}` : ""}
             {p.started_at
               ? ` · ${t("climbing for {time}", { time: elapsed(p.started_at, t("under a minute")) })}`
               : ""}
@@ -906,7 +871,7 @@ export default function LivePlayerClient() {
                   key={m}
                   className="px-1.5 py-0.5 rounded text-[10px] bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)]"
                 >
-                  {displayName(m)}
+                  {namedOr(m, cat.modifiers)}
                 </span>
               ))}
             </div>
@@ -1001,6 +966,7 @@ export default function LivePlayerClient() {
           bp={bp}
           cards={cat.cards}
           relics={cat.relics}
+          events={cat.events}
         />
       )}
       {p.shop && (
@@ -1164,7 +1130,9 @@ export default function LivePlayerClient() {
         </div>
       )}
 
-      {(p.players?.length ?? 0) > 0 && <LiveCoopPanel players={p.players!} />}
+      {(p.players?.length ?? 0) > 0 && (
+        <LiveCoopPanel players={p.players!} names={cat.characterNames} />
+      )}
 
       {p.sts2_version && (
         <p className="text-[10px] text-[var(--text-muted)]">{p.sts2_version}</p>

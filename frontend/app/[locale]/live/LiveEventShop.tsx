@@ -28,6 +28,7 @@ import {
   type LiveEventCtx,
   type LiveLoot,
   type LiveShop,
+  type NamedMap,
   type ShopItem,
 } from "./live-shared";
 
@@ -41,15 +42,17 @@ export function LiveEventPanel({
   bp,
   cards,
   relics,
+  events,
 }: {
   ev: LiveEventCtx;
   bp: string;
   cards?: Record<string, CardInfo>;
   relics?: Record<string, RelicInfo>;
+  events?: NamedMap;
 }) {
   const t = useT();
   const id = cleanId(ev.id);
-  const titleText = ev.title || displayName(`EVENT.${id}`);
+  const titleText = events?.[id]?.name || ev.title || displayName(`EVENT.${id}`);
   return (
     <div className="rounded-lg border border-special/30 bg-special/10 p-4">
       <div className="flex items-center gap-2 mb-2">

@@ -12,7 +12,7 @@ import AnnouncementBadge, { useAnnouncementUnread } from "./AnnouncementBadge";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
 import ThemeToggle from "./ThemeToggle";
-import { recordRecent, getRecent, isRecentType, ENTITY_SINGULAR, prettyRecentName, type RecentEntity } from "@/lib/recent-entities";
+import { recordRecent, getRecent, isRecentType, ENTITY_SINGULAR, prettyRecentName, rememberRecentName, fetchRecentName, type RecentEntity } from "@/lib/recent-entities";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { SITE_URL } from "@/lib/seo";
 import { LANG_PREFIXES } from "@/lib/languages";
@@ -264,6 +264,24 @@ export default function Navbar() {
     setRecents(getRecent());
   }, [strippedPath]);
 
+  const [recentNames, setRecentNames] = useState<Record<string, string>>({});
+  useEffect(() => {
+    let cancelled = false;
+    for (const r of recents.slice(0, 3)) {
+      const key = `${lang}:${r.type}:${r.id}`;
+      if (r.names?.[lang] || recentNames[key]) continue;
+      fetchRecentName(r.type, r.id, lang).then((name) => {
+        if (!name || cancelled) return;
+        rememberRecentName(r.type, r.id, lang, name);
+        setRecentNames((m) => ({ ...m, [key]: name }));
+      });
+    }
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [recents, lang]);
+
   const renderMega = (group: NavGroup, isLast: boolean) => {
     const links = group.links;
     if (links.length === 0) return null;
@@ -351,7 +369,7 @@ export default function Navbar() {
                       >
                         <span className="h-2.5 w-2.5 shrink-0 rounded-[3px]" style={{ background: rmeta?.color ?? "var(--text-muted)" }} aria-hidden />
                         <span className="flex min-w-0 flex-col">
-                          <span className="truncate text-sm font-medium text-[var(--text-primary)]">{prettyRecentName(r.id)}</span>
+                          <span className="truncate text-sm font-medium text-[var(--text-primary)]">{r.names?.[lang] ?? recentNames[`${lang}:${r.type}:${r.id}`] ?? prettyRecentName(r.id)}</span>
                           <span className="text-xs text-[var(--text-muted)]">{t(ENTITY_SINGULAR[r.type] ?? r.type)}</span>
                         </span>
                       </Link>
