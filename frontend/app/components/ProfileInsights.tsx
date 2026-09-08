@@ -1056,7 +1056,7 @@ export function InsightsPanels({
 // nothing (rather than the previous language's names) until the new catalog
 // has arrived, and a failed request leaves the map empty instead of stale.
 function useEntityMap(path: string): Record<string, EntityInfo> {
-  const { lang } = useLanguage();
+  const lang = useGameLocale();
   const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}`;
   const [state, setState] = useState<{ url: string; map: Record<string, EntityInfo> }>({ url: "", map: {} });
   useEffect(() => {
