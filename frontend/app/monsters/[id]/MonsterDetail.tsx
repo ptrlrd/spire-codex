@@ -367,7 +367,9 @@ export default function MonsterDetail({
     if (!id) return;
     cachedFetch<Monster>(`${API}/api/monsters/${id}?lang=${lang}`)
       .then((data) => setMonster(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialMonster) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

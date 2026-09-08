@@ -29,7 +29,9 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
     if (!id) return;
     cachedFetch<Act>(`${API}/api/acts/${id}?lang=${lang}`)
       .then((data) => setAct(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialAct) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

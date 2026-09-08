@@ -382,7 +382,7 @@ If you're consuming the API directly, you can strip these with a regex like `\[/
 ### Prerequisites
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -460,13 +460,13 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 
 The script auto-detects your OS and finds the Steam install directory. Requirements per step:
 
-| Step              | Tool         | Install                                                             |
-| ----------------- | ------------ | ------------------------------------------------------------------- |
-| PCK extraction    | `gdre_tools` | [GDRE Tools releases](https://github.com/bruvzg/gdsdecomp/releases) |
-| DLL decompilation | `ilspycmd`   | `dotnet tool install ilspycmd -g`                                   |
-| Data parsing      | Python 3.10+ | Built-in                                                            |
-| Image copying     | Python 3.10+ | Built-in                                                            |
-| Spine rendering   | Node.js 20+  | [nodejs.org](https://nodejs.org)                                    |
+| Step | Tool | Install |
+|---|---|---|
+| PCK extraction | `gdre_tools` | [GDRE Tools releases](https://github.com/bruvzg/gdsdecomp/releases) |
+| DLL decompilation | `ilspycmd` | `dotnet tool install ilspycmd -g` |
+| Data parsing | Python 3.10+ | Built-in |
+| Image copying | Python 3.10+ | Built-in |
+| Spine rendering | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Manual Steps
 

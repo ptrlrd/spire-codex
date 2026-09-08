@@ -382,7 +382,7 @@ Jeśli korzystasz bezpośrednio z API, możesz usunąć te znaczniki za pomocą 
 ### Wymagania wstępne
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -464,7 +464,7 @@ Skrypt automatycznie wykrywa system operacyjny i znajduje katalog instalacyjny S
 | Dekompilacja DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Analiza danych | Python 3.10+ | Wbudowane |
 | Kopiowanie obrazów | Python 3.10+ | Wbudowane |
-| Renderowanie Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Renderowanie Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Czynności ręczne
 

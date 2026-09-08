@@ -8,6 +8,7 @@ present, so the nightly log carries fresh comparison inputs for free.
 """
 
 import json
+import os
 import pathlib
 import sys
 import time
@@ -22,6 +23,76 @@ LAKE = pathlib.Path("/lake")
 
 def _utc(ts: float) -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(ts))
+
+
+_METRICS = "ingest_metrics.jsonl"
+
+
+def _append_metric(record: dict) -> None:
+    """The one writer for the metrics file. A process killed mid-write can
+    leave a torn last line with no newline; the next record starts on a
+    fresh line so one torn record never corrupts the ones after it."""
+    path = LAKE / _METRICS
+    prefix = b""
+    try:
+        if path.stat().st_size > 0:
+            with open(path, "rb") as f:
+                f.seek(-1, 2)
+                if f.read(1) != b"\n":
+                    prefix = b"\n"
+    except OSError:
+        pass
+    with open(path, "ab") as f:
+        f.write(
+            prefix + json.dumps(record, separators=(",", ":")).encode("utf-8") + b"\n"
+        )
+        f.flush()
+        os.fsync(f.fileno())
+
+
+def _last_metric() -> dict | None:
+    """The newest record that parses; a torn tail is skipped."""
+    try:
+        with open(LAKE / _METRICS, "rb") as f:
+            f.seek(0, 2)
+            f.seek(max(0, f.tell() - 65536))
+            lines = [ln for ln in f.read().splitlines() if ln.strip()]
+    except OSError:
+        return None
+    for raw in reversed(lines):
+        try:
+            return json.loads(raw)
+        except ValueError:
+            continue
+    return None
+
+
+def mark_cycle_started(generation_id: str, t0: float) -> None:
+    """Append a start record, and first close out a previous cycle that
+    started but never wrote a completion, failure, or skip record. The
+    kernel's OOM killer, a host restart, and a crash outside the guarded
+    stages all leave the same evidence (a start record with nothing after
+    it), so the marker says "interrupted" rather than guessing the cause."""
+    prev = _last_metric()
+    if prev and prev.get("started") and not prev.get("complete"):
+        _append_metric(
+            {
+                "generation_id": prev.get("generation_id"),
+                "cycle_started_at": prev.get("cycle_started_at"),
+                "failed_stage": "interrupted",
+                "error": "no completion record; the process was killed or the box restarted",
+                "complete": False,
+                "published_at": _utc(t0),
+            }
+        )
+    _append_metric(
+        {
+            "generation_id": generation_id,
+            "cycle_started_at": _utc(t0),
+            "started": True,
+            "complete": False,
+        }
+    )
 
 
 def _sidecar_digest() -> str:
@@ -64,8 +135,7 @@ def _no_source_change(rows_added: int, generation_id: str, t0: float) -> bool:
         "complete": True,
         "published_at": _utc(time.time()),
     }
-    with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
-        f.write(json.dumps(record, separators=(",", ":")) + "\n")
+    _append_metric(record)
     return True
 
 
@@ -85,6 +155,7 @@ def main() -> None:
     t0 = time.time()
     generation_id = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime(t0))
     print(f"generation {generation_id} starting", flush=True)
+    mark_cycle_started(generation_id, t0)
 
     # Fresh scratch every cycle: a DuckDB file never returns freed pages to
     # the OS, so a persistent scratch keeps last cycle's high-water mark on
@@ -142,8 +213,7 @@ def main() -> None:
             "complete": False,
             "published_at": _utc(time.time()),
         }
-        with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
-            f.write(json.dumps(record, separators=(",", ":")) + "\n")
+        _append_metric(record)
         print(f"generation {generation_id} FAILED in extract/build: {e}", flush=True)
         sys.exit(1)
     t_build = time.time()
@@ -244,8 +314,7 @@ def main() -> None:
             "complete": False,
             "published_at": _utc(time.time()),
         }
-        with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
-            f.write(json.dumps(record, separators=(",", ":")) + "\n")
+        _append_metric(record)
         print(f"generation {generation_id} FAILED in prepare_session: {e}", flush=True)
         sys.exit(1)
 
@@ -421,8 +490,7 @@ def main() -> None:
     manifest["complete"] = (
         all(mtimes.get(n, 0.0) >= t0 for n in required) and not failed_stages
     )
-    with open(LAKE / "ingest_metrics.jsonl", "a", encoding="utf-8") as f:
-        f.write(json.dumps(manifest, separators=(",", ":")) + "\n")
+    _append_metric(manifest)
     if manifest["complete"]:
         tmp = LAKE / "generation.json.tmp"
         tmp.write_text(json.dumps(manifest, indent=1))

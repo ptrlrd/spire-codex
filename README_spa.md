@@ -382,7 +382,7 @@ Si consumes la API directamente, puedes eliminar estas etiquetas con una expresi
 ### Requisitos previos
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### Backend
 
@@ -464,7 +464,7 @@ El script detecta automáticamente tu sistema operativo y encuentra el directori
 | Descompilación de la DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Análisis de datos | Python 3.10+ | Integrado |
 | Copia de imágenes | Python 3.10+ | Integrado |
-| Renderizado de Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Renderizado de Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### Pasos manuales
 

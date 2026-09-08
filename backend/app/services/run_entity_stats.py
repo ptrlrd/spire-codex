@@ -79,10 +79,17 @@ _TIER_BANDS = (
 #   geometric mean of 1, then mapped to ANCHOR + SPREAD*log10(strength),
 #   so a card picked 10x as often as the field average sits ~SPREAD above
 #   the anchor. MIN_GAMES drops cards with too few head-to-heads to rate.
+#   PRIOR_GAMES is the Bayesian shrinkage: every card also "plays" this many
+#   virtual head-to-heads against a fixed average card (strength 1, Elo
+#   1500) and splits them, so a card seen on a handful of screens sits near
+#   the anchor until real contests move it, instead of a near-undefeated
+#   thin-bracket card running away to the top of the chart. With thousands
+#   of real contests the prior is a rounding error.
 #   MAX_ITERS / TOL bound the MM solver.
 _ELO_ANCHOR = 1500.0
 _ELO_SPREAD = 400.0
 _ELO_MIN_GAMES = 20
+_ELO_PRIOR_GAMES = 20.0
 _ELO_MAX_ITERS = 200
 _ELO_TOL = 1e-6
 # How many act buckets the per-act pick-rate split tracks (A1/A2/A3).
@@ -769,9 +776,64 @@ def _walk_rest_upgrade_choices(blob: dict) -> Iterable[tuple[list[str], list[str
                         yield winners, losers
 
 
+def _components(
+    nodes: list[str], games: dict[str, dict[str, float]]
+) -> list[list[str]]:
+    """Connected components of the comparison graph. The prior anchors every
+    card to the same reference, but the real contests only tie cards within
+    a component, so the scale step below runs per component and adding an
+    unrelated group of cards can't move existing ratings."""
+    seen: set[str] = set()
+    out: list[list[str]] = []
+    for start in nodes:
+        if start in seen:
+            continue
+        comp: list[str] = []
+        stack = [start]
+        seen.add(start)
+        while stack:
+            n = stack.pop()
+            comp.append(n)
+            for m in games.get(n, {}):
+                if m not in seen:
+                    seen.add(m)
+                    stack.append(m)
+        out.append(comp)
+    return out
+
+
+def _prior_scale(strengths: list[float], prior_games: float) -> float:
+    """The common factor c that maximizes the prior term along a
+    component's scale direction: the real-contest likelihood is invariant
+    to scaling a component, the prior is not, and its optimum along that
+    line is where the component's virtual win share averages one half,
+    i.e. sum(c*q/(1+c*q)) == len(q)/2. Monotone in c, so bisect in log c.
+    """
+    if prior_games <= 0 or not strengths:
+        return 1.0
+    target = len(strengths) / 2.0
+    lo, hi = -80.0, 80.0
+    for _ in range(200):
+        mid = (lo + hi) / 2.0
+        c = math.exp(mid)
+        total = 0.0
+        for q in strengths:
+            cq = c * q
+            total += cq / (1.0 + cq)
+        if total < target:
+            lo = mid
+        else:
+            hi = mid
+        if hi - lo < 1e-12:
+            break
+    return math.exp((lo + hi) / 2.0)
+
+
 def _compute_codex_elo(
     pair_wins: dict[tuple[str, str], int],
     warm: dict[str, float] | None = None,
+    *,
+    backend: str = "auto",
 ) -> tuple[dict[str, float], dict[str, float]]:
     """Bradley-Terry MM solver → Codex Elo per card.
 
@@ -779,24 +841,34 @@ def _compute_codex_elo(
     taken over card j. We fit latent strengths p_i maximizing the
     Bradley-Terry likelihood via the standard minorization-maximization
     update p_i ← W_i / Σ_j n_ij/(p_i+p_j), where W_i is i's total wins and
-    n_ij the total i-vs-j comparisons. Strengths are renormalized to a
-    geometric mean of 1 each iteration (the model is scale-invariant), and
-    finally mapped to a readable Elo via ANCHOR + SPREAD·log10(p).
+    n_ij the total i-vs-j comparisons, plus `_ELO_PRIOR_GAMES` virtual
+    contests per card against a fixed reference card of strength 1, split
+    evenly (a Beta(m/2+1, m/2+1) prior on each card's win probability
+    against the reference). The prior fixes the scale, so strengths are
+    NOT renormalized; instead each iteration rescales every connected
+    component to the prior's optimum along its scale direction
+    (`_prior_scale`), which the plain update only approaches slowly on
+    lopsided data. With the prior disabled the old geometric-mean
+    normalization applies. Strengths map to a readable Elo via
+    ANCHOR + SPREAD·log10(p); the reference card sits at ANCHOR.
 
     Cards with fewer than `_ELO_MIN_GAMES` total head-to-heads are dropped
     (too thin to rate). `warm` seeds the strengths from a previous fit so
     near-identical data converges in a few iterations instead of hundreds.
+    `backend` is "auto" (numpy when installed), "numpy", or "python"; both
+    paths compute the same update. A fit that runs out of iterations is
+    logged and still returned.
     Returns (elo, strengths); strengths feed the next warm start.
     """
+    if backend not in ("auto", "numpy", "python"):
+        raise ValueError(f"backend must be auto, numpy, or python, not {backend!r}")
     if not pair_wins:
         return {}, {}
-
-    # Aggregate per-card wins (W_i) and symmetric comparison counts (n_ij).
     wins: dict[str, float] = {}
     games: dict[str, dict[str, float]] = {}
     total_games: dict[str, float] = {}
     for (i, j), c in pair_wins.items():
-        if c <= 0:
+        if c <= 0 or i == j:
             continue
         wins[i] = wins.get(i, 0.0) + c
         wins.setdefault(j, 0.0)
@@ -806,111 +878,119 @@ def _compute_codex_elo(
         games[j][i] += c
         total_games[i] = total_games.get(i, 0.0) + c
         total_games[j] = total_games.get(j, 0.0) + c
-
     nodes = list(games.keys())
     if not nodes:
         return {}, {}
+    prior = float(_ELO_PRIOR_GAMES)
+    prior_wins = prior / 2.0
+    # Without the prior the model is scale-invariant and needs a strictly
+    # positive win total per card to stay identifiable; the prior already
+    # gives every card virtual wins.
+    eps = 0.0 if prior > 0 else 1e-3
+    components = _components(nodes, games)
+    idx = {n: k for k, n in enumerate(nodes)}
+    comp_idx = [[idx[n] for n in comp] for comp in components]
 
-    # Vectorized MM when numpy is available: the interpreted loop was ~50M
-    # float ops per fit and the store now runs five fits per cycle. Same
-    # update, same normalization, same stopping rule -- float summation
-    # order can move a rating by at most the display rounding.
-    try:
-        import numpy as _np
-    except Exception:
-        _np = None
+    def seed(n: str) -> float:
+        v = warm.get(n) if warm else None
+        return v if v is not None and math.isfinite(v) and v > 0 else 1.0
+
+    _np = None
+    if backend != "python":
+        try:
+            import numpy as _np
+        except ImportError:
+            if backend == "numpy":
+                raise
+            _np = None
+
+    converged = False
     if _np is not None:
-        idx = {n: k for k, n in enumerate(nodes)}
-        edges = [(idx[i], idx[j], c) for (i, j), c in pair_wins.items() if c > 0]
+        edges = [
+            (idx[i], idx[j], c) for (i, j), c in pair_wins.items() if c > 0 and i != j
+        ]
         ei = _np.fromiter((e[0] for e in edges), dtype=_np.int64, count=len(edges))
         ej = _np.fromiter((e[1] for e in edges), dtype=_np.int64, count=len(edges))
         en = _np.fromiter(
             (float(e[2]) for e in edges), dtype=_np.float64, count=len(edges)
         )
-        p_arr = _np.ones(len(nodes), dtype=_np.float64)
-        if warm:
-            for n, k in idx.items():
-                v = warm.get(n)
-                if v is not None and v > 0:
-                    p_arr[k] = v
+        p_arr = _np.fromiter(
+            (seed(n) for n in nodes), dtype=_np.float64, count=len(nodes)
+        )
         w_arr = _np.fromiter(
-            (wins.get(n, 0.0) + 1e-3 for n in nodes),
+            (wins.get(n, 0.0) + eps + prior_wins for n in nodes),
             dtype=_np.float64,
             count=len(nodes),
         )
         for _ in range(_ELO_MAX_ITERS):
             contrib = en / (p_arr[ei] + p_arr[ej])
-            denom = _np.zeros(len(nodes), dtype=_np.float64)
+            denom = (
+                prior / (p_arr + 1.0)
+                if prior > 0
+                else _np.zeros(len(nodes), dtype=_np.float64)
+            )
             _np.add.at(denom, ei, contrib)
             _np.add.at(denom, ej, contrib)
             new_p = _np.where(denom > 0, w_arr / denom, p_arr)
-            gmean = float(_np.exp(_np.mean(_np.log(_np.maximum(new_p, 1e-300)))))
-            if gmean > 0:
-                new_p = new_p / gmean
-            delta = float(_np.max(_np.abs(new_p - p_arr)))
+            if prior > 0:
+                for members in comp_idx:
+                    new_p[members] *= _prior_scale(new_p[members].tolist(), prior)
+            else:
+                gmean = float(_np.exp(_np.mean(_np.log(_np.maximum(new_p, 1e-300)))))
+                if gmean > 0:
+                    new_p = new_p / gmean
+            delta = float(_np.max(_np.abs(_np.log(new_p) - _np.log(p_arr))))
             p_arr = new_p
             if delta < _ELO_TOL:
+                converged = True
                 break
-        out_np: dict[str, float] = {}
-        strengths_np: dict[str, float] = {}
-        for n, k in idx.items():
-            strength = float(p_arr[k])
-            strengths_np[n] = strength
-            if total_games.get(n, 0.0) < _ELO_MIN_GAMES or strength <= 0:
-                continue
-            out_np[n] = round(_ELO_ANCHOR + _ELO_SPREAD * math.log10(strength), 1)
-        return out_np, strengths_np
+        strengths = {n: float(p_arr[k]) for n, k in idx.items()}
+    else:
+        p = {n: seed(n) for n in nodes}
+        w = {n: wins.get(n, 0.0) + eps + prior_wins for n in nodes}
+        for _ in range(_ELO_MAX_ITERS):
+            new_p: dict[str, float] = {}
+            for i in nodes:
+                pi = p[i]
+                denom = prior / (pi + 1.0)
+                for j, n_ij in games[i].items():
+                    denom += n_ij / (pi + p[j])
+                new_p[i] = w[i] / denom if denom > 0 else pi
+            if prior > 0:
+                for comp in components:
+                    c = _prior_scale([new_p[n] for n in comp], prior)
+                    for n in comp:
+                        new_p[n] *= c
+            else:
+                log_sum = sum(math.log(v) for v in new_p.values() if v > 0)
+                gmean = math.exp(log_sum / len(new_p))
+                if gmean > 0:
+                    for n in new_p:
+                        new_p[n] /= gmean
+            delta = max(abs(math.log(new_p[n]) - math.log(p[n])) for n in nodes)
+            p = new_p
+            if delta < _ELO_TOL:
+                converged = True
+                break
+        strengths = p
 
-    # MM needs strictly-positive wins to be identifiable. A card that was
-    # never once preferred (W_i == 0) would collapse to strength 0 and
-    # stall the update; seed every card with a tiny pseudo-win so the
-    # solver stays well-defined. With real data this is negligible.
-    eps = 1e-3
-    p = {n: 1.0 for n in nodes}
-    if warm:
-        for n in nodes:
-            v = warm.get(n)
-            if v is not None and v > 0:
-                p[n] = v
-    w = {n: wins.get(n, 0.0) + eps for n in nodes}
-
-    for _ in range(_ELO_MAX_ITERS):
-        new_p: dict[str, float] = {}
-        for i in nodes:
-            denom = 0.0
-            gi = games[i]
-            pi = p[i]
-            for j, n_ij in gi.items():
-                denom += n_ij / (pi + p[j])
-            new_p[i] = w[i] / denom if denom > 0 else p[i]
-        # Renormalize to geometric mean 1 (scale-invariance) so the values
-        # don't drift toward 0/∞ across iterations.
-        log_sum = 0.0
-        for v in new_p.values():
-            log_sum += math.log(v) if v > 0 else 0.0
-        gmean = math.exp(log_sum / len(new_p))
-        if gmean > 0:
-            for n in new_p:
-                new_p[n] /= gmean
-        # Convergence check on the max relative move.
-        delta = 0.0
-        for n in nodes:
-            d = abs(new_p[n] - p[n])
-            if d > delta:
-                delta = d
-        p = new_p
-        if delta < _ELO_TOL:
-            break
-
+    if not converged:
+        logger.warning(
+            "codex elo fit hit %d iterations without converging (%d cards)",
+            _ELO_MAX_ITERS,
+            len(nodes),
+        )
     out: dict[str, float] = {}
     for n in nodes:
-        if total_games.get(n, 0.0) < _ELO_MIN_GAMES:
-            continue
-        strength = p[n]
-        if strength <= 0:
+        strength = strengths[n]
+        if (
+            total_games.get(n, 0.0) < _ELO_MIN_GAMES
+            or strength <= 0
+            or not math.isfinite(strength)
+        ):
             continue
         out[n] = round(_ELO_ANCHOR + _ELO_SPREAD * math.log10(strength), 1)
-    return out, p
+    return out, strengths
 
 
 def _score_to_tier(score: int | None) -> str | None:

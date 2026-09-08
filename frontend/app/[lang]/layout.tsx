@@ -9,7 +9,7 @@ import {
   LANG_DATABASE,
   type LangCode,
 } from "@/lib/languages";
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { LanguageProvider } from "@/app/contexts/LanguageContext";
 import HtmlLang from "@/app/components/HtmlLang";
 
@@ -22,6 +22,9 @@ export async function generateStaticParams() {
   return SUPPORTED_LANGS.map((lang) => ({ lang }));
 }
 
+// No `alternates` here on purpose: a layout's canonical is inherited by every
+// child page that doesn't set its own, which pointed list pages at the locale
+// home. The locale home sets its own canonical and hreflang in page.tsx.
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   if (!isValidLang(lang)) return {};
@@ -33,15 +36,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   const title = `${gameName} ${dbWord} - Spire Codex (${nativeName})`;
   const description = `Spire Codex, ${gameName} ${dbWord}. ${nativeName}.`;
-
-  // Build hreflang alternates: all other localized versions + English
-  const languages: Record<string, string> = {
-    "en": `${SITE_URL}/`,
-    "x-default": `${SITE_URL}/`,
-  };
-  for (const code of SUPPORTED_LANGS) {
-    languages[LANG_HREFLANG[code]] = `${SITE_URL}/${code}`;
-  }
 
   return {
     title,
@@ -55,10 +49,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       images: [{ url: DEFAULT_OG_IMAGE, width: 3000, height: 3000 }],
     },
     twitter: { card: "summary_large_image", title, description },
-    alternates: {
-      canonical: `/${lang}`,
-      languages,
-    },
   };
 }
 

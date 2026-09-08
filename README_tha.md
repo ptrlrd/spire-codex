@@ -382,7 +382,7 @@ spire-codex/
 ### ข้อกำหนดเบื้องต้น
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### แบ็กเอนด์
 
@@ -466,7 +466,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | การถอดรหัส DLL | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | การแยกวิเคราะห์ข้อมูล | Python 3.10+ | มีในตัว |
 | การคัดลอกรูปภาพ | Python 3.10+ | มีในตัว |
-| การเรนเดอร์ Spine | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| การเรนเดอร์ Spine | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### ขั้นตอนแบบทำด้วยตนเอง
 

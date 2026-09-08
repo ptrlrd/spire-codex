@@ -382,7 +382,7 @@ API を直接利用する場合は、`\[/?[a-z]+(?::\d+)?\]` のような正規�
 ### 前提条件
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### バックエンド
 
@@ -464,7 +464,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | DLL 逆コンパイル | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | データ解析 | Python 3.10+ | 組み込み |
 | 画像コピー | Python 3.10+ | 組み込み |
-| Spine レンダリング | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine レンダリング | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### 手動手順
 

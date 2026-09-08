@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import CardDetail from "@/app/cards/[id]/CardDetail";
 import { stripTags, stripTagsFlat, clipMetaDescription, SITE_NAME, SITE_URL, buildLanguageAlternates } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import type { EntityStats } from "@/app/components/EntityRunStats";
+import { fetchEntityStats } from "@/lib/entity-stats";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
@@ -67,6 +69,7 @@ export default async function Page({ params, searchParams }: Props) {
   const qs = await channelQS(searchParams);
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
+  const statsPromise: Promise<EntityStats | null> = fetchEntityStats("cards", id);
   let jsonLd = null;
   let card = null;
   let apiUnreachable = false;
@@ -81,12 +84,7 @@ export default async function Page({ params, searchParams }: Props) {
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Cards", href: `/${lang}/cards` }, { name: card.name, href: `/${lang}/cards/${id}` }],
         inLanguage: LANG_HREFLANG[langCode],
       });
-      const costText = card.is_x_cost ? "X" : card.star_cost ? `${card.star_cost}★` : `${card.cost}`;
-      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([
-        { question: `What does ${card.name} do in Slay the Spire 2?`, answer: desc || card.name },
-        { question: `How much does ${card.name} cost?`, answer: `${card.name} costs ${costText} energy.` },
-        { question: `What type of card is ${card.name}?`, answer: `${card.name} is a ${card.rarity} ${card.type} card for ${card.color}.` },
-      ])];
+      jsonLd = detailJsonLd;
     }
   } catch {
     apiUnreachable = true;
@@ -94,10 +92,11 @@ export default async function Page({ params, searchParams }: Props) {
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!card) redirectMissingEntity("cards", id, lang);
+  const initialStats = await statsPromise;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail initialCard={card} initialEnchantments={enchantmentsForCard(id)} />
+      <CardDetail initialCard={card} initialEnchantments={enchantmentsForCard(id)} initialStats={initialStats} />
     </>
   );
 }

@@ -639,6 +639,8 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
     submit_run already refuses to reassign for exactly this reason). Scoping
     the update to unowned runs preserves the legitimate "attach my name to a
     run I uploaded anonymously" flow while making cross-user theft impossible.
+    The steam_id guard covers co-op: a teammate's slot is tagged with their
+    SteamID64 at submit, so it only ever links to that account.
     """
     if not os.environ.get("MONGO_URL", "").strip() or not run_hash:
         return
@@ -647,15 +649,17 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
         from bson import ObjectId
 
         coll = _get_collection()
+        user_sid = str(user.get("steam_id") or "") or None
+        owner_set = {
+            "user_id": ObjectId(user["_id"]),
+            "username": user.get("username", ""),
+            "username_lower": (user.get("username") or "").lower() or None,
+        }
+        if user_sid:
+            owner_set["steam_id"] = user_sid
         coll.update_one(
-            {"_id": run_hash, "user_id": None},
-            {
-                "$set": {
-                    "user_id": ObjectId(user["_id"]),
-                    "username": user.get("username", ""),
-                    "username_lower": (user.get("username") or "").lower() or None,
-                }
-            },
+            {"_id": run_hash, "user_id": None, "steam_id": {"$in": [None, user_sid]}},
+            {"$set": owner_set},
         )
     except Exception:
         pass

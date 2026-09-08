@@ -53,6 +53,7 @@ from .routers import (
     draft,
     charts,
     beta,
+    replays,
     admin,
     admin_searches,
     admin_news,
@@ -359,6 +360,8 @@ class CORSStaticMiddleware(BaseHTTPMiddleware):
         response = await call_next(request)
         response.headers["Access-Control-Allow-Origin"] = "*"
         response.headers["X-Content-Type-Options"] = "nosniff"
+        if request.url.path.startswith("/api/"):
+            response.headers["X-Robots-Tag"] = "noindex"
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Strict-Transport-Security"] = (
             "max-age=31536000; includeSubDomains"
@@ -726,6 +729,7 @@ app.include_router(pairings.router)
 app.include_router(draft.router)
 app.include_router(charts.router)
 app.include_router(beta.router)
+app.include_router(replays.router)
 # Hidden from the OpenAPI schema (/docs): internal admin surface.
 app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)

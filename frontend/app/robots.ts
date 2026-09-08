@@ -18,7 +18,7 @@ export default function robots(): MetadataRoute.Robots {
         // JS/CSS chunks to render pages, and a disallow there blocked every
         // asset on every page (crawlers flagged all of them).
         disallow: [
-          "/api/",       // backend JSON + download endpoints
+          "/api/images/", // bulk image download endpoints; the rest of /api/ must stay fetchable so Googlebot can render pages, and it carries X-Robots-Tag: noindex
           "/static/",    // static asset trees (CDN-served)
           "/uninstall",  // Overwolf post-uninstall survey, entered only by the OW client
         ],

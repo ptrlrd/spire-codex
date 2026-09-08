@@ -31,7 +31,9 @@ export default function AchievementDetail({ initialAchievement }: { initialAchie
     if (!id) return;
     cachedFetch<Achievement>(`${API}/api/achievements/${id}?lang=${lang}`)
       .then((data) => setAchievement(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialAchievement) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

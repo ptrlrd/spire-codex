@@ -192,12 +192,5 @@
 .rvmp .gs-dots { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 10px; }
 }
 
-/* sign-in tile in Get started (Steam/Discord login buttons) */
-.rvmp .act-signin { gap: 7px; }
-.rvmp .act-logins { display: flex; gap: 8px; width: 100%; margin-top: auto; padding-top: 8px; }
-.rvmp .act-login { flex: 1; display: inline-flex; align-items: center; justify-content: center; padding: 8px 6px;
-  border: 0; border-radius: 8px; font-family: var(--sans); font-size: 12.5px; font-weight: 600; color: #fff; cursor: pointer; }
-.rvmp .act-steam { background: #1b2838; }
-.rvmp .act-steam:hover { background: #2a475e; }
-.rvmp .act-discord { background: #5865f2; }
-.rvmp .act-discord:hover { background: #4752c4; }
+/* sign-in tile in Get started: a button styled exactly like the link tiles */
+.rvmp .act-signin { appearance: none; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }

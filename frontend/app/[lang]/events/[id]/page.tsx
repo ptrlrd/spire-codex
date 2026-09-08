@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import EventDetail from "@/app/events/[id]/EventDetail";
 import { stripTags, SITE_NAME, SITE_URL, stripTagsFlat, clipMetaDescription, buildLanguageAlternates } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
-import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { buildDetailPageJsonLd } from "@/lib/jsonld";
+import { fetchEventVotes } from "@/lib/event-votes";
 import { isValidLang, LANG_HREFLANG, LANG_NAMES, LANG_GAME_NAME, type LangCode } from "@/lib/languages";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
@@ -50,6 +51,7 @@ export default async function Page({ params }: Props) {
   const { lang, id } = await params;
   if (!isValidLang(lang)) return null;
   const langCode = lang as LangCode;
+  const votesPromise = fetchEventVotes(id);
   let jsonLd = null;
   let data = null;
   let apiUnreachable = false;
@@ -65,10 +67,7 @@ export default async function Page({ params }: Props) {
         breadcrumbs: [{ name: "Home", href: `/${lang}` }, { name: "Events", href: `/${lang}/events` }, { name, href: `/${lang}/events/${id}` }],
         inLanguage: LANG_HREFLANG[langCode],
       });
-      jsonLd = [...detailJsonLd, buildFAQPageJsonLd([
-        { question: `What happens at the ${name} event in Slay the Spire 2?`, answer: desc || name },
-        { question: `Where does the ${name} event appear in Slay the Spire 2?`, answer: `${name} is a random event encounter in Slay the Spire 2.` },
-      ])];
+      jsonLd = detailJsonLd;
     }
   } catch {
     apiUnreachable = true;
@@ -76,10 +75,11 @@ export default async function Page({ params }: Props) {
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!data) redirectMissingEntity("events", id, lang);
+  const voteStats = await votesPromise;
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EventDetail initialEvent={data} />
+      <EventDetail initialEvent={data} voteStats={voteStats} />
     </>
   );
 }

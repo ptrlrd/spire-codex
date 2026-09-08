@@ -30,7 +30,9 @@ export default function ModifierDetail({ initialModifier }: { initialModifier?: 
     if (!id) return;
     cachedFetch<Modifier>(`${API}/api/modifiers/${id}?lang=${lang}`)
       .then((data) => setModifier(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialModifier) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

@@ -31,7 +31,9 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
     if (!id) return;
     cachedFetch<Intent>(`${API}/api/intents/${id}?lang=${lang}`)
       .then((data) => setIntent(data))
-      .catch(() => setNotFound(true))
+      .catch(() => {
+        if (!initialIntent) setNotFound(true);
+      })
       .finally(() => setLoading(false));
   }, [id, lang]);
 

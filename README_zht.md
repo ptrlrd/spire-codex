@@ -382,7 +382,7 @@ CDN 與分級榜主機是物件儲存區，而非可瀏覽的網站，因此在�
 ### 先決條件
 
 - Python 3.10+
-- Node.js 20+
+- Node.js 24+
 
 ### 後端
 
@@ -464,7 +464,7 @@ python3 tools/update.py --changelog --game-version "0.98.2" --build-id "22238966
 | DLL 反編譯 | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | 資料剖析 | Python 3.10+ | 內建 |
 | 圖片複製 | Python 3.10+ | 內建 |
-| Spine 算繪 | Node.js 20+ | [nodejs.org](https://nodejs.org) |
+| Spine 算繪 | Node.js 24+ | [nodejs.org](https://nodejs.org) |
 
 ### 手動步驟
 

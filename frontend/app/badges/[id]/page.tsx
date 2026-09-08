@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
+import { fetchEntityRes } from "@/lib/entity-fetch";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
@@ -46,11 +47,8 @@ const RARITY_COLOR: Record<string, string> = {
 };
 
 async function fetchBadge(id: string): Promise<Badge | null> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/badges/${id}`);
-    if (res.ok) return await res.json();
-  } catch {}
-  return null;
+  const res = await fetchEntityRes(`${API_INTERNAL}/api/badges/${id}`);
+  return res.ok ? await res.json() : null;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -85,11 +83,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BadgePage({ params }: Props) {
   const { id } = await params;
   const badge = await fetchBadge(id);
-  // Unknown badge ID → 308 back to the badges hub so search engines
-  // forward link equity to the parent page instead of dumping it on a
-  // 404. `fetchBadge` already returns null on both unreachable-backend
-  // *and* 404 responses, but a hot list page is a better landing for
-  // either case than a dead end.
   if (!badge) redirectMissingEntity("badges", id);
 
   const desc = stripTags(badge.description);
