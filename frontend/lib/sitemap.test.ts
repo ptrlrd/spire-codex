@@ -31,6 +31,20 @@ function healthyApi(url: string): Response {
 afterEach(() => vi.unstubAllGlobals());
 
 describe("sitemap", () => {
+  it("skips the network during next build and still lists the static and localized hubs", async () => {
+    vi.stubEnv("NEXT_PHASE", "phase-production-build");
+    const fetchSpy = vi.fn();
+    vi.stubGlobal("fetch", fetchSpy);
+    try {
+      const urls = (await sitemap()).map((e) => e.url);
+      expect(fetchSpy).not.toHaveBeenCalled();
+      expect(urls).toContain(`${SITE}/cards`);
+      expect(urls).toContain(`${SITE}/jpn/cards`);
+    } finally {
+      vi.stubEnv("NEXT_PHASE", "");
+    }
+  });
+
   it("lists every ancient and act relic tier-list variant exactly once", async () => {
     stubApi(healthyApi);
     const urls = (await sitemap()).map((e) => e.url);

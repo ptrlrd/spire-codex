@@ -225,13 +225,38 @@ async function contentLastMod(): Promise<Date | undefined> {
 const GAME_DATA_PREFIXES = new Set(DYNAMIC_ROUTES.map((r) => r.prefix).filter((p) => p !== "/guides"));
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const contentDate = await contentLastMod();
-
   const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
     url: `${SITE_URL}${p.path}`,
     changeFrequency: p.changeFrequency,
     priority: p.priority,
   }));
+
+  // Localized list / hub pages: only emit routes that ACTUALLY exist
+  // under `app/[lang]/`. Previously we expanded a hardcoded route list
+  // that included `acts`, `ascensions`, `intents`, `orbs`, `afflictions`,
+  // `modifiers`, `achievements`, none of which have a localized list
+  // page, so all 91 of those URLs 404'd. Removed 2026-05-19.
+  const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
+    {
+      url: `${SITE_URL}/${lang}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.6,
+    },
+    ...LANG_LIST_ROUTES.map((route) => ({
+      url: `${SITE_URL}/${lang}/${route}`,
+      changeFrequency: "weekly" as const,
+      priority: 0.5,
+    })),
+  ]);
+
+  // `next build` prerenders this route (revalidate above) inside a container
+  // with no backend to reach, so the build ships the entries that need no
+  // network. The first live request fills in the rest and ISR keeps it fresh.
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    return [...staticEntries, ...langListEntries];
+  }
+
+  const contentDate = await contentLastMod();
 
   // English entity detail pages, kept in a side bucket so we can reuse
   // the per-route entity list for the localized expansion below without
@@ -322,24 +347,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "weekly" as const,
     priority: 0.7,
   }));
-
-  // Localized list / hub pages: only emit routes that ACTUALLY exist
-  // under `app/[lang]/`. Previously we expanded a hardcoded route list
-  // that included `acts`, `ascensions`, `intents`, `orbs`, `afflictions`,
-  // `modifiers`, `achievements`, none of which have a localized list
-  // page, so all 91 of those URLs 404'd. Removed 2026-05-19.
-  const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
-    {
-      url: `${SITE_URL}/${lang}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    },
-    ...LANG_LIST_ROUTES.map((route) => ({
-      url: `${SITE_URL}/${lang}/${route}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.5,
-    })),
-  ]);
 
   // Localized mechanics detail pages, page.tsx lives at
   // `app/[lang]/mechanics/[slug]/page.tsx`, so each slug × each lang
