@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${char.name} - ${t("Character")}`,
-      description: clipMetaDescription(t("character_meta_description", { name: char.name, stats, desc: desc || "none" })),
+      description: clipMetaDescription(t("character_meta_description", { name: char.name, stats, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`),
     });

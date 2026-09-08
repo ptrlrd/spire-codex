@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${intent.name} - ${t("Intent")}`,
-      description: clipMetaDescription(t("intent_meta_description", { name: intent.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("intent_meta_description", { name: intent.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
     });
   } catch {

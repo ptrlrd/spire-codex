@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${affliction.name} - ${t("Affliction")}`,
-      description: clipMetaDescription(t("affliction_meta_description", { name: affliction.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("affliction_meta_description", { name: affliction.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
     });
   } catch {

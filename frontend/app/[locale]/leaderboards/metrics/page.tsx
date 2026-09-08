@@ -23,17 +23,14 @@ export async function generateMetadata({ params, searchParams }: Props): Promise
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const sp = await searchParams;
-  const meta = buildPageMetadata({
+  const isVariant = Boolean(sp.bracket || sp.character);
+  return buildPageMetadata({
     locale,
     path: "/leaderboards/metrics",
     title: t("Card Metrics"),
     description: t("leaderboards_metrics_meta_description"),
+    hreflang: !isVariant,
   });
-  // Filter variants (?bracket=, ?character=) canonical to the clean URL, and
-  // a page whose canonical points elsewhere must not carry hreflang
-  // alternates — crawlers flag that as an hreflang conflict.
-  const isVariant = Boolean(sp.bracket || sp.character);
-  return isVariant ? { ...meta, alternates: { canonical: meta.alternates?.canonical } } : meta;
 }
 
 export default async function MetricsPage({ params, searchParams }: Props) {

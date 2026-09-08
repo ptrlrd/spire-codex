@@ -37,11 +37,11 @@ export default async function RelicsPage({ params }: Props) {
       { name: t("Relics"), href: localePath(locale, "/relics") },
     ]),
     buildCollectionPageJsonLd({
-      name: "Slay the Spire 2 Relics",
-      description: "Browse every relic across all rarities and character pools.",
+      name: pageHeading(locale, t("Relics")),
+      description: t("relics_meta_description"),
       path: localePath(locale, "/relics"),
       inLanguage: inLanguageOf(locale),
-      items: relics.map((r) => ({ name: r.name, path: `/relics/${r.id.toLowerCase()}` })),
+      items: relics.map((r) => ({ name: r.name, path: localePath(locale, `/relics/${r.id.toLowerCase()}`) })),
     }),
   ];
 

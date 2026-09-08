@@ -32,7 +32,7 @@ export function gameName(locale: Locale): string {
 
 /** `<title>` for a page from its own segment only ("Relics", "Bash - Card"). */
 export function pageTitle(locale: Locale, segment: string): string {
-  if (locale === "eng") return TITLE_TEMPLATE.replace("%s", segment);
+  if (locale === "eng") return TITLE_TEMPLATE.replace("%s", () => segment);
   return `${LANG_GAME_NAME[locale]} ${segment} | ${SITE_NAME} (${LANG_NAMES[locale]})`;
 }
 
@@ -87,6 +87,10 @@ export interface PageMetadataInput {
   image?: string;
   /** Keep the page out of the index in every locale. */
   noIndex?: boolean;
+  /** Canonical that lives elsewhere (a Steam article, the clean URL of a filtered view). Relative paths are fine. */
+  canonical?: string;
+  /** Set false on a page whose canonical points elsewhere: a page that is not its own canonical must not advertise hreflang. */
+  hreflang?: boolean;
   /**
    * The page body is English-only content (guides, run shares): every locale
    * canonicalizes to the English URL, no hreflang is advertised, and the
@@ -97,17 +101,18 @@ export interface PageMetadataInput {
 }
 
 /** Next `Metadata` for any page in any locale: title, description, Open Graph, Twitter, canonical, hreflang and robots from one call. */
-export function buildPageMetadata({ locale, path, title, description, ogType, image, noIndex, supressLanguageAlternates }: PageMetadataInput): Metadata {
-  const canonical = localizedPath(supressLanguageAlternates ? "eng" : locale, path);
+export function buildPageMetadata({ locale, path, title, description, ogType, image, noIndex, canonical: canonicalOverride, hreflang, supressLanguageAlternates }: PageMetadataInput): Metadata {
+  const canonical = canonicalOverride ?? localizedPath(supressLanguageAlternates ? "eng" : locale, path);
   const fullTitle = pageTitle(locale, title);
-  const hidden = noIndex ?? (supressLanguageAlternates === true && locale !== "eng");
+  const hidden = noIndex === true || (supressLanguageAlternates === true && locale !== "eng");
+  const alternates = hreflang !== false && !hidden && !supressLanguageAlternates && !canonicalOverride;
   return {
     title: { absolute: fullTitle },
     description,
     openGraph: {
       title: fullTitle,
       description,
-      url: `${SITE_URL}${canonical}`,
+      url: canonical.startsWith("http") ? canonical : `${SITE_URL}${canonical}`,
       type: ogType ?? "website",
       siteName: SITE_NAME,
       locale: ogLocaleOf(locale),
@@ -115,7 +120,7 @@ export function buildPageMetadata({ locale, path, title, description, ogType, im
     },
     alternates: {
       canonical,
-      languages: supressLanguageAlternates ? undefined : buildLanguageAlternates(path),
+      languages: alternates ? buildLanguageAlternates(path) : undefined,
     },
     twitter: { card: "summary_large_image", title: fullTitle, description, ...(image ? { images: [image] } : {}) },
     ...(hidden ? { robots: { index: false, follow: true } } : {}),

@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${potion.name} - ${t("Potion")}`,
-      description: clipMetaDescription(t("potion_meta_description", { name: potion.name, rarity: potion.rarity ?? "", desc: desc || "none" })),
+      description: clipMetaDescription(t("potion_meta_description", { name: potion.name, rarity: potion.rarity ?? "", desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: potion.image_url ? imageUrl(potion.image_url) : undefined,
     });

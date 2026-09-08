@@ -68,7 +68,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     path,
     title: `${badge.name} - ${t("Badge")}`,
-    description: clipMetaDescription(t("badge_meta_description", { name: badge.name, subtype, desc: desc || "none" })),
+    description: clipMetaDescription(t("badge_meta_description", { name: badge.name, subtype, desc, hasDesc: desc ? "yes" : "no" })),
     ogType: "article",
     image: badge.image_url ? imageUrl(badge.image_url) : undefined,
   });

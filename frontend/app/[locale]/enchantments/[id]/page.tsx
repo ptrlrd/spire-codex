@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${enchantment.name} - ${t("Enchantment")}`,
-      description: clipMetaDescription(t("enchantment_meta_description", { name: enchantment.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("enchantment_meta_description", { name: enchantment.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: enchantment.image_url ? imageUrl(enchantment.image_url) : undefined,
     });

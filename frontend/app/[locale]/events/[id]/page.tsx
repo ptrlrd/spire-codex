@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${event.name} - ${t("Event")}`,
-      description: clipMetaDescription(t("event_meta_description", { name: event.name, type: event.type ?? "", act: event.act ? ` (${event.act})` : "", desc: desc || "none" })),
+      description: clipMetaDescription(t("event_meta_description", { name: event.name, type: event.type ?? "", act: event.act ? ` (${event.act})` : "", desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: event.image_url ? imageUrl(event.image_url) : undefined,
     });

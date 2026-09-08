@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${power.name} - ${t("Power")}`,
-      description: clipMetaDescription(t("power_meta_description", { name: power.name, type: power.type ?? "", desc: desc || "none" })),
+      description: clipMetaDescription(t("power_meta_description", { name: power.name, type: power.type ?? "", desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: power.image_url ? imageUrl(power.image_url) : undefined,
     });

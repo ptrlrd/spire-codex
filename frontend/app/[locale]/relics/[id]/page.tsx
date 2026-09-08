@@ -39,7 +39,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${relic.name} - ${t("Relic")}`,
-      description: clipMetaDescription(t("relic_meta_description", { name: relic.name, rarity: relic.rarity ?? "", desc: desc || "none" })),
+      description: clipMetaDescription(t("relic_meta_description", { name: relic.name, rarity: relic.rarity ?? "", desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
       image: relic.image_url ? imageUrl(relic.image_url) : undefined,
     });

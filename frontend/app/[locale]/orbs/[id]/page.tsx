@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${orb.name} - ${t("Orb")}`,
-      description: clipMetaDescription(t("orb_meta_description", { name: orb.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("orb_meta_description", { name: orb.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
     });
   } catch {

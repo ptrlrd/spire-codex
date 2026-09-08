@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { redirect, permanentRedirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, clipMetaDescription, pageHeading } from "@/lib/seo";
 import type { NewsArticle } from "@/lib/api";
 import { getT } from "@/lib/i18n-server";
-import { hreflangOf, localeOf, localePath } from "@/lib/locale";
+import { localeOf, localePath } from "@/lib/locale";
 import {
   sanitizeSteamNews,
   newsExcerpt,
@@ -27,15 +27,12 @@ export const revalidate = 1800;
 type Props = { params: Promise<{ locale: string; slug: string[] }> };
 
 async function fetchItem(gid: string): Promise<NewsArticle | null> {
-  try {
-    const res = await fetch(`${API}/api/news/${encodeURIComponent(gid)}`, {
-      next: { revalidate },
-    });
-    if (!res.ok) return null;
-    return (await res.json()) as NewsArticle;
-  } catch {
-    return null;
-  }
+  const res = await fetch(`${API}/api/news/${encodeURIComponent(gid)}`, {
+    next: { revalidate },
+  });
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`news API returned ${res.status}`);
+  return (await res.json()) as NewsArticle;
 }
 
 /** The slug catchall accepts a few shapes:
@@ -61,12 +58,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const notFound = buildPageMetadata({ locale, path: "/news", title: `${t("News")} - ${t("Not Found")}`, noIndex: true });
+  const missing = buildPageMetadata({ locale, path: "/news", title: `${t("News")} - ${t("Not Found")}`, noIndex: true });
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  if (!gid) return notFound;
+  if (!gid) return missing;
   const article = await fetchItem(gid);
-  if (!article) return notFound;
+  if (!article) return missing;
   // Lead the meta description with Spire Codex framing so search snippets
   // identify the page as our archive of the Steam announcement, not just
   // the raw article body.
@@ -79,11 +76,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     ogType: "article",
     image: firstNewsImage(article.contents) ?? undefined,
     supressLanguageAlternates: true,
+    canonical: canonicalSteamUrl(article.gid),
   });
   return {
     ...meta,
-    // External canonical → Steam, so search engines treat us as a mirror.
-    alternates: { canonical: canonicalSteamUrl(article.gid) },
     openGraph: {
       ...meta.openGraph,
       type: "article",
@@ -100,26 +96,18 @@ export default async function NewsArticlePage({ params }: Props) {
   const newsIndex = localePath(locale, "/news");
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
-  // Slug doesn't contain a gid, 308 back to the news index so any
-  // crawl equity from the bad path lands on a live page rather than
-  // a 404.
-  if (!gid) permanentRedirect(newsIndex);
+  if (!gid) notFound();
 
   // The canonical shape is `/news/{gid}`, clean, shareable, and stable.
   // If the caller used the older encoded-URL form (or anything else that
   // happened to contain the gid), 308-redirect to the bare-gid path so
   // every flavour of inbound link converges on the canonical address.
   if (joined !== gid) {
-    redirect(localePath(locale, newsSlugForArticle(gid)));
+    permanentRedirect(localePath(locale, newsSlugForArticle(gid)));
   }
 
   const article = await fetchItem(gid);
-  // Archive miss, 308 back to /news so we transfer link equity to the
-  // list page rather than serving a hard 404. Most legitimate misses
-  // are stale Google cache entries for articles Steam has rotated off
-  // and we never archived; sending them to /news keeps the entries in
-  // our domain's "alive" set.
-  if (!article) permanentRedirect(newsIndex);
+  if (!article) notFound();
 
   const html = sanitizeSteamNews(article.contents ?? "");
   const date = formatNewsDate(article.date);
@@ -142,7 +130,7 @@ export default async function NewsArticlePage({ params }: Props) {
       externalCanonical: canonicalSteamUrl(article.gid),
       externalUrl: article.url,
       path: onSitePath,
-      inLanguage: hreflangOf(locale),
+      inLanguage: "en",
       imageUrl: firstNewsImage(article.contents) ?? undefined,
     }),
   ];

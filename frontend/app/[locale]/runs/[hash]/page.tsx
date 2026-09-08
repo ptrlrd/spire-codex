@@ -101,7 +101,7 @@ export default async function SharedRunPage({ params }: Props) {
     jsonLd = buildDetailPageJsonLd({
       name: `${username} - ${char} - ${t("Ascension")} ${ascension} ${resultLabel}`,
       description: `${username}: ${char}, ${t("Ascension")} ${ascension}, ${resultLabel}. ${gameNameFor(locale)}.`,
-      path: localePath(locale, `/runs/${hash}`),
+      path: localePath(locale, `/runs/${run.primary_hash || hash}`),
       category: "Run",
       inLanguage: inLanguageOf(locale),
       breadcrumbs: [

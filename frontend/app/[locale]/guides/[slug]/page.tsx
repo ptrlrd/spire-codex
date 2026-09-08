@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const path = `/guides/${slug}`;
   try {
     const res = await fetch(`${API}/api/guides/${slug}`, { next: { revalidate: 300 } });
-    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Guide Not Found"), noIndex: true });
+    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Guide Not Found"), noIndex: true, supressLanguageAlternates: true });
     const guide: Guide = await res.json();
     return buildPageMetadata({
       locale,
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       supressLanguageAlternates: true,
     });
   } catch {
-    return buildPageMetadata({ locale, path, title: t("Guide"), noIndex: true });
+    return buildPageMetadata({ locale, path, title: t("Guide"), noIndex: true, supressLanguageAlternates: true });
   }
 }
 
@@ -52,7 +52,7 @@ export default async function GuideDetailPage({ params }: Props) {
   }
   // Fail the render (500) instead of ISR-caching a contentless shell.
   if (apiUnreachable) throw new Error("entity API unreachable");
-  if (!guide) redirectMissingEntity("guides", slug);
+  if (!guide) redirectMissingEntity("guides", slug, locale);
 
   const jsonLd = guide
     ? [

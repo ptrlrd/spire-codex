@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${data.name} - ${t("Keyword")}`,
-      description: clipMetaDescription(t("keyword_meta_description", { name: data.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("keyword_meta_description", { name: data.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
     });
   }

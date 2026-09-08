@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path,
       title: `${asc.name} - ${t("Ascension")}`,
       description: clipMetaDescription(
-        t("ascension_meta_description", { level: String(asc.level), name: asc.name, desc: desc || "none" }),
+        t("ascension_meta_description", { level: String(asc.level), name: asc.name, desc, hasDesc: desc ? "yes" : "no" }),
       ),
       ogType: "article",
     });

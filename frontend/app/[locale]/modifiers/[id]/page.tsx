@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       locale,
       path,
       title: `${modifier.name} - ${t("Modifier")}`,
-      description: clipMetaDescription(t("modifier_meta_description", { name: modifier.name, desc: desc || "none" })),
+      description: clipMetaDescription(t("modifier_meta_description", { name: modifier.name, desc, hasDesc: desc ? "yes" : "no" })),
       ogType: "article",
     });
   } catch {
