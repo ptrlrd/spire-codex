@@ -27,6 +27,14 @@ With REDIS_URL set (prod always sets it, the cache lives there) the counters
 live in Redis via ``storage_kwargs`` and are shared across all workers, so a
 cap means exactly what it says. Unset, or with Redis down, slowapi falls back
 to per-worker in-memory counters (~workers x the cap) — the pre-Redis behavior.
+
+Internal callers (the frontend container's server-side fetches, ingest jobs:
+anything that reaches uvicorn without nginx's proxy headers, see
+``dependencies.is_internal_request``) bucket as ``internal|<peer>`` and get
+``INTERNAL_RATE_LIMIT`` (default 6000/minute) on every route, including the
+per-endpoint caps. Before this every page render shared one browse bucket keyed
+on the frontend's bridge IP, so a scraper walking the tier-list filter cube
+429'd the scores fetch for every visitor's render at once.
 """
 
 import logging
@@ -50,6 +58,8 @@ _DEFAULT_TIERS = {
 # Effectively unlimited: what caps become when an operator toggles limiting off
 # (per-endpoint limits still apply).
 _DISABLED_LIMIT = "1000000/minute"
+INTERNAL_TIER = "internal"
+INTERNAL_BUCKET_PREFIX = f"{INTERNAL_TIER}|"
 _CACHE_TTL_SECONDS = 15.0
 _MAX_OVERRIDES = 50
 # Paths an override may never clamp (so an aggressive override can't lock the
@@ -164,9 +174,12 @@ def rate_limit_key(request) -> str:
         if info:
             bucket = f"{info['tier']}|k:{info['key_id']}"
     if bucket is None:
-        from ..dependencies import client_ip
+        from ..dependencies import client_ip, is_internal_request
 
-        bucket = f"browse|{client_ip(request)}"
+        if is_internal_request(request):
+            bucket = f"{INTERNAL_BUCKET_PREFIX}{client_ip(request)}"
+        else:
+            bucket = f"browse|{client_ip(request)}"
     try:
         request.state._rl_bucket = bucket
     except Exception:
@@ -194,6 +207,8 @@ def prepare_request(request) -> None:
 
 
 def _limit_for_tier(tier: str, cfg: dict) -> str:
+    if tier == INTERNAL_TIER:
+        return _INTERNAL_LIMIT
     if tier == "browse" or tier not in _DEFAULT_TIERS:
         return cfg.get("default_limit") or _DEFAULT_LIMIT
     tiers = cfg.get("tiers") or _DEFAULT_TIERS
@@ -244,18 +259,26 @@ _ENDPOINT_DEFAULTS: dict[str, str] = {}
 def endpoint_limit(name: str, default: str):
     """Admin-tunable replacement for a hardcoded ``@limiter.limit("...")``.
 
-    Returns a no-arg limit callable (same slowapi constraint as
-    tier_limit_value) that reads ``endpoint_limits[name]`` from the config doc
-    and falls back to ``default``. These caps deliberately ignore the global
-    ``enabled`` kill switch, matching the old behavior where per-endpoint
-    limits survived turning blanket limiting off; to effectively disable one,
-    set it to something huge in the dashboard."""
+    Returns a limit callable that reads ``endpoint_limits[name]`` from the
+    config doc and falls back to ``default``. It takes the optional ``key``
+    slowapi passes to decorator limits (the bucket from the limiter's
+    key_func) so internal callers get the internal cap instead; it must stay
+    callable with no arguments for the same reason as tier_limit_value. These
+    caps deliberately ignore the global ``enabled`` kill switch, matching the
+    old behavior where per-endpoint limits survived turning blanket limiting
+    off; to effectively disable one, set it to something huge in the
+    dashboard."""
     if name in _ENDPOINT_DEFAULTS:
         raise ValueError(f"duplicate endpoint limit name '{name}'")
     _ENDPOINT_DEFAULTS[name] = _validate_limit(default, name)
 
-    def _value() -> str:
+    def _value(key: str = "") -> str:
         cfg = get_config()
+        override = _match_override(_current_path.get(), cfg.get("overrides") or [])
+        if override:
+            return override
+        if key.startswith(INTERNAL_BUCKET_PREFIX):
+            return _INTERNAL_LIMIT
         return (cfg.get("endpoint_limits") or {}).get(name) or default
 
     _value.__name__ = f"limit_{name.replace('.', '_')}"
@@ -278,6 +301,15 @@ def _validate_limit(value: str, field: str) -> str:
             f"'{value}' is not a valid {field} limit (try e.g. 300/minute)"
         ) from exc
     return candidate
+
+
+# Validated at import so a typo in the env fails the process at startup, not
+# on the first rate-limited request. Path overrides from the admin page still
+# clamp internal traffic: an emergency clamp has to clamp everyone.
+_INTERNAL_LIMIT = _validate_limit(
+    os.environ.get("INTERNAL_RATE_LIMIT", "").strip() or "6000/minute",
+    "INTERNAL_RATE_LIMIT",
+)
 
 
 def set_config(
