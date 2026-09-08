@@ -273,7 +273,14 @@ export default function Navbar() {
       fetchRecentName(r.type, r.id, lang).then((name) => {
         if (!name || cancelled) return;
         rememberRecentName(r.type, r.id, lang, name);
-        setRecentNames((m) => ({ ...m, [key]: name }));
+        setRecentNames((m) => {
+          const next = { ...m, [key]: name };
+          const keys = Object.keys(next);
+          // The store holds 12 entities; keep a small multiple so a few
+          // language switches stay cached without growing without bound.
+          if (keys.length > 48) for (const k of keys.slice(0, keys.length - 48)) delete next[k];
+          return next;
+        });
       });
     }
     return () => {

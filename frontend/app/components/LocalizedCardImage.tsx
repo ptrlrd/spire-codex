@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { fullCardUrl } from "@/lib/image-url";
 
+/** Card art in the page's language, falling back to the English render when a
+ * locale has no image for that card. The displayed URL is derived from the
+ * props on every render and only the URL that failed is state, so changing
+ * locale or card retries the localized art instead of keeping a stale image. */
 export default function LocalizedCardImage({
   id,
   lang,
@@ -18,8 +22,10 @@ export default function LocalizedCardImage({
   upgraded?: boolean;
   loading?: "lazy" | "eager";
 }) {
+  const localized = fullCardUrl(id, upgraded, "stable", lang);
   const english = fullCardUrl(id, upgraded);
-  const [src, setSrc] = useState(fullCardUrl(id, upgraded, "stable", lang));
+  const [failed, setFailed] = useState<string | null>(null);
+  const src = failed === localized ? english : localized;
   return (
     <img
       src={src}
@@ -28,7 +34,7 @@ export default function LocalizedCardImage({
       loading={loading}
       crossOrigin="anonymous"
       onError={() => {
-        if (src !== english) setSrc(english);
+        if (src !== english) setFailed(src);
       }}
     />
   );

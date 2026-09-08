@@ -48,6 +48,7 @@ const MODIFIER_NOTES: Record<string, string> = {
 interface GameNames extends Record<string, string> {
   neow: string;
   relic: string;
+  darv: string;
 }
 
 export default function ModifiersClient() {
@@ -55,7 +56,7 @@ export default function ModifiersClient() {
   const t = useT();
   const bp = useBetaPrefix();
   const [modifiers, setModifiers] = useState<Modifier[]>([]);
-  const [names, setNames] = useState<GameNames>({ neow: "Neow", relic: "Pandora's Box" });
+  const [names, setNames] = useState<GameNames>({ neow: "Neow", relic: "Pandora's Box", darv: "Darv" });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -65,8 +66,9 @@ export default function ModifiersClient() {
     Promise.all([
       cachedFetch<{ name: string }>(`${API}/api/events/neow?lang=${lang}`),
       cachedFetch<{ name: string }>(`${API}/api/relics/pandoras_box?lang=${lang}`),
+      cachedFetch<{ name: string }>(`${API}/api/events/darv?lang=${lang}`),
     ])
-      .then(([neow, relic]) => setNames({ neow: neow.name || "Neow", relic: relic.name || "Pandora's Box" }))
+      .then(([neow, relic, darv]) => setNames({ neow: neow.name || "Neow", relic: relic.name || "Pandora's Box", darv: darv.name || "Darv" }))
       .catch(() => {});
   }, [lang]);
 
@@ -94,7 +96,7 @@ export default function ModifiersClient() {
             {t("Deck Replacement Modifiers")}
           </h2>
           <p className="text-xs text-[var(--text-muted)] mb-3">
-            {t("These modifiers clear your starter deck and replace the {neow} encounter. When active, {relic} will not be offered by Darv.", names)}
+            {t("These modifiers clear your starter deck and replace the {neow} encounter. When active, {relic} will not be offered by {darv}.", names)}
           </p>
           <div className="space-y-3">
             {deckModifiers.map((mod) => (

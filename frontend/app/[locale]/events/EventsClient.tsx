@@ -296,7 +296,7 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
               {event.description && (
                 <div className="mb-3">
                   <p className={`text-sm text-[var(--text-secondary)] leading-relaxed ${expandedDesc[event.id] ? "" : "line-clamp-3"}`}>
-                    <RichDescription text={t(event.description)} />
+                    <RichDescription text={siteAuthored(event.description) ? t(event.description) : event.description} />
                   </p>
                   {event.description.length > 150 && (
                     <button
@@ -467,6 +467,15 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
+
+// The event parser writes one English description into every language for
+// FAKE_MERCHANT (backend/app/parsers/event_parser.py::_fix_fake_merchant), so
+// that single string is translated here. Every other description is already
+// localized game text and must not be reinterpreted as a UI message.
+const SITE_AUTHORED_PREFIX = "A suspicious merchant offers 6 fake relics";
+function siteAuthored(text: string | undefined): boolean {
+  return !!text && text.startsWith(SITE_AUTHORED_PREFIX);
+}
 export default function EventsClient(props: Parameters<typeof EventsClientInner>[0]) {
   return (
     <Suspense fallback={null}>

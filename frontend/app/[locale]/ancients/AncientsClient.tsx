@@ -124,20 +124,26 @@ function fallbackName(id: string): string {
   return id.replace(/_/g, " ").toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function resolveName(ref: string, names: GameNames): string {
+// Returns null when the catalog has not answered for this id: the caller
+// keeps the original English sentence rather than inventing a name from the id.
+function resolveName(ref: string, names: GameNames): string | null {
   const [kind, id] = ref.split(":");
-  if (kind === "relic") return names.relics[id]?.name ?? fallbackName(id);
-  if (kind === "enchant") return names.enchants[id] ?? fallbackName(id);
-  if (kind === "modifier") return names.modifiers[id] ?? fallbackName(id);
-  if (kind === "card") return names.cards[id] ?? fallbackName(id);
-  return fallbackName(id);
+  if (kind === "relic") return names.relics[id]?.name ?? null;
+  if (kind === "enchant") return names.enchants[id] ?? null;
+  if (kind === "modifier") return names.modifiers[id] ?? null;
+  if (kind === "card") return names.cards[id] ?? null;
+  return null;
 }
 
 function noteText(text: string, t: (key: string, values?: Record<string, string | number>) => string, names: GameNames): string {
   const note = NOTES[text];
   if (!note) return t(text);
   const values: Record<string, string> = {};
-  for (const [k, ref] of Object.entries(note.vars ?? {})) values[k] = resolveName(ref, names);
+  for (const [k, ref] of Object.entries(note.vars ?? {})) {
+    const resolved = resolveName(ref, names);
+    if (resolved === null) return text;
+    values[k] = resolved;
+  }
   if (!note.key) return Object.values(values)[0] ?? text;
   return t(note.key, values);
 }
