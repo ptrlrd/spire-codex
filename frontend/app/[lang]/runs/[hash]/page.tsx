@@ -1,20 +1,7 @@
-import { permanentRedirect } from "next/navigation";
-import { isValidLang } from "@/lib/languages";
-
+// Run-share pages are inherently English game data; localized requests
+// render the canonical page (see app/runs/[hash]/page.tsx) rather than
+// force-redirecting to it. buildPageMetadata's supressLanguageAlternates
+// keeps the canonical pointed at the English URL and noindexes every
+// non-English request automatically.
 export const dynamic = "force-dynamic";
-
-type Props = { params: Promise<{ lang: string; hash: string }> };
-
-// Run-share pages are inherently English game data; localized variants
-// were generating thousands of duplicate URLs in GSC ("Duplicate without
-// user-selected canonical" cluster). Collapse all /<lang>/runs/<hash>
-// requests to the canonical /runs/<hash>.
-export default async function LangSharedRunRedirect({ params }: Props) {
-  const { lang, hash } = await params;
-  if (!isValidLang(lang)) {
-    // Unknown locale segment: still redirect to the canonical page rather
-    // than 404, so any stale Googlebot crawls collapse cleanly.
-    permanentRedirect(`/runs/${hash}`);
-  }
-  permanentRedirect(`/runs/${hash}`);
-}
+export { generateMetadata, default } from "@/app/runs/[hash]/page";
