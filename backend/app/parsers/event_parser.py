@@ -94,8 +94,140 @@ def load_all_titles(loc_dir: Path) -> dict[str, str]:
     return titles
 
 
+# Runtime-populated event variables have no localized string in the game files:
+# the value is only known while a run is in progress, so the parser substitutes a
+# readable stand-in. Writing the English stand-in into every language left phrases
+# like "a random Relic" sitting inside otherwise localized event text, so each one
+# is translated here and picked by the language being parsed. Anything missing
+# falls back to English.
+PLACEHOLDER_PHRASES: dict[str, dict[str, str]] = {
+    "one of your Relics": {
+        "deu": "eines deiner Relikte",
+        "esp": "una de tus reliquias",
+        "fra": "l'une de vos reliques",
+        "ita": "una delle tue reliquie",
+        "jpn": "所持しているレリックの1つ",
+        "kor": "보유한 유물 중 하나",
+        "pol": "jeden z twoich reliktów",
+        "ptb": "uma de suas relíquias",
+        "rus": "одна из ваших реликвий",
+        "spa": "una de tus reliquias",
+        "tha": "เรลิกชิ้นหนึ่งของคุณ",
+        "tur": "kalıntılarınızdan biri",
+        "zhs": "你的一件遗物",
+        "zht": "你的一件遺物",
+    },
+    "a random Relic": {
+        "deu": "ein zufälliges Relikt",
+        "esp": "una reliquia aleatoria",
+        "fra": "une relique aléatoire",
+        "ita": "una reliquia casuale",
+        "jpn": "ランダムなレリック",
+        "kor": "무작위 유물",
+        "pol": "losowy relikt",
+        "ptb": "uma relíquia aleatória",
+        "rus": "случайная реликвия",
+        "spa": "una reliquia aleatoria",
+        "tha": "เรลิกแบบสุ่ม",
+        "tur": "rastgele bir kalıntı",
+        "zhs": "一件随机遗物",
+        "zht": "一件隨機遺物",
+    },
+    "a random Card": {
+        "deu": "eine zufällige Karte",
+        "esp": "una carta aleatoria",
+        "fra": "une carte aléatoire",
+        "ita": "una carta casuale",
+        "jpn": "ランダムなカード",
+        "kor": "무작위 카드",
+        "pol": "losowa karta",
+        "ptb": "uma carta aleatória",
+        "rus": "случайная карта",
+        "spa": "una carta aleatoria",
+        "tha": "การ์ดแบบสุ่ม",
+        "tur": "rastgele bir kart",
+        "zhs": "一张随机卡牌",
+        "zht": "一張隨機卡牌",
+    },
+    "a random Potion": {
+        "deu": "ein zufälliger Trank",
+        "esp": "una poción aleatoria",
+        "fra": "une potion aléatoire",
+        "ita": "una pozione casuale",
+        "jpn": "ランダムなポーション",
+        "kor": "무작위 물약",
+        "pol": "losowa mikstura",
+        "ptb": "uma poção aleatória",
+        "rus": "случайное зелье",
+        "spa": "una poción aleatoria",
+        "tha": "โพชั่นแบบสุ่ม",
+        "tur": "rastgele bir iksir",
+        "zhs": "一瓶随机药水",
+        "zht": "一瓶隨機藥水",
+    },
+    "a Potion": {
+        "deu": "ein Trank",
+        "esp": "una poción",
+        "fra": "une potion",
+        "ita": "una pozione",
+        "jpn": "ポーション",
+        "kor": "물약",
+        "pol": "mikstura",
+        "ptb": "uma poção",
+        "rus": "зелье",
+        "spa": "una poción",
+        "tha": "โพชั่น",
+        "tur": "bir iksir",
+        "zhs": "一瓶药水",
+        "zht": "一瓶藥水",
+    },
+    "Common": {
+        "deu": "Gewöhnlich",
+        "esp": "Común",
+        "fra": "Commune",
+        "ita": "Comune",
+        "jpn": "コモン",
+        "kor": "일반",
+        "pol": "Zwykła",
+        "ptb": "Comum",
+        "rus": "Обычная",
+        "spa": "Común",
+        "tha": "ธรรมดา",
+        "tur": "Yaygın",
+        "zhs": "普通",
+        "zht": "普通",
+    },
+    "Skill": {
+        "deu": "Fertigkeit",
+        "esp": "Habilidad",
+        "fra": "Compétence",
+        "ita": "Abilità",
+        "jpn": "スキル",
+        "kor": "스킬",
+        "pol": "Umiejętność",
+        "ptb": "Habilidade",
+        "rus": "Умение",
+        "spa": "Habilidad",
+        "tha": "สกิล",
+        "tur": "Yetenek",
+        "zhs": "技能",
+        "zht": "技能",
+    },
+}
+
+
+def phrase(text: str, lang: str) -> str:
+    """The stand-in `text` in `lang`, or the English text when untranslated."""
+    if lang == "eng":
+        return text
+    return PLACEHOLDER_PHRASES.get(text, {}).get(lang, text)
+
+
 def extract_event_vars(
-    content: str, title_map: dict[str, str], relic_descs: dict[str, str]
+    content: str,
+    title_map: dict[str, str],
+    relic_descs: dict[str, str],
+    lang: str = "eng",
 ) -> dict[str, int | str]:
     """Extract constant values, DynamicVar, and StringVar declarations from event source."""
     vars_dict: dict[str, int | str] = {}
@@ -287,13 +419,13 @@ def extract_event_vars(
             # Generate descriptive placeholders based on var name
             if "relic" in name.lower():
                 if "owned" in name.lower():
-                    vars_dict[name] = "one of your Relics"
+                    vars_dict[name] = phrase("one of your Relics", lang)
                 else:
-                    vars_dict[name] = "a random Relic"
+                    vars_dict[name] = phrase("a random Relic", lang)
             elif "card" in name.lower():
-                vars_dict[name] = "a random Card"
+                vars_dict[name] = phrase("a random Card", lang)
             elif "potion" in name.lower():
-                vars_dict[name] = "a random Potion"
+                vars_dict[name] = phrase("a random Potion", lang)
             else:
                 readable = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", name)
                 readable = re.sub(r"\d+", "", readable).strip()
@@ -309,17 +441,17 @@ def extract_event_vars(
         if name not in vars_dict:
             nl = name.lower()
             if nl == "potion":
-                vars_dict[name] = "a Potion"
+                vars_dict[name] = phrase("a Potion", lang)
             elif "relic" in nl:
-                vars_dict[name] = "a random Relic"
+                vars_dict[name] = phrase("a random Relic", lang)
             elif "card" in nl:
-                vars_dict[name] = "a random Card"
+                vars_dict[name] = phrase("a random Card", lang)
             elif "potion" in nl:
-                vars_dict[name] = "a random Potion"
+                vars_dict[name] = phrase("a random Potion", lang)
             elif nl == "rarity":
-                vars_dict[name] = "Common"
+                vars_dict[name] = phrase("Common", lang)
             elif nl == "type":
-                vars_dict[name] = "Skill"
+                vars_dict[name] = phrase("Skill", lang)
 
     # RelicOption patterns: RelicOption<ClassName>() — extract relic names for options
     for m in re.finditer(r"RelicOption<(\w+)>", content):
@@ -708,6 +840,7 @@ def parse_single_event(
     act_mapping: dict,
     title_map: dict[str, str],
     relic_descs: dict[str, str],
+    lang: str = "eng",
 ) -> dict | None:
     # Skip orphan .cs files left over from previous extractions — the
     # class no longer exists in the current DLL (no cross-references,
@@ -730,7 +863,7 @@ def parse_single_event(
 
     # Description (initial page)
     desc_raw = localization.get(f"{event_id}.pages.INITIAL.description", "")
-    vars_dict = extract_event_vars(content, title_map, relic_descs)
+    vars_dict = extract_event_vars(content, title_map, relic_descs, lang)
     desc_resolved = resolve_description(desc_raw, vars_dict) if desc_raw else ""
     desc_clean = strip_rich_tags(desc_resolved)
 
@@ -1063,19 +1196,96 @@ def _fix_lost_wisp(event: dict) -> dict:
     return event
 
 
-def _fix_fake_merchant(event: dict) -> dict:
-    """Enrich Fake Merchant — custom shop event with no localized description."""
-    if event["id"] != "FAKE_MERCHANT":
-        return event
-    event["description"] = (
+FAKE_MERCHANT_DESCRIPTION: dict[str, str] = {
+    "eng": (
         "A suspicious merchant offers 6 fake relics (drawn from a pool of 9) at 42–58 gold each. "
         "Throwing a [gold]Foul Potion[/gold] starts a fight against The Merchant??? (165 HP). "
         "Winning rewards [gold]The Merchant's Rug???[/gold] plus all unsold relics."
+    ),
+    "deu": (
+        "Ein zwielichtiger Händler bietet 6 falsche Relikte (aus einem Pool von 9) für je 42–58 Gold an. "
+        "Der Wurf eines [gold]Foul Potion[/gold] startet einen Kampf gegen The Merchant??? (165 LP). "
+        "Ein Sieg belohnt [gold]The Merchant's Rug???[/gold] sowie alle unverkauften Relikte."
+    ),
+    "esp": (
+        "Un mercader sospechoso ofrece 6 reliquias falsas (de un grupo de 9) por 42–58 de oro cada una. "
+        "Lanzar una [gold]Foul Potion[/gold] inicia un combate contra The Merchant??? (165 PV). "
+        "Ganar recompensa con [gold]The Merchant's Rug???[/gold] más todas las reliquias no vendidas."
+    ),
+    "fra": (
+        "Un marchand suspect propose 6 fausses reliques (tirées d'un pool de 9) à 42–58 pièces chacune. "
+        "Lancer une [gold]Foul Potion[/gold] déclenche un combat contre The Merchant??? (165 PV). "
+        "La victoire récompense [gold]The Merchant's Rug???[/gold] ainsi que toutes les reliques invendues."
+    ),
+    "ita": (
+        "Un mercante sospetto offre 6 reliquie false (da un pool di 9) a 42–58 oro ciascuna. "
+        "Lanciare una [gold]Foul Potion[/gold] avvia uno scontro con The Merchant??? (165 PV). "
+        "Vincere premia con [gold]The Merchant's Rug???[/gold] più tutte le reliquie invendute."
+    ),
+    "jpn": (
+        "怪しい商人が偽のレリック6個（9個のプールから抽選）を各42〜58ゴールドで販売する。"
+        "[gold]Foul Potion[/gold]を投げつけるとThe Merchant???（165HP）との戦闘が始まる。"
+        "勝利すると[gold]The Merchant's Rug???[/gold]と売れ残ったレリックがすべて手に入る。"
+    ),
+    "kor": (
+        "수상한 상인이 가짜 유물 6개(9개 풀에서 추첨)를 각각 42~58골드에 판매합니다. "
+        "[gold]Foul Potion[/gold]을 던지면 The Merchant???(165 HP)와의 전투가 시작됩니다. "
+        "승리하면 [gold]The Merchant's Rug???[/gold]과 팔리지 않은 유물을 모두 얻습니다."
+    ),
+    "pol": (
+        "Podejrzany kupiec oferuje 6 fałszywych reliktów (z puli 9) po 42–58 złota za sztukę. "
+        "Rzucenie [gold]Foul Potion[/gold] rozpoczyna walkę z The Merchant??? (165 PŻ). "
+        "Zwycięstwo nagradza [gold]The Merchant's Rug???[/gold] oraz wszystkimi niesprzedanymi reliktami."
+    ),
+    "ptb": (
+        "Um mercador suspeito oferece 6 relíquias falsas (de um conjunto de 9) por 42–58 de ouro cada. "
+        "Arremessar uma [gold]Foul Potion[/gold] inicia um combate contra The Merchant??? (165 PV). "
+        "Vencer recompensa com [gold]The Merchant's Rug???[/gold] mais todas as relíquias não vendidas."
+    ),
+    "rus": (
+        "Подозрительный торговец предлагает 6 поддельных реликвий (из пула в 9) по 42–58 золота за штуку. "
+        "Бросок [gold]Foul Potion[/gold] начинает бой с The Merchant??? (165 ОЗ). "
+        "Победа даёт [gold]The Merchant's Rug???[/gold] и все непроданные реликвии."
+    ),
+    "spa": (
+        "Un mercader sospechoso ofrece 6 reliquias falsas (de un grupo de 9) por 42–58 de oro cada una. "
+        "Lanzar una [gold]Foul Potion[/gold] inicia un combate contra The Merchant??? (165 PV). "
+        "Ganar recompensa con [gold]The Merchant's Rug???[/gold] más todas las reliquias no vendidas."
+    ),
+    "tha": (
+        "พ่อค้าน่าสงสัยขายเรลิกปลอม 6 ชิ้น (สุ่มจากพูล 9 ชิ้น) ราคาชิ้นละ 42–58 ทอง "
+        "การขว้าง [gold]Foul Potion[/gold] จะเริ่มการต่อสู้กับ The Merchant??? (165 HP) "
+        "หากชนะจะได้รับ [gold]The Merchant's Rug???[/gold] พร้อมเรลิกที่ขายไม่ออกทั้งหมด"
+    ),
+    "tur": (
+        "Şüpheli bir tüccar 9'luk bir havuzdan çekilen 6 sahte kalıntıyı tanesi 42–58 altına satar. "
+        "Bir [gold]Foul Potion[/gold] fırlatmak The Merchant??? (165 CP) ile savaş başlatır. "
+        "Kazanmak [gold]The Merchant's Rug???[/gold] ve satılmayan tüm kalıntıları verir."
+    ),
+    "zhs": (
+        "一名可疑商人以每件42–58金币的价格出售6件假遗物（从9件的池中抽取）。"
+        "投掷[gold]Foul Potion[/gold]会触发与The Merchant???（165点生命）的战斗。"
+        "获胜可获得[gold]The Merchant's Rug???[/gold]以及所有未售出的遗物。"
+    ),
+    "zht": (
+        "一名可疑商人以每件42–58金幣的價格出售6件假遺物（從9件的池中抽取）。"
+        "投擲[gold]Foul Potion[/gold]會觸發與The Merchant???（165點生命）的戰鬥。"
+        "獲勝可獲得[gold]The Merchant's Rug???[/gold]以及所有未售出的遺物。"
+    ),
+}
+
+
+def _fix_fake_merchant(event: dict, lang: str = "eng") -> dict:
+    """Enrich Fake Merchant — custom shop event with no localized description."""
+    if event["id"] != "FAKE_MERCHANT":
+        return event
+    event["description"] = FAKE_MERCHANT_DESCRIPTION.get(
+        lang, FAKE_MERCHANT_DESCRIPTION["eng"]
     )
     return event
 
 
-def parse_all_events(loc_dir: Path, data_dir: Path) -> list[dict]:
+def parse_all_events(loc_dir: Path, data_dir: Path, lang: str = "eng") -> list[dict]:
     localization = load_localization(loc_dir)
     act_mapping = build_act_mapping()
     title_map = load_all_titles(loc_dir)
@@ -1083,7 +1293,7 @@ def parse_all_events(loc_dir: Path, data_dir: Path) -> list[dict]:
     events = []
     for filepath in sorted(EVENTS_DIR.glob("*.cs")):
         event = parse_single_event(
-            filepath, localization, act_mapping, title_map, relic_descs
+            filepath, localization, act_mapping, title_map, relic_descs, lang
         )
         if event:
             event = _fix_tablet_of_truth(event)
@@ -1096,7 +1306,7 @@ def parse_all_events(loc_dir: Path, data_dir: Path) -> list[dict]:
             event = _fix_wood_carvings(event)
             event = _fix_ranwid_the_elder(event)
             event = _fix_lost_wisp(event)
-            event = _fix_fake_merchant(event)
+            event = _fix_fake_merchant(event, lang)
             events.append(event)
     return events
 
@@ -1105,7 +1315,7 @@ def main(lang: str = "eng"):
     loc_dir = _loc_dir(lang)
     output_dir = _data_dir(lang)
     output_dir.mkdir(parents=True, exist_ok=True)
-    events = parse_all_events(loc_dir, output_dir)
+    events = parse_all_events(loc_dir, output_dir, lang)
     with open(output_dir / "events.json", "w", encoding="utf-8") as f:
         json.dump(events, f, indent=2, ensure_ascii=False)
     print(f"Parsed {len(events)} events -> data/{lang}/events.json")
