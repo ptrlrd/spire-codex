@@ -231,6 +231,60 @@ def delete_run(run_hash: str, request: Request):
     return {"success": True}
 
 
+MAX_BULK_DELETE = 50
+
+
+@router.post("/runs/bulk-delete")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_delete_runs", "10/minute"))
+async def bulk_delete_runs(request: Request):
+    """Soft-delete several of the caller's own runs in one request.
+
+    Body: {"run_hashes": [...]}. Each hash goes through the same ownership check
+    as the single delete, so a hash the caller does not own is reported back
+    rather than failing the whole call.
+    """
+    user = require_user(request)
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    try:
+        body = await request.json()
+    except Exception:
+        body = {}
+    raw = body.get("run_hashes")
+    if not isinstance(raw, list):
+        raise HTTPException(status_code=400, detail="run_hashes must be a list")
+
+    hashes: list[str] = []
+    for value in raw:
+        if not isinstance(value, str):
+            continue
+        cleaned = value.strip()
+        if cleaned and cleaned not in hashes:
+            hashes.append(cleaned)
+    if not hashes:
+        raise HTTPException(status_code=400, detail="run_hashes must not be empty")
+    if len(hashes) > MAX_BULK_DELETE:
+        raise HTTPException(
+            status_code=400,
+            detail=f"run_hashes accepts at most {MAX_BULK_DELETE} runs per request",
+        )
+
+    from ..services.runs_db_mongo import soft_delete_run
+
+    deleted: list[str] = []
+    failed: dict[str, str] = {}
+    for run_hash in hashes:
+        result = soft_delete_run(run_hash, user["_id"])
+        if result.get("error"):
+            failed[run_hash] = result["error"]
+        else:
+            deleted.append(run_hash)
+
+    return {"deleted": deleted, "failed": failed, "requested": len(hashes)}
+
+
 @router.get("/stats")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.user_stats", "10/minute"))
 def user_stats(request: Request):

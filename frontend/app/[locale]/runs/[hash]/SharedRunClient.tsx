@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { useToast } from "@/app/components/Toast";
 import { authHeaders } from "@/app/[locale]/admin/shared";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RunSummary, { type PotionInfo } from "./RunSummary";
@@ -32,6 +33,7 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
   const lang = useGameLocale();
   const t = useT();
   const { user } = useAuth();
+  const { toast } = useToast();
   const [run, setRun] = useState<any>(initialRun ?? null);
   const [loading, setLoading] = useState(!initialRun);
   const [notFound, setNotFound] = useState(false);
@@ -197,19 +199,20 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
       });
   }
 
-  function unhideRun() {
+  function setHidden(hidden: boolean) {
     setUnhiding(true);
     fetch(`${API}/api/admin/runs/${hash}/hide`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json", ...authHeaders() },
-      body: JSON.stringify({ hidden: false }),
+      body: JSON.stringify({ hidden }),
     })
       .then((r) => {
         if (!r.ok) throw new Error();
-        setRun({ ...run, hidden: false });
+        setRun({ ...run, hidden });
+        toast(hidden ? t("Run hidden") : t("Run unhidden"), "success");
       })
-      .catch(() => {})
+      .catch(() => toast(t("Failed to update this run"), "error"))
       .finally(() => setUnhiding(false));
   }
 
@@ -235,10 +238,10 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
           &larr; {t("Back to")}
         </Link>
         <div className="flex items-center gap-2">
-          {run.hidden && user?.is_admin && (
-            <button onClick={unhideRun} disabled={unhiding}
+          {user?.is_admin && (
+            <button onClick={() => setHidden(!run.hidden)} disabled={unhiding}
               className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50">
-              {unhiding ? "..." : "Unhide"}
+              {unhiding ? "..." : run.hidden ? t("Unhide") : t("Hide")}
             </button>
           )}
           <button onClick={() => setShowReport(true)}

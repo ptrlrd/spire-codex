@@ -209,6 +209,35 @@ export default function ProfileClient() {
   };
 
 
+  const handleDeleteMany = async (hashes: string[]) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/runs/bulk-delete`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ run_hashes: hashes }),
+      });
+      if (!res.ok) {
+        toast(t("Failed to delete run"), "error");
+        return;
+      }
+      const body = (await res.json()) as { deleted: string[]; failed: Record<string, string> };
+      const removed = new Set(body.deleted);
+      if (removed.size > 0) {
+        setRuns((prev) => prev.filter((r) => !removed.has(r.run_hash)));
+        setTotal((prev) => Math.max(0, prev - removed.size));
+      }
+      const failedCount = Object.keys(body.failed ?? {}).length;
+      if (failedCount > 0) {
+        toast(t("Removed {n} runs, {failed} could not be removed", { n: removed.size, failed: failedCount }), "error");
+      } else {
+        toast(t("Removed {n} runs from your profile", { n: removed.size }), "success");
+      }
+    } catch {
+      toast(t("Network error"), "error");
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12">
@@ -246,6 +275,7 @@ export default function ProfileClient() {
           onDeleteRun={handleDelete}
           deleteConfirm={deleteConfirm}
           onDeleteConfirm={setDeleteConfirm}
+          onDeleteRuns={handleDeleteMany}
         />
       </section>
 
