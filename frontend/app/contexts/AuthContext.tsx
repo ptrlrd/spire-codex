@@ -23,21 +23,25 @@ interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  loginSteam: () => void;
-  loginDiscord: () => void;
-  loginTwitch: () => void;
-  loginPatreon: () => void;
+  loginSteam: string;
+  loginDiscord: string;
+  loginTwitch: string;
+  loginPatreon: string;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
 
+const LOGIN_URLS = {
+  loginSteam: `${API_BASE}/api/auth/steam/redirect`,
+  loginDiscord: `${API_BASE}/api/auth/discord/start`,
+  loginTwitch: `${API_BASE}/api/auth/twitch/start`,
+  loginPatreon: `${API_BASE}/api/auth/patreon/start`,
+};
+
 const AuthContext = createContext<AuthContextType>({
+  ...LOGIN_URLS,
   user: null,
   loading: true,
-  loginSteam: () => {},
-  loginDiscord: () => {},
-  loginTwitch: () => {},
-  loginPatreon: () => {},
   logout: async () => {},
   refresh: async () => {},
 });
@@ -105,23 +109,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const loginSteam = useCallback(() => {
-    // Always use redirect flow -- popups are unreliable on mobile
-    // and get blocked by many browsers
-    window.location.href = `${API_BASE}/api/auth/steam/redirect`;
-  }, []);
-
-  const loginDiscord = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/discord/start`;
-  }, []);
-
-  const loginTwitch = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/twitch/start`;
-  }, []);
-
-  const loginPatreon = useCallback(() => {
-    window.location.href = `${API_BASE}/api/auth/patreon/start`;
-  }, []);
 
   const logout = useCallback(async () => {
     localStorage.removeItem("spire_token");
@@ -138,7 +125,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, loginSteam, loginDiscord, loginTwitch, loginPatreon, logout, refresh: fetchMe }}
+      value={{ ...LOGIN_URLS, user, loading, logout, refresh: fetchMe }}
     >
       {children}
     </AuthContext.Provider>

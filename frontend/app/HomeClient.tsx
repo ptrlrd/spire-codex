@@ -235,11 +235,11 @@ export default function HomeClient({ initialStats, initialTranslations }: HomeCl
         </div>
         <div className="gs-grid" ref={gsTrack} onScroll={onGsScroll}>
           {!user && (
-            <button type="button" onClick={loginSteam} className="act act-signin">
+            <a href={loginSteam} className="act act-signin">
               <span className="act-ico"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.979 0C5.678 0 .511 4.86.022 11.037l6.432 2.658a3.387 3.387 0 0 1 1.912-.593c.064 0 .127.003.19.007l2.862-4.146v-.058a4.533 4.533 0 0 1 4.53-4.53 4.533 4.533 0 0 1 4.53 4.53 4.533 4.533 0 0 1-4.53 4.53h-.106l-4.08 2.91c0 .053.003.107.003.161a3.4 3.4 0 0 1-3.4 3.4 3.404 3.404 0 0 1-3.367-2.936L.256 15.21C1.542 20.2 6.218 24 11.979 24 18.627 24 24 18.627 24 11.979 24 5.373 18.627 0 11.979 0z" /></svg></span>
               <span className="act-t">{t("Sign in with Steam")}</span>
               <span className="act-d">{t("Spire Codex keeps track of your runs and tier lists, all while not tracking you.")}</span>
-            </button>
+            </a>
           )}
           {startTiles.map((c) => {
             const inner = (<><span className="act-ico">{c.icon}</span><span className="act-t">{c.title}</span><span className="act-d">{c.desc}</span></>);
