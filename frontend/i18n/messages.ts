@@ -16,6 +16,7 @@ import { X8C } from "@/lib/i18n-x8c";
 import { X8D } from "@/lib/i18n-x8d";
 import { X8E } from "@/lib/i18n-x8e";
 import { X9A } from "@/lib/i18n-x9a";
+import { X9B } from "@/lib/i18n-x9b";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
 import { safeKey } from "@/lib/i18n-keys";
 import type { Locale } from "./routing";
@@ -24,7 +25,7 @@ import type { Locale } from "./routing";
 // key, one column per language). This turns them into one flat catalog per
 // locale for next-intl, once per process, with English filling any gap and
 // ICU's apostrophe escaping applied so "Couldn't" renders as written.
-const TABLES = [UI_TRANSLATIONS, X1, X2, X3, X4, X5, X6A, X6B, X6C, X6D, X6E, X6G, X7, X8A, X8B, X8C, X8D, X8E, X9A];
+const TABLES = [UI_TRANSLATIONS, X1, X2, X3, X4, X5, X6A, X6B, X6C, X6D, X6E, X6G, X7, X8A, X8B, X8C, X8D, X8E, X9A, X9B];
 const cache = new Map<string, Record<string, string>>();
 
 function icu(text: string): string {
