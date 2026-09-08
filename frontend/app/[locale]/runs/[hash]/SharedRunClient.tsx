@@ -242,9 +242,6 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
             <Link href={`/runs/${hash}/replay`}
               className="text-xs px-3 py-1.5 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-colors">
               {t("Replay")}
-            <Link href={`${lp}/runs/${hash}/replay`}
-              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)] text-[var(--accent-gold)] hover:bg-[var(--accent-gold)] hover:text-[var(--bg-primary)] transition-colors font-semibold">
-              {t("Replay", lang)}
             </Link>
           )}
           {user?.is_admin && (

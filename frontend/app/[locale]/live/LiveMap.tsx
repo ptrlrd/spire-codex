@@ -22,10 +22,8 @@
 
 import { imageUrl } from "@/lib/image-url";
 import { useT } from "@/lib/i18n";
-import { useState } from "react";
-import { cleanId, displayName } from "@/lib/display-name";
 import { useId, useState } from "react";
-import { cleanId, displayName } from "../runs/[hash]/RunPills";
+import { cleanId, displayName } from "@/lib/display-name";
 import {
   enemyName,
   findMonster,
@@ -331,9 +329,8 @@ function FloorCard({
   cat?: Partial<LiveCatalogs>;
 }) {
   const t = useT();
-  const isCombat = f.type === "monster" || f.type === "elite" || f.type === "boss";
-function FloorCard({ f, encounters }: { f: FloorSummary; encounters?: EncounterMap }) {
-  const isCombat = f.type === "monster" || f.type === "burly_monster" || f.type === "elite" || f.type === "boss";
+  const isCombat =
+    f.type === "monster" || f.type === "burly_monster" || f.type === "elite" || f.type === "boss";
   const encName = f.encounter_id
     ? roomName(f.encounter_id, encounters, monsters, cat)
     : null;
@@ -532,10 +529,8 @@ export default function LiveMap({
         height={height}
         viewBox={`0 0 ${width} ${height}`}
         className="block h-auto max-w-full"
-        role="img"
-        aria-label={t("Act map showing the player's route")}
         role="group"
-        aria-label="Act map showing the player's route"
+        aria-label={t("Act map showing the player's route")}
         onMouseLeave={() => setHovered(null)}
       >
         <image href={CIRCLE_ART} width={0} height={0} onError={() => markMissing(CIRCLE_ART)} />

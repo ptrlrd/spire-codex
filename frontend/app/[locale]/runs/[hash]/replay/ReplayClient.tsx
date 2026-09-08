@@ -1,16 +1,16 @@
 "use client";
 
-import Link from "next/link";
+import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+
+import { Link } from "@/i18n/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { useLangPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 import { parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
-import { t } from "@/lib/ui-translations";
 import { useEntityScores } from "@/lib/use-entity-scores";
-import LiveMap from "@/app/live/LiveMap";
-import { useEncounterMap, useMonsterMap, type Coord } from "@/app/live/live-shared";
+import LiveMap from "@/app/[locale]/live/LiveMap";
+import { useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
 import { cleanId, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
 import FloorPanel, { KIND_LABEL, floorTitle, type Catalog, type EventInfo } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
@@ -49,7 +49,7 @@ interface Series {
   suffix?: string;
 }
 
-function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | undefined, lang: string): Series[] {
+function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | undefined, t: TFn): Series[] {
   let deck = model.startingDeck.length;
   const deckSizes: number[] = [];
   for (const f of floors) {
@@ -61,12 +61,12 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
   }
   return [
     { key: "hp", label: "HP", kind: "line", color: "var(--accent-red)", values: floors.map((f) => f.hpAfter), max: maxHp, suffix: maxHp ? `/${maxHp}` : "" },
-    { key: "gold", label: t("Gold", lang), kind: "line", color: "var(--accent-gold)", values: floors.map((f) => f.goldAfter) },
-    { key: "deck", label: t("Deck size", lang), kind: "line", color: "var(--text-secondary)", values: deckSizes },
-    { key: "dmg", label: t("Damage per fight", lang), kind: "bar", color: "var(--accent-red)", values: floors.map((f) => f.combat?.damageTaken) },
+    { key: "gold", label: t("Gold"), kind: "line", color: "var(--accent-gold)", values: floors.map((f) => f.goldAfter) },
+    { key: "deck", label: t("Deck size"), kind: "line", color: "var(--text-secondary)", values: deckSizes },
+    { key: "dmg", label: t("Damage per fight"), kind: "bar", color: "var(--accent-red)", values: floors.map((f) => f.combat?.damageTaken) },
     {
       key: "turns",
-      label: t("Turns per fight", lang),
+      label: t("Turns per fight"),
       kind: "bar",
       color: "var(--text-secondary)",
       values: floors.map((f) => (f.combat ? (f.combat.turnCount ?? f.combat.turns.filter((x) => x.side === "player").length) : undefined)),
@@ -75,7 +75,8 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
 }
 
 function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor[]; selected: number; onPick: (floor: number) => void }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const w = 100;
   const h = 32;
   const n = Math.max(1, floors.length);
@@ -115,7 +116,7 @@ function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor
         {sel >= 0 && <line x1={xs(sel)} x2={xs(sel)} y1={0} y2={h} stroke="var(--accent-gold)" strokeWidth={1} vectorEffect="non-scaling-stroke" />}
         {floors.map((f, i) => (
           <rect key={f.floor} x={i * slotW} y={0} width={slotW} height={h} fill="transparent" onClick={() => onPick(f.floor)} style={{ cursor: "pointer" }}>
-            <title>{`${t("floor", lang)} ${f.floor}`}</title>
+            <title>{`${t("floor")} ${f.floor}`}</title>
           </rect>
         ))}
       </svg>
@@ -124,11 +125,12 @@ function Chart({ s, floors, selected, onPick }: { s: Series; floors: ReplayFloor
 }
 
 function RunCharts({ model, floors, maxHp, selected, onPick }: { model: ReplayModel; floors: ReplayFloor[]; maxHp?: number; selected: number; onPick: (floor: number) => void }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   if (floors.length < 2) return null;
   return (
-    <section className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5" aria-label={t("Run progress", lang)}>
-      {seriesFor(model, floors, maxHp, lang).map((s) => (
+    <section className="mb-4 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-5" aria-label={t("Run progress")}>
+      {seriesFor(model, floors, maxHp, t).map((s) => (
         <Chart key={s.key} s={s} floors={floors} selected={selected} onPick={onPick} />
       ))}
     </section>
@@ -136,8 +138,9 @@ function RunCharts({ model, floors, maxHp, selected, onPick }: { model: ReplayMo
 }
 
 export default function ReplayClient({ hash, run }: { hash: string; run: ReplayRunInfo }) {
-  const { lang } = useLanguage();
-  const lp = useLangPrefix();
+  const t = useT();
+  const lang = useGameLocale();
+  const lp = useBetaPrefix();
   const [model, setModel] = useState<ReplayModel | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
@@ -256,17 +259,17 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
   const header = model?.header;
   const character = cleanId(run.players?.[run.player_index ?? 0]?.character ?? header?.character ?? "");
   const maxHp = model?.end?.maxHp;
-  const result = run.win ? t("Victory", lang) : run.was_abandoned ? t("Abandoned", lang) : t("Defeat", lang);
-  const who = run.username?.trim() || t("Anonymous", lang);
+  const result = run.win ? t("Victory") : run.was_abandoned ? t("Abandoned") : t("Defeat");
+  const who = run.username?.trim() || t("Anonymous");
   const map = model?.maps[act];
 
   return (
     <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
         <Link href={`${lp}/runs/${hash}`} className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]">
-          &larr; {t("Back to run", lang)}
+          &larr; {t("Back to run")}
         </Link>
-        <span className="text-xs text-[var(--text-muted)]">{t("Use ← → to step floors", lang)}</span>
+        <span className="text-xs text-[var(--text-muted)]">{t("Use ← → to step floors")}</span>
       </div>
 
       <header className="mb-5 flex flex-wrap items-center gap-4">
@@ -280,18 +283,18 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
             <span className={run.win ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{result}</span>
-            {" · "}{floors.length} {t("floors", lang)}
+            {" · "}{floors.length} {t("floors")}
             {run.run_time ? ` · ${formatTime(run.run_time)}` : ""}
             {header?.buildId ? ` · ${header.buildId}` : ""}
-            {model && model.reloads > 0 ? ` · ${model.reloads} ${t("reloads", lang)}` : ""}
-            {model ? ` · ${floors.reduce((n, f) => n + f.decisions.length, 0)} ${t("decisions", lang)}` : ""}
+            {model && model.reloads > 0 ? ` · ${model.reloads} ${t("reloads")}` : ""}
+            {model ? ` · ${floors.reduce((n, f) => n + f.decisions.length, 0)} ${t("decisions")}` : ""}
           </p>
         </div>
       </header>
       {model && <RunCharts model={model} floors={floors} maxHp={maxHp} selected={selected ?? -1} onPick={pick} />}
 
-      {error && <p className="text-sm text-[var(--accent-red)]">{t("Couldn't load the replay.", lang)} {error}</p>}
-      {!model && !error && <p className="text-sm text-[var(--text-muted)]">{t("Loading replay…", lang)}</p>}
+      {error && <p className="text-sm text-[var(--accent-red)]">{t("Couldn't load the replay.")} {error}</p>}
+      {!model && !error && <p className="text-sm text-[var(--text-muted)]">{t("Loading replay…")}</p>}
 
       {model && (
         <div className="grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr]">
@@ -308,7 +311,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                     }}
                     className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${a === act ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"}`}
                   >
-                    {t("Act", lang)} {a}{model.actNames[a] ? ` · ${model.actNames[a].replace(/_/g, " ").toLowerCase()}` : ""}
+                    {t("Act")} {a}{model.actNames[a] ? ` · ${model.actNames[a].replace(/_/g, " ").toLowerCase()}` : ""}
                   </button>
                 ))}
               </div>
@@ -346,8 +349,8 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                     >
                       <span className="w-6 text-right text-xs tabular-nums text-[var(--text-muted)]">{f.floor}</span>
                       <span className="w-5 text-center text-xs" aria-hidden>{KIND_GLYPH[f.kind] ?? "·"}</span>
-                      <span className="min-w-0 flex-1 truncate">{floorTitle(f, cat, lang)}</span>
-                      <span className="text-[10px] text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind, lang)}</span>
+                      <span className="min-w-0 flex-1 truncate">{floorTitle(f, cat, t)}</span>
+                      <span className="text-[10px] text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind)}</span>
                       {f.hpAfter !== undefined && <span className="w-8 text-right text-[10px] tabular-nums text-[var(--text-muted)]">{f.hpAfter}</span>}
                     </button>
                   </li>
@@ -356,7 +359,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
             </ol>
           </aside>
           <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-            {current ? <FloorPanel f={current} prev={floors[floors.indexOf(current) - 1]} cat={cat} maxHp={maxHp} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.", lang)}</p>}
+            {current ? <FloorPanel f={current} prev={floors[floors.indexOf(current) - 1]} cat={cat} maxHp={maxHp} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.")}</p>}
           </main>
         </div>
       )}

@@ -262,3 +262,110 @@ describe("parseReplay edge cases the reviewers named", () => {
     expect(model.floors.map((f) => f.coord)).toEqual([undefined, undefined]);
   });
 });
+
+describe("the parser never invents a fact the journal did not record", () => {
+  it("leaves a decision with no id unlinked instead of giving it id 0", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        // Two decisions, neither identified. Defaulting both to 0 used to make
+        // the second overwrite the first and swallow the outcome below.
+        { t: "decision", s: 2, floor: 1, decision_type: "card_reward", options: [{ option_id: "STRIKE" }] },
+        { t: "decision", s: 3, floor: 1, decision_type: "card_reward", options: [{ option_id: "DEFEND" }] },
+        { t: "outcome", s: 4, floor: 1, outcome: "chosen", option_id: "STRIKE" },
+      ]),
+    );
+    const [floor] = model.floors;
+    expect(floor.decisions).toHaveLength(2);
+    expect(floor.decisions.map((d) => d.id)).toEqual([undefined, undefined]);
+    // An outcome with no decision id attaches to nothing rather than the wrong one.
+    expect(floor.decisions.every((d) => d.options.every((o) => !o.chosen))).toBe(true);
+  });
+
+  it("keeps a real decision id of zero", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        { t: "decision", s: 2, floor: 1, decision_id: 0, decision_type: "card_reward", options: [{ option_id: "STRIKE" }] },
+        { t: "outcome", s: 3, floor: 1, decision_id: 0, outcome: "chosen", option_id: "STRIKE" },
+      ]),
+    );
+    const [decision] = model.floors[0].decisions;
+    expect(decision.id).toBe(0);
+    expect(decision.options[0].chosen).toBe(true);
+  });
+
+  it("leaves the offered count unknown rather than counting options the game may not have shown", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        {
+          t: "decision",
+          s: 2,
+          floor: 1,
+          decision_id: 1,
+          decision_type: "card_reward",
+          options: [{ option_id: "A" }, { option_id: "B" }, { option_id: "C", presented: false }],
+        },
+      ]),
+    );
+    const [decision] = model.floors[0].decisions;
+    expect(decision.nPresented).toBeUndefined();
+    expect(decision.nSelectable).toBeUndefined();
+    expect(decision.options).toHaveLength(3);
+  });
+
+  it("reports a count the journal did record", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        { t: "decision", s: 2, floor: 1, decision_id: 1, n_presented: 2, n_selectable: 1, options: [{ option_id: "A" }] },
+      ]),
+    );
+    expect(model.floors[0].decisions[0].nPresented).toBe(2);
+    expect(model.floors[0].decisions[0].nSelectable).toBe(1);
+  });
+
+  it("ignores an identity that is not a safe integer", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        { t: "decision", s: 2, floor: 1, decision_id: 1.5, options: [{ option_id: "A" }] },
+        { t: "decision", s: 3, floor: 1, decision_id: "7", options: [{ option_id: "B" }] },
+      ]),
+    );
+    expect(model.floors[0].decisions.map((d) => d.id)).toEqual([undefined, undefined]);
+  });
+
+  it("keeps an option in its recorded position when a neighbour is malformed", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "room", s: 1, floor: 1, kind: "monster" },
+        { t: "decision", s: 2, floor: 1, decision_id: 1, options: [null, { option_id: "B" }] },
+        { t: "outcome", s: 3, floor: 1, decision_id: 1, outcome: "chosen", option_index: 1 },
+      ]),
+    );
+    const [decision] = model.floors[0].decisions;
+    const chosen = decision.options.filter((o) => o.chosen);
+    expect(chosen).toHaveLength(1);
+    expect(chosen[0].id).toBe("B");
+  });
+
+  it("survives a room kind that names an inherited object property", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0 },
+        { t: "map", s: 1, act: 1, nodes: [{ coord: "0,0", kind: "monster", children: ["0,1"] }, { coord: "0,1", kind: "monster", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "constructor" },
+        { t: "room", s: 3, floor: 2, act: 1, kind: "__proto__" },
+      ]),
+    );
+    expect(() => routeForAct(model, 1)).not.toThrow();
+  });
+});

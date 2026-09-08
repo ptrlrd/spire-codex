@@ -1,13 +1,13 @@
 "use client";
 
+import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+
 import type { ReactNode } from "react";
 import { imageUrl } from "@/lib/image-url";
 import type { ScoresMap } from "@/lib/use-entity-scores";
 import type { BuyLine, HitLine, PlayLine, ReplayDecision, ReplayFloor, ReplayLine, ReplayOption, ReplayTurn, ShopItem } from "@/lib/replay";
 import { isCombatKind } from "@/lib/replay";
-import { useLanguage } from "@/app/contexts/LanguageContext";
-import { t } from "@/lib/ui-translations";
-import { type EncounterMap, type MonsterMap, LiveCardImg, safeId } from "@/app/live/live-shared";
+import { type EncounterMap, type MonsterMap, LiveCardImg, safeId } from "@/app/[locale]/live/live-shared";
 import { cleanId, displayName, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
 
 export interface EventInfo {
@@ -58,10 +58,10 @@ export function encounterName(id: string | undefined, cat: Catalog): string {
   return cat.encounters[id]?.name || displayName(`ENCOUNTER.${id}`);
 }
 
-export function floorTitle(f: ReplayFloor, cat: Catalog, lang: string): string {
-  if (isCombatKind(f.kind)) return encounterName(f.id, cat) || t("Combat", lang);
+export function floorTitle(f: ReplayFloor, cat: Catalog, t: TFn): string {
+  if (isCombatKind(f.kind)) return encounterName(f.id, cat) || t("Combat");
   if (f.kind === "event" && f.id) return cat.events[cleanId(f.id)]?.name || displayName(`EVENT.${f.id}`);
-  return t(KIND_LABEL[f.kind] ?? displayName(f.kind), lang);
+  return t(KIND_LABEL[f.kind] ?? displayName(f.kind));
 }
 
 function ScoreChip({ id, scores }: { id: string; scores: ScoresMap }) {
@@ -129,32 +129,32 @@ export function isShopKind(kind: string): boolean {
   return SHOP_KINDS.has(kind);
 }
 
-function describeLine(l: ReplayLine, cat: Catalog, lang: string): string | undefined {
+function describeLine(l: ReplayLine, cat: Catalog, t: TFn): string | undefined {
   switch (l.t) {
     case "relic":
-      return `${t("Relic", lang)}: ${relicName(l.id, cat)}`;
+      return `${t("Relic")}: ${relicName(l.id, cat)}`;
     case "potion_got":
-      return `${t("Potion", lang)}: ${potionName(l.id, cat)}`;
+      return `${t("Potion")}: ${potionName(l.id, cat)}`;
     case "acquire":
-      return `${t("Card", lang)}: ${cardName(l.id, cat)}`;
+      return `${t("Card")}: ${cardName(l.id, cat)}`;
     case "upgrade":
-      return `${t("Upgraded", lang)} ${cardName(l.id, cat)}`;
+      return `${t("Upgraded")} ${cardName(l.id, cat)}`;
     case "remove":
-      return `${t("Removed", lang)} ${cardName(l.id, cat)}`;
+      return `${t("Removed")} ${cardName(l.id, cat)}`;
     case "transform":
       return `${cardName(l.fromId, cat)} → ${cardName(l.toId, cat)}`;
     case "rest":
-      return `${t("Rest", lang)}: ${displayName(l.option ?? "")}`;
+      return `${t("Rest")}: ${displayName(l.option ?? "")}`;
     case "buy":
       return l.kind === "removal_service"
-        ? `${t("Card removal", lang)} (${costLabel(l)})`
-        : `${t("Bought", lang)} ${itemName(l.kind, l.id ?? "", cat)} (${costLabel(l)})`;
+        ? `${t("Card removal")} (${costLabel(l)})`
+        : `${t("Bought")} ${itemName(l.kind, l.id ?? "", cat)} (${costLabel(l)})`;
     case "hp":
       return l.d ? `HP ${l.d > 0 ? "+" : ""}${l.d}` : undefined;
     case "hp_loss":
       return l.dmg ? `HP -${Math.abs(l.dmg)}` : undefined;
     case "resume":
-      return `${t("Reloaded from a save", lang)}${l.reloads > 1 ? ` (${l.reloads})` : ""}`;
+      return `${t("Reloaded from a save")}${l.reloads > 1 ? ` (${l.reloads})` : ""}`;
     default:
       return undefined;
   }
@@ -170,7 +170,8 @@ function Delta({ value }: { value: number }) {
 }
 
 function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const isCard = o.kind === "card" || o.kind === "remove" || o.kind === "transform" || o.kind === "upgrade";
   const isRelic = o.kind === "relic" || !!o.grantsRelic;
   const label = o.label
@@ -204,7 +205,7 @@ function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat:
           </span>
         )}
       </span>
-      {o.chosen && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Taken", lang)}</span>}
+      {o.chosen && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Taken")}</span>}
       {!o.selectable && o.reason && <span className="text-[10px] uppercase tracking-wider">{o.reason}</span>}
       {isCard && <ScoreChip id={o.id} scores={cat.cardScores} />}
       {isRelic && <ScoreChip id={o.grantsRelic || o.id} scores={cat.relicScores} />}
@@ -215,7 +216,7 @@ function OptionRow({ o, dec, cat }: { o: ReplayOption; dec: ReplayDecision; cat:
   );
 }
 
-function decisionTitle(d: ReplayDecision, cat: Catalog): string {
+function decisionTitle(d: ReplayDecision, cat: Catalog, t: TFn): string {
   if (d.type === "card_reward") return "Card reward";
   if (d.selectKind === "transform") return "Transform a card";
   if (d.selectKind === "upgrade") return "Upgrade a card";
@@ -227,24 +228,28 @@ function decisionTitle(d: ReplayDecision, cat: Catalog): string {
 }
 
 function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const shown = d.options.filter((o) => o.presented);
   const picked = shown.some((o) => o.chosen);
-  const effects = d.resolutions.map((l) => describeLine(l, cat, lang)).filter((e): e is string => !!e);
+  const effects = d.resolutions.map((l) => describeLine(l, cat, t)).filter((e): e is string => !!e);
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t(decisionTitle(d, cat), lang)}</h4>
+        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{decisionTitle(d, cat, t)}</h4>
         <span className="text-xs text-[var(--text-muted)]">
-          {shown.length} {t("offered", lang)}
-          {d.nSelectable < d.nPresented && ` · ${d.nSelectable} ${t("selectable", lang)}`}
-          {d.goldOnHand !== undefined && ` · ${d.goldOnHand} ${t("gold", lang)}`}
+          {shown.length} {t("offered")}
+          {d.nSelectable !== undefined &&
+            d.nPresented !== undefined &&
+            d.nSelectable < d.nPresented &&
+            ` · ${d.nSelectable} ${t("selectable")}`}
+          {d.goldOnHand !== undefined && ` · ${d.goldOnHand} ${t("gold")}`}
         </span>
-        {d.outcome === "skip" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Skipped", lang)}</span>}
-        {d.outcome === "reroll" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Rerolled", lang)}</span>}
-        {d.outcome === "unresolved" && !picked && <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{t("No pick recorded", lang)}</span>}
+        {d.outcome === "skip" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Skipped")}</span>}
+        {d.outcome === "reroll" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Rerolled")}</span>}
+        {d.outcome === "unresolved" && !picked && <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{t("No pick recorded")}</span>}
         {d.paid && d.paid.kind === "removal_service" && (
-          <span className="text-xs text-[var(--text-muted)]">{t("Paid", lang)} {d.paid.cost} {d.paid.resource}</span>
+          <span className="text-xs text-[var(--text-muted)]">{t("Paid")} {d.paid.cost} {d.paid.resource}</span>
         )}
       </header>
       <ul className="grid gap-1.5 sm:grid-cols-2">
@@ -254,7 +259,7 @@ function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
       </ul>
       {effects.length > 0 && (
         <ul className="mt-2 flex flex-wrap items-center gap-1.5">
-          <li className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Outcome", lang)}</li>
+          <li className="text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Outcome")}</li>
           {effects.map((e, i) => (
             <li key={i} className="rounded-md border border-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--text-secondary)]">{e}</li>
           ))}
@@ -269,7 +274,8 @@ function boughtSlots(buys: BuyLine[], kind: string): Set<number> {
 }
 
 function StockRow({ item, kind, bought, cat }: { item: ShopItem; kind: string; bought: boolean; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const name = itemName(kind, item.id, cat);
   const tone = bought
     ? "border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] text-[var(--text-primary)]"
@@ -286,9 +292,9 @@ function StockRow({ item, kind, bought, cat }: { item: ShopItem; kind: string; b
         <img src={imageUrl(cat.potions[item.id].image_url)} alt="" className="h-7 w-7 object-contain" loading="lazy" />
       )}
       <span className="min-w-0 flex-1 truncate">{name}</span>
-      {item.sale && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Sale", lang)}</span>}
-      {item.cost !== undefined && <span className="text-xs tabular-nums text-[var(--text-muted)]">{item.cost} {t("gold", lang)}</span>}
-      {bought && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Bought", lang)}</span>}
+      {item.sale && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Sale")}</span>}
+      {item.cost !== undefined && <span className="text-xs tabular-nums text-[var(--text-muted)]">{item.cost} {t("gold")}</span>}
+      {bought && <span className="text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-gold)]">{t("Bought")}</span>}
       {kind === "card" && <ScoreChip id={item.id} scores={cat.cardScores} />}
       {kind === "relic" && <ScoreChip id={item.id} scores={cat.relicScores} />}
     </li>
@@ -296,7 +302,8 @@ function StockRow({ item, kind, bought, cat }: { item: ShopItem; kind: string; b
 }
 
 function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const buys = f.lines.filter((l): l is BuyLine => l.t === "buy");
   const removed = f.lines.flatMap((l) => (l.t === "remove" ? [l.id] : []));
   const goldIn = f.shop?.gold ?? prev?.goldAfter;
@@ -314,10 +321,10 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tabular-nums text-[var(--text-muted)]">
-        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t("Shop", lang)}</h4>
-        {goldIn !== undefined && <span>{t("Gold in", lang)} {goldIn}</span>}
-        <span>{t("Spent", lang)} {spentKnown ? spent : "?"}</span>
-        {f.goldAfter !== undefined && <span>{t("Gold out", lang)} {f.goldAfter}</span>}
+        <h4 className="text-sm font-semibold text-[var(--text-primary)]">{t("Shop")}</h4>
+        {goldIn !== undefined && <span>{t("Gold in")} {goldIn}</span>}
+        <span>{t("Spent")} {spentKnown ? spent : "?"}</span>
+        {f.goldAfter !== undefined && <span>{t("Gold out")} {f.goldAfter}</span>}
       </header>
       {stock && (
         <div className="mb-3 space-y-2">
@@ -332,8 +339,8 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
           )}
           {stock.removalCost !== undefined && (
             <p className="text-xs text-[var(--text-muted)]">
-              {t("Card removal", lang)}: {stock.removalCost} {t("gold", lang)}
-              {removed.length > 0 && ` · ${t("Removed", lang)} ${removed.map((id) => cardName(id, cat)).join(", ")}`}
+              {t("Card removal")}: {stock.removalCost} {t("gold")}
+              {removed.length > 0 && ` · ${t("Removed")} ${removed.map((id) => cardName(id, cat)).join(", ")}`}
             </p>
           )}
         </div>
@@ -343,7 +350,7 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
           {buys.map((l, i) => {
             const removal = l.kind === "removal_service";
             const target = removal ? removed[buys.slice(0, i).filter((b) => b.kind === "removal_service").length] : l.id;
-            const label = removal ? `${t("Card removal", lang)}${target ? `: ${cardName(target, cat)}` : ""}` : itemName(l.kind, l.id ?? "", cat);
+            const label = removal ? `${t("Card removal")}${target ? `: ${cardName(target, cat)}` : ""}` : itemName(l.kind, l.id ?? "", cat);
             return (
               <li key={`${l.s}-${i}`} className="flex items-center gap-2 rounded-md border border-[var(--accent-gold)] bg-[color-mix(in_srgb,var(--accent-gold)_12%,transparent)] px-2.5 py-1.5 text-sm text-[var(--text-primary)]">
                 {(l.kind === "card" || removal) && target && safeId(target) && (
@@ -360,7 +367,7 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
                 <span className="min-w-0 flex-1 truncate">{label}</span>
                 <span className="text-xs tabular-nums text-[var(--text-muted)]">
                   -{costLabel(l)}
-                  {l.goldOnHand !== undefined && ` · ${l.goldOnHand} ${t("after", lang)}`}
+                  {l.goldOnHand !== undefined && ` · ${l.goldOnHand} ${t("after")}`}
                 </span>
                 {l.kind === "card" && l.id && <ScoreChip id={l.id} scores={cat.cardScores} />}
                 {l.kind === "relic" && l.id && <ScoreChip id={l.id} scores={cat.relicScores} />}
@@ -369,7 +376,7 @@ function ShopBlock({ f, prev, cat }: { f: ReplayFloor; prev?: ReplayFloor; cat: 
           })}
         </ul>
       ) : (
-        <p className="text-sm text-[var(--text-muted)]">{t("Nothing bought", lang)}</p>
+        <p className="text-sm text-[var(--text-muted)]">{t("Nothing bought")}</p>
       )}
     </section>
   );
@@ -387,12 +394,13 @@ function describePlay(play: PlayLine, hits: HitLine[], cat: Catalog): string {
 }
 
 function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const items: string[] = [];
   const lines = turn.lines;
   if (turn.side === "player") {
     const drawn = lines.flatMap((l) => (l.t === "draw" ? [cardName(l.id, cat)] : []));
-    if (drawn.length) items.push(`${t("Drew", lang)}: ${drawn.join(", ")}`);
+    if (drawn.length) items.push(`${t("Drew")}: ${drawn.join(", ")}`);
     for (let i = 0; i < lines.length; i++) {
       const l = lines[i];
       switch (l.t) {
@@ -402,20 +410,20 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
             const h = lines[j];
             if (h.t === "hit" && h.src === "player") hits.push(h);
           }
-          items.push(`${t("Played", lang)} ${describePlay(l, hits, cat)}`);
+          items.push(`${t("Played")} ${describePlay(l, hits, cat)}`);
           break;
         }
         case "block":
-          if (l.n) items.push(`${t("Block", lang)} +${l.n}${l.card ? ` (${cardName(l.card, cat)})` : ""}`);
+          if (l.n) items.push(`${t("Block")} +${l.n}${l.card ? ` (${cardName(l.card, cat)})` : ""}`);
           break;
         case "power":
           items.push(`${displayName(l.id.replace(/_POWER$/, ""))} ${l.n ?? ""}${l.tgt && l.tgt !== "player" ? ` → ${monsterName(l.tgt, cat)}` : ""}`);
           break;
         case "potion_used":
-          items.push(`${t("Used", lang)} ${potionName(l.id, cat)}`);
+          items.push(`${t("Used")} ${potionName(l.id, cat)}`);
           break;
         case "exhaust":
-          items.push(`${t("Exhausted", lang)} ${cardName(l.id, cat)}`);
+          items.push(`${t("Exhausted")} ${cardName(l.id, cat)}`);
           break;
       }
     }
@@ -423,7 +431,7 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
     for (const l of lines) {
       if (l.t === "hit" && l.dst === "player" && l.dmg !== undefined) {
         const src = l.src ?? "";
-        items.push(`${src === "effect" ? t("Effect", lang) : monsterName(src, cat)} ${t("hit for", lang)} ${l.dmg}${l.blocked ? ` (${l.blocked} ${t("blocked", lang)})` : ""}`);
+        items.push(`${src === "effect" ? t("Effect") : monsterName(src, cat)} ${t("hit for")} ${l.dmg}${l.blocked ? ` (${l.blocked} ${t("blocked")})` : ""}`);
       } else if (l.t === "power" && l.tgt === "player") {
         items.push(`${displayName(l.id.replace(/_POWER$/, ""))} ${l.n ?? ""}`);
       }
@@ -433,10 +441,10 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
   return (
     <li className="grid grid-cols-[auto_1fr] gap-x-3 py-1.5">
       <span className={`text-xs font-semibold tabular-nums ${turn.side === "player" ? "text-[var(--accent-gold)]" : "text-[var(--text-muted)]"}`}>
-        {turn.side === "player" ? t("Turn", lang) : t("Enemy", lang)} {turn.n}
+        {turn.side === "player" ? t("Turn") : t("Enemy")} {turn.n}
       </span>
       <span className="text-sm text-[var(--text-secondary)]">
-        {items.length ? items.join(" · ") : <span className="text-[var(--text-muted)]">{t("Nothing recorded", lang)}</span>}
+        {items.length ? items.join(" · ") : <span className="text-[var(--text-muted)]">{t("Nothing recorded")}</span>}
         {hpLine && <span className="ml-2 text-xs text-[var(--text-muted)]">HP {hpLine.hp}</span>}
       </span>
     </li>
@@ -444,7 +452,8 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
 }
 
 function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const c = f.combat!;
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
@@ -467,12 +476,12 @@ function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
           <div className="text-xs text-[var(--text-muted)]">
             {c.result && (
               <>
-                <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : displayName(c.result), lang)}</span>
+                <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : displayName(c.result))}</span>
                 {" · "}
               </>
             )}
-            {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns", lang)}
-            {" · "}{c.damageTaken} {t("damage taken", lang)}
+            {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns")}
+            {" · "}{c.damageTaken} {t("damage taken")}
             {c.hpEnd !== undefined && ` · HP ${c.hpEnd}`}
           </div>
         </div>
@@ -487,7 +496,8 @@ function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
 }
 
 function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   const decided = new Set(f.decisions.flatMap((d) => d.resolutions.map((r) => r.s)));
   const bits: string[] = [];
   for (const l of f.lines) {
@@ -495,7 +505,7 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
     if (isShopKind(f.kind) && (l.t === "buy" || l.t === "remove" || l.t === "acquire")) continue;
     if (l.t === "resume") continue;
     if (f.combat && (l.t === "hp" || l.t === "hp_loss")) continue;
-    const text = describeLine(l, cat, lang);
+    const text = describeLine(l, cat, t);
     if (text) bits.push(text);
   }
   if (!bits.length) return null;
@@ -509,7 +519,8 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
 }
 
 export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; prev?: ReplayFloor; cat: Catalog; maxHp?: number }) {
-  const { lang } = useLanguage();
+  const t = useT();
+  const lang = useGameLocale();
   // An event's "Proceed" page is recorded as a decision with nothing to
   // pick; it adds nothing the previous card didn't say.
   const visibleDecisions = f.decisions.filter((d) => !(d.type === "event" && d.nPresented === 0 && d.resolutions.length === 0));
@@ -519,18 +530,18 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
     <div className="space-y-3">
       <header className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
         <h3 className="text-lg font-semibold text-[var(--text-primary)]">
-          {t("Floor", lang)} {f.floor} · {floorTitle(f, cat, lang)}
+          {t("Floor")} {f.floor} · {floorTitle(f, cat, t)}
         </h3>
-        <span className="text-xs text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind, lang)}</span>
+        <span className="text-xs text-[var(--text-muted)]">{t(KIND_LABEL[f.kind] ?? f.kind)}</span>
         {f.resumes.length > 0 && (
           <span className="rounded-md border border-[var(--accent-red)] px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-[var(--accent-red)]">
-            {t("Reloaded from a save", lang)}
+            {t("Reloaded from a save")}
             {f.resumes[f.resumes.length - 1].reloads > 1 ? ` ×${f.resumes[f.resumes.length - 1].reloads}` : ""}
           </span>
         )}
         <span className="ml-auto text-xs tabular-nums text-[var(--text-muted)]">
           {f.hpAfter !== undefined && <>HP {f.hpAfter}{maxHp ? `/${maxHp}` : ""}<Delta value={hpDelta} /></>}
-          {f.goldAfter !== undefined && <> · {f.goldAfter} {t("gold", lang)}<Delta value={goldDelta} /></>}
+          {f.goldAfter !== undefined && <> · {f.goldAfter} {t("gold")}<Delta value={goldDelta} /></>}
         </span>
       </header>
       {f.combat && <CombatBlock f={f} cat={cat} />}
@@ -540,7 +551,7 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
       ))}
       <LootLine f={f} cat={cat} />
       {!f.combat && !f.decisions.length && !f.lines.some((l) => ["relic", "acquire", "potion_got", "upgrade", "remove", "transform", "rest", "buy"].includes(l.t)) && (
-        <p className="text-sm text-[var(--text-muted)]">{t("Nothing else was recorded on this floor.", lang)}</p>
+        <p className="text-sm text-[var(--text-muted)]">{t("Nothing else was recorded on this floor.")}</p>
       )}
     </div>
   );

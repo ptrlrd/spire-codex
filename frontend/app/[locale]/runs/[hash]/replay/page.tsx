@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getT } from "@/lib/i18n-server";
+import { localeOf } from "@/lib/locale";
+import { buildPageMetadata } from "@/lib/seo";
 import { cache } from "react";
 import ReplayClient from "./ReplayClient";
 
@@ -7,7 +10,7 @@ export const dynamic = "force-dynamic";
 
 const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
-type Props = { params: Promise<{ hash: string }> };
+type Props = { params: Promise<{ locale: string; hash: string }> };
 
 export interface ReplayRunInfo {
   username?: string | null;
@@ -41,17 +44,32 @@ function characterOf(run: ReplayRunInfo): string {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { hash } = await params;
+  const { locale: rawLocale, hash } = await params;
+  const locale = localeOf(rawLocale);
+  const t = await getT(locale);
+  const path = `/runs/${hash}/replay`;
   const run = await fetchRun(hash);
-  if (!run || !run.has_replay) return { title: "Replay not found - Slay the Spire 2 (sts2) | Spire Codex", robots: { index: false } };
-  const who = run.username?.trim() || "Anonymous";
-  const result = run.win ? "win" : run.was_abandoned ? "abandoned" : "loss";
-  return {
-    title: `${who} - ${characterOf(run)} - Ascension ${run.ascension ?? 0} ${result} replay - Slay the Spire 2 (sts2) | Spire Codex`,
-    description: `Step through every floor, reward, and combat turn of this Slay the Spire 2 run.`,
-    alternates: { canonical: `/runs/${hash}/replay` },
-    ...(run.hidden ? { robots: { index: false } } : {}),
-  };
+  if (!run || !run.has_replay) {
+    return buildPageMetadata({ locale, path, title: t("Replay Not Found"), noIndex: true });
+  }
+  const who = run.username?.trim() || t("Anonymous");
+  const result = run.win ? t("Victory") : run.was_abandoned ? t("Abandoned") : t("Defeat");
+  return buildPageMetadata({
+    locale,
+    path,
+    title: t("{who} - {character} - Ascension {ascension} {result} replay", {
+      who,
+      character: characterOf(run),
+      ascension: run.ascension ?? 0,
+      result,
+    }),
+    description: t("replay_meta_description"),
+    ogType: "article",
+    // The replay is the run's own data in the reader's chrome, so every locale
+    // canonicalizes to the English URL the run page already owns.
+    supressLanguageAlternates: true,
+    ...(run.hidden ? { noIndex: true } : {}),
+  });
 }
 
 export default async function ReplayPage({ params }: Props) {

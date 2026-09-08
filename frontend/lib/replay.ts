@@ -9,7 +9,7 @@
 // mod build degrades instead of crashing. The journal omits null fields, so
 // absence is always "not known", never zero.
 
-import type { Coord, MapEdge, MapNode } from "@/app/live/live-shared";
+import type { Coord, MapEdge, MapNode } from "@/app/[locale]/live/live-shared";
 
 type Raw = Record<string, unknown>;
 
@@ -74,13 +74,13 @@ export interface DecisionOptionLine {
 }
 export interface DecisionLine extends LineBase {
   t: "decision";
-  decisionId: number;
+  decisionId?: number;
   decisionType: string;
   source: string;
   selectKind?: string;
   eventId?: string;
-  nPresented: number;
-  nSelectable: number;
+  nPresented?: number;
+  nSelectable?: number;
   declineAvailable?: boolean;
   goldOnHand?: number;
   offerGeneration?: number;
@@ -88,7 +88,7 @@ export interface DecisionLine extends LineBase {
 }
 export interface OutcomeLine extends LineBase {
   t: "outcome";
-  decisionId: number;
+  decisionId?: number;
   outcome?: string;
   optionIndex?: number;
   optionId?: string;
@@ -344,13 +344,13 @@ export interface ReplayOption {
 }
 
 export interface ReplayDecision {
-  id: number;
+  id?: number;
   type: string;
   source: string;
   selectKind?: string;
   eventId?: string;
-  nPresented: number;
-  nSelectable: number;
+  nPresented?: number;
+  nSelectable?: number;
   declineAvailable?: boolean;
   goldOnHand?: number;
   options: ReplayOption[];
@@ -415,6 +415,9 @@ export interface ReplayModel {
 }
 
 const COMBAT_KINDS = new Set(["combat", "monster", "burly_monster", "elite", "boss"]);
+/** Room kind to the map node kinds that can host it. Looked up through
+ * kindsForRoom so a kind like "constructor" cannot reach an inherited
+ * property and blow up the route walk. */
 const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
   combat: ["monster", "burly_monster", "elite", "boss"],
   monster: ["monster", "burly_monster"],
@@ -431,8 +434,23 @@ const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
   ancient: ["ancient"],
 };
 
+function kindsForRoom(kind: string): string[] {
+  return Object.hasOwn(NODE_KINDS_FOR_ROOM, kind) ? NODE_KINDS_FOR_ROOM[kind] : [kind];
+}
+
 function num(v: unknown): number | undefined {
   return typeof v === "number" && Number.isFinite(v) ? v : undefined;
+}
+
+/** A journal identity or index: a safe integer, or unknown. Never rounded. */
+function int(v: unknown): number | undefined {
+  return typeof v === "number" && Number.isSafeInteger(v) ? v : undefined;
+}
+
+/** A count the journal reported: a non-negative safe integer, or unknown. */
+function count(v: unknown): number | undefined {
+  const n = int(v);
+  return n !== undefined && n >= 0 ? n : undefined;
 }
 
 function str(v: unknown): string | undefined {
@@ -444,7 +462,10 @@ function bool(v: unknown): boolean | undefined {
 }
 
 function objects(v: unknown): Raw[] {
-  return Array.isArray(v) ? v.filter((x): x is Raw => !!x && typeof x === "object") : [];
+  if (!Array.isArray(v)) return [];
+  // Position is identity when a record omits its own index, so an invalid
+  // element becomes an empty record instead of shifting everything after it.
+  return v.map((x) => (!!x && typeof x === "object" && !Array.isArray(x) ? (x as Raw) : ({} as Raw)));
 }
 
 const COORD = /^\s*(-?\d+)\s*,\s*(-?\d+)\s*$/;
@@ -529,13 +550,13 @@ function narrow(raw: Raw): ReplayLine | undefined {
       return {
         ...base,
         t,
-        decisionId: num(raw.decision_id) ?? 0,
+        decisionId: int(raw.decision_id),
         decisionType: str(raw.decision_type) ?? "unknown",
         source: str(raw.source) ?? "",
         selectKind: str(raw.select_kind),
         eventId: str(raw.event_id),
-        nPresented: num(raw.n_presented) ?? options.length,
-        nSelectable: num(raw.n_selectable) ?? options.length,
+        nPresented: count(raw.n_presented),
+        nSelectable: count(raw.n_selectable),
         declineAvailable: bool(raw.decline_available),
         goldOnHand: num(raw.gold_on_hand),
         offerGeneration: num(raw.offer_generation),
@@ -546,7 +567,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
       return {
         ...base,
         t,
-        decisionId: num(raw.decision_id) ?? 0,
+        decisionId: int(raw.decision_id),
         outcome: str(raw.outcome),
         optionIndex: num(raw.option_index),
         optionId: str(raw.option_id),
@@ -947,12 +968,12 @@ export function parseReplay(text: string): ReplayModel {
 
     if (line.t === "decision") {
       const dec = buildDecision(line);
-      decisions.set(dec.id, dec);
+      if (dec.id !== undefined) decisions.set(dec.id, dec);
       if (floor) floor.decisions.push(dec);
       continue;
     }
     if (line.t === "outcome") {
-      const dec = decisions.get(line.decisionId);
+      const dec = line.decisionId !== undefined ? decisions.get(line.decisionId) : undefined;
       if (dec) {
         dec.outcome = line.outcome;
         markChoice(dec, line);
@@ -1009,8 +1030,8 @@ export function parseReplay(text: string): ReplayModel {
 function completeMap(map: ReplayMap, actFloors: ReplayFloor[]): void {
   if (!map.nodes.length) return;
   const rows = map.nodes.map((n) => n[1]);
-  const minRow = Math.min(...rows);
-  const maxRow = Math.max(...rows);
+  const minRow = rows.reduce((a, b) => (b < a ? b : a), rows[0] ?? 0);
+  const maxRow = rows.reduce((a, b) => (b > a ? b : a), rows[0] ?? 0);
   const centre = (row: number) => {
     const cols = map.nodes.filter((n) => n[1] === row).map((n) => n[0]);
     return Math.round(cols.reduce((a, b) => a + b, 0) / Math.max(1, cols.length));
@@ -1021,7 +1042,7 @@ function completeMap(map: ReplayMap, actFloors: ReplayFloor[]): void {
     map.nodes.push([col, maxRow + 1, "boss"]);
     for (const n of map.nodes.filter((n) => n[1] === maxRow)) map.edges.push([n[0], n[1], col, maxRow + 1]);
   } else if (!map.edges.some((e) => e[2] === bossNode[0] && e[3] === bossNode[1])) {
-    const walkableMax = Math.max(...map.nodes.filter((n) => n[2] !== "boss").map((n) => n[1]));
+    const walkableMax = map.nodes.reduce((max, n) => (n[2] !== "boss" && n[1] > max ? n[1] : max), -Infinity);
     for (const n of map.nodes.filter((n) => n[1] === walkableMax)) map.edges.push([n[0], n[1], bossNode[0], bossNode[1]]);
   }
   if (!map.boss) {
@@ -1056,7 +1077,8 @@ export function routeForAct(model: ReplayModel, act: number): Map<number, Coord>
   }
   const ancientNode = map.nodes.find((n) => n[2] === "ancient");
   const walkable = map.nodes.filter((n) => n[2] !== "ancient");
-  let nextRow = Math.min(...(walkable.length ? walkable : map.nodes).map((n) => n[1]));
+  const rowsFrom = walkable.length ? walkable : map.nodes;
+  let nextRow = rowsFrom.reduce((min, n) => (n[1] < min ? n[1] : min), Infinity);
   let prev: Coord | undefined;
   const edgeSet = new Set(map.edges.map((e) => `${e[0]},${e[1]}>${e[2]},${e[3]}`));
   const actFloors = model.floors.filter((x) => x.act === act);
@@ -1074,7 +1096,7 @@ export function routeForAct(model: ReplayModel, act: number): Map<number, Coord>
     }
     const candidates = rows.get(nextRow) ?? [];
     if (!candidates.length) continue;
-    const kinds = NODE_KINDS_FOR_ROOM[f.kind] ?? [f.kind];
+    const kinds = kindsForRoom(f.kind);
     const reachable = (n: MapNode) => !prev || edgeSet.has(`${prev[0]},${prev[1]}>${n[0]},${n[1]}`);
     const pick =
       candidates.find((n) => kinds.includes(n[2]) && reachable(n)) ??
