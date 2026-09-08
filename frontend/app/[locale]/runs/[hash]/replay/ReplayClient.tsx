@@ -10,7 +10,7 @@ import { imageUrl } from "@/lib/image-url";
 import { parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import LiveMap from "@/app/[locale]/live/LiveMap";
-import { useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
+import { characterName, useCharacterNames, useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
 import { cleanId, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
 import FloorPanel, { KIND_LABEL, floorTitle, type Catalog, type EventInfo } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
@@ -255,9 +255,14 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
     });
   }, [selectedCoord]);
 
+  const characterNames = useCharacterNames();
+
   const cat: Catalog = { cards, relics, potions, events, monsters, encounters, cardScores, relicScores };
   const header = model?.header;
-  const character = cleanId(run.players?.[run.player_index ?? 0]?.character ?? header?.character ?? "");
+  const characterId = cleanId(run.players?.[run.player_index ?? 0]?.character ?? header?.character ?? "");
+  // The game's own name for the character in the reader's language; the id is
+  // only good for the icon filename.
+  const character = characterId ? characterName(characterId, characterNames) : "";
   const maxHp = model?.end?.maxHp;
   const result = run.win ? t("Victory") : run.was_abandoned ? t("Abandoned") : t("Defeat");
   const who = run.username?.trim() || t("Anonymous");
@@ -273,13 +278,13 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
       </div>
 
       <header className="mb-5 flex flex-wrap items-center gap-4">
-        {character && (
+        {characterId && (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={imageUrl(`/static/images/characters/character_icon_${character.toLowerCase()}.webp`)} alt="" className="h-10 w-10" />
+          <img src={imageUrl(`/static/images/characters/character_icon_${characterId.toLowerCase()}.webp`)} alt="" className="h-10 w-10" />
         )}
         <div className="min-w-0">
           <h1 className="text-xl font-bold text-[var(--text-primary)]">
-            {[who, character ? character.charAt(0) + character.slice(1).toLowerCase() : "", `A${run.ascension ?? 0}`].filter(Boolean).join(" · ")}
+            {[who, character, `A${run.ascension ?? 0}`].filter(Boolean).join(" · ")}
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
             <span className={run.win ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{result}</span>
@@ -325,7 +330,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                   monsters={monsters}
                   encounters={encounters}
                   actName={model.actNames[act]}
-                  character={character}
+                  character={characterId}
                   route={{
                     boss: map.boss ? { id: map.boss } : undefined,
                     ancient: map.ancient ? { id: map.ancient } : undefined,

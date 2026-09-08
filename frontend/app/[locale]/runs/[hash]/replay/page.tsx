@@ -37,10 +37,24 @@ const fetchRun = cache(async (hash: string): Promise<ReplayRunInfo | null> => {
   return body as ReplayRunInfo;
 });
 
-function characterOf(run: ReplayRunInfo): string {
+// The game's own character names in the page's language, so the title says
+// リージェント rather than an id the reader never sees in game.
+const fetchCharacterNames = cache(async (locale: string): Promise<Record<string, string>> => {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/translations?lang=${locale}`, { next: { revalidate: 300 } });
+    if (!res.ok) return {};
+    const body = (await res.json()) as { character_names?: Record<string, string> };
+    return body.character_names ?? {};
+  } catch {
+    return {};
+  }
+});
+
+function characterOf(run: ReplayRunInfo, names: Record<string, string>): string {
   const raw = run.players?.[run.player_index ?? 0]?.character ?? run.players?.[0]?.character ?? "";
   const bare = raw.replace("CHARACTER.", "");
-  return bare ? bare.charAt(0) + bare.slice(1).toLowerCase() : "Unknown";
+  if (!bare) return "";
+  return names[bare.toLowerCase()] || bare.charAt(0) + bare.slice(1).toLowerCase();
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -48,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
   const path = `/runs/${hash}/replay`;
-  const run = await fetchRun(hash);
+  const [run, characterNames] = await Promise.all([fetchRun(hash), fetchCharacterNames(locale)]);
   if (!run || !run.has_replay) {
     return buildPageMetadata({ locale, path, title: t("Replay Not Found"), noIndex: true });
   }
@@ -59,7 +73,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     path,
     title: t("{who} - {character} - Ascension {ascension} {result} replay", {
       who,
-      character: characterOf(run),
+      character: characterOf(run, characterNames),
       ascension: run.ascension ?? 0,
       result,
     }),
