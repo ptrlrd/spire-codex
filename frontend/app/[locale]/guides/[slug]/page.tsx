@@ -6,7 +6,8 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import GuideDetail from "./GuideDetail";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
-import { localeOf, uiText } from "@/lib/locale";
+import { localeOf } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 

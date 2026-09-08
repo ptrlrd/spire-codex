@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { entityDescription, entityFallbackDescription, entityTitle, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, uiText } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
+import { entityDescription, entityFallbackDescription, entityTitle, uiText } from "@/lib/locale-server";
 import CharacterDetail from "./CharacterDetail";
 import { stripTags, stripTagsFlat, clipMetaDescription, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";

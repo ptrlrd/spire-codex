@@ -3,7 +3,8 @@ import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { stripTags, stripTagsFlat, clipMetaDescription, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
-import { localeOf, uiText } from "@/lib/locale";
+import { localeOf } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 
 export const dynamic = "force-dynamic";
 

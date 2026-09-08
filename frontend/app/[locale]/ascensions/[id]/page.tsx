@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { entityDescription, entityTitle, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, uiText } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf } from "@/lib/locale";
+import { entityDescription, entityTitle, uiText } from "@/lib/locale-server";
 import AscensionDetail from "./AscensionDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";

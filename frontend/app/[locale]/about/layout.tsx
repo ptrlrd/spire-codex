@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import { localeOf, uiText } from "@/lib/locale";
+import { localeOf } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 
 const title = "Database - About - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc = "About Spire Codex, a community-built database for Slay the Spire 2.";

@@ -1,15 +1,6 @@
 import { describe, expect, it } from "vitest";
-import {
-  englishOnlyMetadata,
-  entityTitle,
-  hreflangOf,
-  inLanguageOf,
-  isLocale,
-  langQuery,
-  listMetadata,
-  localeOf,
-  localePath,
-} from "./locale";
+import { englishOnlyMetadata, hreflangOf, inLanguageOf, isLocale, langQuery, listMetadata, localeOf, localePath } from "./locale";
+import { entityTitle } from "./locale-server";
 
 describe("locale helpers", () => {
   it("treats English as the unprefixed default", () => {

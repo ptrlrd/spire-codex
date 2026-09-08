@@ -5,7 +5,8 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import CodexMarkdown from "@/app/components/CodexMarkdown";
-import { localeOf, uiText } from "@/lib/locale";
+import { localeOf } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 
 const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 

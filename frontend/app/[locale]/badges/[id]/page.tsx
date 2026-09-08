@@ -1,6 +1,7 @@
 import { getT } from "@/lib/i18n-server";
 import type { Metadata } from "next";
-import { entityDescription, entityFallbackDescription, entityTitle, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
+import { entityDescription, entityFallbackDescription, entityTitle } from "@/lib/locale-server";
 import type { CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";

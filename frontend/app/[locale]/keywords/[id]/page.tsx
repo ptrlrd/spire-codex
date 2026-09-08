@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { entityDescription, entityTitle, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, uiText, type Locale } from "@/lib/locale";
+import { inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
+import { entityDescription, entityTitle, uiText } from "@/lib/locale-server";
 import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";

@@ -3,7 +3,8 @@ import JsonLd from "@/app/components/JsonLd";
 import { getT } from "@/lib/i18n-server";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { LANG_NAMES } from "@/lib/languages";
-import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath, uiText } from "@/lib/locale";
+import { gameNameFor, inLanguageOf, listMetadata, localeOf, localePath } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 
 type Props = { params: Promise<{ locale: string }> };
 

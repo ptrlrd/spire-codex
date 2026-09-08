@@ -4,7 +4,8 @@ import type { Character, Card } from "@/lib/api";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { LANG_NAMES } from "@/lib/languages";
-import { gameNameFor, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, uiText, type Locale } from "@/lib/locale";
+import { gameNameFor, inLanguageOf, langQuery, localeOf, localePath, ogLocaleOf, type Locale } from "@/lib/locale";
+import { uiText } from "@/lib/locale-server";
 import { DEFAULT_OG_IMAGE, buildLanguageAlternates, SITE_NAME, SITE_URL } from "@/lib/seo";
 import CompareDetail from "./CompareDetail";
 
