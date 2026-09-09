@@ -26,18 +26,23 @@ describe("parseReplay on the real journal", () => {
     expect(model.end?.terminalReason).toBe("death");
   });
 
-  it("attaches combats with turns and the death on the last floor", () => {
-    const combats = model.floors.filter((f) => f.combat);
-    expect(combats).toHaveLength(6);
-    expect(combats.every((f) => isCombatKind(f.kind))).toBe(true);
-    const turns = combats.reduce((n, f) => n + (f.combat?.turns.length ?? 0), 0);
-    expect(turns).toBe(76);
-    const last = combats[combats.length - 1].combat!;
-    expect(last.result).toBe("death");
-    expect(last.hpEnd).toBe(0);
-    const first = combats[0].combat!;
+  it("attaches combats with turns and leaves the interrupted last fight unended", () => {
+    const fighting = model.floors.filter((f) => f.combats.length);
+    expect(fighting).toHaveLength(6);
+    expect(fighting.every((f) => isCombatKind(f.kind))).toBe(true);
+    const all = model.floors.flatMap((f) => f.combats);
+    expect(all).toHaveLength(6);
+    expect(all.reduce((n, c) => n + c.turns.length, 0)).toBe(76);
+    const last = all[all.length - 1];
+    // The run's terminal reason is the run's, not this fight's.
+    expect(last.endRecorded).toBe(false);
+    expect(last.result).toBeUndefined();
+    const first = all[0];
     expect(first.encounter).toBe("NIBBITS_WEAK");
-    expect(first.result).toBe("victory");
+    expect(first.endRecorded).toBe(true);
+    // This recorder writes no result on combat_end, so every "Victory" the
+    // viewer used to show for these fights was the default, not the journal.
+    expect(first.result).toBeUndefined();
     expect(first.turns[0].lines.some((l) => l.t === "play")).toBe(true);
   });
 
@@ -85,15 +90,18 @@ describe("parseReplay on the Regent journal (deck_c, end_turn, exact identity)",
     expect(model.header?.startTime).toBe(1788649241);
     expect(model.header?.buildId).toBe("v0.111.0");
     expect(model.floors).toHaveLength(7);
-    expect(model.floors.filter((f) => f.combat)).toHaveLength(5);
+    expect(model.floors.filter((f) => f.combats.length)).toHaveLength(5);
   });
 
   it("keeps end_turn lines inside their turn and deck ids on plays", () => {
-    const first = model.floors.find((f) => f.combat)!.combat!;
+    const first = model.floors.find((f) => f.combats.length)!.combats[0];
     expect(first.turns.some((tn) => tn.lines.some((l) => l.t === "end_turn"))).toBe(true);
     const play = first.turns[0].lines.find((l): l is PlayLine => l.t === "play")!;
     expect(play.deckC).toBe(7);
-    expect(model.floors[model.floors.length - 1].combat?.result).toBe("death");
+    // The last fight was interrupted by the death, so it carries no result.
+    const lastFight = model.floors[model.floors.length - 1].combats[0];
+    expect(lastFight.endRecorded).toBe(false);
+    expect(lastFight.result).toBeUndefined();
   });
 
   it("lists the seven floors and places none of them", () => {
@@ -288,7 +296,7 @@ describe("parseReplay edge cases the reviewers named", () => {
       ]),
     );
     const f = model.floors[0];
-    expect(f.combat?.turns[0].n).toBe(0);
+    expect(f.combats[0].turns[0].n).toBe(0);
     expect(f.resumes[0].hp).toBe(35);
     expect(f.hpAfter).toBe(35);
     expect(f.goldAfter).toBe(12);
@@ -565,5 +573,98 @@ describe("parseReplay on the journal that records map positions", () => {
     expect(model.maps[1].boss).toBe("THE_KIN_BOSS");
     expect(model.maps[1].nodes.some((n) => n[2] === "boss")).toBe(true);
     expect(model.maps[1].ancient).toBeUndefined();
+  });
+});
+
+describe("a floor keeps every fight the journal recorded", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" };
+
+  it("renders two complete fights on one floor instead of only the last", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
+        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 50, result: "victory", combat_id: "1.1#0" },
+        { t: "combat_start", s: 5, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1#1" },
+        { t: "turn", s: 6, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#1" },
+        { t: "turn", s: 7, floor: 1, act: 1, n: 1, side: "player", combat_id: "1.1#1" },
+        { t: "combat_end", s: 8, floor: 1, act: 1, turns: 2, hp: 44, result: "victory", combat_id: "1.1#1" },
+      ]),
+    );
+    const [c1, c2] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(2);
+    expect([c1.encounter, c2.encounter]).toEqual(["ONE", "TWO"]);
+    expect([c1.turns.length, c2.turns.length]).toEqual([1, 2]);
+    expect([c1.hpEnd, c2.hpEnd]).toEqual([50, 44]);
+    expect([c1.result, c2.result]).toEqual(["victory", "victory"]);
+    expect(c1.endRecorded && c2.endRecorded).toBe(true);
+  });
+
+  it("keeps an unended fight when the next one starts, and leaks no turns between them", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
+        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1#1" },
+        { t: "turn", s: 5, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#1" },
+        { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, result: "victory", combat_id: "1.1#1" },
+      ]),
+    );
+    const [c1, c2] = model.floors[0].combats;
+    expect(c1.endRecorded).toBe(false);
+    expect(c1.result).toBeUndefined();
+    expect(c1.turns).toHaveLength(1);
+    expect(c2.turns).toHaveLength(1);
+    expect(c2.endRecorded).toBe(true);
+  });
+
+  it("does not fold a turn that names a different fight into the running one", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#9" },
+      ]),
+    );
+    expect(model.floors[0].combats[0].turns).toHaveLength(0);
+  });
+
+  it("does not call a fight a win when the end reported no result", () => {
+    const model = parseReplay(
+      journal([header, room, { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [] }, { t: "combat_end", s: 3, floor: 1, act: 1, turns: 3 }]),
+    );
+    const c = model.floors[0].combats[0];
+    expect(c.endRecorded).toBe(true);
+    expect(c.result).toBeUndefined();
+  });
+
+  it("does not merge two fights that share an encounter id", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1#0" },
+        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 1, combat_id: "1.1#0" },
+        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1#1" },
+        { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, combat_id: "1.1#1" },
+      ]),
+    );
+    expect(model.floors[0].combats).toHaveLength(2);
+    expect(model.floors[0].combats.map((c) => c.combatId)).toEqual(["1.1#0", "1.1#1"]);
+  });
+
+  it("keeps a reload attempt distinguishable from the fight it restarted", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0", attempt_id: 0 },
+        { t: "combat_start", s: 3, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0", attempt_id: 1 },
+      ]),
+    );
+    const [a, b] = model.floors[0].combats;
+    expect([a.attemptId, b.attemptId]).toEqual([0, 1]);
+    expect(a.endRecorded).toBe(false);
   });
 });

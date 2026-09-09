@@ -209,17 +209,23 @@ export interface CombatStartLine extends LineBase {
   t: "combat_start";
   encounter?: string;
   enemies: CombatEnemy[];
+  combatId?: string;
+  attemptId?: number;
 }
 export interface CombatEndLine extends LineBase {
   t: "combat_end";
   result?: string;
   turns?: number;
   hp?: number;
+  combatId?: string;
+  attemptId?: number;
 }
 export interface TurnLine extends LineBase {
   t: "turn";
   n: number;
   side: string;
+  combatId?: string;
+  attemptId?: number;
 }
 export interface EndTurnLine extends LineBase {
   t: "end_turn";
@@ -399,10 +405,20 @@ export interface ReplayCombat {
   encounter: string;
   enemies: CombatEnemy[];
   turns: ReplayTurn[];
-  result: string;
+  /** Only what a combat_end reported. A fight the journal never ended has no
+   * result: an interrupted fight is not a win, and the run's terminal reason
+   * is not this fight's outcome. */
+  result?: string;
+  /** False where no combat_end arrived, because the journal stopped, the run
+   * ended, or another fight started first. */
+  endRecorded: boolean;
   turnCount?: number;
   damageTaken: number;
   hpEnd?: number;
+  /** Stable across a reload that continues this fight, from version 2. */
+  combatId?: string;
+  /** The reload counter when this fight was recorded, from version 2. */
+  attemptId?: number;
 }
 
 export interface ReplayFloor {
@@ -414,7 +430,9 @@ export interface ReplayFloor {
   s: number;
   lines: ReplayLine[];
   decisions: ReplayDecision[];
-  combat?: ReplayCombat;
+  /** Every fight recorded on this floor, in order. A floor can hold more than
+   * one, and the later one used to overwrite the earlier. */
+  combats: ReplayCombat[];
   shop?: ShopLine;
   resumes: ResumeLine[];
   hpAfter?: number;
@@ -665,6 +683,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         ...base,
         t,
         encounter: str(raw.encounter),
+        combatId: str(raw.combat_id),
+        attemptId: count(raw.attempt_id),
         enemies: objects(raw.enemies).map((e, i) => ({
           i: num(e.i) ?? i,
           id: str(e.id) ?? "",
@@ -673,9 +693,24 @@ function narrow(raw: Raw): ReplayLine | undefined {
         })),
       };
     case "combat_end":
-      return { ...base, t, result: str(raw.result), turns: num(raw.turns), hp: num(raw.hp) };
+      return {
+        ...base,
+        t,
+        result: str(raw.result),
+        turns: count(raw.turns),
+        hp: num(raw.hp),
+        combatId: str(raw.combat_id),
+        attemptId: count(raw.attempt_id),
+      };
     case "turn":
-      return { ...base, t, n: num(raw.n) ?? 0, side: str(raw.side) ?? "player" };
+      return {
+        ...base,
+        t,
+        n: num(raw.n) ?? 0,
+        side: str(raw.side) ?? "player",
+        combatId: str(raw.combat_id),
+        attemptId: count(raw.attempt_id),
+      };
     case "end_turn":
       return { ...base, t, n: num(raw.n), side: str(raw.side) };
     case "draw":
@@ -983,6 +1018,7 @@ export function parseReplay(text: string): ReplayModel {
           s: line.s,
           lines: [],
           decisions: [],
+          combats: [],
           resumes: [],
           hpAfter: hp,
           goldAfter: gold,
@@ -1021,25 +1057,38 @@ export function parseReplay(text: string): ReplayModel {
     }
 
     if (line.t === "combat_start") {
+      // A fight already running is left exactly as recorded, with no end.
       combat = {
         encounter: line.encounter ?? floor?.id ?? "",
         enemies: line.enemies,
         turns: [],
-        result: "",
+        endRecorded: false,
         damageTaken: 0,
+        combatId: line.combatId,
+        attemptId: line.attemptId,
       };
       turn = undefined;
-      if (floor) floor.combat = combat;
+      if (floor) floor.combats.push(combat);
       continue;
     }
     if (combat) {
+      // From version 2 a turn or an end names its fight. One that names a
+      // different fight is not folded into this one.
+      const named = line.t === "turn" || line.t === "combat_end" ? line.combatId : undefined;
+      if (named !== undefined && combat.combatId !== undefined && named !== combat.combatId) {
+        if (floor) floor.lines.push(line);
+        continue;
+      }
       if (line.t === "turn") {
         turn = { n: line.n, side: line.side, lines: [] };
         combat.turns.push(turn);
         continue;
       }
       if (line.t === "combat_end") {
-        combat.result = line.result ?? "victory";
+        // No default result. An end that did not say how the fight went does
+        // not make it a win.
+        combat.result = line.result;
+        combat.endRecorded = true;
         combat.turnCount = line.turns;
         if (line.hp !== undefined) {
           combat.hpEnd = line.hp;
@@ -1082,10 +1131,6 @@ export function parseReplay(text: string): ReplayModel {
     }
   }
 
-  if (combat && end) {
-    combat.result = end.terminalReason ?? "unfinished";
-    if (end.hp !== undefined) combat.hpEnd = end.hp;
-  }
   if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
   for (const dec of allDecisions) reconcileSelection(dec);
 

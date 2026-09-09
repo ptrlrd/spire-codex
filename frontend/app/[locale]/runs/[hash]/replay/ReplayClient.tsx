@@ -63,13 +63,23 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
     { key: "hp", label: "HP", kind: "line", color: "var(--accent-red)", values: floors.map((f) => f.hpAfter), max: maxHp, suffix: maxHp ? `/${maxHp}` : "" },
     { key: "gold", label: t("Gold"), kind: "line", color: "var(--accent-gold)", values: floors.map((f) => f.goldAfter) },
     { key: "deck", label: t("Deck size"), kind: "line", color: "var(--text-secondary)", values: deckSizes },
-    { key: "dmg", label: t("Damage per fight"), kind: "bar", color: "var(--accent-red)", values: floors.map((f) => f.combat?.damageTaken) },
+    {
+      key: "dmg",
+      label: t("Damage per floor"),
+      kind: "bar",
+      color: "var(--accent-red)",
+      values: floors.map((f) => (f.combats.length ? f.combats.reduce((n, c) => n + c.damageTaken, 0) : undefined)),
+    },
     {
       key: "turns",
-      label: t("Turns per fight"),
+      label: t("Turns per floor"),
       kind: "bar",
       color: "var(--text-secondary)",
-      values: floors.map((f) => (f.combat ? (f.combat.turnCount ?? f.combat.turns.filter((x) => x.side === "player").length) : undefined)),
+      values: floors.map((f) =>
+        f.combats.length
+          ? f.combats.reduce((n, c) => n + (c.turnCount ?? c.turns.filter((x) => x.side === "player").length), 0)
+          : undefined,
+      ),
     },
   ];
 }

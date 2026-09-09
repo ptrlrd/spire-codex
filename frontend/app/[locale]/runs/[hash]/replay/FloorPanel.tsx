@@ -5,7 +5,7 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 import type { ReactNode } from "react";
 import { imageUrl } from "@/lib/image-url";
 import type { ScoresMap } from "@/lib/use-entity-scores";
-import type { BuyLine, HitLine, PlayLine, ReplayDecision, ReplayFloor, ReplayLine, ReplayOption, ReplayTurn, ShopItem } from "@/lib/replay";
+import type { BuyLine, HitLine, PlayLine, ReplayCombat, ReplayDecision, ReplayFloor, ReplayLine, ReplayOption, ReplayTurn, ShopItem } from "@/lib/replay";
 import { isCombatKind } from "@/lib/replay";
 import { type EncounterMap, type MonsterMap, LiveCardImg, safeId } from "@/app/[locale]/live/live-shared";
 import { cleanId, displayName, type CardInfo, type PotionInfo, type RelicInfo } from "../RunPills";
@@ -459,10 +459,9 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
   );
 }
 
-function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
+function CombatBlock({ c, n, of, cat }: { c: ReplayCombat; n: number; of: number; cat: Catalog }) {
   const t = useT();
   const lang = useGameLocale();
-  const c = f.combat!;
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-center gap-3">
@@ -480,11 +479,19 @@ function CombatBlock({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
           ))}
         </div>
         <div className="text-sm">
-          <div className="font-semibold text-[var(--text-primary)]">{c.enemies.map((e) => monsterName(e.id, cat)).join(", ")}</div>
+          <div className="font-semibold text-[var(--text-primary)]">
+            {of > 1 && <span className="mr-1.5 text-xs text-[var(--text-muted)]">{t("Fight {n} of {of}", { n: n + 1, of })}</span>}
+            {c.enemies.map((e) => monsterName(e.id, cat)).join(", ")}
+          </div>
           <div className="text-xs text-[var(--text-muted)]">
-            {c.result && (
+            {c.result ? (
               <>
                 <span className={c.result === "victory" ? "text-[var(--accent-gold)]" : "text-[var(--accent-red)]"}>{t(c.result === "victory" ? "Victory" : c.result === "death" ? "Died" : displayName(c.result))}</span>
+                {" · "}
+              </>
+            ) : (
+              <>
+                <span className="text-[var(--text-muted)]">{t(c.endRecorded ? "Result not recorded" : "End not recorded")}</span>
                 {" · "}
               </>
             )}
@@ -512,7 +519,7 @@ function LootLine({ f, cat }: { f: ReplayFloor; cat: Catalog }) {
     if (decided.has(l.s)) continue;
     if (isShopKind(f.kind) && (l.t === "buy" || l.t === "remove" || l.t === "acquire")) continue;
     if (l.t === "resume") continue;
-    if (f.combat && (l.t === "hp" || l.t === "hp_loss")) continue;
+    if (f.combats.length && (l.t === "hp" || l.t === "hp_loss")) continue;
     const text = describeLine(l, cat, t);
     if (text) bits.push(text);
   }
@@ -552,13 +559,15 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
           {f.goldAfter !== undefined && <> · {f.goldAfter} {t("gold")}<Delta value={goldDelta} /></>}
         </span>
       </header>
-      {f.combat && <CombatBlock f={f} cat={cat} />}
+      {f.combats.map((c, i) => (
+        <CombatBlock key={`${c.combatId ?? c.encounter}-${i}`} c={c} n={i} of={f.combats.length} cat={cat} />
+      ))}
       {isShopKind(f.kind) && <ShopBlock f={f} prev={prev} cat={cat} />}
       {visibleDecisions.map((d) => (
         <DecisionCard key={d.id} d={d} cat={cat} />
       ))}
       <LootLine f={f} cat={cat} />
-      {!f.combat && !f.decisions.length && !f.lines.some((l) => ["relic", "acquire", "potion_got", "upgrade", "remove", "transform", "rest", "buy"].includes(l.t)) && (
+      {!f.combats.length && !f.decisions.length && !f.lines.some((l) => ["relic", "acquire", "potion_got", "upgrade", "remove", "transform", "rest", "buy"].includes(l.t)) && (
         <p className="text-sm text-[var(--text-muted)]">{t("Nothing else was recorded on this floor.")}</p>
       )}
     </div>
