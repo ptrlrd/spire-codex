@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
-import { hasMapPositions, parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
+import { combatCounts, hasMapPositions, parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import LiveMap from "@/app/[locale]/live/LiveMap";
 import { characterName, useCharacterNames, useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
@@ -75,7 +75,7 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
       // HP loss was rolled back with it, and every number in it is real, which
       // is what would make the double count hard to see.
       values: floors.map((f) => {
-        const kept = f.combats.filter((c) => !c.supersededByRetry);
+        const kept = f.combats.filter(combatCounts);
         return kept.length && kept.every((c) => c.hpLost !== undefined)
           ? kept.reduce((n, c) => n + (c.hpLost ?? 0), 0)
           : undefined;
@@ -87,7 +87,7 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
       kind: "bar",
       color: "var(--text-secondary)",
       values: floors.map((f) => {
-        const kept = f.combats.filter((c) => !c.supersededByRetry);
+        const kept = f.combats.filter(combatCounts);
         return kept.length ? kept.reduce((n, c) => n + (c.turnCount ?? c.turns.filter((x) => x.side === "player").length), 0) : undefined;
       }),
     },

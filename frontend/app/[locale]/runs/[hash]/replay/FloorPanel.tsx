@@ -509,9 +509,9 @@ function CombatBlock({ c, label, cat }: { c: ReplayCombat; label?: string; cat: 
               </>
             )}
             {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns")}
-            {c.supersededByRetry && (
+            {(c.supersededByRetry || c.rolledBackByReload) && (
               <>
-                <span className="text-[var(--text-muted)]">{t("Restarted by a reload, so this attempt did not stick")}</span>
+                <span className="text-[var(--text-muted)]">{t("Undone by a reload, so this attempt did not stick")}</span>
                 {" · "}
               </>
             )}

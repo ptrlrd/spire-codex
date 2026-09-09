@@ -442,6 +442,10 @@ export interface ReplayCombat {
    * resuming it, so an abandoned attempt's HP loss was rolled back with it and
    * must never be added to anything. */
   supersededByRetry: boolean;
+  /** The journal resumed on this floor after the fight started without
+   * finishing, so the reload undid it. This catches the fight that was never
+   * attempted again, which no later attempt can mark. */
+  rolledBackByReload: boolean;
 }
 
 export interface ReplayFloor {
@@ -1204,7 +1208,17 @@ export function parseReplay(text: string): ReplayModel {
         break;
       case "resume":
         resumes.push(line);
-        if (floor) floor.resumes.push(line);
+        if (floor) {
+          floor.resumes.push(line);
+          // The game saves at room boundaries, so resuming on this floor put
+          // the player back at the start of it. A fight already begun here and
+          // never finished was undone, whether or not it was fought again.
+          for (const c of floor.combats) if (!c.endRecorded) c.rolledBackByReload = true;
+        }
+        // The previous session's fight cannot continue into this one.
+        combat = undefined;
+        hpLoss = undefined;
+        turn = undefined;
         snapshot(floor, line.hp, line.gold);
         break;
     }
@@ -1217,6 +1231,7 @@ export function parseReplay(text: string): ReplayModel {
         turns: [],
         endRecorded: false,
         supersededByRetry: false,
+        rolledBackByReload: false,
         combatId: line.combatId,
         attemptId: line.attemptId,
       };
@@ -1362,6 +1377,14 @@ export function routeForAct(model: ReplayModel, act: number): RouteEntry[] {
  * before it bumped the version. */
 export function hasMapPositions(model: ReplayModel): boolean {
   return (model.header?.replayVersion ?? 1) >= 2 || model.floors.some((f) => f.coord !== undefined);
+}
+
+/** Whether this fight is part of what happened on its floor. A fight a reload
+ * undid is still a recorded thing and still rendered, but it is not counted:
+ * every number in it is real, which is what would make the double count hard
+ * to see. */
+export function combatCounts(c: ReplayCombat): boolean {
+  return !c.supersededByRetry && !c.rolledBackByReload;
 }
 
 export function isCombatKind(kind: string): boolean {

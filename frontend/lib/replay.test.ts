@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
+import { combatCounts, hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
 
 const JOURNAL = readFileSync(new URL("../../backend/tests/fixtures/real-replay.jsonl", import.meta.url), "utf-8");
 
@@ -998,5 +998,61 @@ describe("a reload restarts a fight, so only the last attempt happened", () => {
     const cs = model.floors[0].combats;
     expect(cs.every((c) => !c.supersededByRetry)).toBe(true);
     expect(cs.reduce((n, c) => n + (c.hpLost ?? 0), 0)).toBe(13);
+  });
+});
+
+describe("a reload undoes a fight it never came back to", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+
+  it("does not count a fight the reload rolled back and never repeated", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
+        { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 0 },
+        { t: "turn", s: 4, floor: 21, act: 2, n: 0, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 0 },
+        // The journal resumes on the same floor, so the game put the player
+        // back at the start of the room. No second attempt is ever recorded.
+        { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 },
+      ]),
+    );
+    const [c] = model.floors[0].combats;
+    expect(c.rolledBackByReload).toBe(true);
+    expect(c.supersededByRetry).toBe(false);
+    expect(combatCounts(c)).toBe(false);
+    // It is still rendered, because it is a recorded thing that happened.
+    expect(c.turns).toHaveLength(1);
+  });
+
+  it("leaves a fight that finished before the reload alone", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
+        { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT" },
+        { t: "combat_end", s: 4, floor: 21, act: 2, turns: 1, result: "victory", combat_id: "2.21:AXEBOT", hp_lost_total: 9 },
+        { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 61, gold: 100 },
+      ]),
+    );
+    const [c] = model.floors[0].combats;
+    expect(c.rolledBackByReload).toBe(false);
+    expect(combatCounts(c)).toBe(true);
+    expect(c.hpLost).toBe(9);
+  });
+
+  it("does not touch an unfinished fight on an earlier floor", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 20, act: 2, kind: "combat", id: "CHOMPER" },
+        { t: "combat_start", s: 2, floor: 20, act: 2, encounter: "CHOMPER", enemies: [], combat_id: "2.20:CHOMPER" },
+        { t: "room", s: 3, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "resume", s: 4, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 },
+      ]),
+    );
+    // The reload landed on floor 21, so floor 20 is behind the save point.
+    expect(model.floors[0].combats[0].rolledBackByReload).toBe(false);
   });
 });
