@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
-import { combatCounts, hasMapPositions, parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
+import { captureIsComplete, combatCounts, hasMapPositions, parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import LiveMap from "@/app/[locale]/live/LiveMap";
 import { characterName, useCharacterNames, useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
@@ -328,6 +328,17 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
           </p>
         </div>
       </header>
+      {model && captureIsComplete(model) === false && (
+        <p className="mb-4 rounded-lg border border-[var(--accent-red)] px-3 py-2 text-sm text-[var(--text-secondary)]">
+          {model.end?.captureStatus === "truncated"
+            ? t("The recording stopped before the run ended, so the later floors are missing.")
+            : t("The recording dropped some of this run, so parts of it are missing.")}
+          {model.end?.lostCount !== undefined && ` ${t("Lines not captured: {n}", { n: model.end.lostCount })}`}
+        </p>
+      )}
+      {model && model.malformedLines > 0 && (
+        <p className="mb-4 text-xs text-[var(--text-muted)]">{t("Lines that could not be read: {n}", { n: model.malformedLines })}</p>
+      )}
       {model && <RunCharts model={model} floors={floors} maxHp={maxHp} selected={selected ?? -1} onPick={pick} />}
 
       {error && <p className="text-sm text-[var(--accent-red)]">{t("Couldn't load the replay.")} {error}</p>}

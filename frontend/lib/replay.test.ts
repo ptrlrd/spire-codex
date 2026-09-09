@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { combatCounts, hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
+import { captureIsComplete, combatCounts, hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
 
 const JOURNAL = readFileSync(new URL("../../backend/tests/fixtures/real-replay.jsonl", import.meta.url), "utf-8");
 
@@ -1054,5 +1054,45 @@ describe("a reload undoes a fight it never came back to", () => {
     );
     // The reload landed on floor 21, so floor 20 is behind the save point.
     expect(model.floors[0].combats[0].rolledBackByReload).toBe(false);
+  });
+});
+
+describe("the journal saying its own capture was incomplete", () => {
+  const base = [
+    { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] },
+    { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+  ];
+
+  it("reads a complete capture as complete", () => {
+    const model = parseReplay(journal([...base, { t: "end", s: 2, terminal_reason: "death", capture_status: "complete" }]));
+    expect(captureIsComplete(model)).toBe(true);
+  });
+
+  it("carries a gapped capture and what it lost", () => {
+    const model = parseReplay(
+      journal([...base, { t: "end", s: 2, terminal_reason: "death", capture_status: "gapped", stop_reason: "queue_full", lost_from_seq: 44, lost_count: 17 }]),
+    );
+    expect(captureIsComplete(model)).toBe(false);
+    expect(model.end?.stopReason).toBe("queue_full");
+    expect(model.end?.lostFromSeq).toBe(44);
+    expect(model.end?.lostCount).toBe(17);
+  });
+
+  it("carries a truncated capture", () => {
+    const model = parseReplay(journal([...base, { t: "end", s: 2, terminal_reason: "death", capture_status: "truncated" }]));
+    expect(captureIsComplete(model)).toBe(false);
+    expect(model.end?.captureStatus).toBe("truncated");
+  });
+
+  it("says unknown rather than complete when the journal never stated it", () => {
+    const model = parseReplay(journal([...base, { t: "end", s: 2, terminal_reason: "death" }]));
+    expect(captureIsComplete(model)).toBeUndefined();
+  });
+
+  it("reads the status the repository journals actually carry", () => {
+    for (const f of ["real-replay-coords.jsonl", "real-replay.jsonl", "real-replay-regent.jsonl", "sample-replay.jsonl"]) {
+      const model = parseReplay(readFileSync(new URL(`../../backend/tests/fixtures/${f}`, import.meta.url), "utf-8"));
+      expect(captureIsComplete(model)).toBe(true);
+    }
   });
 });

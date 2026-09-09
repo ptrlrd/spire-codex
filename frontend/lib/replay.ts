@@ -309,6 +309,15 @@ export interface EndLine extends LineBase {
   isGameOver?: boolean;
   hp?: number;
   maxHp?: number;
+  /** The recorder's own verdict on whether it captured the whole run:
+   * "complete", "gapped" (lines dropped under queue pressure, so the sequence
+   * jumps) or "truncated" (capture stopped before the run ended). */
+  captureStatus?: string;
+  /** Why capture stopped or dropped lines. Present only when not complete. */
+  stopReason?: string;
+  /** The sequence number of the first dropped line, and how many went. */
+  lostFromSeq?: number;
+  lostCount?: number;
   finalDeck: DeckCard[];
 }
 export interface UnknownLine extends LineBase {
@@ -803,6 +812,10 @@ function narrow(raw: Raw): ReplayLine | undefined {
         isGameOver: bool(raw.is_game_over),
         hp: num(raw.hp),
         maxHp: num(raw.max_hp),
+        captureStatus: str(raw.capture_status),
+        stopReason: str(raw.stop_reason),
+        lostFromSeq: count(raw.lost_from_seq),
+        lostCount: count(raw.lost_count),
         finalDeck: deckOf(raw.final_deck),
       };
     default:
@@ -1385,6 +1398,15 @@ export function hasMapPositions(model: ReplayModel): boolean {
  * to see. */
 export function combatCounts(c: ReplayCombat): boolean {
   return !c.supersededByRetry && !c.rolledBackByReload;
+}
+
+/** Whether the recorder said it captured the whole run. A journal that reports
+ * its own gap must not be read as a run where nothing happened for a stretch,
+ * so this is the one place the viewer takes the recorder's word for something
+ * it cannot see for itself. Unknown where the journal never said. */
+export function captureIsComplete(model: ReplayModel): boolean | undefined {
+  const status = model.end?.captureStatus;
+  return status === undefined ? undefined : status === "complete";
 }
 
 export function isCombatKind(kind: string): boolean {
