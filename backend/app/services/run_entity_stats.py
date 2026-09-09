@@ -2170,14 +2170,36 @@ def snapshot_status() -> dict[str, Any]:
     """Cheap in-memory status so the UI can tell "no data" apart from
     "warming up after a deploy". Lake-era: the only warm-up is the entity
     overlay loading from the pulled artifacts."""
+    data_through = (
+        _data_through[0].isoformat()
+        if _data_through and hasattr(_data_through[0], "isoformat")
+        else None
+    )
+    if data_through is None:
+        data_through = _lake_data_through()
     return {
         "building": not _cache,
         "built_at": _cache_built_at or None,
-        "data_through": _data_through[0].isoformat()
-        if _data_through and hasattr(_data_through[0], "isoformat")
-        else None,
+        "data_through": data_through,
         "total_runs": (_global_totals or {}).get("total_runs", 0),
     }
+
+
+def _lake_data_through() -> str | None:
+    """The ingest-built store's cursor, then the cube's. The snapshot-era
+    `_data_through` is never set now that the lake builds the stats."""
+    try:
+        from . import lake_stats
+
+        for hit in (
+            lake_stats.entity_store_with_mtime(),
+            lake_stats._entity_cube_with_mtime(),
+        ):
+            if hit and hit[1].get("data_through"):
+                return str(hit[1]["data_through"])
+    except Exception:
+        logger.warning("lake data_through read failed", exc_info=True)
+    return None
 
 
 _lake_overlay_mtime = 0.0
