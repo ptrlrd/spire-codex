@@ -509,6 +509,12 @@ function CombatBlock({ c, label, cat }: { c: ReplayCombat; label?: string; cat: 
               </>
             )}
             {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns")}
+            {c.supersededByRetry && (
+              <>
+                <span className="text-[var(--text-muted)]">{t("Restarted by a reload, so this attempt did not stick")}</span>
+                {" · "}
+              </>
+            )}
             {" · "}
             {c.hpLost !== undefined
               ? `${c.hpLost} ${t("HP lost")}`

@@ -432,10 +432,16 @@ export interface ReplayCombat {
    * everything. Never interchangeable with hpLost. */
   hpLossRecorded?: number;
   hpEnd?: number;
-  /** Stable across a reload that continues this fight, from version 2. */
+  /** Identifies the fight, from version 2. Stable across a reload, so two
+   * combats sharing one are attempts at the same fight, not two fights. */
   combatId?: string;
-  /** The reload counter when this fight was recorded, from version 2. */
+  /** The reload counter when this attempt was recorded, from version 2. */
   attemptId?: number;
+  /** A later attempt at this same fight was recorded, so this one was thrown
+   * away. The game rebuilds a combat from the encounter on load rather than
+   * resuming it, so an abandoned attempt's HP loss was rolled back with it and
+   * must never be added to anything. */
+  supersededByRetry: boolean;
 }
 
 export interface ReplayFloor {
@@ -1210,6 +1216,7 @@ export function parseReplay(text: string): ReplayModel {
         enemies: line.enemies,
         turns: [],
         endRecorded: false,
+        supersededByRetry: false,
         combatId: line.combatId,
         attemptId: line.attemptId,
       };
@@ -1304,6 +1311,14 @@ export function parseReplay(text: string): ReplayModel {
 
   if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
   for (const dec of allDecisions) reconcileSelection(dec);
+  // A reload restarts a fight rather than resuming it, so only the last attempt
+  // at a given fight is the one that happened.
+  for (const floor of floors) {
+    for (const c of floor.combats) {
+      if (c.combatId === undefined) continue;
+      c.supersededByRetry = floor.combats.lastIndexOf(c) < floor.combats.map((x) => x.combatId).lastIndexOf(c.combatId);
+    }
+  }
 
   return {
     header,

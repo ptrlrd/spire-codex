@@ -71,23 +71,25 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
       // Only the recorder's own totals. The recorded HP changes are a lower
       // bound per fight, so adding them into the same series would present two
       // different measurements as one. A floor with any unknown fight is
-      // unknown, not smaller.
-      values: floors.map((f) =>
-        f.combats.length && f.combats.every((c) => c.hpLost !== undefined)
-          ? f.combats.reduce((n, c) => n + (c.hpLost ?? 0), 0)
-          : undefined,
-      ),
+      // unknown, not smaller. An attempt a reload threw away is left out: its
+      // HP loss was rolled back with it, and every number in it is real, which
+      // is what would make the double count hard to see.
+      values: floors.map((f) => {
+        const kept = f.combats.filter((c) => !c.supersededByRetry);
+        return kept.length && kept.every((c) => c.hpLost !== undefined)
+          ? kept.reduce((n, c) => n + (c.hpLost ?? 0), 0)
+          : undefined;
+      }),
     },
     {
       key: "turns",
       label: t("Turns per floor"),
       kind: "bar",
       color: "var(--text-secondary)",
-      values: floors.map((f) =>
-        f.combats.length
-          ? f.combats.reduce((n, c) => n + (c.turnCount ?? c.turns.filter((x) => x.side === "player").length), 0)
-          : undefined,
-      ),
+      values: floors.map((f) => {
+        const kept = f.combats.filter((c) => !c.supersededByRetry);
+        return kept.length ? kept.reduce((n, c) => n + (c.turnCount ?? c.turns.filter((x) => x.side === "player").length), 0) : undefined;
+      }),
     },
   ];
 }

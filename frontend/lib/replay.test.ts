@@ -584,13 +584,13 @@ describe("a floor keeps every fight the journal recorded", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
-        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
-        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 50, result: "victory", combat_id: "1.1#0" },
-        { t: "combat_start", s: 5, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1#1" },
-        { t: "turn", s: 6, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#1" },
-        { t: "turn", s: 7, floor: 1, act: 1, n: 1, side: "player", combat_id: "1.1#1" },
-        { t: "combat_end", s: 8, floor: 1, act: 1, turns: 2, hp: 44, result: "victory", combat_id: "1.1#1" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1:AXEBOT" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:AXEBOT" },
+        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 50, result: "victory", combat_id: "1.1:AXEBOT" },
+        { t: "combat_start", s: 5, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1:CHOMPER" },
+        { t: "turn", s: 6, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:CHOMPER" },
+        { t: "turn", s: 7, floor: 1, act: 1, n: 1, side: "player", combat_id: "1.1:CHOMPER" },
+        { t: "combat_end", s: 8, floor: 1, act: 1, turns: 2, hp: 44, result: "victory", combat_id: "1.1:CHOMPER" },
       ]),
     );
     const [c1, c2] = model.floors[0].combats;
@@ -606,11 +606,11 @@ describe("a floor keeps every fight the journal recorded", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
-        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
-        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1#1" },
-        { t: "turn", s: 5, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#1" },
-        { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, result: "victory", combat_id: "1.1#1" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1:AXEBOT" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:AXEBOT" },
+        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "TWO", enemies: [], combat_id: "1.1:CHOMPER" },
+        { t: "turn", s: 5, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:CHOMPER" },
+        { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, result: "victory", combat_id: "1.1:CHOMPER" },
       ]),
     );
     const [c1, c2] = model.floors[0].combats;
@@ -625,8 +625,8 @@ describe("a floor keeps every fight the journal recorded", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0" },
-        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#9" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1:AXEBOT" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:OTHER" },
       ]),
     );
     expect(model.floors[0].combats[0].turns).toHaveLength(0);
@@ -645,22 +645,22 @@ describe("a floor keeps every fight the journal recorded", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1#0" },
-        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 1, combat_id: "1.1#0" },
-        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1#1" },
-        { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, combat_id: "1.1#1" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1:AXEBOT" },
+        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 1, combat_id: "1.1:AXEBOT" },
+        { t: "combat_start", s: 4, floor: 1, act: 1, encounter: "SAME", enemies: [], combat_id: "1.1:CHOMPER" },
+        { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, combat_id: "1.1:CHOMPER" },
       ]),
     );
     expect(model.floors[0].combats).toHaveLength(2);
-    expect(model.floors[0].combats.map((c) => c.combatId)).toEqual(["1.1#0", "1.1#1"]);
+    expect(model.floors[0].combats.map((c) => c.combatId)).toEqual(["1.1:AXEBOT", "1.1:CHOMPER"]);
   });
 
   it("keeps a reload attempt distinguishable from the fight it restarted", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0", attempt_id: 0 },
-        { t: "combat_start", s: 3, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1#0", attempt_id: 1 },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1:AXEBOT", attempt_id: 0 },
+        { t: "combat_start", s: 3, floor: 1, act: 1, encounter: "ONE", enemies: [], combat_id: "1.1:AXEBOT", attempt_id: 1 },
       ]),
     );
     const [a, b] = model.floors[0].combats;
@@ -892,8 +892,8 @@ describe("a fight's identity decides what belongs to it", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1#0", attempt_id: 1 },
-        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 4, result: "victory", combat_id: "1.1#0", attempt_id: 0 },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1:AXEBOT", attempt_id: 1 },
+        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 4, result: "victory", combat_id: "1.1:AXEBOT", attempt_id: 0 },
       ]),
     );
     const c = model.floors[0].combats[0];
@@ -905,9 +905,9 @@ describe("a fight's identity decides what belongs to it", () => {
     const model = parseReplay(
       journal([
         header, room,
-        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1#0" },
-        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
-        { t: "turn", s: 4, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#9" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1:AXEBOT" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:AXEBOT" },
+        { t: "turn", s: 4, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1:OTHER" },
         { t: "play", s: 5, floor: 1, act: 1, id: "STRIKE" },
         { t: "hp", s: 6, floor: 1, act: 1, hp: 30, d: -10 },
       ]),
@@ -949,5 +949,54 @@ describe("the map places a coordinate the recorder named on its own", () => {
     );
     expect(model.maps[1].nodes.filter((n) => n[0] === 3 && n[1] === 0)).toHaveLength(1);
     expect(model.maps[1].edges).toEqual([[3, 0, 2, 1], [3, 0, 3, 1]]);
+  });
+});
+
+describe("a reload restarts a fight, so only the last attempt happened", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+
+  // The shape the recorder produces for a mid-fight reload: two starts sharing
+  // a combat id, the abandoned one with no end at all.
+  const reloaded = journal([
+    header,
+    { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+    { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
+    { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 0 },
+    { t: "turn", s: 4, floor: 21, act: 2, n: 0, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 0 },
+    { t: "combat_start", s: 5, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 1 },
+    { t: "turn", s: 6, floor: 21, act: 2, n: 0, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 1 },
+    { t: "combat_end", s: 7, floor: 21, act: 2, turns: 1, result: "victory", combat_id: "2.21:AXEBOT", attempt_id: 1, hp_lost_total: 12 },
+  ]);
+
+  it("keeps both attempts but marks the abandoned one as thrown away", () => {
+    const [first, second] = parseReplay(reloaded).floors[0].combats;
+    expect(first.supersededByRetry).toBe(true);
+    expect(first.endRecorded).toBe(false);
+    expect(second.supersededByRetry).toBe(false);
+    expect(second.hpLost).toBe(12);
+  });
+
+  it("counts the floor's HP loss once, from the attempt that stuck", () => {
+    const kept = parseReplay(reloaded).floors[0].combats.filter((c) => !c.supersededByRetry);
+    // Both attempts are real records. Adding them would charge the player for
+    // damage the reload rolled back.
+    expect(kept).toHaveLength(1);
+    expect(kept.reduce((n, c) => n + (c.hpLost ?? 0), 0)).toBe(12);
+  });
+
+  it("does not call two different fights on one floor attempts at each other", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "combat_start", s: 2, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 0 },
+        { t: "combat_end", s: 3, floor: 21, act: 2, turns: 1, result: "victory", combat_id: "2.21:AXEBOT", attempt_id: 0, hp_lost_total: 5 },
+        { t: "combat_start", s: 4, floor: 21, act: 2, encounter: "CHOMPER", enemies: [], combat_id: "2.21:CHOMPER", attempt_id: 0 },
+        { t: "combat_end", s: 5, floor: 21, act: 2, turns: 1, result: "victory", combat_id: "2.21:CHOMPER", attempt_id: 0, hp_lost_total: 8 },
+      ]),
+    );
+    const cs = model.floors[0].combats;
+    expect(cs.every((c) => !c.supersededByRetry)).toBe(true);
+    expect(cs.reduce((n, c) => n + (c.hpLost ?? 0), 0)).toBe(13);
   });
 });
