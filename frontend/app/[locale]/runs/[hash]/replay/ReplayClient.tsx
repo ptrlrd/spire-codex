@@ -363,12 +363,12 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                   <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">{t("This recording did not include map positions.")}</p>
                 ) : unplaced > 0 ? (
                   <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
-                    {t("{n} floors on this act have no recorded position.", { n: unplaced })}
+                    {t("Floors with no recorded position: {n}", { n: unplaced })}
                   </p>
                 ) : null}
                 {offMap > 0 && (
                   <p className="px-1 pt-1 text-[11px] text-[var(--text-muted)]">
-                    {t("{n} recorded positions are not on the recorded map.", { n: offMap })}
+                    {t("Recorded positions not on the map: {n}", { n: offMap })}
                   </p>
                 )}
               </div>
