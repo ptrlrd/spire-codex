@@ -336,6 +336,16 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
           {model.end?.lostCount !== undefined && ` ${t("Lines not captured: {n}", { n: model.end.lostCount })}`}
         </p>
       )}
+      {model && model.gaps.length > 0 && (
+        <p className="mb-4 text-xs text-[var(--text-muted)]">
+          {t("Missing from the record: {n} lines in {places} places", {
+            n: model.gaps.reduce((a, g) => a + g.count, 0),
+            places: model.gaps.length,
+          })}
+          {model.gaps.some((g) => g.floor !== undefined) &&
+            ` · ${t("Floors affected: {list}", { list: [...new Set(model.gaps.flatMap((g) => (g.floor === undefined ? [] : [g.floor])))].join(", ") })}`}
+        </p>
+      )}
       {model && model.malformedLines > 0 && (
         <p className="mb-4 text-xs text-[var(--text-muted)]">{t("Lines that could not be read: {n}", { n: model.malformedLines })}</p>
       )}

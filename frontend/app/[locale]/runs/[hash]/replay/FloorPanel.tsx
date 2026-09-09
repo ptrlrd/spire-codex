@@ -584,6 +584,11 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
           {f.goldAfter !== undefined && <> · {f.goldAfter} {t("gold")}<Delta value={goldDelta} /></>}
         </span>
       </header>
+      {f.linesLost > 0 && (
+        <p className="rounded-md border border-[var(--border-subtle)] px-3 py-2 text-xs text-[var(--text-muted)]">
+          {t("{n} lines from this floor are missing from the record, so something here went unrecorded.", { n: f.linesLost })}
+        </p>
+      )}
       {f.combats.map((c, i) => (
         <CombatBlock key={`${c.combatId ?? c.encounter}-${i}`} c={c} label={combatNames[i]} cat={cat} />
       ))}

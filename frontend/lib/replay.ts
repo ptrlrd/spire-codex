@@ -465,6 +465,8 @@ export interface ReplayFloor {
   coord?: Coord;
   s: number;
   lines: ReplayLine[];
+  /** How many lines the journal is missing on this floor. */
+  linesLost: number;
   decisions: ReplayDecision[];
   /** Every fight recorded on this floor, in order. A floor can hold more than
    * one, and the later one used to overwrite the earlier. */
@@ -492,6 +494,24 @@ export interface RouteEntry {
   offMap?: boolean;
 }
 
+/** A run of lines the journal is missing, located exactly.
+ *
+ * The recorder assigns a line its sequence number before it tries to write it,
+ * so a line that fails to be written has already spent one. A jump in the
+ * sequence is therefore a gap, and the size of the jump is how many lines went
+ * missing there. Nothing is inferred: the file says where and how many.
+ *
+ * A truncated capture leaves no jump, because writing stops before the
+ * sequence is spent. Only the end line's capture status reveals that. */
+export interface ReplayGap {
+  /** The last sequence number present before the gap. */
+  afterSeq: number;
+  /** How many lines are missing. */
+  count: number;
+  /** The floor the run was on across the gap, where the lines around it said. */
+  floor?: number;
+}
+
 export interface ReplayModel {
   header?: HeaderLine;
   end?: EndLine;
@@ -504,6 +524,12 @@ export interface ReplayModel {
   reloads: number;
   lineCount: number;
   malformedLines: number;
+  /** Every break in the sequence, in order. */
+  gaps: ReplayGap[];
+  /** Whether the recorder's own count of lost lines matches the gaps found in
+   * the sequence. False means the two disagree and something else is wrong.
+   * Undefined where the journal reported no count. */
+  lostCountAgrees?: boolean;
 }
 
 const COMBAT_KINDS = new Set(["combat", "monster", "burly_monster", "elite", "boss"]);
@@ -1186,6 +1212,7 @@ export function parseReplay(text: string): ReplayModel {
           coord: line.coord,
           s: line.s,
           lines: [],
+          linesLost: 0,
           decisions: [],
           combats: [],
           resumes: [],
@@ -1338,6 +1365,16 @@ export function parseReplay(text: string): ReplayModel {
   }
 
   if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
+  // Where the sequence jumps, lines are missing, and the jump says how many.
+  const gaps: ReplayGap[] = [];
+  for (let i = 1; i < lines.length; i += 1) {
+    const missing = lines[i].s - lines[i - 1].s - 1;
+    if (missing > 0) gaps.push({ afterSeq: lines[i - 1].s, count: missing, floor: lines[i - 1].floor ?? lines[i].floor });
+  }
+  for (const gap of gaps) {
+    const floor = gap.floor === undefined ? undefined : floors.find((f) => f.floor === gap.floor);
+    if (floor) floor.linesLost += gap.count;
+  }
   for (const dec of allDecisions) reconcileSelection(dec);
   // A reload restarts a fight rather than resuming it, so only the last attempt
   // at a given fight is the one that happened.
@@ -1360,6 +1397,9 @@ export function parseReplay(text: string): ReplayModel {
     reloads: resumes.reduce((max, r) => Math.max(max, r.reloads), 0),
     lineCount: lines.length,
     malformedLines: malformed,
+    gaps,
+    lostCountAgrees:
+      end?.lostCount === undefined ? undefined : end.lostCount === gaps.reduce((n, g) => n + g.count, 0),
   };
 }
 

@@ -1096,3 +1096,73 @@ describe("the journal saying its own capture was incomplete", () => {
     }
   });
 });
+
+describe("a jump in the sequence locates exactly what the journal lost", () => {
+  it("finds nothing in a contiguous journal", () => {
+    for (const f of ["real-replay-coords.jsonl", "real-replay.jsonl", "real-replay-regent.jsonl", "sample-replay.jsonl"]) {
+      const model = parseReplay(readFileSync(new URL(`../../backend/tests/fixtures/${f}`, import.meta.url), "utf-8"));
+      expect(model.gaps).toEqual([]);
+      expect(model.floors.every((fl) => fl.linesLost === 0)).toBe(true);
+    }
+  });
+
+  it("reads a jump as exactly that many lost lines, on the floor it happened", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "play", s: 2, floor: 1, act: 1, id: "STRIKE" },
+        // s 3 through 6 were assigned to lines that never made it out.
+        { t: "play", s: 7, floor: 1, act: 1, id: "DEFEND" },
+        { t: "end", s: 8, terminal_reason: "death", capture_status: "gapped", stop_reason: "queue_full", lost_from_seq: 3, lost_count: 4 },
+      ]),
+    );
+    expect(model.gaps).toEqual([{ afterSeq: 2, count: 4, floor: 1 }]);
+    expect(model.floors[0].linesLost).toBe(4);
+    expect(model.lostCountAgrees).toBe(true);
+  });
+
+  it("finds every scattered gap, not just the first the recorder named", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "room", s: 1, floor: 8, act: 1, kind: "combat", id: "A" },
+        { t: "play", s: 4, floor: 8, act: 1, id: "STRIKE" },
+        { t: "room", s: 5, floor: 30, act: 3, kind: "combat", id: "B" },
+        { t: "play", s: 9, floor: 30, act: 3, id: "DEFEND" },
+        { t: "end", s: 10, terminal_reason: "death", capture_status: "gapped", lost_from_seq: 2, lost_count: 5 },
+      ]),
+    );
+    // lost_from_seq names only the first drop, so a viewer built on it alone
+    // would have marked floor 8 and missed floor 30 entirely.
+    expect(model.gaps.map((g) => [g.afterSeq, g.count, g.floor])).toEqual([[1, 2, 8], [5, 3, 30]]);
+    expect(model.floors.map((f) => f.linesLost)).toEqual([2, 3]);
+    expect(model.lostCountAgrees).toBe(true);
+  });
+
+  it("reports when the recorder's count disagrees with the sequence", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "play", s: 4, floor: 1, act: 1, id: "STRIKE" },
+        { t: "end", s: 5, terminal_reason: "death", capture_status: "gapped", lost_count: 99 },
+      ]),
+    );
+    expect(model.lostCountAgrees).toBe(false);
+  });
+
+  it("leaves a truncated capture with no gaps to find, since the tail spent no sequence", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "end", s: 2, terminal_reason: "quit", capture_status: "truncated", stop_reason: "writer_error" },
+      ]),
+    );
+    expect(model.gaps).toEqual([]);
+    // Only the status reveals it. A contiguous sequence is not proof of a
+    // complete capture.
+    expect(captureIsComplete(model)).toBe(false);
+  });
+});
