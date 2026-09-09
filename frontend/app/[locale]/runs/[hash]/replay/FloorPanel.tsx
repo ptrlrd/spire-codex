@@ -247,7 +247,15 @@ function DecisionCard({ d, cat }: { d: ReplayDecision; cat: Catalog }) {
         </span>
         {d.outcome === "skip" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Skipped")}</span>}
         {d.outcome === "reroll" && <span className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">{t("Rerolled")}</span>}
-        {d.outcome === "unresolved" && !picked && <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{t("No pick recorded")}</span>}
+        {d.selectionStatus === "unknown" && !picked && d.outcome !== "skip" && d.outcome !== "reroll" && (
+          <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{t("Chosen option not recorded")}</span>
+        )}
+        {d.selectionStatus === "partial" && (
+          <span className="text-xs uppercase tracking-wider text-[var(--text-muted)]">{t("Some picks not recorded")}</span>
+        )}
+        {d.selectionStatus === "conflict" && (
+          <span className="text-xs uppercase tracking-wider text-[var(--accent-red)]">{t("Conflicting choice records")}</span>
+        )}
         {d.paid && d.paid.kind === "removal_service" && (
           <span className="text-xs text-[var(--text-muted)]">{t("Paid")} {d.paid.cost} {d.paid.resource}</span>
         )}

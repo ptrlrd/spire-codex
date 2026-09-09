@@ -35,6 +35,10 @@ export interface HeaderLine extends LineBase {
   gameMode?: string;
   playerCount?: number;
   modVersion?: string;
+  /** The journal format the recorder declared. Capability is read from this
+   * number, never sniffed from whether a field happens to be present, so a
+   * field the recorder never wrote is distinguishable from one it left out. */
+  replayVersion?: number;
   startingDeck: DeckCard[];
 }
 export interface ActLine extends LineBase {
@@ -84,6 +88,8 @@ export interface DecisionLine extends LineBase {
   declineAvailable?: boolean;
   goldOnHand?: number;
   offerGeneration?: number;
+  minSelect?: number;
+  maxSelect?: number;
   options: DecisionOptionLine[];
 }
 export interface OutcomeLine extends LineBase {
@@ -92,6 +98,9 @@ export interface OutcomeLine extends LineBase {
   outcome?: string;
   optionIndex?: number;
   optionId?: string;
+  /** Every option taken, for a decision that allows more than one. An empty
+   * array is an explicit decline; absent means no select was open. */
+  selectedOptionIndices?: number[];
   label?: string;
 }
 export interface ResolveLine extends LineBase {
@@ -113,12 +122,14 @@ export interface RemoveLine extends LineBase {
   id: string;
   c?: number;
   decisionId?: number;
+  optionIndex?: number;
 }
 export interface UpgradeLine extends LineBase {
   t: "upgrade";
   id: string;
   c?: number;
   decisionId?: number;
+  optionIndex?: number;
 }
 export interface TransformLine extends LineBase {
   t: "transform";
@@ -127,6 +138,7 @@ export interface TransformLine extends LineBase {
   fromC?: number;
   toC?: number;
   decisionId?: number;
+  optionIndex?: number;
 }
 export interface RelicLine extends LineBase {
   t: "relic";
@@ -340,8 +352,18 @@ export interface ReplayOption {
   presented: boolean;
   selectable: boolean;
   reason?: string;
+  /** True only where the journal identified this option as taken. False means
+   * "not shown as taken", which is a rejection only when selectionStatus is
+   * "known"; under any other status it means the record does not say. */
   chosen: boolean;
 }
+
+/** How well the journal pins down what was picked.
+ * known: every piece of choice evidence resolved, and they agree.
+ * partial: at least one option is identified, but some evidence did not resolve.
+ * unknown: nothing in the journal identifies an option.
+ * conflict: the evidence names different options for a single-pick decision. */
+export type SelectionStatus = "known" | "partial" | "unknown" | "conflict";
 
 export interface ReplayDecision {
   id?: number;
@@ -353,10 +375,16 @@ export interface ReplayDecision {
   nSelectable?: number;
   declineAvailable?: boolean;
   goldOnHand?: number;
+  minSelect?: number;
+  maxSelect?: number;
   options: ReplayOption[];
   outcome?: string;
   paid?: { kind: string; id?: string; cost?: number; resource: string };
+  /** Kept alongside the resolutions so selection is reconciled from all the
+   * evidence at once rather than by whichever line happened to arrive last. */
+  outcomes: OutcomeLine[];
   resolutions: ResolutionLine[];
+  selectionStatus: SelectionStatus;
   s: number;
 }
 
@@ -461,6 +489,13 @@ function bool(v: unknown): boolean | undefined {
   return typeof v === "boolean" ? v : undefined;
 }
 
+/** A list of option indices the journal reported. Anything that is not a
+ * non-negative safe integer is dropped rather than coerced. */
+function indices(v: unknown): number[] | undefined {
+  if (!Array.isArray(v)) return undefined;
+  return v.map(count).filter((n): n is number => n !== undefined);
+}
+
 function objects(v: unknown): Raw[] {
   if (!Array.isArray(v)) return [];
   // Position is identity when a record omits its own index, so an invalid
@@ -513,6 +548,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         gameMode: str(raw.game_mode),
         playerCount: num(raw.player_count),
         modVersion: str(raw.mod_version),
+        replayVersion: count(raw.replay_version),
         startingDeck: deckOf(raw.starting_deck),
       };
     case "act":
@@ -560,6 +596,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         declineAvailable: bool(raw.decline_available),
         goldOnHand: num(raw.gold_on_hand),
         offerGeneration: num(raw.offer_generation),
+        minSelect: count(raw.min_select),
+        maxSelect: count(raw.max_select),
         options,
       };
     }
@@ -569,30 +607,32 @@ function narrow(raw: Raw): ReplayLine | undefined {
         t,
         decisionId: int(raw.decision_id),
         outcome: str(raw.outcome),
-        optionIndex: num(raw.option_index),
+        optionIndex: count(raw.option_index),
         optionId: str(raw.option_id),
+        selectedOptionIndices: indices(raw.selected_option_indices),
         label: str(raw.label),
       };
     case "resolve":
-      return { ...base, t, decisionId: num(raw.decision_id), rewardKind: str(raw.reward_kind), gold: num(raw.gold) };
+      return { ...base, t, decisionId: int(raw.decision_id), rewardKind: str(raw.reward_kind), gold: num(raw.gold) };
     case "acquire":
-      return { ...base, t, id, c: num(raw.c), source: str(raw.source), decisionId: num(raw.decision_id), optionIndex: num(raw.option_index) };
+      return { ...base, t, id, c: int(raw.c), source: str(raw.source), decisionId: int(raw.decision_id), optionIndex: count(raw.option_index) };
     case "remove":
-      return { ...base, t, id, c: num(raw.c), decisionId: num(raw.decision_id) };
+      return { ...base, t, id, c: int(raw.c), decisionId: int(raw.decision_id), optionIndex: count(raw.option_index) };
     case "upgrade":
-      return { ...base, t, id, c: num(raw.c), decisionId: num(raw.decision_id) };
+      return { ...base, t, id, c: int(raw.c), decisionId: int(raw.decision_id), optionIndex: count(raw.option_index) };
     case "transform":
       return {
         ...base,
         t,
         fromId: str(raw.from_id) ?? "",
         toId: str(raw.to_id) ?? "",
-        fromC: num(raw.from_c),
-        toC: num(raw.to_c),
-        decisionId: num(raw.decision_id),
+        fromC: int(raw.from_c),
+        toC: int(raw.to_c),
+        decisionId: int(raw.decision_id),
+        optionIndex: count(raw.option_index),
       };
     case "relic":
-      return { ...base, t, id, decisionId: num(raw.decision_id) };
+      return { ...base, t, id, decisionId: int(raw.decision_id) };
     case "potion_got":
       return { ...base, t, id };
     case "potion_used":
@@ -603,8 +643,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         t,
         kind: str(raw.kind) ?? "other",
         id: str(raw.id),
-        slot: num(raw.slot),
-        decisionId: num(raw.decision_id),
+        slot: count(raw.slot),
+        decisionId: int(raw.decision_id),
         costCurrent: num(raw.cost_current),
         costResource: str(raw.cost_resource) ?? "gold",
         goldOnHand: num(raw.gold_on_hand),
@@ -760,6 +800,8 @@ function buildDecision(line: DecisionLine): ReplayDecision {
     nSelectable: line.nSelectable,
     declineAvailable: line.declineAvailable,
     goldOnHand: line.goldOnHand,
+    minSelect: line.minSelect,
+    maxSelect: line.maxSelect,
     options: line.options.map((o) => ({
       index: o.optionIndex,
       kind: o.kind,
@@ -774,55 +816,114 @@ function buildDecision(line: DecisionLine): ReplayDecision {
       reason: o.reason,
       chosen: false,
     })),
+    outcomes: [],
     resolutions: [],
+    selectionStatus: "unknown",
     s: line.s,
   };
 }
 
-interface ChoiceKeys {
-  optionIndex?: number;
-  optionId?: string;
-  instance?: number;
-  id?: string;
-}
+/** An identity the recorder wrote down to say which option was taken.
+ *
+ * A card definition id is deliberately absent: it names a card type, and a
+ * reward can offer the same type twice. So is an acquired card's instance id,
+ * which the choice created rather than offered. Both were previously treated
+ * as proof of a pick, which is how a shop that stocks five identical Strikes
+ * ended up with the first one marked as the removed card. */
+type ChoiceEvidence =
+  | { kind: "index"; index: number }
+  | { kind: "optionId"; id: string }
+  | { kind: "instance"; instance: number }
+  | { kind: "slot"; slot: number; itemKind: string };
 
-function choiceKeys(line: OutcomeLine | ResolutionLine): ChoiceKeys {
+function evidenceFor(line: OutcomeLine | ResolutionLine): ChoiceEvidence[] {
+  const out: ChoiceEvidence[] = [];
   switch (line.t) {
     case "outcome":
-      return { optionIndex: line.optionIndex, optionId: line.optionId };
+      if (line.optionIndex !== undefined) out.push({ kind: "index", index: line.optionIndex });
+      for (const i of line.selectedOptionIndices ?? []) out.push({ kind: "index", index: i });
+      if (line.optionId) out.push({ kind: "optionId", id: line.optionId });
+      break;
     case "acquire":
-      return { optionIndex: line.optionIndex, instance: line.c, id: line.id };
+      // line.c is the instance this acquisition created, not one that was offered.
+      if (line.optionIndex !== undefined) out.push({ kind: "index", index: line.optionIndex });
+      break;
     case "remove":
     case "upgrade":
-      return { instance: line.c, id: line.id };
+      // A deck select offers cards already in the deck, so the instance acted
+      // on is an offered identity. Both identifiers are collected so a recorder
+      // that disagrees with itself reads as a conflict instead of silently
+      // preferring one.
+      if (line.optionIndex !== undefined) out.push({ kind: "index", index: line.optionIndex });
+      if (line.c !== undefined) out.push({ kind: "instance", instance: line.c });
+      break;
     case "transform":
-      return { instance: line.fromC, id: line.fromId };
-    case "relic":
-      return { id: line.id };
-    default:
-      return {};
+      if (line.optionIndex !== undefined) out.push({ kind: "index", index: line.optionIndex });
+      if (line.fromC !== undefined) out.push({ kind: "instance", instance: line.fromC });
+      break;
+    case "buy":
+      // Shop slots are numbered within their item kind, so the kind is part of
+      // the identity and a bare slot number is not.
+      if (line.slot !== undefined) out.push({ kind: "slot", slot: line.slot, itemKind: line.kind });
+      break;
   }
+  return out;
 }
 
-function markChoice(dec: ReplayDecision, line: OutcomeLine | ResolutionLine): void {
-  const keys = choiceKeys(line);
-  const byIndex = keys.optionIndex !== undefined ? dec.options.find((o) => o.index === keys.optionIndex) : undefined;
-  if (byIndex) {
-    byIndex.chosen = true;
+type Match = { index: number } | "ambiguous" | "unmatched";
+
+function matchEvidence(dec: ReplayDecision, ev: ChoiceEvidence): Match {
+  let hits: ReplayOption[];
+  switch (ev.kind) {
+    case "index":
+      hits = dec.options.filter((o) => o.index === ev.index);
+      break;
+    case "optionId":
+      hits = dec.options.filter((o) => o.id === ev.id);
+      break;
+    case "instance":
+      hits = dec.options.filter((o) => o.instanceId === ev.instance);
+      break;
+    case "slot":
+      hits = dec.options.filter((o) => o.index === ev.slot && o.kind === ev.itemKind);
+      break;
+  }
+  if (hits.length === 1) return { index: hits[0].index };
+  return hits.length ? "ambiguous" : "unmatched";
+}
+
+const DECLINED = new Set(["skip", "decline", "declined", "reroll"]);
+
+/** Settle which options were taken from every record attached to the decision,
+ * rather than letting the last line to arrive win. Marks nothing at all when
+ * the evidence is ambiguous or contradicts itself. */
+function reconcileSelection(dec: ReplayDecision): void {
+  const picked = new Set<number>();
+  let unresolved = 0;
+  for (const line of [...dec.outcomes, ...dec.resolutions]) {
+    for (const ev of evidenceFor(line)) {
+      const m = matchEvidence(dec, ev);
+      if (m === "ambiguous" || m === "unmatched") unresolved += 1;
+      else picked.add(m.index);
+    }
+  }
+  // Cardinality is only known where the recorder stated it. An unstated one is
+  // not assumed to be single-pick, so two agreeing records are not called a
+  // conflict just because the journal did not say how many picks were allowed.
+  const multi = dec.maxSelect !== undefined && dec.maxSelect > 1;
+  if (picked.size > 1 && dec.maxSelect !== undefined && !multi) {
+    dec.selectionStatus = "conflict";
     return;
   }
-  const byId = keys.optionId ? dec.options.find((o) => o.id === keys.optionId) : undefined;
-  if (byId) {
-    byId.chosen = true;
+  if (picked.size) {
+    dec.selectionStatus = unresolved ? "partial" : "known";
+    for (const o of dec.options) if (picked.has(o.index)) o.chosen = true;
     return;
   }
-  const byInst = keys.instance !== undefined ? dec.options.find((o) => o.instanceId === keys.instance) : undefined;
-  if (byInst) {
-    byInst.chosen = true;
-    return;
-  }
-  const same = keys.id ? dec.options.find((o) => o.id === keys.id || o.grantsRelic === keys.id) : undefined;
-  if (same) same.chosen = true;
+  // An explicit decline is a recorded fact: the player took nothing.
+  const declined = dec.outcomes.some((o) => o.outcome && DECLINED.has(o.outcome));
+  const emptySelect = dec.outcomes.some((o) => o.selectedOptionIndices?.length === 0);
+  dec.selectionStatus = (declined || emptySelect) && !unresolved ? "known" : "unknown";
 }
 
 function isResolution(line: ReplayLine): line is ResolutionLine {
@@ -845,6 +946,7 @@ export function parseReplay(text: string): ReplayModel {
   const floors: ReplayFloor[] = [];
   const resumes: ResumeLine[] = [];
   const decisions = new Map<number, ReplayDecision>();
+  const allDecisions: ReplayDecision[] = [];
   let current: ReplayFloor | undefined;
   let combat: ReplayCombat | undefined;
   let turn: ReplayTurn | undefined;
@@ -968,6 +1070,7 @@ export function parseReplay(text: string): ReplayModel {
 
     if (line.t === "decision") {
       const dec = buildDecision(line);
+      allDecisions.push(dec);
       if (dec.id !== undefined) decisions.set(dec.id, dec);
       if (floor) floor.decisions.push(dec);
       continue;
@@ -976,7 +1079,7 @@ export function parseReplay(text: string): ReplayModel {
       const dec = line.decisionId !== undefined ? decisions.get(line.decisionId) : undefined;
       if (dec) {
         dec.outcome = line.outcome;
-        markChoice(dec, line);
+        dec.outcomes.push(line);
       }
       continue;
     }
@@ -986,11 +1089,6 @@ export function parseReplay(text: string): ReplayModel {
         dec.resolutions.push(line);
         if (line.t === "buy") {
           dec.paid = { kind: line.kind, id: line.id, cost: line.costCurrent, resource: line.costResource };
-          const bySlot = line.slot !== undefined ? dec.options.find((o) => o.index === line.slot) : undefined;
-          if (bySlot) bySlot.chosen = true;
-        } else {
-          markChoice(dec, line);
-          if (!dec.outcome) dec.outcome = "chosen";
         }
       }
     }
@@ -1001,9 +1099,7 @@ export function parseReplay(text: string): ReplayModel {
     if (end.hp !== undefined) combat.hpEnd = end.hp;
   }
   if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
-  for (const dec of decisions.values()) {
-    if (!dec.outcome) dec.outcome = dec.options.some((o) => o.chosen) ? "chosen" : "unresolved";
-  }
+  for (const dec of allDecisions) reconcileSelection(dec);
   for (const map of Object.values(maps)) {
     completeMap(map, floors.filter((f) => f.act === map.act));
   }

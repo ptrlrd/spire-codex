@@ -180,7 +180,7 @@ describe("parseReplay edge cases the reviewers named", () => {
     expect(dec.resolutions).toHaveLength(1);
   });
 
-  it("marks the transformed source card when from_c is absent", () => {
+  it("leaves a transform unmatched when the journal recorded no source instance", () => {
     const model = parseReplay(
       journal([
         header,
@@ -189,7 +189,26 @@ describe("parseReplay edge cases the reviewers named", () => {
         { t: "transform", s: 3, floor: 1, act: 1, decision_id: 4, from_id: "DEFEND_REGENT", to_id: "STRIKE_REGENT" },
       ]),
     );
-    expect(model.floors[0].decisions[0].options.map((o) => o.chosen)).toEqual([false, true]);
+    const dec = model.floors[0].decisions[0];
+    // The card id names a type. A deck can hold two Defends, so it does not
+    // name the option that was picked.
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, false]);
+    expect(dec.selectionStatus).toBe("unknown");
+    expect(dec.resolutions).toHaveLength(1);
+  });
+
+  it("matches a transform on the source instance when the journal recorded one", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "event", id: "X" },
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 4, decision_type: "card_select", select_kind: "transform", source: "event", options: [{ option_index: 0, option_kind: "transform", option_id: "STRIKE_REGENT", instance_id: 1 }, { option_index: 1, option_kind: "transform", option_id: "STRIKE_REGENT", instance_id: 2 }] },
+        { t: "transform", s: 3, floor: 1, act: 1, decision_id: 4, from_id: "STRIKE_REGENT", from_c: 2, to_id: "DEFEND_REGENT" },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.selectionStatus).toBe("known");
   });
 
   it("gives only act 1 an ancient node and wires a recorder-placed boss", () => {
@@ -367,5 +386,115 @@ describe("the parser never invents a fact the journal did not record", () => {
       ]),
     );
     expect(() => routeForAct(model, 1)).not.toThrow();
+  });
+});
+
+describe("the parser only marks a pick the journal actually identified", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "event", id: "X" };
+  const twoOfAKind = {
+    t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward",
+    options: [{ option_index: 0, option_kind: "card", option_id: "STRIKE" }, { option_index: 1, option_kind: "card", option_id: "STRIKE" }],
+  };
+
+  it("marks neither of two identical offers from an acquisition that only names the card", () => {
+    const model = parseReplay(journal([header, room, twoOfAKind, { t: "acquire", s: 3, floor: 1, act: 1, decision_id: 1, id: "STRIKE", c: 40 }]));
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, false]);
+    expect(dec.selectionStatus).toBe("unknown");
+    // The acquisition itself is still recorded, it just is not proof of which offer.
+    expect(dec.resolutions).toHaveLength(1);
+  });
+
+  it("uses an explicit option index to pick the right duplicate", () => {
+    const model = parseReplay(journal([header, room, twoOfAKind, { t: "acquire", s: 3, floor: 1, act: 1, decision_id: 1, id: "STRIKE", c: 40, option_index: 1 }]));
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.selectionStatus).toBe("known");
+  });
+
+  it("does not pick an option when two explicit identifiers disagree", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_select", select_kind: "remove", source: "shop", max_select: 1, options: [{ option_index: 0, option_kind: "remove", option_id: "STRIKE", instance_id: 10 }, { option_index: 1, option_kind: "remove", option_id: "STRIKE", instance_id: 11 }] },
+        { t: "remove", s: 3, floor: 1, act: 1, decision_id: 1, id: "STRIKE", c: 11, option_index: 0 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, false]);
+    expect(dec.selectionStatus).toBe("conflict");
+  });
+
+  it("keeps both picks of a recorded multi-select", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", source: "event", min_select: 2, max_select: 2, options: [{ option_index: 0, option_id: "A" }, { option_index: 1, option_id: "B" }, { option_index: 2, option_id: "C" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", outcome: "chosen", selected_option_indices: [0, 2] },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([true, false, true]);
+    expect(dec.selectionStatus).toBe("known");
+  });
+
+  it("reads an empty selection list as a recorded decline, not a missing record", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", source: "event", max_select: 2, decline_available: true, options: [{ option_index: 0, option_id: "A" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", outcome: "decline", selected_option_indices: [] },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+    expect(dec.selectionStatus).toBe("known");
+  });
+
+  it("does not turn an unresolved decision into a confirmed choice", () => {
+    const model = parseReplay(journal([header, room, twoOfAKind, { t: "relic", s: 3, floor: 1, act: 1, decision_id: 1, id: "SOMETHING_ELSE" }]));
+    const dec = model.floors[0].decisions[0];
+    expect(dec.selectionStatus).toBe("unknown");
+    expect(dec.outcome).toBeUndefined();
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+  });
+
+  it("reports partial when one record identifies an option and another does not", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward", options: [{ option_index: 0, option_id: "A" }, { option_index: 1, option_id: "B" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", outcome: "chosen", option_id: "B" },
+        { t: "acquire", s: 4, floor: 1, act: 1, decision_id: 1, id: "B", c: 40, option_index: 7 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.selectionStatus).toBe("partial");
+  });
+
+  it("keeps a shop slot inside its own item kind", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "shop", source: "shop", max_select: 1, options: [{ option_index: 0, option_kind: "relic", option_id: "R0" }, { option_index: 1, option_kind: "card", option_id: "C0" }] },
+        { t: "buy", s: 3, floor: 1, act: 1, decision_id: 1, kind: "card", slot: 1, id: "C0", cost_current: 50, cost_resource: "gold" },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([false, true]);
+    expect(dec.paid?.kind).toBe("card");
+  });
+
+  it("resolves the removed Strike by instance where the shop stocked five of them", () => {
+    const coords = readFileSync(new URL("../../backend/tests/fixtures/real-replay-coords.jsonl", import.meta.url), "utf-8");
+    const model = parseReplay(coords);
+    const removal = model.floors.flatMap((f) => f.decisions).find((d) => d.paid?.kind === "removal_service");
+    expect(removal).toBeDefined();
+    expect(removal!.options.filter((o) => o.id === "STRIKE_IRONCLAD")).toHaveLength(5);
+    const picked = removal!.options.filter((o) => o.chosen);
+    expect(picked).toHaveLength(1);
+    expect(removal!.selectionStatus).toBe("known");
   });
 });
