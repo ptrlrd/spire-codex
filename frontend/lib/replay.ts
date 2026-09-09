@@ -219,6 +219,10 @@ export interface CombatEndLine extends LineBase {
   hp?: number;
   combatId?: string;
   attemptId?: number;
+  /** Cumulative HP the player actually lost in this fight, from version 2.
+   * Excludes blocked damage and is not reduced by healing. Canonical wherever
+   * it is present. */
+  hpLostTotal?: number;
 }
 export interface TurnLine extends LineBase {
   t: "turn";
@@ -413,7 +417,10 @@ export interface ReplayCombat {
    * ended, or another fight started first. */
   endRecorded: boolean;
   turnCount?: number;
-  damageTaken: number;
+  /** HP the player lost across this fight, where the journal supports a total.
+   * Undefined means the journal does not say, which is not the same as zero.
+   * Healing does not cancel an earlier loss. */
+  hpLost?: number;
   hpEnd?: number;
   /** Stable across a reload that continues this fight, from version 2. */
   combatId?: string;
@@ -701,6 +708,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         hp: num(raw.hp),
         combatId: str(raw.combat_id),
         attemptId: count(raw.attempt_id),
+        hpLostTotal: count(raw.hp_lost_total),
       };
     case "turn":
       return {
@@ -961,6 +969,20 @@ function isResolution(line: ReplayLine): line is ResolutionLine {
   );
 }
 
+/** Running HP-loss total for the fight being parsed.
+ *
+ * `covered` is the whole point. Summing the negative HP deltas is only a total
+ * if the journal recorded every HP change in the fight, so every delta is
+ * checked against the running HP: a delta that does not carry the snapshot to
+ * the value the journal reports means something happened off the record, and
+ * the total is abandoned rather than guessed low. `hp_loss` lines are timeline
+ * detail and are never added in; they can describe the same event twice. */
+interface HpLossTrack {
+  lost: number;
+  last?: number;
+  covered: boolean;
+}
+
 export function parseReplay(text: string): ReplayModel {
   const { lines, malformed } = parseReplayLines(text);
   const header = lines.find((l): l is HeaderLine => l.t === "header");
@@ -972,6 +994,7 @@ export function parseReplay(text: string): ReplayModel {
   const allDecisions: ReplayDecision[] = [];
   let current: ReplayFloor | undefined;
   let combat: ReplayCombat | undefined;
+  let hpLoss: HpLossTrack | undefined;
   let turn: ReplayTurn | undefined;
   let hp: number | undefined;
   let gold: number | undefined;
@@ -1025,6 +1048,7 @@ export function parseReplay(text: string): ReplayModel {
         };
         floors.push(current);
         combat = undefined;
+        hpLoss = undefined;
         turn = undefined;
         continue;
       }
@@ -1063,10 +1087,10 @@ export function parseReplay(text: string): ReplayModel {
         enemies: line.enemies,
         turns: [],
         endRecorded: false,
-        damageTaken: 0,
         combatId: line.combatId,
         attemptId: line.attemptId,
       };
+      hpLoss = { lost: 0, last: hp, covered: hp !== undefined };
       turn = undefined;
       if (floor) floor.combats.push(combat);
       continue;
@@ -1090,16 +1114,24 @@ export function parseReplay(text: string): ReplayModel {
         combat.result = line.result;
         combat.endRecorded = true;
         combat.turnCount = line.turns;
+        // The recorder's own total wins wherever it exists; below that, a
+        // derived one is only offered when every HP change was accounted for.
+        combat.hpLost = line.hpLostTotal ?? (hpLoss?.covered ? hpLoss.lost : undefined);
         if (line.hp !== undefined) {
           combat.hpEnd = line.hp;
           snapshot(floor, line.hp);
         }
         combat = undefined;
+        hpLoss = undefined;
         turn = undefined;
         continue;
       }
       if (line.t === "hp") {
-        if (line.d !== undefined && line.d < 0) combat.damageTaken -= line.d;
+        if (hpLoss) {
+          if (line.d === undefined || hpLoss.last === undefined || hpLoss.last + line.d !== line.hp) hpLoss.covered = false;
+          else if (line.d < 0) hpLoss.lost -= line.d;
+          hpLoss.last = line.hp;
+        }
         combat.hpEnd = line.hp;
       }
       if (turn) turn.lines.push(line);

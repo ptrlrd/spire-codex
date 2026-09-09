@@ -668,3 +668,94 @@ describe("a floor keeps every fight the journal recorded", () => {
     expect(a.endRecorded).toBe(false);
   });
 });
+
+describe("HP lost is reported only where the journal supports a total", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const fight = (lines: Record<string, unknown>[]) =>
+    parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "hp", s: 2, floor: 1, act: 1, hp: 60, d: 0 },
+        { t: "combat_start", s: 3, floor: 1, act: 1, encounter: "E", enemies: [] },
+        ...lines,
+      ]),
+    ).floors[0].combats[0];
+
+  it("does not let healing cancel an earlier loss", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "hp", s: 5, floor: 1, act: 1, hp: 56, d: 3 },
+      { t: "hp", s: 6, floor: 1, act: 1, hp: 51, d: -5 },
+      { t: "combat_end", s: 7, floor: 1, act: 1, turns: 3 },
+    ]);
+    expect(c.hpLost).toBe(12);
+  });
+
+  it("reports a real zero for a fight that took no damage", () => {
+    const c = fight([{ t: "combat_end", s: 4, floor: 1, act: 1, turns: 1 }]);
+    expect(c.hpLost).toBe(0);
+  });
+
+  it("gives up on the total when one HP change went unrecorded", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      // 53 - 5 is 48, not 40: something happened that the journal did not record.
+      { t: "hp", s: 5, floor: 1, act: 1, hp: 40, d: -5 },
+      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 2 },
+    ]);
+    expect(c.hpLost).toBeUndefined();
+  });
+
+  it("does not double count one loss reported twice", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "hp", s: 5, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1 },
+    ]);
+    expect(c.hpLost).toBeUndefined();
+  });
+
+  it("never sums hp_loss lines, which can describe an event a second time", () => {
+    const c = fight([
+      { t: "hp_loss", s: 4, floor: 1, act: 1, dmg: 7, blocked: 0 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1 },
+    ]);
+    expect(c.hpLost).toBe(0);
+  });
+
+  it("takes the recorder's own total over anything it could derive", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp_lost_total: 19 },
+    ]);
+    expect(c.hpLost).toBe(19);
+  });
+
+  it("reports the recorder's total even where the HP stream has a hole", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 40, d: -5 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp_lost_total: 20 },
+    ]);
+    expect(c.hpLost).toBe(20);
+  });
+
+  it("leaves the total unknown when the HP before the fight was never recorded", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [] },
+        { t: "hp", s: 3, floor: 1, act: 1, hp: 53, d: -7 },
+        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1 },
+      ]),
+    );
+    expect(model.floors[0].combats[0].hpLost).toBeUndefined();
+  });
+
+  it("leaves the total unknown for a fight the journal never ended", () => {
+    const c = fight([{ t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 }]);
+    expect(c.endRecorded).toBe(false);
+    expect(c.hpLost).toBeUndefined();
+  });
+});

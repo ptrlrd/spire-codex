@@ -496,7 +496,7 @@ function CombatBlock({ c, n, of, cat }: { c: ReplayCombat; n: number; of: number
               </>
             )}
             {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns")}
-            {" · "}{c.damageTaken} {t("damage taken")}
+            {" · "}{c.hpLost !== undefined ? `${c.hpLost} ${t("HP lost")}` : t("HP lost unknown")}
             {c.hpEnd !== undefined && ` · HP ${c.hpEnd}`}
           </div>
         </div>

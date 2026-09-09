@@ -65,10 +65,16 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
     { key: "deck", label: t("Deck size"), kind: "line", color: "var(--text-secondary)", values: deckSizes },
     {
       key: "dmg",
-      label: t("Damage per floor"),
+      label: t("HP lost per floor"),
       kind: "bar",
       color: "var(--accent-red)",
-      values: floors.map((f) => (f.combats.length ? f.combats.reduce((n, c) => n + c.damageTaken, 0) : undefined)),
+      // A floor is only plotted where every fight on it reported a total. One
+      // unknown fight makes the floor's total unknown, not smaller.
+      values: floors.map((f) =>
+        f.combats.length && f.combats.every((c) => c.hpLost !== undefined)
+          ? f.combats.reduce((n, c) => n + (c.hpLost ?? 0), 0)
+          : undefined,
+      ),
     },
     {
       key: "turns",
