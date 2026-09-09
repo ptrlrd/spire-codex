@@ -1166,3 +1166,96 @@ describe("a jump in the sequence locates exactly what the journal lost", () => {
     expect(captureIsComplete(model)).toBe(false);
   });
 });
+
+describe("a resumed journal is one run, not several", () => {
+  const v1 = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 1, seed: "SEED1", starting_deck: [] };
+  const v2 = { t: "header", s: 244, ms: 1, floor: 5, act: 1, replay_version: 2, seed: "SEED1", starting_deck: [] };
+
+  it("keeps the first header's identity and the last header's declared version", () => {
+    const model = parseReplay(
+      journal([
+        v1,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "end", s: 243, terminal_reason: "left_run", is_game_over: false, hp: 75 },
+        v2,
+        { t: "resume", s: 245, floor: 1, act: 1, reloads: 1, hp: 75, gold: 10 },
+      ]),
+    );
+    expect(model.header?.seed).toBe("SEED1");
+    expect(model.header?.replayVersion).toBe(2);
+  });
+
+  it("re-enters the floor a reload put the player back on instead of listing it twice", () => {
+    const model = parseReplay(
+      journal([
+        v1,
+        { t: "room", s: 1, floor: 5, act: 1, kind: "combat", id: "SLIMES_WEAK", coord: "0,4" },
+        { t: "hp", s: 2, floor: 5, act: 1, hp: 79, d: 0 },
+        { t: "combat_start", s: 3, floor: 5, act: 1, encounter: "SLIMES_WEAK", enemies: [], combat_id: "1.5:SLIMES_WEAK", attempt_id: 0 },
+        { t: "turn", s: 4, floor: 5, act: 1, n: 0, side: "player", combat_id: "1.5:SLIMES_WEAK", attempt_id: 0 },
+        { t: "end", s: 243, terminal_reason: "left_run", is_game_over: false, hp: 75 },
+        v2,
+        { t: "resume", s: 245, floor: 5, act: 1, reloads: 1, hp: 79, gold: 124 },
+        { t: "room", s: 246, floor: 5, act: 1, kind: "combat", id: "SLIMES_WEAK", coord: "0,4" },
+        { t: "combat_start", s: 247, floor: 5, act: 1, encounter: "SLIMES_WEAK", enemies: [], combat_id: "1.5:SLIMES_WEAK", attempt_id: 1 },
+        { t: "combat_end", s: 332, floor: 5, act: 1, turns: 3, result: "victory", combat_id: "1.5:SLIMES_WEAK", attempt_id: 1, hp_lost_total: 4 },
+        { t: "end", s: 400, terminal_reason: "left_run", is_game_over: false, hp: 75 },
+      ]),
+    );
+    expect(model.floors.map((f) => f.floor)).toEqual([5]);
+    const [first, second] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(2);
+    expect(first.supersededByRetry && first.rolledBackByReload).toBe(true);
+    expect(combatCounts(second)).toBe(true);
+    expect(second.hpLost).toBe(4);
+    // The run's outcome is the last end line, not the one a reload undid.
+    expect(model.end?.terminalReason).toBe("left_run");
+  });
+});
+
+describe("parseReplay on the version 2 journals", () => {
+  const load = (f: string) => parseReplay(readFileSync(new URL(`../../backend/tests/fixtures/${f}`, import.meta.url), "utf-8"));
+  const files = ["v2-full-run.jsonl", "v2-reload-and-death.jsonl", "v2-act3-map.jsonl"];
+
+  it("lists every floor once, with a recorded position, all the way through", () => {
+    for (const f of files) {
+      const m = load(f);
+      const keys = m.floors.map((x) => `${x.act}-${x.floor}`);
+      expect(new Set(keys).size, f).toBe(keys.length);
+      const route = [...new Set(m.floors.map((x) => x.act))].flatMap((a) => routeForAct(m, a));
+      expect(route.every((e) => e.coord !== undefined && !e.offMap), f).toBe(true);
+      expect(captureIsComplete(m), f).toBe(true);
+      expect(m.gaps, f).toEqual([]);
+    }
+  });
+
+  it("reads the recorder's own results and totals on every finished fight", () => {
+    for (const f of files) {
+      const m = load(f);
+      const ended = m.floors.flatMap((x) => x.combats).filter((c) => c.endRecorded);
+      expect(ended.length, f).toBeGreaterThan(0);
+      expect(ended.every((c) => c.result === "victory" && c.hpLost !== undefined), f).toBe(true);
+    }
+  });
+
+  it("gets the Ancient from the recorded map rather than inventing it", () => {
+    // Act 3's boss and Ancient names in v2-full-run are wrong in the recording
+    // itself: the recorder read a stale snapshot there, and has since been
+    // fixed. The nodes and coordinates were right, so only those are checked.
+    for (const f of files) {
+      const m = load(f);
+      for (const map of Object.values(m.maps)) {
+        expect(map.nodes.some((n) => n[2] === "ancient"), `${f} act ${map.act}`).toBe(true);
+      }
+    }
+  });
+
+  it("survives a death that a reload took back", () => {
+    const m = load("v2-reload-and-death.jsonl");
+    expect(m.header?.replayVersion).toBe(2);
+    expect(m.end?.terminalReason).toBe("left_run");
+    expect(m.end?.isGameOver).toBe(false);
+    const undone = m.floors.flatMap((x) => x.combats).filter((c) => !combatCounts(c));
+    expect(undone).toHaveLength(2);
+  });
+});

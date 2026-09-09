@@ -1157,7 +1157,13 @@ interface HpLossTrack {
 
 export function parseReplay(text: string): ReplayModel {
   const { lines, malformed } = parseReplayLines(text);
-  const header = lines.find((l): l is HeaderLine => l.t === "header");
+  // A resumed journal opens each session with a header of its own. The first
+  // carries the run's identity; the last declares the format the tail was
+  // written in, which is the one the version gates have to read.
+  const headers = lines.filter((l): l is HeaderLine => l.t === "header");
+  const header: HeaderLine | undefined = headers.length
+    ? { ...headers[0], replayVersion: headers[headers.length - 1].replayVersion ?? headers[0].replayVersion }
+    : undefined;
   const maps: Record<number, ReplayMap> = {};
   const actNames: Record<number, string> = {};
   const floors: ReplayFloor[] = [];
@@ -1204,22 +1210,33 @@ export function parseReplay(text: string): ReplayModel {
         continue;
       }
       case "room": {
-        current = {
-          floor: line.floor ?? floors.length + 1,
-          act: line.act ?? 1,
-          kind: line.kind,
-          id: line.id,
-          coord: line.coord,
-          s: line.s,
-          lines: [],
-          linesLost: 0,
-          decisions: [],
-          combats: [],
-          resumes: [],
-          hpAfter: hp,
-          goldAfter: gold,
-        };
-        floors.push(current);
+        const act = line.act ?? 1;
+        const floorNo = line.floor ?? floors.length + 1;
+        // A reload puts the player back at the start of the room they were
+        // in, and the resumed session writes that room again. Same floor,
+        // not a second one.
+        const again = floors.find((f) => f.floor === floorNo && f.act === act);
+        if (again) {
+          current = again;
+          if (!current.coord && line.coord) current.coord = line.coord;
+        } else {
+          current = {
+            floor: floorNo,
+            act,
+            kind: line.kind,
+            id: line.id,
+            coord: line.coord,
+            s: line.s,
+            lines: [],
+            linesLost: 0,
+            decisions: [],
+            combats: [],
+            resumes: [],
+            hpAfter: hp,
+            goldAfter: gold,
+          };
+          floors.push(current);
+        }
         combat = undefined;
         hpLoss = undefined;
         turn = undefined;
