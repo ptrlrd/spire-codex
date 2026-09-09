@@ -1,11 +1,14 @@
-import { getT } from "@/lib/i18n-server";
+"use client";
+
+import { useT } from "@/lib/i18n";
 import { Fragment } from "react";
 
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
 
-// Character x ascension win-rate heatmap. Pure presentational (no hooks), so
-// the community page renders it on the server and the profile embeds it from
-// a client component. Dark-to-light single-hue gold ramp scaled to the data
+// Character x ascension win-rate heatmap. Rendered by the community page and
+// embedded by the profile, which is a client component, so this has to be one
+// too: a server-only translation call throws the moment a client parent pulls
+// it into the browser bundle. Dark-to-light single-hue gold ramp scaled to the data
 // range: lighter = higher win rate, matching the tier pages' color language.
 
 export type AscensionMatrix = Record<
@@ -67,7 +70,7 @@ function cellStyle(wr: number, lo: number, hi: number) {
   return { backgroundColor: hex(c), color: hex(ink) };
 }
 
-export default async function AscensionHeatmap({
+export default function AscensionHeatmap({
   matrix,
   lang,
   names = {},
@@ -76,7 +79,7 @@ export default async function AscensionHeatmap({
   lang: string;
   names?: Record<string, string>;
 }) {
-  const t = await getT();
+  const t = useT();
   const rows = CHARS.filter((id) => Object.keys(matrix[id] || {}).length > 0);
   if (rows.length === 0) return null;
   const values: number[] = [];
