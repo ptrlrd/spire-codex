@@ -7,7 +7,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
-import { parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
+import { hasMapPositions, parseReplay, routeForAct, type ReplayFloor, type ReplayModel } from "@/lib/replay";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import LiveMap from "@/app/[locale]/live/LiveMap";
 import { characterName, useCharacterNames, useEncounterMap, useMonsterMap, type Coord } from "@/app/[locale]/live/live-shared";
@@ -202,11 +202,14 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
   const current = floors.find((f) => f.floor === selected);
   const act = current?.act ?? floors[0]?.act ?? 1;
   const acts = Array.from(new Set(floors.map((f) => f.act))).sort((a, b) => a - b);
-  const route: Map<number, Coord> = model ? routeForAct(model, act) : new Map<number, Coord>();
-  const path = [...route.values()];
-  const selectedCoord = current ? route.get(current.floor) : undefined;
+  const route = model ? routeForAct(model, act) : [];
+  const path: Coord[] = route.flatMap((e) => (e.coord ? [e.coord] : []));
+  const selectedCoord = current ? route.find((e) => e.floor.floor === current.floor)?.coord : undefined;
   const coordToFloor = new Map<string, number>();
-  for (const [floor, c] of route) coordToFloor.set(`${c[0]},${c[1]}`, floor);
+  for (const e of route) if (e.coord) coordToFloor.set(`${e.coord[0]},${e.coord[1]}`, e.floor.floor);
+  const unplaced = route.filter((e) => !e.coord).length;
+  const offMap = route.filter((e) => e.offMap).length;
+  const positionsRecorded = model ? hasMapPositions(model) : false;
 
   const pick = useCallback(
     (floor: number) => {
@@ -340,6 +343,18 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                     if (floor !== undefined) pick(floor);
                   }}
                 />
+                {!positionsRecorded ? (
+                  <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">{t("This recording did not include map positions.")}</p>
+                ) : unplaced > 0 ? (
+                  <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
+                    {t("{n} floors on this act have no recorded position.", { n: unplaced })}
+                  </p>
+                ) : null}
+                {offMap > 0 && (
+                  <p className="px-1 pt-1 text-[11px] text-[var(--text-muted)]">
+                    {t("{n} recorded positions are not on the recorded map.", { n: offMap })}
+                  </p>
+                )}
               </div>
             )}
             <ol className="max-h-[60vh] overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm">

@@ -53,6 +53,7 @@ export interface MapNodeLine {
 export interface MapLine extends LineBase {
   t: "map";
   boss?: string;
+  ancient?: string;
   bossCoord?: Coord;
   boss2Coord?: Coord;
   nodes: MapNodeLine[];
@@ -428,6 +429,15 @@ export interface ReplayMap {
   ancient?: string;
 }
 
+/** One floor of an act and where it stood, if the journal said. `offMap` marks
+ * a recorded coordinate that the recorded map has no node for: it is reported,
+ * never moved onto a convenient node. */
+export interface RouteEntry {
+  floor: ReplayFloor;
+  coord?: Coord;
+  offMap?: boolean;
+}
+
 export interface ReplayModel {
   header?: HeaderLine;
   end?: EndLine;
@@ -443,29 +453,6 @@ export interface ReplayModel {
 }
 
 const COMBAT_KINDS = new Set(["combat", "monster", "burly_monster", "elite", "boss"]);
-/** Room kind to the map node kinds that can host it. Looked up through
- * kindsForRoom so a kind like "constructor" cannot reach an inherited
- * property and blow up the route walk. */
-const NODE_KINDS_FOR_ROOM: Record<string, string[]> = {
-  combat: ["monster", "burly_monster", "elite", "boss"],
-  monster: ["monster", "burly_monster"],
-  burly_monster: ["burly_monster", "monster"],
-  elite: ["elite"],
-  boss: ["boss"],
-  merchant: ["shop"],
-  shop: ["shop"],
-  restsite: ["restsite"],
-  rest: ["restsite"],
-  treasure: ["treasure"],
-  event: ["event", "unknown", "ancient"],
-  unknown: ["unknown", "event"],
-  ancient: ["ancient"],
-};
-
-function kindsForRoom(kind: string): string[] {
-  return Object.hasOwn(NODE_KINDS_FOR_ROOM, kind) ? NODE_KINDS_FOR_ROOM[kind] : [kind];
-}
-
 function num(v: unknown): number | undefined {
   return typeof v === "number" && Number.isFinite(v) ? v : undefined;
 }
@@ -558,6 +545,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         ...base,
         t,
         boss: str(raw.boss),
+        ancient: str(raw.ancient),
         bossCoord: parseCoord(raw.boss_coord),
         boss2Coord: parseCoord(raw.boss2_coord),
         nodes: objects(raw.nodes).flatMap((n) => {
@@ -786,7 +774,7 @@ function buildMap(line: MapLine): ReplayMap {
   for (const bc of [line.bossCoord, line.boss2Coord]) {
     if (bc && !nodes.some((n) => n[0] === bc[0] && n[1] === bc[1])) nodes.push([bc[0], bc[1], "boss"]);
   }
-  return { act: line.act ?? 1, nodes, edges, boss: line.boss };
+  return { act: line.act ?? 1, nodes, edges, boss: line.boss, ancient: line.ancient };
 }
 
 function buildDecision(line: DecisionLine): ReplayDecision {
@@ -1100,9 +1088,6 @@ export function parseReplay(text: string): ReplayModel {
   }
   if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
   for (const dec of allDecisions) reconcileSelection(dec);
-  for (const map of Object.values(maps)) {
-    completeMap(map, floors.filter((f) => f.act === map.act));
-  }
 
   return {
     header,
@@ -1119,92 +1104,33 @@ export function parseReplay(text: string): ReplayModel {
   };
 }
 
-/** The journal's map carries the walkable grid only. The game draws the
- * act's Ancient below the first row and the boss above the last, so add
- * both as nodes (unless the recorder already placed the boss), wired to
- * every node on the neighbouring row, and name them from the floors. */
-function completeMap(map: ReplayMap, actFloors: ReplayFloor[]): void {
-  if (!map.nodes.length) return;
-  const rows = map.nodes.map((n) => n[1]);
-  const minRow = rows.reduce((a, b) => (b < a ? b : a), rows[0] ?? 0);
-  const maxRow = rows.reduce((a, b) => (b > a ? b : a), rows[0] ?? 0);
-  const centre = (row: number) => {
-    const cols = map.nodes.filter((n) => n[1] === row).map((n) => n[0]);
-    return Math.round(cols.reduce((a, b) => a + b, 0) / Math.max(1, cols.length));
-  };
-  const bossNode = map.nodes.find((n) => n[2] === "boss");
-  if (!bossNode) {
-    const col = centre(maxRow);
-    map.nodes.push([col, maxRow + 1, "boss"]);
-    for (const n of map.nodes.filter((n) => n[1] === maxRow)) map.edges.push([n[0], n[1], col, maxRow + 1]);
-  } else if (!map.edges.some((e) => e[2] === bossNode[0] && e[3] === bossNode[1])) {
-    const walkableMax = map.nodes.reduce((max, n) => (n[2] !== "boss" && n[1] > max ? n[1] : max), -Infinity);
-    for (const n of map.nodes.filter((n) => n[1] === walkableMax)) map.edges.push([n[0], n[1], bossNode[0], bossNode[1]]);
-  }
-  if (!map.boss) {
-    const bossFloor = [...actFloors].reverse().find((f) => isCombatKind(f.kind) && (f.id ?? "").includes("BOSS"));
-    if (bossFloor?.id) map.boss = bossFloor.id;
-  }
-  if (map.act !== 1) return;
-  if (!map.nodes.some((n) => n[2] === "ancient")) {
-    const col = centre(minRow);
-    map.nodes.push([col, minRow - 1, "ancient"]);
-    for (const n of map.nodes.filter((n) => n[1] === minRow)) map.edges.push([col, minRow - 1, n[0], n[1]]);
-  }
-  if (!map.ancient) {
-    const first = actFloors[0];
-    if (first && first.kind === "event" && first.id) map.ancient = first.id;
-  }
+/** Where the run stood on each floor of an act, in floor order, including the
+ * floors whose position the journal never recorded.
+ *
+ * This used to guess: a floor without a coordinate was placed on the next row
+ * by matching room kind, falling back to any reachable node and finally to the
+ * first node on the row. That drew a confident route the journal never
+ * recorded, and one wrong guess pushed every later floor along with it. */
+export function routeForAct(model: ReplayModel, act: number): RouteEntry[] {
+  const map = model.maps[act];
+  const onMap = new Set((map?.nodes ?? []).map((n) => `${n[0]},${n[1]}`));
+  return model.floors
+    .filter((f) => f.act === act)
+    .map((f) =>
+      f.coord ? { floor: f, coord: f.coord, offMap: !onMap.has(`${f.coord[0]},${f.coord[1]}`) } : { floor: f },
+    );
 }
 
-/** Rows climb from 0 at the act's first map node. Floors that carry a coord
- * use it; the rest are placed by walking the act's rooms in order and taking
- * the first node on the next row whose kind matches (or any node on that row).
- * Neow and other pre-map rooms get no node. */
-export function routeForAct(model: ReplayModel, act: number): Map<number, Coord> {
-  const out = new Map<number, Coord>();
-  const map = model.maps[act];
-  if (!map) return out;
-  const rows = new Map<number, MapNode[]>();
-  for (const n of map.nodes) {
-    const list = rows.get(n[1]) ?? [];
-    list.push(n);
-    rows.set(n[1], list);
-  }
-  const ancientNode = map.nodes.find((n) => n[2] === "ancient");
-  const walkable = map.nodes.filter((n) => n[2] !== "ancient");
-  const rowsFrom = walkable.length ? walkable : map.nodes;
-  let nextRow = rowsFrom.reduce((min, n) => (n[1] < min ? n[1] : min), Infinity);
-  let prev: Coord | undefined;
-  const edgeSet = new Set(map.edges.map((e) => `${e[0]},${e[1]}>${e[2]},${e[3]}`));
-  const actFloors = model.floors.filter((x) => x.act === act);
-  for (const f of actFloors) {
-    if (f.coord) {
-      out.set(f.floor, f.coord);
-      prev = f.coord;
-      nextRow = f.coord[1] + 1;
-      continue;
-    }
-    if (f === actFloors[0] && ancientNode && f.kind === "event" && f.id === map.ancient) {
-      prev = [ancientNode[0], ancientNode[1]];
-      out.set(f.floor, prev);
-      continue;
-    }
-    const candidates = rows.get(nextRow) ?? [];
-    if (!candidates.length) continue;
-    const kinds = kindsForRoom(f.kind);
-    const reachable = (n: MapNode) => !prev || edgeSet.has(`${prev[0]},${prev[1]}>${n[0]},${n[1]}`);
-    const pick =
-      candidates.find((n) => kinds.includes(n[2]) && reachable(n)) ??
-      candidates.find((n) => reachable(n)) ??
-      candidates.find((n) => kinds.includes(n[2])) ??
-      candidates[0];
-    const coord: Coord = [pick[0], pick[1]];
-    out.set(f.floor, coord);
-    prev = coord;
-    nextRow += 1;
-  }
-  return out;
+/** Whether this journal recorded map positions at all.
+ *
+ * A floor with no position means two different things, and the reader deserves
+ * to be told which: a recording that never captured positions, or a recording
+ * that captured them and missed this floor. The declared version answers it
+ * where it is new enough to promise positions; below that, the journal itself
+ * answers it, because the recorder shipped working coordinates one build
+ * before it bumped the version. */
+export function hasMapPositions(model: ReplayModel): boolean {
+  return (model.header?.replayVersion ?? 1) >= 2 || model.floors.some((f) => f.coord !== undefined);
 }
 
 export function isCombatKind(kind: string): boolean {

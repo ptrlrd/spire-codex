@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
+import { hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
 
 const JOURNAL = readFileSync(new URL("../../backend/tests/fixtures/real-replay.jsonl", import.meta.url), "utf-8");
 
@@ -14,9 +14,11 @@ describe("parseReplay on the real journal", () => {
   it("splits the run into floors with the act map", () => {
     expect(model.lineCount).toBe(994);
     expect(model.floors).toHaveLength(17);
-    expect(model.maps[1].nodes).toHaveLength(58);
-    expect(model.maps[1].boss).toBe("VANTOM_BOSS");
-    expect(model.maps[1].ancient).toBe("NEOW");
+    // Exactly the nodes the recorder wrote. The boss and Ancient nodes the
+    // viewer used to append, and the names it read off the floor list, are gone.
+    expect(model.maps[1].nodes).toHaveLength(56);
+    expect(model.maps[1].boss).toBeUndefined();
+    expect(model.maps[1].ancient).toBeUndefined();
     expect(model.maps[1].edges.length).toBeGreaterThan(56);
     expect(model.actNames[1]).toBe("OVERGROWTH");
     expect(model.startingDeck).toHaveLength(13);
@@ -60,15 +62,12 @@ describe("parseReplay on the real journal", () => {
     expect(shop.lines.some((l) => l.t === "buy")).toBe(true);
   });
 
-  it("places every mapped floor on a row without coords", () => {
+  it("reports every floor of the act as unplaced when the recorder wrote no coordinates", () => {
     const route = routeForAct(model, 1);
-    expect(route.size).toBe(17);
-    expect(route.get(1)?.[1]).toBe(0);
-    expect(route.get(2)?.[1]).toBe(1);
-    expect(route.get(17)?.[1]).toBe(16);
-    const rows = [...route.values()].map((c) => c[1]);
-    expect(rows).toEqual([...rows].sort((a, b) => a - b));
-    expect(new Set(rows).size).toBe(rows.length);
+    expect(route).toHaveLength(17);
+    expect(route.every((e) => e.coord === undefined)).toBe(true);
+    expect(route.map((e) => e.floor.floor)).toEqual(model.floors.filter((f) => f.act === 1).map((f) => f.floor));
+    expect(hasMapPositions(model)).toBe(false);
   });
 
   it("carries hp and gold forward per floor", () => {
@@ -97,10 +96,11 @@ describe("parseReplay on the Regent journal (deck_c, end_turn, exact identity)",
     expect(model.floors[model.floors.length - 1].combat?.result).toBe("death");
   });
 
-  it("places the seven floors on the map", () => {
+  it("lists the seven floors and places none of them", () => {
     const route = routeForAct(model, 1);
-    expect(route.size).toBe(7);
-    expect(model.maps[1].ancient).toBe("NEOW");
+    expect(route).toHaveLength(7);
+    expect(route.every((e) => e.coord === undefined)).toBe(true);
+    expect(model.maps[1].ancient).toBeUndefined();
   });
 });
 
@@ -211,7 +211,7 @@ describe("parseReplay edge cases the reviewers named", () => {
     expect(dec.selectionStatus).toBe("known");
   });
 
-  it("gives only act 1 an ancient node and wires a recorder-placed boss", () => {
+  it("keeps a recorder-placed boss and invents no ancient node or name", () => {
     const model = parseReplay(
       journal([
         header,
@@ -223,14 +223,56 @@ describe("parseReplay edge cases the reviewers named", () => {
         { t: "room", s: 6, floor: 3, act: 2, kind: "event", id: "CURSED_TOME", coord: "0,1" },
       ]),
     );
-    expect(model.maps[1].nodes.some((n) => n[2] === "ancient")).toBe(true);
-    expect(model.maps[1].ancient).toBe("NEOW");
-    expect(model.maps[1].edges).toContainEqual([1, 2, 1, 3]);
-    expect(model.maps[2].nodes.some((n) => n[2] === "ancient")).toBe(false);
-    expect(model.maps[2].ancient).toBeUndefined();
+    // The recorder placed the boss, so it stays. Nothing else is added.
+    expect(model.maps[1].boss).toBe("B1");
+    expect(model.maps[1].nodes.some((n) => n[2] === "boss")).toBe(true);
+    expect(model.maps[1].nodes.some((n) => n[2] === "ancient")).toBe(false);
+    expect(model.maps[1].ancient).toBeUndefined();
+    expect(model.maps[1].edges).not.toContainEqual([1, 2, 1, 3]);
     const route = routeForAct(model, 1);
-    expect(route.get(1)).toEqual([1, 0]);
-    expect(route.get(2)).toEqual([1, 1]);
+    // Floor 1 has no recorded coordinate, so it gets none. Floor 2 keeps its own.
+    expect(route[0].coord).toBeUndefined();
+    expect(route[1].coord).toEqual([1, 1]);
+  });
+
+  it("does not name a boss from an encounter id that merely contains BOSS", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "map", s: 1, floor: 0, act: 1, nodes: [{ coord: "0,0", kind: "monster", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "combat", id: "SOMETHING_BOSS", coord: "0,0" },
+      ]),
+    );
+    expect(model.maps[1].boss).toBeUndefined();
+  });
+
+  it("reports a recorded coordinate the map has no node for instead of moving it", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "map", s: 1, floor: 0, act: 1, nodes: [{ coord: "0,0", kind: "monster", children: ["0,1"] }, { coord: "0,1", kind: "monster", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "combat", id: "A", coord: "9,9" },
+      ]),
+    );
+    const [entry] = routeForAct(model, 1);
+    expect(entry.coord).toEqual([9, 9]);
+    expect(entry.offMap).toBe(true);
+  });
+
+  it("keeps a gap between two known positions instead of bridging it", () => {
+    const model = parseReplay(
+      journal([
+        header,
+        { t: "map", s: 1, floor: 0, act: 1, nodes: [{ coord: "0,0", kind: "monster", children: ["0,1"] }, { coord: "0,1", kind: "monster", children: ["0,2"] }, { coord: "0,2", kind: "monster", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "combat", id: "A", coord: "0,0" },
+        { t: "room", s: 3, floor: 2, act: 1, kind: "combat", id: "B" },
+        { t: "room", s: 4, floor: 3, act: 1, kind: "combat", id: "C", coord: "0,2" },
+      ]),
+    );
+    const route = routeForAct(model, 1);
+    expect(route.map((e) => e.coord)).toEqual([[0, 0], undefined, [0, 2]]);
+    // The journal did record positions here, so floor 2 is a real gap.
+    expect(hasMapPositions(model)).toBe(true);
   });
 
   it("keeps turn 0, snapshots hp from resume and combat end, and routes burly monsters as combat", () => {
@@ -251,7 +293,7 @@ describe("parseReplay edge cases the reviewers named", () => {
     expect(f.hpAfter).toBe(35);
     expect(f.goldAfter).toBe(12);
     expect(isCombatKind("burly_monster")).toBe(true);
-    expect(routeForAct(model, 1).get(1)).toEqual([0, 0]);
+    expect(routeForAct(model, 1)[0].coord).toBeUndefined();
   });
 
   it("counts malformed interior lines but tolerates a torn tail", () => {
@@ -496,5 +538,32 @@ describe("the parser only marks a pick the journal actually identified", () => {
     const picked = removal!.options.filter((o) => o.chosen);
     expect(picked).toHaveLength(1);
     expect(removal!.selectionStatus).toBe("known");
+  });
+});
+
+describe("parseReplay on the journal that records map positions", () => {
+  const model = parseReplay(readFileSync(new URL("../../backend/tests/fixtures/real-replay-coords.jsonl", import.meta.url), "utf-8"));
+
+  it("places every floor from the recorder's own coordinates", () => {
+    expect(hasMapPositions(model)).toBe(true);
+    const route = [1, 2].flatMap((act) => routeForAct(model, act));
+    expect(route).toHaveLength(model.floors.length);
+    expect(route.every((e) => e.coord !== undefined)).toBe(true);
+  });
+
+  it("reports the Ancient rooms as off the recorded grid rather than inventing a node for them", () => {
+    // Each act's Ancient sits on row 0 and the recorded node grid starts at
+    // row 1, so the recorder never emitted a node for it. The viewer used to
+    // manufacture one, guess its column and wire it to every node on row 1.
+    const off = [1, 2].flatMap((act) => routeForAct(model, act)).filter((e) => e.offMap);
+    expect(off.map((e) => e.floor.id)).toEqual(["NEOW", "TEZCATARA"]);
+    expect(off.map((e) => e.coord)).toEqual([[3, 0], [3, 0]]);
+    expect(model.maps[1].nodes.some((n) => n[2] === "ancient")).toBe(false);
+  });
+
+  it("keeps the boss the recorder named and its placed node", () => {
+    expect(model.maps[1].boss).toBe("THE_KIN_BOSS");
+    expect(model.maps[1].nodes.some((n) => n[2] === "boss")).toBe(true);
+    expect(model.maps[1].ancient).toBeUndefined();
   });
 });
