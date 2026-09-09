@@ -920,3 +920,34 @@ describe("a fight's identity decides what belongs to it", () => {
     expect(c.hpLossRecorded).toBeUndefined();
   });
 });
+
+describe("the map places a coordinate the recorder named on its own", () => {
+  it("gives the Ancient a node from ancient_coord without inventing edges for it", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "map", s: 1, act: 1, boss: "B", boss_coord: "3,16", ancient: "NEOW", ancient_coord: "3,0", nodes: [{ coord: "3,1", kind: "monster", children: [] }] },
+        { t: "room", s: 2, floor: 1, act: 1, kind: "event", id: "NEOW", coord: "3,0" },
+      ]),
+    );
+    const map = model.maps[1];
+    expect(map.ancient).toBe("NEOW");
+    expect(map.nodes).toContainEqual([3, 0, "ancient"]);
+    expect(map.nodes).toContainEqual([3, 16, "boss"]);
+    // Placing a recorded room is not the same as knowing what it connects to.
+    expect(map.edges).toHaveLength(0);
+    // And with a node there, the room is no longer off the recorded map.
+    expect(routeForAct(model, 1)[0].offMap).toBe(false);
+  });
+
+  it("prefers the recorder's own node over the bare coordinate", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "map", s: 1, act: 1, ancient: "NEOW", ancient_coord: "3,0", nodes: [{ coord: "3,0", kind: "ancient", children: ["2,1", "3,1"] }] },
+      ]),
+    );
+    expect(model.maps[1].nodes.filter((n) => n[0] === 3 && n[1] === 0)).toHaveLength(1);
+    expect(model.maps[1].edges).toEqual([[3, 0, 2, 1], [3, 0, 3, 1]]);
+  });
+});

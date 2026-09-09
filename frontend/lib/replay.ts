@@ -56,6 +56,7 @@ export interface MapLine extends LineBase {
   ancient?: string;
   bossCoord?: Coord;
   boss2Coord?: Coord;
+  ancientCoord?: Coord;
   nodes: MapNodeLine[];
 }
 export interface RoomLine extends LineBase {
@@ -585,6 +586,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         ancient: str(raw.ancient),
         bossCoord: parseCoord(raw.boss_coord),
         boss2Coord: parseCoord(raw.boss2_coord),
+        ancientCoord: parseCoord(raw.ancient_coord),
         nodes: objects(raw.nodes).flatMap((n) => {
           const coord = parseCoord(n.coord);
           if (!coord) return [];
@@ -827,8 +829,15 @@ function buildMap(line: MapLine): ReplayMap {
     nodes.push([n.coord[0], n.coord[1], n.kind]);
     for (const child of n.children) edges.push([n.coord[0], n.coord[1], child[0], child[1]]);
   }
-  for (const bc of [line.bossCoord, line.boss2Coord]) {
-    if (bc && !nodes.some((n) => n[0] === bc[0] && n[1] === bc[1])) nodes.push([bc[0], bc[1], "boss"]);
+  // A coordinate the recorder named separately still gets a node when its node
+  // list does not already carry one. This places a recorded room, and adds no
+  // edges, because the journal is the only thing that knows what it connects to.
+  for (const [coord, kind] of [
+    [line.bossCoord, "boss"],
+    [line.boss2Coord, "boss"],
+    [line.ancientCoord, "ancient"],
+  ] as const) {
+    if (coord && !nodes.some((n) => n[0] === coord[0] && n[1] === coord[1])) nodes.push([coord[0], coord[1], kind]);
   }
   return { act: line.act ?? 1, nodes, edges, boss: line.boss, ancient: line.ancient };
 }
