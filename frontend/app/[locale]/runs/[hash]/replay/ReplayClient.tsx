@@ -68,8 +68,10 @@ function seriesFor(model: ReplayModel, floors: ReplayFloor[], maxHp: number | un
       label: t("HP lost per floor"),
       kind: "bar",
       color: "var(--accent-red)",
-      // A floor is only plotted where every fight on it reported a total. One
-      // unknown fight makes the floor's total unknown, not smaller.
+      // Only the recorder's own totals. The recorded HP changes are a lower
+      // bound per fight, so adding them into the same series would present two
+      // different measurements as one. A floor with any unknown fight is
+      // unknown, not smaller.
       values: floors.map((f) =>
         f.combats.length && f.combats.every((c) => c.hpLost !== undefined)
           ? f.combats.reduce((n, c) => n + (c.hpLost ?? 0), 0)
@@ -223,6 +225,15 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
   const selectedCoord = current ? route.find((e) => e.floor.floor === current.floor)?.coord : undefined;
   const coordToFloor = new Map<string, number>();
   for (const e of route) if (e.coord) coordToFloor.set(`${e.coord[0]},${e.coord[1]}`, e.floor.floor);
+  // Only steps between two consecutively located floors. A floor with no
+  // recorded position ends the line rather than being stepped over, which
+  // matters because the recorded maps do contain an edge that skips a row.
+  const pathEdges = new Set<string>();
+  for (let i = 1; i < route.length; i += 1) {
+    const from = route[i - 1].coord;
+    const to = route[i].coord;
+    if (from && to) pathEdges.add(`${from[0]},${from[1]}>${to[0]},${to[1]}`);
+  }
   const unplaced = route.filter((e) => !e.coord).length;
   const offMap = route.filter((e) => e.offMap).length;
   const positionsRecorded = model ? hasMapPositions(model) : false;
@@ -345,6 +356,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
                 <LiveMap
                   map={map}
                   path={path}
+                  pathEdges={pathEdges}
                   selected={selectedCoord}
                   monsters={monsters}
                   encounters={encounters}

@@ -379,6 +379,7 @@ function FloorCard({
 export default function LiveMap({
   map,
   path,
+  pathEdges,
   pos,
   reveals,
   route,
@@ -393,6 +394,10 @@ export default function LiveMap({
 }: {
   map?: LiveMapData | null;
   path?: Coord[];
+  /** The steps actually walked, as "col,row>col,row". When given, only these
+   * edges light up, so two visited nodes with an unrecorded floor between them
+   * are not joined by a line the journal never recorded. */
+  pathEdges?: Set<string>;
   pos?: Coord | null;
   reveals?: Reveal[];
   route?: LiveRoute | null;
@@ -547,7 +552,7 @@ export default function LiveMap({
           </filter>
         </defs>
         {edges.map(([c, r, cc, cr], i) => {
-          const lit = onPath(c, r) && onPath(cc, cr);
+          const lit = pathEdges ? pathEdges.has(`${c},${r}>${cc},${cr}`) : onPath(c, r) && onPath(cc, cr);
           return (
             <line
               key={`e-${c}-${r}-${cc}-${cr}-${i}`}

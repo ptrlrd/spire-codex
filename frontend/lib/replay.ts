@@ -99,9 +99,13 @@ export interface OutcomeLine extends LineBase {
   outcome?: string;
   optionIndex?: number;
   optionId?: string;
-  /** Every option taken, for a decision that allows more than one. An empty
-   * array is an explicit decline; absent means no select was open. */
+  /** Every option taken, for a decision that allows more than one. This is the
+   * complete answer where present: an option outside it was not taken. An
+   * empty array is an explicit decline; absent means no select was open. */
   selectedOptionIndices?: number[];
+  /** The recorder sent a selection list containing something that is not an
+   * index, so the list cannot be read as complete or as a decline. */
+  selectedOptionIndicesInvalid?: boolean;
   label?: string;
 }
 export interface ResolveLine extends LineBase {
@@ -417,10 +421,15 @@ export interface ReplayCombat {
    * ended, or another fight started first. */
   endRecorded: boolean;
   turnCount?: number;
-  /** HP the player lost across this fight, where the journal supports a total.
-   * Undefined means the journal does not say, which is not the same as zero.
-   * Healing does not cancel an earlier loss. */
+  /** HP the player lost across this fight, as the recorder totalled it.
+   * Undefined means the journal does not say, which is not the same as zero. */
   hpLost?: number;
+  /** What the recorded HP changes add up to, on a journal older than the
+   * version that totals it, and only where those changes reconcile end to end.
+   * A LOWER BOUND, not a total: two unrecorded changes that cancel each other
+   * leave every recorded value consistent, so this cannot prove it saw
+   * everything. Never interchangeable with hpLost. */
+  hpLossRecorded?: number;
   hpEnd?: number;
   /** Stable across a reload that continues this fight, from version 2. */
   combatId?: string;
@@ -501,11 +510,14 @@ function bool(v: unknown): boolean | undefined {
   return typeof v === "boolean" ? v : undefined;
 }
 
-/** A list of option indices the journal reported. Anything that is not a
- * non-negative safe integer is dropped rather than coerced. */
-function indices(v: unknown): number[] | undefined {
+/** A list of journal-reported indices. An entry that is not an index makes the
+ * whole list unusable rather than shorter: an empty list means "declined
+ * explicitly", so silently filtering `[null]` down to `[]` would turn a
+ * malformed record into a recorded decision. */
+function indices(v: unknown): { values: number[]; invalid: boolean } | undefined {
   if (!Array.isArray(v)) return undefined;
-  return v.map(count).filter((n): n is number => n !== undefined);
+  const parsed = v.map(count);
+  return { values: parsed.filter((n): n is number => n !== undefined), invalid: parsed.some((n) => n === undefined) };
 }
 
 function objects(v: unknown): Raw[] {
@@ -622,7 +634,8 @@ function narrow(raw: Raw): ReplayLine | undefined {
         outcome: str(raw.outcome),
         optionIndex: count(raw.option_index),
         optionId: str(raw.option_id),
-        selectedOptionIndices: indices(raw.selected_option_indices),
+        selectedOptionIndices: indices(raw.selected_option_indices)?.values,
+        selectedOptionIndicesInvalid: indices(raw.selected_option_indices)?.invalid,
         label: str(raw.label),
       };
     case "resolve":
@@ -901,6 +914,12 @@ function evidenceFor(line: OutcomeLine | ResolutionLine): ChoiceEvidence[] {
   return out;
 }
 
+/** "inapplicable" is not a failure to match. It means the identifier belongs to
+ * a namespace this decision's options are not drawn from, so it says nothing
+ * either way. An event that upgrades a card as a consequence records the deck
+ * instance it upgraded, and that instance was never one of the event's options;
+ * counting it as an unmatched pick would downgrade a decision whose choice the
+ * outcome line already named exactly. */
 type Match = { index: number } | "ambiguous" | "unmatched";
 
 function matchEvidence(dec: ReplayDecision, ev: ChoiceEvidence): Match {
@@ -923,38 +942,129 @@ function matchEvidence(dec: ReplayDecision, ev: ChoiceEvidence): Match {
   return hits.length ? "ambiguous" : "unmatched";
 }
 
+/** Whether this record could name one of this decision's options at all.
+ *
+ * An event offers prose choices, so a card it upgrades or grants is a
+ * consequence of the choice rather than another choice: that record neither
+ * identifies a pick nor counts as a pick it failed to identify. Everywhere
+ * else the record is treated as capable of naming a selection, so a resolution
+ * that fails to identify one leaves the decision unsettled instead of being
+ * quietly ignored. */
+function selectionBearing(dec: ReplayDecision, line: ResolutionLine): boolean {
+  switch (line.t) {
+    case "acquire":
+    case "remove":
+    case "upgrade":
+    case "transform":
+      return !dec.options.every((o) => o.kind === "event_option");
+    case "buy":
+      // Shop slots are numbered per item kind, so a decision listing no option
+      // of that kind is not the list this slot indexes into.
+      return dec.options.some((o) => o.kind === line.kind);
+    default:
+      // A relic line carries only a definition id, and a resolve line is a
+      // reward summary. Neither names an option.
+      return false;
+  }
+}
+
+/** What one record says about the selection, after its own identifiers have
+ * been reconciled against each other. */
+type RecordClaim =
+  | { kind: "silent" }
+  | { kind: "picked"; index: number }
+  | { kind: "exhaustive"; indices: number[] }
+  | { kind: "declined" }
+  | { kind: "unresolved" }
+  | { kind: "contradiction" };
+
+/** Every identifier on one record has to name the same option. A record that
+ * names two is a contradiction in the record itself, which stays a conflict
+ * even where the decision allowed more than one pick. */
+function fromOneRecord(dec: ReplayDecision, ev: ChoiceEvidence[]): RecordClaim {
+  const matches = ev.map((e) => matchEvidence(dec, e));
+  if (matches.some((m) => m === "ambiguous" || m === "unmatched")) return { kind: "unresolved" };
+  const idx = matches.map((m) => (m as { index: number }).index);
+  if (!idx.length) return { kind: "unresolved" };
+  return idx.every((i) => i === idx[0]) ? { kind: "picked", index: idx[0] } : { kind: "contradiction" };
+}
+
 const DECLINED = new Set(["skip", "decline", "declined", "reroll"]);
 
-/** Settle which options were taken from every record attached to the decision,
- * rather than letting the last line to arrive win. Marks nothing at all when
- * the evidence is ambiguous or contradicts itself. */
-function reconcileSelection(dec: ReplayDecision): void {
-  const picked = new Set<number>();
-  let unresolved = 0;
-  for (const line of [...dec.outcomes, ...dec.resolutions]) {
-    for (const ev of evidenceFor(line)) {
-      const m = matchEvidence(dec, ev);
-      if (m === "ambiguous" || m === "unmatched") unresolved += 1;
-      else picked.add(m.index);
+function claimFor(dec: ReplayDecision, line: OutcomeLine | ResolutionLine): RecordClaim {
+  if (line.t === "outcome") {
+    if (line.selectedOptionIndicesInvalid) return { kind: "unresolved" };
+    const set = line.selectedOptionIndices;
+    if (set !== undefined) {
+      if (!set.length) return { kind: "declined" };
+      const matches = set.map((i) => matchEvidence(dec, { kind: "index", index: i }));
+      if (matches.some((m) => m === "ambiguous" || m === "unmatched")) return { kind: "unresolved" };
+      return { kind: "exhaustive", indices: matches.map((m) => (m as { index: number }).index) };
     }
+    const ev = evidenceFor(line);
+    if (!ev.length) return line.outcome && DECLINED.has(line.outcome) ? { kind: "declined" } : { kind: "unresolved" };
+    return fromOneRecord(dec, ev);
   }
-  // Cardinality is only known where the recorder stated it. An unstated one is
-  // not assumed to be single-pick, so two agreeing records are not called a
-  // conflict just because the journal did not say how many picks were allowed.
-  const multi = dec.maxSelect !== undefined && dec.maxSelect > 1;
-  if (picked.size > 1 && dec.maxSelect !== undefined && !multi) {
+  if (!selectionBearing(dec, line)) return { kind: "silent" };
+  return fromOneRecord(dec, evidenceFor(line));
+}
+
+/** Settle which options were taken from every record attached to the decision.
+ *
+ * Compatible evidence is not the same as complete evidence, and collected
+ * evidence is not the same as agreeing evidence, so the records are reconciled
+ * against each other rather than poured into one bag. Nothing is marked when
+ * they disagree. */
+function reconcileSelection(dec: ReplayDecision): void {
+  const claims = [...dec.outcomes, ...dec.resolutions].map((l) => claimFor(dec, l));
+  const mark = (indexes: number[]) => {
+    for (const o of dec.options) if (indexes.includes(o.index)) o.chosen = true;
+  };
+  if (claims.some((c) => c.kind === "contradiction")) {
     dec.selectionStatus = "conflict";
     return;
   }
-  if (picked.size) {
+  const exhaustive = claims.flatMap((c) => (c.kind === "exhaustive" ? [c.indices] : []));
+  const picks = claims.flatMap((c) => (c.kind === "picked" ? [c.index] : []));
+  const declined = claims.some((c) => c.kind === "declined");
+  const unresolved = claims.filter((c) => c.kind === "unresolved").length;
+
+  // A recorded complete set answers the decision. Anything naming an option
+  // outside it, or saying nothing was taken, contradicts it.
+  if (exhaustive.length) {
+    const first = exhaustive[0];
+    const agree = exhaustive.every((e) => e.length === first.length && e.every((i) => first.includes(i)));
+    if (!agree || declined || picks.some((p) => !first.includes(p))) {
+      dec.selectionStatus = "conflict";
+      return;
+    }
+    mark(first);
     dec.selectionStatus = unresolved ? "partial" : "known";
-    for (const o of dec.options) if (picked.has(o.index)) o.chosen = true;
     return;
   }
-  // An explicit decline is a recorded fact: the player took nothing.
-  const declined = dec.outcomes.some((o) => o.outcome && DECLINED.has(o.outcome));
-  const emptySelect = dec.outcomes.some((o) => o.selectedOptionIndices?.length === 0);
-  dec.selectionStatus = (declined || emptySelect) && !unresolved ? "known" : "unknown";
+  const picked = [...new Set(picks)];
+  if (declined) {
+    if (picked.length) {
+      dec.selectionStatus = "conflict";
+      return;
+    }
+    dec.selectionStatus = unresolved ? "partial" : "known";
+    return;
+  }
+  if (picked.length) {
+    if (dec.maxSelect !== undefined && picked.length > dec.maxSelect) {
+      dec.selectionStatus = "conflict";
+      return;
+    }
+    // More picks than one where the journal never said how many were allowed:
+    // each was identified, so they are kept, but the decision is not called
+    // settled. Treating it as single-pick would invent the rule.
+    const unstatedMulti = picked.length > 1 && dec.maxSelect === undefined;
+    mark(picked);
+    dec.selectionStatus = unresolved || unstatedMulti ? "partial" : "known";
+    return;
+  }
+  dec.selectionStatus = "unknown";
 }
 
 function isResolution(line: ReplayLine): line is ResolutionLine {
@@ -969,18 +1079,22 @@ function isResolution(line: ReplayLine): line is ResolutionLine {
   );
 }
 
-/** Running HP-loss total for the fight being parsed.
+/** Running total of the HP losses the journal recorded for the fight.
  *
- * `covered` is the whole point. Summing the negative HP deltas is only a total
- * if the journal recorded every HP change in the fight, so every delta is
- * checked against the running HP: a delta that does not carry the snapshot to
- * the value the journal reports means something happened off the record, and
- * the total is abandoned rather than guessed low. `hp_loss` lines are timeline
- * detail and are never added in; they can describe the same event twice. */
+ * `consistent` tracks whether the recorded values reconcile: every delta has to
+ * carry the running HP to the value the journal reports, anchored on the HP
+ * known before the fight and landing on the HP reported at the end. A delta
+ * that does not chain means something happened off the record.
+ *
+ * Consistency is not completeness, and the difference is why this is only ever
+ * reported as a lower bound. A ten-HP loss and a ten-HP heal that the recorder
+ * never wrote down leave every recorded value reconciling perfectly while the
+ * sum is ten short. `hp_loss` lines are timeline detail and are never added in;
+ * they can describe the same event twice. */
 interface HpLossTrack {
   lost: number;
   last?: number;
-  covered: boolean;
+  consistent: boolean;
 }
 
 export function parseReplay(text: string): ReplayModel {
@@ -1090,17 +1204,27 @@ export function parseReplay(text: string): ReplayModel {
         combatId: line.combatId,
         attemptId: line.attemptId,
       };
-      hpLoss = { lost: 0, last: hp, covered: hp !== undefined };
+      hpLoss = { lost: 0, last: hp, consistent: hp !== undefined };
       turn = undefined;
       if (floor) floor.combats.push(combat);
       continue;
     }
     if (combat) {
-      // From version 2 a turn or an end names its fight. One that names a
-      // different fight is not folded into this one.
-      const named = line.t === "turn" || line.t === "combat_end" ? line.combatId : undefined;
-      if (named !== undefined && combat.combatId !== undefined && named !== combat.combatId) {
-        if (floor) floor.lines.push(line);
+      // From version 2 a turn or an end names its fight and its attempt. A
+      // combat id is deliberately stable across a reload, so the attempt has to
+      // be checked too or one attempt's end would close another's fight.
+      const tagged = line.t === "turn" || line.t === "combat_end";
+      const foreign =
+        tagged &&
+        ((line.combatId !== undefined && combat.combatId !== undefined && line.combatId !== combat.combatId) ||
+          (line.attemptId !== undefined && combat.attemptId !== undefined && line.attemptId !== combat.attemptId));
+      if (foreign) {
+        // Detach rather than skip. The play and hp lines that follow carry no
+        // identity of their own, so leaving this fight active would collect
+        // another fight's actions into it.
+        combat = undefined;
+        hpLoss = undefined;
+        turn = undefined;
         continue;
       }
       if (line.t === "turn") {
@@ -1114,9 +1238,15 @@ export function parseReplay(text: string): ReplayModel {
         combat.result = line.result;
         combat.endRecorded = true;
         combat.turnCount = line.turns;
-        // The recorder's own total wins wherever it exists; below that, a
-        // derived one is only offered when every HP change was accounted for.
-        combat.hpLost = line.hpLostTotal ?? (hpLoss?.covered ? hpLoss.lost : undefined);
+        combat.hpLost = line.hpLostTotal;
+        // The HP the fight ended on has to agree with the changes recorded
+        // during it, or the recorded changes did not cover the whole fight.
+        if (hpLoss && line.hp !== undefined && hpLoss.last !== line.hp) hpLoss.consistent = false;
+        // From the version that totals HP loss, a missing total means the
+        // recorder could not supply one, so nothing is substituted for it.
+        // Below that version there is no total to miss, and the recorded losses
+        // are offered as the lower bound they are.
+        if (hpLoss?.consistent && (header?.replayVersion ?? 1) < 2) combat.hpLossRecorded = hpLoss.lost;
         if (line.hp !== undefined) {
           combat.hpEnd = line.hp;
           snapshot(floor, line.hp);
@@ -1128,7 +1258,7 @@ export function parseReplay(text: string): ReplayModel {
       }
       if (line.t === "hp") {
         if (hpLoss) {
-          if (line.d === undefined || hpLoss.last === undefined || hpLoss.last + line.d !== line.hp) hpLoss.covered = false;
+          if (line.d === undefined || hpLoss.last === undefined || hpLoss.last + line.d !== line.hp) hpLoss.consistent = false;
           else if (line.d < 0) hpLoss.lost -= line.d;
           hpLoss.last = line.hp;
         }

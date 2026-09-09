@@ -459,7 +459,20 @@ function TurnBlock({ turn, cat }: { turn: ReplayTurn; cat: Catalog }) {
   );
 }
 
-function CombatBlock({ c, n, of, cat }: { c: ReplayCombat; n: number; of: number; cat: Catalog }) {
+/** Names each fight on the floor. Two starts sharing a combat id are one fight
+ * retried after a reload, not two fights, so they are numbered as attempts. */
+function combatLabels(combats: ReplayCombat[], t: TFn): (string | undefined)[] {
+  const keys = combats.map((c, i) => c.combatId ?? `\u0000${i}`);
+  const distinct = [...new Set(keys)];
+  return keys.map((key, i) => {
+    const fight = distinct.indexOf(key) + 1;
+    const attempts = keys.filter((k) => k === key).length;
+    if (attempts > 1) return t("Fight {n}, attempt {k}", { n: fight, k: keys.slice(0, i + 1).filter((k) => k === key).length });
+    return distinct.length > 1 ? t("Fight {n} of {of}", { n: fight, of: distinct.length }) : undefined;
+  });
+}
+
+function CombatBlock({ c, label, cat }: { c: ReplayCombat; label?: string; cat: Catalog }) {
   const t = useT();
   const lang = useGameLocale();
   return (
@@ -480,7 +493,7 @@ function CombatBlock({ c, n, of, cat }: { c: ReplayCombat; n: number; of: number
         </div>
         <div className="text-sm">
           <div className="font-semibold text-[var(--text-primary)]">
-            {of > 1 && <span className="mr-1.5 text-xs text-[var(--text-muted)]">{t("Fight {n} of {of}", { n: n + 1, of })}</span>}
+            {label && <span className="mr-1.5 text-xs text-[var(--text-muted)]">{label}</span>}
             {c.enemies.map((e) => monsterName(e.id, cat)).join(", ")}
           </div>
           <div className="text-xs text-[var(--text-muted)]">
@@ -496,7 +509,12 @@ function CombatBlock({ c, n, of, cat }: { c: ReplayCombat; n: number; of: number
               </>
             )}
             {c.turnCount ?? c.turns.filter((x) => x.side === "player").length} {t("turns")}
-            {" · "}{c.hpLost !== undefined ? `${c.hpLost} ${t("HP lost")}` : t("HP lost unknown")}
+            {" · "}
+            {c.hpLost !== undefined
+              ? `${c.hpLost} ${t("HP lost")}`
+              : c.hpLossRecorded !== undefined
+                ? t("At least {n} HP lost", { n: c.hpLossRecorded })
+                : t("HP lost unknown")}
             {c.hpEnd !== undefined && ` · HP ${c.hpEnd}`}
           </div>
         </div>
@@ -539,6 +557,7 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
   // An event's "Proceed" page is recorded as a decision with nothing to
   // pick; it adds nothing the previous card didn't say.
   const visibleDecisions = f.decisions.filter((d) => !(d.type === "event" && d.nPresented === 0 && d.resolutions.length === 0));
+  const combatNames = combatLabels(f.combats, t);
   const hpDelta = prev?.hpAfter !== undefined && f.hpAfter !== undefined ? f.hpAfter - prev.hpAfter : 0;
   const goldDelta = prev?.goldAfter !== undefined && f.goldAfter !== undefined ? f.goldAfter - prev.goldAfter : 0;
   return (
@@ -560,7 +579,7 @@ export default function FloorPanel({ f, prev, cat, maxHp }: { f: ReplayFloor; pr
         </span>
       </header>
       {f.combats.map((c, i) => (
-        <CombatBlock key={`${c.combatId ?? c.encounter}-${i}`} c={c} n={i} of={f.combats.length} cat={cat} />
+        <CombatBlock key={`${c.combatId ?? c.encounter}-${i}`} c={c} label={combatNames[i]} cat={cat} />
       ))}
       {isShopKind(f.kind) && <ShopBlock f={f} prev={prev} cat={cat} />}
       {visibleDecisions.map((d) => (

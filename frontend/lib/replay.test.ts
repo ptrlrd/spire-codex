@@ -670,8 +670,9 @@ describe("a floor keeps every fight the journal recorded", () => {
 });
 
 describe("HP lost is reported only where the journal supports a total", () => {
-  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
-  const fight = (lines: Record<string, unknown>[]) =>
+  const v1 = { t: "header", s: 0, ms: 1, floor: 0, act: 1, starting_deck: [] };
+  const v2 = { ...v1, replay_version: 2 };
+  const fight = (lines: Record<string, unknown>[], header: Record<string, unknown> = v1) =>
     parseReplay(
       journal([
         header,
@@ -682,80 +683,240 @@ describe("HP lost is reported only where the journal supports a total", () => {
       ]),
     ).floors[0].combats[0];
 
-  it("does not let healing cancel an earlier loss", () => {
+  it("never presents recorded losses as the fight's total", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp: 53 },
+    ]);
+    // Consistent is not complete: an unrecorded loss and an unrecorded heal of
+    // the same size would leave every recorded value reconciling.
+    expect(c.hpLost).toBeUndefined();
+    expect(c.hpLossRecorded).toBe(7);
+  });
+
+  it("does not let healing cancel an earlier loss in the recorded sum", () => {
     const c = fight([
       { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
       { t: "hp", s: 5, floor: 1, act: 1, hp: 56, d: 3 },
       { t: "hp", s: 6, floor: 1, act: 1, hp: 51, d: -5 },
-      { t: "combat_end", s: 7, floor: 1, act: 1, turns: 3 },
+      { t: "combat_end", s: 7, floor: 1, act: 1, turns: 3, hp: 51 },
     ]);
-    expect(c.hpLost).toBe(12);
+    expect(c.hpLossRecorded).toBe(12);
   });
 
-  it("reports a real zero for a fight that took no damage", () => {
-    const c = fight([{ t: "combat_end", s: 4, floor: 1, act: 1, turns: 1 }]);
-    expect(c.hpLost).toBe(0);
+  it("records zero for a fight whose start and end HP agree with no changes", () => {
+    const c = fight([{ t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 60 }]);
+    expect(c.hpLossRecorded).toBe(0);
   });
 
-  it("gives up on the total when one HP change went unrecorded", () => {
+  it("does not claim zero when the fight ended on different HP than it started", () => {
+    // The old code reported 0 here: no in-combat hp line contradicted anything,
+    // so a ten HP discrepancy passed as a measured zero.
+    const c = fight([{ t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 50 }]);
+    expect(c.hpLossRecorded).toBeUndefined();
+    expect(c.hpLost).toBeUndefined();
+  });
+
+  it("gives up when one HP change went unrecorded", () => {
     const c = fight([
       { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
-      // 53 - 5 is 48, not 40: something happened that the journal did not record.
       { t: "hp", s: 5, floor: 1, act: 1, hp: 40, d: -5 },
-      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 2 },
+      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 2, hp: 40 },
     ]);
-    expect(c.hpLost).toBeUndefined();
+    expect(c.hpLossRecorded).toBeUndefined();
   });
 
   it("does not double count one loss reported twice", () => {
     const c = fight([
       { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
       { t: "hp", s: 5, floor: 1, act: 1, hp: 53, d: -7 },
-      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1 },
+      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, hp: 53 },
     ]);
-    expect(c.hpLost).toBeUndefined();
+    expect(c.hpLossRecorded).toBeUndefined();
   });
 
   it("never sums hp_loss lines, which can describe an event a second time", () => {
     const c = fight([
       { t: "hp_loss", s: 4, floor: 1, act: 1, dmg: 7, blocked: 0 },
-      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp: 60 },
     ]);
-    expect(c.hpLost).toBe(0);
+    expect(c.hpLossRecorded).toBe(0);
   });
 
-  it("takes the recorder's own total over anything it could derive", () => {
+  it("takes the recorder's own total and does not derive one alongside it", () => {
     const c = fight([
       { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
-      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp_lost_total: 19 },
-    ]);
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp: 53, hp_lost_total: 19 },
+    ], v2);
     expect(c.hpLost).toBe(19);
+    expect(c.hpLossRecorded).toBeUndefined();
   });
 
-  it("reports the recorder's total even where the HP stream has a hole", () => {
+  it("leaves a version 2 fight unknown when the recorder sent no total", () => {
+    // Below version 2 there is no total to miss. From version 2 its absence is
+    // the recorder saying it could not supply one, so nothing stands in for it.
     const c = fight([
-      { t: "hp", s: 4, floor: 1, act: 1, hp: 40, d: -5 },
-      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp_lost_total: 20 },
-    ]);
-    expect(c.hpLost).toBe(20);
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 },
+      { t: "combat_end", s: 5, floor: 1, act: 1, turns: 1, hp: 53 },
+    ], v2);
+    expect(c.hpLost).toBeUndefined();
+    expect(c.hpLossRecorded).toBeUndefined();
   });
 
-  it("leaves the total unknown when the HP before the fight was never recorded", () => {
+  it("leaves the recorded sum unknown when the HP before the fight was never recorded", () => {
     const model = parseReplay(
       journal([
-        header,
+        v1,
         { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
         { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [] },
         { t: "hp", s: 3, floor: 1, act: 1, hp: 53, d: -7 },
-        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1 },
+        { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 53 },
       ]),
     );
-    expect(model.floors[0].combats[0].hpLost).toBeUndefined();
+    expect(model.floors[0].combats[0].hpLossRecorded).toBeUndefined();
   });
 
-  it("leaves the total unknown for a fight the journal never ended", () => {
+  it("reports nothing for a fight the journal never ended", () => {
     const c = fight([{ t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7 }]);
     expect(c.endRecorded).toBe(false);
     expect(c.hpLost).toBeUndefined();
+    expect(c.hpLossRecorded).toBeUndefined();
+  });
+});
+
+describe("selection records have to agree, not merely coexist", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "event", id: "X" };
+  const twoInstances = {
+    t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", select_kind: "remove", source: "event", max_select: 2,
+    options: [{ option_index: 0, option_kind: "remove", option_id: "STRIKE", instance_id: 10 }, { option_index: 1, option_kind: "remove", option_id: "STRIKE", instance_id: 11 }],
+  };
+
+  it("calls one record naming two different options a conflict, even in a multi-select", () => {
+    const model = parseReplay(journal([header, room, twoInstances, { t: "remove", s: 3, floor: 1, act: 1, decision_id: 1, id: "STRIKE", c: 11, option_index: 0 }]));
+    const dec = model.floors[0].decisions[0];
+    expect(dec.selectionStatus).toBe("conflict");
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+  });
+
+  it("treats a recorded selection list as complete, so a pick outside it conflicts", () => {
+    const model = parseReplay(
+      journal([
+        header, room, twoInstances,
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "deck_select", outcome: "chosen", selected_option_indices: [0] },
+        { t: "remove", s: 4, floor: 1, act: 1, decision_id: 1, id: "STRIKE", c: 11 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.selectionStatus).toBe("conflict");
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+  });
+
+  it("conflicts when an explicit decline sits alongside an identified pick", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward", options: [{ option_index: 0, option_kind: "card", option_id: "A" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", outcome: "skip", selected_option_indices: [] },
+        { t: "acquire", s: 4, floor: 1, act: 1, decision_id: 1, id: "A", c: 40, option_index: 0 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    // Previously this rendered "Skipped" and "Taken" at the same time.
+    expect(dec.selectionStatus).toBe("conflict");
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+  });
+
+  it("conflicts when more options are identified than the decision allowed", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward", max_select: 2, options: [{ option_index: 0, option_kind: "card", option_id: "A" }, { option_index: 1, option_kind: "card", option_id: "B" }, { option_index: 2, option_kind: "card", option_id: "C" }] },
+        { t: "acquire", s: 3, floor: 1, act: 1, decision_id: 1, id: "A", c: 40, option_index: 0 },
+        { t: "acquire", s: 4, floor: 1, act: 1, decision_id: 1, id: "B", c: 41, option_index: 1 },
+        { t: "acquire", s: 5, floor: 1, act: 1, decision_id: 1, id: "C", c: 42, option_index: 2 },
+      ]),
+    );
+    expect(model.floors[0].decisions[0].selectionStatus).toBe("conflict");
+  });
+
+  it("does not call a multi-select settled while one acquisition stays unidentified", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward", max_select: 2, options: [{ option_index: 0, option_kind: "card", option_id: "A" }, { option_index: 1, option_kind: "card", option_id: "A" }] },
+        { t: "acquire", s: 3, floor: 1, act: 1, decision_id: 1, id: "A", c: 40, option_index: 0 },
+        // The recorder refuses to guess between duplicate offers, so this one
+        // carries no index. It is still a pick that happened.
+        { t: "acquire", s: 4, floor: 1, act: 1, decision_id: 1, id: "A", c: 41 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([true, false]);
+    expect(dec.selectionStatus).toBe("partial");
+  });
+
+  it("reads an invalid selection list as unresolved rather than as a decline", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", source: "reward", options: [{ option_index: 0, option_kind: "card", option_id: "A" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "card_reward", outcome: "chosen", selected_option_indices: [null] },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.selectionStatus).toBe("unknown");
+    expect(dec.options.every((o) => !o.chosen)).toBe(true);
+  });
+
+  it("keeps an event's card consequence from counting as a second choice", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "decision", s: 2, floor: 1, act: 1, decision_id: 1, decision_type: "event", source: "event", event_id: "SAPPHIRE_SEED", options: [{ option_index: 0, option_kind: "event_option", option_id: "SEED.EAT" }, { option_index: 1, option_kind: "event_option", option_id: "SEED.PLANT" }] },
+        { t: "outcome", s: 3, floor: 1, act: 1, decision_id: 1, decision_type: "event", outcome: "chosen", option_id: "SEED.EAT" },
+        { t: "upgrade", s: 4, floor: 1, act: 1, decision_id: 1, id: "TAUNT", c: 26 },
+      ]),
+    );
+    const dec = model.floors[0].decisions[0];
+    expect(dec.options.map((o) => o.chosen)).toEqual([true, false]);
+    expect(dec.selectionStatus).toBe("known");
+  });
+});
+
+describe("a fight's identity decides what belongs to it", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" };
+
+  it("does not let one attempt's end close another attempt of the same fight", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1#0", attempt_id: 1 },
+        { t: "combat_end", s: 3, floor: 1, act: 1, turns: 4, result: "victory", combat_id: "1.1#0", attempt_id: 0 },
+      ]),
+    );
+    const c = model.floors[0].combats[0];
+    expect(c.endRecorded).toBe(false);
+    expect(c.result).toBeUndefined();
+  });
+
+  it("detaches later untagged actions when a turn names a different fight", () => {
+    const model = parseReplay(
+      journal([
+        header, room,
+        { t: "combat_start", s: 2, floor: 1, act: 1, encounter: "E", enemies: [], combat_id: "1.1#0" },
+        { t: "turn", s: 3, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#0" },
+        { t: "turn", s: 4, floor: 1, act: 1, n: 0, side: "player", combat_id: "1.1#9" },
+        { t: "play", s: 5, floor: 1, act: 1, id: "STRIKE" },
+        { t: "hp", s: 6, floor: 1, act: 1, hp: 30, d: -10 },
+      ]),
+    );
+    const c = model.floors[0].combats[0];
+    expect(c.turns).toHaveLength(1);
+    // The play and the hp change belong to the fight the journal moved to,
+    // which this session never saw start, so they do not land here.
+    expect(c.turns[0].lines).toHaveLength(0);
+    expect(c.hpLossRecorded).toBeUndefined();
   });
 });
