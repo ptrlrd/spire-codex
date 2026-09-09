@@ -747,7 +747,7 @@ def _ensure_choice_rows(con) -> None:
     from . import run_entity_stats as res
 
     con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
-    _ids_temp_table(con, "excluded_cards", res._excluded_card_ids())
+    _ids_temp_table(con, "excluded_cards", res._non_reward_card_ids())
     con.execute(
         f"CREATE TABLE IF NOT EXISTS choice_rows AS "
         f"WITH {_CHOICES_CTE.format(lake=LAKE_DIR)} SELECT * FROM choices"

@@ -602,6 +602,41 @@ def _starter_card_ids() -> frozenset[str]:
     return _starter_card_ids_cache
 
 
+_ancient_card_ids_cache: frozenset[str] | None = None
+
+
+def _ancient_card_ids() -> frozenset[str]:
+    """Ancient-rarity card ids. The act's Ancient offers them (recorded in
+    `ancient_choice`, never in a card-reward screen), so reward preference
+    and tier ratings for them are meaningless. Empty if data can't be read."""
+    global _ancient_card_ids_cache
+    if _ancient_card_ids_cache is None:
+        try:
+            _ancient_card_ids_cache = frozenset(
+                c["id"]
+                for c in _cards_both_channels()
+                if (c.get("rarity_key") or c.get("rarity") or "").lower() == "ancient"
+            )
+        except Exception:
+            logger.warning(
+                "could not load card rarities for ancient exclusion", exc_info=True
+            )
+            _ancient_card_ids_cache = frozenset()
+    return _ancient_card_ids_cache
+
+
+def _non_reward_card_ids() -> frozenset[str]:
+    """Every card that cannot come from a card-reward screen: non-reward colors,
+    starters, tokens and Ancient-rarity cards. The one set behind the metrics
+    table, the tier list and the lake's choice rows."""
+    return (
+        _excluded_card_ids()
+        | _starter_card_ids()
+        | _token_card_ids()
+        | _ancient_card_ids()
+    )
+
+
 _upgradeable_card_ids_cache: frozenset[str] | None = None
 
 
@@ -676,7 +711,7 @@ def _walk_card_reward_screens(blob: dict) -> Iterable[tuple[int, list[str], list
     Only CARD entities are emitted; ids are namespace-stripped to match
     the cache keys ("CARD.ADRENALINE" → "ADRENALINE").
     """
-    excluded = _excluded_card_ids()
+    excluded = _non_reward_card_ids()
     for act_index, act_floors in enumerate(blob.get("map_point_history") or []):
         for floor in act_floors or []:
             for ps in floor.get("player_stats") or []:
@@ -691,7 +726,7 @@ def _walk_card_reward_screens(blob: dict) -> Iterable[tuple[int, list[str], list
                     if not stripped or stripped[0] != "cards":
                         continue
                     cid = stripped[1]
-                    # Curses/status/event/token: forced grants, not a choice.
+                    # Not reward-pickable: forced grants, starters, tokens, Ancient picks.
                     if cid in excluded:
                         continue
                     if choice.get("was_picked"):
@@ -2549,16 +2584,7 @@ def get_all_entity_scores(
     if act is not None:
         return _entity_scores_for_act(entity_type, act)
     baseline = _type_baseline(entity_type)
-    # Cards: drop non-reward colors (curse/status/event/quest/token) AND
-    # starters (Basic rarity). Neither is reward-pickable, so a tier "rating"
-    # for them misleads. This is the single source feeding the /tier-list hub,
-    # /tier-list/cards and the /cards "Highest-rated" rail, mirroring (and
-    # extending, with starters) get_entity_metrics_table's exclusion.
-    excluded = (
-        _excluded_card_ids() | _starter_card_ids()
-        if entity_type == "cards"
-        else frozenset()
-    )
+    excluded = _non_reward_card_ids() if entity_type == "cards" else frozenset()
     # Fully-modded ids (in no official catalog) leak from the run walk, which
     # only gates ascension + character, not per-entity content. Drop them for
     # every type; the per-act relic view already does this via _official_relic_ids.
@@ -2766,7 +2792,7 @@ def get_entity_metrics_table(
             baseline = (base_w / base_p) if base_p else _baseline_win_rate()
             prior = _bracket_prior(btot) if entity_type == "relics" else None
             excluded_cards = (
-                _excluded_card_ids() if entity_type == "cards" else frozenset()
+                _non_reward_card_ids() if entity_type == "cards" else frozenset()
             )
             solo_cards = (
                 _multiplayer_card_ids()
@@ -2914,7 +2940,7 @@ def get_entity_metrics_table(
         }
 
     rows: list[dict[str, Any]] = []
-    excluded_cards = _excluded_card_ids() if entity_type == "cards" else frozenset()
+    excluded_cards = _non_reward_card_ids() if entity_type == "cards" else frozenset()
     solo_excluded_cards = (
         _multiplayer_card_ids()
         if entity_type == "cards" and (bracket == "solo" or bracket.startswith("solo:"))
@@ -3056,11 +3082,7 @@ def get_top_entities_for_character(
     char = character.upper()
     baseline = _type_baseline(entity_type)
     official = _official_entity_ids(entity_type)
-    excluded = (
-        _excluded_card_ids() | _starter_card_ids() | _token_card_ids()
-        if entity_type == "cards"
-        else frozenset()
-    )
+    excluded = _non_reward_card_ids() if entity_type == "cards" else frozenset()
     rows: list[dict[str, Any]] = []
     for (etype, eid), agg in _cache.items():
         if etype != entity_type:
