@@ -12,3 +12,24 @@ export async function getT(locale?: Locale): Promise<TFn> {
 export async function getGameLocale(): Promise<Locale> {
   return (await getLocale()) as Locale;
 }
+
+/**
+ * Currently this assumes that beta-specific localisation will be handled at the requestConfiguration level;
+ * The details on that are TODO.
+ */
+export async function getGameTranslations(args?: {
+  locale?: Locale;
+  namespace?: string;
+  beta?: boolean;
+}) {
+  const branch = args?.beta ? "beta" : "main";
+  const namespace = args?.namespace
+    ? `data.${branch}.${args.namespace}`
+    : `data.${branch}`;
+  return args?.locale
+    ? await getTranslations({
+        locale: args.locale,
+        namespace,
+      })
+    : await getTranslations(namespace);
+}
