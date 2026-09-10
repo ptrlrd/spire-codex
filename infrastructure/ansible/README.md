@@ -2,7 +2,7 @@
 
 Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). One-shot deploys, hourly auto-deploy installer, and the housekeeping toolkit.
 
-Everything sensitive (SSH keys, usernames, IPs, third-party credentials) lives in 1Password and is fetched at runtime via the wrapper script. Nothing secret or identifying lands in git.
+The SSH key, remote user and origin IPs live in 1Password and are fetched by the wrapper script. Application secrets live in OpenBao at `secret/spire-codex-<item>`, synced there from the Spire Codex 1Password vault, and the playbooks read them directly. Nothing secret or identifying lands in git.
 
 ## Host
 
@@ -28,11 +28,34 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend and fronte
 
 ## Wrapper
 
-`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the DO IP from 1Password), fetches the SSH key + username from `op://Spire Codex/Digital Ocean/private key` + `Digital Ocean Credentials/user` into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
+`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the droplet IP from 1Password), fetches the SSH key + username from the `Digital Ocean` item in the Spire Codex vault (`private key`, `user`, `spire-codex-ip`) into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
 
-> `bin/op-ansible` still exists as a generic wrapper but the legacy AWS Lightsail items it referenced are gone. Don't use it.
 
 > Touch ID gotcha: when the desktop app auto-locks, `op` calls block waiting for a touch. Unattended runs (cron, CI) cannot resolve `op://` refs. That's why the autodeploy cron (below) sources its credentials from a plain `/etc/spire-codex/cf-purge.env` on the box instead of 1Password.
+
+## OpenBao
+
+Playbooks that need application secrets read them from OpenBao through the `community.hashi_vault` collection. One-time install:
+
+```bash
+ansible-galaxy collection install community.hashi_vault
+pip install hvac        # or: apt install python3-hvac
+```
+
+Point the lookups at the server and authenticate with the `ansible` AppRole. Its role and secret ids are in the 1Password Private vault, item `openbao-approle-ansible` (match the field labels there):
+
+```bash
+export VAULT_ADDR=https://bao.lord.casa
+export ANSIBLE_HASHI_VAULT_AUTH_METHOD=approle
+export ANSIBLE_HASHI_VAULT_ROLE_ID=$(op read 'op://Private/openbao-approle-ansible/role_id')
+export ANSIBLE_HASHI_VAULT_SECRET_ID=$(op read 'op://Private/openbao-approle-ansible/secret_id')
+```
+
+For an interactive session, `bao login -method=oidc` followed by `export VAULT_TOKEN=$(cat ~/.bao-token)` works too. The AppRole can read `secret/spire-codex-*` and nothing else.
+
+Secrets reach OpenBao from the 1Password `Spire Codex` vault through the homelab's secrets-sync layer: one ExternalSecret per item and a CronJob that copies them into KV every 15 minutes. Rotate in 1Password, let the sync land (or force it), then run the playbook. To add an item, add it to `infrastructure/secrets-sync/spire-codex.yaml` and the `kv-sync` CronJob mounts in the homelab repo.
+
+Still read from 1Password directly: the SSH key, remote user and origin IPs (wrapper), and the two allow-list IPs `sync-config.yml` uses.
 
 ## Playbooks
 
@@ -52,7 +75,7 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend and fronte
 | Playbook | When |
 |---|---|
 | `sync-config.yml` | Pushed nginx config / QA cards |
-| `sync-secrets.yml` | Rotated a secret in 1Password or added a new env var to `files/.env.tpl` |
+| `sync-secrets.yml` | A secret rotated in 1Password has landed in OpenBao, or an env var was added to `files/.env.j2` |
 | `sync-litestream.yml` | Rotated B2 credentials |
 
 ### Data + recovery
@@ -103,8 +126,6 @@ ssh DO_BOX 'tail -f /var/log/spire-codex-autodeploy.log'
 Install / refresh (after any change to the script or cron timing):
 
 ```bash
-CF_TOKEN=$(op read 'op://Spire Codex/Cloudflare/API Token') \
-CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
 ./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
@@ -128,6 +149,7 @@ The autodeploy cron picks up merged changes hourly; a manual deploy is only need
 ## Common gotchas
 
 - **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
+- **On WSL, every play skips with "no hosts matched"**: Ansible ignores `ansible.cfg` in a world-writable directory, which every path under `/mnt/c` is, so the inventory never loads. The wrapper exports `ANSIBLE_CONFIG` to get around it; if you call `ansible-playbook` directly, set it yourself.
 - **Container name conflict on deploy**: if a previous `up -d` was interrupted, you'll see `Container "/xxx" is already in use`. Fix with `docker rm -f <container>` on the box, then re-run the deploy.
 - **nginx Docker DNS gotcha**: the nginx blocks use a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
 
@@ -140,10 +162,9 @@ infrastructure/ansible/
 ├── inventory.yml            # gitignored — rendered by the wrapper
 ├── bin/
 │   ├── do-ansible           # DigitalOcean wrapper (use this)
-│   └── op-ansible           # Generic wrapper (legacy; the AWS items it pointed at are gone)
 ├── files/
-│   ├── .env.tpl
-│   ├── litestream.yml.tpl
+│   ├── .env.j2
+│   ├── litestream.yml.j2
 │   ├── autodeploy.sh
 │   └── spire-codex-autodeploy.cron
 ├── templates/

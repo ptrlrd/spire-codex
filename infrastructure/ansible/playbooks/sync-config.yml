@@ -1,47 +1,18 @@
 ---
-# Push nginx config + QA assets to all prod origins so they stay in
-# parity. Run after editing nginx.conf, after re-rendering QA cards,
-# or whenever you suspect a host has drifted.
-#
-#   cd infrastructure/ansible
-#   ansible-playbook playbooks/sync-config.yml
-#
-# Idempotent — re-running with no changes is a no-op.
 
 - name: Sync nginx config + QA assets to all prod origins
-  # Both Lightsail prod_origins (legacy) and the DigitalOcean origin
-  # share the same nginx template. Target both via `--limit` per run.
   hosts: prod_origins:digital_ocean
   gather_facts: false
   tasks:
-    # Fetch the metrics-monitor allow-list IP from 1Password. Used by
-    # nginx.conf.j2 in /metrics, /health, and the access-log skip map.
-    # Kept out of git because — while not a credential — it identifies
-    # the third-party monitoring service we use (low-grade fingerprint).
     - name: Fetch metrics-monitor IP from 1Password
       set_fact:
         metrics_monitor_ip: "{{ lookup('pipe', 'op read \"op://Spire Codex/Server/IP Address\"') }}"
       no_log: true
 
-    # Admin allowlist for the Umami dashboard. Anyone outside this IP
-    # gets a 403 at nginx before Umami's login form is reachable, so a
-    # forgotten admin password / default credentials window can't be
-    # brute-forced from the open internet.
     - name: Fetch admin IP from 1Password
       set_fact:
         admin_ip: "{{ lookup('pipe', 'op read \"op://Spire Codex/Peter''s Machine/ip\"') }}"
       no_log: true
-
-    # Cloudflare-origin verification secret. Uncomment once you've added a
-    # Cloudflare Transform Rule that injects `X-Origin-Verify: <secret>` on
-    # every proxied request AND stored that same secret in 1Password. With it
-    # set, nginx.conf.j2 refuses direct-to-origin traffic that bypasses
-    # Cloudflare (WAF / rate-limit / Access bypass). Leave commented to keep
-    # the check a no-op (default origin_verify_secret is "" in group_vars).
-    # - name: Fetch Cloudflare origin-verify secret from 1Password
-    #   set_fact:
-    #     origin_verify_secret: "{{ lookup('pipe', 'op read \"op://Spire Codex/Server/origin-verify-secret\"') }}"
-    #   no_log: true
 
     - name: Ensure QA host directory exists
       become: true
@@ -76,10 +47,6 @@
         src: "{{ local_qa_dir }}/"
         dest: "{{ remote_qa_dir }}/"
         delete: true
-        # Reuse the multiplexed SSH socket from ansible.cfg's ssh_args
-        # instead of opening a fresh connection. Default synchronize
-        # behavior is `ssh -S none` which bypasses the control master —
-        # that's what kept tripping Lightsail's port-22 rate limit.
         use_ssh_args: true
         rsync_opts:
           - "--exclude=_report.json"

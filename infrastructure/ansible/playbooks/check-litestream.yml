@@ -1,10 +1,4 @@
 ---
-# Quick health check on primary's Litestream after a config push.
-# Prints unit status + last 30 log lines so we can spot auth failures
-# or replication errors fast.
-#
-# Usage:
-#   ./bin/op-ansible playbooks/check-litestream.yml --limit primary
 
 - name: Check Litestream health
   hosts: prod_origins

@@ -1,12 +1,4 @@
 ---
-# Smoke test every critical endpoint on every origin, then through
-# Cloudflare. Compares responses across origins to catch split-routing
-# (the exact thing that motivated this whole Ansible setup).
-#
-#   ansible-playbook playbooks/verify.yml
-#
-# Exit code is non-zero if any check fails — safe to run from CI as a
-# post-deploy gate.
 
 - name: Verify each origin individually (bypass Cloudflare)
   hosts: prod_origins
@@ -99,7 +91,7 @@
     - name: Hit /metrics via CF (should be reachable from the metric monitor IP)
       uri:
         url: "{{ cf_base }}/metrics"
-        status_code: [200, 403]   # 403 if your IP isn't whitelisted in nginx
+        status_code: [200, 403]
         return_content: false
       changed_when: false
 

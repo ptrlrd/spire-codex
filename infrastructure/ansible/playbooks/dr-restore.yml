@@ -1,23 +1,4 @@
 ---
-# Restore a backup tarball (from backup.yml) onto an origin. DESTRUCTIVE
-# — overwrites the live data/ directory. Requires explicit `confirm=yes`
-# to actually run, otherwise it's dry-run.
-#
-# Usage (dry-run — shows what would happen):
-#   ansible-playbook playbooks/dr-restore.yml \
-#     -e tarball=~/spire-codex-backups/primary-20260516T103000.tar.gz \
-#     -e target=primary
-#
-# Usage (commit):
-#   ansible-playbook playbooks/dr-restore.yml \
-#     -e tarball=~/spire-codex-backups/primary-20260516T103000.tar.gz \
-#     -e target=primary \
-#     -e confirm=yes
-#
-# Strongly recommend: stop CF LB or pull `target` out of the pool before
-# restore. Restoring on a host that's still serving traffic is fine if
-# the tarball is recent, but you'll lose any writes between snapshot time
-# and now.
 
 - name: Restore data from backup tarball
   hosts: prod_origins
@@ -73,8 +54,6 @@
     - name: Bail out unless confirmed
       meta: end_play
       when: confirm != "yes"
-
-    # ---- below only runs when confirm=yes ----
 
     - name: Upload tarball to remote /tmp
       copy:
