@@ -75,4 +75,9 @@ fi
 #    runs without the wrapper fail fast on SSH instead of silently
 #    succeeding and corrupting downstream chown tasks with a literal
 #    `${SPIRE_REMOTE_USER}` string.
+# Ansible refuses to read ansible.cfg from a world-writable directory, which
+# every path under /mnt/c is on WSL. Naming the file explicitly bypasses that
+# check, so inventory, ssh_args and private_key_file all still apply.
+export ANSIBLE_CONFIG="${ANSIBLE_CONFIG:-$PWD/ansible.cfg}"
+
 SPIRE_SSH_KEY="$TEMP_KEY" exec ansible-playbook -u "$SPIRE_REMOTE_USER" "$@"

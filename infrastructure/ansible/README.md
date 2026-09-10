@@ -150,6 +150,7 @@ The autodeploy cron picks up merged changes hourly; a manual deploy is only need
 ## Common gotchas
 
 - **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
+- **On WSL, every play skips with "no hosts matched"**: Ansible ignores `ansible.cfg` in a world-writable directory, which every path under `/mnt/c` is, so the inventory never loads. The wrapper exports `ANSIBLE_CONFIG` to get around it; if you call `ansible-playbook` directly, set it yourself.
 - **Container name conflict on deploy**: if a previous `up -d` was interrupted, you'll see `Container "/xxx" is already in use`. Fix with `docker rm -f <container>` on the box, then re-run the deploy.
 - **nginx Docker DNS gotcha**: the nginx blocks use a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
 
