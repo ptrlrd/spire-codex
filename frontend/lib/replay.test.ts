@@ -1424,21 +1424,42 @@ describe("parseReplay on the quit-and-continue journal", () => {
     // and Continue. This is the first journal where the tail exists at all.
     expect(model.resumes).toHaveLength(1);
     expect(model.resumes[0].floor).toBe(2);
-    expect(model.resumes[0].combatId).toBe("1.2:SLUDGE_SPINNER_WEAK");
+    expect(model.resumes[0].combatId).toBe("1.2:SEAPUNK_WEAK");
     expect(model.gaps).toEqual([]);
-    expect(captureIsComplete(model)).toBe(true);
   });
 
-  it("counts the fight once, from the restart", () => {
-    // The restart's own id carries a spurious #1 in this recording, a
-    // recorder bug fixed after capture, so the restart is matched on the
-    // encounter and nothing here asserts the id.
+  it("counts the fight once, from the restart, under one id across the reload", () => {
     const floor = model.floors.find((f) => f.floor === 2)!;
     expect(floor.combats).toHaveLength(2);
     const [first, second] = floor.combats;
-    expect(first.rolledBackByReload).toBe(true);
+    expect(first.combatId).toBe(second.combatId);
+    expect([first.attemptId, second.attemptId]).toEqual([0, 1]);
+    expect(first.rolledBackByReload && first.supersededByRetry).toBe(true);
     expect(combatCounts(first)).toBe(false);
     expect(combatCounts(second)).toBe(true);
     expect(model.floors.map((f) => f.floor)).toEqual([1, 2]);
+  });
+
+  it("does not read the quit-to-menu boundary as the run's outcome", () => {
+    // The game was closed rather than the run left, so the only end line in
+    // the file is the boundary before the resume. The run has no recorded
+    // outcome and no recorded capture status.
+    expect(model.end).toBeUndefined();
+    expect(captureIsComplete(model)).toBeUndefined();
+  });
+});
+
+describe("an end line with journal behind it is a boundary, not the outcome", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" };
+
+  it("takes the last end line when nothing follows it", () => {
+    const model = parseReplay(journal([header, room, { t: "end", s: 2, terminal_reason: "left_run" }, header, { t: "resume", s: 4, floor: 1, act: 1, reloads: 1 }, { t: "end", s: 5, terminal_reason: "death", is_game_over: true, hp: 0 }]));
+    expect(model.end?.terminalReason).toBe("death");
+  });
+
+  it("reports no outcome when the journal goes on past its last end line", () => {
+    const model = parseReplay(journal([header, room, { t: "end", s: 2, terminal_reason: "left_run" }, header, { t: "resume", s: 4, floor: 1, act: 1, reloads: 1 }, { t: "play", s: 5, floor: 1, act: 1, id: "STRIKE" }]));
+    expect(model.end).toBeUndefined();
   });
 });

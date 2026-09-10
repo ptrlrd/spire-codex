@@ -1446,6 +1446,11 @@ export function parseReplay(text: string): ReplayModel {
   // it is a 10 Hz sample that can trail the last recorded hp line, so the
   // recorded line wins.
   if (end?.hp !== undefined && (end.isGameOver || hp === undefined)) snapshot(floors[floors.length - 1], end.hp);
+  // A resumed journal carries an end line at every quit-to-menu boundary. Only
+  // an end line with nothing after it is the run's outcome; one with more
+  // journal behind it is a boundary the run went on past. A journal whose
+  // last session was never closed has no outcome at all.
+  if (end && lines[lines.length - 1] !== end) end = undefined;
   // Where the sequence jumps, lines are missing, and the jump says how many.
   const gaps: ReplayGap[] = [];
   for (let i = 1; i < lines.length; i += 1) {
