@@ -1,27 +1,4 @@
 ---
-# Reclaim disk on each origin. Docker images + old containers +
-# container logs (Docker's JSON log files) all accumulate quietly until
-# the day a deploy fails with "no space left on device" and you have to
-# scramble at 2am. This playbook does the standard pruning + truncates
-# container logs.
-#
-# Usage:
-#   ansible-playbook playbooks/clean-disk.yml                    # safe defaults
-#   ansible-playbook playbooks/clean-disk.yml -e prune_volumes=true  # also nuke unused volumes
-#   ansible-playbook playbooks/clean-disk.yml -e log_max_mb=10       # truncate logs > 10 MB
-#
-# Safe by default:
-#   - Prunes dangling images (untagged layers)
-#   - Prunes stopped containers
-#   - Prunes build cache
-#   - Truncates container JSON logs over `log_max_mb` (default 100)
-#
-# Opt-in (set explicitly):
-#   - Volume pruning (could nuke anonymous volumes from old images —
-#     bind mounts under /var/www/spire-codex/data are unaffected)
-#
-# Reports docker disk usage before and after so you can see how much
-# was reclaimed.
 
 - name: Prune docker + truncate container logs on each origin
   hosts: prod_origins

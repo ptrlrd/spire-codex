@@ -1,15 +1,4 @@
 ---
-# Snapshot user-generated data (runs.db + JSON run files + guides +
-# showcase config) from each origin into a local tarball on your Mac.
-# Run before risky migrations or as a scheduled cron.
-#
-#   ansible-playbook playbooks/backup.yml
-#
-# Output:
-#   ~/spire-codex-backups/<host>-<timestamp>.tar.gz
-#
-# Future: add S3 upload — set `backup_s3_bucket` in group_vars and
-# uncomment the upload task at the bottom.
 
 - name: Snapshot prod data to local backups
   hosts: prod_origins
@@ -60,16 +49,6 @@
       file:
         path: "{{ remote_tarball }}"
         state: absent
-
-    # --- Optional S3 upload (uncomment + set backup_s3_bucket) -----------
-    # - name: Upload to S3
-    #   delegate_to: localhost
-    #   become: false
-    #   amazon.aws.s3_object:
-    #     bucket: "{{ backup_s3_bucket }}"
-    #     object: "spire-codex/{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
-    #     src: "{{ backup_root }}/{{ inventory_hostname }}-{{ timestamp }}.tar.gz"
-    #     mode: put
 
 - name: Cleanup old local backups (keep last 14 days)
   hosts: localhost
