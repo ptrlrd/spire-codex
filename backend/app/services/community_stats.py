@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 from functools import lru_cache
 from typing import Any
 
@@ -444,22 +445,82 @@ def _accumulate_one(
 # ── Finalize: resolve names + compute percentages ────────────────────────────
 
 
-_RETIRED_OFFICIAL: dict[str, dict[str, str]] = {
-    "encounters": {
-        "DOORMAKER_BOSS": "The Doormaker",
-        "TOADPOLES_NORMAL": "Toadpoles Normal",
-    },
-    "cards": {
-        "FOLLOW_THROUGH": "Follow Through",
-        "GRAPPLE": "Grapple",
-    },
-}
+_VERSION_KEY_RE = re.compile(r"v\d+(\.\d+)*")
 
 
-@lru_cache(maxsize=1)
-def _name_maps() -> dict[str, dict[str, str]]:
+def _version_key(v: str) -> tuple[int, ...]:
+    return tuple(int(x) for x in v.lstrip("v").split(".") if x.isdigit())
+
+
+def _bracket_version(bracket: str | None) -> str | None:
+    """The game-version segment of a bracket key ("solo:a10:v0.107.1" ->
+    "v0.107.1"), or None for a bracket that spans every version."""
+    for part in (bracket or "").split(":"):
+        if _VERSION_KEY_RE.fullmatch(part):
+            return part
+    return None
+
+
+def _archive_versions() -> list[str]:
+    """Archived per-version catalogs, newest first."""
+    from . import data_service
+
+    try:
+        return data_service.list_data_versions()
+    except Exception:
+        logger.warning("community-stats archive listing failed", exc_info=True)
+        return []
+
+
+def _archived_rows(entity: str, version: str) -> list[dict]:
+    """One archived version's catalog file, read without the process cache:
+    the union pass touches every archive once and keeps only id -> name."""
+    import json
+
+    from . import data_service
+
+    base = data_service._resolve_base(version)
+    path = base / data_service.DEFAULT_LANG / f"{entity}.json"
+    if not path.exists():
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        logger.warning("community-stats archive load failed: %s", path, exc_info=True)
+        return []
+
+
+def _catalog_version(version: str | None) -> str | None:
+    """The archived catalog that describes runs on `version`: the exact
+    archive when one exists, else the newest archive not newer than it
+    (an rc or hotfix build plays the content of the release it patches).
+    None when nothing fits, which falls back to the every-version union."""
+    if not version:
+        return None
+    archives = _archive_versions()
+    if version in archives:
+        return version
+    want = _version_key(version)
+    if not want:
+        return None
+    for v in archives:
+        if _version_key(v) <= want:
+            return v
+    return None
+
+
+@lru_cache(maxsize=32)
+def _name_maps(version: str | None = None) -> dict[str, dict[str, str]]:
     """Build id -> display-name lookups from the game data. Each is best
     effort; a failed load just means we fall back to a prettified id.
+
+    `version` pins the lookup to the catalog that shipped with that game
+    version, so a version bracket only knows the content players could
+    meet on it. Without a version the lookup is the current catalog plus
+    every archived one: content the game shipped and later removed (the
+    Act 3 boss before Aeonglass) stays named in the all-versions lists
+    because those runs really did meet it.
 
     Memoized: per-bracket finalize calls this once per bracket, but the catalog
     is stable within a process (a beta promotion is a deploy = restart), so the
@@ -467,15 +528,32 @@ def _name_maps() -> dict[str, dict[str, str]]:
     from . import data_service
 
     out: dict[str, dict[str, str]] = {}
+    pinned = _catalog_version(version)
 
-    def _index(loader, key="id", name="name") -> dict[str, str]:
+    def _rows(loader, entity: str) -> list[dict]:
+        if pinned:
+            return _archived_rows(entity, pinned)
+        return loader()
+
+    def _index(
+        loader, key="id", name="name", entity: str | None = None
+    ) -> dict[str, str]:
         try:
-            return {
-                r[key]: r.get(name) or _prettify(r[key]) for r in loader() if r.get(key)
+            rows = _rows(loader, entity) if entity else loader()
+            names = {
+                r[key]: r.get(name) or _prettify(r[key]) for r in rows if r.get(key)
             }
         except Exception:
             logger.warning("community-stats name load failed", exc_info=True)
             return {}
+        if pinned or not names or not entity:
+            return names
+        for v in _archive_versions():
+            for r in _archived_rows(entity, v):
+                rid = r.get(key)
+                if rid and rid not in names:
+                    names[rid] = r.get(name) or _prettify(rid)
+        return names
 
     # Ids that exist ONLY in the current beta, per type. Feeds the beta
     # spotlight in `finalize`: beta entities can't outrank main content in
@@ -492,16 +570,9 @@ def _name_maps() -> dict[str, dict[str, str]]:
         every list until the beta promotes. Genuinely modded ids stay
         filtered: they're in neither catalog. Main names win for entities
         in both."""
-        names = _index(loader, key, name)
+        names = _index(loader, key, name, entity=tkey)
         beta_only[tkey] = set()
-        if not names:
-            return names
-        # Content the game shipped and later removed. Runs from those patches
-        # still carry the ids, and without a name they would be dropped as
-        # modded. The Act 3 boss before Aeonglass is the one people notice.
-        for rid, rname in _RETIRED_OFFICIAL.get(tkey, {}).items():
-            names.setdefault(rid, rname)
-        if not data_service.get_beta_version():
+        if pinned or not names or not data_service.get_beta_version():
             return names
         token = data_service.current_channel.set("beta")
         try:
@@ -536,7 +607,15 @@ def _name_maps() -> dict[str, dict[str, str]]:
     event_opts: dict[str, dict[str, str]] = {}
     event_opt_ids: dict[str, set[str]] = {}
     try:
-        for e in data_service.load_events():
+        event_rows: list[dict] = list(_rows(data_service.load_events, "events"))
+        if not pinned:
+            seen = {e.get("id") for e in event_rows}
+            for v in _archive_versions():
+                for e in _archived_rows("events", v):
+                    if e.get("id") and e["id"] not in seen:
+                        seen.add(e["id"])
+                        event_rows.append(e)
+        for e in event_rows:
             eid = e.get("id")
             if not eid:
                 continue
@@ -637,12 +716,16 @@ def _beta_spotlight(acc: dict[str, Any], names: dict) -> dict[str, Any]:
 
 def finalize(acc: dict[str, Any]) -> dict[str, Any]:
     """Per-bracket finalized blob for the snapshot: {bracket: <datasets>}."""
-    return {b: _finalize_one(sub) for b, sub in acc.items()}
+    return {
+        b: _finalize_one(sub, version=_bracket_version(b)) for b, sub in acc.items()
+    }
 
 
-def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
-    """Turn one bracket's raw accumulator into the JSON the API/page render."""
-    names = _name_maps()
+def _finalize_one(acc: dict[str, Any], version: str | None = None) -> dict[str, Any]:
+    """Turn one bracket's raw accumulator into the JSON the API/page render.
+    `version` names the game version the accumulator is sliced to, so the
+    official-content filter uses that version's catalog."""
+    names = _name_maps(version)
     ev_names = names["events"]
     ev_opts = names["_event_options"]  # type: ignore[index]
     ev_opt_ids = names["_event_option_ids"]  # type: ignore[index]
