@@ -5,16 +5,12 @@
 #
 # Usage (drop-in replacement for `ansible-playbook`):
 #
-#   ./bin/op-ansible playbooks/verify.yml
-#   ./bin/op-ansible playbooks/sync-config.yml --limit primary --check
+#   ./bin/do-ansible playbooks/verify.yml
+#   ./bin/do-ansible playbooks/sync-config.yml --limit primary --check
 #
-# Default key ref:
-#   op://Spire Codex/AWS/private key
-#
-# Override per-invocation with $SPIRE_SSH_KEY_REF:
-#
-#   SPIRE_SSH_KEY_REF="op://Spire Codex/Some Other Key/value" \
-#     ./bin/op-ansible playbooks/verify.yml
+# The key, user and origin IP all live in the 1Password item
+# "Digital Ocean" in the Spire Codex vault. Override per-invocation with
+# $SPIRE_SSH_KEY_REF / $SPIRE_REMOTE_USER_REF.
 #
 # Prereqs:
 #   - 1Password desktop app open + "Integrate with 1Password CLI" enabled
@@ -22,8 +18,8 @@
 
 set -euo pipefail
 
-KEY_REF="${SPIRE_SSH_KEY_REF:-op://Spire Codex/AWS/private key}"
-USER_REF="${SPIRE_REMOTE_USER_REF:-op://Spire Codex/AWS Credentials/user}"
+KEY_REF="${SPIRE_SSH_KEY_REF:-op://Spire Codex/Digital Ocean/private key}"
+USER_REF="${SPIRE_REMOTE_USER_REF:-op://Spire Codex/Digital Ocean/user}"
 
 # Fetch the SSH username from 1Password too, so neither the username
 # nor the key filename leaks via git or your shell history.
@@ -60,11 +56,9 @@ fi
 
 cd "$(dirname "$0")/.."
 
-# Render inventory.yml from inventory.yml.tpl + 1Password every run.
-# The template has 1Password references for the origin IPs (Cloudflare-
-# shielded — should NOT live in git); the rendered file is gitignored.
-# Re-rendering each run keeps the local copy in sync with whatever IPs
-# are currently in 1Password (e.g., after rotating a Lightsail static IP).
+# Render inventory.yml from inventory.yml.tpl + 1Password every run. The
+# origin IP is Cloudflare-shielded and must not live in git; the rendered
+# file is gitignored.
 if [[ -f inventory.yml.tpl ]]; then
   op inject --in-file inventory.yml.tpl --out-file inventory.yml --force >/dev/null
 fi

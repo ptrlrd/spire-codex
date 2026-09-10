@@ -28,9 +28,8 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend and fronte
 
 ## Wrapper
 
-`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the DO IP from 1Password), fetches the SSH key + username from `op://Spire Codex/Digital Ocean/private key` + `Digital Ocean Credentials/user` into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
+`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the droplet IP from 1Password), fetches the SSH key + username from the `Digital Ocean` item in the Spire Codex vault (`private key`, `user`, `spire-codex-ip`) into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
 
-> `bin/op-ansible` still exists as a generic wrapper but the legacy AWS Lightsail items it referenced are gone. Don't use it.
 
 > Touch ID gotcha: when the desktop app auto-locks, `op` calls block waiting for a touch. Unattended runs (cron, CI) cannot resolve `op://` refs. That's why the autodeploy cron (below) sources its credentials from a plain `/etc/spire-codex/cf-purge.env` on the box instead of 1Password.
 
@@ -163,7 +162,6 @@ infrastructure/ansible/
 ├── inventory.yml            # gitignored — rendered by the wrapper
 ├── bin/
 │   ├── do-ansible           # DigitalOcean wrapper (use this)
-│   └── op-ansible           # Generic wrapper (legacy; the AWS items it pointed at are gone)
 ├── files/
 │   ├── .env.j2
 │   ├── litestream.yml.j2
