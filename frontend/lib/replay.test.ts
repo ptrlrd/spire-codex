@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { captureIsComplete, combatCounts, hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type PlayLine } from "./replay";
+import { captureIsComplete, combatCounts, hasMapPositions, isCombatKind, parseReplay, parseReplayLines, routeForAct, type BuyLine, type PlayLine, type ShopLine } from "./replay";
 
 const JOURNAL = readFileSync(new URL("../../backend/tests/fixtures/real-replay.jsonl", import.meta.url), "utf-8");
 
@@ -1353,5 +1353,44 @@ describe("parseReplay on the version 2 journals", () => {
     expect(boss.turns.some((t) => t.n === 11)).toBe(true);
     // The last hp line says 0; the end line's 14 is a stale sample.
     expect(m.floors[m.floors.length - 1].hpAfter).toBe(0);
+  });
+});
+
+describe("parseReplay on the version 2 shop journal", () => {
+  const model = parseReplay(readFileSync(new URL("../../backend/tests/fixtures/v2-shop.jsonl", import.meta.url), "utf-8"));
+  const shops = model.floors.flatMap((f) => f.lines).filter((l): l is ShopLine => l.t === "shop");
+  const buys = model.floors.flatMap((f) => f.lines).filter((l): l is BuyLine => l.t === "buy");
+  const stocked = (s: ShopLine) => [...s.cards, ...s.relics, ...s.potions].filter((i) => i.stocked).length;
+
+  it("reads one shop line on entry and one after every purchase", () => {
+    expect(shops).toHaveLength(12);
+    expect(buys).toHaveLength(11);
+    expect(shops.map(stocked)).toEqual([13, 12, 11, 10, 9, 8, 7, 6, 5, 5, 4, 3]);
+  });
+
+  it("joins each purchase to a shelf slot of its kind, except the removal service", () => {
+    for (const b of buys) {
+      if (b.kind === "removal_service") {
+        expect(b.slot).toBeUndefined();
+        continue;
+      }
+      const shelf = b.kind === "card" ? shops[0].cards : b.kind === "relic" ? shops[0].relics : shops[0].potions;
+      expect(shelf.some((i) => i.slot === b.slot && i.id === b.id), `${b.kind} slot ${b.slot}`).toBe(true);
+    }
+  });
+
+  it("moves the removal flag rather than the shelves when the removal is bought", () => {
+    const flips = shops.filter((s, i) => i > 0 && s.removalStocked !== shops[i - 1].removalStocked);
+    expect(flips).toHaveLength(1);
+    expect(shops[shops.length - 1].removalStocked).toBe(false);
+  });
+
+  it("walks the gold down by exactly each purchase", () => {
+    // The entry line in this recording is stamped with the previous floor,
+    // a recorder bug fixed after this file was captured, so nothing here
+    // asserts which floor the entry line sits on.
+    for (let i = 1; i < shops.length; i += 1) {
+      expect((shops[i - 1].gold ?? 0) - (shops[i].gold ?? 0)).toBe(buys[i - 1].costCurrent);
+    }
   });
 });
