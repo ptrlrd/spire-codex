@@ -1463,3 +1463,34 @@ describe("an end line with journal behind it is a boundary, not the outcome", ()
     expect(model.end).toBeUndefined();
   });
 });
+
+describe("a line stamped with a floor not seen yet belongs to that floor", () => {
+  it("files the shop's stock under the merchant even though it arrives a beat early", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, replay_version: 2 },
+        { t: "room", s: 1, floor: 2, act: 1, kind: "combat", id: "A" },
+        { t: "shop", s: 2, floor: 3, act: 1, gold: 99, removal_stocked: true, cards: [{ slot: 0, id: "HEADBUTT", cost: 52, stocked: true }], relics: [], potions: [] },
+        { t: "room", s: 3, floor: 3, act: 1, kind: "merchant" },
+        { t: "buy", s: 4, floor: 3, act: 1, kind: "card", slot: 0, id: "HEADBUTT", cost_current: 52, cost_resource: "gold", gold_on_hand: 47 },
+      ]),
+    );
+    expect(model.floors.map((f) => [f.floor, f.kind])).toEqual([[2, "combat"], [3, "merchant"]]);
+    const merchant = model.floors[1];
+    expect(merchant.shop?.gold).toBe(99);
+    expect(model.floors[0].lines.some((l) => l.t === "shop")).toBe(false);
+  });
+
+  it("reads the recorder's fixed entry line on the real journal", () => {
+    const model = parseReplay(readFileSync(new URL("../../backend/tests/fixtures/v2-shop-entry-floor.jsonl", import.meta.url), "utf-8"));
+    expect(model.floors.map((f) => f.floor)).toEqual([1, 2, 3]);
+    const merchant = model.floors[2];
+    expect(merchant.kind).toBe("merchant");
+    const stocked = (s: ShopLine) => [...s.cards, ...s.relics, ...s.potions].filter((i) => i.stocked).length;
+    expect(merchant.shop && stocked(merchant.shop)).toBe(13);
+    expect(merchant.shop?.gold).toBe(99);
+    const shops = merchant.lines.filter((l): l is ShopLine => l.t === "shop");
+    expect(shops.map(stocked)).toEqual([13, 12]);
+    expect(captureIsComplete(model)).toBe(true);
+  });
+});

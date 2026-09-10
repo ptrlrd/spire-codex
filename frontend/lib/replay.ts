@@ -1227,11 +1227,36 @@ export function parseReplay(text: string): ReplayModel {
     }
     resumeOutcome.set(line, verdict);
   });
+  const newFloor = (floorNo: number, act: number, s: number, kind = "unknown", id?: string, coord?: Coord): ReplayFloor => {
+    const f: ReplayFloor = {
+      floor: floorNo,
+      act,
+      kind,
+      id,
+      coord,
+      s,
+      lines: [],
+      linesLost: 0,
+      decisions: [],
+      combats: [],
+      resumes: [],
+      hpAfter: hp,
+      goldAfter: gold,
+    };
+    floors.push(f);
+    return f;
+  };
+  // A line names its floor. One that names a floor not seen yet belongs to
+  // that floor, not the one before it: the recorder writes a shop's stock a
+  // beat before the merchant's room line, both stamped with the same floor.
+  // The room line then fills in what the placeholder does not know.
   const floorFor = (line: ReplayLine): ReplayFloor | undefined => {
     if (line.floor === undefined) return current;
     const sameAct = (f: ReplayFloor) => line.act === undefined || f.act === line.act;
     if (current && current.floor === line.floor && sameAct(current)) return current;
-    return floors.find((x) => x.floor === line.floor && sameAct(x)) ?? current;
+    const known = floors.find((x) => x.floor === line.floor && sameAct(x));
+    if (known) return known;
+    return newFloor(line.floor, line.act ?? current?.act ?? 1, line.s);
   };
   const snapshot = (floor: ReplayFloor | undefined, nextHp?: number, nextGold?: number) => {
     if (nextHp !== undefined) {
@@ -1267,24 +1292,13 @@ export function parseReplay(text: string): ReplayModel {
         const again = floors.find((f) => f.floor === floorNo && f.act === act);
         if (again) {
           current = again;
+          if (current.kind === "unknown") {
+            current.kind = line.kind;
+            current.id = line.id;
+          }
           if (!current.coord && line.coord) current.coord = line.coord;
         } else {
-          current = {
-            floor: floorNo,
-            act,
-            kind: line.kind,
-            id: line.id,
-            coord: line.coord,
-            s: line.s,
-            lines: [],
-            linesLost: 0,
-            decisions: [],
-            combats: [],
-            resumes: [],
-            hpAfter: hp,
-            goldAfter: gold,
-          };
-          floors.push(current);
+          current = newFloor(floorNo, act, line.s, line.kind, line.id, line.coord);
         }
         combat = undefined;
         hpLoss = undefined;
