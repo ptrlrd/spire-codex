@@ -294,7 +294,8 @@ export interface ShuffleLine extends LineBase {
 }
 export interface ResumeLine extends LineBase {
   t: "resume";
-  /** The fight the reload landed inside, when it landed mid-combat. */
+  /** The fight in progress when the reload landed. Whether it then carried
+   * on or restarted is decided by what follows, not by this field. */
   combatId?: string;
   reloads: number;
   wallClock?: number;
@@ -1186,16 +1187,14 @@ export function parseReplay(text: string): ReplayModel {
   let end: EndLine | undefined;
 
   // A reload either restarts the fight it interrupted (a fresh combat_start
-  // follows the resume) or lands inside it and carries on (the turns keep
-  // counting, and from version 2 the resume names the fight). Only the
-  // restart undoes the earlier attempt.
+  // of the same encounter follows the resume) or lands inside it and carries
+  // on (the turns keep counting). Only the restart undoes the earlier
+  // attempt. The resume's own combat_id says which fight was in progress
+  // when the reload landed, not which of the two happened next, so it never
+  // decides this; it only names the fight to continue when nothing restarts.
   const resumeOutcome = new Map<ResumeLine, "restarted" | "resumed" | "open">();
   lines.forEach((line, i) => {
     if (line.t !== "resume") return;
-    if (line.combatId !== undefined) {
-      resumeOutcome.set(line, "resumed");
-      return;
-    }
     // The fight the reload interrupted: the last start on this floor with no
     // end before the resume. Only a fresh start of the SAME encounter is a
     // restart of it. A floor can hold more than one fight, and a different

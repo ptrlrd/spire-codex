@@ -1066,6 +1066,27 @@ describe("a reload either restarts a fight or carries on inside it", () => {
     expect(c.turns).toHaveLength(2);
   });
 
+  it("lets a fresh start override the fight the resume names", () => {
+    // The resume names the fight that was in progress when the reload landed.
+    // That is true whether it then carried on or restarted, so a following
+    // start of the same encounter still means restarted.
+    const model = parseReplay(
+      journal([
+        ...opening,
+        { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100, combat_id: "2.21:AXEBOT" },
+        { t: "room", s: 6, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "combat_start", s: 7, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 1 },
+        { t: "turn", s: 8, floor: 21, act: 2, n: 1, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 1 },
+      ]),
+    );
+    const [first, second] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(2);
+    expect(first.rolledBackByReload).toBe(true);
+    expect(first.resumedAcrossReload).toBe(false);
+    expect(combatCounts(first)).toBe(false);
+    expect(combatCounts(second)).toBe(true);
+  });
+
   it("leaves a fight the resume neither restarted nor continued as unfinished, not undone", () => {
     const model = parseReplay(journal([...opening, { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 }]));
     const [c] = model.floors[0].combats;
@@ -1392,5 +1413,32 @@ describe("parseReplay on the version 2 shop journal", () => {
     for (let i = 1; i < shops.length; i += 1) {
       expect((shops[i - 1].gold ?? 0) - (shops[i].gold ?? 0)).toBe(buys[i - 1].costCurrent);
     }
+  });
+});
+
+describe("parseReplay on the quit-and-continue journal", () => {
+  const model = parseReplay(readFileSync(new URL("../../backend/tests/fixtures/v2-quit-continue.jsonl", import.meta.url), "utf-8"));
+
+  it("reads the journal reopening in the same process as a resume", () => {
+    // The first recorder build dropped every line after an in-process quit
+    // and Continue. This is the first journal where the tail exists at all.
+    expect(model.resumes).toHaveLength(1);
+    expect(model.resumes[0].floor).toBe(2);
+    expect(model.resumes[0].combatId).toBe("1.2:SLUDGE_SPINNER_WEAK");
+    expect(model.gaps).toEqual([]);
+    expect(captureIsComplete(model)).toBe(true);
+  });
+
+  it("counts the fight once, from the restart", () => {
+    // The restart's own id carries a spurious #1 in this recording, a
+    // recorder bug fixed after capture, so the restart is matched on the
+    // encounter and nothing here asserts the id.
+    const floor = model.floors.find((f) => f.floor === 2)!;
+    expect(floor.combats).toHaveLength(2);
+    const [first, second] = floor.combats;
+    expect(first.rolledBackByReload).toBe(true);
+    expect(combatCounts(first)).toBe(false);
+    expect(combatCounts(second)).toBe(true);
+    expect(model.floors.map((f) => f.floor)).toEqual([1, 2]);
   });
 });
