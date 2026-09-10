@@ -32,6 +32,7 @@ interface ApiMetricRow {
 
 interface MetricsResponse {
   entity_type: string;
+  bracket?: string;
   baseline_win_rate: number;
   total_runs: number;
   rows: ApiMetricRow[];
@@ -69,7 +70,7 @@ export const BRACKETS = [
 // those in addition to the single brackets above.
 const _PLAYER_KEYS = ["solo", "2p", "3p", "4p"];
 const _SKILL_KEYS = ["a10", "wr30", "wr50", "wr75"];
-function isValidBracket(b: string): boolean {
+export function isValidBracket(b: string): boolean {
   // A trailing ":vX.Y.Z" version segment composes with any base (v20
   // snapshots), and a bare version stands alone. Without this the server
   // silently normalized version brackets to "all", so the dropdown wrote
@@ -81,8 +82,8 @@ function isValidBracket(b: string): boolean {
     return true;
   }
   if (BRACKETS.some((c) => c.key === b)) return true;
-  const [p, s] = b.split(":");
-  return _PLAYER_KEYS.includes(p) && _SKILL_KEYS.includes(s);
+  const parts = b.split(":");
+  return parts.length === 2 && _PLAYER_KEYS.includes(parts[0]) && _SKILL_KEYS.includes(parts[1]);
 }
 
 // Fetch + join the metrics table with card metadata. Shared by the base
@@ -144,7 +145,7 @@ export async function loadMetrics(
     rows,
     baselineWinRate: metrics?.baseline_win_rate ?? 0,
     totalRuns: metrics?.total_runs ?? 0,
-    bracket: valid,
+    bracket: metrics?.bracket || valid,
     character: char,
   };
 }
