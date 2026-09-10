@@ -515,6 +515,12 @@ function CombatBlock({ c, label, cat }: { c: ReplayCombat; label?: string; cat: 
                 {" · "}
               </>
             )}
+            {c.resumedAcrossReload && (
+              <>
+                <span className="text-[var(--text-muted)]">{t("Continued after a reload")}</span>
+                {" · "}
+              </>
+            )}
             {" · "}
             {c.hpLost !== undefined
               ? `${c.hpLost} ${t("HP lost")}`

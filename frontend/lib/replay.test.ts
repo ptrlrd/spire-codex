@@ -1001,45 +1001,76 @@ describe("a reload restarts a fight, so only the last attempt happened", () => {
   });
 });
 
-describe("a reload undoes a fight it never came back to", () => {
+describe("a reload either restarts a fight or carries on inside it", () => {
   const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const opening = [
+    header,
+    { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+    { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
+    { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 0 },
+    { t: "turn", s: 4, floor: 21, act: 2, n: 1, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 0 },
+  ];
 
-  it("does not count a fight the reload rolled back and never repeated", () => {
+  it("undoes the earlier attempt when a fresh start follows the resume", () => {
     const model = parseReplay(
       journal([
-        header,
-        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
-        { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
-        { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 0 },
-        { t: "turn", s: 4, floor: 21, act: 2, n: 0, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 0 },
-        // The journal resumes on the same floor, so the game put the player
-        // back at the start of the room. No second attempt is ever recorded.
+        ...opening,
         { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 },
+        { t: "combat_start", s: 6, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT", attempt_id: 1 },
+        { t: "combat_end", s: 7, floor: 21, act: 2, turns: 2, result: "victory", combat_id: "2.21:AXEBOT", attempt_id: 1, hp_lost_total: 9 },
       ]),
     );
-    const [c] = model.floors[0].combats;
-    expect(c.rolledBackByReload).toBe(true);
-    expect(c.supersededByRetry).toBe(false);
-    expect(combatCounts(c)).toBe(false);
-    // It is still rendered, because it is a recorded thing that happened.
-    expect(c.turns).toHaveLength(1);
+    const [first, second] = model.floors[0].combats;
+    expect(first.rolledBackByReload).toBe(true);
+    expect(combatCounts(first)).toBe(false);
+    expect(combatCounts(second)).toBe(true);
   });
 
-  it("leaves a fight that finished before the reload alone", () => {
+  it("keeps the fight live when the turns carry on past the resume", () => {
+    // The shape from a real journal: no combat_start after the resume, the
+    // turn counter continues, and the continued turns carry no fight id.
     const model = parseReplay(
       journal([
-        header,
-        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
-        { t: "hp", s: 2, floor: 21, act: 2, hp: 70, d: 0 },
-        { t: "combat_start", s: 3, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT" },
-        { t: "combat_end", s: 4, floor: 21, act: 2, turns: 1, result: "victory", combat_id: "2.21:AXEBOT", hp_lost_total: 9 },
-        { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 61, gold: 100 },
+        ...opening,
+        { t: "turn", s: 5, floor: 21, act: 2, n: 7, side: "enemy", combat_id: "2.21:AXEBOT", attempt_id: 0 },
+        { t: "resume", s: 6, floor: 21, act: 2, reloads: 1, hp: 26, gold: 100 },
+        { t: "turn", s: 7, floor: 21, act: 2, n: 8, side: "player" },
+        { t: "turn", s: 8, floor: 21, act: 2, n: 8, side: "enemy" },
       ]),
     );
     const [c] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(1);
     expect(c.rolledBackByReload).toBe(false);
     expect(combatCounts(c)).toBe(true);
-    expect(c.hpLost).toBe(9);
+    expect(c.turns.map((x) => x.n)).toEqual([1, 7, 8, 8]);
+    expect(c.resumedAcrossReload).toBe(true);
+    expect(c.hpLossRecorded).toBeUndefined();
+  });
+
+  it("carries on inside the fight the resume names", () => {
+    const model = parseReplay(
+      journal([
+        ...opening,
+        { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 26, gold: 100, combat_id: "2.21:AXEBOT" },
+        { t: "turn", s: 6, floor: 21, act: 2, n: 2, side: "player", combat_id: "2.21:AXEBOT", attempt_id: 1 },
+        { t: "combat_end", s: 7, floor: 21, act: 2, turns: 2, result: "victory", combat_id: "2.21:AXEBOT", attempt_id: 1 },
+      ]),
+    );
+    const [c] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(1);
+    // The continuation carries the new session's attempt id; that is not a
+    // different fight.
+    expect(c.resumedAcrossReload).toBe(true);
+    expect(c.endRecorded).toBe(true);
+    expect(c.result).toBe("victory");
+    expect(c.turns).toHaveLength(2);
+  });
+
+  it("leaves a fight the resume neither restarted nor continued as unfinished, not undone", () => {
+    const model = parseReplay(journal([...opening, { t: "resume", s: 5, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 }]));
+    const [c] = model.floors[0].combats;
+    expect(c.rolledBackByReload).toBe(false);
+    expect(c.endRecorded).toBe(false);
   });
 
   it("does not touch an unfinished fight on an earlier floor", () => {
@@ -1050,10 +1081,25 @@ describe("a reload undoes a fight it never came back to", () => {
         { t: "combat_start", s: 2, floor: 20, act: 2, encounter: "CHOMPER", enemies: [], combat_id: "2.20:CHOMPER" },
         { t: "room", s: 3, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
         { t: "resume", s: 4, floor: 21, act: 2, reloads: 1, hp: 70, gold: 100 },
+        { t: "combat_start", s: 5, floor: 21, act: 2, encounter: "AXEBOT", enemies: [], combat_id: "2.21:AXEBOT" },
       ]),
     );
-    // The reload landed on floor 21, so floor 20 is behind the save point.
     expect(model.floors[0].combats[0].rolledBackByReload).toBe(false);
+  });
+});
+
+describe("the end line's hp is a latch or a sample, never a measurement", () => {
+  const header = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 2, starting_deck: [] };
+  const room = { t: "room", s: 1, floor: 17, act: 1, kind: "combat", id: "A" };
+
+  it("keeps the last recorded hp when the run did not end in a death", () => {
+    const model = parseReplay(journal([header, room, { t: "hp", s: 2, floor: 17, act: 1, hp: 0, d: -5 }, { t: "end", s: 3, terminal_reason: "left_run", is_game_over: false, hp: 14 }]));
+    expect(model.floors[0].hpAfter).toBe(0);
+  });
+
+  it("takes the death latch over a sample that missed the killing blow", () => {
+    const model = parseReplay(journal([header, room, { t: "hp", s: 2, floor: 17, act: 1, hp: 5, d: -3 }, { t: "end", s: 3, terminal_reason: "death", is_game_over: true, hp: 0 }]));
+    expect(model.floors[0].hpAfter).toBe(0);
   });
 });
 
@@ -1255,7 +1301,16 @@ describe("parseReplay on the version 2 journals", () => {
     expect(m.header?.replayVersion).toBe(2);
     expect(m.end?.terminalReason).toBe("left_run");
     expect(m.end?.isGameOver).toBe(false);
+    // Floor 5 restarted after its reload, so that attempt is undone. Floor 17
+    // resumed inside the boss fight and ran on to turn 11, so it stands.
     const undone = m.floors.flatMap((x) => x.combats).filter((c) => !combatCounts(c));
-    expect(undone).toHaveLength(2);
+    expect(undone.map((c) => c.encounter)).toEqual(["SLIMES_WEAK"]);
+    const boss = m.floors.find((f) => f.floor === 17)!.combats[0];
+    expect(boss.encounter).toBe("VANTOM_BOSS");
+    expect(combatCounts(boss)).toBe(true);
+    expect(boss.resumedAcrossReload).toBe(true);
+    expect(boss.turns.some((t) => t.n === 11)).toBe(true);
+    // The last hp line says 0; the end line's 14 is a stale sample.
+    expect(m.floors[m.floors.length - 1].hpAfter).toBe(0);
   });
 });

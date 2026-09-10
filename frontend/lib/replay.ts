@@ -294,6 +294,8 @@ export interface ShuffleLine extends LineBase {
 }
 export interface ResumeLine extends LineBase {
   t: "resume";
+  /** The fight the reload landed inside, when it landed mid-combat. */
+  combatId?: string;
   reloads: number;
   wallClock?: number;
   runTime?: number;
@@ -451,10 +453,14 @@ export interface ReplayCombat {
    * resuming it, so an abandoned attempt's HP loss was rolled back with it and
    * must never be added to anything. */
   supersededByRetry: boolean;
-  /** The journal resumed on this floor after the fight started without
-   * finishing, so the reload undid it. This catches the fight that was never
-   * attempted again, which no later attempt can mark. */
+  /** The journal resumed on this floor and then started this fight again,
+   * so the reload undid this attempt. A reload can also land inside a fight
+   * and carry on with the turn counter continuing, and that fight is not
+   * undone; the restart is what tells the two apart. */
   rolledBackByReload: boolean;
+  /** A reload landed inside this fight and it carried on, so its later lines
+   * carry the new session's attempt id. Never marks it undone. */
+  resumedAcrossReload: boolean;
 }
 
 export interface ReplayFloor {
@@ -822,6 +828,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         ...base,
         t,
         reloads: num(raw.reloads) ?? 1,
+        combatId: str(raw.combat_id),
         wallClock: num(raw.wall_clock),
         runTime: num(raw.run_time),
         hp: num(raw.hp),
@@ -1178,6 +1185,34 @@ export function parseReplay(text: string): ReplayModel {
   let gold: number | undefined;
   let end: EndLine | undefined;
 
+  // A reload either restarts the fight it interrupted (a fresh combat_start
+  // follows the resume) or lands inside it and carries on (the turns keep
+  // counting, and from version 2 the resume names the fight). Only the
+  // restart undoes the earlier attempt.
+  const resumeOutcome = new Map<ResumeLine, "restarted" | "resumed" | "open">();
+  lines.forEach((line, i) => {
+    if (line.t !== "resume") return;
+    if (line.combatId !== undefined) {
+      resumeOutcome.set(line, "resumed");
+      return;
+    }
+    let verdict: "restarted" | "resumed" | "open" = "open";
+    for (let j = i + 1; j < lines.length; j += 1) {
+      const next = lines[j];
+      if (next.t === "end" || next.t === "resume") break;
+      if (next.floor !== undefined && line.floor !== undefined && next.floor !== line.floor) break;
+      if (next.t === "room") continue;
+      if (next.t === "combat_start") {
+        verdict = "restarted";
+        break;
+      }
+      if (next.t === "turn") {
+        verdict = "resumed";
+        break;
+      }
+    }
+    resumeOutcome.set(line, verdict);
+  });
   const floorFor = (line: ReplayLine): ReplayFloor | undefined => {
     if (line.floor === undefined) return current;
     const sameAct = (f: ReplayFloor) => line.act === undefined || f.act === line.act;
@@ -1263,21 +1298,29 @@ export function parseReplay(text: string): ReplayModel {
       case "shop":
         if (floor && !floor.shop) floor.shop = line;
         break;
-      case "resume":
+      case "resume": {
         resumes.push(line);
-        if (floor) {
-          floor.resumes.push(line);
-          // The game saves at room boundaries, so resuming on this floor put
-          // the player back at the start of it. A fight already begun here and
-          // never finished was undone, whether or not it was fought again.
-          for (const c of floor.combats) if (!c.endRecorded) c.rolledBackByReload = true;
-        }
-        // The previous session's fight cannot continue into this one.
+        const verdict = resumeOutcome.get(line) ?? "open";
         combat = undefined;
         hpLoss = undefined;
         turn = undefined;
+        if (floor) {
+          floor.resumes.push(line);
+          const open = floor.combats.filter((c) => !c.endRecorded);
+          if (verdict === "restarted") {
+            for (const c of open) c.rolledBackByReload = true;
+          } else if (verdict === "resumed") {
+            // Carry on inside the fight the reload landed in. Its start was
+            // seen, its total was not, so no HP figure is derived for it.
+            combat =
+              (line.combatId !== undefined ? open.find((c) => c.combatId === line.combatId) : undefined) ??
+              open[open.length - 1];
+            if (combat) combat.resumedAcrossReload = true;
+          }
+        }
         snapshot(floor, line.hp, line.gold);
         break;
+      }
     }
 
     if (line.t === "combat_start") {
@@ -1289,6 +1332,7 @@ export function parseReplay(text: string): ReplayModel {
         endRecorded: false,
         supersededByRetry: false,
         rolledBackByReload: false,
+        resumedAcrossReload: false,
         combatId: line.combatId,
         attemptId: line.attemptId,
       };
@@ -1305,7 +1349,10 @@ export function parseReplay(text: string): ReplayModel {
       const foreign =
         tagged &&
         ((line.combatId !== undefined && combat.combatId !== undefined && line.combatId !== combat.combatId) ||
-          (line.attemptId !== undefined && combat.attemptId !== undefined && line.attemptId !== combat.attemptId));
+          (!combat.resumedAcrossReload &&
+            line.attemptId !== undefined &&
+            combat.attemptId !== undefined &&
+            line.attemptId !== combat.attemptId));
       if (foreign) {
         // Detach rather than skip. The play and hp lines that follow carry no
         // identity of their own, so leaving this fight active would collect
@@ -1381,7 +1428,10 @@ export function parseReplay(text: string): ReplayModel {
     }
   }
 
-  if (end?.hp !== undefined) snapshot(floors[floors.length - 1], end.hp);
+  // On a death the end line's hp is the latch and beats any sample. Otherwise
+  // it is a 10 Hz sample that can trail the last recorded hp line, so the
+  // recorded line wins.
+  if (end?.hp !== undefined && (end.isGameOver || hp === undefined)) snapshot(floors[floors.length - 1], end.hp);
   // Where the sequence jumps, lines are missing, and the jump says how many.
   const gaps: ReplayGap[] = [];
   for (let i = 1; i < lines.length; i += 1) {
