@@ -444,6 +444,18 @@ def _accumulate_one(
 # ── Finalize: resolve names + compute percentages ────────────────────────────
 
 
+_RETIRED_OFFICIAL: dict[str, dict[str, str]] = {
+    "encounters": {
+        "DOORMAKER_BOSS": "The Doormaker",
+        "TOADPOLES_NORMAL": "Toadpoles Normal",
+    },
+    "cards": {
+        "FOLLOW_THROUGH": "Follow Through",
+        "GRAPPLE": "Grapple",
+    },
+}
+
+
 @lru_cache(maxsize=1)
 def _name_maps() -> dict[str, dict[str, str]]:
     """Build id -> display-name lookups from the game data. Each is best
@@ -482,7 +494,14 @@ def _name_maps() -> dict[str, dict[str, str]]:
         in both."""
         names = _index(loader, key, name)
         beta_only[tkey] = set()
-        if not names or not data_service.get_beta_version():
+        if not names:
+            return names
+        # Content the game shipped and later removed. Runs from those patches
+        # still carry the ids, and without a name they would be dropped as
+        # modded. The Act 3 boss before Aeonglass is the one people notice.
+        for rid, rname in _RETIRED_OFFICIAL.get(tkey, {}).items():
+            names.setdefault(rid, rname)
+        if not data_service.get_beta_version():
             return names
         token = data_service.current_channel.set("beta")
         try:
