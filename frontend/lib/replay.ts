@@ -1196,6 +1196,21 @@ export function parseReplay(text: string): ReplayModel {
       resumeOutcome.set(line, "resumed");
       return;
     }
+    // The fight the reload interrupted: the last start on this floor with no
+    // end before the resume. Only a fresh start of the SAME encounter is a
+    // restart of it. A floor can hold more than one fight, and a different
+    // encounter starting later says nothing about whether this one was undone.
+    let interrupted: string | undefined;
+    for (let j = i - 1; j >= 0; j -= 1) {
+      const prev = lines[j];
+      if (prev.t === "room" || prev.t === "resume") break;
+      if (prev.floor !== undefined && line.floor !== undefined && prev.floor !== line.floor) break;
+      if (prev.t === "combat_end") break;
+      if (prev.t === "combat_start") {
+        interrupted = prev.encounter;
+        break;
+      }
+    }
     let verdict: "restarted" | "resumed" | "open" = "open";
     for (let j = i + 1; j < lines.length; j += 1) {
       const next = lines[j];
@@ -1203,10 +1218,10 @@ export function parseReplay(text: string): ReplayModel {
       if (next.floor !== undefined && line.floor !== undefined && next.floor !== line.floor) break;
       if (next.t === "room") continue;
       if (next.t === "combat_start") {
-        verdict = "restarted";
+        if (interrupted !== undefined && next.encounter === interrupted) verdict = "restarted";
         break;
       }
-      if (next.t === "turn") {
+      if (next.t === "turn" || next.t === "combat_end") {
         verdict = "resumed";
         break;
       }

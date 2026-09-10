@@ -1073,6 +1073,47 @@ describe("a reload either restarts a fight or carries on inside it", () => {
     expect(c.endRecorded).toBe(false);
   });
 
+  it("does not read a different fight starting later on the floor as a restart", () => {
+    // Version 1 shape, no fight ids anywhere: A is interrupted, the reload
+    // lands inside it, A ends, then B starts on the same floor.
+    const v1 = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 1, starting_deck: [] };
+    const model = parseReplay(
+      journal([
+        v1,
+        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "combat_start", s: 2, floor: 21, act: 2, encounter: "AXEBOT", enemies: [] },
+        { t: "turn", s: 3, floor: 21, act: 2, n: 1, side: "player" },
+        { t: "resume", s: 4, floor: 21, act: 2, reloads: 1, hp: 40, gold: 100 },
+        { t: "combat_end", s: 5, floor: 21, act: 2, turns: 2 },
+        { t: "combat_start", s: 6, floor: 21, act: 2, encounter: "CHOMPER", enemies: [] },
+        { t: "combat_end", s: 7, floor: 21, act: 2, turns: 1 },
+      ]),
+    );
+    const [a, b] = model.floors[0].combats;
+    expect(model.floors[0].combats).toHaveLength(2);
+    expect(a.rolledBackByReload).toBe(false);
+    expect(a.endRecorded && b.endRecorded).toBe(true);
+    expect(combatCounts(a) && combatCounts(b)).toBe(true);
+  });
+
+  it("reads a fresh start of the same encounter as the restart, even without fight ids", () => {
+    const v1 = { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 1, starting_deck: [] };
+    const model = parseReplay(
+      journal([
+        v1,
+        { t: "room", s: 1, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "combat_start", s: 2, floor: 21, act: 2, encounter: "AXEBOT", enemies: [] },
+        { t: "resume", s: 3, floor: 21, act: 2, reloads: 1, hp: 40, gold: 100 },
+        { t: "room", s: 4, floor: 21, act: 2, kind: "combat", id: "AXEBOT" },
+        { t: "combat_start", s: 5, floor: 21, act: 2, encounter: "AXEBOT", enemies: [] },
+        { t: "combat_end", s: 6, floor: 21, act: 2, turns: 3 },
+      ]),
+    );
+    const [first, second] = model.floors[0].combats;
+    expect(first.rolledBackByReload).toBe(true);
+    expect(combatCounts(second)).toBe(true);
+  });
+
   it("does not touch an unfinished fight on an earlier floor", () => {
     const model = parseReplay(
       journal([
