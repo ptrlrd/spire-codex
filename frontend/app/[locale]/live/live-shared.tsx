@@ -292,6 +292,7 @@ export interface MonsterInfo {
   id: string;
   name: string;
   image_url?: string | null;
+  moves?: { id: string; name: string; intent?: string | null }[];
 }
 
 export type MonsterMap = Record<string, MonsterInfo>;
