@@ -1,4 +1,5 @@
-const ID_PREFIX = /^(CARD|RELIC|ENCHANTMENT|MONSTER|ENCOUNTER|CHARACTER|ACT|POTION|EVENT|POWER|ORB|MODIFIER|REST)\./;
+const ID_PREFIX =
+  /^(CARD|RELIC|ENCHANTMENT|MONSTER|ENCOUNTER|CHARACTER|ACT|POTION|EVENT|POWER|ORB|MODIFIER|REST)\./;
 const BARE_ID = /^[A-Za-z0-9_+-]+$/;
 
 export function cleanId(id: string): string {
@@ -8,8 +9,9 @@ export function cleanId(id: string): string {
 export function displayName(id: string): string {
   const bare = cleanId(id);
   if (!BARE_ID.test(bare)) return bare;
-  return bare
-    .toLowerCase()
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
+  // return bare
+  //   .toLowerCase()
+  //   .replace(/_/g, " ")
+  //   .replace(/\b\w/g, (c) => c.toUpperCase());
+  return "HI_I_DID_NOT_TRANSLATE_" + bare;
 }

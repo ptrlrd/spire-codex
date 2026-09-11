@@ -1,9 +1,10 @@
-import { hasLocale } from "next-intl";
 import { getRequestConfig } from "next-intl/server";
 import { unsafeKey } from "@/lib/i18n-keys";
 import { messagesFor } from "./messages";
-import { routing } from "./routing";
+import { Locale, routing } from "./routing";
 import { dataMessagesFor } from "./dataMessages";
+import { isLocale } from "@/lib/locale";
+import { hasLocale } from "next-intl";
 
 // note: requestLocale is no longer recommended (see next-intl docs)
 // relatedly, we should consider using multiple root-params in order to detect when the page is on beta (havent looked into details or alternatives yet)
@@ -15,8 +16,11 @@ export default getRequestConfig(async ({ requestLocale }) => {
   return {
     locale,
     messages: {
-      messagesFor(locale),
-      data: { main: dataMessagesFor(locale, false), beta: dataMessagesFor(locale, true) },
+      ...messagesFor(locale),
+      data: {
+        main: await dataMessagesFor(locale, false),
+        beta: await dataMessagesFor(locale, true),
+      },
     },
     timeZone: "America/Los_Angeles",
     // A key with no message renders as its English text, which is what the
@@ -31,7 +35,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       if (key.startsWith("data.")) {
         return "BAD_GAME_TRANSLATION_LOOKUP";
       }
-      unsafeKey(key);
+      return unsafeKey(key);
     },
     onError: (error) => {
       if (error.code !== "MISSING_MESSAGE") console.error(error);

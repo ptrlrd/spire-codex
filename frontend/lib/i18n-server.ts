@@ -33,3 +33,15 @@ export async function getGameTranslations(args?: {
       })
     : await getTranslations(namespace);
 }
+/**
+ * Currently this assumes that beta-specific localisation will be handled at the requestConfiguration level;
+ * The details on that are TODO.
+ */
+export async function getTryGameTranslations(args?: {
+  locale?: Locale;
+  namespace?: string;
+  beta?: boolean;
+}) {
+  const gT = await getGameTranslations(args);
+  return (key: string) => (gT.has(key) ? gT(key) : undefined);
+}

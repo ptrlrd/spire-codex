@@ -1,11 +1,15 @@
 "use client";
 
 import { useGameLocale } from "@/lib/i18n";
-import { useRef, useState, type ReactNode } from "react";
+import { useContext, useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import RichDescription from "@/app/components/RichDescription";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
-import { displayName } from "@/lib/display-name";
+import RelicsContext from "@/app/contexts/api/Relics";
+import CardsContext from "@/app/contexts/api/Cards";
+import { useCleanLocalize } from "./cleanLocalize";
+import PotionsContext from "@/app/contexts/api/Potions";
+import { cleanId } from "@/lib/display-name";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -36,13 +40,10 @@ export interface PotionInfo {
   image_url: string | null;
 }
 
-export { cleanId, displayName } from "@/lib/display-name";
-
 export function CardPill({
   cardId,
   upgraded,
   enchantment,
-  cardData,
   bp,
   className,
   children,
@@ -50,16 +51,18 @@ export function CardPill({
   cardId: string;
   upgraded?: boolean;
   enchantment?: string;
-  cardData: Record<string, CardInfo>;
   bp: string;
   className?: string;
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
   const [above, setAbove] = useState(true);
+  const cards = useContext(CardsContext);
+  const cleanT = useCleanLocalize();
   const ref = useRef<HTMLAnchorElement>(null);
   const lang = useGameLocale();
-  const info = cardData[cardId];
+  console.log(cardId);
+  const card = cards?.[cardId];
   return (
     <Link
       ref={ref}
@@ -75,11 +78,11 @@ export function CardPill({
     >
       {children ?? (
         <>
-          {info?.name || displayName(`CARD.${cardId}`)}
+          {cleanT((id) => `cards.${id}.name`, cardId)}
           {upgraded && "+"}
           {enchantment && (
             <span className="text-[var(--color-necrobinder)] ml-1">
-              [{displayName(`ENCHANTMENT.${enchantment}`)}]
+              {cleanT((id) => `enchantments.${id}.name`, enchantment)}
             </span>
           )}
         </>
@@ -97,7 +100,13 @@ export function CardPill({
           <img
             src={
               enchantment
-                ? enchantedCardUrl(cardId.toLowerCase(), enchantment, upgraded, "stable", lang)
+                ? enchantedCardUrl(
+                    cardId.toLowerCase(),
+                    enchantment,
+                    upgraded,
+                    "stable",
+                    lang,
+                  )
                 : fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang)
             }
             alt=""
@@ -108,7 +117,7 @@ export function CardPill({
               const chain = [
                 fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang),
                 fullCardUrl(cardId.toLowerCase(), upgraded, "beta", lang),
-                ...(info?.image_url ? [imageUrl(info.image_url)] : []),
+                ...(card?.image_url ? [imageUrl(card.image_url)] : []),
               ];
               // The enchanted src isn't in the chain, so its failure lands on
               // the plain render (indexOf -1 + 1 = 0).
@@ -125,68 +134,79 @@ export function CardPill({
 
 export function RelicPill({
   relicId,
-  relicData,
   bp,
   className,
   children,
 }: {
   relicId: string;
-  relicData: Record<string, RelicInfo>;
   bp: string;
   className?: string;
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
-  const info = relicData[relicId];
-  return (
-    <Link
-      href={`${bp}/relics/${relicId.toLowerCase()}`}
-      className={`relative ${className || ""}`}
-      onMouseEnter={() => setShow(true)}
-      onMouseLeave={() => setShow(false)}
-    >
-      {children ?? info?.name ?? displayName(`RELIC.${relicId}`)}
-      {show && info && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
-          <div className="flex items-start gap-2 mb-1.5">
-            {info.image_url && (
-              <img
-                src={imageUrl(info.image_url)}
-                alt=""
-                className="w-8 h-8 object-contain"
-                crossOrigin="anonymous"
-              />
-            )}
-            <div className="min-w-0">
-              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
-              <div className="text-[10px] text-[var(--text-muted)]">{info.rarity}</div>
+  const relics = useContext(RelicsContext);
+  const cleanT = useCleanLocalize({ namespace: "relics" });
+  if (relics) {
+    const info = relics[cleanId(relicId)];
+    const name = cleanT((id) => `${id}.name`, relicId);
+
+    return (
+      <Link
+        href={`${bp}/relics/${relicId.toLowerCase()}`}
+        className={`relative ${className || ""}`}
+        onMouseEnter={() => setShow(true)}
+        onMouseLeave={() => setShow(false)}
+      >
+        {children ?? name}
+        {show && info && (
+          <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
+            <div className="flex items-start gap-2 mb-1.5">
+              {info.image_url && (
+                <img
+                  src={imageUrl(info.image_url)}
+                  alt=""
+                  className="w-8 h-8 object-contain"
+                  crossOrigin="anonymous"
+                />
+              )}
+              <div className="min-w-0">
+                <div className="font-semibold text-xs text-[var(--text-primary)] truncate">
+                  {name}
+                </div>
+                <div className="text-[10px] text-[var(--text-muted)]">
+                  {cleanT((id) => `${id}.rarity`, relicId)}
+                </div>
+              </div>
             </div>
+            <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
+              <RichDescription
+                text={cleanT((id) => `${id}.description`, relicId)}
+              />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
           </div>
-          <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-            <RichDescription text={info.description} />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
-        </div>
-      )}
-    </Link>
-  );
+        )}
+      </Link>
+    );
+  }
 }
 
 export function PotionPill({
   potionId,
-  potionData,
   bp,
   className,
   children,
 }: {
   potionId: string;
-  potionData: Record<string, PotionInfo>;
   bp: string;
   className?: string;
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
-  const info = potionData[potionId];
+  const potions = useContext(PotionsContext);
+  const cleanT = useCleanLocalize({ namespace: "potions" });
+  const info = potions?.[potionId];
+  const name = cleanT((id) => `${id}.name`, potionId);
   return (
     <Link
       href={`${bp}/potions/${potionId.toLowerCase()}`}
@@ -194,7 +214,7 @@ export function PotionPill({
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      {children ?? info?.name ?? displayName(`POTION.${potionId}`)}
+      {children ?? name}
       {show && info && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
@@ -207,12 +227,18 @@ export function PotionPill({
               />
             )}
             <div className="min-w-0">
-              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">{info.name}</div>
-              <div className="text-[10px] text-[var(--text-muted)]">{info.rarity}</div>
+              <div className="font-semibold text-xs text-[var(--text-primary)] truncate">
+                {name}
+              </div>
+              <div className="text-[10px] text-[var(--text-muted)]">
+                {cleanT((id) => `${id}.rarity`, potionId)}
+              </div>
             </div>
           </div>
           <div className="text-[10px] text-[var(--text-secondary)] leading-relaxed">
-            <RichDescription text={info.description} />
+            <RichDescription
+              text={cleanT((id) => `${id}.description`, potionId)}
+            />
           </div>
           <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
         </div>

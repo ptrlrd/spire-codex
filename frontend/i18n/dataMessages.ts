@@ -1,8 +1,47 @@
+import path from "path";
 import { Locale } from "./routing";
+import { cachedFetch } from "@/lib/fetch-cache";
+export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
+interface TranslationsShape {
+  card_types: Record<string, string>;
+  card_rarities: Record<string, string>;
+  relic_rarities: Record<string, string>;
+  potion_rarities: Record<string, string>;
+  keywords: Record<string, string>;
+  sections: Record<string, string>;
+  section_descs: Record<string, string>;
+  character_names: Record<string, string>;
+}
+
+export interface GetApiEndpointParams {
+  endpoint: string; // todo: restrict to known endpoints
+  locale: Locale;
+  beta: boolean;
+}
 // todo: add beta copy
 // todo: TS signature that exposes only the parts of the data we actually expose for localisation/strip does to only those
 // todo: I'm sure this only works locally, it's intended to be a demo.
+const getListEndpoint = async <R, Entry = R & { id: string }>(
+  args: GetApiEndpointParams,
+): Promise<Record<string, R> | undefined> =>
+  Object.fromEntries(
+    (await getObjectEndpoint<Entry[]>(args)).map(({ id, ...data }: Entry) => [
+      id,
+      data,
+    ]),
+  );
+
+const getObjectEndpoint = async <T>({
+  endpoint,
+  locale,
+  beta,
+}: GetApiEndpointParams): Promise<T> =>
+  (await (
+    await fetch(
+      `${API}/api/${endpoint}?lang=${locale}&${beta ? "?channel=beta" : ""}`,
+    )
+  ).json()) as T;
 
 /**
  * Provides localised text directly from extracted game data, using a key/path matching the location in game data. each return is either for the current main or beta, depending on the flag.
@@ -13,114 +52,94 @@ import { Locale } from "./routing";
  * Later, a TS signature might be provided for ease of reference?
  */
 export async function dataMessagesFor(locale: Locale, beta: boolean) {
-  const versionPath = beta ? "data" : "data-beta/latest";
-  const pathBase = `../../${versionPath}/${locale}`;
-
   // TODO: THIS DYNAMIC IMPORT WILL NOT BE AS WELL OPTIMISED AS A PROPER SET OF STATIC JS FILES IMPORTING ALL THE THINGS STATICALLY ONE THING PER LOCALE AND PER BETA;
   // SO FOR PRODUCTION I WILL PROBABLY HAVE THE PYTHON BACKEND POPULATE ALL THIS TO A FOLDER OF JSONS AND THEN THIS METHOD WILL PULL FROM THERE
   // THIS IS JUST A QUICK AND DIRTY DEMO
   // todo: tailor each of these to only expose the fields we actually need for localisation, not all the others (e.g. we don't need ID)
 
-  const achievements = await import(`${pathBase}/achievements`, {
-    with: { type: "json" },
-  });
-  const acts = await import(`${pathBase}/acts`, { with: { type: "json" } });
-  const afflictions = await import(`${pathBase}/afflictions`, {
-    with: { type: "json" },
-  });
-  const ascensions = await import(`${pathBase}/ascensions`, {
-    with: { type: "json" },
-  });
-  const badges = await import(`${pathBase}/badges`, {
-    with: { type: "json" },
-  });
-  const cards = await import(`${pathBase}/cards`, {
-    with: { type: "json" },
-  });
-  const characters = await import(`${pathBase}/characters`, {
-    with: { type: "json" },
-  });
-  const enchantments = await import(`${pathBase}/enchantments`, {
-    with: { type: "json" },
-  });
-  const encounters = await import(`${pathBase}/encounters`, {
-    with: { type: "json" },
-  });
-  const epochs = await import(`${pathBase}/epochs`, {
-    with: { type: "json" },
-  });
-  const events = await import(`${pathBase}/events`, {
-    with: { type: "json" },
-  });
-  const glossary = await import(`${pathBase}/glossary`, {
-    with: { type: "json" },
-  });
-  const intents = await import(`${pathBase}/intents`, {
-    with: { type: "json" },
-  });
-  const keywords = await import(`${pathBase}/keywords`, {
-    with: { type: "json" },
-  });
-  const modifiers = await import(`${pathBase}/modifiers`, {
-    with: { type: "json" },
-  });
-  const monsters = await import(`${pathBase}/monsters`, {
-    with: { type: "json" },
-  });
-  const orbs = await import(`${pathBase}/orbs`, {
-    with: { type: "json" },
-  });
-  const potions = await import(`${pathBase}/potions`, {
-    with: { type: "json" },
-  });
-  const powers = await import(`${pathBase}/ascensions`, {
-    with: { type: "json" },
-  });
-  const relics = await import(`${pathBase}/relics`, {
-    with: { type: "json" },
-  });
-  const stories = await import(`${pathBase}/stories`, {
-    with: { type: "json" },
-  });
-  const {
-    keywords: _keywords,
-    character_names: _charNames,
-    ...translations
-  } = await import(`${pathBase}/translations`, {
-    with: { type: "json" },
-  });
+  const { keywords, character_names, ...translations } =
+    await getObjectEndpoint<TranslationsShape>({
+      endpoint: "translations",
+      locale,
+      beta,
+    });
 
   return {
-    ...Object.fromEntries(
-      Object.entries({
-        achievements,
-        acts,
-        afflictions,
-        ascensions,
-        badges,
-        cards,
-        characters,
-        enchantments,
-        encounters,
-        epochs,
-        events,
-        glossary,
-        intents,
-        keywords,
-        modifiers,
-        monsters,
-        orbs,
-        potions,
-        powers,
-        relics,
-        stories,
-      }).map(([section, items]) => [
-        section,
-        Object.fromEntries(
-          items.map(({ id, ...data }: { id: string }) => [id, data]),
-        ),
+    achievements: await getListEndpoint({
+      endpoint: "achievements",
+      locale,
+      beta,
+    }),
+    acts: await getListEndpoint({ endpoint: "acts", locale, beta }),
+    afflictions: await getListEndpoint({
+      endpoint: "afflictions",
+      locale,
+      beta,
+    }),
+    ascensions: await getListEndpoint({ endpoint: "ascensions", locale, beta }),
+    badges: await getListEndpoint({ endpoint: "badges", locale, beta }),
+    cards: await getListEndpoint({ endpoint: "cards", locale, beta }),
+    characters: await getListEndpoint({ endpoint: "characters", locale, beta }),
+    enchantments: await getListEndpoint({
+      endpoint: "enchantments",
+      locale,
+      beta,
+    }),
+    encounters: await getListEndpoint({ endpoint: "encounters", locale, beta }),
+    epochs: await getListEndpoint({ endpoint: "epochs", locale, beta }),
+    events: Object.fromEntries(
+      (
+        await getObjectEndpoint<any[]>({ endpoint: "events", locale, beta })
+      ).map(({ id, ...event }) => [
+        id,
+        {
+          ...event,
+          options:
+            event.options &&
+            Object.fromEntries(
+              event.options.map(({ id, ...option }: { id: string }) => [
+                id,
+                option,
+              ]),
+            ),
+          pages:
+            event.pages &&
+            Object.fromEntries(
+              event.pages.map(
+                ({
+                  id,
+                  ...page
+                }: {
+                  id: string;
+                  options?: { id: string }[];
+                }) => [
+                  id,
+                  {
+                    ...page,
+                    options:
+                      page.options &&
+                      Object.fromEntries(
+                        page.options.map(
+                          ({ id, ...option }: { id: string }) => [id, option],
+                        ),
+                      ),
+                  },
+                ],
+              ),
+            ),
+        },
       ]),
     ),
+    glossary: await getListEndpoint({ endpoint: "glossary", locale, beta }),
+    intents: await getListEndpoint({ endpoint: "intents", locale, beta }),
+    keywords: await getListEndpoint({ endpoint: "keywords", locale, beta }),
+    modifiers: await getListEndpoint({ endpoint: "modifiers", locale, beta }),
+    monsters: await getListEndpoint({ endpoint: "monsters", locale, beta }),
+    orbs: await getListEndpoint({ endpoint: "orbs", locale, beta }),
+    potions: await getListEndpoint({ endpoint: "potions", locale, beta }),
+    powers: await getListEndpoint({ endpoint: "powers", locale, beta }),
+    relics: await getListEndpoint({ endpoint: "relics", locale, beta }),
+    stories: await getListEndpoint({ endpoint: "stories", locale, beta }),
     translations,
   };
 }

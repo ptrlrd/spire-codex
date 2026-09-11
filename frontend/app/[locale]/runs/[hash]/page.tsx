@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
-import { getGameTranslations, getT } from "@/lib/i18n-server";
+import {
+  getGameTranslations,
+  getT,
+  getTryGameTranslations,
+} from "@/lib/i18n-server";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { gameNameFor, inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata } from "@/lib/seo";
 import SharedRunClient from "./SharedRunClient";
 import { TFn } from "@/lib/i18n";
-import { cleanId, displayName } from "./RunPills";
+import { getCleanLocalize } from "./cleanLocalize-server";
+import { Run } from "./types";
 
 export const dynamic = "force-dynamic";
 
@@ -17,42 +22,22 @@ const API_INTERNAL =
 
 type Props = { params: Promise<{ locale: string; hash: string }> };
 
-interface SharedRun {
-  run_time?: number;
-  primary_hash?: string;
-  win?: boolean;
-  was_abandoned?: boolean;
-  username?: string | null;
-  ascension?: number;
-  players?: { character?: string; deck?: unknown[]; relics?: unknown[] }[];
-}
-
-async function fetchRun(hash: string): Promise<SharedRun | null> {
+async function fetchRun(hash: string): Promise<Run | undefined> {
   try {
     const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
-    if (!res.ok) return null;
-    return (await res.json()) as SharedRun;
+    if (!res.ok) return;
+    return (await res.json()) as Run;
   } catch {
-    return null;
+    return;
   }
 }
 
 function describeRun(
-  run: SharedRun,
+  run: Run,
   t: TFn,
-  gT: Awaited<ReturnType<typeof getGameTranslations>>,
+  cleanT: Awaited<ReturnType<typeof getCleanLocalize>>,
 ) {
-  let characterId = run.players?.[0]?.character;
-  characterId &&= cleanId(characterId);
-  const characterKey = characterId
-    ? `characters.${characterId}.name`
-    : undefined;
-  const char =
-    (characterKey &&
-      (gT.has(characterKey)
-        ? gT(characterKey)
-        : characterId && displayName(characterId))) ??
-    t("Unknown");
+  const char = cleanT((id) => `${id}.name`, run.players?.[0]?.character);
   const resultLabel = run.win
     ? t("Victory")
     : run.was_abandoned
@@ -69,15 +54,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, hash } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const gT = await getGameTranslations({ namespace: "characters" });
+  const gT = await getCleanLocalize({ namespace: "characters", locale });
   const run = await fetchRun(hash);
-  if (!run)
+  if (!run) {
     return buildPageMetadata({
       locale,
       path: `/runs/${hash}`,
       title: t("Page Not Found"),
       noIndex: true,
     });
+  }
   const { char, resultLabel, username, anonymous, ascension } = describeRun(
     run,
     t,
@@ -114,11 +100,15 @@ export default async function SharedRunPage({ params }: Props) {
   const { locale: rawLocale, hash } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const gT = await getGameTranslations({ locale });
+  const cleanT = await getCleanLocalize({ namespace: "characters", locale });
   const run = await fetchRun(hash);
   let jsonLd: ReturnType<typeof buildDetailPageJsonLd> | null = null;
   if (run) {
-    const { char, resultLabel, username, ascension } = describeRun(run, t, gT);
+    const { char, resultLabel, username, ascension } = describeRun(
+      run,
+      t,
+      cleanT,
+    );
     jsonLd = buildDetailPageJsonLd({
       name: `${username} - ${char} - ${t("Ascension")} ${ascension} ${resultLabel}`,
       description: `${username}: ${char}, ${t("Ascension")} ${ascension}, ${resultLabel}. ${gameNameFor(locale)}.`,
