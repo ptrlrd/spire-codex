@@ -39,6 +39,9 @@ export interface HeaderLine extends LineBase {
    * number, never sniffed from whether a field happens to be present, so a
    * field the recorder never wrote is distinguishable from one it left out. */
   replayVersion?: number;
+  /** Version 4: max HP at run start, before anything in the run moves it.
+   * The run's real starting HP is the first heal line, never a header field. */
+  startingMaxHp?: number;
   startingDeck: DeckCard[];
 }
 export interface ActLine extends LineBase {
@@ -114,6 +117,7 @@ export interface ResolveLine extends LineBase {
   decisionId?: number;
   rewardKind?: string;
   gold?: number;
+  id?: string;
 }
 export interface AcquireLine extends LineBase {
   t: "acquire";
@@ -194,6 +198,8 @@ export interface HpLine extends LineBase {
   t: "hp";
   d?: number;
   hp: number;
+  /** Version 3: "heal" on every heal (campfire, potion, relic, event). */
+  src?: string;
 }
 export interface HpLossLine extends LineBase {
   t: "hp_loss";
@@ -271,12 +277,24 @@ export interface BlockLine extends LineBase {
   t: "block";
   n?: number;
   card?: string;
+  /** Version 3: "player", a monster id, or "effect", as on hit lines. */
+  src?: string;
 }
 export interface PowerLine extends LineBase {
   t: "power";
   id: string;
   n?: number;
   tgt?: string;
+  src?: string;
+}
+/** Version 3: a monster's move, written before the hits and powers it
+ * causes. The recorder latches the owner where the game rolls the move,
+ * so a game rename makes these lines stop appearing rather than lie. */
+export interface MoveLine extends LineBase {
+  t: "move";
+  src: string;
+  id: string;
+  intents: string[];
 }
 export interface ExhaustLine extends LineBase {
   t: "exhaust";
@@ -316,6 +334,10 @@ export interface EndLine extends LineBase {
    * "complete", "gapped" (lines dropped under queue pressure, so the sequence
    * jumps) or "truncated" (capture stopped before the run ended). */
   captureStatus?: string;
+  /** The line was the crash scan's recovery marker, appended from outside the
+   * writer with no sequence number of its own; the one given here is made up
+   * to sit after the last real line, so it never reads as a gap. */
+  recovered?: boolean;
   /** Why capture stopped or dropped lines. Present only when not complete. */
   stopReason?: string;
   /** The sequence number of the first dropped line, and how many went. */
@@ -359,6 +381,7 @@ export type ReplayLine =
   | HitLine
   | BlockLine
   | PowerLine
+  | MoveLine
   | ExhaustLine
   | GenerateLine
   | ShuffleLine
@@ -416,10 +439,20 @@ export interface ReplayDecision {
   s: number;
 }
 
+/** One side's turn. Side "start" is not a turn the game numbered: it holds
+ * what the journal recorded between the fight starting and the first turn
+ * (a monster's opening Block or power), plus the setup powers the recorder
+ * writes just before the start line for the same enemies. */
 export interface ReplayTurn {
   n: number;
   side: string;
   lines: ReplayLine[];
+  /** Sequence number of the turn line itself (absent on a synthesized start). */
+  s?: number;
+  /** Lines the recorder dropped while this turn was open. An empty turn with
+   * none of these is a turn where nothing happened; with some, it is a turn
+   * the journal cannot speak for. */
+  linesLost?: number;
 }
 
 export interface ReplayCombat {
@@ -626,6 +659,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         playerCount: num(raw.player_count),
         modVersion: str(raw.mod_version),
         replayVersion: count(raw.replay_version),
+        startingMaxHp: num(raw.starting_max_hp),
         startingDeck: deckOf(raw.starting_deck),
       };
     case "act":
@@ -693,7 +727,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
         label: str(raw.label),
       };
     case "resolve":
-      return { ...base, t, decisionId: int(raw.decision_id), rewardKind: str(raw.reward_kind), gold: num(raw.gold) };
+      return { ...base, t, decisionId: int(raw.decision_id), rewardKind: str(raw.reward_kind), gold: num(raw.gold), id: str(raw.id) };
     case "acquire":
       return { ...base, t, id, c: int(raw.c), source: str(raw.source), decisionId: int(raw.decision_id), optionIndex: count(raw.option_index) };
     case "remove":
@@ -746,7 +780,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
     }
     case "hp": {
       const hp = num(raw.hp);
-      return hp === undefined ? { ...base, t: "unknown", kind: t, raw } : { ...base, t, d: num(raw.d), hp };
+      return hp === undefined ? { ...base, t: "unknown", kind: t, raw } : { ...base, t, d: num(raw.d), hp, src: str(raw.src) };
     }
     case "hp_loss":
       return { ...base, t, dmg: num(raw.dmg) ?? num(raw.d), blocked: num(raw.blocked) };
@@ -815,9 +849,15 @@ function narrow(raw: Raw): ReplayLine | undefined {
         card: str(raw.card),
       };
     case "block":
-      return { ...base, t, n: num(raw.n), card: str(raw.card) };
+      return { ...base, t, n: num(raw.n), card: str(raw.card), src: str(raw.src) };
     case "power":
-      return { ...base, t, id, n: num(raw.n), tgt: str(raw.tgt) };
+      return { ...base, t, id, n: num(raw.n), tgt: str(raw.tgt), src: str(raw.src) };
+    case "move": {
+      const src = str(raw.src);
+      if (!src) return { ...base, t: "unknown", kind: t, raw };
+      const intents = Array.isArray(raw.intents) ? raw.intents.filter((v): v is string => typeof v === "string") : [];
+      return { ...base, t, src, id, intents };
+    }
     case "exhaust":
       return { ...base, t, id, c: num(raw.c), deckC: num(raw.deck_c) };
     case "generate":
@@ -862,6 +902,12 @@ function narrow(raw: Raw): ReplayLine | undefined {
  * A torn final line is expected after a crash and is not counted; any other
  * unparseable line is counted in `malformed` so the viewer can say the
  * replay has gaps instead of presenting it as complete. */
+/** The crash scan's marker is appended from outside the writer, so it is the
+ * one line with no sequence number. A real terminal line always has one. */
+function isRecoveryMarker(raw: Raw): boolean {
+  return raw.t === "end" && raw.s === undefined && raw.terminal_reason === "interrupted";
+}
+
 export function parseReplayLines(text: string): { lines: ReplayLine[]; malformed: number } {
   const out: ReplayLine[] = [];
   const raws = text.split("\n").map((l) => l.trim()).filter(Boolean);
@@ -870,7 +916,11 @@ export function parseReplayLines(text: string): { lines: ReplayLine[]; malformed
     try {
       const obj: unknown = JSON.parse(line);
       if (!obj || typeof obj !== "object" || Array.isArray(obj)) throw new Error("not a record");
-      const typed = narrow(obj as Raw);
+      let typed = narrow(obj as Raw);
+      if (!typed && isRecoveryMarker(obj as Raw)) {
+        const after = narrow({ ...(obj as Raw), s: (out[out.length - 1]?.s ?? -1) + 1, ms: 0 });
+        if (after?.t === "end") typed = { ...after, recovered: true };
+      }
       if (typed) out.push(typed);
     } catch {
       if (i < raws.length - 1) malformed += 1;
@@ -1182,6 +1232,8 @@ export function parseReplay(text: string): ReplayModel {
   let combat: ReplayCombat | undefined;
   let hpLoss: HpLossTrack | undefined;
   let turn: ReplayTurn | undefined;
+  let pendingDraws: ReplayLine[] = [];
+  let turnEnded = false;
   let hp: number | undefined;
   let gold: number | undefined;
   let end: EndLine | undefined;
@@ -1251,7 +1303,7 @@ export function parseReplay(text: string): ReplayModel {
   // beat before the merchant's room line, both stamped with the same floor.
   // The room line then fills in what the placeholder does not know.
   const floorFor = (line: ReplayLine): ReplayFloor | undefined => {
-    if (line.floor === undefined) return current;
+    if (line.floor === undefined || line.floor === 0) return current;
     const sameAct = (f: ReplayFloor) => line.act === undefined || f.act === line.act;
     if (current && current.floor === line.floor && sameAct(current)) return current;
     const known = floors.find((x) => x.floor === line.floor && sameAct(x));
@@ -1366,7 +1418,22 @@ export function parseReplay(text: string): ReplayModel {
       };
       hpLoss = { lost: 0, last: hp, consistent: hp !== undefined };
       turn = undefined;
-      if (floor) floor.combats.push(combat);
+      pendingDraws = [];
+      turnEnded = false;
+      if (floor) {
+        const enemyIds = new Set(combat.enemies.map((e) => e.id));
+        const setup: ReplayLine[] = [];
+        for (let k = floor.lines.length - 2; k >= 0; k -= 1) {
+          const prev = floor.lines[k];
+          if ((prev.t === "power" || prev.t === "block") && prev.src !== undefined && enemyIds.has(prev.src)) setup.unshift(prev);
+          else break;
+        }
+        if (setup.length) {
+          turn = { n: 0, side: "start", lines: setup };
+          combat.turns.push(turn);
+        }
+        floor.combats.push(combat);
+      }
       continue;
     }
     if (combat) {
@@ -1391,9 +1458,21 @@ export function parseReplay(text: string): ReplayModel {
         continue;
       }
       if (line.t === "turn") {
-        turn = { n: line.n, side: line.side, lines: [] };
+        turn = { n: line.n, side: line.side, lines: pendingDraws, s: line.s };
+        pendingDraws = [];
+        turnEnded = false;
         combat.turns.push(turn);
         continue;
+      }
+      if (line.t === "draw" || line.t === "shuffle") {
+        if (turn && !turnEnded && turn.side !== "start") turn.lines.push(line);
+        else pendingDraws.push(line);
+        continue;
+      }
+      if (line.t === "end_turn") turnEnded = true;
+      if (!turn && (line.t === "power" || line.t === "block" || line.t === "hit" || line.t === "move" || line.t === "generate")) {
+        turn = { n: 0, side: "start", lines: [] };
+        combat.turns.push(turn);
       }
       if (line.t === "combat_end") {
         // No default result. An end that did not say how the fight went does
@@ -1474,6 +1553,13 @@ export function parseReplay(text: string): ReplayModel {
   for (const gap of gaps) {
     const floor = gap.floor === undefined ? undefined : floors.find((f) => f.floor === gap.floor);
     if (floor) floor.linesLost += gap.count;
+    for (const combat of floor?.combats ?? []) {
+      combat.turns.forEach((turn, i) => {
+        const start = turn.s ?? turn.lines[0]?.s;
+        const next = combat.turns[i + 1]?.s ?? combat.turns[i + 1]?.lines[0]?.s ?? Number.POSITIVE_INFINITY;
+        if (start !== undefined && gap.afterSeq >= start && gap.afterSeq < next) turn.linesLost = (turn.linesLost ?? 0) + gap.count;
+      });
+    }
   }
   for (const dec of allDecisions) reconcileSelection(dec);
   // A reload restarts a fight rather than resuming it, so only the last attempt

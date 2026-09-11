@@ -15,6 +15,8 @@ import { cleanId, type CardInfo, type PotionInfo, type RelicInfo } from "../RunP
 import FloorPanel, { KIND_LABEL, floorTitle, type Catalog, type EventInfo } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
 
+const ENERGY_ICONS = new Set(["ironclad", "silent", "defect", "watcher", "necrobinder", "regent"]);
+
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const KIND_GLYPH: Record<string, string> = {
@@ -295,7 +297,8 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
   // The game's own name for the character in the reader's language; the id is
   // only good for the icon filename.
   const character = characterId ? characterName(characterId, characterNames) : "";
-  const maxHp = model?.end?.maxHp;
+  const maxHp = model?.end?.maxHp ?? header?.startingMaxHp;
+  const energyIcon = ENERGY_ICONS.has(characterId.toLowerCase()) ? characterId.toLowerCase() : "colorless";
   const result = run.win ? t("Victory") : run.was_abandoned ? t("Abandoned") : t("Defeat");
   const who = run.username?.trim() || t("Anonymous");
   const map = model?.maps[act];
@@ -430,7 +433,7 @@ export default function ReplayClient({ hash, run }: { hash: string; run: ReplayR
             </ol>
           </aside>
           <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-            {current ? <FloorPanel f={current} prev={floors[floors.indexOf(current) - 1]} cat={cat} maxHp={maxHp} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.")}</p>}
+            {current ? <FloorPanel f={current} prev={floors[floors.indexOf(current) - 1]} cat={cat} maxHp={maxHp} who={who} energyIcon={energyIcon} playerId={characterId.toUpperCase()} recordingEndsHere={current === floors[floors.length - 1] && (!model?.end || model.end.terminalReason === "interrupted")} /> : <p className="text-sm text-[var(--text-muted)]">{t("Pick a floor.")}</p>}
           </main>
         </div>
       )}

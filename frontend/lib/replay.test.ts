@@ -32,7 +32,8 @@ describe("parseReplay on the real journal", () => {
     expect(fighting.every((f) => isCombatKind(f.kind))).toBe(true);
     const all = model.floors.flatMap((f) => f.combats);
     expect(all).toHaveLength(6);
-    expect(all.reduce((n, c) => n + c.turns.length, 0)).toBe(76);
+    expect(all.reduce((n, c) => n + c.turns.filter((tn) => tn.side !== "start").length, 0)).toBe(76);
+    expect(all.every((c) => c.turns.filter((tn) => tn.side === "start").length <= 1)).toBe(true);
     const last = all[all.length - 1];
     // The run's terminal reason is the run's, not this fight's.
     expect(last.endRecorded).toBe(false);
@@ -43,7 +44,7 @@ describe("parseReplay on the real journal", () => {
     // This recorder writes no result on combat_end, so every "Victory" the
     // viewer used to show for these fights was the default, not the journal.
     expect(first.result).toBeUndefined();
-    expect(first.turns[0].lines.some((l) => l.t === "play")).toBe(true);
+    expect(first.turns.find((tn) => tn.side === "player")?.lines.some((l) => l.t === "play")).toBe(true);
   });
 
   it("pairs decisions with picks and marks unselectable options", () => {
@@ -1492,5 +1493,203 @@ describe("a line stamped with a floor not seen yet belongs to that floor", () =>
     const shops = merchant.lines.filter((l): l is ShopLine => l.t === "shop");
     expect(shops.map(stocked)).toEqual([13, 12]);
     expect(captureIsComplete(model)).toBe(true);
+  });
+});
+
+describe("version 3 lines", () => {
+  const text = journal([
+    { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 3, seed: "SEED", start_time: 1, character: "REGENT", starting_deck: [] },
+    { t: "room", s: 1, ms: 2, floor: 2, act: 1, kind: "combat", id: "SLIMES_WEAK" },
+    { t: "combat_start", s: 2, ms: 3, floor: 2, act: 1, encounter: "SLIMES_WEAK", enemies: [{ i: 0, id: "LEAF_SLIME_S", hp: 12, max_hp: 12 }] },
+    { t: "turn", s: 3, ms: 4, floor: 2, act: 1, n: 1, side: "enemy" },
+    { t: "move", s: 4, ms: 5, floor: 2, act: 1, src: "LEAF_SLIME_S", id: "INHALE", intents: ["buff"] },
+    { t: "power", s: 5, ms: 6, floor: 2, act: 1, id: "STRENGTH_POWER", n: 2, tgt: "LEAF_SLIME_S", src: "LEAF_SLIME_S" },
+    { t: "block", s: 6, ms: 7, floor: 2, act: 1, n: 5, src: "LEAF_SLIME_S" },
+    { t: "move", s: 7, ms: 8, floor: 2, act: 1, id: "NO_OWNER", intents: ["attack"] },
+    { t: "end_turn", s: 8, ms: 9, floor: 2, act: 1, n: 1, side: "enemy" },
+    { t: "combat_end", s: 9, ms: 10, floor: 2, act: 1, result: "victory", turns: 1 },
+    { t: "room", s: 10, ms: 11, floor: 3, act: 1, kind: "restsite" },
+    { t: "hp", s: 11, ms: 12, floor: 3, act: 1, d: 25, hp: 41, src: "heal" },
+    { t: "rest", s: 12, ms: 13, floor: 3, act: 1, option: "heal" },
+  ]);
+
+  it("keeps the move, its intents, and the source on power and block", () => {
+    const { lines } = parseReplayLines(text);
+    const move = lines.find((l) => l.t === "move");
+    expect(move).toMatchObject({ t: "move", src: "LEAF_SLIME_S", id: "INHALE", intents: ["buff"] });
+    expect(lines.find((l) => l.t === "power")).toMatchObject({ src: "LEAF_SLIME_S", tgt: "LEAF_SLIME_S", n: 2 });
+    expect(lines.find((l) => l.t === "block")).toMatchObject({ n: 5, src: "LEAF_SLIME_S" });
+  });
+
+  it("does not invent an owner for a move line without one", () => {
+    const { lines } = parseReplayLines(text);
+    expect(lines.filter((l) => l.t === "move")).toHaveLength(1);
+    expect(lines.some((l) => l.t === "unknown" && l.kind === "move")).toBe(true);
+  });
+
+  it("records the heal amount on the rest floor with its source", () => {
+    const model = parseReplay(text);
+    const rest = model.floors.find((f) => f.floor === 3);
+    expect(rest?.lines.find((l) => l.t === "hp")).toMatchObject({ d: 25, hp: 41, src: "heal" });
+    expect(model.header?.replayVersion).toBe(3);
+  });
+});
+
+describe("the real version 3 journal", () => {
+  const text = readFileSync(new URL("../../backend/tests/fixtures/v3-moves-and-heals.jsonl", import.meta.url), "utf-8");
+  const { lines, malformed } = parseReplayLines(text);
+  const model = parseReplay(text);
+
+  it("parses cleanly with the version stamped", () => {
+    expect(malformed).toBe(0);
+    expect(model.header?.replayVersion).toBe(3);
+    expect(model.end?.captureStatus).toBe("complete");
+  });
+
+  it("does not turn the run-start heal stamped floor 0 into a floor", () => {
+    expect(lines.some((l) => l.t === "hp" && l.floor === 0 && l.src === "heal")).toBe(true);
+    expect(model.floors[0].floor).toBe(1);
+    expect(model.floors.some((f) => f.floor === 0)).toBe(false);
+  });
+
+  it("keeps every move with its owner, and every power and block with a source", () => {
+    const moves = lines.filter((l) => l.t === "move");
+    expect(moves).toHaveLength(28);
+    expect(new Set(moves.map((l) => l.id)).size).toBe(15);
+    expect(moves.every((l) => l.src && l.intents.length > 0)).toBe(true);
+    expect(lines.filter((l) => l.t === "power").every((l) => !!l.src)).toBe(true);
+    expect(lines.filter((l) => l.t === "block").every((l) => !!l.src)).toBe(true);
+  });
+
+  it("places a move before the hit it causes inside the enemy turn", () => {
+    const floor2 = model.floors.find((f) => f.floor === 2);
+    const enemyTurn = floor2?.combats[0]?.turns.find((tn) => tn.side === "enemy");
+    const kinds = enemyTurn?.lines.map((l) => l.t) ?? [];
+    expect(kinds.indexOf("move")).toBeGreaterThanOrEqual(0);
+    expect(kinds.indexOf("move")).toBeLessThan(kinds.indexOf("hit"));
+  });
+
+  it("records the campfire heal on the rest floor, just before the rest line", () => {
+    const rest = model.floors.find((f) => f.lines.some((l) => l.t === "rest"));
+    expect(rest?.floor).toBe(8);
+    const restLine = rest!.lines.find((l) => l.t === "rest")!;
+    const heal = rest!.lines.find((l) => l.t === "hp" && l.src === "heal");
+    expect(heal).toMatchObject({ d: 25, hp: 41 });
+    expect(heal!.s).toBeLessThan(restLine.s);
+  });
+});
+
+describe("the real version 3 monster-block journal", () => {
+  const text = readFileSync(new URL("../../backend/tests/fixtures/v3-monster-block.jsonl", import.meta.url), "utf-8");
+  const model = parseReplay(text);
+  const fight = model.floors.find((f) => f.floor === 6)?.combats[0];
+
+  it("ends on the crash scan's recovery marker, which is not a run outcome", () => {
+    expect(model.header?.replayVersion).toBe(3);
+    expect(model.end).toMatchObject({ terminalReason: "interrupted", captureStatus: "truncated", recovered: true });
+    expect(model.end?.isGameOver).toBeUndefined();
+    expect(model.end?.hp).toBeUndefined();
+    expect(model.gaps).toHaveLength(0);
+    expect(model.malformedLines).toBe(0);
+  });
+
+  it("keeps the clam's opening Plating and Block as the fight's start, before any turn", () => {
+    expect(fight?.encounter).toBe("SEWER_CLAM_NORMAL");
+    const start = fight?.turns[0];
+    expect(start?.side).toBe("start");
+    expect(start?.lines.map((l) => [l.t, l.t === "power" || l.t === "block" ? l.src : undefined])).toEqual([
+      ["power", "SEWER_CLAM"],
+      ["block", "SEWER_CLAM"],
+    ]);
+    expect(fight?.turns.filter((tn) => tn.side === "player")).toHaveLength(4);
+  });
+
+  it("attributes block gained during the enemy turn to the monster, with no defend intent needed", () => {
+    const enemy1 = fight?.turns.find((tn) => tn.side === "enemy" && tn.n === 1);
+    const kinds = enemy1?.lines.map((l) => l.t).filter((k) => k !== "hp" && k !== "end_turn");
+    expect(kinds).toEqual(["move", "hit", "block"]);
+    const block = enemy1?.lines.find((l) => l.t === "block");
+    expect(block).toMatchObject({ src: "SEWER_CLAM", n: 9 });
+    const move = enemy1?.lines.find((l) => l.t === "move");
+    expect(move).toMatchObject({ id: "JET_MOVE", intents: ["attack"] });
+  });
+
+  it("keeps power expiry written after end_turn on the turn that just ended", () => {
+    const enemy2 = fight?.turns.find((tn) => tn.side === "enemy" && tn.n === 2);
+    const expired = enemy2?.lines.filter((l) => l.t === "power" && l.src === "effect" && l.n === -1).map((l) => (l.t === "power" ? l.id : ""));
+    expect(expired).toEqual(["PLATING_POWER", "WEAK_POWER", "VULNERABLE_POWER"]);
+  });
+});
+
+describe("the recovery marker has no sequence number of its own", () => {
+  const text = readFileSync(new URL("../../backend/tests/fixtures/v3-monster-block.jsonl", import.meta.url), "utf-8");
+
+  it("is the last line, sequenced after the last real line rather than read as a gap", () => {
+    const rawLast = JSON.parse(text.trimEnd().split("\n").pop() as string);
+    expect(rawLast).toEqual({ t: "end", terminal_reason: "interrupted", capture_status: "truncated" });
+    const { lines, malformed } = parseReplayLines(text);
+    const last = lines[lines.length - 1];
+    expect(malformed).toBe(0);
+    expect(last.t).toBe("end");
+    expect(last.s).toBe(lines[lines.length - 2].s + 1);
+  });
+
+  it("only a sequence-less end that says interrupted is taken as the marker", () => {
+    const { lines } = parseReplayLines(journal([{ t: "header", s: 0, ms: 1, floor: 0, act: 1, seed: "SEED", start_time: 1, character: "REGENT", starting_deck: [] }, { t: "end", terminal_reason: "left_run", hp: 10 }]));
+    expect(lines.map((l) => l.t)).toEqual(["header"]);
+  });
+
+  it("keeps the last floor's HP from the journal rather than a marker with no totals", () => {
+    const model = parseReplay(text);
+    const last = model.floors[model.floors.length - 1];
+    expect(last.hpAfter).toBe(10);
+  });
+});
+
+describe("an empty enemy turn is only a gap when the sequence jumped", () => {
+  const fight = (enemyEnd: number) =>
+    journal([
+      { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 3, seed: "SEED", start_time: 1, character: "REGENT", starting_deck: [] },
+      { t: "room", s: 1, ms: 2, floor: 2, act: 1, kind: "combat", id: "SLIMES_WEAK" },
+      { t: "combat_start", s: 2, ms: 3, floor: 2, act: 1, encounter: "SLIMES_WEAK", enemies: [{ i: 0, id: "LEAF_SLIME_S", hp: 12, max_hp: 12 }] },
+      { t: "turn", s: 3, ms: 4, floor: 2, act: 1, n: 1, side: "player" },
+      { t: "end_turn", s: 4, ms: 5, floor: 2, act: 1, n: 1, side: "player" },
+      { t: "turn", s: 5, ms: 6, floor: 2, act: 1, n: 1, side: "enemy" },
+      { t: "end_turn", s: enemyEnd, ms: 7, floor: 2, act: 1, n: 1, side: "enemy" },
+      { t: "turn", s: enemyEnd + 1, ms: 8, floor: 2, act: 1, n: 2, side: "player" },
+      { t: "combat_end", s: enemyEnd + 2, ms: 9, floor: 2, act: 1, result: "victory", turns: 2 },
+    ]);
+
+  it("a contiguous empty turn is a turn where nothing happened", () => {
+    const model = parseReplay(fight(6));
+    const enemy = model.floors[0].combats[0].turns.find((tn) => tn.side === "enemy");
+    expect(enemy?.lines).toHaveLength(1);
+    expect(enemy?.linesLost).toBeUndefined();
+    expect(model.gaps).toHaveLength(0);
+  });
+
+  it("a jump inside the turn is counted on that turn", () => {
+    const model = parseReplay(fight(9));
+    const enemy = model.floors[0].combats[0].turns.find((tn) => tn.side === "enemy");
+    expect(enemy?.linesLost).toBe(3);
+    const player2 = model.floors[0].combats[0].turns.find((tn) => tn.side === "player" && tn.n === 2);
+    expect(player2?.linesLost).toBeUndefined();
+    expect(model.floors[0].linesLost).toBe(3);
+  });
+});
+
+describe("version 4 header", () => {
+  it("keeps the starting max HP and nothing that claims to be a starting HP", () => {
+    const model = parseReplay(
+      journal([
+        { t: "header", s: 0, ms: 1, floor: 0, act: 1, replay_version: 4, seed: "SEED", start_time: 1, character: "IRONCLAD", starting_max_hp: 80, starting_deck: [] },
+        { t: "hp", s: 1, ms: 2, floor: 0, act: 1, d: 64, hp: 64, src: "heal" },
+        { t: "room", s: 2, ms: 3, floor: 1, act: 1, kind: "event", id: "NEOW" },
+      ]),
+    );
+    expect(model.header?.startingMaxHp).toBe(80);
+    expect(model.header?.replayVersion).toBe(4);
+    expect(model.floors[0].hpAfter).toBe(64);
+    expect(model.floors.some((f) => f.floor === 0)).toBe(false);
   });
 });
