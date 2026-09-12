@@ -84,6 +84,12 @@ async def get_replay(run_hash: str, request: Request):
     visible = await run_in_threadpool(replays_db.replay_visible, run_hash)
     if not visible:
         raise HTTPException(status_code=404, detail="Replay not found")
+    state = await run_in_threadpool(replays_db.replay_state, run_hash)
+    if state == "expired":
+        raise HTTPException(
+            status_code=410,
+            detail={"code": "expired", "message": "This replay has expired"},
+        )
     sha = await run_in_threadpool(replays_db.replay_sha, run_hash)
     if sha is None:
         raise HTTPException(status_code=404, detail="Replay not found")

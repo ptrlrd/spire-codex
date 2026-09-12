@@ -367,6 +367,19 @@ def main() -> None:
         lambda n: f"metric history archived ({n} rows)",
         _metric_history,
     )
+
+    def _replay_retention():
+        from app.services import replays_db
+
+        return replays_db.expire_replays()
+
+    _stage(
+        "replay_retention",
+        lambda r: (
+            f"replays expired ({r['expired']} dropped, {r['unexploded']} past the window still waiting on the exploder)"
+        ),
+        _replay_retention,
+    )
     try:
         lake_stats.cleanup_build_session()
     except Exception as e:

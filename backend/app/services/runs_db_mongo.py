@@ -3182,13 +3182,15 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
     """Username + hidden flag for the share page in one lookup, so the page
     can banner runs excluded from leaderboards and aggregates."""
     doc = _get_collection().find_one(
-        {"_id": run_hash}, {"username": 1, "hidden": 1, "has_replay": 1}
+        {"_id": run_hash},
+        {"username": 1, "hidden": 1, "has_replay": 1, "replay_expired_at": 1},
     )
     return {
         "exists": doc is not None,
         "username": (doc or {}).get("username"),
         "hidden": bool((doc or {}).get("hidden")),
         "has_replay": bool((doc or {}).get("has_replay")),
+        "replay_expired": bool((doc or {}).get("replay_expired_at")),
     }
 
 

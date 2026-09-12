@@ -5,6 +5,7 @@ import { localeOf } from "@/lib/locale";
 import { buildPageMetadata } from "@/lib/seo";
 import { cache } from "react";
 import ReplayClient from "./ReplayClient";
+import { Link } from "@/i18n/navigation";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,7 @@ export interface ReplayRunInfo {
   was_abandoned?: boolean;
   run_time?: number;
   has_replay?: boolean;
+  replay_expired?: boolean;
   hidden?: boolean;
   player_index?: number;
   build_id?: string;
@@ -87,8 +89,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ReplayPage({ params }: Props) {
-  const { hash } = await params;
+  const { locale: rawLocale, hash } = await params;
   const run = await fetchRun(hash);
-  if (!run || !run.has_replay) notFound();
+  if (!run) notFound();
+  if (!run.has_replay) {
+    if (!run.replay_expired) notFound();
+    const t = await getT(localeOf(rawLocale));
+    return (
+      <div className="mx-auto max-w-3xl px-4 py-16 text-center">
+        <h1 className="text-xl font-semibold text-[var(--text-primary)]">{t("Replay expired")}</h1>
+        <p className="mt-2 text-sm text-[var(--text-secondary)]">{t("Replays are kept for 90 days after upload. The run itself and everything counted from it stay.")}</p>
+        <Link href={`/runs/${hash}`} className="mt-6 inline-block text-sm text-[var(--accent-gold)] hover:underline">
+          {t("Back to run")}
+        </Link>
+      </div>
+    );
+  }
   return <ReplayClient hash={hash} run={run} />;
 }

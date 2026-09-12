@@ -17,7 +17,7 @@ import json
 import os
 import logging
 import zlib
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from bson import Binary
 from pymongo import ASCENDING, DESCENDING
@@ -29,7 +29,9 @@ REPLAY_DB_NAME = os.environ.get("REPLAY_DB_NAME", "spire_replays")
 MAX_GZ_BYTES = int(os.environ.get("REPLAY_MAX_GZ_BYTES", "") or 2 * 1024 * 1024)
 MAX_RAW_BYTES = int(os.environ.get("REPLAY_MAX_RAW_BYTES", "") or 16 * 1024 * 1024)
 MAX_LINES = int(os.environ.get("REPLAY_MAX_LINES", "") or 200_000)
-KNOWN_REPLAY_VERSIONS = frozenset({1})
+KNOWN_REPLAY_VERSIONS = frozenset({1, 2, 3, 4})
+
+RETENTION_DAYS = int(os.environ.get("REPLAY_RETENTION_DAYS", "90"))
 GZIP_MAGIC = b"\x1f\x8b"
 
 _coll_cache = None
@@ -273,11 +275,22 @@ def store_replay(
     try:
         coll.insert_one(doc)
     except DuplicateKeyError:
-        existing = coll.find_one({"_id": run_hash}, {"sha256": 1, "deleted_at": 1})
+        existing = coll.find_one(
+            {"_id": run_hash}, {"sha256": 1, "deleted_at": 1, "expired_at": 1}
+        )
         if existing and existing.get("sha256") == info["sha256"]:
+            restore: dict = {}
             if existing.get("deleted_at"):
-                coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
-            _runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
+                restore["deleted_at"] = None
+            if existing.get("expired_at"):
+                restore["expired_at"] = None
+                restore["blob"] = Binary(gz)
+            if restore:
+                coll.update_one({"_id": run_hash}, {"$set": restore})
+            _runs().update_one(
+                {"_id": run_hash},
+                {"$set": {"has_replay": True}, "$unset": {"replay_expired_at": ""}},
+            )
             return {"success": True, "duplicate": True, "run_hash": run_hash}
         raise ReplayRejected(
             409, "a different replay is already stored for this run", "replay_exists"
@@ -293,18 +306,65 @@ def replay_visible(run_hash: str) -> bool:
     return True
 
 
+def replay_state(run_hash: str) -> str:
+    """ "ok", "expired" (the journal aged out under the retention window; the
+    exploded rows and the run itself remain), or "missing"."""
+    doc = _coll().find_one(
+        {"_id": run_hash, "deleted_at": None}, {"expired_at": 1, "sha256": 1}
+    )
+    if not doc:
+        return "missing"
+    return "expired" if doc.get("expired_at") else "ok"
+
+
 def replay_sha(run_hash: str) -> str | None:
-    doc = _coll().find_one({"_id": run_hash, "deleted_at": None}, {"sha256": 1})
+    doc = _coll().find_one(
+        {"_id": run_hash, "deleted_at": None, "expired_at": None}, {"sha256": 1}
+    )
     return (doc or {}).get("sha256") or None
 
 
 def get_replay_bytes(run_hash: str) -> tuple[bytes, str] | None:
     doc = _coll().find_one(
-        {"_id": run_hash, "deleted_at": None}, {"blob": 1, "sha256": 1}
+        {"_id": run_hash, "deleted_at": None, "expired_at": None},
+        {"blob": 1, "sha256": 1},
     )
-    if not doc:
+    if not doc or doc.get("blob") is None:
         return None
     return bytes(doc["blob"]), doc.get("sha256") or ""
+
+
+def expire_replays(now: datetime | None = None, days: int | None = None) -> dict:
+    """Drop the raw journal of every replay older than the retention window
+    that the exploder has already published, and turn the run's replay flag
+    off. A journal the exploder has not finished with is never touched, so
+    an ingest outage delays expiry rather than losing data. Metadata stays,
+    which keeps the exploder's publication identity and lets the same bytes
+    be uploaded again."""
+    now = now or datetime.now(timezone.utc)
+    cutoff = now - timedelta(days=days if days is not None else RETENTION_DAYS)
+    coll = _coll()
+    due = {
+        "submitted_at": {"$lt": cutoff},
+        "deleted_at": None,
+        "expired_at": None,
+    }
+    expired = 0
+    for doc in list(coll.find({**due, "ingest_state": "done"}, {"_id": 1})):
+        run_hash = doc["_id"]
+        res = coll.update_one(
+            {"_id": run_hash, "ingest_state": "done", "expired_at": None},
+            {"$unset": {"blob": ""}, "$set": {"expired_at": now}},
+        )
+        if not res.modified_count:
+            continue
+        _runs().update_one(
+            {"_id": run_hash},
+            {"$set": {"has_replay": False, "replay_expired_at": now}},
+        )
+        expired += 1
+    unexploded = coll.count_documents({**due, "ingest_state": {"$ne": "done"}})
+    return {"expired": expired, "unexploded": unexploded, "cutoff": cutoff}
 
 
 def delete_replay(run_hash: str, user: dict) -> bool:

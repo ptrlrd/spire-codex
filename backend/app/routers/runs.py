@@ -986,6 +986,7 @@ def get_shared_run(run_hash: str, request: Request):
             if meta.get("hidden"):
                 blob["hidden"] = True
             blob["has_replay"] = bool(meta.get("has_replay"))
+            blob["replay_expired"] = bool(meta.get("replay_expired"))
             return blob
 
         from ..services.runs_db import get_conn

@@ -63,9 +63,6 @@ class FakeReplays:
             raise DuplicateKeyError("dup")
         self.docs[doc["_id"]] = dict(doc)
 
-    def _match(self, d, flt):
-        return all(d.get(k) == v for k, v in flt.items())
-
     def find_one(self, flt, proj=None):
         d = self.docs.get(flt["_id"])
         return dict(d) if d and self._match(d, flt) else None
@@ -75,8 +72,27 @@ class FakeReplays:
         n = 0
         if d and self._match(d, flt):
             d.update(update.get("$set", {}))
+            for k in update.get("$unset", {}):
+                d.pop(k, None)
             n = 1
         return type("R", (), {"modified_count": n})()
+
+    def _match(self, d, flt):
+        for k, v in flt.items():
+            if isinstance(v, dict):
+                if "$lt" in v and not (d.get(k) is not None and d[k] < v["$lt"]):
+                    return False
+                if "$ne" in v and d.get(k) == v["$ne"]:
+                    return False
+            elif d.get(k) != v:
+                return False
+        return True
+
+    def find(self, flt, proj=None):
+        return [dict(d) for d in self.docs.values() if self._match(d, flt)]
+
+    def count_documents(self, flt):
+        return len(self.find(flt))
 
 
 @pytest.fixture
@@ -416,3 +432,59 @@ def test_storage_failure_is_a_503_not_a_500(env, monkeypatch):
     assert r.status_code == 503
     assert r.json()["detail"]["code"] == "storage"
     assert "has_replay" not in env[0].docs[RUN_HASH]
+
+
+def _age(replays, days):
+    from datetime import datetime, timedelta, timezone
+
+    doc = replays.docs[RUN_HASH]
+    doc["submitted_at"] = datetime.now(timezone.utc) - timedelta(days=days)
+    return doc
+
+
+def test_retention_drops_only_exploded_journals_past_the_window(env):
+    runs, replays = env
+    assert _post(_gz()).status_code == 200
+    doc = _age(replays, 91)
+    doc["ingest_state"] = None
+    out = replays_db.expire_replays()
+    assert out["expired"] == 0 and out["unexploded"] == 1
+    assert "blob" in replays.docs[RUN_HASH]
+    doc["ingest_state"] = "done"
+    out = replays_db.expire_replays()
+    assert out["expired"] == 1 and out["unexploded"] == 0
+    assert "blob" not in replays.docs[RUN_HASH]
+    assert replays.docs[RUN_HASH]["expired_at"] is not None
+    assert runs.docs[RUN_HASH]["has_replay"] is False
+    assert runs.docs[RUN_HASH]["replay_expired_at"] is not None
+    assert replays_db.expire_replays()["expired"] == 0
+
+
+def test_retention_leaves_young_journals_alone(env):
+    runs, replays = env
+    assert _post(_gz()).status_code == 200
+    doc = _age(replays, 89)
+    doc["ingest_state"] = "done"
+    out = replays_db.expire_replays()
+    assert (out["expired"], out["unexploded"]) == (0, 0)
+    assert "blob" in replays.docs[RUN_HASH]
+    assert runs.docs[RUN_HASH]["has_replay"] is True
+
+
+def test_expired_replay_is_gone_not_missing_and_the_same_bytes_bring_it_back(env):
+    runs, replays = env
+    body = _gz()
+    assert _post(body).status_code == 200
+    _age(replays, 120)["ingest_state"] = "done"
+    replays_db.expire_replays()
+    r = client.get(f"/api/runs/{RUN_HASH}/replay")
+    assert r.status_code == 410
+    assert r.json()["detail"]["code"] == "expired"
+    assert client.get("/api/runs/nope/replay").status_code == 404
+    again = _post(body)
+    assert again.status_code == 200 and again.json()["duplicate"] is True
+    assert "blob" in replays.docs[RUN_HASH]
+    assert replays.docs[RUN_HASH]["expired_at"] is None
+    assert runs.docs[RUN_HASH]["has_replay"] is True
+    assert "replay_expired_at" not in runs.docs[RUN_HASH]
+    assert client.get(f"/api/runs/{RUN_HASH}/replay").status_code == 200

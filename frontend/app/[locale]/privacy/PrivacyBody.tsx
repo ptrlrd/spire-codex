@@ -110,7 +110,8 @@ export default async function PrivacyBody({ lang }: { lang: Locale }) {
           <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-2">{t("Retention")}</h2>
           <p>
             {t(
-              "Run data, leaderboard entries, and submitted feedback are retained indefinitely so the community archive remains complete. Server logs are kept for up to 30 days.")}
+              "Run data, leaderboard entries, and submitted feedback are retained indefinitely so the community archive remains complete. Server logs are kept for up to 30 days.")}{" "}
+            {t("Run replays uploaded by the companion mod are kept for 90 days and then deleted; the run and the statistics counted from its replay stay.")}
           </p>
         </section>
 

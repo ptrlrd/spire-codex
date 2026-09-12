@@ -244,6 +244,12 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
               {t("Replay")}
             </Link>
           )}
+          {!run.has_replay && run.replay_expired && (
+            <span title={t("Replays are kept for 90 days after upload. The run itself and everything counted from it stay.")}
+              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)]">
+              {t("Replay expired")}
+            </span>
+          )}
           {user?.is_admin && (
             <button onClick={() => setHidden(!run.hidden)} disabled={unhiding}
               className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50">
