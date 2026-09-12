@@ -370,7 +370,7 @@ def community_payload(bracket: str | None = None) -> dict | None:
             accs.append(_acc_from_json(acc_raw))
         from . import community_stats as cs
 
-        payload = cs._finalize_one(_merge_accs(accs))
+        payload = cs._finalize_one(_merge_accs(accs), version=version)
         payload["data_through"] = raw.get("data_through")
         folded[ckey] = payload
         return payload
