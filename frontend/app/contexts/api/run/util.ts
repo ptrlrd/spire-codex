@@ -233,6 +233,8 @@ const resolveRoomType = (raw_type: string): RoomType | undefined => {
       return "ENCOUNTER";
     case "event":
       return "EVENT";
+    case "ancient":
+      return "ANCIENT";
     case "shop":
       return "MERCHANT";
     case "treasure":

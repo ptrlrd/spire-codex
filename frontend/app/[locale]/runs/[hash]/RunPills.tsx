@@ -7,11 +7,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import RelicsContext from "@/app/contexts/api/Relics";
 import CardsContext from "@/app/contexts/api/Cards";
-import { useCleanLocalize } from "./cleanLocalize";
 import PotionsContext from "@/app/contexts/api/Potions";
-import { cleanId } from "@/lib/display-name";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export interface CardInfo {
   id: string;
@@ -61,7 +57,6 @@ export function CardPill({
   const cleanT = useCleanLocalize();
   const ref = useRef<HTMLAnchorElement>(null);
   const lang = useGameLocale();
-  console.log(cardId);
   const card = cards?.[cardId];
   return (
     <Link

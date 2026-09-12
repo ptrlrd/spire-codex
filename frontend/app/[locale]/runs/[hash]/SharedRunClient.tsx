@@ -12,16 +12,9 @@ import RunSummary from "./RunSummary";
 import SimilarRuns from "./SimilarRuns";
 import { CardPill, RelicPill } from "./RunPills";
 import { ApiConfigContext } from "@/app/contexts/ApiConfigContext";
-import {
-  useCleanLocalize,
-  useMapPointLocalize,
-  useRoomLocalize,
-} from "./cleanLocalize";
 import CardsContext, { useCards } from "@/app/contexts/api/Cards";
 import PotionsContext, { usePotions } from "@/app/contexts/api/Potions";
 import RelicsContext, { useRelics } from "@/app/contexts/api/Relics";
-import { cleanId } from "@/lib/display-name";
-import { MapPoint, Run } from "../../../contexts/api/run/types";
 import SharedRunContext from "@/app/contexts/api/run/SharedRun";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -44,8 +37,6 @@ export default function SharedRunClient() {
   const lang = useGameLocale();
   const t = useT();
   const tryGT = useTryGameTranslations();
-  const roomT = useRoomLocalize();
-  const mapT = useMapPointLocalize();
   const { user } = useAuth();
   const { toast } = useToast();
   const run = useContext(SharedRunContext);
@@ -496,11 +487,16 @@ export default function SharedRunClient() {
                                       <span className="text-[var(--text-secondary)]">
                                         {encounterName}
                                       </span>
-                                      {room?.turns_taken != null && (
-                                        <span className="text-[var(--text-muted)] ml-1">
-                                          ({room.turns_taken}T)
-                                        </span>
-                                      )}
+
+                                      {
+                                        //todo: localise this properly instead of just T?
+                                        "type" in room &&
+                                          room.type === "ENCOUNTER" && (
+                                            <span className="text-[var(--text-muted)] ml-1">
+                                              ({room.turns_taken}T)
+                                            </span>
+                                          )
+                                      }
                                       {picked.length > 0 && (
                                         <span
                                           className="ml-2"

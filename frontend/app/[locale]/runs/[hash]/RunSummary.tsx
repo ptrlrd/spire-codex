@@ -40,6 +40,7 @@ import {
   RawRoom,
   Room,
   EncounterType,
+  PlayerStats,
 } from "../../../contexts/api/run/types";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
@@ -138,6 +139,17 @@ function encounterTier(
   }
 }
 
+function encounterSlug(encounter: Encounter) {
+  switch (encounter.encounter_type) {
+    case "ENEMY":
+      return "monster";
+    case "ELITE":
+      return "elite";
+    case "BOSS":
+      return `${encounter.id.toLowerCase()}_boss`;
+  }
+}
+
 /** Derive a spire-codex page href from an entity id by its prefix. */
 // doesn't work on the purified content
 // function entityHref(id: string, bp: string): string | null {
@@ -155,10 +167,12 @@ function encounterTier(
 
 function roomHref(room: Room, bp: string): string | undefined {
   switch (room.type) {
+    case "ANCIENT":
+      return `${bp}/events/${room.id}`;
     case "ENCOUNTER":
       return `${bp}/monsters/${room.id}`;
     case "EVENT":
-      return `${bp}/encounters/${room.id}`;
+      return `${bp}/events/${room.id}`;
     case "MERCHANT":
       return `${bp}/merchant`;
     case "REST":
@@ -173,12 +187,9 @@ function iconFor(
   floor: Floor,
   tryGT: ReturnType<typeof useTryGameTranslations>,
   buildId?: string,
-): { src: string; betaSrc?: string; tier: string; alt?: string } {
-  // todo: process multiple rooms
+): { src: string; betaSrc?: string; tier?: string; alt?: string } {
+  // todo: process multiple rooms in some places, but I guess not here
   const room = floor.rooms?.[0];
-  const modelId = room?.id || "";
-  const tier = 'encounter_type' in room ? encounterTier(room) : undefined;
-  const alt = tryGT(.);
 
   // Main run_history path plus a beta-versioned fallback. Beta-only content
   // (e.g. the AEONGLASS boss) only has its map icon under the beta tree, so a
@@ -190,26 +201,54 @@ function iconFor(
       ? imageUrl(`/static/images/beta/${buildId}/ui/run_history/${slug}.webp`)
       : undefined,
   });
-
-  if (mp.map_point_type === "boss" && modelId.endsWith("_BOSS")) {
-    const slug = modelId.toLowerCase();
-    return { ...resolve(slug), tier, alt };
+  if ("type" in room) {
+    switch (room.type) {
+      case "ANCIENT":
+        return {
+          ...resolve(room.id.toLowerCase()),
+          alt: tryGT(`static_hover_tips.ROOM_EVENT.title`),
+        };
+      case "EVENT":
+        return {
+          ...resolve("event"),
+          alt: tryGT(`static_hover_tips.ROOM_EVENT.title`),
+        };
+        break;
+      case "ENCOUNTER":
+        return {
+          ...resolve(
+            `${floor.was_unknown ? "unknown_" : ""}${encounterSlug(room)}`,
+          ),
+          tier: encounterTier(room),
+          alt: tryGT(
+            `static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}${room.encounter_type}.title`,
+          ),
+        };
+      case "MERCHANT":
+        return {
+          ...resolve(floor.was_unknown ? "unknown_shop" : "shop"),
+          alt: tryGT(
+            `static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}_MERCHANT.title`,
+          ),
+        };
+      case "TREASURE":
+        return {
+          ...resolve(floor.was_unknown ? "unknown_treasture" : "treasure"),
+          alt: tryGT(
+            `static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}_TREASURE.title`,
+          ),
+        };
+      case "REST":
+        return {
+          ...resolve("rest_site"),
+          alt: tryGT(`static_hover_tips.ROOM_REST.title`),
+        };
+    }
   }
-  if (mp.map_point_type === "ancient" && modelId.startsWith("EVENT.")) {
-    const slug = modelId.toLowerCase();
-    return { ...resolve(slug), tier: "", alt };
-  }
-  const typeMap: Record<string, string> = {
-    monster: "monster",
-    elite: "elite",
-    event: "event",
-    treasure: "treasure",
-    rest_site: "rest_site",
-    shop: "shop",
-    unknown: "event",
+  return {
+    ...resolve("event"),
+    alt: `${tryGT(`map.LEGEND_UNKNOWN.title`)}`,
   };
-  const slug = typeMap[mp.map_point_type] ?? "monster";
-  return { ...resolve(slug), tier, alt };
 }
 
 interface Props {
@@ -497,18 +536,15 @@ function MapNode({
   buildId?: string;
 }) {
   const t = useT();
+
+  const gT = useGameTranslations();
   const tryGT = useTryGameTranslations();
-  const eventT = useEventChoiceLocalize();
   const [show, setShow] = useState(false);
   const { src, betaSrc, tier, alt } = iconFor(floor, tryGT, buildId);
   const room = floor.rooms?.[0];
   const ps = floor.player_stats?.[0];
-  let room_id = room.type === "EVENT" || room.type === "ENCOUNTER" ? (room as Event | Encounter).id : undefined;
   // Click target, encounter/event detail page derived from the room's model_id.
-  const href = entityHref(
-    ,
-    langPrefix,
-  );
+  const href = "type" in room && roomHref(room, langPrefix);
 
   const iconImg = (
     <img
@@ -530,6 +566,33 @@ function MapNode({
     />
   );
 
+  let nodeTitle: string | undefined;
+  if ("type" in room) {
+    switch (room.type) {
+      case "ANCIENT":
+        nodeTitle = `${tryGT(`static_hover_tips.ROOM_EVENT.title`)}: ${tryGT(`events.${room.id}.title`) ?? room.id}`;
+        break;
+      case "EVENT":
+        nodeTitle = `${tryGT(`static_hover_tips.ROOM_EVENT.title`)}: ${tryGT(`events.${room.id}.title`) ?? room.id}`;
+        break;
+      case "ENCOUNTER":
+        nodeTitle = `${tryGT(`static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}${room.encounter_type}.title`)}: ${tryGT(`encounters.${room.id}.title`) ?? room.id}`;
+        break;
+      case "MERCHANT":
+        nodeTitle = tryGT(
+          `static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}_MERCHANT.title`,
+        );
+      case "TREASURE":
+        nodeTitle = tryGT(
+          `static_hover_tips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}_TREASURE.title`,
+        );
+        break;
+      case "REST":
+        nodeTitle = tryGT(`static_hover_tips.ROOM_REST.title`);
+        break;
+    }
+  }
+
   const tooltip = show && (
     <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none text-left">
       <div className="flex items-center justify-between mb-1.5">
@@ -537,24 +600,27 @@ function MapNode({
           {alt}
         </div>
         <div className="text-[10px] text-[var(--text-muted)]">
-          {t("Floor {n}", { n: floorNum })}
+          {gT(`run_history.MAP_POINT_HISTORY.header`, { FloorNum: floorNum })}
         </div>
       </div>
       <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
-        {mapT(mp.map_point_type)}
+        {nodeTitle}
         {tier && ` · ${t(TIER_LABELS[tier])}`}
-        {room?.turns_taken != null && ` · ${room.turns_taken} ${t("turns")}`}
+        {"turns_taken" in room &&
+          room.turns_taken != null &&
+          ` · ${room.turns_taken} ${t("turns")}`}
       </div>
-      {room?.monster_ids && room.monster_ids.length > 0 && (
+      {"type" in room && room.type === "ENCOUNTER" && (
         <div className="text-[10px] text-[var(--text-secondary)] mb-1.5">
           {t("vs")}{" "}
-          {room.monster_ids
-            .map((m) => cleanT((id) => `monsters.${id}.name`, m))
+          {room.monsters
+            .map((id) => tryGT(`monsters.${id}.title`) ?? id)
             .join(", ")}
         </div>
       )}
       {ps && (
         <>
+          {/* todo: apply game data translations here */}
           <div className="flex flex-wrap gap-x-2 gap-y-0.5 text-[10px] text-[var(--text-muted)] mb-1.5">
             <span>
               {t("HP")} {ps.current_hp}/{ps.max_hp}
@@ -584,7 +650,7 @@ function MapNode({
             <div className="text-[10px] text-[var(--color-silent)] mb-0.5">
               +{" "}
               {ps.cards_gained
-                .map(({ id }) => cleanT((id) => `cards.${id}.name`, id))
+                .map(({ id }) => tryGT(`cards.${id}.title`) ?? id)
                 .join(", ")}
             </div>
           )}
@@ -592,7 +658,7 @@ function MapNode({
             <div className="text-[10px] text-[var(--color-ironclad)] mb-0.5">
               −{" "}
               {ps.cards_removed
-                .map(({ id }) => cleanT((id) => `cards.${id}.name`, id))
+                .map(({ id }) => tryGT(`cards.${id}.title`) ?? id)
                 .join(", ")}
             </div>
           )}
@@ -600,7 +666,7 @@ function MapNode({
             <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
               ⬆{" "}
               {ps.upgraded_cards
-                .map((id) => cleanT((id) => `cards.${id}.name`, id))
+                .map((id) => tryGT(`cards.${id}.title`) ?? id)
                 .join(", ")}
             </div>
           )}
@@ -609,7 +675,7 @@ function MapNode({
               +{" "}
               {ps.relic_choices
                 .filter((r) => r.was_picked)
-                .map((r) => cleanT((id) => `relics.${id}.name`, r.choice))
+                .map(({ choice }) => tryGT(`relics.${choice}.title`) ?? choice)
                 .join(", ")}
             </div>
           )}
@@ -618,9 +684,7 @@ function MapNode({
             <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
               {t("chose {choice}", {
                 choice: ps.event_choices
-                  .map((x) => x.title)
-                  .filter((x): x is LocalizationKey => !!x)
-                  .map((lookup) => eventT(lookup))
+                  .map(({ key }) => tryGT(key) ?? key)
                   .join(", "),
               })}
             </div>
@@ -631,7 +695,7 @@ function MapNode({
     </div>
   );
 
-  const wrapClass = `relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-scrim/30 flex items-center justify-center ${TIER_OUTLINE[tier] ?? ""}`;
+  const wrapClass = `relative w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-scrim/30 flex items-center justify-center ${tier ? TIER_OUTLINE[tier] : ""}`;
 
   if (href) {
     return (
@@ -658,27 +722,6 @@ function MapNode({
     </span>
   );
 }
-
-function humanizeChoiceKey(key: string): string {
-  // Event choices are stored as the game's localization key, e.g.
-  // "MORPHIC_GROVE.pages.INITIAL.options.LONER.title" → "Loner". Pull the
-  // segment after "options" when the event had a branching choice.
-  const parts = key.split(".");
-  const idx = parts.findIndex((p) => p === "options");
-  if (idx >= 0 && parts[idx + 1]) {
-    return parts[idx + 1]
-      .replace(/_/g, " ")
-      .toLowerCase()
-      .replace(/\b\w/g, (c) => c.toUpperCase());
-  }
-  // No "options" segment means there was no real choice: ancients and other
-  // single-outcome events record a page key like
-  // "ancients.NONUPEIPE.pages.DONE.description". Returning the raw dotted key
-  // would leak it onto the page, so drop it (the caller skips the line). A
-  // plain, dot-free label is already human and passes through.
-  return key.includes(".") ? "" : key;
-}
-
 function IconStat({
   icon,
   alt,
@@ -733,7 +776,7 @@ function PotionSlots({
               />
             );
           }
-          const potion = potionData[cleanId(p.id)];
+          const potion = potionData[p.id];
           // todo: I think the children probably belong in the pill
           return (
             <PotionPill
@@ -797,15 +840,13 @@ interface StackEntry {
 }
 
 function useStackCards(deck: DeckCard[]): StackEntry[] {
-  const gT = useTryGameTranslations({ namespace: "cards" });
+  const tryGT = useTryGameTranslations({ namespace: "cards" });
   const cards = useContext(CardsContext);
   const map = new Map<string, StackEntry>();
   for (const card of deck) {
-    const id = cleanId(card.id);
+    const id = card.id;
     const upgraded = !!card.current_upgrade_level;
-    const enchantment = card.enchantment
-      ? cleanId(card.enchantment.id)
-      : undefined;
+    const enchantment = card.enchantment ? card.enchantment.id : undefined;
     const key = `${id}::${upgraded}::${enchantment ?? ""}`;
     const existing = map.get(key);
     if (existing) {
@@ -826,14 +867,14 @@ function useStackCards(deck: DeckCard[]): StackEntry[] {
     const ra = rarityScore[cards?.[a.id]?.rarity ?? ""] ?? 2;
     const rb = rarityScore[cards?.[b.id]?.rarity ?? ""] ?? 2;
     if (ra !== rb) return rb - ra;
-    return (gT(`${a.id}.name`) ?? a.id).localeCompare(
-      gT(`${a.id}.name`) ?? b.id,
+    return (tryGT(`${a.id}.name`) ?? a.id).localeCompare(
+      tryGT(`${a.id}.name`) ?? b.id,
     );
   });
 }
 
-function lastPlayerStats(run: CleanRun): RawPlayerStats | undefined {
-  const acts = run.map_point_history ?? [];
+function lastPlayerStats(run: Run): PlayerStats | undefined {
+  const acts = run.floor_history ?? [];
   for (let a = acts.length - 1; a >= 0; a--) {
     for (let f = acts[a].length - 1; f >= 0; f--) {
       const ps = acts[a][f]?.player_stats?.[0];
