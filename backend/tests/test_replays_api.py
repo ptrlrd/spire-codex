@@ -196,6 +196,21 @@ def test_header_must_match_the_run(env):
     assert _post(_gz(lines[1:2] + lines)).status_code == 400
 
 
+def test_every_shipped_replay_version_passes_the_header_check():
+    from app.services import replays_db
+
+    for version in (1, 2, 3, 4):
+        header = json.dumps(
+            {"t": "header", "replay_version": version, "seed": "S"}
+        ).encode()
+        assert replays_db._parse_header(header)["replay_version"] == version
+    with pytest.raises(replays_db.ReplayRejected) as rejected:
+        replays_db._parse_header(
+            json.dumps({"t": "header", "replay_version": 5}).encode()
+        )
+    assert rejected.value.code == "bad_header"
+
+
 def test_caps_are_enforced_on_decompressed_output(env, monkeypatch):
     monkeypatch.setattr(replays_db, "MAX_LINES", 10)
     assert _post(_gz()).status_code == 413

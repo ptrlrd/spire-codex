@@ -29,7 +29,7 @@ REPLAY_DB_NAME = os.environ.get("REPLAY_DB_NAME", "spire_replays")
 MAX_GZ_BYTES = int(os.environ.get("REPLAY_MAX_GZ_BYTES", "") or 2 * 1024 * 1024)
 MAX_RAW_BYTES = int(os.environ.get("REPLAY_MAX_RAW_BYTES", "") or 16 * 1024 * 1024)
 MAX_LINES = int(os.environ.get("REPLAY_MAX_LINES", "") or 200_000)
-KNOWN_REPLAY_VERSIONS = frozenset({1})
+KNOWN_REPLAY_VERSIONS = frozenset({1, 2, 3, 4})
 GZIP_MAGIC = b"\x1f\x8b"
 
 _coll_cache = None
