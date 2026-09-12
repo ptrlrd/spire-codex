@@ -1,6 +1,6 @@
 import { cleanId, displayName } from "@/lib/display-name";
 import { useT, useTryGameTranslations } from "@/lib/i18n";
-import { LocalizationKey, Room } from "./types";
+import { LocalizationKey, Raw'Room } from "./types";
 import { K } from "vitest/dist/chunks/reporters.d.BuRON0I0.js";
 import { useMessages } from "next-intl";
 // todo: we should really just pre-clean the run data client side after importing so that all these lookups don't need to call clean or the other specialisers (room might be harder)
@@ -20,7 +20,7 @@ export const useRoomLocalize = (args?: { beta?: boolean }) => {
   const t = useT();
   const mapT = useMapPointLocalize();
   const cleanT = useCleanLocalize(args);
-  return (room: Room) => {
+  return (room: RawRoom) => {
     if (room.model_id) {
       switch (room.room_type) {
         case "monster":
@@ -66,10 +66,6 @@ export const useEventChoiceLocalize = (args?: { beta?: boolean }) => {
   const messages = useMessages();
   console.log(messages.data.beta);
   return ({ key, table }: LocalizationKey) => {
-    if (table !== "events") {
-      key = key.replace("title", "name");
-    }
-    key = `${table}.${key}`;
-    return tryT(key) ?? displayName(key);
+    
   };
 };

@@ -14,7 +14,7 @@ export interface PotionData {
 export const usePotions = (
   config?: ApiConfig,
 ): Record<string, PotionData> | undefined =>
-  useListEndpoint({ config, endpoint: "potions" });
+  useListEndpoint("potions", config);
 
 const PotionsContext = createContext<Record<string, PotionData> | undefined>(
   undefined,

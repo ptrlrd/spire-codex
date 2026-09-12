@@ -1,6 +1,11 @@
 "use client";
 
-import { useGameLocale, useT, useTryGameTranslations } from "@/lib/i18n";
+import {
+  useGameLocale,
+  useGameTranslations,
+  useT,
+  useTryGameTranslations,
+} from "@/lib/i18n";
 import { hreflangOf } from "@/lib/locale";
 /**
  * In-game-style summary of a run, mimicking the victory/defeat screen.
@@ -22,15 +27,20 @@ import {
   useRoomLocalize,
 } from "./cleanLocalize";
 import PotionsContext from "@/app/contexts/api/Potions";
-import { cleanId, displayName } from "@/lib/display-name";
 import {
   MapPoint,
   Run,
   Player,
   DeckCard,
-  PlayerStats,
+  RawPlayerStats,
   LocalizationKey,
-} from "./types";
+  Floor,
+  Event,
+  Encounter,
+  RawRoom,
+  Room,
+  EncounterType,
+} from "../../../contexts/api/run/types";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 const RARITY_ORDER = [
@@ -116,41 +126,59 @@ function formatDate(
 
 /** Decide the tier ("weak"|"normal"|"elite"|"boss") for an encounter. */
 function encounterTier(
-  modelId: string | undefined,
-  mapPointType: string,
+  encounter: Encounter,
 ): "weak" | "normal" | "elite" | "boss" | "" {
-  if (!modelId) return "";
-  if (modelId.endsWith("_BOSS")) return "boss";
-  if (modelId.endsWith("_ELITE") || mapPointType === "elite") return "elite";
-  if (modelId.endsWith("_WEAK")) return "weak";
-  if (modelId.endsWith("_NORMAL")) return "normal";
-  return mapPointType === "monster" ? "normal" : "";
+  switch (encounter.encounter_type) {
+    case "ENEMY":
+      return encounter.id.endsWith("_WEAK") ? "weak" : "normal";
+    case "ELITE":
+      return "elite";
+    case "BOSS":
+      return "boss";
+  }
 }
 
 /** Derive a spire-codex page href from an entity id by its prefix. */
-function entityHref(id: string, bp: string): string | null {
-  if (!id || id === "NONE.NONE") return null;
-  const slug = cleanId(id).toLowerCase();
-  if (id.startsWith("MONSTER.")) return `${bp}/monsters/${slug}`;
-  if (id.startsWith("ENCOUNTER.")) return `${bp}/encounters/${slug}`;
-  if (id.startsWith("EVENT.")) return `${bp}/events/${slug}`;
-  if (id.startsWith("RELIC.")) return `${bp}/relics/${slug}`;
-  if (id.startsWith("CARD.")) return `${bp}/cards/${slug}`;
-  if (id.startsWith("POTION.")) return `${bp}/potions/${slug}`;
-  if (id.startsWith("CHARACTER.")) return `${bp}/characters/${slug}`;
-  return null;
+// doesn't work on the purified content
+// function entityHref(id: string, bp: string): string | null {
+//   if (!id || id === "NONE.NONE") return null;
+//   const slug = id;
+//   if (id.startsWith("MONSTER.")) return `${bp}/monsters/${slug}`;
+//   if (id.startsWith("ENCOUNTER.")) return `${bp}/encounters/${slug}`;
+//   if (id.startsWith("EVENT.")) return `${bp}/events/${slug}`;
+//   if (id.startsWith("RELIC.")) return `${bp}/relics/${slug}`;
+//   if (id.startsWith("CARD.")) return `${bp}/cards/${slug}`;
+//   if (id.startsWith("POTION.")) return `${bp}/potions/${slug}`;
+//   if (id.startsWith("CHARACTER.")) return `${bp}/characters/${slug}`;
+//   return null;
+// }
+
+function roomHref(room: Room, bp: string): string | undefined {
+  switch (room.type) {
+    case "ENCOUNTER":
+      return `${bp}/monsters/${room.id}`;
+    case "EVENT":
+      return `${bp}/encounters/${room.id}`;
+    case "MERCHANT":
+      return `${bp}/merchant`;
+    case "REST":
+      return `{bp}/mechanics/campfire/options`;
+    case "TREASURE":
+      return undefined;
+  }
 }
 
 /** Resolve the icon filename for a map point. */
 function iconFor(
-  mp: MapPoint,
-  roomT: ReturnType<typeof useRoomLocalize>,
+  floor: Floor,
+  tryGT: ReturnType<typeof useTryGameTranslations>,
   buildId?: string,
 ): { src: string; betaSrc?: string; tier: string; alt?: string } {
-  const room = mp.rooms?.[0];
-  const modelId = room?.model_id || "";
-  const tier = encounterTier(modelId, mp.map_point_type);
-  const alt = roomT(room ?? {});
+  // todo: process multiple rooms
+  const room = floor.rooms?.[0];
+  const modelId = room?.id || "";
+  const tier = 'encounter_type' in room ? encounterTier(room) : undefined;
+  const alt = tryGT(.);
 
   // Main run_history path plus a beta-versioned fallback. Beta-only content
   // (e.g. the AEONGLASS boss) only has its map icon under the beta tree, so a
@@ -164,11 +192,11 @@ function iconFor(
   });
 
   if (mp.map_point_type === "boss" && modelId.endsWith("_BOSS")) {
-    const slug = cleanId(modelId).toLowerCase();
+    const slug = modelId.toLowerCase();
     return { ...resolve(slug), tier, alt };
   }
   if (mp.map_point_type === "ancient" && modelId.startsWith("EVENT.")) {
-    const slug = cleanId(modelId).toLowerCase();
+    const slug = modelId.toLowerCase();
     return { ...resolve(slug), tier: "", alt };
   }
   const typeMap: Record<string, string> = {
@@ -199,7 +227,9 @@ export default function RunSummary({
   langPrefix,
 }: Props) {
   const t = useT();
-  const cleanT = useCleanLocalize();
+
+  const gT = useGameTranslations();
+  const tryGT = useTryGameTranslations();
   const dateLocale = hreflangOf(useGameLocale());
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -208,17 +238,20 @@ export default function RunSummary({
   const stackedCards = useStackCards(player.deck);
 
   if (cards && relics) {
-    const charName = cleanT((id) => `characters.${id}.name`, player.character);
+    const charName =
+      tryGT(`characters.${player.character}.title`) ?? player.character;
     const encounterName =
       run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE"
-        ? cleanT((id) => `encounters.${id}.name`, run.killed_by_encounter)
+        ? (tryGT(`encounters.${run.killed_by_encounter}.title`) ??
+          run.killed_by_encounter)
         : undefined;
+    // todo: killed by event
     const finalStats = lastPlayerStats(run);
-    const totalFloors = (run.map_point_history ?? []).reduce(
+    const totalFloors = (run.floor_history ?? []).reduce(
       (sum, act) => sum + act.length,
       0,
     );
-    const charSlug = cleanId(player.character).toLowerCase();
+    const charSlug = player.character.toLowerCase();
     const charIcon = imageUrl(
       `/static/images/characters/character_icon_${charSlug}.webp`,
     );
@@ -238,12 +271,8 @@ export default function RunSummary({
             })
           : t("{char} fell.", { char: charName });
 
-    const relicRarities = player.relics.map(
-      ({ id }) => relics?.[cleanId(id)]?.rarity,
-    );
-    const cardRarities = player.deck.map(
-      ({ id }) => cards?.[cleanId(id)]?.rarity,
-    );
+    const relicRarities = player.relics.map(({ id }) => relics?.[id]?.rarity);
+    const cardRarities = player.deck.map(({ id }) => cards?.[id]?.rarity);
     return (
       <div
         className="rounded-xl border p-4 sm:p-5 mb-4"
@@ -341,13 +370,13 @@ export default function RunSummary({
 
         {/* Act rows with hover popovers */}
         <div className="space-y-2 mb-5">
-          {(run.map_point_history ?? []).map((act, i) => {
+          {(run.floor_history ?? []).map((act, i) => {
             const actId = run.acts?.[i];
-            const actName = actId
-              ? cleanT((id) => `acts.${id}.name`, actId.toLocaleUpperCase())
-              : t("Act {n}", { n: i + 1 });
+            const actName =
+              (actId ? tryGT(`acts.${actId}.title`) : undefined) ??
+              t("Act {n}", { n: i + 1 });
             const actStartFloor =
-              (run.map_point_history ?? [])
+              (run.floor_history ?? [])
                 .slice(0, i)
                 .reduce((sum, a) => sum + a.length, 0) + 1;
             return (
@@ -356,12 +385,12 @@ export default function RunSummary({
                   {actName}
                 </div>
                 <div className="flex flex-wrap items-center gap-1 flex-1">
-                  {act.map((mp, j) => (
+                  {act.map((floor, j) => (
                     <MapNode
                       key={j}
-                      mp={mp}
+                      floor={floor}
                       floorNum={actStartFloor + j}
-                      bp={langPrefix}
+                      langPrefix={langPrefix}
                       buildId={run.build_id}
                     />
                   ))}
@@ -381,8 +410,7 @@ export default function RunSummary({
           </div>
           <div className="flex flex-wrap gap-1">
             {player.relics.map((relic, i) => {
-              const rid = cleanId(relic.id);
-              const info = relics[rid];
+              const info = relics[relic.id];
               return (
                 <RelicPill
                   key={`${relic.id}-${i}`}
@@ -393,14 +421,14 @@ export default function RunSummary({
                   {info?.image_url ? (
                     <img
                       src={imageUrl(info.image_url)}
-                      alt={cleanT((id) => `relics.${id}.name`, relic.id)}
+                      alt={tryGT(`relics.${relic.id}.title`) ?? relic.id}
                       className="w-full h-full object-contain p-0.5"
                       crossOrigin="anonymous"
                     />
                   ) : (
                     <span className="text-[8px] text-[var(--text-muted)]">
                       {/*todo: what is this for?*/}
-                      {rid.slice(0, 3)}
+                      {relic.id.slice(0, 3)}
                     </span>
                   )}
                 </RelicPill>
@@ -444,7 +472,7 @@ export default function RunSummary({
                         {entry.count}x
                       </span>
                     )}
-                    {cleanT((id) => `cards.${id}.name`, entry.id)}
+                    {tryGT(`cards.${entry.id}.title`) ?? entry.id}
                     {entry.upgraded && "+"}
                   </span>
                 </CardPill>
@@ -458,29 +486,29 @@ export default function RunSummary({
 }
 
 function MapNode({
-  mp,
+  floor,
   floorNum,
-  bp,
+  langPrefix,
   buildId,
 }: {
-  mp: MapPoint;
+  floor: Floor;
   floorNum: number;
-  bp: string;
+  langPrefix: string;
   buildId?: string;
 }) {
   const t = useT();
-  const tryT = useTryGameTranslations();
-  const cleanT = useCleanLocalize();
-  const roomT = useRoomLocalize();
-  const mapT = useMapPointLocalize();
+  const tryGT = useTryGameTranslations();
   const eventT = useEventChoiceLocalize();
   const [show, setShow] = useState(false);
-  const { src, betaSrc, tier, alt } = iconFor(mp, roomT, buildId);
-  const room = mp.rooms?.[0];
-  const ps = mp.player_stats?.[0];
-
+  const { src, betaSrc, tier, alt } = iconFor(floor, tryGT, buildId);
+  const room = floor.rooms?.[0];
+  const ps = floor.player_stats?.[0];
+  let room_id = room.type === "EVENT" || room.type === "ENCOUNTER" ? (room as Event | Encounter).id : undefined;
   // Click target, encounter/event detail page derived from the room's model_id.
-  const href = entityHref(room?.model_id ?? "", bp);
+  const href = entityHref(
+    ,
+    langPrefix,
+  );
 
   const iconImg = (
     <img
@@ -804,7 +832,7 @@ function useStackCards(deck: DeckCard[]): StackEntry[] {
   });
 }
 
-function lastPlayerStats(run: Run): PlayerStats | undefined {
+function lastPlayerStats(run: CleanRun): RawPlayerStats | undefined {
   const acts = run.map_point_history ?? [];
   for (let a = acts.length - 1; a >= 0; a--) {
     for (let f = acts[a].length - 1; f >= 0; f--) {

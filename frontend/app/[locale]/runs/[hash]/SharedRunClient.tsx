@@ -1,7 +1,7 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
-import { useState } from "react";
+import { useT, useGameLocale, useTryGameTranslations } from "@/lib/i18n";
+import { useContext, useState } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
@@ -21,7 +21,8 @@ import CardsContext, { useCards } from "@/app/contexts/api/Cards";
 import PotionsContext, { usePotions } from "@/app/contexts/api/Potions";
 import RelicsContext, { useRelics } from "@/app/contexts/api/Relics";
 import { cleanId } from "@/lib/display-name";
-import { MapPoint, Run } from "./types";
+import { MapPoint, Run } from "../../../contexts/api/run/types";
+import SharedRunContext from "@/app/contexts/api/run/SharedRun";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -37,19 +38,19 @@ const CHAR_CSS_VAR: Record<string, string> = {
 // page server-renders with real data — before, the body was an empty shell
 // until the client refetched the same endpoint, so every run page looked
 // identical to crawlers (duplicate content) and carried no unique text.
-export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
+export default function SharedRunClient() {
   const { hash } = useParams<{ hash: string }>();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const t = useT();
+  const tryGT = useTryGameTranslations();
   const roomT = useRoomLocalize();
   const mapT = useMapPointLocalize();
   const { user } = useAuth();
   const { toast } = useToast();
-  const [run, setRun] = useState<Run | undefined>(initialRun);
+  const run = useContext(SharedRunContext);
   const [hidden, setHidden] = useState<boolean>(false);
-  const [loading, setLoading] = useState(!initialRun);
-  const [notFound, setNotFound] = useState(false);
+  const loading = !run;
   const [copied, setCopied] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [reportEmail, setReportEmail] = useState("");
@@ -61,7 +62,6 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
   const [unhiding, setUnhiding] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
   const apiConfig = { beta: run?.is_beta ?? false };
-  const cleanT = useCleanLocalize(apiConfig);
   const cards = useCards(apiConfig);
   const relics = useRelics(apiConfig);
   const potions = usePotions(apiConfig);
@@ -131,7 +131,7 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
         {t("Loading...")}
       </div>
     );
-  if (notFound || !run)
+  if (!run)
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">{t("Run not found.")}</p>
@@ -147,13 +147,12 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
   // Co-op siblings all serve the same blob; player_index says which
   // players[] entry the viewed hash belongs to (0 = host / single-player).
   const player = run.players[run.player_index ?? 0] ?? run.players[0];
-  const charId = cleanId(player.character);
+  const charId = player.character;
   const charColor = CHAR_CSS_VAR[charId.toUpperCase()] || "var(--accent-gold)";
-  const totalFloors =
-    run.map_point_history?.reduce(
-      (sum, act: MapPoint[]) => sum + act.length,
-      0,
-    ) || 0;
+  const totalFloors = run.floor_history.reduce(
+    (sum, act) => sum + act.length,
+    0,
+  );
 
   return (
     cards &&
@@ -323,10 +322,9 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                       className="text-base font-normal hover:underline"
                       style={{ color: charColor }}
                     >
-                      {cleanT(
-                        (id) => `characters.${id}.name`,
-                        player.character,
-                      )}
+                      {tryGT(`characters.${player.character}.name`) ??
+                        tryGT("characters.LOCKED.title") ??
+                        t("Unknown")}
                     </Link>
                   </h1>
                   <div className="text-sm text-[var(--text-muted)]">
@@ -339,13 +337,12 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                           {" · "}
                           {t("Killed by")}{" "}
                           <Link
-                            href={`${bp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`}
+                            href={`${bp}/encounters/${run.killed_by_encounter.toLowerCase()}`}
                             className="hover:underline"
                             style={{ color: "var(--color-ironclad)" }}
                           >
-                            {cleanT(
-                              (id) => `encounters.${id}.name`,
-                              run.killed_by_encounter,
+                            {tryGT(
+                              `encounters.${run.killed_by_encounter}.title`,
                             )}
                           </Link>
                         </>
@@ -383,21 +380,14 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                       </h2>
                       <div className="flex flex-wrap gap-1.5">
                         {player.deck
-                          .sort((a, b) =>
-                            cleanId(a.id).localeCompare(cleanId(b.id)),
-                          )
+                          .sort((a, b) => a.id.localeCompare(b.id))
                           .map((card, i) => {
-                            const cid = cleanId(card.id);
                             return (
                               <CardPill
-                                key={`${cid}-${i}`}
-                                cardId={cid}
+                                key={`${card.id}-${i}`}
+                                cardId={card.id}
                                 upgraded={!!card.current_upgrade_level}
-                                enchantment={
-                                  card.enchantment
-                                    ? cleanId(card.enchantment.id)
-                                    : undefined
-                                }
+                                enchantment={card.enchantment?.id}
                                 bp={bp}
                                 className={`text-xs px-2 py-1 rounded border transition-colors hover:bg-[var(--bg-card-hover)] ${
                                   card.current_upgrade_level
@@ -417,15 +407,14 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                       </h2>
                       <div className="flex flex-wrap gap-1.5">
                         {player.relics.map((relic, i) => {
-                          const rid = cleanId(relic.id);
                           return (
                             <RelicPill
-                              key={`${rid}-${i}`}
-                              relicId={rid}
+                              key={`${relic.id}-${i}`}
+                              relicId={relic.id}
                               bp={bp}
                               className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)] transition-colors"
                             >
-                              {cleanT((id) => `relics.${id}.name`, relic.id)}
+                              {tryGT(`relics.${relic.id}.title`) ?? relic.id}
                               <span className="text-[var(--text-muted)] ml-1">
                                 F{relic.floor_added_to_deck}
                               </span>
@@ -441,22 +430,20 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                         {t("Floor History")}
                       </h2>
                       <div className="space-y-1">
-                        {run.map_point_history?.map((actFloors, actIdx) => {
+                        {run.floor_history?.map((actFloors, actIdx) => {
                           const actId = run.acts?.[actIdx];
-                          const actName = actId
-                            ? cleanT(
-                                (id) => `acts.${id}.name`,
-                                actId.toLocaleUpperCase(),
-                              )
-                            : t("Act {n}", { n: actIdx + 1 });
+                          const actName =
+                            (actId
+                              ? tryGT(`acts.${actId}.title`)
+                              : undefined) ?? t("Act {n}", { n: actIdx + 1 });
                           return (
                             <div key={actIdx}>
                               <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mt-3 mb-1.5">
                                 {actName}
                               </h3>
                               {actFloors.map((floor, floorIdx) => {
-                                const ps = floor.player_stats?.[0];
-                                const room = floor.rooms?.[0];
+                                const ps = floor.player_stats[0];
+                                const room = floor.rooms[0];
 
                                 const encounterName = roomT(room ?? {});
 
@@ -471,21 +458,17 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                                 };
                                 const picked =
                                   ps?.card_choices
-                                    ?.filter((c) => c.was_picked)
-                                    .map((c) =>
-                                      cleanT(
-                                        (id) => `cards.${id}.name`,
-                                        c.card.id,
-                                      ),
+                                    ?.filter(({ was_picked }) => was_picked)
+                                    .map(
+                                      ({ card: { id } }) =>
+                                        tryGT(`cards.${id}.name`) ?? c.id,
                                     ) || [];
                                 const skipped =
                                   ps?.card_choices
-                                    ?.filter((c) => !c.was_picked)
-                                    .map((c) =>
-                                      cleanT(
-                                        (id) => `cards.${id}.name`,
-                                        c.card.id,
-                                      ),
+                                    ?.filter(({ was_picked }) => !was_picked)
+                                    .map(
+                                      ({ card: { id } }) =>
+                                        tryGT(`cards.${id}.name`) ?? id,
                                     ) || [];
                                 return (
                                   <div
@@ -499,11 +482,15 @@ export default function SharedRunClient({ initialRun }: { initialRun?: Run }) {
                                       className="w-14 flex-shrink-0 font-medium"
                                       style={{
                                         color:
-                                          roomColors[floor.map_point_type] ||
+                                          roomColors[floor.raw_type] ||
                                           "var(--text-secondary)",
                                       }}
                                     >
-                                      {mapT(floor.map_point_type)}
+                                      {floor.floor_type
+                                        ? (tryGT(
+                                            `static_hover_tooltips.ROOM_${floor.was_unknown ? "UNKNOWN_" : ""}${floor.floor_type}.title`,
+                                          ) ?? t("map.LEGEND_UNKNOWN.title"))
+                                        : floor.raw_type}
                                     </span>
                                     <div className="flex-1 min-w-0">
                                       <span className="text-[var(--text-secondary)]">

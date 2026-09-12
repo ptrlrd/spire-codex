@@ -15,8 +15,7 @@ export interface CardData {
 }
 export const useCards = (
   config?: ApiConfig,
-): Record<string, CardData> | undefined =>
-  useListEndpoint({ config, endpoint: "cards" });
+): Record<string, CardData> | undefined => useListEndpoint("cards", config);
 
 const CardsContext = createContext<Record<string, CardData> | undefined>(
   undefined,

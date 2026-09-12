@@ -11,7 +11,9 @@ import { buildPageMetadata } from "@/lib/seo";
 import SharedRunClient from "./SharedRunClient";
 import { TFn } from "@/lib/i18n";
 import { getCleanLocalize } from "./cleanLocalize-server";
-import { Run } from "./types";
+import { RawRun, Run } from "../../../contexts/api/run/types";
+import { cleanRun } from "@/app/contexts/api/run/util";
+import SharedRunContext from "@/app/contexts/api/run/SharedRun";
 
 export const dynamic = "force-dynamic";
 
@@ -26,7 +28,7 @@ async function fetchRun(hash: string): Promise<Run | undefined> {
   try {
     const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
     if (!res.ok) return;
-    return (await res.json()) as Run;
+    return cleanRun((await res.json()) as RawRun);
   } catch {
     return;
   }
@@ -35,9 +37,13 @@ async function fetchRun(hash: string): Promise<Run | undefined> {
 function describeRun(
   run: Run,
   t: TFn,
-  cleanT: Awaited<ReturnType<typeof getCleanLocalize>>,
+  tryT: Awaited<ReturnType<typeof getTryGameTranslations>>,
 ) {
-  const char = cleanT((id) => `${id}.name`, run.players?.[0]?.character);
+  // todo: this needs to be .title later
+  const char =
+    tryT(`${run.players?.[0]?.character}.name`) ??
+    tryT(`LOCKED.title`) ??
+    t("Unknown");
   const resultLabel = run.win
     ? t("Victory")
     : run.was_abandoned
@@ -100,15 +106,11 @@ export default async function SharedRunPage({ params }: Props) {
   const { locale: rawLocale, hash } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const cleanT = await getCleanLocalize({ namespace: "characters", locale });
+  const gT = await getTryGameTranslations({ namespace: "characters", locale });
   const run = await fetchRun(hash);
   let jsonLd: ReturnType<typeof buildDetailPageJsonLd> | null = null;
   if (run) {
-    const { char, resultLabel, username, ascension } = describeRun(
-      run,
-      t,
-      cleanT,
-    );
+    const { char, resultLabel, username, ascension } = describeRun(run, t, gT);
     jsonLd = buildDetailPageJsonLd({
       name: `${username} - ${char} - ${t("Ascension")} ${ascension} ${resultLabel}`,
       description: `${username}: ${char}, ${t("Ascension")} ${ascension}, ${resultLabel}. ${gameNameFor(locale)}.`,
@@ -126,12 +128,12 @@ export default async function SharedRunPage({ params }: Props) {
     });
   }
   return (
-    <>
+    <SharedRunContext value={run}>
       {jsonLd && <JsonLd data={jsonLd} />}
       {/* The run is passed down so the page server-renders with real
           content; without it every run page was an identical client-side
           shell (duplicate content, no unique text for crawlers). */}
-      <SharedRunClient initialRun={run} />
-    </>
+      <SharedRunClient/>
+    </SharedRunContext>
   );
 }

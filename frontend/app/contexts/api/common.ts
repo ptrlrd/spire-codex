@@ -4,34 +4,39 @@ import { useContext, useState, useEffect } from "react";
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export interface UseApiEndpointParams {
-  endpoint: "cards" | "relics" | "potions";
-  config?: ApiConfig;
+export type KnownListEndpoint = "cards" | "relics" | "potions";
+
+export function useListEndpoint<R, Entry = R & { id: string }>(
+  endpoint: KnownListEndpoint,
+  config?: ApiConfig,
+): Record<string, R> | undefined {
+  const payload = useApiEndpoint<Entry[]>(endpoint, config);
+  return (
+    payload &&
+    Object.fromEntries(payload.map(({ id, ...data }: Entry) => [id, data]))
+  );
 }
-export function useListEndpoint<R, Entry = R & { id: string }>({
-  endpoint,
-  config,
-}: UseApiEndpointParams): Record<string, R> | undefined {
+
+export const useApiEndpoint = <T>(
+  endpoint: string,
+  config?: ApiConfig,
+): T | undefined => {
   const apiConfig = useContext(ApiConfigContext);
   const { beta } = config ?? apiConfig;
-  const [results, setResults] = useState<Record<string, R>>();
+  const [result, setResult] = useState<T>();
   useEffect(() => {
     let cancelled = false;
     (async () => {
-      const payload = await cachedFetch<Entry[]>(
+      const payload = await cachedFetch<T>(
         `${API}/api/${endpoint}${beta ? "?channel=beta" : ""}`,
       );
       if (!cancelled) {
-        setResults(
-          Object.fromEntries(
-            payload.map(({ id, ...data }: Entry) => [id, data]),
-          ),
-        );
+        setResult(payload);
       }
     })();
     return () => {
       cancelled = true;
     };
-  }, [beta]);
-  return results;
-}
+  }, [endpoint, beta]);
+  return result;
+};

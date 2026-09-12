@@ -13,8 +13,7 @@ export interface RelicData {
 
 export const useRelics = (
   config?: ApiConfig,
-): Record<string, RelicData> | undefined =>
-  useListEndpoint({ config, endpoint: "relics" });
+): Record<string, RelicData> | undefined => useListEndpoint("relics", config);
 
 const RelicsContext = createContext<Record<string, RelicData> | undefined>(
   undefined,
