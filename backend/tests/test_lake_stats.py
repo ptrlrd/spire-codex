@@ -72,9 +72,9 @@ def test_lake_entity_overlay(monkeypatch, tmp_path):
 
 def test_stats_core_excludes_modded_characters(monkeypatch):
     cells = [
-        ("IRONCLAD", 0, 100, 30, 5),
-        ("SILENT", 10, 50, 20, 2),
-        ("THE_MODDED_ONE", 0, 40, 39, 0),
+        ("IRONCLAD", 0, 1, 100, 30, 5),
+        ("SILENT", 10, 2, 50, 20, 2),
+        ("THE_MODDED_ONE", 0, 1, 40, 39, 0),
     ]
     monkeypatch.setattr(lake_stats, "_connect", lambda build=False: None)
 
@@ -98,6 +98,13 @@ def test_stats_core_excludes_modded_characters(monkeypatch):
     assert g["total_wins"] == 50
     assert sum(c["total"] for c in g["characters"]) == g["total_runs"]
     assert all("abandoned" in c for c in g["characters"])
+    two = results[(("players", "2"),)]
+    assert two["total_runs"] == 50 and two["total_wins"] == 20
+    assert [c["character"] for c in two["characters"]] == ["SILENT"]
+    assert two["filters"]["players"] == "2"
+    assert results[(("players", "4"),)]["total_runs"] == 0
+    solo_a0 = results[(("ascension", "0"), ("players", "1"))]
+    assert solo_a0["total_runs"] == 100
 
 
 def test_encounter_blob_keys_fold():
