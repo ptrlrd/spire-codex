@@ -1937,8 +1937,23 @@ _ASCENSION_COMBOS_PER_CYCLE = 2
 
 # Every combo the refresher owns. Reads serve these regardless of age — a
 # minutes-stale doc beats recomputing a multi-aggregation inline.
+# Third tier: the player-count axis the stats page offers (Solo, 2P, 3P, 4P+),
+# alone, per character, and per ascension. Any of these on the live path scans
+# the whole collection and dies at the 20 s cap, so they are lake-built like
+# the ascension slices.
+PLAYERS_FILTER_COMBOS: list[dict] = [
+    {**({"character": c} if c else {}), "players": p}
+    for p in ("1", "2", "3", "4")
+    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+] + [
+    {"players": p, "ascension": str(a)}
+    for p in ("1", "2", "3", "4")
+    for a in range(0, 11)
+]
+
 MATERIALIZED_STATS_KEYS = frozenset(
-    _filter_key(**f) for f in (*HOT_FILTER_COMBOS, *ASCENSION_FILTER_COMBOS)
+    _filter_key(**f)
+    for f in (*HOT_FILTER_COMBOS, *ASCENSION_FILTER_COMBOS, *PLAYERS_FILTER_COMBOS)
 )
 
 

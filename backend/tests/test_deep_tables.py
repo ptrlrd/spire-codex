@@ -8,17 +8,21 @@ from app.services import lake_stats as ls
 
 def test_fold_deep_filters_and_sums():
     rows = [
-        ("IRONCLAD", 10, "STRIKE", 4, 2),
-        ("IRONCLAD", 3, "STRIKE", 2, 1),
-        ("SILENT", 10, "STRIKE", 1, 1),
-        ("MODDED_GUY", 10, "STRIKE", 50, 50),
-        ("IRONCLAD", 10, None, 9, 9),
+        ("IRONCLAD", 10, 1, "STRIKE", 4, 2),
+        ("IRONCLAD", 3, 2, "STRIKE", 2, 1),
+        ("SILENT", 10, 4, "STRIKE", 1, 1),
+        ("MODDED_GUY", 10, 1, "STRIKE", 50, 50),
+        ("IRONCLAD", 10, 1, None, 9, 9),
     ]
     official = frozenset({"IRONCLAD", "SILENT"})
     assert ls._fold_deep(rows, None, None, official) == {"STRIKE": [7, 4]}
     assert ls._fold_deep(rows, "IRONCLAD", None, official) == {"STRIKE": [6, 3]}
     assert ls._fold_deep(rows, None, 10, official) == {"STRIKE": [5, 3]}
     assert ls._fold_deep(rows, "SILENT", 3, official) == {}
+    assert ls._fold_deep(rows, None, None, official, "1") == {"STRIKE": [4, 2]}
+    assert ls._fold_deep(rows, None, None, official, "2") == {"STRIKE": [2, 1]}
+    assert ls._fold_deep(rows, None, None, official, "4") == {"STRIKE": [1, 1]}
+    assert ls._fold_deep(rows, None, None, official, "multi") == {"STRIKE": [3, 2]}
 
 
 @pytest.fixture()
@@ -27,11 +31,11 @@ def tiny_lake(tmp_path, monkeypatch):
     # r1 IRONCLAD a10 win; r2 SILENT a10 loss (killed); r3 hidden -> excluded.
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 'IRONCLAD', true, 10, false, NULL::VARCHAR, NULL::VARCHAR),
-        ('r2', 'SILENT', false, 10, false, 'JAW_WORM', NULL::VARCHAR),
-        ('r3', 'IRONCLAD', true, 10, false, NULL::VARCHAR, NULL::VARCHAR))
+        ('r1', 'IRONCLAD', true, 10, false, NULL::VARCHAR, NULL::VARCHAR, 1),
+        ('r2', 'SILENT', false, 10, false, 'JAW_WORM', NULL::VARCHAR, 2),
+        ('r3', 'IRONCLAD', true, 10, false, NULL::VARCHAR, NULL::VARCHAR, 1))
         t(run_hash, character, win, ascension, was_abandoned,
-          killed_by_encounter, killed_by_event))
+          killed_by_encounter, killed_by_event, player_count))
         TO '{tmp_path}/runs.parquet' (FORMAT parquet)"""
     )
     con.execute(
@@ -140,3 +144,23 @@ def test_build_deep_tables_end_to_end(tiny_lake, monkeypatch):
 def test_deep_tables_by_key_missing_artifact(tmp_path, monkeypatch):
     monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
     assert ls.deep_tables_by_key() == {}
+
+
+def test_player_count_slices_are_built_from_the_same_pass(tiny_lake, monkeypatch):
+    import json
+
+    monkeypatch.setattr(ls, "available", lambda *a: True)
+    ls.build_deep_tables()
+    doc = json.loads((tiny_lake / "deep_tables.json").read_text())
+    two = _tables(doc, {"players": "2"})
+    assert [r["card_id"] for r in two["top_cards"]] == ["STRIKE"]
+    assert two["top_cards"][0]["count"] == 1 and two["top_cards"][0]["in_losses"] == 1
+    assert two["deadliest"] == [{"encounter": "JAW_WORM", "count": 1}]
+    assert two["top_relics"] == []
+    solo = _tables(doc, {"players": "1"})
+    assert solo["top_cards"][0]["count"] == 2 and solo["deadliest"] == []
+    assert _tables(doc, {"players": "4"})["top_cards"] == []
+    assert (
+        _tables(doc, {"players": "2", "character": "SILENT"})["top_cards"][0]["count"]
+        == 1
+    )
