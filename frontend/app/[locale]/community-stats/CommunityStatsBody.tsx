@@ -24,6 +24,7 @@ interface CommunityStats {
   total_runs: number;
   total_wins: number;
   total_losses: number;
+  total_abandoned?: number;
   win_rate: number;
   by_ascension: AscRow[];
   by_character: CharRow[];
@@ -250,10 +251,11 @@ export async function CommunityStatsBody({ lang, bracket }: { lang: Locale; brac
 
       {/* Headline numbers */}
       <section className="mb-10">
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           <StatCard label={t("Runs")} value={stats.total_runs.toLocaleString()} />
           <StatCard label={t("Wins")} value={stats.total_wins.toLocaleString()} />
           <StatCard label={t("Losses")} value={stats.total_losses.toLocaleString()} />
+          <StatCard label={t("Abandoned")} value={(stats.total_abandoned ?? 0).toLocaleString()} />
           <StatCard label={t("Win rate")} value={`${stats.win_rate}%`} />
         </div>
       </section>

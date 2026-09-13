@@ -51,9 +51,10 @@ interface MetricsRow {
 interface BracketOverview {
   total_runs: number;
   total_wins: number;
+  total_abandoned?: number;
   win_rate: number;
-  by_ascension: { ascension: number; runs: number; wins: number; win_rate: number }[];
-  by_character: { id: string; runs: number; wins: number; win_rate: number }[];
+  by_ascension: { ascension: number; runs: number; wins: number; abandoned?: number; win_rate: number }[];
+  by_character: { id: string; runs: number; wins: number; abandoned?: number; win_rate: number }[];
 }
 
 // The live path filters by ?players= (1-4); the snapshot path slices by the
@@ -590,10 +591,13 @@ export default function StatsClient({
     const totalWins = character
       ? selected.reduce((n, c) => n + c.wins, 0)
       : bracketOverview.total_wins;
+    const totalAbandoned = character
+      ? selected.reduce((n, c) => n + (c.abandoned || 0), 0)
+      : bracketOverview.total_abandoned || 0;
     return {
       total_runs: totalRuns,
       total_wins: totalWins,
-      total_abandoned: 0,
+      total_abandoned: totalAbandoned,
       win_rate: character
         ? totalRuns > 0
           ? Math.round((totalWins / totalRuns) * 1000) / 10
@@ -610,6 +614,7 @@ export default function StatsClient({
         character: c.id.toUpperCase(),
         total: c.runs,
         wins: c.wins,
+        abandoned: c.abandoned || 0,
         win_rate: c.win_rate,
       })),
       ascensions: character
@@ -618,6 +623,7 @@ export default function StatsClient({
             level: a.ascension,
             total: a.runs,
             wins: a.wins,
+            abandoned: a.abandoned || 0,
             win_rate: a.win_rate,
           })),
       top_cards: [],

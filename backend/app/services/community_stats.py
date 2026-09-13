@@ -96,8 +96,9 @@ def _new_acc_one() -> dict[str, Any]:
     return {
         "total_runs": 0,
         "total_wins": 0,
-        "by_ascension": {},  # asc(int) -> [runs, wins]
-        "by_character": {},  # char_id -> [runs, wins]
+        "total_abandoned": 0,
+        "by_ascension": {},  # asc(int) -> [runs, wins, abandoned]
+        "by_character": {},  # char_id -> [runs, wins, abandoned]
         "events": {},  # event_id -> {option_id -> count}
         # (act_index, map_point_type) -> [player_visits, dmg_pct_sum, deaths]. Feeds the
         # in-game map danger tinting (avg HP% lost + death rate per node type per act).
@@ -143,7 +144,13 @@ def new_accumulator(recent_versions: tuple | list = ()) -> dict[str, Any]:
 # `_INT_FIELDS` add; `_LIST_DICT_FIELDS` add element-wise per key; `events` is a
 # nested event -> {option -> count}; the counter dicts add per key; the three
 # records keep the best (min run_time / max run_time / max deck_size).
-_COMMUNITY_INT_FIELDS = ("total_runs", "total_wins", "reward_screens", "reward_skips")
+_COMMUNITY_INT_FIELDS = (
+    "total_runs",
+    "total_wins",
+    "total_abandoned",
+    "reward_screens",
+    "reward_skips",
+)
 # "ancient" belongs here, NOT in the counters: its values became
 # [chosen, offered] lists when the take-rate tip shipped, and merging it as
 # an int counter is the TypeError that broke every parallel rebuild.
@@ -223,6 +230,21 @@ def merge(dst: dict, src: dict) -> None:
             d["biggest_deck"] = s["biggest_deck"]
 
 
+def _count(rec: list, is_win: bool, is_abandoned: bool) -> None:
+    """[runs, wins, abandoned]; older cells stored two-element rows."""
+    if len(rec) < 3:
+        rec.extend([0] * (3 - len(rec)))
+    rec[0] += 1
+    if is_win:
+        rec[1] += 1
+    if is_abandoned:
+        rec[2] += 1
+
+
+def _abandoned(rec: list) -> int:
+    return rec[2] if len(rec) > 2 else 0
+
+
 def _bump(d: dict, key: Any, n: int = 1) -> None:
     d[key] = d.get(key, 0) + n
 
@@ -236,6 +258,7 @@ def accumulate(
     is_win: bool,
     character: str,
     ascension: int,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run into the sub-accumulator of every bracket it belongs to."""
     for b in brackets:
@@ -248,6 +271,7 @@ def accumulate(
                 is_win=is_win,
                 character=character,
                 ascension=ascension,
+                is_abandoned=is_abandoned,
             )
 
 
@@ -259,23 +283,22 @@ def _accumulate_one(
     is_win: bool,
     character: str,
     ascension: int,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run into ONE bracket's accumulator. Safe on partial/old blobs:
     every field is read defensively so a missing key never aborts the walk."""
     acc["total_runs"] += 1
     if is_win:
         acc["total_wins"] += 1
+    if is_abandoned:
+        acc["total_abandoned"] += 1
 
-    asc = acc["by_ascension"].setdefault(int(ascension or 0), [0, 0])
-    asc[0] += 1
-    if is_win:
-        asc[1] += 1
+    asc = acc["by_ascension"].setdefault(int(ascension or 0), [0, 0, 0])
+    _count(asc, is_win, is_abandoned)
     # Normalize "character.necrobinder" / "NECROBINDER" -> "necrobinder".
     char_id = (character or "unknown").split(".")[-1].lower()
-    ch = acc["by_character"].setdefault(char_id, [0, 0])
-    ch[0] += 1
-    if is_win:
-        ch[1] += 1
+    ch = acc["by_character"].setdefault(char_id, [0, 0, 0])
+    _count(ch, is_win, is_abandoned)
     ca = acc["char_asc"].setdefault(char_id, {}).setdefault(int(ascension or 0), [0, 0])
     ca[0] += 1
     if is_win:
@@ -630,9 +653,16 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
 
     total_runs = acc["total_runs"]
     total_wins = acc["total_wins"]
+    total_abandoned = acc.get("total_abandoned") or 0
 
     by_ascension = [
-        {"ascension": a, "runs": rw[0], "wins": rw[1], "win_rate": _pct(rw[1], rw[0])}
+        {
+            "ascension": a,
+            "runs": rw[0],
+            "wins": rw[1],
+            "abandoned": _abandoned(rw),
+            "win_rate": _pct(rw[1], rw[0]),
+        }
         for a, rw in sorted(acc["by_ascension"].items())
     ]
     chars = names["characters"]
@@ -642,6 +672,7 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
             "name": chars.get(cid) or _prettify(cid),
             "runs": rw[0],
             "wins": rw[1],
+            "abandoned": _abandoned(rw),
             "win_rate": _pct(rw[1], rw[0]),
             "share": _pct(rw[0], total_runs),
         }
@@ -719,7 +750,8 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
     return {
         "total_runs": total_runs,
         "total_wins": total_wins,
-        "total_losses": total_runs - total_wins,
+        "total_losses": total_runs - total_wins - total_abandoned,
+        "total_abandoned": total_abandoned,
         "win_rate": _pct(total_wins, total_runs),
         "by_ascension": by_ascension,
         "by_character": by_character,

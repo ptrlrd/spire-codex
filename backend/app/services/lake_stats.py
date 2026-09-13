@@ -461,6 +461,7 @@ def _merge_accs(cells: list[dict]) -> dict:
     for acc in cells:
         out["total_runs"] += acc["total_runs"]
         out["total_wins"] += acc["total_wins"]
+        out["total_abandoned"] += acc.get("total_abandoned") or 0
         out["reward_screens"] += acc.get("reward_screens") or 0
         out["reward_skips"] += acc.get("reward_skips") or 0
         for field in (
@@ -473,6 +474,8 @@ def _merge_accs(cells: list[dict]) -> dict:
         ):
             for k, v in (acc.get(field) or {}).items():
                 rec = out[field].setdefault(k, [0] * len(v))
+                if len(rec) < len(v):
+                    rec.extend([0] * (len(v) - len(rec)))
                 for i, x in enumerate(v):
                     rec[i] += x
         for field in (
@@ -530,20 +533,25 @@ def _build_community_cube() -> dict[str, dict]:
     try:
         _prepare_sources(con, lake)
 
-        for cell, char, asc, runs, wins in con.execute(
+        for cell, char, asc, runs, wins, abandoned in con.execute(
             "SELECT cell, lower(character), coalesce(ascension, 0)::INT, count(*),"
-            " count(*) FILTER (win) FROM cells GROUP BY 1, 2, 3"
+            " count(*) FILTER (win), count(*) FILTER (coalesce(was_abandoned, false))"
+            " FROM cells GROUP BY 1, 2, 3"
         ).fetchall():
             acc = acc_for(cell, char)
             acc["total_runs"] += runs
             acc["total_wins"] += wins
+            acc["total_abandoned"] += abandoned
             for rec in (
-                acc["by_ascension"].setdefault(asc, [0, 0]),
-                acc["by_character"].setdefault(char, [0, 0]),
-                acc["char_asc"].setdefault(char, {}).setdefault(asc, [0, 0]),
+                acc["by_ascension"].setdefault(asc, [0, 0, 0]),
+                acc["by_character"].setdefault(char, [0, 0, 0]),
             ):
                 rec[0] += runs
                 rec[1] += wins
+                rec[2] += abandoned
+            ca = acc["char_asc"].setdefault(char, {}).setdefault(asc, [0, 0])
+            ca[0] += runs
+            ca[1] += wins
 
         for col, key in (("encounter", "deaths_encounter"), ("event", "deaths_event")):
             for cell, char, eid, n in con.execute(
