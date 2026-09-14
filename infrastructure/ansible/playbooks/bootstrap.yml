@@ -1,34 +1,10 @@
 ---
-# First-time setup for a fresh origin. Installs docker, clones the
-# repo, creates required paths, pulls the standalone nginx image, and
-# leaves the host ready for sync-secrets.yml + sync-config.yml +
-# deploy.yml.
-#
-# Prereqs:
-#   - The host is already in inventory.yml (add it BEFORE running)
-#   - SSH key works (`ansible <hostname> -m ping` succeeds)
-#   - The remote_user has passwordless sudo configured
-#
-# Usage:
-#   ansible-playbook playbooks/bootstrap.yml --limit <new-host>
-#
-# Idempotent — re-running on an existing host is a no-op for everything
-# that's already there.
 
 - name: Bootstrap a fresh spire-codex origin
-  # Targets both app boxes (prod_origins) and DB-only boxes
-  # (db_origins) — the installable bits (docker, git, dirs) are the
-  # same. Specialisation happens later: deploy.yml only targets
-  # prod_origins; mongo-install.yml only targets db_origins.
   hosts: prod_origins:db_origins
   gather_facts: true
   become: true
   tasks:
-    # AlmaLinux ships podman-docker (a shim that provides `docker` as
-    # an alias for `podman`). It conflicts with real docker-ce, so we
-    # explicitly evict it before installing the docker-ce stack.
-    # Amazon Linux 2023 doesn't ship the shim — this task is a no-op
-    # there.
     - name: Remove podman-docker shim if present (AlmaLinux)
       dnf:
         name: podman-docker
@@ -57,7 +33,7 @@
           - rsync
           - tar
         state: present
-        allowerasing: true   # let it kick podman-docker out cleanly
+        allowerasing: true
       when: ansible_os_family == 'RedHat'
 
     - name: Install docker (Debian/Ubuntu)
@@ -103,15 +79,12 @@
         mode: '0755'
 
     - name: Clone spire-codex repo (if not already)
-      # become_user templates BEFORE facts gather, so `{{ ansible_user }}`
-      # would be undefined here. Use the env var the op-ansible wrapper
-      # already exports (same pattern as deploy.yml).
       become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"
       git:
         repo: https://github.com/ptrlrd/spire-codex.git
         dest: "{{ spire_codex_dir }}"
         version: main
-        update: false   # don't yank latest on bootstrap — let deploy.yml do that
+        update: false
 
     - name: Ensure host data dirs exist
       file:
@@ -132,12 +105,11 @@
       copy:
         dest: "{{ spire_codex_dir }}/.env"
         content: |
-          # Placeholder — populated by `ansible-playbook playbooks/sync-secrets.yml`
           QA_DIR=/data/qa
         owner: "{{ ansible_user }}"
         group: "{{ ansible_user }}"
         mode: '0600'
-        force: false   # don't overwrite if one already exists
+        force: false
 
     - name: Pull standalone nginx image
       become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"

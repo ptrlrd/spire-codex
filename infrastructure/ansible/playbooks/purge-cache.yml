@@ -1,16 +1,4 @@
 ---
-# Purge Cloudflare cache via API. Faster than the dashboard for the
-# things you purge often (/qa/* after re-rendering, specific URLs after
-# bad cache).
-#
-#   ansible-playbook playbooks/purge-cache.yml -e 'urls=["https://spire-codex.com/qa/"]'
-#   ansible-playbook playbooks/purge-cache.yml -e everything=true
-#
-# Prereqs:
-#   - 1Password item with CF API token at op://Spire Codex/Cloudflare/api_token
-#     (token needs Zone.Cache Purge permission for the spire-codex.com zone)
-#   - Zone ID stored at op://Spire Codex/Cloudflare/zone_id
-
 - name: Purge Cloudflare cache
   hosts: localhost
   gather_facts: false
@@ -18,29 +6,16 @@
     everything: false
     urls: []
   tasks:
-    # Field labels in the 1Password Cloudflare item are "API Token"
-    # and "Zone ID" (with spaces/capitals). `op read` requires the
-    # exact label — the previous snake_case path silently failed with
-    # "item does not have a field 'api_token'". Spaces have to be URL
-    # encoded as %20 when used inside the op:// scheme.
-    - name: Fetch CF API token from 1Password
-      command: op read "op://Spire Codex/Cloudflare/API Token"
-      register: cf_token
-      changed_when: false
+    - name: Read Cloudflare credentials from OpenBao
+      set_fact:
+        cf: "{{ lookup('community.hashi_vault.vault_kv2_get', 'spire-codex-cloudflare', url=bao_url, engine_mount_point=bao_mount).secret }}"
       no_log: true
-
-    - name: Fetch CF zone ID from 1Password
-      command: op read "op://Spire Codex/Cloudflare/Zone ID"
-      register: cf_zone
-      changed_when: false
-      no_log: true
-
-    - name: Purge everything (whole zone — uses one of 5 daily on Free)
+    - name: Purge everything
       uri:
-        url: "https://api.cloudflare.com/client/v4/zones/{{ cf_zone.stdout }}/purge_cache"
+        url: "https://api.cloudflare.com/client/v4/zones/{{ cf.zone_id }}/purge_cache"
         method: POST
         headers:
-          Authorization: "Bearer {{ cf_token.stdout }}"
+          Authorization: "Bearer {{ cf.api_token }}"
           Content-Type: application/json
         body_format: json
         body:
@@ -49,13 +24,12 @@
       when: everything | bool
       register: purge_all
       no_log: true
-
     - name: Purge specific URLs
       uri:
-        url: "https://api.cloudflare.com/client/v4/zones/{{ cf_zone.stdout }}/purge_cache"
+        url: "https://api.cloudflare.com/client/v4/zones/{{ cf.zone_id }}/purge_cache"
         method: POST
         headers:
-          Authorization: "Bearer {{ cf_token.stdout }}"
+          Authorization: "Bearer {{ cf.api_token }}"
           Content-Type: application/json
         body_format: json
         body:
@@ -64,14 +38,13 @@
       when: not (everything | bool) and urls | length > 0
       register: purge_urls
       no_log: true
-
     - name: Report
       debug:
         msg: >
           {% if everything | bool %}
-          Purged entire spire-codex.com zone ✓
+          Purged entire spire-codex.com zone
           {% elif urls | length > 0 %}
-          Purged {{ urls | length }} URL(s) ✓: {{ urls | join(', ') }}
+          Purged {{ urls | length }} URL(s): {{ urls | join(', ') }}
           {% else %}
-          Nothing purged — pass `-e everything=true` or `-e 'urls=["...","..."]'`
+          Nothing purged; pass -e everything=true or -e 'urls=["..."]'
           {% endif %}

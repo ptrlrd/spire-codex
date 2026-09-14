@@ -1,12 +1,4 @@
 ---
-# OS-level package updates + optional reboot. Run quarterly or after
-# a CVE announcement.
-#
-#   ansible-playbook playbooks/update-os.yml                  # update, no reboot
-#   ansible-playbook playbooks/update-os.yml -e reboot=true   # update + reboot if kernel changed
-#
-# Updates are rolled one host at a time (`serial: 1`) so traffic
-# doesn't drop if both origins reboot simultaneously.
 
 - name: OS package updates
   hosts: prod_origins
