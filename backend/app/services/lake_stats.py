@@ -2347,6 +2347,7 @@ def leaderboard_boards() -> dict[str, dict] | None:
     mirrors the legacy 10k count cap. None when the lake is incomplete."""
     from .runs_db_mongo import (
         HOT_LEADERBOARD_COMBOS,
+        LEADERBOARD_BOARD_ROWS,
         OFFICIAL_CHARACTERS,
         _leaderboard_key,
     )
@@ -2415,7 +2416,8 @@ def leaderboard_boards() -> dict[str, dict] | None:
                 else "run_time ASC"
             )
             rows = con.execute(
-                f"SELECT {cols} FROM lb WHERE {wsql} ORDER BY {order} LIMIT 50",
+                f"SELECT {cols} FROM lb WHERE {wsql} ORDER BY {order}"
+                f" LIMIT {int(LEADERBOARD_BOARD_ROWS)}",
                 args,
             ).fetchall()
             total = min(
