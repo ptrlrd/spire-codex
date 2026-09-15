@@ -3,6 +3,7 @@
 import { useGameLocale } from "@/lib/i18n";
 import { Fragment, type ReactNode } from "react";
 import { getCardProseFacts } from "@/lib/card-display";
+import { randomPatternSentences, randomPatternSummary } from "@/lib/attack-pattern";
 import type {
   Relic,
   Potion,
@@ -445,7 +446,13 @@ export default function EntityProse(props: Props) {
     // sequence, so lead with that rather than a move count (some moves are
     // conditional and never appear in the printed rotation).
     const pat = m.attack_pattern;
-    if (pat && pat.description) {
+    const summary = pat && pat.type !== "cycle" ? randomPatternSummary(pat) : null;
+    if (summary) {
+      const plain = (key: string, values?: Record<string, string | number>) =>
+        key.replace(/\{(\w+)\}/g, (_, k) => String(values?.[k] ?? ""));
+      const nameOf = (mid: string) => moves.find((mv) => mv.id === mid)?.name || mid;
+      sentences.push(randomPatternSentences(summary, nameOf, plain, "eng").join(" "));
+    } else if (pat && pat.description) {
       const desc = pat.description;
       if (desc.includes("→")) {
         // Arrow sequence — frame it as the rotation.
