@@ -2705,11 +2705,7 @@ def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
     total = int(doc.get("total") or 0)
     per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
-    if (
-        offset + per_page > len(rows)
-        and offset < min(total, len(rows) + 1)
-        and len(rows) < total
-    ):
+    if len(rows) < total and offset + per_page > len(rows):
         return None
     out = {k: v for k, v in doc.items() if k not in ("_id", "updated_at")}
     out["runs"] = rows[offset : offset + per_page]
