@@ -201,7 +201,7 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
 
   function setHidden(hidden: boolean) {
     setUnhiding(true);
-    fetch(`${API}/api/admin/runs/${hash}/hide`, {
+    fetch(`${API}/api/runs/${hash}/hidden`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json", ...authHeaders() },

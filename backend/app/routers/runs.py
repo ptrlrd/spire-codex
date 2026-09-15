@@ -2372,3 +2372,25 @@ def get_pick_coach(
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
+
+
+@router.post("/{run_hash}/hidden", tags=["Runs"])
+def set_hidden_from_run_page(request: Request, run_hash: str, body: dict | None = None):
+    """Hide or unhide a run from its own page. Same effect as the admin
+    console's route, but it lives outside the /api/admin prefix that the edge
+    login screen protects, so a signed-in admin's browser can call it from the
+    public site without an edge session."""
+    from ..services.auth_jwt import require_admin
+
+    require_admin(request)
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=503, detail="run hiding needs MongoDB")
+    hidden = bool((body or {}).get("hidden", True))
+    from ..services.runs_db_mongo import set_run_hidden
+
+    result = set_run_hidden(run_hash.strip(), hidden)
+    _load_run_blob_cached.cache_clear()
+    logger.info(
+        "admin set hidden=%s on run %s from its page: %s", hidden, run_hash, result
+    )
+    return {"run_hash": run_hash, "hidden": hidden, **result}
