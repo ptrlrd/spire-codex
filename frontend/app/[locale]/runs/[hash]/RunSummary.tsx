@@ -26,13 +26,18 @@ export type { PotionInfo };
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
+import { stackCards } from "@/lib/deck-stack";
 import { fmtDateTime, fmtDateTimePacific } from "@/lib/pacific";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 interface DeckCard {
   id: string;
   current_upgrade_level?: number;
-  enchantment?: { id: string; amount: number } | null;
+  enchantment?: {
+    id: string;
+    amount: number;
+    floor_added_to_deck?: number;
+  } | null;
 }
 
 interface RunRelic {
@@ -819,50 +824,6 @@ function bucketByRarity<T>(
     m.set(r, (m.get(r) ?? 0) + 1);
   }
   return m;
-}
-
-interface StackEntry {
-  id: string;
-  upgraded: boolean;
-  enchantment?: string;
-  count: number;
-}
-
-function stackCards(
-  deck: DeckCard[],
-  cardData: Record<string, CardInfo>,
-): StackEntry[] {
-  const map = new Map<string, StackEntry>();
-  for (const card of deck) {
-    const id = cleanId(card.id);
-    const upgraded = !!card.current_upgrade_level;
-    const enchantment = card.enchantment
-      ? cleanId(card.enchantment.id)
-      : undefined;
-    const key = `${id}::${upgraded}::${enchantment ?? ""}`;
-    const existing = map.get(key);
-    if (existing) {
-      existing.count += 1;
-    } else {
-      map.set(key, { id, upgraded, enchantment, count: 1 });
-    }
-  }
-  const rarityScore: Record<string, number> = {
-    Rare: 5,
-    Uncommon: 4,
-    Common: 3,
-    Starter: 1,
-    Curse: 0,
-    Status: 0,
-  };
-  return [...map.values()].sort((a, b) => {
-    const ra = rarityScore[cardData[a.id]?.rarity ?? ""] ?? 2;
-    const rb = rarityScore[cardData[b.id]?.rarity ?? ""] ?? 2;
-    if (ra !== rb) return rb - ra;
-    return (cardData[a.id]?.name ?? a.id).localeCompare(
-      cardData[b.id]?.name ?? b.id,
-    );
-  });
 }
 
 function lastPlayerStats(run: Run): PlayerStats | undefined {
