@@ -1,11 +1,8 @@
-import { cleanId } from "@/lib/display-name";
-
-export interface StackableCard {
-  id: string;
-  current_upgrade_level?: number;
-  enchantment?: { id: string; amount: number } | null;
-  floor_added_to_deck?: number;
-}
+import { DeckCard } from "@/lib/api/run/types";
+import { CardsContext } from "@/app/contexts/api";
+import { useContext } from "react";
+import { useTryGameTranslations } from "./i18n";
+import { Card } from "./api/types";
 
 export interface StackEntry {
   id: string;
@@ -18,33 +15,36 @@ export interface StackEntry {
   first: number;
 }
 
-/** Stacks identical cards and orders the stacks the way the deck was built:
- * starters first, then each pick in the order it joined the deck. Runs that
- * never recorded the floor fall back to rarity, then name. */
+const rarityScore: Record<string, number> = {
+  Rare: 5,
+  Uncommon: 4,
+  Common: 3,
+  Starter: 1,
+  Curse: 0,
+  Status: 0,
+};
+
 export function stackCards(
-  deck: StackableCard[],
-  cardData: Record<string, { rarity?: string; name?: string }>,
+  deck: DeckCard[],
+  cards: Record<string, Card>,
+  tryGT: ReturnType<typeof useTryGameTranslations>,
 ): StackEntry[] {
   const map = new Map<string, StackEntry>();
-  deck.forEach((card, index) => {
-    const id = cleanId(card.id);
+  for (const [index, card] of deck.entries()) {
+    const id = card.id;
     const upgraded = !!card.current_upgrade_level;
-    const enchantment = card.enchantment
-      ? cleanId(card.enchantment.id)
-      : undefined;
-    const floor =
-      typeof card.floor_added_to_deck === "number"
-        ? card.floor_added_to_deck
-        : undefined;
+    const enchantment = card.enchantment?.id;
+    const floor = card.floor_added_to_deck;
     const key = `${id}::${upgraded}::${enchantment ?? ""}`;
     const existing = map.get(key);
     if (existing) {
       existing.count += 1;
       if (
-        floor !== undefined &&
-        (existing.floor === undefined || floor < existing.floor)
-      )
+        (floor ?? Number.MAX_SAFE_INTEGER) <
+        (existing?.floor ?? Number.POSITIVE_INFINITY)
+      ) {
         existing.floor = floor;
+      }
     } else {
       map.set(key, {
         id,
@@ -55,27 +55,19 @@ export function stackCards(
         first: index,
       });
     }
-  });
+  }
   const stacks = [...map.values()];
   if (stacks.every((s) => s.floor !== undefined)) {
-    return stacks.sort(
-      (a, b) => (a.floor as number) - (b.floor as number) || a.first - b.first,
-    );
+    return stacks.sort((a, b) => a.floor! - b.floor! || a.first - b.first);
   }
-  const rarityScore: Record<string, number> = {
-    Rare: 5,
-    Uncommon: 4,
-    Common: 3,
-    Starter: 1,
-    Curse: 0,
-    Status: 0,
-  };
   return stacks.sort((a, b) => {
-    const ra = rarityScore[cardData[a.id]?.rarity ?? ""] ?? 2;
-    const rb = rarityScore[cardData[b.id]?.rarity ?? ""] ?? 2;
-    if (ra !== rb) return rb - ra;
-    return (cardData[a.id]?.name ?? a.id).localeCompare(
-      cardData[b.id]?.name ?? b.id,
+    const rarityA = cards?.[a.id]?.rarity;
+    const rarityB = cards?.[b.id]?.rarity;
+    const scoreA = rarityA ? rarityScore[rarityA] : 2;
+    const scoreB = rarityB ? rarityScore[rarityB] : 2;
+    if (scoreA !== scoreB) return scoreB - scoreA;
+    return (tryGT(`cards.${a.id}.title`) ?? a.id).localeCompare(
+      tryGT(`cards.${a.id}.title`) ?? b.id,
     );
   });
 }

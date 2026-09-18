@@ -4,7 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Modifier } from "@/lib/api";
+import type { Modifier } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";

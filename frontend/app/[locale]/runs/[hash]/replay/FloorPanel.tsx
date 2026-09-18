@@ -17,23 +17,18 @@ import type {
   ShopItem,
 } from "@/lib/replay";
 import { isCombatKind } from "@/lib/replay";
-import {
-  type EncounterMap,
-  type MonsterMap,
-  LiveCardImg,
-  safeId,
-} from "@/app/[locale]/live/live-shared";
-import {
-  CardPill,
-  PotionPill,
-  RelicPill,
-  cleanId,
-  displayName,
-  type CardInfo,
-  type PotionInfo,
-  type RelicInfo,
-} from "../RunPills";
+import { LiveCardImg, safeId } from "@/app/[locale]/live/live-shared";
+import { CardPill, PotionPill, RelicPill } from "../RunPills";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import type {
+  Card,
+  Relic,
+  Potion,
+  Encounter,
+  Monster,
+  GameEvent,
+} from "@/lib/api/types";
+import { cleanId, displayName } from "@/lib/display-name";
 
 export interface EventInfo {
   id: string;
@@ -41,12 +36,12 @@ export interface EventInfo {
 }
 
 export interface Catalog {
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
-  events: Record<string, EventInfo>;
-  monsters: MonsterMap;
-  encounters: EncounterMap;
+  cards: Record<string, Card>;
+  relics: Record<string, Relic>;
+  potions: Record<string, Potion>;
+  events: Record<string, GameEvent>;
+  monsters: Record<string, Monster>;
+  encounters: Record<string, Encounter>;
   cardScores: ScoresMap;
   relicScores: ScoresMap;
 }
@@ -99,30 +94,13 @@ function Card({
   cat: Catalog;
   bp: string;
 }) {
-  return (
-    <CardPill
-      cardId={id}
-      upgraded={up}
-      cardData={cat.cards}
-      bp={bp}
-      className={PILL}
-    />
-  );
+  return <CardPill cardId={id} upgraded={up} className={PILL} />;
 }
 function Relic({ id, cat, bp }: { id: string; cat: Catalog; bp: string }) {
-  return (
-    <RelicPill relicId={id} relicData={cat.relics} bp={bp} className={PILL} />
-  );
+  return <RelicPill relicId={id} className={PILL} />;
 }
 function Potion({ id, cat, bp }: { id: string; cat: Catalog; bp: string }) {
-  return (
-    <PotionPill
-      potionId={id}
-      potionData={cat.potions}
-      bp={bp}
-      className={PILL}
-    />
-  );
+  return <PotionPill potionId={id} className={PILL} />;
 }
 
 /** t() with one entity pill substituted for the {card}/{item}/{potion} slot. */

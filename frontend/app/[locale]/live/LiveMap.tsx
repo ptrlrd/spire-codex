@@ -28,16 +28,15 @@ import {
   enemyName,
   findMonster,
   safeId,
-  type Coord,
-  type EncounterMap,
   type LiveCatalogs,
   type FloorReward,
   type FloorSummary,
   type LiveMapData,
   type LiveRoute,
-  type MonsterMap,
   type Reveal,
+  Coord,
 } from "./live-shared";
+import { Encounter, Monster } from "@/lib/api/types";
 
 // Per-node-type styling. Types arrive lowercase; an unrecognized type falls
 // back to the neutral "node" entry so a new map symbol never breaks rendering.
@@ -369,8 +368,8 @@ function RewardList({
 // viewer's language, trying each catalog before prettifying the id.
 function roomName(
   id: string,
-  encounters?: EncounterMap,
-  monsters?: MonsterMap,
+  encounters?: Record<string, Encounter>,
+  monsters?: Record<string, Monster>,
   cat?: Partial<LiveCatalogs>,
 ): string {
   const bare = cleanId(id);
@@ -391,8 +390,8 @@ function FloorCard({
   cat,
 }: {
   f: FloorSummary;
-  encounters?: EncounterMap;
-  monsters?: MonsterMap;
+  encounters?: Record<string, Encounter>;
+  monsters?: Record<string, Monster>;
   cat?: Partial<LiveCatalogs>;
 }) {
   const t = useT();
@@ -494,8 +493,8 @@ export default function LiveMap({
   pos?: Coord | null;
   reveals?: Reveal[];
   route?: LiveRoute | null;
-  monsters?: MonsterMap;
-  encounters?: EncounterMap;
+  monsters?: Record<string, Monster>;
+  encounters?: Record<string, Encounter>;
   floorHistory?: FloorSummary[];
   cat?: Partial<LiveCatalogs>;
   selected?: Coord | null;

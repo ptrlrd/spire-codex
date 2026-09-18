@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import type { Guide } from "@/lib/api";
+import type { Guide } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";

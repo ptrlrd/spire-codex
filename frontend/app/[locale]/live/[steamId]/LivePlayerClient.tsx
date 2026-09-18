@@ -16,13 +16,7 @@ import { imageUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
-import {
-  CardPill,
-  PotionPill,
-  RelicPill,
-  cleanId,
-  displayName,
-} from "../../runs/[hash]/RunPills";
+import { CardPill, PotionPill, RelicPill } from "../../runs/[hash]/RunPills";
 import {
   API,
   CharacterIcon,
@@ -45,13 +39,13 @@ import {
   useMonsterMap,
   usePoll,
   withOrdinalKeys,
-  type EncounterMap,
   type LiveCatalogs,
   type LiveEvent,
   type LivePlayer,
   type LiveSeat,
-  type MonsterMap,
 } from "../live-shared";
+import { displayName, cleanId } from "@/lib/display-name";
+import { Encounter, Monster } from "@/lib/api/types";
 
 const POLL_MS = 4_000;
 
@@ -67,14 +61,18 @@ function TickerRow({
 }: {
   e: LiveEvent;
   cat: LiveCatalogs;
-  monsters: MonsterMap;
-  encounters: EncounterMap;
+  monsters?: Record<string, Monster>;
+  encounters?: Record<string, Encounter>;
   bp: string;
   won?: string;
 }) {
   const t = useT();
   let icon: React.ReactNode = null;
   let body: React.ReactNode;
+
+  if (!monsters || !encounters) {
+    return;
+  }
 
   switch (e.k) {
     case "card": {
@@ -102,13 +100,7 @@ function TickerRow({
       body = (
         <>
           {t("Played")}{" "}
-          <CardPill
-            cardId={id}
-            upgraded={upgraded}
-            cardData={cat.cards}
-            bp={bp}
-            className={TICKER_LINK}
-          >
+          <CardPill cardId={id} upgraded={upgraded} className={TICKER_LINK}>
             {info?.name || displayName(`CARD.${id}`)}
             {upgraded ? "+" : ""}
           </CardPill>
@@ -138,13 +130,7 @@ function TickerRow({
       body = (
         <>
           <span className="text-danger">{t("Removed")}</span>{" "}
-          <CardPill
-            cardId={id}
-            upgraded={upgraded}
-            cardData={cat.cards}
-            bp={bp}
-            className={TICKER_LINK}
-          >
+          <CardPill cardId={id} upgraded={upgraded} className={TICKER_LINK}>
             {info?.name || displayName(`CARD.${id}`)}
             {upgraded ? "+" : ""}
           </CardPill>
@@ -169,12 +155,7 @@ function TickerRow({
       body = (
         <>
           {t("Used")}{" "}
-          <PotionPill
-            potionId={id}
-            potionData={cat.potions}
-            bp={bp}
-            className={TICKER_LINK}
-          >
+          <PotionPill potionId={id} className={TICKER_LINK}>
             {info?.name || displayName(`POTION.${id}`)}
           </PotionPill>
         </>
@@ -214,32 +195,16 @@ function TickerRow({
         <>
           {t("Bought")}{" "}
           {relic ? (
-            <RelicPill
-              relicId={id}
-              relicData={cat.relics}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <RelicPill relicId={id} className={TICKER_LINK}>
               {relic.name}
             </RelicPill>
           ) : card ? (
-            <CardPill
-              cardId={id}
-              upgraded={upgraded}
-              cardData={cat.cards}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <CardPill cardId={id} upgraded={upgraded} className={TICKER_LINK}>
               {card.name}
               {upgraded ? "+" : ""}
             </CardPill>
           ) : potion ? (
-            <PotionPill
-              potionId={id}
-              potionData={cat.potions}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <PotionPill potionId={id} className={TICKER_LINK}>
               {potion.name}
             </PotionPill>
           ) : (
@@ -271,12 +236,7 @@ function TickerRow({
       body = id ? (
         <>
           <span className="text-warning">{verb}</span>{" "}
-          <RelicPill
-            relicId={id}
-            relicData={cat.relics}
-            bp={bp}
-            className={TICKER_LINK}
-          >
+          <RelicPill relicId={id} className={TICKER_LINK}>
             {info?.name || displayName(`RELIC.${id}`)}
           </RelicPill>
         </>
@@ -325,32 +285,16 @@ function TickerRow({
         <>
           {t("Took")}{" "}
           {card ? (
-            <CardPill
-              cardId={id}
-              upgraded={upgraded}
-              cardData={cat.cards}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <CardPill cardId={id} upgraded={upgraded} className={TICKER_LINK}>
               {card.name}
               {upgraded ? "+" : ""}
             </CardPill>
           ) : potion ? (
-            <PotionPill
-              potionId={id}
-              potionData={cat.potions}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <PotionPill potionId={id} className={TICKER_LINK}>
               {potion.name}
             </PotionPill>
           ) : relic ? (
-            <RelicPill
-              relicId={id}
-              relicData={cat.relics}
-              bp={bp}
-              className={TICKER_LINK}
-            >
+            <RelicPill relicId={id} className={TICKER_LINK}>
               {relic.name}
             </RelicPill>
           ) : (
@@ -389,13 +333,7 @@ function TickerRow({
       body = (
         <>
           <span className="text-info">{t("Upgraded")}</span>{" "}
-          <CardPill
-            cardId={id}
-            upgraded
-            cardData={cat.cards}
-            bp={bp}
-            className={TICKER_LINK}
-          >
+          <CardPill cardId={id} upgraded className={TICKER_LINK}>
             {info?.name || displayName(`CARD.${id}`)}
           </CardPill>
         </>
@@ -602,8 +540,6 @@ function LiveCombatPanel({
                   key={key}
                   cardId={id}
                   upgraded={upgraded}
-                  cardData={cat.cards}
-                  bp={bp}
                   className="relative block w-16 shrink-0"
                 >
                   <LiveCardImg
@@ -697,8 +633,6 @@ function LiveCombatPanel({
                     key={raw}
                     cardId={id}
                     upgraded={upgraded}
-                    cardData={cat.cards}
-                    bp={bp}
                     className="relative block w-32 shrink-0"
                   >
                     <LiveCardImg
@@ -860,7 +794,7 @@ export default function LivePlayerClient() {
     }
   }, POLL_MS);
 
-  if (status === "loading") {
+  if (!cat || status === "loading") {
     return (
       <div className="max-w-5xl mx-auto px-4 py-24 text-center text-sm text-[var(--text-muted)]">
         {t("Loading...")}
@@ -1099,15 +1033,7 @@ export default function LivePlayerClient() {
       {p.screen === "combat" && !p.loot && (
         <LiveCombatPanel p={p} cat={cat} bp={bp} />
       )}
-      {p.event && (
-        <LiveEventPanel
-          ev={p.event}
-          bp={bp}
-          cards={cat.cards}
-          relics={cat.relics}
-          events={cat.events}
-        />
-      )}
+      {p.event && <LiveEventPanel ev={p.event} bp={bp} />}
       {p.shop && (
         <LiveShopPanel
           shop={p.shop}
@@ -1177,8 +1103,6 @@ export default function LivePlayerClient() {
                   key={raw}
                   cardId={id}
                   upgraded={upgraded}
-                  cardData={cat.cards}
-                  bp={bp}
                   className="relative block w-28 shrink-0"
                 >
                   <LiveCardImg
@@ -1217,13 +1141,7 @@ export default function LivePlayerClient() {
                 ? imageUrl(info.image_url)
                 : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
               return (
-                <RelicPill
-                  key={raw}
-                  relicId={rid}
-                  relicData={cat.relics}
-                  bp={bp}
-                  className="block shrink-0"
-                >
+                <RelicPill key={raw} relicId={rid} className="block shrink-0">
                   <img
                     src={src}
                     alt={info?.name || displayName(`RELIC.${raw}`)}
@@ -1251,13 +1169,7 @@ export default function LivePlayerClient() {
               const pid = cleanId(raw);
               const info = cat.potions[pid];
               return (
-                <PotionPill
-                  key={key}
-                  potionId={pid}
-                  potionData={cat.potions}
-                  bp={bp}
-                  className="block shrink-0"
-                >
+                <PotionPill key={key} potionId={pid} className="block shrink-0">
                   {info?.image_url ? (
                     <img
                       src={imageUrl(info.image_url)}

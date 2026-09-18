@@ -10,27 +10,26 @@ import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
 import { imageUrl } from "@/lib/image-url";
 import { RichDescriptionSimple } from "@/app/components/RichDescription";
-import {
-  CardPill,
-  PotionPill,
-  RelicPill,
-  cleanId,
-  displayName,
-  type CardInfo,
-  type PotionInfo,
-  type RelicInfo,
-} from "../runs/[hash]/RunPills";
+import { CardPill, PotionPill, RelicPill } from "../runs/[hash]/RunPills";
 import {
   LiveCardImg,
+  NamedInfo,
   parseDeckId,
   safeId,
   withOrdinalKeys,
   type LiveEventCtx,
   type LiveLoot,
   type LiveShop,
-  type NamedMap,
   type ShopItem,
 } from "./live-shared";
+import { cleanId, displayName } from "@/lib/display-name";
+import { useContext } from "react";
+import { Card, Potion, Relic } from "@/lib/api/types";
+import {
+  CardsContext,
+  RelicsContext,
+  PotionsContext,
+} from "@/app/contexts/api";
 
 function Gold({ cost }: { cost?: number }) {
   if (cost == null) return null;
@@ -44,20 +43,19 @@ function Gold({ cost }: { cost?: number }) {
 export function LiveEventPanel({
   ev,
   bp,
-  cards,
-  relics,
   events,
 }: {
   ev: LiveEventCtx;
   bp: string;
-  cards?: Record<string, CardInfo>;
-  relics?: Record<string, RelicInfo>;
-  events?: NamedMap;
+  events?: Record<string, NamedInfo>;
 }) {
   const t = useT();
   const id = cleanId(ev.id);
   const titleText =
     events?.[id]?.name || ev.title || displayName(`EVENT.${id}`);
+  const cards = useContext(CardsContext);
+  const relics = useContext(RelicsContext);
+  const potions = useContext(PotionsContext);
   return (
     <div className="rounded-lg border border-special/30 bg-special/10 p-4">
       <div className="flex items-center gap-2 mb-2">
@@ -121,8 +119,6 @@ export function LiveEventPanel({
                       {o.card && (
                         <CardPill
                           cardId={cleanId(o.card)}
-                          cardData={cards ?? {}}
-                          bp={bp}
                           className="block w-16 shrink-0"
                         >
                           <LiveCardImg
@@ -136,8 +132,6 @@ export function LiveEventPanel({
                       {o.relic && (
                         <RelicPill
                           relicId={cleanId(o.relic)}
-                          relicData={relics ?? {}}
-                          bp={bp}
                           className="block shrink-0"
                         >
                           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -185,9 +179,9 @@ function ShopSection({
   title: string;
   items: ShopItem[];
   kind: "card" | "relic" | "potion";
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
+  cards: Record<string, Card>;
+  relics: Record<string, Relic>;
+  potions: Record<string, Potion>;
   bp: string;
 }) {
   const t = useT();
@@ -245,28 +239,16 @@ function ShopSection({
                 <CardPill
                   cardId={id}
                   upgraded={upgraded}
-                  cardData={cards}
-                  bp={bp}
                   className="block shrink-0"
                 >
                   {thumb}
                 </CardPill>
               ) : kind === "relic" ? (
-                <RelicPill
-                  relicId={id}
-                  relicData={relics}
-                  bp={bp}
-                  className="block shrink-0"
-                >
+                <RelicPill relicId={id} className="block shrink-0">
                   {thumb}
                 </RelicPill>
               ) : (
-                <PotionPill
-                  potionId={id}
-                  potionData={potions}
-                  bp={bp}
-                  className="block shrink-0"
-                >
+                <PotionPill potionId={id} className="block shrink-0">
                   {thumb}
                 </PotionPill>
               );
@@ -311,9 +293,9 @@ export function LiveShopPanel({
   bp,
 }: {
   shop: LiveShop;
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
+  cards: Record<string, Card>;
+  relics: Record<string, Relic>;
+  potions: Record<string, Potion>;
   bp: string;
 }) {
   const t = useT();
@@ -381,9 +363,9 @@ export function LiveLootPanel({
   bp,
 }: {
   loot: LiveLoot;
-  cards: Record<string, CardInfo>;
-  relics: Record<string, RelicInfo>;
-  potions: Record<string, PotionInfo>;
+  cards: Record<string, Card>;
+  relics: Record<string, Relic>;
+  potions: Record<string, Potion>;
   bp: string;
 }) {
   const t = useT();
@@ -424,8 +406,6 @@ export function LiveLootPanel({
               <PotionPill
                 key={`p-${key}`}
                 potionId={id}
-                potionData={potions}
-                bp={bp}
                 className="block shrink-0"
               >
                 {info?.image_url ? (
@@ -464,8 +444,6 @@ export function LiveLootPanel({
                       key={`pk${pi}-${key}`}
                       cardId={id}
                       upgraded={upgraded}
-                      cardData={cards}
-                      bp={bp}
                       className="relative block w-16 shrink-0"
                     >
                       <LiveCardImg
@@ -493,8 +471,6 @@ export function LiveLootPanel({
                   key={`c-${key}`}
                   cardId={id}
                   upgraded={upgraded}
-                  cardData={cards}
-                  bp={bp}
                   className="relative block w-16 shrink-0"
                 >
                   <LiveCardImg
@@ -514,8 +490,6 @@ export function LiveLootPanel({
               <RelicPill
                 key={`r-${key}`}
                 relicId={id}
-                relicData={relics}
-                bp={bp}
                 className="block shrink-0"
               >
                 {info?.image_url ? (

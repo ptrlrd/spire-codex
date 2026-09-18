@@ -1,73 +1,29 @@
 import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
-import type { TFn } from "@/lib/i18n";
-import { getT } from "@/lib/i18n-server";
+import { getT, getTryGameTranslations } from "@/lib/i18n-server";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
-import {
-  gameNameFor,
-  inLanguageOf,
-  localeOf,
-  localePath,
-  type Locale,
-} from "@/lib/locale";
+import { gameNameFor, inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata } from "@/lib/seo";
 import SharedRunClient from "./SharedRunClient";
+import { TFn } from "@/lib/i18n";
+import { Run } from "@/lib/api/run/types";
+import { getRun } from "@/lib/api/run/Run.server";
+import SharedRunContext from "@/app/contexts/api";
 
 export const dynamic = "force-dynamic";
 
-const API_INTERNAL =
-  process.env.API_INTERNAL_URL ||
-  process.env.NEXT_PUBLIC_API_URL ||
-  "http://localhost:8000";
-
 type Props = { params: Promise<{ locale: string; hash: string }> };
 
-interface SharedRun {
-  run_time?: number;
-  primary_hash?: string;
-  win?: boolean;
-  was_abandoned?: boolean;
-  username?: string | null;
-  ascension?: number;
-  players?: { character?: string; deck?: unknown[]; relics?: unknown[] }[];
-}
-
-async function fetchRun(hash: string): Promise<SharedRun | null> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/runs/shared/${hash}`);
-    if (!res.ok) return null;
-    return (await res.json()) as SharedRun;
-  } catch {
-    return null;
-  }
-}
-
-async function fetchCharacterNames(
-  locale: Locale,
-): Promise<Record<string, string>> {
-  try {
-    const res = await fetch(`${API_INTERNAL}/api/translations?lang=${locale}`, {
-      next: { revalidate: 300 },
-    });
-    if (!res.ok) return {};
-    const body = (await res.json()) as {
-      character_names?: Record<string, string>;
-    };
-    return body.character_names ?? {};
-  } catch {
-    return {};
-  }
-}
-
 function describeRun(
-  run: SharedRun,
+  run: Run,
   t: TFn,
-  charNames: Record<string, string>,
+  tryT: Awaited<ReturnType<typeof getTryGameTranslations>>,
 ) {
-  const rawChar =
-    run.players?.[0]?.character?.replace("CHARACTER.", "") || "Unknown";
-  const englishChar = rawChar.charAt(0) + rawChar.slice(1).toLowerCase();
-  const char = charNames[rawChar.toLowerCase()] || englishChar;
+  // todo: this needs to be .title later
+  const char =
+    tryT(`${run.players?.[0]?.character}.title`) ??
+    tryT(`LOCKED.title`) ??
+    t("Unknown");
   const resultLabel = run.win
     ? t("Victory")
     : run.was_abandoned
@@ -84,21 +40,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, hash } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const [run, charNames] = await Promise.all([
-    fetchRun(hash),
-    fetchCharacterNames(locale),
-  ]);
-  if (!run)
+  const tryGT = await getTryGameTranslations({
+    namespace: "characters",
+    locale,
+  });
+  const run = await getRun(hash);
+  if (!run) {
     return buildPageMetadata({
       locale,
       path: `/runs/${hash}`,
       title: t("Page Not Found"),
       noIndex: true,
     });
+  }
   const { char, resultLabel, username, anonymous, ascension } = describeRun(
     run,
     t,
-    charNames,
+    tryGT,
   );
   // Title format requested by user:
   //   "{username} - {character} - Ascension N win/loss - Slay the Spire 2 (sts2) | Spire Codex"
@@ -131,16 +89,17 @@ export default async function SharedRunPage({ params }: Props) {
   const { locale: rawLocale, hash } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const [run, charNames] = await Promise.all([
-    fetchRun(hash),
-    fetchCharacterNames(locale),
-  ]);
+  const tryGT = await getTryGameTranslations({
+    namespace: "characters",
+    locale,
+  });
+  const run = await getRun(hash);
   let jsonLd: ReturnType<typeof buildDetailPageJsonLd> | null = null;
   if (run) {
     const { char, resultLabel, username, ascension } = describeRun(
       run,
       t,
-      charNames,
+      tryGT,
     );
     jsonLd = buildDetailPageJsonLd({
       name: `${username} - ${char} - ${t("Ascension")} ${ascension} ${resultLabel}`,
@@ -159,12 +118,12 @@ export default async function SharedRunPage({ params }: Props) {
     });
   }
   return (
-    <>
+    <SharedRunContext value={run}>
       {jsonLd && <JsonLd data={jsonLd} />}
       {/* The run is passed down so the page server-renders with real
           content; without it every run page was an identical client-side
           shell (duplicate content, no unique text for crawlers). */}
-      <SharedRunClient initialRun={run} />
-    </>
+      <SharedRunClient />
+    </SharedRunContext>
   );
 }

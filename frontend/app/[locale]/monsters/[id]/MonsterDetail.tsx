@@ -16,7 +16,7 @@ import type {
   MonsterMovePower,
   Power,
   AttackPattern,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import type { EncounterStat } from "@/lib/encounter-stats";
 import {
   randomPatternSentences,

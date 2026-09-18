@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Act } from "@/lib/api";
+import type { Act } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import LocalizedNames from "@/app/components/LocalizedNames";

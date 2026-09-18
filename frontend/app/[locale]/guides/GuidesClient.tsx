@@ -3,7 +3,7 @@
 import { Suspense, useState, useEffect, useMemo, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useT } from "@/lib/i18n";
-import type { GuideSummary } from "@/lib/api";
+import type { GuideSummary } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";

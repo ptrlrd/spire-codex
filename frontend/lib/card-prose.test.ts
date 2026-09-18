@@ -2,7 +2,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { getCardDisplayModel, getCardProseFacts } from "./card-display";
-import type { Card } from "./api";
+import type { Card } from "./api/types";
 
 const cards: Card[] = JSON.parse(
   readFileSync(join(__dirname, "../../data/eng/cards.json"), "utf8"),

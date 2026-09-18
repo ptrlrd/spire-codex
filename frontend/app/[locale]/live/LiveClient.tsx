@@ -10,18 +10,11 @@ import { useT } from "@/lib/i18n";
 // palette and sitemap) but viewable by anyone with the URL. The presence
 // API only ever contains players who opted into sharing.
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { imageUrl } from "@/lib/image-url";
-import {
-  CardPill,
-  RelicPill,
-  cleanId,
-  displayName,
-  type CardInfo,
-  type RelicInfo,
-} from "../runs/[hash]/RunPills";
+import { CardPill, RelicPill } from "../runs/[hash]/RunPills";
 import {
   API,
   CharacterIcon,
@@ -35,13 +28,15 @@ import {
   parseDeckId,
   screenLabel,
   useCharacterNames,
-  useIdMap,
   useMonsterMap,
   usePoll,
   withOrdinalKeys,
   type LivePlayer,
-  type MonsterMap,
 } from "./live-shared";
+import { cleanId, displayName } from "@/lib/display-name";
+import { Monster } from "@/lib/api/types";
+import { CardsContext, RelicsContext } from "@/app/contexts/api";
+import { useApiEndpointIdMapped } from "@/lib/api/endpoint.client";
 
 // The roster carries no ticker events, so the contract's 10-15s roster
 // guidance applies here rather than the hot 3-5s per-player cadence.
@@ -52,20 +47,18 @@ const ROSTER_LIMIT = 24;
 
 function PlayerCard({
   p,
-  cardData,
-  relicData,
   characterNames,
   monsters,
   bp,
 }: {
   p: LivePlayer;
-  cardData: Record<string, CardInfo>;
-  relicData: Record<string, RelicInfo>;
   characterNames: Record<string, string>;
-  monsters: MonsterMap;
+  monsters?: Record<string, Monster>;
   bp: string;
 }) {
   const t = useT();
+  const cards = useContext(CardsContext);
+  const relics = useContext(RelicsContext);
   const hpPct =
     p.hp != null && p.max_hp
       ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100))
@@ -74,163 +67,158 @@ function PlayerCard({
   const recent = (p.deck ?? []).slice(-RECENT_CARDS).reverse();
 
   return (
-    <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 hover:border-[var(--border-accent)] transition-colors">
-      <div className="flex items-center gap-3">
-        <Link href={`/live/${p.steam_id}`} className="shrink-0">
-          <CharacterIcon character={p.character} />
-        </Link>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-2">
-            <LiveDot />
-            <Link
-              href={`/live/${p.steam_id}`}
-              className="font-semibold text-[var(--text-primary)] truncate hover:text-[var(--accent-gold)] transition-colors"
-            >
-              {p.username || t("Anonymous climber")}
-            </Link>
-            {p.ascension != null && p.ascension > 0 && (
-              <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
-                A{p.ascension}
-              </span>
-            )}
-            {(p.player_count ?? 1) > 1 && (
-              <span className="text-[10px] text-[var(--text-muted)]">
-                {t("co-op ×{n}", { n: p.player_count ?? 0 })}
-              </span>
-            )}
-            {p.is_partner && <PartnerBadge />}
+    cards &&
+    relics && (
+      <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 hover:border-[var(--border-accent)] transition-colors">
+        <div className="flex items-center gap-3">
+          <Link href={`/live/${p.steam_id}`} className="shrink-0">
+            <CharacterIcon character={p.character} />
+          </Link>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-2">
+              <LiveDot />
+              <Link
+                href={`/live/${p.steam_id}`}
+                className="font-semibold text-[var(--text-primary)] truncate hover:text-[var(--accent-gold)] transition-colors"
+              >
+                {p.username || t("Anonymous climber")}
+              </Link>
+              {p.ascension != null && p.ascension > 0 && (
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30">
+                  A{p.ascension}
+                </span>
+              )}
+              {(p.player_count ?? 1) > 1 && (
+                <span className="text-[10px] text-[var(--text-muted)]">
+                  {t("co-op ×{n}", { n: p.player_count ?? 0 })}
+                </span>
+              )}
+              {p.is_partner && <PartnerBadge />}
+            </div>
+            <div className="text-xs text-[var(--text-muted)] truncate">
+              {characterName(p.character, characterNames)}
+              {p.screen ? ` · ${screenLabel(p.screen, t)}` : ""}
+              {p.started_at
+                ? ` · ${t("climbing for {time}", { time: elapsed(p.started_at, t("under a minute")) })}`
+                : ""}
+            </div>
           </div>
-          <div className="text-xs text-[var(--text-muted)] truncate">
-            {characterName(p.character, characterNames)}
-            {p.screen ? ` · ${screenLabel(p.screen, t)}` : ""}
-            {p.started_at
-              ? ` · ${t("climbing for {time}", { time: elapsed(p.started_at, t("under a minute")) })}`
-              : ""}
+          <div className="text-right shrink-0">
+            <div className="text-sm font-semibold text-[var(--text-primary)] tabular-nums">
+              {p.act != null ? t("Act {n}", { n: p.act }) : ""}
+              {p.total_floor != null
+                ? ` · ${t("F{n}", { n: p.total_floor })}`
+                : ""}
+            </div>
+            <div className="text-xs text-[var(--text-muted)] tabular-nums">
+              {p.gold != null ? t("{n} gold", { n: p.gold }) : ""}
+            </div>
           </div>
         </div>
-        <div className="text-right shrink-0">
-          <div className="text-sm font-semibold text-[var(--text-primary)] tabular-nums">
-            {p.act != null ? t("Act {n}", { n: p.act }) : ""}
-            {p.total_floor != null
-              ? ` · ${t("F{n}", { n: p.total_floor })}`
-              : ""}
-          </div>
-          <div className="text-xs text-[var(--text-muted)] tabular-nums">
-            {p.gold != null ? t("{n} gold", { n: p.gold }) : ""}
-          </div>
-        </div>
-      </div>
 
-      <div className="mt-2 flex flex-wrap items-center gap-2">
-        <FightingChip p={p} monsters={monsters} />
-        {p.twitch_live && p.twitch_login && (
-          <WatchOnTwitch
-            login={p.twitch_login}
-            viewers={p.twitch_viewers}
-            className="ml-auto"
-          />
-        )}
-        <Link
-          href={`/live/${p.steam_id}`}
-          className={`text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap ${
-            p.twitch_live && p.twitch_login ? "" : "ml-auto"
-          }`}
-        >
-          {t("Watch live")} →
-        </Link>
-      </div>
-
-      {hpPct != null && (
-        <div className="mt-3">
-          <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
-            <span>{t("HP")}</span>
-            <span>
-              {p.hp}/{p.max_hp}
-            </span>
-          </div>
-          <div className="h-1.5 rounded bg-[var(--bg-primary)]">
-            <div
-              className="h-1.5 rounded bg-danger-fill"
-              style={{ width: `${hpPct}%` }}
+        <div className="mt-2 flex flex-wrap items-center gap-2">
+          <FightingChip p={p} monsters={monsters} />
+          {p.twitch_live && p.twitch_login && (
+            <WatchOnTwitch
+              login={p.twitch_login}
+              viewers={p.twitch_viewers}
+              className="ml-auto"
             />
-          </div>
+          )}
+          <Link
+            href={`/live/${p.steam_id}`}
+            className={`text-xs text-[var(--accent-gold)] hover:underline whitespace-nowrap ${
+              p.twitch_live && p.twitch_login ? "" : "ml-auto"
+            }`}
+          >
+            {t("Watch live")} →
+          </Link>
         </div>
-      )}
 
-      {recent.length > 0 && (
-        <div className="mt-3">
-          <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
-            {t("Latest cards")}
+        {hpPct != null && (
+          <div className="mt-3">
+            <div className="flex justify-between text-[10px] text-[var(--text-muted)] mb-1 tabular-nums">
+              <span>{t("HP")}</span>
+              <span>
+                {p.hp}/{p.max_hp}
+              </span>
+            </div>
+            <div className="h-1.5 rounded bg-[var(--bg-primary)]">
+              <div
+                className="h-1.5 rounded bg-danger-fill"
+                style={{ width: `${hpPct}%` }}
+              />
+            </div>
           </div>
-          <div className="flex gap-1.5">
-            {withOrdinalKeys(recent).map(({ item: raw, key }) => {
-              const { id, upgraded } = parseDeckId(raw);
-              return (
-                <CardPill
-                  key={key}
-                  cardId={id}
-                  upgraded={upgraded}
-                  cardData={cardData}
-                  bp={bp}
-                  className="block w-12 shrink-0"
-                >
-                  <LiveCardImg
-                    id={id}
+        )}
+
+        {recent.length > 0 && (
+          <div className="mt-3">
+            <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+              {t("Latest cards")}
+            </div>
+            <div className="flex gap-1.5">
+              {withOrdinalKeys(recent).map(({ item: raw, key }) => {
+                const { id, upgraded } = parseDeckId(raw);
+                return (
+                  <CardPill
+                    key={key}
+                    cardId={id}
                     upgraded={upgraded}
-                    alt={cardData[id]?.name || displayName(`CARD.${id}`)}
-                    className="w-12 h-auto rounded-sm"
-                    portrait={cardData[id]?.image_url}
-                  />
-                </CardPill>
-              );
-            })}
+                    className="block w-12 shrink-0"
+                  >
+                    <LiveCardImg
+                      id={id}
+                      upgraded={upgraded}
+                      alt={cards[id]?.name || displayName(`CARD.${id}`)}
+                      className="w-12 h-auto rounded-sm"
+                      portrait={cards[id]?.image_url}
+                    />
+                  </CardPill>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {(p.relics ?? []).length > 0 && (
-        <div className="mt-3">
-          <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
-            {t("Relics")}
+        {(p.relics ?? []).length > 0 && (
+          <div className="mt-3">
+            <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+              {t("Relics")}
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {(p.relics ?? []).map((raw) => {
+                const rid = cleanId(raw);
+                const info = relics[rid];
+                const src = info?.image_url
+                  ? imageUrl(info.image_url)
+                  : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
+                return (
+                  <RelicPill key={raw} relicId={rid} className="block shrink-0">
+                    <img
+                      src={src}
+                      alt={info?.name || displayName(`RELIC.${raw}`)}
+                      className="w-7 h-7 object-contain"
+                      crossOrigin="anonymous"
+                      loading="lazy"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).style.display = "none";
+                      }}
+                    />
+                  </RelicPill>
+                );
+              })}
+            </div>
           </div>
-          <div className="flex flex-wrap gap-1">
-            {(p.relics ?? []).map((raw) => {
-              const rid = cleanId(raw);
-              const info = relicData[rid];
-              const src = info?.image_url
-                ? imageUrl(info.image_url)
-                : imageUrl(`/static/images/relics/${rid.toLowerCase()}.png`);
-              return (
-                <RelicPill
-                  key={raw}
-                  relicId={rid}
-                  relicData={relicData}
-                  bp={bp}
-                  className="block shrink-0"
-                >
-                  <img
-                    src={src}
-                    alt={info?.name || displayName(`RELIC.${raw}`)}
-                    className="w-7 h-7 object-contain"
-                    crossOrigin="anonymous"
-                    loading="lazy"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                </RelicPill>
-              );
-            })}
-          </div>
-        </div>
-      )}
+        )}
 
-      {p.sts2_version && (
-        <div className="mt-3 text-[10px] text-[var(--text-muted)]">
-          {p.sts2_version}
-        </div>
-      )}
-    </div>
+        {p.sts2_version && (
+          <div className="mt-3 text-[10px] text-[var(--text-muted)]">
+            {p.sts2_version}
+          </div>
+        )}
+      </div>
+    )
   );
 }
 
@@ -239,8 +227,8 @@ export default function LiveClient() {
   const t = useT();
   const [players, setPlayers] = useState<LivePlayer[] | null>(null);
   const [stale, setStale] = useState(false);
-  const cardData = useIdMap<CardInfo>("/api/cards");
-  const relicData = useIdMap<RelicInfo>("/api/relics");
+  const cards = useApiEndpointIdMapped("cards");
+  const relics = useApiEndpointIdMapped("relics");
   const characterNames = useCharacterNames();
   const monsters = useMonsterMap(
     (players ?? []).some(
@@ -281,45 +269,52 @@ export default function LiveClient() {
   }, POLL_MS);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div className="flex items-center gap-3 mb-1">
-        <h1 className="text-3xl font-bold">
-          <span className="text-[var(--accent-gold)]">{t("Live now")}</span>
-        </h1>
-        {players !== null && players.length > 0 && <LiveDot />}
-      </div>
-      <p className="text-sm text-[var(--text-muted)] mb-6">
-        {t("Players in a run with the mod right now · refreshes every {n}s", {
-          n: POLL_MS / 1000,
-        })}
-        {stale ? ` · ${t("last refresh failed, retrying")}` : ""}
-      </p>
+    <CardsContext value={cards}>
+      <RelicsContext value={relics}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex items-center gap-3 mb-1">
+            <h1 className="text-3xl font-bold">
+              <span className="text-[var(--accent-gold)]">{t("Live now")}</span>
+            </h1>
+            {players !== null && players.length > 0 && <LiveDot />}
+          </div>
+          <p className="text-sm text-[var(--text-muted)] mb-6">
+            {t(
+              "Players in a run with the mod right now · refreshes every {n}s",
+              {
+                n: POLL_MS / 1000,
+              },
+            )}
+            {stale ? ` · ${t("last refresh failed, retrying")}` : ""}
+          </p>
 
-      {players === null && (
-        <p className="text-sm text-[var(--text-muted)]">
-          {t("Loading the roster...")}
-        </p>
-      )}
-      {players !== null && players.length === 0 && (
-        <p className="text-sm text-[var(--text-secondary)]">
-          {t("Nobody is climbing right now. The roster updates on its own.")}
-        </p>
-      )}
-      {players !== null && players.length > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {players.map((p) => (
-            <PlayerCard
-              key={p.steam_id}
-              p={p}
-              cardData={cardData}
-              relicData={relicData}
-              characterNames={characterNames}
-              monsters={monsters}
-              bp={bp}
-            />
-          ))}
+          {players === null && (
+            <p className="text-sm text-[var(--text-muted)]">
+              {t("Loading the roster...")}
+            </p>
+          )}
+          {players !== null && players.length === 0 && (
+            <p className="text-sm text-[var(--text-secondary)]">
+              {t(
+                "Nobody is climbing right now. The roster updates on its own.",
+              )}
+            </p>
+          )}
+          {players !== null && players.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {players.map((p) => (
+                <PlayerCard
+                  key={p.steam_id}
+                  p={p}
+                  characterNames={characterNames}
+                  bp={bp}
+                  monsters={monsters}
+                />
+              ))}
+            </div>
+          )}
         </div>
-      )}
-    </div>
+      </RelicsContext>
+    </CardsContext>
   );
 }

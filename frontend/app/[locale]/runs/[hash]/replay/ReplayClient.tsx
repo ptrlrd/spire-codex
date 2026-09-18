@@ -25,12 +25,6 @@ import {
   useMonsterMap,
   type Coord,
 } from "@/app/[locale]/live/live-shared";
-import {
-  cleanId,
-  type CardInfo,
-  type PotionInfo,
-  type RelicInfo,
-} from "../RunPills";
 import FloorPanel, {
   KIND_LABEL,
   floorTitle,
@@ -38,6 +32,13 @@ import FloorPanel, {
   type EventInfo,
 } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
+import { Card, GameEvent, Potion, Relic } from "@/lib/api/types";
+import { cleanId } from "@/lib/display-name";
+import {
+  CardsContext,
+  PotionsContext,
+  RelicsContext,
+} from "@/app/contexts/api";
 
 const ENERGY_ICONS = new Set([
   "ironclad",
@@ -319,10 +320,10 @@ export default function ReplayClient({
   const [model, setModel] = useState<ReplayModel | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
-  const [cards, setCards] = useState<Record<string, CardInfo>>({});
-  const [relics, setRelics] = useState<Record<string, RelicInfo>>({});
-  const [potions, setPotions] = useState<Record<string, PotionInfo>>({});
-  const [events, setEvents] = useState<Record<string, EventInfo>>({});
+  const [cards, setCards] = useState<Record<string, Card>>({});
+  const [relics, setRelics] = useState<Record<string, Relic>>({});
+  const [potions, setPotions] = useState<Record<string, Potion>>({});
+  const [events, setEvents] = useState<Record<string, GameEvent>>({});
   const monsters = useMonsterMap(true);
   const encounters = useEncounterMap(true);
   const bracket = (run.ascension ?? 0) >= 10 ? "a10" : "all";
@@ -369,10 +370,10 @@ export default function ReplayClient({
         `${API}/api/${path}?lang=${encodeURIComponent(lang)}`,
       ).then(index, () => ({}) as Record<string, T>);
     Promise.all([
-      load<CardInfo>("cards"),
-      load<RelicInfo>("relics"),
-      load<PotionInfo>("potions"),
-      load<EventInfo>("events"),
+      load<Card>("cards"),
+      load<Relic>("relics"),
+      load<Potion>("potions"),
+      load<GameEvent>("events"),
     ]).then(([c, r, p, e]) => {
       if (!alive) return;
       setCards(c);
@@ -487,8 +488,8 @@ export default function ReplayClient({
     relics,
     potions,
     events,
-    monsters,
-    encounters,
+    monsters: monsters ?? {},
+    encounters: encounters ?? {},
     cardScores,
     relicScores,
   };
@@ -514,230 +515,246 @@ export default function ReplayClient({
   const map = model?.maps[act];
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
-        <Link
-          href={`${lp}/runs/${hash}`}
-          className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
-        >
-          &larr; {t("Back to run")}
-        </Link>
-        <span className="text-xs text-[var(--text-muted)]">
-          {t("Use ← → to step floors")}
-        </span>
-      </div>
-
-      <header className="mb-5 flex flex-wrap items-center gap-4">
-        {characterId && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={imageUrl(
-              `/static/images/characters/character_icon_${characterId.toLowerCase()}.webp`,
-            )}
-            alt=""
-            className="h-10 w-10"
-          />
-        )}
-        <div className="min-w-0">
-          <h1 className="text-xl font-bold text-[var(--text-primary)]">
-            {[who, character, `A${run.ascension ?? 0}`]
-              .filter(Boolean)
-              .join(" · ")}
-          </h1>
-          <p className="text-sm text-[var(--text-muted)]">
-            <span
-              className={
-                run.win
-                  ? "text-[var(--accent-gold)]"
-                  : "text-[var(--accent-red)]"
-              }
-            >
-              {result}
-            </span>
-            {" · "}
-            {floors.length} {t("floors")}
-            {run.run_time ? ` · ${formatTime(run.run_time)}` : ""}
-            {header?.buildId ? ` · ${header.buildId}` : ""}
-            {model && model.reloads > 0
-              ? ` · ${model.reloads} ${t("reloads")}`
-              : ""}
-            {model
-              ? ` · ${floors.reduce((n, f) => n + f.decisions.length, 0)} ${t("decisions")}`
-              : ""}
-          </p>
-        </div>
-      </header>
-      {model && captureIsComplete(model) === false && (
-        <p className="mb-4 rounded-lg border border-[var(--accent-red)] px-3 py-2 text-sm text-[var(--text-secondary)]">
-          {model.end?.captureStatus === "truncated"
-            ? t(
-                "The recording stopped before the run ended, so the later floors are missing.",
-              )
-            : t(
-                "The recording dropped some of this run, so parts of it are missing.",
-              )}
-          {model.end?.lostCount !== undefined &&
-            ` ${t("Lines not captured: {n}", { n: model.end.lostCount })}`}
-        </p>
-      )}
-      {model && model.gaps.length > 0 && (
-        <p className="mb-4 text-xs text-[var(--text-muted)]">
-          {t("Missing from the record: {n} lines in {places} places", {
-            n: model.gaps.reduce((a, g) => a + g.count, 0),
-            places: model.gaps.length,
-          })}
-          {model.gaps.some((g) => g.floor !== undefined) &&
-            ` · ${t("Floors affected: {list}", { list: [...new Set(model.gaps.flatMap((g) => (g.floor === undefined ? [] : [g.floor])))].join(", ") })}`}
-        </p>
-      )}
-      {model && model.malformedLines > 0 && (
-        <p className="mb-4 text-xs text-[var(--text-muted)]">
-          {t("Lines that could not be read: {n}", { n: model.malformedLines })}
-        </p>
-      )}
-      {model && (
-        <RunCharts
-          model={model}
-          floors={floors}
-          maxHp={maxHp}
-          selected={selected ?? -1}
-          onPick={pick}
-        />
-      )}
-
-      {error && (
-        <p className="text-sm text-[var(--accent-red)]">
-          {t("Couldn't load the replay.")} {error}
-        </p>
-      )}
-      {!model && !error && (
-        <p className="text-sm text-[var(--text-muted)]">
-          {t("Loading replay…")}
-        </p>
-      )}
-
-      {model && (
-        <div className="grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr]">
-          <aside className="space-y-4">
-            {acts.length > 1 && (
-              <div className="flex gap-1.5">
-                {acts.map((a) => (
-                  <button
-                    key={a}
-                    type="button"
-                    onClick={() => {
-                      const first = floors.find((f) => f.act === a);
-                      if (first) pick(first.floor);
-                    }}
-                    className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${a === act ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"}`}
-                  >
-                    {t("Act")} {a}
-                    {model.actNames[a]
-                      ? ` · ${model.actNames[a].replace(/_/g, " ").toLowerCase()}`
-                      : ""}
-                  </button>
-                ))}
-              </div>
-            )}
-            {map && map.nodes.length > 0 && (
-              <div
-                ref={mapBox}
-                className="max-h-[70vh] overflow-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2"
+    <CardsContext value={cards}>
+      <RelicsContext value={relics}>
+        <PotionsContext value={potions}>
+          <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
+              <Link
+                href={`${lp}/runs/${hash}`}
+                className="text-sm text-[var(--text-muted)] transition-colors hover:text-[var(--text-primary)]"
               >
-                <LiveMap
-                  map={map}
-                  path={path}
-                  pathEdges={pathEdges}
-                  selected={selectedCoord}
-                  monsters={monsters}
-                  encounters={encounters}
-                  actName={model.actNames[act]}
-                  character={characterId}
-                  route={{
-                    boss: map.boss ? { id: map.boss } : undefined,
-                    ancient: map.ancient ? { id: map.ancient } : undefined,
-                  }}
-                  onSelect={(c) => {
-                    const floor = coordToFloor.get(`${c[0]},${c[1]}`);
-                    if (floor !== undefined) pick(floor);
-                  }}
+                &larr; {t("Back to run")}
+              </Link>
+              <span className="text-xs text-[var(--text-muted)]">
+                {t("Use ← → to step floors")}
+              </span>
+            </div>
+
+            <header className="mb-5 flex flex-wrap items-center gap-4">
+              {characterId && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={imageUrl(
+                    `/static/images/characters/character_icon_${characterId.toLowerCase()}.webp`,
+                  )}
+                  alt=""
+                  className="h-10 w-10"
                 />
-                {!positionsRecorded ? (
-                  <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
-                    {t("This recording did not include map positions.")}
-                  </p>
-                ) : unplaced > 0 ? (
-                  <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
-                    {t("Floors with no recorded position: {n}", {
-                      n: unplaced,
-                    })}
-                  </p>
-                ) : null}
-                {offMap > 0 && (
-                  <p className="px-1 pt-1 text-[11px] text-[var(--text-muted)]">
-                    {t("Recorded positions not on the map: {n}", { n: offMap })}
-                  </p>
-                )}
+              )}
+              <div className="min-w-0">
+                <h1 className="text-xl font-bold text-[var(--text-primary)]">
+                  {[who, character, `A${run.ascension ?? 0}`]
+                    .filter(Boolean)
+                    .join(" · ")}
+                </h1>
+                <p className="text-sm text-[var(--text-muted)]">
+                  <span
+                    className={
+                      run.win
+                        ? "text-[var(--accent-gold)]"
+                        : "text-[var(--accent-red)]"
+                    }
+                  >
+                    {result}
+                  </span>
+                  {" · "}
+                  {floors.length} {t("floors")}
+                  {run.run_time ? ` · ${formatTime(run.run_time)}` : ""}
+                  {header?.buildId ? ` · ${header.buildId}` : ""}
+                  {model && model.reloads > 0
+                    ? ` · ${model.reloads} ${t("reloads")}`
+                    : ""}
+                  {model
+                    ? ` · ${floors.reduce((n, f) => n + f.decisions.length, 0)} ${t("decisions")}`
+                    : ""}
+                </p>
               </div>
-            )}
-            <ol className="max-h-[60vh] overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm">
-              {floors
-                .filter((f) => f.act === act)
-                .map((f) => {
-                  const on = f.floor === selected;
-                  return (
-                    <li key={f.floor}>
-                      <button
-                        type="button"
-                        onClick={() => pick(f.floor)}
-                        className={`flex w-full items-center gap-2 px-3 py-1.5 text-left transition-colors ${on ? "bg-[color-mix(in_srgb,var(--accent-gold)_14%,transparent)] text-[var(--text-primary)]" : "text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]"}`}
-                      >
-                        <span className="w-6 text-right text-xs tabular-nums text-[var(--text-muted)]">
-                          {f.floor}
-                        </span>
-                        <span className="w-5 text-center text-xs" aria-hidden>
-                          {KIND_GLYPH[f.kind] ?? "·"}
-                        </span>
-                        <span className="min-w-0 flex-1 truncate">
-                          {floorTitle(f, cat, t)}
-                        </span>
-                        <span className="text-[10px] text-[var(--text-muted)]">
-                          {t(KIND_LABEL[f.kind] ?? f.kind)}
-                        </span>
-                        {f.hpAfter !== undefined && (
-                          <span className="w-8 text-right text-[10px] tabular-nums text-[var(--text-muted)]">
-                            {f.hpAfter}
-                          </span>
-                        )}
-                      </button>
-                    </li>
-                  );
-                })}
-            </ol>
-          </aside>
-          <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-            {current ? (
-              <FloorPanel
-                f={current}
-                prev={floors[floors.indexOf(current) - 1]}
-                cat={cat}
-                maxHp={maxHp}
-                who={who}
-                energyIcon={energyIcon}
-                playerId={characterId.toUpperCase()}
-                recordingEndsHere={
-                  current === floors[floors.length - 1] &&
-                  (!model?.end || model.end.terminalReason === "interrupted")
-                }
-              />
-            ) : (
-              <p className="text-sm text-[var(--text-muted)]">
-                {t("Pick a floor.")}
+            </header>
+            {model && captureIsComplete(model) === false && (
+              <p className="mb-4 rounded-lg border border-[var(--accent-red)] px-3 py-2 text-sm text-[var(--text-secondary)]">
+                {model.end?.captureStatus === "truncated"
+                  ? t(
+                      "The recording stopped before the run ended, so the later floors are missing.",
+                    )
+                  : t(
+                      "The recording dropped some of this run, so parts of it are missing.",
+                    )}
+                {model.end?.lostCount !== undefined &&
+                  ` ${t("Lines not captured: {n}", { n: model.end.lostCount })}`}
               </p>
             )}
-          </main>
-        </div>
-      )}
-    </div>
+            {model && model.gaps.length > 0 && (
+              <p className="mb-4 text-xs text-[var(--text-muted)]">
+                {t("Missing from the record: {n} lines in {places} places", {
+                  n: model.gaps.reduce((a, g) => a + g.count, 0),
+                  places: model.gaps.length,
+                })}
+                {model.gaps.some((g) => g.floor !== undefined) &&
+                  ` · ${t("Floors affected: {list}", { list: [...new Set(model.gaps.flatMap((g) => (g.floor === undefined ? [] : [g.floor])))].join(", ") })}`}
+              </p>
+            )}
+            {model && model.malformedLines > 0 && (
+              <p className="mb-4 text-xs text-[var(--text-muted)]">
+                {t("Lines that could not be read: {n}", {
+                  n: model.malformedLines,
+                })}
+              </p>
+            )}
+            {model && (
+              <RunCharts
+                model={model}
+                floors={floors}
+                maxHp={maxHp}
+                selected={selected ?? -1}
+                onPick={pick}
+              />
+            )}
+
+            {error && (
+              <p className="text-sm text-[var(--accent-red)]">
+                {t("Couldn't load the replay.")} {error}
+              </p>
+            )}
+            {!model && !error && (
+              <p className="text-sm text-[var(--text-muted)]">
+                {t("Loading replay…")}
+              </p>
+            )}
+
+            {model && (
+              <div className="grid gap-6 lg:grid-cols-[minmax(0,22rem)_1fr]">
+                <aside className="space-y-4">
+                  {acts.length > 1 && (
+                    <div className="flex gap-1.5">
+                      {acts.map((a) => (
+                        <button
+                          key={a}
+                          type="button"
+                          onClick={() => {
+                            const first = floors.find((f) => f.act === a);
+                            if (first) pick(first.floor);
+                          }}
+                          className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${a === act ? "border-[var(--accent-gold)] text-[var(--accent-gold)]" : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"}`}
+                        >
+                          {t("Act")} {a}
+                          {model.actNames[a]
+                            ? ` · ${model.actNames[a].replace(/_/g, " ").toLowerCase()}`
+                            : ""}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                  {map && map.nodes.length > 0 && (
+                    <div
+                      ref={mapBox}
+                      className="max-h-[70vh] overflow-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2"
+                    >
+                      <LiveMap
+                        map={map}
+                        path={path}
+                        pathEdges={pathEdges}
+                        selected={selectedCoord}
+                        monsters={monsters}
+                        encounters={encounters}
+                        actName={model.actNames[act]}
+                        character={characterId}
+                        route={{
+                          boss: map.boss ? { id: map.boss } : undefined,
+                          ancient: map.ancient
+                            ? { id: map.ancient }
+                            : undefined,
+                        }}
+                        onSelect={(c) => {
+                          const floor = coordToFloor.get(`${c[0]},${c[1]}`);
+                          if (floor !== undefined) pick(floor);
+                        }}
+                      />
+                      {!positionsRecorded ? (
+                        <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
+                          {t("This recording did not include map positions.")}
+                        </p>
+                      ) : unplaced > 0 ? (
+                        <p className="px-1 pt-2 text-[11px] text-[var(--text-muted)]">
+                          {t("Floors with no recorded position: {n}", {
+                            n: unplaced,
+                          })}
+                        </p>
+                      ) : null}
+                      {offMap > 0 && (
+                        <p className="px-1 pt-1 text-[11px] text-[var(--text-muted)]">
+                          {t("Recorded positions not on the map: {n}", {
+                            n: offMap,
+                          })}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                  <ol className="max-h-[60vh] overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm">
+                    {floors
+                      .filter((f) => f.act === act)
+                      .map((f) => {
+                        const on = f.floor === selected;
+                        return (
+                          <li key={f.floor}>
+                            <button
+                              type="button"
+                              onClick={() => pick(f.floor)}
+                              className={`flex w-full items-center gap-2 px-3 py-1.5 text-left transition-colors ${on ? "bg-[color-mix(in_srgb,var(--accent-gold)_14%,transparent)] text-[var(--text-primary)]" : "text-[var(--text-secondary)] hover:bg-[var(--bg-primary)]"}`}
+                            >
+                              <span className="w-6 text-right text-xs tabular-nums text-[var(--text-muted)]">
+                                {f.floor}
+                              </span>
+                              <span
+                                className="w-5 text-center text-xs"
+                                aria-hidden
+                              >
+                                {KIND_GLYPH[f.kind] ?? "·"}
+                              </span>
+                              <span className="min-w-0 flex-1 truncate">
+                                {floorTitle(f, cat, t)}
+                              </span>
+                              <span className="text-[10px] text-[var(--text-muted)]">
+                                {t(KIND_LABEL[f.kind] ?? f.kind)}
+                              </span>
+                              {f.hpAfter !== undefined && (
+                                <span className="w-8 text-right text-[10px] tabular-nums text-[var(--text-muted)]">
+                                  {f.hpAfter}
+                                </span>
+                              )}
+                            </button>
+                          </li>
+                        );
+                      })}
+                  </ol>
+                </aside>
+                <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+                  {current ? (
+                    <FloorPanel
+                      f={current}
+                      prev={floors[floors.indexOf(current) - 1]}
+                      cat={cat}
+                      maxHp={maxHp}
+                      who={who}
+                      energyIcon={energyIcon}
+                      playerId={characterId.toUpperCase()}
+                      recordingEndsHere={
+                        current === floors[floors.length - 1] &&
+                        (!model?.end ||
+                          model.end.terminalReason === "interrupted")
+                      }
+                    />
+                  ) : (
+                    <p className="text-sm text-[var(--text-muted)]">
+                      {t("Pick a floor.")}
+                    </p>
+                  )}
+                </main>
+              </div>
+            )}
+          </div>
+        </PotionsContext>
+      </RelicsContext>
+    </CardsContext>
   );
 }

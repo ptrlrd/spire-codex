@@ -3,7 +3,7 @@
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Stats } from "@/lib/api";
+import type { Stats } from "@/lib/api/types";
 import { cachedFetch, getBetaVersion } from "@/lib/fetch-cache";
 import { useAuth } from "./contexts/AuthContext";
 
