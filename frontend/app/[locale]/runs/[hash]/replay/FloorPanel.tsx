@@ -405,7 +405,8 @@ function OptionRow({
     o.kind === "card" ||
     o.kind === "remove" ||
     o.kind === "transform" ||
-    o.kind === "upgrade";
+    o.kind === "upgrade" ||
+    o.kind === "enchant";
   const isRelic = o.kind === "relic" || !!o.grantsRelic;
   const label = o.label
     ? o.label
@@ -482,6 +483,7 @@ function decisionTitle(d: ReplayDecision, cat: Catalog, t: TFn): string {
   if (d.type === "card_reward") return "Reward";
   if (d.selectKind === "transform") return "Transform a card";
   if (d.selectKind === "upgrade") return "Upgrade a card";
+  if (d.selectKind === "enchant") return "Enchant a card";
   if (d.selectKind === "remove" || d.paid?.kind === "removal_service")
     return "Remove a card";
   if (d.type === "event")
