@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useT } from "@/lib/i18n";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "engines": {
     "node": ">=24"
@@ -8,7 +9,7 @@
   "scripts": {
     "predev": "node scripts/generate-site-pages.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/generate-site-pages.mjs",
+    "prebuild": "node scripts/generate-site-pages.mjs && node scripts/pull-game-messages.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

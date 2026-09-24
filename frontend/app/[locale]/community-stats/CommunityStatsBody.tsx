@@ -405,7 +405,7 @@ export async function CommunityStatsBody({
 
       {/* Headline numbers */}
       <section className="mb-10">
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           <StatCard
             label={t("Runs")}
             value={stats.total_runs.toLocaleString()}
@@ -417,10 +417,6 @@ export async function CommunityStatsBody({
           <StatCard
             label={t("Losses")}
             value={stats.total_losses.toLocaleString()}
-          />
-          <StatCard
-            label={t("Abandoned")}
-            value={(stats.total_abandoned ?? 0).toLocaleString()}
           />
           <StatCard label={t("Win rate")} value={`${stats.win_rate}%`} />
         </div>

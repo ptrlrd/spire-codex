@@ -1,4 +1,4 @@
-import type { Card } from "./api";
+import type { Card } from "./api/types";
 
 export interface CardDisplayModel {
   isUpgraded: boolean;

@@ -4,7 +4,7 @@ import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Monster } from "@/lib/api";
+import type { Monster } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";

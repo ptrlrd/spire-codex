@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import type { RelatedCard } from "@/app/components/RichDescription";
 import { getCardDisplayModel } from "@/lib/card-display";

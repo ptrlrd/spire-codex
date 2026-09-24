@@ -10,7 +10,7 @@ import {
   useCallback,
 } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import type { Potion } from "@/lib/api";
+import type { Potion } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";

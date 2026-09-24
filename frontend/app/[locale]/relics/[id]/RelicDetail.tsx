@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Relic } from "@/lib/api";
+import type { Relic } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";

@@ -10,7 +10,7 @@ import {
   useCallback,
 } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";

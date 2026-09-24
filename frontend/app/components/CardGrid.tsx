@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { getCardDisplayModel } from "@/lib/card-display";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import RichDescription from "./RichDescription";

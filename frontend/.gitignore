@@ -43,3 +43,6 @@ next-env.d.ts
 # Sentry Config File
 .env.sentry-build-plugin
 .playwright-cli
+
+// note: they shouldn't really go into game messages, later we will expose a new API, but this is a demo
+i18n/game/*

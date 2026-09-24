@@ -12,7 +12,7 @@ import type {
   Achievement,
   Act,
   Ascension,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";

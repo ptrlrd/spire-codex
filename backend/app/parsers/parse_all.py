@@ -18,6 +18,7 @@ from ascension_parser import main as parse_ascensions
 from pool_parser import main as parse_pools
 from translation_parser import main as parse_translations
 from news_parser import main as parse_news
+from message_parser import main as parse_messages
 
 LANGUAGES = [
     "deu",
@@ -64,6 +65,7 @@ def parse_language(lang: str):
     parse_ascensions(lang)
     parse_pools(lang)  # Must run after potions
     parse_translations(lang)
+    parse_messages(lang)
 
 
 if __name__ == "__main__":
