@@ -9,7 +9,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import RedirectResponse, StreamingResponse
 from pymongo import ASCENDING
 
 from ..dependencies import VALID_LANGUAGES, shared_limiter
@@ -201,6 +201,24 @@ def _page_params(
     )
 
 
+LAKE_DIR = Path(os.environ.get("LAKE_DIR", "/lake"))
+DUMP_NAME = "runs_export.jsonl.gz"
+DUMP_MANIFEST = "runs_export.json"
+DUMP_PATH = "/exports/runs-latest.jsonl.gz"
+
+
+def dump_manifest() -> dict | None:
+    """The daily full-corpus dump's manifest, when the serving box has pulled
+    one alongside the dump itself; None means the streaming path still owes
+    the full export."""
+    try:
+        if not (LAKE_DIR / DUMP_NAME).exists():
+            return None
+        return json.loads((LAKE_DIR / DUMP_MANIFEST).read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
 def _export_cost(request: Request) -> int:
     """Rate-limit cost: a bounded (paginated) pull is cheap; an unbounded full
     dump stays rare. 60 against the 120/hour bucket reproduces the historical
@@ -334,10 +352,26 @@ def export_runs(
       runs that have no ``submitted_at``. Omit both to receive the whole corpus.
     * ``X-Next-Cursor`` is in the CORS ``Access-Control-Expose-Headers`` list,
       so browser clients can read it too; non-browser clients never needed it.
+    * With no params at all the response is a 302 to the daily static dump
+      (``/exports/runs-latest.jsonl.gz``, built once a day, same line shape);
+      ``/api/exports/runs/manifest`` says when it was generated. Only until
+      the first dump exists does the bare call still stream the corpus live.
     """
     start_dt, end_dt, cursor_key = page
 
     (run_export_pages if limit is not None else run_exports).inc()
+    if limit is None and start_dt is None and end_dt is None and cursor_key is None:
+        manifest = dump_manifest()
+        if manifest is not None:
+            return RedirectResponse(
+                DUMP_PATH,
+                status_code=302,
+                headers={
+                    "Cache-Control": "no-store",
+                    "X-Export-Generated-At": str(manifest.get("generated_at") or ""),
+                    "X-Export-Runs": str(manifest.get("runs") or ""),
+                },
+            )
     hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit)
 
     headers = {
@@ -352,6 +386,16 @@ def export_runs(
         media_type="application/gzip",
         headers=headers,
     )
+
+
+@router.get("/runs/manifest")
+def export_runs_manifest():
+    """When the daily full-corpus dump was generated, how many runs it holds,
+    and where to fetch it. 404 until the first dump has been published."""
+    manifest = dump_manifest()
+    if manifest is None:
+        raise HTTPException(status_code=404, detail="no full export published yet")
+    return {**manifest, "url": DUMP_PATH}
 
 
 @router.get("/{lang}")

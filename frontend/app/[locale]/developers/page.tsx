@@ -283,7 +283,7 @@ export default async function DevelopersPage({ params }: Props) {
             {t("Bulk run export")}
           </h3>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto mb-3">
-            <code>{`GET /api/runs/export?limit=1000&start=2026-06-01T00:00:00Z`}</code>
+            <code>{`GET /api/exports/runs?limit=1000&start=2026-06-01T00:00:00Z`}</code>
           </pre>
           <p className="text-sm text-[var(--text-secondary)] mb-2">
             {t("Streams official runs as JSONL, one run per line.")}
@@ -313,6 +313,11 @@ export default async function DevelopersPage({ params }: Props) {
           <p className="text-xs text-[var(--text-muted)]">
             {t(
               "This endpoint has its own budget of 120 credits per hour, shared by keyed and anonymous callers alike: a paginated request costs 1 credit, an unbounded pull (no limit) costs 60. Sustained syncing therefore works best as paginated pulls spaced ~30s apart; on 429, honor Retry-After and resume with the same cursor.",
+            )}
+          </p>
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            {t(
+              "Need the whole corpus? A call with no parameters redirects to a static file rebuilt once a day, /exports/runs-latest.jsonl.gz, with the same line shape; /api/exports/runs/manifest reports when it was generated and how many runs it holds. Each line carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
             )}
           </p>
         </div>
@@ -770,7 +775,7 @@ export default async function DevelopersPage({ params }: Props) {
               endpoints: [
                 {
                   method: "GET",
-                  path: "/api/runs/export",
+                  path: "/api/exports/runs",
                   desc: t(
                     "JSONL stream of official runs (limit/start/end/cursor pagination; own 120-credits-per-hour budget - see Bulk run export above)",
                   ),

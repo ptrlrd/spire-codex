@@ -425,6 +425,20 @@ def main() -> None:
     except Exception as e:
         print(f"profile refresh failed: {e}", flush=True)
     _mark("profiles")
+    try:
+        import export_dump
+
+        t_dump = time.time()
+        dump = export_dump.build()
+        print(
+            f"runs export built ({dump['runs']} runs, {dump['bytes']:,} bytes) in {time.time() - t_dump:.0f}s"
+            if dump
+            else "runs export still fresh, kept",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"runs export failed: {e}", flush=True)
+    _mark("runs_export")
     # A box that publishes to R2 must never purge the edge, even if CF creds
     # leak into its env: purging before the serving box pulls would let the
     # edge re-cache stale origin data for the whole pull gap.
