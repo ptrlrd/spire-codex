@@ -206,6 +206,14 @@ http {
           proxy_set_header X-Forwarded-Proto $scheme;
       }
 
+      location = /exports/runs-latest.jsonl.gz {
+          alias /var/www/spire-codex/lake/runs_export.jsonl.gz;
+          default_type application/gzip;
+          add_header Content-Disposition 'attachment; filename="spire-codex-runs.jsonl.gz"';
+          add_header Cache-Control "public, max-age=3600";
+          add_header Access-Control-Allow-Origin "*";
+      }
+
       location /docs {
           proxy_pass $codex_backend;
           proxy_http_version 1.1;

@@ -92,3 +92,15 @@ sentinels dropped); `shadow` fetches the live payload (backend-direct, so
 no edge cache) and prints a per-id drift table for both top-15 lists. The
 verdict passes under 1% worst drift — the residual is fold lag between the
 extract and the live snapshot's incremental updates.
+
+## Daily run export
+
+`export_dump.py` builds `lake/runs_export.jsonl.gz` (every exportable run as one
+line: the raw blob plus `run_hash` and `player_token`) from the staging pages, at
+most once per 20 hours, and writes `runs_export.json` beside it. Both ship with
+the serve artifacts, and nginx serves the file at `/exports/runs-latest.jsonl.gz`.
+The bare `GET /api/exports/runs` redirects there; `--force` rebuilds now:
+
+```
+docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/export_dump.py --force
+```
