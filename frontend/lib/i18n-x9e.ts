@@ -187,4 +187,22 @@ export const X9E: Record<string, Record<string, string>> = {
     zhs: "用掉{move}后，剩余战斗在{a}和{b}之间交替。",
     zht: "用掉{move}後，剩餘戰鬥在{a}和{b}之間交替。",
   },
+  "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.":
+    {
+      eng: "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
+      deu: "Jede Zeile enthält player_token, eine stabile pseudonyme Kennung des einreichenden Kontos, null bei anonymen Läufen.",
+      esp: "Cada fila incluye player_token, un identificador seudónimo estable de la cuenta que envió la partida, null en partidas anónimas.",
+      fra: "Chaque ligne contient player_token, un identifiant pseudonyme stable du compte ayant soumis la partie, null pour les parties anonymes.",
+      ita: "Ogni riga include player_token, un identificatore pseudonimo stabile dell'account che ha inviato la partita, null per le partite anonime.",
+      jpn: "各行には player_token が含まれます。送信アカウントの安定した仮名IDで、匿名ランでは null です。",
+      kor: "각 행에는 제출 계정의 안정적인 가명 ID인 player_token이 포함되며, 익명 런에서는 null입니다.",
+      pol: "Każdy wiersz zawiera player_token, stały pseudonimowy identyfikator konta zgłaszającego, null dla anonimowych przebiegów.",
+      ptb: "Cada linha traz player_token, um identificador pseudônimo estável da conta que enviou a run, null em runs anônimas.",
+      rus: "Каждая строка содержит player_token, стабильный псевдонимный идентификатор загрузившего аккаунта, null у анонимных забегов.",
+      spa: "Cada fila incluye player_token, un identificador seudónimo estable de la cuenta que envió la partida, null en partidas anónimas.",
+      tha: "แต่ละแถวมี player_token ซึ่งเป็นรหัสนามแฝงคงที่ของบัญชีที่ส่ง เป็น null สำหรับรันแบบไม่ระบุตัวตน",
+      tur: "Her satırda gönderen hesabın sabit takma kimliği player_token bulunur; anonim koşularda null olur.",
+      zhs: "每行包含 player_token，即提交账户的稳定化名 ID，匿名对局为 null。",
+      zht: "每行包含 player_token，即提交帳戶的穩定化名 ID，匿名對局為 null。",
+    },
 };

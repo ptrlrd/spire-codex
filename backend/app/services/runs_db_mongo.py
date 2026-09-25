@@ -2288,15 +2288,23 @@ def _projection_row() -> dict:
         "build_id": 1,
         "hidden": 1,
         "has_replay": 1,
+        "user_id": 1,
+        "steam_id": 1,
     }
 
 
 def _row_to_dict(doc: dict) -> dict:
-    """Strip Mongo's _id wrapper into the run_hash field the API expects."""
+    """Strip Mongo's _id wrapper into the run_hash field the API expects.
+    The account ids never leave: they become the pseudonymous player_token."""
     if not doc:
         return doc
+    from .player_token import player_token
+
     out = {**doc}
     out["run_hash"] = out.pop("_id")
+    out["player_token"] = player_token(doc)
+    out.pop("user_id", None)
+    out.pop("steam_id", None)
     # Coerce booleans to int (0/1) for backward compat with the SQLite
     # response shape that the frontend consumed historically.
     for k in ("win", "was_abandoned"):
