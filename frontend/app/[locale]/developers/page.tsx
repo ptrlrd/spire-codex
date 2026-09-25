@@ -664,9 +664,14 @@ export default async function DevelopersPage({ params }: Props) {
                 {
                   method: "GET",
                   path: "/api/runs/list",
-                  desc: t(
-                    "Browse submitted runs with filters and pagination (incl. ascension_min/ascension_max and winrate_min/winrate_max by submitter win rate — the content brackets)",
-                  ),
+                  desc:
+                    t(
+                      "Browse submitted runs with filters and pagination (incl. ascension_min/ascension_max and winrate_min/winrate_max by submitter win rate — the content brackets)",
+                    ) +
+                    " " +
+                    t(
+                      "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
+                    ),
                 },
                 {
                   method: "GET",
