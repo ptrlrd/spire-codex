@@ -119,7 +119,7 @@ def _get_version() -> str | None:
 
 
 @lru_cache(maxsize=2048)
-def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[dict]:
+def _load_json_versioned(lang: str, entity: str, version: str | None) -> any:
     """Load a parsed JSON data file, keyed by (lang, entity, version) for caching.
 
     The timing here only fires on cache misses — `@lru_cache` short-circuits
@@ -140,7 +140,7 @@ def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[di
 
 
 @lru_cache(maxsize=2048)
-def _load_json_beta(lang: str, entity: str, beta_version: str) -> list[dict]:
+def _load_json_beta(lang: str, entity: str, beta_version: str) -> any:
     """Beta-channel load, keyed by the actual beta version so a new beta drop
     invalidates naturally. Falls back per file to the stable tree when the
     beta tree lacks it (a beta drop that didn't change relics still serves
@@ -436,3 +436,18 @@ def get_stats(lang: str = DEFAULT_LANG) -> dict:
         "ascensions": len(load_ascensions(lang)),
         "images": count_images(),
     }
+
+
+def load_localization(lang: str = DEFAULT_LANG, table: str = None) -> dict | None:
+    return _load_json(lang, Path("localization") / table)
+
+def localization_table_names(lang) -> set[str]:
+    if get_channel() == "beta":
+        beta_version = get_beta_version()
+        base = BETA_DATA_DIR / beta_version
+    else:
+        version = _get_version()
+        base = _resolve_base(version)
+    folder = base / lang / "localization"
+    return set(map(lambda x: x[:x.rfind(".json")], filter(lambda x: x.endswith(".json"), os.listdir(folder))))
+

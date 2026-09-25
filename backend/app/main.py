@@ -20,6 +20,7 @@ from slowapi.middleware import SlowAPIMiddleware
 
 from .routers import (
     cards,
+    localizations,
     search,
     characters,
     relics,
@@ -442,6 +443,7 @@ _ENTITY_TYPES = frozenset(
         "acts",
         "ascensions",
         "guides",
+        "localizations"
     )
 )
 
@@ -761,6 +763,7 @@ app.include_router(announcements.router)
 # Hidden from the OpenAPI schema (/docs): the mod's DAU ping is an internal
 # endpoint, not part of the public API surface.
 app.include_router(telemetry.router, include_in_schema=False)
+app.include_router(localizations.router)
 # Overlay-direct OpenID flow uses /auth/steam-popup as Steam's return_to.
 # This is intentionally outside /api/* — it's a user-facing HTML page,
 # not a JSON API — so it's mounted at the app level rather than under
@@ -785,7 +788,7 @@ def languages(request: Request):
     ]
 
 
-@app.get("/api/translations", tags=["Languages"])
+@app.get("/api/translations", tags=["Languages"], deprecated=True)
 def translations(request: Request, lang: str = Depends(get_lang)):
     """Get translation maps for the given language (section titles, descriptions, character names, filter labels)."""
     return load_translation_maps(lang)
@@ -906,6 +909,7 @@ def root(request: Request):
             "stats": "/api/stats",
             "languages": "/api/languages",
             "translations": "/api/translations",
+            "localisations": "api/localisations",
         },
     }
 
