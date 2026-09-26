@@ -54,6 +54,7 @@ from .routers import (
     charts,
     beta,
     replays,
+    replays_browse,
     admin,
     admin_searches,
     admin_news,
@@ -731,6 +732,7 @@ app.include_router(draft.router)
 app.include_router(charts.router)
 app.include_router(beta.router)
 app.include_router(replays.router)
+app.include_router(replays_browse.router)
 # Hidden from the OpenAPI schema (/docs): internal admin surface.
 app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)

@@ -371,6 +371,7 @@ def list_runs(
     relic: str | None = None,
     shop: str | None = None,
     today: bool = False,
+    has_replay: bool | None = None,
     page: int = 1,
     limit: int = 50,
 ):
@@ -379,6 +380,8 @@ def list_runs(
     `winrate_min` / `winrate_max` filter runs by their submitter's overall
     win rate percentage; only users with at least 5 submitted runs qualify,
     and anonymous runs never match.
+
+    `has_replay=true` keeps only runs with a replay journal to watch.
 
     `shop` matches runs that bought the item (card, relic, or potion) at a
     shop; comma-separated ids AND together like `card`/`relic`. Mongo only —
@@ -418,6 +421,7 @@ def list_runs(
             relic,
             shop,
             int(today),
+            int(bool(has_replay)),
             page,
             limit,
         )
@@ -447,6 +451,7 @@ def list_runs(
             relic=relic,
             shop=shop,
             today=today,
+            has_replay=has_replay,
             page=page,
             limit=limit,
         )

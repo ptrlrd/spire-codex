@@ -179,6 +179,10 @@ def _ensure_indexes(coll) -> None:
     # the ordered scan the cursor walks.
     coll.create_index([("submitted_at", ASCENDING), ("_id", ASCENDING)])
     coll.create_index(
+        [("has_replay", ASCENDING), ("submitted_at", DESCENDING)],
+        partialFilterExpression={"has_replay": True},
+    )
+    coll.create_index(
         [("character", ASCENDING), ("win", ASCENDING), ("ascension", ASCENDING)]
     )
     coll.create_index([("build_id", ASCENDING)])
@@ -2388,6 +2392,7 @@ def list_runs(
     page: int = 1,
     limit: int = 50,
     include_hidden: bool = False,
+    has_replay: bool | None = None,
 ) -> dict:
     """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
 
@@ -2397,6 +2402,8 @@ def list_runs(
     q: dict[str, Any] = {}
     if not include_hidden:
         q["hidden"] = {"$ne": True}
+    if has_replay:
+        q["has_replay"] = True
     if character:
         q["character"] = character.upper()
     if win == "true":
