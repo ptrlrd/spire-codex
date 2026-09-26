@@ -87,8 +87,12 @@ export const CHANNEL_LABELS: Record<string, string> = {
   beta: "Beta {version}",
 };
 
+function own<T>(table: Record<string, T>, key: string): T | undefined {
+  return Object.hasOwn(table, key) ? table[key] : undefined;
+}
+
 function translate(key: string, lang: string): string {
-  const entry = X9F[key];
+  const entry = own(X9F, key);
   return entry?.[lang] || entry?.eng || key;
 }
 
@@ -98,7 +102,7 @@ export function humanize(name: string): string {
 }
 
 export function categoryLabel(category: string, lang: string): string {
-  const key = CATEGORY_LABELS[category];
+  const key = own(CATEGORY_LABELS, category);
   return key ? translate(key, lang) : humanize(category);
 }
 
@@ -106,7 +110,7 @@ export function categoryDescription(
   category: string,
   lang: string,
 ): string | null {
-  const key = CATEGORY_DESCRIPTIONS[category];
+  const key = own(CATEGORY_DESCRIPTIONS, category);
   return key ? translate(key, lang) : null;
 }
 
@@ -125,7 +129,8 @@ export function channelLabel(
 }
 
 export function folderLabel(folder: string, lang: string): string {
-  if (folder in LANG_NAMES) return LANG_NAMES[folder as LangCode];
-  const key = FOLDER_LABELS[folder];
+  const own_name = own(LANG_NAMES as Record<string, string>, folder);
+  if (own_name) return own_name;
+  const key = own(FOLDER_LABELS, folder);
   return key ? translate(key, lang) : humanize(folder);
 }
