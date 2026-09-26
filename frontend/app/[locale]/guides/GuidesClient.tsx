@@ -1,11 +1,11 @@
 "use client";
 
 import { Suspense, useState, useEffect, useMemo, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useT } from "@/lib/i18n";
 import type { GuideSummary } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 

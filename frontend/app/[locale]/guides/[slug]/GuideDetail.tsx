@@ -1,12 +1,11 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import type { Guide } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { useT } from "@/lib/i18n";
 
