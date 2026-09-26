@@ -66,7 +66,7 @@ if [ "$ROLLBACK" = "1" ]; then
     fi
     docker tag "$img:previous" "$img:latest" >> "$LOG" 2>&1
   done
-  docker compose -f "$COMPOSE_FILE" up -d --force-recreate --no-build --pull never backend frontend rebuilder >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate --no-build --pull never backend frontend >> "$LOG" 2>&1
   for name in spire-codex-backend spire-codex-frontend; do
     for i in $(seq 1 60); do
       st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)
@@ -137,11 +137,7 @@ if [ "$RECREATE" = "1" ]; then
   # this stack (served at /beta from the same containers), so the old
   # second pass over docker-compose.beta.yml is gone.
   log "  deploying $COMPOSE_FILE"
-  # The rebuilder MUST ride along: it holds the stats-refresher lease, so
-  # leaving it on an old image keeps the fleet pinned to the old snapshot
-  # version forever (no v22 ever built after the 2026-08-11 deploy).
-  keep_previous
-  docker compose -f "$COMPOSE_FILE" pull backend frontend rebuilder >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
 
   # Pre-warm the stats snapshot with the NEW image before swapping
   # containers. If the new code bumped SNAPSHOT_VERSION, this runs the
@@ -164,7 +160,7 @@ if [ "$RECREATE" = "1" ]; then
     fi
   fi
 
-  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend rebuilder >> "$LOG" 2>&1
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
 
   # Wait for the recreated containers to answer before touching nginx:
   # a fixed sleep either overshoots or reloads onto containers that are

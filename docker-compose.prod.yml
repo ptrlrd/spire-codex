@@ -282,4 +282,6 @@ networks:
 
 volumes:
   next-static:
+    name: spire-codex_next-static
+    external: true
   next-cache:
