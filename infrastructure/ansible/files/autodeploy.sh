@@ -137,6 +137,7 @@ if [ "$RECREATE" = "1" ]; then
   # this stack (served at /beta from the same containers), so the old
   # second pass over docker-compose.beta.yml is gone.
   log "  deploying $COMPOSE_FILE"
+  keep_previous
   docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
 
   # Pre-warm the stats snapshot with the NEW image before swapping
