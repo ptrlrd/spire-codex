@@ -22,11 +22,9 @@ export const EXCLUDE = new Set([
   "/tier-list-maker/new",
   "/beta",
   "/live",
-  "/seed-lab",
-  "/deck-lab",
 ]);
 
-const EXCLUDE_PREFIXES = ["/admin"];
+const EXCLUDE_PREFIXES = ["/admin", "/seed-lab", "/deck-lab"];
 
 const LOCALE_SEGMENT = "[locale]";
 
@@ -38,9 +36,11 @@ export function walk(dir, segments = [], atRoot = true) {
         routes.push(...walk(join(dir, entry.name), segments, false));
         continue;
       }
-      // Dynamic segments ([id], [...slug], ...) and route groups aren't
-      // standalone searchable pages.
-      if (entry.name.startsWith("[") || entry.name.startsWith("(")) continue;
+      if (entry.name.startsWith("(")) {
+        routes.push(...walk(join(dir, entry.name), segments, false));
+        continue;
+      }
+      if (/^[\[_@]/.test(entry.name)) continue;
       routes.push(
         ...walk(join(dir, entry.name), [...segments, entry.name], false),
       );
