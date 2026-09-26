@@ -52,6 +52,11 @@
     "keywords": ["leaderboards"]
   },
   {
+    "path": "/leaderboards/elo",
+    "name": "Leaderboards · Elo",
+    "keywords": ["leaderboards", "elo"]
+  },
+  {
     "path": "/leaderboards/encounters",
     "name": "Leaderboards · Encounters",
     "keywords": ["leaderboards", "encounters"]

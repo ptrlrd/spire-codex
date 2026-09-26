@@ -142,6 +142,11 @@ const STATIC_PAGES = [
     changeFrequency: "daily" as const,
   },
   {
+    path: "/leaderboards/elo",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  {
     path: "/community-stats",
     priority: 0.7,
     changeFrequency: "daily" as const,
