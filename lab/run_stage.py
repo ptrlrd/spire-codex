@@ -44,6 +44,11 @@ def _stages():
 
         return refresh_leaderboard_summary()
 
+    def replay_guard():
+        import replay_guard as guard
+
+        return guard.run()
+
     return {
         "payload": lake_stats.build_and_store_payload,
         "entity_store": lake_stats.build_entity_store,
@@ -56,6 +61,7 @@ def _stages():
         "frame": frame,
         "history": history,
         "profiles": profiles,
+        "replay_guard": replay_guard,
     }
 
 
