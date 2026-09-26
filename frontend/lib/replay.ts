@@ -1501,6 +1501,7 @@ export function parseReplay(text: string): ReplayModel {
         continue;
       case "act": {
         const a = lastMapAct ?? line.act ?? 1;
+        lastMapAct = undefined;
         actNames[a] = line.name ?? `Act ${a}`;
         continue;
       }
