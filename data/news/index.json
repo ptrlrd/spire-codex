@@ -8,7 +8,10 @@
     "feedlabel": "Community Announcements",
     "feedname": "steam_community_announcements",
     "feed_type": 1,
-    "tags": [],
+    "tags": [
+      "mod_reviewed",
+      "ModAct_1447510170_1790379564_0"
+    ],
     "date": 1790379341,
     "appid": 2868840
   },
