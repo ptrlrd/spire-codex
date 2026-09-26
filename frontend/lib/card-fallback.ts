@@ -7,7 +7,7 @@ export function safeCardId(id: string | null | undefined): boolean {
 
 export function humanizeCardId(id: string | null | undefined): string {
   if (!id) return "";
-  let bare = id.trim().replace(/^CARD\./, "");
+  let bare = id.trim().replace(/^card\./i, "");
   const sep = Math.max(bare.lastIndexOf(":"), bare.lastIndexOf("."));
   if (sep >= 0 && sep < bare.length - 1) bare = bare.slice(sep + 1);
   const upgraded = /(_plus|\+)$/i.test(bare);
@@ -34,16 +34,20 @@ export function cardImageChain(
     art,
   }: CardImageChainOptions = {},
 ): string[] {
-  if (!safeCardId(id)) return [];
-  const lower = id.toLowerCase();
   const urls: string[] = [];
-  if (enchantment) {
-    urls.push(enchantedCardUrl(lower, enchantment, upgraded, channel, lang));
-  }
-  urls.push(fullCardUrl(lower, upgraded, channel, lang));
-  if (lang) urls.push(fullCardUrl(lower, upgraded, channel));
-  if (channel === "stable") {
-    urls.push(fullCardUrl(lower, upgraded, "beta", lang));
+  if (safeCardId(id)) {
+    const lower = id.toLowerCase();
+    if (enchantment && safeCardId(enchantment)) {
+      urls.push(enchantedCardUrl(lower, enchantment, upgraded, channel, lang));
+      if (lang)
+        urls.push(enchantedCardUrl(lower, enchantment, upgraded, channel));
+    }
+    urls.push(fullCardUrl(lower, upgraded, channel, lang));
+    if (lang) urls.push(fullCardUrl(lower, upgraded, channel));
+    if (channel === "stable") {
+      urls.push(fullCardUrl(lower, upgraded, "beta", lang));
+      if (lang) urls.push(fullCardUrl(lower, upgraded, "beta"));
+    }
   }
   if (art) urls.push(imageUrl(art));
   return urls.filter((u, i) => urls.indexOf(u) === i);

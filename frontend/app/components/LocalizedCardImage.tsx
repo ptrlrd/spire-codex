@@ -6,6 +6,7 @@ import CardImage from "@/app/components/CardImage";
  * the beta render, then a labelled placeholder when the catalog has no card. */
 export default function LocalizedCardImage({
   id,
+  lang,
   alt,
   className,
   upgraded = false,
@@ -22,6 +23,7 @@ export default function LocalizedCardImage({
     <CardImage
       id={id}
       upgraded={upgraded}
+      lang={lang}
       alt={alt}
       className={className}
       loading={loading}

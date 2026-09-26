@@ -6,15 +6,18 @@ import { cardImageChain, humanizeCardId } from "@/lib/card-fallback";
 
 export function CardFallback({
   id,
+  upgraded = false,
   className = "",
   title,
 }: {
   id: string;
+  upgraded?: boolean;
   className?: string;
   title?: string;
 }) {
   const t = useT();
-  const name = humanizeCardId(id);
+  const base = humanizeCardId(id);
+  const name = upgraded && !base.endsWith("+") ? `${base}+` : base;
   return (
     <span
       role="img"
@@ -44,6 +47,7 @@ export default function CardImage({
   enchantment,
   channel = "stable",
   art,
+  lang: langOverride,
   alt,
   className = "",
   fallbackClassName,
@@ -55,13 +59,15 @@ export default function CardImage({
   enchantment?: string | null;
   channel?: "stable" | "beta";
   art?: string | null;
+  lang?: string;
   alt?: string;
   className?: string;
   fallbackClassName?: string;
   loading?: "lazy" | "eager";
   eager?: boolean;
 }) {
-  const lang = useGameLocale();
+  const routeLang = useGameLocale();
+  const lang = langOverride ?? routeLang;
   const chain = cardImageChain(id, {
     upgraded,
     enchantment,
@@ -80,6 +86,7 @@ export default function CardImage({
     return (
       <CardFallback
         id={id}
+        upgraded={upgraded}
         className={fallbackClassName ?? className}
         title={alt || undefined}
       />
