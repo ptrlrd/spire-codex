@@ -25,6 +25,7 @@ import { X9G } from "@/lib/i18n-x9g";
 import { X9H } from "@/lib/i18n-x9h";
 import { X9I } from "@/lib/i18n-x9i";
 import { X9J } from "@/lib/i18n-x9j";
+import { X9K } from "@/lib/i18n-x9k";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
 import { safeKey } from "@/lib/i18n-keys";
 import type { Locale } from "./routing";
@@ -62,6 +63,7 @@ const TABLES = [
   X9H,
   X9I,
   X9J,
+  X9K,
 ];
 const cache = new Map<string, Record<string, string>>();
 
