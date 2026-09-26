@@ -133,8 +133,8 @@ its chunks survive the first swap:
     docker volume create spire-codex_next-static
     rm -rf /tmp/next-static && docker cp spire-codex-frontend:/app/.next/static /tmp/next-static
     docker run --rm -v spire-codex_next-static:/dst -v /tmp/next-static:/src:ro alpine:3.20 sh -c 'cp -R /src/. /dst/' && rm -rf /tmp/next-static
-    docker compose -f docker-compose.prod.yml pull backend frontend rebuilder
-    docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend rebuilder
+    docker compose -f docker-compose.prod.yml pull backend frontend
+    docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
     docker inspect --format '{{.Name}} {{.State.Health.Status}}' spire-codex-frontend spire-codex-backend
 
 Rollback: every deploy tags the images it replaces as `:previous`, so
