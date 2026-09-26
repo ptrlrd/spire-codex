@@ -310,7 +310,7 @@ export interface GenerateLine extends LineBase {
 export interface PickedCard {
   id: string;
   c?: number;
-  up?: boolean;
+  up?: number;
 }
 /** Version 5: the cards a player chose on a selection screen (Snap's retain,
  * Armaments, Gambling Chip's discard...). It names the cards and nothing
@@ -976,7 +976,7 @@ function narrow(raw: Raw): ReplayLine | undefined {
                   {
                     id: c.id,
                     c: num(c.c),
-                    up: c.up === undefined ? undefined : Boolean(c.up),
+                    up: num(c.up),
                   },
                 ]
               : [],

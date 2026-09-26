@@ -3792,11 +3792,11 @@ describe("version 5 pick lines name the cards a selection screen chose", () => {
       t: "pick",
       nPicked: 1,
       selector: "human",
-      cards: [{ id: "SQUEEZE", c: 455, up: true }],
+      cards: [{ id: "SQUEEZE", c: 455, up: 1 }],
     });
     expect(picks[1]).toMatchObject({
       cards: [
-        { id: "SCULPTING_STRIKE", c: 446, up: false },
+        { id: "SCULPTING_STRIKE", c: 446, up: 0 },
         { id: "DEFEND_NECROBINDER", c: 447 },
       ],
     });

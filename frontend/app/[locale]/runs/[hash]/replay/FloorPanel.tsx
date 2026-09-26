@@ -368,7 +368,7 @@ function describeLine(
           "Chose {card}",
           { card: cardName(l.cards[0].id, cat) },
           "card",
-          <Card id={l.cards[0].id} up={l.cards[0].up} cat={cat} bp={bp} />,
+          <Card id={l.cards[0].id} up={!!l.cards[0].up} cat={cat} bp={bp} />,
         );
       return {
         key: `${t("Chose")}: ${l.cards.map((c) => cardName(c.id, cat)).join(", ")}`,
@@ -378,7 +378,7 @@ function describeLine(
             {l.cards.map((c, j) => (
               <span key={`${l.s}-${j}`}>
                 {j > 0 && ", "}
-                <Card id={c.id} up={c.up} cat={cat} bp={bp} />
+                <Card id={c.id} up={!!c.up} cat={cat} bp={bp} />
               </span>
             ))}
           </>
@@ -1125,7 +1125,9 @@ function TurnBlock({
           break;
         case "pick":
           if (l.cards.length === 1)
-            items.push(cardPill("Chose {card}", l.cards[0].id, l.cards[0].up));
+            items.push(
+              cardPill("Chose {card}", l.cards[0].id, !!l.cards[0].up),
+            );
           else if (l.cards.length > 1)
             items.push(
               <>
@@ -1133,7 +1135,7 @@ function TurnBlock({
                 {l.cards.map((c, j) => (
                   <span key={`${l.s}-${j}`}>
                     {j > 0 && ", "}
-                    <Card id={c.id} up={c.up} cat={cat} bp={bp} />
+                    <Card id={c.id} up={!!c.up} cat={cat} bp={bp} />
                   </span>
                 ))}
               </>,
