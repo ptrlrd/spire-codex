@@ -16,7 +16,10 @@ import player_elo_board  # noqa: E402
 from app.dependencies import shared_limiter  # noqa: E402
 from app.main import app  # noqa: E402
 from app.routers import leaderboards  # noqa: E402
-from tests.test_player_elo_board import _rec, served  # noqa: E402, F401
+from tests import test_player_elo_board as base  # noqa: E402
+from tests.test_player_elo_board import _rec  # noqa: E402
+
+served = base.served
 
 client = TestClient(app)
 
