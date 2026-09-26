@@ -169,14 +169,30 @@ export default function AlertTicker() {
             {t(
               "I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider",
             )}{" "}
-            <a
-              href="https://www.patreon.com/cw/SpireCodex"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
-            >
-              {t("supporting us on Patreon")}
-            </a>
+            {t("supporting us on {patreon} or {kofi}", {
+              patreon: "\u0000patreon\u0000",
+              kofi: "\u0000kofi\u0000",
+            })
+              .split("\u0000")
+              .map((part, i) =>
+                part === "patreon" || part === "kofi" ? (
+                  <a
+                    key={i}
+                    href={
+                      part === "patreon"
+                        ? "https://www.patreon.com/cw/SpireCodex"
+                        : "https://ko-fi.com/spirecodex"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
+                  >
+                    {part === "patreon" ? "Patreon" : "Ko-fi"}
+                  </a>
+                ) : (
+                  <span key={i}>{part}</span>
+                ),
+              )}
             . {t("Servants! Fetch tea for")}{" "}
             <Link
               prefetch={false}

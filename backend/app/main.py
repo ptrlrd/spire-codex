@@ -59,6 +59,8 @@ from .routers import (
     admin,
     admin_searches,
     admin_news,
+    admin_thanks,
+    thanks,
     admin_rate_limits,
     admin_api_keys,
     admin_replays,
@@ -740,6 +742,8 @@ app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)
 app.include_router(admin_rate_limits.router, include_in_schema=False)
 app.include_router(admin_news.router, include_in_schema=False)
+app.include_router(admin_thanks.router, include_in_schema=False)
+app.include_router(thanks.router)
 app.include_router(admin_api_keys.router, include_in_schema=False)
 app.include_router(admin_replays.router, include_in_schema=False)
 # Key management (create/list/revoke) is session-authed and site-internal, so

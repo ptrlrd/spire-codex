@@ -146,7 +146,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/news", label: "News" },
       { href: "/thank-you", label: "Thank You" },
       { href: "https://www.patreon.com/cw/SpireCodex", label: "Patreon" },
-      { href: "https://ko-fi.com/yitsy", label: "Ko-fi" },
+      { href: "https://ko-fi.com/spirecodex", label: "Ko-fi" },
       { href: "/privacy", label: "Privacy" },
       { href: "/terms", label: "Terms" },
       { href: "https://discord.gg/xMsTBeh", label: "Discord" },
