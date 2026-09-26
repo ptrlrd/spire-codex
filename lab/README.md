@@ -105,6 +105,19 @@ The bare `GET /api/exports/runs` redirects there; `--force` rebuilds now:
 docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/export_dump.py --force
 ```
 
+## Replay guard (save reloads)
+
+`replay_guard.py` reads the committed `replay_rooms` view and flags every
+replay whose floor drops below a floor it already passed and then keeps going
+(a save copied aside, played on, and copied back). Save-and-quit then Continue
+never lowers the floor, so it never trips this. Flagged runs get the admin
+`hidden` flag with reason `auto:save_reload`; already-hidden runs are skipped.
+It runs in the cycle right after the export (set `REPLAY_GUARD_DRY_RUN=1` to
+report only), or by hand:
+
+```
+docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/replay_guard.py --dry-run
+```
 ## Nightly player Elo board
 
 `player_elo_board.py` rates every linked account the way the admin board and

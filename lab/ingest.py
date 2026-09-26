@@ -452,6 +452,18 @@ def main() -> None:
     except Exception as e:
         print(f"runs export failed: {e}", flush=True)
     _mark("runs_export")
+    try:
+        import replay_guard
+
+        guard = replay_guard.run()
+        print(
+            f"replay guard: {guard['flagged']} flagged, {guard['hidden']} hidden, "
+            f"{guard['already_hidden']} already hidden",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"replay guard failed: {e}", flush=True)
+    _mark("replay_guard")
     # A box that publishes to R2 must never purge the edge, even if CF creds
     # leak into its env: purging before the serving box pulls would let the
     # edge re-cache stale origin data for the whole pull gap.
