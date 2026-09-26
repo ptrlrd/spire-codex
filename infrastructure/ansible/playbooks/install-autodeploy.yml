@@ -1,6 +1,7 @@
 ---
-# Install the hourly auto-deploy cron on prod origins. Run once per box
-# (and re-run after any change to autodeploy.sh / the cron schedule).
+# Install the deploy script and the CF purge env on prod origins, and make
+# sure the old hourly auto-deploy cron is gone: deploys are manual
+# (./tools/startup.sh release). Re-run after any change to autodeploy.sh.
 #
 #   cd infrastructure/ansible
 #   ./bin/do-ansible playbooks/install-autodeploy.yml
@@ -11,7 +12,7 @@
 #   - The wrapper resolves them at runtime; the box only ever sees the
 #     rendered cf-purge.env, never the 1P references.
 
-- name: Install hourly auto-deploy cron + CF purge env
+- name: Install deploy script + CF purge env, remove the auto-deploy cron
   hosts: prod_origins
   gather_facts: false
   vars:
@@ -29,14 +30,11 @@
         owner: root
         group: root
 
-    - name: Install cron entry
+    - name: Remove the hourly auto-deploy cron (deploys are manual, see startup.sh)
       become: true
-      copy:
-        src: ../files/spire-codex-autodeploy.cron
-        dest: "{{ cron_file }}"
-        mode: "0644"
-        owner: root
-        group: root
+      file:
+        path: "{{ cron_file }}"
+        state: absent
 
     - name: Ensure CF env dir exists
       become: true
