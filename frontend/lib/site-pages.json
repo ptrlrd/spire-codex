@@ -1,109 +1,41 @@
 [
-  {
-    "path": "/about",
-    "name": "About",
-    "keywords": ["about"]
-  },
-  {
-    "path": "/ancients",
-    "name": "Ancients",
-    "keywords": ["ancients"]
-  },
-  {
-    "path": "/archetypes",
-    "name": "Archetypes",
-    "keywords": ["archetypes"]
-  },
-  {
-    "path": "/badges",
-    "name": "Badges",
-    "keywords": ["badges"]
-  },
-  {
-    "path": "/cards",
-    "name": "Cards",
-    "keywords": ["cards"]
-  },
+  { "path": "/about", "name": "About", "keywords": ["about"] },
+  { "path": "/ancients", "name": "Ancients", "keywords": ["ancients"] },
+  { "path": "/archetypes", "name": "Archetypes", "keywords": ["archetypes"] },
+  { "path": "/badges", "name": "Badges", "keywords": ["badges"] },
+  { "path": "/cards", "name": "Cards", "keywords": ["cards"] },
   {
     "path": "/cards/browse",
     "name": "Cards · Browse",
     "keywords": ["cards", "browse"]
   },
-  {
-    "path": "/changelog",
-    "name": "Changelog",
-    "keywords": ["changelog"]
-  },
-  {
-    "path": "/characters",
-    "name": "Characters",
-    "keywords": ["characters"]
-  },
-  {
-    "path": "/charts",
-    "name": "Charts",
-    "keywords": ["charts"]
-  },
+  { "path": "/changelog", "name": "Changelog", "keywords": ["changelog"] },
+  { "path": "/characters", "name": "Characters", "keywords": ["characters"] },
+  { "path": "/charts", "name": "Charts", "keywords": ["charts"] },
   {
     "path": "/community-stats",
     "name": "Community Stats",
     "keywords": ["community", "stats"]
   },
-  {
-    "path": "/compare",
-    "name": "Compare",
-    "keywords": ["compare"]
-  },
-  {
-    "path": "/developers",
-    "name": "Developers",
-    "keywords": ["developers"]
-  },
+  { "path": "/compare", "name": "Compare", "keywords": ["compare"] },
+  { "path": "/developers", "name": "Developers", "keywords": ["developers"] },
   {
     "path": "/enchantments",
     "name": "Enchantments",
     "keywords": ["enchantments"]
   },
-  {
-    "path": "/encounters",
-    "name": "Encounters",
-    "keywords": ["encounters"]
-  },
-  {
-    "path": "/events",
-    "name": "Events",
-    "keywords": ["events"]
-  },
-  {
-    "path": "/exporter",
-    "name": "Exporter",
-    "keywords": ["exporter"]
-  },
-  {
-    "path": "/giveaway",
-    "name": "Giveaway",
-    "keywords": ["giveaway"]
-  },
-  {
-    "path": "/guides",
-    "name": "Guides",
-    "keywords": ["guides"]
-  },
+  { "path": "/encounters", "name": "Encounters", "keywords": ["encounters"] },
+  { "path": "/events", "name": "Events", "keywords": ["events"] },
+  { "path": "/exporter", "name": "Exporter", "keywords": ["exporter"] },
+  { "path": "/giveaway", "name": "Giveaway", "keywords": ["giveaway"] },
+  { "path": "/guides", "name": "Guides", "keywords": ["guides"] },
   {
     "path": "/guides/submit",
     "name": "Guides · Submit",
     "keywords": ["guides", "submit"]
   },
-  {
-    "path": "/images",
-    "name": "Images",
-    "keywords": ["images"]
-  },
-  {
-    "path": "/keywords",
-    "name": "Keywords",
-    "keywords": ["keywords"]
-  },
+  { "path": "/images", "name": "Images", "keywords": ["images"] },
+  { "path": "/keywords", "name": "Keywords", "keywords": ["keywords"] },
   {
     "path": "/knowledge-demon",
     "name": "Knowledge Demon",
@@ -139,96 +71,24 @@
     "name": "Leaderboards · Submit",
     "keywords": ["leaderboards", "submit"]
   },
-  {
-    "path": "/mechanics",
-    "name": "Mechanics",
-    "keywords": ["mechanics"]
-  },
-  {
-    "path": "/merchant",
-    "name": "Merchant",
-    "keywords": ["merchant"]
-  },
-  {
-    "path": "/mod",
-    "name": "Mod",
-    "keywords": ["mod"]
-  },
-  {
-    "path": "/modifiers",
-    "name": "Modifiers",
-    "keywords": ["modifiers"]
-  },
-  {
-    "path": "/monsters",
-    "name": "Monsters",
-    "keywords": ["monsters"]
-  },
-  {
-    "path": "/news",
-    "name": "News",
-    "keywords": ["news"]
-  },
-  {
-    "path": "/overlay",
-    "name": "Overlay",
-    "keywords": ["overlay"]
-  },
-  {
-    "path": "/potions",
-    "name": "Potions",
-    "keywords": ["potions"]
-  },
-  {
-    "path": "/powers",
-    "name": "Powers",
-    "keywords": ["powers"]
-  },
-  {
-    "path": "/privacy",
-    "name": "Privacy",
-    "keywords": ["privacy"]
-  },
-  {
-    "path": "/profile",
-    "name": "Profile",
-    "keywords": ["profile"]
-  },
-  {
-    "path": "/reference",
-    "name": "Reference",
-    "keywords": ["reference"]
-  },
-  {
-    "path": "/relics",
-    "name": "Relics",
-    "keywords": ["relics"]
-  },
-  {
-    "path": "/runs",
-    "name": "Runs",
-    "keywords": ["runs"]
-  },
-  {
-    "path": "/settings",
-    "name": "Settings",
-    "keywords": ["settings"]
-  },
-  {
-    "path": "/showcase",
-    "name": "Showcase",
-    "keywords": ["showcase"]
-  },
-  {
-    "path": "/terms",
-    "name": "Terms",
-    "keywords": ["terms"]
-  },
-  {
-    "path": "/tier-list",
-    "name": "Tier List",
-    "keywords": ["tier", "list"]
-  },
+  { "path": "/mechanics", "name": "Mechanics", "keywords": ["mechanics"] },
+  { "path": "/merchant", "name": "Merchant", "keywords": ["merchant"] },
+  { "path": "/mod", "name": "Mod", "keywords": ["mod"] },
+  { "path": "/modifiers", "name": "Modifiers", "keywords": ["modifiers"] },
+  { "path": "/monsters", "name": "Monsters", "keywords": ["monsters"] },
+  { "path": "/news", "name": "News", "keywords": ["news"] },
+  { "path": "/overlay", "name": "Overlay", "keywords": ["overlay"] },
+  { "path": "/potions", "name": "Potions", "keywords": ["potions"] },
+  { "path": "/powers", "name": "Powers", "keywords": ["powers"] },
+  { "path": "/privacy", "name": "Privacy", "keywords": ["privacy"] },
+  { "path": "/profile", "name": "Profile", "keywords": ["profile"] },
+  { "path": "/reference", "name": "Reference", "keywords": ["reference"] },
+  { "path": "/relics", "name": "Relics", "keywords": ["relics"] },
+  { "path": "/runs", "name": "Runs", "keywords": ["runs"] },
+  { "path": "/settings", "name": "Settings", "keywords": ["settings"] },
+  { "path": "/showcase", "name": "Showcase", "keywords": ["showcase"] },
+  { "path": "/terms", "name": "Terms", "keywords": ["terms"] },
+  { "path": "/tier-list", "name": "Tier List", "keywords": ["tier", "list"] },
   {
     "path": "/tier-list-maker",
     "name": "Tier List Maker",
@@ -249,14 +109,6 @@
     "name": "Tier List · Relics",
     "keywords": ["tier", "list", "relics"]
   },
-  {
-    "path": "/timeline",
-    "name": "Timeline",
-    "keywords": ["timeline"]
-  },
-  {
-    "path": "/unlocks",
-    "name": "Unlocks",
-    "keywords": ["unlocks"]
-  }
+  { "path": "/timeline", "name": "Timeline", "keywords": ["timeline"] },
+  { "path": "/unlocks", "name": "Unlocks", "keywords": ["unlocks"] }
 ]

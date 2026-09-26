@@ -79,6 +79,10 @@ export function collectPages(appDir = APP_DIR) {
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const pages = collectPages();
-  writeFileSync(OUT, JSON.stringify(pages, null, 2) + "\n");
+  const prettier = await import("prettier");
+  writeFileSync(
+    OUT,
+    await prettier.format(JSON.stringify(pages), { parser: "json" }),
+  );
   console.log(`site-pages.json: ${pages.length} routes`);
 }
