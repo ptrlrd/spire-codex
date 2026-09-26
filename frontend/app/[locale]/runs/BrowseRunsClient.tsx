@@ -378,6 +378,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   // Fetch runs
   useEffect(() => {
     setLoading(true);
+    const controller = new AbortController();
     const params = new URLSearchParams();
     if (effectiveChar) params.set("character", effectiveChar);
     if (effectiveWin) params.set("win", effectiveWin);
@@ -418,15 +419,19 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
     params.set("page", String(page));
     // No cache-buster: the API sends Cache-Control max-age=30, so the edge
     // and browser absorb repeat hits; new runs appear within seconds anyway.
-    fetch(`${API}${config.endpoint}?${params}`)
+    fetch(`${API}${config.endpoint}?${params}`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
       .then((data) => {
+        if (controller.signal.aborted) return;
         setRuns(data.runs || []);
         setTotal(data.total || 0);
         setTotalPages(data.total_pages || 0);
       })
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
   }, [
     effectiveChar,
     effectiveWin,

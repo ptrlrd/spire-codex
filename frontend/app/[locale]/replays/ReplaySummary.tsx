@@ -20,12 +20,15 @@ export default function ReplaySummary({
   const [summary, setSummary] = useState<Summary | null>(null);
 
   useEffect(() => {
-    fetch(`${API}/api/replays/summary`)
+    const controller = new AbortController();
+    fetch(`${API}/api/replays/summary`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : null))
       .then((data: Summary | null) => {
+        if (controller.signal.aborted) return;
         if (data && typeof data.total === "number") setSummary(data);
       })
       .catch(() => {});
+    return () => controller.abort();
   }, []);
 
   if (!summary || summary.total === 0) return null;
