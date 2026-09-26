@@ -16,10 +16,10 @@
 #   ./tools/startup.sh --bypass    release entirely by hand: skip the
 #                                  autodeploy script, leave git alone, and
 #                                  just pull images + recreate backend and
-#                                  frontend in place + reload nginx. No
-#                                  reset to origin/main, no prewarm, no CF
-#                                  purge - nothing automated touches the box
-#                                  beyond the three deploy steps.
+#                                  frontend in place, wait for their
+#                                  healthchecks, reload nginx. No reset to
+#                                  origin/main, no prewarm, no CF purge, no
+#                                  warm crawl.
 #
 # The autodeploy script (installed via
 # infrastructure/ansible/playbooks/install-autodeploy.yml) is the single
@@ -61,37 +61,28 @@ fi
 # including Redis, which wipes the response cache and serves a hard 502
 # window while nothing is running. force-recreate swaps backend and
 # frontend in place and leaves Redis (and its cache) untouched.
+for img in ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend; do
+    id=$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)
+    [ -n "$id" ] && docker tag "$id" "$img:previous" || true
+done
 docker compose -f docker-compose.prod.yml pull backend frontend
 docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
 
-# The rebuilder is RETIRED (2026-08-26): the lake ingest computes and
-# serves everything it used to. Deploys must not resurrect it - its walks
-# are exactly the multi-hour cost the lake replaced. Stop it if a manual
-# start left it running; delete this block when the service leaves compose.
-docker stop spire-codex-rebuilder 2>/dev/null || true
+# Wait for both healthchecks before nginx re-resolves the new container
+# addresses; reloading onto a booting container is the 502 window.
+for name in spire-codex-backend spire-codex-frontend; do
+    for i in $(seq 1 60); do
+        st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)
+        [ "$st" = "healthy" ] && break
+        sleep 2
+    done
+    echo "$name: ${st:-missing}"
+done
 
-# Recreated containers get new IPs on the shared docker network, but nginx
-# resolves upstream hostnames once at startup, so without a reload it keeps
-# proxying to the old addresses and the whole site 502s (2026-06-11, and
-# again 2026-06-12). Reload is zero-downtime and re-resolves every
-# upstream. Best-effort: skip quietly when the web-server container isn't
-# on this host.
+# Recreated containers get new IPs on the shared docker network; nginx
+# re-resolves them on reload. Best-effort: skip quietly when the
+# web-server container isn't on this host.
+docker exec web-server sh -c 'rm -rf /var/cache/nginx/pages/* 2>/dev/null' 2>/dev/null || true
 docker exec web-server nginx -s reload 2>/dev/null \
     && echo "nginx reloaded" \
     || echo "nginx reload skipped (web-server not running here)"
-
-# Warm every page in the background so the first visitor after this deploy
-# never pays the first-render cost. The script waits for the site to come
-# healthy, then crawls the sitemap plus every entity detail page (the
-# on-demand ISR pages a deploy resets). Fire-and-forget on purpose: the
-# deploy is done regardless of how the crawl goes; check the log if pages
-# feel cold.
-nohup python3 "$(dirname "$0")/warm_cache.py" --full \
-    >/tmp/spire-warm-cache.log 2>&1 &
-echo "cache warm crawl started in the background (log: /tmp/spire-warm-cache.log)"
-
-if [ "$BYPASS" = "1" ]; then
-    echo "bypass deploy done: images pulled, containers recreated, nginx reloaded."
-    echo "skipped on purpose: git changes, snapshot prewarm, Cloudflare purge."
-    echo "if pages look stale, purge from /admin -> Cache or the CF dashboard."
-fi
