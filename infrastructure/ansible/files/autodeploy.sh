@@ -22,8 +22,14 @@ for arg in "$@"; do
   case "$arg" in
     --force) FORCE=1 ;;
     --purge-all) PURGE_ALL=1 ;;
+    *) echo "unknown option: $arg (use --force and/or --purge-all)" >&2; exit 2 ;;
   esac
 done
+exec 9>/var/lock/spire-codex-autodeploy.lock
+if ! flock -n 9; then
+  echo "another deploy is running" >&2
+  exit 0
+fi
 
 REPO="${SPIRE_REPO:-/var/www/spire-codex}"
 LOG="${SPIRE_AUTODEPLOY_LOG:-/var/log/spire-codex-autodeploy.log}"
@@ -46,6 +52,10 @@ git reset --hard origin/main >> "$LOG" 2>&1
 AFTER=$(git rev-parse HEAD)
 
 if [ "$BEFORE" = "$AFTER" ] && [ "$FORCE" != "1" ]; then
+  if [ "$PURGE_ALL" = "1" ]; then
+    echo "nothing to deploy; pass --force with --purge-all to purge anyway" >&2
+    exit 2
+  fi
   [ "${DEBUG:-0}" = "1" ] && log "no change ($AFTER)"
   exit 0
 fi
@@ -127,8 +137,9 @@ if [ "$RECREATE" = "1" ]; then
     while [ "$(date +%s)" -lt "$deadline" ]; do
       case "$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)" in
         healthy) return 0 ;;
+        unhealthy) return 1 ;;
         none)
-          if docker exec "$name" sh -c "wget -q -O /dev/null '$url' || python -c \"import urllib.request;urllib.request.urlopen('$url',timeout=3)\"" >/dev/null 2>&1; then
+          if docker exec "$name" sh -c "node -e \"fetch('$url').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\" || python -c \"import urllib.request;urllib.request.urlopen('$url',timeout=3)\"" >/dev/null 2>&1; then
             return 0
           fi ;;
       esac
@@ -141,9 +152,14 @@ if [ "$RECREATE" = "1" ]; then
     if wait_ready "$name" "$url"; then
       log "✓ $name ready"
     else
-      log "✗ $name not ready after 120s, continuing"
+      log "✗ $name not healthy, aborting before the nginx reload; check docker logs $name"
+      exit 1
     fi
   done
+
+  # nginx keeps its own small page cache (tier-list HTML) that a reload
+  # never clears; drop it so no pre-deploy HTML outlives the swap there.
+  docker exec web-server sh -c 'rm -rf /var/cache/nginx/pages/* 2>/dev/null' >> "$LOG" 2>&1 || true
 
   # Recreated containers get new IPs on the shared docker network, and
   # nginx resolves upstream container names once at startup, so without
@@ -163,12 +179,14 @@ if [ "$RECREATE" = "1" ]; then
   fi
 fi
 
-# Cloudflare purge policy. Page HTML is never edge-cached (private,
-# no-store), /_next/static chunks are content-hashed and every build's
-# chunks stay available in the shared next-static volume, and API JSON
-# expires within its own s-maxage. So a code deploy purges nothing by
-# default: Cloudflare keeps serving the entity pages it holds (they
-# revalidate within 5 minutes of their next visit) and nothing goes cold.
+# Cloudflare purge policy. Most page HTML is never edge-cached (private,
+# no-store); entity detail pages are edge-cached with s-maxage=300 and a
+# long stale-while-revalidate, so Cloudflare keeps serving them after a
+# deploy and refreshes each within 5 minutes of its next visit. That is
+# safe because every build's /_next/static chunks stay in the shared
+# next-static volume and the Next deploymentId makes a client that crosses
+# builds hard-reload. API JSON expires within its own s-maxage. So a code
+# deploy purges nothing by default and nothing goes cold.
 #
 #   RECREATE=0 : news/beta-data-only commit — purge the handful of news
 #                URLs whose content moved.
@@ -205,17 +223,19 @@ elif [ -f "$CF_ENV" ]; then
   # shellcheck source=/dev/null
   source "$CF_ENV"
   if [ -n "${CF_TOKEN:-}" ] && [ -n "${CF_ZONE:-}" ]; then
-    HTTP=$(curl -s -o /tmp/cf-purge.out -w '%{http_code}' \
+    PURGE_OUT=$(mktemp)
+    HTTP=$(curl -s -o "$PURGE_OUT" -w '%{http_code}' \
       -X POST "https://api.cloudflare.com/client/v4/zones/${CF_ZONE}/purge_cache" \
       -H "Authorization: Bearer ${CF_TOKEN}" \
       -H "Content-Type: application/json" \
       -d "$PURGE_BODY")
-    if [ "$HTTP" = "200" ]; then
+    if [ "$HTTP" = "200" ] && grep -q '"success": *true' "$PURGE_OUT"; then
       log "✓ CF cache purged ($PURGE_WHAT)"
       PURGED=1
     else
-      log "✗ CF purge returned $HTTP: $(cat /tmp/cf-purge.out)"
+      log "✗ CF purge returned $HTTP: $(cat "$PURGE_OUT")"
     fi
+    rm -f "$PURGE_OUT"
   else
     log "⚠ $CF_ENV missing CF_TOKEN or CF_ZONE — skipping cache purge"
   fi

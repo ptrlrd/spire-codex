@@ -23,6 +23,8 @@ ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
 ARG NEXT_PUBLIC_CDN_URL
 ENV NEXT_PUBLIC_CDN_URL=${NEXT_PUBLIC_CDN_URL}
+ARG NEXT_DEPLOYMENT_ID
+ENV NEXT_DEPLOYMENT_ID=${NEXT_DEPLOYMENT_ID}
 # Persist Next's incremental compiler cache across builds. Source always
 # changes between releases so this stage never layer-caches; the mount is
 # what makes the rebuild incremental instead of from scratch.
@@ -35,10 +37,11 @@ ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/.next/static ./static-build
-COPY docker-entrypoint.sh ./docker-entrypoint.sh
+COPY --chmod=755 docker-entrypoint.sh ./docker-entrypoint.sh
+RUN mkdir -p /app/.next/static /app/.next/cache/fetch-cache
 
 EXPOSE 3000
 
-CMD ["sh", "./docker-entrypoint.sh"]
+ENTRYPOINT ["sh", "/app/docker-entrypoint.sh"]
+CMD ["node", "server.js"]
