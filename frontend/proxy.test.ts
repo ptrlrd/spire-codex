@@ -59,6 +59,22 @@ describe("locale routing", () => {
       status: 308,
       location: "/leaderboards/stats",
     });
+    expect(run("/seed-lab")).toMatchObject({
+      status: 308,
+      location: "/seed-finder",
+    });
+    expect(run("/jpn/seed-lab?deck=BASH")).toMatchObject({
+      status: 308,
+      location: "/jpn/seed-finder?deck=BASH",
+    });
+    expect(run("/deck-lab")).toMatchObject({
+      status: 308,
+      location: "/deck-builder",
+    });
+    expect(run("/deu/deck-lab?character=DEFECT&deck=ZAP")).toMatchObject({
+      status: 308,
+      location: "/deu/deck-builder?character=DEFECT&deck=ZAP",
+    });
     expect(run("/deu/tier-list")).toMatchObject({
       rewrite: null,
       location: null,

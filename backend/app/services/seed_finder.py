@@ -17,6 +17,12 @@ _NAMESPACES = {"CARD", "RELIC", "ENCOUNTER", "EVENT", "POTION", "ENCHANTMENT"}
 
 MAX_CANDIDATES = 8000
 MAX_BLOB_FETCH = 2000
+MAX_LIMIT = 50
+MAX_ASCENSION = 10
+
+
+def unavailable(detail: str) -> dict:
+    return {"available": False, "detail": detail}
 
 
 def _bare(raw: str | None) -> str:
@@ -118,10 +124,19 @@ def find_seeds(
     ancient_act: int | None,
     limit: int = 20,
 ) -> dict | None:
-    """Rank submitted runs by how many predicates their seed demonstrated."""
+    """Rank submitted runs by how many predicates their seed demonstrated.
+    Runs that demonstrate none of them are never returned. The answer is
+    unavailable (with a detail of index_building or no_database) when the
+    vector index or the run database is missing."""
+    import os
+
     from . import data_service
     from .run_vectors import _OFFICIAL_CHARACTERS
     from .runs_db_mongo import _get_collection, get_run_blobs
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        return unavailable("no_database")
+    limit = max(1, min(int(limit or 20), MAX_LIMIT))
 
     # A typo'd id can never match anything, which reads as "no seeds found";
     # call it out instead so API callers learn the real id (THE_COURIER, not
@@ -163,7 +178,7 @@ def find_seeds(
     if anchor_terms:
         hashes = _anchor_hashes(characters, anchor_terms)
         if hashes is None:
-            return None
+            return unavailable("index_building")
         if not hashes:
             return {"sampled": False, "scanned": 0, "results": []}
         query = {"_id": {"$in": hashes}}
@@ -175,6 +190,7 @@ def find_seeds(
             "player_count": 1,
             "character": {"$in": characters},
             "seed": {"$nin": ["", None]},
+            "ascension": {"$lte": MAX_ASCENSION},
         }
 
     projection = {
@@ -200,10 +216,10 @@ def find_seeds(
     scanned = 0
     rows = []
     for doc in cursor:
-        scanned += 1
         seed = (doc.get("seed") or "").strip()
         if not seed or doc.get("hidden") or (doc.get("player_count") or 1) != 1:
             continue
+        scanned += 1
         matched: set[str] = set()
         missing: set[str] = set()
         deck_counts: dict[str, int] = {}
@@ -256,6 +272,7 @@ def find_seeds(
             r["missing"] |= mi
 
     total = doc_total + blob_total
+    rows = [r for r in rows if r["matched"]]
     rows.sort(
         key=lambda r: (len(r["missing"]), -len(r["matched"]), not r["win"]),
     )

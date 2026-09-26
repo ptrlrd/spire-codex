@@ -18,7 +18,13 @@ declare global {
  * floating bottom anchor. The head stub queues this call if the loader
  * hasn't arrived yet, and data-spa="auto" keeps it fresh across
  * client-side navigations. Config mirrors the placement builder output. */
-const AD_FREE_PREFIXES = ["/admin", "/deck-lab", "/seed-lab"];
+const AD_FREE_PREFIXES = [
+  "/admin",
+  "/deck-lab",
+  "/deck-builder",
+  "/seed-lab",
+  "/seed-finder",
+];
 
 export default function NitroAnchor() {
   const pathname = usePathname();
