@@ -2,8 +2,8 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import { Link } from "@/i18n/navigation";
-import { useRouter, useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { Pills, PLAYER_OPTS } from "@/app/components/PlayerCountPills";
 

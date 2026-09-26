@@ -1,10 +1,10 @@
 "use client";
 
-import { useGameLocale } from "@/lib/i18n";
 import { useRef, useState, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import RichDescription from "@/app/components/RichDescription";
-import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
 import { displayName } from "@/lib/display-name";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -58,7 +58,6 @@ export function CardPill({
   const [show, setShow] = useState(false);
   const [above, setAbove] = useState(true);
   const ref = useRef<HTMLAnchorElement>(null);
-  const lang = useGameLocale();
   const info = cardData[cardId];
   return (
     <Link
@@ -94,34 +93,12 @@ export function CardPill({
             above ? "bottom-full mb-2" : "top-full mt-2"
           }`}
         >
-          <img
-            src={
-              enchantment
-                ? enchantedCardUrl(
-                    cardId.toLowerCase(),
-                    enchantment,
-                    upgraded,
-                    "stable",
-                    lang,
-                  )
-                : fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang)
-            }
-            alt=""
+          <CardImage
+            id={cardId}
+            upgraded={!!upgraded}
+            enchantment={enchantment}
+            art={info?.image_url}
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-            crossOrigin="anonymous"
-            onError={(e) => {
-              const el = e.target as HTMLImageElement;
-              const chain = [
-                fullCardUrl(cardId.toLowerCase(), upgraded, "stable", lang),
-                fullCardUrl(cardId.toLowerCase(), upgraded, "beta", lang),
-                ...(info?.image_url ? [imageUrl(info.image_url)] : []),
-              ];
-              // The enchanted src isn't in the chain, so its failure lands on
-              // the plain render (indexOf -1 + 1 = 0).
-              const next = chain[chain.indexOf(el.src) + 1];
-              if (next) el.src = next;
-              else el.style.visibility = "hidden";
-            }}
           />
         </span>
       )}

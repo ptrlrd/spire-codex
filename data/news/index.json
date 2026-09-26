@@ -1,5 +1,18 @@
 [
   {
+    "gid": "1844751498227000",
+    "title": "Slay the Spire 2 is back in action with a tease of its next zone",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1844751498227000",
+    "is_external_url": true,
+    "author": "editor@pcgamesn.com",
+    "feedlabel": "PCGamesN",
+    "feedname": "PCGamesN",
+    "feed_type": 0,
+    "tags": [],
+    "date": 1790417505,
+    "appid": 2868840
+  },
+  {
     "gid": "1844751498226173",
     "title": "The Neowsletter - September 2026",
     "url": "https://steamstore-a.akamaihd.net/news/externalpost/steam_community_announcements/1844751498226173",
@@ -8,7 +21,10 @@
     "feedlabel": "Community Announcements",
     "feedname": "steam_community_announcements",
     "feed_type": 1,
-    "tags": [],
+    "tags": [
+      "mod_reviewed",
+      "ModAct_1447510170_1790379564_0"
+    ],
     "date": 1790379341,
     "appid": 2868840
   },

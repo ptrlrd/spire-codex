@@ -3860,5 +3860,47 @@ describe("the version 5 fixture with pick lines", () => {
       1, 2,
     ]);
     expect(turn1?.linesLost).toBeUndefined();
+describe("an act line names the act whose map was just recorded", () => {
+  it("assigns Hive and Glory to acts 2 and 3 on the full run, not to the act stamped on the line", () => {
+    const text = readFileSync(
+      new URL(
+        "../../backend/tests/fixtures/v2-full-run.jsonl",
+        import.meta.url,
+      ),
+      "utf-8",
+    );
+    const model = parseReplay(text);
+    expect(model.actNames).toEqual({ 1: "OVERGROWTH", 2: "HIVE", 3: "GLORY" });
+  });
+
+  it("names act 3 on a journal that starts there", () => {
+    const text = readFileSync(
+      new URL(
+        "../../backend/tests/fixtures/v2-act3-map.jsonl",
+        import.meta.url,
+      ),
+      "utf-8",
+    );
+    const model = parseReplay(text);
+    expect(model.actNames[3]).toBe("GLORY");
+    expect(model.actNames[1]).toBe("OVERGROWTH");
+  });
+
+  it("falls back to the line's own act when no map came first", () => {
+    const model = parseReplay(
+      journal([
+        {
+          t: "header",
+          s: 0,
+          ms: 0,
+          floor: 0,
+          act: 1,
+          replay_version: 2,
+          starting_deck: [],
+        },
+        { t: "act", s: 1, floor: 0, act: 2, name: "HIVE" },
+      ]),
+    );
+    expect(model.actNames).toEqual({ 2: "HIVE" });
   });
 });

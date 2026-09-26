@@ -25,6 +25,7 @@ SERVE_FILES = (
     "ingest_metrics.jsonl",
     "runs_export.jsonl.gz",
     "runs_export.json",
+    "player_elo.json",
 )
 
 KEEP_GENERATIONS = 2

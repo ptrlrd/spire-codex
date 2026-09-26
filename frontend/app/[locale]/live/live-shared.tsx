@@ -9,10 +9,11 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 
 import { useEffect, useMemo, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import { cleanId, displayName } from "@/lib/display-name";
 import type { CardInfo, PotionInfo, RelicInfo } from "../runs/[hash]/RunPills";
 import TwitchIcon from "@/app/components/TwitchIcon";
+import CardImage from "@/app/components/CardImage";
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -553,45 +554,14 @@ export function LiveCardImg({
   className?: string;
   portrait?: string | null;
 }) {
-  const t = useT();
-  const lang = useGameLocale();
-  // The exhausted-chain marker is keyed by card+lang+chain shape so the tile
-  // resets if this slot rerenders as a different card (ordinal keys reuse list
-  // positions across polls) or the catalog portrait arrives late.
-  const cardKey = `${id}|${upgraded}|${lang}|${portrait ? 1 : 0}`;
-  const [failedKey, setFailedKey] = useState("");
-  if (!safeId(id) || failedKey === cardKey) {
-    return (
-      <span
-        className={`flex aspect-[10/13] items-center justify-center overflow-hidden rounded-sm border border-dashed border-[var(--border-subtle)] bg-[var(--bg-primary)] p-1 text-center ${className}`}
-        title={alt}
-      >
-        <span className="text-[8px] font-bold uppercase leading-tight tracking-wider text-[var(--text-muted)]">
-          {t("Modded card")}
-        </span>
-      </span>
-    );
-  }
-  const lower = id.toLowerCase();
-  const chain = [
-    fullCardUrl(lower, upgraded, "stable", lang),
-    fullCardUrl(lower, upgraded, "beta", lang),
-    ...(portrait ? [imageUrl(portrait)] : []),
-  ];
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={chain[0]}
+    <CardImage
+      id={id}
+      upgraded={upgraded}
+      art={portrait}
       alt={alt}
       className={className}
-      crossOrigin="anonymous"
-      loading="lazy"
-      onError={(e) => {
-        const el = e.target as HTMLImageElement;
-        const next = chain[chain.indexOf(el.src) + 1];
-        if (next) el.src = next;
-        else setFailedKey(cardKey);
-      }}
+      fallbackClassName={`rounded-sm ${className}`}
     />
   );
 }
