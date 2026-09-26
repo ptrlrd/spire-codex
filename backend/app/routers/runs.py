@@ -2143,10 +2143,10 @@ def get_seed_finder(
         )
     except Exception:
         logger.warning("seed finder failed", exc_info=True)
-        found = None
-    if found is None:
+        found = {"available": False, "detail": "error"}
+    if not found or found.get("available") is False:
         response.headers["Cache-Control"] = "no-store"
-        return {"available": False}
+        return {"available": False, "detail": (found or {}).get("detail") or "error"}
     payload = {"available": True, **found}
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"

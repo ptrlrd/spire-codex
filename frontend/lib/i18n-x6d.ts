@@ -2844,9 +2844,9 @@ export const X6D: Record<string, Record<string, string>> = {
     zhs: "已扫描 {n} 局候选对局",
     zht: "已掃描 {n} 局候選對局",
   },
-  "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run — open it to see the route that got there.":
+  "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run. Open it to see the route that got there.":
     {
-      eng: "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run — open it to see the route that got there.",
+      eng: "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run. Open it to see the route that got there.",
       deu: "Durchsuche Community-Läufe nach Seeds, die nachweislich eine Kombination von Inhalten erzeugt haben: angebotene oder behaltene Karten, erhaltene Relikte, erlebte Ereignisse, Angebote von Uralten. Ein Treffer ist ein echter Lauf: Öffne ihn, um die Route dorthin zu sehen.",
       esp: "Busca en las partidas de la comunidad semillas que demostrablemente produjeron una combinación de contenido: cartas ofrecidas o conservadas, reliquias obtenidas, eventos encontrados, ofertas de ancestrales. Cada resultado es una partida real: ábrela para ver la ruta que llevó hasta ahí.",
       fra: "Cherchez dans les parties de la communauté des graines ayant réellement produit une combinaison de contenu : cartes proposées ou conservées, reliques obtenues, événements rencontrés, offres d'Anciens. Un résultat est une vraie partie : ouvrez-la pour voir le trajet qui y a mené.",
