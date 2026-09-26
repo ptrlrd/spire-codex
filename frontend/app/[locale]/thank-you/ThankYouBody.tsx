@@ -6,7 +6,7 @@ const API_INTERNAL =
   process.env.NEXT_PUBLIC_API_URL ||
   "http://localhost:8000";
 
-const KOFI_URL = "https://ko-fi.com/yitsy";
+const KOFI_URL = "https://ko-fi.com/spirecodex";
 
 export interface ThanksContributor {
   login: string;
@@ -76,9 +76,9 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
           )}
         </p>
 
-        <section className="not-prose">
+        <section className="not-prose rounded-xl border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
-            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider">
+            <h2 className="text-sm font-semibold text-[var(--accent-gold)] uppercase tracking-wider">
               {t("Ko-fi Supporters")}
             </h2>
             <a
@@ -103,26 +103,24 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
             {t(". Your support keeps the lights on.")}
           </p>
           {data.supporters.length > 0 && (
-            <ul className="flex flex-wrap gap-2 list-none p-0 m-0">
-              {data.supporters.map((s) => (
-                <li
-                  key={s.name}
-                  title={
-                    s.count > 1
-                      ? t("Supported {n} times", { n: s.count })
-                      : undefined
-                  }
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm font-medium text-[var(--text-primary)]"
-                >
-                  {s.name}
-                  {s.tier && (
-                    <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                      {s.tier}
-                    </span>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              {data.supporters.map((s, i) => (
+                <span key={s.name}>
+                  {i > 0 && (
+                    <span className="text-[var(--text-muted)]"> · </span>
                   )}
-                </li>
+                  <span
+                    title={
+                      s.count > 1
+                        ? t("Supported {n} times", { n: s.count })
+                        : undefined
+                    }
+                  >
+                    {s.name}
+                  </span>
+                </span>
               ))}
-            </ul>
+            </p>
           )}
         </section>
 

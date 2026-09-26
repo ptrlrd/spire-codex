@@ -181,7 +181,7 @@ export default function AlertTicker() {
                     href={
                       part === "patreon"
                         ? "https://www.patreon.com/cw/SpireCodex"
-                        : "https://ko-fi.com/yitsy"
+                        : "https://ko-fi.com/spirecodex"
                     }
                     target="_blank"
                     rel="noopener noreferrer"

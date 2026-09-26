@@ -220,7 +220,7 @@ export default function Footer() {
           ·
         </span>
         <a
-          href="https://ko-fi.com/yitsy"
+          href="https://ko-fi.com/spirecodex"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[var(--accent-gold)] transition-colors"
