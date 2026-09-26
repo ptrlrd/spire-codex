@@ -5,6 +5,7 @@ import createNextIntlPlugin from "next-intl/plugin";
 const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
 const nextConfig: NextConfig = {
+  deploymentId: process.env.NEXT_DEPLOYMENT_ID || undefined,
   output: "standalone",
   poweredByHeader: false,
   // Without this, dynamic-route prefetches are stale on arrival

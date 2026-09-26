@@ -108,69 +108,36 @@ CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
 ./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
-## Main vs beta
+### Purge-free deploys (2026-09)
 
-One stack. The beta site merged into the main deployment: the same containers serve `/beta` from the `data-beta/` volume, so there is no separate beta compose file, image tag, or deploy.
+A code deploy no longer purges Cloudflare. Most page HTML is never edge-cached;
+entity pages are cached with `s-maxage=300` and a long stale-while-revalidate,
+so Cloudflare keeps serving them and refreshes each within 5 minutes of its
+next visit. That is safe because `/_next/static` chunks are content-hashed and
+every build's chunks stay in the `next-static` volume (the frontend entrypoint
+copies its build in and prunes files untouched for 30 days), and Next's
+`deploymentId` (the git SHA, from CI) makes a client that navigates across
+builds hard-reload instead of mixing RSC payloads. Next's fetch cache persists
+in the `next-cache` volume. The script waits for the container healthchecks
+(and aborts before the nginx reload if one never turns healthy), clears nginx's
+small page cache, and runs under a lock. News-only commits still purge the
+news URLs. Force a full purge with `spire-codex-autodeploy --force --purge-all`
+or `SPIRE_DEPLOY_PURGE=all`.
 
-```bash
-./bin/do-ansible playbooks/deploy.yml
-```
+Rolling this out on the box, once, after the PR merges and CI has built the
+images. Seed the static volume from the container that is live right now so
+its chunks survive the first swap:
 
-The autodeploy cron picks up merged changes hourly; a manual deploy is only needed when you want to force-pull immediately (right after a hand-built image push, etc.).
+    cd /var/www/spire-codex && git pull --ff-only
+    sudo install -m 755 infrastructure/ansible/files/autodeploy.sh /usr/local/bin/spire-codex-autodeploy
+    docker volume create spire-codex_next-static
+    rm -rf /tmp/next-static && docker cp spire-codex-frontend:/app/.next/static /tmp/next-static
+    docker run --rm -v spire-codex_next-static:/dst -v /tmp/next-static:/src:ro alpine:3.20 sh -c 'cp -R /src/. /dst/' && rm -rf /tmp/next-static
+    docker compose -f docker-compose.prod.yml pull backend frontend rebuilder
+    docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend rebuilder
+    docker inspect --format '{{.Name}} {{.State.Health.Status}}' spire-codex-frontend spire-codex-backend
 
-## What this does NOT manage
-
-- **Cloudflare config** — Cache Rules, DNS records, page rules. Managed through the CF dashboard.
-- **Container image builds** — GitHub Actions / Docker Hub. Ansible only pulls pre-built images.
-- **Steam beta extraction** — `tools/beta-watch/` runs on your Mac via launchd. See that directory's README.
-- **Frontend Umami website ID injection**: baked at Docker build time from the GitHub Actions secret (`UMAMI_WEBSITE_ID`).
-
-## Common gotchas
-
-- **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
-- **Container name conflict on deploy**: if a previous `up -d` was interrupted, you'll see `Container "/xxx" is already in use`. Fix with `docker rm -f <container>` on the box, then re-run the deploy.
-- **nginx Docker DNS gotcha**: the nginx blocks use a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
-
-## Files
-
-```
-infrastructure/ansible/
-├── ansible.cfg
-├── inventory.yml.tpl        # Origin IPs as op:// refs, resolved at render
-├── inventory.yml            # gitignored — rendered by the wrapper
-├── bin/
-│   ├── do-ansible           # DigitalOcean wrapper (use this)
-│   └── op-ansible           # Generic wrapper (legacy; the AWS items it pointed at are gone)
-├── files/
-│   ├── .env.tpl
-│   ├── litestream.yml.tpl
-│   ├── autodeploy.sh
-│   └── spire-codex-autodeploy.cron
-├── templates/
-│   └── nginx.conf.j2
-├── playbooks/
-│   ├── ping.yml             # Connectivity smoke test
-│   ├── deploy.yml           # docker compose pull + recreate
-│   ├── install-autodeploy.yml  # One-time autodeploy cron install
-│   ├── restart.yml
-│   ├── verify.yml
-│   ├── sync-config.yml
-│   ├── sync-secrets.yml
-│   ├── sync-litestream.yml
-│   ├── backup.yml
-│   ├── fetch-runs-db.yml
-│   ├── dr-restore.yml
-│   ├── mongo-install.yml
-│   ├── mongo-backup.yml
-│   ├── clean-disk.yml
-│   ├── update-os.yml
-│   ├── cf-sync.yml
-│   ├── purge-cache.yml
-│   ├── rollback.yml
-│   ├── bootstrap.yml
-│   ├── check-litestream.yml
-│   ├── stop-litestream.yml
-│   ├── inspect-litestream.yml
-│   └── tail-logs.yml
-└── README.md
-```
+Rollback notes: an image built before this change has no entrypoint copy
+step, so to run one, remove the two `frontend` volume mounts from the compose
+file first. If a release leaves bad data in the fetch cache,
+`docker volume rm spire-codex_next-cache` after stopping the frontend.
