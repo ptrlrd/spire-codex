@@ -307,6 +307,20 @@ export interface GenerateLine extends LineBase {
   id: string;
   c?: number;
 }
+export interface PickedCard {
+  id: string;
+  c?: number;
+  up?: number;
+}
+/** Version 5: the cards a player chose on a selection screen (Snap's retain,
+ * Armaments, Gambling Chip's discard...). It names the cards and nothing
+ * else: in-combat screens record no offer, so no decision is claimed. */
+export interface PickLine extends LineBase {
+  t: "pick";
+  cards: PickedCard[];
+  nPicked?: number;
+  selector?: string;
+}
 export interface ShuffleLine extends LineBase {
   t: "shuffle";
 }
@@ -384,6 +398,7 @@ export type ReplayLine =
   | MoveLine
   | ExhaustLine
   | GenerateLine
+  | PickLine
   | ShuffleLine
   | ResumeLine
   | EndLine
@@ -953,6 +968,28 @@ function narrow(raw: Raw): ReplayLine | undefined {
       return { ...base, t, id, c: num(raw.c), deckC: num(raw.deck_c) };
     case "generate":
       return { ...base, t, id, c: num(raw.c) };
+    case "pick": {
+      const cards = Array.isArray(raw.cards)
+        ? (raw.cards as Raw[]).flatMap((c) =>
+            typeof c?.id === "string" && c.id
+              ? [
+                  {
+                    id: c.id,
+                    c: num(c.c),
+                    up: num(c.up),
+                  },
+                ]
+              : [],
+          )
+        : [];
+      return {
+        ...base,
+        t,
+        cards,
+        nPicked: num(raw.n_picked),
+        selector: str(raw.selector),
+      };
+    }
     case "shuffle":
       return { ...base, t };
     case "resume":
@@ -1494,17 +1531,20 @@ export function parseReplay(text: string): ReplayModel {
     }
   };
 
+  let lastMapAct: number | undefined;
   for (const line of lines) {
     switch (line.t) {
       case "header":
         continue;
       case "act": {
-        const a = line.act ?? 1;
+        const a = lastMapAct ?? line.act ?? 1;
+        lastMapAct = undefined;
         actNames[a] = line.name ?? `Act ${a}`;
         continue;
       }
       case "map": {
         const m = buildMap(line);
+        lastMapAct = m.act;
         maps[m.act] = m;
         continue;
       }

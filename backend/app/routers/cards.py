@@ -24,6 +24,32 @@ def _matches_cost(card: dict, want: str) -> bool:
     return c >= 4 if want == "4plus" else want == str(c)
 
 
+def canonical_keyword(keyword: str, names: dict) -> str:
+    """The English keyword key for a filter value that may be a translated
+    name (Angeboren -> innate), so upgrade flags resolve either way."""
+    want = keyword.strip().lower()
+    for key, localized in (names or {}).items():
+        if str(localized).strip().lower() == want:
+            return str(key).lower()
+    return want
+
+
+def has_keyword(card: dict, keyword: str, localized: str | None = None) -> bool:
+    """A card carries a keyword if its base text has it or its upgrade adds it
+    (the parser records those as upgrade.add_<keyword>), so Aggression+ and
+    Tyranny+ count as Innate."""
+    want = keyword.strip().lower()
+    if not want:
+        return False
+    names = [str(k).lower() for k in (card.get("keywords") or [])]
+    keys = [str(k).lower() for k in (card.get("keywords_key") or [])]
+    if want in names or want in keys:
+        return True
+    if localized and localized.lower() in names:
+        return True
+    return bool((card.get("upgrade") or {}).get(f"add_{want}"))
+
+
 @router.get("", response_model=list[Card])
 def get_cards(
     request: Request,
@@ -70,10 +96,9 @@ def get_cards(
         rarity_localized = maps["card_rarities"].get(rarity, rarity)
         cards = [c for c in cards if c["rarity"] == rarity_localized]
     if keyword:
-        kw_localized = maps["keywords"].get(keyword.upper(), keyword)
-        cards = [
-            c for c in cards if c.get("keywords") and kw_localized in c["keywords"]
-        ]
+        canonical = canonical_keyword(keyword, maps["keywords"])
+        kw_localized = maps["keywords"].get(canonical.upper(), keyword)
+        cards = [c for c in cards if has_keyword(c, canonical, kw_localized)]
     if tag:
         cards = [c for c in cards if c.get("tags") and tag in c["tags"]]
     if spawns:

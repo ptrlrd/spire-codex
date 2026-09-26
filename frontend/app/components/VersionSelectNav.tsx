@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter } from "@/i18n/navigation";
 import { splitBracket } from "@/lib/content-brackets";
 import { useT } from "@/lib/i18n";
 

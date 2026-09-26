@@ -1,8 +1,8 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
+import { useRouter } from "@/i18n/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
 import { buildApiUrl } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
 

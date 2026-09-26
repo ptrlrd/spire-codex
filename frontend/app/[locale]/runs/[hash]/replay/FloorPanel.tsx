@@ -361,6 +361,29 @@ function describeLine(
       return plain(
         `${t("Reloaded from a save")}${l.reloads > 1 ? ` (${l.reloads})` : ""}`,
       );
+    case "pick":
+      if (!l.cards.length) return undefined;
+      if (l.cards.length === 1)
+        return pill(
+          "Chose {card}",
+          { card: cardName(l.cards[0].id, cat) },
+          "card",
+          <Card id={l.cards[0].id} up={!!l.cards[0].up} cat={cat} bp={bp} />,
+        );
+      return {
+        key: `${t("Chose")}: ${l.cards.map((c) => cardName(c.id, cat)).join(", ")}`,
+        node: (
+          <>
+            {t("Chose")}:{" "}
+            {l.cards.map((c, j) => (
+              <span key={`${l.s}-${j}`}>
+                {j > 0 && ", "}
+                <Card id={c.id} up={!!c.up} cat={cat} bp={bp} />
+              </span>
+            ))}
+          </>
+        ),
+      };
     default:
       return undefined;
   }
@@ -1099,6 +1122,24 @@ function TurnBlock({
           break;
         case "generate":
           items.push(cardPill("Created {card}", l.id));
+          break;
+        case "pick":
+          if (l.cards.length === 1)
+            items.push(
+              cardPill("Chose {card}", l.cards[0].id, !!l.cards[0].up),
+            );
+          else if (l.cards.length > 1)
+            items.push(
+              <>
+                {t("Chose")}:{" "}
+                {l.cards.map((c, j) => (
+                  <span key={`${l.s}-${j}`}>
+                    {j > 0 && ", "}
+                    <Card id={c.id} up={!!c.up} cat={cat} bp={bp} />
+                  </span>
+                ))}
+              </>,
+            );
           break;
         case "hp":
           if (l.d)
