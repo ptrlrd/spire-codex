@@ -382,14 +382,43 @@ def record_supporter(payload: dict, default_public: bool = False) -> dict:
 
 
 _CSV_NAME = ("from", "from name", "name", "supporter", "supporter name")
-_CSV_DATE = ("datetime", "date", "timestamp", "time", "date time", "created")
+_CSV_DATE = (
+    "datetime",
+    "date",
+    "timestamp",
+    "time",
+    "date time",
+    "created",
+    "lastsupporteddateutc",
+    "last supported date utc",
+    "last supported date",
+)
 _CSV_AMOUNT = ("amount", "amount (usd)", "received", "total", "net", "gross")
 _CSV_CURRENCY = ("currency",)
 _CSV_TYPE = ("type", "item", "transaction type", "payment type", "kind")
 _CSV_TIER = ("tier", "tier name", "membership tier")
 _CSV_PUBLIC = ("is public", "public", "is_public")
-_CSV_ID = ("transaction id", "kofi_transaction_id", "transactionid", "id")
+_CSV_ID = (
+    "transaction id",
+    "kofi_transaction_id",
+    "transactionid",
+    "lastesttransactionid",
+    "latesttransactionid",
+    "last transaction id",
+    "id",
+)
 _REFUND_WORDS = ("refund", "cancel", "chargeback", "reversed", "declined")
+
+
+def _kind_from_flags(row: dict) -> str:
+    """Ko-fi's supporters export has no type column, only OneOff / Monthly /
+    Commission / Shop booleans."""
+    flags = {str(k).strip().lower(): v for k, v in row.items() if k is not None}
+    if _truthy(flags.get("monthly")):
+        return "Subscription"
+    if _truthy(flags.get("shop")):
+        return "Shop Order"
+    return "Donation"
 
 
 def _pick(row: dict, keys: tuple) -> Any:
@@ -435,7 +464,9 @@ def parse_supporter_rows(text: str) -> list[dict]:
         if not name:
             continue
         problem = None
-        raw_kind = str(_pick(row, _CSV_TYPE) or row.get("type") or "Donation")
+        raw_kind = str(
+            _pick(row, _CSV_TYPE) or row.get("type") or _kind_from_flags(row)
+        )
         kind = raw_kind
         if kind not in SUPPORTER_TYPES:
             low = kind.lower()

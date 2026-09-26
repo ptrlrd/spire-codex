@@ -510,3 +510,29 @@ def test_exclude_applies_to_an_already_cached_list(monkeypatch):
     assert [r["login"] for r in thanks.contributors(now=10**12)] == ["ptrlrd"]
     monkeypatch.delenv("THANKS_GITHUB_EXCLUDE")
     assert len(thanks.contributors(now=10**12)) == 2
+
+
+KOFI_SUPPORTERS_EXPORT = (
+    '"Name","Email","OneOff","Monthly","Commission","Shop","LastSupportedDateUTC","Total","LastestTransactionId"\n'
+    '"Alpha","alpha@example.com","True","False","False","False","2026-09-19 13:40","33.000000","708eb5b6-4e91-4ffa-a671-e6265aace577"\n'
+    '"Beta","beta@example.com","False","True","False","False","2026-08-25 07:04","200.000000","9ceabad1-2699-41c3-9c01-830e757a5583"\n'
+    '"Gamma","gamma@example.com","False","False","False","True","2026-07-25 06:58","10.000000","b6b9cd31-a011-4a5a-991f-832b1b6c27c5"\n'
+)
+
+
+def test_kofi_supporters_export_imports_with_type_flags_and_no_email(env):
+    rows = thanks.parse_supporter_rows(KOFI_SUPPORTERS_EXPORT)
+    assert [(r["from_name"], r["type"], r["amount"]) for r in rows] == [
+        ("Alpha", "Donation", 33.0),
+        ("Beta", "Subscription", 200.0),
+        ("Gamma", "Shop Order", 10.0),
+    ]
+    assert all(r.get("problem") is None for r in rows)
+    assert rows[0]["kofi_transaction_id"] == "708eb5b6-4e91-4ffa-a671-e6265aace577"
+    assert rows[0]["timestamp"] == "2026-09-19 13:40"
+    assert all("email" not in json.dumps(r).lower() for r in rows)
+    preview = thanks.preview_supporters(KOFI_SUPPORTERS_EXPORT)
+    assert all(p.get("problem") is None for p in preview)
+    result = thanks.import_supporters(KOFI_SUPPORTERS_EXPORT)
+    assert result["created"] == 3 and result["rejected"] == 0
+    assert all("email" not in json.dumps(d).lower() for d in env[1].docs.values())
