@@ -20,23 +20,24 @@ BOARD_NAME = "player_elo.json"
 DEFAULT_MIN_RUNS = 10
 MAX_LIMIT = 100
 
-_cache: tuple[float, dict] | None = None
+_cache: tuple[tuple, dict] | None = None
 
 
 def load_board() -> dict | None:
     global _cache
     path = LAKE_DIR / BOARD_NAME
     try:
-        mtime = path.stat().st_mtime
+        st = path.stat()
     except OSError:
         return None
-    if _cache and _cache[0] == mtime:
+    stamp = (st.st_mtime_ns, st.st_size, st.st_ino)
+    if _cache and _cache[0] == stamp:
         return _cache[1]
     try:
         board = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return _cache[1] if _cache else None
-    _cache = (mtime, board)
+    _cache = (stamp, board)
     return board
 
 
