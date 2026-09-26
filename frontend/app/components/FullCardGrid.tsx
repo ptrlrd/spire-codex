@@ -1,10 +1,10 @@
 "use client";
 
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api";
-import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
 import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
 import BetaBadge from "./BetaBadge";
 
@@ -24,20 +24,14 @@ interface CardStat {
 function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const t = useT();
   const bp = useBetaPrefix();
-  const lang = useGameLocale();
   const channel = useChannel();
   const [upgraded, setUpgraded] = useState(false);
-  const [failed, setFailed] = useState(false);
   const id = card.id.toLowerCase();
   const hasUpgrade = !!card.upgrade;
   const showUpgraded = upgraded && hasUpgrade;
   // card.beta marks a beta-only card surfaced in a stable list; its render
   // and detail page live on the beta channel.
   const href = card.beta ? `${bp}/beta/cards/${id}` : `${bp}/cards/${id}`;
-
-  const src = failed
-    ? imageUrl(card.image_url || card.beta_image_url)
-    : fullCardUrl(id, showUpgraded, card.beta ? "beta" : channel, lang);
 
   return (
     <div className="group relative">
@@ -47,15 +41,15 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
         </span>
       )}
       <Link prefetch={false} href={href} className="block">
-        <img
-          src={src}
+        <CardImage
+          id={id}
+          upgraded={showUpgraded}
+          channel={card.beta ? "beta" : channel}
+          art={card.image_url || card.beta_image_url}
           alt={t("{name} - Slay the Spire 2", {
             name: `${card.name}${showUpgraded ? "+" : ""}`,
           })}
           className="w-full h-auto aspect-[400/520] transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-          loading="lazy"
-          crossOrigin="anonymous"
-          onError={() => setFailed(true)}
         />
       </Link>
       {stat && (
@@ -75,7 +69,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
           )}
         </Link>
       )}
-      {hasUpgrade && !failed && (
+      {hasUpgrade && (
         <button
           onClick={(e) => {
             e.preventDefault();

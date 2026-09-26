@@ -2,7 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { imageUrl } from "@/lib/image-url";
-import { useT } from "@/lib/i18n";
+import { useGameLocale, useT } from "@/lib/i18n";
+import {
+  categoryDescription,
+  categoryLabel,
+  channelLabel,
+  folderLabel,
+  parseChannel,
+} from "@/lib/image-categories";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -71,6 +78,7 @@ function GameBrowser({
   category: string;
 }) {
   const t = useT();
+  const lang = useGameLocale();
   const [path, setPath] = useState("");
   const [page, setPage] = useState<BrowsePage | null>(null);
   const [images, setImages] = useState<ImageEntry[]>([]);
@@ -111,9 +119,10 @@ function GameBrowser({
         <button
           type="button"
           onClick={() => setPath("")}
+          title={category}
           className={`px-2 py-0.5 rounded ${path === "" ? "text-[var(--accent-gold)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"}`}
         >
-          {category}
+          {categoryLabel(category, lang)}
         </button>
         {crumbs.map((seg, i) => (
           <span key={i} className="flex items-center gap-1.5">
@@ -121,9 +130,10 @@ function GameBrowser({
             <button
               type="button"
               onClick={() => setPath(crumbs.slice(0, i + 1).join("/"))}
+              title={seg}
               className={`px-1 py-0.5 rounded ${i === crumbs.length - 1 ? "text-[var(--accent-gold)]" : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"}`}
             >
-              {seg}
+              {folderLabel(seg, lang)}
             </button>
           </span>
         ))}
@@ -167,9 +177,10 @@ function GameBrowser({
               key={f}
               type="button"
               onClick={() => setPath(path ? `${path}/${f}` : f)}
+              title={f}
               className="px-2.5 py-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-xs text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)] transition-colors"
             >
-              {f}/
+              {folderLabel(f, lang)}/
             </button>
           ))}
         </div>
@@ -206,6 +217,7 @@ function GameBrowser({
 
 export default function ImagesPage() {
   const t = useT();
+  const lang = useGameLocale();
   const [categories, setCategories] = useState<Category[]>([]);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
@@ -245,6 +257,13 @@ export default function ImagesPage() {
         <div className="space-y-3">
           {categories.map((cat) => {
             const isOpen = expanded.has(cat.id);
+            const label = categoryLabel(cat.browse.category, lang);
+            const channel = channelLabel(
+              parseChannel(cat.name),
+              cat.browse.version,
+              lang,
+            );
+            const description = categoryDescription(cat.browse.category, lang);
             return (
               <div
                 key={cat.id}
@@ -254,21 +273,28 @@ export default function ImagesPage() {
                   className="flex items-center justify-between px-4 py-3 cursor-pointer hover:bg-[var(--bg-card-hover)] transition-colors"
                   onClick={() => toggleCategory(cat.id)}
                 >
-                  <div className="flex items-center gap-2">
-                    <span
-                      className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${isOpen ? "rotate-90" : ""}`}
-                    >
-                      &gt;
-                    </span>
-                    <span className="font-semibold text-[var(--text-primary)]">
-                      {cat.name}
-                    </span>
-                    <span className="text-xs text-[var(--text-muted)]">
-                      {t("{n} images", { n: cat.count })}
-                    </span>
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <span
+                        className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${isOpen ? "rotate-90" : ""}`}
+                      >
+                        &gt;
+                      </span>
+                      <span className="font-semibold text-[var(--text-primary)]">
+                        {label}
+                      </span>
+                      <span className="text-xs text-[var(--text-muted)]">
+                        {t("{n} images", { n: cat.count })}
+                      </span>
+                    </div>
+                    {description && (
+                      <p className="mt-0.5 pl-5 text-xs text-[var(--text-muted)]">
+                        {description}
+                      </p>
+                    )}
                   </div>
-                  <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                    {cat.browse.version}
+                  <span className="shrink-0 pl-3 text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                    {channel}
                   </span>
                 </div>
 
