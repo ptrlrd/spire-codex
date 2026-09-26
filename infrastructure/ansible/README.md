@@ -137,7 +137,16 @@ its chunks survive the first swap:
     docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend rebuilder
     docker inspect --format '{{.Name}} {{.State.Health.Status}}' spire-codex-frontend spire-codex-backend
 
-Rollback notes: an image built before this change has no entrypoint copy
-step, so to run one, remove the two `frontend` volume mounts from the compose
-file first. If a release leaves bad data in the fetch cache,
+Rollback: every deploy tags the images it replaces as `:previous`, so
+`sudo spire-codex-autodeploy --rollback` (or `./tools/startup.sh rollback`)
+puts the last release back in about 30 seconds without touching git or CI.
+An image built before this change has no entrypoint copy step, so to run one
+of those, remove the two `frontend` volume mounts from the compose file
+first. If a release leaves bad data in the fetch cache,
 `docker volume rm spire-codex_next-cache` after stopping the frontend.
+
+Manual-only deploys: the hourly cron only acts when `main` moved, but to
+take deploys fully into your own hands disable it with
+`sudo mv /etc/cron.d/spire-codex-autodeploy /etc/cron.d/spire-codex-autodeploy.off`
+(and back to re-enable), then release with `./tools/startup.sh release`
+whenever you choose.
