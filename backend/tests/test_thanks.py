@@ -491,3 +491,22 @@ def test_admin_preview_then_import_reports_added_vs_present(env):
     assert again == {"parsed": 2, "created": 0, "skipped": 2, "rejected": 0}
     listing = client.get("/api/admin/thanks/supporters").json()["items"]
     assert [x["name"] for x in listing] == ["Katie K", "New One"]
+
+
+def test_exclude_applies_to_an_already_cached_list(monkeypatch):
+    from app.services import cache as app_cache
+
+    store = {
+        "thanks:github:v1": {
+            "rows": [
+                {"login": "ptrlrd", "contributions": 5},
+                {"login": "Someone", "contributions": 2},
+            ],
+            "fetched_at": 10**12,
+        }
+    }
+    monkeypatch.setattr(app_cache, "get_json", lambda k: store.get(k))
+    monkeypatch.setenv("THANKS_GITHUB_EXCLUDE", "someone")
+    assert [r["login"] for r in thanks.contributors(now=10**12)] == ["ptrlrd"]
+    monkeypatch.delenv("THANKS_GITHUB_EXCLUDE")
+    assert len(thanks.contributors(now=10**12)) == 2

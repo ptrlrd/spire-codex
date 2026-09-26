@@ -205,12 +205,19 @@ def contributors(now: float | None = None) -> list[dict]:
     if cached and isinstance(cached.get("rows"), list):
         if now - float(cached.get("fetched_at") or 0) > CONTRIBUTORS_TTL:
             _kick_refresh()
-        return cached["rows"]
+        return _drop_excluded(cached["rows"])
     try:
-        return refresh_contributors()
+        return _drop_excluded(refresh_contributors())
     except Exception:
         logger.warning("github contributors fetch failed", exc_info=True)
         return []
+
+
+def _drop_excluded(rows: list[dict]) -> list[dict]:
+    excluded = excluded_logins()
+    if not excluded:
+        return rows
+    return [r for r in rows if str(r.get("login") or "").lower() not in excluded]
 
 
 def list_special(limit: int = 500) -> list[dict]:
