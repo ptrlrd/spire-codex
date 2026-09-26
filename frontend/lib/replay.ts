@@ -1494,17 +1494,19 @@ export function parseReplay(text: string): ReplayModel {
     }
   };
 
+  let lastMapAct: number | undefined;
   for (const line of lines) {
     switch (line.t) {
       case "header":
         continue;
       case "act": {
-        const a = line.act ?? 1;
+        const a = lastMapAct ?? line.act ?? 1;
         actNames[a] = line.name ?? `Act ${a}`;
         continue;
       }
       case "map": {
         const m = buildMap(line);
+        lastMapAct = m.act;
         maps[m.act] = m;
         continue;
       }
