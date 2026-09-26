@@ -55,7 +55,7 @@ export const X9G: Record<string, Record<string, string>> = {
     eng: "Every run here has a replay. Click one to watch it floor by floor.",
     deu: "Jeder Run hier hat ein Replay. Klicke einen an, um ihn Etage für Etage anzusehen.",
     esp: "Cada partida aquí tiene una repetición. Haz clic en una para verla piso a piso.",
-    fra: "Chaque run ici a un replay. Cliquez sur l'une d'elles pour la regarder étage par étage.",
+    fra: "Chaque run ici a un replay. Cliquez sur l'un d'eux pour le regarder étage par étage.",
     ita: "Ogni partita qui ha un replay. Cliccane una per guardarla piano per piano.",
     jpn: "ここにあるランにはすべてリプレイがあります。クリックしてフロアごとに観戦しよう。",
     kor: "여기 있는 모든 런에는 리플레이가 있습니다. 하나를 클릭해 층별로 시청하세요.",
