@@ -243,7 +243,10 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
     },
   ],
   Tools: [
-    { title: "Make & share", labels: ["Tier List Maker", "Showcase"] },
+    {
+      title: "Make & share",
+      labels: ["Tier List Maker", "Seed Finder", "Deck Builder", "Showcase"],
+    },
     {
       title: "Companion apps",
       labels: [
