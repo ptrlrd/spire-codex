@@ -74,9 +74,10 @@ class FakeRuns:
 
     def find(self, flt, proj=None):
         hashes = set(flt["$or"][0]["_id"]["$in"])
+        want_hidden = flt["hidden"] is True
         for d in self.docs:
             h = d.get("run_hash") or d["_id"]
-            if h in hashes and d.get("hidden") is True:
+            if h in hashes and (d.get("hidden") is True) == want_hidden:
                 yield {"run_hash": d.get("run_hash"), "_id": d["_id"]}
 
 

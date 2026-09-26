@@ -442,7 +442,7 @@ def main() -> None:
     try:
         import replay_guard
 
-        guard = replay_guard.run(dry_run=os.environ.get("REPLAY_GUARD_DRY_RUN") == "1")
+        guard = replay_guard.run()
         print(
             f"replay guard: {guard['flagged']} flagged, {guard['hidden']} hidden, "
             f"{guard['already_hidden']} already hidden",

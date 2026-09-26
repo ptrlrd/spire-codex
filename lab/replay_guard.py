@@ -8,6 +8,7 @@ then Continue never lowers the floor, so it never trips this.
     python /lab/replay_guard.py               # hide with reason auto:save_reload
 """
 
+import argparse
 import os
 import pathlib
 import sys
@@ -29,8 +30,8 @@ WITH ordered AS (
     WHERE floor IS NOT NULL AND floor > 0
 )
 SELECT run_hash,
-       MIN(seen) FILTER (WHERE floor < seen) AS from_floor,
-       MIN(floor) FILTER (WHERE floor < seen) AS to_floor,
+       arg_min(seen, s) FILTER (WHERE floor < seen) AS from_floor,
+       arg_min(floor, s) FILTER (WHERE floor < seen) AS to_floor,
        COUNT(*) FILTER (WHERE floor < seen) AS drops
 FROM ordered
 WHERE floor < seen AND after >= 1
@@ -54,19 +55,25 @@ def detect_save_reloads(con) -> list[dict]:
     ]
 
 
-def already_hidden(coll, hashes: list[str]) -> set[str]:
+def still_visible(coll, hashes: list[str]) -> set[str]:
+    """Hashes with at least one doc the public can still see; a hash whose
+    every doc is hidden counts as already handled."""
     if not hashes:
         return set()
     out: set[str] = set()
     for doc in coll.find(
         {
-            "hidden": True,
+            "hidden": {"$ne": True},
             "$or": [{"_id": {"$in": hashes}}, {"run_hash": {"$in": hashes}}],
         },
         {"run_hash": 1},
     ):
         out.add(doc.get("run_hash") or doc["_id"])
     return out
+
+
+def env_dry_run() -> bool:
+    return os.environ.get("REPLAY_GUARD_DRY_RUN") == "1"
 
 
 def apply(findings: list[dict], dry_run: bool, coll=None, hide=None) -> dict:
@@ -78,8 +85,9 @@ def apply(findings: list[dict], dry_run: bool, coll=None, hide=None) -> dict:
         coll = coll or _get_collection()
         hide = hide or set_run_hidden
     hashes = [f["run_hash"] for f in findings]
-    skip = already_hidden(coll, hashes)
-    to_hide = [f for f in findings if f["run_hash"] not in skip]
+    visible = still_visible(coll, hashes)
+    to_hide = [f for f in findings if f["run_hash"] in visible]
+    skip = [h for h in hashes if h not in visible]
     hidden: list[str] = []
     for f in to_hide:
         print(
@@ -99,7 +107,11 @@ def apply(findings: list[dict], dry_run: bool, coll=None, hide=None) -> dict:
     }
 
 
-def run(dry_run: bool = False) -> dict:
+def run(dry_run: bool | None = None) -> dict:
+    """dry_run None means follow REPLAY_GUARD_DRY_RUN, so a stage or cron
+    run stays report-only until the env flag is cleared."""
+    if dry_run is None:
+        dry_run = env_dry_run()
     import duckdb
 
     import replays_explode
@@ -113,8 +125,13 @@ def run(dry_run: bool = False) -> dict:
     return apply(findings, dry_run)
 
 
-def main() -> int:
-    dry_run = "--dry-run" in sys.argv
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(
+        description="hide replays that reloaded an older save"
+    )
+    parser.add_argument("--dry-run", action="store_true", help="report only")
+    args = parser.parse_args(argv)
+    dry_run = args.dry_run or env_dry_run()
     out = run(dry_run=dry_run)
     print(
         f"save-reload guard: {out['flagged']} flagged, {out['already_hidden']} already hidden, "
