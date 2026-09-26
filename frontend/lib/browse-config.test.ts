@@ -21,3 +21,12 @@ describe("browse configs", () => {
     expect(RUNS_BROWSE.endpoint).toBe("/api/runs/list");
   });
 });
+
+it("the replays page tells people how to get their own replays in", () => {
+  expect(REPLAYS_BROWSE.hint).toBe("replays_mod_hint");
+  expect(REPLAYS_BROWSE.hintLink).toEqual({
+    label: "Spire Codex mod",
+    href: "/mod",
+  });
+  expect(RUNS_BROWSE.hint).toBeUndefined();
+});

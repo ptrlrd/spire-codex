@@ -506,6 +506,26 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         {t("spans patches.")} {t(config.outro)}
       </p>
 
+      {config.hint && config.hintLink && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">
+          {t(config.hint, { mod: "\u0000" })
+            .split("\u0000")
+            .map((part, i, parts) => (
+              <span key={i}>
+                {part}
+                {i < parts.length - 1 && (
+                  <Link
+                    href={config.hintLink!.href}
+                    className="text-[var(--accent-gold)] hover:underline"
+                  >
+                    {t(config.hintLink!.label)}
+                  </Link>
+                )}
+              </span>
+            ))}
+        </p>
+      )}
+
       {config.summary && <ReplaySummary charName={charName} />}
 
       {/* Search bar */}

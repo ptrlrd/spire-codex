@@ -8,6 +8,8 @@ export interface BrowseConfig {
   emptyLabel: string;
   watch: boolean;
   summary: boolean;
+  hint?: string;
+  hintLink?: { label: string; href: string };
 }
 
 export const RUNS_BROWSE: BrowseConfig = {
@@ -32,6 +34,8 @@ export const REPLAYS_BROWSE: BrowseConfig = {
   emptyLabel: "No replays found.",
   watch: true,
   summary: true,
+  hint: "replays_mod_hint",
+  hintLink: { label: "Spire Codex mod", href: "/mod" },
 };
 
 export function browseRowHref(
