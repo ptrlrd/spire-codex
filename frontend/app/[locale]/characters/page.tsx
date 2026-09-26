@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
-import type { Character } from "@/lib/api";
+import type { Character } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import CharactersClient from "./CharactersClient";

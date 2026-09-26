@@ -4,7 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import { authHeaders } from "@/app/[locale]/admin/shared";

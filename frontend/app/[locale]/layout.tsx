@@ -17,12 +17,12 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { hreflangOf, ogLocaleOf, type Locale } from "@/lib/locale";
 import { LANG_DATABASE, LANG_GAME_NAME, LANG_NAMES } from "@/lib/languages";
-import { BetaVersionProvider } from "@/app/contexts/BetaVersionContext";
 import { AuthProvider } from "@/app/contexts/AuthContext";
 import { ToastProvider } from "@/app/components/Toast";
 import AuthNotice from "@/app/components/AuthNotice";
 import LocaleSuggestToast from "@/app/components/LocaleSuggestToast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import ApiConfigProvider from "../contexts/api/ApiConfigProvider";
 
 // Self-hosted Umami analytics. Both values are public-by-design, the
 // browser fetches the script + sends the website ID on every page
@@ -203,7 +203,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           locale={locale}
           messages={messages as Record<string, string>}
         >
-          <BetaVersionProvider>
+          <ApiConfigProvider>
             <AuthProvider>
               <ToastProvider>
                 <AuthNotice />
@@ -229,7 +229,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                 <HighlightFeedback />
               </ToastProvider>
             </AuthProvider>
-          </BetaVersionProvider>
+          </ApiConfigProvider>
         </IntlProvider>
         {UMAMI_SRC && UMAMI_WEBSITE_ID && (
           <Script

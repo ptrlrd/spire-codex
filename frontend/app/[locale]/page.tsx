@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Stats } from "@/lib/api";
+import type { Stats } from "@/lib/api/types";
 import HomeClient from "@/app/HomeClient";
 import HomeNewsSection from "@/app/components/HomeNewsSection";
 import HomeGuidesSection from "@/app/components/HomeGuidesSection";

@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Character, Card, Relic, Potion } from "@/lib/api";
+import type { Character, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { cachedFetch } from "@/lib/fetch-cache";

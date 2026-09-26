@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { useRouter } from "next/navigation";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { colorTextClass } from "@/lib/character-colors";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";

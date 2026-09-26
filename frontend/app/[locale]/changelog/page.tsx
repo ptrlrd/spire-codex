@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n";
 import { buildApiUrl } from "@/lib/fetch-cache";
-import { useChannel } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 

@@ -3,7 +3,7 @@
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { Link } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { fullCardUrl } from "@/lib/image-url";

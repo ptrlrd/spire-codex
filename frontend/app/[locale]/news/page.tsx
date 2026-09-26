@@ -5,7 +5,7 @@ import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, gameName } from "@/lib/seo";
-import type { NewsArticle, NewsListResponse } from "@/lib/api";
+import type { NewsArticle, NewsListResponse } from "@/lib/api/types";
 import {
   newsExcerpt,
   formatNewsDate,

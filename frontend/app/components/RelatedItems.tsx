@@ -4,7 +4,7 @@ import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { imageUrl } from "@/lib/image-url";
 

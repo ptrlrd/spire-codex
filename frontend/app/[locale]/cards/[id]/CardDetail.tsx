@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import type { RelatedCard } from "@/app/components/RichDescription";
 import { getCardDisplayModel } from "@/lib/card-display";
@@ -26,7 +26,7 @@ import EntityRunStats, {
 } from "@/app/components/EntityRunStats";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import "@/app/card-revamp.css";
 

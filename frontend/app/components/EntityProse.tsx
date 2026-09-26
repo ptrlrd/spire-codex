@@ -25,7 +25,7 @@ import type {
   Achievement,
   Act,
   Ascension,
-} from "@/lib/api";
+} from "@/lib/api/types";
 
 /**
  * Programmatic prose block at the bottom of each entity's Overview
