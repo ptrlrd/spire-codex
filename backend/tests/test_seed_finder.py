@@ -147,7 +147,17 @@ def test_limit_is_capped_at_fifty(env):
 def test_sampled_query_covers_ascension_zero_to_ten(env):
     seed_finder.find_seeds(None, [], [], [], ["BIG_FISH"], None, None)
     assert env.queries[-1]["ascension"] == {"$lte": 10}
-    assert env.queries[-1]["player_count"] == 1
+    assert env.queries[-1]["player_count"] == {"$in": [1, None]}
+
+
+def test_anchored_query_applies_the_same_eligibility(env):
+    seed_finder.find_seeds(None, [("BASH", 1)], [], [], [], None, None)
+    q = env.queries[-1]
+    assert "_id" in q
+    assert q["ascension"] == {"$lte": 10}
+    assert q["player_count"] == {"$in": [1, None]}
+    assert q["hidden"] == {"$ne": True}
+    assert q["seed"] == {"$nin": ["", None]}
 
 
 def test_blob_predicates_match_events_and_ancient_offers(env, monkeypatch):

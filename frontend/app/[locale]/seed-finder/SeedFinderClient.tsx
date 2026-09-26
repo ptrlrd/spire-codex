@@ -155,13 +155,29 @@ export default function SeedFinderClient() {
   const [problem, setProblem] = useState<LabUnavailableKind | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
   const autoRan = useRef(false);
+  const written = useRef<string | null>(null);
+  const seq = useRef(0);
+  const inflight = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const qs = paramsFromState(state).toString();
+    written.current = qs;
     const current = searchParams.toString();
     if (qs !== current)
       router.replace(`/seed-finder${qs ? `?${qs}` : ""}`, { scroll: false });
   }, [state, router, searchParams]);
+
+  useEffect(() => {
+    const current = searchParams.toString();
+    if (written.current === null || current === written.current) return;
+    seq.current += 1;
+    inflight.current?.abort();
+    setState(stateFromParams(new URLSearchParams(current)));
+    setResult(null);
+    setProblem(null);
+    setLimit(DEFAULT_LIMIT);
+    autoRan.current = false;
+  }, [searchParams]);
 
   useEffect(() => {
     let dead = false;
@@ -237,6 +253,10 @@ export default function SeedFinderClient() {
   const search = useCallback(
     async (wanted: number) => {
       if (!hasPredicates(state)) return;
+      const mine = ++seq.current;
+      inflight.current?.abort();
+      const controller = new AbortController();
+      inflight.current = controller;
       setLoading(true);
       setResult(null);
       setProblem(null);
@@ -245,7 +265,9 @@ export default function SeedFinderClient() {
         params.set("limit", String(wanted));
         const res = await fetch(
           `${API}/api/runs/seed-finder?${params.toString()}`,
+          { signal: controller.signal },
         );
+        if (mine !== seq.current) return;
         if (res.status === 429) {
           setProblem("rate_limited");
           return;
@@ -255,15 +277,16 @@ export default function SeedFinderClient() {
           return;
         }
         const data = (await res.json()) as FinderResponse;
+        if (mine !== seq.current) return;
         if (!data.available) {
           setProblem(unavailableKind(data.detail));
           return;
         }
         setResult(data);
       } catch {
-        setProblem("network");
+        if (mine === seq.current) setProblem("network");
       } finally {
-        setLoading(false);
+        if (mine === seq.current) setLoading(false);
       }
     },
     [state],
@@ -276,6 +299,8 @@ export default function SeedFinderClient() {
   }, [state, search]);
 
   function update(patch: Partial<SeedFinderState>) {
+    seq.current += 1;
+    inflight.current?.abort();
     setState((s) => ({ ...s, ...patch }));
     setResult(null);
     setProblem(null);
@@ -326,7 +351,9 @@ export default function SeedFinderClient() {
   }
 
   function copyLink() {
-    navigator.clipboard?.writeText(window.location.href).then(() => {
+    const url = new URL(window.location.href);
+    url.search = paramsFromState(state).toString();
+    navigator.clipboard?.writeText(url.toString()).then(() => {
       setCopied("__link__");
       setTimeout(() => setCopied((c) => (c === "__link__" ? null : c)), 1500);
     });

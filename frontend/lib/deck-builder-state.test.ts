@@ -49,7 +49,8 @@ describe("deck builder URL state", () => {
   it("formats and parses copies", () => {
     expect(formatDeck(["A", "B", "A", "A"])).toBe("A:3,B");
     expect(parseDeck("A:3,B")).toEqual(["A", "A", "A", "B"]);
-    expect(parseDeck("A:40")).toHaveLength(9);
+    expect(parseDeck("A:40")).toHaveLength(40);
+    expect(parseDeck("A:200")).toHaveLength(120);
   });
 
   it("knows when a draft is worth keeping", () => {
@@ -82,5 +83,16 @@ describe("deck builder URL state", () => {
     expect(takePercent(-0.2)).toBe(0);
     expect(takePercent(null)).toBeNull();
     expect(takePercent(Number.NaN)).toBeNull();
+  });
+});
+
+describe("Deck Builder URL state", () => {
+  it("round-trips ten copies of one card", () => {
+    const state = {
+      ...EMPTY_DRAFT,
+      deck: Array.from({ length: 10 }, () => "CLAW"),
+    };
+
+    expect(stateFromParams(paramsFromState(state))).toEqual(state);
   });
 });

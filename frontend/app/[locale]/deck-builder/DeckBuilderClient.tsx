@@ -142,8 +142,17 @@ export default function DeckBuilderClient() {
     } catch {}
   }, [searchParams]);
 
+  const written = useRef<string | null>(null);
+
+  useEffect(() => {
+    const current = searchParams.toString();
+    if (written.current === null || current === written.current) return;
+    setState(stateFromParams(new URLSearchParams(current)));
+  }, [searchParams]);
+
   useEffect(() => {
     const qs = paramsFromState(state).toString();
+    written.current = qs;
     if (qs !== searchParams.toString())
       router.replace(`/deck-builder${qs ? `?${qs}` : ""}`, { scroll: false });
     try {
@@ -158,6 +167,7 @@ export default function DeckBuilderClient() {
     let dead = false;
     async function loadCatalogs() {
       setCatalogError(false);
+      setCardCatalog([]);
       try {
         const [own, colorless, rel] = await Promise.all([
           fetch(`${API}/api/cards?color=${state.character.toLowerCase()}`).then(
@@ -306,7 +316,9 @@ export default function DeckBuilderClient() {
   }
 
   function copyLink() {
-    navigator.clipboard?.writeText(window.location.href).then(() => {
+    const url = new URL(window.location.href);
+    url.search = paramsFromState(state).toString();
+    navigator.clipboard?.writeText(url.toString()).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
     });

@@ -185,13 +185,14 @@ const RENAMED_TOOLS: Record<string, string> = {
 };
 
 function renamedToolRedirect(req: NextRequest): NextResponse | null {
-  const parts = req.nextUrl.pathname.split("/");
+  const parts = req.nextUrl.pathname.replace(/\/+$/, "").split("/");
   const i = LANG_CODES.has(parts[1]) ? 2 : 1;
   const renamed = RENAMED_TOOLS[parts[i]];
   if (!renamed || parts.length !== i + 1) return null;
-  const url = req.nextUrl.clone();
-  url.pathname = [...parts.slice(0, i), renamed].join("/");
-  return NextResponse.redirect(url, 308);
+  const target = new URL(req.nextUrl.origin);
+  target.pathname = [...parts.slice(0, i), renamed].join("/");
+  target.search = req.nextUrl.search;
+  return NextResponse.redirect(target, 308);
 }
 
 function metaRedirect(req: NextRequest): NextResponse | null {

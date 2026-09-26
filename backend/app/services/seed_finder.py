@@ -175,23 +175,22 @@ def find_seeds(
 
     coll = _get_collection()
     sampled = False
+    eligible = {
+        "hidden": {"$ne": True},
+        "player_count": {"$in": [1, None]},
+        "seed": {"$nin": ["", None]},
+        "ascension": {"$lte": MAX_ASCENSION},
+    }
     if anchor_terms:
         hashes = _anchor_hashes(characters, anchor_terms)
         if hashes is None:
             return unavailable("index_building")
         if not hashes:
             return {"sampled": False, "scanned": 0, "results": []}
-        query = {"_id": {"$in": hashes}}
+        query = {"_id": {"$in": hashes}, **eligible}
     else:
-        # No composition anchor to narrow on: sample the newest runs.
         sampled = True
-        query = {
-            "hidden": {"$ne": True},
-            "player_count": 1,
-            "character": {"$in": characters},
-            "seed": {"$nin": ["", None]},
-            "ascension": {"$lte": MAX_ASCENSION},
-        }
+        query = {**eligible, "character": {"$in": characters}}
 
     projection = {
         "seed": 1,

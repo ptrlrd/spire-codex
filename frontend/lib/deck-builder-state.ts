@@ -48,7 +48,7 @@ export function parseDeck(raw: string | null): string[] {
     const id = cleanId(idRaw ?? "");
     if (!id) continue;
     const n = parseInt(nRaw ?? "1", 10);
-    const copies = Number.isFinite(n) ? Math.min(9, Math.max(1, n)) : 1;
+    const copies = Number.isFinite(n) ? Math.min(120, Math.max(1, n)) : 1;
     for (let i = 0; i < copies; i++) out.push(id);
   }
   return out.slice(0, 120);

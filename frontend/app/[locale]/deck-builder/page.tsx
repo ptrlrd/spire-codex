@@ -4,6 +4,7 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
+import LabIntro from "@/app/components/LabIntro";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import DeckBuilderClient from "./DeckBuilderClient";
 
@@ -38,7 +39,20 @@ export default async function DeckBuilderPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <Suspense fallback={null}>
+      <Suspense
+        fallback={
+          <LabIntro
+            title={t("Deck Builder")}
+            badge={t("Preview")}
+            lines={[
+              t(
+                "Sketch a draft and see what the community data says: the archetype it is becoming, what winners with similar decks took next, and how each card in an offer commits you.",
+              ),
+              t("deck_builder_scope"),
+            ]}
+          />
+        }
+      >
         <DeckBuilderClient />
       </Suspense>
     </>
