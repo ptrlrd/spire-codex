@@ -3860,6 +3860,9 @@ describe("the version 5 fixture with pick lines", () => {
       1, 2,
     ]);
     expect(turn1?.linesLost).toBeUndefined();
+  });
+});
+
 describe("an act line names the act whose map was just recorded", () => {
   it("assigns Hive and Glory to acts 2 and 3 on the full run, not to the act stamped on the line", () => {
     const text = readFileSync(

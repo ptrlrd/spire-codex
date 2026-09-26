@@ -41,6 +41,8 @@ describe("pick line card upgrade parsing and edge cases", () => {
     );
     const parsed = lines.find((l) => l.t === "pick") as PickLine | undefined;
     expect(parsed?.cards).toEqual([]);
+  });
+});
 
 function journal(records: Record<string, unknown>[]): string {
   return records.map((r) => JSON.stringify(r)).join("\n");
