@@ -426,6 +426,19 @@ def main() -> None:
         print(f"profile refresh failed: {e}", flush=True)
     _mark("profiles")
     try:
+        import player_elo_board
+
+        t_elo = time.time()
+        elo = player_elo_board.build()
+        print(
+            f"player elo board built ({len(elo['players'])} shown, {elo['total_rated']} rated) "
+            f"in {time.time() - t_elo:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"player elo board failed: {e}", flush=True)
+    _mark("player_elo")
+    try:
         import export_dump
 
         t_dump = time.time()

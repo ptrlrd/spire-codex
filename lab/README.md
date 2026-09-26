@@ -118,3 +118,13 @@ report only), or by hand:
 ```
 docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/replay_guard.py --dry-run
 ```
+## Nightly player Elo board
+
+`player_elo_board.py` rates every linked account the way the admin board and
+profiles do (solo A10 standard runs on the official cast) and writes the top
+500 named accounts to `lake/player_elo.json`. It runs as the `player_elo`
+stage after profiles, ships with the serve files, and `/api/leaderboards/elo`
+serves the top 100 from it (min 10 rated runs by default). Standalone:
+
+    docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/player_elo_board.py
+

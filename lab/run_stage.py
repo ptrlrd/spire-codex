@@ -27,6 +27,11 @@ def _stages():
 
         return precompute_insights.refresh_profiles()
 
+    def player_elo():
+        import player_elo_board
+
+        return player_elo_board.build()
+
     def frame():
         from app.services.charts_stats import store_frame_parquet
 
@@ -62,6 +67,7 @@ def _stages():
         "history": history,
         "profiles": profiles,
         "replay_guard": replay_guard,
+        "player_elo": player_elo,
     }
 
 

@@ -42,6 +42,20 @@ function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+export function cardHasKeyword(
+  card: Pick<Card, "keywords" | "keywords_key" | "upgrade">,
+  keyword: string,
+): boolean {
+  const want = keyword.trim().toLowerCase();
+  if (!want) return false;
+  const named = [...(card.keywords ?? []), ...(card.keywords_key ?? [])];
+  if (named.some((k) => typeof k === "string" && k.toLowerCase() === want))
+    return true;
+  return addedKeywordEntries.some(
+    ([flag, name]) => name.toLowerCase() === want && !!card.upgrade?.[flag],
+  );
+}
+
 export function getUpgradedValue(
   base: number | null,
   upgradeVal: string | number | null | undefined,
