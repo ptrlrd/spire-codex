@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # Hourly auto-deploy for spire-codex prod. Polls origin/main; if HEAD
 # advanced, pulls Docker images and recreates the backend+frontend
-# containers. After a clean restart, purges Cloudflare cache so /news,
-# /api/news, sitemap.xml, etc. immediately reflect the new build. Code
-# deploys purge the whole zone and then re-warm the hot pages;
-# news-data-only commits purge just the news URLs (see the purge block).
+# containers, waits for their healthchecks, and reloads nginx. Code
+# deploys purge nothing at Cloudflare (see the purge block for why);
+# news-data-only commits purge just the news URLs.
 #
 # Installed by playbooks/install-autodeploy.yml. Triggered by
 # /etc/cron.d/spire-codex-autodeploy. Manual run: just exec this script.
@@ -18,7 +17,13 @@
 set -euo pipefail
 
 FORCE=0
-[ "${1:-}" = "--force" ] && FORCE=1
+PURGE_ALL=0
+for arg in "$@"; do
+  case "$arg" in
+    --force) FORCE=1 ;;
+    --purge-all) PURGE_ALL=1 ;;
+  esac
+done
 
 REPO="${SPIRE_REPO:-/var/www/spire-codex}"
 LOG="${SPIRE_AUTODEPLOY_LOG:-/var/log/spire-codex-autodeploy.log}"
@@ -113,8 +118,32 @@ if [ "$RECREATE" = "1" ]; then
 
   docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend rebuilder >> "$LOG" 2>&1
 
-  # Settle. 5s is enough for FastAPI startup; longer waits don't help.
-  sleep 5
+  # Wait for the recreated containers to answer before touching nginx:
+  # a fixed sleep either overshoots or reloads onto containers that are
+  # still booting. Health comes from the compose healthchecks; a container
+  # without one is polled directly.
+  wait_ready() {
+    local name="$1" url="$2" deadline=$(( $(date +%s) + 120 ))
+    while [ "$(date +%s)" -lt "$deadline" ]; do
+      case "$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)" in
+        healthy) return 0 ;;
+        none)
+          if docker exec "$name" sh -c "wget -q -O /dev/null '$url' || python -c \"import urllib.request;urllib.request.urlopen('$url',timeout=3)\"" >/dev/null 2>&1; then
+            return 0
+          fi ;;
+      esac
+      sleep 2
+    done
+    return 1
+  }
+  for pair in "spire-codex-backend|http://127.0.0.1:8000/health" "spire-codex-frontend|http://127.0.0.1:3000/robots.txt"; do
+    name="${pair%%|*}"; url="${pair##*|}"
+    if wait_ready "$name" "$url"; then
+      log "✓ $name ready"
+    else
+      log "✗ $name not ready after 120s, continuing"
+    fi
+  done
 
   # Recreated containers get new IPs on the shared docker network, and
   # nginx resolves upstream container names once at startup, so without
@@ -134,22 +163,27 @@ if [ "$RECREATE" = "1" ]; then
   fi
 fi
 
-# Purge Cloudflare cache. Without this, /news + /api/news + sitemap.xml
-# keep serving the pre-deploy HTML (CF s-maxage is up to 1 year for some
-# routes). Scope depends on what changed:
+# Cloudflare purge policy. Page HTML is never edge-cached (private,
+# no-store), /_next/static chunks are content-hashed and every build's
+# chunks stay available in the shared next-static volume, and API JSON
+# expires within its own s-maxage. So a code deploy purges nothing by
+# default: Cloudflare keeps serving the entity pages it holds (they
+# revalidate within 5 minutes of their next visit) and nothing goes cold.
 #
-#   RECREATE=1 : real code deploy — page HTML can change on every route,
-#                so purge everything (a prefix purge needs a paid CF
-#                plan). Overpurging here costs a brief cold cache;
-#                underpurging is invisible stale data.
-#   RECREATE=0 : news/beta-data-only commit (the hourly news workflow,
-#                several per day). Only the news surfaces changed, so a
-#                targeted `files` purge keeps /static/* (1y immutable),
-#                the R2 images, and every other cached API response warm
-#                instead of going cold zone-wide every hour.
+#   RECREATE=0 : news/beta-data-only commit — purge the handful of news
+#                URLs whose content moved.
+#   RECREATE=1 : code deploy — no purge, unless SPIRE_DEPLOY_PURGE=all is
+#                set (or --purge-all is passed) for a deliberate full
+#                purge, e.g. after an API response shape change.
+PURGE_BODY=""
+PURGE_WHAT=""
 if [ "$RECREATE" = "1" ]; then
-  PURGE_BODY='{"purge_everything":true}'
-  PURGE_WHAT="everything"
+  if [ "${SPIRE_DEPLOY_PURGE:-}" = "all" ] || [ "${PURGE_ALL:-0}" = "1" ]; then
+    PURGE_BODY='{"purge_everything":true}'
+    PURGE_WHAT="everything (requested)"
+  else
+    log "  no CF purge: code deploy, edge stays warm (SPIRE_DEPLOY_PURGE=all to force)"
+  fi
 else
   # The URLs whose content moves when a news commit lands:
   #   /            homepage embeds the latest 3 announcements (HomeNewsSection)
@@ -165,7 +199,9 @@ else
 fi
 
 PURGED=0
-if [ -f "$CF_ENV" ]; then
+if [ -z "$PURGE_BODY" ]; then
+  :
+elif [ -f "$CF_ENV" ]; then
   # shellcheck source=/dev/null
   source "$CF_ENV"
   if [ -n "${CF_TOKEN:-}" ] && [ -n "${CF_ZONE:-}" ]; then
@@ -187,13 +223,11 @@ else
   log "⚠ $CF_ENV not found — skipping cache purge"
 fi
 
-# A full purge leaves the whole edge cold, so the next visitor to every
-# page pays origin latency (and the origin pays the fan-in). Re-warm the
-# hot landing pages right away; entity detail pages re-warm via the
-# startup.sh --full crawl or organically. Best-effort: warming is an
-# optimization and must never fail the deploy. Skipped when the purge was
-# skipped or failed — nothing went cold.
-if [ "$RECREATE" = "1" ] && [ "$PURGED" = "1" ]; then
+# Only a deliberate full purge leaves the edge cold; re-warm the hot
+# landing pages after one. Best-effort: warming is an optimization and
+# must never fail the deploy. A normal code deploy purges nothing, so
+# nothing needs warming and the frontend keeps its CPU for visitors.
+if [ "$RECREATE" = "1" ] && [ "$PURGED" = "1" ] && [ "$PURGE_WHAT" != "news URLs only" ]; then
   log "  re-warming hot pages after full purge"
   if timeout 10m python3 "$REPO/tools/warm_cache.py" --hot >> "$LOG" 2>&1; then
     log "✓ warm crawl done (hot pages)"

@@ -108,6 +108,30 @@ CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
 ./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
+### Purge-free deploys (2026-09)
+
+A code deploy no longer purges Cloudflare. Page HTML is never edge-cached,
+`/_next/static` chunks are content-hashed and every build's chunks stay in
+the `next-static` volume (the frontend entrypoint copies its build in and
+prunes files older than 30 days), and API JSON expires on its own. Entity
+pages Cloudflare already holds keep serving and revalidate within 5 minutes
+of their next visit. The script waits for the container healthchecks before
+reloading nginx instead of sleeping. News-only commits still purge the news
+URLs. Force a full purge with `spire-codex-autodeploy --force --purge-all`
+or `SPIRE_DEPLOY_PURGE=all`.
+
+Rolling this out on the box (once, after the PR merges and CI has built the
+images):
+
+    cd /var/www/spire-codex && git pull --ff-only
+    sudo install -m 755 infrastructure/ansible/files/autodeploy.sh /usr/local/bin/spire-codex-autodeploy
+    docker compose -f docker-compose.prod.yml pull backend frontend
+    docker compose -f docker-compose.prod.yml up -d --force-recreate backend frontend
+    docker inspect --format '{{.State.Health.Status}}' spire-codex-frontend spire-codex-backend
+
+The first recreate creates the two volumes; from then on deploys are the
+cron's job again.
+
 ## Main vs beta
 
 One stack. The beta site merged into the main deployment: the same containers serve `/beta` from the `data-beta/` volume, so there is no separate beta compose file, image tag, or deploy.

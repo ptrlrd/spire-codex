@@ -159,6 +159,13 @@ services:
     # Redis down, since the cache layer is fail-safe by design.
     depends_on:
       - redis
+    stop_grace_period: 5s
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
     networks:
       - nginx_web-network
     logging:
@@ -239,13 +246,22 @@ services:
     restart: unless-stopped
     # Next server sits ~400M; 1G leaves room for ISR render spikes.
     mem_limit: 1g
+    stop_grace_period: 5s
     depends_on:
       - backend
     volumes:
       - ./data:/data:ro
+      - next-static:/app/.next/static
+      - next-cache:/app/.next/cache
     environment:
       - API_INTERNAL_URL=http://spire-codex-backend:8000
       - NEXT_PUBLIC_SITE_URL=https://spire-codex.com
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/robots.txt"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
     networks:
       - nginx_web-network
     logging:
@@ -257,3 +273,7 @@ services:
 networks:
   nginx_web-network:
     external: true
+
+volumes:
+  next-static:
+  next-cache:
