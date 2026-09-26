@@ -12,6 +12,7 @@ import {
 } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Card } from "@/lib/api";
+import { cardHasKeyword } from "@/lib/card-display";
 import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";
@@ -228,10 +229,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
           (!color || c.color === color) &&
           (!type || c.type === type) &&
           (!rarity || c.rarity === rarity) &&
-          (!keyword ||
-            (c.keywords ?? []).some(
-              (k) => k.toLowerCase() === keyword.toLowerCase(),
-            )) &&
+          (!keyword || cardHasKeyword(c, keyword)) &&
           matchesCost(c, cost) &&
           (!search || c.name.toLowerCase().includes(search.toLowerCase())),
       )
