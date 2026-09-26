@@ -17,18 +17,24 @@ sys.path.insert(0, "/app")
 LAKE = pathlib.Path(os.environ.get("LAKE_DIR", "/lake"))
 BOARD_NAME = "player_elo.json"
 KEEP = 500
+MIN_RUNS = 10
 
 
 def public_row(rec: dict) -> dict | None:
     name = (rec.get("username") or "").strip()
     if not name:
         return None
-    by_char = rec.get("by_character") or {}
-    main = (
-        max(by_char.items(), key=lambda kv: kv[1].get("runs", 0))[0]
-        if by_char
-        else None
-    )
+    by_char = {
+        c: {
+            "elo": s.get("elo"),
+            "runs": int(s.get("runs") or 0),
+            "wins": int(s.get("wins") or 0),
+        }
+        for c, s in (rec.get("by_character") or {}).items()
+        if isinstance(s, dict)
+    }
+    played = [(c, s) for c, s in by_char.items() if s["runs"] > 0]
+    main = max(played, key=lambda kv: kv[1]["runs"])[0] if played else None
     runs = int(rec.get("runs") or 0)
     wins = int(rec.get("wins") or 0)
     return {
@@ -43,14 +49,25 @@ def public_row(rec: dict) -> dict | None:
     }
 
 
-def build_board(records: list[dict], keep: int = KEEP) -> dict:
+def _rank_key(r: dict):
+    elo = r["elo"] if r["elo"] is not None else float("-inf")
+    lifetime = r["lifetime"] if r["lifetime"] is not None else float("-inf")
+    return (-elo, -lifetime, r["username"])
+
+
+def build_board(
+    records: list[dict], keep: int = KEEP, min_runs: int = MIN_RUNS
+) -> dict:
+    """Top `keep` named accounts with at least `min_runs` rated runs, so the
+    kept slice is the one the public board can actually serve."""
     rows = [r for r in (public_row(rec) for rec in records) if r]
-    rows.sort(key=lambda r: (-(r["elo"] or 0), -(r["lifetime"] or 0), r["username"]))
+    eligible = sorted((r for r in rows if r["runs"] >= min_runs), key=_rank_key)
     return {
         "computed_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "total_rated": len(records),
         "total_named": len(rows),
-        "players": rows[:keep],
+        "min_runs": min_runs,
+        "players": eligible[:keep],
     }
 
 
@@ -60,8 +77,9 @@ def build() -> dict:
     t0 = time.time()
     board = build_board(compute_player_elos(persist=False))
     board["build_seconds"] = round(time.time() - t0, 1)
-    tmp = LAKE / (BOARD_NAME + ".tmp")
-    tmp.write_text(json.dumps(board, separators=(",", ":")))
+    LAKE.mkdir(parents=True, exist_ok=True)
+    tmp = LAKE / f"{BOARD_NAME}.{os.getpid()}.tmp"
+    tmp.write_text(json.dumps(board, separators=(",", ":")), encoding="utf-8")
     tmp.replace(LAKE / BOARD_NAME)
     return board
 

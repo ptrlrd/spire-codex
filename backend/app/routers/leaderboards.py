@@ -33,9 +33,9 @@ def load_board() -> dict | None:
     if _cache and _cache[0] == mtime:
         return _cache[1]
     try:
-        board = json.loads(path.read_text())
+        board = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
-        return None
+        return _cache[1] if _cache else None
     _cache = (mtime, board)
     return board
 
@@ -67,7 +67,10 @@ def elo_board(
     """The Spire Codex top players by hidden Elo over solo A10 standard runs
     on the official cast, refreshed nightly. Only accounts with a public
     username and at least `min_runs` rated runs are ranked."""
+    board = load_board()
     response.headers["Cache-Control"] = (
         "public, max-age=300, stale-while-revalidate=900"
+        if board
+        else "no-cache, no-store"
     )
-    return top_players(load_board(), limit, min_runs)
+    return top_players(board, limit, min_runs)

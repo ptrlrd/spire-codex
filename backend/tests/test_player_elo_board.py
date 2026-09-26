@@ -52,6 +52,7 @@ def test_build_board_drops_anonymous_and_ranks_by_elo_then_lifetime():
     ]
     board = player_elo_board.build_board(records, keep=3)
     names = [p["username"] for p in board["players"]]
+    assert board["min_runs"] == 10
     assert names == ["Multi", "TieBetter", "Tie"]
     assert board["total_rated"] == 5
     assert board["total_named"] == 4
@@ -91,7 +92,8 @@ def served(tmp_path, monkeypatch):
             _rec("Vet", 1400, 80, 60),
             _rec("Fresh", 1450, 3, 3),
             _rec("Mid", 1300, 25, 12),
-        ]
+        ],
+        min_runs=1,
     )
     (tmp_path / "player_elo.json").write_text(json.dumps(board))
     return tmp_path
