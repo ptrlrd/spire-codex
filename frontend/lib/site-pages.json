@@ -18,6 +18,11 @@
     "keywords": ["community", "stats"]
   },
   { "path": "/compare", "name": "Compare", "keywords": ["compare"] },
+  {
+    "path": "/deck-builder",
+    "name": "Deck Builder",
+    "keywords": ["deck", "builder"]
+  },
   { "path": "/developers", "name": "Developers", "keywords": ["developers"] },
   {
     "path": "/enchantments",
@@ -85,6 +90,11 @@
   { "path": "/reference", "name": "Reference", "keywords": ["reference"] },
   { "path": "/relics", "name": "Relics", "keywords": ["relics"] },
   { "path": "/runs", "name": "Runs", "keywords": ["runs"] },
+  {
+    "path": "/seed-finder",
+    "name": "Seed Finder",
+    "keywords": ["seed", "finder"]
+  },
   { "path": "/settings", "name": "Settings", "keywords": ["settings"] },
   { "path": "/showcase", "name": "Showcase", "keywords": ["showcase"] },
   { "path": "/terms", "name": "Terms", "keywords": ["terms"] },

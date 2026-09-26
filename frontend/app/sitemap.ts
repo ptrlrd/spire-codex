@@ -60,6 +60,8 @@ const LANG_LIST_ROUTES = [
   "guides",
   "news",
   "leaderboards",
+  "seed-finder",
+  "deck-builder",
   "tier-list",
   "charts",
   "community-stats",
