@@ -1,5 +1,5 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
-import { join, relative } from "node:path";
+import { join, relative, sep } from "node:path";
 import { describe, expect, it } from "vitest";
 
 const ROOT = join(__dirname, "..");
@@ -21,7 +21,7 @@ function walk(dir: string, out: string[] = []): string[] {
 
 function importsFromNextNavigation(src: string): string[] {
   const out: string[] = [];
-  const re = /import\s*\{([^}]*)\}\s*from\s*"next\/navigation"/g;
+  const re = /import\s*\{([^}]*)\}\s*from\s*["']next\/navigation["']/g;
   for (const m of src.matchAll(re))
     out.push(...m[1].split(",").map((s) => s.trim().split(/\s+as\s+/)[0]));
   return out.filter(Boolean);
@@ -41,15 +41,15 @@ describe("navigation under app/ keeps the locale prefix", () => {
           "useRouter",
         ),
       )
-      .map((f) => relative(ROOT, f))
+      .map((f) => relative(ROOT, f).split(sep).join("/"))
       .filter((f) => !RAW_ROUTER_ALLOWED.has(f));
     expect(offenders).toEqual([]);
   });
 
   it("never imports next/link", () => {
     const offenders = files
-      .filter((f) => /from\s*"next\/link"/.test(readFileSync(f, "utf-8")))
-      .map((f) => relative(ROOT, f));
+      .filter((f) => /from\s*["']next\/link["']/.test(readFileSync(f, "utf-8")))
+      .map((f) => relative(ROOT, f).split(sep).join("/"));
     expect(offenders).toEqual([]);
   });
 });
