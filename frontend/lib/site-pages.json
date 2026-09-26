@@ -94,6 +94,7 @@
   { "path": "/profile", "name": "Profile", "keywords": ["profile"] },
   { "path": "/reference", "name": "Reference", "keywords": ["reference"] },
   { "path": "/relics", "name": "Relics", "keywords": ["relics"] },
+  { "path": "/replays", "name": "Replays", "keywords": ["replays"] },
   { "path": "/runs", "name": "Runs", "keywords": ["runs"] },
   {
     "path": "/seed-finder",

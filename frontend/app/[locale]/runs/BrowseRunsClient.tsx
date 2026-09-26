@@ -5,6 +5,12 @@ import { Suspense, useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import {
+  RUNS_BROWSE,
+  browseRowHref,
+  type BrowseConfig,
+} from "@/lib/browse-config";
+import ReplaySummary from "../replays/ReplaySummary";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -21,6 +27,7 @@ interface BrowseRun {
   run_time: number;
   build_id?: string;
   seed?: string;
+  replay_url?: string;
 }
 
 interface CharacterNameRow {
@@ -198,7 +205,7 @@ function expandVersionRange(expr: string, versions: string[]): string[] {
   return versions.slice(lo, hi + 1);
 }
 
-function BrowseRunsClientInner() {
+function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const t = useT();
@@ -371,6 +378,7 @@ function BrowseRunsClientInner() {
   // Fetch runs
   useEffect(() => {
     setLoading(true);
+    const controller = new AbortController();
     const params = new URLSearchParams();
     if (effectiveChar) params.set("character", effectiveChar);
     if (effectiveWin) params.set("win", effectiveWin);
@@ -411,15 +419,19 @@ function BrowseRunsClientInner() {
     params.set("page", String(page));
     // No cache-buster: the API sends Cache-Control max-age=30, so the edge
     // and browser absorb repeat hits; new runs appear within seconds anyway.
-    fetch(`${API}/api/runs/list?${params}`)
+    fetch(`${API}${config.endpoint}?${params}`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
       .then((data) => {
+        if (controller.signal.aborted) return;
         setRuns(data.runs || []);
         setTotal(data.total || 0);
         setTotalPages(data.total_pages || 0);
       })
       .catch(() => {})
-      .finally(() => setLoading(false));
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
   }, [
     effectiveChar,
     effectiveWin,
@@ -436,6 +448,7 @@ function BrowseRunsClientInner() {
     versions,
     sort,
     page,
+    config.endpoint,
   ]);
 
   function clearAll() {
@@ -467,7 +480,7 @@ function BrowseRunsClientInner() {
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <div className="flex items-end justify-between mb-4">
         <h1 className="text-3xl font-bold text-[var(--accent-gold)]">
-          {t("Browse Runs")}
+          {t(config.title)}
         </h1>
         <Link
           href={`${bp}/leaderboards`}
@@ -479,7 +492,7 @@ function BrowseRunsClientInner() {
 
       <p className="text-sm text-[var(--text-secondary)] mb-4">
         <span className="font-semibold text-[var(--text-primary)]">
-          {t("Find any run.")}
+          {t(config.kicker)}
         </span>{" "}
         {t(
           "Type filters into the search bar or use the dropdowns below. Combine anything:",
@@ -495,8 +508,30 @@ function BrowseRunsClientInner() {
         <code className="text-[var(--accent-gold)]">
           version:v0.104.0-v0.106.0
         </code>{" "}
-        {t("spans patches.")} {t("Click any run to see the full breakdown.")}
+        {t("spans patches.")} {t(config.outro)}
       </p>
+
+      {config.hint && config.hintLink && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">
+          {t(config.hint, { mod: "\u0000" })
+            .split("\u0000")
+            .map((part, i, parts) => (
+              <span key={i}>
+                {part}
+                {i < parts.length - 1 && (
+                  <Link
+                    href={config.hintLink!.href}
+                    className="text-[var(--accent-gold)] hover:underline"
+                  >
+                    {t(config.hintLink!.label)}
+                  </Link>
+                )}
+              </span>
+            ))}
+        </p>
+      )}
+
+      {config.summary && <ReplaySummary charName={charName} />}
 
       {/* Search bar */}
       <div className="mb-3">
@@ -632,7 +667,7 @@ function BrowseRunsClientInner() {
       </div>
 
       <p className="text-xs text-[var(--text-muted)] mb-3">
-        {total.toLocaleString()} {t("runs total")}
+        {total.toLocaleString()} {t(config.totalLabel)}
       </p>
 
       {loading ? (
@@ -646,7 +681,7 @@ function BrowseRunsClientInner() {
         </div>
       ) : runs.length === 0 ? (
         <p className="text-center py-8 text-[var(--text-muted)]">
-          {t("No runs found.")}
+          {t(config.emptyLabel)}
         </p>
       ) : (
         <>
@@ -655,7 +690,7 @@ function BrowseRunsClientInner() {
               <Link
                 prefetch={false}
                 key={r.run_hash}
-                href={`${bp}/runs/${r.run_hash}`}
+                href={browseRowHref(config, bp, r.run_hash)}
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-3 sm:px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
               >
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
@@ -689,6 +724,11 @@ function BrowseRunsClientInner() {
                   </span>
                   <span>{r.floors_reached}f</span>
                   <span>{formatTimeShort(r.run_time)}</span>
+                  {config.watch && (
+                    <span className="rounded-md border border-[var(--accent-gold)] px-2 py-0.5 text-[11px] font-semibold text-[var(--accent-gold)]">
+                      ▶ {t("Watch")}
+                    </span>
+                  )}
                 </div>
               </Link>
             ))}
@@ -725,7 +765,11 @@ function BrowseRunsClientInner() {
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function BrowseRunsClient() {
+export default function BrowseRunsClient({
+  config = RUNS_BROWSE,
+}: {
+  config?: BrowseConfig;
+}) {
   const t = useT();
   // The fallback carries the page header: it's what static prerendering
   // emits, so crawlers see the h1 even though the browse UI itself needs
@@ -739,12 +783,12 @@ export default function BrowseRunsClient() {
       fallback={
         <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
           <h1 className="text-3xl font-bold text-[var(--accent-gold)]">
-            {t("Browse Runs")}
+            {t(config.title)}
           </h1>
         </div>
       }
     >
-      <BrowseRunsClientInner />
+      <BrowseRunsClientInner config={config} />
     </Suspense>
   );
 }

@@ -112,6 +112,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/leaderboards/elo", label: "Top Players" },
       { href: "/runs", label: "Browse Runs" },
+      { href: "/replays", label: "Browse Replays" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
     ],
   },
@@ -232,7 +233,13 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
     },
     {
       title: "Runs",
-      labels: ["Leaderboards", "Top Players", "Browse Runs", "Submit a Run"],
+      labels: [
+        "Leaderboards",
+        "Top Players",
+        "Browse Runs",
+        "Browse Replays",
+        "Submit a Run",
+      ],
     },
   ],
   Tools: [
