@@ -52,11 +52,11 @@ class Cursor:
         self.docs = docs
 
     def sort(self, spec):
-        key, direction = spec[0]
-        self.docs.sort(
-            key=lambda d: d.get(key) or datetime.min.replace(tzinfo=timezone.utc),
-            reverse=direction < 0,
-        )
+        for key, direction in reversed(spec):
+            self.docs.sort(
+                key=lambda d: (d.get(key) is not None, d.get(key)),
+                reverse=direction < 0,
+            )
         return self
 
     def skip(self, n):
@@ -96,6 +96,17 @@ class Fake:
                     d.pop(k, None)
                 return type("R", (), {"modified_count": 1})()
         return type("R", (), {"modified_count": 0})()
+
+    def update_many(self, flt, update):
+        n = 0
+        for d in self.docs.values():
+            if _match(d, flt):
+                n += 1
+                for k, v in update.get("$set", {}).items():
+                    d[k] = v
+                for k in update.get("$unset", {}):
+                    d.pop(k, None)
+        return type("R", (), {"modified_count": n})()
 
 
 def _replay(h, **over):

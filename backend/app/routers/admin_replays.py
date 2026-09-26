@@ -4,8 +4,9 @@ Guarded by `require_admin` like the rest of /api/admin.
 """
 
 import os
+import re
 
-from fastapi import APIRouter, Depends, HTTPException, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 
 from ..services import replay_admin
 from ..services.auth_jwt import require_admin
@@ -16,6 +17,8 @@ router = APIRouter(
     tags=["Admin"],
     dependencies=[Depends(require_admin)],
 )
+
+_SAFE_HASH = re.compile(r"[^A-Za-z0-9_-]")
 
 
 def _mongo() -> None:
@@ -42,7 +45,7 @@ def replays_list(
     win: bool | None = None,
     since: str | None = None,
     until: str | None = None,
-    page: int = 1,
+    page: int = Query(1, ge=1, le=replay_admin.MAX_PAGE),
     limit: int = 50,
 ):
     """Newest first. `state` is one of pending, claimed, retry, quarantined,
@@ -89,11 +92,13 @@ def replay_blob(request: Request, run_hash: str):
     _audit(request)
     _mongo()
     data, sha = _call(replay_admin.blob, run_hash)
+    name = _SAFE_HASH.sub("_", run_hash)[:64] or "replay"
     return Response(
         content=data,
         media_type="application/gzip",
         headers={
-            "Content-Disposition": f'attachment; filename="{run_hash}.jsonl.gz"',
+            "Content-Disposition": f'attachment; filename="{name}.jsonl.gz"',
+            "Cache-Control": "private, no-store",
             "X-Replay-Sha256": sha,
         },
     )

@@ -5,14 +5,17 @@ restore). Never returns the blob itself; the router streams that separately.
 
 import re
 from collections import Counter
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 from bson import ObjectId
 
 from . import replays_db
-from .timeutil import pacific_date
+from .timeutil import PACIFIC, pacific_date
 
 STATES = ("pending", "claimed", "retry", "quarantined", "done", "deleted")
+REQUEUE_FROM = ("retry", "quarantined")
+MAX_PAGE = 10_000
+SORT = [("submitted_at", -1), ("_id", -1)]
 
 _LIST_FIELDS = {
     "sha256": 1,
@@ -94,16 +97,18 @@ def _state_filter(state: str | None) -> dict:
     return {"deleted_at": None, "ingest_state": state}
 
 
-def _parse_when(value: str | None, name: str):
+def _parse_when(value: str | None, name: str) -> tuple[datetime | None, bool]:
     if not value:
-        return None
+        return None, False
+    raw = value.strip()
     try:
-        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(raw.replace("Z", "+00:00"))
     except ValueError:
         raise AdminReplayError(400, f"{name} must be an ISO 8601 date or datetime")
+    date_only = len(raw) == 10
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
-    return dt
+    return dt, date_only
 
 
 def _user_filter(user: str | None) -> dict | None:
@@ -150,22 +155,30 @@ def build_query(
         query["mod_version"] = mod_version.strip()
     if win is not None:
         query["win"] = win
-    lo, hi = _parse_when(since, "since"), _parse_when(until, "until")
+    lo, _ = _parse_when(since, "since")
+    hi, hi_date_only = _parse_when(until, "until")
     if lo or hi:
         rng = {}
         if lo:
             rng["$gte"] = lo
         if hi:
-            rng["$lte"] = hi
+            if hi_date_only:
+                rng["$lt"] = hi + timedelta(days=1)
+            else:
+                rng["$lte"] = hi
         query["submitted_at"] = rng
     return query
 
 
-def _usernames(docs: list[dict]) -> dict[str, str]:
+def _run_key(run_hash: str) -> dict:
+    return {"$or": [{"_id": run_hash}, {"run_hash": run_hash}]}
+
+
+def _usernames(docs: list[dict]) -> dict[str, dict]:
     hashes = [d["_id"] for d in docs]
     if not hashes:
         return {}
-    out: dict[str, str] = {}
+    out: dict[str, dict] = {}
     runs = replays_db._runs().find(
         {"$or": [{"_id": {"$in": hashes}}, {"run_hash": {"$in": hashes}}]},
         {"run_hash": 1, "username": 1, "user_id": 1, "hidden": 1},
@@ -223,16 +236,13 @@ def shape(doc: dict, run: dict | None = None) -> dict:
 
 
 def list_replays(page: int = 1, limit: int = 50, **filters) -> dict:
-    page = max(1, page)
+    page = max(1, min(page, MAX_PAGE))
     limit = max(1, min(limit, 100))
     query = build_query(**filters)
     coll = replays_db._coll()
     total = coll.count_documents(query)
     docs = list(
-        coll.find(query, _LIST_FIELDS)
-        .sort([("submitted_at", -1)])
-        .skip((page - 1) * limit)
-        .limit(limit)
+        coll.find(query, _LIST_FIELDS).sort(SORT).skip((page - 1) * limit).limit(limit)
     )
     runs = _usernames(docs)
     return {
@@ -260,7 +270,8 @@ def stats(days: int = 14) -> dict:
     by_character: Counter = Counter()
     per_day: Counter = Counter()
     total_bytes = 0
-    cutoff = datetime.now(timezone.utc) - timedelta(days=days)
+    today: date = datetime.now(timezone.utc).astimezone(PACIFIC).date()
+    first_day = today - timedelta(days=days - 1)
     for doc in replays_db._coll().find({}, _STATS_FIELDS):
         st = state_of(doc)
         by_state[st] += 1
@@ -270,14 +281,9 @@ def stats(days: int = 14) -> dict:
         by_mod[str(doc.get("mod_version"))] += 1
         by_character[str(doc.get("character"))] += 1
         total_bytes += doc.get("gz_bytes") or 0
-        sub = doc.get("submitted_at")
-        if isinstance(sub, datetime):
-            if sub.tzinfo is None:
-                sub = sub.replace(tzinfo=timezone.utc)
-            if sub >= cutoff:
-                d = pacific_date(sub)
-                if d:
-                    per_day[d.isoformat()] += 1
+        d = pacific_date(doc.get("submitted_at"))
+        if d and d >= first_day:
+            per_day[d.isoformat()] += 1
     return {
         "total": sum(by_state.values()),
         "by_state": {s: by_state.get(s, 0) for s in STATES},
@@ -286,21 +292,32 @@ def stats(days: int = 14) -> dict:
         "by_character": dict(by_character.most_common()),
         "per_day": [{"day": k, "uploads": v} for k, v in sorted(per_day.items())],
         "days": days,
+        "since_day": first_day.isoformat(),
         "stored_gz_bytes": total_bytes,
     }
 
 
-def requeue(run_hash: str) -> dict:
-    coll = replays_db._coll()
-    doc = coll.find_one({"_id": run_hash}, {"ingest_state": 1, "deleted_at": 1})
+def _explain_conflict(run_hash: str, action: str) -> AdminReplayError:
+    doc = replays_db._coll().find_one(
+        {"_id": run_hash}, {"ingest_state": 1, "deleted_at": 1}
+    )
     if not doc:
-        raise AdminReplayError(404, "replay not found")
-    if doc.get("deleted_at"):
-        raise AdminReplayError(409, "restore the replay before re-queueing it")
-    if doc.get("ingest_state") == "claimed":
-        raise AdminReplayError(409, "an ingest run currently holds this replay")
-    coll.update_one(
-        {"_id": run_hash},
+        return AdminReplayError(404, "replay not found")
+    st = state_of(doc)
+    if st == "claimed":
+        return AdminReplayError(409, "an ingest run currently holds this replay")
+    if st == "deleted":
+        return AdminReplayError(409, f"restore the replay before {action}")
+    return AdminReplayError(409, f"cannot {action} a replay in state {st!r}")
+
+
+def requeue(run_hash: str) -> dict:
+    res = replays_db._coll().update_one(
+        {
+            "_id": run_hash,
+            "deleted_at": None,
+            "ingest_state": {"$in": list(REQUEUE_FROM)},
+        },
         {
             "$set": {
                 "ingest_state": None,
@@ -311,18 +328,24 @@ def requeue(run_hash: str) -> dict:
             }
         },
     )
+    if res.modified_count == 0:
+        raise _explain_conflict(run_hash, "re-queueing it")
     return get_replay(run_hash)
 
 
 def soft_delete(run_hash: str) -> dict:
     coll = replays_db._coll()
-    if not coll.find_one({"_id": run_hash}, {"_id": 1}):
-        raise AdminReplayError(404, "replay not found")
-    coll.update_one(
-        {"_id": run_hash, "deleted_at": None},
+    res = coll.update_one(
+        {"_id": run_hash, "deleted_at": None, "ingest_state": {"$ne": "claimed"}},
         {"$set": {"deleted_at": datetime.now(timezone.utc)}},
     )
-    replays_db._runs().update_one({"_id": run_hash}, {"$unset": {"has_replay": ""}})
+    if res.modified_count == 0:
+        doc = coll.find_one({"_id": run_hash}, {"deleted_at": 1, "ingest_state": 1})
+        if not doc:
+            raise AdminReplayError(404, "replay not found")
+        if not doc.get("deleted_at"):
+            raise _explain_conflict(run_hash, "deleting it")
+    replays_db._runs().update_many(_run_key(run_hash), {"$unset": {"has_replay": ""}})
     return get_replay(run_hash)
 
 
@@ -331,7 +354,7 @@ def restore(run_hash: str) -> dict:
     if not coll.find_one({"_id": run_hash}, {"_id": 1}):
         raise AdminReplayError(404, "replay not found")
     coll.update_one({"_id": run_hash}, {"$set": {"deleted_at": None}})
-    replays_db._runs().update_one({"_id": run_hash}, {"$set": {"has_replay": True}})
+    replays_db._runs().update_many(_run_key(run_hash), {"$set": {"has_replay": True}})
     return get_replay(run_hash)
 
 
