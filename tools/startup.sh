@@ -3,13 +3,16 @@
 #
 #   ./tools/startup.sh             defer to the installed autodeploy script
 #                                  (deploy no-ops when there's no new commit
-#                                  on main), then start the full warm crawl
-#                                  in the background
+#                                  on main)
 #   ./tools/startup.sh release     force a full deploy NOW via autodeploy:
 #                                  pull images, snapshot prewarm, recreate
-#                                  backend+frontend, nginx reload, Cloudflare
-#                                  purge - even when the commit didn't change
-#                                  - then the background warm crawl
+#                                  backend+frontend, wait for health, nginx
+#                                  reload - even when the commit didn't change.
+#                                  No Cloudflare purge and no warm crawl:
+#                                  the edge stays warm across deploys.
+#   ./tools/startup.sh rollback    put the previous images back (the ones
+#                                  running before the last deploy) without
+#                                  touching git
 #   ./tools/startup.sh --bypass    release entirely by hand: skip the
 #                                  autodeploy script, leave git alone, and
 #                                  just pull images + recreate backend and
@@ -29,6 +32,7 @@ for arg in "$@"; do
     case "$arg" in
         --bypass) BYPASS=1 ;;
         release) MODE="release" ;;
+        rollback) MODE="rollback" ;;
     esac
 done
 
@@ -36,20 +40,13 @@ if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
     if [ "$MODE" = "release" ]; then
         echo "forcing a full deploy via spire-codex-autodeploy --force"
         sudo /usr/local/bin/spire-codex-autodeploy --force
+    elif [ "$MODE" = "rollback" ]; then
+        echo "rolling back to the previous images via spire-codex-autodeploy --rollback"
+        sudo /usr/local/bin/spire-codex-autodeploy --rollback
     else
         echo "delegating to spire-codex-autodeploy"
         sudo /usr/local/bin/spire-codex-autodeploy
     fi
-    # set -e: reaching this line means autodeploy exited 0 (a same-commit
-    # tick no-ops and still exits 0); on failure we exit with its status
-    # and skip the crawl. Historically these were `exec` calls, which
-    # replaced the shell and made the warm crawl below unreachable in the
-    # automated path. Autodeploy re-warms the hot landing pages itself
-    # after a full purge; this --full crawl adds the entity detail pages
-    # (the on-demand ISR pages a container recreate resets).
-    nohup python3 "$(dirname "$0")/warm_cache.py" --full \
-        >/tmp/spire-warm-cache.log 2>&1 &
-    echo "cache warm crawl started in the background (log: /tmp/spire-warm-cache.log)"
     exit 0
 fi
 

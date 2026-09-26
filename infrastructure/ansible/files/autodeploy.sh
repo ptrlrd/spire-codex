@@ -18,11 +18,13 @@ set -euo pipefail
 
 FORCE=0
 PURGE_ALL=0
+ROLLBACK=0
 for arg in "$@"; do
   case "$arg" in
     --force) FORCE=1 ;;
     --purge-all) PURGE_ALL=1 ;;
-    *) echo "unknown option: $arg (use --force and/or --purge-all)" >&2; exit 2 ;;
+    --rollback) ROLLBACK=1 ;;
+    *) echo "unknown option: $arg (use --force, --purge-all or --rollback)" >&2; exit 2 ;;
   esac
 done
 exec 9>/var/lock/spire-codex-autodeploy.lock
@@ -43,6 +45,41 @@ touch "$LOG"
 log() { echo "[$(date -u +%Y-%m-%dT%H:%M:%SZ)] $*" >> "$LOG"; }
 
 cd "$REPO"
+
+# Every deploy tags the images it is about to replace as :previous, so a bad
+# release is one command away from being undone without touching git or
+# waiting for CI: spire-codex-autodeploy --rollback (or
+# ./tools/startup.sh rollback). The next deploy overwrites :previous again.
+IMAGES="ptrlrd/spire-codex-backend ptrlrd/spire-codex-frontend"
+keep_previous() {
+  for img in $IMAGES; do
+    id=$(docker image inspect --format '{{.Id}}' "$img:latest" 2>/dev/null || true)
+    [ -n "$id" ] && docker tag "$id" "$img:previous" >> "$LOG" 2>&1 || true
+  done
+}
+if [ "$ROLLBACK" = "1" ]; then
+  log "==== rollback to :previous images ===="
+  for img in $IMAGES; do
+    if ! docker image inspect "$img:previous" >/dev/null 2>&1; then
+      log "✗ no $img:previous image on this box, nothing to roll back to"
+      exit 1
+    fi
+    docker tag "$img:previous" "$img:latest" >> "$LOG" 2>&1
+  done
+  docker compose -f "$COMPOSE_FILE" up -d --force-recreate --no-build --pull never backend frontend rebuilder >> "$LOG" 2>&1
+  for name in spire-codex-backend spire-codex-frontend; do
+    for i in $(seq 1 60); do
+      st=$(docker inspect --format '{{if .State.Health}}{{.State.Health.Status}}{{else}}none{{end}}' "$name" 2>/dev/null)
+      [ "$st" = "healthy" ] && break
+      sleep 2
+    done
+    log "  $name: ${st:-missing}"
+  done
+  docker exec web-server sh -c 'rm -rf /var/cache/nginx/pages/* 2>/dev/null' >> "$LOG" 2>&1 || true
+  docker exec web-server nginx -s reload >> "$LOG" 2>&1 && log "✓ nginx reloaded"
+  log "==== rollback done (the next deploy will pull :latest again) ===="
+  exit 0
+fi
 
 BEFORE=$(git rev-parse HEAD)
 # Force-align with origin/main. Anyone hand-editing on the box should
@@ -103,6 +140,7 @@ if [ "$RECREATE" = "1" ]; then
   # The rebuilder MUST ride along: it holds the stats-refresher lease, so
   # leaving it on an old image keeps the fleet pinned to the old snapshot
   # version forever (no v22 ever built after the 2026-08-11 deploy).
+  keep_previous
   docker compose -f "$COMPOSE_FILE" pull backend frontend rebuilder >> "$LOG" 2>&1
 
   # Pre-warm the stats snapshot with the NEW image before swapping
