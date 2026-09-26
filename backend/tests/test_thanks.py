@@ -535,4 +535,6 @@ def test_kofi_supporters_export_imports_with_type_flags_and_no_email(env):
     assert all(p.get("problem") is None for p in preview)
     result = thanks.import_supporters(KOFI_SUPPORTERS_EXPORT)
     assert result["created"] == 3 and result["rejected"] == 0
-    assert all("email" not in json.dumps(d).lower() for d in env[1].docs.values())
+    assert all(
+        "email" not in json.dumps(d, default=str).lower() for d in env[1].docs.values()
+    )
