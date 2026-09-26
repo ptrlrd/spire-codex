@@ -426,6 +426,19 @@ def main() -> None:
         print(f"profile refresh failed: {e}", flush=True)
     _mark("profiles")
     try:
+        import player_elo_board
+
+        t_elo = time.time()
+        elo = player_elo_board.build()
+        print(
+            f"player elo board built ({len(elo['players'])} shown, {elo['total_rated']} rated) "
+            f"in {time.time() - t_elo:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"player elo board failed: {e}", flush=True)
+    _mark("player_elo")
+    try:
         import export_dump
 
         t_dump = time.time()
@@ -439,6 +452,18 @@ def main() -> None:
     except Exception as e:
         print(f"runs export failed: {e}", flush=True)
     _mark("runs_export")
+    try:
+        import replay_guard
+
+        guard = replay_guard.run()
+        print(
+            f"replay guard: {guard['flagged']} flagged, {guard['hidden']} hidden, "
+            f"{guard['already_hidden']} already hidden",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"replay guard failed: {e}", flush=True)
+    _mark("replay_guard")
     # A box that publishes to R2 must never purge the edge, even if CF creds
     # leak into its env: purging before the serving box pulls would let the
     # edge re-cache stale origin data for the whole pull gap.

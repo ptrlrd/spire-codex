@@ -179,6 +179,22 @@ function englishOnly(parts: string[]): boolean {
  * request without a language prefix is rewritten to the `eng` segment, and
  * an explicit /eng/ prefix redirects to the bare canonical. Other prefixes
  * pass straight through unless the section is English-only. */
+const RENAMED_TOOLS: Record<string, string> = {
+  "seed-lab": "seed-finder",
+  "deck-lab": "deck-builder",
+};
+
+function renamedToolRedirect(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.replace(/\/+$/, "").split("/");
+  const i = LANG_CODES.has(parts[1]) ? 2 : 1;
+  const renamed = RENAMED_TOOLS[parts[i]];
+  if (!renamed || parts.length !== i + 1) return null;
+  const target = new URL(req.nextUrl.origin);
+  target.pathname = [...parts.slice(0, i), renamed].join("/");
+  target.search = req.nextUrl.search;
+  return NextResponse.redirect(target, 308);
+}
+
 function metaRedirect(req: NextRequest): NextResponse | null {
   const parts = req.nextUrl.pathname.split("/");
   const i = LANG_CODES.has(parts[1]) ? 2 : 1;
@@ -215,6 +231,8 @@ export function proxy(req: NextRequest) {
   if (news) return news;
   const meta = metaRedirect(req);
   if (meta) return meta;
+  const renamed = renamedToolRedirect(req);
+  if (renamed) return renamed;
   const beta = betaRewrite(req);
   if (beta) return beta;
   return localeRewrite(req);

@@ -60,6 +60,8 @@ const LANG_LIST_ROUTES = [
   "guides",
   "news",
   "leaderboards",
+  "seed-finder",
+  "deck-builder",
   "tier-list",
   "charts",
   "community-stats",
@@ -138,6 +140,11 @@ const STATIC_PAGES = [
   {
     path: "/leaderboards/stats",
     priority: 0.8,
+    changeFrequency: "daily" as const,
+  },
+  {
+    path: "/leaderboards/elo",
+    priority: 0.7,
     changeFrequency: "daily" as const,
   },
   {

@@ -110,6 +110,7 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/leaderboards/stats", label: "Stats" },
       { href: "/leaderboards/encounters", label: "Encounters" },
       { href: "/leaderboards", label: "Leaderboards" },
+      { href: "/leaderboards/elo", label: "Top Players" },
       { href: "/runs", label: "Browse Runs" },
       { href: "/replays", label: "Browse Replays" },
       { href: "/leaderboards/submit", label: "Submit a Run" },
@@ -119,6 +120,8 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Tools",
     links: [
       { href: "/tier-list-maker", label: "Tier List Maker" },
+      { href: "/seed-finder", label: "Seed Finder" },
+      { href: "/deck-builder", label: "Deck Builder" },
       { href: "/mod", label: "Steam Mod" },
       { href: "/exporter", label: "Art Exporter" },
       { href: "/overlay", label: "Overlay (Overwolf)" },
@@ -230,7 +233,13 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
     },
     {
       title: "Runs",
-      labels: ["Leaderboards", "Browse Runs", "Browse Replays", "Submit a Run"],
+      labels: [
+        "Leaderboards",
+        "Top Players",
+        "Browse Runs",
+        "Browse Replays",
+        "Submit a Run",
+      ],
     },
   ],
   Tools: [

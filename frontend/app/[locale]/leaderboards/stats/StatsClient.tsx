@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
-import { fullCardUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
 import { characterHex } from "@/lib/character-colors";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import { CONTENT_BRACKETS, combineBracket } from "@/lib/content-brackets";
@@ -233,7 +233,6 @@ function EntityRowPill({
   isBeta: boolean;
 }) {
   const [show, setShow] = useState(false);
-  const lang = useGameLocale();
   const t = useT();
   const href = isBeta
     ? `${bp}/beta/${kind}s/${id.toLowerCase()}`
@@ -268,14 +267,10 @@ function EntityRowPill({
       {show && kind === "card" && (
         // Cards pop the full rendered card image, not the text tooltip.
         <span className="pointer-events-none absolute z-[100] bottom-full left-0 mb-2 w-40">
-          <img
-            src={fullCardUrl(id.toLowerCase(), false, "stable", lang)}
-            alt=""
+          <CardImage
+            id={id}
+            art={imageSrc}
             className="w-40 h-auto drop-shadow-[0_8px_24px_rgba(0,0,0,0.7)]"
-            crossOrigin="anonymous"
-            onError={(e) => {
-              if (imageSrc) (e.target as HTMLImageElement).src = imageSrc;
-            }}
           />
         </span>
       )}
