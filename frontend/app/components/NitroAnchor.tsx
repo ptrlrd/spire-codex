@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { isAdFree } from "@/lib/ad-free";
 
 declare global {
   interface Window {
@@ -18,11 +19,9 @@ declare global {
  * floating bottom anchor. The head stub queues this call if the loader
  * hasn't arrived yet, and data-spa="auto" keeps it fresh across
  * client-side navigations. Config mirrors the placement builder output. */
-const AD_FREE_PREFIXES = ["/admin", "/deck-lab", "/seed-lab"];
-
 export default function NitroAnchor() {
   const pathname = usePathname();
-  const adFree = AD_FREE_PREFIXES.some((p) => pathname?.startsWith(p));
+  const adFree = isAdFree(pathname);
   useEffect(() => {
     // Landing on an operator or hidden-lab page skips the unit entirely;
     // ads have no business on the admin console.
