@@ -278,7 +278,7 @@ def test_webhook_respects_private_flag_and_public_view(env):
     assert rows[0]["count"] == 2
     assert rows[0]["since"].startswith("2026-02-01")
     assert rows[0]["tier"] == "Silver"
-    assert rows[0]["total"] == 0.0 and rows[0]["currency"] == "USD"
+    assert "total" not in rows[0] and "currency" not in rows[0]
 
 
 def test_csv_import_parses_kofi_export_and_dedupes(env):

@@ -23,30 +23,9 @@ export interface ThanksSpecial {
 
 export interface ThanksSupporter {
   name: string;
-  total?: number | null;
-  currency?: string | null;
   since?: string | null;
   count: number;
   tier?: string | null;
-}
-
-function fmtTotal(
-  lang: string,
-  total: number | null | undefined,
-  currency?: string | null,
-) {
-  if (total == null || total <= 0) return null;
-  const cur = (currency || "USD").toUpperCase();
-  try {
-    return new Intl.NumberFormat(lang, {
-      style: "currency",
-      currency: cur,
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 2,
-    }).format(total);
-  } catch {
-    return `${total} ${cur}`;
-  }
 }
 
 export interface ThanksPayload {
@@ -136,11 +115,6 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm font-medium text-[var(--text-primary)]"
                 >
                   {s.name}
-                  {fmtTotal(intlLang, s.total, s.currency) && (
-                    <span className="text-xs text-[var(--text-muted)]">
-                      {fmtTotal(intlLang, s.total, s.currency)}
-                    </span>
-                  )}
                   {s.tier && (
                     <span className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
                       {s.tier}

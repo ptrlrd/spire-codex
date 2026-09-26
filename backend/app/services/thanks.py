@@ -18,7 +18,7 @@ from typing import Any
 logger = logging.getLogger(__name__)
 
 GITHUB_API = "https://api.github.com"
-DEFAULT_REPOS = "ptrlrd/spire-codex"
+DEFAULT_REPOS = "ptrlrd/spire-codex,ptrlrd/spire-codex-mod"
 CONTRIBUTORS_KEY = "thanks:github:v1"
 CONTRIBUTORS_TTL = 24 * 3600
 CONTRIBUTORS_STALE_TTL = 30 * 24 * 3600
@@ -633,7 +633,10 @@ def public_supporters() -> list[dict]:
             "currency": 1,
         },
     )
-    return fold_supporters(rows)
+    return [
+        {k: v for k, v in row.items() if k not in ("total", "currency")}
+        for row in fold_supporters(rows)
+    ]
 
 
 def payload() -> dict:
