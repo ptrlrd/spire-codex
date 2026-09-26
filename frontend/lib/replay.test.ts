@@ -3731,6 +3731,135 @@ describe("version 4 header", () => {
   });
 });
 
+describe("version 5 pick lines name the cards a selection screen chose", () => {
+  const header = {
+    t: "header",
+    s: 0,
+    ms: 1,
+    floor: 0,
+    act: 1,
+    replay_version: 5,
+    starting_deck: [],
+  };
+  const room = { t: "room", s: 1, floor: 1, act: 1, kind: "monster", id: "X" };
+  const fight = {
+    t: "combat_start",
+    s: 2,
+    floor: 1,
+    act: 1,
+    enemies: [{ id: "DEVOTED_SCULPTOR" }],
+  };
+  const turn = { t: "turn", s: 3, floor: 1, act: 1, n: 1, side: "player" };
+  const snap = {
+    t: "play",
+    s: 4,
+    floor: 1,
+    act: 1,
+    c: 453,
+    id: "SNAP",
+    target: "DEVOTED_SCULPTOR",
+  };
+  const retained = {
+    t: "pick",
+    s: 5,
+    floor: 1,
+    act: 1,
+    n_picked: 1,
+    selector: "human",
+    cards: [{ c: 455, id: "SQUEEZE", up: 1 }],
+  };
+  const discardTwo = {
+    t: "pick",
+    s: 6,
+    floor: 1,
+    act: 1,
+    n_picked: 2,
+    selector: "human",
+    cards: [
+      { c: 446, id: "SCULPTING_STRIKE", up: 0 },
+      { c: 447, id: "DEFEND_NECROBINDER" },
+    ],
+  };
+
+  it("types the pick with its cards, instance ids and upgrade flags", () => {
+    const { lines, malformed } = parseReplayLines(
+      journal([header, room, fight, turn, snap, retained, discardTwo]),
+    );
+    expect(malformed).toBe(0);
+    const picks = lines.filter((l) => l.t === "pick");
+    expect(picks).toHaveLength(2);
+    expect(picks[0]).toMatchObject({
+      t: "pick",
+      nPicked: 1,
+      selector: "human",
+      cards: [{ id: "SQUEEZE", c: 455, up: 1 }],
+    });
+    expect(picks[1]).toMatchObject({
+      cards: [
+        { id: "SCULPTING_STRIKE", c: 446, up: 0 },
+        { id: "DEFEND_NECROBINDER", c: 447 },
+      ],
+    });
+    expect(
+      (picks[1] as { cards: { up?: boolean }[] }).cards[1].up,
+    ).toBeUndefined();
+  });
+
+  it("keeps an in-combat pick on the turn it happened, after the play that opened it", () => {
+    const model = parseReplay(
+      journal([header, room, fight, turn, snap, retained, discardTwo]),
+    );
+    const fightTurns = model.floors[0].combats[0].turns;
+    const player = fightTurns.find((tu) => tu.side === "player");
+    expect(player?.lines.map((l) => l.t)).toEqual(["play", "pick", "pick"]);
+  });
+
+  it("drops a pick with no usable cards rather than inventing one", () => {
+    const { lines } = parseReplayLines(
+      journal([
+        header,
+        { t: "pick", s: 2, floor: 1, act: 1, cards: [{ c: 1 }] },
+      ]),
+    );
+    const pick = lines.find((l) => l.t === "pick") as { cards: unknown[] };
+    expect(pick.cards).toEqual([]);
+  });
+
+  it("keeps a pick outside a fight on its floor", () => {
+    const event = { t: "room", s: 1, floor: 2, act: 1, kind: "event", id: "E" };
+    const pick = {
+      t: "pick",
+      s: 2,
+      floor: 2,
+      act: 1,
+      n_picked: 1,
+      cards: [{ c: 9, id: "STRIKE" }],
+    };
+    const model = parseReplay(journal([header, event, pick]));
+    expect(model.floors[0].lines.map((l) => l.t)).toContain("pick");
+  });
+});
+
+describe("the version 5 fixture with pick lines", () => {
+  const text = readFileSync(
+    new URL("../../backend/tests/fixtures/v5-picks.jsonl", import.meta.url),
+    "utf-8",
+  );
+  const model = parseReplay(text);
+
+  it("parses cleanly and keeps both picks on the turn that opened them", () => {
+    expect(parseReplayLines(text).malformed).toBe(0);
+    expect(model.header?.replayVersion).toBe(5);
+    const floor2 = model.floors.find((f) => f.floor === 2);
+    const turn1 = floor2?.combats[0].turns.find(
+      (tu) => tu.side === "player" && tu.n === 1,
+    );
+    const picks = turn1?.lines.filter((l) => l.t === "pick") ?? [];
+    expect(picks).toHaveLength(2);
+    expect(picks.map((p) => (p.t === "pick" ? p.cards.length : 0))).toEqual([
+      1, 2,
+    ]);
+    expect(turn1?.linesLost).toBeUndefined();
 describe("an act line names the act whose map was just recorded", () => {
   it("assigns Hive and Glory to acts 2 and 3 on the full run, not to the act stamped on the line", () => {
     const text = readFileSync(

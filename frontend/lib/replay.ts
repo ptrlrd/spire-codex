@@ -307,6 +307,20 @@ export interface GenerateLine extends LineBase {
   id: string;
   c?: number;
 }
+export interface PickedCard {
+  id: string;
+  c?: number;
+  up?: number;
+}
+/** Version 5: the cards a player chose on a selection screen (Snap's retain,
+ * Armaments, Gambling Chip's discard...). It names the cards and nothing
+ * else: in-combat screens record no offer, so no decision is claimed. */
+export interface PickLine extends LineBase {
+  t: "pick";
+  cards: PickedCard[];
+  nPicked?: number;
+  selector?: string;
+}
 export interface ShuffleLine extends LineBase {
   t: "shuffle";
 }
@@ -384,6 +398,7 @@ export type ReplayLine =
   | MoveLine
   | ExhaustLine
   | GenerateLine
+  | PickLine
   | ShuffleLine
   | ResumeLine
   | EndLine
@@ -953,6 +968,28 @@ function narrow(raw: Raw): ReplayLine | undefined {
       return { ...base, t, id, c: num(raw.c), deckC: num(raw.deck_c) };
     case "generate":
       return { ...base, t, id, c: num(raw.c) };
+    case "pick": {
+      const cards = Array.isArray(raw.cards)
+        ? (raw.cards as Raw[]).flatMap((c) =>
+            typeof c?.id === "string" && c.id
+              ? [
+                  {
+                    id: c.id,
+                    c: num(c.c),
+                    up: num(c.up),
+                  },
+                ]
+              : [],
+          )
+        : [];
+      return {
+        ...base,
+        t,
+        cards,
+        nPicked: num(raw.n_picked),
+        selector: str(raw.selector),
+      };
+    }
     case "shuffle":
       return { ...base, t };
     case "resume":
