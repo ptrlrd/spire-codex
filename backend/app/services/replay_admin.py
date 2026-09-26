@@ -3,7 +3,6 @@ upload/ingest stats, and the operator actions (re-queue, soft delete,
 restore). Never returns the blob itself; the router streams that separately.
 """
 
-import re
 from collections import Counter
 from datetime import date, datetime, timedelta, timezone
 
@@ -117,17 +116,16 @@ def _user_filter(user: str | None) -> dict | None:
         return None
     if q.isdigit() and len(q) == 17:
         return {"steam_id": q}
-    if ObjectId.is_valid(q):
-        return {"user_id": {"$in": _user_ids(q)}}
-    pattern = "^" + re.escape(q) + "$"
-    ids: list = []
-    for run in replays_db._runs().find(
-        {"username": {"$regex": pattern, "$options": "i"}}, {"user_id": 1}
-    ):
+    ids: list = _user_ids(q) if ObjectId.is_valid(q) else []
+    for run in replays_db._runs().find({"username_lower": q.lower()}, {"user_id": 1}):
         uid = run.get("user_id")
         if uid is not None:
             ids.extend(_user_ids(uid) if isinstance(uid, str) else [uid, str(uid)])
-    return {"user_id": {"$in": ids}}
+    seen: list = []
+    for i in ids:
+        if i not in seen:
+            seen.append(i)
+    return {"user_id": {"$in": seen}}
 
 
 def build_query(
@@ -185,7 +183,7 @@ def _usernames(docs: list[dict]) -> dict[str, dict]:
     )
     by_hash: dict[str, list[dict]] = {}
     for r in runs:
-        h = r.get("run_hash") or r.get("_id")
+        h = str(r.get("run_hash") or r.get("_id"))
         by_hash.setdefault(h, []).append(r)
     for d in docs:
         cands = by_hash.get(d["_id"]) or []
@@ -275,12 +273,12 @@ def stats(days: int = 14) -> dict:
     for doc in replays_db._coll().find({}, _STATS_FIELDS):
         st = state_of(doc)
         by_state[st] += 1
+        total_bytes += doc.get("gz_bytes") or 0
         if st == "deleted":
             continue
         by_version[str(doc.get("replay_version"))] += 1
         by_mod[str(doc.get("mod_version"))] += 1
         by_character[str(doc.get("character"))] += 1
-        total_bytes += doc.get("gz_bytes") or 0
         d = pacific_date(doc.get("submitted_at"))
         if d and d >= first_day:
             per_day[d.isoformat()] += 1
@@ -305,18 +303,24 @@ def _explain_conflict(run_hash: str, action: str) -> AdminReplayError:
         return AdminReplayError(404, "replay not found")
     st = state_of(doc)
     if st == "claimed":
-        return AdminReplayError(409, "an ingest run currently holds this replay")
+        return AdminReplayError(
+            409, "an ingest run currently holds this replay (lease not expired)"
+        )
     if st == "deleted":
         return AdminReplayError(409, f"restore the replay before {action}")
     return AdminReplayError(409, f"cannot {action} a replay in state {st!r}")
 
 
 def requeue(run_hash: str) -> dict:
+    now = datetime.now(timezone.utc)
     res = replays_db._coll().update_one(
         {
             "_id": run_hash,
             "deleted_at": None,
-            "ingest_state": {"$in": list(REQUEUE_FROM)},
+            "$or": [
+                {"ingest_state": {"$in": list(REQUEUE_FROM)}},
+                {"ingest_state": "claimed", "lease_expires_at": {"$lt": now}},
+            ],
         },
         {
             "$set": {
@@ -325,7 +329,8 @@ def requeue(run_hash: str) -> dict:
                 "error": None,
                 "lease_expires_at": None,
                 "batch_id": None,
-            }
+            },
+            "$unset": {"owner": ""},
         },
     )
     if res.modified_count == 0:
@@ -336,7 +341,14 @@ def requeue(run_hash: str) -> dict:
 def soft_delete(run_hash: str) -> dict:
     coll = replays_db._coll()
     res = coll.update_one(
-        {"_id": run_hash, "deleted_at": None, "ingest_state": {"$ne": "claimed"}},
+        {
+            "_id": run_hash,
+            "deleted_at": None,
+            "$or": [
+                {"ingest_state": {"$ne": "claimed"}},
+                {"lease_expires_at": {"$lt": datetime.now(timezone.utc)}},
+            ],
+        },
         {"$set": {"deleted_at": datetime.now(timezone.utc)}},
     )
     if res.modified_count == 0:

@@ -2402,8 +2402,10 @@ def list_runs(
     q: dict[str, Any] = {}
     if not include_hidden:
         q["hidden"] = {"$ne": True}
-    if has_replay:
+    if has_replay is True:
         q["has_replay"] = True
+    elif has_replay is False:
+        q["has_replay"] = {"$ne": True}
     if character:
         q["character"] = character.upper()
     if win == "true":

@@ -39,7 +39,7 @@ def test_browse_forces_has_replay_and_adds_replay_url(env, monkeypatch):
     r = client.get(
         "/api/replays",
         params={
-            "character": "SILENT",
+            "character": "silent",
             "username": " Reviver ",
             "win": "true",
             "page": 2,
@@ -136,6 +136,8 @@ def test_list_runs_has_replay_filter(monkeypatch):
     assert coll.query["hidden"] == {"$ne": True}
     runs_db_mongo.list_runs(has_replay=None)
     assert "has_replay" not in coll.query
+    runs_db_mongo.list_runs(has_replay=False)
+    assert coll.query["has_replay"] == {"$ne": True}
 
 
 def test_runs_list_route_passes_has_replay(env, monkeypatch):

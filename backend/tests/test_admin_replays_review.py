@@ -41,7 +41,8 @@ def test_requeue_does_not_overwrite_a_concurrent_claim(env, monkeypatch):
                 {
                     "ingest_state": "claimed",
                     "owner": "worker-1",
-                    "lease_expires_at": NOW + timedelta(minutes=5),
+                    "lease_expires_at": datetime.now(timezone.utc)
+                    + timedelta(minutes=5),
                     "batch_id": "active-batch",
                 }
             )
@@ -71,7 +72,8 @@ def test_delete_does_not_race_through_a_concurrent_claim(env, monkeypatch):
                 {
                     "ingest_state": "claimed",
                     "owner": "worker-1",
-                    "lease_expires_at": NOW + timedelta(minutes=5),
+                    "lease_expires_at": datetime.now(timezone.utc)
+                    + timedelta(minutes=5),
                     "batch_id": "active-batch",
                 }
             )

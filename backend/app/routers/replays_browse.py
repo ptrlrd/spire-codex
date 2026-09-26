@@ -3,6 +3,7 @@ journal, with the same filters the /runs browser uses, plus a small summary
 for the page header. Rows are run-list rows with a replay_url added.
 """
 
+import json
 import os
 
 from fastapi import APIRouter, Request, Response
@@ -54,12 +55,13 @@ def browse_replays(
     shape as /api/runs/list; each row also carries `replay_url`."""
     if username:
         username = username.strip().lower()
+    if character:
+        character = character.strip().upper()
     response.headers["Cache-Control"] = CACHE_CONTROL
     if not _mongo():
         return _empty(page, limit)
-    key = "replays_browse:" + ":".join(
-        str(v if v is not None else "")
-        for v in (
+    key = "replays_browse:" + json.dumps(
+        [
             character,
             win,
             username,
@@ -78,7 +80,7 @@ def browse_replays(
             int(today),
             page,
             limit,
-        )
+        ]
     )
     cached = app_cache.get_json(key)
     if cached is not None:

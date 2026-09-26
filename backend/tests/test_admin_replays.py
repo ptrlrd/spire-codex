@@ -36,6 +36,10 @@ def _match(doc, flt):
                     return False
                 if op == "$lte" and (actual is None or actual > arg):
                     return False
+                if op == "$lt" and (actual is None or actual >= arg):
+                    return False
+                if op == "$gt" and (actual is None or actual <= arg):
+                    return False
                 if op == "$regex":
                     import re
 
@@ -144,6 +148,17 @@ def _replay(h, **over):
     return doc
 
 
+def _run(h, username, uid, **over):
+    doc = {
+        "_id": h,
+        "username": username,
+        "username_lower": username.lower(),
+        "user_id": uid,
+    }
+    doc.update(over)
+    return doc
+
+
 @pytest.fixture
 def env(monkeypatch):
     monkeypatch.setenv("MONGO_URL", "mongodb://test")
@@ -169,10 +184,10 @@ def env(monkeypatch):
     )
     runs = Fake(
         [
-            {"_id": "h1", "username": "Reviver", "user_id": UID, "has_replay": True},
-            {"_id": "h2", "username": "Reviver", "user_id": UID, "has_replay": True},
-            {"_id": "h3", "username": "Ghost", "user_id": UID2, "hidden": True},
-            {"_id": "h4", "username": "Reviver", "user_id": UID},
+            _run("h1", "Reviver", UID, has_replay=True),
+            _run("h2", "Reviver", UID, has_replay=True),
+            _run("h3", "Ghost", UID2, hidden=True),
+            _run("h4", "Reviver", UID),
         ]
     )
     monkeypatch.setattr(replays_db, "_coll", lambda: replays)
@@ -221,6 +236,7 @@ def test_user_character_version_and_date_filters(env):
     assert _hashes(user="76561198000000003") == ["h3"]
     assert _hashes(user=str(UID2)) == ["h3"]
     assert _hashes(user="nobody") == []
+    assert _hashes(user="REVIVER") == ["h1", "h2"]
     assert _hashes(character="silent") == ["h3"]
     assert _hashes(replay_version=4) == ["h3"]
     assert _hashes(win="false") == ["h2"]
@@ -267,7 +283,7 @@ def test_stats(env):
     assert body["by_replay_version"] == {"3": 2, "4": 1}
     assert body["by_character"] == {"IRONCLAD": 2, "SILENT": 1}
     assert sum(d["uploads"] for d in body["per_day"]) == 3
-    assert body["stored_gz_bytes"] == 120
+    assert body["stored_gz_bytes"] == 160
 
 
 def test_requeue_resets_ingest_fields(env):
@@ -277,8 +293,14 @@ def test_requeue_resets_ingest_fields(env):
     assert body["attempts"] == 0 and body["error"] is None
     assert replays.docs["h3"]["batch_id"] is None
     replays.docs["h1"]["ingest_state"] = "claimed"
+    replays.docs["h1"]["owner"] = "worker-1"
+    replays.docs["h1"]["lease_expires_at"] = NOW + timedelta(days=3650)
     assert client.post("/api/admin/replays/h1/requeue").status_code == 409
     assert client.post("/api/admin/replays/h4/requeue").status_code == 409
+    replays.docs["h1"]["lease_expires_at"] = NOW - timedelta(days=1)
+    body = client.post("/api/admin/replays/h1/requeue").json()
+    assert body["state"] == "pending"
+    assert "owner" not in replays.docs["h1"]
 
 
 def test_delete_and_restore_toggle_has_replay(env):

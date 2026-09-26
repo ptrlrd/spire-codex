@@ -421,7 +421,7 @@ def list_runs(
             relic,
             shop,
             int(today),
-            int(bool(has_replay)),
+            "" if has_replay is None else int(has_replay),
             page,
             limit,
         )
