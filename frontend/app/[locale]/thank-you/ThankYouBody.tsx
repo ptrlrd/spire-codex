@@ -1,4 +1,4 @@
-import type { Locale } from "@/lib/locale";
+import { hreflangOf, type Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 
 const API_INTERNAL =
@@ -30,11 +30,23 @@ export interface ThanksSupporter {
   tier?: string | null;
 }
 
-function fmtTotal(total: number | null | undefined, currency?: string | null) {
+function fmtTotal(
+  lang: string,
+  total: number | null | undefined,
+  currency?: string | null,
+) {
   if (total == null || total <= 0) return null;
-  const n = Number.isInteger(total) ? String(total) : total.toFixed(2);
   const cur = (currency || "USD").toUpperCase();
-  return cur === "USD" ? `$${n}` : `${n} ${cur}`;
+  try {
+    return new Intl.NumberFormat(lang, {
+      style: "currency",
+      currency: cur,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(total);
+  } catch {
+    return `${total} ${cur}`;
+  }
 }
 
 export interface ThanksPayload {
@@ -66,6 +78,7 @@ async function loadThanks(): Promise<ThanksPayload> {
 
 export default async function ThankYouBody({ lang }: { lang: Locale }) {
   const [t, data] = await Promise.all([getT(lang), loadThanks()]);
+  const intlLang = hreflangOf(lang);
   const empty =
     data.contributors.length === 0 &&
     data.special.length === 0 &&
@@ -123,9 +136,9 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
                   className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm font-medium text-[var(--text-primary)]"
                 >
                   {s.name}
-                  {fmtTotal(s.total, s.currency) && (
+                  {fmtTotal(intlLang, s.total, s.currency) && (
                     <span className="text-xs text-[var(--text-muted)]">
-                      {fmtTotal(s.total, s.currency)}
+                      {fmtTotal(intlLang, s.total, s.currency)}
                     </span>
                   )}
                   {s.tier && (
@@ -173,7 +186,7 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
                     </span>
                     <span className="shrink-0 rounded-full border border-[var(--border-subtle)] px-2 py-0.5 text-[11px] text-[var(--text-muted)]">
                       {t("{n} contributions", {
-                        n: c.contributions.toLocaleString(),
+                        n: c.contributions.toLocaleString(intlLang),
                       })}
                     </span>
                   </a>

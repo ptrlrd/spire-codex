@@ -25,31 +25,39 @@ def main() -> int:
     from app.services import thanks
 
     special = thanks._special()
-    if special.count_documents({}) == 0:
-        for i, name in enumerate(SPECIAL):
-            thanks.upsert_special({"name": name, "order": i})
-        print(f"special thanks seeded: {len(SPECIAL)}")
-    else:
-        print("special thanks already populated, skipped")
-    supporters = thanks._supporters()
-    if supporters.count_documents({}) == 0:
-        today = datetime.now(timezone.utc).replace(microsecond=0)
-        for name in KOFI:
-            thanks.record_supporter(
+    added = 0
+    for i, name in enumerate(SPECIAL):
+        sid = "seed-" + name.lower().replace(" ", "-")
+        if special.find_one({"_id": sid}, {"_id": 1}) is None:
+            special.insert_one(
                 {
-                    "kofi_transaction_id": f"seed-{name.lower().replace(' ', '-')}",
-                    "from_name": name,
-                    "type": "Donation",
-                    "amount": 0,
-                    "currency": "USD",
-                    "timestamp": today.isoformat(),
-                    "is_public": True,
-                    "source": "seed",
+                    "_id": sid,
+                    "name": name,
+                    "note": None,
+                    "url": None,
+                    "order": i,
+                    "created_at": datetime.now(timezone.utc),
                 }
             )
-        print(f"kofi supporters seeded: {len(KOFI)}")
-    else:
-        print("kofi supporters already populated, skipped")
+            added += 1
+    print(f"special thanks seeded: {added} added, {len(SPECIAL) - added} present")
+    today = datetime.now(timezone.utc).replace(microsecond=0)
+    created = 0
+    for name in KOFI:
+        res = thanks.record_supporter(
+            {
+                "kofi_transaction_id": f"seed-{name.lower().replace(' ', '-')}",
+                "from_name": name,
+                "type": "Donation",
+                "amount": 0,
+                "currency": "USD",
+                "timestamp": today.isoformat(),
+                "is_public": True,
+                "source": "seed",
+            }
+        )
+        created += int(res["created"])
+    print(f"kofi supporters seeded: {created} added, {len(KOFI) - created} present")
     return 0
 
 

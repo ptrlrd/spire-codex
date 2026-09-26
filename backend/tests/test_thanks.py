@@ -75,11 +75,12 @@ class Fake:
         for d in self.docs.values():
             if _match(d, flt):
                 d.update(update.get("$set", {}))
-                return type("R", (), {"matched_count": 1})()
+                return type("R", (), {"matched_count": 1, "upserted_id": None})()
         if upsert:
-            doc = {**flt, **update.get("$set", {})}
+            doc = {**flt, **update.get("$setOnInsert", {}), **update.get("$set", {})}
             self.docs[doc["_id"]] = doc
-        return type("R", (), {"matched_count": 0})()
+            return type("R", (), {"matched_count": 0, "upserted_id": doc["_id"]})()
+        return type("R", (), {"matched_count": 0, "upserted_id": None})()
 
     def delete_one(self, flt):
         for k, d in list(self.docs.items()):
@@ -227,7 +228,7 @@ def test_webhook_upserts_without_storing_the_message(env):
     r = _post_webhook({**payload, "amount": "7"})
     assert r.json()["created"] is False
     assert supporters.docs["tx-1"]["hidden"] is True
-    assert supporters.docs["tx-1"]["amount"] == 7.0
+    assert supporters.docs["tx-1"]["amount"] == 5.0
     assert len(supporters.docs) == 1
 
 
@@ -289,7 +290,7 @@ def test_csv_import_parses_kofi_export_and_dedupes(env):
         "2026-08-01 12:00:00,Katie K,thanks!,Donation,5,USD,true\n"
     )
     res = thanks.import_supporters(csv_text)
-    assert res == {"parsed": 3, "created": 2, "skipped": 1}
+    assert res == {"parsed": 3, "created": 2, "skipped": 1, "rejected": 0}
     docs = list(supporters.docs.values())
     assert {d["name"] for d in docs} == {"Katie K", "LeMerkur"}
     lemerkur = next(d for d in docs if d["name"] == "LeMerkur")
@@ -299,7 +300,12 @@ def test_csv_import_parses_kofi_export_and_dedupes(env):
         json.dumps([{"from_name": "SpireMeta", "amount": 2, "timestamp": "2026-08-03"}])
     )
     assert res["created"] == 1
-    assert thanks.import_supporters("") == {"parsed": 0, "created": 0, "skipped": 0}
+    assert thanks.import_supporters("") == {
+        "parsed": 0,
+        "created": 0,
+        "skipped": 0,
+        "rejected": 0,
+    }
 
 
 def test_public_endpoint_shape(env, monkeypatch):
@@ -478,10 +484,10 @@ def test_admin_preview_then_import_reports_added_vs_present(env):
     first = client.post(
         "/api/admin/thanks/supporters/import", json={"text": text}
     ).json()
-    assert first == {"parsed": 2, "created": 2, "skipped": 0}
+    assert first == {"parsed": 2, "created": 2, "skipped": 0, "rejected": 0}
     again = client.post(
         "/api/admin/thanks/supporters/import", json={"text": text}
     ).json()
-    assert again == {"parsed": 2, "created": 0, "skipped": 2}
+    assert again == {"parsed": 2, "created": 0, "skipped": 2, "rejected": 0}
     listing = client.get("/api/admin/thanks/supporters").json()["items"]
     assert [x["name"] for x in listing] == ["Katie K", "New One"]

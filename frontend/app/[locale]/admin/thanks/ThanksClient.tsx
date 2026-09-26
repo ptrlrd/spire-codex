@@ -33,6 +33,7 @@ interface PreviewRow {
   timestamp?: string | null;
   is_public: boolean;
   transaction_id?: string | null;
+  problem?: string | null;
 }
 
 const input =
@@ -145,13 +146,14 @@ export default function ThanksClient() {
         parsed: number;
         created: number;
         skipped: number;
+        rejected: number;
       }>("/api/admin/thanks/supporters/import", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: importText }),
       });
       setNote(
-        `Import: ${d.parsed} rows read, ${d.created} added, ${d.skipped} already present.`,
+        `Import: ${d.parsed} rows read, ${d.created} added, ${d.skipped} already present, ${d.rejected} skipped as unusable.`,
       );
       setImportText("");
       setPreview(null);
@@ -358,6 +360,7 @@ export default function ThanksClient() {
                   <th className="px-2 py-1.5">Type</th>
                   <th className="px-2 py-1.5">Date</th>
                   <th className="px-2 py-1.5">Public</th>
+                  <th className="px-2 py-1.5">Note</th>
                 </tr>
               </thead>
               <tbody>
@@ -381,6 +384,9 @@ export default function ThanksClient() {
                     </td>
                     <td className="px-2 py-1.5">
                       {r.is_public ? "yes" : "no"}
+                    </td>
+                    <td className="px-2 py-1.5 text-[var(--text-muted)]">
+                      {r.problem ?? ""}
                     </td>
                   </tr>
                 ))}

@@ -2,7 +2,7 @@
 supporter table with hide/unhide and CSV import, and a GitHub refresh."""
 
 from fastapi import APIRouter, Depends, HTTPException, Request
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from ..services import thanks
 from ..services.auth_jwt import require_admin
@@ -36,7 +36,7 @@ class HiddenPatch(BaseModel):
 
 
 class ImportBody(BaseModel):
-    text: str
+    text: str = Field(max_length=2_000_000)
 
 
 @router.get("/special")

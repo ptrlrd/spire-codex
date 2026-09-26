@@ -22,6 +22,10 @@ DEFAULT_REPOS = "ptrlrd/spire-codex"
 CONTRIBUTORS_KEY = "thanks:github:v1"
 CONTRIBUTORS_TTL = 24 * 3600
 CONTRIBUTORS_STALE_TTL = 30 * 24 * 3600
+CONTRIBUTORS_LOCK = "thanks:github:lock"
+GITHUB_PAGE = 100
+GITHUB_MAX_PAGES = 10
+AVATAR_HOST = "https://avatars.githubusercontent.com/"
 SPECIAL_COLLECTION = "thanks_special"
 SUPPORTERS_COLLECTION = "kofi_supporters"
 SUPPORTER_TYPES = ("Donation", "Subscription", "Shop Order")
@@ -88,10 +92,11 @@ def merge_contributors(pages: list[list[dict]]) -> list[dict]:
             if cur:
                 cur["contributions"] += n
             else:
+                avatar = str(row.get("avatar_url") or "")
                 merged[key] = {
                     "login": login,
-                    "url": row.get("html_url") or f"https://github.com/{login}",
-                    "avatar_url": row.get("avatar_url"),
+                    "url": f"https://github.com/{login}",
+                    "avatar_url": avatar if avatar.startswith(AVATAR_HOST) else None,
                     "contributions": n,
                 }
     return sorted(
@@ -118,12 +123,25 @@ def fetch_contributors(fetch=None) -> list[dict]:
         def fetch(url: str, hdrs: dict) -> list:
             resp = httpx.get(url, headers={**headers, **hdrs}, timeout=10)
             resp.raise_for_status()
+            if resp.status_code != 200:
+                raise ValueError(f"github returned {resp.status_code}")
             data = resp.json()
-            return data if isinstance(data, list) else []
+            if not isinstance(data, list):
+                raise ValueError("github returned a non-list body")
+            return data
 
     pages = []
     for repo in repos():
-        pages.append(fetch(f"{GITHUB_API}/repos/{repo}/contributors?per_page=100", {}))
+        for page in range(1, GITHUB_MAX_PAGES + 1):
+            rows = fetch(
+                f"{GITHUB_API}/repos/{repo}/contributors?per_page={GITHUB_PAGE}&page={page}",
+                {},
+            )
+            if not isinstance(rows, list):
+                raise ValueError("github returned a non-list body")
+            pages.append(rows)
+            if len(rows) < GITHUB_PAGE:
+                break
     return merge_contributors(pages)
 
 
@@ -142,9 +160,19 @@ def _store_contributors(rows: list[dict]) -> None:
 
 
 def refresh_contributors(fetch=None) -> list[dict]:
-    rows = fetch_contributors(fetch)
-    _store_contributors(rows)
-    return rows
+    from . import cache as app_cache
+
+    if not app_cache.acquire_lock(CONTRIBUTORS_LOCK, 60):
+        cached = app_cache.get_json(CONTRIBUTORS_KEY)
+        if cached and isinstance(cached.get("rows"), list):
+            return cached["rows"]
+        raise RuntimeError("another worker is refreshing the contributor list")
+    try:
+        rows = fetch_contributors(fetch)
+        _store_contributors(rows)
+        return rows
+    finally:
+        app_cache.delete(CONTRIBUTORS_LOCK)
 
 
 def _kick_refresh() -> None:
@@ -236,6 +264,15 @@ def replace_special(items: list[dict]) -> list[dict]:
     """Whole ordered list from the admin editor: rows keep their ids, new
     rows get one, anything missing is removed."""
     coll = _special()
+    ids = [str(i.get("id") or "").strip() for i in items]
+    given = [i for i in ids if i]
+    if len(set(given)) != len(given):
+        raise ValueError("duplicate id")
+    if given:
+        known = {str(r["_id"]) for r in coll.find({"_id": {"$in": given}}, {"_id": 1})}
+        missing = [i for i in given if i not in known]
+        if missing:
+            raise ValueError(f"unknown id: {missing[0]}")
     keep: list[str] = []
     out = []
     for i, item in enumerate(items):
@@ -250,10 +287,12 @@ def delete_special(item_id: str) -> bool:
     return _special().delete_one({"_id": item_id}).deleted_count > 0
 
 
-def _parse_ts(value: Any) -> datetime:
+def _parse_ts(value: Any) -> datetime | None:
     if isinstance(value, datetime):
         return value if value.tzinfo else value.replace(tzinfo=timezone.utc)
     raw = str(value or "").strip()
+    if not raw:
+        return None
     for fmt in (
         None,
         "%Y-%m-%d %H:%M:%S",
@@ -270,16 +309,28 @@ def _parse_ts(value: Any) -> datetime:
             return dt if dt.tzinfo else dt.replace(tzinfo=timezone.utc)
         except ValueError:
             continue
-    return _now()
+    return None
 
 
-def _parse_amount(value: Any) -> float:
+_AMOUNT_JUNK = re.compile(r"[\s,$€£¥]|[A-Za-z]{3}$")
+
+
+def _parse_amount(value: Any) -> float | None:
+    if isinstance(value, bool):
+        return None
+    if isinstance(value, (int, float)):
+        return round(float(value), 2)
+    raw = str(value or "").strip()
+    if not raw:
+        return None
+    negative = raw.startswith("(") and raw.endswith(")")
+    raw = raw.strip("()")
+    raw = _AMOUNT_JUNK.sub("", raw).strip()
     try:
-        return round(
-            float(str(value).replace(",", "").replace("$", "").strip() or 0), 2
-        )
+        amount = round(float(raw), 2)
     except ValueError:
-        return 0.0
+        return None
+    return -amount if negative else amount
 
 
 def _truthy(value: Any) -> bool:
@@ -288,36 +339,39 @@ def _truthy(value: Any) -> bool:
     return str(value).strip().lower() in ("1", "true", "yes", "y", "public")
 
 
-def supporter_from_webhook(payload: dict) -> dict:
+def supporter_from_webhook(payload: dict, default_public: bool = False) -> dict:
     """The stored shape for one Ko-fi event. The message is dropped here,
-    on purpose, before anything touches the database."""
+    on purpose, before anything touches the database. A missing is_public
+    means private unless the caller (an admin import) says otherwise."""
     kind = str(payload.get("type") or "Donation")
     if kind not in SUPPORTER_TYPES:
         kind = "Donation"
-    tx = str(payload.get("kofi_transaction_id") or "").strip()
+    tx = str(payload.get("kofi_transaction_id") or "").strip()[:120]
+    public = payload.get("is_public")
+    amount = _parse_amount(payload.get("amount"))
     return {
         "_id": tx or f"import-{uuid.uuid4().hex[:12]}",
         "name": str(payload.get("from_name") or "Anonymous").strip()[:120]
         or "Anonymous",
         "type": kind,
         "tier_name": (str(payload.get("tier_name") or "").strip()[:120] or None),
-        "amount": _parse_amount(payload.get("amount")),
+        "amount": amount if amount is not None else 0.0,
         "currency": str(payload.get("currency") or "USD").strip().upper()[:8],
-        "timestamp": _parse_ts(payload.get("timestamp")),
-        "is_public": _truthy(payload.get("is_public", True)),
+        "timestamp": _parse_ts(payload.get("timestamp")) or _now(),
+        "is_public": default_public if public is None else _truthy(public),
         "hidden": False,
         "source": str(payload.get("source") or "webhook"),
     }
 
 
-def record_supporter(payload: dict) -> dict:
-    doc = supporter_from_webhook(payload)
-    coll = _supporters()
-    existing = coll.find_one({"_id": doc["_id"]}, {"hidden": 1})
-    if existing:
-        doc["hidden"] = bool(existing.get("hidden"))
-    coll.update_one({"_id": doc["_id"]}, {"$set": doc}, upsert=True)
-    return {"id": doc["_id"], "created": existing is None}
+def record_supporter(payload: dict, default_public: bool = False) -> dict:
+    """Insert-only: a replayed or re-imported transaction never changes what
+    was stored the first time, so an admin hide or a private flag sticks."""
+    doc = supporter_from_webhook(payload, default_public)
+    res = _supporters().update_one(
+        {"_id": doc["_id"]}, {"$setOnInsert": doc}, upsert=True
+    )
+    return {"id": doc["_id"], "created": res.upserted_id is not None}
 
 
 _CSV_NAME = ("from", "from name", "name", "supporter", "supporter name")
@@ -328,6 +382,7 @@ _CSV_TYPE = ("type", "item", "transaction type", "payment type", "kind")
 _CSV_TIER = ("tier", "tier name", "membership tier")
 _CSV_PUBLIC = ("is public", "public", "is_public")
 _CSV_ID = ("transaction id", "kofi_transaction_id", "transactionid", "id")
+_REFUND_WORDS = ("refund", "cancel", "chargeback", "reversed", "declined")
 
 
 def _pick(row: dict, keys: tuple) -> Any:
@@ -353,22 +408,32 @@ def _currency_from_header(row: dict) -> str | None:
 def parse_supporter_rows(text: str) -> list[dict]:
     """Ko-fi's CSV export or a JSON list into webhook-shaped payloads. Any
     column named like a message is ignored."""
-    text = text.strip()
+    text = text.lstrip("\ufeff").strip()
     if not text:
         return []
     rows: list[dict]
     if text.startswith("["):
-        rows = [r for r in json.loads(text) if isinstance(r, dict)]
+        parsed = json.loads(text)
+        if not isinstance(parsed, list):
+            raise ValueError("JSON must be a list of rows")
+        rows = [r for r in parsed if isinstance(r, dict)]
     else:
-        rows = list(csv.DictReader(io.StringIO(text)))
+        try:
+            rows = list(csv.DictReader(io.StringIO(text), strict=True))
+        except csv.Error as e:
+            raise ValueError(f"bad CSV: {e}")
     out = []
     for row in rows:
         name = _pick(row, _CSV_NAME) or row.get("from_name")
         if not name:
             continue
-        kind = str(_pick(row, _CSV_TYPE) or row.get("type") or "Donation")
+        problem = None
+        raw_kind = str(_pick(row, _CSV_TYPE) or row.get("type") or "Donation")
+        kind = raw_kind
         if kind not in SUPPORTER_TYPES:
             low = kind.lower()
+            if any(w in low for w in _REFUND_WORDS):
+                problem = f"skipped: {raw_kind}"
             kind = (
                 "Subscription"
                 if "member" in low or "subscri" in low
@@ -379,13 +444,19 @@ def parse_supporter_rows(text: str) -> list[dict]:
         public = _pick(row, _CSV_PUBLIC)
         tx = _pick(row, _CSV_ID) or row.get("kofi_transaction_id")
         ts = _pick(row, _CSV_DATE) or row.get("timestamp")
+        amount_raw = _pick(row, _CSV_AMOUNT) or row.get("amount")
+        amount = _parse_amount(amount_raw)
+        if problem is None and (amount is None or amount <= 0):
+            problem = f"skipped: amount {amount_raw!r}"
+        if problem is None and _parse_ts(ts) is None:
+            problem = f"skipped: date {ts!r}"
         out.append(
             {
                 "kofi_transaction_id": str(tx).strip() if tx else None,
                 "from_name": str(name).strip(),
                 "type": kind,
                 "tier_name": _pick(row, _CSV_TIER) or row.get("tier_name"),
-                "amount": _pick(row, _CSV_AMOUNT) or row.get("amount") or 0,
+                "amount": amount if amount is not None else 0,
                 "currency": _pick(row, _CSV_CURRENCY)
                 or row.get("currency")
                 or _currency_from_header(row)
@@ -393,6 +464,7 @@ def parse_supporter_rows(text: str) -> list[dict]:
                 "timestamp": ts,
                 "is_public": True if public is None else _truthy(public),
                 "source": "import",
+                "problem": problem,
             }
         )
     return out
@@ -402,7 +474,7 @@ def preview_supporters(text: str) -> list[dict]:
     """What an import would store, row by row, before anything is written."""
     out = []
     for p in parse_supporter_rows(text):
-        doc = supporter_from_webhook(p)
+        doc = supporter_from_webhook(p, default_public=True)
         out.append(
             {
                 "name": doc["name"],
@@ -410,9 +482,12 @@ def preview_supporters(text: str) -> list[dict]:
                 "tier_name": doc["tier_name"],
                 "amount": doc["amount"],
                 "currency": doc["currency"],
-                "timestamp": _iso(doc["timestamp"]),
+                "timestamp": _iso(doc["timestamp"])
+                if p.get("problem") is None
+                else None,
                 "is_public": doc["is_public"],
                 "transaction_id": p.get("kofi_transaction_id"),
+                "problem": p.get("problem"),
             }
         )
     return out
@@ -421,30 +496,39 @@ def preview_supporters(text: str) -> list[dict]:
 def import_supporters(text: str) -> dict:
     payloads = parse_supporter_rows(text)
     coll = _supporters()
-    created = skipped = 0
+    created = skipped = rejected = 0
     for p in payloads:
+        if p.get("problem"):
+            rejected += 1
+            continue
         if not p.get("kofi_transaction_id"):
-            ts = _parse_ts(p.get("timestamp"))
             dup = coll.find_one(
                 {
                     "name": p["from_name"],
-                    "timestamp": ts,
+                    "timestamp": _parse_ts(p.get("timestamp")),
                     "amount": _parse_amount(p.get("amount")),
+                    "currency": str(p.get("currency") or "USD").upper(),
+                    "type": p["type"],
                 },
                 {"_id": 1},
             )
             if dup:
                 skipped += 1
                 continue
-        res = record_supporter(p)
+        res = record_supporter(p, default_public=True)
         if res["created"]:
             created += 1
         else:
             skipped += 1
-    return {"parsed": len(payloads), "created": created, "skipped": skipped}
+    return {
+        "parsed": len(payloads),
+        "created": created,
+        "skipped": skipped,
+        "rejected": rejected,
+    }
 
 
-def list_supporters_admin(limit: int = 1000) -> list[dict]:
+def list_supporters_admin(limit: int = 5000) -> list[dict]:
     """Every stored row, hidden ones included, grouped under the same
     biggest-total-first order the public page uses."""
     if not _enabled():
