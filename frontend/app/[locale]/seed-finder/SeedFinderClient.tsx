@@ -307,26 +307,31 @@ export default function SeedFinderClient() {
     setLimit(DEFAULT_LIMIT);
   }
 
-  const bump = (key: "deck" | "offered") => (id: string) =>
+  function bump(key: "deck" | "offered", id: string) {
     update({
       [key]: state[key].map((p) =>
         p.id === id ? { ...p, count: Math.min(MAX_COPIES, p.count + 1) } : p,
       ),
     });
-  const drop = (key: "deck" | "offered") => (id: string) =>
+  }
+  function drop(key: "deck" | "offered", id: string) {
     update({ [key]: state[key].filter((p) => p.id !== id) });
-  const addCounted = (key: "deck" | "offered") => (i: PickerItem) =>
+  }
+  function addCounted(key: "deck" | "offered", i: PickerItem) {
     update({
       [key]: state[key].some((p) => p.id === i.id)
         ? state[key]
         : [...state[key], { id: i.id, count: 1 }],
     });
-  const addId = (key: "relics" | "events") => (i: PickerItem) =>
+  }
+  function addId(key: "relics" | "events", i: PickerItem) {
     update({
       [key]: state[key].includes(i.id) ? state[key] : [...state[key], i.id],
     });
-  const dropId = (key: "relics" | "events") => (id: string) =>
+  }
+  function dropId(key: "relics" | "events", id: string) {
     update({ [key]: state[key].filter((x) => x !== id) });
+  }
 
   function labelFor(tag: string): string {
     const kind = tag.slice(0, tag.indexOf(":"));
@@ -440,13 +445,13 @@ export default function SeedFinderClient() {
             placeholder={t("Add a card…")}
             items={cards}
             disabled={catalogError}
-            onPick={addCounted("offered")}
+            onPick={(i) => addCounted("offered", i)}
           />
           <CountedChips
             picks={state.offered}
             names={names}
-            onBump={bump("offered")}
-            onRemove={drop("offered")}
+            onBump={(id) => bump("offered", id)}
+            onRemove={(id) => drop("offered", id)}
             accent="border-[var(--accent-gold)]/40 text-[var(--accent-gold)]"
           />
         </div>
@@ -462,13 +467,13 @@ export default function SeedFinderClient() {
             placeholder={t("Add a card…")}
             items={cards}
             disabled={catalogError}
-            onPick={addCounted("deck")}
+            onPick={(i) => addCounted("deck", i)}
           />
           <CountedChips
             picks={state.deck}
             names={names}
-            onBump={bump("deck")}
-            onRemove={drop("deck")}
+            onBump={(id) => bump("deck", id)}
+            onRemove={(id) => drop("deck", id)}
           />
         </div>
 
@@ -485,12 +490,12 @@ export default function SeedFinderClient() {
             placeholder={t("Add a relic…")}
             items={relicCatalog}
             disabled={catalogError}
-            onPick={addId("relics")}
+            onPick={(i) => addId("relics", i)}
           />
           <IdChips
             ids={state.relics}
             names={names}
-            onRemove={dropId("relics")}
+            onRemove={(id) => dropId("relics", id)}
             className="border-info/30 text-info"
           />
         </div>
@@ -506,12 +511,12 @@ export default function SeedFinderClient() {
             placeholder={t("Add an event…")}
             items={eventCatalog}
             disabled={catalogError}
-            onPick={addId("events")}
+            onPick={(i) => addId("events", i)}
           />
           <IdChips
             ids={state.events}
             names={names}
-            onRemove={dropId("events")}
+            onRemove={(id) => dropId("events", id)}
             className="border-special/30 text-special"
           />
         </div>
