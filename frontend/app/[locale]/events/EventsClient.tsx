@@ -2,8 +2,8 @@
 
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import type { GameEvent, EventPage, DialogueLine } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";

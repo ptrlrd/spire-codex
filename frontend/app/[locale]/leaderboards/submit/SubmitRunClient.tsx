@@ -2,8 +2,7 @@
 
 import { useT } from "@/lib/i18n";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import { useAuth } from "@/app/contexts/AuthContext";
 import RunDropZone from "@/app/components/RunDropZone";

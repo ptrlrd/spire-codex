@@ -1,6 +1,7 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
+import { useRouter } from "@/i18n/navigation";
 import {
   Suspense,
   useState,
@@ -9,7 +10,7 @@ import {
   useMemo,
   useCallback,
 } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "@/app/components/CardGrid";
