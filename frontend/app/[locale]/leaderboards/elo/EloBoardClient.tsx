@@ -34,14 +34,18 @@ export default function EloBoardClient() {
   const lang = useGameLocale();
   const [board, setBoard] = useState<EloBoard | null>(null);
   const [failed, setFailed] = useState(false);
+  const [reloads, setReloads] = useState(0);
   const [sortKey, setSortKey] = useState<SortKey>("elo");
   const [charNames, setCharNames] = useState<Record<string, string>>({});
 
   useEffect(() => {
     let alive = true;
+    setFailed(false);
     cachedFetch<EloBoard>(`${API}/api/leaderboards/elo`)
       .then((data) => {
-        if (alive) setBoard(data);
+        if (!alive) return;
+        if (!data || !Array.isArray(data.players)) throw new Error("bad board");
+        setBoard(data);
       })
       .catch(() => {
         if (alive) setFailed(true);
@@ -49,13 +53,13 @@ export default function EloBoardClient() {
     return () => {
       alive = false;
     };
-  }, []);
+  }, [reloads]);
 
   useEffect(() => {
     let alive = true;
     cachedFetch<CharacterNameRow[]>(`${API}/api/characters?lang=${lang}`)
       .then((rows) => {
-        if (!alive) return;
+        if (!alive || !Array.isArray(rows)) return;
         const m: Record<string, string> = {};
         for (const c of rows) m[c.id.toLowerCase()] = c.name;
         setCharNames(m);
@@ -69,7 +73,7 @@ export default function EloBoardClient() {
   const name = (id: string) => charNames[id.toLowerCase()] ?? characterName(id);
 
   const rows = useMemo(
-    () => (board ? sortPlayers(board.players, sortKey) : []),
+    () => (board?.players ? sortPlayers(board.players, sortKey) : []),
     [board, sortKey],
   );
 
@@ -117,7 +121,18 @@ export default function EloBoardClient() {
       </div>
 
       <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg">
-        {failed || (board && board.players.length === 0) ? (
+        {failed ? (
+          <p className="text-center py-8 text-[var(--text-muted)]">
+            {t("Something went wrong")}{" "}
+            <button
+              type="button"
+              onClick={() => setReloads((n) => n + 1)}
+              className="underline hover:text-[var(--text-primary)]"
+            >
+              {t("Try again")}
+            </button>
+          </p>
+        ) : board && rows.length === 0 ? (
           <p className="text-center py-8 text-[var(--text-muted)]">
             {t(
               "No ratings yet. The board fills in after the next nightly build.",
@@ -148,11 +163,11 @@ export default function EloBoardClient() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((p, i) => {
-                const shown = sortKey === "elo" ? p.rank : i + 1;
+              {rows.map((p) => {
+                const shown = p.rank;
                 return (
                   <tr
-                    key={p.username}
+                    key={`${p.username}-${p.rank}`}
                     className="border-b border-[var(--border-subtle)] last:border-0 hover:bg-[var(--bg-card-hover)]"
                   >
                     <td

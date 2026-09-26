@@ -38,7 +38,7 @@ export function ladderTitle(
   player: EloPlayer,
   name: (id: string) => string,
 ): string {
-  return Object.entries(player.by_character)
+  return Object.entries(player.by_character ?? {})
     .sort((a, b) => b[1].runs - a[1].runs)
     .map(([id, l]) => `${name(id)} ${Math.round(l.elo)} (${l.wins}/${l.runs})`)
     .join(" · ");
