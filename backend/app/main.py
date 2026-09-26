@@ -54,11 +54,13 @@ from .routers import (
     charts,
     beta,
     replays,
+    replays_browse,
     admin,
     admin_searches,
     admin_news,
     admin_rate_limits,
     admin_api_keys,
+    admin_replays,
     api_keys,
     glossary,
     guides,
@@ -730,12 +732,14 @@ app.include_router(draft.router)
 app.include_router(charts.router)
 app.include_router(beta.router)
 app.include_router(replays.router)
+app.include_router(replays_browse.router)
 # Hidden from the OpenAPI schema (/docs): internal admin surface.
 app.include_router(admin.router, include_in_schema=False)
 app.include_router(admin_searches.router, include_in_schema=False)
 app.include_router(admin_rate_limits.router, include_in_schema=False)
 app.include_router(admin_news.router, include_in_schema=False)
 app.include_router(admin_api_keys.router, include_in_schema=False)
+app.include_router(admin_replays.router, include_in_schema=False)
 # Key management (create/list/revoke) is session-authed and site-internal, so
 # it stays out of /docs; only the public tier info (/api/rate-limits) shows.
 app.include_router(api_keys.router, include_in_schema=False)
