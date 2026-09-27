@@ -111,6 +111,12 @@ services:
       # on a small corpus. See services/community_stats.py.
       COMMUNITY_ANCIENT_MIN_OFFERS: ${COMMUNITY_ANCIENT_MIN_OFFERS:-}
       STEAM_WEB_API_KEY: ${STEAM_WEB_API_KEY:-}
+      # Thank You page: Ko-fi webhook token, GitHub contributor sources,
+      # logins kept off the public list, optional token for the rate limit.
+      KOFI_VERIFICATION_TOKEN: ${KOFI_VERIFICATION_TOKEN:-}
+      THANKS_GITHUB_REPOS: ${THANKS_GITHUB_REPOS:-}
+      THANKS_GITHUB_EXCLUDE: ${THANKS_GITHUB_EXCLUDE:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
       GITHUB_APP_ID: ${GITHUB_APP_ID:-}
       GITHUB_APP_INSTALLATION_ID: ${GITHUB_APP_INSTALLATION_ID:-}
       GITHUB_APP_REPO: ${GITHUB_APP_REPO:-}
