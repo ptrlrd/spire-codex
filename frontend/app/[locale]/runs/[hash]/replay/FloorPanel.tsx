@@ -1,5 +1,6 @@
 "use client";
 
+import { resolveEventOption, type EventText } from "@/lib/event-option";
 import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 
 import type { ReactNode } from "react";
@@ -35,7 +36,7 @@ import {
 } from "../RunPills";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 
-export interface EventInfo {
+export interface EventInfo extends EventText {
   id: string;
   name: string;
 }
@@ -431,15 +432,25 @@ function OptionRow({
     o.kind === "upgrade" ||
     o.kind === "enchant";
   const isRelic = o.kind === "relic" || !!o.grantsRelic;
-  const label = o.label
-    ? o.label
-    : isCard
-      ? `${cardName(o.id, cat)}${o.upgraded ? "+" : ""}`
-      : isRelic
-        ? relicName(o.grantsRelic || o.id, cat)
-        : o.kind === "potion"
-          ? potionName(o.id, cat)
-          : displayName(o.id);
+  const resolved = resolveEventOption(
+    o.kind === "event_option" ? o.id : undefined,
+    cat.events,
+    (id) => cat.relics[id],
+    t,
+    { label: o.label, desc: o.desc },
+  );
+  const desc = resolved?.desc ?? o.desc;
+  const label = resolved
+    ? resolved.label
+    : o.label
+      ? o.label
+      : isCard
+        ? `${cardName(o.id, cat)}${o.upgraded ? "+" : ""}`
+        : isRelic
+          ? relicName(o.grantsRelic || o.id, cat)
+          : o.kind === "potion"
+            ? potionName(o.id, cat)
+            : displayName(o.id);
   const tone = o.chosen
     ? TAKEN_TONE
     : o.selectable
@@ -472,9 +483,9 @@ function OptionRow({
       )}
       <span className="min-w-0 flex-1">
         <span className="block truncate">{label}</span>
-        {o.desc && (
+        {desc && (
           <span className="block text-xs leading-snug text-[var(--text-muted)]">
-            <Markup text={o.desc} />
+            <Markup text={desc} />
           </span>
         )}
       </span>
