@@ -38,6 +38,11 @@ done
 
 if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
     LOG=/var/log/spire-codex-autodeploy.log
+    SCRIPT_SRC="$(cd "$(dirname "$0")/.." && pwd)/infrastructure/ansible/files/autodeploy.sh"
+    if ! cmp -s "$SCRIPT_SRC" /usr/local/bin/spire-codex-autodeploy; then
+        echo "installing the checkout's autodeploy script"
+        sudo install -m 755 "$SCRIPT_SRC" /usr/local/bin/spire-codex-autodeploy
+    fi
     run_and_follow() {
         sudo touch "$LOG"
         sudo tail -n 0 -f "$LOG" &
@@ -45,7 +50,9 @@ if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
         sudo /usr/local/bin/spire-codex-autodeploy "$@"
         local rc=$?
         sleep 1
-        kill "$tail_pid" 2>/dev/null
+        sudo pkill -P "$tail_pid" 2>/dev/null
+        sudo kill "$tail_pid" 2>/dev/null
+        wait "$tail_pid" 2>/dev/null
         return $rc
     }
     if [ "$MODE" = "release" ]; then
