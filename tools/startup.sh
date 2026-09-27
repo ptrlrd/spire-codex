@@ -37,15 +37,26 @@ for arg in "$@"; do
 done
 
 if [ "$BYPASS" != "1" ] && [ -x /usr/local/bin/spire-codex-autodeploy ]; then
+    LOG=/var/log/spire-codex-autodeploy.log
+    run_and_follow() {
+        sudo touch "$LOG"
+        sudo tail -n 0 -f "$LOG" &
+        local tail_pid=$!
+        sudo /usr/local/bin/spire-codex-autodeploy "$@"
+        local rc=$?
+        sleep 1
+        kill "$tail_pid" 2>/dev/null
+        return $rc
+    }
     if [ "$MODE" = "release" ]; then
         echo "forcing a full deploy via spire-codex-autodeploy --force"
-        sudo /usr/local/bin/spire-codex-autodeploy --force
+        run_and_follow --force
     elif [ "$MODE" = "rollback" ]; then
         echo "rolling back to the previous images via spire-codex-autodeploy --rollback"
-        sudo /usr/local/bin/spire-codex-autodeploy --rollback
+        run_and_follow --rollback
     else
         echo "delegating to spire-codex-autodeploy"
-        sudo /usr/local/bin/spire-codex-autodeploy
+        run_and_follow
     fi
     exit 0
 fi
