@@ -121,7 +121,6 @@ export default function GlobalSearch() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
-  const abortRef = useRef<AbortController | null>(null);
   const lang = useGameLocale();
   const t = useT();
 
@@ -197,10 +196,15 @@ export default function GlobalSearch() {
 
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setOpen(true);
+        return;
+      }
       const tag = (e.target as HTMLElement)?.tagName;
       if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
       if ((e.target as HTMLElement)?.isContentEditable) return;
-      if (e.key === "." || ((e.ctrlKey || e.metaKey) && e.key === "k")) {
+      if (e.key === ".") {
         e.preventDefault();
         setOpen(true);
       }
@@ -211,28 +215,25 @@ export default function GlobalSearch() {
 
   useEffect(() => {
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 0);
-    } else {
-      setQuery("");
-      setSections([]);
-      setSelectedIndex(0);
-      setLoading(false);
+      const timer = setTimeout(() => inputRef.current?.focus(), 0);
+      return () => clearTimeout(timer);
     }
+    setQuery("");
+    setSections([]);
+    setSelectedIndex(0);
+    setLoading(false);
   }, [open]);
 
   useEffect(() => {
     setSelectedIndex(0);
     if (!active) {
-      if (abortRef.current) abortRef.current.abort();
       setSections([]);
       setLoading(false);
       return;
     }
+    const controller = new AbortController();
     setLoading(true);
     const timer = setTimeout(() => {
-      if (abortRef.current) abortRef.current.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
       const encoded = encodeURIComponent(trimmed);
       fetch(buildApiUrl(`${API}/api/search?q=${encoded}&lang=${lang}`), {
         signal: controller.signal,
@@ -249,13 +250,16 @@ export default function GlobalSearch() {
           );
           setLoading(false);
         })
-        .catch((e: unknown) => {
-          if ((e as Error)?.name === "AbortError") return;
+        .catch(() => {
+          if (controller.signal.aborted) return;
           setSections([]);
           setLoading(false);
         });
     }, DEBOUNCE_MS);
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
   }, [trimmed, active, lang]);
 
   useEffect(() => {
@@ -264,6 +268,11 @@ export default function GlobalSearch() {
     );
     el?.scrollIntoView({ block: "nearest" });
   }, [selectedIndex]);
+
+  const flatResultsLength = flatResults.length;
+  useEffect(() => {
+    setSelectedIndex((i) => Math.min(i, Math.max(flatResultsLength - 1, 0)));
+  }, [flatResultsLength]);
 
   const navigate = useCallback(
     (item: SearchItem) => {
@@ -278,7 +287,6 @@ export default function GlobalSearch() {
     [router, logCommitted],
   );
 
-  const flatResultsLength = flatResults.length;
   const selectedFlatResult =
     flatResults.length > 0 ? flatResults[selectedIndex] : null;
   const handleKeyDown = useCallback(
@@ -287,22 +295,21 @@ export default function GlobalSearch() {
         setOpen(false);
         return;
       }
-      if (e.key === "ArrowDown") {
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex((i) => Math.min(i + 1, flatResultsLength - 1));
+        if (flatResultsLength === 0) return;
+        const step = e.key === "ArrowDown" ? 1 : -1;
+        setSelectedIndex((i) =>
+          Math.min(Math.max(i + step, 0), flatResultsLength - 1),
+        );
         return;
       }
-      if (e.key === "ArrowUp") {
+      if (e.key === "Enter") {
         e.preventDefault();
-        setSelectedIndex((i) => Math.max(i - 1, 0));
-        return;
-      }
-      if (e.key === "Enter" && selectedFlatResult) {
-        e.preventDefault();
-        navigate(selectedFlatResult);
+        if (!loading && selectedFlatResult) navigate(selectedFlatResult);
       }
     },
-    [flatResultsLength, selectedFlatResult, navigate],
+    [flatResultsLength, selectedFlatResult, navigate, loading],
   );
 
   const offsetSections = useMemo(() => {
@@ -333,6 +340,7 @@ export default function GlobalSearch() {
         className="w-full max-w-lg bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 overflow-hidden"
         onKeyDown={handleKeyDown}
         role="dialog"
+        aria-modal="true"
         aria-label={t("Search")}
       >
         <div className="flex items-center gap-3 px-4 py-3 border-b border-[var(--border-subtle)]">
@@ -356,6 +364,14 @@ export default function GlobalSearch() {
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("Search cards, relics, monsters...")}
             className="flex-1 bg-transparent text-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none"
+            role="combobox"
+            aria-expanded={flatResultsLength > 0}
+            aria-controls="global-search-results"
+            aria-activedescendant={
+              selectedFlatResult
+                ? `global-search-option-${selectedIndex}`
+                : undefined
+            }
             aria-autocomplete="list"
             autoComplete="off"
             spellCheck={false}
@@ -371,7 +387,12 @@ export default function GlobalSearch() {
           </kbd>
         </div>
 
-        <div ref={listRef} className="max-h-[60vh] overflow-y-auto">
+        <div
+          ref={listRef}
+          id="global-search-results"
+          role="listbox"
+          className="max-h-[60vh] overflow-y-auto"
+        >
           {!active && !showRecent && (
             <div className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
               {t("Type to search across all categories")}
@@ -440,6 +461,9 @@ export default function GlobalSearch() {
                     <button
                       key={`${item.path}:${item.name}`}
                       type="button"
+                      role="option"
+                      id={`global-search-option-${globalIdx}`}
+                      aria-selected={isSelected}
                       data-index={globalIdx}
                       className={`w-full text-left px-4 py-2 flex items-center gap-3 cursor-pointer transition-colors ${
                         isSelected

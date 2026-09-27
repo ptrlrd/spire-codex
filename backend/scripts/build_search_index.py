@@ -1,6 +1,10 @@
 """Build (or rebuild) the site search index from the data tree.
 
-python -m scripts.build_search_index [--force] [--no-images]
+    python -m scripts.build_search_index [--force] [--no-images]
+
+Runs through the same file lock as the app's startup build, so it is safe
+to invoke while the backend is running; a --no-images build is recorded as
+incomplete and the next app build fills the image rows in.
 """
 
 import argparse
@@ -16,10 +20,13 @@ def main() -> None:
     parser.add_argument("--no-images", action="store_true")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
-    if args.no_images:
-        meta = search_index.build(with_images=False)
+    if args.force:
+        with search_index._Lock(search_index._lock_path(search_index.INDEX_DIR)):
+            meta = search_index.build(with_images=not args.no_images)
     else:
-        meta = search_index.ensure_built(force=args.force)
+        meta = search_index.ensure_built(
+            require_images=not args.no_images, with_images=not args.no_images
+        )
     print(json.dumps(meta, indent=2))
 
 

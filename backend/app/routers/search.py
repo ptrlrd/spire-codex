@@ -18,11 +18,15 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable
 from typing import Any
 
+import logging
+
 from fastapi import APIRouter, Depends, Query, Request, Response
 from pydantic import BaseModel, Field
 
 from ..dependencies import client_ip, get_lang
 from ..services import data_service, mechanics_pages, search_analytics, search_index
+
+logger = logging.getLogger("spire-codex")
 
 router = APIRouter(prefix="/api/search", tags=["Search"])
 
@@ -249,6 +253,16 @@ def _legacy_categories(query: str, lang: str) -> list[dict[str, Any]]:
         ],
     )
 
+    add(
+        "Pages",
+        [
+            _item(str(row.get("name")), str(row.get("path")), str(row.get("path")))
+            for _, row in _search_rows(
+                search_index.site_pages(), query, extra_fields=("keywords",)
+            )
+        ],
+    )
+
     # News (titles only; the archive page has full-text search).
     try:
         news = data_service.load_news_index()
@@ -262,6 +276,25 @@ def _legacy_categories(query: str, lang: str) -> list[dict[str, Any]]:
         ],
     )
 
+    try:
+        from . import images
+
+        image_rows = images._search_game_images(query.split(), _MAX_PER_CATEGORY)
+    except Exception:
+        image_rows = []
+    add(
+        "Images",
+        [
+            {
+                "name": str(row["name"]),
+                "path": str(row["url"]),
+                "subtitle": str(row.get("category_name") or ""),
+                "thumb": str(row["url"]),
+                "external": True,
+            }
+            for row in image_rows
+        ],
+    )
     return categories
 
 
@@ -287,7 +320,11 @@ def global_search(
         return {"query": q, "categories": [], "engine": "none"}
     categories = None
     if data_service.get_channel() != "beta":
-        categories = search_index.grouped(query, lang)
+        try:
+            categories = search_index.grouped(query, lang)
+        except Exception:
+            logger.exception("search-index: query failed, using the legacy scan")
+            categories = None
     engine = "index"
     if categories is None:
         engine = "legacy"

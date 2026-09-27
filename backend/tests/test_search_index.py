@@ -1,8 +1,9 @@
 """The site search index: typo and prefix tolerance, exact-name ranking,
-language scoping, page and image documents, grouped output, atomic rebuilds
-under the file lock, and the router's fallback while no index exists."""
+language scoping, page and image documents, grouped output, generation
+publishing under the file lock, and the router's fallbacks."""
 
 import json
+import os
 import threading
 
 import pytest
@@ -11,7 +12,7 @@ from fastapi.testclient import TestClient
 from app.dependencies import shared_limiter
 from app.main import app
 from app.routers import search as search_router
-from app.services import search_index
+from app.services import data_service, mechanics_pages, search_index
 
 client = TestClient(app)
 
@@ -61,6 +62,22 @@ def _docs():
             name="Fake Anchor",
             path="/relics/fake_anchor",
             subtitle="Event",
+        ),
+        d(
+            doc_id="relic:eng:LAMENT",
+            kind="relic",
+            lang="eng",
+            name="Neow's Lament",
+            path="/relics/neows_lament",
+            subtitle="Ancient",
+        ),
+        d(
+            doc_id="relic:eng:BONES",
+            kind="relic",
+            lang="eng",
+            name="Neow's Lament Bones",
+            path="/relics/neows_bones",
+            subtitle="Ancient",
         ),
         d(
             doc_id="card:eng:MELANCHOLY",
@@ -140,6 +157,16 @@ def _docs():
             thumb="https://cdn.example/game/v1/relics/anchor.webp",
         ),
         d(
+            doc_id="image:v2:relics:anchor.webp",
+            kind="image",
+            lang="any",
+            name="anchor",
+            path="https://cdn.example/game/v2/relics/anchor.webp",
+            subtitle="Relic Renders (Beta v2)",
+            text="Relic Renders",
+            thumb="https://cdn.example/game/v2/relics/anchor.webp",
+        ),
+        d(
             doc_id="image:v1:assets:ui/anchor.webp",
             kind="image",
             lang="any",
@@ -160,29 +187,44 @@ def _docs():
     ]
 
 
-@pytest.fixture
-def index(tmp_path, monkeypatch):
-    index_dir = tmp_path / "idx"
+class _Images:
+    def __init__(self, docs, complete=True):
+        self.docs = docs
+        self.complete = complete
+
+    def __iter__(self):
+        return iter(self.docs)
+
+
+def _install(monkeypatch, index_dir, docs=None, images_complete=True):
+    docs = _docs() if docs is None else docs
     monkeypatch.setattr(search_index, "languages", lambda: ["eng", "zhs", "deu"])
     monkeypatch.setattr(
         search_index,
         "_entity_docs",
-        lambda lang: iter(d for d in _docs() if d["lang"] == lang),
+        lambda lang: iter(d for d in docs if d["lang"] == lang),
     )
     monkeypatch.setattr(
         search_index,
         "_shared_docs",
-        lambda: iter(d for d in _docs() if d["lang"] == "any" and d["kind"] != "image"),
+        lambda: iter(d for d in docs if d["lang"] == "any" and d["kind"] != "image"),
     )
     monkeypatch.setattr(
         search_index,
-        "_image_docs",
-        lambda: ([d for d in _docs() if d["kind"] == "image"], True),
+        "_ImageSource",
+        lambda: _Images([d for d in docs if d["kind"] == "image"], images_complete),
     )
     monkeypatch.setattr(search_index, "source_fingerprint", lambda: "fp-1")
     reader = search_index._Reader(index_dir)
     monkeypatch.setattr(search_index, "_reader", reader)
     monkeypatch.setattr(search_index, "INDEX_DIR", index_dir)
+    return reader
+
+
+@pytest.fixture
+def index(tmp_path, monkeypatch):
+    index_dir = tmp_path / "idx"
+    reader = _install(monkeypatch, index_dir)
     search_index.build(index_dir)
     reader.force_check()
     return index_dir
@@ -202,10 +244,21 @@ def test_exact_name_outranks_partial_and_typos_still_hit(index):
     assert _names(search_index.grouped("strke", "eng"), "Cards")[0] == "Strike"
 
 
-def test_prefix_and_description_matches(index):
-    groups = search_index.grouped("inna", "eng")
-    assert _names(groups, "Keywords") == ["Innate"]
+def test_exact_boost_survives_punctuation_in_names(index):
+    assert (
+        _names(search_index.grouped("neow's lament", "eng"), "Relics")[0]
+        == "Neow's Lament"
+    )
+    assert (
+        _names(search_index.grouped("neows lament", "eng"), "Relics")[0]
+        == "Neow's Lament"
+    )
+
+
+def test_prefix_substring_and_description_matches(index):
+    assert _names(search_index.grouped("inna", "eng"), "Keywords") == ["Innate"]
     assert "Writhe" in _names(search_index.grouped("innate", "eng"), "Cards")
+    assert "Strike" in _names(search_index.grouped("rike", "eng"), "Cards")
 
 
 def test_language_scoping_and_cjk_substrings(index):
@@ -215,9 +268,8 @@ def test_language_scoping_and_cjk_substrings(index):
     assert _names(search_index.grouped("paperweight", "zhs"), "Relics") == []
 
 
-def test_pages_images_and_news_are_found_and_ordered(index):
-    groups = search_index.grouped("images", "eng")
-    assert _names(groups, "Pages") == ["Images"]
+def test_pages_images_and_news_are_found_ordered_and_deduped(index):
+    assert _names(search_index.grouped("images", "eng"), "Pages") == ["Images"]
     groups = search_index.grouped("anchor", "eng")
     labels = [g["label"] for g in groups]
     assert labels[0] == "Relics"
@@ -225,7 +277,34 @@ def test_pages_images_and_news_are_found_and_ordered(index):
     assert labels.index("News") > labels.index("Images")
     images = next(g for g in groups if g["label"] == "Images")
     assert all(i["external"] and i["thumb"] for i in images["items"])
-    assert len(images["items"]) == 2
+    assert [i["subtitle"] for i in images["items"]] == [
+        "Relic Renders (Main v1)",
+        "Game Assets (Main v1)",
+    ]
+
+
+def test_core_kinds_cannot_be_crowded_out_by_images(tmp_path, monkeypatch):
+    flood = [
+        search_index._doc(
+            doc_id=f"image:v1:assets:anchor_{i}.webp",
+            kind="image",
+            lang="any",
+            name="anchor",
+            path=f"https://cdn.example/a{i}.webp",
+            subtitle=f"Game Assets {i} (Main v1)",
+            thumb="x",
+        )
+        for i in range(300)
+    ]
+    index_dir = tmp_path / "flood"
+    reader = _install(monkeypatch, index_dir, docs=_docs() + flood)
+    search_index.build(index_dir)
+    reader.force_check()
+    groups = search_index.grouped("anchor", "eng")
+    assert [g["label"] for g in groups][:2] == ["Relics", "News"] or _names(
+        groups, "Relics"
+    ) == ["Anchor", "Fake Anchor"]
+    assert len(next(g for g in groups if g["label"] == "Images")["items"]) == 5
 
 
 def test_short_or_empty_queries(index):
@@ -233,10 +312,11 @@ def test_short_or_empty_queries(index):
     assert search_index.grouped("!!", "eng") == []
 
 
-def test_rebuild_swaps_atomically_and_reopens(index, monkeypatch):
+def test_rebuild_publishes_a_new_generation_and_keeps_the_previous(index, monkeypatch):
     meta = search_index.read_meta(index)
     assert meta["docs"] == len(_docs())
     assert meta["images_complete"] is True
+    first_gen = meta["dir"]
     monkeypatch.setattr(
         search_index,
         "_entity_docs",
@@ -259,11 +339,29 @@ def test_rebuild_swaps_atomically_and_reopens(index, monkeypatch):
     monkeypatch.setattr(search_index, "source_fingerprint", lambda: "fp-2")
     assert search_index.ensure_built(index)["fingerprint"] == "fp-2"
     assert search_index.ensure_built(index)["fingerprint"] == "fp-2"
-    assert not index.with_name(index.name + ".build").exists()
-    assert not index.with_name(index.name + ".old").exists()
+    assert search_index.read_meta(index)["dir"] != first_gen
+    assert (index / search_index.GENERATIONS_DIR / os.path.basename(first_gen)).exists()
     search_index._reader.force_check()
     assert _names(search_index.grouped("brand", "eng"), "Cards") == ["Brand New"]
     assert search_index.grouped("strike", "eng") == []
+    gens = list((index / search_index.GENERATIONS_DIR).iterdir())
+    assert len(gens) == 2
+
+
+def test_failed_build_keeps_the_live_generation(index, monkeypatch):
+    live = search_index.read_meta(index)["dir"]
+
+    def boom(lang):
+        raise search_index.BuildError("loader down")
+        yield
+
+    monkeypatch.setattr(search_index, "_entity_docs", boom)
+    monkeypatch.setattr(search_index, "source_fingerprint", lambda: "fp-broken")
+    assert search_index.ensure_built(index) is None
+    assert search_index.read_meta(index)["dir"] == live
+    assert len(list((index / search_index.GENERATIONS_DIR).iterdir())) == 1
+    search_index._reader.force_check()
+    assert _names(search_index.grouped("anchor", "eng"), "Relics")[0] == "Anchor"
 
 
 def test_concurrent_ensure_builds_once(index, monkeypatch):
@@ -285,6 +383,68 @@ def test_concurrent_ensure_builds_once(index, monkeypatch):
     for t in threads:
         t.join()
     assert calls == [1]
+
+
+def test_image_retry_waiters_rebuild_once(tmp_path, monkeypatch):
+    index_dir = tmp_path / "retry"
+    _install(monkeypatch, index_dir, images_complete=False)
+    assert search_index.build(index_dir)["images_complete"] is False
+    monkeypatch.setattr(
+        search_index,
+        "_ImageSource",
+        lambda: _Images([d for d in _docs() if d["kind"] == "image"], True),
+    )
+    calls = []
+    real_build = search_index.build
+
+    def counted(index_dir, **kw):
+        calls.append(1)
+        return real_build(index_dir, **kw)
+
+    monkeypatch.setattr(search_index, "build", counted)
+    threads = [
+        threading.Thread(
+            target=search_index.ensure_built,
+            args=(index_dir,),
+            kwargs={"require_images": True},
+        )
+        for _ in range(4)
+    ]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert calls == [1]
+    assert search_index.read_meta(index_dir)["images_complete"] is True
+    assert (
+        search_index.ensure_built(index_dir, require_images=True)["images_complete"]
+        is True
+    )
+    assert calls == [1]
+
+
+def test_build_without_images_is_not_marked_complete(tmp_path, monkeypatch):
+    index_dir = tmp_path / "noimg"
+    _install(monkeypatch, index_dir)
+    meta = search_index.build(index_dir, with_images=False)
+    assert meta["images_complete"] is False
+    assert meta["counts"].get("image", 0) == 0
+
+
+def test_fingerprint_detects_same_size_write_within_one_second(tmp_path, monkeypatch):
+    data_dir = tmp_path / "data"
+    lang_dir = data_dir / "eng"
+    lang_dir.mkdir(parents=True)
+    cards = lang_dir / "cards.json"
+    monkeypatch.setattr(data_service, "DATA_DIR", data_dir)
+    monkeypatch.setattr(mechanics_pages, "_pages_dir", lambda: tmp_path / "mechanics")
+    stamp = 1_700_000_000_100_000_000
+    cards.write_text("[]", encoding="utf-8")
+    os.utime(cards, ns=(stamp, stamp))
+    before = search_index.source_fingerprint()
+    cards.write_text("{}", encoding="utf-8")
+    os.utime(cards, ns=(stamp + 1, stamp + 1))
+    assert search_index.source_fingerprint() != before
 
 
 def test_tokens_fold_accents_and_case():
@@ -329,6 +489,44 @@ def test_router_serves_the_index_and_falls_back_without_one(index, monkeypatch):
     }
 
 
+def test_router_falls_back_when_the_index_query_raises(index, monkeypatch):
+    monkeypatch.setattr(shared_limiter, "enabled", False)
+
+    def boom(q, lang):
+        raise RuntimeError("corrupt segment")
+
+    monkeypatch.setattr(search_index, "grouped", boom)
+    monkeypatch.setattr(
+        search_router,
+        "_legacy_categories",
+        lambda q, lang: [
+            {
+                "label": "Cards",
+                "items": [{"name": "Strike", "path": "/cards/strike", "subtitle": ""}],
+            }
+        ],
+    )
+    r = client.get("/api/search", params={"q": "strike", "lang": "eng"})
+    assert r.status_code == 200
+    assert r.json()["engine"] == "legacy"
+    assert r.headers["cache-control"] == "no-store"
+
+
+def test_legacy_scan_covers_pages_and_images(monkeypatch):
+    from app.routers import images
+
+    monkeypatch.setattr(images, "_game_dumps", lambda: (("v9.9.9", "beta"),))
+    monkeypatch.setattr(images, "_game_manifest", lambda v: {"relics": ["anchor.webp"]})
+    cats = search_router._legacy_categories("anchor", "eng")
+    by_label = {c["label"]: c["items"] for c in cats}
+    assert by_label["Images"][0]["name"] == "anchor"
+    assert by_label["Images"][0]["external"] is True
+    cats = search_router._legacy_categories("images", "eng")
+    assert [i["path"] for i in {c["label"]: c["items"] for c in cats}["Pages"]] == [
+        "/images"
+    ]
+
+
 def test_router_appends_semantic_matches_for_long_queries(index, monkeypatch):
     monkeypatch.setattr(shared_limiter, "enabled", False)
     monkeypatch.setattr(
@@ -348,9 +546,11 @@ def test_router_appends_semantic_matches_for_long_queries(index, monkeypatch):
     assert all(c["label"] != "Best matches" for c in body["categories"])
 
 
-def test_meta_survives_alongside_tantivy_files(index):
-    assert (index / search_index.META_NAME).exists()
+def test_meta_lives_in_the_generation_dir(index):
+    gen = search_index.current_dir(index)
+    assert gen is not None
     assert (
-        json.loads((index / search_index.META_NAME).read_text())["schema"]
+        json.loads((gen / search_index.META_NAME).read_text())["schema"]
         == search_index.SCHEMA_VERSION
     )
+    assert search_index.read_meta(index.with_name("nothing")) is None
