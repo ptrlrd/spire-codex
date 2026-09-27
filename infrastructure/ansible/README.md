@@ -84,9 +84,9 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend and fronte
 
 `install-autodeploy.yml` installs `/usr/local/bin/spire-codex-autodeploy` + a cron entry at `/etc/cron.d/spire-codex-autodeploy` that fires every hour at :03. Each tick:
 
-1. `git pull` in `/var/www/spire-codex`
-2. If HEAD advanced and changes are not purely `data/news/*` or `data-beta/*` (both hot-reload without a restart): `docker compose pull`, a stats snapshot prewarm with the new image when the backend image changed (so a snapshot version bump never serves empty stats), then `up -d --force-recreate` for `docker-compose.prod.yml` and an nginx reload (recreated containers get new IPs; without the reload the site 502s)
-3. CF cache purge (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
+1. `git fetch` + reset to `origin/main` in `/var/www/spire-codex`
+2. If HEAD advanced and changes are not purely `data/news/*` or `data-beta/*` (both hot-reload without a restart): tag the running images as `:previous`, `docker compose pull`, `up -d --force-recreate backend frontend`, wait for both container healthchecks (abort before touching nginx if one never turns healthy), clear nginx's page cache, nginx reload (recreated containers get new IPs)
+3. No Cloudflare purge on code deploys; news-only commits purge the news URLs (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
 
 News-only updates (`data/news/*.json`) skip the recreate — the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
 

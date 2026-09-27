@@ -5,7 +5,7 @@
 #                                  (deploy no-ops when there's no new commit
 #                                  on main)
 #   ./tools/startup.sh release     force a full deploy NOW via autodeploy:
-#                                  pull images, snapshot prewarm, recreate
+#                                  pull images, recreate
 #                                  backend+frontend, wait for health, nginx
 #                                  reload - even when the commit didn't change.
 #                                  No Cloudflare purge and no warm crawl:
@@ -18,7 +18,7 @@
 #                                  just pull images + recreate backend and
 #                                  frontend in place, wait for their
 #                                  healthchecks, reload nginx. No reset to
-#                                  origin/main, no prewarm, no CF purge, no
+#                                  origin/main, no CF purge, no
 #                                  warm crawl.
 #
 # The autodeploy script (installed via

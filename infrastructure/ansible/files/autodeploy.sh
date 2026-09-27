@@ -9,7 +9,7 @@
 # /etc/cron.d/spire-codex-autodeploy. Manual run: just exec this script.
 #
 # Idempotent: same-HEAD ticks no-op and don't log unless DEBUG=1.
-# `--force` overrides that: full deploy (pull, prewarm, recreate, nginx
+# `--force` overrides that: full deploy (pull, recreate, health wait, nginx
 # reload, CF purge) even with no new commit. Used for manual releases
 # right after a merge (./tools/startup.sh release) and for re-pulling a
 # rebuilt image on the same commit.
@@ -139,27 +139,6 @@ if [ "$RECREATE" = "1" ]; then
   log "  deploying $COMPOSE_FILE"
   keep_previous
   docker compose -f "$COMPOSE_FILE" pull backend frontend >> "$LOG" 2>&1
-
-  # Pre-warm the stats snapshot with the NEW image before swapping
-  # containers. If the new code bumped SNAPSHOT_VERSION, this runs the
-  # full walk while the old containers keep serving the old snapshot, so
-  # the new workers boot with their snapshot already in Mongo and the
-  # stats surfaces never go empty during a deploy. When the version did
-  # not change, refresh_entity_stats_snapshot() sees a fresh same-version
-  # snapshot and returns immediately, so routine deploys pay one cheap
-  # find_one. Failures are non-fatal: serve-stale on the new code covers
-  # the gap.
-  RUNNING_IMG=$(docker inspect --format '{{.Image}}' spire-codex-backend 2>/dev/null || true)
-  PULLED_IMG=$(docker image inspect --format '{{.Id}}' ptrlrd/spire-codex-backend:latest 2>/dev/null || true)
-  if [ -n "$PULLED_IMG" ] && [ "$RUNNING_IMG" != "$PULLED_IMG" ]; then
-    log "  backend image changed; pre-warming stats snapshot with the new code"
-    if timeout 30m docker compose -f "$COMPOSE_FILE" run --rm --no-deps --entrypoint python backend -c \
-        "from app.services.run_entity_stats import refresh_entity_stats_snapshot as r; print('prewarm entities:', r())" >> "$LOG" 2>&1; then
-      log "  ✓ snapshot prewarm done"
-    else
-      log "  ⚠ snapshot prewarm failed or timed out; continuing (serve-stale covers the gap)"
-    fi
-  fi
 
   docker compose -f "$COMPOSE_FILE" up -d --force-recreate backend frontend >> "$LOG" 2>&1
 
