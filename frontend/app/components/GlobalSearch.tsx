@@ -232,6 +232,7 @@ export default function GlobalSearch() {
       return;
     }
     const controller = new AbortController();
+    let owned = true;
     setLoading(true);
     const timer = setTimeout(() => {
       const encoded = encodeURIComponent(trimmed);
@@ -240,7 +241,7 @@ export default function GlobalSearch() {
       })
         .then((r) => (r.ok ? r.json() : { categories: [] }))
         .then((data: { categories?: SearchSection[] }) => {
-          if (controller.signal.aborted) return;
+          if (!owned) return;
           setSections(
             (data.categories ?? []).map((c) => ({
               label: c.label,
@@ -251,12 +252,13 @@ export default function GlobalSearch() {
           setLoading(false);
         })
         .catch(() => {
-          if (controller.signal.aborted) return;
+          if (!owned) return;
           setSections([]);
           setLoading(false);
         });
     }, DEBOUNCE_MS);
     return () => {
+      owned = false;
       clearTimeout(timer);
       controller.abort();
     };
@@ -295,6 +297,11 @@ export default function GlobalSearch() {
         setOpen(false);
         return;
       }
+      if (e.key === "Tab") {
+        e.preventDefault();
+        inputRef.current?.focus();
+        return;
+      }
       if (e.key === "ArrowDown" || e.key === "ArrowUp") {
         e.preventDefault();
         if (flatResultsLength === 0) return;
@@ -323,10 +330,11 @@ export default function GlobalSearch() {
       });
   }, [visibleSections]);
 
+  const showRecent = !active && recent.length > 0;
+
   if (!open) return null;
 
   const totalResults = flatResults.length;
-  const showRecent = !active && recent.length > 0;
 
   return (
     <div
@@ -365,7 +373,7 @@ export default function GlobalSearch() {
             placeholder={t("Search cards, relics, monsters...")}
             className="flex-1 bg-transparent text-lg text-[var(--text-primary)] placeholder:text-[var(--text-muted)] outline-none"
             role="combobox"
-            aria-expanded={flatResultsLength > 0}
+            aria-expanded={active || showRecent}
             aria-controls="global-search-results"
             aria-activedescendant={
               selectedFlatResult

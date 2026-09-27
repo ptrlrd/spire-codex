@@ -5,6 +5,7 @@ publishing under the file lock, and the router's fallbacks."""
 import json
 import os
 import threading
+import time
 
 import pytest
 from fastapi.testclient import TestClient
@@ -283,7 +284,7 @@ def test_pages_images_and_news_are_found_ordered_and_deduped(index):
     ]
 
 
-def test_core_kinds_cannot_be_crowded_out_by_images(tmp_path, monkeypatch):
+def test_core_kinds_and_news_cannot_be_crowded_out_by_images(tmp_path, monkeypatch):
     flood = [
         search_index._doc(
             doc_id=f"image:v1:assets:anchor_{i}.webp",
@@ -301,9 +302,9 @@ def test_core_kinds_cannot_be_crowded_out_by_images(tmp_path, monkeypatch):
     search_index.build(index_dir)
     reader.force_check()
     groups = search_index.grouped("anchor", "eng")
-    assert [g["label"] for g in groups][:2] == ["Relics", "News"] or _names(
-        groups, "Relics"
-    ) == ["Anchor", "Fake Anchor"]
+    labels = [g["label"] for g in groups]
+    assert _names(groups, "Relics") == ["Anchor", "Fake Anchor"]
+    assert labels.index("Relics") < labels.index("Images") < labels.index("News")
     assert len(next(g for g in groups if g["label"] == "Images")["items"]) == 5
 
 
@@ -385,42 +386,158 @@ def test_concurrent_ensure_builds_once(index, monkeypatch):
     assert calls == [1]
 
 
-def test_image_retry_waiters_rebuild_once(tmp_path, monkeypatch):
+def test_incomplete_image_retry_waiters_attempt_once(tmp_path, monkeypatch):
     index_dir = tmp_path / "retry"
     _install(monkeypatch, index_dir, images_complete=False)
+    search_index.build(index_dir, with_images=False)
+    assert search_index.read_meta(index_dir)["images_retry_at"] == 0.0
+    calls = []
+    real_build = search_index.build
+    first_entered = threading.Event()
+    release_first = threading.Event()
+
+    def counted(path, **kwargs):
+        calls.append(1)
+        if len(calls) == 1:
+            first_entered.set()
+            assert release_first.wait(timeout=5)
+        return real_build(path, **kwargs)
+
+    monkeypatch.setattr(search_index, "build", counted)
+    first = threading.Thread(
+        target=search_index.ensure_built,
+        args=(index_dir,),
+        kwargs={"require_images": True},
+    )
+    first.start()
+    assert first_entered.wait(timeout=5)
+    waiters = [
+        threading.Thread(
+            target=search_index.ensure_built,
+            args=(index_dir,),
+            kwargs={"require_images": True},
+        )
+        for _ in range(3)
+    ]
+    for thread in waiters:
+        thread.start()
+    release_first.set()
+    first.join()
+    for thread in waiters:
+        thread.join()
+    assert calls == [1]
+    meta = search_index.read_meta(index_dir)
+    assert meta["images_complete"] is False
+    assert meta["images_retry_at"] > time.time()
+    assert search_index.ensure_built(index_dir, require_images=True) is not None
+    assert calls == [1]
+
+
+def test_image_retry_runs_again_after_the_deadline(tmp_path, monkeypatch):
+    index_dir = tmp_path / "retry2"
+    _install(monkeypatch, index_dir, images_complete=False)
+    monkeypatch.setattr(search_index, "_RETRY_SECONDS", 0.0)
     assert search_index.build(index_dir)["images_complete"] is False
     monkeypatch.setattr(
         search_index,
         "_ImageSource",
         lambda: _Images([d for d in _docs() if d["kind"] == "image"], True),
     )
-    calls = []
-    real_build = search_index.build
-
-    def counted(index_dir, **kw):
-        calls.append(1)
-        return real_build(index_dir, **kw)
-
-    monkeypatch.setattr(search_index, "build", counted)
-    threads = [
-        threading.Thread(
-            target=search_index.ensure_built,
-            args=(index_dir,),
-            kwargs={"require_images": True},
-        )
-        for _ in range(4)
-    ]
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
-    assert calls == [1]
-    assert search_index.read_meta(index_dir)["images_complete"] is True
     assert (
         search_index.ensure_built(index_dir, require_images=True)["images_complete"]
         is True
     )
+    assert search_index.ensure_built(index_dir)["images_complete"] is True
+
+
+def test_failed_attempt_is_not_retried_by_waiters_until_the_deadline(
+    tmp_path, monkeypatch
+):
+    index_dir = tmp_path / "fail"
+    _install(monkeypatch, index_dir)
+
+    def boom(lang):
+        raise search_index.BuildError("loader down")
+        yield
+
+    monkeypatch.setattr(search_index, "_entity_docs", boom)
+    calls = []
+    real_build = search_index.build
+
+    def counted(path, **kwargs):
+        calls.append(1)
+        return real_build(path, **kwargs)
+
+    monkeypatch.setattr(search_index, "build", counted)
+    assert search_index.ensure_built(index_dir) is None
+    assert search_index.ensure_built(index_dir) is None
     assert calls == [1]
+    monkeypatch.setattr(search_index, "_RETRY_SECONDS", 0.0)
+    search_index._write_attempt(index_dir, ok=False, retry_at=0)
+    assert search_index.ensure_built(index_dir) is None
+    assert len(calls) == 2
+
+
+def test_malformed_site_pages_aborts_the_build(tmp_path, monkeypatch):
+    data_dir = tmp_path / "data"
+    data_dir.mkdir()
+    (data_dir / "site_pages.json").write_text("{broken", encoding="utf-8")
+    monkeypatch.setattr(data_service, "DATA_DIR", data_dir)
+    monkeypatch.setattr(mechanics_pages, "list_sections", lambda: [])
+    monkeypatch.setattr(data_service, "load_guides", lambda: [])
+    monkeypatch.setattr(data_service, "load_news_index", lambda: [])
+    with pytest.raises(search_index.BuildError):
+        list(search_index._shared_docs())
+    assert search_index.site_pages() == []
+
+
+def test_startup_retries_after_a_failed_build(tmp_path, monkeypatch):
+    reader = search_index._Reader(tmp_path / "index")
+    monkeypatch.setattr(search_index, "_reader", reader)
+    monkeypatch.setattr(search_index, "_RETRY_SECONDS", 0)
+    outcomes = iter([None, {"images_complete": False}, {"images_complete": True}])
+    calls = []
+
+    def ensure(*args, **kwargs):
+        calls.append(kwargs)
+        return next(outcomes)
+
+    class InlineThread:
+        def __init__(self, *, target, **kwargs):
+            self.target = target
+
+        def start(self):
+            self.target()
+
+    monkeypatch.setattr(search_index, "ensure_built", ensure)
+    monkeypatch.setattr(search_index.threading, "Thread", InlineThread)
+    search_index.start_background_build()
+    assert len(calls) == 3
+    assert all(c["require_images"] for c in calls)
+    assert reader.building is False
+
+
+def test_query_failure_marks_the_generation_broken_and_replaces_it(index, monkeypatch):
+    monkeypatch.setattr(shared_limiter, "enabled", False)
+    live = search_index.read_meta(index)["dir"]
+    real_run = search_index._run
+    monkeypatch.setattr(
+        search_index,
+        "_run",
+        lambda *a, **k: (_ for _ in ()).throw(RuntimeError("segment")),
+    )
+    monkeypatch.setattr(search_router, "_legacy_categories", lambda q, lang: [])
+    assert (
+        client.get("/api/search", params={"q": "anchor", "lang": "eng"}).json()[
+            "engine"
+        ]
+        == "legacy"
+    )
+    assert search_index._reader.broken_dir == live
+    monkeypatch.setattr(search_index, "_run", real_run)
+    assert search_index.ensure_built(index, replace_dir=live)["dir"] != live
+    search_index._reader.force_check()
+    assert _names(search_index.grouped("anchor", "eng"), "Relics")[0] == "Anchor"
 
 
 def test_build_without_images_is_not_marked_complete(tmp_path, monkeypatch):

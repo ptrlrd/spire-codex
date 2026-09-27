@@ -20,13 +20,11 @@ def main() -> None:
     parser.add_argument("--no-images", action="store_true")
     args = parser.parse_args()
     logging.basicConfig(level=logging.INFO)
-    if args.force:
+    if args.force or args.no_images:
         with search_index._Lock(search_index._lock_path(search_index.INDEX_DIR)):
             meta = search_index.build(with_images=not args.no_images)
     else:
-        meta = search_index.ensure_built(
-            require_images=not args.no_images, with_images=not args.no_images
-        )
+        meta = search_index.ensure_built(require_images=True)
     print(json.dumps(meta, indent=2))
 
 

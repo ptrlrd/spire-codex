@@ -32,15 +32,17 @@ INDEX_DIR = Path(
 )
 ANY_LANG = "any"
 META_NAME = "search-meta.json"
+ATTEMPT_NAME = "build-attempt.json"
 CURRENT_LINK = "current"
 GENERATIONS_DIR = "generations"
-KEEP_GENERATIONS = 2
 SCHEMA_VERSION = 2
 _RECHECK_SECONDS = 60.0
 _RETRY_SECONDS = 300.0
-_IMAGE_RETRIES = 6
+_STARTUP_ATTEMPTS = 6
+_PRUNE_AFTER_SECONDS = 600.0
 _FETCH_LIMIT = 80
-_TRAILING_FETCH_LIMIT = 40
+_IMAGE_FETCH_LIMIT = 40
+_NEWS_FETCH_LIMIT = 15
 _MAX_PER_CATEGORY = 5
 _MAX_CATEGORIES = 8
 
@@ -149,6 +151,7 @@ _WEIGHTS: dict[str, float] = {
 }
 
 TRAILING_KINDS: dict[str, int] = {"image": 1, "news": 2}
+CORE_KINDS: list[str] = [k for k in KIND_LABELS if k not in TRAILING_KINDS]
 _IMAGE_SKIP = {"enchantments-cards", "afflictions-cards"}
 
 
@@ -315,6 +318,9 @@ def _shared_docs() -> Iterator[dict[str, Any]]:
         sections = mechanics_pages.list_sections()
         guides = data_service.load_guides()
         news = data_service.load_news_index()
+        pages = _site_pages_strict()
+    except BuildError:
+        raise
     except Exception as exc:
         raise BuildError(f"shared sources failed: {exc}") from exc
     for row in sections:
@@ -350,7 +356,7 @@ def _shared_docs() -> Iterator[dict[str, Any]]:
             path=f"/news/{gid}",
             subtitle="News",
         )
-    for page in site_pages():
+    for page in pages:
         path = str(page.get("path") or "")
         name = str(page.get("name") or "").strip()
         if not path or not name:
@@ -367,13 +373,23 @@ def _shared_docs() -> Iterator[dict[str, Any]]:
         )
 
 
+def _site_pages_strict() -> list[dict]:
+    path = data_service.DATA_DIR / "site_pages.json"
+    try:
+        with open(path, encoding="utf-8") as f:
+            pages = json.load(f)
+    except (OSError, ValueError) as exc:
+        raise BuildError(f"site_pages.json unreadable: {exc}") from exc
+    if not isinstance(pages, list) or not pages:
+        raise BuildError("site_pages.json is empty")
+    return [p for p in pages if isinstance(p, dict)]
+
+
 def site_pages() -> list[dict]:
     try:
-        with open(data_service.DATA_DIR / "site_pages.json", encoding="utf-8") as f:
-            pages = json.load(f)
-    except (OSError, ValueError):
+        return _site_pages_strict()
+    except BuildError:
         return []
-    return [p for p in pages if isinstance(p, dict)] if isinstance(pages, list) else []
 
 
 class _ImageSource:
@@ -386,7 +402,10 @@ class _ImageSource:
     def __iter__(self) -> Iterator[dict[str, Any]]:
         from ..routers import images
 
-        for version, channel in images._game_dumps():
+        dumps = images._game_dumps()
+        if not dumps:
+            self.complete = False
+        for version, channel in dumps:
             manifest = images._game_manifest(version)
             if not manifest:
                 self.complete = False
@@ -477,27 +496,62 @@ def read_meta(index_dir: Path = INDEX_DIR) -> dict | None:
     return meta
 
 
+def _read_attempt(index_dir: Path) -> dict:
+    try:
+        with open(index_dir / ATTEMPT_NAME, encoding="utf-8") as f:
+            data = json.load(f)
+    except (OSError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def _write_attempt(index_dir: Path, **fields: Any) -> None:
+    index_dir.mkdir(parents=True, exist_ok=True)
+    tmp = index_dir / f"{ATTEMPT_NAME}.{uuid.uuid4().hex}"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump({"at": time.time(), **fields}, f)
+    os.replace(tmp, index_dir / ATTEMPT_NAME)
+
+
 def _publish(index_dir: Path, generation: Path) -> None:
     link = index_dir / CURRENT_LINK
     tmp_link = index_dir / f"{CURRENT_LINK}.{uuid.uuid4().hex}"
-    os.symlink(os.path.join(GENERATIONS_DIR, generation.name), tmp_link)
-    os.replace(tmp_link, link)
+    try:
+        os.symlink(os.path.join(GENERATIONS_DIR, generation.name), tmp_link)
+        os.replace(tmp_link, link)
+    finally:
+        if tmp_link.is_symlink():
+            tmp_link.unlink(missing_ok=True)
 
 
-def _prune(index_dir: Path, keep: int = KEEP_GENERATIONS) -> None:
+def _prune(index_dir: Path, older_than: float = _PRUNE_AFTER_SECONDS) -> None:
+    """Drop generations nobody can still hold: every worker re-resolves the
+    `current` link within _RECHECK_SECONDS of a publish, so anything older
+    than `older_than` seconds and not current has no readers left."""
     gens_dir = index_dir / GENERATIONS_DIR
     live = current_dir(index_dir)
+    cutoff = time.time() - older_than
     try:
-        gens = sorted(
-            (p for p in gens_dir.iterdir() if p.is_dir()),
-            key=lambda p: p.stat().st_mtime_ns,
-        )
+        gens = [p for p in gens_dir.iterdir() if p.is_dir()]
     except OSError:
         return
-    for gen in gens[:-keep]:
+    for gen in gens:
         if live is not None and gen.resolve() == live.resolve():
             continue
+        try:
+            if gen.stat().st_mtime > cutoff:
+                continue
+        except OSError:
+            continue
         shutil.rmtree(gen, ignore_errors=True)
+
+
+def _validate(generation: Path) -> None:
+    import tantivy
+
+    index = tantivy.Index.open(str(generation))
+    _register_tokenizers(index)
+    index.searcher().search(tantivy.Query.all_query(), limit=1)
 
 
 def build(index_dir: Path = INDEX_DIR, *, with_images: bool = True) -> dict:
@@ -535,6 +589,7 @@ def build(index_dir: Path = INDEX_DIR, *, with_images: bool = True) -> dict:
             images_complete = source.complete
         writer.commit()
         writer.wait_merging_threads()
+        _validate(generation)
         meta = {
             "schema": SCHEMA_VERSION,
             "fingerprint": fingerprint,
@@ -543,6 +598,9 @@ def build(index_dir: Path = INDEX_DIR, *, with_images: bool = True) -> dict:
             "counts": counts,
             "docs": sum(counts.values()),
             "images_complete": images_complete,
+            "images_retry_at": 0.0
+            if images_complete or not with_images
+            else time.time() + _RETRY_SECONDS,
             "generation": generation.name,
         }
         if source_fingerprint() != fingerprint:
@@ -553,6 +611,8 @@ def build(index_dir: Path = INDEX_DIR, *, with_images: bool = True) -> dict:
         shutil.rmtree(generation, ignore_errors=True)
         raise
     _publish(index_dir, generation)
+    meta["dir"] = str(generation)
+    _write_attempt(index_dir, ok=True, generation=generation.name)
     _prune(index_dir)
     logger.info(
         "search-index: built %s docs in %ss (%s)",
@@ -587,28 +647,51 @@ def _lock_path(index_dir: Path) -> Path:
 def _fresh(meta: dict | None, want: str, require_images: bool) -> bool:
     if not meta or meta.get("fingerprint") != want:
         return False
-    return bool(meta.get("images_complete")) or not require_images
+    if meta.get("images_complete") or not require_images:
+        return True
+    return time.time() < float(meta.get("images_retry_at") or 0)
+
+
+def _needs_build(
+    index_dir: Path, *, require_images: bool, replace_dir: str | None
+) -> bool:
+    meta = read_meta(index_dir)
+    if replace_dir and meta and meta.get("dir") == replace_dir:
+        return True
+    if _fresh(meta, source_fingerprint(), require_images):
+        return False
+    attempt = _read_attempt(index_dir)
+    if not attempt.get("ok") and time.time() < float(attempt.get("retry_at") or 0):
+        return False
+    return True
 
 
 def ensure_built(
     index_dir: Path = INDEX_DIR,
     *,
     require_images: bool = False,
-    with_images: bool = True,
+    replace_dir: str | None = None,
 ) -> dict | None:
-    """Build when the index is missing, stale, or (with `require_images`)
-    still lacking image rows. Serialised across workers by a file lock;
-    whoever gets the lock after a build sees the fresh meta and skips."""
-    if _fresh(read_meta(index_dir), source_fingerprint(), require_images):
+    """Build when the index is missing, stale, unusable (`replace_dir` names
+    the generation that failed to open or query) or, with `require_images`,
+    still lacking image rows past its retry time. Serialised across workers
+    by a file lock; whoever gets the lock after a build sees the fresh meta
+    and skips, and a failed attempt is not retried by anyone for
+    _RETRY_SECONDS."""
+    if not _needs_build(
+        index_dir, require_images=require_images, replace_dir=replace_dir
+    ):
         return read_meta(index_dir)
     with _Lock(_lock_path(index_dir)):
-        meta = read_meta(index_dir)
-        if _fresh(meta, source_fingerprint(), require_images):
-            return meta
+        if not _needs_build(
+            index_dir, require_images=require_images, replace_dir=replace_dir
+        ):
+            return read_meta(index_dir)
         try:
-            return build(index_dir, with_images=with_images)
+            return build(index_dir)
         except Exception:
             logger.exception("search-index: build failed")
+            _write_attempt(index_dir, ok=False, retry_at=time.time() + _RETRY_SECONDS)
             return None
 
 
@@ -621,13 +704,17 @@ class _Reader:
         self.lock = threading.Lock()
         self.build_lock = threading.Lock()
         self.building = False
-        self.next_build_at = 0.0
+        self.broken_dir: str | None = None
 
     def _open(self) -> None:
         import tantivy
 
         meta = read_meta(self.index_dir)
         if not meta:
+            return
+        if meta.get("dir") == self.broken_dir:
+            self.index = None
+            self.meta = meta
             return
         if (
             self.index is not None
@@ -640,27 +727,44 @@ class _Reader:
             _register_tokenizers(index)
         except Exception:
             logger.warning("search-index: open failed", exc_info=True)
+            self.broken_dir = meta.get("dir")
+            self.index = None
+            self.meta = meta
             return
         self.index = index
         self.meta = meta
 
-    def _schedule_build(self, *, require_images: bool = False) -> bool:
+    def claim_build(self) -> bool:
         with self.build_lock:
-            if self.building or time.monotonic() < self.next_build_at:
+            if self.building:
                 return False
             self.building = True
+            return True
+
+    def release_build(self) -> None:
+        with self.build_lock:
+            self.building = False
+        self.force_check()
+
+    def _schedule_build(self, *, replace_dir: str | None = None) -> bool:
+        if not self.claim_build():
+            return False
 
         def run() -> None:
             try:
-                ensure_built(self.index_dir, require_images=require_images)
+                ensure_built(self.index_dir, replace_dir=replace_dir)
             finally:
-                with self.build_lock:
-                    self.building = False
-                    self.next_build_at = time.monotonic() + _RETRY_SECONDS
-                self.force_check()
+                self.release_build()
 
-        threading.Thread(target=run, name="search-index-build", daemon=True).start()
+        threading.Thread(target=run, name="search-index-refresh", daemon=True).start()
         return True
+
+    def mark_broken(self) -> None:
+        with self.lock:
+            if self.meta:
+                self.broken_dir = self.meta.get("dir")
+            self.index = None
+            self.checked_at = 0.0
 
     def current(self):
         now = time.monotonic()
@@ -669,14 +773,18 @@ class _Reader:
                 self.checked_at = now
                 try:
                     self._open()
+                    live = self.meta.get("dir") if self.meta else None
+                    broken = live is not None and live == self.broken_dir
                     stale = (
                         self.meta is None
                         or self.meta.get("fingerprint") != source_fingerprint()
                     )
                 except Exception:
                     logger.warning("search-index: check failed", exc_info=True)
-                    stale = False
-                if stale:
+                    stale = broken = False
+                if broken:
+                    self._schedule_build(replace_dir=self.broken_dir)
+                elif stale:
                     self._schedule_build()
             return self.index
 
@@ -692,22 +800,27 @@ def available() -> bool:
     return _reader.current() is not None
 
 
+def report_failure() -> None:
+    """Called by the router when a query against the live generation raised:
+    stop using it and rebuild a replacement."""
+    _reader.mark_broken()
+
+
 def start_background_build() -> None:
+    if not _reader.claim_build():
+        return
+
     def run() -> None:
-        with _reader.build_lock:
-            _reader.building = True
         try:
-            meta = ensure_built()
-            _reader.force_check()
-            tries = 0
-            while meta and not meta.get("images_complete") and tries < _IMAGE_RETRIES:
-                tries += 1
-                time.sleep(_RETRY_SECONDS)
-                meta = ensure_built(require_images=True)
+            for attempt in range(_STARTUP_ATTEMPTS + 1):
+                meta = ensure_built(_reader.index_dir, require_images=True)
                 _reader.force_check()
+                if meta and meta.get("images_complete"):
+                    break
+                if attempt < _STARTUP_ATTEMPTS:
+                    time.sleep(_RETRY_SECONDS)
         finally:
-            with _reader.build_lock:
-                _reader.building = False
+            _reader.release_build()
 
     threading.Thread(target=run, name="search-index-startup", daemon=True).start()
 
@@ -730,7 +843,7 @@ def _gram_boost(token: str) -> float:
     return 0.0
 
 
-def _build_query(schema, q: str, lang: str, kinds: list[str], exclude: bool):
+def _build_query(schema, q: str, lang: str, kinds: list[str]):
     import tantivy
 
     Q = tantivy.Query
@@ -740,10 +853,7 @@ def _build_query(schema, q: str, lang: str, kinds: list[str], exclude: bool):
         return None
     clauses: list[tuple[Any, Any]] = [
         (Occur.Must, Q.term_set_query(schema, "lang", [lang, ANY_LANG])),
-        (
-            Occur.MustNot if exclude else Occur.Must,
-            Q.term_set_query(schema, "kind", kinds),
-        ),
+        (Occur.Must, Q.term_set_query(schema, "kind", kinds)),
     ]
     for tok in toks:
         d = _distance(tok)
@@ -822,8 +932,8 @@ def _rescore(score: float, name: str, folded_q: str) -> float:
     return score * (0.5 + sim) * (1 + bonus) / (1 + 0.01 * len(folded))
 
 
-def _run(index, q: str, lang: str, kinds: list[str], exclude: bool, limit: int):
-    query = _build_query(index.schema, q, lang, kinds, exclude)
+def _run(index, q: str, lang: str, kinds: list[str], limit: int):
+    query = _build_query(index.schema, q, lang, kinds)
     if query is None:
         return []
     searcher = index.searcher()
@@ -850,15 +960,14 @@ def _run(index, q: str, lang: str, kinds: list[str], exclude: bool, limit: int):
 
 def search(q: str, lang: str) -> list[dict[str, Any]] | None:
     """Ranked hits for `q` in `lang` (plus language-agnostic docs), or None
-    when the index is not available yet. Images and news are fetched in
-    their own pass so they can never crowd the core kinds out of the
-    candidate set."""
+    when the index is not available yet. Core kinds, images and news each
+    get their own candidate pass so no kind can crowd another out."""
     index = _reader.current()
     if index is None:
         return None
-    trailing = list(TRAILING_KINDS)
-    hits = _run(index, q, lang, trailing, True, _FETCH_LIMIT)
-    hits += _run(index, q, lang, trailing, False, _TRAILING_FETCH_LIMIT)
+    hits = _run(index, q, lang, CORE_KINDS, _FETCH_LIMIT)
+    hits += _run(index, q, lang, ["image"], _IMAGE_FETCH_LIMIT)
+    hits += _run(index, q, lang, ["news"], _NEWS_FETCH_LIMIT)
     hits.sort(key=lambda h: (-h["score"], len(h["name"]), h["name"]))
     return hits
 

@@ -324,6 +324,7 @@ def global_search(
             categories = search_index.grouped(query, lang)
         except Exception:
             logger.exception("search-index: query failed, using the legacy scan")
+            search_index.report_failure()
             categories = None
     engine = "index"
     if categories is None:
