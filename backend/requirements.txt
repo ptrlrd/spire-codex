@@ -12,6 +12,7 @@ python-multipart==0.0.32
 boto3>=1.34,<2
 redis==5.2.1
 numpy==2.2.6
+tantivy==0.26.2
 scipy==1.14.1
 tzdata==2025.2
 # Analytics lake (pinned exactly; see lab/README.md)

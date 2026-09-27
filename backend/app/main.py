@@ -199,6 +199,16 @@ app.add_middleware(SlowAPIMiddleware)
 # the background so container readiness probes don't have to wait on
 # it; beta deploys (no run submissions) skip the warm-up.
 @app.on_event("startup")
+def _build_search_index() -> None:
+    try:
+        from .services import search_index
+
+        search_index.start_background_build()
+    except Exception:
+        logger.warning("search-index: startup build not scheduled", exc_info=True)
+
+
+@app.on_event("startup")
 def _warm_run_entity_stats() -> None:
     if IS_BETA_BACKEND:
         return

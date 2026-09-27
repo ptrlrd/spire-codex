@@ -65,6 +65,20 @@ describe("site-page route semantics", () => {
     );
 
     expect(committed).toEqual(collectPages());
+    const backendCopy = JSON.parse(
+      readFileSync(
+        fileURLToPath(new URL("../../data/site_pages.json", import.meta.url)),
+        "utf8",
+      ),
+    );
+    expect(backendCopy).toEqual(committed);
+  });
+
+  it("carries the curated names and synonyms into the inventory", () => {
+    const byPath = new Map(collectPages().map((p) => [p.path, p]));
+    expect(byPath.get("/images")?.keywords).toContain("sprite");
+    expect(byPath.get("/leaderboards/elo")?.name).toBe("Top Players");
+    expect(byPath.get("/seed-finder")?.keywords).toContain("achievement");
   });
 });
 

@@ -15,13 +15,14 @@ payload stays small enough for per-keystroke use.
 
 from __future__ import annotations
 
-from typing import Any, Callable, Iterable
+from collections.abc import Callable, Iterable
+from typing import Any
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 from pydantic import BaseModel, Field
 
 from ..dependencies import client_ip, get_lang
-from ..services import data_service, mechanics_pages, search_analytics
+from ..services import data_service, mechanics_pages, search_analytics, search_index
 
 router = APIRouter(prefix="/api/search", tags=["Search"])
 
@@ -131,6 +132,23 @@ _SEMANTIC_LABELS = {
 _SEMANTIC_MIN_SCORE = 0.45
 
 
+def _semantic_items(q: str, limit: int) -> list[dict[str, str]] | None:
+    from ..services import semantic_search
+
+    results = semantic_search.search(q, limit=limit)
+    if results is None:
+        return None
+    return [
+        {
+            "name": r["name"],
+            "path": f"{_SEMANTIC_PATHS[r['etype']]}/{r['id'].lower()}",
+            "subtitle": _SEMANTIC_LABELS.get(r["etype"], ""),
+        }
+        for r in results
+        if r["etype"] in _SEMANTIC_PATHS and r["score"] >= _SEMANTIC_MIN_SCORE
+    ]
+
+
 @router.get("/semantic", tags=["Search"])
 def semantic_search_route(
     request: Request,
@@ -141,38 +159,18 @@ def semantic_search_route(
     """Meaning-based entity search over Workers AI embeddings. Returns the
     same item shape as /api/search; empty when the feature is unavailable
     (no vectors built or no Workers AI token)."""
-    from ..services import semantic_search
-
-    results = semantic_search.search(q.strip(), limit=limit)
-    if results is None:
+    items = _semantic_items(q.strip(), limit)
+    if items is None:
         response.headers["Cache-Control"] = "no-store"
         return {"query": q, "items": [], "available": False}
     response.headers["Cache-Control"] = "public, max-age=60, s-maxage=300"
-    items = [
-        {
-            "name": r["name"],
-            "path": f"{_SEMANTIC_PATHS[r['etype']]}/{r['id'].lower()}",
-            "subtitle": _SEMANTIC_LABELS.get(r["etype"], ""),
-        }
-        for r in results
-        if r["etype"] in _SEMANTIC_PATHS and r["score"] >= _SEMANTIC_MIN_SCORE
-    ]
     return {"query": q, "items": items, "available": True}
 
 
-@router.get("", tags=["Search"])
-def global_search(
-    request: Request,
-    q: str = Query(..., min_length=1, max_length=80),
-    lang: str = Depends(get_lang),
-) -> dict[str, Any]:
-    """Search every entity type, reference entry, mechanics page, guide,
-    and news article in one pass. Returns up to a few items per category;
-    empty categories are omitted."""
-    query = q.strip().lower()
-    if len(query) < _MIN_QUERY_LEN:
-        return {"query": q, "categories": []}
-
+def _legacy_categories(query: str, lang: str) -> list[dict[str, Any]]:
+    """Substring scan over the entity loaders, used only while the index is
+    still building on a fresh box and for the beta channel, which the index
+    does not cover."""
     categories: list[dict[str, Any]] = []
 
     def add(label: str, items: list[dict[str, str]]) -> None:
@@ -264,7 +262,49 @@ def global_search(
         ],
     )
 
-    return {"query": q, "categories": categories}
+    return categories
+
+
+_SEMANTIC_MIN_TOKENS = 3
+_SEMANTIC_LIMIT = 5
+
+
+@router.get("", tags=["Search"])
+def global_search(
+    request: Request,
+    response: Response,
+    q: str = Query(..., min_length=1, max_length=80),
+    lang: str = Depends(get_lang),
+) -> dict[str, Any]:
+    """Search every entity type, reference entry, mechanics page, guide,
+    news article, site page and image file in one pass, with typo tolerance
+    and prefix matching. Returns up to a few items per category ordered by
+    relevance; empty categories are omitted. Queries of three or more words
+    also get a "Best matches" category from the semantic index when it is
+    available."""
+    query = q.strip()
+    if len(query) < _MIN_QUERY_LEN:
+        return {"query": q, "categories": [], "engine": "none"}
+    categories = None
+    if data_service.get_channel() != "beta":
+        categories = search_index.grouped(query, lang)
+    engine = "index"
+    if categories is None:
+        engine = "legacy"
+        categories = _legacy_categories(query.lower(), lang)
+        response.headers["Cache-Control"] = "no-store"
+    if len(search_index.tokens(query)) >= _SEMANTIC_MIN_TOKENS:
+        seen = {item["path"] for c in categories for item in c["items"]}
+        try:
+            best = _semantic_items(query, _SEMANTIC_LIMIT) or []
+        except Exception:
+            best = []
+        best = [item for item in best if item["path"] not in seen]
+        if best:
+            categories.append(
+                {"label": "Best matches", "kind": "semantic", "items": best}
+            )
+    return {"query": q, "categories": categories, "engine": engine}
 
 
 class SearchLog(BaseModel):

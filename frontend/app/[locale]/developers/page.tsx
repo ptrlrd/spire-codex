@@ -595,7 +595,7 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/search",
                   desc: t(
-                    "Unified site search across entities, reference entries, mechanics, guides, and news (q, lang)",
+                    "Unified site search across entities, reference entries, mechanics, guides, news, site pages and image files, with typo tolerance (q, lang)",
                   ),
                 },
                 {
