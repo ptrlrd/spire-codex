@@ -151,7 +151,7 @@ def test_merge_contributors_drops_bots_and_folds_logins():
 
 def test_contributors_serves_stale_and_refreshes_in_background(env, monkeypatch):
     _, _, cache = env
-    cache.store[thanks.CONTRIBUTORS_KEY] = {
+    cache.store[thanks.contributors_key()] = {
         "rows": [{"login": "old"}],
         "fetched_at": time.time() - 2 * thanks.CONTRIBUTORS_TTL,
     }
@@ -175,7 +175,7 @@ def test_contributors_cold_cache_fetches_once_and_survives_errors(env, monkeypat
         lambda f=None: thanks.merge_contributors([fetch("u", {})]),
     )
     assert [r["login"] for r in thanks.contributors()] == ["peter"]
-    assert cache.store[thanks.CONTRIBUTORS_KEY]["rows"][0]["login"] == "peter"
+    assert cache.store[thanks.contributors_key()]["rows"][0]["login"] == "peter"
     assert thanks.contributors() and len(calls) == 1
 
     def boom(f=None):
@@ -310,7 +310,7 @@ def test_csv_import_parses_kofi_export_and_dedupes(env):
 
 def test_public_endpoint_shape(env, monkeypatch):
     special, _, cache = env
-    cache.store[thanks.CONTRIBUTORS_KEY] = {
+    cache.store[thanks.contributors_key()] = {
         "rows": [{"login": "peter", "url": "u", "avatar_url": "a", "contributions": 5}],
         "fetched_at": time.time(),
     }
@@ -385,7 +385,7 @@ def test_admin_supporters_hide_import_and_refresh(env, monkeypatch):
     )
     r = client.post("/api/admin/thanks/github/refresh")
     assert r.status_code == 200 and r.json() == {"contributors": 1}
-    assert cache.store[thanks.CONTRIBUTORS_KEY]["rows"][0]["login"] == "peter"
+    assert cache.store[thanks.contributors_key()]["rows"][0]["login"] == "peter"
 
 
 def test_admin_requires_admin(monkeypatch):
@@ -497,7 +497,7 @@ def test_exclude_applies_to_an_already_cached_list(monkeypatch):
     from app.services import cache as app_cache
 
     store = {
-        "thanks:github:v1": {
+        thanks.contributors_key(): {
             "rows": [
                 {"login": "ptrlrd", "contributions": 5},
                 {"login": "Someone", "contributions": 2},

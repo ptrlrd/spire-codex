@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 
 GITHUB_API = "https://api.github.com"
 DEFAULT_REPOS = "ptrlrd/spire-codex,ptrlrd/spire-codex-mod"
-CONTRIBUTORS_KEY = "thanks:github:v1"
+CONTRIBUTORS_KEY_PREFIX = "thanks:github:v1"
 CONTRIBUTORS_TTL = 24 * 3600
 CONTRIBUTORS_STALE_TTL = 30 * 24 * 3600
 CONTRIBUTORS_LOCK = "thanks:github:lock"
@@ -59,6 +59,10 @@ def _iso(v: Any) -> str | None:
             v = v.replace(tzinfo=timezone.utc)
         return v.isoformat().replace("+00:00", "Z")
     return v if isinstance(v, str) else None
+
+
+def contributors_key() -> str:
+    return f"{CONTRIBUTORS_KEY_PREFIX}:{'+'.join(repos())}"
 
 
 def repos() -> list[str]:
@@ -153,7 +157,7 @@ def _store_contributors(rows: list[dict]) -> None:
     from . import cache as app_cache
 
     app_cache.set_json(
-        CONTRIBUTORS_KEY,
+        contributors_key(),
         {"rows": rows, "fetched_at": time.time()},
         CONTRIBUTORS_STALE_TTL,
     )
@@ -163,7 +167,7 @@ def refresh_contributors(fetch=None) -> list[dict]:
     from . import cache as app_cache
 
     if not app_cache.acquire_lock(CONTRIBUTORS_LOCK, 60):
-        cached = app_cache.get_json(CONTRIBUTORS_KEY)
+        cached = app_cache.get_json(contributors_key())
         if cached and isinstance(cached.get("rows"), list):
             return cached["rows"]
         raise RuntimeError("another worker is refreshing the contributor list")
@@ -200,7 +204,7 @@ def contributors(now: float | None = None) -> list[dict]:
     runs, and a cold cache is filled synchronously once."""
     from . import cache as app_cache
 
-    cached = app_cache.get_json(CONTRIBUTORS_KEY)
+    cached = app_cache.get_json(contributors_key())
     now = now or time.time()
     if cached and isinstance(cached.get("rows"), list):
         if now - float(cached.get("fetched_at") or 0) > CONTRIBUTORS_TTL:

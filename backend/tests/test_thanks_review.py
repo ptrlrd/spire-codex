@@ -242,8 +242,8 @@ def test_github_202_keeps_last_good_cache(env, monkeypatch):
         "rows": [{"login": "last-good", "contributions": 3}],
         "fetched_at": time.time(),
     }
-    cache.store[thanks.CONTRIBUTORS_KEY] = old
     monkeypatch.setenv("THANKS_GITHUB_REPOS", "owner/repo")
+    cache.store[thanks.contributors_key()] = old
 
     class Accepted:
         status_code = 202
@@ -259,7 +259,7 @@ def test_github_202_keeps_last_good_cache(env, monkeypatch):
     response = client.post("/api/admin/thanks/github/refresh")
 
     assert response.status_code == 502
-    assert cache.store[thanks.CONTRIBUTORS_KEY] == old
+    assert cache.store[thanks.contributors_key()] == old
 
 
 def test_github_avatar_and_url_come_only_from_github(env):
