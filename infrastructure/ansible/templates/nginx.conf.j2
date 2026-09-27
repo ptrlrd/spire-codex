@@ -15,6 +15,18 @@ http {
     types_hash_max_size 2048;
     server_tokens off;
 
+    # One client's run backfill must not crowd out everyone else: uploads
+    # from a single IP are smoothed to 2/s (a short burst passes, the rest
+    # queues, the mod's own backfill pacing is 2.5/s and it retries 429s
+    # with backoff) and at most 3 uploads from one IP are in flight. The key
+    # is empty for non-POST requests, so reads are never limited here.
+    map $request_method $upload_key {
+        POST $binary_remote_addr;
+        default "";
+    }
+    limit_req_zone $upload_key zone=uploads:10m rate=2r/s;
+    limit_conn_zone $upload_key zone=upload_conns:10m;
+
     # HTML cache for the tier-list pages (see the location block below).
     proxy_cache_path /var/cache/nginx/pages levels=1:2 keys_zone=pages:10m max_size=256m inactive=10m use_temp_path=off;
 
@@ -124,6 +136,20 @@ http {
 
       location ~ /\. {
           return 404;
+      }
+
+      location = /api/runs {
+          limit_req zone=uploads burst=40 delay=8;
+          limit_conn upload_conns 3;
+          limit_req_status 429;
+          limit_conn_status 429;
+          proxy_pass $codex_backend;
+          proxy_http_version 1.1;
+          proxy_set_header Host $host;
+          proxy_set_header X-Real-IP $remote_addr;
+          proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header X-Forwarded-Proto $scheme;
+          proxy_read_timeout 120s;
       }
 
       # API and static image requests -> backend container
