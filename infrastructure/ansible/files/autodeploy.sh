@@ -186,11 +186,6 @@ if [ "$RECREATE" = "1" ]; then
     log "⚠ nginx reload failed or web-server not on this host"
   fi
 
-  if docker compose -f "$COMPOSE_FILE" logs --tail 50 backend 2>/dev/null | grep -q "Spire Codex API ready"; then
-    log "✓ backend ready"
-  else
-    log "✗ backend did NOT log 'Spire Codex API ready', manual check required"
-  fi
 fi
 
 # Cloudflare purge policy. Most page HTML is never edge-cached (private,
