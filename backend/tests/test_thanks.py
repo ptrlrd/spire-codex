@@ -538,3 +538,25 @@ def test_kofi_supporters_export_imports_with_type_flags_and_no_email(env):
     assert all(
         "email" not in json.dumps(d, default=str).lower() for d in env[1].docs.values()
     )
+
+
+def test_one_unreachable_repo_is_skipped_not_fatal(monkeypatch):
+    monkeypatch.setenv("THANKS_GITHUB_REPOS", "a/site,b/private")
+
+    def fetch(url, hdrs):
+        if "/b/private/" in url:
+            raise ValueError("github returned 404")
+        return [{"login": "Peter", "contributions": 3}]
+
+    rows = thanks.fetch_contributors(fetch=fetch)
+    assert [r["login"] for r in rows] == ["Peter"]
+
+
+def test_every_repo_failing_still_raises(monkeypatch):
+    monkeypatch.setenv("THANKS_GITHUB_REPOS", "a/site,b/private")
+
+    def fetch(url, hdrs):
+        raise ValueError("github returned 404")
+
+    with pytest.raises(ValueError):
+        thanks.fetch_contributors(fetch=fetch)

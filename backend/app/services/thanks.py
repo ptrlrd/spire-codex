@@ -135,17 +135,31 @@ def fetch_contributors(fetch=None) -> list[dict]:
             return data
 
     pages = []
+    failed = []
     for repo in repos():
-        for page in range(1, GITHUB_MAX_PAGES + 1):
-            rows = fetch(
-                f"{GITHUB_API}/repos/{repo}/contributors?per_page={GITHUB_PAGE}&page={page}",
-                {},
+        repo_pages = []
+        try:
+            for page in range(1, GITHUB_MAX_PAGES + 1):
+                rows = fetch(
+                    f"{GITHUB_API}/repos/{repo}/contributors?per_page={GITHUB_PAGE}&page={page}",
+                    {},
+                )
+                if not isinstance(rows, list):
+                    raise ValueError("github returned a non-list body")
+                repo_pages.append(rows)
+                if len(rows) < GITHUB_PAGE:
+                    break
+        except Exception:
+            logger.warning(
+                "github contributors fetch failed for %s", repo, exc_info=True
             )
-            if not isinstance(rows, list):
-                raise ValueError("github returned a non-list body")
-            pages.append(rows)
-            if len(rows) < GITHUB_PAGE:
-                break
+            failed.append(repo)
+            continue
+        pages.extend(repo_pages)
+    if failed and len(failed) == len(repos()):
+        raise ValueError(
+            "github contributors fetch failed for every repo: " + ", ".join(failed)
+        )
     return merge_contributors(pages)
 
 
