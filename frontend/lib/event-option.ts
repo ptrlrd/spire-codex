@@ -19,6 +19,7 @@ export interface EventText {
 export interface RecordedOptionText {
   label?: string;
   desc?: string;
+  grantsRelic?: string;
 }
 
 export interface ResolvedOption {
@@ -39,16 +40,11 @@ export function parseOptionId(optionId: string): {
   option: string;
 } {
   const parts = optionId.split(".");
-  const pagesAt = parts.indexOf("pages");
-  const optionsAt = parts.lastIndexOf("options");
-  if (optionsAt > 0 && optionsAt < parts.length - 1) {
+  if (parts.length >= 5 && parts[1] === "pages" && parts[3] === "options") {
     return {
       event: parts[0],
-      page:
-        pagesAt >= 0 && pagesAt + 1 < optionsAt
-          ? parts[pagesAt + 1]
-          : undefined,
-      option: parts.slice(optionsAt + 1).join("."),
+      page: parts[2],
+      option: parts.slice(4).join("."),
     };
   }
   return { option: optionId };
@@ -75,21 +71,21 @@ export function resolveEventOption(
 ): ResolvedOption | null {
   if (!optionId) return null;
   const { event, page, option } = parseOptionId(optionId);
-  if (event) {
-    const ev = events[event];
-    if (ev) {
-      const fromPage = page
-        ? ev.pages
-            ?.find((p) => p.id === page)
-            ?.options?.find((o) => o.id === option)
-        : undefined;
-      const hit = fromPage ?? ev.options?.find((o) => o.id === option);
-      if (hit?.title) return pick(hit.title, hit.description, recorded);
-    }
+  if (!event) {
+    const generic = GENERIC[option.toUpperCase()];
+    return generic ? { label: t(generic), desc: undefined } : null;
+  }
+  const ev = events[event];
+  if (ev) {
+    const fromPage = ev.pages
+      ?.find((p) => p.id === page)
+      ?.options?.find((o) => o.id === option);
+    const hit = fromPage ?? ev.options?.find((o) => o.id === option);
+    if (hit?.title) return pick(hit.title, hit.description, recorded);
+  }
+  if (event === "NEOW" || recorded?.grantsRelic === option) {
     const r = relic?.(option);
     if (r?.name) return pick(r.name, r.description, recorded);
   }
-  const generic = GENERIC[option.toUpperCase()];
-  if (generic) return { label: t(generic), desc: undefined };
   return null;
 }

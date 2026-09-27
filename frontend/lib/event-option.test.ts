@@ -82,6 +82,80 @@ describe("resolveEventOption", () => {
     ).toEqual({ label: "Rip the Leech Off", desc: "Lose 5 HP." });
   });
 
+  it("only reaches for the relic catalog on Neow or a recorded relic grant", () => {
+    const relic = (id: string) =>
+      id === "LEAD_PAPERWEIGHT"
+        ? { name: "Lead Paperweight", description: "Relic text." }
+        : undefined;
+    expect(
+      resolveEventOption(
+        "BRAIN_LEECH.pages.INITIAL.options.LEAD_PAPERWEIGHT",
+        events,
+        relic,
+      ),
+    ).toBeNull();
+    expect(
+      resolveEventOption(
+        "DARV.pages.INITIAL.options.LEAD_PAPERWEIGHT",
+        events,
+        relic,
+        undefined,
+        { label: "铅制镇纸", grantsRelic: "LEAD_PAPERWEIGHT" },
+      ),
+    ).toEqual({ label: "Lead Paperweight", desc: "Relic text." });
+  });
+
+  it("drops a foreign recorded description when the catalog title has none", () => {
+    const bare = {
+      X: {
+        id: "X",
+        pages: [{ id: "INITIAL", options: [{ id: "GO", title: "Go" }] }],
+      },
+    };
+    expect(
+      resolveEventOption(
+        "X.pages.INITIAL.options.GO",
+        bare,
+        undefined,
+        undefined,
+        {
+          label: "走",
+          desc: "外语",
+        },
+      ),
+    ).toEqual({ label: "Go", desc: undefined });
+  });
+
+  it("does not apply standalone generic labels to unresolved event options", () => {
+    expect(
+      resolveEventOption(
+        "MISSING.pages.X.options.PROCEED",
+        events,
+        undefined,
+        (key) => `#${key}`,
+      ),
+    ).toBeNull();
+  });
+
+  it("leaves dialogue choices unresolved so the recorded label survives", () => {
+    expect(resolveEventOption("THE_ARCHITECT.dialogue.0", events)).toBeNull();
+  });
+
+  it("preserves dotted option ids after the options marker", () => {
+    expect(
+      parseOptionId("EVENT.pages.PAGE.options.GROUP.options.CHOICE"),
+    ).toEqual({
+      event: "EVENT",
+      page: "PAGE",
+      option: "GROUP.options.CHOICE",
+    });
+  });
+
+  it("does not parse non-canonical hierarchical paths", () => {
+    const id = "BRAIN_LEECH.extra.pages.INITIAL.options.RIP";
+    expect(parseOptionId(id)).toEqual({ option: id });
+  });
+
   it("translates the generic ids and gives up on anything else", () => {
     expect(
       resolveEventOption("PROCEED", events, undefined, (k) => `#${k}`),

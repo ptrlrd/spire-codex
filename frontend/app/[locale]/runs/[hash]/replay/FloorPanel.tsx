@@ -437,9 +437,9 @@ function OptionRow({
     cat.events,
     (id) => cat.relics[id],
     t,
-    { label: o.label, desc: o.desc },
+    { label: o.label, desc: o.desc, grantsRelic: o.grantsRelic },
   );
-  const desc = resolved?.desc ?? o.desc;
+  const desc = resolved ? resolved.desc : o.desc;
   const label = resolved
     ? resolved.label
     : o.label
