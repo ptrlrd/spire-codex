@@ -16,15 +16,17 @@ http {
     server_tokens off;
 
     # One client's run backfill must not crowd out everyone else: uploads
-    # from a single IP are smoothed to 2/s (a short burst passes, the rest
-    # queues, the mod's own backfill pacing is 2.5/s and it retries 429s
-    # with backoff) and at most 3 uploads from one IP are in flight. The key
-    # is empty for non-POST requests, so reads are never limited here.
+    # from a single IP are smoothed to 4/s (a burst of 100 passes before
+    # anything is refused; the mod's own backfill pacing is 2.5/s and it
+    # retries 429s with backoff) and at most 4 uploads from one IP are in
+    # flight, which is the part that keeps one backfill from queueing every
+    # other request. The key is empty for non-POST requests, so reads are
+    # never limited here.
     map $request_method $upload_key {
         POST $binary_remote_addr;
         default "";
     }
-    limit_req_zone $upload_key zone=uploads:10m rate=2r/s;
+    limit_req_zone $upload_key zone=uploads:10m rate=4r/s;
     limit_conn_zone $upload_key zone=upload_conns:10m;
 
     # HTML cache for the tier-list pages (see the location block below).
@@ -139,8 +141,8 @@ http {
       }
 
       location = /api/runs {
-          limit_req zone=uploads burst=40 delay=8;
-          limit_conn upload_conns 3;
+          limit_req zone=uploads burst=100 delay=16;
+          limit_conn upload_conns 4;
           limit_req_status 429;
           limit_conn_status 429;
           proxy_pass $codex_backend;
