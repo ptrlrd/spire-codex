@@ -136,7 +136,7 @@ function VolumeChart({ volume }: { volume: VolRow[] }) {
           gold = found, red = zero results
         </span>
       </h3>
-      <div className="flex items-end gap-[2px] h-28">
+      <div className="flex gap-[2px] h-28">
         {volume.map((v) => {
           const hits = v.count - v.zero;
           return (
