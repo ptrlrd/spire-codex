@@ -49,6 +49,9 @@ COUNT_KINDS = {
     "shop_relic",
     "shop_potion",
 }
+ACT_KINDS = {k for k in KINDS if k not in {"relic", "deck"}}
+SEAT_KINDS = {"neow", "ancient_offer", "offered", "card_offer", "relic", "deck"}
+FLOOR_KINDS = set(KINDS)
 MAX_PREDICATES = 12
 MAX_LIMIT = 50
 MAX_COUNT = 10
@@ -86,8 +89,16 @@ class Predicate:
             raise PredicateError(f"{self.kind} does not take a count")
         if self.act is not None and not 1 <= self.act <= 4:
             raise PredicateError("act must be 1 to 4")
+        if self.act is not None and self.kind not in ACT_KINDS:
+            raise PredicateError(f"{self.kind} does not take an act")
         if self.seat is not None and not 1 <= self.seat <= 4:
             raise PredicateError("seat must be 1 to 4")
+        if self.seat is not None and self.kind not in SEAT_KINDS:
+            raise PredicateError(f"{self.kind} does not take a seat")
+        if (
+            self.floor_max is not None or self.floor_min is not None
+        ) and self.kind not in FLOOR_KINDS:
+            raise PredicateError(f"{self.kind} does not take a floor window")
         for f in (self.floor_max, self.floor_min):
             if f is not None and not 1 <= f <= MAX_FLOOR:
                 raise PredicateError(f"floor must be 1 to {MAX_FLOOR}")
@@ -239,9 +250,8 @@ def _fetch(con, sql: str, params: list) -> list[dict]:
 def search(
     predicates: list[Predicate], scope: Scope, limit: int = 20
 ) -> dict[str, Any]:
-    """Seeds whose best single run satisfied the most predicates first (all
-    of them on top), then most wins, then most runs. Each row says which
-    predicates that run matched and where."""
+    """Seeds where one lobby satisfied every predicate, most wins first, then
+    most runs. Each row says where that lobby showed each predicate."""
     if not predicates:
         return {"results": [], "predicates": 0, "labels": []}
     if len(predicates) > MAX_PREDICATES:
@@ -275,6 +285,7 @@ def search(
             f"FROM read_parquet('{facts}') WHERE {' AND '.join(clauses)} "
             "GROUP BY seed_key, evidence HAVING sum(n) >= ?"
         )
+    params.append(len(predicates))
     scope_sql = _scope_sql(scope, params)
     params.append(limit)
     sql = f"""
@@ -286,8 +297,8 @@ def search(
     ),
     best_evidence AS (
       SELECT * FROM (
-        SELECT *, row_number() OVER (PARTITION BY seed_key ORDER BY matched DESC, evidence) AS rn
-        FROM scored
+        SELECT *, row_number() OVER (PARTITION BY seed_key ORDER BY evidence) AS rn
+        FROM scored WHERE matched = ?
       ) WHERE rn = 1
     )
     SELECT {SUMMARY_COLUMNS}, s.evidence, s.matched, s.idxs, s.wheres

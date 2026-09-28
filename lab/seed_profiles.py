@@ -83,9 +83,10 @@ keyed AS (
   FROM eligible e LEFT JOIN seats s USING (run_hash)
 ),
 lobbies AS (
-  SELECT seed, build_id, player_count, party, coalesce(start_time, -1) AS start_key,
-    md5(seed || '|' || build_id || '|' || player_count || '|' || array_to_string(party, '+') || '|' || coalesce(start_time, -1))
-      AS evidence,
+  SELECT seed, build_id, player_count, party,
+    coalesce(cast(start_time AS VARCHAR), 'run:' || run_hash) AS start_key,
+    md5(seed || '|' || build_id || '|' || player_count || '|' || array_to_string(party, '+') || '|'
+        || coalesce(cast(start_time AS VARCHAR), 'run:' || run_hash)) AS evidence,
     min(run_hash) AS lead_run,
     bool_or(win) AS lobby_win
   FROM keyed GROUP BY 1,2,3,4,5
@@ -97,7 +98,7 @@ SELECT k.run_hash, k.seed, k.build_id, k.player_count, k.party,
   k.floors_reached, k.username
 FROM keyed k
 JOIN lobbies l ON l.seed = k.seed AND l.build_id = k.build_id AND l.player_count = k.player_count
-  AND l.party = k.party AND l.start_key = coalesce(k.start_time, -1)
+  AND l.party = k.party AND l.start_key = coalesce(cast(k.start_time AS VARCHAR), 'run:' || k.run_hash)
 """
 
 # Facts are keyed by evidence (a lobby), not by run document, so co-op
@@ -160,7 +161,7 @@ SELECT k.seed_key, k.evidence, k.lobby_win, 'shop_' || it.u.kind, upper(it.u.id)
 FROM run_keys k
 JOIN read_parquet('{shops}', union_by_name=true) s USING (run_hash),
   LATERAL (SELECT unnest(s.items) AS u) it
-WHERE it.u.id IS NOT NULL AND it.u.kind IS NOT NULL
+WHERE k.is_lead AND it.u.id IS NOT NULL AND it.u.kind IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8
 """
 
@@ -170,9 +171,9 @@ CREATE OR REPLACE TEMP TABLE lobbies AS
 SELECT seed_key, evidence, any_value(seed) AS seed, any_value(build_id) AS build_id,
   any_value(player_count) AS player_count, any_value(party) AS party,
   bool_or(win) AS win, bool_and(was_abandoned) AS was_abandoned,
-  min(ascension) AS ascension, min(run_time) AS run_time, max(played_at) AS played_at,
-  max(floors_reached) AS floors_reached, min(run_hash) AS lead_run,
-  any_value(username) AS username
+  min(ascension) AS ascension, max(played_at) AS played_at,
+  arg_min(run_time, run_hash) AS run_time, arg_min(floors_reached, run_hash) AS floors_reached,
+  min(run_hash) AS lead_run, arg_min(username, run_hash) AS username
 FROM run_keys GROUP BY seed_key, evidence
 """
 

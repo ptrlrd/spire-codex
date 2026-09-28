@@ -52,7 +52,7 @@ export default async function SeedFinderPage({ params }: Props) {
                 "Seeds are locked to specific achievement unlocks. For the best experience, only use this tool when you're at max achievements and Ascension 10.",
               ),
               t(
-                "Main and beta hash seeds differently, so pick the version you play. Full matches come first, then the seeds with the most wins.",
+                "Main and beta hash seeds differently, so pick the version you play. Every result is a lobby that showed everything you asked for, most wins first.",
               ),
             ]}
           />
