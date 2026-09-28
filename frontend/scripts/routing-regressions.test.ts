@@ -84,11 +84,11 @@ describe("site-page route semantics", () => {
 
 describe("localized ad-free routes", () => {
   it.each([...LANG_PREFIXES])(
-    "keeps nested lab routes ad-free for %s",
+    "keeps only the admin console ad-free for %s",
     (locale) => {
-      expect(isAdFree(`/${locale}/deck-lab/session`)).toBe(true);
-      expect(isAdFree(`/${locale}/seed-lab/session`)).toBe(true);
-      expect(isAdFree(`/${locale}/deck-laboratory`)).toBe(false);
+      expect(isAdFree(`/${locale}/admin/searches`)).toBe(true);
+      expect(isAdFree(`/${locale}/deck-builder`)).toBe(false);
+      expect(isAdFree(`/${locale}/seed-finder`)).toBe(false);
     },
   );
 });

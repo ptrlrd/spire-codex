@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { isAdFree } from "@/lib/ad-free";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 declare global {
   interface Window {
@@ -21,10 +22,10 @@ declare global {
  * client-side navigations. Config mirrors the placement builder output. */
 export default function NitroAnchor() {
   const pathname = usePathname();
-  const adFree = isAdFree(pathname);
+  const { user, loading } = useAuth();
+  const adFree =
+    isAdFree(pathname) || loading || Boolean(user?.supporter?.active);
   useEffect(() => {
-    // Landing on an operator or hidden-lab page skips the unit entirely;
-    // ads have no business on the admin console.
     if (adFree) return;
     window.nitroAds?.createAd("scnp-anchor", {
       format: "anchor-v2",

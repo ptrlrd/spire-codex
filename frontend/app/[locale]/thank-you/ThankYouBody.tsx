@@ -28,14 +28,26 @@ export interface ThanksSupporter {
   tier?: string | null;
 }
 
+export interface ThanksSubscriber {
+  name: string;
+  sources: string[];
+  since?: string | null;
+}
+
 export interface ThanksPayload {
   contributors: ThanksContributor[];
   special: ThanksSpecial[];
   supporters: ThanksSupporter[];
+  subscribers: ThanksSubscriber[];
   generated_at?: string | null;
 }
 
-const EMPTY: ThanksPayload = { contributors: [], special: [], supporters: [] };
+const EMPTY: ThanksPayload = {
+  contributors: [],
+  special: [],
+  supporters: [],
+  subscribers: [],
+};
 
 async function loadThanks(): Promise<ThanksPayload> {
   try {
@@ -48,6 +60,7 @@ async function loadThanks(): Promise<ThanksPayload> {
       contributors: Array.isArray(data.contributors) ? data.contributors : [],
       special: Array.isArray(data.special) ? data.special : [],
       supporters: Array.isArray(data.supporters) ? data.supporters : [],
+      subscribers: Array.isArray(data.subscribers) ? data.subscribers : [],
       generated_at: data.generated_at ?? null,
     };
   } catch {
@@ -61,7 +74,8 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
   const empty =
     data.contributors.length === 0 &&
     data.special.length === 0 &&
-    data.supporters.length === 0;
+    data.supporters.length === 0 &&
+    data.subscribers.length === 0;
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -123,6 +137,29 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
             </p>
           )}
         </section>
+
+        {data.subscribers.length > 0 && (
+          <section className="not-prose rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5">
+            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-1">
+              {t("Subscribers")}
+            </h2>
+            <p className="text-sm text-[var(--text-muted)] mb-3">
+              {t(
+                "Everyone backing the site month after month through Overwolf, Patreon or a Ko-fi membership.",
+              )}
+            </p>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              {data.subscribers.map((s, i) => (
+                <span key={s.name}>
+                  {i > 0 && (
+                    <span className="text-[var(--text-muted)]"> · </span>
+                  )}
+                  <span title={s.sources.join(", ")}>{s.name}</span>
+                </span>
+              ))}
+            </p>
+          </section>
+        )}
 
         {data.contributors.length > 0 && (
           <section className="not-prose">

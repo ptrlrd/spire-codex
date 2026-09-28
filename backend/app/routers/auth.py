@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 
 from ..dependencies import shared_limiter
-from ..services import rate_limit_config
+from ..services import supporters, rate_limit_config
 from ..services.auth_jwt import (
     get_current_user,
     is_admin,
@@ -55,6 +55,8 @@ def me(request: Request):
         "needs_email": not user.get("email"),
         "is_admin": is_admin(user),
         "profile_private": bool(user.get("profile_private")),
+        "supporter": supporters.status(user),
+        "overwolf_id": user.get("overwolf_id"),
     }
 
 
@@ -419,6 +421,51 @@ def user_insights(
         "no-store" if data.get("building") else "private, max-age=120"
     )
     return data
+
+
+@router.post("/overwolf/link")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.overwolf_link", "20/minute"))
+async def overwolf_link(request: Request):
+    """Link the signed-in account to an Overwolf user and refresh its
+    subscription state. Body: {"token": <overwolf.profile.generateUserSessionToken()>}.
+    The token is verified against Overwolf's keys; nothing in the body is
+    trusted on its own."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    token = body.get("token")
+    if not isinstance(token, str) or not token.strip():
+        raise HTTPException(status_code=400, detail="token is required")
+    try:
+        result = supporters.link_overwolf(user["_id"], token)
+    except supporters.OverwolfError as exc:
+        raise HTTPException(status_code=401, detail=str(exc))
+    fresh = get_current_user(request) or user
+    return {**result, "supporter": supporters.status(fresh)}
+
+
+@router.delete("/overwolf")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.overwolf_unlink", "10/minute"))
+def overwolf_unlink(request: Request):
+    user = require_user(request)
+    return supporters.unlink_overwolf(user["_id"])
+
+
+@router.patch("/thanks-listing")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.thanks_listing", "10/minute"))
+async def thanks_listing(request: Request):
+    """Opt in or out of being named on the Thank You page as a supporter."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    listed = body.get("listed")
+    if not isinstance(listed, bool):
+        raise HTTPException(status_code=400, detail="listed must be a boolean")
+    return supporters.set_thanks_listing(user["_id"], listed)
 
 
 @router.patch("/profile-privacy")

@@ -25,6 +25,18 @@ interface User {
   needs_email: boolean;
   is_admin?: boolean;
   profile_private?: boolean;
+  overwolf_id?: string | null;
+  supporter?: {
+    active: boolean;
+    sources: {
+      source: string;
+      since?: string | null;
+      expires_at?: string | null;
+    }[];
+    since?: string | null;
+    expires_at?: string | null;
+    listed: boolean;
+  };
 }
 
 interface AuthContextType {

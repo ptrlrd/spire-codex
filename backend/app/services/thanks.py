@@ -15,6 +15,8 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
+from .supporters import email_hash
+
 logger = logging.getLogger(__name__)
 
 GITHUB_API = "https://api.github.com"
@@ -386,6 +388,8 @@ def supporter_from_webhook(payload: dict, default_public: bool = False) -> dict:
         "is_public": default_public if public is None else _truthy(public),
         "hidden": False,
         "source": str(payload.get("source") or "webhook"),
+        "member_fingerprint": payload.get("member_fingerprint")
+        or email_hash(payload.get("email")),
     }
 
 
@@ -413,6 +417,7 @@ _CSV_DATE = (
 )
 _CSV_AMOUNT = ("amount", "amount (usd)", "received", "total", "net", "gross")
 _CSV_CURRENCY = ("currency",)
+_CSV_EMAIL = ("email", "supporter email", "e-mail")
 _CSV_TYPE = ("type", "item", "transaction type", "payment type", "kind")
 _CSV_TIER = ("tier", "tier name", "membership tier")
 _CSV_PUBLIC = ("is public", "public", "is_public")
@@ -520,6 +525,9 @@ def parse_supporter_rows(text: str) -> list[dict]:
                 "timestamp": ts,
                 "is_public": True if public is None else _truthy(public),
                 "source": "import",
+                "member_fingerprint": email_hash(
+                    _pick(row, _CSV_EMAIL) or row.get("email")
+                ),
                 "problem": problem,
             }
         )
@@ -703,5 +711,16 @@ def payload() -> dict:
             for s in list_special()
         ],
         "supporters": public_supporters(),
+        "subscribers": _subscribers(),
         "generated_at": _iso(_now()),
     }
+
+
+def _subscribers() -> list[dict]:
+    from .supporters import public_subscribers
+
+    try:
+        return public_subscribers()
+    except Exception:
+        logger.warning("thanks: subscriber list failed", exc_info=True)
+        return []

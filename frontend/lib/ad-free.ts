@@ -1,12 +1,6 @@
 import { LANG_PREFIXES } from "./languages";
 
-export const AD_FREE_PREFIXES = [
-  "/admin",
-  "/deck-lab",
-  "/deck-builder",
-  "/seed-lab",
-  "/seed-finder",
-];
+export const AD_FREE_PREFIXES = ["/admin"];
 
 export function stripLangPrefix(pathname: string | null | undefined): string {
   if (!pathname) return "/";
