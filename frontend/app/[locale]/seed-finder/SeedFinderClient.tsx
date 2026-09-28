@@ -1,140 +1,130 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
-import { characterHex } from "@/lib/character-colors";
-import CharacterTag from "@/app/components/CharacterTag";
+import { useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import EntityPicker, { type PickerItem } from "@/app/components/EntityPicker";
+import CharacterTag from "@/app/components/CharacterTag";
+import { characterHex } from "@/lib/character-colors";
 import LabUnavailable, {
   type LabUnavailableKind,
   unavailableKind,
 } from "@/app/components/LabUnavailable";
 import {
   DEFAULT_LIMIT,
-  EMPTY_STATE,
+  LIMIT_STEPS,
+  LIST_KEYS,
   MAX_COPIES,
   MAX_LIMIT,
   SEED_FINDER_CHARACTERS,
   hasPredicates,
   paramsFromState,
+  pick,
+  predicateCount,
   stateFromParams,
-  type CountedPick,
+  type ListKey,
+  type Pick,
   type SeedFinderState,
 } from "@/lib/seed-finder-state";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const CHARACTERS = ["ANY", ...SEED_FINDER_CHARACTERS];
+const HISTORY_KEY = "spire-codex:seed-finder-history";
+const HISTORY_MAX = 8;
 
-interface SeedResult {
-  run_hash: string;
+interface FinderRow {
   seed: string;
-  character: string;
-  ascension: number;
-  win: boolean;
-  date: string;
+  build_id: string | null;
+  players: number;
+  party: string[];
+  runs: number;
+  wins: number;
+  win_rate: number | null;
+  last_played: string | null;
+  neow_offers: string[];
+  bosses: { act: number; id: string }[];
+  ancients: { act: number; id: string }[];
+  best_run: {
+    run_hash: string;
+    url: string;
+    win: boolean;
+    run_time: number | null;
+    floors: number | null;
+    character: string | null;
+  } | null;
+  replay: { run_hash: string; url: string } | null;
   matched: string[];
   missing: string[];
   full_match: boolean;
-  url: string;
+  where: Record<string, { act: number | null; floor: number | null }[]>;
 }
 
 interface FinderResponse {
   available: boolean;
-  sampled?: boolean;
-  scanned?: number;
-  predicates?: number;
-  results?: SeedResult[];
-  unknown?: string[];
   detail?: string;
+  engine?: "index" | "legacy";
+  index?: { seeds?: number; builds?: string[]; built_at?: string };
+  results?: FinderRow[];
+  labels?: string[];
 }
+
+interface Catalogs {
+  cards: PickerItem[];
+  relics: PickerItem[];
+  ancientRelics: PickerItem[];
+  potions: PickerItem[];
+  events: PickerItem[];
+  ancients: PickerItem[];
+  bosses: PickerItem[];
+  elites: PickerItem[];
+}
+
+const EMPTY_CATALOGS: Catalogs = {
+  cards: [],
+  relics: [],
+  ancientRelics: [],
+  potions: [],
+  events: [],
+  ancients: [],
+  bosses: [],
+  elites: [],
+};
 
 function characterLabel(c: string): string {
   return c.charAt(0) + c.slice(1).toLowerCase();
 }
 
-function CountedChips({
-  picks,
-  names,
-  onBump,
-  onRemove,
-  accent,
-}: {
-  picks: CountedPick[];
-  names: Record<string, string>;
-  onBump: (id: string) => void;
-  onRemove: (id: string) => void;
-  accent?: string;
-}) {
-  const t = useT();
-  if (picks.length === 0) return null;
-  return (
-    <div className="flex flex-wrap gap-1.5 mt-2">
-      {picks.map((p) => (
-        <span
-          key={p.id}
-          className={`inline-flex items-center gap-1 text-xs px-2 py-0.5 rounded-md border bg-[var(--bg-primary)] ${
-            accent ||
-            "border-[var(--border-subtle)] text-[var(--text-secondary)]"
-          }`}
-        >
-          <button
-            type="button"
-            onClick={() => onBump(p.id)}
-            title={t("Click to require one more")}
-          >
-            {names[p.id] ?? p.id}
-            {p.count > 1 ? ` ×${p.count}` : ""}
-          </button>
-          <button
-            type="button"
-            onClick={() => onRemove(p.id)}
-            className="text-[var(--text-muted)] hover:text-danger"
-            aria-label={t("Remove")}
-          >
-            ✕
-          </button>
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function IdChips({
-  ids,
-  names,
-  onRemove,
-  className,
-}: {
-  ids: string[];
-  names: Record<string, string>;
-  onRemove: (id: string) => void;
-  className: string;
-}) {
-  if (ids.length === 0) return null;
-  return (
-    <div className="flex flex-wrap gap-1.5 mt-2">
-      {ids.map((id) => (
-        <button
-          key={id}
-          type="button"
-          onClick={() => onRemove(id)}
-          className={`text-xs px-2 py-0.5 rounded-md border bg-[var(--bg-primary)] hover:border-danger/50 ${className}`}
-        >
-          {names[id] ?? id} ✕
-        </button>
-      ))}
-    </div>
-  );
-}
-
 function isDraftable(c: { rarity_key?: string; type_key?: string }): boolean {
-  return (
-    c.rarity_key !== "Basic" &&
-    c.type_key !== "Status" &&
-    c.type_key !== "Curse"
-  );
+  const r = (c.rarity_key || "").toLowerCase();
+  return r !== "starter" && r !== "basic" && r !== "none";
+}
+
+function readHistory(): string[] {
+  try {
+    const raw = window.localStorage.getItem(HISTORY_KEY);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed)
+      ? parsed.filter((x) => typeof x === "string").slice(0, HISTORY_MAX)
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeHistory(list: string[]) {
+  try {
+    window.localStorage.setItem(HISTORY_KEY, JSON.stringify(list));
+  } catch {
+    /* per-viewer convenience only */
+  }
+}
+
+function formatTime(seconds: number | null | undefined): string {
+  if (!seconds) return "";
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  return `${m}:${String(s).padStart(2, "0")}`;
 }
 
 export default function SeedFinderClient() {
@@ -144,16 +134,21 @@ export default function SeedFinderClient() {
   const [state, setState] = useState<SeedFinderState>(() =>
     stateFromParams(new URLSearchParams(searchParams.toString())),
   );
-  const [cards, setCards] = useState<PickerItem[]>([]);
-  const [relicCatalog, setRelicCatalog] = useState<PickerItem[]>([]);
-  const [eventCatalog, setEventCatalog] = useState<PickerItem[]>([]);
+  const [catalogs, setCatalogs] = useState<Catalogs>(EMPTY_CATALOGS);
+  const [allCardNames, setAllCardNames] = useState<Record<string, string>>({});
   const [catalogError, setCatalogError] = useState(false);
   const [catalogTick, setCatalogTick] = useState(0);
+  const [versions, setVersions] = useState<string[]>([]);
+  const [indexInfo, setIndexInfo] = useState<{
+    seeds?: number;
+    builds?: string[];
+  } | null>(null);
   const [result, setResult] = useState<FinderResponse | null>(null);
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
   const [loading, setLoading] = useState(false);
   const [problem, setProblem] = useState<LabUnavailableKind | null>(null);
   const [copied, setCopied] = useState<string | null>(null);
+  const [history, setHistory] = useState<string[]>([]);
   const autoRan = useRef(false);
   const written = useRef<string | null>(null);
   const seq = useRef(0);
@@ -180,57 +175,83 @@ export default function SeedFinderClient() {
   }, [searchParams]);
 
   useEffect(() => {
+    setHistory(readHistory());
+    fetch(`${API}/api/runs/seed-finder/meta`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((m) => {
+        if (m && m.available) setIndexInfo(m);
+      })
+      .catch(() => {});
+    fetch(`${API}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((v) => {
+        if (v && Array.isArray(v.versions)) setVersions(v.versions);
+      })
+      .catch(() => {});
+  }, []);
+
+  const characterFilter =
+    state.characters.length === 1 ? state.characters[0] : null;
+
+  useEffect(() => {
     let dead = false;
+    async function get(path: string) {
+      const r = await fetch(`${API}${path}`);
+      if (!r.ok) throw new Error(String(r.status));
+      return r.json();
+    }
     async function load() {
       setCatalogError(false);
       try {
-        const cardUrls =
-          state.character === "ANY"
-            ? [`${API}/api/cards`]
-            : [
-                `${API}/api/cards?color=${state.character.toLowerCase()}`,
-                `${API}/api/cards?color=colorless`,
-              ];
-        const [cardLists, relicRes, eventRes] = await Promise.all([
-          Promise.all(
-            cardUrls.map((u) =>
-              fetch(u).then((r) => {
-                if (!r.ok) throw new Error(String(r.status));
-                return r.json();
-              }),
-            ),
-          ),
-          fetch(`${API}/api/relics`).then((r) => {
-            if (!r.ok) throw new Error(String(r.status));
-            return r.json();
-          }),
-          fetch(`${API}/api/events`).then((r) => {
-            if (!r.ok) throw new Error(String(r.status));
-            return r.json();
-          }),
-        ]);
+        const cardUrls = characterFilter
+          ? [
+              `/api/cards?color=${characterFilter.toLowerCase()}`,
+              `/api/cards?color=colorless`,
+            ]
+          : ["/api/cards"];
+        const [cardLists, relics, potions, events, encounters] =
+          await Promise.all([
+            Promise.all(cardUrls.map(get)),
+            get("/api/relics"),
+            get("/api/potions"),
+            get("/api/events"),
+            get("/api/encounters"),
+          ]);
         if (dead) return;
-        setCards(
-          cardLists
-            .flat()
-            .filter(isDraftable)
-            .map((c: { id: string; name: string }) => ({
-              id: String(c.id).toUpperCase(),
-              name: c.name,
-            })),
+        const item = (x: { id: string; name: string }) => ({
+          id: String(x.id).toUpperCase(),
+          name: x.name,
+        });
+        setAllCardNames(
+          Object.fromEntries(
+            cardLists
+              .flat()
+              .map((c: { id: string; name: string }) => [
+                String(c.id).toUpperCase(),
+                c.name,
+              ]),
+          ),
         );
-        setRelicCatalog(
-          relicRes.map((r: { id: string; name: string }) => ({
-            id: String(r.id).toUpperCase(),
-            name: r.name,
-          })),
-        );
-        setEventCatalog(
-          eventRes.map((e: { id: string; name: string }) => ({
-            id: String(e.id).toUpperCase(),
-            name: e.name,
-          })),
-        );
+        setCatalogs({
+          cards: cardLists.flat().filter(isDraftable).map(item),
+          relics: relics.map(item),
+          ancientRelics: relics
+            .filter((r: { rarity_key?: string }) => r.rarity_key === "Ancient")
+            .map(item),
+          potions: potions.map(item),
+          events: events
+            .filter((e: { type?: string }) => e.type !== "Ancient")
+            .map(item),
+          ancients: events
+            .filter((e: { type?: string }) => e.type === "Ancient")
+            .map(item),
+          bosses: encounters
+            .filter((e: { room_type?: string }) => e.room_type === "Boss")
+            .map(item),
+          elites: encounters
+            .filter((e: { room_type?: string }) => e.room_type === "Elite")
+            .map(item),
+        });
       } catch {
         if (!dead) setCatalogError(true);
       }
@@ -239,16 +260,19 @@ export default function SeedFinderClient() {
     return () => {
       dead = true;
     };
-  }, [state.character, catalogTick]);
+  }, [characterFilter, catalogTick]);
 
   const names = useMemo(() => {
-    const m: Record<string, string> = {};
-    for (const i of [...cards, ...relicCatalog, ...eventCatalog])
-      m[i.id] = i.name;
+    const m: Record<string, string> = { ...allCardNames };
+    for (const list of Object.values(catalogs))
+      for (const i of list) m[i.id] = i.name;
     return m;
-  }, [cards, relicCatalog, eventCatalog]);
+  }, [catalogs, allCardNames]);
 
-  const ready = hasPredicates(state);
+  const nameOf = useCallback(
+    (id: string) => names[id] || id.replace(/_/g, " ").toLowerCase(),
+    [names],
+  );
 
   const search = useCallback(
     async (wanted: number) => {
@@ -283,6 +307,13 @@ export default function SeedFinderClient() {
           return;
         }
         setResult(data);
+        const qs = params.toString();
+        const next = [qs, ...readHistory().filter((h) => h !== qs)].slice(
+          0,
+          HISTORY_MAX,
+        );
+        writeHistory(next);
+        setHistory(next);
       } catch {
         if (mine === seq.current) setProblem("network");
       } finally {
@@ -307,71 +338,233 @@ export default function SeedFinderClient() {
     setLimit(DEFAULT_LIMIT);
   }
 
-  function bump(key: "deck" | "offered", id: string) {
-    update({
-      [key]: state[key].map((p) =>
-        p.id === id ? { ...p, count: Math.min(MAX_COPIES, p.count + 1) } : p,
-      ),
-    });
-  }
-  function drop(key: "deck" | "offered", id: string) {
-    update({ [key]: state[key].filter((p) => p.id !== id) });
-  }
-  function addCounted(key: "deck" | "offered", i: PickerItem) {
+  function addPick(key: ListKey, i: PickerItem, extra: Partial<Pick> = {}) {
     update({
       [key]: state[key].some((p) => p.id === i.id)
         ? state[key]
-        : [...state[key], { id: i.id, count: 1 }],
+        : [...state[key], pick(i.id, extra)],
     });
   }
-  function addId(key: "relics" | "events", i: PickerItem) {
+  function patchPick(key: ListKey, id: string, patch: Partial<Pick>) {
     update({
-      [key]: state[key].includes(i.id) ? state[key] : [...state[key], i.id],
+      [key]: state[key].map((p) => (p.id === id ? { ...p, ...patch } : p)),
     });
   }
-  function dropId(key: "relics" | "events", id: string) {
-    update({ [key]: state[key].filter((x) => x !== id) });
+  function dropPick(key: ListKey, id: string) {
+    update({ [key]: state[key].filter((p) => p.id !== id) });
+  }
+  function toggleCharacter(c: string) {
+    const has = state.characters.includes(c);
+    const max = state.players ?? 1;
+    let next = has
+      ? state.characters.filter((x) => x !== c)
+      : [...state.characters, c];
+    if (!has && next.length > max) next = next.slice(next.length - max);
+    update({ characters: next });
   }
 
   function labelFor(tag: string): string {
     const kind = tag.slice(0, tag.indexOf(":"));
     const rest = tag.slice(tag.indexOf(":") + 1);
-    const m = rest.match(/^(.*?)(?:x(\d+))?(?::act(\d))?$/);
-    const id = m?.[1] ?? rest;
-    const count = m?.[2] ? ` ×${m[2]}` : "";
-    const act = m?.[3] ? ` ${t("(act {n})", { n: m[3] })}` : "";
-    const name = `${names[id] || id.replace(/_/g, " ").toLowerCase()}${count}${act}`;
-    if (kind === "deck") return t("kept {name}", { name });
-    if (kind === "offered") return t("offered {name}", { name });
-    if (kind === "relic") return t("got {name}", { name });
-    if (kind === "event") return t("saw {name}", { name });
-    return t("ancient offered {name}", { name });
+    const [id, ...mods] = rest.split(" ");
+    const parts: string[] = [];
+    for (const m of mods) {
+      if (m.startsWith("x")) parts.push(`×${m.slice(1)}`);
+      else if (m.startsWith("act")) parts.push(t("act {n}", { n: m.slice(3) }));
+      else if (m.startsWith("<=f"))
+        parts.push(t("by floor {n}", { n: m.slice(3) }));
+      else if (m.startsWith(">=f"))
+        parts.push(t("from floor {n}", { n: m.slice(3) }));
+      else if (m.startsWith("seat"))
+        parts.push(t("seat {n}", { n: m.slice(4) }));
+    }
+    const name = [nameOf(id), ...parts].join(" · ");
+    const verbs: Record<string, string> = {
+      deck: t("kept {name}", { name }),
+      offered: t("offered {name}", { name }),
+      relic: t("got {name}", { name }),
+      event: t("saw {name}", { name }),
+      neow: t("Neow offered {name}", { name }),
+      ancient_offer: t("ancient offered {name}", { name }),
+      ancient: t("met {name}", { name }),
+      boss: t("boss {name}", { name }),
+      elite: t("elite {name}", { name }),
+      shop_card: t("shop sold {name}", { name }),
+      shop_relic: t("shop sold {name}", { name }),
+      shop_potion: t("shop sold {name}", { name }),
+    };
+    return verbs[kind] ?? name;
   }
 
-  function copySeed(seed: string) {
-    navigator.clipboard?.writeText(seed).then(() => {
-      setCopied(seed);
-      setTimeout(() => setCopied((c) => (c === seed ? null : c)), 1500);
+  function copy(text: string, key: string) {
+    navigator.clipboard?.writeText(text).then(() => {
+      setCopied(key);
+      setTimeout(() => setCopied((c) => (c === key ? null : c)), 1500);
     });
   }
 
   function copyLink() {
     const url = new URL(window.location.href);
     url.search = paramsFromState(state).toString();
-    navigator.clipboard?.writeText(url.toString()).then(() => {
-      setCopied("__link__");
-      setTimeout(() => setCopied((c) => (c === "__link__" ? null : c)), 1500);
-    });
+    copy(url.toString(), "__link__");
+  }
+
+  async function randomSeed() {
+    try {
+      const params = new URLSearchParams();
+      if (state.buildId) params.set("build_id", state.buildId);
+      const r = await fetch(
+        `${API}/api/runs/seed-finder/random?${params.toString()}`,
+      );
+      const d = await r.json();
+      if (d?.seed?.seed) router.push(`/seed-finder/${d.seed.seed}`);
+    } catch {
+      /* nothing to do */
+    }
+  }
+
+  function applyHistory(qs: string) {
+    seq.current += 1;
+    inflight.current?.abort();
+    setState(stateFromParams(new URLSearchParams(qs)));
+    setResult(null);
+    setProblem(null);
+    setLimit(DEFAULT_LIMIT);
+    autoRan.current = false;
   }
 
   const card =
     "rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4";
+  const chip =
+    "inline-flex items-center gap-1 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-2 py-1 text-xs text-[var(--text-primary)]";
+  const tiny =
+    "rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] px-1 text-[10px] text-[var(--text-secondary)] hover:text-[var(--text-primary)]";
   const results = result?.results ?? [];
+  const ready = hasPredicates(state);
   const canShowMore =
     result?.available === true && results.length >= limit && limit < MAX_LIMIT;
+  const builds = indexInfo?.builds?.length ? indexInfo.builds : versions;
+  const legacy = result?.engine === "legacy";
+
+  function pickRow(
+    key: ListKey,
+    p: Pick,
+    opts: { count?: boolean; act?: boolean; floor?: boolean } = {},
+  ) {
+    return (
+      <span key={p.id} className={chip}>
+        <span>{nameOf(p.id)}</span>
+        {opts.count && (
+          <button
+            type="button"
+            className={tiny}
+            title={t("At least this many")}
+            onClick={() =>
+              patchPick(key, p.id, {
+                count: p.count >= MAX_COPIES ? 1 : p.count + 1,
+              })
+            }
+          >
+            ×{p.count}
+          </button>
+        )}
+        {opts.act && (
+          <select
+            aria-label={t("Act")}
+            className={`${tiny} py-0.5`}
+            value={p.act ?? ""}
+            onChange={(e) =>
+              patchPick(key, p.id, {
+                act: e.target.value ? parseInt(e.target.value, 10) : null,
+              })
+            }
+          >
+            <option value="">{t("any act")}</option>
+            {[1, 2, 3, 4].map((a) => (
+              <option key={a} value={a}>
+                {t("act {n}", { n: a })}
+              </option>
+            ))}
+          </select>
+        )}
+        {opts.floor && (
+          <input
+            aria-label={t("By floor")}
+            type="number"
+            min={1}
+            max={60}
+            placeholder={t("by floor")}
+            className={`${tiny} w-16 py-0.5`}
+            value={p.floorMax ?? ""}
+            onChange={(e) =>
+              patchPick(key, p.id, {
+                floorMax: e.target.value ? parseInt(e.target.value, 10) : null,
+              })
+            }
+          />
+        )}
+        {(state.players ?? 1) > 1 && (
+          <select
+            aria-label={t("Seat")}
+            className={`${tiny} py-0.5`}
+            value={p.seat ?? ""}
+            onChange={(e) =>
+              patchPick(key, p.id, {
+                seat: e.target.value ? parseInt(e.target.value, 10) : null,
+              })
+            }
+          >
+            <option value="">{t("any seat")}</option>
+            {Array.from({ length: state.players ?? 1 }, (_, i) => i + 1).map(
+              (s) => (
+                <option key={s} value={s}>
+                  {t("seat {n}", { n: s })}
+                </option>
+              ),
+            )}
+          </select>
+        )}
+        <button
+          type="button"
+          aria-label={t("Remove")}
+          className="ml-0.5 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+          onClick={() => dropPick(key, p.id)}
+        >
+          ×
+        </button>
+      </span>
+    );
+  }
+
+  function section(
+    key: ListKey,
+    title: string,
+    items: PickerItem[],
+    placeholder: string,
+    opts: { count?: boolean; act?: boolean; floor?: boolean } = {},
+  ) {
+    return (
+      <div>
+        <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+          {title}
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5">
+          {state[key].map((p) => pickRow(key, p, opts))}
+          <div className="min-w-[14rem] flex-1">
+            <EntityPicker
+              placeholder={placeholder}
+              items={items}
+              disabled={items.length === 0}
+              onPick={(i) => addPick(key, i)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center gap-3 mb-2">
         <h1 className="text-3xl font-bold">
           <span className="text-[var(--accent-gold)]">{t("Seed Finder")}</span>
@@ -382,7 +575,7 @@ export default function SeedFinderClient() {
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-2 max-w-3xl">
         {t(
-          "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run. Open it to see the route that got there.",
+          "Search seeds the community has actually played into the run start you want: Neow offers, card rewards by floor, relics, events, ancients, bosses, shop stock and the final deck. Every hit is a real run with a real outcome.",
         )}
       </p>
       <p className="text-sm text-[var(--text-secondary)] mb-2 max-w-3xl">
@@ -392,38 +585,100 @@ export default function SeedFinderClient() {
       </p>
       <p className="text-xs text-[var(--text-muted)] mb-6 max-w-3xl">
         {t(
-          "Covers solo runs at ascension 0 to 10 on the main game version. Every seed shown matched at least one thing you asked for; full matches come first.",
+          "Main and beta hash seeds differently, so pick the version you play. Full matches come first, then the seeds with the most wins.",
         )}
+        {indexInfo?.seeds
+          ? ` ${t("{n} seeds indexed.", { n: indexInfo.seeds.toLocaleString() })}`
+          : ""}
       </p>
 
-      <div className="flex flex-wrap items-center gap-1.5 mb-5">
-        {CHARACTERS.map((c) => (
-          <button
-            key={c}
-            type="button"
-            onClick={() => update({ character: c })}
-            className={`text-xs px-3 py-1.5 rounded-md border transition-colors inline-flex items-center gap-1.5 ${
-              state.character === c
-                ? "bg-[var(--bg-card-hover)] border-[var(--border-accent)] text-[var(--text-primary)]"
-                : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
-            }`}
-            style={
-              state.character === c && c !== "ANY"
-                ? { borderColor: characterHex(c) || undefined }
-                : undefined
-            }
-          >
-            {c === "ANY" ? (
-              t("Any character")
-            ) : (
-              <CharacterTag id={c} name={t(characterLabel(c))} size={14} />
-            )}
-          </button>
-        ))}
+      <div className={`${card} mb-4 grid gap-4`}>
+        <div className="flex flex-wrap items-center gap-3">
+          <label className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+            {t("Version")}
+            <select
+              className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-2 py-1 text-sm text-[var(--text-primary)]"
+              value={state.buildId}
+              onChange={(e) => update({ buildId: e.target.value })}
+            >
+              <option value="">{t("any version")}</option>
+              {builds.map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+          </label>
+          <div className="flex items-center gap-1 text-xs text-[var(--text-secondary)]">
+            {t("Lobby")}
+            {[1, 2, 3, 4].map((n) => (
+              <button
+                key={n}
+                type="button"
+                onClick={() =>
+                  update({
+                    players: n === 1 && state.players === null ? null : n,
+                    characters: state.characters.slice(0, n),
+                  })
+                }
+                className={`px-2.5 py-1 rounded-md border text-xs ${
+                  (state.players ?? 1) === n
+                    ? "bg-[var(--bg-card-hover)] border-[var(--border-accent)] text-[var(--text-primary)]"
+                    : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
+                }`}
+              >
+                {n === 1 ? t("Solo") : t("{n} players", { n })}
+              </button>
+            ))}
+          </div>
+          <label className="flex items-center gap-2 text-xs text-[var(--text-secondary)] cursor-pointer">
+            <input
+              type="checkbox"
+              checked={state.win}
+              onChange={(e) => update({ win: e.target.checked })}
+              className="accent-[var(--accent-gold)]"
+            />
+            {t("Won at least once")}
+          </label>
+        </div>
+        <div className="flex flex-wrap items-center gap-1.5">
+          <span className="text-xs text-[var(--text-secondary)] mr-1">
+            {(state.players ?? 1) > 1 ? t("Party") : t("Character")}
+          </span>
+          {SEED_FINDER_CHARACTERS.map((c) => {
+            const on = state.characters.includes(c);
+            return (
+              <button
+                key={c}
+                type="button"
+                onClick={() => toggleCharacter(c)}
+                className={`text-xs px-3 py-1.5 rounded-md border transition-colors inline-flex items-center gap-1.5 ${
+                  on
+                    ? "bg-[var(--bg-card-hover)] border-[var(--border-accent)] text-[var(--text-primary)]"
+                    : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-secondary)] hover:border-[var(--border-accent)]"
+                }`}
+                style={
+                  on ? { borderColor: characterHex(c) || undefined } : undefined
+                }
+              >
+                <CharacterTag id={c} name={t(characterLabel(c))} size={14} />
+              </button>
+            );
+          })}
+          {state.characters.length > 0 && (
+            <button
+              type="button"
+              className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] ml-1"
+              onClick={() => update({ characters: [] })}
+            >
+              {t("Any character")}
+            </button>
+          )}
+        </div>
       </div>
 
       {catalogError && (
-        <div className="mb-5">
+        <div className="mb-4">
           <LabUnavailable
             kind="catalog"
             onRetry={() => setCatalogTick((n) => n + 1)}
@@ -431,285 +686,375 @@ export default function SeedFinderClient() {
         </div>
       )}
 
-      <div className="grid gap-4 sm:grid-cols-2 mb-5">
-        <div className={card}>
-          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Cards offered")}
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">
-            {t(
-              "Appeared as a card reward. Click a chip to require more copies.",
+      <div className={`${card} mb-4 grid gap-5 md:grid-cols-2`}>
+        {section(
+          "neow",
+          t("Neow offers"),
+          catalogs.ancientRelics,
+          t("Add a Neow relic"),
+        )}
+        {section(
+          "offered",
+          t("Card rewards offered"),
+          catalogs.cards,
+          t("Add a card"),
+          { count: true, act: true, floor: true },
+        )}
+        {section(
+          "relics",
+          t("Relics obtained"),
+          catalogs.relics,
+          t("Add a relic"),
+          {
+            floor: true,
+          },
+        )}
+        {section("events", t("Events"), catalogs.events, t("Add an event"), {
+          act: true,
+        })}
+        {section("bosses", t("Bosses"), catalogs.bosses, t("Add a boss"), {
+          act: true,
+        })}
+        {section("elites", t("Elites"), catalogs.elites, t("Add an elite"), {
+          act: true,
+        })}
+        <div>
+          <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+            {t("Ancient")}
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5">
+            {state.ancient && (
+              <span className={chip}>
+                {nameOf(state.ancient)}
+                <select
+                  aria-label={t("Act")}
+                  className={`${tiny} py-0.5`}
+                  value={state.ancientAct ?? ""}
+                  onChange={(e) =>
+                    update({
+                      ancientAct: e.target.value
+                        ? parseInt(e.target.value, 10)
+                        : null,
+                    })
+                  }
+                >
+                  <option value="">{t("any act")}</option>
+                  {[1, 2, 3, 4].map((a) => (
+                    <option key={a} value={a}>
+                      {t("act {n}", { n: a })}
+                    </option>
+                  ))}
+                </select>
+                <button
+                  type="button"
+                  aria-label={t("Remove")}
+                  className="ml-0.5 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                  onClick={() => update({ ancient: null, ancientAct: null })}
+                >
+                  ×
+                </button>
+              </span>
             )}
-          </p>
-          <EntityPicker
-            placeholder={t("Add a card…")}
-            items={cards}
-            disabled={catalogError}
-            onPick={(i) => addCounted("offered", i)}
-          />
-          <CountedChips
-            picks={state.offered}
-            names={names}
-            onBump={(id) => bump("offered", id)}
-            onRemove={(id) => drop("offered", id)}
-            accent="border-[var(--accent-gold)]/40 text-[var(--accent-gold)]"
-          />
-        </div>
-
-        <div className={card}>
-          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Cards kept")}
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">
-            {t("In the final deck. Click a chip to require more copies.")}
-          </p>
-          <EntityPicker
-            placeholder={t("Add a card…")}
-            items={cards}
-            disabled={catalogError}
-            onPick={(i) => addCounted("deck", i)}
-          />
-          <CountedChips
-            picks={state.deck}
-            names={names}
-            onBump={(id) => bump("deck", id)}
-            onRemove={(id) => drop("deck", id)}
-          />
-        </div>
-
-        <div className={card}>
-          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Relics obtained")}
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">
-            {t(
-              "Picked up during the run (shop stock the player skipped isn't recorded).",
-            )}
-          </p>
-          <EntityPicker
-            placeholder={t("Add a relic…")}
-            items={relicCatalog}
-            disabled={catalogError}
-            onPick={(i) => addId("relics", i)}
-          />
-          <IdChips
-            ids={state.relics}
-            names={names}
-            onRemove={(id) => dropId("relics", id)}
-            className="border-info/30 text-info"
-          />
-        </div>
-
-        <div className={card}>
-          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Events seen")}
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">
-            {t("Encountered anywhere in the run.")}
-          </p>
-          <EntityPicker
-            placeholder={t("Add an event…")}
-            items={eventCatalog}
-            disabled={catalogError}
-            onPick={(i) => addId("events", i)}
-          />
-          <IdChips
-            ids={state.events}
-            names={names}
-            onRemove={(id) => dropId("events", id)}
-            className="border-special/30 text-special"
-          />
-        </div>
-
-        <div className={`${card} sm:col-span-2`}>
-          <h2 className="text-sm font-semibold text-[var(--text-primary)] mb-1">
-            {t("Ancient offer")}
-          </h2>
-          <p className="text-xs text-[var(--text-muted)] mb-2">
-            {t("A relic offered by an ancient, optionally locked to an act.")}
-          </p>
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex-1 min-w-[220px]">
+            <div className="min-w-[14rem] flex-1">
               <EntityPicker
-                placeholder={t("Relic offered by an ancient…")}
-                items={relicCatalog}
-                disabled={catalogError}
+                placeholder={t("Which ancient appears")}
+                items={catalogs.ancients}
+                disabled={catalogs.ancients.length === 0}
                 onPick={(i) => update({ ancient: i.id })}
               />
             </div>
-            {[null, 1, 2, 3, 4].map((a) => (
-              <button
-                key={String(a)}
-                type="button"
-                onClick={() => update({ ancientAct: a })}
-                className={`text-xs px-2.5 py-1.5 rounded-md border ${
-                  state.ancientAct === a
-                    ? "border-[var(--accent-gold)]/50 text-[var(--accent-gold)] bg-[var(--accent-gold)]/10"
-                    : "border-[var(--border-subtle)] text-[var(--text-secondary)]"
-                }`}
-              >
-                {a === null ? t("Any act") : t("Act {n}", { n: a })}
-              </button>
-            ))}
-            {state.ancient && (
-              <button
-                type="button"
-                onClick={() => update({ ancient: null, ancientAct: null })}
-                className="text-xs px-2 py-0.5 rounded-md border border-[var(--accent-gold)]/40 bg-[var(--bg-primary)] text-[var(--accent-gold)] hover:border-danger/50"
-              >
-                {names[state.ancient] ?? state.ancient} ✕
-              </button>
-            )}
           </div>
         </div>
+        {section(
+          "ancientOffers",
+          t("Ancient offers"),
+          catalogs.ancientRelics,
+          t("Add an ancient relic"),
+          { act: true },
+        )}
+        {section("deck", t("Final deck"), catalogs.cards, t("Add a card"), {
+          count: true,
+        })}
+        {section(
+          "shop",
+          t("Shop stock"),
+          [
+            ...catalogs.cards,
+            ...catalogs.relics.map((r) => ({ ...r, id: `RELIC:${r.id}` })),
+            ...catalogs.potions.map((p) => ({ ...p, id: `POTION:${p.id}` })),
+          ],
+          t("Add something a shop sold"),
+        )}
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 mb-6">
+      <div className="flex flex-wrap items-center gap-2 mb-6">
         <button
           type="button"
           disabled={!ready || loading}
-          onClick={() => {
-            setLimit(DEFAULT_LIMIT);
-            search(DEFAULT_LIMIT);
-          }}
-          className="px-5 py-2.5 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-on-accent hover:opacity-90 transition-opacity disabled:opacity-40"
+          onClick={() => search(limit)}
+          className="rounded-md bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-on-accent disabled:opacity-50"
         >
-          {loading ? (
-            <span className="inline-flex items-center gap-2">
-              <span className="w-3.5 h-3.5 rounded-full border-2 border-scrim/30 border-t-scrim animate-spin" />
-              {t("Searching…")}
-            </span>
-          ) : (
-            t("Find seeds")
-          )}
+          {loading ? t("Searching...") : t("Search")}
+        </button>
+        <span className="text-xs text-[var(--text-muted)]">
+          {t("stop after")}
+        </span>
+        {LIMIT_STEPS.map((n) => (
+          <button
+            key={n}
+            type="button"
+            onClick={() => {
+              setLimit(n);
+              if (ready) search(n);
+            }}
+            className={`px-2 py-1 rounded-md border text-xs ${
+              limit === n
+                ? "bg-[var(--bg-card-hover)] border-[var(--border-accent)] text-[var(--text-primary)]"
+                : "bg-[var(--bg-card)] border-[var(--border-subtle)] text-[var(--text-secondary)]"
+            }`}
+          >
+            {n}
+          </button>
+        ))}
+        <button
+          type="button"
+          onClick={copyLink}
+          disabled={!ready}
+          className="rounded-md border border-[var(--border-subtle)] px-3 py-2 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] disabled:opacity-50"
+        >
+          {copied === "__link__" ? t("Link copied") : t("Copy link")}
+        </button>
+        <button
+          type="button"
+          onClick={randomSeed}
+          className="rounded-md border border-[var(--border-subtle)] px-3 py-2 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+        >
+          {t("Random seed")}
         </button>
         {ready && (
           <button
             type="button"
-            onClick={copyLink}
-            className="text-xs px-3 py-1.5 rounded-md border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)]"
+            onClick={() =>
+              update({
+                ...Object.fromEntries(LIST_KEYS.map((k) => [k, []])),
+                ancient: null,
+                ancientAct: null,
+              })
+            }
+            className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]"
           >
-            {copied === "__link__" ? t("Copied!") : t("Copy link")}
+            {t("Clear filters")}
           </button>
         )}
       </div>
 
-      {loading && (
-        <div className={`${card} animate-pulse`}>
-          <p className="text-sm text-[var(--text-secondary)]">
-            {t(
-              "Digging through the community runs — combing candidate decks, then verifying offers, events, and ancient rolls.",
-            )}
-          </p>
-          <p className="text-xs text-[var(--text-muted)] mt-1">
-            {t(
-              "A cold query can take up to a minute; repeats are cached and come back instantly.",
-            )}
-          </p>
+      {history.length > 0 && !ready && (
+        <div className="mb-6">
+          <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+            {t("Recent searches")}
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {history.map((qs) => {
+              const s = stateFromParams(new URLSearchParams(qs));
+              const summary = LIST_KEYS.flatMap((k) =>
+                s[k].map((p) => nameOf(p.id)),
+              )
+                .concat(s.ancient ? [nameOf(s.ancient)] : [])
+                .slice(0, 4)
+                .join(", ");
+              return (
+                <button
+                  key={qs}
+                  type="button"
+                  onClick={() => applyHistory(qs)}
+                  className={`${chip} hover:border-[var(--border-accent)]`}
+                >
+                  {summary || t("empty search")}
+                  <span className="text-[var(--text-muted)]">
+                    · {predicateCount(s)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
         </div>
       )}
 
-      {problem && !loading && (
-        <LabUnavailable
-          kind={problem}
-          onRetry={() => search(limit)}
-          retrying={loading}
-        />
+      {problem && (
+        <LabUnavailable kind={problem} onRetry={() => search(limit)} />
       )}
 
-      {result && result.available && (
-        <div className={card}>
-          <div className="text-xs text-[var(--text-muted)] mb-3">
-            {t("Scanned {n} candidate runs", {
-              n: result.scanned?.toLocaleString() ?? "",
-            })}
-            {result.sampled
-              ? ` ${t("(sampled — add a card kept or relic to search everything)")}`
-              : ""}
-            .
+      {result?.available && (
+        <div className="space-y-3">
+          <div className="flex flex-wrap items-center gap-3 text-xs text-[var(--text-muted)]">
+            <span>
+              {results.length === 1
+                ? t("{n} seed", { n: 1 })
+                : t("{n} seeds", { n: results.length })}
+            </span>
+            {legacy && (
+              <span>
+                {t(
+                  "The seed index is still building on this box, so this is the older run scan.",
+                )}
+              </span>
+            )}
+            {results.length === 0 && (
+              <span>
+                {t("No played seed matches all of that yet. Loosen a filter.")}
+              </span>
+            )}
           </div>
-          {(result.unknown ?? []).length > 0 ? (
-            <p className="text-sm text-danger">
-              {t(
-                "Unknown ids: {ids} — these don't exist in the game data, check the spelling.",
-                { ids: result.unknown!.join(", ") },
-              )}
-            </p>
-          ) : results.length === 0 ? (
-            <p className="text-sm text-[var(--text-secondary)]">
-              {t(
-                "Nothing matched. Loosen a predicate or drop the character filter.",
-              )}
-            </p>
-          ) : (
-            <div className="space-y-2">
-              {results.map((r) => (
-                <div
-                  key={r.run_hash}
-                  className="flex flex-wrap items-center gap-x-3 gap-y-1 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)]"
-                  style={
-                    r.full_match
-                      ? {
-                          borderColor:
-                            "color-mix(in srgb, var(--accent-gold) 50%, transparent)",
-                        }
-                      : undefined
-                  }
-                >
-                  {r.character && (
-                    <CharacterTag id={r.character} showName={false} size={18} />
-                  )}
-                  <button
-                    type="button"
-                    className="text-sm font-mono font-semibold text-[var(--accent-gold)]"
-                    title={t("Click to copy seed")}
-                    onClick={() => copySeed(r.seed)}
-                  >
-                    {copied === r.seed ? t("Copied!") : r.seed}
-                  </button>
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {r.character ? t(characterLabel(r.character)) : ""} · A
-                    {r.ascension} · {r.win ? t("win") : t("loss")} · {r.date}
-                  </span>
-                  <span className="flex flex-wrap gap-1 text-[11px]">
-                    {r.matched.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-1.5 py-0.5 rounded bg-success/10 text-success"
-                      >
-                        ✓ {labelFor(tag)}
-                      </span>
-                    ))}
-                    {r.missing.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-1.5 py-0.5 rounded bg-[var(--bg-card)] text-[var(--text-muted)]"
-                      >
-                        ✗ {labelFor(tag)}
-                      </span>
-                    ))}
-                  </span>
-                  <Link
-                    href={r.url}
-                    className="ml-auto text-xs text-[var(--accent-gold)] hover:underline"
-                  >
-                    {t("view run")} →
-                  </Link>
-                </div>
-              ))}
-              {canShowMore && (
+          {results.map((r) => (
+            <div
+              key={`${r.seed}:${r.build_id}:${r.party.join("+")}`}
+              className={`${card} ${r.full_match ? "" : "opacity-90"}`}
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-2">
                 <button
                   type="button"
-                  onClick={() => {
-                    setLimit(MAX_LIMIT);
-                    search(MAX_LIMIT);
-                  }}
-                  className="text-xs px-3 py-1.5 rounded-md border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)]"
+                  onClick={() => copy(r.seed, r.seed)}
+                  title={t("Copy seed")}
+                  className="font-mono text-lg font-semibold text-[var(--accent-gold)] hover:underline"
                 >
-                  {t("Show up to {n}", { n: MAX_LIMIT })}
+                  {r.seed}
                 </button>
+                <span className="text-xs text-[var(--text-muted)]">
+                  {copied === r.seed ? t("Copied") : r.build_id}
+                </span>
+                {r.party.map((c) => (
+                  <CharacterTag
+                    key={c}
+                    id={c}
+                    name={t(characterLabel(c))}
+                    size={14}
+                  />
+                ))}
+                {r.players > 1 && (
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {t("{n} players", { n: r.players })}
+                  </span>
+                )}
+                <span
+                  className={`ml-auto text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${
+                    r.full_match
+                      ? "border-success/40 text-success"
+                      : "border-[var(--border-subtle)] text-[var(--text-muted)]"
+                  }`}
+                >
+                  {r.full_match
+                    ? t("full match")
+                    : t("{m} of {n}", {
+                        m: r.matched.length,
+                        n: r.matched.length + r.missing.length,
+                      })}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--text-secondary)] mb-2">
+                <span>
+                  {t("{n} runs", { n: r.runs })}
+                  {r.win_rate != null && (
+                    <>
+                      {" · "}
+                      <span className={r.wins > 0 ? "text-success" : ""}>
+                        {t("{p}% wins", { p: r.win_rate })}
+                      </span>
+                    </>
+                  )}
+                </span>
+                {r.best_run && (
+                  <Link
+                    href={r.best_run.url}
+                    className="text-[var(--text-primary)] hover:underline"
+                  >
+                    {r.best_run.win
+                      ? t("fastest win {time}", {
+                          time: formatTime(r.best_run.run_time),
+                        })
+                      : t("best run, floor {n}", {
+                          n: r.best_run.floors ?? "?",
+                        })}
+                  </Link>
+                )}
+                {r.replay && (
+                  <Link
+                    href={r.replay.url}
+                    className="text-[var(--accent-teal)] hover:underline"
+                  >
+                    {t("watch replay")}
+                  </Link>
+                )}
+                <Link
+                  href={`/seed-finder/${r.seed}${r.build_id ? `?build_id=${r.build_id}` : ""}`}
+                  className="text-[var(--accent-gold)] hover:underline"
+                >
+                  {t("inspect seed")}
+                </Link>
+              </div>
+              {(r.neow_offers.length > 0 || r.bosses.length > 0) && (
+                <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-[var(--text-muted)] mb-2">
+                  {r.neow_offers.length > 0 && (
+                    <span>
+                      {t("Neow")}: {r.neow_offers.map(nameOf).join(", ")}
+                    </span>
+                  )}
+                  {r.bosses.length > 0 && (
+                    <span>
+                      {t("Bosses")}:{" "}
+                      {r.bosses
+                        .map((b) => `${b.act}. ${nameOf(b.id)}`)
+                        .join(", ")}
+                    </span>
+                  )}
+                </div>
               )}
+              <div className="flex flex-wrap gap-1.5">
+                {r.matched.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1 rounded-md border border-success/40 bg-success/10 px-2 py-0.5 text-xs text-success"
+                  >
+                    {labelFor(tag)}
+                    {r.where[tag]?.length ? (
+                      <span className="text-[var(--text-muted)]">
+                        {r.where[tag]
+                          .slice(0, 3)
+                          .map((w) =>
+                            w.act && w.floor
+                              ? `${w.act}-${w.floor}`
+                              : w.floor
+                                ? `f${w.floor}`
+                                : "",
+                          )
+                          .filter(Boolean)
+                          .join(" ")}
+                      </span>
+                    ) : null}
+                  </span>
+                ))}
+                {r.missing.map((tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center rounded-md border border-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--text-muted)] line-through"
+                  >
+                    {labelFor(tag)}
+                  </span>
+                ))}
+              </div>
             </div>
+          ))}
+          {canShowMore && (
+            <button
+              type="button"
+              onClick={() => {
+                const next = Math.min(MAX_LIMIT, limit + DEFAULT_LIMIT);
+                setLimit(next);
+                search(next);
+              }}
+              className="rounded-md border border-[var(--border-subtle)] px-3 py-2 text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+            >
+              {t("Show more")}
+            </button>
           )}
         </div>
       )}

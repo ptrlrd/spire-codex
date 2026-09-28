@@ -26,6 +26,9 @@ SERVE_FILES = (
     "runs_export.jsonl.gz",
     "runs_export.json",
     "player_elo.json",
+    "seed_facts.parquet",
+    "seed_profiles.parquet",
+    "seed_profiles_meta.json",
 )
 
 KEEP_GENERATIONS = 2

@@ -439,6 +439,18 @@ def main() -> None:
         print(f"player elo board failed: {e}", flush=True)
     _mark("player_elo")
     try:
+        import seed_profiles
+
+        t_seeds = time.time()
+        seeds = seed_profiles.build()
+        print(
+            f"seed profiles built ({seeds['seeds']} seeds, {seeds['facts']} facts) in {time.time() - t_seeds:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"seed profiles failed: {e}", flush=True)
+    _mark("seed_profiles")
+    try:
         import export_dump
 
         t_dump = time.time()

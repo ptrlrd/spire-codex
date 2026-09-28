@@ -46,13 +46,13 @@ export default async function SeedFinderPage({ params }: Props) {
             badge={t("Preview")}
             lines={[
               t(
-                "Search community runs for seeds that demonstrably produced a combination of content: cards offered or kept, relics obtained, events encountered, ancient offers. A hit is a real run. Open it to see the route that got there.",
+                "Search seeds the community has actually played into the run start you want: Neow offers, card rewards by floor, relics, events, ancients, bosses, shop stock and the final deck. Every hit is a real run with a real outcome.",
               ),
               t(
                 "Seeds are locked to specific achievement unlocks. For the best experience, only use this tool when you're at max achievements and Ascension 10.",
               ),
               t(
-                "Covers solo runs at ascension 0 to 10 on the main game version. Every seed shown matched at least one thing you asked for; full matches come first.",
+                "Main and beta hash seeds differently, so pick the version you play. Full matches come first, then the seeds with the most wins.",
               ),
             ]}
           />

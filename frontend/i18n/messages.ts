@@ -27,6 +27,7 @@ import { X9I } from "@/lib/i18n-x9i";
 import { X9J } from "@/lib/i18n-x9j";
 import { X9K } from "@/lib/i18n-x9k";
 import { X9L } from "@/lib/i18n-x9l";
+import { X9O } from "@/lib/i18n-x9o";
 import { X9M } from "@/lib/i18n-x9m";
 import { X9N } from "@/lib/i18n-x9n";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
@@ -68,6 +69,7 @@ const TABLES = [
   X9J,
   X9K,
   X9L,
+  X9O,
   X9M,
   X9N,
 ];

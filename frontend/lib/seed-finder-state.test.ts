@@ -1,88 +1,82 @@
 import { describe, expect, it } from "vitest";
 import {
   EMPTY_STATE,
-  formatCounted,
+  formatPicks,
   hasPredicates,
   paramsFromState,
-  parseCounted,
+  parsePicks,
+  pick,
+  predicateCount,
   stateFromParams,
 } from "./seed-finder-state";
-import { filterPickerItems } from "@/app/components/EntityPicker";
 
-describe("seed finder URL state", () => {
-  it("round-trips every predicate through the query string", () => {
+describe("seed finder predicate grammar", () => {
+  it("parses id, count, act, floor window and seat", () => {
+    expect(parsePicks("bash:2@1<=5, cleave>=10#2, anger")).toEqual([
+      { id: "BASH", count: 2, act: 1, floorMax: 5, floorMin: null, seat: null },
+      {
+        id: "CLEAVE",
+        count: 1,
+        act: null,
+        floorMax: null,
+        floorMin: 10,
+        seat: 2,
+      },
+      {
+        id: "ANGER",
+        count: 1,
+        act: null,
+        floorMax: null,
+        floorMin: null,
+        seat: null,
+      },
+    ]);
+  });
+
+  it("caps counts, drops duplicates and junk, keeps shop kind prefixes", () => {
+    expect(parsePicks("BASH:9,BASH,??,RELIC:ANCHOR")).toEqual([
+      pick("BASH", { count: 4 }),
+      pick("RELIC:ANCHOR"),
+    ]);
+    expect(parsePicks(null)).toEqual([]);
+  });
+
+  it("round-trips through the url", () => {
     const state = {
-      character: "SILENT",
-      deck: [
-        { id: "BASH", count: 2 },
-        { id: "ANGER", count: 1 },
-      ],
-      offered: [{ id: "WHIRLWIND", count: 3 }],
-      relics: ["AKABEKO", "ANCHOR"],
-      events: ["BIG_FISH"],
-      ancient: "ASTROLABE",
+      ...EMPTY_STATE,
+      characters: ["SILENT", "DEFECT"],
+      buildId: "v0.107.1",
+      players: 2,
+      win: true,
+      neow: [pick("LEAD_PAPERWEIGHT")],
+      offered: [pick("BASH", { count: 2, act: 1, floorMax: 5 })],
+      bosses: [pick("VANTOM_BOSS", { act: 1 })],
+      shop: [pick("RELIC:MEAL_TICKET")],
+      ancient: "DARV",
       ancientAct: 2,
     };
-    const qs = paramsFromState(state).toString();
-    expect(qs).toBe(
-      "character=SILENT&deck=BASH%3A2%2CANGER&offered=WHIRLWIND%3A3&relics=AKABEKO%2CANCHOR&events=BIG_FISH&ancient=ASTROLABE&ancient_act=2",
-    );
-    expect(stateFromParams(new URLSearchParams(qs))).toEqual(state);
+    const params = paramsFromState(state);
+    expect(params.get("character")).toBe("SILENT,DEFECT");
+    expect(params.get("offered")).toBe("BASH:2@1<=5");
+    expect(params.get("bosses")).toBe("VANTOM_BOSS@1");
+    expect(params.get("shop")).toBe("RELIC:MEAL_TICKET");
+    expect(params.get("win")).toBe("true");
+    expect(stateFromParams(params)).toEqual(state);
+    expect(formatPicks(state.offered)).toBe("BASH:2@1<=5");
   });
 
-  it("drops junk, duplicates and out-of-range values", () => {
-    const state = stateFromParams(
+  it("ignores bad scope values and knows when there is something to search", () => {
+    const s = stateFromParams(
       new URLSearchParams(
-        "character=merchant&deck=bash:9,bash,%20anger%20:0&relics=,,akabeko,akabeko&ancient_act=3",
+        "character=WIZARD&players=9&ancient_act=7&ancient=DARV",
       ),
     );
-    expect(state.character).toBe("ANY");
-    expect(state.deck).toEqual([
-      { id: "BASH", count: 4 },
-      { id: "ANGER", count: 1 },
-    ]);
-    expect(state.relics).toEqual(["AKABEKO"]);
-    expect(state.ancient).toBeNull();
-    expect(state.ancientAct).toBeNull();
-  });
-
-  it("formats counts only above one", () => {
-    expect(formatCounted(parseCounted("BASH:2,ANGER:1,WHIRLWIND"))).toBe(
-      "BASH:2,ANGER,WHIRLWIND",
-    );
-  });
-
-  it("knows when there is nothing to search for", () => {
+    expect(s.characters).toEqual([]);
+    expect(s.players).toBeNull();
+    expect(s.ancientAct).toBeNull();
+    expect(hasPredicates(s)).toBe(true);
+    expect(predicateCount(s)).toBe(1);
     expect(hasPredicates(EMPTY_STATE)).toBe(false);
     expect(paramsFromState(EMPTY_STATE).toString()).toBe("");
-    expect(hasPredicates({ ...EMPTY_STATE, ancient: "ANCHOR" })).toBe(true);
-  });
-});
-
-describe("entity picker filtering", () => {
-  const items = [
-    { id: "BASH", name: "Bash" },
-    { id: "BATTLE_TRANCE", name: "Battle Trance" },
-    { id: "SMASH", name: "Smash" },
-    { id: "ANGER", name: "Anger" },
-  ];
-
-  it("returns nothing for an empty query", () => {
-    expect(filterPickerItems(items, "  ")).toEqual([]);
-  });
-
-  it("ranks prefix matches before substring matches, case-insensitively", () => {
-    expect(filterPickerItems(items, "ba").map((i) => i.id)).toEqual([
-      "BASH",
-      "BATTLE_TRANCE",
-    ]);
-    expect(filterPickerItems(items, "ASH").map((i) => i.id)).toEqual([
-      "BASH",
-      "SMASH",
-    ]);
-  });
-
-  it("caps the list", () => {
-    expect(filterPickerItems(items, "a", 2)).toHaveLength(2);
   });
 });
