@@ -7,6 +7,7 @@ import re
 import time
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 from fastapi import APIRouter, HTTPException, Query, Request, Response
 from pymongo.errors import ExecutionTimeout
 from starlette.concurrency import run_in_threadpool
@@ -2191,6 +2192,7 @@ def get_seed_finder(
     build_id: str | None = Query(None, max_length=24),
     players: int | None = Query(None, ge=1, le=4),
     win: bool = False,
+    evidence: Literal["recorded", "predicted", "any"] = "any",
     limit: int = Query(20, ge=1, le=50),
 ):
     """Find seeds the community has demonstrably played into a combination
@@ -2238,7 +2240,9 @@ def get_seed_finder(
         return {"available": False, "detail": "give me at least one predicate"}
 
     if not seed_profiles.available():
-        if _legacy_compatible(predicates, chars, build_id, players, win):
+        if evidence != "predicted" and _legacy_compatible(
+            predicates, chars, build_id, players, win
+        ):
             found = _legacy_seed_finder(
                 chars[0] if chars else None,
                 deck,
@@ -2268,6 +2272,7 @@ def get_seed_finder(
             build_id or "",
             str(players or ""),
             str(win),
+            evidence,
             str(limit),
         ]
     )
@@ -2284,6 +2289,7 @@ def get_seed_finder(
                 player_count=players,
                 characters=chars,
                 win_only=win,
+                evidence=evidence,
             ),
             limit=limit,
         )
@@ -2395,6 +2401,7 @@ def get_seed_profile(
     response: Response,
     seed: str,
     build_id: str | None = Query(None, max_length=24),
+    party: str = Query("", max_length=64),
 ):
     """Everything the community's runs have shown for one seed: Neow offers,
     bosses, ancients, events, card rewards by floor, relics, final deck,
@@ -2405,7 +2412,18 @@ def get_seed_profile(
     cleaned = seed_profiles.normalize_seed(seed)
     if not cleaned:
         raise HTTPException(status_code=422, detail="seed is required")
-    if not seed_profiles.available():
+    characters = tuple(
+        ch.strip().upper() for ch in party.replace("+", ",").split(",") if ch.strip()
+    )
+    if characters and (
+        not 1 <= len(characters) <= 4
+        or any(
+            ch not in {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+            for ch in characters
+        )
+    ):
+        raise HTTPException(status_code=422, detail="unsupported party")
+    if not seed_profiles.available() and not (build_id and characters):
         response.headers["Cache-Control"] = "no-store"
         response.status_code = 503
         return {
@@ -2414,13 +2432,13 @@ def get_seed_profile(
             "seed": cleaned,
             "variants": [],
         }
-    cache_key = f"seedprofile:{seed_profiles.generation()}:{cleaned}:{build_id or ''}"
+    cache_key = f"seedprofile:{seed_profiles.generation()}:{cleaned}:{build_id or ''}:{'+'.join(characters)}"
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         response.headers["Cache-Control"] = "public, max-age=300"
         return cached
     try:
-        prof = seed_profiles.profile(cleaned, build_id or None)
+        prof = seed_profiles.profile(cleaned, build_id or None, characters)
     except Exception:
         logger.exception("seed profile failed")
         response.headers["Cache-Control"] = "no-store"

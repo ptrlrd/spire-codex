@@ -670,3 +670,90 @@ def test_routes_never_answer_loosely(lake, api, monkeypatch):
     monkeypatch.setattr(svc, "search", boom)
     r = api.get("/api/runs/seed-finder", params={"neow": "LEAD_PAPERWEIGHT"})
     assert r.status_code == 503 and r.json()["detail"] == "index_error"
+
+
+def test_predicted_evidence_ranks_after_recorded(lake):
+    lake, _ = lake
+    con = duckdb.connect()
+    con.execute(
+        "COPY (SELECT replace(seed_key, 'AAAA', 'ZZZZ') AS seed_key, 'predicted:v0.107.1:IRONCLAD' AS evidence, "
+        "NULL::BOOLEAN AS win, kind, id, act, floor, seat, n FROM read_parquet(?) WHERE seed_key LIKE 'AAAA|v0.107.1|1|%') "
+        f"TO '{lake}/seed_facts_predicted.parquet' (FORMAT parquet)",
+        [str(lake / "seed_facts.parquet")],
+    )
+    con.execute(
+        "COPY (SELECT * REPLACE (replace(seed_key, 'AAAA', 'ZZZZ') AS seed_key, 'ZZZZ' AS seed, 0 AS runs, 0 AS wins, "
+        "NULL::VARCHAR AS best_run_hash, NULL::VARCHAR AS replay_run_hash) FROM read_parquet(?) WHERE seed = 'AAAA' AND build_id = 'v0.107.1' AND player_count = 1) "
+        f"TO '{lake}/seed_profiles_predicted.parquet' (FORMAT parquet)",
+        [str(lake / "seed_profiles.parquet")],
+    )
+    con.close()
+    predicates = [svc.Predicate("neow", "LEAD_PAPERWEIGHT")]
+    predicted = svc.search(predicates, svc.Scope(evidence="predicted"))["results"]
+    assert predicted and all(
+        row["predicted"] and row["seed"] == "ZZZZ" for row in predicted
+    )
+    combined = svc.search(predicates, svc.Scope())["results"]
+    assert combined[0]["predicted"] is False and combined[-1]["predicted"] is True
+    assert all(
+        not row["predicted"]
+        for row in svc.search(predicates, svc.Scope(evidence="recorded"))["results"]
+    )
+    assert (
+        svc.search(predicates, svc.Scope(evidence="predicted", win_only=True))[
+            "results"
+        ]
+        == []
+    )
+    assert svc.profile("ZZZZ")["variants"][0]["predicted"] is True
+
+
+def test_on_demand_prediction_cached_by_party(tmp_path, monkeypatch):
+    from app.services import cache
+
+    monkeypatch.setattr(svc, "LAKE_DIR", tmp_path)
+    saved = {}
+    monkeypatch.setattr(cache, "get_json", lambda key: saved.get(key))
+
+    def put(key, value, ttl_seconds):
+        assert ttl_seconds == 86400
+        saved[key] = value
+
+    monkeypatch.setattr(cache, "set_json", put)
+    stub = tmp_path / "sim-cli"
+    calls = tmp_path / "calls"
+    script = tmp_path / "stub.py"
+    script.write_text(f"""import json, sys
+from pathlib import Path
+args = sys.argv[1:]
+get = lambda key: args[args.index(key) + 1]
+with open({str(calls)!r}, 'a') as stream: stream.write('call\\n')
+row = dict(seed=Path(get('--seeds-file')).read_text().strip(), build_id=get('--build'), player_count=1, party=get('--party').split(','), neow_offers=['LEAD_PAPERWEIGHT'])
+Path(get('--out') + '.profiles.jsonl').write_text(json.dumps(row))
+""")
+    stub.write_text(f'#!/bin/sh\nexec "{sys.executable}" "{script}" "$@"\n')
+    stub.chmod(0o755)
+    monkeypatch.setenv("SIM_CLI_PATH", str(stub))
+    result = svc.profile("NEWSEED", "v0.107.1", ("IRONCLAD",))
+    assert result["variants"][0]["predicted"] is True
+    assert result["variants"][0]["neow_offers"] == ["LEAD_PAPERWEIGHT"]
+    assert svc.profile("NEWSEED", "v0.107.1", ("IRONCLAD",)) == result
+    assert calls.read_text().splitlines() == ["call"]
+    svc.profile("NEWSEED", "v0.107.1", ("SILENT",))
+    assert len(calls.read_text().splitlines()) == 2
+
+
+def test_evidence_route_validation(lake, api):
+    response = api.get(
+        "/api/runs/seed-finder",
+        params={"neow": "LEAD_PAPERWEIGHT", "evidence": "recorded"},
+    )
+    assert response.status_code == 200
+    assert all(row["predicted"] is False for row in response.json()["results"])
+    assert (
+        api.get(
+            "/api/runs/seed-finder",
+            params={"neow": "LEAD_PAPERWEIGHT", "evidence": "invalid"},
+        ).status_code
+        == 422
+    )

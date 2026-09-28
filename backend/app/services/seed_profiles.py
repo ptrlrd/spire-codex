@@ -15,6 +15,9 @@ from __future__ import annotations
 import json
 import logging
 import os
+import shutil
+import subprocess
+import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
@@ -25,6 +28,8 @@ LAKE_DIR = Path(os.environ.get("LAKE_DIR", "/lake"))
 FACTS = "seed_facts.parquet"
 PROFILES = "seed_profiles.parquet"
 META = "seed_profiles_meta.json"
+PREDICTED_FACTS = "seed_facts_predicted.parquet"
+PREDICTED_PROFILES = "seed_profiles_predicted.parquet"
 
 KINDS = {
     "neow": "ancient_offer",
@@ -134,6 +139,7 @@ class Scope:
     player_count: int | None = None
     characters: tuple[str, ...] = field(default_factory=tuple)
     win_only: bool = False
+    evidence: str = "any"
 
 
 def normalize_seed(raw: str) -> str:
@@ -143,7 +149,13 @@ def normalize_seed(raw: str) -> str:
 
 
 def available() -> bool:
-    return (LAKE_DIR / FACTS).exists() and (LAKE_DIR / PROFILES).exists()
+    return any(
+        (LAKE_DIR / facts).exists() and (LAKE_DIR / profiles).exists()
+        for facts, profiles in [
+            (FACTS, PROFILES),
+            (PREDICTED_FACTS, PREDICTED_PROFILES),
+        ]
+    )
 
 
 def meta() -> dict:
@@ -156,7 +168,10 @@ def meta() -> dict:
 
 
 def generation() -> str:
-    return str(meta().get("built_at") or "")
+    predicted = LAKE_DIR / PREDICTED_PROFILES
+    return str(meta().get("built_at") or "") + (
+        f":{predicted.stat().st_mtime_ns}" if predicted.exists() else ""
+    )
 
 
 def _connect():
@@ -247,8 +262,12 @@ def _fetch(con, sql: str, params: list) -> list[dict]:
     return [dict(zip(cols, r)) for r in cur.fetchall()]
 
 
-def search(
-    predicates: list[Predicate], scope: Scope, limit: int = 20
+def _search_source(
+    predicates: list[Predicate],
+    scope: Scope,
+    limit: int,
+    facts_name: str,
+    profiles_name: str,
 ) -> dict[str, Any]:
     """Seeds where one lobby satisfied every predicate, most wins first, then
     most runs. Each row says where that lobby showed each predicate."""
@@ -257,8 +276,8 @@ def search(
     if len(predicates) > MAX_PREDICATES:
         raise PredicateError(f"at most {MAX_PREDICATES} predicates")
     limit = max(1, min(int(limit), MAX_LIMIT))
-    facts = _path(FACTS)
-    profiles = _path(PROFILES)
+    facts = _path(facts_name)
+    profiles = _path(profiles_name)
     parts: list[str] = []
     params: list = []
     for i, pr in enumerate(predicates):
@@ -349,10 +368,12 @@ def search(
     return {"results": results, "predicates": len(labels), "labels": labels}
 
 
-def profile(seed: str, build_id: str | None = None) -> dict[str, Any]:
+def _profile_source(
+    seed: str, build_id: str | None, profiles_name: str
+) -> dict[str, Any]:
     """Everything the index knows about one seed, across every party and
     lobby size it was played with. The inspect page renders this."""
-    profiles = _path(PROFILES)
+    profiles = _path(profiles_name)
     params: list = [normalize_seed(seed)]
     build_sql = ""
     if build_id:
@@ -413,3 +434,116 @@ def random_seed(build_id: str | None = None, min_runs: int = 1) -> dict | None:
     item = _summary_row(rows[0])
     item.update(_display(rows[0]))
     return item
+
+
+def search(
+    predicates: list[Predicate], scope: Scope, limit: int = 20
+) -> dict[str, Any]:
+    if scope.evidence not in {"recorded", "predicted", "any"}:
+        raise PredicateError("evidence must be recorded, predicted, or any")
+    limit = max(1, min(int(limit), MAX_LIMIT))
+    results = []
+    seen = set()
+    for predicted, facts, profiles in [
+        (False, FACTS, PROFILES),
+        (True, PREDICTED_FACTS, PREDICTED_PROFILES),
+    ]:
+        if (scope.evidence == "recorded" and predicted) or (
+            scope.evidence == "predicted" and not predicted
+        ):
+            continue
+        if not (LAKE_DIR / facts).exists() or not (LAKE_DIR / profiles).exists():
+            continue
+        found = _search_source(predicates, scope, limit, facts, profiles)
+        for row in found["results"]:
+            key = (row["seed"], row["build_id"], tuple(row["party"]))
+            if key in seen:
+                continue
+            seen.add(key)
+            row["predicted"] = predicted
+            results.append(row)
+    return {
+        "results": results[:limit],
+        "predicates": len(predicates),
+        "labels": [pr.label() for pr in predicates],
+    }
+
+
+def _on_demand(seed: str, build_id: str, party: tuple[str, ...]) -> dict | None:
+    from . import cache
+
+    binary = os.environ.get("SIM_CLI_PATH", "/opt/spire-sim/sim-cli")
+    if not shutil.which(binary):
+        return None
+    if (
+        build_id not in {"v0.107.1", "v0.111.0"}
+        or not 1 <= len(party) <= 4
+        or any(
+            ch not in {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+            for ch in party
+        )
+    ):
+        raise PredicateError("unsupported prediction build or party")
+    key = f"seedprediction:{build_id}:{seed}:{'+'.join(party)}"
+    cached = cache.get_json(key)
+    if cached is not None:
+        return cached
+    with tempfile.TemporaryDirectory(prefix="seed-prediction-") as directory:
+        work = Path(directory)
+        seeds = work / "seeds.txt"
+        seeds.write_text(seed + "\n", encoding="utf-8")
+        output = work / "facts.jsonl"
+        command = [
+            binary,
+            "predict-batch",
+            "--build",
+            build_id,
+            "--party",
+            ",".join(party),
+            "--seeds-file",
+            str(seeds),
+            "--out",
+            str(output),
+        ]
+        if os.environ.get("SIM_DATA_ROOT"):
+            command.extend(["--data-root", os.environ["SIM_DATA_ROOT"]])
+        subprocess.run(
+            command,
+            check=True,
+            timeout=10,
+            cwd=Path(binary).resolve().parent,
+            capture_output=True,
+        )
+        row = json.loads(
+            Path(str(output) + ".profiles.jsonl").read_text(encoding="utf-8")
+        )
+    item = _summary_row(row)
+    item.update(_display(row))
+    for name in ["path", "shops", "map_act1", "facts", "run_hashes"]:
+        item[name] = row.get(name) or []
+    item["predicted"] = True
+    cache.set_json(key, item, ttl_seconds=86400)
+    return item
+
+
+def profile(
+    seed: str, build_id: str | None = None, party: tuple[str, ...] = ()
+) -> dict[str, Any]:
+    seed = normalize_seed(seed)
+    variants = []
+    seen = set()
+    for predicted, name in [(False, PROFILES), (True, PREDICTED_PROFILES)]:
+        if not (LAKE_DIR / name).exists():
+            continue
+        for row in _profile_source(seed, build_id, name)["variants"]:
+            key = (row["build_id"], tuple(row["party"]))
+            if key in seen:
+                continue
+            seen.add(key)
+            row["predicted"] = predicted
+            variants.append(row)
+    if build_id and party and (build_id, party) not in seen:
+        predicted = _on_demand(seed, build_id, party)
+        if predicted:
+            variants.append(predicted)
+    return {"seed": seed, "variants": variants}
