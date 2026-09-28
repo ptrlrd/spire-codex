@@ -5,7 +5,7 @@
 // frontend and data/site_pages.json for the backend search index. Curated
 // display names and keyword synonyms live in PAGE_OVERRIDES below. Runs via
 // the predev/prebuild npm hooks.
-import { readdirSync, writeFileSync } from "node:fs";
+import { existsSync, readdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -296,6 +296,6 @@ if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {
   const prettier = await import("prettier");
   const json = await prettier.format(JSON.stringify(pages), { parser: "json" });
   writeFileSync(OUT, json);
-  writeFileSync(DATA_OUT, json);
+  if (existsSync(dirname(DATA_OUT))) writeFileSync(DATA_OUT, json);
   console.log(`site-pages.json: ${pages.length} routes`);
 }
