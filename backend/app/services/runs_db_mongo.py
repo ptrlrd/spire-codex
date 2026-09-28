@@ -2562,7 +2562,26 @@ def set_run_hidden(run_hash: str, hidden: bool, reason: str | None = None) -> di
     for row in rows:
         if bool(row.get("hidden")) != hidden:
             bump_stats_counters(row, -1 if hidden else 1)
-    return {"matched": result.matched_count, "modified": result.modified_count}
+    hashes = sorted({run_hash, *(str(r["_id"]) for r in rows if r.get("_id"))})
+    evict_run_pages(hashes)
+    return {
+        "matched": result.matched_count,
+        "modified": result.modified_count,
+        "hashes": hashes,
+    }
+
+
+def evict_run_pages(hashes: list[str]) -> None:
+    """Drop the cached share-page payloads for these hashes so a hide or
+    unhide is visible on the next request instead of after the 15 minute
+    Redis TTL."""
+    from . import cache
+
+    for h in hashes:
+        try:
+            cache.delete(f"run:{h}")
+        except Exception:
+            logger.warning("run cache evict failed for %s", h, exc_info=True)
 
 
 def rehide_one_turn_boss_runs(dry_run: bool = False) -> dict:
