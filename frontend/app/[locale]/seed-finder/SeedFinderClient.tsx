@@ -35,6 +35,7 @@ const HISTORY_KEY = "spire-codex:seed-finder-history";
 const HISTORY_MAX = 8;
 
 interface FinderRow {
+  predicted?: boolean;
   seed: string;
   build_id: string | null;
   players: number;
@@ -582,7 +583,7 @@ export default function SeedFinderClient() {
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-2 max-w-3xl">
         {t(
-          "Search seeds the community has actually played into the run start you want: Neow offers, card rewards by floor, relics, events, ancients, bosses, shop stock and the final deck. Every hit is a real run with a real outcome.",
+          "Search recorded runs and predicted seeds for Neow offers, card rewards, relics, events, ancients, bosses and shop stock. Predictions assume a fully unlocked profile and no modifiers.",
         )}
       </p>
       <p className="text-sm text-[var(--text-secondary)] mb-2 max-w-3xl">
@@ -592,7 +593,7 @@ export default function SeedFinderClient() {
       </p>
       <p className="text-xs text-[var(--text-muted)] mb-6 max-w-3xl">
         {t(
-          "Main and beta hash seeds differently, so pick the version you play. Every result is a lobby that showed everything you asked for, most wins first.",
+          "Main and beta hash seeds differently, so pick the version you play. Recorded matches appear before predictions. Predicted rewards and shops assume the displayed reward order.",
         )}
         {indexInfo?.seeds
           ? ` ${t("{n} seeds indexed.", { n: indexInfo.seeds.toLocaleString() })}`
@@ -929,6 +930,11 @@ export default function SeedFinderClient() {
                 <span className="text-xs text-[var(--text-muted)]">
                   {copied === r.seed ? t("Copied") : r.build_id}
                 </span>
+                {r.predicted && (
+                  <span className="rounded border border-[var(--accent-teal)] px-2 py-0.5 text-xs text-[var(--accent-teal)]">
+                    {t("Predicted")}
+                  </span>
+                )}
                 {r.party.map((c) => (
                   <CharacterTag
                     key={c}
@@ -945,7 +951,9 @@ export default function SeedFinderClient() {
               </div>
               <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--text-secondary)] mb-2">
                 <span>
-                  {t("{n} runs", { n: r.runs })}
+                  {r.predicted
+                    ? t("Fully unlocked, no modifiers")
+                    : t("{n} runs", { n: r.runs })}
                   {r.win_rate != null && (
                     <>
                       {" · "}
@@ -978,7 +986,7 @@ export default function SeedFinderClient() {
                   </Link>
                 )}
                 <Link
-                  href={`/seed-finder/${r.seed}${r.build_id ? `?build_id=${r.build_id}` : ""}`}
+                  href={`/seed-finder/${r.seed}?${new URLSearchParams({ ...(r.build_id ? { build_id: r.build_id } : {}), party: r.party.join(",") })}`}
                   className="text-[var(--accent-gold)] hover:underline"
                 >
                   {t("inspect seed")}

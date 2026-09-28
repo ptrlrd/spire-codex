@@ -31,6 +31,7 @@ interface ShopItem {
 }
 
 interface Variant {
+  predicted?: boolean;
   seed: string;
   build_id: string | null;
   players: number;
@@ -104,6 +105,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
   const t = useT();
   const searchParams = useSearchParams();
   const wantedBuild = searchParams.get("build_id") ?? "";
+  const wantedParty = searchParams.get("party") ?? "";
   const [profile, setProfile] = useState<Profile | null>(null);
   const [problem, setProblem] = useState<LabUnavailableKind | null>(null);
   const [names, setNames] = useState<Record<string, string>>({});
@@ -115,7 +117,9 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
     let dead = false;
     setProfile(null);
     setProblem(null);
-    fetch(`${API}/api/runs/seed-finder/seed/${encodeURIComponent(seed)}`)
+    fetch(
+      `${API}/api/runs/seed-finder/seed/${encodeURIComponent(seed)}?${new URLSearchParams({ ...(wantedBuild ? { build_id: wantedBuild } : {}), ...(wantedParty ? { party: wantedParty } : {}) })}`,
+    )
       .then(async (r) => {
         if (r.status === 429) throw new Error("rate_limited");
         if (!r.ok) throw new Error("error");
@@ -268,7 +272,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6 max-w-3xl">
         {t(
-          "What the community's runs have shown for this seed. Offers depend on the version, the party and the player's unlocks, so treat anything past act 1 as one path among many.",
+          "Recorded runs and predictions for this seed. Predictions assume a fully unlocked profile and no modifiers. Rewards and shops depend on the choices made during a run.",
         )}
       </p>
 
@@ -314,13 +318,25 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                     />
                   ))}
                   <span className="text-[var(--text-muted)]">
-                    {t("{n} runs", { n: v.runs })}
+                    {v.predicted
+                      ? t("Predicted")
+                      : t("{n} runs", { n: v.runs })}
                   </span>
                 </button>
               ))}
             </div>
           )}
 
+          {variant.predicted && (
+            <div className="mb-4 flex flex-wrap items-center gap-2 text-sm">
+              <span className="rounded border border-[var(--accent-teal)] px-2 py-0.5 text-xs text-[var(--accent-teal)]">
+                {t("Predicted")}
+              </span>
+              <span className="text-[var(--text-secondary)]">
+                {t("Fully unlocked, no modifiers")}
+              </span>
+            </div>
+          )}
           <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_320px]">
             <div className="grid gap-4">
               <div className={card}>
