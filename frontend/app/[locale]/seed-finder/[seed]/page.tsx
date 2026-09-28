@@ -6,14 +6,12 @@ import { buildPageMetadata } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import SeedInspectClient from "./SeedInspectClient";
+import { normalizeSeed } from "@/lib/seed-finder-state";
 
 type Props = { params: Promise<{ locale: string; seed: string }> };
 
 function cleanSeed(raw: string): string {
-  return decodeURIComponent(raw)
-    .toUpperCase()
-    .replace(/[^A-Z0-9]/g, "")
-    .slice(0, 24);
+  return normalizeSeed(raw);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

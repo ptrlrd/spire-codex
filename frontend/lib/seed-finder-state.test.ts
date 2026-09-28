@@ -3,6 +3,7 @@ import {
   EMPTY_STATE,
   formatPicks,
   hasPredicates,
+  normalizeSeed,
   paramsFromState,
   parsePicks,
   pick,
@@ -33,12 +34,21 @@ describe("seed finder predicate grammar", () => {
     ]);
   });
 
-  it("caps counts, drops duplicates and junk, keeps shop kind prefixes", () => {
-    expect(parsePicks("BASH:9,BASH,??,RELIC:ANCHOR")).toEqual([
-      pick("BASH", { count: 4 }),
-      pick("RELIC:ANCHOR"),
-    ]);
+  it("caps counts, drops exact duplicates and junk, keeps distinct constraints and shop prefixes", () => {
+    expect(parsePicks("BASH:99,BASH:99,??,RELIC:ANCHOR,BASH@1,BASH@2")).toEqual(
+      [
+        pick("BASH", { count: 10 }),
+        pick("RELIC:ANCHOR"),
+        pick("BASH", { act: 1 }),
+        pick("BASH", { act: 2 }),
+      ],
+    );
+    expect(parsePicks("BASH@0#0")).toEqual([pick("BASH")]);
     expect(parsePicks(null)).toEqual([]);
+  });
+
+  it("normalizes seeds the way the game reads them", () => {
+    expect(normalizeSeed(" ab-oi1 ")).toBe("AB011");
   });
 
   it("round-trips through the url", () => {
@@ -68,10 +78,10 @@ describe("seed finder predicate grammar", () => {
   it("ignores bad scope values and knows when there is something to search", () => {
     const s = stateFromParams(
       new URLSearchParams(
-        "character=WIZARD&players=9&ancient_act=7&ancient=DARV",
+        "character=WIZARD+SILENT DEFECT&players=9&ancient_act=7&ancient=DARV",
       ),
     );
-    expect(s.characters).toEqual([]);
+    expect(s.characters).toEqual(["SILENT", "DEFECT"]);
     expect(s.players).toBeNull();
     expect(s.ancientAct).toBeNull();
     expect(hasPredicates(s)).toBe(true);

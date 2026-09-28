@@ -21,6 +21,7 @@ import {
   SEED_FINDER_CHARACTERS,
   hasPredicates,
   paramsFromState,
+  formatPick,
   pick,
   predicateCount,
   stateFromParams,
@@ -296,6 +297,10 @@ export default function SeedFinderClient() {
           setProblem("rate_limited");
           return;
         }
+        if (res.status === 503) {
+          setProblem("index_building");
+          return;
+        }
         if (!res.ok) {
           setProblem("error");
           return;
@@ -339,19 +344,20 @@ export default function SeedFinderClient() {
   }
 
   function addPick(key: ListKey, i: PickerItem, extra: Partial<Pick> = {}) {
+    const next = pick(i.id, extra);
     update({
-      [key]: state[key].some((p) => p.id === i.id)
+      [key]: state[key].some((p) => formatPick(p) === formatPick(next))
         ? state[key]
-        : [...state[key], pick(i.id, extra)],
+        : [...state[key], next],
     });
   }
-  function patchPick(key: ListKey, id: string, patch: Partial<Pick>) {
+  function patchPick(key: ListKey, index: number, patch: Partial<Pick>) {
     update({
-      [key]: state[key].map((p) => (p.id === id ? { ...p, ...patch } : p)),
+      [key]: state[key].map((p, i) => (i === index ? { ...p, ...patch } : p)),
     });
   }
-  function dropPick(key: ListKey, id: string) {
-    update({ [key]: state[key].filter((p) => p.id !== id) });
+  function dropPick(key: ListKey, index: number) {
+    update({ [key]: state[key].filter((_, i) => i !== index) });
   }
   function toggleCharacter(c: string) {
     const has = state.characters.includes(c);
@@ -449,10 +455,11 @@ export default function SeedFinderClient() {
   function pickRow(
     key: ListKey,
     p: Pick,
+    index: number,
     opts: { count?: boolean; act?: boolean; floor?: boolean } = {},
   ) {
     return (
-      <span key={p.id} className={chip}>
+      <span key={`${formatPick(p)}:${index}`} className={chip}>
         <span>{nameOf(p.id)}</span>
         {opts.count && (
           <button
@@ -460,7 +467,7 @@ export default function SeedFinderClient() {
             className={tiny}
             title={t("At least this many")}
             onClick={() =>
-              patchPick(key, p.id, {
+              patchPick(key, index, {
                 count: p.count >= MAX_COPIES ? 1 : p.count + 1,
               })
             }
@@ -474,7 +481,7 @@ export default function SeedFinderClient() {
             className={`${tiny} py-0.5`}
             value={p.act ?? ""}
             onChange={(e) =>
-              patchPick(key, p.id, {
+              patchPick(key, index, {
                 act: e.target.value ? parseInt(e.target.value, 10) : null,
               })
             }
@@ -497,7 +504,7 @@ export default function SeedFinderClient() {
             className={`${tiny} w-16 py-0.5`}
             value={p.floorMax ?? ""}
             onChange={(e) =>
-              patchPick(key, p.id, {
+              patchPick(key, index, {
                 floorMax: e.target.value ? parseInt(e.target.value, 10) : null,
               })
             }
@@ -509,7 +516,7 @@ export default function SeedFinderClient() {
             className={`${tiny} py-0.5`}
             value={p.seat ?? ""}
             onChange={(e) =>
-              patchPick(key, p.id, {
+              patchPick(key, index, {
                 seat: e.target.value ? parseInt(e.target.value, 10) : null,
               })
             }
@@ -528,7 +535,7 @@ export default function SeedFinderClient() {
           type="button"
           aria-label={t("Remove")}
           className="ml-0.5 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-          onClick={() => dropPick(key, p.id)}
+          onClick={() => dropPick(key, index)}
         >
           ×
         </button>
@@ -549,7 +556,7 @@ export default function SeedFinderClient() {
           {title}
         </div>
         <div className="flex flex-wrap items-center gap-1.5">
-          {state[key].map((p) => pickRow(key, p, opts))}
+          {state[key].map((p, i) => pickRow(key, p, i, opts))}
           <div className="min-w-[14rem] flex-1">
             <EntityPicker
               placeholder={placeholder}

@@ -17,6 +17,7 @@ interface Fact {
   act: number | null;
   floor: number | null;
   seat: number | null;
+  n?: number | null;
 }
 
 interface ShopItem {
@@ -182,6 +183,17 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
       const [ba, bf] = b[0].split("-").map(Number);
       return aa - ba || af - bf;
     });
+  }, [variant]);
+
+  const deckFacts = useMemo(() => {
+    const copies = new Map<string, number>();
+    for (const f of variant?.facts ?? []) {
+      if (f.kind !== "deck") continue;
+      copies.set(f.id, Math.max(copies.get(f.id) ?? 0, f.n ?? 1));
+    }
+    return [...copies.entries()].sort(
+      (a, b) => b[1] - a[1] || a[0].localeCompare(b[0]),
+    );
   }, [variant]);
 
   const relicFacts = useMemo(
@@ -417,6 +429,25 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                           ))}
                         </div>
                       </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {deckFacts.length > 0 && (
+                <div className={card}>
+                  <div className={heading}>{t("Final deck")}</div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {deckFacts.map(([id, n]) => (
+                      <span
+                        key={id}
+                        className="inline-flex items-center gap-1 rounded-md border border-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--text-primary)]"
+                      >
+                        {nameOf(id)}
+                        {n > 1 && (
+                          <span className="text-[var(--text-muted)]">×{n}</span>
+                        )}
+                      </span>
                     ))}
                   </div>
                 </div>

@@ -2095,13 +2095,19 @@ def _seed_predicates(
 ) -> list:
     """The finder's query language, one comma list per kind. Items are
     ID[:count][@act][<=floor][>=floor][#seat], e.g. BASH:2@1<=5 means at
-    least two offers of Bash in act 1 by floor 5."""
+    least two offers of Bash in act 1 by floor 5. Anything that does not
+    parse is a 422, never a silently different search."""
     import re
 
-    from ..services.seed_profiles import Predicate
+    from ..services.seed_profiles import (
+        MAX_PREDICATES,
+        Predicate,
+        PredicateError,
+    )
 
     item_re = re.compile(
-        r"^(?P<id>[A-Z0-9_]+)(?::(?P<count>\d+))?(?:@(?P<act>\d))?(?:<=(?P<fmax>\d+))?(?:>=(?P<fmin>\d+))?(?:#(?P<seat>\d))?$"
+        r"^(?P<id>[A-Z0-9_]+)(?::(?P<count>\d{1,2}))?(?:@(?P<act>\d))?"
+        r"(?:<=(?P<fmax>\d{1,2}))?(?:>=(?P<fmin>\d{1,2}))?(?:#(?P<seat>\d))?$"
     )
     out: list = []
 
@@ -2112,7 +2118,7 @@ def _seed_predicates(
                 continue
             m = item_re.match(part)
             if not m:
-                continue
+                raise PredicateError(f"cannot read {part!r}")
             out.append(
                 Predicate(
                     kind,
@@ -2121,7 +2127,7 @@ def _seed_predicates(
                     floor_max=int(m.group("fmax")) if m.group("fmax") else None,
                     floor_min=int(m.group("fmin")) if m.group("fmin") else None,
                     seat=int(m.group("seat")) if m.group("seat") else None,
-                    count=max(1, int(m.group("count") or 1)),
+                    count=int(m.group("count") or 1),
                 )
             )
 
@@ -2144,7 +2150,25 @@ def _seed_predicates(
             prefix, part = part.split(":", 1)
             kind = f"shop_{prefix.lower()}"
         take(kind, part)
+    if len(out) > MAX_PREDICATES:
+        raise PredicateError(f"at most {MAX_PREDICATES} predicates")
     return out
+
+
+def _legacy_compatible(predicates: list, chars: tuple, build_id, players, win) -> bool:
+    """The pre-index scan only knew deck, offered, relic, event and one
+    ancient with an act, for one character; anything else has no legacy
+    answer and must wait for the index rather than return a looser one."""
+    if build_id or players or win or len(chars) > 1:
+        return False
+    for pr in predicates:
+        if pr.kind not in ("deck", "offered", "relic", "event", "ancient"):
+            return False
+        if pr.floor_max is not None or pr.floor_min is not None or pr.seat is not None:
+            return False
+        if pr.act is not None and pr.kind != "ancient":
+            return False
+    return True
 
 
 @router.get("/seed-finder", tags=["Runs"], include_in_schema=False)
@@ -2164,7 +2188,7 @@ def get_seed_finder(
     bosses: str = "",
     elites: str = "",
     shop: str = "",
-    build_id: str | None = None,
+    build_id: str | None = Query(None, max_length=24),
     players: int | None = Query(None, ge=1, le=4),
     win: bool = False,
     limit: int = Query(20, ge=1, le=50),
@@ -2172,35 +2196,73 @@ def get_seed_finder(
     """Find seeds the community has demonstrably played into a combination
     of content: Neow and ancient offers, card rewards (by act, floor window
     and count), relics, events, bosses, elites, shop stock and final deck,
-    scoped to a game version, lobby size and characters. Every hit is a
-    real run. Ranked by predicates matched, then wins, then runs."""
+    scoped to a game version, lobby size and characters. Every hit is one
+    real run that showed all of it. Ranked by predicates matched, then
+    wins, then runs."""
     import hashlib
 
     from ..services import seed_profiles
+    from ..services.seed_profiles import PredicateError
 
     chars = tuple(
-        c for c in (character or "").upper().replace("+", ",").split(",") if c.strip()
+        sorted(
+            {
+                c.strip()
+                for c in (character or "")
+                .upper()
+                .replace("+", ",")
+                .replace(" ", ",")
+                .split(",")
+                if c.strip() and c.strip() != "ANY"
+            }
+        )
     )
-    chars = tuple(c for c in chars if c != "ANY")
-    predicates = _seed_predicates(
-        deck,
-        offered,
-        relics,
-        events,
-        ancient,
-        ancient_act,
-        neow,
-        bosses,
-        elites,
-        shop,
-        ancient_offers,
-    )
+    try:
+        predicates = _seed_predicates(
+            deck,
+            offered,
+            relics,
+            events,
+            ancient,
+            ancient_act,
+            neow,
+            bosses,
+            elites,
+            shop,
+            ancient_offers,
+        )
+    except PredicateError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
     if not predicates:
         response.headers["Cache-Control"] = "no-store"
         return {"available": False, "detail": "give me at least one predicate"}
 
+    if not seed_profiles.available():
+        if _legacy_compatible(predicates, chars, build_id, players, win):
+            found = _legacy_seed_finder(
+                chars[0] if chars else None,
+                deck,
+                offered,
+                relics,
+                events,
+                ancient,
+                ancient_act,
+                limit,
+            )
+            response.headers["Cache-Control"] = "no-store"
+            if not found or found.get("available") is False:
+                return {
+                    "available": False,
+                    "detail": (found or {}).get("detail") or "error",
+                }
+            return {"available": True, **found}
+        response.headers["Cache-Control"] = "no-store"
+        response.status_code = 503
+        return {"available": False, "detail": "index_building"}
+
     key_src = "|".join(
         [
+            seed_profiles.generation(),
             ",".join(chars),
             ";".join(pr.label() for pr in predicates),
             build_id or "",
@@ -2214,39 +2276,30 @@ def get_seed_finder(
     if cached is not None:
         response.headers["Cache-Control"] = "public, max-age=300"
         return cached
-    found: dict | None = None
-    if seed_profiles.available():
-        try:
-            found = seed_profiles.search(
-                predicates,
-                seed_profiles.Scope(
-                    build_id=build_id or None,
-                    player_count=players,
-                    characters=chars,
-                    win_only=win,
-                ),
-                limit=limit,
-            )
-            found["engine"] = "index"
-            found["index"] = seed_profiles.meta()
-        except Exception:
-            logger.exception("seed finder index query failed")
-            found = None
-    if found is None:
-        found = _legacy_seed_finder(
-            chars[0] if len(chars) == 1 else None,
-            deck,
-            offered,
-            relics,
-            events,
-            ancient,
-            ancient_act,
-            limit,
+    try:
+        found = seed_profiles.search(
+            predicates,
+            seed_profiles.Scope(
+                build_id=build_id or None,
+                player_count=players,
+                characters=chars,
+                win_only=win,
+            ),
+            limit=limit,
         )
-    if not found or found.get("available") is False:
+    except PredicateError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    except Exception:
+        logger.exception("seed finder index query failed")
         response.headers["Cache-Control"] = "no-store"
-        return {"available": False, "detail": (found or {}).get("detail") or "error"}
-    payload = {"available": True, **found}
+        response.status_code = 503
+        return {"available": False, "detail": "index_error"}
+    payload = {
+        "available": True,
+        "engine": "index",
+        "index": seed_profiles.meta(),
+        **found,
+    }
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
@@ -2263,12 +2316,13 @@ def _legacy_seed_finder(
     limit: int,
 ) -> dict:
     """The live Mongo scan the finder used before the seed index existed;
-    still the answer on a box that has not pulled the index yet."""
+    still the answer on a box that has not pulled the index yet, and only
+    for the queries it can express."""
 
     def _counted(raw: str) -> list[tuple[str, int]]:
         out = []
         for part in raw.split(","):
-            part = part.strip().upper().split("@")[0].split("<=")[0].split(">=")[0]
+            part = part.strip().upper()
             if not part:
                 continue
             pid, _, n = part.partition(":")
@@ -2309,20 +2363,28 @@ def get_seed_finder_meta(request: Request, response: Response):
 
 @router.get("/seed-finder/random", tags=["Runs"], include_in_schema=False)
 @limiter.limit(
-    rate_limit_config.endpoint_limit("runs.get_seed_finder_random", "20/minute")
+    rate_limit_config.endpoint_limit("runs.get_seed_finder_random", "10/minute")
 )
 def get_seed_finder_random(
     request: Request,
     response: Response,
-    build_id: str | None = None,
+    build_id: str | None = Query(None, max_length=24),
     min_runs: int = Query(1, ge=1, le=100),
 ):
     from ..services import seed_profiles
 
     response.headers["Cache-Control"] = "no-store"
     if not seed_profiles.available():
-        return {"available": False}
-    pick = seed_profiles.random_seed(build_id or None, min_runs)
+        response.status_code = 503
+        return {"available": False, "detail": "index_building"}
+    try:
+        pick = seed_profiles.random_seed(build_id or None, min_runs)
+    except Exception:
+        logger.exception("seed finder random failed")
+        response.status_code = 503
+        return {"available": False, "detail": "index_error"}
+    if pick is None:
+        return {"available": False, "detail": "no_seed"}
     return {"available": True, "seed": pick}
 
 
@@ -2332,18 +2394,27 @@ def get_seed_profile(
     request: Request,
     response: Response,
     seed: str,
-    build_id: str | None = None,
+    build_id: str | None = Query(None, max_length=24),
 ):
     """Everything the community's runs have shown for one seed: Neow offers,
-    bosses, ancients, events, card rewards by floor, relics, shop stock and
-    the act 1 map when a replay recorded it, per version and party."""
+    bosses, ancients, events, card rewards by floor, relics, final deck,
+    shop stock and the act 1 map when a replay recorded it, per version and
+    party."""
     from ..services import seed_profiles
 
-    cleaned = seed.strip().upper().replace("O", "0").replace("I", "1")[:24]
+    cleaned = seed_profiles.normalize_seed(seed)
+    if not cleaned:
+        raise HTTPException(status_code=422, detail="seed is required")
     if not seed_profiles.available():
         response.headers["Cache-Control"] = "no-store"
-        return {"available": False, "seed": cleaned, "variants": []}
-    cache_key = f"seedprofile:{cleaned}:{build_id or ''}"
+        response.status_code = 503
+        return {
+            "available": False,
+            "detail": "index_building",
+            "seed": cleaned,
+            "variants": [],
+        }
+    cache_key = f"seedprofile:{seed_profiles.generation()}:{cleaned}:{build_id or ''}"
     cached = app_cache.get_json(cache_key)
     if cached is not None:
         response.headers["Cache-Control"] = "public, max-age=300"
@@ -2353,7 +2424,13 @@ def get_seed_profile(
     except Exception:
         logger.exception("seed profile failed")
         response.headers["Cache-Control"] = "no-store"
-        return {"available": False, "seed": cleaned, "variants": []}
+        response.status_code = 503
+        return {
+            "available": False,
+            "detail": "index_error",
+            "seed": cleaned,
+            "variants": [],
+        }
     payload = {"available": True, **prof}
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"

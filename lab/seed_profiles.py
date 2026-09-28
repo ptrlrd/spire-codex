@@ -4,16 +4,18 @@ without walking run documents.
 
 Two artifacts land next to the other serve files:
 
-  seed_facts.parquet     one row per (seed_key, kind, id, act, floor, seat),
-                         sorted by kind then id so a predicate is a cheap
-                         row-group scan
-  seed_profiles.parquet  one row per seed_key with the summary and the
-                         display lists (Neow offers, bosses, ancients, path,
-                         shops, best run, replay)
+  seed_facts.parquet     one row per (seed_key, evidence, kind, id, act,
+                         floor, seat) with an occurrence count, sorted by
+                         kind then id so a predicate is a cheap row-group
+                         scan; evidence is one solo run or one co-op lobby,
+                         so a full match always comes from one real run
+  seed_profiles.parquet  one row per seed_key with the summary, the display
+                         lists, the inspect-page facts, and the best run's
+                         path, shops and act 1 map
 
-A seed_key is seed | build_id | player_count | party, since the same seed
-rolls differently per character and lobby, and main and beta hash seeds
-differently.
+A seed_key is seed | build_id | player_count | party (characters in seat
+order), since the same seed rolls differently per character and lobby, and
+main and beta hash seeds differently.
 
     docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/seed_profiles.py
 """
@@ -21,6 +23,7 @@ differently.
 import json
 import os
 import pathlib
+import shutil
 import sys
 import time
 
@@ -31,6 +34,12 @@ FACTS_NAME = "seed_facts.parquet"
 PROFILES_NAME = "seed_profiles.parquet"
 META_NAME = "seed_profiles_meta.json"
 MAX_ASCENSION = 20
+MAX_DETAIL_FACTS = 600
+MAX_RUN_HASHES = 50
+
+
+def _q(path) -> str:
+    return str(path).replace("'", "''")
 
 
 def _replay_glob(name: str) -> str | None:
@@ -44,8 +53,8 @@ ELIGIBLE_SQL = """
 CREATE OR REPLACE TEMP TABLE eligible AS
 SELECT r.run_hash, r.seed, coalesce(r.build_id, '') AS build_id,
   coalesce(r.player_count, 1) AS player_count, r.character, r.win,
-  r.was_abandoned, r.ascension, r.run_time, r.start_time, r.played_at,
-  r.username, s.floors_reached
+  coalesce(r.was_abandoned, false) AS was_abandoned, r.ascension, r.run_time,
+  r.start_time, r.played_at, r.username, s.floors_reached
 FROM read_parquet('{lake}/runs.parquet') r
 LEFT JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
 ANTI JOIN read_parquet('{lake}/excluded.parquet') x ON r.run_hash = x.run_hash
@@ -57,156 +66,221 @@ WHERE r.seed IS NOT NULL AND r.seed <> ''
   AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')
 """
 
-# Party = the characters of every doc that shares a seed, build, lobby size
-# and start time (co-op siblings), so a 2p Ironclad+Silent lobby is one key.
+# The party comes from the blob's own seat list (deck.parquet carries every
+# seat with its character), so two Ironclads stay two seats in order. Co-op
+# siblings share one blob and therefore one seed, build, start time and
+# party; that tuple is the lobby, and the lobby is the evidence unit.
 KEYS_SQL = """
 CREATE OR REPLACE TEMP TABLE run_keys AS
-WITH party AS (
-  SELECT seed, build_id, player_count, start_time,
-    list_sort(list(DISTINCT character)) AS party
-  FROM eligible GROUP BY 1,2,3,4
+WITH seats AS (
+  SELECT run_hash, list(character ORDER BY player_idx) AS party
+  FROM (SELECT DISTINCT run_hash, player_idx, character
+        FROM read_parquet('{lake}/deck.parquet') WHERE character IS NOT NULL)
+  GROUP BY run_hash
+),
+keyed AS (
+  SELECT e.*, coalesce(s.party, [e.character]) AS party
+  FROM eligible e LEFT JOIN seats s USING (run_hash)
+),
+lobbies AS (
+  SELECT seed, build_id, player_count, party, coalesce(start_time, -1) AS start_key,
+    md5(seed || '|' || build_id || '|' || player_count || '|' || array_to_string(party, '+') || '|' || coalesce(start_time, -1))
+      AS evidence,
+    min(run_hash) AS lead_run,
+    bool_or(win) AS lobby_win
+  FROM keyed GROUP BY 1,2,3,4,5
 )
-SELECT e.run_hash, e.seed, e.build_id, e.player_count, p.party,
-  e.seed || '|' || e.build_id || '|' || e.player_count || '|' || array_to_string(p.party, '+') AS seed_key,
-  e.character, e.win, e.was_abandoned, e.ascension, e.run_time, e.played_at,
-  e.floors_reached, e.username
-FROM eligible e
-JOIN party p USING (seed, build_id, player_count, start_time)
+SELECT k.run_hash, k.seed, k.build_id, k.player_count, k.party,
+  k.seed || '|' || k.build_id || '|' || k.player_count || '|' || array_to_string(k.party, '+') AS seed_key,
+  l.evidence, k.run_hash = l.lead_run AS is_lead, l.lobby_win,
+  k.character, k.win, k.was_abandoned, k.ascension, k.run_time, k.played_at,
+  k.floors_reached, k.username
+FROM keyed k
+JOIN lobbies l ON l.seed = k.seed AND l.build_id = k.build_id AND l.player_count = k.player_count
+  AND l.party = k.party AND l.start_key = coalesce(k.start_time, -1)
 """
 
-FACTS_SQL = """
-CREATE OR REPLACE TEMP TABLE facts AS
--- Neow and other ancient offers: every relic on the offer screen, per seat.
-SELECT k.seed_key, 'ancient_offer' AS kind, upper(o.u.TextKey) AS id,
-  f.act + 1 AS act, f.floor_idx AS floor, ps.i AS seat
+# Facts are keyed by evidence (a lobby), not by run document, so co-op
+# siblings that share a blob contribute one copy. Each family is written to
+# its own fragment and sorted once at the end.
+FACT_FAMILIES = {
+    "ancient_offer": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'ancient_offer' AS kind, upper(o.u.TextKey) AS id,
+  f.act + 1 AS act, f.floor_idx AS floor, ps.i AS seat, count(*) AS n
 FROM run_keys k
 JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash),
   LATERAL (SELECT unnest(f.players) AS u, generate_subscripts(f.players,1) AS i) ps,
   LATERAL (SELECT unnest(ps.u.ancient_choice) AS u) o
-WHERE f.map_point_type = 'ancient' AND o.u.TextKey IS NOT NULL
-UNION ALL
--- The ancient itself, by act.
-SELECT k.seed_key, 'ancient', upper(split_part(f.room_model, '.', -1)), f.act + 1, f.floor_idx, 0
+WHERE k.is_lead AND f.map_point_type = 'ancient' AND o.u.TextKey IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "ancient": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'ancient', upper(split_part(f.room_model, '.', -1)), f.act + 1, f.floor_idx, 0, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash)
-WHERE f.map_point_type = 'ancient' AND f.room_model IS NOT NULL
-UNION ALL
--- Events visited (non-ancient event rooms).
-SELECT k.seed_key, 'event', upper(split_part(f.room_model, '.', -1)), f.act + 1, f.floor_idx, 0
+WHERE k.is_lead AND f.map_point_type = 'ancient' AND f.room_model IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "event": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'event', upper(split_part(f.room_model, '.', -1)), f.act + 1, f.floor_idx, 0, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash)
-WHERE f.room_type = 'event' AND f.map_point_type <> 'ancient' AND f.room_model IS NOT NULL
-UNION ALL
--- Bosses and elites.
-SELECT k.seed_key, CASE WHEN fe.room_type = 'boss' THEN 'boss' ELSE 'elite' END, fe.encounter, fe.act, fe.floor_idx, 0
+WHERE k.is_lead AND f.room_type = 'event' AND f.map_point_type <> 'ancient' AND f.room_model IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "boss_elite": """
+SELECT k.seed_key, k.evidence, k.lobby_win, CASE WHEN fe.room_type = 'boss' THEN 'boss' ELSE 'elite' END, fe.encounter, fe.act, fe.floor_idx, 0, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/floor_events.parquet') fe USING (run_hash)
-WHERE fe.room_type IN ('boss', 'elite') AND fe.encounter IS NOT NULL
-UNION ALL
--- Card rewards offered, per seat.
-SELECT k.seed_key, 'card_offer', upper(split_part(c.u.card.id, '.', -1)), f.act + 1, f.floor_idx, ps.i
+WHERE k.is_lead AND fe.room_type IN ('boss', 'elite') AND fe.encounter IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "card_offer": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'card_offer', upper(split_part(c.u.card.id, '.', -1)), f.act + 1, f.floor_idx, ps.i, count(*)
 FROM run_keys k
 JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash),
   LATERAL (SELECT unnest(f.players) AS u, generate_subscripts(f.players,1) AS i) ps,
   LATERAL (SELECT unnest(ps.u.card_choices) AS u) c
-WHERE c.u.card.id IS NOT NULL
-UNION ALL
--- Relics obtained, with the floor.
-SELECT k.seed_key, 'relic', r.relic, NULL, r.floor_added, r.player_idx
+WHERE k.is_lead AND c.u.card.id IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "relic": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'relic', r.relic, NULL, r.floor_added, r.player_idx, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/relics.parquet') r USING (run_hash)
-WHERE r.relic IS NOT NULL
-UNION ALL
--- Cards in the final deck.
-SELECT k.seed_key, 'deck', d.card, NULL, d.floor_added, d.player_idx
+WHERE k.is_lead AND r.relic IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+    "deck": """
+SELECT k.seed_key, k.evidence, k.lobby_win, 'deck', d.card, NULL, d.floor_added, d.player_idx, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/deck.parquet') d USING (run_hash)
-WHERE d.card IS NOT NULL
-"""
+WHERE k.is_lead AND d.card IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
+""",
+}
 
 SHOP_FACTS_SQL = """
-INSERT INTO facts
-SELECT k.seed_key, 'shop_' || it.u.kind, upper(it.u.id), s.act, s.floor, 0
+SELECT k.seed_key, k.evidence, k.lobby_win, 'shop_' || it.u.kind, upper(it.u.id), s.act, s.floor, 0, count(*)
 FROM run_keys k
 JOIN read_parquet('{shops}', union_by_name=true) s USING (run_hash),
   LATERAL (SELECT unnest(s.items) AS u) it
-WHERE it.u.id IS NOT NULL
+WHERE it.u.id IS NOT NULL AND it.u.kind IS NOT NULL
+GROUP BY 1,2,3,4,5,6,7,8
 """
 
-PROFILES_SQL = """
-CREATE OR REPLACE TEMP TABLE profiles AS
-WITH per_run AS (
-  SELECT k.*,
-    (SELECT list(DISTINCT upper(o.u.TextKey))
-       FROM read_parquet('{lake}/floors.parquet') f,
-         LATERAL (SELECT unnest(f.players) AS u) ps,
-         LATERAL (SELECT unnest(ps.u.ancient_choice) AS u) o
-      WHERE f.run_hash = k.run_hash AND f.act = 0 AND f.map_point_type = 'ancient') AS neow_offers,
-    (SELECT list(struct_pack(act := fe.act, id := fe.encounter) ORDER BY fe.act)
-       FROM read_parquet('{lake}/floor_events.parquet') fe
-      WHERE fe.run_hash = k.run_hash AND fe.room_type = 'boss') AS bosses,
-    (SELECT list(struct_pack(act := f.act + 1, id := upper(split_part(f.room_model, '.', -1))) ORDER BY f.act)
-       FROM read_parquet('{lake}/floors.parquet') f
-      WHERE f.run_hash = k.run_hash AND f.map_point_type = 'ancient' AND f.room_model IS NOT NULL) AS ancients,
-    (SELECT list(struct_pack(act := f.act + 1, floor := f.floor_idx, id := upper(split_part(f.room_model, '.', -1))) ORDER BY f.act, f.floor_idx)
-       FROM read_parquet('{lake}/floors.parquet') f
-      WHERE f.run_hash = k.run_hash AND f.room_type = 'event' AND f.map_point_type <> 'ancient' AND f.room_model IS NOT NULL) AS events,
-    (SELECT list(struct_pack(act := a.act + 1, path := a.path) ORDER BY a.act)
-       FROM (SELECT f.act, string_agg(f.map_point_type, ',' ORDER BY f.floor_idx) AS path
-               FROM read_parquet('{lake}/floors.parquet') f
-              WHERE f.run_hash = k.run_hash GROUP BY f.act) a) AS path
-  FROM run_keys k
-),
-best AS (
-  SELECT seed_key, run_hash AS best_run_hash, win AS best_win, run_time AS best_run_time,
-    floors_reached AS best_floors, character AS best_character, username AS best_username
-  FROM (
-    SELECT *, row_number() OVER (PARTITION BY seed_key
-      ORDER BY win DESC, was_abandoned ASC, CASE WHEN win THEN run_time END ASC, floors_reached DESC, played_at DESC) AS rn
-    FROM run_keys
-  ) WHERE rn = 1
+# One row per lobby, then per seed_key: outcomes count each lobby once.
+LOBBIES_SQL = """
+CREATE OR REPLACE TEMP TABLE lobbies AS
+SELECT seed_key, evidence, any_value(seed) AS seed, any_value(build_id) AS build_id,
+  any_value(player_count) AS player_count, any_value(party) AS party,
+  bool_or(win) AS win, bool_and(was_abandoned) AS was_abandoned,
+  min(ascension) AS ascension, min(run_time) AS run_time, max(played_at) AS played_at,
+  max(floors_reached) AS floors_reached, min(run_hash) AS lead_run,
+  any_value(username) AS username
+FROM run_keys GROUP BY seed_key, evidence
+"""
+
+BEST_SQL = """
+CREATE OR REPLACE TEMP TABLE best AS
+SELECT seed_key, evidence AS best_evidence, lead_run AS best_run_hash, win AS best_win,
+  run_time AS best_run_time, floors_reached AS best_floors, username AS best_username
+FROM (
+  SELECT *, row_number() OVER (PARTITION BY seed_key
+    ORDER BY win DESC, was_abandoned ASC, CASE WHEN win THEN run_time END ASC NULLS LAST,
+      floors_reached DESC NULLS LAST, played_at DESC NULLS LAST, lead_run) AS rn
+  FROM lobbies
+) WHERE rn = 1
+"""
+
+DISPLAY_SQL = """
+CREATE OR REPLACE TEMP TABLE display AS
+WITH distinct_facts AS (
+  SELECT DISTINCT seed_key, kind, id, act, floor FROM read_parquet('{facts}')
+  WHERE kind IN ('ancient_offer', 'ancient', 'event', 'boss')
 )
-SELECT p.seed_key, any_value(p.seed) AS seed, any_value(p.build_id) AS build_id,
-  any_value(p.player_count) AS player_count, any_value(p.party) AS party,
-  count(*) AS runs, sum(CASE WHEN p.win THEN 1 ELSE 0 END) AS wins,
-  sum(CASE WHEN p.was_abandoned THEN 1 ELSE 0 END) AS abandoned,
-  min(p.ascension) AS ascension_min, max(p.ascension) AS ascension_max,
-  max(p.played_at) AS last_played,
-  list_distinct(flatten(list(coalesce(p.neow_offers, [])))) AS neow_offers,
-  list_distinct(flatten(list(coalesce(p.bosses, [])))) AS bosses,
-  list_distinct(flatten(list(coalesce(p.ancients, [])))) AS ancients,
-  list_distinct(flatten(list(coalesce(p.events, [])))) AS events,
-  arg_max(p.path, p.floors_reached) AS path,
-  any_value(b.best_run_hash) AS best_run_hash, any_value(b.best_win) AS best_win,
-  any_value(b.best_run_time) AS best_run_time, any_value(b.best_floors) AS best_floors,
-  any_value(b.best_character) AS best_character, any_value(b.best_username) AS best_username,
-  list(p.run_hash) AS run_hashes
-FROM per_run p JOIN best b USING (seed_key)
-GROUP BY p.seed_key
+SELECT seed_key,
+  list(DISTINCT id ORDER BY id) FILTER (WHERE kind = 'ancient_offer' AND act = 1) AS neow_offers,
+  list(struct_pack(act := act, id := id) ORDER BY act, id) FILTER (WHERE kind = 'boss') AS bosses,
+  list(struct_pack(act := act, id := id) ORDER BY act, id) FILTER (WHERE kind = 'ancient') AS ancients,
+  list(struct_pack(act := act, floor := floor, id := id) ORDER BY act, floor, id) FILTER (WHERE kind = 'event') AS events
+FROM distinct_facts GROUP BY seed_key
+"""
+
+DETAIL_SQL = """
+CREATE OR REPLACE TEMP TABLE detail AS
+SELECT seed_key,
+  list(struct_pack(kind := kind, id := id, act := act, floor := floor, seat := seat, n := n)
+       ORDER BY kind, act NULLS LAST, floor NULLS LAST, seat, id)[1:{cap}] AS facts
+FROM (
+  SELECT seed_key, kind, id, act, floor, seat, max(n) AS n
+  FROM read_parquet('{facts}')
+  WHERE kind IN ('card_offer', 'relic', 'deck', 'elite', 'shop_card', 'shop_relic', 'shop_potion')
+  GROUP BY 1,2,3,4,5,6
+) GROUP BY seed_key
+"""
+
+PATH_SQL = """
+CREATE OR REPLACE TEMP TABLE best_path AS
+SELECT b.seed_key,
+  list(struct_pack(act := a.act + 1, path := a.path) ORDER BY a.act) AS path
+FROM best b
+JOIN (
+  SELECT f.run_hash, f.act, string_agg(f.map_point_type, ',' ORDER BY f.floor_idx) AS path
+  FROM read_parquet('{lake}/floors.parquet') f
+  WHERE f.run_hash IN (SELECT best_run_hash FROM best)
+  GROUP BY f.run_hash, f.act
+) a ON a.run_hash = b.best_run_hash
+GROUP BY b.seed_key
 """
 
 REPLAY_SQL = """
 CREATE OR REPLACE TEMP TABLE replay_by_seed AS
-SELECT k.seed_key, arg_max(k.run_hash, k.floors_reached) AS replay_run_hash
-FROM run_keys k JOIN (SELECT DISTINCT run_hash FROM read_parquet('{index}', union_by_name=true)) ri USING (run_hash)
-GROUP BY k.seed_key
+SELECT seed_key, arg_max(run_hash, floors_reached) AS replay_run_hash
+FROM (
+  SELECT k.seed_key, k.run_hash, coalesce(k.floors_reached, 0) AS floors_reached
+  FROM run_keys k
+  JOIN (SELECT DISTINCT run_hash FROM read_parquet('{index}', union_by_name=true)) ri USING (run_hash)
+) GROUP BY seed_key
 """
 
 SHOPS_SQL = """
 CREATE OR REPLACE TEMP TABLE shops_by_seed AS
-SELECT k.seed_key,
+SELECT rb.seed_key,
   list(struct_pack(act := s.act, floor := s.floor, gold := s.gold, removal_cost := s.removal_cost,
-    items := s.items) ORDER BY s.floor) AS shops
-FROM run_keys k
-JOIN read_parquet('{shops}', union_by_name=true) s USING (run_hash)
-JOIN (SELECT seed_key, arg_max(run_hash, floors_reached) AS run_hash
-      FROM run_keys k2 WHERE run_hash IN (SELECT DISTINCT run_hash FROM read_parquet('{shops}', union_by_name=true))
-      GROUP BY seed_key) pick ON pick.run_hash = s.run_hash AND pick.seed_key = k.seed_key
-GROUP BY k.seed_key
+    items := s.items) ORDER BY s.floor, s.s) AS shops
+FROM replay_by_seed rb
+JOIN read_parquet('{shops}', union_by_name=true) s ON s.run_hash = rb.replay_run_hash
+GROUP BY rb.seed_key
 """
 
 MAPS_SQL = """
 CREATE OR REPLACE TEMP TABLE maps_by_seed AS
-SELECT k.seed_key, arg_min(m.nodes, m.s) AS map_act1
-FROM run_keys k
-JOIN read_parquet('{maps}', union_by_name=true) m USING (run_hash)
+SELECT rb.seed_key, arg_min(m.nodes, m.s) AS map_act1
+FROM replay_by_seed rb
+JOIN read_parquet('{maps}', union_by_name=true) m ON m.run_hash = rb.replay_run_hash
 WHERE m.act = 1
-GROUP BY k.seed_key
+GROUP BY rb.seed_key
+"""
+
+PROFILES_SQL = """
+SELECT l.seed_key, any_value(l.seed) AS seed, any_value(l.build_id) AS build_id,
+  any_value(l.player_count) AS player_count, any_value(l.party) AS party,
+  count(*) AS runs, sum(CASE WHEN l.win THEN 1 ELSE 0 END) AS wins,
+  sum(CASE WHEN l.was_abandoned THEN 1 ELSE 0 END) AS abandoned,
+  min(l.ascension) AS ascension_min, max(l.ascension) AS ascension_max,
+  max(l.played_at) AS last_played,
+  any_value(b.best_run_hash) AS best_run_hash, any_value(b.best_win) AS best_win,
+  any_value(b.best_run_time) AS best_run_time, any_value(b.best_floors) AS best_floors,
+  any_value(b.best_username) AS best_username,
+  list(l.lead_run ORDER BY l.win DESC, l.played_at DESC NULLS LAST, l.lead_run)[1:{max_runs}] AS run_hashes,
+  any_value(d.neow_offers) AS neow_offers, any_value(d.bosses) AS bosses,
+  any_value(d.ancients) AS ancients, any_value(d.events) AS events,
+  any_value(bp.path) AS path, any_value(dt.facts) AS facts
+  {extra_cols}
+FROM lobbies l
+JOIN best b USING (seed_key)
+LEFT JOIN display d USING (seed_key)
+LEFT JOIN best_path bp USING (seed_key)
+LEFT JOIN detail dt USING (seed_key)
+{joins}
+GROUP BY l.seed_key
+ORDER BY l.seed_key
 """
 
 
@@ -215,60 +289,86 @@ def build() -> dict:
 
     started = time.time()
     con = lake_stats._connect(build=True)
-    lake = str(LAKE)
-    con.execute(ELIGIBLE_SQL.format(lake=lake, max_asc=MAX_ASCENSION))
-    con.execute(KEYS_SQL)
-    con.execute(FACTS_SQL.format(lake=lake))
-    shops = _replay_glob("shops")
-    index = _replay_glob("replay_index")
-    maps = _replay_glob("maps")
-    if shops:
-        con.execute(SHOP_FACTS_SQL.format(shops=shops))
-    con.execute(PROFILES_SQL.format(lake=lake))
-    extra_cols = []
-    joins = []
-    if index:
-        con.execute(REPLAY_SQL.format(index=index))
-        extra_cols.append("rb.replay_run_hash")
-        joins.append("LEFT JOIN replay_by_seed rb USING (seed_key)")
-    else:
-        extra_cols.append("NULL::VARCHAR AS replay_run_hash")
-    if shops:
-        con.execute(SHOPS_SQL.format(shops=shops))
-        extra_cols.append("sb.shops")
-        joins.append("LEFT JOIN shops_by_seed sb USING (seed_key)")
-    else:
-        extra_cols.append("NULL AS shops")
-    if maps:
-        con.execute(MAPS_SQL.format(maps=maps))
-        extra_cols.append("mb.map_act1")
-        joins.append("LEFT JOIN maps_by_seed mb USING (seed_key)")
-    else:
-        extra_cols.append("NULL AS map_act1")
-
-    facts_tmp = LAKE / f"{FACTS_NAME}.{os.getpid()}.tmp"
-    profiles_tmp = LAKE / f"{PROFILES_NAME}.{os.getpid()}.tmp"
-    con.execute(
-        f"COPY (SELECT DISTINCT seed_key, kind, id, act, floor, seat FROM facts ORDER BY kind, id, seed_key) "
-        f"TO '{facts_tmp}' (FORMAT parquet, COMPRESSION zstd, ROW_GROUP_SIZE 100000)"
-    )
-    con.execute(
-        f"COPY (SELECT p.*, {', '.join(extra_cols)} FROM profiles p {' '.join(joins)} ORDER BY p.seed_key) "
-        f"TO '{profiles_tmp}' (FORMAT parquet, COMPRESSION zstd)"
-    )
-    facts_rows = con.execute(
-        f"SELECT count(*) FROM read_parquet('{facts_tmp}')"
-    ).fetchone()[0]
-    seeds = con.execute(
-        f"SELECT count(*) FROM read_parquet('{profiles_tmp}')"
-    ).fetchone()[0]
-    builds = [
-        r[0]
-        for r in con.execute(
-            f"SELECT build_id FROM read_parquet('{profiles_tmp}') GROUP BY 1 ORDER BY count(*) DESC"
-        ).fetchall()
-    ]
-    con.close()
+    lake = _q(LAKE)
+    work = LAKE / f"seed_profiles.work.{os.getpid()}"
+    if work.exists():
+        shutil.rmtree(work)
+    work.mkdir(parents=True)
+    try:
+        con.execute(ELIGIBLE_SQL.format(lake=lake, max_asc=MAX_ASCENSION))
+        con.execute(KEYS_SQL.format(lake=lake))
+        shops = _replay_glob("shops")
+        index = _replay_glob("replay_index")
+        maps = _replay_glob("maps")
+        families = dict(FACT_FAMILIES)
+        if shops:
+            families["shop"] = SHOP_FACTS_SQL
+        for name, sql in families.items():
+            fragment = work / f"facts_{name}.parquet"
+            body = sql.format(lake=lake, shops=_q(shops) if shops else "")
+            con.execute(
+                f"COPY (SELECT seed_key, evidence, win, kind, id, act::INTEGER AS act, floor::INTEGER AS floor, "
+                f"seat::INTEGER AS seat, n::INTEGER AS n FROM ({body}) "
+                f"t(seed_key, evidence, win, kind, id, act, floor, seat, n)) "
+                f"TO '{_q(fragment)}' (FORMAT parquet, COMPRESSION zstd)"
+            )
+        facts_tmp = LAKE / f"{FACTS_NAME}.{os.getpid()}.tmp"
+        con.execute(
+            f"COPY (SELECT * FROM read_parquet('{_q(work)}/facts_*.parquet') ORDER BY kind, id, seed_key, evidence) "
+            f"TO '{_q(facts_tmp)}' (FORMAT parquet, COMPRESSION zstd, ROW_GROUP_SIZE 100000)"
+        )
+        facts = _q(facts_tmp)
+        con.execute(LOBBIES_SQL)
+        con.execute(BEST_SQL)
+        con.execute(DISPLAY_SQL.format(facts=facts))
+        con.execute(DETAIL_SQL.format(facts=facts, cap=MAX_DETAIL_FACTS))
+        con.execute(PATH_SQL.format(lake=lake))
+        extra_cols: list[str] = []
+        joins: list[str] = []
+        if index:
+            con.execute(REPLAY_SQL.format(index=_q(index)))
+            extra_cols.append("any_value(rb.replay_run_hash) AS replay_run_hash")
+            joins.append("LEFT JOIN replay_by_seed rb USING (seed_key)")
+            if shops:
+                con.execute(SHOPS_SQL.format(shops=_q(shops)))
+                extra_cols.append("any_value(sb.shops) AS shops")
+                joins.append("LEFT JOIN shops_by_seed sb USING (seed_key)")
+            else:
+                extra_cols.append("NULL AS shops")
+            if maps:
+                con.execute(MAPS_SQL.format(maps=_q(maps)))
+                extra_cols.append("any_value(mb.map_act1) AS map_act1")
+                joins.append("LEFT JOIN maps_by_seed mb USING (seed_key)")
+            else:
+                extra_cols.append("NULL AS map_act1")
+        else:
+            extra_cols.extend(
+                [
+                    "NULL::VARCHAR AS replay_run_hash",
+                    "NULL AS shops",
+                    "NULL AS map_act1",
+                ]
+            )
+        profiles_tmp = LAKE / f"{PROFILES_NAME}.{os.getpid()}.tmp"
+        con.execute(
+            f"COPY ({PROFILES_SQL.format(max_runs=MAX_RUN_HASHES, extra_cols=', ' + ', '.join(extra_cols), joins=' '.join(joins))}) "
+            f"TO '{_q(profiles_tmp)}' (FORMAT parquet, COMPRESSION zstd)"
+        )
+        facts_rows = con.execute(
+            f"SELECT count(*) FROM read_parquet('{facts}')"
+        ).fetchone()[0]
+        seeds = con.execute(
+            f"SELECT count(*) FROM read_parquet('{_q(profiles_tmp)}')"
+        ).fetchone()[0]
+        builds = [
+            r[0]
+            for r in con.execute(
+                f"SELECT build_id FROM read_parquet('{_q(profiles_tmp)}') GROUP BY 1 ORDER BY count(*) DESC"
+            ).fetchall()
+        ]
+    finally:
+        con.close()
+        shutil.rmtree(work, ignore_errors=True)
     facts_tmp.replace(LAKE / FACTS_NAME)
     profiles_tmp.replace(LAKE / PROFILES_NAME)
     meta = {
