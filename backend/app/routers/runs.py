@@ -2308,7 +2308,9 @@ def get_seed_finder_meta(request: Request, response: Response):
 
 
 @router.get("/seed-finder/random", tags=["Runs"], include_in_schema=False)
-@limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_finder_random", "20/minute"))
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_seed_finder_random", "20/minute")
+)
 def get_seed_finder_random(
     request: Request,
     response: Response,
