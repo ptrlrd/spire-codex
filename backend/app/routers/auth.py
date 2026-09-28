@@ -468,6 +468,33 @@ async def thanks_listing(request: Request):
     return supporters.set_thanks_listing(user["_id"], listed)
 
 
+@router.post("/refresh")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.refresh", "30/minute"))
+def refresh_token(request: Request):
+    """Swap a valid, unexpired token for a fresh one so long-running clients
+    (the overlay stays open for days) never fall off the 7 day expiry. The
+    old token keeps working until it expires; nothing is revoked here."""
+    from fastapi.responses import JSONResponse
+
+    from ..services.auth_jwt import _JWT_EXPIRY_DAYS, create_token, set_auth_cookie
+
+    user = require_user(request)
+    token = create_token(
+        user_id=str(user["_id"]),
+        steam_id=user.get("steam_id"),
+        discord_id=user.get("discord_id"),
+    )
+    response = JSONResponse(
+        {
+            "token": token,
+            "user_id": str(user["_id"]),
+            "expires_in_days": _JWT_EXPIRY_DAYS,
+        }
+    )
+    set_auth_cookie(response, token)
+    return response
+
+
 @router.patch("/profile-privacy")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.profile_privacy", "10/minute"))
 async def profile_privacy(request: Request):
