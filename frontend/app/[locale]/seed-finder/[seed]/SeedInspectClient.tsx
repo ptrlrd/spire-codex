@@ -46,7 +46,7 @@ interface Variant {
   neow_offers: string[];
   bosses: { act: number; id: string }[];
   ancients: { act: number; id: string }[];
-  events: { act: number; floor: number; id: string }[];
+  events: { act: number; floor: number | null; id: string }[];
   path: { act: number; path: string }[];
   best_run: {
     run_hash: string;
@@ -135,7 +135,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
         const idx = wantedBuild
           ? Math.max(
               0,
-              p.variants.findIndex((v) => v.build_id === wantedBuild),
+              p.variants.findIndex((v) => v.build_id === wantedBuild && (!wantedParty || v.party.join(",") === wantedParty)),
             )
           : 0;
         setActive(idx);
@@ -147,7 +147,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
     return () => {
       dead = true;
     };
-  }, [seed, wantedBuild, tick]);
+  }, [seed, wantedBuild, wantedParty, tick]);
 
   useEffect(() => {
     let dead = false;
@@ -179,7 +179,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
     const out = new Map<string, Fact[]>();
     for (const f of variant?.facts ?? []) {
       if (f.kind !== "card_offer") continue;
-      const key = `${f.act ?? 0}-${f.floor ?? 0}`;
+      const key = `${f.act ?? "?"}-${f.floor ?? "?"}`;
       out.set(key, [...(out.get(key) ?? []), f]);
     }
     return [...out.entries()].sort((a, b) => {
@@ -376,12 +376,12 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                   </div>
                   <div>
                     <dt className="text-[var(--text-muted)]">
-                      {t("Events seen")}
+                      {t(variant.predicted ? "Event queue" : "Events seen")}
                     </dt>
                     <dd className="text-[var(--text-primary)]">
                       {variant.events.length
                         ? variant.events
-                            .map((e) => `${e.act}-${e.floor} ${nameOf(e.id)}`)
+                            .map((e) => `${e.floor == null ? e.act + "." : e.act + "-" + e.floor} ${nameOf(e.id)}`)
                             .join(", ")
                         : "·"}
                     </dd>
@@ -391,7 +391,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
 
               <div className={card}>
                 <div className={heading}>
-                  {t("Card rewards seen, by floor")}
+                  {t(variant.predicted ? "Predicted card offers" : "Card rewards seen, by floor")}
                 </div>
                 {rewardsByFloor.length === 0 ? (
                   <p className="text-sm text-[var(--text-muted)]">·</p>
@@ -400,7 +400,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                     {rewardsByFloor.map(([key, facts]) => (
                       <li key={key} className="flex gap-3">
                         <span className="w-12 shrink-0 font-mono text-xs text-[var(--text-muted)] pt-0.5">
-                          {key}
+                          {key.endsWith("-?") ? t("act {n}", { n: key.split("-")[0] }) : key}
                         </span>
                         <span className="text-[var(--text-primary)]">
                           {[...new Set(facts.map((f) => f.id))]
@@ -421,7 +421,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                       <div key={i} className="text-sm">
                         <div className="text-xs text-[var(--text-muted)] mb-1">
                           {t("act {n}", { n: s.act ?? "?" })} ·{" "}
-                          {t("floor {n}", { n: s.floor ?? "?" })}
+                          {variant.predicted ? t("Predicted shop {n}", { n: i + 1 }) : t("floor {n}", { n: s.floor ?? "?" })}
                           {s.removal_cost != null &&
                             ` · ${t("removal {n} gold", { n: s.removal_cost })}`}
                         </div>
@@ -452,7 +452,7 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
 
               {deckFacts.length > 0 && (
                 <div className={card}>
-                  <div className={heading}>{t("Final deck")}</div>
+                  <div className={heading}>{t(variant.predicted ? "Starting deck" : "Final deck")}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {deckFacts.map(([id, n]) => (
                       <span
