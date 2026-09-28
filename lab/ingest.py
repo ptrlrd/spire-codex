@@ -451,6 +451,14 @@ def main() -> None:
         print(f"seed profiles failed: {e}", flush=True)
     _mark("seed_profiles")
     try:
+        import seed_predict
+
+        predictions = seed_predict.build()
+        print(f"seed predictions: {predictions}", flush=True)
+    except Exception as e:
+        print(f"seed predictions failed: {e}", flush=True)
+    _mark("seed_predict")
+    try:
         import export_dump
 
         t_dump = time.time()

@@ -28,6 +28,8 @@ SERVE_FILES = (
     "player_elo.json",
     "seed_facts.parquet",
     "seed_profiles.parquet",
+    "seed_facts_predicted.parquet",
+    "seed_profiles_predicted.parquet",
     "seed_profiles_meta.json",
 )
 
