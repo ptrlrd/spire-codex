@@ -12,6 +12,7 @@ import AnnouncementBadge, { useAnnouncementUnread } from "./AnnouncementBadge";
 import { useAuth } from "@/app/contexts/AuthContext";
 import DiscordIcon from "./DiscordIcon";
 import ThemeToggle from "./ThemeToggle";
+import Wordmark from "./Wordmark";
 import {
   recordRecent,
   getRecent,
@@ -579,12 +580,7 @@ export default function Navbar() {
                 aria-hidden="true"
                 className="sc-nav-logo--b h-8 w-auto sm:hidden"
               />
-              <span className="hidden sm:inline text-xl font-bold text-[var(--accent-gold)]">
-                SPIRE
-              </span>
-              <span className="hidden sm:inline text-xl font-bold text-[var(--text-primary)]">
-                CODEX
-              </span>
+              <Wordmark className="hidden sm:inline-flex" />
             </Link>
             {/* Desktop nav (lg+): groups + Live, tight against the logo */}
             <div className="hidden lg:flex items-center gap-1">
@@ -808,10 +804,7 @@ export default function Navbar() {
                   className="fixed top-0 left-0 z-50 h-screen w-screen flex flex-col bg-[var(--bg-primary)]"
                 >
                   <div className="flex items-center justify-between h-16 px-5 border-b border-[var(--border-subtle)] shrink-0">
-                    <span className="text-xl font-bold">
-                      <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
-                      <span className="text-[var(--text-primary)]">CODEX</span>
-                    </span>
+                    <Wordmark />
                     <button
                       onClick={() => setOpen(false)}
                       aria-label={t("Close menu")}

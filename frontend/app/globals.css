@@ -139,6 +139,100 @@
     0 1px 2px rgba(76, 79, 105, 0.1), 0 2px 6px rgba(76, 79, 105, 0.08);
 }
 
+/* Character themes: the dark ground and accent follow one character. Every
+   text and accent token is checked to 4.5:1 against the card and hover
+   surfaces, and the status colours keep their meaning unchanged. Generated
+   from the character colours; see CONTRIBUTING.md, "Colors". */
+:root[data-theme="ironclad"] {
+  --bg-primary: #120a0a;
+  --bg-secondary: #1b0f0e;
+  --bg-card: #241514;
+  --bg-card-hover: #321c1b;
+  --scrim: #000000;
+  --text-primary: #e2d6d5;
+  --text-secondary: #c6b5b3;
+  --text-muted: #b39f9e;
+  --text-on-accent: #120a0a;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3f2827;
+  --border-accent: #593936;
+  --accent-gold: #e06454;
+  --accent-gold-light: #e27061;
+  --shadow-card: none;
+}
+
+:root[data-theme="silent"] {
+  --bg-primary: #0a120e;
+  --bg-secondary: #0e1b14;
+  --bg-card: #14241c;
+  --bg-card-hover: #1b3226;
+  --scrim: #000000;
+  --text-primary: #d5e2db;
+  --text-secondary: #b3c6bd;
+  --text-muted: #9eb3a8;
+  --text-on-accent: #0a120e;
+  --text-on-fill: #ffffff;
+  --border-subtle: #273f33;
+  --border-accent: #365947;
+  --accent-gold: #29ac6a;
+  --accent-gold-light: #29ac6a;
+  --shadow-card: none;
+}
+
+:root[data-theme="defect"] {
+  --bg-primary: #090e13;
+  --bg-secondary: #0d141b;
+  --bg-card: #131c26;
+  --bg-card-hover: #192633;
+  --scrim: #000000;
+  --text-primary: #d5dbe2;
+  --text-secondary: #b3bdc6;
+  --text-muted: #9ea8b3;
+  --text-on-accent: #090e13;
+  --text-on-fill: #ffffff;
+  --border-subtle: #253341;
+  --border-accent: #34475b;
+  --accent-gold: #5792c7;
+  --accent-gold-light: #5f97ca;
+  --shadow-card: none;
+}
+
+:root[data-theme="necrobinder"] {
+  --bg-primary: #120a0f;
+  --bg-secondary: #1a0f17;
+  --bg-card: #23151f;
+  --bg-card-hover: #301c2a;
+  --scrim: #000000;
+  --text-primary: #e2d5de;
+  --text-secondary: #c6b3c0;
+  --text-muted: #b39eac;
+  --text-on-accent: #120a0f;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3e2837;
+  --border-accent: #56394d;
+  --accent-gold: #c87095;
+  --accent-gold-light: #cb779a;
+  --shadow-card: none;
+}
+
+:root[data-theme="regent"] {
+  --bg-primary: #120e0a;
+  --bg-secondary: #1b140e;
+  --bg-card: #241b14;
+  --bg-card-hover: #32251b;
+  --scrim: #000000;
+  --text-primary: #e2dbd5;
+  --text-secondary: #c6bcb3;
+  --text-muted: #b3a89e;
+  --text-on-accent: #120e0a;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3f3227;
+  --border-accent: #594636;
+  --accent-gold: #f07c1e;
+  --accent-gold-light: #f07c1e;
+  --shadow-card: none;
+}
+
 /* Light-mode fixes that are about layout, not palette. Palette differences
    live in the tokens above. */
 :root[data-theme="light"] .bt-count,
