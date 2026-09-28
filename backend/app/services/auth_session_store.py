@@ -32,6 +32,8 @@ _SESSION_FIELDS = (
     "token",
     "needs_email",
     "error",
+    "web",
+    "delivered_at",
 )
 
 
@@ -47,6 +49,8 @@ def _blank_session() -> dict:
         "token": None,
         "needs_email": False,
         "error": None,
+        "web": False,
+        "delivered_at": None,
     }
 
 

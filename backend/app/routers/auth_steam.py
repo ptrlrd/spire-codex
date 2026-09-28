@@ -27,6 +27,7 @@ from __future__ import annotations
 
 import logging
 import os
+import time
 import re
 import urllib.parse
 from typing import Optional
@@ -47,6 +48,8 @@ from ..services.auth_jwt import (
 from ..services.auth_session_store import SESSION_TTL_SECONDS
 
 logger = logging.getLogger("spire-codex.auth")
+
+POLL_REPLAY_SECONDS = 60.0
 
 router = APIRouter(prefix="/api/auth/steam", tags=["Auth"])
 limiter = shared_limiter
@@ -308,7 +311,7 @@ async def callback(request: Request) -> HTMLResponse:
     # on the correct origin. In production (same domain) the cookie
     # approach works directly; in local dev (different ports) we need
     # this token handoff.
-    if token:
+    if token and session.get("web"):
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
         auth_session_store.pop_session(session_id)
         # A link lands back on settings (where the connect button lives); a
@@ -340,6 +343,13 @@ async def poll(session_id: str) -> JSONResponse:
     session = auth_session_store.get_session(session_id)
     if not session:
         raise HTTPException(status_code=404, detail="session not found or expired")
+    delivered_at = session.get("delivered_at")
+    if (
+        delivered_at is not None
+        and time.time() - float(delivered_at) > POLL_REPLAY_SECONDS
+    ):
+        auth_session_store.pop_session(session_id)
+        raise HTTPException(status_code=404, detail="session not found or expired")
 
     if session.get("error"):
         # Returning the error and dropping the session — the client should
@@ -351,8 +361,11 @@ async def poll(session_id: str) -> JSONResponse:
     if session.get("steamid") is None:
         return JSONResponse({"status": "pending"})
 
-    # Identity ready. Drop the session so a third party who somehow
-    # snooped the session_id can't replay-poll.
+    # Identity ready. The first read stamps the session; re-reads keep
+    # working for POLL_REPLAY_SECONDS so a retried poll after a dropped
+    # response still gets the token, then the session is gone.
+    if delivered_at is None:
+        auth_session_store.update_session(session_id, delivered_at=time.time())
     token = session.get("token")
     payload = {
         "status": "ok",
@@ -362,8 +375,6 @@ async def poll(session_id: str) -> JSONResponse:
         "token": token,
         "needs_email": session.get("needs_email", False),
     }
-    auth_session_store.pop_session(session_id)
-
     response = JSONResponse(payload)
     if token:
         from ..services.auth_jwt import set_auth_cookie
