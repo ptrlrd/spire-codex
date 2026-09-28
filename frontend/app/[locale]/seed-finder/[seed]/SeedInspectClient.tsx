@@ -5,6 +5,8 @@ import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import CharacterTag from "@/app/components/CharacterTag";
+import LiveMap from "@/app/[locale]/live/LiveMap";
+import type { Coord, LiveMapData } from "@/app/[locale]/live/live-shared";
 import LabUnavailable, {
   type LabUnavailableKind,
 } from "@/app/components/LabUnavailable";
@@ -135,7 +137,11 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
         const idx = wantedBuild
           ? Math.max(
               0,
-              p.variants.findIndex((v) => v.build_id === wantedBuild && (!wantedParty || v.party.join(",") === wantedParty)),
+              p.variants.findIndex(
+                (v) =>
+                  v.build_id === wantedBuild &&
+                  (!wantedParty || v.party.join(",") === wantedParty),
+              ),
             )
           : 0;
         setActive(idx);
@@ -208,19 +214,38 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
     [variant],
   );
 
-  const mapRows = useMemo(() => {
-    const nodes = variant?.map_act1 ?? [];
-    const rows = new Map<number, { x: number; kind: string }[]>();
-    for (const n of nodes) {
-      const [xs, ys] = n.coord.split(",");
-      const x = parseInt(xs, 10);
-      const y = parseInt(ys, 10);
-      if (!Number.isFinite(x) || !Number.isFinite(y)) continue;
-      rows.set(y, [...(rows.get(y) ?? []), { x, kind: n.kind }]);
+  const map = useMemo<LiveMapData>(() => {
+    const points = variant?.map_act1 ?? [];
+    const coordinates = new Map<string, Coord>();
+    const nodes: LiveMapData["nodes"] = [];
+    const edges: LiveMapData["edges"] = [];
+    const kinds: Record<string, string> = {
+      rest_site: "restsite",
+      rest: "restsite",
+      merchant: "shop",
+    };
+    for (const point of points) {
+      const [col, row] = point.coord.split(",").map(Number);
+      if (!Number.isFinite(col) || !Number.isFinite(row)) continue;
+      coordinates.set(point.coord, [col, row]);
+      nodes.push([col, row, kinds[point.kind] ?? point.kind]);
     }
-    return [...rows.entries()]
-      .sort((a, b) => b[0] - a[0])
-      .map(([y, cells]) => ({ y, cells: cells.sort((a, b) => a.x - b.x) }));
+    for (const point of points) {
+      const from = coordinates.get(point.coord);
+      if (!from) continue;
+      for (const child of point.children) {
+        let to = coordinates.get(child);
+        if (!to) {
+          const [col, row] = child.split(",").map(Number);
+          if (!Number.isFinite(col) || !Number.isFinite(row)) continue;
+          to = [col, row];
+          coordinates.set(child, to);
+          nodes.push([col, row, "boss"]);
+        }
+        edges.push([...from, ...to]);
+      }
+    }
+    return { act: 1, nodes, edges };
   }, [variant]);
 
   const card =
@@ -381,7 +406,11 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                     <dd className="text-[var(--text-primary)]">
                       {variant.events.length
                         ? variant.events
-                            .map((e) => `${e.floor == null ? e.act + "." : e.act + "-" + e.floor} ${nameOf(e.id)}`)
+                            .map((e) =>
+                              variant.predicted
+                                ? nameOf(e.id)
+                                : `${e.floor == null ? e.act + "." : e.act + "-" + e.floor} ${nameOf(e.id)}`,
+                            )
                             .join(", ")
                         : "·"}
                     </dd>
@@ -391,7 +420,11 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
 
               <div className={card}>
                 <div className={heading}>
-                  {t(variant.predicted ? "Predicted card offers" : "Card rewards seen, by floor")}
+                  {t(
+                    variant.predicted
+                      ? "Predicted card offers"
+                      : "Card rewards seen, by floor",
+                  )}
                 </div>
                 {rewardsByFloor.length === 0 ? (
                   <p className="text-sm text-[var(--text-muted)]">·</p>
@@ -400,7 +433,9 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                     {rewardsByFloor.map(([key, facts]) => (
                       <li key={key} className="flex gap-3">
                         <span className="w-12 shrink-0 font-mono text-xs text-[var(--text-muted)] pt-0.5">
-                          {key.endsWith("-?") ? t("act {n}", { n: key.split("-")[0] }) : key}
+                          {key.endsWith("-?")
+                            ? t("act {n}", { n: key.split("-")[0] })
+                            : key}
                         </span>
                         <span className="text-[var(--text-primary)]">
                           {[...new Set(facts.map((f) => f.id))]
@@ -421,7 +456,9 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                       <div key={i} className="text-sm">
                         <div className="text-xs text-[var(--text-muted)] mb-1">
                           {t("act {n}", { n: s.act ?? "?" })} ·{" "}
-                          {variant.predicted ? t("Predicted shop {n}", { n: i + 1 }) : t("floor {n}", { n: s.floor ?? "?" })}
+                          {variant.predicted
+                            ? t("Predicted shop {n}", { n: i + 1 })
+                            : t("floor {n}", { n: s.floor ?? "?" })}
                           {s.removal_cost != null &&
                             ` · ${t("removal {n} gold", { n: s.removal_cost })}`}
                         </div>
@@ -452,7 +489,9 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
 
               {deckFacts.length > 0 && (
                 <div className={card}>
-                  <div className={heading}>{t(variant.predicted ? "Starting deck" : "Final deck")}</div>
+                  <div className={heading}>
+                    {t(variant.predicted ? "Starting deck" : "Final deck")}
+                  </div>
                   <div className="flex flex-wrap gap-1.5">
                     {deckFacts.map(([id, n]) => (
                       <span
@@ -510,7 +549,9 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                     <div
                       className={`text-xl font-bold ${variant.wins > 0 ? "text-success" : "text-[var(--text-primary)]"}`}
                     >
-                      {variant.win_rate != null ? `${variant.win_rate}%` : "·"}
+                      {variant.runs > 0 && variant.win_rate != null
+                        ? `${variant.win_rate}%`
+                        : "-"}
                     </div>
                   </div>
                 </div>
@@ -553,47 +594,20 @@ export default function SeedInspectClient({ seed }: { seed: string }) {
                 </Link>
               </div>
 
-              {mapRows.length > 0 && (
+              {map.nodes.length > 0 && (
                 <div className={card}>
                   <div className={heading}>{t("Act 1 map")}</div>
-                  <div className="grid gap-0.5 font-mono text-xs">
-                    {mapRows.map((row) => (
-                      <div key={row.y} className="flex gap-1">
-                        <span className="w-5 text-[var(--text-muted)]">
-                          {row.y + 1}
-                        </span>
-                        {Array.from({ length: 7 }, (_, x) => {
-                          const cell = row.cells.find((c) => c.x === x);
-                          return (
-                            <span
-                              key={x}
-                              title={cell?.kind}
-                              className={`w-5 text-center ${
-                                cell
-                                  ? cell.kind === "boss" ||
-                                    cell.kind === "elite"
-                                    ? "text-danger"
-                                    : cell.kind === "shop" ||
-                                        cell.kind === "merchant"
-                                      ? "text-[var(--accent-gold)]"
-                                      : "text-[var(--text-primary)]"
-                                  : "text-[var(--border-subtle)]"
-                              }`}
-                            >
-                              {cell
-                                ? (NODE_GLYPH[cell.kind] ??
-                                  cell.kind.charAt(0).toUpperCase())
-                                : "·"}
-                            </span>
-                          );
-                        })}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="mt-2 text-[10px] text-[var(--text-muted)]">
-                    M {t("monster")} · E {t("elite")} · R {t("rest")} · ${" "}
-                    {t("shop")} · T {t("treasure")} · ? {t("unknown")} · B{" "}
-                    {t("boss")}
+                  <div className="max-h-[70vh] overflow-auto">
+                    <LiveMap
+                      map={map}
+                      character={variant.party[0]}
+                      route={{
+                        boss: variant.bosses.find((boss) => boss.act === 1),
+                        ancient: variant.ancients.find(
+                          (ancient) => ancient.act === 1,
+                        ),
+                      }}
+                    />
                   </div>
                 </div>
               )}

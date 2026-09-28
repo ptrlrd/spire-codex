@@ -1,5 +1,22 @@
 // Auto-added UI translations (batch 9o): the rebuilt Seed Finder and the seed inspect page.
 export const X9O: Record<string, Record<string, string>> = {
+  "Predicted shop {n}": {
+    eng: "Predicted shop {n}",
+    deu: "Vorhergesagter Laden {n}",
+    esp: "Tienda prevista {n}",
+    fra: "Boutique prévue {n}",
+    ita: "Negozio previsto {n}",
+    jpn: "予測ショップ {n}",
+    kor: "예측 상점 {n}",
+    pol: "Przewidywany sklep {n}",
+    ptb: "Loja prevista {n}",
+    rus: "Прогнозируемый магазин {n}",
+    spa: "Tienda prevista {n}",
+    tha: "ร้านค้าที่คาดการณ์ {n}",
+    tur: "Öngörülen mağaza {n}",
+    zhs: "预测商店 {n}",
+    zht: "預測商店 {n}",
+  },
   "Neow offers": {
     eng: "Neow offers",
     deu: "Neows Angebote",
