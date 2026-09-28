@@ -401,8 +401,7 @@ def test_full_match_needs_one_run_that_showed_everything(lake):
         [svc.Predicate("neow", "POMANDER"), svc.Predicate("relic", "ANCHOR")],
         svc.Scope(),
     )
-    row = next(r for r in both["results"] if r["seed"] == "EEEE")
-    assert row["full_match"] is False and len(row["matched"]) == 1
+    assert "EEEE" not in _names(both)
     one = svc.search(
         [
             svc.Predicate("neow", "LEAD_PAPERWEIGHT"),

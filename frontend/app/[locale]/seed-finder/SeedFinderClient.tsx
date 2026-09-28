@@ -592,7 +592,7 @@ export default function SeedFinderClient() {
       </p>
       <p className="text-xs text-[var(--text-muted)] mb-6 max-w-3xl">
         {t(
-          "Main and beta hash seeds differently, so pick the version you play. Full matches come first, then the seeds with the most wins.",
+          "Main and beta hash seeds differently, so pick the version you play. Every result is a lobby that showed everything you asked for, most wins first.",
         )}
         {indexInfo?.seeds
           ? ` ${t("{n} seeds indexed.", { n: indexInfo.seeds.toLocaleString() })}`
@@ -915,7 +915,7 @@ export default function SeedFinderClient() {
           {results.map((r) => (
             <div
               key={`${r.seed}:${r.build_id}:${r.party.join("+")}`}
-              className={`${card} ${r.full_match ? "" : "opacity-90"}`}
+              className={card}
             >
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <button
@@ -942,20 +942,6 @@ export default function SeedFinderClient() {
                     {t("{n} players", { n: r.players })}
                   </span>
                 )}
-                <span
-                  className={`ml-auto text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full border ${
-                    r.full_match
-                      ? "border-success/40 text-success"
-                      : "border-[var(--border-subtle)] text-[var(--text-muted)]"
-                  }`}
-                >
-                  {r.full_match
-                    ? t("full match")
-                    : t("{m} of {n}", {
-                        m: r.matched.length,
-                        n: r.matched.length + r.missing.length,
-                      })}
-                </span>
               </div>
               <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-[var(--text-secondary)] mb-2">
                 <span>
@@ -1037,14 +1023,6 @@ export default function SeedFinderClient() {
                           .join(" ")}
                       </span>
                     ) : null}
-                  </span>
-                ))}
-                {r.missing.map((tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center rounded-md border border-[var(--border-subtle)] px-2 py-0.5 text-xs text-[var(--text-muted)] line-through"
-                  >
-                    {labelFor(tag)}
                   </span>
                 ))}
               </div>
