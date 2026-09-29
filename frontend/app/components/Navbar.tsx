@@ -122,6 +122,7 @@ const NAV_GROUPS: NavGroup[] = [
     links: [
       { href: "/tier-list-maker", label: "Tier List Maker" },
       { href: "/seed-finder", label: "Seed Finder" },
+      { href: "/sandbox", label: "Combat Sandbox" },
       { href: "/deck-builder", label: "Deck Builder" },
       { href: "/mod", label: "Steam Mod" },
       { href: "/exporter", label: "Art Exporter" },
