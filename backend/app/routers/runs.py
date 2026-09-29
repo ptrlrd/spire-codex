@@ -372,6 +372,7 @@ def list_runs(
     shop: str | None = None,
     today: bool = False,
     has_replay: bool | None = None,
+    steam_id: str | None = None,
     page: int = 1,
     limit: int = 50,
 ):
@@ -383,6 +384,10 @@ def list_runs(
 
     `has_replay=true` keeps only runs with a replay journal to watch.
 
+    `steam_id=<SteamID64>` lists the runs of the account linked to that Steam
+    ID (what the in-game mod sends); an unknown Steam ID lists nothing rather
+    than everything.
+
     `shop` matches runs that bought the item (card, relic, or potion) at a
     shop; comma-separated ids AND together like `card`/`relic`. Mongo only —
     the dev SQLite fallback ignores it, like the card/relic filters.
@@ -391,6 +396,25 @@ def list_runs(
     # case-insensitive value (the runs are matched on username_lower).
     if username:
         username = username.strip().lower()
+    if steam_id and not username:
+        digits = "".join(ch for ch in steam_id if ch.isdigit())
+        owner = None
+        if digits and os.environ.get("MONGO_URL", "").strip():
+            try:
+                from ..services.users_db import get_user_by_steam_id
+
+                owner = get_user_by_steam_id(digits)
+            except Exception:
+                owner = None
+        if not owner or not owner.get("username"):
+            return {
+                "runs": [],
+                "total": 0,
+                "page": page,
+                "per_page": limit,
+                "total_pages": 0,
+            }
+        username = str(owner["username"]).strip().lower()
     # Browser/edge caching: new runs arrive constantly, but 30s of staleness
     # on a browse page is invisible and lets Cloudflare absorb repeat hits.
     # stale-while-revalidate makes expiry a background refresh instead of one
