@@ -78,6 +78,7 @@ services:
       # served from the CDN (nginx 301s /static/images/*).
       - ./backend/static:/app/static:ro
       - ./lake:/lake:ro
+      - /opt/spire-sim:/opt/spire-sim:ro
       - ./.secrets:/secrets:ro
     environment:
       <<: *shared-env
