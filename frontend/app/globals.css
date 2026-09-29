@@ -468,17 +468,3 @@ body:has(.card-rvmp[style*="--entity-bg"])::before {
     animation: none;
   }
 }
-
-/* Mobile nav logo mark: white on the dark ground, black on the light ground.
-   (Desktop shows the SPIRE CODEX wordmark instead, so both stay hidden there.) */
-.sc-nav-logo--b {
-  display: none;
-}
-:root[data-theme="light"] .sc-nav-logo--w {
-  display: none;
-}
-@media (max-width: 639px) {
-  :root[data-theme="light"] .sc-nav-logo--b {
-    display: inline;
-  }
-}

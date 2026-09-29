@@ -221,7 +221,7 @@ export default function HomeClient({
     {
       href: "/images",
       key: "images",
-      count: stats?.images ?? "–",
+      count: null,
       color: "var(--color-regent)",
     },
     {
