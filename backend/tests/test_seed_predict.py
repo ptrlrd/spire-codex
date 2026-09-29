@@ -41,6 +41,12 @@ Path(str(out) + '.profiles.jsonl').write_text(json.dumps(dict(seed_key=key, seed
     stub.write_text(f'#!/bin/sh\nexec "{sys.executable}" "{script}" "$@"\n')
     stub.chmod(0o755)
     monkeypatch.setenv("SIM_CLI_PATH", str(stub))
+    assert seed_predict.build() == {"skipped": True, "seeds": 0}
+    assert not (tmp_path / seed_predict.FACTS_NAME).exists()
+    for build_id in seed_predict.BUILDS:
+        pools = tmp_path / "fixtures" / build_id / "pools.json"
+        pools.parent.mkdir(parents=True)
+        pools.write_text("{}")
     assert seed_predict.build() == {"skipped": False, "seeds": 10}
     con = duckdb.connect()
     rows = con.execute(
@@ -57,6 +63,13 @@ Path(str(out) + '.profiles.jsonl').write_text(json.dumps(dict(seed_key=key, seed
         )
         == 10
     )
+    (tmp_path / "fixtures" / seed_predict.BUILDS[1] / "pools.json").unlink()
+    assert seed_predict.build() == {"skipped": False, "seeds": 5}
+    rows = con.execute(
+        "SELECT DISTINCT split_part(evidence, ':', 2) FROM read_parquet(?)",
+        [str(tmp_path / seed_predict.FACTS_NAME)],
+    ).fetchall()
+    assert rows == [(seed_predict.BUILDS[0],)]
     previous = (tmp_path / seed_predict.FACTS_NAME).read_bytes()
     stub.write_text("#!/bin/sh\nexit 1\n")
     with pytest.raises(subprocess.CalledProcessError):

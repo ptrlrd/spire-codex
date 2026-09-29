@@ -41,6 +41,19 @@ def build() -> dict:
             facts = []
             profiles = []
             for build_id in BUILDS:
+                data_root = os.environ.get("SIM_DATA_ROOT")
+                pools = (
+                    Path(data_root or Path(binary).resolve().parent)
+                    / "fixtures"
+                    / build_id
+                    / "pools.json"
+                )
+                if not pools.exists():
+                    print(
+                        f"seed predictions skipped for {build_id}: no pools at {pools}",
+                        flush=True,
+                    )
+                    continue
                 for character in CHARACTERS:
                     output = work / f"{build_id}_{character}.jsonl"
                     command = [
@@ -55,7 +68,6 @@ def build() -> dict:
                         "--out",
                         str(output),
                     ]
-                    data_root = os.environ.get("SIM_DATA_ROOT")
                     if data_root:
                         command.extend(["--data-root", data_root])
                     subprocess.run(
@@ -66,6 +78,9 @@ def build() -> dict:
                     )
                     facts.append(str(output))
                     profiles.append(str(output) + ".profiles.jsonl")
+            if not facts:
+                print("seed predictions skipped: no build has pools", flush=True)
+                return {"skipped": True, "seeds": 0}
             facts_tmp = work / FACTS_NAME
             profiles_tmp = work / PROFILES_NAME
             con.execute(
