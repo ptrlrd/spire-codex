@@ -569,7 +569,18 @@ export default function Navbar() {
               href="/"
               className="flex items-center gap-2 shrink-0"
             >
-              <Wordmark />
+              <img
+                src="/spire-codex-white-final.webp"
+                alt="Spire Codex"
+                className="sc-nav-logo--w h-8 w-auto sm:hidden"
+              />
+              <img
+                src="/spire-codex-black-final.webp"
+                alt="Spire Codex"
+                aria-hidden="true"
+                className="sc-nav-logo--b h-8 w-auto sm:hidden"
+              />
+              <Wordmark className="hidden sm:inline-flex" />
             </Link>
             {/* Desktop nav (lg+): groups + Live, tight against the logo */}
             <div className="hidden lg:flex items-center gap-1">
@@ -592,10 +603,8 @@ export default function Navbar() {
           )}
 
           <div className="flex items-center gap-2 shrink-0">
-            <div className="hidden sm:flex items-center gap-2">
-              <SiteSwitcher />
-              <LanguageSelector />
-            </div>
+            <SiteSwitcher />
+            <LanguageSelector />
 
             {/* Icon search, visible on mobile (below md) AND at lg+
                 where the inline bar collapses. Sits next to the language
@@ -959,11 +968,6 @@ export default function Navbar() {
 
                     <div className="border-b border-[var(--border-subtle)] px-5 py-3">
                       <LiveNavButton variant="mobile" />
-                    </div>
-
-                    <div className="sm:hidden flex items-center gap-2 border-b border-[var(--border-subtle)] px-5 py-3">
-                      <SiteSwitcher align="left" />
-                      <LanguageSelector align="left" />
                     </div>
 
                     <ThemeToggle variant="segmented" />

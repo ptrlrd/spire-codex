@@ -12,8 +12,9 @@ function currentCharacter(): CharacterTheme | null {
 }
 
 /** The SPIRE CODEX wordmark. In a character theme the character's icon
- * sits to the left of the words from the sm breakpoint up; phones get the
- * words alone. */
+ * sits to the left of the words. A className that sets display (the navbar
+ * passes `hidden sm:inline-flex`) replaces the default inline-flex instead
+ * of fighting it. */
 export default function Wordmark({ className = "" }: { className?: string }) {
   const [character, setCharacter] = useState<CharacterTheme | null>(null);
 
@@ -35,13 +36,13 @@ export default function Wordmark({ className = "" }: { className?: string }) {
       alt=""
       width={28}
       height={28}
-      className="hidden sm:inline-block h-7 w-7 object-contain align-[-0.3em]"
+      className="inline-block h-7 w-7 object-contain align-[-0.3em]"
     />
   ) : null;
 
   return (
     <span
-      className={`inline-flex items-center gap-2 text-xl font-bold ${className}`}
+      className={`items-center gap-2 text-xl font-bold ${className || "inline-flex"}`}
     >
       {icon}
       <span className="text-[var(--accent-gold)]">SPIRE</span>{" "}
