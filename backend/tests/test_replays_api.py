@@ -191,7 +191,7 @@ def test_header_must_match_the_run(env):
     assert _post(_gz(header_patch={"start_time": 1})).status_code == 409
     assert _post(_gz(header_patch={"character": "SILENT"})).status_code == 409
     assert _post(_gz(header_patch={"replay_version": 99})).status_code == 400
-    assert _post(_gz(header_patch={"replay_version": 6})).status_code < 400
+    assert _post(_gz(header_patch={"replay_version": 7})).status_code < 400
     lines = _lines()
     assert _post(_gz(lines[1:])).status_code == 400
     assert _post(_gz(lines[1:2] + lines)).status_code == 400
@@ -200,14 +200,14 @@ def test_header_must_match_the_run(env):
 def test_every_shipped_replay_version_passes_the_header_check():
     from app.services import replays_db
 
-    for version in (1, 2, 3, 4, 5, 6):
+    for version in (1, 2, 3, 4, 5, 6, 7):
         header = json.dumps(
             {"t": "header", "replay_version": version, "seed": "S"}
         ).encode()
         assert replays_db._parse_header(header)["replay_version"] == version
     with pytest.raises(replays_db.ReplayRejected) as rejected:
         replays_db._parse_header(
-            json.dumps({"t": "header", "replay_version": 7}).encode()
+            json.dumps({"t": "header", "replay_version": 8}).encode()
         )
     assert rejected.value.code == "bad_header"
 
