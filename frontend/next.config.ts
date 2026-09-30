@@ -24,6 +24,12 @@ const nextConfig: NextConfig = {
         destination: "https://api.nitropay.com/v1/ads-2467.txt",
         permanent: true,
       },
+      { source: "/giveaway", destination: "/", permanent: true },
+      {
+        source: `/:lang(${LANGS})/giveaway`,
+        destination: "/:lang",
+        permanent: true,
+      },
     ];
   },
   // The /beta section itself is wired up in proxy.ts, which rewrites

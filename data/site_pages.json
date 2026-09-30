@@ -105,7 +105,6 @@
   },
   { "path": "/events", "name": "Events", "keywords": ["events", "event"] },
   { "path": "/exporter", "name": "Exporter", "keywords": ["exporter"] },
-  { "path": "/giveaway", "name": "Giveaway", "keywords": ["giveaway"] },
   {
     "path": "/guides",
     "name": "Guides",

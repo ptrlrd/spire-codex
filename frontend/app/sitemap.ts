@@ -11,7 +11,7 @@ import {
 
 // Regenerate at most every 30 minutes: crawler fetches between ticks are
 // served from cache instead of re-running ~21 API list fetches each hit.
-export const revalidate = 1800;
+export const dynamic = "force-dynamic";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
 const API =
@@ -76,7 +76,6 @@ const LANG_LIST_ROUTES = [
   "exporter",
   "overlay",
   "knowledge-demon",
-  "giveaway",
   "runs",
   "replays",
   "tier-list/cards",
@@ -206,7 +205,6 @@ const STATIC_PAGES = [
     priority: 0.4,
     changeFrequency: "monthly" as const,
   },
-  { path: "/giveaway", priority: 0.3, changeFrequency: "monthly" as const },
 ];
 
 interface EntityWithImage {
@@ -417,9 +415,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ],
   );
 
-  // `next build` prerenders this route (revalidate above) inside a container
-  // with no backend to reach, so the build ships the entries that need no
-  // network. The first live request fills in the rest and ISR keeps it fresh.
+  // Never prerendered: the build container has no backend, and the stub a
+  // build-time render would produce (static and hub pages only) used to be
+  // served for half an hour after every deploy, and Search Console read it.
+  // Cloudflare holds the generated file for an hour (next.config headers),
+  // so the origin regenerates it a handful of times a day at most.
   if (process.env.NEXT_PHASE === "phase-production-build") {
     return [...staticEntries, ...langListEntries];
   }
