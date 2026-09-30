@@ -1603,6 +1603,25 @@ describe("HP lost is reported only where the journal supports a total", () => {
     expect(c.hpLossRecorded).toBe(12);
   });
 
+  it("ignores version 7 hp rows that belong to another creature", () => {
+    const c = fight([
+      { t: "hp", s: 4, floor: 1, act: 1, hp: 53, d: -7, mine: true },
+      {
+        t: "hp",
+        s: 5,
+        floor: 1,
+        act: 1,
+        hp: 12,
+        d: -9,
+        mine: false,
+        dst: "JAW_WORM",
+      },
+      { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, hp: 53 },
+    ]);
+    expect(c.hpLossRecorded).toBe(7);
+    expect(c.hpEnd).toBe(53);
+  });
+
   it("records zero for a fight whose start and end HP agree with no changes", () => {
     const c = fight([
       { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 60 },

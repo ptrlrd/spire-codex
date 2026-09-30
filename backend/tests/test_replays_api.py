@@ -200,14 +200,14 @@ def test_header_must_match_the_run(env):
 def test_every_shipped_replay_version_passes_the_header_check():
     from app.services import replays_db
 
-    for version in (1, 2, 3, 4, 5, 6):
+    for version in (1, 2, 3, 4, 5, 6, 7):
         header = json.dumps(
             {"t": "header", "replay_version": version, "seed": "S"}
         ).encode()
         assert replays_db._parse_header(header)["replay_version"] == version
     with pytest.raises(replays_db.ReplayRejected) as rejected:
         replays_db._parse_header(
-            json.dumps({"t": "header", "replay_version": 7}).encode()
+            json.dumps({"t": "header", "replay_version": 8}).encode()
         )
     assert rejected.value.code == "bad_header"
 

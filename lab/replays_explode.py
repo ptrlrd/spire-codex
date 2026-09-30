@@ -669,7 +669,7 @@ def parse_replay(gz: bytes, meta: dict, batch_id: str) -> dict[str, list[dict]]:
         if t == "room":
             rows["rooms"].append({**base(d), "kind": d.get("kind"), "id": d.get("id")})
             continue
-        if t == "hp" and open_combat is not None:
+        if t == "hp" and open_combat is not None and d.get("mine") is not False:
             delta = _int(d.get("d"))
             if delta is not None and delta < 0:
                 open_combat["damage_taken"] = (open_combat["damage_taken"] or 0) - delta

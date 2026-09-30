@@ -200,6 +200,9 @@ export interface HpLine extends LineBase {
   hp: number;
   /** Version 3: "heal" on every heal (campfire, potion, relic, event). */
   src?: string;
+  /** Version 7: hp rows cover every creature; false means someone else's. */
+  mine?: boolean;
+  dst?: string;
 }
 export interface HpLossLine extends LineBase {
   t: "hp_loss";
@@ -866,7 +869,15 @@ function narrow(raw: Raw): ReplayLine | undefined {
       const hp = num(raw.hp);
       return hp === undefined
         ? { ...base, t: "unknown", kind: t, raw }
-        : { ...base, t, d: num(raw.d), hp, src: str(raw.src) };
+        : {
+            ...base,
+            t,
+            d: num(raw.d),
+            hp,
+            src: str(raw.src),
+            mine: bool(raw.mine),
+            dst: str(raw.dst),
+          };
     }
     case "hp_loss":
       return {
@@ -1736,7 +1747,7 @@ export function parseReplay(text: string): ReplayModel {
         turn = undefined;
         continue;
       }
-      if (line.t === "hp") {
+      if (line.t === "hp" && line.mine !== false) {
         if (hpLoss) {
           if (
             line.d === undefined ||

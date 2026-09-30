@@ -870,6 +870,17 @@ def test_combat_damage_and_result_are_derived_when_absent():
             },
             {"t": "hp", "s": 2, "ms": 2, "floor": 1, "act": 1, "d": -6, "hp": 74},
             {"t": "hp", "s": 3, "ms": 3, "floor": 1, "act": 1, "d": -4, "hp": 70},
+            {
+                "t": "hp",
+                "s": 3,
+                "ms": 3,
+                "floor": 1,
+                "act": 1,
+                "d": -12,
+                "hp": 8,
+                "mine": False,
+                "dst": "CRAWLER",
+            },
             {"t": "combat_end", "s": 4, "ms": 4, "floor": 1, "act": 1, "turns": 2},
             {
                 "t": "combat_start",
