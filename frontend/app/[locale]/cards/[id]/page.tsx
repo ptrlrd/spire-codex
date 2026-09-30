@@ -3,8 +3,14 @@ import type { Metadata } from "next";
 import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import CardDetail from "./CardDetail";
-import type { EntityStats } from "@/app/components/EntityRunStats";
 import { fetchEntityStats } from "@/lib/entity-stats";
+import {
+  fetchDraftRecs,
+  fetchPairings,
+  fetchRelatedGroups,
+  relatedCardGroups,
+} from "@/lib/entity-links";
+import { buildEntitySummary } from "@/lib/entity-summary";
 import {
   stripTags,
   stripTagsFlat,
@@ -168,9 +174,21 @@ export default async function Page({ params }: Props) {
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!card) redirectMissingEntity("cards", id, locale);
   // Server-render the community stats into the HTML (unique, crawlable data).
-  const initialStats: EntityStats | null = card
-    ? await fetchEntityStats("cards", id)
-    : null;
+  const [initialStats, initialPairings, initialRecs, initialRelated] =
+    await Promise.all([
+      fetchEntityStats("cards", id),
+      fetchPairings("cards", id, locale),
+      fetchDraftRecs("cards", id, locale),
+      fetchRelatedGroups(
+        id,
+        relatedCardGroups(id, card.keywords, card.tags, locale),
+      ),
+    ]);
+  const summary = buildEntitySummary(
+    initialStats,
+    initialPairings,
+    initialRecs,
+  );
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -178,6 +196,10 @@ export default async function Page({ params }: Props) {
         initialCard={card}
         initialEnchantments={enchantmentsForCard(id)}
         initialStats={initialStats}
+        initialPairings={initialPairings}
+        initialRecs={initialRecs}
+        initialRelated={initialRelated}
+        summary={summary}
       />
     </>
   );

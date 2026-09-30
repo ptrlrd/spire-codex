@@ -7,6 +7,7 @@ import type { Card } from "@/lib/api";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
+import type { RelatedGroup as ServerGroup } from "@/lib/entity-links";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -15,6 +16,7 @@ interface RelatedCardsProps {
   keywords: string[] | null;
   tags: string[] | null;
   color: string;
+  initialGroups?: ServerGroup[] | null;
 }
 
 interface RelatedGroup {
@@ -27,12 +29,20 @@ export default function RelatedCards({
   keywords,
   tags,
   color,
+  initialGroups,
 }: RelatedCardsProps) {
   const lang = useGameLocale();
   const bp = useBetaPrefix();
   // null while loading so a card with no relations at all renders nothing
   // instead of a permanent "Loading" stub.
-  const [groups, setGroups] = useState<RelatedGroup[] | null>(null);
+  const [groups, setGroups] = useState<RelatedGroup[] | null>(
+    initialGroups
+      ? initialGroups.map((g) => ({
+          label: g.label,
+          cards: g.items as unknown as Card[],
+        }))
+      : null,
+  );
 
   // Fetch on mount so the related-card <Link>s sit in the rendered DOM
   // without any interaction. This component is a critical internal-linking
@@ -40,6 +50,7 @@ export default function RelatedCards({
   // "Crawled - currently not indexed" bucket when they had no outbound
   // crawl paths.
   useEffect(() => {
+    if (initialGroups !== undefined) return;
     const fetches: Promise<RelatedGroup>[] = [];
 
     // Cards that create or reference this one (spawns_cards reverse lookup),
@@ -89,7 +100,7 @@ export default function RelatedCards({
     Promise.all(fetches).then((results) =>
       setGroups(results.filter((g) => g.cards.length > 0)),
     );
-  }, [currentId, keywords, tags, color, lang]);
+  }, [currentId, keywords, tags, color, lang, initialGroups]);
 
   // Render nothing until loaded (or if there's nothing related). Once loaded,
   // each group lists directly inside the card's Relations section as its own

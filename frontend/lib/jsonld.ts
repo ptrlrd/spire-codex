@@ -105,23 +105,17 @@ export function buildDetailPageJsonLd({
   dateModified?: string;
   inLanguage?: string;
 }) {
-  const article: Record<string, unknown> = {
+  const image = imageUrl ?? DEFAULT_OG_IMAGE;
+  const page: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: name,
+    "@type": "ItemPage",
+    "@id": `${SITE_URL}${path}`,
+    name,
     description,
     url: `${SITE_URL}${path}`,
-    mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${path}` },
+    image,
     datePublished: datePublished ?? SITE_LAUNCH_DATE,
     dateModified: dateModified ?? datePublished ?? SITE_LAUNCH_DATE,
-    // Articles require an `author` for Rich Results. The codex pages
-    // are compiled by the site rather than authored by a single
-    // person, so we attribute to the Spire Codex organization.
-    author: {
-      "@type": "Organization",
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
     publisher: PUBLISHER_ORG,
     isPartOf: {
       "@type": "WebSite",
@@ -129,18 +123,17 @@ export function buildDetailPageJsonLd({
       url: SITE_URL,
     },
     inLanguage: inLanguage ?? "en",
-    about: {
+    mainEntity: {
       "@type": "Thing",
-      name: `Slay the Spire 2 ${category}`,
+      name,
+      description,
+      image,
+      additionalType: `Slay the Spire 2 ${category}`,
+      isPartOf: { "@type": "VideoGame", name: "Slay the Spire 2" },
     },
   };
 
-  // Article requires an image for Rich Results. Fall back to the
-  // sitewide OG asset when the entity has no image of its own
-  // (acts, ascensions, mechanics, comparisons, etc.).
-  article.image = imageUrl ?? DEFAULT_OG_IMAGE;
-
-  return [article, buildBreadcrumbJsonLd(breadcrumbs)];
+  return [page, buildBreadcrumbJsonLd(breadcrumbs)];
 }
 
 export function buildWebSiteJsonLd() {

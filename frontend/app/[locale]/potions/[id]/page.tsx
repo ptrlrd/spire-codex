@@ -3,8 +3,13 @@ import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import PotionDetail from "./PotionDetail";
-import type { EntityStats } from "@/app/components/EntityRunStats";
 import { fetchEntityStats } from "@/lib/entity-stats";
+import {
+  fetchPairings,
+  fetchRelatedGroups,
+  potionRelatedGroups,
+} from "@/lib/entity-links";
+import { buildEntitySummary } from "@/lib/entity-summary";
 import {
   buildPageMetadata,
   clipMetaDescription,
@@ -121,13 +126,22 @@ export default async function Page({ params }: Props) {
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!potion) redirectMissingEntity("potions", id, locale);
   // Server-render the community stats into the HTML (unique, crawlable data).
-  const initialStats: EntityStats | null = potion
-    ? await fetchEntityStats("potions", id)
-    : null;
+  const [initialStats, initialPairings, initialRelated] = await Promise.all([
+    fetchEntityStats("potions", id),
+    fetchPairings("potions", id, locale),
+    fetchRelatedGroups(id, potionRelatedGroups(potion, locale)),
+  ]);
+  const summary = buildEntitySummary(initialStats, initialPairings, null);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PotionDetail initialPotion={potion} initialStats={initialStats} />
+      <PotionDetail
+        initialPotion={potion}
+        initialStats={initialStats}
+        initialPairings={initialPairings}
+        initialRelated={initialRelated}
+        summary={summary}
+      />
     </>
   );
 }

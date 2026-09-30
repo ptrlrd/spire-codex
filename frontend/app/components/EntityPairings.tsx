@@ -14,29 +14,16 @@ import { useEffect, useState } from "react";
 import CardHover from "@/app/components/CardHover";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { cachedFetch } from "@/lib/fetch-cache";
+import type {
+  PairingKind as Kind,
+  PairingPartner as Partner,
+  Pairings,
+} from "@/lib/entity-links";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 const TOP = 5;
 const pct = (x: number) => `${Math.round((x ?? 0) * 100)}%`;
-
-type Partner = {
-  id: string;
-  name: string;
-  desc: string;
-  image_url?: string;
-  co: number;
-  conf: number;
-  conf_rev: number;
-  npmi: number;
-  winrate: number;
-};
-
-type Pairings = {
-  partners?: { cards?: Partner[]; relics?: Partner[]; potions?: Partner[] };
-};
-
-type Kind = "cards" | "relics" | "potions";
 
 export default function EntityPairings({
   kind,
@@ -44,18 +31,21 @@ export default function EntityPairings({
   name,
   lang,
   bp,
+  initial,
 }: {
   kind: Kind;
   id: string;
   name: string;
   lang: string;
   bp: string;
+  initial?: Pairings | null;
 }) {
   const t = useT();
-  const [data, setData] = useState<Pairings | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [data, setData] = useState<Pairings | null>(initial ?? null);
+  const [loaded, setLoaded] = useState(initial !== undefined);
 
   useEffect(() => {
+    if (initial !== undefined) return;
     let alive = true;
     cachedFetch<Pairings>(`${API}/api/pairings/${kind}/${id}?lang=${lang}`)
       .then((d) => {
@@ -70,7 +60,7 @@ export default function EntityPairings({
     return () => {
       alive = false;
     };
-  }, [kind, id, lang]);
+  }, [kind, id, lang, initial]);
 
   const p = data?.partners || {};
   // Potions aren't drafted, so they're framed as "commonly seen with" rather

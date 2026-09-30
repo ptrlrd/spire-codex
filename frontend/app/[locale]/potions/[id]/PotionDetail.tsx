@@ -17,6 +17,9 @@ import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import RelatedItems from "@/app/components/RelatedItems";
 import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
+import EntitySummary from "@/app/components/EntitySummary";
+import type { EntitySummaryData } from "@/lib/entity-summary";
+import type { Pairings, RelatedGroup } from "@/lib/entity-links";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
@@ -63,7 +66,16 @@ interface MiniStats extends MiniBracket {
 export default function PotionDetail({
   initialPotion,
   initialStats,
-}: { initialPotion?: Potion | null; initialStats?: EntityStats | null } = {}) {
+  initialPairings,
+  initialRelated,
+  summary = null,
+}: {
+  initialPotion?: Potion | null;
+  initialStats?: EntityStats | null;
+  initialPairings?: Pairings | null;
+  initialRelated?: RelatedGroup[] | null;
+  summary?: EntitySummaryData | null;
+} = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -247,6 +259,7 @@ export default function PotionDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
+            <EntitySummary name={potion.name} data={summary} />
             <div className="desc-quote">
               <RichDescription text={potion.description} />
             </div>
@@ -281,6 +294,7 @@ export default function PotionDetail({
                     ]
                   : []),
               ]}
+              initialGroups={initialRelated}
             />
           </section>
 
@@ -290,6 +304,7 @@ export default function PotionDetail({
             name={potion.name}
             lang={lang}
             bp={bp}
+            initial={initialPairings}
           />
 
           {/* Version history + localized names */}

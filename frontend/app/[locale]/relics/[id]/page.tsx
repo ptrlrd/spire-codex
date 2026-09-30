@@ -3,8 +3,14 @@ import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import RelicDetail from "./RelicDetail";
-import type { EntityStats } from "@/app/components/EntityRunStats";
 import { fetchEntityStats } from "@/lib/entity-stats";
+import {
+  fetchDraftRecs,
+  fetchPairings,
+  fetchRelatedGroups,
+  relicRelatedGroups,
+} from "@/lib/entity-links";
+import { buildEntitySummary } from "@/lib/entity-summary";
 import {
   buildPageMetadata,
   clipMetaDescription,
@@ -137,13 +143,29 @@ export default async function Page({ params }: Props) {
   if (apiUnreachable) throw new Error("entity API unreachable");
   if (!relic) redirectMissingEntity("relics", id, locale);
   // Server-render the community stats into the HTML (unique, crawlable data).
-  const initialStats: EntityStats | null = relic
-    ? await fetchEntityStats("relics", id)
-    : null;
+  const [initialStats, initialPairings, initialRecs, initialRelated] =
+    await Promise.all([
+      fetchEntityStats("relics", id),
+      fetchPairings("relics", id, locale),
+      fetchDraftRecs("relics", id, locale),
+      fetchRelatedGroups(id, relicRelatedGroups(relic, locale)),
+    ]);
+  const summary = buildEntitySummary(
+    initialStats,
+    initialPairings,
+    initialRecs,
+  );
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <RelicDetail initialRelic={relic} initialStats={initialStats} />
+      <RelicDetail
+        initialRelic={relic}
+        initialStats={initialStats}
+        initialPairings={initialPairings}
+        initialRecs={initialRecs}
+        initialRelated={initialRelated}
+        summary={summary}
+      />
     </>
   );
 }

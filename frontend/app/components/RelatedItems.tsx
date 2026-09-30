@@ -7,6 +7,7 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useBetaPrefix } from "@/lib/use-lang-prefix";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { imageUrl } from "@/lib/image-url";
+import type { RelatedGroup as ServerGroup } from "@/lib/entity-links";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -38,6 +39,8 @@ interface RelatedItemsProps {
   heading: string;
   /** API queries to fan out. The first non-empty group is rendered first. */
   groups: FetchGroup[];
+  /** Server-fetched groups so the links are in the first HTML. */
+  initialGroups?: ServerGroup[] | null;
 }
 
 /**
@@ -54,12 +57,22 @@ export default function RelatedItems({
   route,
   heading,
   groups,
+  initialGroups,
 }: RelatedItemsProps) {
   const t = useT();
   const bp = useBetaPrefix();
   const [results, setResults] = useState<
     { label: string; items: RelatedItem[] }[]
-  >([]);
+  >(() =>
+    initialGroups
+      ? groups
+          .map((g) => ({
+            label: g.label,
+            items: initialGroups.find((x) => x.path === g.path)?.items ?? [],
+          }))
+          .filter((g) => g.items.length > 0)
+      : [],
+  );
 
   // Stringify the groups' paths into a stable dependency key, the
   // groups array is rebuilt every render at the call site, so a direct
@@ -69,6 +82,7 @@ export default function RelatedItems({
     .map((g) => `${g.label}|${g.path}|${g.limit ?? 12}`)
     .join("\n");
   useEffect(() => {
+    if (initialGroups !== undefined) return;
     const upper = currentId.toUpperCase();
     Promise.all(
       groups.map(async ({ label, path, limit = 12 }) => {
@@ -84,7 +98,7 @@ export default function RelatedItems({
       }),
     ).then((all) => setResults(all.filter((g) => g.items.length > 0)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentId, route, groupsKey]);
+  }, [currentId, route, groupsKey, initialGroups]);
 
   return (
     <details className="mt-6 group">

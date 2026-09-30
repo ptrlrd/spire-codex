@@ -20,17 +20,7 @@ const pct = (x: number) => `${Math.round((x ?? 0) * 100)}%`;
 const uplift = (lift: number) =>
   `${lift >= 1 ? "+" : ""}${Math.round((lift - 1) * 100)}%`;
 
-type Rec = {
-  id: string;
-  name: string;
-  pref: number;
-  pref_base: number;
-  lift: number;
-  offers: number;
-  winrate: number;
-};
-
-type Recs = { recommends?: Rec[] };
+import type { DraftRecs as Recs } from "@/lib/entity-links";
 
 export default function EntityDraftRecs({
   kind,
@@ -38,18 +28,21 @@ export default function EntityDraftRecs({
   name,
   lang,
   bp,
+  initial,
 }: {
   kind: "cards" | "relics";
   id: string;
   name: string;
   lang: string;
   bp: string;
+  initial?: Recs | null;
 }) {
   const t = useT();
-  const [data, setData] = useState<Recs | null>(null);
-  const [loaded, setLoaded] = useState(false);
+  const [data, setData] = useState<Recs | null>(initial ?? null);
+  const [loaded, setLoaded] = useState(initial !== undefined);
 
   useEffect(() => {
+    if (initial !== undefined) return;
     let alive = true;
     cachedFetch<Recs>(`${API}/api/draft-recs/${kind}/${id}?lang=${lang}`)
       .then((d) => {
@@ -64,7 +57,7 @@ export default function EntityDraftRecs({
     return () => {
       alive = false;
     };
-  }, [kind, id, lang]);
+  }, [kind, id, lang, initial]);
 
   const recs = (data?.recommends || []).slice(0, TOP);
   if (!loaded || recs.length === 0) return null;

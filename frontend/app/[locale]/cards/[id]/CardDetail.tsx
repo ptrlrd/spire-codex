@@ -20,6 +20,9 @@ import RelatedCards from "@/app/components/RelatedCards";
 import EntityProse from "@/app/components/EntityProse";
 import EntityPairings from "@/app/components/EntityPairings";
 import EntityDraftRecs from "@/app/components/EntityDraftRecs";
+import EntitySummary from "@/app/components/EntitySummary";
+import type { EntitySummaryData } from "@/lib/entity-summary";
+import type { DraftRecs, Pairings, RelatedGroup } from "@/lib/entity-links";
 import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
@@ -230,10 +233,18 @@ export default function CardDetail({
   initialCard,
   initialEnchantments,
   initialStats,
+  initialPairings,
+  initialRecs,
+  initialRelated,
+  summary = null,
 }: {
   initialCard?: Card | null;
   initialEnchantments?: string[];
   initialStats?: EntityStats | null;
+  initialPairings?: Pairings | null;
+  initialRecs?: DraftRecs | null;
+  initialRelated?: RelatedGroup[] | null;
+  summary?: EntitySummaryData | null;
 } = {}) {
   const params = useParams();
   const id = params.id as string;
@@ -635,6 +646,7 @@ export default function CardDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
+            <EntitySummary name={card.name} data={summary} />
 
             {/* Type variant toggle (re-scopes description + render) */}
             {hasVariants && card.type_variants && (
@@ -865,6 +877,7 @@ export default function CardDetail({
                 keywords={displayKeywords}
                 tags={card.tags}
                 color={card.color}
+                initialGroups={initialRelated}
               />
             </div>
           </section>
@@ -875,6 +888,7 @@ export default function CardDetail({
             name={card.name}
             lang={lang}
             bp={bp}
+            initial={initialPairings}
           />
 
           <EntityDraftRecs
@@ -883,6 +897,7 @@ export default function CardDetail({
             name={card.name}
             lang={lang}
             bp={bp}
+            initial={initialRecs}
           />
 
           {/* Version history + localized names */}
