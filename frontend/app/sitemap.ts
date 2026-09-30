@@ -509,7 +509,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...TIER_RELIC_ACTS.flatMap((act) =>
       TIER_RELIC_ANCIENTS.map((a) => ({
-        url: `${SITE_URL}/tier-list/relics?act=${act}&ancient=${a}`,
+        url: `${SITE_URL}/tier-list/relics?act=${act}&amp;ancient=${a}`,
         changeFrequency: "daily" as const,
         priority: 0.6,
       })),
