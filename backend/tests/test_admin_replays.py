@@ -16,7 +16,7 @@ client = TestClient(app, raise_server_exceptions=False)
 ADMIN = {"_id": "a" * 24, "username": "Admin", "steam_id": "76561198000000001"}
 UID = ObjectId("6" * 24)
 UID2 = ObjectId("7" * 24)
-NOW = datetime(2026, 9, 25, 20, 0, tzinfo=timezone.utc)
+NOW = datetime.now(timezone.utc).replace(minute=0, second=0, microsecond=0)
 
 
 def _match(doc, flt):
