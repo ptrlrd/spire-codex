@@ -184,4 +184,4 @@ def test_stats_days_are_pacific_calendar_days(env, monkeypatch):
 
     body = client.get("/api/admin/replays/stats", params={"days": 1}).json()
 
-    assert body["per_day"] == [{"day": NOW_DAY, "uploads": 1}]
+    assert body["per_day"] == [{"day": "2026-09-25", "uploads": 1}]

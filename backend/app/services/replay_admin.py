@@ -106,7 +106,7 @@ def _parse_when(value: str | None, name: str) -> tuple[datetime | None, bool]:
         raise AdminReplayError(400, f"{name} must be an ISO 8601 date or datetime")
     date_only = len(raw) == 10
     if dt.tzinfo is None:
-        dt = dt.replace(tzinfo=timezone.utc)
+        dt = dt.replace(tzinfo=PACIFIC if date_only else timezone.utc)
     return dt, date_only
 
 
