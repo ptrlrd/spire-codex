@@ -1,6 +1,7 @@
 // Auto-added UI translations (batch 9q): supporter themes and badges.
 // English fills every other locale until translated.
 export const X9Q: Record<string, Record<string, string>> = {
+  Ascensions: { eng: "Ascensions" },
   Quotes: { eng: "Quotes" },
   "What {name} says in combat.": { eng: "What {name} says in combat." },
   Supporter: { eng: "Supporter" },

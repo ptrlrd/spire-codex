@@ -1,4 +1,5 @@
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { ASCENSION_ICON } from "./types";
 import { ANCIENT_ENTITIES } from "./types";
 import type { EntityType, TierEntity, TierList } from "./types";
 
@@ -75,6 +76,23 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
       name: a.name,
       image: imageUrl(a.image_path),
     }));
+  }
+  // Ascension levels share one flame icon; the level number rides on the
+  // chip as a badge and the modifier name is the hover text.
+  if (type === "ascensions") {
+    const res = await fetch(`${API}/api/ascensions?lang=eng`);
+    if (!res.ok) throw new Error("Failed to load ascensions");
+    const levels: { id: string; level: number; name: string }[] =
+      await res.json();
+    return levels
+      .filter((a) => a.level > 0)
+      .sort((a, b) => a.level - b.level)
+      .map((a) => ({
+        id: a.id,
+        name: `A${a.level} · ${a.name}`,
+        image: imageUrl(ASCENSION_ICON),
+        badge: String(a.level),
+      }));
   }
   // Relics group by pool, with ancient relics broken out by their ancient,
   // so fetch the ancient map alongside the relic list.

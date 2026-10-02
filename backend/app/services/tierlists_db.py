@@ -50,6 +50,7 @@ ENTITY_TYPES = (
     "badges",
     "intents",
     "orbs",
+    "ascensions",
 )
 
 _client: MongoClient | None = None

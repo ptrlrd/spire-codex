@@ -62,6 +62,19 @@ export const Chip = memo(function Chip({
             {entity.name}
           </span>
         )}
+        {entity.badge && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0.5 text-center font-bold leading-none text-[var(--text-on-fill)]"
+            style={{
+              fontSize: Math.round(width * 0.42),
+              textShadow:
+                "0 0 4px #000, 0 0 2px #000, 1px 1px 0 #000, -1px -1px 0 #000",
+            }}
+          >
+            {entity.badge}
+          </span>
+        )}
         {hasComment && (
           <span
             aria-label={t("Has a note")}

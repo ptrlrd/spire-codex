@@ -8,7 +8,8 @@ export type EntityType =
   | "powers"
   | "badges"
   | "intents"
-  | "orbs";
+  | "orbs"
+  | "ascensions";
 
 export const ENTITY_TYPES: { value: EntityType; label: string }[] = [
   { value: "cards", label: "Cards" },
@@ -21,6 +22,7 @@ export const ENTITY_TYPES: { value: EntityType; label: string }[] = [
   { value: "badges", label: "Badges" },
   { value: "intents", label: "Intents" },
   { value: "orbs", label: "Orbs" },
+  { value: "ascensions", label: "Ascensions" },
 ];
 
 export const ENTITY_LABEL: Record<EntityType, string> = {
@@ -34,6 +36,7 @@ export const ENTITY_LABEL: Record<EntityType, string> = {
   badges: "Badges",
   intents: "Intents",
   orbs: "Orbs",
+  ascensions: "Ascensions",
 };
 
 /** Ancients aren't a normal API entity (the pool data carries no name/image),
@@ -100,7 +103,13 @@ export interface TierEntity {
   /** Beta-only entity (in the current beta but not main); shown with a
    * Beta marker on its chip. */
   beta?: boolean;
+  /** Short text drawn over the art, used by ascensions to show the level on
+   * the shared flame icon. */
+  badge?: string;
 }
+
+export const ASCENSION_ICON =
+  "/static/images/ui/top_bar/ascension_singleplayer.webp";
 
 /** Canonical rarity ordering for the tray's rarity dropdown. Anything not
  * listed falls to the end. Covers cards, relics, and potions. */
