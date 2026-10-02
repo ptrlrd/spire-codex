@@ -463,3 +463,14 @@ def test_unclaimed_run_is_retryable_not_permanent(env):
     r = _post(_gz())
     assert r.status_code == 409 and r.json()["detail"]["code"] == "not_claimed"
     assert runs.docs[RUN_HASH]["user_id"] is None
+
+
+def test_rejected_replay_does_not_claim_the_hinted_run(env):
+    runs, _ = env
+    _unown_run(runs, ME["steam_id"])
+    r = _post(_gz(header_patch={"seed": "NOPE"}))
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "header_mismatch"
+    assert runs.docs[RUN_HASH]["user_id"] is None
+    assert runs.docs[RUN_HASH]["steam_id_hint"] == ME["steam_id"]
+    assert _post(_gz()).status_code == 200
+    assert runs.docs[RUN_HASH]["user_id"] == ObjectId(ME["_id"])

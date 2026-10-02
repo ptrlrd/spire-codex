@@ -71,6 +71,10 @@ def _match(doc, cond):
             if not any(_match(doc, c) for c in want):
                 return False
             continue
+        if key == "$and":
+            if not all(_match(doc, c) for c in want):
+                return False
+            continue
         have = doc.get(key)
         if isinstance(want, dict):
             if "$in" in want and have not in want["$in"]:
@@ -133,6 +137,12 @@ class FakeColl:
         for d in self.docs.values():
             if _match(d, flt):
                 self._apply(d, update)
+                return
+
+    def replace_one(self, flt, doc):
+        for key, d in list(self.docs.items()):
+            if _match(d, flt):
+                self.docs[key] = dict(doc)
                 return
 
     def update_many(self, flt, update):
@@ -210,21 +220,22 @@ def test_coop_upload_credits_only_the_uploaders_slot(coll):
     assert "damage" in me
 
     host = by["IRONCLAD"]
-    assert host["steam_id"] == HOST_SID
-    assert host["user_id"] == ObjectId(HOST_ID)
-    assert host["username"] == "Host"
+    assert host["steam_id"] is None and host["steam_id_hint"] == HOST_SID
+    assert host["user_id"] is None
+    assert host["username"] is None
+    assert "attribution_unverified" not in host
     assert "damage" not in host
 
     guest = by["DEFECT"]
-    assert guest["steam_id"] == GUEST_SID
-    assert guest["user_id"] == ObjectId(GUEST_ID)
+    assert guest["steam_id"] is None and guest["steam_id_hint"] == GUEST_SID
+    assert guest["user_id"] is None
 
 
 def test_teammate_without_account_is_tagged_but_unlinked(coll, monkeypatch):
     monkeypatch.setattr(users_db, "get_user_by_steam_id", lambda sid: None)
     submit_run(_blob(), username="PC-Reviver", steam_id=ME_SID)
     host = coll.by_char()["IRONCLAD"]
-    assert host["steam_id"] == HOST_SID
+    assert host["steam_id"] is None and host["steam_id_hint"] == HOST_SID
     assert host["user_id"] is None
     assert host["username"] is None
     assert host["username_lower"] is None
@@ -243,11 +254,12 @@ def test_anonymous_coop_upload_with_ids_tags_every_slot_and_credits_nobody(coll)
     result = submit_run(_blob(), username="Nobody")
     assert result["player_idx"] == 0
     by = coll.by_char()
-    assert by["IRONCLAD"]["steam_id"] == HOST_SID
-    assert by["IRONCLAD"]["user_id"] == ObjectId(HOST_ID)
-    assert by["REGENT"]["steam_id"] == ME_SID
+    assert by["IRONCLAD"]["steam_id_hint"] == HOST_SID
+    assert by["IRONCLAD"]["user_id"] is None
+    assert by["REGENT"]["steam_id_hint"] == ME_SID
     for d in coll.docs.values():
         assert d["username"] != "Nobody"
+        assert d["steam_id"] is None
         assert "damage" not in d
 
 
@@ -257,7 +269,8 @@ def test_username_only_upload_uses_the_accounts_steam_id_for_the_slot(coll):
     by = coll.by_char()
     assert by["REGENT"]["user_id"] == ObjectId(ME_ID)
     assert by["REGENT"]["steam_id"] == ME_SID
-    assert by["IRONCLAD"]["user_id"] == ObjectId(HOST_ID)
+    assert by["IRONCLAD"]["user_id"] is None
+    assert by["IRONCLAD"]["steam_id_hint"] == HOST_SID
 
 
 def test_anonymous_coop_upload_names_only_slot_zero(coll):
@@ -320,7 +333,7 @@ def test_edited_player_id_cannot_take_a_tagged_slot_on_duplicate(coll, monkeypat
     result = submit_run(forged, username="Thief", steam_id=STRANGER_SID)
     me = coll.by_char()["REGENT"]
     assert result["duplicate"] is True
-    assert me["steam_id"] == ME_SID
+    assert me["steam_id"] is None and me["steam_id_hint"] == ME_SID
     assert me["user_id"] is None
     assert me["username"] is None
     assert "damage" not in me
@@ -397,7 +410,7 @@ def test_claim_runs_cannot_take_a_teammates_tagged_slot(coll, monkeypatch):
     monkeypatch.setattr(users_db, "get_user_by_steam_id", lambda sid: None)
     submit_run(_blob(), username="Host", steam_id=HOST_SID)
     guest = coll.by_char()["DEFECT"]
-    assert guest["steam_id"] == GUEST_SID and guest["user_id"] is None
+    assert guest["steam_id_hint"] == GUEST_SID and guest["user_id"] is None
 
     out = claim_runs("PC-Reviver", [guest["_id"]])
     assert out == {"claimed": 0, "already_claimed": 1, "unknown": 0}
@@ -409,6 +422,7 @@ def test_claim_runs_cannot_take_a_teammates_tagged_slot(coll, monkeypatch):
     assert guest["username"] == "Guest"
     assert guest["user_id"] == ObjectId(GUEST_ID)
     assert guest["steam_id"] == GUEST_SID
+    assert "steam_id_hint" not in guest
 
 
 def test_claim_runs_still_claims_untagged_anonymous_runs(coll):
@@ -692,7 +706,7 @@ def test_bare_steam_id_upload_is_a_hint_not_an_owner(coll):
     assert result["player_idx"] == 1
     assert me["user_id"] is None and me["steam_id"] is None
     assert me["steam_id_hint"] == ME_SID and me["attribution_unverified"] is True
-    assert me["username"] == "PC-Reviver"
+    assert me["username"] is None and me["username_hint"] == "PC-Reviver"
     host = by["IRONCLAD"]
     assert host["user_id"] is None and host["steam_id"] is None
     assert host["steam_id_hint"] == HOST_SID and host["attribution_unverified"] is True
@@ -716,8 +730,9 @@ def test_authenticated_repost_attributes_a_hinted_run(coll):
     me = coll.by_char()["REGENT"]
     assert me["user_id"] == ObjectId(ME_ID) and me["steam_id"] == ME_SID
     assert "steam_id_hint" not in me and "attribution_unverified" not in me
+    assert me["username"] == "PC-Reviver" and "username_hint" not in me
     host = coll.by_char()["IRONCLAD"]
-    assert host["user_id"] == ObjectId(HOST_ID) and host["steam_id"] == HOST_SID
+    assert host["user_id"] is None and host["steam_id_hint"] == HOST_SID
 
 
 def test_authenticated_repost_cannot_take_a_run_hinted_to_someone_else(coll):
@@ -766,7 +781,73 @@ def test_attribution_forgets_the_cached_shared_run(coll, monkeypatch):
     submit_run(_blob(), username="PC-Reviver", steam_id=ME_SID)
     assert f"run:{me_hash}" in dropped
     dropped.clear()
-    submit_run(_blob(with_ids=False), username="Nobody", verified=False)
-    anon = [h for h in coll.docs if h != me_hash and coll.docs[h]["user_id"] is None]
-    claim_runs("Guest", anon)
-    assert set(dropped) == {f"run:{h}" for h in anon}
+    by = coll.by_char()
+    claim_runs("Guest", [by["IRONCLAD"]["_id"], by["DEFECT"]["_id"]])
+    assert set(dropped) == {f"run:{by['DEFECT']['_id']}"}
+
+
+def test_claim_by_hash_cannot_take_a_run_hinted_to_someone_else(coll):
+    submit_run(
+        _blob(with_ids=False),
+        username="PC-Reviver",
+        steam_id_hint=ME_SID,
+        verified=False,
+    )
+    h = next(iter(coll.docs))
+    assert claim_runs("Guest", [h]) == {
+        "claimed": 0,
+        "already_claimed": 1,
+        "unknown": 0,
+    }
+    assert coll.docs[h]["user_id"] is None
+    assert claim_runs("PC-Reviver", [h])["claimed"] == 1
+    doc = coll.docs[h]
+    assert doc["user_id"] == ObjectId(ME_ID) and doc["steam_id"] == ME_SID
+    assert "steam_id_hint" not in doc and "attribution_unverified" not in doc
+
+
+def test_claim_by_hash_refuses_unverified_rows_without_a_hint(coll):
+    submit_run(_blob(with_ids=False), username="Planted", verified=False)
+    hashes = list(coll.docs)
+    assert claim_runs("PC-Reviver", hashes)["claimed"] == 0
+    assert all(d["user_id"] is None for d in coll.docs.values())
+
+
+def test_website_claim_honours_the_hint_and_unverified_flag(coll, monkeypatch):
+    monkeypatch.setenv("MONGO_URL", "mongodb://x")
+    submit_run(
+        _blob(with_ids=False),
+        username="PC-Reviver",
+        steam_id_hint=ME_SID,
+        verified=False,
+    )
+    h = next(iter(coll.docs))
+    auth_router._try_claim_run(h, USERS[GUEST_SID])
+    assert coll.docs[h]["user_id"] is None
+    auth_router._try_claim_run(h, USERS[ME_SID])
+    assert coll.docs[h]["user_id"] == ObjectId(ME_ID)
+    assert "attribution_unverified" not in coll.docs[h]
+
+    submit_run(_blob(with_ids=False, damage=False), username="Planted", verified=False)
+    planted = [k for k in coll.docs if k != h][0]
+    auth_router._try_claim_run(planted, USERS[GUEST_SID])
+    assert coll.docs[planted]["user_id"] is None
+
+
+def test_verified_reupload_replaces_a_planted_rows_content(coll):
+    forged = _blob(with_ids=False)
+    forged["win"] = False
+    forged["ascension"] = 0
+    submit_run(forged, username="PC-Reviver", steam_id_hint=ME_SID, verified=False)
+    h = next(iter(coll.docs))
+    assert coll.docs[h]["win"] is False
+
+    genuine = _blob(with_ids=False)
+    genuine["win"] = True
+    genuine["ascension"] = 10
+    result = submit_run(genuine, username="PC-Reviver", steam_id=ME_SID)
+    assert result["duplicate"] is True and result["reconciled"] is True
+    doc = coll.docs[h]
+    assert doc["win"] is True and doc["ascension"] == 10
+    assert doc["user_id"] == ObjectId(ME_ID) and doc["username"] == "PC-Reviver"
+    assert "attribution_unverified" not in doc and "steam_id_hint" not in doc

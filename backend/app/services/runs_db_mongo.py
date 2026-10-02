@@ -457,7 +457,11 @@ def uploader_player_index(players: list, steam_id: str | None) -> int | None:
     return 0
 
 
-_HINT_UNSET = {"steam_id_hint": "", "attribution_unverified": ""}
+_HINT_UNSET = {
+    "steam_id_hint": "",
+    "attribution_unverified": "",
+    "username_hint": "",
+}
 
 
 def forget_shared_run(*hashes: str) -> None:
@@ -475,6 +479,35 @@ def forget_shared_run(*hashes: str) -> None:
 
 def _hint_ok(steam_id: str) -> dict:
     return {"steam_id_hint": {"$in": [None, steam_id]}}
+
+
+def claimable_by(steam_id: str | None) -> dict:
+    """Filter for rows an account may take over: unowned, tagged or hinted
+    to nobody or to this SteamID64, and never an unverified row unless the
+    hint names this account (a planted row must be re-uploaded signed in,
+    which replaces its content, not claimed by hash)."""
+    sid = steam_id or None
+    return {
+        "user_id": None,
+        "steam_id": {"$in": [None, sid]},
+        "steam_id_hint": {"$in": [None, sid]},
+        "$or": [
+            {"attribution_unverified": {"$ne": True}},
+            *([{"steam_id_hint": sid}] if sid else []),
+        ],
+    }
+
+
+def is_claimable(doc: dict, steam_id: str | None) -> bool:
+    sid = steam_id or None
+    if doc.get("user_id") or doc.get("steam_id") not in (None, sid):
+        return False
+    hint = doc.get("steam_id_hint")
+    if hint not in (None, sid):
+        return False
+    if doc.get("attribution_unverified") and not (sid and hint == sid):
+        return False
+    return True
 
 
 def attribute_run_to(run_hash: str, user: dict, coll=None) -> bool:
@@ -618,9 +651,6 @@ def submit_run(
             p_username = linked_username or username
             p_steam_id, p_discord_id, p_user_id = steam_id, discord_id, linked_user_id
             p_hint = steam_id_hint if not steam_id else None
-        elif verified:
-            p_username, p_steam_id, p_user_id = _teammate_identity(player)
-            p_discord_id = None
         else:
             p_username, p_steam_id, p_user_id, p_discord_id = None, None, None, None
             p_hint = _steamid64(player.get("id"))
@@ -652,8 +682,8 @@ def submit_run(
             run_hash = result.get("run_hash", "")
             if run_hash:
                 run_file = runs_dir / f"{run_hash}.json"
-                fresh = bool(result.get("success"))
-                if fresh and not run_file.exists():
+                fresh = bool(result.get("success") or result.get("reconciled"))
+                if fresh and (result.get("reconciled") or not run_file.exists()):
                     try:
                         with open(run_file, "w", encoding="utf-8") as f:
                             json.dump(data, f, ensure_ascii=False)
@@ -1002,11 +1032,12 @@ def _submit_player_run(
         "killed_by": killed_by,
         "deck_size": len(deck),
         "relic_count": len(relics),
-        "username": username,
+        "username": username if verified else None,
         # Normalized for case-insensitive matching (stats/list/leaderboard all
         # filter on this; display `username` keeps its original case). Mirrors
         # the users collection's username_lower convention.
-        "username_lower": username.lower() if username else None,
+        "username_lower": username.lower() if (username and verified) else None,
+        **({"username_hint": username} if (username and not verified) else {}),
         # Submitter identity (when the client sends it). Lets a run be linked
         # to its owner's account on sign-in even if it was submitted
         # anonymously. user_id is set here when an account already exists for
@@ -1075,6 +1106,32 @@ def _submit_player_run(
                 "duplicate": True,
                 "run_hash": run_hash,
             }
+        if is_uploader and linked_user_id and steam_id:
+            planted = coll.find_one(
+                {"_id": run_hash},
+                {
+                    "attribution_unverified": 1,
+                    "steam_id_hint": 1,
+                    "user_id": 1,
+                    "steam_id": 1,
+                },
+            )
+            if (
+                planted
+                and planted.get("attribution_unverified")
+                and is_claimable(planted, steam_id)
+            ):
+                coll.replace_one(
+                    {"_id": run_hash, "attribution_unverified": True, "user_id": None},
+                    doc,
+                )
+                forget_shared_run(run_hash)
+                return {
+                    "error": "This run has already been submitted",
+                    "duplicate": True,
+                    "reconciled": True,
+                    "run_hash": run_hash,
+                }
         if is_uploader:
             _undelete_on_reupload(coll, run_hash, own_slot)
         if steam_id:
@@ -1374,15 +1431,20 @@ def claim_runs(username: str, hashes: list[str]) -> dict:
     existing = list(
         coll.find(
             {"_id": {"$in": hashes}},
-            {"_id": 1, "username": 1, "user_id": 1, "steam_id": 1},
+            {
+                "_id": 1,
+                "username": 1,
+                "user_id": 1,
+                "steam_id": 1,
+                "steam_id_hint": 1,
+                "attribution_unverified": 1,
+            },
         )
     )
     unclaimed = [
         d["_id"]
         for d in existing
-        if not d.get("username")
-        and not d.get("user_id")
-        and d.get("steam_id") in (None, owner_sid)
+        if not d.get("username") and is_claimable(d, owner_sid)
     ]
     already_claimed = len(existing) - len(unclaimed)
     unknown = len(hashes) - len(existing)
@@ -1398,11 +1460,12 @@ def claim_runs(username: str, hashes: list[str]) -> dict:
         coll.update_many(
             {
                 "_id": {"$in": unclaimed},
-                "user_id": None,
-                "steam_id": {"$in": [None, owner_sid]},
-                "$or": [{"username": None}, {"username": ""}],
+                "$and": [
+                    claimable_by(owner_sid),
+                    {"$or": [{"username": None}, {"username": ""}]},
+                ],
             },
-            {"$set": update},
+            {"$set": update, "$unset": _HINT_UNSET},
         )
         forget_shared_run(*unclaimed)
         if owner:

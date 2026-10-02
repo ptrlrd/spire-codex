@@ -217,22 +217,15 @@ def owns_run(run_doc: dict, user: dict) -> bool:
     return bool(owner) and str(owner) == str(user.get("_id"))
 
 
-def _claim_hinted_run(run_hash: str, run_doc: dict, user: dict) -> dict:
-    """An unowned run whose bare-upload hint names this account becomes
-    theirs on the replay upload; any other unowned run is not claimed yet
-    (retryable after an authenticated re-upload), and an owned run is
-    someone else's."""
+def _hinted_to(run_doc: dict, user: dict) -> str:
+    """The SteamID64 an unowned run's bare-upload hint names, when it is this
+    account's; any other unowned run is not claimed yet (retryable after an
+    authenticated re-upload), and an owned run is someone else's."""
     if run_doc.get("user_id") or run_doc.get("steam_id"):
         raise ReplayRejected(403, "this run belongs to another player", "not_owner")
     sid = str(user.get("steam_id") or "")
-    from .runs_db_mongo import attribute_run_to
-
-    if (
-        sid
-        and str(run_doc.get("steam_id_hint") or "") == sid
-        and attribute_run_to(run_hash, user, _runs())
-    ):
-        return {**run_doc, "steam_id": sid, "user_id": user.get("_id")}
+    if sid and str(run_doc.get("steam_id_hint") or "") == sid:
+        return sid
     raise ReplayRejected(
         409, "run is not claimed yet; upload it again signed in", "not_claimed"
     )
@@ -242,12 +235,17 @@ def accept_upload(run_hash: str, gz: bytes, user: dict) -> dict:
     run_doc = _runs().find_one({"_id": run_hash}, _RUN_FIELDS)
     if run_doc is None or run_doc.get("deleted_at"):
         raise ReplayRejected(404, "run not found; upload the run first", "not_found")
-    if not owns_run(run_doc, user):
-        run_doc = _claim_hinted_run(run_hash, run_doc, user)
+    claim_sid = None if owns_run(run_doc, user) else _hinted_to(run_doc, user)
     info = inspect_gzip(gz)
-    from .runs_db_mongo import get_run_blob
+    from .runs_db_mongo import attribute_run_to, get_run_blob
 
     player_idx = check_header(info["header"], run_doc, get_run_blob(run_hash), run_hash)
+    if claim_sid:
+        if not attribute_run_to(run_hash, user, _runs()):
+            raise ReplayRejected(
+                409, "run is not claimed yet; upload it again signed in", "not_claimed"
+            )
+        run_doc = {**run_doc, "steam_id": claim_sid, "user_id": user.get("_id")}
     try:
         return store_replay(run_hash, gz, info, run_doc, user, player_idx)
     except PyMongoError as e:

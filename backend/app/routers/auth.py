@@ -120,13 +120,8 @@ def _trusted_browser_origin(request: Request) -> bool:
     if origin in allowed:
         return True
     origin_host = (urlparse(origin).hostname or "").lower()
-    own = (
-        request.headers.get("x-forwarded-host")
-        or request.headers.get("host")
-        or request.url.hostname
-        or ""
-    )
-    own_host = own.split(",")[0].strip().split(":")[0].lower()
+    own = request.headers.get("host") or request.url.hostname or ""
+    own_host = own.split(":")[0].strip().lower()
     return bool(origin_host) and origin_host == own_host
 
 
@@ -841,11 +836,16 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
         }
         if user_sid:
             owner_set["steam_id"] = user_sid
-        coll.update_one(
-            {"_id": run_hash, "user_id": None, "steam_id": {"$in": [None, user_sid]}},
-            {"$set": owner_set},
+        from ..services.runs_db_mongo import (
+            _HINT_UNSET,
+            claimable_by,
+            forget_shared_run,
         )
-        from ..services.runs_db_mongo import forget_shared_run
+
+        coll.update_one(
+            {"_id": run_hash, **claimable_by(user_sid)},
+            {"$set": owner_set, "$unset": _HINT_UNSET},
+        )
 
         forget_shared_run(run_hash)
     except Exception:
