@@ -182,6 +182,8 @@ def submit_run(
     username: str | None = None,
     steam_id: str | None = None,
     discord_id: str | None = None,
+    steam_id_hint: str | None = None,
+    verified: bool = True,
 ) -> dict:
     """Parse and store a run. Returns status dict.
 

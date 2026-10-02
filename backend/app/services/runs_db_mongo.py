@@ -457,6 +457,35 @@ def uploader_player_index(players: list, steam_id: str | None) -> int | None:
     return 0
 
 
+_HINT_UNSET = {"steam_id_hint": "", "attribution_unverified": ""}
+
+
+def _hint_ok(steam_id: str) -> dict:
+    return {"steam_id_hint": {"$in": [None, steam_id]}}
+
+
+def attribute_run_to(run_hash: str, user: dict, coll=None) -> bool:
+    """Give an unowned run to the signed-in account whose SteamID64 matches
+    the hint a bare upload left on it. Returns True when the row changed."""
+    sid = str(user.get("steam_id") or "")
+    if not run_hash or not sid or not user.get("_id"):
+        return False
+    from bson import ObjectId
+
+    owner_set: dict = {"user_id": ObjectId(user["_id"]), "steam_id": sid}
+    username = user.get("username")
+    if username:
+        owner_set["username"] = username
+        owner_set["username_lower"] = str(username).lower()
+    coll = coll if coll is not None else _get_collection()
+    coll.update_one(
+        {"_id": run_hash, "user_id": None, "steam_id": None, "steam_id_hint": sid},
+        {"$set": owner_set, "$unset": _HINT_UNSET},
+    )
+    after = coll.find_one({"_id": run_hash}, {"user_id": 1}) or {}
+    return str(after.get("user_id") or "") == str(owner_set["user_id"])
+
+
 def _teammate_identity(player: dict) -> tuple[str | None, str | None, str | None]:
     """(username, steam_id, user_id) for a co-op slot the uploader doesn't
     own. Tagged with that player's own SteamID64 and linked to their account
@@ -482,6 +511,8 @@ def submit_run(
     username: str | None = None,
     steam_id: str | None = None,
     discord_id: str | None = None,
+    steam_id_hint: str | None = None,
+    verified: bool = True,
 ) -> dict:
     """Parse a run and store one document per player. Returns the uploader's
     slot's status dict (plus ``player_idx``), matching the SQLite
@@ -501,6 +532,10 @@ def submit_run(
     linked_user_id = None
     linked_username = None
     owner = None
+    if not verified:
+        steam_id_hint = steam_id_hint or steam_id
+        steam_id = None
+        discord_id = None
     if steam_id or discord_id:
         try:
             from .users_db import get_user_by_steam_id, get_user_by_discord_id
@@ -516,7 +551,7 @@ def submit_run(
         except Exception:
             # Linking is best-effort; a lookup failure must not drop the run.
             pass
-    if linked_user_id is None and username:
+    if verified and linked_user_id is None and username:
         # Username-only uploads (Compendium ?username=, mismatched Steam ids)
         # used to stay invisible on the profile until the next sign-in
         # backfill hoovered them (Dobo, 2026-08-30: 304 runs, 0 linked).
@@ -557,17 +592,22 @@ def submit_run(
     )
     players = data["players"]
     player_count = len(players)
-    uploader_idx = uploader_player_index(players, steam_id)
+    uploader_idx = uploader_player_index(players, steam_id or steam_id_hint)
 
     results = []
     owners: list[tuple[str | None, str | None]] = []
     for player_idx, player in enumerate(players):
+        p_hint = None
         if player_idx == uploader_idx:
             p_username = linked_username or username
             p_steam_id, p_discord_id, p_user_id = steam_id, discord_id, linked_user_id
-        else:
+            p_hint = steam_id_hint if not steam_id else None
+        elif verified:
             p_username, p_steam_id, p_user_id = _teammate_identity(player)
             p_discord_id = None
+        else:
+            p_username, p_steam_id, p_user_id, p_discord_id = None, None, None, None
+            p_hint = _steamid64(player.get("id"))
         owners.append((p_user_id, p_username))
         result = _submit_player_run(
             data,
@@ -582,6 +622,8 @@ def submit_run(
             p_discord_id,
             p_user_id,
             is_uploader=player_idx == uploader_idx,
+            steam_id_hint=p_hint,
+            verified=verified,
         )
         results.append(result)
 
@@ -847,6 +889,8 @@ def _submit_player_run(
     discord_id: str | None = None,
     linked_user_id: str | None = None,
     is_uploader: bool = True,
+    steam_id_hint: str | None = None,
+    verified: bool = True,
 ) -> dict:
     """One Mongo insert per player. The full nested structure goes into
     a single document — no joins required at query time. The mod's damage
@@ -954,6 +998,8 @@ def _submit_player_run(
         "steam_id": steam_id,
         "discord_id": discord_id,
         "user_id": ObjectId(linked_user_id) if linked_user_id else None,
+        **({"steam_id_hint": steam_id_hint} if steam_id_hint else {}),
+        **({"attribution_unverified": True} if not verified else {}),
         "build_id": data.get("build_id"),
         "submitted_at": datetime.now(timezone.utc),
         "played_at": _played_at_from_blob(data),
@@ -994,7 +1040,10 @@ def _submit_player_run(
             bump_stats_counters(doc)
     except DuplicateKeyError:
         steam_ok: dict = (
-            {"$or": [{"steam_id": None}, {"steam_id": steam_id}]}
+            {
+                "$or": [{"steam_id": None}, {"steam_id": steam_id}],
+                "steam_id_hint": {"$in": [None, steam_id]},
+            }
             if steam_id
             else {"steam_id": None}
         )
@@ -1004,12 +1053,18 @@ def _submit_player_run(
             )
         }
         own_slot = {**steam_ok, **user_ok}
+        if not verified:
+            return {
+                "error": "This run has already been submitted",
+                "duplicate": True,
+                "run_hash": run_hash,
+            }
         if is_uploader:
             _undelete_on_reupload(coll, run_hash, own_slot)
         if steam_id:
             coll.update_one(
-                {"_id": run_hash, "steam_id": None, **user_ok},
-                {"$set": {"steam_id": steam_id}},
+                {"_id": run_hash, "steam_id": None, **user_ok, **_hint_ok(steam_id)},
+                {"$set": {"steam_id": steam_id}, "$unset": _HINT_UNSET},
             )
         if discord_id:
             coll.update_one(
@@ -1023,7 +1078,7 @@ def _submit_player_run(
                 owner_set["username_lower"] = username.lower()
             coll.update_one(
                 {"_id": run_hash, "user_id": None, **steam_ok},
-                {"$set": owner_set},
+                {"$set": owner_set, "$unset": _HINT_UNSET},
             )
         if is_uploader and doc.get("damage"):
             coll.update_one(
@@ -1082,7 +1137,11 @@ def backfill_user_runs(
         update["username_lower"] = username.lower()
 
     result = coll.update_many(
-        {"user_id": None, "$or": identity_conds},
+        {
+            "user_id": None,
+            "attribution_unverified": {"$ne": True},
+            "$or": identity_conds,
+        },
         {"$set": update},
     )
     if result.modified_count:

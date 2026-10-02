@@ -162,8 +162,11 @@ async def submit_run_endpoint(
         digits = "".join(ch for ch in steam_id if ch.isdigit())
         clean_steam_id = digits or None
 
-    # Authenticated uploads (the in-game mod sends `Authorization: Bearer <jwt>` from the
-    # Steam sign-in flow): the token's verified steamid outranks the spoofable query param.
+    # Only a verified identity attributes a run to an account: the in-game
+    # mod and the overlay send `Authorization: Bearer <jwt>` from the Steam
+    # sign-in flow. A bare ?steam_id is kept on the row as a hint for the
+    # rank line and for a later authenticated re-upload, never as ownership.
+    verified_steam_id = None
     auth_header = request.headers.get("authorization") or ""
     if auth_header.lower().startswith("bearer "):
         from ..services.auth_jwt import decode_token
@@ -171,7 +174,10 @@ async def submit_run_endpoint(
         claims = decode_token(auth_header[7:].strip())
         token_steamid = str((claims or {}).get("steam_id") or "")
         if token_steamid.isdigit():
-            clean_steam_id = token_steamid
+            verified_steam_id = token_steamid
+    verified = verified_steam_id is not None
+    if verified:
+        clean_steam_id = verified_steam_id
 
     clean_discord_id = None
     if discord_id:
@@ -185,8 +191,10 @@ async def submit_run_endpoint(
         submit_run,
         data,
         username=clean_username,
-        steam_id=clean_steam_id,
-        discord_id=clean_discord_id,
+        steam_id=verified_steam_id,
+        discord_id=clean_discord_id if verified else None,
+        steam_id_hint=None if verified else clean_steam_id,
+        verified=verified,
     )
 
     site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(

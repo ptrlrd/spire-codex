@@ -681,3 +681,76 @@ def test_repair_reads_blob_files_when_mongo_has_none(coll, monkeypatch, tmp_path
     _run_repair(monkeypatch, coll, {})
     assert coll.docs[h1]["steam_id"] == ME_SID
     assert coll.docs[h1]["user_id"] == ObjectId(ME_ID)
+
+
+def test_bare_steam_id_upload_is_a_hint_not_an_owner(coll):
+    result = submit_run(
+        _blob(), username="PC-Reviver", steam_id_hint=ME_SID, verified=False
+    )
+    by = coll.by_char()
+    me = by["REGENT"]
+    assert result["player_idx"] == 1
+    assert me["user_id"] is None and me["steam_id"] is None
+    assert me["steam_id_hint"] == ME_SID and me["attribution_unverified"] is True
+    assert me["username"] == "PC-Reviver"
+    host = by["IRONCLAD"]
+    assert host["user_id"] is None and host["steam_id"] is None
+    assert host["steam_id_hint"] == HOST_SID and host["attribution_unverified"] is True
+
+
+def test_unverified_username_never_links_an_account(coll):
+    submit_run(_blob(with_ids=False), username="PC-Reviver", verified=False)
+    doc = next(iter(coll.docs.values()))
+    assert doc["user_id"] is None and doc["attribution_unverified"] is True
+    linked = runs_db_mongo.backfill_user_runs(
+        ME_ID, steam_id=ME_SID, username="PC-Reviver"
+    )
+    assert linked == 0
+    assert next(iter(coll.docs.values()))["user_id"] is None
+
+
+def test_authenticated_repost_attributes_a_hinted_run(coll):
+    submit_run(_blob(), username="PC-Reviver", steam_id_hint=ME_SID, verified=False)
+    result = submit_run(_blob(), username="PC-Reviver", steam_id=ME_SID)
+    assert result["duplicate"] is True
+    me = coll.by_char()["REGENT"]
+    assert me["user_id"] == ObjectId(ME_ID) and me["steam_id"] == ME_SID
+    assert "steam_id_hint" not in me and "attribution_unverified" not in me
+    host = coll.by_char()["IRONCLAD"]
+    assert host["user_id"] == ObjectId(HOST_ID) and host["steam_id"] == HOST_SID
+
+
+def test_authenticated_repost_cannot_take_a_run_hinted_to_someone_else(coll):
+    submit_run(
+        _blob(with_ids=False),
+        username="PC-Reviver",
+        steam_id_hint=ME_SID,
+        verified=False,
+    )
+    result = submit_run(_blob(with_ids=False), username="Guest", steam_id=GUEST_SID)
+    assert result["duplicate"] is True
+    doc = next(iter(coll.docs.values()))
+    assert doc["user_id"] is None and doc["steam_id"] is None
+    assert doc["steam_id_hint"] == ME_SID
+
+
+def test_unverified_repost_changes_nothing(coll):
+    submit_run(_blob(), username="PC-Reviver", steam_id=ME_SID)
+    result = submit_run(
+        _blob(), username="Evil", steam_id_hint=STRANGER_SID, verified=False
+    )
+    assert result["duplicate"] is True
+    me = coll.by_char()["REGENT"]
+    assert me["user_id"] == ObjectId(ME_ID) and me["username"] == "PC-Reviver"
+
+
+def test_attribute_run_to_requires_a_matching_hint(coll):
+    submit_run(_blob(), username="PC-Reviver", steam_id_hint=ME_SID, verified=False)
+    me_hash = coll.by_char()["REGENT"]["_id"]
+    stranger = {"_id": "8" * 24, "username": "Stranger", "steam_id": STRANGER_SID}
+    assert runs_db_mongo.attribute_run_to(me_hash, stranger) is False
+    assert coll.by_char()["REGENT"]["user_id"] is None
+    assert runs_db_mongo.attribute_run_to(me_hash, USERS[ME_SID]) is True
+    me = coll.by_char()["REGENT"]
+    assert me["user_id"] == ObjectId(ME_ID) and me["steam_id"] == ME_SID
+    assert "attribution_unverified" not in me

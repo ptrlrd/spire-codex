@@ -432,3 +432,34 @@ def test_storage_failure_is_a_503_not_a_500(env, monkeypatch):
     assert r.status_code == 503
     assert r.json()["detail"]["code"] == "storage"
     assert "has_replay" not in env[0].docs[RUN_HASH]
+
+
+def _unown_run(runs, hint):
+    doc = runs.docs[RUN_HASH]
+    doc["user_id"] = None
+    doc["steam_id"] = None
+    if hint:
+        doc["steam_id_hint"] = hint
+    else:
+        doc.pop("steam_id_hint", None)
+
+
+def test_hinted_run_is_claimed_by_the_replay_upload(env, monkeypatch):
+    runs, _ = env
+    _unown_run(runs, ME["steam_id"])
+    r = _post(_gz())
+    assert r.status_code == 200, r.text
+    doc = runs.docs[RUN_HASH]
+    assert doc["user_id"] == ObjectId(ME["_id"]) and doc["steam_id"] == ME["steam_id"]
+    assert "steam_id_hint" not in doc
+
+
+def test_unclaimed_run_is_retryable_not_permanent(env):
+    runs, _ = env
+    _unown_run(runs, None)
+    r = _post(_gz())
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "not_claimed"
+    _unown_run(runs, OTHER["steam_id"])
+    r = _post(_gz())
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "not_claimed"
+    assert runs.docs[RUN_HASH]["user_id"] is None
