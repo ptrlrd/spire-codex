@@ -2633,6 +2633,48 @@ def rehide_one_turn_boss_runs(dry_run: bool = False) -> dict:
     return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
 
 
+def rehide_impossible_time_runs(dry_run: bool = False) -> dict:
+    """Backfill for the win-time signals: sweep stored wins that finished
+    under the minimum or faster than the per-floor floor (submit-time
+    detection only covers new uploads) and hide them with the reasons the
+    detector gives. Returns counts; dry_run only reports."""
+    from .cheat_detect import MIN_SECONDS_PER_FLOOR, MIN_WIN_SECONDS, detect_cheats
+
+    ceiling = max(MIN_WIN_SECONDS, 60 * MIN_SECONDS_PER_FLOOR)
+    coll = _get_collection()
+    cursor = coll.find(
+        {
+            "hidden": {"$ne": True},
+            "win": {"$in": [1, True]},
+            "run_time": {"$gt": 0, "$lt": ceiling},
+        },
+        {"run_hash": 1, "run_time": 1, "floors_reached": 1},
+    )
+    checked = 0
+    hidden_runs: list[str] = []
+    for doc in cursor:
+        checked += 1
+        reasons = [
+            r
+            for r in detect_cheats(
+                {
+                    "win": True,
+                    "run_time": doc.get("run_time"),
+                    "floors_reached": doc.get("floors_reached"),
+                }
+            )
+            if r.startswith("impossible_")
+        ]
+        if not reasons:
+            continue
+        run_hash = doc.get("run_hash") or doc["_id"]
+        hidden_runs.append(run_hash)
+        if not dry_run:
+            set_run_hidden(run_hash, True, reason="auto:" + ",".join(reasons[:4]))
+            logger.info("auto-hid impossible-time run %s: %s", run_hash, reasons[:4])
+    return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
+
+
 def rehide_coop_card_solo_runs(dry_run: bool = False) -> dict:
     """Backfill for the co-op-card-in-solo cheat signal: sweep stored solo
     runs whose decks contain a co-op-only card (submit-time detection only

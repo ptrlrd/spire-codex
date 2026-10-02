@@ -61,7 +61,7 @@ describe("sitemap", () => {
       ),
       ...TIER_RELIC_ACTS.flatMap((act) =>
         TIER_RELIC_ANCIENTS.map(
-          (a) => `${SITE}/tier-list/relics?act=${act}&ancient=${a}`,
+          (a) => `${SITE}/tier-list/relics?act=${act}&amp;ancient=${a}`,
         ),
       ),
     ]);

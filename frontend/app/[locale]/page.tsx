@@ -5,7 +5,7 @@ import HomeNewsSection from "@/app/components/HomeNewsSection";
 import HomeGuidesSection from "@/app/components/HomeGuidesSection";
 import HomeShowcaseSection from "@/app/components/HomeShowcaseSection";
 import HomeLeaderboardSection from "@/app/components/HomeLeaderboardSection";
-import HomeStatsSection from "@/app/components/HomeStatsSection";
+import HomeStatsSection, { loadStats } from "@/app/components/HomeStatsSection";
 import HomeMetricsSection from "@/app/components/HomeMetricsSection";
 import HomeFAQ from "@/app/components/HomeFAQ";
 import JsonLd from "@/app/components/JsonLd";
@@ -71,10 +71,17 @@ async function fetchJSON<T>(url: string): Promise<T | null> {
 export default async function Home({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  const [stats, translations] = await Promise.all([
+  const [stats, translations, communityStats] = await Promise.all([
     fetchJSON<Stats>(`${API}/api/stats?lang=${locale}`),
     fetchJSON<Translations>(`${API}/api/translations?lang=${locale}`),
+    loadStats(),
   ]);
+  const characterWinRates = Object.fromEntries(
+    (communityStats?.characters ?? []).map((c) => [
+      c.character.toLowerCase(),
+      c.win_rate,
+    ]),
+  );
 
   return (
     <div className="min-h-screen">
@@ -99,6 +106,7 @@ export default async function Home({ params }: Props) {
           <HomeClient
             initialStats={stats}
             initialTranslations={translations ?? {}}
+            characterWinRates={characterWinRates}
           />
         </main>
       </div>
@@ -114,6 +122,7 @@ export default async function Home({ params }: Props) {
       <HomeStatsSection
         lang={locale}
         characterNames={translations?.character_names}
+        initialStats={communityStats}
       />
       <HomeMetricsSection lang={locale} />
       <HomeGuidesSection lang={locale} />

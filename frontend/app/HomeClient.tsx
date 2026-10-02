@@ -9,6 +9,7 @@ import { useAuth } from "./contexts/AuthContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
+import { pct } from "@/lib/pct";
 
 interface Translations {
   sections?: Record<string, string>;
@@ -17,11 +18,11 @@ interface Translations {
 }
 
 const CHARACTERS = [
-  { id: "ironclad", cssColor: "var(--color-ironclad)", wr: 26.1 },
-  { id: "silent", cssColor: "var(--color-silent)", wr: 28.6 },
-  { id: "regent", cssColor: "var(--color-regent)", wr: 27.7 },
-  { id: "necrobinder", cssColor: "var(--color-necrobinder)", wr: 26.3 },
-  { id: "defect", cssColor: "var(--color-defect)", wr: 24.5 },
+  { id: "ironclad", cssColor: "var(--color-ironclad)" },
+  { id: "silent", cssColor: "var(--color-silent)" },
+  { id: "regent", cssColor: "var(--color-regent)" },
+  { id: "necrobinder", cssColor: "var(--color-necrobinder)" },
+  { id: "defect", cssColor: "var(--color-defect)" },
 ];
 
 const FALLBACK_DESCS: Record<string, string> = {
@@ -64,11 +65,13 @@ const FALLBACK_DESCS: Record<string, string> = {
 interface HomeClientProps {
   initialStats: Stats | null;
   initialTranslations: Translations;
+  characterWinRates?: Record<string, number>;
 }
 
 export default function HomeClient({
   initialStats,
   initialTranslations,
+  characterWinRates,
 }: HomeClientProps) {
   const [stats, setStats] = useState<Stats | null>(initialStats);
   const [translations, setTranslations] =
@@ -481,9 +484,11 @@ export default function HomeClient({
                 </span>
                 <span className="charp-meta">
                   <span className="charp-name">{charName}</span>
-                  <span className="charp-wr">
-                    {char.wr}% {t("win rate")}
-                  </span>
+                  {characterWinRates?.[char.id] !== undefined && (
+                    <span className="charp-wr">
+                      {pct(characterWinRates[char.id])}% {t("win rate")}
+                    </span>
+                  )}
                 </span>
               </Link>
             );

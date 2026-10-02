@@ -126,7 +126,7 @@ export default function HomeLeaderboardLive({
         }
       });
       grab(
-        `${pollBase}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&limit=20`,
+        `${pollBase}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&players=single&limit=20`,
       ).then((d) => {
         if (active && d?.runs)
           setDaily(dedupePartyRows(d.runs as RunRow[]).slice(0, 5));

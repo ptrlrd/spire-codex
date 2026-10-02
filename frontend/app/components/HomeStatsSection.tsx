@@ -25,7 +25,7 @@ export interface CommunityStats {
   }[];
 }
 
-async function loadStats(): Promise<CommunityStats | null> {
+export async function loadStats(): Promise<CommunityStats | null> {
   try {
     const res = await fetch(`${RUNS_API}/api/runs/stats?compact=1`, {
       next: { revalidate: REVALIDATE },
@@ -40,11 +40,13 @@ async function loadStats(): Promise<CommunityStats | null> {
 export default async function HomeStatsSection({
   lang = "eng",
   characterNames,
+  initialStats,
 }: {
   lang?: string;
   characterNames?: Record<string, string>;
+  initialStats?: CommunityStats | null;
 }) {
-  const stats = await loadStats();
+  const stats = initialStats ?? (await loadStats());
   if (!stats || stats.total_runs === 0) return null;
 
   return (

@@ -21,7 +21,9 @@ MIN_ACT_FLOORS = 8
 
 # Fastest conceivable legitimate win is well past this; a 51-second "win"
 # from a savegame edit is not.
-MIN_WIN_SECONDS = 300
+MIN_WIN_SECONDS = 900
+
+MIN_SECONDS_PER_FLOOR = 15
 
 
 def _bare(raw: str) -> str:
@@ -99,6 +101,9 @@ def detect_cheats(data: dict) -> list[str]:
         run_time = data.get("run_time") or 0
         if 0 < run_time < MIN_WIN_SECONDS:
             reasons.append(f"impossible_time:{int(run_time)}s")
+        floors = data.get("floors_reached") or 0
+        if 0 < run_time < floors * MIN_SECONDS_PER_FLOOR:
+            reasons.append(f"impossible_pace:{int(run_time)}s/{int(floors)}fl")
         acts = data.get("map_point_history") or []
         boss_acts = 0
         for i, act in enumerate(acts):

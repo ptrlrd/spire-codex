@@ -69,7 +69,7 @@ async function loadRecentRuns(): Promise<RunRow[]> {
 async function loadDailyClimb(): Promise<RunRow[]> {
   try {
     const res = await fetch(
-      `${RUNS_API}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&limit=20`,
+      `${RUNS_API}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&players=single&limit=20`,
       { next: { revalidate: REVALIDATE } },
     );
     if (!res.ok) return [];

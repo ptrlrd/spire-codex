@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { characterHex } from "@/lib/character-colors";
 import type { CommunityStats } from "./HomeStatsSection";
+import { pct } from "@/lib/pct";
 
 const POLL_MS = 20_000;
 
@@ -133,7 +134,7 @@ export default function HomeStatsLive({
               <span className="stat-k">{t("Abandoned")}</span>
             </div>
             <div className="stat">
-              <span className="stat-v">{stats.win_rate}%</span>
+              <span className="stat-v">{pct(stats.win_rate)}%</span>
               <span className="stat-k">{t("Win %")}</span>
             </div>
             <div className="stat">
@@ -183,7 +184,7 @@ export default function HomeStatsLive({
                       className="wr-num"
                       style={{ color: winRateColor(c.win_rate) }}
                     >
-                      {c.win_rate}%
+                      {pct(c.win_rate)}%
                     </span>
                   </div>
                 );

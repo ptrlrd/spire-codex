@@ -146,13 +146,12 @@ export default async function HomeMetricsSection({
                   <tr key={c.id}>
                     <td className="rk">{i + 1}</td>
                     <td className="ent">
-                      <Link
-                        prefetch={false}
-                        href={`/cards/${c.id.toLowerCase()}`}
+                      <a
+                        href={`${lang === "eng" ? "" : `/${lang}`}/cards/${c.id.toLowerCase()}`}
                         style={{ color: cardHex(c.color) }}
                       >
                         {c.name}
-                      </Link>
+                      </a>
                     </td>
                     <td className="num mono">
                       {r.elo === null ? "·" : Math.round(r.elo)}
