@@ -993,6 +993,18 @@
       ],
       "description": "Dormir → Despertar → Corte → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Dormir",
+        "text": "Aquí acaba tu aventura..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Dormir",
+        "text": "¿Empezamos?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Encantamiento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamiento",
+        "text": "¡NUESTRO PODER NO CONOCE RIVAL!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Encantamiento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamiento",
+        "text": "¡CRA!\nCRAAA"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Encantamiento prohibido"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamiento prohibido",
+        "text": "¡¡CRAAA!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Mangar"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Ira",
+        "text": "Me las pagarás..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Ira",
+        "text": "¡Vas a dormir con los pethes!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lanzar monedas",
+        "text": "¡CLIN CLIN!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Mangar",
+        "text": "¡Arriba las manos!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lanzar reliquia",
+        "text": "¿Lo quieres? ¡Pues cógelo!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Despertar"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Huir",
+        "text": "¡Me largo de aquí!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Dámelo → Golpe doble → Je, je → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Dámelo",
+        "text": "¡Dinero!\n¡Dinero!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Orbe de fragilidad → Orbe de debilidad → Rayo del alma → Ritual oscuro → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "¡No puede ser!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Ritual oscuro",
+        "text": "¡Ka Caww!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Maldición del saber → Tortazo → Conocimiento abrumador → Reflexionar; then conditional: Maldición del saber (if curse of knowledge counter < 3) / Tortazo (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Maldición del saber",
+        "text": "Está hecho."
+      },
+      {
+        "key": "startLine",
+        "move": "Maldición del saber",
+        "text": "Elige."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Carga → Lanzallamas → Carga → Tajo pesado → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "¡Escudo desactivado!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "¡Escudo activado!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Me perteneces; then conditional: Arde para mí (if does not have amalgam died) / Despídete de tu cabeza (if has amalgam died); then conditional: Arde para mí (if does not have amalgam died) / Despídete de tu cabeza (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "¡Me perteneces!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

@@ -544,6 +544,7 @@ export default function MonsterDetail({
     monster.attack_pattern
   );
   const hasMoves = !!(monster.moves && monster.moves.length > 0);
+  const hasQuotes = !!(monster.quotes && monster.quotes.length > 0);
   const hasEncounters = !!(monster.encounters && monster.encounters.length > 0);
 
   const struggles = builds.filter((b) => b.deaths >= 5).slice(0, 5);
@@ -566,6 +567,7 @@ export default function MonsterDetail({
   const tocItems: { id: string; label: string }[] = [
     ...(hasStats ? [{ id: "stats", label: t("Stats") }] : []),
     ...(hasMoves ? [{ id: "moves", label: t("Moves") }] : []),
+    ...(hasQuotes ? [{ id: "quotes", label: t("Quotes") }] : []),
     ...(hasBuilds ? [{ id: "builds", label: t("Builds") }] : []),
     ...(hasEncounters ? [{ id: "encounters", label: t("Encounters") }] : []),
     { id: "history", label: t("Version history") },
@@ -781,6 +783,32 @@ export default function MonsterDetail({
                   />
                 ))}
               </div>
+            </section>
+          )}
+
+          {hasQuotes && (
+            <section id="quotes">
+              <h2>{t("Quotes")}</h2>
+              <p className="h-note">
+                {t("What {name} says in combat.", { name: monster.name })}
+              </p>
+              <ul className="space-y-3">
+                {monster.quotes!.map((q, i) => (
+                  <li
+                    key={`${q.key}-${i}`}
+                    className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4 py-3"
+                  >
+                    <blockquote className="text-[var(--text-primary)] italic">
+                      &ldquo;{q.text}&rdquo;
+                    </blockquote>
+                    {q.move && (
+                      <div className="mt-1 text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                        {q.move}
+                      </div>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 

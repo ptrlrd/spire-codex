@@ -253,6 +253,12 @@ class AttackPattern(BaseModel):
     description: str
 
 
+class MonsterQuote(BaseModel):
+    key: str
+    move: str | None = None
+    text: str
+
+
 class Monster(BaseModel):
     id: str
     name: str
@@ -267,6 +273,7 @@ class Monster(BaseModel):
     encounters: list[MonsterEncounter] | None = None
     innate_powers: list[MonsterInnatePower] | None = None
     attack_pattern: AttackPattern | None = None
+    quotes: list[MonsterQuote] | None = None
     image_url: str | None = None
     beta_image_url: str | None = None
 

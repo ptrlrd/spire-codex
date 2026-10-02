@@ -993,6 +993,18 @@
       ],
       "description": "ねむる → 目覚め → 切り裂き → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "ねむる",
+        "text": "貴様の旅もここまでだ…"
+      },
+      {
+        "key": "speakLine2",
+        "move": "ねむる",
+        "text": "そろそろいいか？"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses 祈祷"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "祈祷",
+        "text": "我らが力に敵う者なし！"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses 祈祷"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "祈祷",
+        "text": "カァー！\nクワァーーーッ！"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses 禁じられた祈り"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "禁じられた祈り",
+        "text": "カァーーーッ！！"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with なぎ払い"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "激怒",
+        "text": "あぁ、たっぷり払ってもらうぜ…"
+      },
+      {
+        "key": "speakLine2",
+        "move": "激怒",
+        "text": "魚の餌になりな！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "コイン吐き",
+        "text": "チャリーン！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "なぎ払い",
+        "text": "かかってきな！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "レリック投げ",
+        "text": "欲しいのか？ 持っていきな！"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses 目覚め"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "逃走",
+        "text": "ずらかるぜ！"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "よこせ → ダブルスマッシュ → ヘヘッ → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "よこせ",
+        "text": "カネ！\nカネ！"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "脆弱のオーブ → 脱力のオーブ → ソウルビーム → 暗黒の儀式 → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "あり得ぬ！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "暗黒の儀式",
+        "text": "カ・クァーッ！！"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: 知識の呪い → はたく → 知識の本流 → 熟考; then conditional: 知識の呪い (if curse of knowledge counter < 3) / はたく (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "知識の呪い",
+        "text": "どうだ。"
+      },
+      {
+        "key": "startLine",
+        "move": "知識の呪い",
+        "text": "選ぶがいい。"
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "突撃 → 火炎放射 → ワインドアップ → ヘビークリーブ → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "シールドダウン！"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "シールド復旧！"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → お前は私のものだ; then conditional: 燃え上がれ (if does not have amalgam died) / 首をはねよ (if has amalgam died); then conditional: 燃え上がれ (if does not have amalgam died) / 首をはねよ (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "…"
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "お前は私のものだ！"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

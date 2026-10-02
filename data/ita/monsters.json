@@ -993,6 +993,18 @@
       ],
       "description": "Letargo → Risveglio → Squarci → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Letargo",
+        "text": "Il tuo viaggio termina qui.."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Letargo",
+        "text": "Iniziamo?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Incantesimo"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantesimo",
+        "text": "IL NOSTRO POTERE È INEGUAGLIABILE!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Incantesimo"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantesimo",
+        "text": "CRA!\nCRAAA"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Incantesimo proibito"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantesimo proibito",
+        "text": "CRAAA!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Scippo"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Ira",
+        "text": "Oh, la pagherai cara..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Ira",
+        "text": "Ti seppellirò nei Moli Funesti!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lanciamonete",
+        "text": "JACKPOT!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Scippo",
+        "text": "Mani in alto!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lancio della reliquia",
+        "text": "La vuoi? Prendila!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Destamento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Fuga",
+        "text": "Taglio la corda!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Dammi → Doppio colpo → Eheh → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Dammi",
+        "text": "Soldi!\nSoldi!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Globo della fragilità → Globo della debolezza → Raggio spirituale → Rituale oscuro → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Impossibile!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Rituale oscuro",
+        "text": "Ka Quaww!!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Maledizione della conoscenza → Schiaffo → Conoscenza travolgente → Riflessione; then conditional: Maledizione della conoscenza (if curse of knowledge counter < 3) / Schiaffo (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Maledizione della conoscenza",
+        "text": "È fatta."
+      },
+      {
+        "key": "startLine",
+        "move": "Maledizione della conoscenza",
+        "text": "Fai la tua scelta."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Carica → Lanciafiamme → Carica → Mazzata pesante → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Gli scudi sono abbassati!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Gli scudi sono tornati!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Non mi sfuggirai; then conditional: Brucia luminoso per me (if does not have amalgam died) / Ghigliottina (if has amalgam died); then conditional: Brucia luminoso per me (if does not have amalgam died) / Ghigliottina (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Non mi sfuggirai!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

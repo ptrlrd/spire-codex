@@ -23,6 +23,7 @@ import {
   type TooltipItem,
 } from "chart.js";
 import { Line, Bar, Scatter } from "react-chartjs-2";
+import { fmtNum } from "@/lib/pct";
 
 ChartJS.register(
   LineElement,
@@ -953,7 +954,7 @@ function baseOptions(data: ChartResponse, t: TFn): ChartOptions<"line"> {
             const raw = item.raw as Point;
             const n =
               raw?.n != null ? ` · ${raw.n.toLocaleString()} ${t("runs")}` : "";
-            return `${item.dataset.label}: ${item.parsed.y}${n}`;
+            return `${item.dataset.label}: ${fmtNum(item.parsed.y)}${n}`;
           },
         },
       },
@@ -1068,7 +1069,7 @@ function BarRanking({
         const p = s?.points[item.dataIndex];
         const v = horizontal ? item.parsed.x : item.parsed.y;
         const n = p?.n != null ? ` · ${p.n.toLocaleString()}` : "";
-        return `${item.dataset.label}: ${v}${n}`;
+        return `${item.dataset.label}: ${fmtNum(v)}${n}`;
       },
     },
   });
@@ -1207,7 +1208,7 @@ function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
                 ...TOOLTIP_BASE,
                 callbacks: {
                   label: (item: TooltipItem<"scatter">) =>
-                    `${item.dataset.label}: ${item.parsed.x}, ${item.parsed.y}`,
+                    `${item.dataset.label}: ${fmtNum(item.parsed.x)}, ${fmtNum(item.parsed.y)}`,
                 },
               },
             },

@@ -993,6 +993,18 @@
       ],
       "description": "수면 → 깨어남 → 참격 → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "수면",
+        "text": "너의 여정은 여기까지다..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "수면",
+        "text": "시작하지."
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses 주문"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "주문",
+        "text": "누구도 우리에게 대적할 수 없다!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses 주문"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "주문",
+        "text": "까악!\n까아악"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses 금지된 주문"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "금지된 주문",
+        "text": "까아아아악!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with 밀쳐내기"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "격분",
+        "text": "제 값을 치르게 해주지..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "격분",
+        "text": "물교기 밥이 되게 해주마!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "동전 분출",
+        "text": "카칭!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "밀쳐내기",
+        "text": "손 들어!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "유물 던지기",
+        "text": "이걸 원해? 가져가!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses 기상"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "도주",
+        "text": "그럼 난 이만!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "내놔 → 이연타 → 헤헤 → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "내놔",
+        "text": "돈이다!\n돈이야!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "연약함의 구체 → 나약함의 구체 → 영혼 광선 → 어둠의 의식 → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "말도 안돼!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "어둠의 의식",
+        "text": "카 콰아악!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: 지식의 저주 → 때리기 → 압도적인 지식 → 숙고; then conditional: 지식의 저주 (if curse of knowledge counter < 3) / 때리기 (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "지식의 저주",
+        "text": "결정되었다."
+      },
+      {
+        "key": "startLine",
+        "move": "지식의 저주",
+        "text": "선택하라."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "돌진 → 화염 방사 → 태엽 감기 → 묵직한 절단 → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "방패가 부서졌다!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "방패 재가동!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → 너는 내 것이다; then conditional: 환하게 타올라라 (if does not have amalgam died) / 목을 베어라 (if has amalgam died); then conditional: 환하게 타올라라 (if does not have amalgam died) / 목을 베어라 (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "너는 내 것이다!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

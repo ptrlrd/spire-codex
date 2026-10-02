@@ -998,6 +998,18 @@
       ],
       "description": "Schlafen → Aufwachen → Aufschlitzen → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Schlafen",
+        "text": "Deine Reise endet hier..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Schlafen",
+        "text": "Fangen wir an?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1187,6 +1199,13 @@
       ],
       "description": "Always uses Ritualformel"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Ritualformel",
+        "text": "UNSERE MACHT IST OHNEGLEICHEN!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1929,6 +1948,13 @@
       ],
       "description": "Always uses Ritualformel"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Ritualformel",
+        "text": "KAH!\nKAAH!"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2121,6 +2147,13 @@
       ],
       "description": "Always uses Verbotene Zauberformel"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Verbotene Zauberformel",
+        "text": "KAAAAH!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2649,6 +2682,33 @@
       ],
       "description": "Starts with Schlagen"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Erzürnen",
+        "text": "Oh, du wirst gut zahlen..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Erzürnen",
+        "text": "Du wirst bei den Fyschen schlafen!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Münzen spucken",
+        "text": "KA-TSCHING!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Schlagen",
+        "text": "Heb' sie gut auf!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Relikt werfen",
+        "text": "Du willst es? Nimm es!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2701,6 +2761,13 @@
       ],
       "description": "Always uses Aufwachen"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Fliehen",
+        "text": "Ich bin hier weg!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3666,6 +3733,13 @@
       ],
       "description": "Her damit → Doppelschmettern → Hihi → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Her damit",
+        "text": "Geld!\nGeld!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4375,6 +4449,18 @@
       ],
       "description": "Orb der Gebrechlichkeit → Orb der Schwäche → Seelenstrahl → Dunkles Ritual → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Es kann nicht sein!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Dunkles Ritual",
+        "text": "Ka Quaah!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4500,6 +4586,18 @@
       ],
       "description": "Starts: Fluch des Wissens → Klatsche → Überwältigendes Wissen → Grübeln; then conditional: Fluch des Wissens (if curse of knowledge counter < 3) / Klatsche (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Fluch des Wissens",
+        "text": "Es ist getan."
+      },
+      {
+        "key": "startLine",
+        "move": "Fluch des Wissens",
+        "text": "Triff deine Wahl."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5446,6 +5544,18 @@
       ],
       "description": "Ansturm → Flammenwerfer → Aufziehen → Schweres Spalten → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Schilde sind runter!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Schilde sind wieder hoch!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6569,6 +6679,18 @@
       ],
       "description": "Starts: Puppet Strings → Du gehörst mir; then conditional: Brenne hell für mich (if does not have amalgam died) / Ab mit deinem Kopf (if has amalgam died); then conditional: Brenne hell für mich (if does not have amalgam died) / Ab mit deinem Kopf (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Du gehörst mir!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

@@ -993,6 +993,18 @@
       ],
       "description": "Sleep → Wake → Slashes → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Sleep",
+        "text": "Your journey ends here..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Sleep",
+        "text": "Shall we begin?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Incantation"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantation",
+        "text": "OUR POWER IS UNMATCHED!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Incantation"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantation",
+        "text": "CAW!\nCAAAW"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Forbidden Incantation"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Forbidden Incantation",
+        "text": "CAAAAW!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Swipe"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Enrage",
+        "text": "Oh, you'll pay alright..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Enrage",
+        "text": "You'll be sleeping with the fyshes!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Spew Coins",
+        "text": "KA-CHING!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Swipe",
+        "text": "Put 'em up!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Throw Relic",
+        "text": "You want it? Take it!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Wake Up"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Flee",
+        "text": "I'm outta here!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Gimme → Double Smash → Hehe → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Gimme",
+        "text": "Money!\nMoney!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Orb of Frailty → Orb of Weakness → Soul Beam → Dark Ritual → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "It cannot be!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Dark Ritual",
+        "text": "Ka Quaww!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Curse of Knowledge → Slap → Knowledge Overwhelming → Ponder; then conditional: Curse of Knowledge (if curse of knowledge counter < 3) / Slap (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Curse of Knowledge",
+        "text": "It is done."
+      },
+      {
+        "key": "startLine",
+        "move": "Curse of Knowledge",
+        "text": "Make your choice."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Charge → Flamethrower → Windup → Heavy Cleave → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Shields are down!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Shield is back online!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → You Are Mine; then conditional: Burn Bright for Me (if does not have amalgam died) / Off with Your Head (if has amalgam died); then conditional: Burn Bright for Me (if does not have amalgam died) / Off with Your Head (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "You are mine!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

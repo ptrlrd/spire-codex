@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { pct2 } from "@/lib/pct";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -108,7 +109,7 @@ function pick(rows: Row[] | undefined, id: string): Row | null {
 
 function fatalPct(r: Row | CharacterStat | null): number | null {
   if (!r || !r.total) return null;
-  return Math.round((r.fatal / r.total) * 1000) / 10;
+  return pct2((r.fatal / r.total) * 100);
 }
 
 async function fetchSeries(ids: string): Promise<Series | null> {

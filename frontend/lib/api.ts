@@ -229,8 +229,15 @@ export interface Monster {
   encounters: MonsterEncounter[] | null;
   innate_powers: MonsterInnatePower[] | null;
   attack_pattern: AttackPattern | null;
+  quotes?: MonsterQuote[] | null;
   image_url: string | null;
   beta_image_url: string | null;
+}
+
+export interface MonsterQuote {
+  key: string;
+  move: string | null;
+  text: string;
 }
 
 export interface Potion {

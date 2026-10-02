@@ -993,6 +993,18 @@
       ],
       "description": "Dormir → Despertar → Corte → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Dormir",
+        "text": "Sua jornada acaba aqui..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Dormir",
+        "text": "Devemos começar?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Encantamento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamento",
+        "text": "NOSSO PODER É INCOMPARÁVEL!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Encantamento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamento",
+        "text": "CAW!\nCAAAW"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Encantamento Proibido"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamento Proibido",
+        "text": "CAAAAW!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Furto"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Enfurecer",
+        "text": "Ah, mas você vai me pagar..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Enfurecer",
+        "text": "Você vai dormir com os peyxes!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lançar Moedas",
+        "text": "KA-CHING!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Furto",
+        "text": "Mãos para cima!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Arremessar Relíquia",
+        "text": "Você quer? Então tome!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Despertar"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Escapar",
+        "text": "Já vou indo!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Passa pra cá → Golpear em Dupla → Hehe → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Passa pra cá",
+        "text": "Dinheiro!\nDinheiro!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Orbe de Fragilidade → Orbe de Fraqueza → Disparo de Alma → Ritual Sombrio → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Impossível!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Ritual Sombrio",
+        "text": "Ka Quaww!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Maldição do Conhecimento → Tapa → Conhecimento Esmagador → Reflexão; then conditional: Maldição do Conhecimento (if curse of knowledge counter < 3) / Tapa (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Maldição do Conhecimento",
+        "text": "Está feito."
+      },
+      {
+        "key": "startLine",
+        "move": "Maldição do Conhecimento",
+        "text": "Faça sua escolha."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Investida → Lança-chamas → Carregar → Corte Pesado → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Escudos inoperantes!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Escudos reativados!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Você Me Pertence; then conditional: Queime Para Mim (if does not have amalgam died) / Cortem-lhe a Cabeça (if has amalgam died); then conditional: Queime Para Mim (if does not have amalgam died) / Cortem-lhe a Cabeça (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Você me pertence!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

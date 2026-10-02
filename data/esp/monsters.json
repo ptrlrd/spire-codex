@@ -993,6 +993,18 @@
       ],
       "description": "Letargo → Despertar → Siega → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Letargo",
+        "text": "Tu aventura termina aquí..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Letargo",
+        "text": "¿Comenzamos?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Encantamiento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamiento",
+        "text": "¡NUESTRO PODER ES INIGUALABLE!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Encantamiento"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Encantamiento",
+        "text": "¡CRAA!\n¡CRAA!"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Conjuro prohibido"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Conjuro prohibido",
+        "text": "¡¡CRAAAA!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Robo"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Cólera",
+        "text": "Oh, claro que pagarás..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Cólera",
+        "text": "¡Dormirás con los peces!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lanzar monedas",
+        "text": "¡CLIN CLIN!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Robo",
+        "text": "¡Arriba las manos!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Arrojar reliquia",
+        "text": "¿La quieres? ¡Tómala!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Despertar"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Fuga",
+        "text": "¡Me largo de aquí!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Dame → Doble remate → Jeje → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Dame",
+        "text": "¡Dinero!\n¡Dinero!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Orbe de fragilidad → Orbe de debilidad → Rayo espiritual → Ritual sombrío → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "¡Imposible!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Ritual sombrío",
+        "text": "¡¡Ka quaww!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Maldición del saber → Bofetada → Conocimiento abrumador → Reflexión; then conditional: Maldición del saber (if curse of knowledge counter < 3) / Bofetada (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Maldición del saber",
+        "text": "Está hecho."
+      },
+      {
+        "key": "startLine",
+        "move": "Maldición del saber",
+        "text": "Haz tu elección."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Carga → Lanzallamas → Dar cuerda → Tajo pesado → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "¡Escudos desactivados!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "¡Escudos reactivados!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Te tengo; then conditional: Llama regia (if does not have amalgam died) / ¡Córtenle la cabeza! (if has amalgam died); then conditional: Llama regia (if does not have amalgam died) / ¡Córtenle la cabeza! (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "¡Te tengo!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

@@ -907,6 +907,36 @@ def _build_pattern_description(
     return "; ".join(parts) if parts else ""
 
 
+_QUOTE_SKIP_LEAVES = {"name", "title", "description"}
+_QUOTE_TAG = re.compile(r"\[/?[a-zA-Z][a-zA-Z0-9_=#:.,\- ]*\]")
+
+
+def collect_quotes(localization: dict, monster_id: str) -> list[dict] | None:
+    """Every spoken line the localization table holds for a monster: banter,
+    speak lines, death lines. Keys look like MONSTER.moves.MOVE.banter or
+    MONSTER.someDeathLine; name/title/description leaves are not speech."""
+    prefix = f"{monster_id}."
+    out: list[dict] = []
+    for key in sorted(localization):
+        if not key.startswith(prefix):
+            continue
+        parts = key[len(prefix) :].split(".")
+        leaf = parts[-1]
+        if leaf in _QUOTE_SKIP_LEAVES or not isinstance(localization[key], str):
+            continue
+        text = _QUOTE_TAG.sub("", localization[key]).strip()
+        if not text:
+            continue
+        move = None
+        if len(parts) >= 3 and parts[0] == "moves":
+            move_id = parts[1]
+            move = localization.get(
+                f"{monster_id}.moves.{move_id}.title", move_id.replace("_", " ").title()
+            )
+        out.append({"key": leaf, "move": move, "text": text})
+    return out or None
+
+
 def parse_single_monster(
     filepath: Path, localization: dict, encounter_types: dict, monster_encounters: dict
 ) -> dict | None:
@@ -1259,6 +1289,7 @@ def parse_single_monster(
         "encounters": encounters if encounters else None,
         "innate_powers": innate_powers if innate_powers else None,
         "attack_pattern": attack_pattern,
+        "quotes": collect_quotes(localization, monster_id),
         "image_url": image_url,
         "beta_image_url": beta_image_url,
     }
@@ -1416,6 +1447,8 @@ def parse_all_monsters(loc_dir: Path, data_dir: Path) -> list[dict]:
                 "damage_values": parent.get("damage_values"),
                 "block_values": parent.get("block_values"),
                 "encounters": monster_encounters.get(child_monster_id, []) or None,
+                "quotes": collect_quotes(localization, child_monster_id)
+                or parent.get("quotes"),
                 "image_url": image_url,
             }
 
