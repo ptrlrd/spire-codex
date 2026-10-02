@@ -11,6 +11,7 @@ import {
   type BrowseConfig,
 } from "@/lib/browse-config";
 import ReplaySummary from "../replays/ReplaySummary";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -714,6 +715,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                       {r.username}
                     </span>
                   )}
+                  <PlayerBadge username={r.username} />
                 </div>
                 <div className="flex items-center gap-3 sm:gap-4 text-xs text-[var(--text-muted)] shrink-0">
                   <span className="hidden sm:inline">

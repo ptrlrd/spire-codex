@@ -35,6 +35,10 @@ class _Coll:
             for k, v in flt.items():
                 if isinstance(v, dict) and "$ne" in v:
                     ok = ok and d.get(k) != v["$ne"]
+                elif isinstance(v, dict) and "$in" in v:
+                    ok = ok and d.get(k) in v["$in"]
+                elif isinstance(v, dict) and "$exists" in v:
+                    ok = ok and ((k in d) == bool(v["$exists"]))
                 else:
                     ok = ok and d.get(k) == v
             if ok:
@@ -67,8 +71,16 @@ def env(monkeypatch):
 
     monkeypatch.setattr(user_insights, "prewarm_user_insights", lambda *a, **k: None)
     users = _Coll(
-        [{"_id": ObjectId(UID), "username": "Dobo", "email": "dobo@example.com"}]
+        [
+            {
+                "_id": ObjectId(UID),
+                "username": "Dobo",
+                "username_lower": "dobo",
+                "email": "dobo@example.com",
+            }
+        ]
     )
+    supporters._flair_cache.clear()
     kofi = _Coll()
     monkeypatch.setattr(users_db, "_get_collection", lambda: users)
     monkeypatch.setattr(thanks, "_supporters", lambda: kofi)
@@ -94,6 +106,8 @@ def test_nobody_is_a_supporter_by_default(env):
         "since": None,
         "expires_at": None,
         "listed": False,
+        "theme": None,
+        "theme_public": False,
     }
 
 
@@ -247,3 +261,78 @@ def test_thank_you_lists_only_active_opted_in_supporters(env, monkeypatch):
     monkeypatch.setattr(thanks, "public_supporters", lambda: [])
     assert thanks.payload()["subscribers"] == rows
     assert "email" not in str(rows)
+
+
+def test_theme_values_are_presets_or_hex():
+    assert supporters.normalize_theme("Ironclad") == "ironclad"
+    assert supporters.normalize_theme("#FF8800") == "#ff8800"
+    assert supporters.normalize_theme("#ff8") is None
+    assert supporters.normalize_theme("red") is None
+    assert supporters.normalize_theme(12) is None
+
+
+def _login(users, monkeypatch):
+    monkeypatch.setattr(
+        auth_jwt, "get_current_user", lambda request: _session_user(users)
+    )
+    monkeypatch.setattr(
+        auth_router, "get_current_user", lambda request: _session_user(users)
+    )
+    monkeypatch.setattr(
+        auth_router, "require_user", lambda request: _session_user(users)
+    )
+
+
+def test_only_supporters_can_save_a_theme(env, monkeypatch):
+    users, _ = env
+    assert client.patch("/api/auth/theme", json={"theme": "silent"}).status_code == 401
+    _login(users, monkeypatch)
+    assert client.patch("/api/auth/theme", json={}).status_code == 400
+    assert client.patch("/api/auth/theme", json={"theme": "silent"}).status_code == 403
+    assert client.patch("/api/auth/theme", json={"public": "yes"}).status_code == 400
+    assert client.patch("/api/auth/theme", json={"public": True}).json() == {
+        "theme_public": True
+    }
+    _user(users)["is_paid"] = True
+    assert client.patch("/api/auth/theme", json={"theme": "mauve"}).status_code == 400
+    assert client.patch("/api/auth/theme", json={"theme": "#AbCdEf"}).json() == {
+        "theme": "#abcdef"
+    }
+    me = client.get("/api/auth/me").json()
+    assert me["supporter"]["theme"] == "#abcdef"
+    assert me["supporter"]["theme_public"] is True
+    assert client.patch("/api/auth/theme", json={"theme": None}).json() == {
+        "theme": None
+    }
+    assert "theme" not in _user(users)
+
+
+def test_flair_shows_active_public_supporters_only(env):
+    users, _ = env
+    doc = _user(users)
+    doc.update({"is_paid": True, "theme": "regent", "theme_public": True})
+    users.docs[ObjectId("5f1d7f9a3b2c4d5e6f708193")] = {
+        "_id": ObjectId("5f1d7f9a3b2c4d5e6f708193"),
+        "username": "Quiet",
+        "username_lower": "quiet",
+        "is_paid": True,
+        "theme": "silent",
+        "theme_public": False,
+    }
+    users.docs[ObjectId("5f1d7f9a3b2c4d5e6f708194")] = {
+        "_id": ObjectId("5f1d7f9a3b2c4d5e6f708194"),
+        "username": "Lapsed",
+        "username_lower": "lapsed",
+        "theme": "defect",
+        "theme_public": True,
+    }
+    out = supporters.flair(["DOBO", "quiet", "Lapsed", "nobody", ""], NOW)
+    assert out == {"dobo": {"theme": "regent"}}
+    doc["theme"] = "#123456"
+    assert supporters.flair(["dobo"], NOW) == {"dobo": {"theme": "regent"}}
+    supporters.invalidate_flair("Dobo")
+    assert supporters.flair(["dobo"], NOW) == {"dobo": {"theme": "#123456"}}
+    r = client.get("/api/players/flair?u=dobo&u=quiet")
+    assert r.status_code == 200 and r.json() == {"dobo": {"theme": "#123456"}}
+    assert r.headers["cache-control"] == "public, max-age=300"
+    assert client.get("/api/players/flair").json() == {}

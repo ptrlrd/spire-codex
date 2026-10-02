@@ -12,6 +12,7 @@ import {
   type EloBoard,
   type SortKey,
 } from "@/lib/elo-board";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -181,6 +182,7 @@ export default function EloBoardClient() {
                         className="font-medium text-[var(--text-primary)] hover:text-[var(--accent-gold)] truncate block max-w-[9rem] sm:max-w-none"
                       >
                         {p.username}
+                        <PlayerBadge username={p.username} className="ml-1" />
                       </Link>
                     </td>
                     <td className="py-2 px-2 sm:px-3 text-right tabular-nums font-semibold text-[var(--text-primary)]">

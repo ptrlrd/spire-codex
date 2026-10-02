@@ -38,6 +38,8 @@ import FloorPanel, {
   type EventInfo,
 } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { OwnerTheme } from "@/app/components/OwnerTheme";
 
 const ENERGY_ICONS = new Set([
   "ironclad",
@@ -539,10 +541,12 @@ export default function ReplayClient({
           />
         )}
         <div className="min-w-0">
+          <OwnerTheme username={run.username} />
           <h1 className="text-xl font-bold text-[var(--text-primary)]">
             {[who, character, `A${run.ascension ?? 0}`]
               .filter(Boolean)
               .join(" · ")}
+            <PlayerBadge username={run.username} className="ml-2" />
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
             <span

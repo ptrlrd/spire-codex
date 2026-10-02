@@ -7,6 +7,7 @@ const API_INTERNAL =
   "http://localhost:8000";
 
 const KOFI_URL = "https://ko-fi.com/spirecodex";
+const PATREON_URL = "https://www.patreon.com/cw/SpireCodex";
 
 export interface ThanksContributor {
   login: string;
@@ -90,6 +91,39 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
           )}
         </p>
 
+        <section className="not-prose rounded-xl border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 p-5">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
+            <h2 className="text-sm font-semibold text-[var(--accent-gold)] uppercase tracking-wider">
+              {t("Subscribers")}
+            </h2>
+            <a
+              href={PATREON_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-colors"
+            >
+              {t("Subscribe on Patreon")}
+            </a>
+          </div>
+          <p className="text-sm text-[var(--text-muted)] mb-3">
+            {t(
+              "Everyone backing the site month after month through Patreon, a Ko-fi membership or the Overwolf overlay. Subscribers see no ads and get a badge and a theme of their own.",
+            )}
+          </p>
+          {data.subscribers.length > 0 && (
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
+              {data.subscribers.map((s, i) => (
+                <span key={s.name}>
+                  {i > 0 && (
+                    <span className="text-[var(--text-muted)]"> · </span>
+                  )}
+                  <span title={s.sources.join(", ")}>{s.name}</span>
+                </span>
+              ))}
+            </p>
+          )}
+        </section>
+
         <section className="not-prose rounded-xl border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 p-5">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
             <h2 className="text-sm font-semibold text-[var(--accent-gold)] uppercase tracking-wider">
@@ -137,29 +171,6 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
             </p>
           )}
         </section>
-
-        {data.subscribers.length > 0 && (
-          <section className="not-prose rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-5">
-            <h2 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider mb-1">
-              {t("Subscribers")}
-            </h2>
-            <p className="text-sm text-[var(--text-muted)] mb-3">
-              {t(
-                "Everyone backing the site month after month through Overwolf, Patreon or a Ko-fi membership.",
-              )}
-            </p>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-              {data.subscribers.map((s, i) => (
-                <span key={s.name}>
-                  {i > 0 && (
-                    <span className="text-[var(--text-muted)]"> · </span>
-                  )}
-                  <span title={s.sources.join(", ")}>{s.name}</span>
-                </span>
-              ))}
-            </p>
-          </section>
-        )}
 
         {data.contributors.length > 0 && (
           <section className="not-prose">

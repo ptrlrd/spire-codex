@@ -1,8 +1,20 @@
 "use client";
 
+import { useAuth } from "@/app/contexts/AuthContext";
 import { useT } from "@/lib/i18n";
 import { CDN_BASE } from "@/lib/image-url";
+import { forgetFlair } from "@/lib/supporter-flair";
+import {
+  VIEWER_CUSTOM_CSS_KEY,
+  VIEWER_CUSTOM_KEY,
+  applyPalette,
+  normalizeTheme,
+  paletteCss,
+  paletteFor,
+} from "@/lib/theme-palette";
 import { useEffect, useRef, useState } from "react";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 export const CHARACTER_THEMES = [
   "ironclad",
@@ -12,7 +24,7 @@ export const CHARACTER_THEMES = [
   "regent",
 ] as const;
 export type CharacterTheme = (typeof CHARACTER_THEMES)[number];
-type Mode = "light" | "dark" | "character";
+type Mode = "light" | "dark" | "character" | "custom";
 
 const CHARACTER_NAMES: Record<CharacterTheme, string> = {
   ironclad: "Ironclad",
@@ -21,25 +33,34 @@ const CHARACTER_NAMES: Record<CharacterTheme, string> = {
   necrobinder: "Necrobinder",
   regent: "Regent",
 };
+const DEFAULT_CUSTOM = "#e8b830";
 
 function isCharacter(value: string | null): value is CharacterTheme {
   return (CHARACTER_THEMES as readonly string[]).includes(value ?? "");
 }
 
-function readCurrent(): { mode: Mode; character: CharacterTheme } {
+function readCurrent(): {
+  mode: Mode;
+  character: CharacterTheme;
+  custom: string;
+} {
   const attr = document.documentElement.getAttribute("data-theme");
   let character: CharacterTheme = "ironclad";
+  let custom = DEFAULT_CUSTOM;
   try {
     const remembered = localStorage.getItem("theme-character");
     if (isCharacter(remembered)) character = remembered;
+    const hex = normalizeTheme(localStorage.getItem(VIEWER_CUSTOM_KEY));
+    if (hex && hex.startsWith("#")) custom = hex;
   } catch {
     /* storage unavailable */
   }
-  if (isCharacter(attr)) return { mode: "character", character: attr };
-  return { mode: attr === "light" ? "light" : "dark", character };
+  if (isCharacter(attr)) return { mode: "character", character, custom };
+  if (attr === "custom") return { mode: "custom", character, custom };
+  return { mode: attr === "light" ? "light" : "dark", character, custom };
 }
 
-function applyTheme(value: "light" | "dark" | CharacterTheme) {
+function applyTheme(value: "light" | "dark" | "custom" | CharacterTheme) {
   document.documentElement.setAttribute("data-theme", value);
   document.documentElement.classList.toggle("dark", value !== "light");
   try {
@@ -48,6 +69,23 @@ function applyTheme(value: "light" | "dark" | CharacterTheme) {
   } catch {
     /* private mode / storage disabled */
   }
+}
+
+function applyCustom(hex: string) {
+  const palette = paletteFor(hex, "dark");
+  if (!palette) return;
+  applyPalette(palette);
+  applyTheme("custom");
+  try {
+    localStorage.setItem(VIEWER_CUSTOM_KEY, hex);
+    localStorage.setItem(VIEWER_CUSTOM_CSS_KEY, paletteCss(palette));
+  } catch {
+    /* storage unavailable */
+  }
+}
+
+function clearCustom() {
+  applyPalette(null);
 }
 
 const sun = (
@@ -93,15 +131,31 @@ const swords = (
     <path d="M9.5 6.5 21 18" />
   </svg>
 );
+const drop = (
+  <svg
+    className="w-4 h-4 shrink-0"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={2}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    aria-hidden
+  >
+    <path d="M12 2.7 6.3 9.6a7 7 0 1 0 11.4 0z" />
+  </svg>
+);
 
 function characterIcon(key: CharacterTheme) {
   return `${CDN_BASE}/ui/characters/character_icon_${key}.webp`;
 }
 
-/** Light / Dark / Character theme picker. Flips `data-theme` on <html> and
- * the Tailwind `dark` class, persists the choice, and the inline script in
- * the root layout applies it before first paint. Palettes live in
- * globals.css: `:root[data-theme="light"]` and one block per character.
+/** Light / Dark / Character / Custom theme picker. Flips `data-theme` on
+ * <html> and the Tailwind `dark` class, persists the choice, and the inline
+ * script in the root layout applies it before first paint. Character
+ * palettes live in globals.css; a custom colour derives its palette at
+ * runtime (lib/theme-palette.ts) and is saved to the account for
+ * supporters so other people see it on their pages.
  *
  * variants: "icon" = compact nav-cluster button opening a popover
  * (desktop); "segmented" = a "Theme" row for the mobile drawer. */
@@ -111,15 +165,20 @@ export default function ThemeToggle({
   variant?: "icon" | "segmented";
 }) {
   const t = useT();
+  const { user } = useAuth();
+  const supporter = Boolean(user?.supporter?.active);
   const [mode, setMode] = useState<Mode>("dark");
   const [character, setCharacter] = useState<CharacterTheme>("ironclad");
+  const [custom, setCustom] = useState(DEFAULT_CUSTOM);
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const current = readCurrent();
     setMode(current.mode);
     setCharacter(current.character);
+    setCustom(current.custom);
   }, []);
 
   useEffect(() => {
@@ -138,14 +197,46 @@ export default function ThemeToggle({
     };
   }, [open]);
 
+  const save = (theme: string, delay = 0) => {
+    if (!supporter) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => {
+      fetch(`${API_BASE}/api/auth/theme`, {
+        method: "PATCH",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ theme }),
+      })
+        .then(() => forgetFlair(user?.username))
+        .catch(() => undefined);
+    }, delay);
+  };
+
   const chooseMode = (next: Mode) => {
     setMode(next);
+    if (next === "custom") {
+      applyCustom(custom);
+      save(custom);
+      return;
+    }
+    clearCustom();
     applyTheme(next === "character" ? character : next);
+    if (next === "character") save(character);
   };
   const chooseCharacter = (next: CharacterTheme) => {
     setCharacter(next);
     setMode("character");
+    clearCustom();
     applyTheme(next);
+    save(next);
+  };
+  const chooseCustom = (hex: string) => {
+    const value = normalizeTheme(hex);
+    if (!value || !value.startsWith("#")) return;
+    setCustom(value);
+    setMode("custom");
+    applyCustom(value);
+    save(value, 400);
   };
 
   const segment = (
@@ -207,11 +298,27 @@ export default function ThemeToggle({
     </div>
   );
 
+  const customRow = (
+    <div className="flex items-center gap-2">
+      <input
+        type="color"
+        value={custom}
+        onChange={(e) => chooseCustom(e.target.value)}
+        aria-label={t("Pick a colour")}
+        className="h-9 w-12 cursor-pointer rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-1"
+      />
+      <span className="font-mono text-xs text-[var(--text-secondary)]">
+        {custom}
+      </span>
+    </div>
+  );
+
   const segments = (compact: boolean) => (
-    <div className="flex gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-1">
+    <div className="flex flex-wrap gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-1">
       {segment("light", t("Light"), sun, compact)}
       {segment("dark", t("Dark"), moon, compact)}
       {segment("character", t("Character"), swords, compact)}
+      {supporter && segment("custom", t("Custom"), drop, compact)}
     </div>
   );
 
@@ -232,6 +339,14 @@ export default function ThemeToggle({
             {characterRow}
           </div>
         )}
+        {mode === "custom" && supporter && (
+          <div className="mt-3 flex items-center justify-between gap-3">
+            <span className="text-sm text-[var(--text-secondary)]">
+              {t("Your colour")}
+            </span>
+            {customRow}
+          </div>
+        )}
       </div>
     );
   }
@@ -244,6 +359,12 @@ export default function ThemeToggle({
         width={20}
         height={20}
         className="h-5 w-5 object-contain"
+      />
+    ) : mode === "custom" ? (
+      <span
+        className="h-4 w-4 rounded-full border border-[var(--border-accent)]"
+        style={{ backgroundColor: custom }}
+        aria-hidden
       />
     ) : mode === "light" ? (
       sun
@@ -284,6 +405,19 @@ export default function ThemeToggle({
                 </span>
               </div>
               {characterRow}
+            </div>
+          )}
+          {mode === "custom" && supporter && (
+            <div className="mt-3 border-t border-[var(--border-subtle)] pt-3">
+              <div className="mb-2 text-xs uppercase tracking-wider text-[var(--text-muted)]">
+                {t("Pick a colour")}
+              </div>
+              {customRow}
+              <p className="mt-2 text-xs text-[var(--text-muted)]">
+                {t(
+                  "Thanks for supporting the site. Your colour shows on your profile and runs when you turn that on in your profile settings.",
+                )}
+              </p>
             </div>
           )}
         </div>

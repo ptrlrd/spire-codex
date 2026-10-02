@@ -468,6 +468,37 @@ async def thanks_listing(request: Request):
     return supporters.set_thanks_listing(user["_id"], listed)
 
 
+@router.patch("/theme")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.theme", "20/minute"))
+async def theme_setting(request: Request):
+    """Save the supporter theme (a character preset or a hex colour) and
+    whether other people see it on the profile, run and replay pages."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    if not isinstance(body, dict) or not ({"theme", "public"} & set(body)):
+        raise HTTPException(status_code=400, detail="theme or public required")
+    out: dict = {}
+    if "theme" in body:
+        theme = body.get("theme")
+        if theme is not None:
+            theme = supporters.normalize_theme(theme)
+            if not theme:
+                raise HTTPException(status_code=400, detail="Unknown theme")
+            if not supporters.status(user)["active"]:
+                raise HTTPException(status_code=403, detail="Supporters only")
+        out.update(supporters.set_theme(user["_id"], theme))
+    if "public" in body:
+        public = body.get("public")
+        if not isinstance(public, bool):
+            raise HTTPException(status_code=400, detail="public must be a boolean")
+        out.update(supporters.set_theme_public(user["_id"], public))
+    supporters.invalidate_flair(user.get("username"))
+    return out
+
+
 @router.post("/refresh")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.refresh", "30/minute"))
 def refresh_token(request: Request):

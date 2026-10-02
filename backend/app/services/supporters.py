@@ -12,6 +12,8 @@ import hashlib
 import hmac
 import logging
 import os
+import re
+import time
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -26,6 +28,11 @@ OVERWOLF_SUBSCRIPTIONS_URL = os.environ.get(
 OVERWOLF_GRACE_DAYS = int(os.environ.get("OVERWOLF_GRACE_DAYS", "35"))
 KOFI_MONTHLY_GRACE_DAYS = int(os.environ.get("KOFI_MONTHLY_GRACE_DAYS", "40"))
 _ACTIVE_STATES = {"active", "cancelled", "canceled", "grace"}
+THEME_CHARACTERS = ("ironclad", "silent", "defect", "necrobinder", "regent")
+_HEX_THEME = re.compile(r"^#[0-9a-f]{6}$")
+FLAIR_TTL_SECONDS = 300
+FLAIR_MAX_NAMES = 100
+_flair_cache: dict[str, tuple[float, dict | None]] = {}
 
 
 def _now() -> datetime:
@@ -239,6 +246,8 @@ def status(user: dict | None, now: datetime | None = None) -> dict:
             "since": None,
             "expires_at": None,
             "listed": False,
+            "theme": None,
+            "theme_public": False,
         }
     if user.get("is_paid"):
         sources.append({"source": "patreon", "since": None, "expires_at": None})
@@ -272,7 +281,105 @@ def status(user: dict | None, now: datetime | None = None) -> dict:
         if expiries and len(expiries) == len(sources)
         else None,
         "listed": bool(user.get("thanks_listed")),
+        "theme": user.get("theme") or None,
+        "theme_public": bool(user.get("theme_public")),
     }
+
+
+def normalize_theme(value: Any) -> str | None:
+    """A saved theme is one of the character presets or a six-digit hex."""
+    if not isinstance(value, str):
+        return None
+    v = value.strip().lower()
+    if v in THEME_CHARACTERS or _HEX_THEME.match(v):
+        return v
+    return None
+
+
+def set_theme(user_id: str, theme: str | None) -> dict:
+    from bson import ObjectId
+
+    from .users_db import _get_collection
+
+    update = {"$set": {"theme": theme}} if theme else {"$unset": {"theme": ""}}
+    _get_collection().update_one({"_id": ObjectId(user_id)}, update)
+    return {"theme": theme}
+
+
+def set_theme_public(user_id: str, public: bool) -> dict:
+    from bson import ObjectId
+
+    from .users_db import _get_collection
+
+    _get_collection().update_one(
+        {"_id": ObjectId(user_id)}, {"$set": {"theme_public": bool(public)}}
+    )
+    return {"theme_public": bool(public)}
+
+
+def invalidate_flair(username: Any) -> None:
+    if isinstance(username, str):
+        _flair_cache.pop(username.strip().lower(), None)
+
+
+def flair(usernames: list[str], now: datetime | None = None) -> dict[str, dict]:
+    """Public per-player flair keyed by lowercased username: the saved theme
+    of every active supporter who chose to show it. Names that are not
+    supporters, lapsed, or private are simply absent."""
+    keys = sorted(
+        {u.strip().lower() for u in usernames if isinstance(u, str) and u.strip()}
+    )[:FLAIR_MAX_NAMES]
+    if not keys or not os.environ.get("MONGO_URL", "").strip():
+        return {}
+    from .users_db import _get_collection
+
+    mono = time.monotonic()
+    out: dict[str, dict] = {}
+    missing: list[str] = []
+    for k in keys:
+        hit = _flair_cache.get(k)
+        if hit and hit[0] > mono:
+            if hit[1]:
+                out[k] = dict(hit[1])
+        else:
+            missing.append(k)
+    if not missing:
+        return out
+    now = now or _now()
+    found: dict[str, dict] = {}
+    try:
+        cursor = _get_collection().find(
+            {
+                "username_lower": {"$in": missing},
+                "theme_public": True,
+                "theme": {"$exists": True},
+            },
+            {
+                "username": 1,
+                "username_lower": 1,
+                "theme": 1,
+                "theme_public": 1,
+                "is_paid": 1,
+                "overwolf_subscription": 1,
+                "email": 1,
+            },
+        )
+        for user in cursor:
+            key = str(user.get("username_lower") or "").lower()
+            theme = normalize_theme(user.get("theme"))
+            if not key or not theme or not user.get("theme_public"):
+                continue
+            if not status(user, now)["active"]:
+                continue
+            found[key] = {"theme": theme}
+    except Exception:
+        logger.warning("flair lookup failed", exc_info=True)
+        return out
+    for k in missing:
+        _flair_cache[k] = (mono + FLAIR_TTL_SECONDS, found.get(k))
+        if k in found:
+            out[k] = dict(found[k])
+    return out
 
 
 def public_subscribers(limit: int = 500) -> list[dict]:

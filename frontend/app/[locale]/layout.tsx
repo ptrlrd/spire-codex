@@ -191,7 +191,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
         </noscript>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');var ok=['light','ironclad','silent','defect','necrobinder','regent'];if(ok.indexOf(t)<0){t='dark';}document.documentElement.setAttribute('data-theme',t);if(t==='light'){document.documentElement.classList.remove('dark');}else{document.documentElement.classList.add('dark');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');var ok=['light','ironclad','silent','defect','necrobinder','regent','custom'];if(ok.indexOf(t)<0){t='dark';}if(t==='custom'){var c=localStorage.getItem('theme-custom-css');if(c&&/^[-a-z0-9:#;., ()]+$/i.test(c)){document.documentElement.style.cssText=c;}else{t='dark';}}document.documentElement.setAttribute('data-theme',t);if(t==='light'){document.documentElement.classList.remove('dark');}else{document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
         {/* No Suspense between here and the page: a boundary above {children}

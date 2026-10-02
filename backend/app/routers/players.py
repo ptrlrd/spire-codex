@@ -7,10 +7,10 @@ only gates this aggregated view."""
 
 import os
 
-from fastapi import APIRouter, HTTPException, Request, Response
+from fastapi import APIRouter, HTTPException, Query, Request, Response
 
 from ..dependencies import shared_limiter
-from ..services import rate_limit_config
+from ..services import rate_limit_config, supporters
 
 router = APIRouter(prefix="/api/players", tags=["Players"])
 
@@ -33,6 +33,21 @@ def _validate_insight_filters(
 
 
 limiter = shared_limiter
+
+
+@router.get("/flair", tags=["Players"])
+@limiter.limit(rate_limit_config.endpoint_limit("players.flair", "120/minute"))
+def players_flair(
+    request: Request,
+    response: Response,
+    u: list[str] = Query(default=[], description="Usernames, up to 100"),
+):
+    """Supporter flair for a batch of usernames: the theme each active
+    supporter chose to show, keyed by lowercased username."""
+    if len(u) > supporters.FLAIR_MAX_NAMES:
+        raise HTTPException(status_code=400, detail="Too many names")
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return supporters.flair(u)
 
 
 @router.get("/{username}/insights", tags=["Players"])

@@ -12,6 +12,8 @@ import {
   type InsightFilters,
   type Insights,
 } from "@/app/components/ProfileInsights";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { OwnerTheme } from "@/app/components/OwnerTheme";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -104,10 +106,15 @@ export default function PlayerProfileClient({
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+      <OwnerTheme username={data.username || username} />
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-1">
             {data.username || username}
+            <PlayerBadge
+              username={data.username || username}
+              className="ml-2 text-xs"
+            />
           </h1>
           <p className="text-sm text-[var(--text-muted)]">
             {data.total_runs} {t("runs")}

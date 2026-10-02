@@ -36,6 +36,8 @@ interface User {
     since?: string | null;
     expires_at?: string | null;
     listed: boolean;
+    theme?: string | null;
+    theme_public?: boolean;
   };
 }
 

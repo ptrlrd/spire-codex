@@ -28,6 +28,8 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
 import { stackCards } from "@/lib/deck-stack";
 import { fmtDateTime, fmtDateTimePacific } from "@/lib/pacific";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { OwnerTheme } from "@/app/components/OwnerTheme";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
 
 interface DeckCard {
@@ -378,6 +380,7 @@ export default function RunSummary({
           />
         )}
         <div className="w-full sm:w-auto sm:ml-auto text-left sm:text-right text-xs text-[var(--text-muted)] leading-tight">
+          <OwnerTheme username={run.username} />
           {run.username && (
             <div className="truncate">
               <Link
@@ -390,6 +393,7 @@ export default function RunSummary({
                   {run.username}
                 </span>
               </Link>
+              <PlayerBadge username={run.username} className="ml-1" />
             </div>
           )}
           {run.start_time && (
