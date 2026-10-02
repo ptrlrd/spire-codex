@@ -754,3 +754,19 @@ def test_attribute_run_to_requires_a_matching_hint(coll):
     me = coll.by_char()["REGENT"]
     assert me["user_id"] == ObjectId(ME_ID) and me["steam_id"] == ME_SID
     assert "attribution_unverified" not in me
+
+
+def test_attribution_forgets_the_cached_shared_run(coll, monkeypatch):
+    from app.services import cache as app_cache
+
+    dropped: list[str] = []
+    monkeypatch.setattr(app_cache, "delete", lambda key: dropped.append(key))
+    submit_run(_blob(), username="PC-Reviver", steam_id_hint=ME_SID, verified=False)
+    me_hash = coll.by_char()["REGENT"]["_id"]
+    submit_run(_blob(), username="PC-Reviver", steam_id=ME_SID)
+    assert f"run:{me_hash}" in dropped
+    dropped.clear()
+    submit_run(_blob(with_ids=False), username="Nobody", verified=False)
+    anon = [h for h in coll.docs if h != me_hash and coll.docs[h]["user_id"] is None]
+    claim_runs("Guest", anon)
+    assert set(dropped) == {f"run:{h}" for h in anon}

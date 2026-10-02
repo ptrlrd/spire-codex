@@ -460,6 +460,19 @@ def uploader_player_index(players: list, steam_id: str | None) -> int | None:
 _HINT_UNSET = {"steam_id_hint": "", "attribution_unverified": ""}
 
 
+def forget_shared_run(*hashes: str) -> None:
+    """Drop the cached /api/runs/shared payload for runs whose owner just
+    changed; the blob is immutable but the merged username is not."""
+    from . import cache as app_cache
+
+    for h in hashes:
+        if h:
+            try:
+                app_cache.delete(f"run:{h}")
+            except Exception:
+                pass
+
+
 def _hint_ok(steam_id: str) -> dict:
     return {"steam_id_hint": {"$in": [None, steam_id]}}
 
@@ -483,7 +496,10 @@ def attribute_run_to(run_hash: str, user: dict, coll=None) -> bool:
         {"$set": owner_set, "$unset": _HINT_UNSET},
     )
     after = coll.find_one({"_id": run_hash}, {"user_id": 1}) or {}
-    return str(after.get("user_id") or "") == str(owner_set["user_id"])
+    owned = str(after.get("user_id") or "") == str(owner_set["user_id"])
+    if owned:
+        forget_shared_run(run_hash)
+    return owned
 
 
 def _teammate_identity(player: dict) -> tuple[str | None, str | None, str | None]:
@@ -1080,6 +1096,7 @@ def _submit_player_run(
                 {"_id": run_hash, "user_id": None, **steam_ok},
                 {"$set": owner_set, "$unset": _HINT_UNSET},
             )
+            forget_shared_run(run_hash)
         if is_uploader and doc.get("damage"):
             coll.update_one(
                 {"_id": run_hash, "damage": {"$exists": False}, **own_slot},
@@ -1387,6 +1404,7 @@ def claim_runs(username: str, hashes: list[str]) -> dict:
             },
             {"$set": update},
         )
+        forget_shared_run(*unclaimed)
         if owner:
             try:
                 from .user_insights import (

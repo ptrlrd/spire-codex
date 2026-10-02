@@ -845,5 +845,8 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
             {"_id": run_hash, "user_id": None, "steam_id": {"$in": [None, user_sid]}},
             {"$set": owner_set},
         )
+        from ..services.runs_db_mongo import forget_shared_run
+
+        forget_shared_run(run_hash)
     except Exception:
         pass
