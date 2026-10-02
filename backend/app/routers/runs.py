@@ -302,32 +302,30 @@ MAX_CLAIM_HASHES = 5000
     rate_limit_config.endpoint_limit("runs.claim_runs_endpoint", "10/minute")
 )
 async def claim_runs_endpoint(request: Request):
-    """Attach a username to previously-submitted runs by hash.
+    """Attach the signed-in account to previously-submitted runs by hash.
 
-    Body: `{ "username": "name", "hashes": ["abc123...", ...] }`
+    Body: `{ "hashes": ["abc123...", ...] }` with the session cookie or a
+    bearer token. The account comes from the verified session only; a
+    `username` in the body is ignored.
 
     Only rows with a NULL/empty username are updated — existing
-    claims are never overwritten. Intended for the Spire Compendium
-    desktop app: after Steam sign-in, the client computes hashes
-    for every local run and claims the ones it already uploaded
-    anonymously.
+    claims are never overwritten. The overlay calls this after Steam
+    sign-in with hashes of every local run so the ones it already uploaded
+    anonymously attach to the account.
     """
+    from ..services.auth_jwt import get_current_user
+
+    user = get_current_user(request)
+    sanitized = str((user or {}).get("username") or "").strip()[:32]
+    if not user or not sanitized:
+        raise HTTPException(status_code=401, detail="Sign in to claim runs")
+
     try:
         payload = await request.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
-
-    raw_username = payload.get("username")
-    if not raw_username or not isinstance(raw_username, str):
-        raise HTTPException(status_code=400, detail="username is required")
-
-    import re
-
-    sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", raw_username.strip())[:32].strip()
-    if not sanitized:
-        raise HTTPException(
-            status_code=400, detail="username is empty after sanitization"
-        )
+    if not isinstance(payload, dict):
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
 
     hashes = payload.get("hashes")
     if not isinstance(hashes, list):

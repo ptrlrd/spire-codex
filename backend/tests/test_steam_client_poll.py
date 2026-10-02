@@ -114,8 +114,35 @@ def test_web_session_still_redirects_and_pops(env, monkeypatch):
     )
     assert auth_session_store.get_session(sid)["web"] is True
     r = _callback(sid)
-    assert (
-        r.status_code in (302, 307)
-        and "/profile?auth=steam&token=jwt.for.u1" in r.headers["location"]
-    )
+    assert r.status_code in (302, 307)
+    assert r.headers["location"].endswith("/profile?auth=steam")
+    assert "token=" not in r.headers["location"]
+    assert "spire_session=jwt.for.u1" in r.headers.get("set-cookie", "")
     assert client.get(f"/api/auth/steam/poll/{sid}").status_code == 404
+
+
+def test_split_origin_dev_still_hands_the_token_over_the_url(env, monkeypatch):
+    monkeypatch.setenv("FRONTEND_URL", "http://localhost:3000")
+    monkeypatch.setattr(auth_steam, "web_flow_bound", lambda sid, cookie: True)
+    from app.services import auth_jwt
+
+    monkeypatch.setattr(auth_jwt, "get_current_user", lambda request: None)
+    r = client.get("/api/auth/steam/redirect", follow_redirects=False)
+    from urllib.parse import unquote
+
+    sid = re.search(r"session=([A-Za-z0-9_-]+)", unquote(r.headers["location"])).group(
+        1
+    )
+    r = _callback(sid)
+    assert r.headers["location"] == (
+        "http://localhost:3000/profile?auth=steam&token=jwt.for.u1"
+    )
+    assert "spire_session" not in r.headers.get("set-cookie", "")
+
+
+def test_poll_hands_the_token_in_json_without_a_cookie(env, monkeypatch):
+    sid = client.post("/api/auth/steam/start").json()["session_id"]
+    _callback(sid)
+    r = client.get(f"/api/auth/steam/poll/{sid}")
+    assert r.json()["token"] == "jwt.for.u1"
+    assert "spire_session" not in r.headers.get("set-cookie", "")

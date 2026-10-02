@@ -103,6 +103,33 @@ def logout(request: Request):
     return response
 
 
+def _trusted_browser_origin(request: Request) -> bool:
+    """The Origin header names this site (same host as the request, or one
+    of CORS_ORIGINS). A missing Origin fails: browsers always send it on a
+    cross-site POST, and a same-site fetch sends it too."""
+    from urllib.parse import urlparse
+
+    origin = (request.headers.get("origin") or "").strip().rstrip("/")
+    if not origin or origin.lower() == "null":
+        return False
+    allowed = {
+        o.strip().rstrip("/")
+        for o in os.environ.get("CORS_ORIGINS", "").split(",")
+        if o.strip()
+    }
+    if origin in allowed:
+        return True
+    origin_host = (urlparse(origin).hostname or "").lower()
+    own = (
+        request.headers.get("x-forwarded-host")
+        or request.headers.get("host")
+        or request.url.hostname
+        or ""
+    )
+    own_host = own.split(",")[0].strip().split(":")[0].lower()
+    return bool(origin_host) and origin_host == own_host
+
+
 @router.post("/set-cookie")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.set_cookie", "20/minute"))
 async def set_cookie(request: Request):
@@ -111,12 +138,17 @@ async def set_cookie(request: Request):
     Used by the frontend after OAuth redirects when backend and frontend
     are on different origins (local dev with separate ports).
     """
+    if not _trusted_browser_origin(request):
+        raise HTTPException(status_code=403, detail="Origin not allowed")
+    content_type = (request.headers.get("content-type") or "").split(";")[0]
+    if content_type.strip().lower() != "application/json":
+        raise HTTPException(status_code=415, detail="JSON body required")
     try:
         body = await request.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
-    token = body.get("token", "")
+    token = body.get("token", "") if isinstance(body, dict) else ""
     if not token:
         raise HTTPException(status_code=400, detail="Token is required")
 

@@ -27,7 +27,7 @@ permissions:
 jobs:
   guard:
     name: Block edits to historical changelogs
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,19 +65,20 @@ jobs:
 
       - name: Allow if override label present
         if: steps.scan.outputs.blocked == 'true'
+        env:
+          LABELS: ${{ toJson(github.event.pull_request.labels.*.name) }}
+          CHANGED_FILES: ${{ steps.scan.outputs.changed_files }}
         run: |
           set -euo pipefail
-          labels='${{ toJson(github.event.pull_request.labels.*.name) }}'
-          if echo "$labels" | grep -q '"changelog-edit-approved"'; then
+          if echo "$LABELS" | grep -q '"changelog-edit-approved"'; then
             echo "✅ \`changelog-edit-approved\` label present — bypassing guard."
             exit 0
           fi
 
-          cat <<MSG
-          ::error::Historical changelog files in data/changelogs/ are write-once.
-          The following files were modified or deleted by this PR:
-
-          ${{ steps.scan.outputs.changed_files }}
+          printf '::error::Historical changelog files in data/changelogs/ are write-once.\n'
+          printf 'The following files were modified or deleted by this PR:\n\n'
+          printf '%s\n' "$CHANGED_FILES"
+          cat <<'MSG'
 
           If this is intentional (typo fix, regen of a tag's data diff,
           one-time format normalization, etc.), add the

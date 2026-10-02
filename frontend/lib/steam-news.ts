@@ -10,6 +10,7 @@
  * down to plain text.
  */
 
+import sanitizeHtml from "sanitize-html";
 import { fmtDatePacific } from "@/lib/pacific";
 
 const STEAM_CLAN_IMAGE_BASE = "https://clan.cloudflare.steamstatic.com/images/";
@@ -288,11 +289,55 @@ function wrapTextChunk(chunk: string): string {
     .join("\n");
 }
 
+const NEWS_SANITIZE: sanitizeHtml.IOptions = {
+  allowedTags: [
+    "p",
+    "br",
+    "hr",
+    "ul",
+    "ol",
+    "li",
+    "strong",
+    "b",
+    "em",
+    "i",
+    "u",
+    "s",
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "h5",
+    "h6",
+    "a",
+    "img",
+    "blockquote",
+    "code",
+    "pre",
+    "span",
+    "div",
+    "table",
+    "thead",
+    "tbody",
+    "tr",
+    "th",
+    "td",
+  ],
+  allowedAttributes: {
+    a: ["href", "title", "target", "rel"],
+    img: ["src", "alt", "width", "height"],
+  },
+  allowedSchemes: ["http", "https"],
+  allowedSchemesByTag: { img: ["https"] },
+  allowProtocolRelative: false,
+  disallowedTagsMode: "discard",
+};
+
 export function sanitizeSteamNews(raw: string): string {
   const withImages = resolveClanImages(raw);
   const fromBbcode = bbcodeToHtml(withImages);
   const safe = stripDangerousTags(fromBbcode);
-  return paragraphify(safe);
+  return sanitizeHtml(paragraphify(safe), NEWS_SANITIZE);
 }
 
 /** Build a plain-text excerpt for `<meta name="description">` and OG cards.

@@ -67,6 +67,16 @@ def web_flow_bound(session_id: str, cookie_sid: str) -> bool:
     return hmac.compare_digest(session_id, cookie_sid)
 
 
+def _same_site(frontend: str, api_base: str) -> bool:
+    from urllib.parse import urlparse
+
+    f = (urlparse(frontend).hostname or "").lower()
+    a = (urlparse(api_base).hostname or "").lower()
+    if not f or not a:
+        return False
+    return f == a or f.endswith("." + a) or a.endswith("." + f)
+
+
 def _public_base(request: Request) -> str:
     """Where Steam will redirect the user back to.
 
@@ -315,13 +325,22 @@ async def callback(request: Request) -> HTMLResponse:
         frontend = os.environ.get("FRONTEND_URL", "").strip() or _public_base(request)
         auth_session_store.pop_session(session_id)
         # A link lands back on settings (where the connect button lives); a
-        # fresh sign-in lands on the profile, as before.
+        # fresh sign-in lands on the profile, as before. Same-site deploys
+        # get the session cookie on this redirect; only a split-origin dev
+        # setup still carries the token in the URL for /set-cookie.
+        same_site = _same_site(frontend, _public_base(request))
         dest = (
-            f"{frontend}/settings?linked=steam&token={token}"
+            f"{frontend}/settings?linked=steam"
             if linked_existing
-            else f"{frontend}/profile?auth=steam&token={token}"
+            else f"{frontend}/profile?auth=steam"
         )
+        if not same_site:
+            dest += f"&token={token}"
         response = RedirectResponse(dest)
+        if same_site:
+            from ..services.auth_jwt import set_auth_cookie
+
+            set_auth_cookie(response, token)
         response.headers["Cache-Control"] = "no-store, no-cache"
         response.headers["Pragma"] = "no-cache"
         clear_oauth_state_cookie(response)
@@ -375,13 +394,7 @@ async def poll(session_id: str) -> JSONResponse:
         "token": token,
         "needs_email": session.get("needs_email", False),
     }
-    response = JSONResponse(payload)
-    if token:
-        from ..services.auth_jwt import set_auth_cookie
-
-        set_auth_cookie(response, token)
-
-    return response
+    return JSONResponse(payload)
 
 
 async def _fetch_persona_name(steamid: str) -> Optional[str]:

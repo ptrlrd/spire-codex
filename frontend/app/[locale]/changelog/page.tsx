@@ -62,12 +62,17 @@ function bbcodeToHtml(src: string): string {
   let s = src
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
   s = s.replace(/\[img\][\s\S]*?\[\/img\]/gi, "");
   s = s.replace(/\[previewyoutube[^\]]*\][\s\S]*?\[\/previewyoutube\]/gi, "");
   s = s.replace(
     /\[url=([^\]]+)\]([\s\S]*?)\[\/url\]/gi,
-    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[var(--accent-gold)] hover:underline">$2</a>',
+    (_, href: string, text: string) =>
+      /^https?:\/\//i.test(href.trim())
+        ? `<a href="${href.trim()}" target="_blank" rel="noopener noreferrer" class="text-[var(--accent-gold)] hover:underline">${text}</a>`
+        : text,
   );
   s = s.replace(/\[(\/?)b\]/gi, (_, close) =>
     close ? "</strong>" : "<strong>",
