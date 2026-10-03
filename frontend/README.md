@@ -41,7 +41,7 @@ Runs at **http://localhost:3000**. Requires the backend running on port 8000.
 | `/tier-list`         | Codex Score tier-list hub (cards / relics / potions)                                                            |
 | `/tier-list/[type]`  | S → F tier rows for one entity type, sourced from `/api/runs/scores/{type}`                                     |
 | `/stats`             | Community stats hub (cards/relics/potions metrics, encounters, decisions, charts), default cohort Standard Solo |
-| `/stats/scoring`     | Codex Score methodology — Bayesian shrinkage, prior weight, tier cutoffs                                        |
+| `/stats/scoring`     | Codex Score methodology - Bayesian shrinkage, prior weight, tier cutoffs                                        |
 | `/news`              | Mirrored Steam announcements feed                                                                               |
 | `/news/[gid]`        | Single Steam announcement — sanitized BBCode body, NewsArticle JSON-LD                                          |
 | `/runs/[hash]`       | Shared run — in-game-style summary with "by {username}" link                                                    |
