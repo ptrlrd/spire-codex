@@ -606,6 +606,37 @@ export default async function DevelopersPage({ params }: Props) {
                 },
                 {
                   method: "GET",
+                  path: "/api/search/semantic",
+                  desc: t(
+                    "Meaning-based entity search, same item shape as /api/search (q, limit); empty when the feature is off",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/merchant/config",
+                  desc: t("Merchant pricing config extracted from the game"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/constants",
+                  desc: t(
+                    "Mechanics constants: room odds, gold ranges, ascension tuning",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/sections",
+                  desc: t("Index of the mechanics pages"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/sections/{slug}",
+                  desc: t(
+                    "One mechanics page as markdown with template tokens resolved",
+                  ),
+                },
+                {
+                  method: "GET",
                   path: "/api/changelogs",
                   desc: t("All changelogs"),
                 },
@@ -638,6 +669,55 @@ export default async function DevelopersPage({ params }: Props) {
                     "Available beta data versions for the version picker",
                   ),
                 },
+                {
+                  method: "GET",
+                  path: "/api/news/codex",
+                  desc: t("Spire Codex site news, newest first"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/news/codex/{slug}",
+                  desc: t("One site news entry"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/announcements",
+                  desc: t("Active site banner messages"),
+                },
+              ],
+            },
+            {
+              category: t("Languages"),
+              endpoints: [
+                {
+                  method: "GET",
+                  path: "/api/languages",
+                  desc: t("Available languages with display names"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/translations",
+                  desc: t(
+                    "Translation maps for filter values and UI strings (lang)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations",
+                  desc: t(
+                    "The game's own localization tables as ICU MessageFormat, all of them or the ones named in ?tables= (max 50; unknown names are 404)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations/tables",
+                  desc: t("Names of the available localization tables"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations/{table}",
+                  desc: t("One localization table"),
+                },
               ],
             },
             {
@@ -663,13 +743,15 @@ export default async function DevelopersPage({ params }: Props) {
                 {
                   method: "POST",
                   path: "/api/runs",
-                  desc: t("Submit a run for community stats and leaderboards"),
+                  desc: t(
+                    "Submit a run for community stats and leaderboards. The run is attached to an account only with Authorization: Bearer <jwt>; a bare steam_id is kept as a hint",
+                  ),
                 },
                 {
                   method: "POST",
                   path: "/api/runs/claim",
                   desc: t(
-                    "Attach a username to previously-submitted runs by hash",
+                    "Attach the signed-in account to previously-submitted anonymous runs by hash",
                   ),
                 },
                 {
@@ -682,13 +764,17 @@ export default async function DevelopersPage({ params }: Props) {
                     " " +
                     t(
                       "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
+                    ) +
+                    " " +
+                    t(
+                      "total_is_lower_bound is true when the exact count ran out of time and total is a capped lower bound.",
                     ),
                 },
                 {
                   method: "GET",
                   path: "/api/runs/leaderboard",
                   desc: t(
-                    "Run leaderboards (fastest, highest_ascension); filter by character, players, game_mode, ascension_min, winrate_min (the content brackets)",
+                    "Run leaderboards (fastest, highest_ascension); filter by character, players, game_mode, ascension_min, winrate_min (the content brackets), build_id",
                   ),
                 },
                 {
@@ -707,7 +793,7 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/runs/community-stats",
                   desc: t(
-                    "Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records",
+                    "The /stats hub dataset: event decision splits, deadliest encounters, win rates by ascension/character, records. Takes the same bracket keys as the metrics tables; an unknown bracket returns HTTP 400",
                   ),
                 },
                 {
@@ -721,8 +807,37 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/charts/{chart}",
                   desc: t(
-                    "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75 on frame charts, plus per-chart params)",
+                    "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75, build_id, plus per-chart params). A saved chart id from the chart builder returns that saved chart instead",
                   ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/charts",
+                  desc: t(
+                    "Save a chart spec to your profile (bearer token, 100 per account)",
+                  ),
+                },
+                {
+                  method: "PATCH",
+                  path: "/api/charts/{id}",
+                  desc: t(
+                    "Update the title, visibility or spec of your own saved chart; DELETE removes it",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/mine",
+                  desc: t("Your saved charts, newest first (bearer token)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/public",
+                  desc: t("Newest public saved charts (limit)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/tierlists/shared/{share_id}",
+                  desc: t("Public read-only view of a shared tier list"),
                 },
                 {
                   method: "GET",
@@ -740,7 +855,7 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/runs/scores/{type}",
                   desc: t(
-                    "Codex Score + Codex Elo per entity (cards/relics/potions); ?bracket=a10|wr30|wr50|wr75 grades within a content bracket (the in-game mod sends the same via ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)",
+                    "Codex Score + Codex Elo per entity (cards/relics/potions); ?bracket= grades within a run bracket (a10|wr30|wr50|wr75, a game version, or any metrics bracket; unknown is HTTP 400) (the in-game mod sends the same via ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)",
                   ),
                 },
                 {
@@ -761,34 +876,202 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/runs/metrics/{type}",
                   desc: t(
-                    "Dense metrics table for cards/relics/potions, one row per entity: Codex Score, win rate with Wilson 95% CI, hold rate, lift over the floor-adjusted expectation (null under 20 seats), and for cards Codex Elo and pick rate from free reward screens. Counts are per seat, so a 4P run is four seats. ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 or a composite like solo:standard; ?character= switches to that character's slice (rows gain per-character Elo and Pick%). An unknown bracket returns HTTP 400",
+                    "Dense metrics table for cards/relics/potions, one row per entity: Codex Score, win_rate with a Wilson 95% win_rate_ci, hold_rate, lift and lift_n over the floor-adjusted expectation (null under 20 seats), Codex Elo and pick_rate from free choice screens for cards and relics, a wax block on relics (Toy Box copies split out), and used/use_rate on potions. Counts are per seat, so a 4P run is four seats; the response carries total_runs, total_seats, total_wins and data_through. ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 or a composite like solo:standard; ?character= switches to that character's slice (rows gain per-character Elo and Pick%). An unknown bracket returns HTTP 400",
                   ),
                 },
                 {
                   method: "GET",
                   path: "/api/runs/metrics/shops",
                   desc: t(
-                    "Per-item shop metrics: purchases, hold rate, and win rate per seat, with a localized name on campfire rows. Same bracket and lang parameters as the other metrics tables",
+                    "Shop shelf table, one row per card, relic or potion: seen, bought, buy_rate, and the buyers' win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
                   ),
                 },
                 {
                   method: "GET",
                   path: "/api/runs/metrics/events",
                   desc: t(
-                    "Per-event decision metrics: picks, hold rate, and win rate per seat. Same bracket and lang parameters as the other metrics tables",
+                    "Event option table: chosen, share of that event's choices, win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
                   ),
                 },
                 {
                   method: "GET",
                   path: "/api/runs/metrics/campfires",
                   desc: t(
-                    "Campfire decision metrics (rest, smith, and other options) with localized names. Same bracket and lang parameters as the other metrics tables",
+                    "Rest-site choice table (rest, smith, and the rest) with a localized name per ?lang=: chosen, share, low_hp_share, win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
                   ),
                 },
                 {
                   method: "GET",
                   path: "/api/runs/versions",
                   desc: t("Distinct game build IDs that have submitted runs"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/leaderboard/rank/{run_hash}",
+                  desc: t(
+                    "Rank of one winning run within its ladder (category)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/leaderboards/elo",
+                  desc: t(
+                    "Top players by Codex Elo over solo A10 standard runs, refreshed nightly; powers /top-players (limit, min_runs)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/stats/{type}/{id}",
+                  desc: t(
+                    "Community stats for one card, relic or potion, with per-bracket and per-character splits",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/stats/{type}/{id}/history",
+                  desc: t(
+                    "Daily Codex Score and Elo history for one entity (bracket=all|a10|wr30|wr50|wr75)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/top/{type}/{character}",
+                  desc: t(
+                    "Most-picked entities of a type for one character (limit)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-stats",
+                  desc: t(
+                    "Per-encounter appearances, fatal rate, avg damage and turns, per character too (act, room_type, multiplayer, bracket, build_id, encounter, page, limit)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-series",
+                  desc: t(
+                    "The given encounters (max 20) rolled up per bracket and per recent game version",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/pulse",
+                  desc: t("Community run and win totals plus data_through"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/snapshot-status",
+                  desc: t("Whether the stats are loaded or rebuilding"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/{run_hash}/similar",
+                  desc: t(
+                    "Nearest winning solo decks to a run and what they took that it didn't",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/archetypes",
+                  desc: t("Community deck archetypes, clustered nightly"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-builds",
+                  desc: t(
+                    "Which archetypes die to an encounter and which walk past it (encounter)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/deck-advisor",
+                  desc: t(
+                    "What the winning decks nearest a partial deck carry that it doesn't yet (character, cards, relics)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/pick-coach",
+                  desc: t(
+                    "Nearest archetypes for a partial deck and a score per offered card (character, cards, relics, offer, target)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/pairings/{item_type}/{item_id}",
+                  desc: t(
+                    "Cards, relics and potions that show up in the same runs as this item",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/draft-recs/{item_type}/{item_id}",
+                  desc: t(
+                    "Cards players most often draft when they already hold this item",
+                  ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/draft-advice",
+                  desc: t("Rank the offered cards for the current deck"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/replays",
+                  desc: t(
+                    "Runs with a replay to watch; same filters and row shape as /api/runs/list plus replay_url",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/replays/summary",
+                  desc: t(
+                    "How many replays are watchable, overall and per character",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/{run_hash}/replay",
+                  desc: t(
+                    "The stored replay journal as gzip; POST uploads one for a run you own, DELETE removes it",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/players/{username}/insights",
+                  desc: t(
+                    "One player's public insights with community comparison; 404 for unknown or private profiles",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/presence/active",
+                  desc: t("Live runs from the in-game mod, deepest first"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/presence/{steam_id}",
+                  desc: t("One player's live run; 404 when they aren't in one"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/thanks",
+                  desc: t(
+                    "GitHub contributors, special thanks, and public supporters",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mod/latest",
+                  desc: t(
+                    "Latest mod build and the game version it was verified against",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/rate-limits",
+                  desc: t("The public rate-limit tiers"),
                 },
                 {
                   method: "POST",
@@ -805,6 +1088,13 @@ export default async function DevelopersPage({ params }: Props) {
                   path: "/api/exports/runs",
                   desc: t(
                     "JSONL stream of official runs (limit/start/end/cursor pagination; own 120-credits-per-hour budget - see Bulk run export above)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/exports/runs/manifest",
+                  desc: t(
+                    "When the daily full run dump was generated and how many runs it holds",
                   ),
                 },
                 {
@@ -845,9 +1135,12 @@ export default async function DevelopersPage({ params }: Props) {
               </h4>
               <div className="space-y-1.5 text-sm font-mono">
                 {group.endpoints.map((ep) => (
-                  <div key={ep.path} className="flex items-start gap-3">
+                  <div
+                    key={`${ep.method} ${ep.path}`}
+                    className="flex items-start gap-3"
+                  >
                     <span
-                      className={`${ep.method === "POST" ? "text-info" : "text-success"} w-10 flex-shrink-0`}
+                      className={`${ep.method === "GET" ? "text-success" : "text-info"} w-12 flex-shrink-0`}
                     >
                       {ep.method}
                     </span>
