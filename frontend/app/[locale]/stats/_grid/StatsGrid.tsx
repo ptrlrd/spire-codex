@@ -33,6 +33,13 @@ const CARD_COLORS = [
   "colorless",
 ];
 const ENTITY_GROUPS = ["cards", "relics", "potions"];
+const CHARACTER_COLORS = new Set([
+  "ironclad",
+  "silent",
+  "defect",
+  "necrobinder",
+  "regent",
+]);
 
 interface Column {
   key: ColKey;
@@ -213,12 +220,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
     data.by === "character" &&
     !!data.byCharacter;
   const rows = byCharacter && data.byCharacter ? data.byCharacter : data.rows;
+  const offColorActive = kind === "cards" && (!!character || byCharacter);
   const [search, setSearch] = useState(data.query);
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(false);
   const [showWax, setShowWax] = useState(false);
   const [showUpgraded, setShowUpgraded] = useState(false);
+  const [offColor, setOffColorState] = useState(!!data.offColor);
   const first =
     cfg.defaultSort ?? (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]);
   const [sortKey, setSortKey] = useState<ColKey>(first);
@@ -288,6 +297,10 @@ export default function StatsGrid({ data }: { data: GridData }) {
       if (!showTiny && r.n < HIDDEN_SAMPLE) return false;
       if (!showWax && r.wax) return false;
       if (!showUpgraded && r.upgraded) return false;
+      if (offColor && offColorActive) {
+        const playing = (r.playedBy || character).toLowerCase();
+        if (!CHARACTER_COLORS.has(r.group) || r.group === playing) return false;
+      }
       if (
         q &&
         !r.name.toLowerCase().includes(q) &&
@@ -312,6 +325,9 @@ export default function StatsGrid({ data }: { data: GridData }) {
     showTiny,
     showWax,
     showUpgraded,
+    offColor,
+    offColorActive,
+    character,
     sortKey,
     dir,
   ]);
@@ -352,17 +368,25 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const upgradedCount = rows.filter((r) => r.upgraded).length;
   const canSplitByCharacter =
     kind === "cards" && cfg.showCharacter && !character;
+  const setOffColor = (on: boolean) => {
+    setOffColorState(on);
+    router.replace(gridUrl(byCharacter, search, bracket, character, on), {
+      scroll: false,
+    });
+  };
   const gridUrl = (
     on: boolean,
     q: string,
     b: string = bracket,
     ch: string = character,
+    off: boolean = offColor,
   ) => {
     const params = new URLSearchParams();
     params.set("bracket", b);
     if (ch) params.set("character", ch);
     if (on) params.set("by", "character");
     if (q.trim()) params.set("q", q.trim());
+    if (off && kind === "cards") params.set("offcolor", "1");
     return `${bp}${cfg.path}?${params.toString()}`;
   };
   useEffect(() => {
@@ -382,8 +406,15 @@ export default function StatsGrid({ data }: { data: GridData }) {
           const b = saved.bracket || bracket;
           const ch = saved.character || "";
           const on = saved.by === "character";
-          if (b !== bracket || ch !== character || on !== byCharacter)
-            router.replace(gridUrl(on, saved.query || "", b, ch), {
+          const off = !!saved.offColor;
+          if (off) setOffColorState(true);
+          if (
+            b !== bracket ||
+            ch !== character ||
+            on !== byCharacter ||
+            off !== offColor
+          )
+            router.replace(gridUrl(on, saved.query || "", b, ch, off), {
               scroll: false,
             });
         }
@@ -403,6 +434,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
       showTiny,
       showWax,
       showUpgraded,
+      offColor,
       sortKey,
       dir,
       columns: order,
@@ -417,6 +449,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
     showTiny,
     showWax,
     showUpgraded,
+    offColor,
     sortKey,
     dir,
     order,
@@ -429,6 +462,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
     setShowTiny(false);
     setShowWax(false);
     setShowUpgraded(false);
+    setOffColorState(false);
     setSortKey(first);
     setDir(-1);
     setOrder([]);
@@ -888,6 +922,28 @@ export default function StatsGrid({ data }: { data: GridData }) {
               onChange={(e) => setByCharacter(e.target.checked)}
             />
             {t("Per character")}
+          </label>
+        )}
+        {kind === "cards" && (
+          <label
+            className={`flex items-center gap-1.5 text-xs ${
+              offColorActive
+                ? "text-[var(--text-muted)]"
+                : "text-[var(--text-muted)]/50"
+            }`}
+            title={
+              offColorActive
+                ? t("Only cards held by a character they do not belong to.")
+                : t("Needs a Played by character or the Per character view.")
+            }
+          >
+            <input
+              type="checkbox"
+              checked={offColor && offColorActive}
+              disabled={!offColorActive}
+              onChange={(e) => setOffColor(e.target.checked)}
+            />
+            {t("Off-colour only")}
           </label>
         )}
       </div>

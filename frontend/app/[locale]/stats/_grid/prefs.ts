@@ -9,6 +9,7 @@ export interface GridPrefs {
   showTiny?: boolean;
   showWax?: boolean;
   showUpgraded?: boolean;
+  offColor?: boolean;
   sortKey?: ColKey;
   dir?: 1 | -1;
   columns?: ColKey[];

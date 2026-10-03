@@ -17,6 +17,7 @@ export type GridPageProps = {
     character?: string;
     by?: string;
     q?: string;
+    offcolor?: string;
   }>;
 };
 
@@ -33,7 +34,7 @@ export async function gridMetadata(
     path: cfg.path,
     title: t(cfg.title),
     description: t(cfg.description),
-    hreflang: !(sp.bracket || sp.character || sp.by || sp.q),
+    hreflang: !(sp.bracket || sp.character || sp.by || sp.q || sp.offcolor),
   });
 }
 
@@ -54,7 +55,10 @@ export async function GridPage({
     sp.by || "",
     sp.q || "",
   );
-  data.fromUrl = Boolean(sp.bracket || sp.character || sp.by || sp.q);
+  data.offColor = sp.offcolor === "1";
+  data.fromUrl = Boolean(
+    sp.bracket || sp.character || sp.by || sp.q || sp.offcolor,
+  );
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },
