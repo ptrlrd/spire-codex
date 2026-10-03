@@ -402,6 +402,11 @@ def list_runs(
     `shop` matches runs that bought the item (card, relic, or potion) at a
     shop; comma-separated ids AND together like `card`/`relic`. Mongo only —
     the dev SQLite fallback ignores it, like the card/relic filters.
+
+    Responses carry `total_is_lower_bound`: true when the exact filtered
+    count exceeded its time budget and `total` is a capped lower bound
+    (10,000), so the frontend can say "more than 10,000 runs" and keep
+    paginating; false when `total` is exact.
     """
     # Normalize once so the cache key and the DB filter key off the same
     # case-insensitive value (the runs are matched on username_lower).
@@ -424,6 +429,7 @@ def list_runs(
                 "page": page,
                 "per_page": limit,
                 "total_pages": 0,
+                "total_is_lower_bound": False,
             }
         username = str(owner["username"]).strip().lower()
     # Browser/edge caching: new runs arrive constantly, but 30s of staleness
@@ -609,6 +615,10 @@ def get_leaderboard(
     explicitly so users can opt into the other pools.
     Single-player and multiplayer runs aren't directly comparable, so the
     frontend reads them as disjoint pools.
+
+    Responses carry `total_is_lower_bound`: true when the exact count
+    exceeded its time budget and `total` is a capped lower bound (10,000),
+    false when `total` is exact.
     """
     # Same canonicalize-before-keys rule as /stats: reject unknown spellings
     # instead of minting per-spelling cache keys (an invalid category used to
