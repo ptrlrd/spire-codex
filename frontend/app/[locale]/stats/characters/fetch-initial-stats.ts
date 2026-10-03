@@ -6,7 +6,7 @@ const API_INTERNAL =
   "http://localhost:8000";
 
 // Server-fetch the COMPACT stats payload so the initial HTML carries real
-// numbers — Google stamped /leaderboards/stats Soft 404 because the only
+// numbers — Google stamped /stats/characters Soft 404 because the only
 // crawlable content was the client "Loading..." state. Compact matters:
 // embedding the full payload put ~4MB of item tables into the RSC flight,
 // and the client refetches the full payload on mount anyway, so the page

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/leaderboards/submit",
+    path: "/runs/submit",
     title: t("Submit a Run"),
     description: t("leaderboards_submit_meta_description"),
   });
@@ -29,7 +29,7 @@ export default async function SubmitRunPage({ params }: Props) {
     { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
     {
       name: t("Submit a Run"),
-      href: localePath(locale, "/leaderboards/submit"),
+      href: localePath(locale, "/runs/submit"),
     },
   ]);
   return (

@@ -88,7 +88,7 @@ function pct(v: number | null): string {
 
 /**
  * Home-page preview of the Card Metrics table, scoped to the A10 bracket
- * (ascension 10) and ranked by Codex Elo, the way /leaderboards/metrics
+ * (ascension 10) and ranked by Codex Elo, the way /stats/cards
  * opens. Server-rendered; renders nothing when there's no A10 data yet so
  * the home page never shows an empty block.
  */
@@ -116,7 +116,7 @@ export default async function HomeMetricsSection({
     .slice(0, 8);
   if (top.length === 0) return null;
 
-  const href = `/leaderboards/metrics?bracket=a10`;
+  const href = `/stats/cards?bracket=a10`;
 
   return (
     <div className="rvmp">

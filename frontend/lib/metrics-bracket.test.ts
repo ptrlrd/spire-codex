@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { isValidBracket } from "@/app/[locale]/leaderboards/metrics/metrics-data";
+import { isValidBracket } from "@/app/[locale]/stats/_grid/bracket";
 
 describe("metrics bracket validation", () => {
   it("accepts the keys the page offers", () => {

@@ -4,6 +4,8 @@ import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { RankBars, EventDonut, SurvivalLine, OPTION_HEX } from "./charts";
+import { REST_KEYS } from "@/lib/rest-site-labels";
+import StatsLinks from "./_grid/StatsLinks";
 import AscensionHeatmap, {
   type AscensionMatrix,
 } from "@/app/components/AscensionHeatmap";
@@ -176,18 +178,6 @@ function stripTags(text: string): string {
   return text.replace(/\[\/?[a-z_]+\]/gi, "").trim();
 }
 
-const REST_KEYS: Record<string, string> = {
-  SMITH: "Smith",
-  HEAL: "Heal",
-  MEND: "Mend",
-  DIG: "Dig",
-  CLONE: "Clone",
-  COOK: "Cook",
-  LIFT: "Lift",
-  HATCH: "Hatch",
-  KINDLE: "Kindle",
-};
-
 function fmtTime(sec?: number): string {
   if (!sec || sec <= 0) return "-";
   const h = Math.floor(sec / 3600);
@@ -255,6 +245,7 @@ async function Empty({
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <JsonLd data={jsonLd} />
+      <StatsLinks current="/stats" />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">
           {t("Community Stats")}
@@ -266,7 +257,7 @@ async function Empty({
           "No data for this bracket yet. Stats build from community-submitted runs,",
         )}{" "}
         <Link
-          href="/leaderboards/submit"
+          href="/runs/submit"
           className="text-[var(--accent-gold)] hover:underline"
         >
           {t("submit a run")}
@@ -277,8 +268,8 @@ async function Empty({
   );
 }
 
-// Shared page body. Both the base /community-stats route (lang="eng") and the
-// localized /[lang]/community-stats route render this; only the language
+// Shared page body. Both the base /stats route (lang="eng") and the
+// localized /[lang]/stats route render this; only the language
 // threaded through t() and the in-locale link base path differ.
 export async function CommunityStatsBody({
   lang,
@@ -334,7 +325,7 @@ export async function CommunityStatsBody({
   const named = (rows: Ranked[], names: Record<string, string>) =>
     rows.map((r) => ({ ...r, name: names[r.id.toUpperCase()] ?? r.name }));
 
-  const basePath = "/community-stats";
+  const basePath = "/stats";
   const inLanguage = inLanguageOf(lang);
 
   const jsonLd = [
@@ -381,7 +372,7 @@ export async function CommunityStatsBody({
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <JsonLd data={jsonLd} />
-
+      <StatsLinks current="/stats" />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">
           {t("Community Stats")}
@@ -869,7 +860,7 @@ export async function CommunityStatsBody({
           "Built from community-submitted runs, refreshed periodically. See the",
         )}{" "}
         <Link
-          href="/leaderboards/scoring"
+          href="/stats/scoring"
           className="text-[var(--accent-gold)] hover:underline"
         >
           {t("scoring methodology")}

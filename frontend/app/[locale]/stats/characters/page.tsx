@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/leaderboards/stats",
+    path: "/stats/characters",
     title: t("Stats"),
     description: t("leaderboards_stats_meta_description"),
   });
@@ -29,12 +29,12 @@ export default async function StatsPage({ params }: Props) {
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },
       { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
-      { name: t("Stats"), href: localePath(locale, "/leaderboards/stats") },
+      { name: t("Stats"), href: localePath(locale, "/stats/characters") },
     ]),
     buildCollectionPageJsonLd({
       name: pageHeading(locale, t("Stats")),
       description: t("stats_tagline"),
-      path: localePath(locale, "/leaderboards/stats"),
+      path: localePath(locale, "/stats/characters"),
       inLanguage: inLanguageOf(locale),
     }),
   ];

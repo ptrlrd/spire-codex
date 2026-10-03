@@ -9,7 +9,7 @@ import { CommunityStatsBody } from "./CommunityStatsBody";
 // HTML cache keeps this page cheap without going stale.
 export const revalidate = 300;
 
-// Base English route. Localized copies live at /[lang]/community-stats and
+// Base English route. Localized copies live at /[lang]/stats and
 // render the same CommunityStatsBody with the URL language.
 type Props = {
   params: Promise<{ locale: string }>;
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/community-stats",
+    path: "/stats",
     title: t("Community Stats"),
     description: t("community-stats_meta_description"),
   });

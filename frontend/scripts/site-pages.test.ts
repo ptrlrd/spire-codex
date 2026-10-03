@@ -7,7 +7,7 @@ describe("the site page inventory walks the locale tree", () => {
   it("finds the real pages under app/[locale]", () => {
     expect(paths).toContain("/cards");
     expect(paths).toContain("/runs");
-    expect(paths).toContain("/leaderboards/stats");
+    expect(paths).toContain("/stats/characters");
     expect(paths.length).toBeGreaterThan(30);
   });
 

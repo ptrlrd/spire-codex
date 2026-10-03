@@ -336,7 +336,7 @@ export default function EntityRunStats({
               "{name} hasn't appeared in any submitted community run yet (across {n} tracked).",
               { name: entityName, n: stats.total_runs.toLocaleString() },
             )}{" "}
-            <Link href="/leaderboards/submit">
+            <Link href="/runs/submit">
               {t("Submit a run to seed this section.")}
             </Link>
           </p>
@@ -506,9 +506,7 @@ export default function EntityRunStats({
               {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
             </>
           )}{" "}
-          <Link href="/leaderboards/scoring">
-            {t("How is the score calculated?")}
-          </Link>
+          <Link href="/stats/scoring">{t("How is the score calculated?")}</Link>
         </p>
       </div>
     );
@@ -572,7 +570,7 @@ export default function EntityRunStats({
               {sel.picks.toLocaleString()} {t("picks")}
               {" · "}
               <Link
-                href="/leaderboards/scoring"
+                href="/stats/scoring"
                 className="text-[var(--accent-gold)]/80 hover:text-[var(--accent-gold)] hover:underline"
               >
                 {t("how is this calculated?")}
@@ -593,7 +591,7 @@ export default function EntityRunStats({
               { name: entityName, n: stats.total_runs.toLocaleString() },
             )}{" "}
             <Link
-              href="/leaderboards/submit"
+              href="/runs/submit"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("Submit a run that includes it to seed this section.")}

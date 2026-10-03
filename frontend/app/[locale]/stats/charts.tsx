@@ -1,6 +1,6 @@
 "use client";
 
-// Client-island charts for the /community-stats page. The page itself stays a
+// Client-island charts for the /stats page. The page itself stays a
 // server component (all numbers render in the HTML for SEO); these handle only
 // the visuals via Chart.js, the same library the Knowledge Demon dashboard
 // uses, styled to match it: rounded bars, hidden legends, muted ticks.

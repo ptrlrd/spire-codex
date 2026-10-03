@@ -170,7 +170,7 @@ export default async function PotionsTierListPage({
           "Ranked by Codex Score, community win-rate data with Bayesian shrinkage. Click any potion for full stats.",
         )}{" "}
         <Link
-          href="/leaderboards/scoring"
+          href="/stats/scoring"
           className="text-[var(--accent-gold)] hover:underline"
         >
           {t("How is the score calculated?")}

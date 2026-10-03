@@ -77,7 +77,7 @@ describe("site-page route semantics", () => {
   it("carries the curated names and synonyms into the inventory", () => {
     const byPath = new Map(collectPages().map((p) => [p.path, p]));
     expect(byPath.get("/images")?.keywords).toContain("sprite");
-    expect(byPath.get("/leaderboards/elo")?.name).toBe("Top Players");
+    expect(byPath.get("/top-players")?.name).toBe("Top Players");
     expect(byPath.get("/seed-finder")?.keywords).toContain("achievement");
   });
 });

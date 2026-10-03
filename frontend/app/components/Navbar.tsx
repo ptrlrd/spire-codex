@@ -37,7 +37,7 @@ interface NavGroup {
 }
 
 // Routes that should only highlight on exact match (not prefix match)
-const EXACT_MATCH = new Set(["/leaderboards"]);
+const EXACT_MATCH = new Set(["/leaderboards", "/stats", "/runs"]);
 
 function isLinkActive(strippedPath: string, href: string): boolean {
   if (EXACT_MATCH.has(href)) return strippedPath === href;
@@ -103,18 +103,28 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Stats",
     links: [
+      { href: "/stats", label: "Stats" },
+      { href: "/stats/cards", label: "Cards" },
+      { href: "/stats/relics", label: "Relics" },
+      { href: "/stats/potions", label: "Potions" },
+      { href: "/stats/shops", label: "Shops" },
+      { href: "/stats/events", label: "Events" },
+      { href: "/stats/campfires", label: "Campfires" },
+      { href: "/stats/characters", label: "Characters" },
+      { href: "/stats/encounters", label: "Encounters" },
+      { href: "/stats/charts", label: "Charts" },
+      { href: "/stats/scoring", label: "Scoring" },
       { href: "/tier-list", label: "Tier List" },
-      { href: "/leaderboards/metrics", label: "Card Metrics" },
-      { href: "/leaderboards/scoring", label: "Scoring" },
-      { href: "/community-stats", label: "Community Stats" },
-      { href: "/charts", label: "Charts" },
-      { href: "/leaderboards/stats", label: "Stats" },
-      { href: "/leaderboards/encounters", label: "Encounters" },
+    ],
+  },
+  {
+    label: "Leaderboards",
+    links: [
       { href: "/leaderboards", label: "Leaderboards" },
-      { href: "/leaderboards/elo", label: "Top Players" },
+      { href: "/top-players", label: "Top Players" },
       { href: "/runs", label: "Browse Runs" },
       { href: "/replays", label: "Browse Replays" },
-      { href: "/leaderboards/submit", label: "Submit a Run" },
+      { href: "/runs/submit", label: "Submit a Run" },
     ],
   },
   {
@@ -227,11 +237,20 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
     },
   ],
   Stats: [
-    { title: "Rankings", labels: ["Tier List", "Card Metrics", "Scoring"] },
+    {
+      title: "Run data",
+      labels: ["Stats", "Cards", "Relics", "Potions"],
+    },
+    {
+      title: "Decisions",
+      labels: ["Shops", "Events", "Campfires"],
+    },
     {
       title: "Aggregate data",
-      labels: ["Community Stats", "Charts", "Stats", "Encounters"],
+      labels: ["Characters", "Encounters", "Charts", "Scoring", "Tier List"],
     },
+  ],
+  Leaderboards: [
     {
       title: "Runs",
       labels: [

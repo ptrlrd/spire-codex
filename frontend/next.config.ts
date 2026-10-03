@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { withSentryConfig } from "@sentry/nextjs";
 import createNextIntlPlugin from "next-intl/plugin";
+import { MOVED_PAGES } from "./lib/moved-pages";
 
 const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
@@ -30,6 +31,14 @@ const nextConfig: NextConfig = {
         destination: "/:lang",
         permanent: true,
       },
+      ...Object.entries(MOVED_PAGES).flatMap(([from, to]) => [
+        { source: from, destination: to, permanent: true },
+        {
+          source: `/:lang(${LANGS})${from}`,
+          destination: `/:lang${to}`,
+          permanent: true,
+        },
+      ]),
     ];
   },
   // The /beta section itself is wired up in proxy.ts, which rewrites

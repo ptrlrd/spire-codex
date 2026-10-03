@@ -293,7 +293,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.",
             )}{" "}
             <Link
-              href="/leaderboards/scoring"
+              href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("How is the score calculated?")}
@@ -305,7 +305,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.",
             )}{" "}
             <Link
-              href="/leaderboards/scoring#limitations"
+              href="/stats/scoring#limitations"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("Known biases")}

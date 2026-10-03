@@ -330,7 +330,7 @@ export default async function RelicsTierListPage({
               { ancient: ancientLabel ?? "" },
             )}{" "}
             <Link
-              href="/leaderboards/scoring"
+              href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("How is the score calculated?")}
@@ -349,7 +349,7 @@ export default async function RelicsTierListPage({
               "Ranked by Codex Score, community win-rate data with Bayesian shrinkage so a 5-pick relic doesn't outrank a 500-pick one. Click any relic for full stats.",
             )}{" "}
             <Link
-              href="/leaderboards/scoring"
+              href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("How is the score calculated?")}

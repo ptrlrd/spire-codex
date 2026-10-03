@@ -57,19 +57,6 @@
       "regent"
     ]
   },
-  { "path": "/charts", "name": "Charts", "keywords": ["charts"] },
-  {
-    "path": "/community-stats",
-    "name": "Community Stats",
-    "keywords": [
-      "community",
-      "stats",
-      "statistics",
-      "event votes",
-      "deadliest",
-      "records"
-    ]
-  },
   {
     "path": "/compare",
     "name": "Compare Characters",
@@ -158,64 +145,6 @@
       "ladder",
       "ranking"
     ]
-  },
-  {
-    "path": "/leaderboards/elo",
-    "name": "Top Players",
-    "keywords": [
-      "leaderboards",
-      "elo",
-      "top players",
-      "top 100",
-      "ladder",
-      "ranking"
-    ]
-  },
-  {
-    "path": "/leaderboards/encounters",
-    "name": "Encounter Stats",
-    "keywords": [
-      "leaderboards",
-      "encounters",
-      "encounter",
-      "deadliest",
-      "stats"
-    ]
-  },
-  {
-    "path": "/leaderboards/metrics",
-    "name": "Card Metrics",
-    "keywords": [
-      "leaderboards",
-      "metrics",
-      "elo",
-      "codex elo",
-      "pick rate",
-      "win rate",
-      "table"
-    ]
-  },
-  {
-    "path": "/leaderboards/scoring",
-    "name": "Codex Score",
-    "keywords": [
-      "leaderboards",
-      "scoring",
-      "score",
-      "codex score",
-      "methodology",
-      "tier bands"
-    ]
-  },
-  {
-    "path": "/leaderboards/stats",
-    "name": "Run Stats",
-    "keywords": ["leaderboards", "stats", "win rate", "pick rate"]
-  },
-  {
-    "path": "/leaderboards/submit",
-    "name": "Submit a Run",
-    "keywords": ["leaderboards", "submit", "upload", "run file"]
   },
   {
     "path": "/mechanics",
@@ -316,6 +245,11 @@
     "keywords": ["runs", "run", "upload", "submit", "history", "win", "loss"]
   },
   {
+    "path": "/runs/submit",
+    "name": "Submit a Run",
+    "keywords": ["runs", "submit", "upload", "run file"]
+  },
+  {
     "path": "/seed-finder",
     "name": "Seed Finder",
     "keywords": ["seed", "finder", "achievement", "ascension", "preview"]
@@ -325,6 +259,101 @@
     "path": "/showcase",
     "name": "Showcase",
     "keywords": ["showcase", "community", "project", "built with"]
+  },
+  {
+    "path": "/stats",
+    "name": "Community Stats",
+    "keywords": [
+      "stats",
+      "community",
+      "statistics",
+      "event votes",
+      "deadliest",
+      "records"
+    ]
+  },
+  {
+    "path": "/stats/campfires",
+    "name": "Stats · Campfires",
+    "keywords": ["stats", "campfires"]
+  },
+  {
+    "path": "/stats/cards",
+    "name": "Card Metrics",
+    "keywords": [
+      "stats",
+      "cards",
+      "metrics",
+      "elo",
+      "codex elo",
+      "pick rate",
+      "win rate",
+      "table"
+    ]
+  },
+  {
+    "path": "/stats/characters",
+    "name": "Character Stats",
+    "keywords": ["stats", "characters", "win rate", "pick rate"]
+  },
+  {
+    "path": "/stats/charts",
+    "name": "Run Charts",
+    "keywords": ["stats", "charts", "explorer"]
+  },
+  {
+    "path": "/stats/encounters",
+    "name": "Encounter Stats",
+    "keywords": ["stats", "encounters", "encounter", "deadliest"]
+  },
+  {
+    "path": "/stats/events",
+    "name": "Event Choices",
+    "keywords": ["stats", "events", "event", "choice", "option", "votes"]
+  },
+  {
+    "path": "/stats/potions",
+    "name": "Stats · Potions",
+    "keywords": ["stats", "potions"]
+  },
+  {
+    "path": "/stats/relics",
+    "name": "Relic Metrics",
+    "keywords": [
+      "stats",
+      "relics",
+      "metrics",
+      "elo",
+      "relic",
+      "pick rate",
+      "win rate",
+      "wax"
+    ]
+  },
+  {
+    "path": "/stats/scoring",
+    "name": "Codex Score",
+    "keywords": [
+      "stats",
+      "scoring",
+      "score",
+      "codex score",
+      "methodology",
+      "tier bands"
+    ]
+  },
+  {
+    "path": "/stats/shops",
+    "name": "Shop Stats",
+    "keywords": [
+      "stats",
+      "shops",
+      "shop",
+      "merchant",
+      "bought",
+      "purchase",
+      "buy rate"
+    ]
   },
   { "path": "/terms", "name": "Terms", "keywords": ["terms"] },
   {
@@ -364,6 +393,19 @@
     "path": "/timeline",
     "name": "Timeline",
     "keywords": ["timeline", "epoch", "era", "story", "lore"]
+  },
+  {
+    "path": "/top-players",
+    "name": "Top Players",
+    "keywords": [
+      "top",
+      "players",
+      "elo",
+      "top players",
+      "top 100",
+      "ladder",
+      "ranking"
+    ]
   },
   {
     "path": "/unlocks",

@@ -3998,23 +3998,23 @@ export const X6E: Record<string, Record<string, string>> = {
       zhs: "有趣的社区数据集：事件选择分布、最致命的遭遇、按登塔等级/角色的胜率、纪录",
       zht: "有趣的社群資料集：事件選擇分佈、最致命的遭遇、按登塔等級/角色的勝率、紀錄",
     },
-  "Chart registry for the /charts explorer: available charts, filters, splits, and run stats":
+  "Chart registry for the /stats/charts explorer: available charts, filters, splits, and run stats":
     {
-      eng: "Chart registry for the /charts explorer: available charts, filters, splits, and run stats",
-      deu: "Diagrammregister für den /charts-Explorer: verfügbare Diagramme, Filter, Aufteilungen und Laufstatistiken",
+      eng: "Chart registry for the /stats/charts explorer: available charts, filters, splits, and run stats",
+      deu: "Diagrammregister für den /stats/charts-Explorer: verfügbare Diagramme, Filter, Aufteilungen und Laufstatistiken",
       esp: "Registro de gráficos para el explorador /charts: gráficos disponibles, filtros, divisiones y estadísticas de partidas",
       fra: "Registre des graphiques pour l'explorateur /charts : graphiques disponibles, filtres, découpages et statistiques de parties",
       ita: "Registro dei grafici per l'esploratore /charts: grafici disponibili, filtri, suddivisioni e statistiche delle partite",
-      jpn: "/charts エクスプローラー用のチャート一覧：利用可能なチャート、フィルター、分割、ラン統計",
-      kor: "/charts 탐색기용 차트 목록: 사용 가능한 차트, 필터, 분할, 런 통계",
+      jpn: "/stats/charts エクスプローラー用のチャート一覧：利用可能なチャート、フィルター、分割、ラン統計",
+      kor: "/stats/charts 탐색기용 차트 목록: 사용 가능한 차트, 필터, 분할, 런 통계",
       pol: "Rejestr wykresów dla eksploratora /charts: dostępne wykresy, filtry, podziały i statystyki rozgrywek",
       ptb: "Registro de gráficos para o explorador /charts: gráficos disponíveis, filtros, divisões e estatísticas de partidas",
       rus: "Реестр графиков для обозревателя /charts: доступные графики, фильтры, разбивки и статистика забегов",
       spa: "Registro de gráficos para el explorador /charts: gráficos disponibles, filtros, divisiones y estadísticas de partidas",
       tha: "รายการชาร์ตสำหรับตัวสำรวจ /charts: ชาร์ตที่มี ตัวกรอง การแบ่ง และสถิติการเล่น",
-      tur: "/charts gezgini için grafik kaydı: kullanılabilir grafikler, filtreler, bölmeler ve koşu istatistikleri",
-      zhs: "/charts 浏览器的图表注册表：可用图表、筛选、拆分和对局统计",
-      zht: "/charts 瀏覽器的圖表註冊表：可用圖表、篩選、拆分和對局統計",
+      tur: "/stats/charts gezgini için grafik kaydı: kullanılabilir grafikler, filtreler, bölmeler ve koşu istatistikleri",
+      zhs: "/stats/charts 浏览器的图表注册表：可用图表、筛选、拆分和对局统计",
+      zht: "/stats/charts 瀏覽器的圖表註冊表：可用圖表、篩選、拆分和對局統計",
     },
   "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75 on frame charts, plus per-chart params)":
     {

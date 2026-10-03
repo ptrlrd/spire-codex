@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/leaderboards/elo",
+    path: "/top-players",
     title: t("Spire Codex Top Players"),
     description: t("elo_meta_description"),
   });
@@ -30,13 +30,13 @@ export default async function EloBoardPage({ params }: Props) {
       { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
       {
         name: t("Top Players"),
-        href: localePath(locale, "/leaderboards/elo"),
+        href: localePath(locale, "/top-players"),
       },
     ]),
     buildCollectionPageJsonLd({
       name: t("Spire Codex Top Players"),
       description: t("elo_meta_description"),
-      path: localePath(locale, "/leaderboards/elo"),
+      path: localePath(locale, "/top-players"),
       inLanguage: inLanguageOf(locale),
     }),
   ];

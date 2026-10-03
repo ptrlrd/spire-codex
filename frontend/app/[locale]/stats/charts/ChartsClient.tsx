@@ -533,7 +533,7 @@ function ChartsClientInner() {
       p.set("entity", entity);
     }
     const qs = p.toString();
-    router.replace(`/charts${qs ? `?${qs}` : ""}`, { scroll: false });
+    router.replace(`/stats/charts${qs ? `?${qs}` : ""}`, { scroll: false });
   }, [
     chart,
     players,

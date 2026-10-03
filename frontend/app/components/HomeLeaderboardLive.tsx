@@ -163,7 +163,7 @@ export default function HomeLeaderboardLive({
   return (
     <div className="rvmp">
       {/* Section heading mirrors the News / Guides / Showcase pattern.
-          The CTA points at /leaderboards/submit (not the browse page) since
+          The CTA points at /runs/submit (not the browse page) since
           that's where new contributors actually need to go to make this
           section grow. */}
       <section className="hb">

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/leaderboards/encounters",
+    path: "/stats/encounters",
     title: t("Encounter Stats"),
     description: t("leaderboards_encounters_meta_description"),
   });
@@ -30,14 +30,14 @@ export default async function EncountersStatsPage({ params }: Props) {
       { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
       {
         name: t("Encounters"),
-        href: localePath(locale, "/leaderboards/encounters"),
+        href: localePath(locale, "/stats/encounters"),
       },
     ]),
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Encounter Stats",
       description:
         "Per-encounter aggregation: fatal counts, average damage taken, average turn count, and per-character breakdown for every monster, elite, and boss.",
-      path: localePath(locale, "/leaderboards/encounters"),
+      path: localePath(locale, "/stats/encounters"),
       inLanguage: inLanguageOf(locale),
     }),
   ];

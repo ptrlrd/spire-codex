@@ -1009,7 +1009,7 @@ export default function StatsClient({
       <p className="text-[var(--text-secondary)] mb-3">
         {viewStats?.total_runs || 0} {t("runs analyzed.")}{" "}
         <Link
-          href={`${bp}/leaderboards/submit`}
+          href={`${bp}/runs/submit`}
           className="text-[var(--accent-gold)] hover:underline"
         >
           {t("Submit yours")}
@@ -1023,11 +1023,11 @@ export default function StatsClient({
           {t("Dig deeper:")}
         </span>
         {[
-          { href: "/charts", label: "Run Charts" },
-          { href: "/community-stats", label: "Community Stats" },
-          { href: "/leaderboards/metrics", label: "Card Metrics" },
+          { href: "/stats/charts", label: "Run Charts" },
+          { href: "/stats", label: "Community Stats" },
+          { href: "/stats/cards", label: "Card Metrics" },
           { href: "/tier-list", label: "Tier List" },
-          { href: "/leaderboards/scoring", label: "How scoring works" },
+          { href: "/stats/scoring", label: "How scoring works" },
         ].map((l) => (
           <Link
             key={l.href}

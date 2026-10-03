@@ -91,7 +91,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   return buildPageMetadata({
     locale,
-    path: "/leaderboards/scoring",
+    path: "/stats/scoring",
     title: t("Codex Score - How Tier Ratings Work"),
     description: t("leaderboards_scoring_meta_description"),
   });
@@ -108,7 +108,7 @@ export default async function ScoringPage({ params }: Props) {
     name: "Codex Score, Slay the Spire 2 Tier Rating Methodology",
     description:
       "How Codex Score ranks every Slay the Spire 2 card, relic, and potion. Bayesian-shrunk win rate, S-through-F tier bands, and full formula methodology.",
-    path: localePath(locale, "/leaderboards/scoring"),
+    path: localePath(locale, "/stats/scoring"),
     inLanguage: inLanguageOf(locale),
     category: "Game Mechanics",
     breadcrumbs: [
@@ -116,7 +116,7 @@ export default async function ScoringPage({ params }: Props) {
       { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
       {
         name: t("Codex Score"),
-        href: localePath(locale, "/leaderboards/scoring"),
+        href: localePath(locale, "/stats/scoring"),
       },
     ],
   });
@@ -372,7 +372,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
             "Use them together: Score says “this wins games,” Elo says “players want this when they see it.” Cards high on both are unambiguous; a gap between them is usually a build-around or a situational pick.",
           )}{" "}
           <Link
-            href="/leaderboards/metrics"
+            href="/stats/cards"
             className="text-[var(--accent-gold)] hover:underline"
           >
             {t("Both live side by side on the Card Metrics table.")}
@@ -445,7 +445,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
             "To cut the obvious confounds yourself, the Card Metrics table puts Codex Elo next to Score and slices both by per-character and per-run brackets.",
           )}{" "}
           <Link
-            href="/leaderboards/metrics"
+            href="/stats/cards"
             className="text-[var(--accent-gold)] hover:underline"
           >
             {t("Card Metrics")} →
@@ -506,7 +506,7 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
           )}
         </p>
         <Link
-          href="/leaderboards/submit"
+          href="/runs/submit"
           className="inline-block text-sm font-medium text-[var(--accent-gold)] hover:underline"
         >
           {t("→ Submit a run")}
