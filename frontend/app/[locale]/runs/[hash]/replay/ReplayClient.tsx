@@ -40,6 +40,9 @@ import FloorPanel, {
 import type { ReplayRunInfo } from "./page";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
+import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import { useTryGameTranslations } from "@/lib/game-i18n";
+import { REPLAY_TABLES } from "@/lib/game-messages.common";
 
 const ENERGY_ICONS = new Set([
   "ironclad",
@@ -308,16 +311,22 @@ function RunCharts({
   );
 }
 
-export default function ReplayClient({
-  hash,
-  run,
-}: {
+export default function ReplayClient(props: {
   hash: string;
   run: ReplayRunInfo;
 }) {
+  return (
+    <GameTablesProvider tables={REPLAY_TABLES} beta={props.run.is_beta}>
+      <ReplayBody {...props} />
+    </GameTablesProvider>
+  );
+}
+
+function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
   const t = useT();
   const lang = useGameLocale();
   const lp = useBetaPrefix();
+  const gt = useTryGameTranslations();
   const [model, setModel] = useState<ReplayModel | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
@@ -493,6 +502,7 @@ export default function ReplayClient({
     encounters,
     cardScores,
     relicScores,
+    gt,
   };
   const header = model?.header;
   const characterId = cleanId(
@@ -501,7 +511,8 @@ export default function ReplayClient({
   // The game's own name for the character in the reader's language; the id is
   // only good for the icon filename.
   const character = characterId
-    ? characterName(characterId, characterNames)
+    ? (gt(`characters.${characterId}.title`) ??
+      characterName(characterId, characterNames))
     : "";
   const maxHp = model?.end?.maxHp ?? header?.startingMaxHp;
   const energyIcon = ENERGY_ICONS.has(characterId.toLowerCase())

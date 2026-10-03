@@ -15,95 +15,35 @@ import {
   CardPill,
   RelicPill,
   PotionPill,
-  cleanId,
   displayName,
   type CardInfo,
   type RelicInfo,
   type PotionInfo,
 } from "./RunPills";
+import {
+  eventChoiceName,
+  restChoiceName,
+  roomTitle,
+  roomTypeTitle,
+  typedRoom,
+} from "./run-names";
+import { useTryGameTranslations, type TryGameT } from "@/lib/game-i18n";
+import type {
+  EncounterRoom,
+  Floor,
+  Player,
+  PlayerStats,
+  Run,
+} from "@/lib/api/run/types";
 
 export type { PotionInfo };
 
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
 import { stackCards } from "@/lib/deck-stack";
 import { fmtDateTime, fmtDateTimePacific } from "@/lib/pacific";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
 const ICON_BASE = imageUrl("/static/images/ui/run_history");
-
-interface DeckCard {
-  id: string;
-  current_upgrade_level?: number;
-  enchantment?: {
-    id: string;
-    amount: number;
-    floor_added_to_deck?: number;
-  } | null;
-}
-
-interface RunRelic {
-  id: string;
-  floor_added_to_deck?: number;
-}
-
-interface PlayerStats {
-  current_hp?: number;
-  max_hp?: number;
-  current_gold?: number;
-  damage_taken?: number;
-  hp_healed?: number;
-  gold_gained?: number;
-  gold_spent?: number;
-  card_choices?: Array<{ card: { id: string }; was_picked: boolean }>;
-  cards_gained?: Array<{ id: string }>;
-  cards_removed?: Array<{ id: string }>;
-  upgraded_cards?: string[];
-  rest_site_choices?: string[];
-  potion_used?: string[];
-  relic_choices?: Array<{ choice: string; was_picked: boolean }>;
-  event_choices?: Array<{ title?: { key?: string } }>;
-}
-
-interface Room {
-  model_id?: string;
-  room_type?: string;
-  monster_ids?: string[];
-  turns_taken?: number;
-}
-
-interface MapPoint {
-  map_point_type: string;
-  rooms?: Room[];
-  player_stats?: PlayerStats[];
-}
-
-interface Player {
-  character: string;
-  deck: DeckCard[];
-  relics: RunRelic[];
-  potions?: { id: string; slot_index: number }[];
-  max_potion_slot_count?: number;
-}
-
-interface Run {
-  win: boolean;
-  was_abandoned: boolean;
-  ascension?: number;
-  run_time?: number;
-  seed?: string;
-  build_id?: string;
-  game_mode?: string;
-  acts?: string[];
-  start_time?: number;
-  killed_by_encounter?: string;
-  modifiers?: string[];
-  map_point_history?: MapPoint[][];
-  players: Player[];
-  /** Attached server-side from the runs DB row (not in the on-disk
-   *  run JSON). Missing for anonymous submissions. */
-  username?: string;
-}
 
 const RARITY_ORDER = [
   "Starter",
@@ -128,18 +68,6 @@ function cardLabelColor(upgraded: boolean, enchanted: boolean): string {
   return "text-[var(--text-primary)]";
 }
 
-const MAP_POINT_LABELS: Record<string, string> = {
-  monster: "Monster",
-  elite: "Elite",
-  boss: "Boss",
-  event: "Event",
-  treasure: "Treasure",
-  rest_site: "Rest Site",
-  shop: "Shop",
-  ancient: "Ancient",
-  unknown: "Unknown",
-};
-
 const TIER_LABELS: Record<string, string> = {
   weak: "Weak",
   normal: "Normal",
@@ -152,6 +80,16 @@ const TIER_OUTLINE: Record<string, string> = {
   normal: "ring-1 ring-warning/40",
   elite: "ring-1 ring-warning/60",
   boss: "ring-2 ring-danger/60",
+};
+
+const ICON_SLUG: Record<string, string> = {
+  monster: "monster",
+  elite: "elite",
+  event: "event",
+  treasure: "treasure",
+  rest_site: "rest_site",
+  shop: "shop",
+  unknown: "event",
 };
 
 function formatTime(seconds: number): string {
@@ -188,39 +126,36 @@ function formatDate(
 
 /** Decide the tier ("weak"|"normal"|"elite"|"boss") for an encounter. */
 function encounterTier(
-  modelId: string | undefined,
-  mapPointType: string,
-): "weak" | "normal" | "elite" | "boss" | "" {
-  if (!modelId) return "";
-  if (modelId.endsWith("_BOSS")) return "boss";
-  if (modelId.endsWith("_ELITE") || mapPointType === "elite") return "elite";
-  if (modelId.endsWith("_WEAK")) return "weak";
-  if (modelId.endsWith("_NORMAL")) return "normal";
-  return mapPointType === "monster" ? "normal" : "";
+  room: EncounterRoom,
+): "weak" | "normal" | "elite" | "boss" {
+  switch (room.encounter_type) {
+    case "BOSS":
+      return "boss";
+    case "ELITE":
+      return "elite";
+    default:
+      return room.id.endsWith("_WEAK") ? "weak" : "normal";
+  }
 }
 
-/** Derive a spire-codex page href from an entity id by its prefix. */
-function entityHref(id: string, bp: string): string | null {
-  if (!id || id === "NONE.NONE") return null;
-  const slug = cleanId(id).toLowerCase();
-  if (id.startsWith("MONSTER.")) return `${bp}/monsters/${slug}`;
-  if (id.startsWith("ENCOUNTER.")) return `${bp}/encounters/${slug}`;
-  if (id.startsWith("EVENT.")) return `${bp}/events/${slug}`;
-  if (id.startsWith("RELIC.")) return `${bp}/relics/${slug}`;
-  if (id.startsWith("CARD.")) return `${bp}/cards/${slug}`;
-  if (id.startsWith("POTION.")) return `${bp}/potions/${slug}`;
-  if (id.startsWith("CHARACTER.")) return `${bp}/characters/${slug}`;
+/** The detail page for what the floor held, when it has one. */
+function floorHref(floor: Floor, bp: string): string | null {
+  const room = typedRoom(floor);
+  if (room?.type === "ENCOUNTER")
+    return `${bp}/encounters/${room.id.toLowerCase()}`;
+  if (room?.type === "EVENT") return `${bp}/events/${room.id.toLowerCase()}`;
   return null;
 }
 
-/** Resolve the icon filename for a map point. */
+/** Resolve the icon filename, tier and label for a floor. */
 function iconFor(
-  mp: MapPoint,
+  floor: Floor,
+  gt: TryGameT,
+  t: TFn,
   buildId?: string,
 ): { src: string; betaSrc?: string; tier: string; label: string } {
-  const room = mp.rooms?.[0];
-  const modelId = room?.model_id || "";
-  const tier = encounterTier(modelId, mp.map_point_type);
+  const room = typedRoom(floor);
+  const tier = room?.type === "ENCOUNTER" ? encounterTier(room) : "";
 
   // Main run_history path plus a beta-versioned fallback. Beta-only content
   // (e.g. the AEONGLASS boss) only has its map icon under the beta tree, so a
@@ -233,25 +168,14 @@ function iconFor(
       : undefined,
   });
 
-  if (mp.map_point_type === "boss" && modelId.endsWith("_BOSS")) {
-    const slug = cleanId(modelId).toLowerCase();
-    return { ...resolve(slug), tier, label: displayName(modelId) };
+  const label = roomTitle(floor, gt) ?? roomTypeTitle(floor, gt, t);
+  if (room?.type === "ENCOUNTER" && room.encounter_type === "BOSS") {
+    return { ...resolve(room.id.toLowerCase()), tier, label };
   }
-  if (mp.map_point_type === "ancient" && modelId.startsWith("EVENT.")) {
-    const slug = cleanId(modelId).toLowerCase();
-    return { ...resolve(slug), tier: "", label: displayName(modelId) };
+  if (floor.floor_type === "ANCIENT" && room?.type === "EVENT") {
+    return { ...resolve(room.id.toLowerCase()), tier: "", label };
   }
-  const typeMap: Record<string, string> = {
-    monster: "monster",
-    elite: "elite",
-    event: "event",
-    treasure: "treasure",
-    rest_site: "rest_site",
-    shop: "shop",
-    unknown: "event",
-  };
-  const slug = typeMap[mp.map_point_type] ?? "monster";
-  const label = modelId ? displayName(modelId) : displayName(mp.map_point_type);
+  const slug = ICON_SLUG[floor.raw_type] ?? "monster";
   return { ...resolve(slug), tier, label };
 }
 
@@ -264,9 +188,7 @@ interface Props {
   charColor: string;
   langPrefix: string;
   charName: string;
-  encounterName?: string;
-  actNames: Record<string, string>;
-  monsterNames: Record<string, string>;
+  killedByName?: string;
 }
 
 export default function RunSummary({
@@ -278,24 +200,21 @@ export default function RunSummary({
   charColor,
   langPrefix: bp,
   charName,
-  encounterName,
-  actNames,
-  monsterNames,
+  killedByName,
 }: Props) {
   const t = useT();
+  const gt = useTryGameTranslations();
   const dateLocale = hreflangOf(useGameLocale());
-  const cardName = (id: string) =>
-    cardData[cleanId(id)]?.name ?? displayName(id);
-  const relicName = (id: string) =>
-    relicData[cleanId(id)]?.name ?? displayName(id);
+  const cardTitle = (id: string) =>
+    gt(`cards.${id}.title`) ?? cardData[id]?.name ?? displayName(`CARD.${id}`);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
   const finalStats = lastPlayerStats(run);
-  const totalFloors = (run.map_point_history ?? []).reduce(
+  const totalFloors = run.floor_history.reduce(
     (sum, act) => sum + act.length,
     0,
   );
-  const charSlug = cleanId(player.character).toLowerCase();
+  const charSlug = player.character.toLowerCase();
   const charIcon = imageUrl(
     `/static/images/characters/character_icon_${charSlug}.webp`,
   );
@@ -306,23 +225,25 @@ export default function RunSummary({
     ? t("{char} ascended.", { char: charName })
     : run.was_abandoned
       ? t("The journey ended.")
-      : encounterName
+      : killedByName
         ? t("{char} fell to {encounter}.", {
             char: charName,
-            encounter: encounterName,
+            encounter: killedByName,
           })
         : t("{char} fell.", { char: charName });
 
   const relicsByRarity = bucketByRarity(
     player.relics,
-    (r) => relicData[cleanId(r.id)]?.rarity,
+    (r) => relicData[r.id]?.rarity,
   );
   const cardsByRarity = bucketByRarity(
     player.deck,
-    (c) => cardData[cleanId(c.id)]?.rarity,
+    (c) => cardData[c.id]?.rarity,
   );
 
-  const stackedCards = stackCards(player.deck, cardData);
+  const stackedCards = stackCards(player.deck, cardData, (id) =>
+    gt(`cards.${id}.title`),
+  );
 
   return (
     <div
@@ -419,13 +340,13 @@ export default function RunSummary({
 
       {/* Act rows with hover popovers */}
       <div className="space-y-2 mb-5">
-        {(run.map_point_history ?? []).map((act, i) => {
-          const actName = run.acts?.[i]
-            ? (actNames[cleanId(run.acts[i]).toUpperCase()] ??
-              displayName(run.acts[i]))
-            : t("Act {n}", { n: i + 1 });
+        {run.floor_history.map((act, i) => {
+          const actId = run.acts[i];
+          const actName =
+            (actId ? gt(`acts.${actId}.title`) : undefined) ??
+            t("Act {n}", { n: i + 1 });
           const actStartFloor =
-            (run.map_point_history ?? [])
+            run.floor_history
               .slice(0, i)
               .reduce((sum, a) => sum + a.length, 0) + 1;
           return (
@@ -434,16 +355,16 @@ export default function RunSummary({
                 {actName}
               </div>
               <div className="flex flex-wrap items-center gap-1 flex-1">
-                {act.map((mp, j) => (
+                {act.map((floor, j) => (
                   <MapNode
                     key={j}
-                    mp={mp}
+                    floor={floor}
                     floorNum={actStartFloor + j}
                     bp={bp}
                     buildId={run.build_id}
-                    cardName={cardName}
-                    relicName={relicName}
-                    monsterNames={monsterNames}
+                    cardTitle={cardTitle}
+                    relicData={relicData}
+                    potionData={potionData}
                   />
                 ))}
               </div>
@@ -462,12 +383,11 @@ export default function RunSummary({
         </div>
         <div className="flex flex-wrap gap-1">
           {player.relics.map((relic, i) => {
-            const rid = cleanId(relic.id);
-            const info = relicData[rid];
+            const info = relicData[relic.id];
             return (
               <RelicPill
-                key={`${rid}-${i}`}
-                relicId={rid}
+                key={`${relic.id}-${i}`}
+                relicId={relic.id}
                 relicData={relicData}
                 bp={bp}
                 className="w-8 h-8 sm:w-9 sm:h-9 rounded-md bg-scrim/30 flex items-center justify-center hover:bg-scrim/50 transition-colors"
@@ -475,13 +395,13 @@ export default function RunSummary({
                 {info?.image_url ? (
                   <img
                     src={imageUrl(info.image_url)}
-                    alt={info.name}
+                    alt={gt(`relics.${relic.id}.title`) ?? info.name}
                     className="w-full h-full object-contain p-0.5"
                     crossOrigin="anonymous"
                   />
                 ) : (
                   <span className="text-[8px] text-[var(--text-muted)]">
-                    {rid.slice(0, 3)}
+                    {relic.id.slice(0, 3)}
                   </span>
                 )}
               </RelicPill>
@@ -526,7 +446,7 @@ export default function RunSummary({
                       {entry.count}x
                     </span>
                   )}
-                  {info?.name || displayName(`CARD.${entry.id}`)}
+                  {cardTitle(entry.id)}
                   {entry.upgraded && "+"}
                 </span>
               </CardPill>
@@ -539,30 +459,59 @@ export default function RunSummary({
 }
 
 function MapNode({
-  mp,
+  floor,
   floorNum,
   bp,
   buildId,
-  cardName,
-  relicName,
-  monsterNames,
+  cardTitle,
+  relicData,
+  potionData,
 }: {
-  mp: MapPoint;
+  floor: Floor;
   floorNum: number;
   bp: string;
   buildId?: string;
-  cardName: (id: string) => string;
-  relicName: (id: string) => string;
-  monsterNames: Record<string, string>;
+  cardTitle: (id: string) => string;
+  relicData: Record<string, RelicInfo>;
+  potionData: Record<string, PotionInfo>;
 }) {
   const t = useT();
+  const gt = useTryGameTranslations();
   const [show, setShow] = useState(false);
-  const { src, betaSrc, tier, label } = iconFor(mp, buildId);
-  const room = mp.rooms?.[0];
-  const ps = mp.player_stats?.[0];
+  const { src, betaSrc, tier, label } = iconFor(floor, gt, t, buildId);
+  const room = typedRoom(floor);
+  const ps = floor.player_stats[0];
+  const relicTitle = (id: string) =>
+    gt(`relics.${id}.title`) ??
+    relicData[id]?.name ??
+    displayName(`RELIC.${id}`);
+  const potionTitle = (id: string) =>
+    gt(`potions.${id}.title`) ??
+    potionData[id]?.name ??
+    displayName(`POTION.${id}`);
+  const pickTitle = (table: string, id: string) => {
+    if (table === "cards") return cardTitle(id);
+    if (table === "potions") return potionTitle(id);
+    return relicTitle(id);
+  };
 
-  // Click target, encounter/event detail page derived from the room's model_id.
-  const href = entityHref(room?.model_id ?? "", bp);
+  // Click target, encounter/event detail page derived from the room.
+  const href = floorHref(floor, bp);
+  const turns =
+    room?.type === "ENCOUNTER" && room.turns_taken != null
+      ? (gt("run_history.MAP_POINT_HISTORY.turnsTaken", {
+          Turns: room.turns_taken,
+        }) ?? `${room.turns_taken} ${t("turns")}`)
+      : undefined;
+  const chose =
+    ps?.event_choices
+      ?.map((c) => eventChoiceName(c, gt))
+      .filter((name): name is string => !!name) ?? [];
+  const rested = ps?.rest_site_choices?.map((c) => restChoiceName(c, gt, t));
+  const ancientPicks =
+    ps?.ancient_choices
+      ?.filter((c) => c.was_picked)
+      .map((c) => pickTitle(c.table, c.id)) ?? [];
 
   const iconImg = (
     <img
@@ -591,23 +540,20 @@ function MapNode({
           {label}
         </div>
         <div className="text-[10px] text-[var(--text-muted)]">
-          {t("Floor {n}", { n: floorNum })}
+          {gt("run_history.MAP_POINT_HISTORY.header", { FloorNum: floorNum }) ??
+            t("Floor {n}", { n: floorNum })}
         </div>
       </div>
       <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
-        {MAP_POINT_LABELS[mp.map_point_type]
-          ? t(MAP_POINT_LABELS[mp.map_point_type])
-          : mp.map_point_type.replace(/_/g, " ")}
+        {roomTypeTitle(floor, gt, t)}
         {tier && ` · ${t(TIER_LABELS[tier])}`}
-        {room?.turns_taken != null && ` · ${room.turns_taken} ${t("turns")}`}
+        {turns && ` · ${turns}`}
       </div>
-      {room?.monster_ids && room.monster_ids.length > 0 && (
+      {room?.type === "ENCOUNTER" && room.monsters.length > 0 && (
         <div className="text-[10px] text-[var(--text-secondary)] mb-1.5">
           {t("vs")}{" "}
-          {room.monster_ids
-            .map(
-              (m) => monsterNames[cleanId(m).toUpperCase()] ?? displayName(m),
-            )
+          {room.monsters
+            .map((m) => gt(`monsters.${m}.name`) ?? displayName(`MONSTER.${m}`))
             .join(", ")}
         </div>
       )}
@@ -638,19 +584,34 @@ function MapNode({
           )}
         </div>
       )}
+      {rested && rested.length > 0 && (
+        <div className="text-[10px] text-[var(--text-secondary)] mb-0.5">
+          {rested.join(", ")}
+        </div>
+      )}
       {ps?.cards_gained && ps.cards_gained.length > 0 && (
         <div className="text-[10px] text-[var(--color-silent)] mb-0.5">
-          + {ps.cards_gained.map((c) => cardName(c.id)).join(", ")}
+          + {ps.cards_gained.map((c) => cardTitle(c.id)).join(", ")}
         </div>
       )}
       {ps?.cards_removed && ps.cards_removed.length > 0 && (
         <div className="text-[10px] text-[var(--color-ironclad)] mb-0.5">
-          − {ps.cards_removed.map((c) => cardName(c.id)).join(", ")}
+          − {ps.cards_removed.map((c) => cardTitle(c.id)).join(", ")}
+        </div>
+      )}
+      {ps?.cards_transformed && ps.cards_transformed.length > 0 && (
+        <div className="text-[10px] text-[var(--color-necrobinder)] mb-0.5">
+          {ps.cards_transformed
+            .map(
+              (c) =>
+                `${cardTitle(c.original_card.id)} → ${cardTitle(c.final_card.id)}`,
+            )
+            .join(", ")}
         </div>
       )}
       {ps?.upgraded_cards && ps.upgraded_cards.length > 0 && (
         <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
-          ⬆ {ps.upgraded_cards.map((c) => cardName(c)).join(", ")}
+          ⬆ {ps.upgraded_cards.map((c) => cardTitle(c)).join(", ")}
         </div>
       )}
       {ps?.relic_choices?.some((r) => r.was_picked) && (
@@ -658,19 +619,31 @@ function MapNode({
           +{" "}
           {ps.relic_choices
             .filter((r) => r.was_picked)
-            .map((r) => relicName(r.choice))
+            .map((r) => relicTitle(r.choice))
             .join(", ")}
         </div>
       )}
-      {(() => {
-        const choiceKey = ps?.event_choices?.[0]?.title?.key;
-        const choice = choiceKey ? humanizeChoiceKey(choiceKey) : "";
-        return choice ? (
-          <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
-            {t("chose {choice}", { choice })}
-          </div>
-        ) : null;
-      })()}
+      {ps?.potion_choices?.some((p) => p.was_picked) && (
+        <div className="text-[10px] text-[var(--accent-teal)] mb-0.5">
+          +{" "}
+          {ps.potion_choices
+            .filter((p) => p.was_picked)
+            .map((p) => potionTitle(p.choice))
+            .join(", ")}
+        </div>
+      )}
+      {ancientPicks.length > 0 && (
+        <div className="text-[10px] text-[var(--accent-gold)] mb-0.5">
+          + {ancientPicks.join(", ")}
+        </div>
+      )}
+      {chose.length > 0 && (
+        <div className="text-[10px] text-[var(--text-secondary)] mt-1 italic">
+          {gt("run_history.MAP_POINT_HISTORY.chose", {
+            Choice: chose.join(", "),
+          }) ?? t("chose {choice}", { choice: chose.join(", ") })}
+        </div>
+      )}
       <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
     </div>
   );
@@ -701,26 +674,6 @@ function MapNode({
       {tooltip}
     </span>
   );
-}
-
-function humanizeChoiceKey(key: string): string {
-  // Event choices are stored as the game's localization key, e.g.
-  // "MORPHIC_GROVE.pages.INITIAL.options.LONER.title" → "Loner". Pull the
-  // segment after "options" when the event had a branching choice.
-  const parts = key.split(".");
-  const idx = parts.findIndex((p) => p === "options");
-  if (idx >= 0 && parts[idx + 1]) {
-    return parts[idx + 1]
-      .replace(/_/g, " ")
-      .toLowerCase()
-      .replace(/\b\w/g, (c) => c.toUpperCase());
-  }
-  // No "options" segment means there was no real choice: ancients and other
-  // single-outcome events record a page key like
-  // "ancients.NONUPEIPE.pages.DONE.description". Returning the raw dotted key
-  // would leak it onto the page, so drop it (the caller skips the line). A
-  // plain, dot-free label is already human and passes through.
-  return key.includes(".") ? "" : key;
 }
 
 function IconStat({
@@ -760,6 +713,7 @@ function PotionSlots({
   potionData: Record<string, PotionInfo>;
   bp: string;
 }) {
+  const gt = useTryGameTranslations();
   // Sort potions into a slot array so empty slots render as dashed outlines.
   const bySlot: ((typeof potions)[number] | null)[] = Array(total).fill(null);
   for (const p of potions) {
@@ -776,12 +730,11 @@ function PotionSlots({
             />
           );
         }
-        const id = cleanId(p.id);
-        const info = potionData[id];
+        const info = potionData[p.id];
         return (
           <PotionPill
             key={i}
-            potionId={id}
+            potionId={p.id}
             potionData={potionData}
             bp={bp}
             className="w-5 h-5 flex items-center justify-center hover:scale-110 transition-transform"
@@ -789,7 +742,7 @@ function PotionSlots({
             {info?.image_url ? (
               <img
                 src={imageUrl(info.image_url)}
-                alt={info.name}
+                alt={gt(`potions.${p.id}.title`) ?? info.name}
                 className="w-5 h-5 object-contain"
                 crossOrigin="anonymous"
               />
@@ -831,10 +784,10 @@ function bucketByRarity<T>(
 }
 
 function lastPlayerStats(run: Run): PlayerStats | undefined {
-  const acts = run.map_point_history ?? [];
+  const acts = run.floor_history;
   for (let a = acts.length - 1; a >= 0; a--) {
     for (let f = acts[a].length - 1; f >= 0; f--) {
-      const ps = acts[a][f]?.player_stats?.[0];
+      const ps = acts[a][f]?.player_stats[0];
       if (ps) return ps;
     }
   }

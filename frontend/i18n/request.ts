@@ -15,7 +15,10 @@ export default getRequestConfig(async ({ requestLocale }) => {
     timeZone: "America/Los_Angeles",
     // A key with no message renders as its English text, which is what the
     // old t() did; dynamic keys (room kinds, outcome labels) rely on it.
-    getMessageFallback: ({ key }) => unsafeKey(key),
+    getMessageFallback: ({ key, namespace }) =>
+      namespace === "game" || namespace?.startsWith("game.")
+        ? key
+        : unsafeKey(key),
     onError: (error) => {
       if (error.code !== "MISSING_MESSAGE") console.error(error);
     },

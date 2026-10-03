@@ -6,6 +6,7 @@ const info = {
   BASH: { rarity: "Starter", name: "Bash" },
   WHIRLWIND: { rarity: "Rare", name: "Whirlwind" },
   ANGER: { rarity: "Common", name: "Anger" },
+  CLEAVE: { rarity: "Common", name: "Cleave" },
 };
 
 describe("deck stacks follow the order the deck was built", () => {
@@ -40,6 +41,18 @@ describe("deck stacks follow the order the deck was built", () => {
       "WHIRLWIND",
       "ANGER",
       "STRIKE",
+    ]);
+  });
+
+  it("sorts same-rarity stacks by the translated title, each side its own", () => {
+    const deck = [{ id: "ANGER" }, { id: "CLEAVE" }];
+    const titles: Record<string, string> = { ANGER: "Zorn", CLEAVE: "Spalten" };
+    expect(stackCards(deck, info, (id) => titles[id]).map((s) => s.id)).toEqual(
+      ["CLEAVE", "ANGER"],
+    );
+    expect(stackCards(deck, info, () => undefined).map((s) => s.id)).toEqual([
+      "ANGER",
+      "CLEAVE",
     ]);
   });
 });

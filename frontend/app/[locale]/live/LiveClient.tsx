@@ -14,6 +14,8 @@ import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import { LIVE_TABLES } from "@/lib/game-messages.common";
 import {
   CardPill,
   RelicPill,
@@ -235,6 +237,14 @@ function PlayerCard({
 }
 
 export default function LiveClient() {
+  return (
+    <GameTablesProvider tables={LIVE_TABLES}>
+      <LiveRoster />
+    </GameTablesProvider>
+  );
+}
+
+function LiveRoster() {
   const bp = useBetaPrefix();
   const t = useT();
   const [players, setPlayers] = useState<LivePlayer[] | null>(null);

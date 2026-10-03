@@ -6,8 +6,7 @@ import RichDescription from "@/app/components/RichDescription";
 import { imageUrl } from "@/lib/image-url";
 import CardImage from "@/app/components/CardImage";
 import { displayName } from "@/lib/display-name";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { useTryGameTranslations } from "@/lib/game-i18n";
 
 export interface CardInfo {
   id: string;
@@ -25,6 +24,7 @@ export interface RelicInfo {
   name: string;
   description: string;
   rarity: string;
+  rarity_key?: string | null;
   image_url: string | null;
 }
 
@@ -33,6 +33,7 @@ export interface PotionInfo {
   name: string;
   description: string;
   rarity: string;
+  rarity_key?: string | null;
   image_url: string | null;
 }
 
@@ -58,7 +59,14 @@ export function CardPill({
   const [show, setShow] = useState(false);
   const [above, setAbove] = useState(true);
   const ref = useRef<HTMLAnchorElement>(null);
+  const gt = useTryGameTranslations();
   const info = cardData[cardId];
+  const name =
+    gt(`cards.${cardId}.title`) ?? info?.name ?? displayName(`CARD.${cardId}`);
+  const enchantmentName = enchantment
+    ? (gt(`enchantments.${enchantment}.title`) ??
+      displayName(`ENCHANTMENT.${enchantment}`))
+    : undefined;
   return (
     <Link
       ref={ref}
@@ -74,11 +82,11 @@ export function CardPill({
     >
       {children ?? (
         <>
-          {info?.name || displayName(`CARD.${cardId}`)}
+          {name}
           {upgraded && "+"}
-          {enchantment && (
+          {enchantmentName && (
             <span className="text-[var(--color-necrobinder)] ml-1">
-              [{displayName(`ENCHANTMENT.${enchantment}`)}]
+              [{enchantmentName}]
             </span>
           )}
         </>
@@ -120,7 +128,16 @@ export function RelicPill({
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
+  const gt = useTryGameTranslations();
   const info = relicData[relicId];
+  const name =
+    gt(`relics.${relicId}.title`) ??
+    info?.name ??
+    displayName(`RELIC.${relicId}`);
+  const rarity =
+    (info?.rarity_key &&
+      gt(`gameplay_ui.RELIC_RARITY.${info.rarity_key.toUpperCase()}`)) ||
+    info?.rarity;
   return (
     <Link
       href={`${bp}/relics/${relicId.toLowerCase()}`}
@@ -128,7 +145,7 @@ export function RelicPill({
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      {children ?? info?.name ?? displayName(`RELIC.${relicId}`)}
+      {children ?? name}
       {show && info && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
@@ -142,10 +159,10 @@ export function RelicPill({
             )}
             <div className="min-w-0">
               <div className="font-semibold text-xs text-[var(--text-primary)] truncate">
-                {info.name}
+                {name}
               </div>
               <div className="text-[10px] text-[var(--text-muted)]">
-                {info.rarity}
+                {rarity}
               </div>
             </div>
           </div>
@@ -173,7 +190,16 @@ export function PotionPill({
   children?: ReactNode;
 }) {
   const [show, setShow] = useState(false);
+  const gt = useTryGameTranslations();
   const info = potionData[potionId];
+  const name =
+    gt(`potions.${potionId}.title`) ??
+    info?.name ??
+    displayName(`POTION.${potionId}`);
+  const rarity =
+    (info?.rarity_key &&
+      gt(`gameplay_ui.POTION_RARITY.${info.rarity_key.toUpperCase()}`)) ||
+    info?.rarity;
   return (
     <Link
       href={`${bp}/potions/${potionId.toLowerCase()}`}
@@ -181,7 +207,7 @@ export function PotionPill({
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
     >
-      {children ?? info?.name ?? displayName(`POTION.${potionId}`)}
+      {children ?? name}
       {show && info && (
         <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] shadow-xl pointer-events-none">
           <div className="flex items-start gap-2 mb-1.5">
@@ -195,10 +221,10 @@ export function PotionPill({
             )}
             <div className="min-w-0">
               <div className="font-semibold text-xs text-[var(--text-primary)] truncate">
-                {info.name}
+                {name}
               </div>
               <div className="text-[10px] text-[var(--text-muted)]">
-                {info.rarity}
+                {rarity}
               </div>
             </div>
           </div>
