@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { fmtDateTimePacific } from "@/lib/pacific";
@@ -33,10 +34,15 @@ function rankTone(rank: number): string {
 export default function EloBoardClient() {
   const t = useT();
   const lang = useGameLocale();
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [board, setBoard] = useState<EloBoard | null>(null);
   const [failed, setFailed] = useState(false);
   const [reloads, setReloads] = useState(0);
-  const [sortKey, setSortKey] = useState<SortKey>("elo");
+  const rawSort = searchParams.get("sort");
+  const [sortKey, setSortKey] = useState<SortKey>(
+    rawSort === "lifetime" ? "lifetime" : "elo",
+  );
   const [charNames, setCharNames] = useState<Record<string, string>>({});
 
   useEffect(() => {
@@ -78,19 +84,15 @@ export default function EloBoardClient() {
     [board, sortKey],
   );
 
-  const sortButton = (key: SortKey, label: string) => (
-    <button
-      type="button"
-      onClick={() => setSortKey(key)}
-      className={`px-3 py-1 rounded-md text-sm border transition-colors ${
-        sortKey === key
-          ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-          : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-      }`}
-    >
-      {label}
-    </button>
-  );
+  const setSort = (key: SortKey) => {
+    setSortKey(key);
+    router.replace(
+      key === "elo" ? "/top-players" : "/top-players?sort=lifetime",
+      {
+        scroll: false,
+      },
+    );
+  };
 
   return (
     <div className="mx-auto max-w-[1100px] px-3 sm:px-5 py-6">
@@ -116,8 +118,28 @@ export default function EloBoardClient() {
         )}
         <span className="inline-flex items-center gap-2 ml-auto">
           <span>{t("Sort by")}</span>
-          {sortButton("elo", t("Elo"))}
-          {sortButton("lifetime", t("Lifetime"))}
+          <button
+            type="button"
+            onClick={() => setSort("elo")}
+            className={`px-3 py-1 rounded-md text-sm border transition-colors ${
+              sortKey === "elo"
+                ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {t("Elo")}
+          </button>
+          <button
+            type="button"
+            onClick={() => setSort("lifetime")}
+            className={`px-3 py-1 rounded-md text-sm border transition-colors ${
+              sortKey === "lifetime"
+                ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            }`}
+          >
+            {t("Lifetime")}
+          </button>
         </span>
       </div>
 

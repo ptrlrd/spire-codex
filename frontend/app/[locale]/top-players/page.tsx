@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import EloBoardClient from "./EloBoardClient";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -43,7 +44,9 @@ export default async function EloBoardPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <EloBoardClient />
+      <Suspense fallback={null}>
+        <EloBoardClient />
+      </Suspense>
     </>
   );
 }
