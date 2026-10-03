@@ -54,5 +54,13 @@
     "url": "https://spire-wrapped.vercel.app",
     "category": "app",
     "author": "Anonymous"
+  },
+  {
+    "id": "gop-sts2-card-win-rates",
+    "name": "Card Win Rates vs Tier Lists (1.1M Runs)",
+    "description": "Data study built on the Spire Codex run export. Compares Act 1 card picks and Neow options for runs that were offered them vs not, then checks the results against Baalorlord, Jorbs and Nat1 tier lists. Uses the tooltip widget and live community stats, with CSV downloads.",
+    "url": "https://gamerofpassion.com/slay-the-spire-2-card-win-rates/",
+    "category": "content",
+    "author": "Gamer of Passion"
   }
 ]
