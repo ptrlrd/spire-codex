@@ -15,6 +15,45 @@ export interface GridPrefs {
   columns?: ColKey[];
 }
 
+export interface GridViewState {
+  sort?: ColKey;
+  dir?: 1 | -1;
+  samples?: boolean;
+  wax?: boolean;
+  upg?: boolean;
+}
+
+export function parseGridView(
+  sp: Record<string, string | string[] | undefined>,
+  validCols: readonly ColKey[],
+): GridViewState {
+  const one = (k: string): string | undefined => {
+    const v = sp[k];
+    return Array.isArray(v) ? v[0] : v;
+  };
+  const out: GridViewState = {};
+  const sort = one("sort");
+  if (sort && (validCols as readonly string[]).includes(sort))
+    out.sort = sort as ColKey;
+  if (one("dir") === "asc") out.dir = 1;
+  else if (one("dir") === "desc") out.dir = -1;
+  if (one("samples") === "1") out.samples = true;
+  if (one("wax") === "1") out.wax = true;
+  if (one("upg") === "1") out.upg = true;
+  return out;
+}
+
+export function writeGridView(
+  params: URLSearchParams,
+  state: GridViewState,
+): void {
+  if (state.sort) params.set("sort", state.sort);
+  if (state.dir === 1) params.set("dir", "asc");
+  if (state.samples) params.set("samples", "1");
+  if (state.wax) params.set("wax", "1");
+  if (state.upg) params.set("upg", "1");
+}
+
 const KEY = (kind: GridKind) => `spire-codex:stats-grid:${kind}`;
 
 export function loadPrefs(kind: GridKind): GridPrefs | null {

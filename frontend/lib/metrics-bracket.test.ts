@@ -4,7 +4,7 @@ import {
   isValidBracket,
   parseBracket,
 } from "@/app/[locale]/stats/_grid/bracket";
-
+import { parseGridView, writeGridView } from "@/app/[locale]/stats/_grid/prefs";
 describe("metrics bracket validation", () => {
   it("accepts the keys the page offers", () => {
     for (const k of [
@@ -39,5 +39,31 @@ describe("metrics bracket validation", () => {
       mode: "standard",
       version: "",
     });
+  });
+});
+
+describe("grid view url params", () => {
+  const cols = ["name", "elo", "n", "winRate"] as const;
+
+  it("reads valid params and ignores junk", () => {
+    expect(
+      parseGridView(
+        { sort: "elo", dir: "asc", samples: "1", wax: "1", upg: "1" },
+        cols,
+      ),
+    ).toEqual({ sort: "elo", dir: 1, samples: true, wax: true, upg: true });
+    expect(parseGridView({ sort: "hack", dir: "sideways" }, cols)).toEqual({});
+    expect(parseGridView({ dir: "desc", samples: "0" }, cols)).toEqual({
+      dir: -1,
+    });
+  });
+
+  it("writes params omitting defaults", () => {
+    const p = new URLSearchParams();
+    writeGridView(p, { sort: "elo", dir: -1 });
+    expect(p.toString()).toBe("sort=elo");
+    const q = new URLSearchParams();
+    writeGridView(q, { dir: 1, samples: true });
+    expect(q.toString()).toBe("dir=asc&samples=1");
   });
 });

@@ -59,6 +59,11 @@ export interface GridData {
   byCharacter: GridRow[] | null;
   query: string;
   offColor?: boolean;
+  sort?: string;
+  dir?: "asc" | "desc";
+  samples?: boolean;
+  wax?: boolean;
+  upg?: boolean;
   fromUrl?: boolean;
   available: boolean;
 }

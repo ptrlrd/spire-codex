@@ -16,6 +16,8 @@ import {
   moveColumn,
   orderColumns,
   savePrefs,
+  writeGridView,
+  type GridViewState,
   type GridPrefs,
 } from "./prefs";
 import { KINDS, type ColKey } from "./kinds";
@@ -224,17 +226,23 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const [search, setSearch] = useState(data.query);
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
-  const [showTiny, setShowTiny] = useState(false);
-  const [showWax, setShowWax] = useState(false);
-  const [showUpgraded, setShowUpgraded] = useState(false);
+  const [showTiny, setShowTiny] = useState(!!data.samples);
+  const [showWax, setShowWax] = useState(!!data.wax);
+  const [showUpgraded, setShowUpgraded] = useState(!!data.upg);
   const [offColor, setOffColorState] = useState(!!data.offColor);
   const first: ColKey =
     kind === "cards" && (character || data.by === "character")
       ? "n"
       : (cfg.defaultSort ??
         (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]));
-  const [sortKey, setSortKey] = useState<ColKey>(first);
-  const [dir, setDir] = useState<1 | -1>(-1);
+  const [sortKey, setSortKey] = useState<ColKey>(
+    data.sort && cfg.columns.includes(data.sort as ColKey)
+      ? (data.sort as ColKey)
+      : first,
+  );
+  const [dir, setDir] = useState<1 | -1>(
+    data.dir === "asc" ? 1 : data.dir === "desc" ? -1 : -1,
+  );
   const [order, setOrder] = useState<ColKey[]>([]);
   const [dragKey, setDragKey] = useState<ColKey | null>(null);
   const draggedRef = useRef(false);
@@ -390,6 +398,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
     b: string = bracket,
     ch: string = character,
     off: boolean = offColor,
+    view: GridViewState = sortKey === first ? { dir } : { sort: sortKey, dir },
   ) => {
     const params = new URLSearchParams();
     params.set("bracket", b);
@@ -397,20 +406,27 @@ export default function StatsGrid({ data }: { data: GridData }) {
     if (on) params.set("by", "character");
     if (q.trim()) params.set("q", q.trim());
     if (off && kind === "cards") params.set("offcolor", "1");
+    writeGridView(params, view);
     return `${bp}${cfg.path}?${params.toString()}`;
   };
   useEffect(() => {
     const timer = setTimeout(() => {
       const saved = loadPrefs(kind);
       if (saved) {
-        if (typeof saved.showTiny === "boolean") setShowTiny(saved.showTiny);
-        if (typeof saved.showWax === "boolean") setShowWax(saved.showWax);
-        if (typeof saved.showUpgraded === "boolean")
-          setShowUpgraded(saved.showUpgraded);
-        if (saved.sortKey && saved.sortKey in COLUMN_DEFS)
+        if (
+          data.sort === undefined &&
+          saved.sortKey &&
+          saved.sortKey in COLUMN_DEFS
+        )
           setSortKey(saved.sortKey);
-        if (saved.dir === 1 || saved.dir === -1) setDir(saved.dir);
-        if (Array.isArray(saved.columns)) setOrder(saved.columns);
+        if (data.dir === undefined && (saved.dir === 1 || saved.dir === -1))
+          setDir(saved.dir);
+        if (data.samples === undefined && typeof saved.showTiny === "boolean")
+          setShowTiny(saved.showTiny);
+        if (data.wax === undefined && typeof saved.showWax === "boolean")
+          setShowWax(saved.showWax);
+        if (data.upg === undefined && typeof saved.showUpgraded === "boolean")
+          setShowUpgraded(saved.showUpgraded);
         if (!data.fromUrl) {
           if (typeof saved.query === "string") setSearch(saved.query);
           const b = saved.bracket || bracket;
@@ -479,6 +495,45 @@ export default function StatsGrid({ data }: { data: GridData }) {
     hydratedRef.current = false;
     router.replace(`${bp}${cfg.path}`, { scroll: false });
   };
+  const setTiny = (on: boolean) => {
+    setShowTiny(on);
+    router.replace(
+      gridUrl(byCharacter, search, bracket, character, offColor, {
+        sort: sortKey,
+        dir,
+        samples: on,
+        wax: showWax,
+        upg: showUpgraded,
+      }),
+      { scroll: false },
+    );
+  };
+  const setWax = (on: boolean) => {
+    setShowWax(on);
+    router.replace(
+      gridUrl(byCharacter, search, bracket, character, offColor, {
+        sort: sortKey,
+        dir,
+        samples: showTiny,
+        wax: on,
+        upg: showUpgraded,
+      }),
+      { scroll: false },
+    );
+  };
+  const setUpgraded = (on: boolean) => {
+    setShowUpgraded(on);
+    router.replace(
+      gridUrl(byCharacter, search, bracket, character, offColor, {
+        sort: sortKey,
+        dir,
+        samples: showTiny,
+        wax: showWax,
+        upg: on,
+      }),
+      { scroll: false },
+    );
+  };
   const resetColumns = () => setOrder([]);
   const onDragStart = (key: ColKey) => {
     if (key === "name") return;
@@ -514,11 +569,27 @@ export default function StatsGrid({ data }: { data: GridData }) {
       return;
     }
     if (!col.sortField) return;
-    if (col.key === sortKey) setDir((d) => (d === 1 ? -1 : 1));
-    else {
+    let nextSort = sortKey;
+    let nextDir: 1 | -1;
+    if (col.key === sortKey) {
+      nextDir = dir === 1 ? -1 : 1;
+      setDir(nextDir);
+    } else {
+      nextSort = col.key;
+      nextDir = col.descFirst ? -1 : 1;
       setSortKey(col.key);
-      setDir(col.descFirst ? -1 : 1);
+      setDir(nextDir);
     }
+    router.replace(
+      gridUrl(byCharacter, search, bracket, character, offColor, {
+        sort: nextSort,
+        dir: nextDir,
+        samples: showTiny,
+        wax: showWax,
+        upg: showUpgraded,
+      }),
+      { scroll: false },
+    );
   };
 
   const showPreview = (e: React.MouseEvent<HTMLElement>, r: GridRow) => {
@@ -896,7 +967,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             <input
               type="checkbox"
               checked={showTiny}
-              onChange={(e) => setShowTiny(e.target.checked)}
+              onChange={(e) => setTiny(e.target.checked)}
             />
             {t("Show {count} rows under {min} samples", {
               count: hiddenCount,
@@ -909,7 +980,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             <input
               type="checkbox"
               checked={showWax}
-              onChange={(e) => setShowWax(e.target.checked)}
+              onChange={(e) => setWax(e.target.checked)}
             />
             {t("Show wax relics")}
           </label>
@@ -919,7 +990,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             <input
               type="checkbox"
               checked={showUpgraded}
-              onChange={(e) => setShowUpgraded(e.target.checked)}
+              onChange={(e) => setUpgraded(e.target.checked)}
             />
             {t("Show upgraded cards")}
           </label>
