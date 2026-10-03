@@ -1085,8 +1085,23 @@ SELECT c.run_hash, c.act, c.floor_idx, c.player_idx AS pidx,
   c.relic AS cid, c.picked
 FROM read_parquet('{lake}/relic_choices.parquet') c
 JOIN eligible e ON c.run_hash = e.run_hash
-WHERE {free} AND c.relic NOT IN (SELECT cid FROM starter_relics)
+WHERE {free} AND {allowed}
 """
+
+
+def _relic_option_guard(con, alias: str) -> str:
+    """Predicate keeping only relics that can be a real choice: never a
+    starter, and only official catalog ids when the catalog is readable
+    (a modded relic on a screen must not pair against official ones)."""
+    from . import run_entity_stats as res
+
+    _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
+    official = res._official_relic_ids()
+    _ids_temp_table(con, "official_relics", official)
+    guard = f"{alias}.relic NOT IN (SELECT cid FROM starter_relics)"
+    if official:
+        guard += f" AND {alias}.relic IN (SELECT cid FROM official_relics)"
+    return guard
 
 
 def relic_choices_available() -> bool:
@@ -1097,12 +1112,13 @@ def _ensure_relic_choice_rows(con) -> None:
     """The relic analogue of choice_rows: one row per option on a free
     relic screen (ancient offers, boss relics, two-option events). Shop
     shelves are left out -- a price is not a preference."""
-    from . import run_entity_stats as res
-
     con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
-    _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
     con.execute(
-        _RELIC_CHOICES_SQL.format(lake=LAKE_DIR, free=_FREE_RELIC_SCREEN.format(a="c"))
+        _RELIC_CHOICES_SQL.format(
+            lake=LAKE_DIR,
+            free=_FREE_RELIC_SCREEN.format(a="c"),
+            allowed=_relic_option_guard(con, "c"),
+        )
     )
 
 
@@ -1846,7 +1862,6 @@ def build_entity_cube(con=None) -> dict:
     players x skill x version bracket folds from these cells at request
     time, which is what lets the tier pages compose mode with the other
     axes instead of one replacing the rest."""
-    from . import run_entity_stats as res
 
     own = con is None
     if own:
@@ -1855,7 +1870,6 @@ def build_entity_cube(con=None) -> dict:
         _prepare_sources(con, str(LAKE_DIR))
         _ensure_floor_curves(con)
         _ensure_potion_seats(con)
-        _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
         runs_cells = {
             cell: [t, w, int(seats or t)]
             for cell, t, w, seats in con.execute(
@@ -1934,7 +1948,7 @@ def build_entity_cube(con=None) -> dict:
                 FROM read_parquet('{LAKE_DIR}/relic_choices.parquet') r
                 JOIN cells e ON r.run_hash = e.run_hash
                 WHERE {_FREE_RELIC_SCREEN.format(a="r")}
-                  AND r.relic NOT IN (SELECT cid FROM starter_relics)
+                  AND {_relic_option_guard(con, "r")}
                 GROUP BY 1, 2, 3
                 """
             ).fetchall():

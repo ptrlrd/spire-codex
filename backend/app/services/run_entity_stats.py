@@ -474,6 +474,68 @@ def _official_potion_ids() -> frozenset[str]:
     return _official_potions_cache
 
 
+_official_rest_sites_cache: frozenset[str] | None = None
+
+
+def _official_rest_site_ids() -> frozenset[str]:
+    """Uppercase ids of the game's rest-site options (main + beta), from
+    the generated rest_site_options.json. Empty means "don't filter"."""
+    global _official_rest_sites_cache
+    if _official_rest_sites_cache is None:
+        try:
+            from .data_service import load_rest_site_options
+
+            _official_rest_sites_cache = _official_ids_with_beta(load_rest_site_options)
+        except Exception:
+            _official_rest_sites_cache = frozenset()
+    return _official_rest_sites_cache
+
+
+_official_event_options_cache: dict[str, frozenset[str]] | None = None
+
+
+def _official_event_options() -> dict[str, frozenset[str]]:
+    """{EVENT_ID: option ids} over every page of the official events
+    catalog (main + beta). Empty means "don't filter"."""
+    global _official_event_options_cache
+    if _official_event_options_cache is None:
+        out: dict[str, set[str]] = {}
+
+        def _collect() -> None:
+            from .data_service import load_events
+
+            for ev in load_events():
+                eid = (ev.get("id") or "").upper()
+                if not eid:
+                    continue
+                opts = out.setdefault(eid, set())
+                for o in ev.get("options") or []:
+                    if o.get("id"):
+                        opts.add(str(o["id"]).upper())
+                for page in ev.get("pages") or []:
+                    for o in page.get("options") or []:
+                        if o.get("id"):
+                            opts.add(str(o["id"]).upper())
+
+        try:
+            from . import data_service
+
+            _collect()
+            if out and data_service.get_beta_version():
+                token = data_service.current_channel.set("beta")
+                try:
+                    _collect()
+                except Exception:
+                    logger.warning("beta events overlay failed", exc_info=True)
+                finally:
+                    data_service.current_channel.reset(token)
+        except Exception:
+            logger.warning("could not load the events catalog", exc_info=True)
+            out = {}
+        _official_event_options_cache = {k: frozenset(v) for k, v in out.items()}
+    return _official_event_options_cache
+
+
 _official_cards_cache: frozenset[str] | None = None
 
 
@@ -3287,9 +3349,18 @@ def get_event_metrics_table(bracket: str = "all") -> dict[str, Any]:
     fold = _section_table("events", bracket)
     rows: list[dict[str, Any]] = []
     if fold:
+        official = _official_event_options()
         for event, options in (fold["rows"] or {}).items():
-            total = sum(padded_counts(c, 5)[0] for c in options.values())
-            for option, counts in options.items():
+            allowed = official.get(event) if official else None
+            if official and allowed is None:
+                continue
+            kept = {
+                option: counts
+                for option, counts in options.items()
+                if not allowed or option in allowed
+            }
+            total = sum(padded_counts(c, 5)[0] for c in kept.values())
+            for option, counts in kept.items():
                 chosen, wins, n_exp, wins_exp, exp_sum = padded_counts(counts, 5)
                 rows.append(
                     {
@@ -3321,7 +3392,12 @@ def get_campfire_metrics_table(bracket: str = "all") -> dict[str, Any]:
     fold = _section_table("campfires", bracket)
     rows: list[dict[str, Any]] = []
     if fold:
-        choices = fold["rows"] or {}
+        official = _official_rest_site_ids()
+        choices = {
+            choice: counts
+            for choice, counts in (fold["rows"] or {}).items()
+            if not official or choice in official
+        }
         total = sum(padded_counts(c, 6)[0] for c in choices.values())
         for choice, counts in choices.items():
             chosen, wins, low, n_exp, wins_exp, exp_sum = padded_counts(counts, 6)

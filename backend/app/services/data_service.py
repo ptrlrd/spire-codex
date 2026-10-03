@@ -231,6 +231,10 @@ def load_events(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "events")
 
 
+def load_rest_site_options(lang: str = DEFAULT_LANG) -> list[dict]:
+    return _load_json(lang, "rest_site_options")
+
+
 def load_powers(lang: str = DEFAULT_LANG) -> list[dict]:
     return _load_json(lang, "powers")
 

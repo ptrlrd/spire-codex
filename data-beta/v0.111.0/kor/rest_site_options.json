@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "복제"
+  },
+  {
+    "id": "COOK",
+    "name": "요리"
+  },
+  {
+    "id": "DIG",
+    "name": "발굴"
+  },
+  {
+    "id": "HATCH",
+    "name": "부화"
+  },
+  {
+    "id": "HEAL",
+    "name": "휴식"
+  },
+  {
+    "id": "KINDLE",
+    "name": "불붙이기"
+  },
+  {
+    "id": "LIFT",
+    "name": "단련"
+  },
+  {
+    "id": "MEND",
+    "name": "치료"
+  },
+  {
+    "id": "SMITH",
+    "name": "재련"
+  }
+]

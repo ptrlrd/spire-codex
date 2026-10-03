@@ -147,7 +147,7 @@ def write_lake(tmp_path):
             "unknown",
             _players(101, 30, 80, event="DOORS.pages.INITIAL.options.DARK.title"),
         ),
-        ("r1", 2): ("rest", _players(101, 30, 80, rest="REST")),
+        ("r1", 2): ("rest", _players(101, 30, 80, rest="HEAL")),
         ("r2", 1): (
             "unknown",
             _players(102, 70, 80, event="DOORS.pages.INITIAL.options.LIGHT.title"),
@@ -211,6 +211,9 @@ def lake(tmp_path, monkeypatch):
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
     monkeypatch.setattr(res, "_official_entity_ids", lambda _t: frozenset())
+    monkeypatch.setattr(res, "_official_relic_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_official_rest_site_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_official_event_options", lambda: {})
     monkeypatch.setattr(res, "_non_reward_card_ids", lambda: frozenset())
     monkeypatch.setattr(res, "_excluded_card_ids", lambda: frozenset())
     monkeypatch.setattr(res, "_multiplayer_card_ids", lambda: frozenset())
@@ -313,7 +316,7 @@ def test_shop_event_and_campfire_tables(lake):
     assert dark["wins"] == 1 and dark["win_rate"] == 50.0
     assert dark["lift_n"] == 2
     camps = res.get_campfire_metrics_table("all")
-    rest = next(r for r in camps["rows"] if r["choice"] == "REST")
+    rest = next(r for r in camps["rows"] if r["choice"] == "HEAL")
     assert rest["chosen"] == 1 and rest["share"] == 50.0
     assert rest["wins"] == 1 and rest["low_hp_share"] == 100.0
     assert rest["lift_n"] == 1
@@ -400,3 +403,168 @@ def test_wilson_and_lift_helpers():
     assert stats_math.lift_of(19, 10, 5.0) is None
     assert stats_math.lift_of(20, 12, 10.0) == 10.0
     assert stats_math.padded_counts([3, 2], 5) == [3, 2, 0, 0, 0]
+
+
+MODDED = {
+    "cards": frozenset({"X"}),
+    "relics": frozenset(
+        {
+            "JUZU",
+            "ANCHOR",
+            "ORRERY",
+            "STRIKE_DUMMY",
+            "VAJRA",
+            "LANTERN",
+            "BURNING_BLOOD",
+        }
+    ),
+    "potions": frozenset({"FIRE", "BLOCK"}),
+}
+
+
+def _add_modded_rows(tmp_path):
+    con = duckdb.connect()
+    for table, cols, rows in (
+        (
+            "relics",
+            "run_hash, player_idx, relic, floor_added, character, is_wax",
+            "('r2', 1, 'MOD_RELIC', 2, 'IRONCLAD', false), "
+            "('r3', 1, 'MOD_RELIC', 2, 'IRONCLAD', true)",
+        ),
+        (
+            "deck",
+            "run_hash, player_idx, character, card, floor_added, upgrade_level, "
+            "enchantment",
+            "('r2', 1, 'IRONCLAD', 'MOD_CARD', 1, 0, NULL)",
+        ),
+        (
+            "potions",
+            "run_hash, player_idx, potion, character, was_used",
+            "('r2', 1, 'MOD_POTION', 'IRONCLAD', false)",
+        ),
+        (
+            "shop_items",
+            "run_hash, player_idx, entity_type, id, bought, floor",
+            "('r2', 1, 'relics', 'MOD_RELIC', true, 2), "
+            "('r2', 1, 'potions', 'MOD_POTION', true, 2)",
+        ),
+        (
+            "relic_choices",
+            "run_hash, player_idx, act, floor_idx, relic, picked, is_shop, "
+            "n_options, n_picked",
+            "('r2', 1, 0, 2, 'MOD_RELIC', true, false, 2, 1), "
+            "('r2', 1, 0, 2, 'ANCHOR', false, false, 2, 1), "
+            "('r3', 1, 0, 2, 'MOD_RELIC', false, false, 2, 1), "
+            "('r3', 1, 0, 2, 'JUZU', true, false, 2, 1)",
+        ),
+    ):
+        con.execute(
+            f"""COPY (SELECT * FROM read_parquet('{tmp_path}/{table}.parquet')
+            UNION ALL BY NAME SELECT * FROM (VALUES {rows}) t({cols}))
+            TO '{tmp_path}/{table}.modded.parquet' (FORMAT parquet)"""
+        )
+        (tmp_path / f"{table}.modded.parquet").replace(tmp_path / f"{table}.parquet")
+    floors = con.execute(
+        f"""SELECT run_hash, act, floor_idx, map_point_type, players,
+          room_models, room_type, room_model, room_turns
+        FROM read_parquet('{tmp_path}/floors.parquet')"""
+    ).fetchall()
+    extra = [
+        (
+            "r3",
+            0,
+            1,
+            "unknown",
+            _players(103, 50, 80, event="MODEVENT.pages.INITIAL.options.GO.title"),
+        ),
+        (
+            "r4",
+            0,
+            1,
+            "unknown",
+            _players(104, 50, 80, event="DOORS.pages.INITIAL.options.MODOPT.title"),
+        ),
+        ("r5", 0, 1, "rest", _players(105, 50, 80, rest="STOKE")),
+    ]
+    vals = ",".join(f"('{h}', {a}, {f}, '{t}', '{p}')" for h, a, f, t, p in extra)
+    con.execute(
+        f"""COPY (SELECT * FROM read_parquet('{tmp_path}/floors.parquet')
+        WHERE NOT ((run_hash, floor_idx) IN (('r3', 1), ('r4', 1), ('r5', 1)))
+        UNION ALL BY NAME
+        SELECT run_hash, act, floor_idx, map_point_type,
+          json_transform(players_json, '{PLAYERS_T}') AS players,
+          []::VARCHAR[] AS room_models, 'event' AS room_type,
+          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns
+        FROM (VALUES {vals}) t(run_hash, act, floor_idx, map_point_type, players_json))
+        TO '{tmp_path}/floors.modded.parquet' (FORMAT parquet)"""
+    )
+    (tmp_path / "floors.modded.parquet").replace(tmp_path / "floors.parquet")
+    assert len(floors) > 0
+    con.close()
+
+
+@pytest.fixture()
+def modded_lake(tmp_path, monkeypatch):
+    write_lake(tmp_path)
+    _add_modded_rows(tmp_path)
+    monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(lake_stats, "_entity_cube_cache", None)
+    monkeypatch.setattr(lake_stats, "_entity_store_cache", None)
+    monkeypatch.setattr(lake_stats, "_fold_cache", {})
+    monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
+    monkeypatch.setattr(res, "_official_entity_ids", lambda t: MODDED[t])
+    monkeypatch.setattr(res, "_official_relic_ids", lambda: MODDED["relics"])
+    monkeypatch.setattr(res, "_non_reward_card_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_excluded_card_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_multiplayer_card_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_starter_relic_ids", lambda: frozenset({"BURNING_BLOOD"}))
+    monkeypatch.setattr(
+        res, "_official_rest_site_ids", lambda: frozenset({"HEAL", "SMITH"})
+    )
+    monkeypatch.setattr(
+        res,
+        "_official_event_options",
+        lambda: {"DOORS": frozenset({"DARK", "LIGHT"})},
+    )
+    con = lake_stats._connect(build=True)
+    try:
+        lake_stats.build_entity_cube(con)
+    finally:
+        con.close()
+    return tmp_path
+
+
+def test_modded_ids_never_reach_the_tables(modded_lake):
+    for etype, modded in (
+        ("cards", "MOD_CARD"),
+        ("relics", "MOD_RELIC"),
+        ("potions", "MOD_POTION"),
+    ):
+        ids = {r["id"] for r in res.get_entity_metrics_table(etype, "solo")["rows"]}
+        assert modded not in ids, etype
+        assert ids, etype
+    relics = res.get_entity_metrics_table("relics", "solo")["rows"]
+    assert all(r["id"] != "MOD_RELIC" for r in relics if r.get("wax"))
+    shop_ids = {r["id"] for r in res.get_shop_metrics_table("solo")["rows"]}
+    assert "MOD_RELIC" not in shop_ids and "MOD_POTION" not in shop_ids
+    assert "ORRERY" in shop_ids
+    events = res.get_event_metrics_table("solo")["rows"]
+    assert {r["event"] for r in events} == {"DOORS"}
+    assert {r["option"] for r in events} == {"DARK", "LIGHT"}
+    dark = next(r for r in events if r["option"] == "DARK")
+    assert dark["share"] == pytest.approx(66.7)
+    camps = res.get_campfire_metrics_table("solo")["rows"]
+    assert {r["choice"] for r in camps} == {"HEAL", "SMITH"}
+    assert all(r["share"] == 50.0 for r in camps)
+
+
+def test_modded_relic_dropped_before_pairing(modded_lake):
+    tiers = lake_stats.reward_pair_counts_by_tier(table="relic_choice_rows")
+    pairs = lake_stats.fold_tier_pairs(tiers)
+    assert not any("MOD_RELIC" in k for k in pairs)
+    assert pairs[("JUZU", "ANCHOR")] == 1
+    assert pairs[(lake_stats.SKIP_ID, "ANCHOR")] == 3
+    assert pairs[("JUZU", lake_stats.SKIP_ID)] == 2
+    offers = lake_stats.entity_bracket_fold("relics", "solo")["offers"]
+    assert "MOD_RELIC" not in offers
+    assert offers["ANCHOR"]["offered"] == 4

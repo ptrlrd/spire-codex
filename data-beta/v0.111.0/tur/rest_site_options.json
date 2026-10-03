@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Klonla"
+  },
+  {
+    "id": "COOK",
+    "name": "Pişir"
+  },
+  {
+    "id": "DIG",
+    "name": "Kaz"
+  },
+  {
+    "id": "HATCH",
+    "name": "Yumurtadan Çıkar"
+  },
+  {
+    "id": "HEAL",
+    "name": "Dinlen"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Tutuştur"
+  },
+  {
+    "id": "LIFT",
+    "name": "Antrenman Yap"
+  },
+  {
+    "id": "MEND",
+    "name": "İyileştir"
+  },
+  {
+    "id": "SMITH",
+    "name": "Geliştir"
+  }
+]
