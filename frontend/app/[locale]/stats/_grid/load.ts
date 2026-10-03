@@ -207,6 +207,13 @@ function entityRow(
       ? [c.type, c.rarity].filter(Boolean).join(" · ")
       : c.rarity_key || c.rarity || null;
   row.n = m.picks ?? 0;
+  row.pickRate = kind === "potions" ? null : num(m.pick_rate);
+  row.offered = kind === "potions" ? null : num(m.offered);
+  row.picked = kind === "potions" ? null : num(m.picked);
+  const acts = m.pick_rate_by_act || [];
+  row.pickAct1 = num(acts[0]);
+  row.pickAct2 = num(acts[1]);
+  row.pickAct3 = num(acts[2]);
   return row;
 }
 
@@ -231,12 +238,6 @@ function characterRows(
       const runs = num(res?.character_runs);
       row.holdRate =
         runs && runs > 0 ? Math.round((row.n / runs) * 1000) / 10 : null;
-      row.elo = null;
-      row.pickRate = null;
-      row.lift = null;
-      row.liftN = null;
-      row.offered = null;
-      row.picked = null;
       out.push(row);
     }
   });
@@ -276,7 +277,10 @@ async function loadEntity(
     const row = entityRow(kind, m, c, id);
     row.losses =
       m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
-    row.pickRate = kind === "potions" ? null : num(m.pick_rate);
+    if (character && kind === "cards") {
+      row.playedBy = character;
+      row.color = character;
+    }
     const charRuns = character ? num(res?.character_runs) : null;
     row.holdRate =
       charRuns && charRuns > 0
@@ -285,12 +289,6 @@ async function loadEntity(
           ? null
           : num(m.hold_rate);
     row.useRate = kind === "potions" ? num(m.use_rate) : null;
-    row.offered = kind === "potions" ? null : num(m.offered);
-    row.picked = kind === "potions" ? null : num(m.picked);
-    const acts = m.pick_rate_by_act || [];
-    row.pickAct1 = num(acts[0]);
-    row.pickAct2 = num(acts[1]);
-    row.pickAct3 = num(acts[2]);
     rows.push(row);
     if (m.wax && m.wax.picks > 0) {
       const w = baseRow(`${id}:WAX`, id, t("Wax {name}", { name: c.name }));

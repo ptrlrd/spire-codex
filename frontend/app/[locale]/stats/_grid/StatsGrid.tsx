@@ -555,7 +555,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           return (
             <td
               key={col.key}
-              className="px-3 py-1.5 pl-6"
+              className={`px-3 py-1.5 ${r.parent ? "pl-6" : ""}`}
               onMouseEnter={(e) => showPreview(e, r)}
               onMouseLeave={() => setPreview(null)}
             >
@@ -952,7 +952,9 @@ export default function StatsGrid({ data }: { data: GridData }) {
             }`}
             title={
               offColorActive
-                ? t("Only cards held by a character they do not belong to.")
+                ? t(
+                    "Only cards that belong to a different character than the one playing them.",
+                  )
                 : t("Needs a Played by character or the Per character view.")
             }
           >
@@ -962,7 +964,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
               disabled={!offColorActive}
               onChange={(e) => setOffColor(e.target.checked)}
             />
-            {t("Off-colour only")}
+            {t("Other characters' cards")}
           </label>
         )}
       </div>
