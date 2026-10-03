@@ -16,7 +16,6 @@ export interface GridRow {
   upgraded: boolean;
   n: number;
   score: number | null;
-  tier: string | null;
   elo: number | null;
   winRate: number | null;
   winRateCi: [number, number] | null;

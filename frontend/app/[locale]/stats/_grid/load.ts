@@ -42,7 +42,6 @@ interface ApiRow {
   id?: string;
   upgraded?: boolean;
   score?: number | null;
-  tier?: string | null;
   elo?: number | null;
   win_rate?: number | null;
   win_rate_ci?: [number, number] | null;
@@ -124,7 +123,6 @@ function baseRow(key: string, id: string, name: string): GridRow {
     upgraded: false,
     n: 0,
     score: null,
-    tier: null,
     elo: null,
     winRate: null,
     winRateCi: null,
@@ -148,7 +146,6 @@ function baseRow(key: string, id: string, name: string): GridRow {
 
 function fillCommon(row: GridRow, m: ApiRow): GridRow {
   row.score = num(m.score);
-  row.tier = m.tier ?? null;
   row.elo = num(m.elo);
   row.winRate = num(m.win_rate);
   row.winRateCi = ci(m.win_rate_ci);

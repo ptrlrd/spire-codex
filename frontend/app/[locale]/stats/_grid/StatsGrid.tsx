@@ -16,15 +16,6 @@ import type { GridData, GridRow } from "./types";
 const SMALL_SAMPLE = 20;
 const HIDDEN_SAMPLE = 5;
 
-const TIER_CLASS: Record<string, string> = {
-  S: "bg-warning/10 border-warning/60 text-warning",
-  A: "bg-success/10 border-success/60 text-success",
-  B: "bg-info/10 border-info/60 text-info",
-  C: "bg-surface/70 border-line-strong/60 text-fg-secondary",
-  D: "bg-warning/10 border-warning/60 text-warning",
-  F: "bg-danger/10 border-danger/30 text-danger",
-};
-
 const CARD_COLORS = [
   "ironclad",
   "silent",
@@ -402,15 +393,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return (
           <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
             <span className="font-medium">{r.score ?? "–"}</span>
-            {r.tier && (
-              <span
-                className={`ml-1.5 inline-block rounded border px-1 py-0 text-[10px] font-bold ${
-                  TIER_CLASS[r.tier] || ""
-                }`}
-              >
-                {r.tier}
-              </span>
-            )}
           </td>
         );
       case "elo":
@@ -742,16 +724,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             min: SMALL_SAMPLE,
             hidden: HIDDEN_SAMPLE,
           },
-        )}{" "}
-        {t("Tier letters follow the Codex Score bands:")}{" "}
-        {Object.keys(TIER_CLASS).map((tier) => (
-          <span
-            key={tier}
-            className={`mx-0.5 inline-block rounded border px-1.5 py-0.5 text-[10px] font-bold ${TIER_CLASS[tier]}`}
-          >
-            {tier}
-          </span>
-        ))}
+        )}
       </p>
 
       {preview && (
