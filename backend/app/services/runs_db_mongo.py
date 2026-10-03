@@ -41,6 +41,7 @@ import hashlib
 import json
 import logging
 import os
+import secrets
 import time
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
@@ -48,6 +49,7 @@ from pathlib import Path
 from typing import Any
 
 from pymongo import ASCENDING, DESCENDING, MongoClient
+from pymongo import ReturnDocument
 from pymongo.errors import DuplicateKeyError, ExecutionTimeout, OperationFailure
 
 from ..metrics import db_operations, db_operation_duration
@@ -2169,7 +2171,7 @@ def try_acquire_refresh_lease() -> bool:
             },
             {"$set": {"holder": holder, "expires_at": expires}},
             upsert=True,
-            return_document=True,
+            return_document=ReturnDocument.AFTER,
         )
         return result is not None and result.get("holder") == holder
     except DuplicateKeyError:
@@ -3780,3 +3782,103 @@ def soft_delete_run(run_hash: str, user_id: str) -> dict:
         {"$set": {"deleted_at": datetime.now(timezone.utc)}},
     )
     return {"success": True}
+
+
+# ── saved charts (chart builder) ─────────────────────────────────────────
+
+_saved_charts_coll = None
+
+
+def _get_saved_charts_collection():
+    """Lazy saved_charts collection; indexes on owner and public+created_at."""
+    global _client, _saved_charts_coll
+    if _saved_charts_coll is not None:
+        return _saved_charts_coll
+    _get_collection()
+    _saved_charts_coll = _client.get_default_database().saved_charts
+    _saved_charts_coll.create_index([("owner_steam_id", ASCENDING)])
+    _saved_charts_coll.create_index([("public", ASCENDING), ("created_at", DESCENDING)])
+    return _saved_charts_coll
+
+
+def create_saved_chart(owner_steam_id: str, title: str, spec: dict) -> dict:
+    """Insert one saved chart. Retries the 10-char url-safe id on the rare
+    duplicate-key collision."""
+    coll = _get_saved_charts_collection()
+    now = datetime.now(timezone.utc)
+    for _ in range(5):
+        doc = {
+            "_id": _chart_id(),
+            "owner_steam_id": owner_steam_id,
+            "title": title,
+            "spec": spec,
+            "public": False,
+            "created_at": now,
+            "updated_at": now,
+            "views": 0,
+        }
+        try:
+            coll.insert_one(dict(doc))
+            return doc
+        except DuplicateKeyError:
+            continue
+    raise RuntimeError("could not allocate a saved-chart id")
+
+
+def _chart_id() -> str:
+    return secrets.token_urlsafe(7)
+
+
+def get_saved_chart(chart_id: str) -> dict | None:
+    return _get_saved_charts_collection().find_one({"_id": chart_id})
+
+
+def count_saved_charts(owner_steam_id: str) -> int:
+    return _get_saved_charts_collection().count_documents(
+        {"owner_steam_id": owner_steam_id}
+    )
+
+
+def list_saved_charts_for_owner(owner_steam_id: str) -> list[dict]:
+    return list(
+        _get_saved_charts_collection()
+        .find({"owner_steam_id": owner_steam_id})
+        .sort([("created_at", DESCENDING)])
+    )
+
+
+def list_public_saved_charts(limit: int) -> list[dict]:
+    return list(
+        _get_saved_charts_collection()
+        .find({"public": True})
+        .sort([("created_at", DESCENDING)])
+        .limit(limit)
+    )
+
+
+def update_saved_chart(chart_id: str, owner_steam_id: str, fields: dict) -> dict | None:
+    """Owner-scoped partial update; None when the chart doesn't exist or
+    isn't the caller's."""
+    updates: dict = {"$set": {"updated_at": datetime.now(timezone.utc)}}
+    for key in ("title", "public", "spec"):
+        if key in fields:
+            updates["$set"][key] = fields[key]
+    out = _get_saved_charts_collection().find_one_and_update(
+        {"_id": chart_id, "owner_steam_id": owner_steam_id},
+        updates,
+        return_document=ReturnDocument.AFTER,
+    )
+    return out
+
+
+def delete_saved_chart(chart_id: str, owner_steam_id: str) -> bool:
+    out = _get_saved_charts_collection().delete_one(
+        {"_id": chart_id, "owner_steam_id": owner_steam_id}
+    )
+    return out.deleted_count > 0
+
+
+def increment_saved_chart_views(chart_id: str) -> None:
+    _get_saved_charts_collection().update_one(
+        {"_id": chart_id, "public": True}, {"$inc": {"views": 1}}
+    )
