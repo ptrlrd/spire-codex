@@ -5,6 +5,7 @@ import type { Metadata } from "next";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import EncounterStatsClient from "./EncounterStatsClient";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +45,9 @@ export default async function EncountersStatsPage({ params }: Props) {
   return (
     <>
       <JsonLd data={jsonLd} />
-      <EncounterStatsClient />
+      <Suspense fallback={null}>
+        <EncounterStatsClient />
+      </Suspense>
     </>
   );
 }

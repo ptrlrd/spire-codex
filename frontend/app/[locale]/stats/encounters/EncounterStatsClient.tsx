@@ -1,14 +1,16 @@
 "use client";
 
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useEffect, useMemo, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { cachedFetch } from "@/lib/fetch-cache";
 import {
   CONTENT_BRACKETS,
   DEFAULT_SOLO_BRACKET,
   PLAYER_BRACKETS,
+  normalizeBracket,
 } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
@@ -84,17 +86,41 @@ export default function EncounterStatsClient() {
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
-  const [acts, setActs] = useState<Set<number>>(new Set());
-  const [roomTypes, setRoomTypes] = useState<Set<string>>(new Set());
+  const [acts, setActs] = useState<Set<number>>(() => {
+    const out = new Set<number>();
+    const raw = searchParams.get("act");
+    if (raw)
+      for (const part of raw.split(",")) {
+        const n = Number(part);
+        if ((ACTS as readonly number[]).includes(n)) out.add(n);
+      }
+    return out;
+  });
+  const [roomTypes, setRoomTypes] = useState<Set<string>>(() => {
+    const out = new Set<string>();
+    const raw = searchParams.get("room_type");
+    if (raw)
+      for (const part of raw.split(","))
+        if ((ROOM_TYPES as readonly string[]).includes(part)) out.add(part);
+    return out;
+  });
   const [multiplayer, setMultiplayer] = useState<"any" | "only" | "exclude">(
-    "any",
+    () => {
+      const v = searchParams.get("multiplayer");
+      return v === "only" || v === "exclude" ? v : "any";
+    },
   );
-  const [bracket, setBracket] = useState(DEFAULT_SOLO_BRACKET);
+  const [bracket, setBracket] = useState(() => {
+    const raw = searchParams.get("bracket");
+    return raw ? normalizeBracket(raw) : DEFAULT_SOLO_BRACKET;
+  });
   // Game versions the snapshot keeps encounter slices for; filters via the
   // endpoint's build_id param. Combines with the bracket (v20 snapshots
   // keep bracket x version buckets).
-  const [version, setVersion] = useState("");
+  const [version, setVersion] = useState(searchParams.get("version") || "");
   const [statVersions, setStatVersions] = useState<string[]>([]);
   useEffect(() => {
     fetch(`${API}/api/runs/versions`)
@@ -102,7 +128,10 @@ export default function EncounterStatsClient() {
       .then((d) => setStatVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(() => {
+    const n = Number(searchParams.get("page"));
+    return Number.isInteger(n) && n > 1 ? n : 1;
+  });
 
   const [data, setData] = useState<EncounterResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -146,7 +175,12 @@ export default function EncounterStatsClient() {
 
   // Reset to page 1 whenever the filter set changes, paging through a
   // previous query's results after a filter change would be confusing.
+  const hydratedRef = useRef(false);
   useEffect(() => {
+    if (!hydratedRef.current) {
+      hydratedRef.current = true;
+      return;
+    }
     setPage(1);
   }, [acts, roomTypes, multiplayer, bracket]);
 
@@ -154,6 +188,21 @@ export default function EncounterStatsClient() {
     if (!data) return 1;
     return Math.max(1, Math.ceil(data.total / data.limit));
   }, [data]);
+
+  useEffect(() => {
+    const p = new URLSearchParams();
+    if (acts.size) p.set("act", Array.from(acts).sort().join(","));
+    if (roomTypes.size)
+      p.set("room_type", Array.from(roomTypes).sort().join(","));
+    if (multiplayer !== "any") p.set("multiplayer", multiplayer);
+    if (bracket !== DEFAULT_SOLO_BRACKET) p.set("bracket", bracket);
+    if (version) p.set("version", version);
+    if (page !== 1) p.set("page", String(page));
+    const qs = p.toString();
+    router.replace(`/stats/encounters${qs ? `?${qs}` : ""}`, {
+      scroll: false,
+    });
+  }, [acts, roomTypes, multiplayer, bracket, version, page, router]);
 
   function toggleExpanded(id: string) {
     setExpanded((prev) => toggle(prev, id));
