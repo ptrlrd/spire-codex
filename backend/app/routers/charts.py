@@ -1,4 +1,4 @@
-"""Charts API: pre-aggregated run data for the /charts explorer page.
+"""Charts API: pre-aggregated run data for the /stats/charts explorer page.
 
 Every endpoint returns a small, ready-to-plot payload:
 { chart, params, series: [{id, label, points: [{x, y, n?}]}], total_runs }
@@ -521,7 +521,7 @@ def _compute_chart(
 
 def prewarm_charts(budget_s: float | None = None) -> int:
     """Precompute chart payloads into the shared cache so filter clicks on
-    /charts serve from Redis instead of aggregating live.
+    /stats/charts serve from Redis instead of aggregating live.
 
     Greedy with a time budget: the slice list covers EVERY combination the
     UI can request — the unfiltered default, each bracket (plain and

@@ -66,8 +66,9 @@ def elo_board(
     min_runs: int = Query(DEFAULT_MIN_RUNS, ge=1, le=1000),
 ):
     """The Spire Codex top players by hidden Elo over solo A10 standard runs
-    on the official cast, refreshed nightly. Only accounts with a public
-    username and at least `min_runs` rated runs are ranked."""
+    on the official cast, refreshed nightly; powers the /top-players page.
+    Only accounts with a public username and at least `min_runs` rated runs
+    are ranked."""
     board = load_board()
     response.headers["Cache-Control"] = (
         "public, max-age=300, stale-while-revalidate=900"
