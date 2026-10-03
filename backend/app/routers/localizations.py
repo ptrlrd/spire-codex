@@ -53,6 +53,7 @@ def get_localizations(
 def get_localization_tables(
     request: Request, response: Response, lang: str = Depends(get_lang)
 ):
+    """Names of the localization tables available for the language."""
     names = localization_table_names(lang)
     response.headers["Cache-Control"] = CACHE if names else NO_STORE
     return names
@@ -63,6 +64,8 @@ def get_localization_tables(
 def get_localization(
     request: Request, response: Response, table: str, lang: str = Depends(get_lang)
 ):
+    """One localization table for the language, as ICU MessageFormat
+    strings keyed by the game's localization key. 404 for an unknown table."""
     found = load_localization(lang, table)
     if found is None:
         raise HTTPException(

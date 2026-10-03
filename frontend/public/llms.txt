@@ -30,10 +30,12 @@ Spire Codex is not affiliated with Mega Crit. Game content belongs to Mega Crit;
 - [Tier list](https://spire-codex.com/tier-list): cards, relics, and potions ranked by Codex Score from community runs
 - [Leaderboards](https://spire-codex.com/leaderboards): fastest wins and daily climbs
 - [Top players](https://spire-codex.com/top-players): highest-rated players by Codex Elo
+- [Browse runs](https://spire-codex.com/runs): every submitted run with filters, plus [replays](https://spire-codex.com/replays) recorded by the in-game mod
 
 ## Developers
 
-- [API documentation](https://spire-codex.com/developers): public REST API with 22+ endpoints and an embeddable tooltip widget
+- [API documentation](https://spire-codex.com/developers): public REST API with over 100 endpoints (game data in 15 languages, run stats, metrics tables, charts, exports) and an embeddable tooltip widget
+- [OpenAPI spec](https://spire-codex.com/openapi.json): machine-readable list of every public endpoint, browsable at https://spire-codex.com/docs
 - [Changelog](https://spire-codex.com/changelog): what changes between game patches and site releases
 
 ## Optional

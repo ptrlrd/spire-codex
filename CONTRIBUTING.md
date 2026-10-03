@@ -57,16 +57,17 @@ If a card description, damage value, or relic effect is wrong:
 - The parsers extract data from decompiled C# in `extraction/decompiled/` (not committed — see README for extraction instructions)
 
 ### Frontend Changes
-- Pages are in `frontend/app/` using Next.js App Router
+- Pages are in `frontend/app/[locale]/` using Next.js App Router and next-intl
 - Components are in `frontend/app/components/`
-- API client and types are in `frontend/lib/api.ts`
-- `fetch-cache.ts` handles version-aware API calls (beta multi-version support) — all `cachedFetch` calls automatically get `&version=X` appended on the beta site
+- API client and types are in `frontend/lib/api/`
+- `fetch-cache.ts` handles channel-aware API calls: on a `/beta` page every `cachedFetch` call gets `channel=beta` appended
 - Colors use CSS variables defined in `frontend/app/globals.css` — character colors are sampled from the game's energy icons
 
 ### New API Endpoints
 - Routers go in `backend/app/routers/`
 - Register them in `backend/app/main.py`
 - Pydantic models in `backend/app/models/schemas.py`
+- Give each route a docstring: it shows up in `/docs` and `/openapi.json`. Then add public routes to the API table in `README.md` and the endpoint list on `frontend/app/[locale]/developers/page.tsx`
 
 ### Guides
 - Guides are markdown files in `data/guides/` with YAML frontmatter
@@ -77,15 +78,14 @@ If a card description, damage value, or relic effect is wrong:
 
 ### Run Data / Meta
 - Run submission and stats use MongoDB (`MONGO_URL`); without it the backend falls back to legacy SQLite (`data/runs.db`)
-- Schema and queries are in `backend/app/services/runs_db.py`
-- The stats pages live under `frontend/app/stats/` (the old `/meta` page folded into the `/stats` hub)
+- Queries are in `backend/app/services/runs_db_mongo.py` (SQLite fallback in `runs_db.py`)
+- The stats pages live under `frontend/app/[locale]/stats/` (the old `/meta`, `/community-stats`, `/leaderboards/metrics` and `/charts` pages redirect into `/stats`); the metrics tables read `GET /api/runs/metrics/{type}` plus `/metrics/shops`, `/metrics/events` and `/metrics/campfires`
 - **Codex Score** lives in `backend/app/services/run_entity_stats.py` — Bayesian-shrunk win rate per entity → 0–100 score → S/A/B/C/D/F tier. Pre-warmed on startup. Exposed at `GET /api/runs/scores/{type}` (`cards`/`relics`/`potions`) and surfaced via the `ScoreBadge`/`EntityRunStats`/`TierList` components. Methodology page at `/stats/scoring`.
 
 ### Game Mechanics
-- Static content pages at `frontend/app/mechanics/`
+- Pages at `frontend/app/[locale]/mechanics/`
 - 27 individual SEO pages at `/mechanics/[slug]`
-- Section metadata in `frontend/app/mechanics/sections.ts`
-- Content components in `frontend/app/mechanics/[slug]/MechanicContent.tsx`
+- Content is markdown in `data/mechanics_pages/`, served by `GET /api/mechanics/sections/{slug}` and rendered by `frontend/app/[locale]/mechanics/[slug]/MechanicMarkdown.tsx`
 
 ## Changelog Retention
 

@@ -818,7 +818,12 @@ def get_chart(
     ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
-    charts, their filters, splits, and the run stats usable for stat/x/y."""
+    charts, their filters, splits, and the run stats usable for stat/x/y.
+
+    A key that isn't an explorer chart is tried as a saved chart id (the
+    10-character ids from POST /api/charts, shared at /charts/{id}): public
+    saved charts come back to anyone and count a view, private ones only to
+    their owner's bearer token. Anything else is a 404."""
     spec = CHARTS.get(chart_key)
     if not spec:
         saved = _get_saved_chart_response(chart_key, request)

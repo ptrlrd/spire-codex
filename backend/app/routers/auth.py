@@ -415,9 +415,10 @@ def user_insights(
     players: int | None = None,
 ):
     """The signed-in player's personal community-stats: their runs walked
-    through the same accumulator as /community-stats (deaths, campfires,
-    event decisions, boon take rates, records) with the community's numbers
-    attached for comparison, plus card-pick divergence. Self-only.
+    through the same accumulator as /api/runs/community-stats (deaths,
+    campfires, event decisions, boon take rates, records) with the
+    community's numbers attached for comparison, plus card-pick divergence.
+    Self-only.
     `character` (e.g. IRONCLAD) scopes the whole view to that character."""
     user = require_user(request)
     if not os.environ.get("MONGO_URL", "").strip():

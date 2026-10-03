@@ -13,38 +13,47 @@ Runs at **http://localhost:3000**. Requires the backend running on port 8000.
 
 ## Pages
 
-| Route                | Description                                                                                                     |
-| -------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `/`                  | Home — entity counts, category cards, character links                                                           |
-| `/cards`             | Filterable card grid with upgrade toggle and beta art                                                           |
-| `/cards/[id]`        | Card detail — stats, upgrade info, image                                                                        |
-| `/characters`        | Character overview grid                                                                                         |
-| `/characters/[id]`   | Character detail — stats, starting deck/relics, quotes, NPC dialogues                                           |
-| `/relics`            | Filterable relic grid                                                                                           |
-| `/relics/[id]`       | Relic detail with rich text                                                                                     |
-| `/monsters`          | Monster grid with Spine-rendered sprites                                                                        |
-| `/monsters/[id]`     | Monster detail — HP, moves, damage, ascension scaling                                                           |
-| `/potions`           | Filterable potion grid (rarity, character pool)                                                                 |
-| `/potions/[id]`      | Potion detail                                                                                                   |
-| `/enchantments`      | Enchantments with card type filter                                                                              |
-| `/enchantments/[id]` | Enchantment detail                                                                                              |
-| `/encounters`        | Encounters by act/room type                                                                                     |
-| `/encounters/[id]`   | Encounter detail — monster lineup, room type                                                                    |
-| `/events`            | Multi-page event trees with expandable choices                                                                  |
-| `/events/[id]`       | Event detail — pages, options, Ancient dialogue                                                                 |
-| `/powers`            | Buffs, debuffs with type/stack filters                                                                          |
-| `/timeline`          | Epoch progression with era grouping                                                                             |
-| `/reference`         | Keywords, intents, orbs, afflictions, modifiers, achievements, acts, ascensions                                 |
-| `/images`            | Browsable game assets with ZIP download                                                                         |
-| `/changelog`         | Data diffs between game updates                                                                                 |
-| `/about`             | Project info, live stats, pipeline visualization                                                                |
-| `/tier-list`         | Codex Score tier-list hub (cards / relics / potions)                                                            |
-| `/tier-list/[type]`  | S → F tier rows for one entity type, sourced from `/api/runs/scores/{type}`                                     |
-| `/stats`             | Community stats hub (cards/relics/potions metrics, encounters, decisions, charts), default cohort Standard Solo |
-| `/stats/scoring`     | Codex Score methodology - Bayesian shrinkage, prior weight, tier cutoffs                                        |
-| `/news`              | Mirrored Steam announcements feed                                                                               |
-| `/news/[gid]`        | Single Steam announcement — sanitized BBCode body, NewsArticle JSON-LD                                          |
-| `/runs/[hash]`       | Shared run — in-game-style summary with "by {username}" link                                                    |
+Every page lives under `app/[locale]/` (next-intl); English has no prefix and the other 14 languages get one (`/jpn/cards`). Old stats URLs like `/community-stats`, `/leaderboards/metrics` and `/charts` redirect through `lib/moved-pages.ts`.
+
+| Route                  | Description                                                                                                     |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `/`                    | Home — entity counts, category cards, character links                                                           |
+| `/cards`               | Filterable card grid with upgrade toggle and beta art                                                           |
+| `/cards/[id]`          | Card detail — stats, upgrade info, image                                                                        |
+| `/characters`          | Character overview grid                                                                                         |
+| `/characters/[id]`     | Character detail — stats, starting deck/relics, quotes, NPC dialogues                                           |
+| `/relics`              | Filterable relic grid                                                                                           |
+| `/relics/[id]`         | Relic detail with rich text                                                                                     |
+| `/monsters`            | Monster grid with Spine-rendered sprites                                                                        |
+| `/monsters/[id]`       | Monster detail — HP, moves, damage, ascension scaling                                                           |
+| `/potions`             | Filterable potion grid (rarity, character pool)                                                                 |
+| `/potions/[id]`        | Potion detail                                                                                                   |
+| `/enchantments`        | Enchantments with card type filter                                                                              |
+| `/enchantments/[id]`   | Enchantment detail                                                                                              |
+| `/encounters`          | Encounters by act/room type                                                                                     |
+| `/encounters/[id]`     | Encounter detail — monster lineup, room type                                                                    |
+| `/events`              | Multi-page event trees with expandable choices                                                                  |
+| `/events/[id]`         | Event detail — pages, options, Ancient dialogue                                                                 |
+| `/powers`              | Buffs, debuffs with type/stack filters                                                                          |
+| `/timeline`            | Epoch progression with era grouping                                                                             |
+| `/reference`           | Keywords, intents, orbs, afflictions, modifiers, achievements, acts, ascensions                                 |
+| `/images`              | Browsable game assets with ZIP download                                                                         |
+| `/changelog`           | Data diffs between game updates                                                                                 |
+| `/about`               | Project info, live stats, pipeline visualization                                                                |
+| `/tier-list`           | Codex Score tier-list hub (cards / relics / potions)                                                            |
+| `/tier-list/[type]`    | S → F tier rows for one entity type, sourced from `/api/runs/scores/{type}`                                     |
+| `/stats`               | Community stats hub (cards/relics/potions metrics, encounters, decisions, charts), default cohort Standard Solo |
+| `/stats/scoring`       | Codex Score methodology - Bayesian shrinkage, prior weight, tier cutoffs                                        |
+| `/stats/chart-builder` | Build a chart from any metrics table and save it to your profile                                                |
+| `/charts/[id]`         | A saved chart, re-drawn from the live metrics API                                                               |
+| `/leaderboards`        | Fastest Wins and Highest Ascension ladders                                                                      |
+| `/top-players`         | Nightly Codex Elo board, from `/api/leaderboards/elo`                                                           |
+| `/runs`                | Run browser over `/api/runs/list`                                                                               |
+| `/runs/submit`         | Upload `.run` files                                                                                             |
+| `/replays`             | Runs with a replay journal, from `/api/replays`                                                                 |
+| `/news`                | Mirrored Steam announcements feed                                                                               |
+| `/news/[gid]`          | Single Steam announcement — sanitized BBCode body, NewsArticle JSON-LD                                          |
+| `/runs/[hash]`         | Shared run — in-game-style summary with "by {username}" link                                                    |
 
 ## Key Components
 
