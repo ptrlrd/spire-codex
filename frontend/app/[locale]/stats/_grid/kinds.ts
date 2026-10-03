@@ -30,6 +30,7 @@ export interface KindConfig {
   nTitle: string;
   offeredLabel: string;
   offeredTitle: string;
+  shareTitle?: string;
   baselineWhat: string;
   searchPlaceholder: string;
   emptyText: string;
@@ -197,6 +198,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
     description: "campfires_meta_description",
     nameLabel: "Choice",
     nameTitle: "Rest site action",
+    shareTitle: "This action's share of all choices made at campfires.",
     nLabel: "Chosen",
     nTitle: "Seats that took this action (sample size)",
     searchPlaceholder: "Search actions...",

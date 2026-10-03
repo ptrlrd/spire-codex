@@ -45,7 +45,8 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
   },
   score: {
     label: "Score",
-    title: "Codex Score (0-100, Bayesian win rate)",
+    title:
+      "Codex Score: the win rate of seats that held it, shrunk toward the cohort baseline and mapped to 0 to 100.",
     align: "right",
     descFirst: true,
     sortField: "score",
@@ -53,57 +54,56 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
   elo: {
     label: "Elo",
     title:
-      "Codex Elo (revealed preference): on every choice screen the option taken beats the options passed over, fit with a Bradley-Terry model.",
+      "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
     align: "right",
     descFirst: true,
     sortField: "elo",
   },
   winRate: {
     label: "Win%",
-    title:
-      "Share of seats with this entry that won the run, with a 95% interval underneath",
+    title: "Share of seats that held it and went on to win the run.",
     align: "right",
     descFirst: true,
     sortField: "winRate",
   },
   pickRate: {
     label: "Pick%",
-    title: "How often it is taken when offered on a choice screen",
+    title: "How often it was taken when it was offered on a choice screen.",
     align: "right",
     descFirst: true,
     sortField: "pickRate",
   },
   holdRate: {
     label: "Hold%",
-    title: "Share of all seats in this cohort that held it",
+    title: "Share of all seats in the cohort that held it at some point.",
     align: "right",
     descFirst: true,
     sortField: "holdRate",
   },
   useRate: {
     label: "Used%",
-    title: "Share of held copies that were used",
+    title: "Share of seats that obtained it and used it at least once.",
     align: "right",
     descFirst: true,
     sortField: "useRate",
   },
   buyRate: {
     label: "Buy%",
-    title: "Bought divided by times seen on a shop shelf",
+    title: "How often it was bought when it appeared on a shop shelf.",
     align: "right",
     descFirst: true,
     sortField: "buyRate",
   },
   share: {
     label: "Share",
-    title: "Share of the choices made at this screen",
+    title: "This option's share of all choices made at this event.",
     align: "right",
     descFirst: true,
     sortField: "share",
   },
   lowHpShare: {
     label: "Low HP",
-    title: "Share of these choices made at or under half HP",
+    title: "Share of these choices made while below half HP.",
     align: "right",
     descFirst: true,
     sortField: "lowHpShare",
@@ -111,7 +111,7 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
   lift: {
     label: "Lift",
     title:
-      "Win rate minus what these players win on their other runs, in percentage points.",
+      "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
     align: "right",
     descFirst: true,
     sortField: "lift",
@@ -132,35 +132,35 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
   },
   picked: {
     label: "Taken",
-    title: "Times taken from a choice screen",
+    title: "Times it was taken from a choice screen.",
     align: "right",
     descFirst: true,
     sortField: "picked",
   },
   act1: {
     label: "A1",
-    title: "Pick rate in act 1",
+    title: "Pick rate on choice screens in act 1.",
     align: "right",
     descFirst: true,
     sortField: "pickAct1",
   },
   act2: {
     label: "A2",
-    title: "Pick rate in act 2",
+    title: "Pick rate on choice screens in act 2.",
     align: "right",
     descFirst: true,
     sortField: "pickAct2",
   },
   act3: {
     label: "A3+",
-    title: "Pick rate in act 3 and later",
+    title: "Pick rate on choice screens in act 3 and later.",
     align: "right",
     descFirst: true,
     sortField: "pickAct3",
   },
   wl: {
     label: "W-L",
-    title: "Wins and losses among the sample",
+    title: "Wins and losses among the seats that held it.",
     align: "right",
     descFirst: true,
     sortField: "wins",
@@ -234,7 +234,9 @@ export default function StatsGrid({ data }: { data: GridData }) {
             ? cfg.nTitle
             : key === "offered"
               ? cfg.offeredTitle
-              : COLUMN_DEFS[key].title,
+              : key === "share" && cfg.shareTitle
+                ? cfg.shareTitle
+                : COLUMN_DEFS[key].title,
     }));
 
   const groups = useMemo(() => {
@@ -660,10 +662,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
                   key={col.key}
                   title={t(col.title)}
                   onClick={() => onSort(col)}
-                  className={`px-3 py-2 font-medium select-none ${
-                    col.sortField
-                      ? "cursor-pointer hover:text-[var(--accent-gold)]"
-                      : ""
+                  className={`px-3 py-2 font-medium select-none cursor-help ${
+                    col.sortField ? "hover:text-[var(--accent-gold)]" : ""
                   } ${
                     col.align === "right"
                       ? "text-right"
