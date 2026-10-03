@@ -342,6 +342,12 @@ export default async function DevelopersPage({ params }: Props) {
           </p>
         </div>
 
+        <p className="text-xs text-[var(--text-muted)] mb-4">
+          {t(
+            "The community stats pages were reorganized: /community-stats, /leaderboards/metrics, /charts, and the /meta page now live under /stats, /leaderboards/elo is /top-players, and run submission moved to /runs/submit. Old URLs redirect.",
+          )}
+        </p>
+
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
           <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
             {t("Endpoints")}
@@ -755,7 +761,28 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/runs/metrics/{type}",
                   desc: t(
-                    "Dense metrics table: Codex Score, Codex Elo, win rate, pick rate, per-act splits; ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (the content brackets)",
+                    "Dense metrics table for cards/relics/potions, one row per entity: Codex Score, win rate with Wilson 95% CI, hold rate, lift over the floor-adjusted expectation (null under 20 seats), and for cards Codex Elo and pick rate from free reward screens. Counts are per seat, so a 4P run is four seats. ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 or a composite like solo:standard; ?character= switches to that character's slice (rows gain per-character Elo and Pick%). An unknown bracket returns HTTP 400",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/shops",
+                  desc: t(
+                    "Per-item shop metrics: purchases, hold rate, and win rate per seat, with a localized name on campfire rows. Same bracket and lang parameters as the other metrics tables",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/events",
+                  desc: t(
+                    "Per-event decision metrics: picks, hold rate, and win rate per seat. Same bracket and lang parameters as the other metrics tables",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/campfires",
+                  desc: t(
+                    "Campfire decision metrics (rest, smith, and other options) with localized names. Same bracket and lang parameters as the other metrics tables",
                   ),
                 },
                 {
