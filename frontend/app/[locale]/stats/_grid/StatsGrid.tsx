@@ -5,7 +5,7 @@ import { Link, useRouter } from "@/i18n/navigation";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { colorTextClass } from "@/lib/character-colors";
-import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
+import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
 import StatsLinks from "./StatsLinks";
@@ -560,15 +560,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
               onMouseLeave={() => setPreview(null)}
             >
               <span className="inline-flex items-center gap-1.5">
-                <img
-                  src={`${CDN_BASE}/ui/characters/character_icon_${r.playedBy.toLowerCase()}.webp`}
-                  alt=""
-                  width={16}
-                  height={16}
-                  className="h-4 w-4 shrink-0"
-                  crossOrigin="anonymous"
-                  loading="lazy"
-                />
                 {r.href ? (
                   <Link
                     prefetch={false}
