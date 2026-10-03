@@ -103,27 +103,22 @@ const NAV_GROUPS: NavGroup[] = [
   {
     label: "Stats",
     links: [
-      { href: "/stats", label: "Stats" },
+      { href: "/stats", label: "Overview" },
       { href: "/stats/cards", label: "Cards" },
       { href: "/stats/relics", label: "Relics" },
       { href: "/stats/potions", label: "Potions" },
+      { href: "/stats/encounters", label: "Encounters" },
+      { href: "/stats/charts", label: "Charts" },
       { href: "/stats/shops", label: "Shops" },
       { href: "/stats/events", label: "Events" },
       { href: "/stats/campfires", label: "Campfires" },
-      { href: "/stats/encounters", label: "Encounters" },
-      { href: "/stats/charts", label: "Charts" },
-      { href: "/stats/scoring", label: "Scoring" },
-      { href: "/tier-list", label: "Tier List" },
-    ],
-  },
-  {
-    label: "Leaderboards",
-    links: [
       { href: "/leaderboards", label: "Leaderboards" },
       { href: "/top-players", label: "Top Players" },
+      { href: "/tier-list", label: "Tier List" },
+      { href: "/stats/scoring", label: "Scoring" },
       { href: "/runs", label: "Browse Runs" },
       { href: "/replays", label: "Browse Replays" },
-      { href: "/runs/submit", label: "Submit a Run" },
+      { href: "/runs/submit", label: "Contribute" },
     ],
   },
   {
@@ -237,28 +232,24 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
   ],
   Stats: [
     {
-      title: "Run data",
-      labels: ["Stats", "Cards", "Relics", "Potions"],
+      title: "Stats",
+      labels: [
+        "Overview",
+        "Cards",
+        "Relics",
+        "Potions",
+        "Encounters",
+        "Charts",
+      ],
     },
+    { title: "Decisions", labels: ["Shops", "Events", "Campfires"] },
     {
-      title: "Decisions",
-      labels: ["Shops", "Events", "Campfires"],
+      title: "Rankings",
+      labels: ["Leaderboards", "Top Players", "Tier List", "Scoring"],
     },
-    {
-      title: "Aggregate data",
-      labels: ["Encounters", "Charts", "Scoring", "Tier List"],
-    },
-  ],
-  Leaderboards: [
     {
       title: "Runs",
-      labels: [
-        "Leaderboards",
-        "Top Players",
-        "Browse Runs",
-        "Browse Replays",
-        "Submit a Run",
-      ],
+      labels: ["Browse Runs", "Browse Replays", "Contribute"],
     },
   ],
   Tools: [

@@ -124,8 +124,8 @@ export const PAGE_OVERRIDES = {
     keywords: ["encounter", "deadliest", "stats"],
   },
   "/runs/submit": {
-    name: "Submit a Run",
-    keywords: ["submit", "upload", "run file"],
+    name: "Contribute",
+    keywords: ["submit", "upload", "run file", "contribute"],
   },
   "/stats": {
     name: "Community Stats",

@@ -128,7 +128,7 @@ export default function HomeClient({
     badges: "Badges",
     guides: "Guides",
     leaderboards: "Leaderboard",
-    submit: "Submit a Run",
+    submit: "Contribute",
     stats: "Stats",
   };
   const ENGLISH_FALLBACKS = new Set(

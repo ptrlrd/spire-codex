@@ -246,8 +246,8 @@
   },
   {
     "path": "/runs/submit",
-    "name": "Submit a Run",
-    "keywords": ["runs", "submit", "upload", "run file"]
+    "name": "Contribute",
+    "keywords": ["runs", "submit", "upload", "run file", "contribute"]
   },
   {
     "path": "/seed-finder",

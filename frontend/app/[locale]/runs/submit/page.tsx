@@ -28,7 +28,7 @@ export default async function SubmitRunPage({ params }: Props) {
     { name: t("Home"), href: localePath(locale, "/") },
     { name: t("Leaderboards"), href: localePath(locale, "/leaderboards") },
     {
-      name: t("Submit a Run"),
+      name: t("Contribute"),
       href: localePath(locale, "/runs/submit"),
     },
   ]);

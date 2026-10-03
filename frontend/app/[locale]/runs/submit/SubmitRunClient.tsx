@@ -244,7 +244,9 @@ export default function SubmitRunClient() {
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6 space-y-8">
       <div>
         <h1 className="text-3xl font-bold mb-2">
-          <span className="text-[var(--accent-gold)]">{t("Submit a Run")}</span>
+          <span className="text-[var(--accent-gold)]">
+            {t("Contribute a Run")}
+          </span>
         </h1>
         <p className="text-sm text-[var(--text-muted)]">
           {t("submit_tagline")}
