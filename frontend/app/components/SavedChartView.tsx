@@ -24,6 +24,7 @@ import {
   fetchNameMap,
   type SavedChartSpec,
 } from "@/lib/saved-chart-spec";
+import { METRIC_LABELS, metricUnit } from "@/lib/chart-metric-labels";
 
 ChartJS.register(
   BarElement,
@@ -42,20 +43,28 @@ function resolveColor(color: string): string {
     .trim();
 }
 
+function axisTitle(key: string, t: (s: string) => string): string {
+  const label = METRIC_LABELS[key as keyof typeof METRIC_LABELS] ?? key;
+  const unit = metricUnit(key);
+  return unit ? `${t(label)} (${unit})` : t(label);
+}
+
 const BAR_COLOR = "var(--accent-gold)";
 const TEXT_MUTED = "var(--text-muted)";
 
 export default function SavedChartView({
   spec,
   height = 420,
+  includeUpgraded = false,
 }: {
   spec: SavedChartSpec;
   height?: number;
+  includeUpgraded?: boolean;
 }) {
   const t = useT();
   const [state, setState] = useState<{
     loading: boolean;
-    rows: { name: string; value: number; x: number | null }[];
+    rows: { name: string; value: number; x: number | null; color?: string }[];
   }>({ loading: true, rows: [] });
 
   useEffect(() => {
@@ -66,12 +75,15 @@ export default function SavedChartView({
       fetchNameMap(spec.source),
     ]).then(([rows, names]) => {
       if (!alive) return;
-      setState({ loading: false, rows: buildChartRows(rows, names, spec) });
+      setState({
+        loading: false,
+        rows: buildChartRows(rows, names, spec, { includeUpgraded }),
+      });
     });
     return () => {
       alive = false;
     };
-  }, [spec]);
+  }, [spec, includeUpgraded]);
 
   if (state.loading) {
     return (
@@ -96,6 +108,7 @@ export default function SavedChartView({
 
   const accent = resolveColor(BAR_COLOR) || "#c8a24a";
   const muted = resolveColor(TEXT_MUTED) || "#888";
+
   const gridColor = "rgba(128,128,128,0.15)";
 
   if (spec.chart === "scatter") {
@@ -113,12 +126,20 @@ export default function SavedChartView({
       },
       scales: {
         x: {
-          title: { display: true, text: spec.x, color: muted },
+          title: {
+            display: true,
+            text: axisTitle(spec.x, t),
+            color: muted,
+          },
           ticks: { color: muted },
           grid: { color: gridColor },
         },
         y: {
-          title: { display: true, text: spec.y, color: muted },
+          title: {
+            display: true,
+            text: axisTitle(spec.y, t),
+            color: muted,
+          },
           ticks: { color: muted },
           grid: { color: gridColor },
         },
@@ -147,6 +168,7 @@ export default function SavedChartView({
   }
 
   const horizontal = spec.chart === "hbar";
+  const valueAxisTitle = axisTitle(spec.y, t);
   const options: ChartOptions<"bar"> = {
     indexAxis: horizontal ? "y" : "x",
     responsive: true,
@@ -154,10 +176,19 @@ export default function SavedChartView({
     plugins: { legend: { display: false } },
     scales: {
       x: {
-        ticks: { color: muted, maxRotation: horizontal ? 0 : 60 },
+        ...(horizontal
+          ? { title: { display: true, text: valueAxisTitle, color: muted } }
+          : {}),
+        ticks: { color: muted, maxRotation: horizontal ? 0 : 90 },
         grid: { color: gridColor },
       },
-      y: { ticks: { color: muted }, grid: { color: gridColor } },
+      y: {
+        ...(horizontal
+          ? {}
+          : { title: { display: true, text: valueAxisTitle, color: muted } }),
+        ticks: { color: muted },
+        grid: { color: gridColor },
+      },
     },
   };
   return (
@@ -169,7 +200,9 @@ export default function SavedChartView({
           datasets: [
             {
               data: state.rows.map((r) => r.value),
-              backgroundColor: accent,
+              backgroundColor: (ctx) =>
+                resolveColor(state.rows[ctx.dataIndex]?.color ?? BAR_COLOR) ||
+                BAR_COLOR,
               borderRadius: 4,
               barPercentage: 0.85,
               categoryPercentage: 0.9,
