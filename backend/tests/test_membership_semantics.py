@@ -51,7 +51,7 @@ def member_lake(tmp_path, monkeypatch):
 def test_store_membership_is_seat_set(member_lake):
     con, lake = member_lake
     rows = con.execute(
-        ls._MEMBERSHIP_SQL.format(col="card", table="deck", lake=lake, where="")
+        ls._MEMBERSHIP_SQL.format(col="card", source=ls._source("deck"), where="")
     ).fetchall()
     by_card = {}
     for cid, char, picks, wins, _ts, _hash in rows:

@@ -117,10 +117,19 @@ def write_lake(tmp_path):
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 1, 'FIRE', 'IRONCLAD', true),
+        ('r1', 1, 'FIRE', 'IRONCLAD', false),
         ('r2', 1, 'FIRE', 'IRONCLAD', false))
         t(run_hash, player_idx, potion, character, was_used))
         TO '{tmp_path}/potions.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('r1', 0, 3, 1, 'FIRE', 'used', 3),
+        ('r3', 0, 2, 1, 'FIRE', 'used', 2),
+        ('r3', 0, 4, 1, 'FIRE', 'used', 4),
+        ('r6', 0, 1, 1, 'BLOCK', 'discarded', 1))
+        t(run_hash, act, floor_idx, player_idx, potion, kind, floor))
+        TO '{tmp_path}/potion_events.parquet' (FORMAT parquet)"""
     )
     depth = {
         "r1": 5,
@@ -244,7 +253,15 @@ def test_cube_counts_seats_wax_and_lift_inputs(lake):
         "pick_act": [0, 0, 0],
     }
     potions = lake_stats.entity_bracket_fold("potions", "all")
-    assert potions["used"] == {"FIRE": 1}
+    # FIRE: held at the end on r1 and r2, used on r1 (floor 3) and r3 (never
+    # in r3's final belt); BLOCK only ever discarded. Obtained seats are the
+    # union, used seats count once each.
+    assert potions["entries"]["FIRE"][:2] == [3, 3]
+    assert potions["entries"]["BLOCK"][:2] == [1, 0]
+    assert potions["used"] == {"FIRE": 2}
+    # r3's expectation sits at its first use floor (2); r2 has no event so
+    # it reads the floor-1 curve.
+    assert potions["entries"]["FIRE"][2] == 3
 
 
 def test_metrics_table_rows_carry_the_new_columns(lake, monkeypatch):
@@ -268,7 +285,8 @@ def test_metrics_table_rows_carry_the_new_columns(lake, monkeypatch):
     assert coop["total_seats"] == 2 and anchor["hold_rate"] == 100.0
     potions = res.get_entity_metrics_table("potions", "solo")
     fire = next(r for r in potions["rows"] if r["id"] == "FIRE")
-    assert fire["used"] == 1 and fire["use_rate"] == 50.0
+    assert fire["picks"] == 3
+    assert fire["used"] == 2 and fire["use_rate"] == pytest.approx(66.7)
     assert fire["pick_rate"] is None
 
 
@@ -346,7 +364,9 @@ def test_entity_store_relic_block(lake, monkeypatch):
     assert (juzu["picks"], juzu["wins"]) == (4, 3)
     assert juzu["wax"] == {"picks": 1, "wins": 1}
     assert juzu["offered"] == 2 and juzu["picked"] == 1
-    assert store["entities"]["potions"]["FIRE"]["used"] == 1
+    assert store["entities"]["potions"]["FIRE"]["used"] == 2
+    assert store["entities"]["potions"]["FIRE"]["picks"] == 3
+    assert store["entities"]["potions"]["BLOCK"]["picks"] == 1
     assert store["totals"]["total_seats"] == 10
     assert store["entities"]["relics"]["ANCHOR"]["picks"] == 2
     assert "relic_reward" in store["elo_strengths"]

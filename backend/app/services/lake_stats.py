@@ -233,7 +233,7 @@ SELECT m.{col}, coalesce(upper(m.character), e.character, ''),
   max(e.submitted_at), arg_max(m.run_hash, e.submitted_at)
 FROM (
   SELECT DISTINCT run_hash, player_idx, {col}, character
-  FROM read_parquet('{lake}/{table}.parquet')
+  FROM {source}
   WHERE {col} IS NOT NULL AND {col} <> ''{where}
 ) m
 JOIN eligible e ON m.run_hash = e.run_hash
@@ -313,7 +313,13 @@ def _ensure_floor_curves(con) -> None:
 
 
 def _drop_floor_curves(con) -> None:
-    for t in ("floor_curve", "floor_curve_all", "run_depth", "act_offsets"):
+    for t in (
+        "floor_curve",
+        "floor_curve_all",
+        "run_depth",
+        "act_offsets",
+        "potion_seats",
+    ):
         con.execute(f"DROP TABLE IF EXISTS {t}")
 
 
@@ -335,7 +341,7 @@ FROM (
   SELECT m.run_hash, m.player_idx, m.{col}, m.character, {exp_expr} AS exp
   FROM (
     SELECT run_hash, player_idx, {col}, character, {floor_col} AS f
-    FROM read_parquet('{lake}/{table}.parquet')
+    FROM {source}
     WHERE {col} IS NOT NULL AND {col} <> ''{where}
     GROUP BY 1, 2, 3, 4
   ) m
@@ -396,29 +402,74 @@ FROM (
 GROUP BY 1, 2, 3
 """
 
-_POTION_USED_SQL = """
-SELECT u.potion, count(*)
+# Potion seats: a seat obtained a potion if it held it at the end, used it
+# or discarded it; the earliest use/discard floor stands in for the pickup
+# floor (unknown), else floor 1. Lakes built before potion_events.parquet
+# existed fall back to the end-of-run belt alone.
+_POTION_SEATS_SQL = """
+CREATE TABLE IF NOT EXISTS potion_seats AS
+SELECT s.run_hash, s.player_idx, s.potion,
+  coalesce(any_value(s.character), any_value(p.character)) AS character,
+  coalesce(min(s.floor), 1) AS f
 FROM (
-  SELECT run_hash, player_idx, potion
+  SELECT run_hash, player_idx, potion, character, NULL::BIGINT AS floor
+  FROM read_parquet('{lake}/potions.parquet')
+  WHERE potion IS NOT NULL AND potion <> ''
+  {events}
+) s
+LEFT JOIN read_parquet('{lake}/players.parquet') p
+  ON s.run_hash = p.run_hash AND s.player_idx = p.player_idx
+GROUP BY 1, 2, 3
+"""
+_POTION_EVENT_ROWS = """
+  UNION ALL
+  SELECT run_hash, player_idx, potion, NULL::VARCHAR, floor
+  FROM read_parquet('{lake}/potion_events.parquet')
+  WHERE potion IS NOT NULL AND potion <> ''
+"""
+
+_POTION_USED_SEATS = """
+  SELECT DISTINCT run_hash, player_idx, potion
+  FROM read_parquet('{lake}/potion_events.parquet')
+  WHERE kind = 'used' AND potion IS NOT NULL AND potion <> ''
+"""
+_POTION_USED_SEATS_LEGACY = """
+  SELECT DISTINCT run_hash, player_idx, potion
   FROM read_parquet('{lake}/potions.parquet')
   WHERE potion IS NOT NULL AND potion <> '' AND coalesce(was_used, false)
-  GROUP BY 1, 2, 3
-) u
+"""
+
+_POTION_USED_SQL = """
+SELECT u.potion, count(*)
+FROM ({used}) u
 JOIN eligible e ON u.run_hash = e.run_hash
 GROUP BY 1
 """
 
 _CUBE_POTION_USED_SQL = """
 SELECT c.cell, u.potion, count(*)
-FROM (
-  SELECT run_hash, player_idx, potion
-  FROM read_parquet('{lake}/potions.parquet')
-  WHERE potion IS NOT NULL AND potion <> '' AND coalesce(was_used, false)
-  GROUP BY 1, 2, 3
-) u
+FROM ({used}) u
 JOIN cells c ON u.run_hash = c.run_hash
 GROUP BY 1, 2
 """
+
+
+def _potion_events_available() -> bool:
+    return (LAKE_DIR / "potion_events.parquet").exists()
+
+
+def _ensure_potion_seats(con) -> None:
+    lake = str(LAKE_DIR)
+    events = _POTION_EVENT_ROWS.format(lake=lake) if _potion_events_available() else ""
+    con.execute(_POTION_SEATS_SQL.format(lake=lake, events=events))
+
+
+def _potion_used_rows() -> str:
+    tpl = (
+        _POTION_USED_SEATS if _potion_events_available() else _POTION_USED_SEATS_LEGACY
+    )
+    return tpl.format(lake=LAKE_DIR)
+
 
 _CUBE_REST_SQL = """
 WITH hp AS (
@@ -483,16 +534,23 @@ def _membership_where(table: str, con, wax: bool = False) -> str:
 _CUBE_TABLES = (
     ("cards", "deck", "card", "min(coalesce(floor_added, 0))"),
     ("relics", "relics", "relic", "min(coalesce(floor_added, 0))"),
-    ("potions", "potions", "potion", "1"),
+    ("potions", "potion_seats", "potion", "min(f)"),
 )
+
+
+def _source(table: str) -> str:
+    """The FROM target for a membership table: a scratch table for the
+    potion seats, a parquet file for everything else."""
+    if table == "potion_seats":
+        return table
+    return f"read_parquet('{LAKE_DIR}/{table}.parquet')"
 
 
 def _cube_membership_sql(col: str, table: str, floor_col: str, where: str) -> str:
     exp_join, exp_expr = _exp_sql("m.run_hash", "m.f")
     return _CUBE_MEMBERSHIP_SQL.format(
         col=col,
-        table=table,
-        lake=LAKE_DIR,
+        source=_source(table),
         where=where,
         floor_col=floor_col,
         exp_join=exp_join,
@@ -1381,16 +1439,12 @@ def build_entity_store() -> dict | None:
 
         # Seat-set membership + per-character splits + last-seen, one query
         # per membership table; wax relic copies land in their own block.
-        for etype, table, col in (
-            ("cards", "deck", "card"),
-            ("relics", "relics", "relic"),
-            ("potions", "potions", "potion"),
-        ):
+        _ensure_potion_seats(con)
+        for etype, table, col, _floor in _CUBE_TABLES:
             for eid, char, picks, wins, last_ts, last_hash in con.execute(
                 _MEMBERSHIP_SQL.format(
                     col=col,
-                    table=table,
-                    lake=LAKE_DIR,
+                    source=_source(table),
                     where=_membership_where(table, con),
                 )
             ).fetchall():
@@ -1409,15 +1463,16 @@ def build_entity_store() -> dict | None:
             for eid, _char, picks, wins, _ts, _hash in con.execute(
                 _MEMBERSHIP_SQL.format(
                     col="relic",
-                    table="relics",
-                    lake=LAKE_DIR,
+                    source=_source("relics"),
                     where=_membership_where("relics", con, wax=True),
                 )
             ).fetchall():
                 wax = entry("relics", eid).setdefault("wax", {"picks": 0, "wins": 0})
                 wax["picks"] += picks
                 wax["wins"] += wins
-        for eid, used in con.execute(_POTION_USED_SQL.format(lake=LAKE_DIR)).fetchall():
+        for eid, used in con.execute(
+            _POTION_USED_SQL.format(used=_potion_used_rows())
+        ).fetchall():
             entry("potions", eid)["used"] = used
 
         # Card-reward offer/pick counts with 3 act buckets (A1/A2/A3+),
@@ -1799,6 +1854,7 @@ def build_entity_cube(con=None) -> dict:
     try:
         _prepare_sources(con, str(LAKE_DIR))
         _ensure_floor_curves(con)
+        _ensure_potion_seats(con)
         _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
         runs_cells = {
             cell: [t, w, int(seats or t)]
@@ -1845,7 +1901,7 @@ def build_entity_cube(con=None) -> dict:
                 cur[1] += w
         potion_used: dict[str, dict] = {}
         for cell, eid, used in con.execute(
-            _CUBE_POTION_USED_SQL.format(lake=LAKE_DIR)
+            _CUBE_POTION_USED_SQL.format(used=_potion_used_rows())
         ).fetchall():
             potion_used.setdefault(cell, {})[eid] = used
         # Offer/pick counts per cell with the store's 3 act buckets
