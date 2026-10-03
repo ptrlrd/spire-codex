@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
@@ -205,13 +205,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
     data.by === "character" &&
     !!data.byCharacter;
   const rows = byCharacter && data.byCharacter ? data.byCharacter : data.rows;
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(data.query);
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(false);
   const [showWax, setShowWax] = useState(false);
   const [showUpgraded, setShowUpgraded] = useState(false);
-  const first = cfg.columns.includes("elo") ? "elo" : cfg.columns[1];
+  const first =
+    cfg.defaultSort ?? (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]);
   const [sortKey, setSortKey] = useState<ColKey>(first);
   const [dir, setDir] = useState<1 | -1>(-1);
   const [preview, setPreview] = useState<{
@@ -338,13 +339,30 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const upgradedCount = rows.filter((r) => r.upgraded).length;
   const canSplitByCharacter =
     kind === "cards" && cfg.showCharacter && !character;
-  const setByCharacter = (on: boolean) => {
+  const gridUrl = (on: boolean, q: string) => {
     const params = new URLSearchParams();
     if (bracket !== "all") params.set("bracket", bracket);
+    if (character) params.set("character", character);
     if (on) params.set("by", "character");
+    if (q.trim()) params.set("q", q.trim());
     const qs = params.toString();
-    router.push(qs ? `${bp}${cfg.path}?${qs}` : `${bp}${cfg.path}`);
+    return qs ? `${bp}${cfg.path}?${qs}` : `${bp}${cfg.path}`;
   };
+  const setByCharacter = (on: boolean) => router.push(gridUrl(on, search));
+  const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const onSearch = (q: string) => {
+    setSearch(q);
+    if (searchTimer.current) clearTimeout(searchTimer.current);
+    searchTimer.current = setTimeout(() => {
+      router.replace(gridUrl(byCharacter, q), { scroll: false });
+    }, 400);
+  };
+  useEffect(
+    () => () => {
+      if (searchTimer.current) clearTimeout(searchTimer.current);
+    },
+    [],
+  );
 
   const onSort = (col: Column) => {
     if (!col.sortField) return;
@@ -659,7 +677,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
         <input
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => onSearch(e.target.value)}
           placeholder={t(cfg.searchPlaceholder)}
           className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
         />

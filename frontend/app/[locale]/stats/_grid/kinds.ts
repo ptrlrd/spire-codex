@@ -31,6 +31,7 @@ export interface KindConfig {
   offeredLabel: string;
   offeredTitle: string;
   shareTitle?: string;
+  defaultSort?: ColKey;
   baselineWhat: string;
   searchPlaceholder: string;
   emptyText: string;
@@ -147,6 +148,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   shops: {
     path: "/stats/shops",
+    defaultSort: "lift",
     grouped: false,
     baselineWhat: "average win rate across every purchase in this cohort",
     offeredLabel: "Seen",
@@ -168,6 +170,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   events: {
     path: "/stats/events",
+    defaultSort: "lift",
     grouped: true,
     baselineWhat: "average win rate across every event choice in this cohort",
     offeredLabel: "Offered",
@@ -189,6 +192,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   campfires: {
     path: "/stats/campfires",
+    defaultSort: "lift",
     grouped: false,
     baselineWhat:
       "average win rate across every rest site action in this cohort",

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import ScoreBadge, { scoreToTier } from "@/app/components/ScoreBadge";
 
 // chart.js is ~70KB gzipped and the trends chart sits below the fold, so
@@ -52,6 +53,92 @@ export interface EntityStats {
   by_character: CharacterRow[];
   last_submitted_at: string | null;
   last_run_hash: string | null;
+  lift?: number | null;
+  lift_n?: number | null;
+  hold_rate?: number | null;
+}
+
+const METRICS_PAGE: Record<string, { path: string; label: string }> = {
+  cards: { path: "/stats/cards", label: "See in Card Metrics" },
+  relics: { path: "/stats/relics", label: "See in Relic Metrics" },
+  potions: { path: "/stats/potions", label: "See in Potion Metrics" },
+};
+
+function fmtPct(v: number | null | undefined): string {
+  return typeof v === "number" ? `${v.toFixed(1)}%` : "–";
+}
+function fmtPts(v: number | null | undefined): string {
+  return typeof v === "number" ? `${v > 0 ? "+" : ""}${v.toFixed(1)}` : "–";
+}
+
+function MetricsStrip({
+  entityType,
+  entityName,
+  stats,
+}: {
+  entityType: string;
+  entityName: string;
+  stats: EntityStats;
+}) {
+  const t = useT();
+  const bp = useBetaPrefix();
+  const page = METRICS_PAGE[entityType];
+  const items: [string, string, string][] = [
+    [
+      t("Win%"),
+      fmtPct(stats.win_rate),
+      t("Share of seats that held it and went on to win the run."),
+    ],
+    [
+      t("Hold%"),
+      fmtPct(stats.hold_rate ?? stats.pick_rate),
+      t("Share of all seats in the cohort that held it at some point."),
+    ],
+    [
+      t("Lift"),
+      fmtPts(stats.lift),
+      t(
+        "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
+      ),
+    ],
+    [
+      t("Elo"),
+      typeof stats.elo === "number" ? String(Math.round(stats.elo)) : "–",
+      t(
+        "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
+      ),
+    ],
+    [
+      t("Sample"),
+      stats.picks.toLocaleString(),
+      t("Seats that held it (sample size)"),
+    ],
+  ];
+  return (
+    <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 px-3 py-2 text-sm">
+      {items.map(([k, v, title]) => (
+        <span
+          key={k}
+          className="inline-flex items-baseline gap-1.5"
+          title={title}
+        >
+          <span className="text-xs text-[var(--text-muted)]">{k}</span>
+          <span className="font-semibold tabular-nums text-[var(--text-primary)]">
+            {v}
+          </span>
+        </span>
+      ))}
+      {page && (
+        <Link
+          prefetch={false}
+          href={`${bp}${page.path}?q=${encodeURIComponent(entityName)}`}
+          className="ml-auto text-xs text-[var(--accent-gold)] hover:underline"
+        >
+          {t(page.label)} →
+        </Link>
+      )}
+    </div>
+  );
 }
 
 interface Props {
@@ -265,7 +352,14 @@ export default function EntityRunStats({
   useEffect(() => {
     cachedFetch<EntityStats>(
       `${API}/api/runs/stats/${entityType}/${entityId}`,
-    ).then(setStats);
+    ).then((fresh) =>
+      setStats((prev) => ({
+        ...fresh,
+        lift: fresh.lift ?? prev?.lift ?? null,
+        lift_n: fresh.lift_n ?? prev?.lift_n ?? null,
+        hold_rate: fresh.hold_rate ?? prev?.hold_rate ?? null,
+      })),
+    );
   }, [entityType, entityId]);
 
   if (!stats) {
@@ -330,6 +424,13 @@ export default function EntityRunStats({
     const share = top && picks ? Math.round((top.picks / picks) * 100) : 0;
     return (
       <div>
+        {!empty && (
+          <MetricsStrip
+            entityType={entityType}
+            entityName={entityName}
+            stats={stats}
+          />
+        )}
         {empty ? (
           <p className="h-note">
             {t(
@@ -514,6 +615,13 @@ export default function EntityRunStats({
 
   return (
     <div className="space-y-5">
+      {!empty && (
+        <MetricsStrip
+          entityType={entityType}
+          entityName={entityName}
+          stats={stats}
+        />
+      )}
       {/* Bracket sub-menu: re-scopes the headline stats below. Only shown when
           a bracket beyond "All" has data for this entity. */}
       {!empty && availableBrackets.length > 1 && (

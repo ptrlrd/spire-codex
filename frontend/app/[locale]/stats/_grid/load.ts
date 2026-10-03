@@ -312,6 +312,7 @@ async function loadEntity(
     character,
     by: perCharacter ? "character" : "",
     byCharacter: perCharacter ? characterRows(byId, tables) : null,
+    query: "",
     available: res !== null,
   };
 }
@@ -357,6 +358,7 @@ async function loadShops(lang: string, bracket: string): Promise<GridData> {
     character: "",
     by: "",
     byCharacter: null,
+    query: "",
     available: res !== null,
   };
 }
@@ -427,6 +429,7 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     character: "",
     by: "",
     byCharacter: null,
+    query: "",
     available: res !== null,
   };
 }
@@ -461,6 +464,7 @@ async function loadCampfires(lang: string, bracket: string): Promise<GridData> {
     character: "",
     by: "",
     byCharacter: null,
+    query: "",
     available: res !== null,
   };
 }
@@ -471,21 +475,26 @@ export async function loadGrid(
   bracket = "all",
   character = "",
   by = "",
+  query = "",
 ): Promise<GridData> {
   const valid = isValidBracket(bracket) ? bracket || "all" : "all";
   const char = CHARACTERS.includes(character.toUpperCase())
     ? character.toUpperCase()
     : "";
+  const q = query.slice(0, 80);
+  const withQuery = (d: GridData): GridData => ({ ...d, query: q });
   switch (kind) {
     case "cards":
     case "relics":
     case "potions":
-      return loadEntity(kind, lang, valid, char, by === "character" ? by : "");
+      return withQuery(
+        await loadEntity(kind, lang, valid, char, by === "character" ? by : ""),
+      );
     case "shops":
-      return loadShops(lang, valid);
+      return withQuery(await loadShops(lang, valid));
     case "events":
-      return loadEvents(lang, valid);
+      return withQuery(await loadEvents(lang, valid));
     case "campfires":
-      return loadCampfires(lang, valid);
+      return withQuery(await loadCampfires(lang, valid));
   }
 }

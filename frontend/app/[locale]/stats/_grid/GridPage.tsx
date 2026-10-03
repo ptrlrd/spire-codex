@@ -11,7 +11,12 @@ import type { GridKind } from "./types";
 
 export type GridPageProps = {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ bracket?: string; character?: string; by?: string }>;
+  searchParams: Promise<{
+    bracket?: string;
+    character?: string;
+    by?: string;
+    q?: string;
+  }>;
 };
 
 export async function gridMetadata(
@@ -27,7 +32,7 @@ export async function gridMetadata(
     path: cfg.path,
     title: t(cfg.title),
     description: t(cfg.description),
-    hreflang: !(sp.bracket || sp.character || sp.by),
+    hreflang: !(sp.bracket || sp.character || sp.by || sp.q),
   });
 }
 
@@ -46,6 +51,7 @@ export async function GridPage({
     sp.bracket || "all",
     sp.character || "",
     sp.by || "",
+    sp.q || "",
   );
   const jsonLd = [
     buildBreadcrumbJsonLd([
