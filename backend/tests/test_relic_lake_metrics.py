@@ -594,3 +594,74 @@ def test_campfire_rows_carry_localized_names(lake, monkeypatch):
         "/api/runs/metrics/campfires?lang=deu"
     )
     assert r.status_code == 200 and r.json()["rows"] == []
+
+
+def test_pairs_and_offers_carry_the_seat_character(lake):
+    tiers = lake_stats.reward_pair_counts_by_tier(table="relic_choice_rows")
+    assert {k[3] for k in tiers} == {"IRONCLAD"}
+    assert (
+        lake_stats.fold_tier_pairs(tiers, character="IRONCLAD")[("JUZU", "ANCHOR")] == 1
+    )
+    assert lake_stats.fold_tier_pairs(tiers, character="SILENT") == {}
+    cube = lake_stats._entity_cube_with_mtime()[1]
+    by_char = cube["offers_by_character"]["relics"]
+    cell = next(iter(by_char))
+    assert by_char[cell]["IRONCLAD"]["ANCHOR"]["0"] == [3, 0]
+    fold = lake_stats.entity_character_offers_fold("relics", "solo", "IRONCLAD")
+    assert fold["ANCHOR"]["offered"] == 3 and fold["JUZU"]["picked"] == 1
+    assert lake_stats.entity_character_offers_fold("relics", "solo", "SILENT") == {}
+    chars = lake_stats.entity_character_fold("relics", "all")["JUZU"]
+    assert chars["IRONCLAD"][:2] == [4, 3] and chars["IRONCLAD"][2] == 4
+
+
+def test_store_fits_one_elo_per_character(lake, monkeypatch):
+    monkeypatch.setattr(res, "_official_relic_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_upgradeable_card_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_official_character_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_ELO_MIN_GAMES", 1)
+    store = lake_stats.build_entity_store()
+    keys = set(store["bracket_elo"])
+    assert "relics:char:IRONCLAD" in keys and "relics:char:IRONCLAD:a10" in keys
+    assert not any(k.startswith("relics:char:SILENT") for k in keys)
+    assert "JUZU" in store["bracket_elo"]["relics:char:IRONCLAD"]
+    assert lake_stats.SKIP_ID not in store["bracket_elo"]["relics:char:IRONCLAD"]
+    monkeypatch.setattr(
+        lake_stats,
+        "entity_store_with_mtime",
+        lambda: (1.0, {"bracket_elo": store["bracket_elo"]}),
+    )
+    assert (
+        lake_stats.bracket_elo_for("solo", "relics", "IRONCLAD")
+        is store["bracket_elo"]["relics:char:IRONCLAD"]
+    )
+    assert (
+        lake_stats.bracket_elo_for("solo:a10", "relics", "ironclad")
+        is store["bracket_elo"]["relics:char:IRONCLAD:a10"]
+    )
+    assert lake_stats.bracket_elo_for("solo", "relics", "SILENT") is None
+
+
+def test_character_scoped_table_has_its_own_elo_and_offers(lake, monkeypatch):
+    monkeypatch.setattr(
+        lake_stats,
+        "entity_store_with_mtime",
+        lambda: (1.0, {"bracket_elo": {"relics:char:IRONCLAD": {"JUZU": 1555.5}}}),
+    )
+    monkeypatch.setattr(res, "get_community_stats", lambda b: {"by_character": []})
+    table = res.get_entity_metrics_table("relics", "solo", "IRONCLAD")
+    assert table["character"] == "IRONCLAD"
+    juzu = next(r for r in table["rows"] if r["id"] == "JUZU")
+    assert juzu["elo"] == 1555.5
+    assert (juzu["offered"], juzu["picked"], juzu["pick_rate"]) == (2, 1, 50.0)
+    assert juzu["pick_rate_by_act"] == [50.0, None, None]
+    assert juzu["lift_n"] == 4 and juzu["lift"] is None
+    assert (juzu["picks"], juzu["wins"]) == (4, 3)
+    assert not any(r["id"] == "ANCHOR" for r in table["rows"])
+    defect = res.get_entity_metrics_table("relics", "all", "DEFECT")["rows"]
+    anchor = next(r for r in defect if r["id"] == "ANCHOR")
+    assert anchor["elo"] is None and anchor["pick_rate"] is None
+    assert (anchor["offered"], anchor["picks"]) == (0, 1)
+    assert res.get_entity_metrics_table("relics", "solo", "SILENT")["rows"] == []
+    silent_all = res.get_entity_metrics_table("relics", "all", "SILENT")
+    assert {r["id"] for r in silent_all["rows"]} == {"ANCHOR"}
+    assert silent_all["rows"][0]["picks"] == 1

@@ -264,10 +264,10 @@ def test_reward_pairs_by_tier_and_cumulative_fold(monkeypatch, tmp_path):
     monkeypatch.setattr(res, "_excluded_card_ids", lambda: frozenset())
     tiers = lake_stats.reward_pair_counts_by_tier()
     # r1 (A10) took X over Y; r2 (A0) skipped Y and Z.
-    assert tiers[(1, 0, "")][("X", "Y")] == 1
-    assert tiers[(1, 0, "")][("X", lake_stats.SKIP_ID)] == 1
-    assert tiers[(0, 0, "")][(lake_stats.SKIP_ID, "Y")] == 1
-    assert tiers[(0, 0, "")][(lake_stats.SKIP_ID, "Z")] == 1
+    assert tiers[(1, 0, "", "")][("X", "Y")] == 1
+    assert tiers[(1, 0, "", "")][("X", lake_stats.SKIP_ID)] == 1
+    assert tiers[(0, 0, "", "")][(lake_stats.SKIP_ID, "Y")] == 1
+    assert tiers[(0, 0, "", "")][(lake_stats.SKIP_ID, "Z")] == 1
     # All-runs fold = both tiers; the a10 fold drops the A0 skip screen.
     all_pairs = lake_stats.fold_tier_pairs(tiers)
     assert all_pairs[("X", "Y")] == 1
@@ -407,10 +407,10 @@ def test_entity_character_fold(monkeypatch):
     monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: (2.0, cube))
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     fold = lake_stats.entity_character_fold("cards", "a10")
-    assert fold["X"]["IRONCLAD"] == [13, 8]
-    assert fold["X"]["SILENT"] == [4, 1]
+    assert fold["X"]["IRONCLAD"][:2] == [13, 8]
+    assert fold["X"]["SILENT"][:2] == [4, 1]
     solo = lake_stats.entity_character_fold("cards", "solo")
-    assert solo["X"]["IRONCLAD"] == [10, 6]
+    assert solo["X"]["IRONCLAD"][:2] == [10, 6]
     # Cube without the axis (pre-upgrade store) -> None, callers go empty.
     monkeypatch.setattr(
         lake_stats,
