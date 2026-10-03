@@ -70,18 +70,21 @@ export default function SavedChartView({
   useEffect(() => {
     let alive = true;
     setState((s) => ({ ...s, loading: true }));
-    Promise.all([
-      fetchMetricRows(spec.source, spec.bracket, spec.character),
-      fetchNameMap(spec.source),
-    ]).then(([rows, names]) => {
-      if (!alive) return;
-      setState({
-        loading: false,
-        rows: buildChartRows(rows, names, spec, { includeUpgraded }),
+    const timer = setTimeout(() => {
+      Promise.all([
+        fetchMetricRows(spec.source, spec.bracket, spec.character),
+        fetchNameMap(spec.source),
+      ]).then(([rows, names]) => {
+        if (!alive) return;
+        setState({
+          loading: false,
+          rows: buildChartRows(rows, names, spec, { includeUpgraded }),
+        });
       });
-    });
+    }, 250);
     return () => {
       alive = false;
+      clearTimeout(timer);
     };
   }, [spec, includeUpgraded]);
 

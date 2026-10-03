@@ -208,6 +208,7 @@ export function buildChartRows(
       name: r.meta?.name ?? "",
       value: metricValue(r.row, spec.y) ?? 0,
       x: metricValue(r.row, spec.x as MetricKey),
+      sample: rowSample(r.row),
       meta: r.meta,
       color:
         spec.source === "cards" && r.meta?.color
@@ -218,7 +219,7 @@ export function buildChartRows(
       if (q && !r.name.toLowerCase().includes(q)) return false;
       if (f.group && (r.meta?.group ?? "") !== f.group) return false;
       if (f.rarity && (r.meta?.rarity ?? "") !== f.rarity) return false;
-      if (f.min_sample && rowSample(r.meta) < f.min_sample) return false;
+      if (f.min_sample && r.sample < f.min_sample) return false;
       return true;
     });
   enriched.sort((a, b) =>
