@@ -113,6 +113,12 @@ FROM raw r,
   LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc
 ) TO '/lake/floors.parquet' (FORMAT parquet, COMPRESSION zstd);
 
+CREATE OR REPLACE TEMP TABLE act_off AS
+SELECT run_hash, act,
+  coalesce(sum(n) OVER (PARTITION BY run_hash ORDER BY act
+    ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING), 0) AS floor_offset
+FROM (SELECT run_hash, act, count(*) AS n FROM read_parquet('/lake/floors.parquet') GROUP BY 1, 2);
+
 COPY (
 SELECT r.run_hash, p.i AS player_idx,
   upper(split_part(rel.u.id, '.', -1)) AS relic,
@@ -179,10 +185,11 @@ SELECT run_hash, player_idx, entity_type, id, bought, floor FROM (
   SELECT r.run_hash, ps.i AS player_idx, 'cards' AS entity_type,
     upper(split_part(cc.u.card.id, '.', -1)) AS id,
     coalesce(cc.u.was_picked, false) AS bought,
-    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i AS floor
+    ao.floor_offset + loc.i AS floor
   FROM raw r,
     LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
     LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+    LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.card_choices) AS u) cc
@@ -191,10 +198,11 @@ SELECT run_hash, player_idx, entity_type, id, bought, floor FROM (
   UNION ALL
   SELECT r.run_hash, ps.i, 'relics',
     upper(split_part(rc.u.choice, '.', -1)), coalesce(rc.u.was_picked, false),
-    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i
+    ao.floor_offset + loc.i
   FROM raw r,
     LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
     LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+    LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
@@ -203,10 +211,11 @@ SELECT run_hash, player_idx, entity_type, id, bought, floor FROM (
   UNION ALL
   SELECT r.run_hash, ps.i, 'potions',
     upper(split_part(pc.u.choice, '.', -1)), coalesce(pc.u.was_picked, false),
-    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i
+    ao.floor_offset + loc.i
   FROM raw r,
     LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
     LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+    LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.potion_choices) AS u) pc
@@ -222,10 +231,11 @@ COPY (
 SELECT run_hash, act, floor_idx, player_idx, potion, kind, floor FROM (
   SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx, ps.i AS player_idx,
     upper(split_part(pu.u, '.', -1)) AS potion, 'used' AS kind,
-    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i AS floor
+    ao.floor_offset + loc.i AS floor
   FROM raw r,
     LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
     LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+    LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.potion_used) AS u) pu
@@ -233,10 +243,11 @@ SELECT run_hash, act, floor_idx, player_idx, potion, kind, floor FROM (
   UNION ALL
   SELECT r.run_hash, act.i - 1, loc.i, ps.i,
     upper(split_part(pd.u, '.', -1)), 'discarded',
-    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i
+    ao.floor_offset + loc.i
   FROM raw r,
     LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
     LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+    LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.potion_discarded) AS u) pd
