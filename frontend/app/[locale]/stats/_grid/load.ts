@@ -81,6 +81,7 @@ interface ApiResponse {
   total_runs?: number;
   total_seats?: number;
   total_wins?: number;
+  character_runs?: number | null;
   data_through?: string | null;
   rows?: ApiRow[];
 }
@@ -224,7 +225,9 @@ function characterRows(
       row.color = ch;
       row.losses =
         m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
-      row.holdRate = num(m.hold_rate);
+      const runs = num(res?.character_runs);
+      row.holdRate =
+        runs && runs > 0 ? Math.round((row.n / runs) * 1000) / 10 : null;
       row.elo = null;
       row.pickRate = null;
       row.lift = null;
