@@ -27,8 +27,8 @@ SELECT * FROM read_ndjson('/lake/staging/*.jsonl.gz',
     start_time: 'BIGINT', run_time: 'BIGINT',
     killed_by_encounter: 'VARCHAR', killed_by_event: 'VARCHAR',
     modifiers: 'VARCHAR[]',
-    players: 'STRUCT(id BIGINT, "character" VARCHAR, deck STRUCT(floor_added_to_deck BIGINT, id VARCHAR, current_upgrade_level BIGINT, enchantment STRUCT(id VARCHAR))[], relics STRUCT(id VARCHAR, floor_added_to_deck BIGINT)[], potions STRUCT(id VARCHAR, was_used BOOLEAN)[])[]',
-    map_point_history: 'STRUCT(map_point_type VARCHAR, player_stats STRUCT(player_id BIGINT, current_gold BIGINT, current_hp BIGINT, damage_taken BIGINT, max_hp BIGINT, event_choices STRUCT(title STRUCT("key" VARCHAR, "table" VARCHAR))[], rest_site_choices VARCHAR[], upgraded_cards VARCHAR[], ancient_choice STRUCT(TextKey VARCHAR, title STRUCT("key" VARCHAR, "table" VARCHAR), was_chosen BOOLEAN)[], cards_removed JSON[], card_choices STRUCT(was_picked BOOLEAN, card STRUCT(id VARCHAR))[], potion_choices STRUCT(was_picked BOOLEAN, choice VARCHAR)[])[], rooms STRUCT(model_id VARCHAR, room_type VARCHAR, turns_taken BIGINT)[])[][]',
+    players: 'STRUCT(id BIGINT, "character" VARCHAR, deck STRUCT(floor_added_to_deck BIGINT, id VARCHAR, current_upgrade_level BIGINT, enchantment STRUCT(id VARCHAR))[], relics STRUCT(id VARCHAR, floor_added_to_deck BIGINT, props STRUCT(bools STRUCT(name VARCHAR, value BOOLEAN)[]))[], potions STRUCT(id VARCHAR, was_used BOOLEAN)[])[]',
+    map_point_history: 'STRUCT(map_point_type VARCHAR, player_stats STRUCT(player_id BIGINT, current_gold BIGINT, current_hp BIGINT, damage_taken BIGINT, max_hp BIGINT, event_choices STRUCT(title STRUCT("key" VARCHAR, "table" VARCHAR))[], rest_site_choices VARCHAR[], upgraded_cards VARCHAR[], ancient_choice STRUCT(TextKey VARCHAR, title STRUCT("key" VARCHAR, "table" VARCHAR), was_chosen BOOLEAN)[], cards_removed JSON[], card_choices STRUCT(was_picked BOOLEAN, card STRUCT(id VARCHAR))[], potion_choices STRUCT(was_picked BOOLEAN, choice VARCHAR)[], relic_choices STRUCT(choice VARCHAR, was_picked BOOLEAN)[])[], rooms STRUCT(model_id VARCHAR, room_type VARCHAR, turns_taken BIGINT)[])[][]',
     _meta: 'STRUCT(username VARCHAR, user_id VARCHAR, hidden BOOLEAN, deleted BOOLEAN, submitted_at TIMESTAMP, played_at TIMESTAMP, player_count BIGINT, "character" VARCHAR)'});
 
 
@@ -117,7 +117,8 @@ COPY (
 SELECT r.run_hash, p.i AS player_idx,
   upper(split_part(rel.u.id, '.', -1)) AS relic,
   rel.u.floor_added_to_deck AS floor_added,
-  upper(split_part(p.u.character,'.',-1)) AS character
+  upper(split_part(p.u.character,'.',-1)) AS character,
+  coalesce(len(list_filter(rel.u.props.bools, b -> b.name = 'IsWax' AND b.value)) > 0, false) AS is_wax
 FROM raw r,
   LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
   LATERAL (SELECT unnest(p.u.relics) AS u) rel
@@ -149,6 +150,64 @@ FROM raw r,
   LATERAL (SELECT unnest(ps.u.potion_choices) AS u) pc
 WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
 ) TO '/lake/shop_potions.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+-- Every relic screen a seat saw: free offers (ancient, boss, events with
+-- two options) and shop shelves alike, one row per option. is_shop and
+-- n_options let readers separate a real choice from a priced shelf.
+COPY (
+SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx, ps.i AS player_idx,
+  upper(split_part(rc.u.choice, '.', -1)) AS relic,
+  coalesce(rc.u.was_picked, false) AS picked,
+  list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop') AS is_shop,
+  len(ps.u.relic_choices) AS n_options
+FROM raw r,
+  LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
+  LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+  LATERAL (SELECT unnest(loc.u.player_stats) AS u,
+    generate_subscripts(loc.u.player_stats,1) AS i) ps,
+  LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
+WHERE rc.u.choice IS NOT NULL AND rc.u.choice <> ''
+) TO '/lake/relic_choices.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+-- Shop shelves: every card, relic and potion a seat saw on a shop floor and
+-- whether it was bought.
+COPY (
+SELECT run_hash, player_idx, entity_type, id, bought FROM (
+  SELECT r.run_hash, ps.i AS player_idx, 'cards' AS entity_type,
+    upper(split_part(cc.u.card.id, '.', -1)) AS id,
+    coalesce(cc.u.was_picked, false) AS bought
+  FROM raw r,
+    LATERAL (SELECT unnest(map_point_history) AS u) act,
+    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(loc.u.player_stats) AS u,
+      generate_subscripts(loc.u.player_stats,1) AS i) ps,
+    LATERAL (SELECT unnest(ps.u.card_choices) AS u) cc
+  WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
+    AND cc.u.card.id IS NOT NULL AND cc.u.card.id <> ''
+  UNION ALL
+  SELECT r.run_hash, ps.i, 'relics',
+    upper(split_part(rc.u.choice, '.', -1)), coalesce(rc.u.was_picked, false)
+  FROM raw r,
+    LATERAL (SELECT unnest(map_point_history) AS u) act,
+    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(loc.u.player_stats) AS u,
+      generate_subscripts(loc.u.player_stats,1) AS i) ps,
+    LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
+  WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
+    AND rc.u.choice IS NOT NULL AND rc.u.choice <> ''
+  UNION ALL
+  SELECT r.run_hash, ps.i, 'potions',
+    upper(split_part(pc.u.choice, '.', -1)), coalesce(pc.u.was_picked, false)
+  FROM raw r,
+    LATERAL (SELECT unnest(map_point_history) AS u) act,
+    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(loc.u.player_stats) AS u,
+      generate_subscripts(loc.u.player_stats,1) AS i) ps,
+    LATERAL (SELECT unnest(ps.u.potion_choices) AS u) pc
+  WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
+    AND pc.u.choice IS NOT NULL AND pc.u.choice <> ''
+)
+) TO '/lake/shop_items.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Per-player identity + deck size: keys player_id to a character for the
 -- co-op attributions, and carries deck size for the records section.
@@ -189,6 +248,8 @@ UNION ALL SELECT 'floors', count(*) FROM read_parquet('/lake/floors.parquet')
 UNION ALL SELECT 'players', count(*) FROM read_parquet('/lake/players.parquet')
 UNION ALL SELECT 'relics', count(*) FROM read_parquet('/lake/relics.parquet')
 UNION ALL SELECT 'potions', count(*) FROM read_parquet('/lake/potions.parquet')
-UNION ALL SELECT 'shop_potions', count(*) FROM read_parquet('/lake/shop_potions.parquet');
+UNION ALL SELECT 'shop_potions', count(*) FROM read_parquet('/lake/shop_potions.parquet')
+UNION ALL SELECT 'relic_choices', count(*) FROM read_parquet('/lake/relic_choices.parquet')
+UNION ALL SELECT 'shop_items', count(*) FROM read_parquet('/lake/shop_items.parquet');
 
 DROP TABLE raw;
