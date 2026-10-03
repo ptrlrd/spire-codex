@@ -105,6 +105,7 @@ async def get_replay(run_hash: str, request: Request):
 @router.delete("/{run_hash}/replay", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("replays.delete", "30/minute"))
 async def delete_replay(run_hash: str, request: Request):
+    """Remove the replay for a run you own (signed-in owner only)."""
     user = require_user(request)
     try:
         removed = await run_in_threadpool(replays_db.delete_replay, run_hash, user)

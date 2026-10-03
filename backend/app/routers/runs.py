@@ -115,9 +115,12 @@ async def submit_run_endpoint(
 ):
     """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param.
 
-    Pass ?steam_id=<SteamID64> (the overlay / Compendium send the signed-in
-    player's Steam ID) and/or ?discord_id=<id> to tag the run with its owner
-    so it links to their account on sign-in without a manual claim.
+    Ownership only comes from a verified identity: send
+    `Authorization: Bearer <jwt>` from the Steam sign-in flow (the in-game
+    mod and the overlay do) and the run is attached to that account, along
+    with ?discord_id= if given. A bare ?steam_id=<SteamID64> without a token
+    is stored as a hint only: it feeds the rank line and lets a later signed-in
+    re-upload claim the run, but it never makes the run anyone's.
 
     Rate limit: 3000/hour (~50/min sustained, with room for burst). The
     earlier 600/hour ceiling was sized for "a few hundred backlog runs
@@ -858,8 +861,11 @@ def get_encounter_stats_endpoint(
         `exclude` removes multiplayer runs, omit for both.
       * `page` (default 1) + `limit` (default 50, max 200) — pagination
         applied after grouping, sorted by sample size descending.
-      * `bracket` — content bracket: `a10`, `wr30`, `wr50`, `wr75`
-        (A10-gated win-rate tiers). Omit for all runs.
+      * `bracket` — `solo`, `2p`, `3p`, `4p`, or a content bracket: `a10`,
+        `wr30`, `wr50`, `wr75` (A10-gated win-rate tiers). Omit for all
+        runs; anything else is a 400.
+      * `build_id` — one of the recent game versions the snapshot keeps a
+        slice for (e.g. `v0.107.1`); an unknown version is a 400.
       * `encounter` — comma-separated encounter ids to keep (a monster
         page asks for just its own fights). Omit for all.
 
@@ -1115,6 +1121,10 @@ _ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
 def get_entity_run_stats(
     request: Request, response: Response, entity_type: str, entity_id: str
 ):
+    """Community run stats for one card, relic, or potion: Codex Score,
+    picks, wins, win rate, pick rate, Codex Elo where one exists, plus
+    per-bracket (`brackets`) and per-character (`by_character`) splits.
+    Zero-filled when the entity hasn't shown up in a submitted run yet."""
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
@@ -1235,7 +1245,7 @@ def get_entity_scores(
     """All Codex Scores for one entity type, keyed by ID.
 
     Each entry carries the 0-100 Codex Score plus picks/wins/win_rate, and
-    for cards the Codex Elo (null for entities without one). Cards that are
+    the Codex Elo where one exists (null otherwise). Cards that are
     never a reward pick (curses, statuses, events, tokens, starters) are
     excluded. With `act` set (relics only), stats cover only pickups made
     during that act, graded against that act's baseline. Used by list pages
@@ -1370,14 +1380,17 @@ def runs_pulse(request: Request, response: Response):
 @router.get("/community-stats", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.community_stats", "60/minute"))
 def community_stats(request: Request, response: Response, bracket: str | None = None):
-    """Community / fun stats for the /community-stats page: per-event player
-    decision breakdowns, deadliest encounters/events, headline totals by
+    """Community / fun stats for the /stats hub and /stats/encounters: per-event
+    player decision breakdowns, deadliest encounters/events, headline totals by
     ascension and character, and a few records and quirks. Official game
-    content only (modded entities are filtered out). Built in the same walk
-    as the Codex Score cache, so this is an in-memory read.
+    content only (modded entities are filtered out). Served from the lake
+    when it's loaded, else from the stats snapshot, so this is an in-memory
+    read.
 
-    `bracket` slices to a content bracket (`a10`, `wr30`, `wr50`, `wr75`);
-    omit for all runs."""
+    `bracket` takes the same keys as /api/runs/metrics/{entity_type}: plain
+    keys (`solo`, `a10`, `wr50`, ...), player:skill composites, a game
+    version, or any of those composed with a version (`solo:wr50:v0.107.1`).
+    Omit it for all runs. An unknown bracket is a 400."""
     # One grammar for every bracket surface: plain keys, player:skill
     # composites, game versions, and any of those composed with a version
     # (solo:wr50:v0.107.1). Shared with the entity endpoints so this route
@@ -1512,7 +1525,7 @@ def get_entity_metrics(
     character: str | None = None,
     cohort: str | None = None,
 ):
-    """Dense metrics table for one entity type, powers /leaderboards/metrics.
+    """Dense metrics table for one entity type, powers /stats/cards, /stats/relics and /stats/potions.
 
     Each row carries the win-outcome metrics (Codex Score, Win% with a
     Wilson 95% `win_rate_ci`, `lift` = win rate minus those players' own
@@ -1531,15 +1544,15 @@ def get_entity_metrics(
     from the lake's entity cube, so it's one in-memory fold per bracket;
     the client sorts and filters the whole table locally.
 
-    `bracket` slices to a pre-built run bracket: `all` (default), `solo`,
-    `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`, plus the
-    win-rate skill tiers `wr30`/`wr50`/`wr75`. Brackets also compose with
-    game versions: a bare version is a bracket (`?bracket=v0.110.0`), and
-    any key composes with one (`?bracket=solo:wr30:v0.110.0`); the versions
-    the snapshot carries are listed by `/api/runs/versions`, and without one
-    the table spans every patch. Every bracket is materialized in the same
-    snapshot, so this stays a single cached read. `cohort` is a deprecated
-    alias for `bracket` (the param was renamed).
+    `bracket` slices to a run bracket: `all` (default), `solo`, `2p`, `3p`,
+    `4p`, `a10` (ascension 10), `daily`, `custom`, `standard`, plus the
+    win-rate skill tiers `wr30`/`wr50`/`wr75`, and composites of those
+    (`solo:standard`, `solo:a10`). Brackets also compose with game versions:
+    a bare version is a bracket (`?bracket=v0.110.0`), and any key composes
+    with one (`?bracket=solo:wr30:v0.110.0`); the versions on offer are
+    listed by `/api/runs/versions`, and without one the table spans every
+    patch. An unknown bracket is a 400, never a quiet all-runs answer.
+    `cohort` is a deprecated alias for `bracket` (the param was renamed).
 
     Source data: every submitted run at Ascension 0-10 played on an official
     character, all game modes included unless a mode bracket says otherwise,
@@ -1549,9 +1562,10 @@ def get_entity_metrics(
 
     `character` (e.g. IRONCLAD) combines with any bracket, including the
     player x skill composites: `?bracket=solo:a10&character=IRONCLAD` is
-    Ironclad's solo A10 table. Character rows carry Score and Win% only;
-    the reward-preference metrics (Elo, Pick%, offered/picked, per-act)
-    aren't tracked per character. Character views also return
+    Ironclad's solo A10 table. From the lake, character rows carry their own
+    Codex Elo (fitted over that character's choice screens only), Pick%,
+    per-act splits and lift; the snapshot fallback carries Score and Win%
+    only. Character views also return
     `character_runs` / `character_wins`, that character's own run count
     inside the bracket, next to the bracket-wide `total_runs`, so clients
     can show the character's real share. Null when the bracket carries no

@@ -329,7 +329,8 @@ def export_runs(
     characters are included.
 
     Runs are ordered by ``(submitted_at, _id)``. With no params the response
-    is the full corpus (unchanged behaviour). To pull it in reliable chunks:
+    is the full corpus, served as a redirect to the daily dump (see the last
+    note below). To pull it in reliable chunks:
 
     * ``limit=N`` bounds the page to N runs. When more runs follow, the
       response carries an ``X-Next-Cursor`` header; pass it back as

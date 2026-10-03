@@ -61,9 +61,9 @@ def player_insights(
     version: str | None = None,
     players: int | None = None,
 ):
-    """One player's public insights: their runs through the community-stats
-    accumulator with community comparison fields (the profile Insights tab,
-    public). `character` (e.g. IRONCLAD) scopes the view to that character.
+    """One player's public insights: their runs through the same
+    accumulator as /api/runs/community-stats, with community comparison
+    fields (the profile Insights tab, public). `character` (e.g. IRONCLAD) scopes the view to that character.
     404 for unknown usernames and for private profiles - the two are
     indistinguishable on purpose."""
     if not os.environ.get("MONGO_URL", "").strip():

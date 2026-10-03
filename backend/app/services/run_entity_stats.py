@@ -82,7 +82,7 @@ _SCORE_PRIOR_WEIGHT = 50
 _SCORE_SCALE_RANGE = 0.15
 
 # Codex Score → letter tier bands. Mirrors the bands documented on
-# /leaderboards/scoring so the metrics table and the scoring page agree.
+# /stats/scoring so the metrics table and the scoring page agree.
 _TIER_BANDS = (
     (90, "S"),
     (78, "A"),
@@ -2907,7 +2907,8 @@ def _character_run_totals(
 def get_entity_metrics_table(
     entity_type: str, bracket: str = "all", character: str | None = None
 ) -> dict[str, Any]:
-    """Dense per-entity metrics for the /leaderboards/metrics table.
+    """Dense per-entity metrics for the /stats/cards, /stats/relics and
+    /stats/potions tables.
 
     One row per entity carrying both the win-outcome metrics (Codex Score,
     Win%) and the revealed-preference metrics (Codex Elo, Pick%, per-act
@@ -2917,8 +2918,9 @@ def get_entity_metrics_table(
 
     `bracket` slices to a pre-built run bracket. "all" reads the top-level
     entity fields; any of _BRACKET_KEYS reads the nested per-bracket block
-    (its own picks/wins/offered/picked/elo + baseline). Unknown brackets
-    fall back to "all".
+    (its own picks/wins/offered/picked/elo + baseline). Callers validate
+    with ensure_known_bracket first, so an unknown bracket never reaches
+    here; the router answers it with a 400.
 
     `character` re-scopes every row to that character's seats within the
     bracket, so bracket=solo:a10 + character=IRONCLAD is Ironclad's solo
