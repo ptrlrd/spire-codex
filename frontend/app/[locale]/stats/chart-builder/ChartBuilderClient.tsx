@@ -7,7 +7,7 @@
 // the URL query string (defaults omitted) so an unsaved chart can be linked.
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useAuth } from "@/app/contexts/AuthContext";
 import SavedChartView from "@/app/components/SavedChartView";
@@ -120,9 +120,8 @@ export default function ChartBuilderClient() {
   const t = useT();
   const { user, loginSteam } = useAuth();
   const locale = useGameLocale();
-  const [spec, setSpec] = useState<SavedChartSpec>(() =>
-    specFromParams(new URLSearchParams(window.location.search)),
-  );
+  const [spec, setSpec] = useState<SavedChartSpec>(DEFAULT_SPEC);
+  const urlApplied = useRef(false);
   const [versions, setVersions] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [saved, setSaved] = useState<SavedChartDoc | null>(null);
@@ -135,8 +134,12 @@ export default function ChartBuilderClient() {
   const sel = useMemo(() => parseBracket(spec.bracket), [spec.bracket]);
 
   useEffect(() => {
-    const params = specToParams(spec);
-    const qs = params.toString();
+    if (!urlApplied.current) {
+      urlApplied.current = true;
+      setSpec(specFromParams(new URLSearchParams(window.location.search)));
+      return;
+    }
+    const qs = specToParams(spec).toString();
     window.history.replaceState(
       null,
       "",
