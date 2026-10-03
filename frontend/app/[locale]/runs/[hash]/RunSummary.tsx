@@ -151,6 +151,7 @@ function floorHref(floor: Floor, bp: string): string | null {
 function iconFor(
   floor: Floor,
   gt: TryGameT,
+  t: TFn,
   buildId?: string,
 ): { src: string; betaSrc?: string; tier: string; label: string } {
   const room = typedRoom(floor);
@@ -167,7 +168,7 @@ function iconFor(
       : undefined,
   });
 
-  const label = roomTitle(floor, gt) ?? roomTypeTitle(floor, gt);
+  const label = roomTitle(floor, gt) ?? roomTypeTitle(floor, gt, t);
   if (room?.type === "ENCOUNTER" && room.encounter_type === "BOSS") {
     return { ...resolve(room.id.toLowerCase()), tier, label };
   }
@@ -477,7 +478,7 @@ function MapNode({
   const t = useT();
   const gt = useTryGameTranslations();
   const [show, setShow] = useState(false);
-  const { src, betaSrc, tier, label } = iconFor(floor, gt, buildId);
+  const { src, betaSrc, tier, label } = iconFor(floor, gt, t, buildId);
   const room = typedRoom(floor);
   const ps = floor.player_stats[0];
   const relicTitle = (id: string) =>
@@ -497,7 +498,7 @@ function MapNode({
   // Click target, encounter/event detail page derived from the room.
   const href = floorHref(floor, bp);
   const turns =
-    room?.type === "ENCOUNTER"
+    room?.type === "ENCOUNTER" && room.turns_taken != null
       ? (gt("run_history.MAP_POINT_HISTORY.turnsTaken", {
           Turns: room.turns_taken,
         }) ?? `${room.turns_taken} ${t("turns")}`)
@@ -544,7 +545,7 @@ function MapNode({
         </div>
       </div>
       <div className="text-[10px] text-[var(--text-muted)] mb-1.5 capitalize">
-        {roomTypeTitle(floor, gt)}
+        {roomTypeTitle(floor, gt, t)}
         {tier && ` · ${t(TIER_LABELS[tier])}`}
         {turns && ` · ${turns}`}
       </div>

@@ -8,22 +8,41 @@ export function typedRoom(floor: Floor): Room | undefined {
   return room && "type" in room ? room : undefined;
 }
 
-/** The game's room-kind label ("Elite", "Rest Site"), falling back to the
- * raw map point type the run recorded. */
-export function roomTypeTitle(floor: Floor, gt: TryGameT): string {
+const MAP_POINT_LABELS: Record<string, string> = {
+  monster: "Monster",
+  elite: "Elite",
+  boss: "Boss",
+  event: "Event",
+  treasure: "Treasure",
+  rest_site: "Rest Site",
+  shop: "Shop",
+  ancient: "Ancient",
+  unknown: "Unknown",
+};
+
+function roomKind(floor: Floor): string | undefined {
   const room = typedRoom(floor);
-  let kind: string | undefined;
-  if (floor.floor_type === "ANCIENT") kind = "ANCIENT";
-  else if (room?.type === "ENCOUNTER") kind = room.encounter_type;
-  else if (room) kind = room.type;
-  if (kind) {
-    const unknown = floor.was_unknown
-      ? gt(`static_hover_tips.ROOM_UNKNOWN_${kind}.title`)
-      : undefined;
-    const known = unknown ?? gt(`static_hover_tips.ROOM_${kind}.title`);
-    if (known) return known;
+  if (floor.floor_type === "ANCIENT") return "ANCIENT";
+  if (room?.type === "ENCOUNTER") return room.encounter_type;
+  return room?.type;
+}
+
+/** The game's room-kind label ("Elite", "Rest Site"), then the UI catalog's
+ * label, then the raw map point type the run recorded. A room entered as
+ * "?" keeps saying so: a missing ROOM_UNKNOWN_* string falls back to the UI
+ * "Unknown" label, never to the revealed kind. */
+export function roomTypeTitle(floor: Floor, gt: TryGameT, t: TFn): string {
+  const kind = roomKind(floor);
+  if (floor.was_unknown) {
+    return (
+      (kind && gt(`static_hover_tips.ROOM_UNKNOWN_${kind}.title`)) ||
+      t(MAP_POINT_LABELS.unknown)
+    );
   }
-  return floor.raw_type;
+  const game = kind && gt(`static_hover_tips.ROOM_${kind}.title`);
+  if (game) return game;
+  const label = MAP_POINT_LABELS[floor.raw_type];
+  return label ? t(label) : floor.raw_type;
 }
 
 /** The encounter, event or ancient the floor held, by game name, then id. */

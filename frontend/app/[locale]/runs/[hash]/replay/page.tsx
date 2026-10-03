@@ -23,6 +23,7 @@ export interface ReplayRunInfo {
   run_time?: number;
   has_replay?: boolean;
   hidden?: boolean;
+  is_beta?: boolean;
   player_index?: number;
   build_id?: string;
   players?: { character?: string }[];

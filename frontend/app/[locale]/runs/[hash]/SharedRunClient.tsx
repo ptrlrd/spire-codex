@@ -584,17 +584,18 @@ export default function SharedRunClient({
                                 "var(--text-secondary)",
                             }}
                           >
-                            {roomTypeTitle(floor, gt)}
+                            {roomTypeTitle(floor, gt, t)}
                           </span>
                           <div className="flex-1 min-w-0">
                             <span className="text-[var(--text-secondary)]">
                               {roomTitle(floor, gt)}
                             </span>
-                            {room?.type === "ENCOUNTER" && (
-                              <span className="text-[var(--text-muted)] ml-1">
-                                ({room.turns_taken}T)
-                              </span>
-                            )}
+                            {room?.type === "ENCOUNTER" &&
+                              room.turns_taken != null && (
+                                <span className="text-[var(--text-muted)] ml-1">
+                                  ({room.turns_taken}T)
+                                </span>
+                              )}
                             {rested.length > 0 && (
                               <span className="text-[var(--text-secondary)] ml-1">
                                 {rested.join(", ")}

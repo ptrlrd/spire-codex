@@ -143,7 +143,7 @@ export interface EncounterRoom {
   encounter_type: EncounterType;
   id: string;
   monsters: string[];
-  turns_taken: number;
+  turns_taken?: number;
 }
 
 export interface EventRoom {

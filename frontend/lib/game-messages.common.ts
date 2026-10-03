@@ -12,7 +12,21 @@ export const RUN_PAGE_WHOLE_TABLES = [
   "rest_site_ui",
 ];
 
-export const LIVE_TABLES = ["cards", "relics", "potions", "enchantments"];
+export const LIVE_TABLES = [
+  "cards",
+  "relics",
+  "potions",
+  "enchantments",
+  "characters",
+  "gameplay_ui",
+];
+
+export const REPLAY_TABLES = [
+  ...LIVE_TABLES,
+  "monsters",
+  "encounters",
+  "events",
+];
 
 export interface GameTranslator {
   (key: string, values?: GameValues): string;
@@ -75,14 +89,27 @@ export function lookupGameMessage(
 ): string | undefined {
   if (!key || !t.has(key)) return undefined;
   const raw = t.raw(key);
-  if (typeof raw === "string") return t(key, fillMissingValues(raw, values));
+  if (typeof raw === "string") return format(t, key, raw, values);
   if (
     raw &&
     typeof raw === "object" &&
     typeof (raw as Record<string, unknown>)["!"] === "string"
   ) {
     const leaf = (raw as Record<string, string>)["!"];
-    return t(`${key}.!`, fillMissingValues(leaf, values));
+    return format(t, `${key}.!`, leaf, values);
   }
   return undefined;
+}
+
+/** Formats one pack string; an empty string, or a formatting failure that
+ * handed back the key, counts as missing so callers' fallbacks fire. */
+function format(
+  t: GameTranslator,
+  key: string,
+  raw: string,
+  values?: GameValues,
+): string | undefined {
+  if (raw === "") return undefined;
+  const out = t(key, fillMissingValues(raw, values));
+  return out === key || out === "" ? undefined : out;
 }

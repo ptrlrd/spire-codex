@@ -229,7 +229,8 @@ const cleanRoom = (raw: RawRoom): Room | undefined => {
         encounter_type,
         id: strip(raw.model_id, "ENCOUNTER"),
         monsters: (raw.monster_ids ?? []).map((m) => strip(m, "MONSTER")),
-        turns_taken: raw.turns_taken ?? 0,
+        turns_taken:
+          typeof raw.turns_taken === "number" ? raw.turns_taken : undefined,
       };
     }
   }

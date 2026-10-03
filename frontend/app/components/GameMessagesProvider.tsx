@@ -4,6 +4,7 @@ import {
   NextIntlClientProvider,
   useLocale,
   useMessages,
+  useTimeZone,
   type AbstractIntlMessages,
 } from "next-intl";
 import { useMemo, type ReactNode } from "react";
@@ -20,13 +21,20 @@ export default function GameMessagesProvider({
   children: ReactNode;
 }) {
   const locale = useLocale();
+  const timeZone = useTimeZone();
   const base = useMessages();
   const merged = useMemo(
     () => ({ ...base, [GAME_ROOT]: messages }) as AbstractIntlMessages,
     [base, messages],
   );
   return (
-    <NextIntlClientProvider locale={locale} messages={merged}>
+    <NextIntlClientProvider
+      locale={locale}
+      timeZone={timeZone}
+      messages={merged}
+      getMessageFallback={({ key }) => key}
+      onError={() => undefined}
+    >
       {children}
     </NextIntlClientProvider>
   );

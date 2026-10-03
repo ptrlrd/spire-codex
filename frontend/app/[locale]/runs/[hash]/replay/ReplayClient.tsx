@@ -42,7 +42,7 @@ import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
 import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
 import { useTryGameTranslations } from "@/lib/game-i18n";
-import { LIVE_TABLES } from "@/lib/game-messages.common";
+import { REPLAY_TABLES } from "@/lib/game-messages.common";
 
 const ENERGY_ICONS = new Set([
   "ironclad",
@@ -316,7 +316,7 @@ export default function ReplayClient(props: {
   run: ReplayRunInfo;
 }) {
   return (
-    <GameTablesProvider tables={LIVE_TABLES}>
+    <GameTablesProvider tables={REPLAY_TABLES} beta={props.run.is_beta}>
       <ReplayBody {...props} />
     </GameTablesProvider>
   );
