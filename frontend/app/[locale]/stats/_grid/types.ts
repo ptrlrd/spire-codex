@@ -9,6 +9,8 @@ export interface GridRow {
   sub: string | null;
   group: string;
   rarity: string | null;
+  hint: string | null;
+  subNote: string | null;
   color: string | null;
   imageUrl: string | null;
   upgraded: boolean;

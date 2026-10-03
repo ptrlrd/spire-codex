@@ -361,8 +361,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
             <td
               key={col.key}
               className="px-3 py-1 pl-6 text-[var(--text-primary)]"
+              title={r.hint ?? undefined}
             >
               {r.sub || r.name}
+              {r.subNote && (
+                <span className="ml-1 text-xs text-[var(--text-muted)]">
+                  · {r.subNote}
+                </span>
+              )}
             </td>
           );
         return (

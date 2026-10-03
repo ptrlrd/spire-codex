@@ -20,11 +20,22 @@ interface Catalog {
   image_url: string | null;
 }
 
+interface EventOption {
+  id: string;
+  title: string;
+  description?: string | null;
+}
+
 interface EventCatalog {
   id: string;
   name: string;
-  options?: { id: string; title: string }[];
-  pages?: { options?: { id: string; title: string }[] }[];
+  options?: EventOption[] | null;
+  pages?: { options?: EventOption[] | null }[] | null;
+}
+
+function tailOf(id: string): string {
+  const m = id.match(/_([A-Za-z0-9]+)$/);
+  return m ? m[1] : "";
 }
 
 interface ApiRow {
@@ -105,6 +116,8 @@ function baseRow(key: string, id: string, name: string): GridRow {
     sub: null,
     group: "",
     rarity: null,
+    hint: null,
+    subNote: null,
     color: null,
     imageUrl: null,
     upgraded: false,
@@ -297,15 +310,15 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     ),
   ]);
   const names = new Map<string, string>();
-  const titles = new Map<string, Record<string, string>>();
+  const options = new Map<string, Record<string, EventOption>>();
   for (const e of events || []) {
     const eid = e.id.toUpperCase();
     names.set(eid, e.name);
-    const opts: Record<string, string> = {};
-    for (const o of e.options ?? []) opts[o.id] = stripTags(o.title);
+    const opts: Record<string, EventOption> = {};
+    for (const o of e.options ?? []) opts[o.id] = o;
     for (const p of e.pages ?? [])
-      for (const o of p.options ?? []) opts[o.id] ??= stripTags(o.title);
-    titles.set(eid, opts);
+      for (const o of p.options ?? []) opts[o.id] ??= o;
+    options.set(eid, opts);
   }
   const rows: GridRow[] = [];
   for (const m of res?.rows || []) {
@@ -313,16 +326,39 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     const oid = m.option || "";
     const name = names.get(eid);
     if (!name) continue;
-    const opts = titles.get(eid) || {};
-    const title = opts[oid] ?? opts[oid.replace(/_\d+$/, "")] ?? oid;
+    const opts = options.get(eid) || {};
+    const opt = opts[oid] ?? opts[oid.replace(/_\d+$/, "")];
     const row = fillCommon(baseRow(`${eid}:${oid}`, eid, name), m);
     row.href = `/events/${eid.toLowerCase()}`;
-    row.sub = title;
+    row.sub = opt ? stripTags(opt.title) : oid;
+    row.hint = opt?.description ? stripTags(opt.description) : null;
     row.group = eid;
     row.n = m.chosen ?? 0;
     row.losses = row.wins === null ? null : Math.max(0, row.n - row.wins);
     row.share = num(m.share);
     rows.push(row);
+  }
+  const seen = new Map<string, GridRow[]>();
+  for (const r of rows) {
+    const k = `${r.group}|${r.sub}`;
+    const list = seen.get(k);
+    if (list) list.push(r);
+    else seen.set(k, [r]);
+  }
+  for (const list of seen.values()) {
+    if (list.length < 2) continue;
+    const tails = list.map((r) => tailOf(r.key.slice(r.group.length + 1)));
+    const numeric = [...new Set(tails.filter((x) => /^\d+$/.test(x)))]
+      .map(Number)
+      .sort((a, b) => a - b);
+    list.forEach((r, i) => {
+      const tail = tails[i];
+      r.subNote = /^\d+$/.test(tail)
+        ? String(numeric.indexOf(Number(tail)) + 1)
+        : tail
+          ? tail.toLowerCase()
+          : "1";
+    });
   }
   return {
     kind: "events",
