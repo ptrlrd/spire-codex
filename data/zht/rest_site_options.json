@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "再製"
+  },
+  {
+    "id": "COOK",
+    "name": "烹飪"
+  },
+  {
+    "id": "DIG",
+    "name": "挖掘"
+  },
+  {
+    "id": "HATCH",
+    "name": "孵化"
+  },
+  {
+    "id": "HEAL",
+    "name": "休息"
+  },
+  {
+    "id": "KINDLE",
+    "name": "重新點燃"
+  },
+  {
+    "id": "LIFT",
+    "name": "鍛鍊"
+  },
+  {
+    "id": "MEND",
+    "name": "療傷"
+  },
+  {
+    "id": "SMITH",
+    "name": "鍛造"
+  }
+]

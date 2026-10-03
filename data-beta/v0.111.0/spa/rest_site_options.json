@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clonar"
+  },
+  {
+    "id": "COOK",
+    "name": "Cocinar"
+  },
+  {
+    "id": "DIG",
+    "name": "Excavar"
+  },
+  {
+    "id": "HATCH",
+    "name": "Eclosionar"
+  },
+  {
+    "id": "HEAL",
+    "name": "Descansar"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Encender"
+  },
+  {
+    "id": "LIFT",
+    "name": "Entrenar"
+  },
+  {
+    "id": "MEND",
+    "name": "Sanar"
+  },
+  {
+    "id": "SMITH",
+    "name": "Forjar"
+  }
+]

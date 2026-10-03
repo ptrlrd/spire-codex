@@ -102,6 +102,12 @@ if __name__ == "__main__":
 
     parse_ancient_pools()
 
+    # Rest-site options, generated from the C# option classes so the
+    # campfire stats can reject modded choices without a hand list.
+    from rest_site_parser import main as parse_rest_site_options
+
+    parse_rest_site_options(languages)
+
     # Merchant pricing config — language-agnostic. Pulls card / potion /
     # relic / removal cost constants from the C# entry classes so the
     # frontend `/merchant` page can render from data instead of hardcoded
