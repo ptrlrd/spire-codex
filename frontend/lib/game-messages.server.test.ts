@@ -142,3 +142,20 @@ describe("fetchGameTables", () => {
     );
   });
 });
+
+describe("fillMissingValues", () => {
+  it("names text slots and zeroes numeric ones the caller did not supply", async () => {
+    const { fillMissingValues } = await import("./game-messages.common");
+    expect(fillMissingValues("Give {Relic}")).toEqual({ Relic: "Relic" });
+    expect(
+      fillMissingValues("{Cards, plural, one {card} other {cards}}"),
+    ).toEqual({
+      Cards: 0,
+    });
+    expect(fillMissingValues("Give {Relic}", { Relic: "Anchor" })).toEqual({
+      Relic: "Anchor",
+    });
+    expect(fillMissingValues("It''s '{'literal'}' text")).toBeUndefined();
+    expect(fillMissingValues("plain text")).toBeUndefined();
+  });
+});
