@@ -1,6 +1,6 @@
 # On-box analytics lab (DuckDB 1.5.5)
 
-One-shot tooling to build a Parquet lake from prod Mongo, on the box itself.
+Tooling to build a Parquet lake from prod Mongo, on the box itself.
 Nothing here touches the running services: `extract` is a throwaway container
 using the existing backend image, `duckdb` is the official `duckdb/duckdb`
 image pinned to 1.5.5. Output lands in `./lake/` (gitignored, local to the box).
@@ -50,6 +50,31 @@ larger than the memory cap, so the build needs a disk-backed database to
 spill into. `lake/build.duckdb` and `lake/tmp/` are scratch — delete them
 (and `lake/staging/` if you want the ~4GB back) once the parquet files
 exist.
+
+The build also emits the decision-level tables the metrics pages use:
+
+- `relic_choices.parquet` - one row per relic reward screen with
+  `n_options`, `n_picked`, and `is_shop` (shop screens are excluded from
+  free-choice Elo/pick rate).
+- `shop_items.parquet` - shop shelf offers with the acquisition floor.
+- `potion_events.parquet` - per-floor potion use events (feeds potion
+  use_rate).
+- `relics.parquet` gains an `is_wax` flag so wax-block copies can be
+  counted separately from Toy Box duplicates.
+
+`lake_stats` session tables (`run_depth`, `floor_curve`, `act_offsets`,
+`relic_choice_rows`) and the entity cube sections (`wax`, `potion_used`,
+`offers` per type, `offers_by_character`, `shops`, `events`, `rest`) are
+loaded from these parquet files by the lake_stats stage.
+
+## Running a single stage
+
+Every stage in `docker-compose.prod.yml` can run on its own with the
+`lake-ingest` entrypoint, e.g.:
+
+```
+docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/export_dump.py --force
+```
 
 ## 3. Query
 
@@ -123,8 +148,9 @@ docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-inge
 `player_elo_board.py` rates every linked account the way the admin board and
 profiles do (solo A10 standard runs on the official cast) and writes the top
 500 named accounts to `lake/player_elo.json`. It runs as the `player_elo`
-stage after profiles, ships with the serve files, and `/api/leaderboards/elo`
-serves the top 100 from it (min 10 rated runs by default). Standalone:
+stage after profiles, ships with the serve files, and the `/top-players`
+page serves the top 100 from it via `/api/leaderboards/elo` (min 10 rated
+runs by default). Standalone:
 
     docker compose -f docker-compose.prod.yml run --rm --entrypoint python lake-ingest /lab/player_elo_board.py
 
