@@ -56,5 +56,6 @@ export interface GridData {
   by: string;
   byCharacter: GridRow[] | null;
   query: string;
+  fromUrl?: boolean;
   available: boolean;
 }

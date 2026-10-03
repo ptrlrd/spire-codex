@@ -4,6 +4,7 @@ import { getT } from "@/lib/i18n-server";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
+import { DEFAULT_BRACKET } from "./bracket";
 import { KINDS } from "./kinds";
 import { loadGrid } from "./load";
 import StatsGrid from "./StatsGrid";
@@ -48,11 +49,12 @@ export async function GridPage({
   const data = await loadGrid(
     kind,
     locale,
-    sp.bracket || "all",
+    sp.bracket || DEFAULT_BRACKET,
     sp.character || "",
     sp.by || "",
     sp.q || "",
   );
+  data.fromUrl = Boolean(sp.bracket || sp.character || sp.by || sp.q);
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: t("Home"), href: localePath(locale, "/") },

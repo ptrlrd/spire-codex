@@ -10,6 +10,14 @@ import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
 import StatsLinks from "./StatsLinks";
 import { cohortLabel } from "./bracket";
+import {
+  clearPrefs,
+  loadPrefs,
+  moveColumn,
+  orderColumns,
+  savePrefs,
+  type GridPrefs,
+} from "./prefs";
 import { KINDS, type ColKey } from "./kinds";
 import type { GridData, GridRow } from "./types";
 
@@ -215,6 +223,10 @@ export default function StatsGrid({ data }: { data: GridData }) {
     cfg.defaultSort ?? (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]);
   const [sortKey, setSortKey] = useState<ColKey>(first);
   const [dir, setDir] = useState<1 | -1>(-1);
+  const [order, setOrder] = useState<ColKey[]>([]);
+  const [dragKey, setDragKey] = useState<ColKey | null>(null);
+  const draggedRef = useRef(false);
+  const hydratedRef = useRef(false);
   const [preview, setPreview] = useState<{
     id: string;
     upgraded: boolean;
@@ -224,30 +236,31 @@ export default function StatsGrid({ data }: { data: GridData }) {
   } | null>(null);
 
   const hasWins = rows.some((r) => r.wins !== null);
-  const columns: Column[] = cfg.columns
-    .filter((key) => (key === "wl" ? hasWins : true))
-    .map((key) => ({
-      key,
-      ...COLUMN_DEFS[key],
-      label:
-        key === "name"
-          ? cfg.nameLabel
-          : key === "n"
-            ? cfg.nLabel
-            : key === "offered"
-              ? cfg.offeredLabel
-              : COLUMN_DEFS[key].label,
-      title:
-        key === "name"
-          ? cfg.nameTitle
-          : key === "n"
-            ? cfg.nTitle
-            : key === "offered"
-              ? cfg.offeredTitle
-              : key === "share" && cfg.shareTitle
-                ? cfg.shareTitle
-                : COLUMN_DEFS[key].title,
-    }));
+  const columns: Column[] = orderColumns(
+    cfg.columns.filter((key) => (key === "wl" ? hasWins : true)),
+    order,
+  ).map((key) => ({
+    key,
+    ...COLUMN_DEFS[key],
+    label:
+      key === "name"
+        ? cfg.nameLabel
+        : key === "n"
+          ? cfg.nLabel
+          : key === "offered"
+            ? cfg.offeredLabel
+            : COLUMN_DEFS[key].label,
+    title:
+      key === "name"
+        ? cfg.nameTitle
+        : key === "n"
+          ? cfg.nTitle
+          : key === "offered"
+            ? cfg.offeredTitle
+            : key === "share" && cfg.shareTitle
+              ? cfg.shareTitle
+              : COLUMN_DEFS[key].title,
+  }));
 
   const groups = useMemo(() => {
     if (cfg.groupFilter === "color") return CARD_COLORS;
@@ -339,14 +352,101 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const upgradedCount = rows.filter((r) => r.upgraded).length;
   const canSplitByCharacter =
     kind === "cards" && cfg.showCharacter && !character;
-  const gridUrl = (on: boolean, q: string) => {
+  const gridUrl = (
+    on: boolean,
+    q: string,
+    b: string = bracket,
+    ch: string = character,
+  ) => {
     const params = new URLSearchParams();
-    if (bracket !== "all") params.set("bracket", bracket);
-    if (character) params.set("character", character);
+    params.set("bracket", b);
+    if (ch) params.set("character", ch);
     if (on) params.set("by", "character");
     if (q.trim()) params.set("q", q.trim());
-    const qs = params.toString();
-    return qs ? `${bp}${cfg.path}?${qs}` : `${bp}${cfg.path}`;
+    return `${bp}${cfg.path}?${params.toString()}`;
+  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const saved = loadPrefs(kind);
+      if (saved) {
+        if (typeof saved.showTiny === "boolean") setShowTiny(saved.showTiny);
+        if (typeof saved.showWax === "boolean") setShowWax(saved.showWax);
+        if (typeof saved.showUpgraded === "boolean")
+          setShowUpgraded(saved.showUpgraded);
+        if (saved.sortKey && saved.sortKey in COLUMN_DEFS)
+          setSortKey(saved.sortKey);
+        if (saved.dir === 1 || saved.dir === -1) setDir(saved.dir);
+        if (Array.isArray(saved.columns)) setOrder(saved.columns);
+        if (!data.fromUrl) {
+          if (typeof saved.query === "string") setSearch(saved.query);
+          const b = saved.bracket || bracket;
+          const ch = saved.character || "";
+          const on = saved.by === "character";
+          if (b !== bracket || ch !== character || on !== byCharacter)
+            router.replace(gridUrl(on, saved.query || "", b, ch), {
+              scroll: false,
+            });
+        }
+      }
+      hydratedRef.current = true;
+    }, 0);
+    return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [kind]);
+  useEffect(() => {
+    if (!hydratedRef.current) return;
+    const prefs: GridPrefs = {
+      bracket,
+      character,
+      by: byCharacter ? "character" : "",
+      query: search,
+      showTiny,
+      showWax,
+      showUpgraded,
+      sortKey,
+      dir,
+      columns: order,
+    };
+    savePrefs(kind, prefs);
+  }, [
+    kind,
+    bracket,
+    character,
+    byCharacter,
+    search,
+    showTiny,
+    showWax,
+    showUpgraded,
+    sortKey,
+    dir,
+    order,
+  ]);
+  const resetFilters = () => {
+    clearPrefs(kind);
+    setSearch("");
+    setGroup("");
+    setRarity("");
+    setShowTiny(false);
+    setShowWax(false);
+    setShowUpgraded(false);
+    setSortKey(first);
+    setDir(-1);
+    setOrder([]);
+    hydratedRef.current = false;
+    router.replace(`${bp}${cfg.path}`, { scroll: false });
+  };
+  const resetColumns = () => setOrder([]);
+  const onDragStart = (key: ColKey) => {
+    if (key === "name") return;
+    draggedRef.current = true;
+    setDragKey(key);
+  };
+  const onDropOn = (key: ColKey) => {
+    if (dragKey && dragKey !== key) {
+      const base = columns.map((c) => c.key);
+      setOrder(moveColumn(base, dragKey, key));
+    }
+    setDragKey(null);
   };
   const setByCharacter = (on: boolean) => router.push(gridUrl(on, search));
   const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -365,6 +465,10 @@ export default function StatsGrid({ data }: { data: GridData }) {
   );
 
   const onSort = (col: Column) => {
+    if (draggedRef.current) {
+      draggedRef.current = false;
+      return;
+    }
     if (!col.sortField) return;
     if (col.key === sortKey) setDir((d) => (d === 1 ? -1 : 1));
     else {
@@ -638,6 +742,26 @@ export default function StatsGrid({ data }: { data: GridData }) {
             : ""}
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
+          {" · "}
+          <button
+            type="button"
+            onClick={resetFilters}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {t("Reset filters")}
+          </button>
+          {order.length > 0 && (
+            <>
+              {" · "}
+              <button
+                type="button"
+                onClick={resetColumns}
+                className="text-[var(--accent-gold)] hover:underline"
+              >
+                {t("Reset columns")}
+              </button>
+            </>
+          )}
         </p>
         {(scoreBaseline !== null || seatBaseline !== null) && (
           <p className="mt-1 text-xs text-[var(--text-muted)]">
@@ -780,9 +904,27 @@ export default function StatsGrid({ data }: { data: GridData }) {
                   key={col.key}
                   title={t(col.title)}
                   onClick={() => onSort(col)}
+                  draggable={col.key !== "name"}
+                  onDragStart={(e) => {
+                    e.dataTransfer.effectAllowed = "move";
+                    onDragStart(col.key);
+                  }}
+                  onDragOver={(e) => {
+                    if (dragKey) e.preventDefault();
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    onDropOn(col.key);
+                  }}
+                  onDragEnd={() => {
+                    setDragKey(null);
+                    setTimeout(() => {
+                      draggedRef.current = false;
+                    }, 0);
+                  }}
                   className={`px-3 py-2 font-medium select-none cursor-help ${
                     col.sortField ? "hover:text-[var(--accent-gold)]" : ""
-                  } ${
+                  } ${dragKey === col.key ? "opacity-50" : ""} ${
                     col.align === "right"
                       ? "text-right"
                       : col.align === "center"

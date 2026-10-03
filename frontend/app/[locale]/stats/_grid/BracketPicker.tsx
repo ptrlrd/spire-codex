@@ -48,7 +48,7 @@ export default function BracketPicker({
 
   const nav = (key: string, char: string) => {
     const params = new URLSearchParams();
-    if (key !== "all") params.set("bracket", key);
+    params.set("bracket", key);
     if (char) params.set("character", char);
     const qs = params.toString();
     router.push(qs ? `${bp}${basePath}?${qs}` : `${bp}${basePath}`);

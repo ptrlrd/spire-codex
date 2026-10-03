@@ -1,5 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { isValidBracket } from "@/app/[locale]/stats/_grid/bracket";
+import {
+  DEFAULT_BRACKET,
+  isValidBracket,
+  parseBracket,
+} from "@/app/[locale]/stats/_grid/bracket";
 
 describe("metrics bracket validation", () => {
   it("accepts the keys the page offers", () => {
@@ -24,5 +28,16 @@ describe("metrics bracket validation", () => {
     expect(isValidBracket("solo:a10:wr30")).toBe(false);
     expect(isValidBracket("solo:a10:garbage")).toBe(false);
     expect(isValidBracket("bogus:bracket")).toBe(false);
+  });
+
+  it("defaults a grid without ?bracket to standard solo runs", () => {
+    expect(DEFAULT_BRACKET).toBe("solo:standard");
+    expect(isValidBracket(DEFAULT_BRACKET)).toBe(true);
+    expect(parseBracket(DEFAULT_BRACKET)).toEqual({
+      player: "solo",
+      skill: "",
+      mode: "standard",
+      version: "",
+    });
   });
 });
