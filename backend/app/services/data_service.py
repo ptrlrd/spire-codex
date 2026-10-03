@@ -119,7 +119,7 @@ def _get_version() -> str | None:
 
 
 @lru_cache(maxsize=2048)
-def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[dict]:
+def _load_json_versioned(lang: str, entity: str, version: str | None) -> list | dict:
     """Load a parsed JSON data file, keyed by (lang, entity, version) for caching.
 
     The timing here only fires on cache misses — `@lru_cache` short-circuits
@@ -140,7 +140,7 @@ def _load_json_versioned(lang: str, entity: str, version: str | None) -> list[di
 
 
 @lru_cache(maxsize=2048)
-def _load_json_beta(lang: str, entity: str, beta_version: str) -> list[dict]:
+def _load_json_beta(lang: str, entity: str, beta_version: str) -> list | dict:
     """Beta-channel load, keyed by the actual beta version so a new beta drop
     invalidates naturally. Falls back per file to the stable tree when the
     beta tree lacks it (a beta drop that didn't change relics still serves
@@ -436,3 +436,18 @@ def get_stats(lang: str = DEFAULT_LANG) -> dict:
         "ascensions": len(load_ascensions(lang)),
         "images": count_images(),
     }
+
+
+def load_localization_pack(lang: str = DEFAULT_LANG) -> dict:
+    """The game's localization tables for a language as one next-intl pack,
+    {table: nested ICU messages}; empty when no pack was generated."""
+    pack = _load_json(lang, "messages")
+    return pack if isinstance(pack, dict) else {}
+
+
+def load_localization(lang: str = DEFAULT_LANG, table: str = "") -> dict | None:
+    return load_localization_pack(lang).get(table)
+
+
+def localization_table_names(lang: str = DEFAULT_LANG) -> list[str]:
+    return sorted(load_localization_pack(lang))
