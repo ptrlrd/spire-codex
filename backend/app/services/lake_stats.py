@@ -302,18 +302,16 @@ GROUP BY 1, 2, 3
 """
 
 _CUBE_EVENTS_SQL = """
-SELECT c.cell, split_part(ec.u.title."key", '.', 1),
-  split_part(split_part(ec.u.title."key", '.options.', 2), '.', 1),
-  count(*), count(*) FILTER (c.win),
-  count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
+SELECT h.cell, split_part((ec.u).title."key", '.', 1),
+  split_part(split_part((ec.u).title."key", '.options.', 2), '.', 1),
+  count(*), count(*) FILTER (h.win),
+  count(x.exp), count(*) FILTER (h.win AND x.exp IS NOT NULL),
   round(coalesce(sum(x.exp), 0), 3)
-FROM read_parquet('{lake}/floors.parquet') f
-JOIN cells c ON f.run_hash = c.run_hash
-LEFT JOIN run_exp x ON f.run_hash = x.run_hash,
-LATERAL (SELECT unnest(f.players) AS u) ps,
-LATERAL (SELECT unnest(ps.u.event_choices) AS u) ec
-WHERE ec.u.title."table" = 'events'
-  AND ec.u.title."key" LIKE '%.options.%'
+FROM pfloors h
+LEFT JOIN run_exp x ON h.run_hash = x.run_hash,
+LATERAL (SELECT unnest((h.p).event_choices) AS u) ec
+WHERE (ec.u).title."table" = 'events'
+  AND (ec.u).title."key" LIKE '%.options.%'
 GROUP BY 1, 2, 3
 """
 
@@ -1786,9 +1784,7 @@ def build_entity_cube(con=None) -> dict:
                     float(counts[5] or 0.0),
                 ]
         events: dict[str, dict] = {}
-        for cell, eid, oid, *counts in con.execute(
-            _CUBE_EVENTS_SQL.format(lake=LAKE_DIR)
-        ).fetchall():
+        for cell, eid, oid, *counts in con.execute(_CUBE_EVENTS_SQL).fetchall():
             if eid and oid:
                 events.setdefault(cell, {}).setdefault(eid, {})[oid] = [
                     int(counts[0]),

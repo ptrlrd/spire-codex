@@ -3219,7 +3219,6 @@ def get_shop_metrics_table(bracket: str = "all") -> dict[str, Any]:
     seats that bought it fared."""
     fold = _section_table("shops", bracket)
     rows: list[dict[str, Any]] = []
-    shop_visits = 0
     if fold:
         official = {t: _official_entity_ids(t) for t in ("cards", "relics", "potions")}
         for etype, ids in (fold["rows"] or {}).items():
@@ -3248,7 +3247,6 @@ def get_shop_metrics_table(bracket: str = "all") -> dict[str, Any]:
         "total_runs": (fold or {}).get("total_runs", 0),
         "total_seats": (fold or {}).get("total_seats", 0),
         "total_wins": (fold or {}).get("total_wins", 0),
-        "shop_visits": shop_visits,
         "data_through": (fold or {}).get("data_through"),
         "rows": rows,
     }
