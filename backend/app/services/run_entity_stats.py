@@ -3385,14 +3385,33 @@ def get_event_metrics_table(bracket: str = "all") -> dict[str, Any]:
     }
 
 
-def get_campfire_metrics_table(bracket: str = "all") -> dict[str, Any]:
+def _rest_site_names(lang: str) -> dict[str, str]:
+    try:
+        from .data_service import load_rest_site_options
+
+        return {
+            (o.get("id") or "").upper(): o["name"]
+            for o in load_rest_site_options(lang)
+            if o.get("id") and o.get("name")
+        }
+    except Exception:
+        return {}
+
+
+def get_campfire_metrics_table(
+    bracket: str = "all", lang: str = "eng"
+) -> dict[str, Any]:
     """Rest-site choice rows for one bracket: how often each action was
     taken, its share of all campfire choices, the share taken below half
-    HP, and how the seats that took it fared."""
+    HP, and how the seats that took it fared. `name` is the option's title
+    in `lang` (English when untranslated, the id when unknown)."""
     fold = _section_table("campfires", bracket)
     rows: list[dict[str, Any]] = []
     if fold:
         official = _official_rest_site_ids()
+        names = _rest_site_names(lang)
+        if lang != "eng":
+            names = {**_rest_site_names("eng"), **names}
         choices = {
             choice: counts
             for choice, counts in (fold["rows"] or {}).items()
@@ -3404,6 +3423,7 @@ def get_campfire_metrics_table(bracket: str = "all") -> dict[str, Any]:
             rows.append(
                 {
                     "choice": choice,
+                    "name": names.get(choice) or choice.title(),
                     "chosen": chosen,
                     "share": round(chosen / total * 100, 1) if total else None,
                     "wins": wins,

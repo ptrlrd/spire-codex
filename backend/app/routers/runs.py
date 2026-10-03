@@ -8,10 +8,10 @@ import time
 from functools import lru_cache
 from pathlib import Path
 from typing import Literal
-from fastapi import APIRouter, HTTPException, Query, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pymongo.errors import ExecutionTimeout
 from starlette.concurrency import run_in_threadpool
-from ..dependencies import shared_limiter
+from ..dependencies import get_lang, shared_limiter
 from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
@@ -1468,10 +1468,16 @@ def get_event_metrics(request: Request, response: Response, bracket: str = "all"
 @limiter.limit(
     rate_limit_config.endpoint_limit("runs.get_campfire_metrics", "60/minute")
 )
-def get_campfire_metrics(request: Request, response: Response, bracket: str = "all"):
+def get_campfire_metrics(
+    request: Request,
+    response: Response,
+    bracket: str = "all",
+    lang: str = Depends(get_lang),
+):
     """Rest-site choice table for one run bracket, powers /stats/campfires.
 
-    One row per choice (REST, SMITH, ...): `chosen` seats, `share` of all
+    One row per choice (HEAL, SMITH, ...) with its `name` in `lang`:
+    `chosen` seats, `share` of all
     campfire choices, `low_hp_share` (chosen below half HP), `wins` and the
     win rate with a Wilson `win_rate_ci`, and `lift` against the
     floor-adjusted expectation at the campfire's floor (null under 20
@@ -1479,7 +1485,7 @@ def get_campfire_metrics(request: Request, response: Response, bracket: str = "a
     unknown bracket is a 400.
     """
     try:
-        table = get_campfire_metrics_table(bracket)
+        table = get_campfire_metrics_table(bracket, lang)
     except UnknownBracket as e:
         raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
     _section_cache_control(response)

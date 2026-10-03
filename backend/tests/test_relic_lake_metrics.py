@@ -568,3 +568,29 @@ def test_modded_relic_dropped_before_pairing(modded_lake):
     offers = lake_stats.entity_bracket_fold("relics", "solo")["offers"]
     assert "MOD_RELIC" not in offers
     assert offers["ANCHOR"]["offered"] == 4
+
+
+def test_campfire_rows_carry_localized_names(lake, monkeypatch):
+    from app.services import data_service
+
+    monkeypatch.setattr(
+        data_service,
+        "load_rest_site_options",
+        lambda lang="eng": [
+            {"id": "HEAL", "name": "Rest" if lang == "eng" else "Ruhe"}
+        ],
+    )
+    eng = res.get_campfire_metrics_table("all", "eng")["rows"]
+    assert next(r for r in eng if r["choice"] == "HEAL")["name"] == "Rest"
+    assert next(r for r in eng if r["choice"] == "SMITH")["name"] == "Smith"
+    deu = res.get_campfire_metrics_table("all", "deu")["rows"]
+    assert next(r for r in deu if r["choice"] == "HEAL")["name"] == "Ruhe"
+    monkeypatch.setattr(res, "_section_table", lambda name, bracket: None)
+    from fastapi.testclient import TestClient as _TC
+
+    from app.main import app
+
+    r = _TC(app, raise_server_exceptions=False).get(
+        "/api/runs/metrics/campfires?lang=deu"
+    )
+    assert r.status_code == 200 and r.json()["rows"] == []
