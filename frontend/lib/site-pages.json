@@ -292,6 +292,11 @@
     ]
   },
   {
+    "path": "/stats/chart-builder",
+    "name": "Chart builder",
+    "keywords": ["stats", "chart", "builder", "share"]
+  },
+  {
     "path": "/stats/charts",
     "name": "Run Charts",
     "keywords": ["stats", "charts", "explorer"]

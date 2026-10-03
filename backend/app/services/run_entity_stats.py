@@ -2561,18 +2561,6 @@ def is_valid_stat_bracket(bracket: str | None) -> bool:
     return bool(sep) and ver in versions and base in _BRACKET_KEYS
 
 
-class UnknownBracket(ValueError):
-    """Raised by ensure_known_bracket for brackets no snapshot slice has."""
-
-
-def ensure_known_bracket(bracket: str | None) -> str:
-    """Validate ?bracket= for endpoints that must hard-fail (saved charts):
-    returns the bracket or raises UnknownBracket."""
-    if not is_valid_stat_bracket(bracket):
-        raise UnknownBracket(bracket)
-    return bracket
-
-
 _SERIES_BRACKETS = ("all", "a10", "wr30", "wr50", "wr75", "solo", "2p", "3p", "4p")
 
 

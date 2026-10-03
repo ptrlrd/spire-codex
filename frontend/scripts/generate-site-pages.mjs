@@ -143,6 +143,10 @@ export const PAGE_OVERRIDES = {
     keywords: ["metrics", "elo", "relic", "pick rate", "win rate", "wax"],
   },
   "/stats/charts": { name: "Run Charts", keywords: ["charts", "explorer"] },
+  "/stats/chart-builder": {
+    name: "Chart builder",
+    keywords: ["chart", "builder", "share"],
+  },
   "/stats/shops": {
     name: "Shop Stats",
     keywords: ["shop", "merchant", "bought", "purchase", "buy rate"],

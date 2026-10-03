@@ -17,7 +17,7 @@ import {
   parseBracket,
   PLAYER_AXIS,
   SKILL_AXIS,
-} from "@/app/[locale]/leaderboards/metrics/MetricsClient";
+} from "@/app/[locale]/stats/_grid/bracket";
 import {
   CHART_CHARACTERS,
   CHART_SOURCES,
