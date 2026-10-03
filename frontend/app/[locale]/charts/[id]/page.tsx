@@ -2,10 +2,11 @@ import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
 import { localeOf } from "@/lib/locale";
 import { Link } from "@/i18n/navigation";
-import { buildPageMetadata, pageHeading } from "@/lib/seo";
+import { buildPageMetadata } from "@/lib/seo";
 import SavedChartView from "@/app/components/SavedChartView";
 import PrivateChartGate from "./PrivateChartGate";
-import type { SavedChartDoc } from "@/lib/saved-chart-spec";
+import type { MetricKey, SavedChartDoc } from "@/lib/saved-chart-spec";
+import { METRIC_LABELS } from "@/lib/chart-metric-labels";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -63,7 +64,7 @@ export default async function SavedChartPage({ params }: Props) {
   const sentence = t("Top {top} {source} by {metric} for {cohort}.")
     .replace("{top}", String(spec.top))
     .replace("{source}", t(spec.source))
-    .replace("{metric}", spec.y)
+    .replace("{metric}", t(METRIC_LABELS[spec.y as MetricKey] ?? spec.y))
     .replace("{cohort}", cohort);
 
   return (
