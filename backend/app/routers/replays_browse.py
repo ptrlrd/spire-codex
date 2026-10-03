@@ -52,7 +52,12 @@ def browse_replays(
     limit: int = 50,
 ):
     """Runs that have a replay to watch, newest first. Same filters and row
-    shape as /api/runs/list; each row also carries `replay_url`."""
+    shape as /api/runs/list; each row also carries `replay_url`.
+
+    Responses carry `total_is_lower_bound`: true when the exact filtered
+    count exceeded its time budget and `total` is a capped lower bound
+    (10,000), false when `total` is exact.
+    """
     if username:
         username = username.strip().lower()
     if character:

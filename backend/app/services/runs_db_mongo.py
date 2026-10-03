@@ -48,7 +48,7 @@ from pathlib import Path
 from typing import Any
 
 from pymongo import ASCENDING, DESCENDING, MongoClient
-from pymongo.errors import DuplicateKeyError
+from pymongo.errors import DuplicateKeyError, ExecutionTimeout, OperationFailure
 
 from ..metrics import db_operations, db_operation_duration
 from . import cache as app_cache
@@ -2336,6 +2336,7 @@ def refresh_leaderboard_summary() -> int:
                 today=False,
                 page=1,
                 limit=LEADERBOARD_BOARD_ROWS,
+                max_time_ms=5000,
             )
             key = _leaderboard_key(
                 category=category,
@@ -2509,6 +2510,50 @@ def get_user_winrates() -> dict[str, list[int]]:
     return out
 
 
+def count_with_budget(
+    coll,
+    query: dict,
+    *,
+    max_time_ms: int = 1500,
+    cap: int = 10_000,
+) -> tuple[int, bool]:
+    """Exact count for a browse query, without the multi-second scan an
+    unfiltered count over millions of heavyweight docs costs.
+
+    count_documents runs with maxTimeMS; a server timeout (code 50) means
+    the exact count is too expensive right now, so the capped count comes
+    back instead: (cap-capped total, True) — a lower bound, enough to keep
+    pagination working. Exact answers are (n, False).
+
+    Filtered results are cached in Redis for 120s under a stable hash of
+    the collection name and the normalized query, so repeated pages of the
+    same browse never re-count. Unfiltered totals keep the instant
+    estimated_document_count and never reach this helper.
+    """
+    coll_name = getattr(coll, "name", "") or ""
+    key = (
+        "count_budget:"
+        + hashlib.sha256(
+            json.dumps(
+                {"c": coll_name, "q": query}, sort_keys=True, default=str
+            ).encode()
+        ).hexdigest()
+    )
+    cached = app_cache.get_json(key)
+    if cached is not None:
+        return int(cached[0]), bool(cached[1])
+    try:
+        out = (coll.count_documents(query, maxTimeMS=max_time_ms), False)
+    except ExecutionTimeout:
+        out = (coll.count_documents(query, limit=cap), True)
+    except OperationFailure as exc:
+        if getattr(exc, "code", None) != 50:
+            raise
+        out = (coll.count_documents(query, limit=cap), True)
+    app_cache.set_json(key, list(out), ttl_seconds=120)
+    return out
+
+
 @_instrument("list_runs")
 def list_runs(
     character: str | None = None,
@@ -2579,6 +2624,7 @@ def list_runs(
                 "page": max(page, 1),
                 "per_page": min(limit, 100),
                 "total_pages": 0,
+                "total_is_lower_bound": False,
             }
         if not username:
             q["username_lower"] = {"$in": names}
@@ -2652,12 +2698,13 @@ def list_runs(
 
     # Counting was the hidden cost: count_documents({}) walks all 216k+
     # heavyweight docs (~8s). Unfiltered uses the instant metadata count;
-    # filtered counts stop at 10k, which caps pagination far beyond what
-    # anyone pages through anyway.
+    # filtered counts get a time budget and fall back to a capped lower
+    # bound the frontend labels "more than 10,000".
     if q:
-        total = coll.count_documents(q, limit=10_000)
+        total, total_is_lower_bound = count_with_budget(coll, q)
     else:
         total = coll.estimated_document_count()
+        total_is_lower_bound = False
     per_page = min(limit, 100)
     offset = (max(page, 1) - 1) * per_page
     cursor = (
@@ -2671,6 +2718,7 @@ def list_runs(
         "page": max(page, 1),
         "per_page": per_page,
         "total_pages": (total + per_page - 1) // per_page,
+        "total_is_lower_bound": total_is_lower_bound,
     }
 
 
@@ -2944,6 +2992,7 @@ def _leaderboard_live(
     ascension_min: int | None = None,
     winrate_min: float | None = None,
     build_id: str | None = None,
+    max_time_ms: int = 1500,
 ) -> dict:
     """Live leaderboard query -- the original implementation, used directly
     by refresh_leaderboard_summary and as the fallback when the summary
@@ -3005,20 +3054,23 @@ def _leaderboard_live(
 
     # Counting was the hidden cost: count_documents({}) walks all 216k+
     # heavyweight docs (~8s). Unfiltered uses the instant metadata count;
-    # filtered counts stop at 10k, which caps pagination far beyond what
-    # anyone pages through anyway. The hidden exclusion is subtracted per
-    # _count_visible rather than kept in the count query: hidden: {$ne: True}
-    # disqualifies the covering index and fetches every candidate doc, a cost
-    # refresh_leaderboard_summary pays for all 24 combos every cycle.
+    # filtered counts get a time budget and fall back to a capped lower
+    # bound the frontend labels "more than 10,000". The hidden exclusion is
+    # subtracted per _count_visible rather than kept in the count query:
+    # hidden: {$ne: True} disqualifies the covering index and fetches every
+    # candidate doc, a cost refresh_leaderboard_summary pays for all 24
+    # combos every cycle.
     if q:
         base_q = {k: v for k, v in q.items() if k != "hidden"}
-        total = max(
-            coll.count_documents(base_q, limit=10_000)
-            - coll.count_documents({**base_q, "hidden": True}, limit=10_000),
-            0,
+        visible, visible_lb = count_with_budget(coll, base_q, max_time_ms=max_time_ms)
+        hidden_count, hidden_lb = count_with_budget(
+            coll, {**base_q, "hidden": True}, max_time_ms=max_time_ms
         )
+        total = max(visible - hidden_count, 0)
+        total_is_lower_bound = visible_lb or hidden_lb
     else:
         total = coll.estimated_document_count()
+        total_is_lower_bound = False
     per_page = min(limit, 100)
     offset = (max(page, 1) - 1) * per_page
     cursor = (
@@ -3032,6 +3084,7 @@ def _leaderboard_live(
         "page": max(page, 1),
         "per_page": per_page,
         "total_pages": (total + per_page - 1) // per_page,
+        "total_is_lower_bound": total_is_lower_bound,
         "category": category,
     }
 
