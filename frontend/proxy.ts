@@ -207,7 +207,7 @@ function movedPageRedirect(req: NextRequest): NextResponse | null {
   const target = new URL(req.nextUrl.origin);
   target.pathname = [...parts.slice(0, i), ...to.slice(1).split("/")].join("/");
   target.search = req.nextUrl.search;
-  return NextResponse.redirect(target, 308);
+  return NextResponse.redirect(target, 301);
 }
 
 function localeRewrite(req: NextRequest): NextResponse {

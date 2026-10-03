@@ -73,6 +73,7 @@ interface ApiRow {
   option?: string;
   chosen?: number;
   choice?: string;
+  name?: string | null;
 }
 
 interface ApiResponse {
@@ -374,14 +375,17 @@ async function loadCampfires(lang: string, bracket: string): Promise<GridData> {
   const [t, res] = await Promise.all([
     getT(lang as Parameters<typeof getT>[0]),
     fetchJson<ApiResponse>(
-      `${API_INTERNAL}/api/runs/metrics/campfires?bracket=${bracket}`,
+      `${API_INTERNAL}/api/runs/metrics/campfires?bracket=${bracket}&lang=${lang}`,
     ),
   ]);
   const rows: GridRow[] = [];
   for (const m of res?.rows || []) {
     const cid = (m.choice || "").toUpperCase();
     if (!cid) continue;
-    const row = fillCommon(baseRow(cid, cid, restSiteLabel(cid, t)), m);
+    const row = fillCommon(
+      baseRow(cid, cid, m.name || restSiteLabel(cid, t)),
+      m,
+    );
     row.group = cid;
     row.n = m.chosen ?? 0;
     row.losses = row.wins === null ? null : Math.max(0, row.n - row.wins);

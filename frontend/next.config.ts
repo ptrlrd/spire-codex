@@ -32,11 +32,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       ...Object.entries(MOVED_PAGES).flatMap(([from, to]) => [
-        { source: from, destination: to, permanent: true },
+        { source: from, destination: to, statusCode: 301 },
         {
           source: `/:lang(${LANGS})${from}`,
           destination: `/:lang${to}`,
-          permanent: true,
+          statusCode: 301,
         },
       ]),
     ];
