@@ -9,6 +9,7 @@ import RunDropZone from "@/app/components/RunDropZone";
 import ProfileStats from "@/app/components/ProfileStats";
 import { SupporterBadge } from "@/app/components/SupporterBadge";
 import { forgetFlair } from "@/lib/supporter-flair";
+import MyChartsSection from "@/app/components/MyChartsSection";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -408,6 +409,9 @@ export default function ProfileClient() {
           </div>
         )}
       </section>
+
+      {/* Saved charts */}
+      <MyChartsSection />
 
       {/* Public profile */}
       {user.username && profilePrivate !== null && (

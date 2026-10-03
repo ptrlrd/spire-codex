@@ -17,13 +17,17 @@ import re
 import time
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Literal
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
-
 from ..services import cache as app_cache
 from ..services import charts_stats as cs
+
 from ..services.run_entity_stats import (
     _BRACKET_KEYS,
+    UnknownBracket,
+    ensure_known_bracket,
     get_charts_blob_stats,
     get_recent_stat_versions,
 )
@@ -650,6 +654,133 @@ def prewarm_charts(budget_s: float | None = None) -> int:
     return warmed
 
 
+# ── saved charts (chart builder) ─────────────────────────────────────────
+
+
+class SavedChartFilters(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    search: str | None = Field(None, max_length=60)
+    group: str | None = Field(None, max_length=30)
+    rarity: str | None = Field(None, max_length=30)
+    min_sample: int | None = Field(None, ge=0, le=100000)
+
+
+class SavedChartSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source: Literal["cards", "relics", "potions", "shops", "events", "campfires"]
+    bracket: str = Field(max_length=80)
+    character: (
+        Literal["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] | None
+    ) = None
+    chart: Literal["bar", "scatter", "hbar"]
+    x: str = Field(max_length=80)
+    y: Literal[
+        "win_rate",
+        "lift",
+        "elo",
+        "pick_rate",
+        "hold_rate",
+        "picks",
+        "score",
+        "buy_rate",
+        "share",
+        "use_rate",
+    ]
+    filters: SavedChartFilters = Field(default_factory=SavedChartFilters)
+    top: int = Field(25, ge=5, le=100)
+    sort: Literal["asc", "desc"]
+
+
+class SavedChartCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str = Field(min_length=1, max_length=80)
+    spec: SavedChartSpec
+    public: bool = False
+
+
+class SavedChartPatch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str | None = Field(None, min_length=1, max_length=80)
+    public: bool | None = None
+    spec: SavedChartSpec | None = None
+
+
+def _validated_spec(body: SavedChartCreate | SavedChartPatch) -> dict | None:
+    """Model-validated spec dict with the bracket resolved against the
+    materialized snapshot slices; raises UnknownBracket past the wrapper."""
+    spec = body.spec
+    if spec is None:
+        return None
+    ensure_known_bracket(spec.bracket)
+    return spec.model_dump(exclude_none=True)
+
+
+def _bearer_steam_id(request: Request) -> str:
+    auth_header = request.headers.get("authorization") or ""
+    if not auth_header.lower().startswith("bearer "):
+        raise HTTPException(status_code=401, detail="auth required")
+    from ..services.auth_jwt import decode_token
+
+    claims = decode_token(auth_header[7:].strip())
+    steam_id = str((claims or {}).get("steam_id") or "")
+    if not steam_id.isdigit():
+        raise HTTPException(status_code=401, detail="invalid token")
+    return steam_id
+
+
+def _chart_public_doc(doc: dict, include_owner: bool = False) -> dict:
+    from ..services.users_db import get_user_by_steam_id
+
+    out = {
+        "id": doc["_id"],
+        "title": doc.get("title", ""),
+        "spec": doc.get("spec", {}),
+        "public": bool(doc.get("public")),
+        "created_at": _iso(doc.get("created_at")),
+        "updated_at": _iso(doc.get("updated_at")),
+        "views": int(doc.get("views", 0)),
+    }
+    if include_owner:
+        owner = get_user_by_steam_id(doc.get("owner_steam_id", ""))
+        out["owner_name"] = (owner or {}).get("username") or None
+    return out
+
+
+def _iso(value) -> str | None:
+    return value.isoformat() if hasattr(value, "isoformat") else None
+
+
+@router.get("/mine", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.my_saved", "60/minute"))
+def my_saved_charts(request: Request, response: Response):
+    """The signed-in player's saved charts, newest first. Scoped to the
+    JWT's verified steam_id; never accepts an arbitrary steam_id param."""
+    steam_id = _bearer_steam_id(request)
+    from ..services.runs_db_mongo import list_saved_charts_for_owner
+
+    response.headers["Cache-Control"] = "no-store"
+    return [_chart_public_doc(d) for d in list_saved_charts_for_owner(steam_id)]
+
+
+@router.get("/public", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.public_saved", "60/minute"))
+def public_saved_charts(
+    request: Request, response: Response, limit: int = Query(12, ge=1, le=50)
+):
+    """Newest public saved charts, for the builder's Recently shared shelf."""
+    from ..services.runs_db_mongo import list_public_saved_charts
+
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return [
+        _chart_public_doc(d, include_owner=True)
+        for d in list_public_saved_charts(limit)
+    ]
+
+
 @router.get("/{chart_key}")
 @limiter.limit(rate_limit_config.endpoint_limit("charts.get_chart", "120/minute"))
 def get_chart(
@@ -690,6 +821,10 @@ def get_chart(
     charts, their filters, splits, and the run stats usable for stat/x/y."""
     spec = CHARTS.get(chart_key)
     if not spec:
+        saved = _get_saved_chart_response(chart_key, request)
+        if saved is not None:
+            response.headers["Cache-Control"] = "no-store"
+            return saved
         raise HTTPException(status_code=404, detail=f"Unknown chart '{chart_key}'")
     # Brackets now apply to both frame and blob charts (the blob is accumulated
     # per bracket in the snapshot).
@@ -753,3 +888,105 @@ def get_chart(
         response.headers["Cache-Control"] = "no-store"
     app_cache.set_json(cache_key, payload, 30 if payload["building"] else _CACHE_TTL)
     return payload
+
+
+def _get_saved_chart_response(chart_id: str, request: Request) -> dict | None:
+    """Serve a saved chart by id when the catch-all key isn't an explorer
+    chart: public docs go to anyone (and count a view), private ones only
+    to the verified owner. None when there's no matching saved chart."""
+    from ..services.runs_db_mongo import get_saved_chart, increment_saved_chart_views
+
+    if len(chart_id) != 10 or not all(c.isalnum() or c in "-_" for c in chart_id):
+        return None
+    doc = get_saved_chart(chart_id)
+    if not doc:
+        return None
+    if doc.get("public"):
+        increment_saved_chart_views(chart_id)
+        doc = get_saved_chart(chart_id) or doc
+        return _chart_public_doc(doc, include_owner=True)
+    try:
+        steam_id = _bearer_steam_id(request)
+    except HTTPException:
+        return None
+    if doc.get("owner_steam_id") != steam_id:
+        return None
+    out = _chart_public_doc(doc)
+    out["owner_view"] = True
+    return out
+
+
+@router.post("", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.save", "20/minute"))
+async def save_chart(request: Request, response: Response):
+    """Save a chart spec to the signed-in player's profile. Capped at 100
+    charts per owner; the metrics data itself is not stored — the share
+    page re-reads the live metrics API."""
+    steam_id = _bearer_steam_id(request)
+    body = await _parse_body(request, SavedChartCreate)
+    try:
+        spec = _validated_spec(body)
+    except UnknownBracket:
+        raise HTTPException(status_code=400, detail="bad bracket")
+    from ..services.runs_db_mongo import count_saved_charts, create_saved_chart
+
+    if count_saved_charts(steam_id) >= 100:
+        raise HTTPException(status_code=409, detail="saved chart limit reached")
+    doc = create_saved_chart(steam_id, body.title, spec)
+    response.headers["Cache-Control"] = "no-store"
+    return _chart_public_doc(doc)
+
+
+@router.patch("/{chart_id}", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.patch_saved", "60/minute"))
+async def patch_saved_chart(request: Request, response: Response, chart_id: str):
+    """Owner-only update of title, visibility, or the spec."""
+    steam_id = _bearer_steam_id(request)
+    body = await _parse_body(request, SavedChartPatch)
+    try:
+        spec = _validated_spec(body)
+    except UnknownBracket:
+        raise HTTPException(status_code=400, detail="bad bracket")
+    from ..services.runs_db_mongo import update_saved_chart
+
+    fields: dict = {}
+    if body.title is not None:
+        fields["title"] = body.title
+    if body.public is not None:
+        fields["public"] = body.public
+    if spec is not None:
+        fields["spec"] = spec
+    doc = update_saved_chart(chart_id, steam_id, fields)
+    if not doc:
+        raise HTTPException(status_code=404, detail="chart not found")
+    response.headers["Cache-Control"] = "no-store"
+    return _chart_public_doc(doc)
+
+
+@router.delete("/{chart_id}", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.delete_saved", "60/minute"))
+def delete_saved_chart(request: Request, response: Response, chart_id: str):
+    """Owner-only delete."""
+    steam_id = _bearer_steam_id(request)
+    from ..services.runs_db_mongo import delete_saved_chart as _delete
+
+    if not _delete(chart_id, steam_id):
+        raise HTTPException(status_code=404, detail="chart not found")
+    response.headers["Cache-Control"] = "no-store"
+    return {"success": True}
+
+
+async def _parse_body(request: Request, model: type[BaseModel]):
+    """Parse + validate a JSON body into `model`, mapping malformed JSON or
+    spec violations to 400 (not FastAPI's default 422)."""
+    import json as _json
+    from pydantic import ValidationError
+
+    try:
+        raw = _json.loads((await request.body()) or b"{}")
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    try:
+        return model.model_validate(raw)
+    except ValidationError as exc:
+        raise HTTPException(status_code=400, detail=str(exc.errors()[:3]))
