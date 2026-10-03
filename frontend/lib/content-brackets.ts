@@ -68,7 +68,7 @@ const _SKILL_KEYS = new Set(
  * player and skill axes everywhere.
  */
 export function isVersionBracket(raw: string | undefined | null): boolean {
-  return !!raw && /^v\d+(\.\d+)*$/.test(raw);
+  return !!raw && /^v\d+(\.\d+)*(-rc\.\d+)?$/.test(raw);
 }
 
 /** The bracket value minus any trailing version segment ("" for a bare

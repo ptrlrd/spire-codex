@@ -952,6 +952,8 @@ def get_encounter_series_endpoint(request: Request, response: Response, encounte
 def get_run_versions(request: Request):
     """Return distinct build_id values from submitted runs.
 
+    `versions` includes release-candidate builds (`v0.109.0-rc.1`); those are
+    valid version brackets too, with their own cells.
     `stat_versions` is the subset (newest first) the stats snapshot carries a
     per-version encounter slice for — the options the stats-page version
     dropdown should offer, since only these have version-filtered data.

@@ -576,7 +576,7 @@ def _parse_lake_bracket(bracket: str | None):
     if _VERSION_RE is None:
         import re
 
-        _VERSION_RE = re.compile(r"v\d+(\.\d+)*")
+        _VERSION_RE = re.compile(r"v\d+(\.\d+)*(-rc\.\d+)?")
     if bracket in (None, "", "all"):
         return (None, None, None, None)
     mode = player = skill = version = None

@@ -468,7 +468,7 @@ def _accumulate_one(
 # ── Finalize: resolve names + compute percentages ────────────────────────────
 
 
-_VERSION_KEY_RE = re.compile(r"v\d+(\.\d+)*")
+_VERSION_KEY_RE = re.compile(r"v\d+(\.\d+)*(-rc\.\d+)?")
 
 
 def _version_key(v: str) -> tuple[int, ...]:
