@@ -90,6 +90,7 @@ export interface MetricRow {
   rarity?: string | null;
   group?: string | null;
   entity_type?: string | null;
+  upgraded?: boolean;
   win_rate?: number | null;
   elo?: number | null;
   pick_rate?: number | null;
@@ -157,6 +158,7 @@ export async function fetchMetricRows(
       ...(r as unknown as MetricRow),
       id: String(r.id ?? ""),
       name: typeof r.name === "string" ? r.name : undefined,
+      upgraded: r.upgraded === true,
     }));
   } catch {
     return [];
@@ -175,26 +177,43 @@ function rowSample(row: MetricRow): number {
 }
 
 /** Join metrics with the catalog, apply filters, and keep the top N by the
- * chart's metric. Names fall back to the catalog entry, then the row's own
- * name field, then the raw id. */
+ * chart's metric. Rows with no catalog entry are dropped exactly like the
+ * metrics grid (a raw id never becomes a label); upgraded "+" rows are
+ * excluded unless explicitly included. Bars colour by the card colour for
+ * the cards source, otherwise the caller's accent applies. */
 export function buildChartRows(
   rows: MetricRow[],
   names: Record<string, MetricRow>,
   spec: SavedChartSpec,
-): { name: string; value: number; x: number | null }[] {
+  opts?: { includeUpgraded?: boolean },
+): { name: string; value: number; x: number | null; color?: string }[] {
   const f = spec.filters ?? {};
   const q = (f.search ?? "").trim().toLowerCase();
-  const enriched = rows
-    .map((r) => {
-      const meta = names[r.id.toUpperCase()];
-      const name = meta?.name ?? r.name ?? r.id;
-      return {
-        name,
-        value: metricValue(r, spec.y) ?? 0,
-        x: metricValue(r, spec.x as MetricKey),
-        meta,
-      };
-    })
+  const catalog: Partial<Record<ChartSource, boolean>> = {
+    cards: true,
+    relics: true,
+    potions: true,
+    events: true,
+  };
+  const joined = catalog[spec.source]
+    ? rows.map((r) => ({ row: r, meta: names[r.id.toUpperCase()] ?? null }))
+    : rows.map((r) => ({
+        row: r,
+        meta: names[r.id.toUpperCase()] ?? (r.name ? { name: r.name } : null),
+      }));
+  const enriched = joined
+    .filter((r) => r.meta !== null)
+    .filter((r) => !r.row.upgraded || opts?.includeUpgraded === true)
+    .map((r) => ({
+      name: r.meta?.name ?? "",
+      value: metricValue(r.row, spec.y) ?? 0,
+      x: metricValue(r.row, spec.x as MetricKey),
+      meta: r.meta,
+      color:
+        spec.source === "cards" && r.meta?.color
+          ? `var(--color-${r.meta.color})`
+          : undefined,
+    }))
     .filter((r) => {
       if (q && !r.name.toLowerCase().includes(q)) return false;
       if (f.group && (r.meta?.group ?? "") !== f.group) return false;
@@ -207,18 +226,18 @@ export function buildChartRows(
   );
   return enriched
     .slice(0, spec.top)
-    .map(({ name, value, x }) => ({ name, value, x }));
+    .map(({ name, value, x, color }) => ({ name, value, x, color }));
 }
 
 export function defaultSpec(source: ChartSource = "cards"): SavedChartSpec {
   return {
     source,
-    bracket: "all",
+    bracket: "solo:standard",
     character: null,
     chart: "bar",
     x: "pick_rate",
     y: "win_rate",
-    filters: {},
+    filters: { min_sample: 20 },
     top: 25,
     sort: "desc",
   };
