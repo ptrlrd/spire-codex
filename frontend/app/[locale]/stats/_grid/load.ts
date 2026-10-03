@@ -121,6 +121,9 @@ function baseRow(key: string, id: string, name: string): GridRow {
     color: null,
     imageUrl: null,
     upgraded: false,
+    wax: false,
+    playedBy: null,
+    parent: null,
     n: 0,
     score: null,
     elo: null,
@@ -171,13 +174,78 @@ function catalogMap(list: Catalog[] | null): Map<string, Catalog> {
   return m;
 }
 
+function entityRow(
+  kind: "cards" | "relics" | "potions",
+  m: ApiRow,
+  c: Catalog,
+  id: string,
+): GridRow {
+  const upgraded = !!m.upgraded;
+  const row = fillCommon(
+    baseRow(
+      `${id}${upgraded ? "+" : ""}`,
+      id,
+      upgraded ? `${c.name}+` : c.name,
+    ),
+    m,
+  );
+  row.href = `/${kind}/${id.toLowerCase()}`;
+  row.upgraded = upgraded;
+  row.imageUrl = c.image_url;
+  row.color = c.color ?? null;
+  row.group =
+    kind === "cards"
+      ? (c.color || "").toLowerCase()
+      : (c.pool || "").toLowerCase();
+  row.rarity = (c.rarity_key || c.rarity || "").toLowerCase() || null;
+  row.sub =
+    kind === "cards"
+      ? [c.type, c.rarity].filter(Boolean).join(" · ")
+      : c.rarity_key || c.rarity || null;
+  row.n = m.picks ?? 0;
+  return row;
+}
+
+function characterRows(
+  byId: Map<string, Catalog>,
+  tables: (ApiResponse | null)[],
+): GridRow[] {
+  const out: GridRow[] = [];
+  tables.forEach((res, i) => {
+    const ch = CHARACTERS[i];
+    for (const m of res?.rows || []) {
+      const id = (m.id || "").toUpperCase();
+      const c = byId.get(id);
+      if (!c || !(m.picks ?? 0)) continue;
+      const row = entityRow("cards", m, c, id);
+      row.key = `${row.key}:${ch}`;
+      row.parent = `${id}${row.upgraded ? "+" : ""}`;
+      row.playedBy = ch;
+      row.color = ch;
+      row.losses =
+        m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
+      row.holdRate = num(m.hold_rate);
+      row.elo = null;
+      row.pickRate = null;
+      row.lift = null;
+      row.liftN = null;
+      row.offered = null;
+      row.picked = null;
+      out.push(row);
+    }
+  });
+  return out;
+}
+
 async function loadEntity(
   kind: "cards" | "relics" | "potions",
   lang: string,
   bracket: string,
   character: string,
+  by: string,
 ): Promise<GridData> {
-  const [t, catalog, res] = await Promise.all([
+  const perCharacter = kind === "cards" && by === "character" && !character;
+  const [t, catalog, res, ...tables] = await Promise.all([
     getT(lang as Parameters<typeof getT>[0]),
     fetchJson<Catalog[]>(`${API_INTERNAL}/api/${kind}?lang=${lang}`),
     fetchJson<ApiResponse>(
@@ -185,6 +253,13 @@ async function loadEntity(
         character ? `&character=${character}` : ""
       }`,
     ),
+    ...(perCharacter
+      ? CHARACTERS.map((ch) =>
+          fetchJson<ApiResponse>(
+            `${API_INTERNAL}/api/runs/metrics/cards?bracket=${bracket}&character=${ch}`,
+          ),
+        )
+      : []),
   ]);
   const byId = catalogMap(catalog);
   const rows: GridRow[] = [];
@@ -192,29 +267,7 @@ async function loadEntity(
     const id = (m.id || "").toUpperCase();
     const c = byId.get(id);
     if (!c) continue;
-    const upgraded = !!m.upgraded;
-    const row = fillCommon(
-      baseRow(
-        `${id}${upgraded ? "+" : ""}`,
-        id,
-        upgraded ? `${c.name}+` : c.name,
-      ),
-      m,
-    );
-    row.href = `/${kind}/${id.toLowerCase()}`;
-    row.upgraded = upgraded;
-    row.imageUrl = c.image_url;
-    row.color = c.color ?? null;
-    row.group =
-      kind === "cards"
-        ? (c.color || "").toLowerCase()
-        : (c.pool || "").toLowerCase();
-    row.rarity = (c.rarity_key || c.rarity || "").toLowerCase() || null;
-    row.sub =
-      kind === "cards"
-        ? [c.type, c.rarity].filter(Boolean).join(" · ")
-        : c.rarity_key || c.rarity || null;
-    row.n = m.picks ?? 0;
+    const row = entityRow(kind, m, c, id);
     row.losses =
       m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
     row.pickRate = kind === "potions" ? null : num(m.pick_rate);
@@ -235,6 +288,7 @@ async function loadEntity(
       w.group = row.group;
       w.rarity = row.rarity;
       w.sub = row.sub;
+      w.wax = true;
       w.n = m.wax.picks;
       w.wins = m.wax.wins;
       w.losses = Math.max(0, w.n - w.wins);
@@ -253,6 +307,8 @@ async function loadEntity(
     totals: totalsOf(res),
     bracket: res?.bracket || bracket,
     character,
+    by: perCharacter ? "character" : "",
+    byCharacter: perCharacter ? characterRows(byId, tables) : null,
     available: res !== null,
   };
 }
@@ -296,6 +352,8 @@ async function loadShops(lang: string, bracket: string): Promise<GridData> {
     totals: totalsOf(res),
     bracket: res?.bracket || bracket,
     character: "",
+    by: "",
+    byCharacter: null,
     available: res !== null,
   };
 }
@@ -364,6 +422,8 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     totals: totalsOf(res),
     bracket: res?.bracket || bracket,
     character: "",
+    by: "",
+    byCharacter: null,
     available: res !== null,
   };
 }
@@ -396,6 +456,8 @@ async function loadCampfires(lang: string, bracket: string): Promise<GridData> {
     totals: totalsOf(res),
     bracket: res?.bracket || bracket,
     character: "",
+    by: "",
+    byCharacter: null,
     available: res !== null,
   };
 }
@@ -405,6 +467,7 @@ export async function loadGrid(
   lang: string,
   bracket = "all",
   character = "",
+  by = "",
 ): Promise<GridData> {
   const valid = isValidBracket(bracket) ? bracket || "all" : "all";
   const char = CHARACTERS.includes(character.toUpperCase())
@@ -414,7 +477,7 @@ export async function loadGrid(
     case "cards":
     case "relics":
     case "potions":
-      return loadEntity(kind, lang, valid, char);
+      return loadEntity(kind, lang, valid, char, by === "character" ? by : "");
     case "shops":
       return loadShops(lang, valid);
     case "events":

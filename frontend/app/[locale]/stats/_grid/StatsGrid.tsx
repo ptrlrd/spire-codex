@@ -1,11 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Link } from "@/i18n/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { colorTextClass } from "@/lib/character-colors";
-import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
 import StatsLinks from "./StatsLinks";
@@ -193,15 +193,24 @@ function cap(s: string): string {
 }
 
 export default function StatsGrid({ data }: { data: GridData }) {
-  const { kind, rows, totals, bracket, character } = data;
+  const { kind, totals, bracket, character } = data;
   const cfg = KINDS[kind];
   const t = useT();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
+  const router = useRouter();
+  const byCharacter =
+    kind === "cards" &&
+    !character &&
+    data.by === "character" &&
+    !!data.byCharacter;
+  const rows = byCharacter && data.byCharacter ? data.byCharacter : data.rows;
   const [search, setSearch] = useState("");
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(false);
+  const [showWax, setShowWax] = useState(false);
+  const [showUpgraded, setShowUpgraded] = useState(false);
   const first = cfg.columns.includes("elo") ? "elo" : cfg.columns[1];
   const [sortKey, setSortKey] = useState<ColKey>(first);
   const [dir, setDir] = useState<1 | -1>(-1);
@@ -263,6 +272,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
       if (group && r.group !== group) return false;
       if (rarity && r.rarity !== rarity) return false;
       if (!showTiny && r.n < HIDDEN_SAMPLE) return false;
+      if (!showWax && r.wax) return false;
+      if (!showUpgraded && r.upgraded) return false;
       if (
         q &&
         !r.name.toLowerCase().includes(q) &&
@@ -279,16 +290,27 @@ export default function StatsGrid({ data }: { data: GridData }) {
       });
     }
     return out;
-  }, [rows, search, group, rarity, showTiny, sortKey, dir]);
+  }, [
+    rows,
+    search,
+    group,
+    rarity,
+    showTiny,
+    showWax,
+    showUpgraded,
+    sortKey,
+    dir,
+  ]);
 
   const grouped = useMemo(() => {
-    if (!cfg.grouped) return null;
+    if (!cfg.grouped && !byCharacter) return null;
     const field = COLUMN_DEFS[sortKey].sortField;
     const byGroup = new Map<string, GridRow[]>();
     for (const r of visible) {
-      const list = byGroup.get(r.group);
+      const key = cfg.grouped ? r.group : (r.parent ?? r.key);
+      const list = byGroup.get(key);
       if (list) list.push(r);
-      else byGroup.set(r.group, [r]);
+      else byGroup.set(key, [r]);
     }
     const best = (list: GridRow[]) => {
       if (!field) return list[0].n;
@@ -309,9 +331,20 @@ export default function StatsGrid({ data }: { data: GridData }) {
         if (primary !== 0) return primary;
         return a.name.localeCompare(b.name);
       });
-  }, [cfg.grouped, visible, sortKey, dir]);
+  }, [cfg.grouped, byCharacter, visible, sortKey, dir]);
 
   const hiddenCount = rows.filter((r) => r.n < HIDDEN_SAMPLE).length;
+  const waxCount = rows.filter((r) => r.wax).length;
+  const upgradedCount = rows.filter((r) => r.upgraded).length;
+  const canSplitByCharacter =
+    kind === "cards" && cfg.showCharacter && !character;
+  const setByCharacter = (on: boolean) => {
+    const params = new URLSearchParams();
+    if (bracket !== "all") params.set("bracket", bracket);
+    if (on) params.set("by", "character");
+    const qs = params.toString();
+    router.push(qs ? `${bp}${cfg.path}?${qs}` : `${bp}${cfg.path}`);
+  };
 
   const onSort = (col: Column) => {
     if (!col.sortField) return;
@@ -349,6 +382,43 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const cell = (col: Column, r: GridRow) => {
     switch (col.key) {
       case "name":
+        if (r.playedBy)
+          return (
+            <td
+              key={col.key}
+              className="px-3 py-1.5 pl-6"
+              onMouseEnter={(e) => showPreview(e, r)}
+              onMouseLeave={() => setPreview(null)}
+            >
+              <span className="inline-flex items-center gap-1.5">
+                <img
+                  src={`${CDN_BASE}/ui/characters/character_icon_${r.playedBy.toLowerCase()}.webp`}
+                  alt=""
+                  width={16}
+                  height={16}
+                  className="h-4 w-4 shrink-0"
+                  crossOrigin="anonymous"
+                  loading="lazy"
+                />
+                {r.href ? (
+                  <Link
+                    prefetch={false}
+                    href={`${bp}${r.href}`}
+                    className={`font-medium hover:underline ${colorTextClass(r.playedBy)}`}
+                  >
+                    {r.name}
+                  </Link>
+                ) : (
+                  <span className={`font-medium ${colorTextClass(r.playedBy)}`}>
+                    {r.name}
+                  </span>
+                )}
+              </span>
+              <span className="ml-2 text-xs text-[var(--text-muted)]">
+                {t(cap(r.playedBy.toLowerCase()))}
+              </span>
+            </td>
+          );
         if (cfg.grouped)
           return (
             <td
@@ -648,6 +718,36 @@ export default function StatsGrid({ data }: { data: GridData }) {
             })}
           </label>
         )}
+        {waxCount > 0 && (
+          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+            <input
+              type="checkbox"
+              checked={showWax}
+              onChange={(e) => setShowWax(e.target.checked)}
+            />
+            {t("Show wax relics")}
+          </label>
+        )}
+        {upgradedCount > 0 && (
+          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+            <input
+              type="checkbox"
+              checked={showUpgraded}
+              onChange={(e) => setShowUpgraded(e.target.checked)}
+            />
+            {t("Show upgraded cards")}
+          </label>
+        )}
+        {canSplitByCharacter && (
+          <label className="flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+            <input
+              type="checkbox"
+              checked={byCharacter}
+              onChange={(e) => setByCharacter(e.target.checked)}
+            />
+            {t("Per character")}
+          </label>
+        )}
       </div>
 
       <div className="overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40">
@@ -685,9 +785,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     key={g.key}
                     name={g.name}
                     href={g.href ? `${bp}${g.href}` : null}
-                    totalLabel={t("{n} chosen", {
-                      n: g.total.toLocaleString(),
-                    })}
+                    totalLabel={
+                      cfg.grouped
+                        ? t("{n} chosen", { n: g.total.toLocaleString() })
+                        : t("{n} picks", { n: g.total.toLocaleString() })
+                    }
                     rows={g.rows}
                     columns={columns}
                     cell={cell}

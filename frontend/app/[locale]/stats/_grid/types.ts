@@ -14,6 +14,9 @@ export interface GridRow {
   color: string | null;
   imageUrl: string | null;
   upgraded: boolean;
+  wax: boolean;
+  playedBy: string | null;
+  parent: string | null;
   n: number;
   score: number | null;
   elo: number | null;
@@ -50,5 +53,7 @@ export interface GridData {
   totals: GridTotals;
   bracket: string;
   character: string;
+  by: string;
+  byCharacter: GridRow[] | null;
   available: boolean;
 }
