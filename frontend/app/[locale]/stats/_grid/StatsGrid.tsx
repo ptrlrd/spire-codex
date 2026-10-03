@@ -90,7 +90,7 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
     sortField: "holdRate",
   },
   useRate: {
-    label: "Use%",
+    label: "Used%",
     title: "Share of held copies that were used",
     align: "right",
     descFirst: true,
@@ -223,11 +223,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
   } | null>(null);
 
   const hasWins = rows.some((r) => r.wins !== null);
-  const hasUse = rows.some((r) => r.useRate !== null && r.useRate > 0);
   const columns: Column[] = cfg.columns
-    .filter((key) =>
-      key === "wl" ? hasWins : key === "useRate" ? hasUse : true,
-    )
+    .filter((key) => (key === "wl" ? hasWins : true))
     .map((key) => ({
       key,
       ...COLUMN_DEFS[key],
@@ -291,6 +288,36 @@ export default function StatsGrid({ data }: { data: GridData }) {
     return out;
   }, [rows, search, group, rarity, showTiny, sortKey, dir]);
 
+  const grouped = useMemo(() => {
+    if (!cfg.grouped) return null;
+    const field = COLUMN_DEFS[sortKey].sortField;
+    const byGroup = new Map<string, GridRow[]>();
+    for (const r of visible) {
+      const list = byGroup.get(r.group);
+      if (list) list.push(r);
+      else byGroup.set(r.group, [r]);
+    }
+    const best = (list: GridRow[]) => {
+      if (!field) return list[0].n;
+      const v = list[0][field];
+      return typeof v === "number" ? v : null;
+    };
+    return [...byGroup.entries()]
+      .map(([key, list]) => ({
+        key,
+        name: list[0].name,
+        href: list[0].href,
+        total: list.reduce((acc, r) => acc + r.n, 0),
+        best: best(list),
+        rows: list,
+      }))
+      .sort((a, b) => {
+        const primary = cmp(a.best, b.best, dir);
+        if (primary !== 0) return primary;
+        return a.name.localeCompare(b.name);
+      });
+  }, [cfg.grouped, visible, sortKey, dir]);
+
   const hiddenCount = rows.filter((r) => r.n < HIDDEN_SAMPLE).length;
 
   const onSort = (col: Column) => {
@@ -329,6 +356,15 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const cell = (col: Column, r: GridRow) => {
     switch (col.key) {
       case "name":
+        if (cfg.grouped)
+          return (
+            <td
+              key={col.key}
+              className="px-3 py-1 pl-6 text-[var(--text-primary)]"
+            >
+              {r.sub || r.name}
+            </td>
+          );
         return (
           <td
             key={col.key}
@@ -419,11 +455,26 @@ export default function StatsGrid({ data }: { data: GridData }) {
             {pts(r.lift)}
           </td>
         );
+      case "share":
+        return (
+          <td key={col.key} className="px-3 py-1 text-right tabular-nums">
+            <span className="inline-flex items-center justify-end gap-2">
+              <span className="h-1.5 w-16 overflow-hidden rounded-full bg-[var(--border-subtle)]">
+                <span
+                  className="block h-full rounded-full bg-[var(--accent-gold)]/70"
+                  style={{
+                    width: `${Math.max(0, Math.min(100, r.share ?? 0))}%`,
+                  }}
+                />
+              </span>
+              <span className="w-12">{pct(r.share)}</span>
+            </span>
+          </td>
+        );
       case "pickRate":
       case "holdRate":
       case "useRate":
       case "buyRate":
-      case "share":
       case "lowHpShare":
         return (
           <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
@@ -640,18 +691,35 @@ export default function StatsGrid({ data }: { data: GridData }) {
             </tr>
           </thead>
           <tbody>
-            {visible.map((r, i) => (
-              <RowGroup
-                key={r.key}
-                index={i}
-                row={r}
-                columns={columns}
-                cell={cell}
-                smallTitle={t("Small sample: fewer than {min} seats", {
-                  min: SMALL_SAMPLE,
-                })}
-              />
-            ))}
+            {grouped
+              ? grouped.map((g) => (
+                  <GroupBlock
+                    key={g.key}
+                    name={g.name}
+                    href={g.href ? `${bp}${g.href}` : null}
+                    totalLabel={t("{n} chosen", {
+                      n: g.total.toLocaleString(),
+                    })}
+                    rows={g.rows}
+                    columns={columns}
+                    cell={cell}
+                    smallTitle={t("Small sample: fewer than {min} seats", {
+                      min: SMALL_SAMPLE,
+                    })}
+                  />
+                ))
+              : visible.map((r, i) => (
+                  <RowGroup
+                    key={r.key}
+                    index={i}
+                    row={r}
+                    columns={columns}
+                    cell={cell}
+                    smallTitle={t("Small sample: fewer than {min} seats", {
+                      min: SMALL_SAMPLE,
+                    })}
+                  />
+                ))}
           </tbody>
         </table>
         {visible.length === 0 && (
@@ -731,5 +799,60 @@ function RowGroup({
       </td>
       {columns.map((col) => cell(col, row))}
     </tr>
+  );
+}
+
+function GroupBlock({
+  name,
+  href,
+  totalLabel,
+  rows,
+  columns,
+  cell,
+  smallTitle,
+}: {
+  name: string;
+  href: string | null;
+  totalLabel: string;
+  rows: GridRow[];
+  columns: Column[];
+  cell: (col: Column, r: GridRow) => React.ReactNode;
+  smallTitle: string;
+}) {
+  return (
+    <>
+      <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card)]/70">
+        <td />
+        <td
+          colSpan={columns.length}
+          className="px-3 py-1.5 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]"
+        >
+          {href ? (
+            <Link
+              prefetch={false}
+              href={href}
+              className="hover:text-[var(--accent-gold)] hover:underline"
+            >
+              {name}
+            </Link>
+          ) : (
+            name
+          )}
+          <span className="ml-2 font-normal normal-case tracking-normal text-[var(--text-muted)]">
+            {totalLabel}
+          </span>
+        </td>
+      </tr>
+      {rows.map((r, i) => (
+        <RowGroup
+          key={r.key}
+          index={i}
+          row={r}
+          columns={columns}
+          cell={cell}
+          smallTitle={smallTitle}
+        />
+      ))}
+    </>
   );
 }

@@ -38,12 +38,14 @@ export interface KindConfig {
   rarityFilter: boolean;
   showCharacter: boolean;
   preview: boolean;
+  grouped: boolean;
   intro: string;
 }
 
 export const KINDS: Record<GridKind, KindConfig> = {
   cards: {
     path: "/stats/cards",
+    grouped: false,
     baselineWhat: "average win rate across every card held in this cohort",
     offeredLabel: "Offered",
     offeredTitle: "Times shown on a reward screen",
@@ -78,6 +80,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   relics: {
     path: "/stats/relics",
+    grouped: false,
     baselineWhat: "average win rate across every relic held in this cohort",
     offeredLabel: "Offered",
     offeredTitle:
@@ -113,6 +116,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   potions: {
     path: "/stats/potions",
+    grouped: false,
     baselineWhat: "average win rate across every potion held in this cohort",
     offeredLabel: "Offered",
     offeredTitle: "Times shown on a choice screen",
@@ -142,6 +146,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   shops: {
     path: "/stats/shops",
+    grouped: false,
     baselineWhat: "average win rate across every purchase in this cohort",
     offeredLabel: "Seen",
     offeredTitle: "Times seen on a shop shelf",
@@ -162,12 +167,13 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   events: {
     path: "/stats/events",
+    grouped: true,
     baselineWhat: "average win rate across every event choice in this cohort",
     offeredLabel: "Offered",
     offeredTitle: "Times shown on a choice screen",
     title: "Event Choices",
     description: "event_choices_meta_description",
-    nameLabel: "Event",
+    nameLabel: "Option",
     nameTitle: "Event and the option taken",
     nLabel: "Chosen",
     nTitle: "Seats that took this option (sample size)",
@@ -182,6 +188,7 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   campfires: {
     path: "/stats/campfires",
+    grouped: false,
     baselineWhat:
       "average win rate across every rest site action in this cohort",
     offeredLabel: "Offered",
