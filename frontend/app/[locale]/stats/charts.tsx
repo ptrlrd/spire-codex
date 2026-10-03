@@ -17,6 +17,7 @@ import {
   Filler,
   type ChartOptions,
   type TooltipItem,
+  type Plugin,
   type TooltipModel,
 } from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
@@ -200,7 +201,7 @@ export function RankBars({
   return (
     <DeferredChart style={{ height }}>
       <Bar
-        plugins={[ChartDataLabels]}
+        plugins={[ChartDataLabels as Plugin<"bar">]}
         data={{
           labels,
           datasets: [
