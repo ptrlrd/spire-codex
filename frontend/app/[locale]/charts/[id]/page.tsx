@@ -61,11 +61,12 @@ export default async function SavedChartPage({ params }: Props) {
   const cohort = spec.character
     ? `${t(spec.character)} · ${spec.bracket}`
     : spec.bracket;
-  const sentence = t("Top {top} {source} by {metric} for {cohort}.")
-    .replace("{top}", String(spec.top))
-    .replace("{source}", t(spec.source))
-    .replace("{metric}", t(METRIC_LABELS[spec.y as MetricKey] ?? spec.y))
-    .replace("{cohort}", cohort);
+  const sentence = t("Top {top} {source} by {metric} for {cohort}.", {
+    top: spec.top,
+    source: t(spec.source),
+    metric: t(METRIC_LABELS[spec.y as MetricKey] ?? spec.y),
+    cohort,
+  });
 
   return (
     <div className="mx-auto max-w-[1200px] px-3 sm:px-5 py-6">

@@ -578,7 +578,7 @@ export default function ChartBuilderClient() {
       <div className="space-y-6">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
           <p className="mb-2 text-sm text-[var(--text-muted)]">
-            {t("Cohort: {cohort}").replace("{cohort}", cohort)}
+            {t("Cohort: {cohort}", { cohort })}
           </p>
           <SavedChartView
             spec={spec}
