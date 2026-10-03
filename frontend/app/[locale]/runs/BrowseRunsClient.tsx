@@ -263,6 +263,8 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   const [runs, setRuns] = useState<BrowseRun[]>([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [totalIsLowerBound, setTotalIsLowerBound] = useState(false);
+  const [perPage, setPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [versions, setVersions] = useState<string[]>([]);
   const [charNames, setCharNames] = useState<Record<string, string>>({});
@@ -427,6 +429,8 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
         setRuns(data.runs || []);
         setTotal(data.total || 0);
         setTotalPages(data.total_pages || 0);
+        setTotalIsLowerBound(!!data.total_is_lower_bound);
+        setPerPage(data.per_page || 0);
       })
       .catch(() => {})
       .finally(() => {
@@ -668,7 +672,9 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
       </div>
 
       <p className="text-xs text-[var(--text-muted)] mb-3">
-        {total.toLocaleString()} {t(config.totalLabel)}
+        {totalIsLowerBound
+          ? t("More than 10,000 runs")
+          : `${total.toLocaleString()} ${t(config.totalLabel)}`}
       </p>
 
       {loading ? (
@@ -746,11 +752,15 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                 ← {t("Prev")}
               </button>
               <span className="text-xs text-[var(--text-muted)]">
-                {t("Page")} {page} {t("of")} {totalPages}
+                {t("Page")} {page.toLocaleString()} {t("of")}{" "}
+                {totalPages.toLocaleString()}
               </span>
               <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page >= totalPages}
+                onClick={() => setPage((p) => p + 1)}
+                disabled={
+                  page >= totalPages &&
+                  !(totalIsLowerBound && perPage > 0 && runs.length >= perPage)
+                }
                 className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 {t("Next")} →
