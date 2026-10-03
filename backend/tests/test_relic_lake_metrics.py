@@ -122,31 +122,38 @@ def write_lake(tmp_path):
         t(run_hash, player_idx, potion, character, was_used))
         TO '{tmp_path}/potions.parquet' (FORMAT parquet)"""
     )
-    floors = [
-        (
-            "r1",
-            0,
-            1,
+    depth = {
+        "r1": 5,
+        "r2": 5,
+        "r3": 5,
+        "r4": 5,
+        "r5": 5,
+        "r6": 3,
+        "r7": 2,
+        "r8": 4,
+        "r9": 2,
+    }
+    special = {
+        ("r1", 1): (
             "unknown",
             _players(101, 30, 80, event="DOORS.pages.INITIAL.options.DARK.title"),
         ),
-        ("r1", 0, 2, "rest", _players(101, 30, 80, rest="REST")),
-        (
-            "r2",
-            0,
-            1,
+        ("r1", 2): ("rest", _players(101, 30, 80, rest="REST")),
+        ("r2", 1): (
             "unknown",
             _players(102, 70, 80, event="DOORS.pages.INITIAL.options.LIGHT.title"),
         ),
-        ("r2", 0, 2, "rest", _players(102, 70, 80, rest="SMITH")),
-        (
-            "r6",
-            0,
-            1,
+        ("r2", 2): ("rest", _players(102, 70, 80, rest="SMITH")),
+        ("r6", 1): (
             "unknown",
             _players(106, 70, 80, event="DOORS.pages.INITIAL.options.DARK.title"),
         ),
-    ]
+    }
+    floors = []
+    for h, n in depth.items():
+        for f in range(1, n + 1):
+            kind, players = special.get((h, f), ("monster", _players(100, 50, 80)))
+            floors.append((h, 0, f, kind, players))
     vals = ",".join(f"('{h}', {a}, {f}, '{t}', '{p}')" for h, a, f, t, p in floors)
     con.execute(
         f"""COPY (SELECT run_hash, act, floor_idx, map_point_type,
@@ -158,24 +165,29 @@ def write_lake(tmp_path):
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 0, 3, 1, 'JUZU', true, false, 2),
-        ('r1', 0, 3, 1, 'ANCHOR', false, false, 2),
-        ('r1', 1, 9, 1, 'JUZU', false, true, 3),
-        ('r1', 1, 9, 1, 'ORRERY', true, true, 3),
-        ('r1', 1, 9, 1, 'STRIKE_DUMMY', false, true, 3),
-        ('r2', 0, 3, 1, 'JUZU', false, false, 2),
-        ('r2', 0, 3, 1, 'ANCHOR', false, false, 2),
-        ('r3', 0, 3, 1, 'JUZU', true, false, 1))
-        t(run_hash, act, floor_idx, player_idx, relic, picked, is_shop, n_options))
+        ('r1', 0, 3, 1, 'JUZU', true, false, 2, 1),
+        ('r1', 0, 3, 1, 'ANCHOR', false, false, 2, 1),
+        ('r1', 1, 9, 1, 'JUZU', false, true, 3, 1),
+        ('r1', 1, 9, 1, 'ORRERY', true, true, 3, 1),
+        ('r1', 1, 9, 1, 'STRIKE_DUMMY', false, true, 3, 1),
+        ('r2', 0, 3, 1, 'JUZU', false, false, 2, 0),
+        ('r2', 0, 3, 1, 'ANCHOR', false, false, 2, 0),
+        ('r3', 0, 3, 1, 'JUZU', true, false, 1, 1),
+        ('r5', 0, 2, 1, 'VAJRA', true, false, 2, 2),
+        ('r5', 0, 2, 1, 'LANTERN', true, false, 2, 2),
+        ('r5', 0, 4, 1, 'BURNING_BLOOD', true, false, 2, 1),
+        ('r5', 0, 4, 1, 'ANCHOR', false, false, 2, 1))
+        t(run_hash, act, floor_idx, player_idx, relic, picked, is_shop, n_options,
+          n_picked))
         TO '{tmp_path}/relic_choices.parquet' (FORMAT parquet)"""
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 1, 'relics', 'ORRERY', true),
-        ('r1', 1, 'relics', 'STRIKE_DUMMY', false),
-        ('r1', 1, 'cards', 'X', true),
-        ('r6', 1, 'relics', 'ORRERY', true))
-        t(run_hash, player_idx, entity_type, id, bought))
+        ('r1', 1, 'relics', 'ORRERY', true, 4),
+        ('r1', 1, 'relics', 'STRIKE_DUMMY', false, 4),
+        ('r1', 1, 'cards', 'X', true, 4),
+        ('r6', 1, 'relics', 'ORRERY', true, 2))
+        t(run_hash, player_idx, entity_type, id, bought, floor))
         TO '{tmp_path}/shop_items.parquet' (FORMAT parquet)"""
     )
     con.close()
@@ -193,6 +205,7 @@ def lake(tmp_path, monkeypatch):
     monkeypatch.setattr(res, "_non_reward_card_ids", lambda: frozenset())
     monkeypatch.setattr(res, "_excluded_card_ids", lambda: frozenset())
     monkeypatch.setattr(res, "_multiplayer_card_ids", lambda: frozenset())
+    monkeypatch.setattr(res, "_starter_relic_ids", lambda: frozenset({"BURNING_BLOOD"}))
     con = lake_stats._connect(build=True)
     try:
         lake_stats.build_entity_cube(con)
@@ -207,12 +220,29 @@ def test_cube_counts_seats_wax_and_lift_inputs(lake):
     picks, wins, n_exp, wins_exp, exp_sum = fold["entries"]["JUZU"]
     assert (picks, wins) == (4, 3), "the wax copy on r4 stays out of the base row"
     assert n_exp == 4 and wins_exp == 3
-    assert exp_sum == pytest.approx(3 * 4 / 6 + 5 / 6, abs=0.002)
+    # Floor-adjusted: JUZU is picked up on floor 3, and of pro's other runs
+    # only r7 (depth 2) never got there, so each winning seat expects 4/5
+    # and the r6 seat expects 5/5 instead of the flat 4/6 and 5/6.
+    assert exp_sum == pytest.approx(3 * 0.8 + 1.0, abs=0.002)
     assert fold["wax"] == {"JUZU": [1, 1]}
-    assert fold["entries"]["ANCHOR"][:2] == [2, 2], "both seats of the 2P run count"
+    anchor = fold["entries"]["ANCHOR"]
+    assert anchor[:2] == [2, 2], "both seats of the 2P run count"
+    # duo has one run, so both seats fall back to the community A10 curve
+    # at floor 2 minus their own run: 7 of pro's runs, 5 won.
+    assert anchor[2] == 2 and anchor[4] == pytest.approx(2 * 5 / 7, abs=0.002)
     assert fold["offers"]["JUZU"]["offered"] == 2
     assert fold["offers"]["JUZU"]["picked"] == 1
     assert "ORRERY" not in fold["offers"], "shop shelves are not offers"
+    assert "VAJRA" not in fold["offers"], (
+        "a list where everything was taken is not a choice"
+    )
+    assert "BURNING_BLOOD" not in fold["offers"], "starter relics are never offered"
+    assert fold["offers"]["ANCHOR"] == {
+        "offered": 3,
+        "picked": 0,
+        "off_act": [3, 0, 0],
+        "pick_act": [0, 0, 0],
+    }
     potions = lake_stats.entity_bracket_fold("potions", "all")
     assert potions["used"] == {"FIRE": 1}
 
@@ -254,18 +284,21 @@ def test_shop_event_and_campfire_tables(lake):
     orrery = next(r for r in shops["rows"] if r["id"] == "ORRERY")
     assert orrery["entity_type"] == "relics"
     assert (orrery["seen"], orrery["bought"], orrery["buy_rate"]) == (2, 2, 100.0)
-    assert orrery["win_rate"] == 50.0
+    assert orrery["wins"] == 1 and orrery["win_rate"] == 50.0
+    assert orrery["lift_n"] == 2
     dummy = next(r for r in shops["rows"] if r["id"] == "STRIKE_DUMMY")
     assert dummy["bought"] == 0 and dummy["win_rate"] is None
     events = res.get_event_metrics_table("all")
     dark = next(r for r in events["rows"] if r["option"] == "DARK")
     assert dark["event"] == "DOORS"
     assert dark["chosen"] == 2 and dark["share"] == pytest.approx(66.7)
-    assert dark["win_rate"] == 50.0
+    assert dark["wins"] == 1 and dark["win_rate"] == 50.0
+    assert dark["lift_n"] == 2
     camps = res.get_campfire_metrics_table("all")
     rest = next(r for r in camps["rows"] if r["choice"] == "REST")
     assert rest["chosen"] == 1 and rest["share"] == 50.0
-    assert rest["low_hp_share"] == 100.0
+    assert rest["wins"] == 1 and rest["low_hp_share"] == 100.0
+    assert rest["lift_n"] == 1
     smith = next(r for r in camps["rows"] if r["choice"] == "SMITH")
     assert smith["low_hp_share"] == 0.0
     assert res.get_shop_metrics_table("4p")["rows"] == []
@@ -277,8 +310,32 @@ def test_relic_pairs_come_from_free_screens_only(lake):
     assert pairs[("JUZU", "ANCHOR")] == 1
     assert pairs[("JUZU", lake_stats.SKIP_ID)] == 1
     assert pairs[(lake_stats.SKIP_ID, "JUZU")] == 1
-    assert pairs[(lake_stats.SKIP_ID, "ANCHOR")] == 1
+    assert pairs[(lake_stats.SKIP_ID, "ANCHOR")] == 2
     assert not any("ORRERY" in k for k in pairs), "shop shelves never pair"
+    assert not any("VAJRA" in k or "LANTERN" in k for k in pairs)
+    assert not any("BURNING_BLOOD" in k for k in pairs)
+
+
+def test_floor_curves_leave_one_out(lake):
+    con = lake_stats._connect(build=True)
+    try:
+        lake_stats._ensure_floor_curves(con)
+        curve = dict(
+            (f, (n, w))
+            for f, n, w in con.execute(
+                "SELECT floor, n, w FROM floor_curve WHERE uname = 'pro' ORDER BY 1"
+            ).fetchall()
+        )
+        assert curve[0] == (7, 5) and curve[3] == (6, 5) and curve[5] == (5, 5)
+        assert con.execute(
+            "SELECT n, w FROM floor_curve_all WHERE a10 AND floor = 2"
+        ).fetchone() == (8, 6)
+        assert con.execute(
+            "SELECT floor_offset FROM act_offsets WHERE run_hash = 'r1'"
+        ).fetchone() == (0,)
+    finally:
+        lake_stats._drop_floor_curves(con)
+        con.close()
 
 
 def test_entity_store_relic_block(lake, monkeypatch):

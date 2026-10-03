@@ -152,14 +152,16 @@ WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
 ) TO '/lake/shop_potions.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Every relic screen a seat saw: free offers (ancient, boss, events with
--- two options) and shop shelves alike, one row per option. is_shop and
--- n_options let readers separate a real choice from a priced shelf.
+-- two options) and shop shelves alike, one row per option. is_shop,
+-- n_options and n_picked let readers separate a real choice (fewer taken
+-- than offered) from a priced shelf or a list of relics simply gained.
 COPY (
 SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx, ps.i AS player_idx,
   upper(split_part(rc.u.choice, '.', -1)) AS relic,
   coalesce(rc.u.was_picked, false) AS picked,
   list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop') AS is_shop,
-  len(ps.u.relic_choices) AS n_options
+  len(ps.u.relic_choices) AS n_options,
+  len(list_filter(ps.u.relic_choices, c -> coalesce(c.was_picked, false))) AS n_picked
 FROM raw r,
   LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
   LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
@@ -170,15 +172,17 @@ WHERE rc.u.choice IS NOT NULL AND rc.u.choice <> ''
 ) TO '/lake/relic_choices.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Shop shelves: every card, relic and potion a seat saw on a shop floor and
--- whether it was bought.
+-- whether it was bought, with the shop's absolute floor (the same numbering
+-- as floor_added_to_deck: floors of earlier acts plus the index in its act).
 COPY (
-SELECT run_hash, player_idx, entity_type, id, bought FROM (
+SELECT run_hash, player_idx, entity_type, id, bought, floor FROM (
   SELECT r.run_hash, ps.i AS player_idx, 'cards' AS entity_type,
     upper(split_part(cc.u.card.id, '.', -1)) AS id,
-    coalesce(cc.u.was_picked, false) AS bought
+    coalesce(cc.u.was_picked, false) AS bought,
+    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i AS floor
   FROM raw r,
-    LATERAL (SELECT unnest(map_point_history) AS u) act,
-    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
+    LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.card_choices) AS u) cc
@@ -186,10 +190,11 @@ SELECT run_hash, player_idx, entity_type, id, bought FROM (
     AND cc.u.card.id IS NOT NULL AND cc.u.card.id <> ''
   UNION ALL
   SELECT r.run_hash, ps.i, 'relics',
-    upper(split_part(rc.u.choice, '.', -1)), coalesce(rc.u.was_picked, false)
+    upper(split_part(rc.u.choice, '.', -1)), coalesce(rc.u.was_picked, false),
+    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i
   FROM raw r,
-    LATERAL (SELECT unnest(map_point_history) AS u) act,
-    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
+    LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
@@ -197,10 +202,11 @@ SELECT run_hash, player_idx, entity_type, id, bought FROM (
     AND rc.u.choice IS NOT NULL AND rc.u.choice <> ''
   UNION ALL
   SELECT r.run_hash, ps.i, 'potions',
-    upper(split_part(pc.u.choice, '.', -1)), coalesce(pc.u.was_picked, false)
+    upper(split_part(pc.u.choice, '.', -1)), coalesce(pc.u.was_picked, false),
+    coalesce(list_sum([len(a) FOR a IN map_point_history[1:act.i - 1]]), 0) + loc.i
   FROM raw r,
-    LATERAL (SELECT unnest(map_point_history) AS u) act,
-    LATERAL (SELECT unnest(act.u) AS u) loc,
+    LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
+    LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
     LATERAL (SELECT unnest(loc.u.player_stats) AS u,
       generate_subscripts(loc.u.player_stats,1) AS i) ps,
     LATERAL (SELECT unnest(ps.u.potion_choices) AS u) pc

@@ -661,6 +661,33 @@ def _non_reward_card_ids() -> frozenset[str]:
     )
 
 
+_starter_relic_ids_cache: frozenset[str] | None = None
+
+
+def _starter_relic_ids() -> frozenset[str]:
+    """Starter relics (rarity "Starter") from both catalogs: never offered
+    on a choice screen, so never in relic choice rows, relic offers or the
+    relic Elo fit. Empty if the catalog can't be read."""
+    global _starter_relic_ids_cache
+    if _starter_relic_ids_cache is None:
+        try:
+            from .data_service import load_relics
+
+            def _starters():
+                return [
+                    r
+                    for r in load_relics()
+                    if (r.get("rarity_key") or r.get("rarity") or "").lower()
+                    == "starter"
+                ]
+
+            _starter_relic_ids_cache = _official_ids_with_beta(_starters)
+        except Exception:
+            logger.warning("could not load relic rarities", exc_info=True)
+            _starter_relic_ids_cache = frozenset()
+    return _starter_relic_ids_cache
+
+
 _upgradeable_card_ids_cache: frozenset[str] | None = None
 
 
@@ -3236,6 +3263,7 @@ def get_shop_metrics_table(bracket: str = "all") -> dict[str, Any]:
                         "seen": seen,
                         "bought": bought,
                         "buy_rate": round(bought / seen * 100, 1) if seen else None,
+                        "wins": wins_b,
                         "win_rate": round(wins_b / bought * 100, 1) if bought else None,
                         "win_rate_ci": wilson_interval(wins_b, bought),
                         "lift": lift_of(n_exp, wins_exp, exp_sum),
@@ -3269,6 +3297,7 @@ def get_event_metrics_table(bracket: str = "all") -> dict[str, Any]:
                         "option": option,
                         "chosen": chosen,
                         "share": round(chosen / total * 100, 1) if total else None,
+                        "wins": wins,
                         "win_rate": round(wins / chosen * 100, 1) if chosen else None,
                         "win_rate_ci": wilson_interval(wins, chosen),
                         "lift": lift_of(n_exp, wins_exp, exp_sum),
@@ -3301,6 +3330,7 @@ def get_campfire_metrics_table(bracket: str = "all") -> dict[str, Any]:
                     "choice": choice,
                     "chosen": chosen,
                     "share": round(chosen / total * 100, 1) if total else None,
+                    "wins": wins,
                     "win_rate": round(wins / chosen * 100, 1) if chosen else None,
                     "win_rate_ci": wilson_interval(wins, chosen),
                     "lift": lift_of(n_exp, wins_exp, exp_sum),

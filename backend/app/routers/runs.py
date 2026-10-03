@@ -1430,11 +1430,12 @@ def get_shop_metrics(request: Request, response: Response, bracket: str = "all")
     """Shop shelf table for one run bracket, powers /stats/shops.
 
     One row per (entity_type, id) seen on a shop shelf: `seen` shelf
-    appearances (one per seat per visit), `bought`, `buy_rate`, the win
-    rate of the seats that bought it with a Wilson `win_rate_ci`, and
-    `lift` (win rate minus those players' own expected win rate, in
-    percentage points; null under 20 seats). `bracket` takes the same keys
-    as /metrics/{entity_type}; an unknown bracket is a 400.
+    appearances (one per seat per visit), `bought`, `buy_rate`, `wins` and
+    the win rate of the seats that bought it with a Wilson `win_rate_ci`,
+    and `lift` (win rate minus those players' floor-adjusted expected win
+    rate at the shop's floor, in percentage points; null under 20 seats).
+    `bracket` takes the same keys as /metrics/{entity_type}; an unknown
+    bracket is a 400.
     """
     try:
         table = get_shop_metrics_table(bracket)
@@ -1450,9 +1451,10 @@ def get_event_metrics(request: Request, response: Response, bracket: str = "all"
     """Event choice table for one run bracket, powers /stats/events.
 
     One row per (event, option): `chosen` seats, `share` of that event's
-    choices, the win rate of the seats that chose it with a Wilson
-    `win_rate_ci`, and `lift` (null under 20 seats). `bracket` takes the
-    same keys as /metrics/{entity_type}; an unknown bracket is a 400.
+    choices, `wins` and the win rate of the seats that chose it with a
+    Wilson `win_rate_ci`, and `lift` against the floor-adjusted expectation
+    at the event's floor (null under 20 seats). `bracket` takes the same
+    keys as /metrics/{entity_type}; an unknown bracket is a 400.
     """
     try:
         table = get_event_metrics_table(bracket)
@@ -1470,10 +1472,11 @@ def get_campfire_metrics(request: Request, response: Response, bracket: str = "a
     """Rest-site choice table for one run bracket, powers /stats/campfires.
 
     One row per choice (REST, SMITH, ...): `chosen` seats, `share` of all
-    campfire choices, `low_hp_share` (chosen below half HP), the win rate
-    with a Wilson `win_rate_ci`, and `lift` (null under 20 seats).
-    `bracket` takes the same keys as /metrics/{entity_type}; an unknown
-    bracket is a 400.
+    campfire choices, `low_hp_share` (chosen below half HP), `wins` and the
+    win rate with a Wilson `win_rate_ci`, and `lift` against the
+    floor-adjusted expectation at the campfire's floor (null under 20
+    seats). `bracket` takes the same keys as /metrics/{entity_type}; an
+    unknown bracket is a 400.
     """
     try:
         table = get_campfire_metrics_table(bracket)
@@ -1499,13 +1502,18 @@ def get_entity_metrics(
     Wilson 95% `win_rate_ci`, `lift` = win rate minus those players' own
     expected win rate in percentage points over `lift_n` seats, null under
     20) AND the revealed-preference metrics (Codex Elo, Pick%, per-act pick
-    splits) plus raw counts. Counts are per seat: a 4P run is four seats,
-    `hold_rate` = picks / `total_seats`. Cards carry Elo/Pick% from reward
-    screens, relics from free relic screens (ancient offers, boss relics,
-    event choices; shop shelves are not offers) plus a `wax` block for Toy
-    Box copies, potions `used` / `use_rate` and no Pick%. Served from the
-    lake's entity cube, so it's one in-memory fold per bracket; the client
-    sorts and filters the whole table locally.
+    splits) plus raw counts. The expectation behind `lift` is
+    floor-adjusted: a seat that acquired the entity at floor f is compared
+    with P(win | the run reached f), from that player's other runs when
+    they have five that deep, else the community curve. Potions carry no
+    pickup floor, so their lift is unadjusted (floor 1). Counts are per
+    seat: a 4P run is four seats, `hold_rate` = picks / `total_seats`.
+    Cards carry Elo/Pick% from reward screens, relics from free relic
+    screens (ancient offers, boss relics, event choices; shop shelves and
+    lists where everything was taken are not offers) plus a `wax` block
+    for Toy Box copies, potions `used` / `use_rate` and no Pick%. Served
+    from the lake's entity cube, so it's one in-memory fold per bracket;
+    the client sorts and filters the whole table locally.
 
     `bracket` slices to a pre-built run bracket: `all` (default), `solo`,
     `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`, plus the

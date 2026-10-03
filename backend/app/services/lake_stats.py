@@ -170,8 +170,8 @@ def prepare_build_session():
     con.execute("CREATE TABLE cells_mat AS SELECT * FROM cells")
     con.execute("DROP VIEW cells")
     con.execute("ALTER TABLE cells_mat RENAME TO cells")
-    con.execute("DROP TABLE IF EXISTS run_exp")
-    con.execute(_RUN_EXP_SQL)
+    _drop_floor_curves(con)
+    _ensure_floor_curves(con)
     con.execute("DROP TABLE IF EXISTS pfloors")
     body = _PFLOORS_SQL.format(lake=lake).replace(
         "CREATE OR REPLACE TEMP VIEW pfloors AS", "CREATE TABLE pfloors AS", 1
@@ -189,7 +189,7 @@ def cleanup_build_session(con=None) -> None:
     try:
         con.execute("DROP TABLE IF EXISTS pfloors")
         con.execute("DROP TABLE IF EXISTS cells")
-        con.execute("DROP TABLE IF EXISTS run_exp")
+        _drop_floor_curves(con)
         con.execute("DROP TABLE IF EXISTS relic_choice_rows")
     finally:
         if own:
@@ -240,39 +240,109 @@ JOIN eligible e ON m.run_hash = e.run_hash
 GROUP BY 1, 2
 """
 
-# Per seat: the player's leave-one-out win rate over their other eligible
-# runs with the same A10 flag (five or more of them), the expectation the
-# lift metric subtracts. Keyed by the submitter's username like user_wr.
-_RUN_EXP_SQL = """
-CREATE TABLE IF NOT EXISTS run_exp AS
-WITH u AS (
-  SELECT lower(username) AS uname, coalesce(ascension, 0) = 10 AS a10,
-    count(*) AS n, count(*) FILTER (win) AS w
-  FROM eligible
-  WHERE username IS NOT NULL AND username <> ''
+# Floor-adjusted expectations for the lift metric. A seat that acquired an
+# entity at absolute floor f is compared with P(win | the run reached f):
+# the player's own leave-one-out rate over their other eligible runs with
+# the same A10 flag that reached f (five or more), else the community curve
+# for that A10 flag. Without the floor condition every entity looked good,
+# because holding anything means having lived long enough to find it.
+_RUN_DEPTH_SQL = """
+CREATE TABLE IF NOT EXISTS run_depth AS
+SELECT e.run_hash, lower(nullif(e.username, '')) AS uname,
+  coalesce(e.ascension, 0) = 10 AS a10, e.win,
+  coalesce(f.n, 0)::INT AS floors_reached
+FROM eligible e
+LEFT JOIN (
+  SELECT run_hash, count(*) AS n FROM read_parquet('{lake}/floors.parquet')
+  GROUP BY 1
+) f ON e.run_hash = f.run_hash
+"""
+
+_FLOOR_CURVE_SQL = """
+CREATE TABLE IF NOT EXISTS floor_curve AS
+SELECT r.uname, r.a10, g.f AS floor, count(*) AS n, count(*) FILTER (r.win) AS w
+FROM run_depth r,
+LATERAL (SELECT unnest(generate_series(0, r.floors_reached)) AS f) g
+WHERE r.uname IS NOT NULL
+GROUP BY 1, 2, 3
+"""
+
+_FLOOR_CURVE_ALL_SQL = """
+CREATE TABLE IF NOT EXISTS floor_curve_all AS
+SELECT r.a10, g.f AS floor, count(*) AS n, count(*) FILTER (r.win) AS w
+FROM run_depth r,
+LATERAL (SELECT unnest(generate_series(0, r.floors_reached)) AS f) g
+GROUP BY 1, 2
+"""
+
+_ACT_OFFSETS_SQL = """
+CREATE TABLE IF NOT EXISTS act_offsets AS
+SELECT run_hash, act,
+  coalesce(sum(n) OVER (PARTITION BY run_hash ORDER BY act
+    ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING), 0)::INT AS floor_offset
+FROM (
+  SELECT run_hash, act, count(*) AS n FROM read_parquet('{lake}/floors.parquet')
   GROUP BY 1, 2
 )
-SELECT e.run_hash, (u.w - e.win::INT) * 1.0 / (u.n - 1) AS exp
-FROM eligible e
-JOIN u ON lower(e.username) = u.uname
-  AND (coalesce(e.ascension, 0) = 10) = u.a10
-WHERE u.n >= 6
 """
+
+# Joins and the expectation expression for a row keyed by {run} (a run
+# hash column) acquiring at floor {floor}; the floor is clamped to the
+# run's depth so the leave-one-out subtraction always has the run inside
+# the curve bucket it reads.
+_EXP_JOIN = """
+JOIN run_depth d ON {run} = d.run_hash
+LEFT JOIN floor_curve uc ON uc.uname = d.uname AND uc.a10 = d.a10
+  AND uc.floor = least(greatest(coalesce({floor}, 1), 0), d.floors_reached)
+LEFT JOIN floor_curve_all ca ON ca.a10 = d.a10
+  AND ca.floor = least(greatest(coalesce({floor}, 1), 0), d.floors_reached)
+"""
+_EXP_EXPR = """
+CASE WHEN uc.n - 1 >= 5 THEN (uc.w - d.win::INT) * 1.0 / (uc.n - 1)
+     WHEN ca.n - 1 >= 1 THEN (ca.w - d.win::INT) * 1.0 / (ca.n - 1) END
+"""
+
+
+def _ensure_floor_curves(con) -> None:
+    lake = str(LAKE_DIR)
+    con.execute(_ELIGIBLE_SQL.format(lake=lake))
+    con.execute(_RUN_DEPTH_SQL.format(lake=lake))
+    con.execute(_FLOOR_CURVE_SQL)
+    con.execute(_FLOOR_CURVE_ALL_SQL)
+    con.execute(_ACT_OFFSETS_SQL.format(lake=lake))
+
+
+def _drop_floor_curves(con) -> None:
+    for t in ("floor_curve", "floor_curve_all", "run_depth", "act_offsets"):
+        con.execute(f"DROP TABLE IF EXISTS {t}")
+
+
+def _exp_sql(run: str, floor: str) -> tuple[str, str]:
+    """(join clause, expectation expression) for a query whose row is the
+    run column `run` acquiring at the floor expression `floor`."""
+    return _EXP_JOIN.format(run=run, floor=floor), _EXP_EXPR
+
 
 # Five counters per (cell, entity): seats, wins, seats with an expectation,
 # wins among those, and the summed expectation -- lift's inputs ride along.
+# {floor_col} is the seat's acquisition floor (min over copies).
 _CUBE_MEMBERSHIP_SQL = """
 SELECT c.cell, m.{col}, coalesce(upper(m.character), c.character, ''),
   count(*), count(*) FILTER (c.win),
   count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
   round(coalesce(sum(x.exp), 0), 3)
 FROM (
-  SELECT DISTINCT run_hash, player_idx, {col}, character
-  FROM read_parquet('{lake}/{table}.parquet')
-  WHERE {col} IS NOT NULL AND {col} <> ''{where}
-) m
-JOIN cells c ON m.run_hash = c.run_hash
-LEFT JOIN run_exp x ON m.run_hash = x.run_hash
+  SELECT m.run_hash, m.player_idx, m.{col}, m.character, {exp_expr} AS exp
+  FROM (
+    SELECT run_hash, player_idx, {col}, character, {floor_col} AS f
+    FROM read_parquet('{lake}/{table}.parquet')
+    WHERE {col} IS NOT NULL AND {col} <> ''{where}
+    GROUP BY 1, 2, 3, 4
+  ) m
+  {exp_join}
+) x
+JOIN cells c ON x.run_hash = c.run_hash,
+LATERAL (SELECT x.{col}, x.character) m
 GROUP BY 1, 2, 3
 """
 
@@ -288,30 +358,41 @@ GROUP BY 1
 """
 
 _CUBE_SHOPS_SQL = """
-SELECT c.cell, s.entity_type, s.id,
-  count(*), count(*) FILTER (s.bought),
-  count(*) FILTER (s.bought AND c.win),
-  count(x.exp) FILTER (s.bought),
-  count(*) FILTER (s.bought AND c.win AND x.exp IS NOT NULL),
-  round(coalesce(sum(x.exp) FILTER (s.bought), 0), 3)
-FROM read_parquet('{lake}/shop_items.parquet') s
-JOIN cells c ON s.run_hash = c.run_hash
-LEFT JOIN run_exp x ON s.run_hash = x.run_hash
-WHERE s.id IS NOT NULL AND s.id <> ''
+SELECT c.cell, x.entity_type, x.id,
+  count(*), count(*) FILTER (x.bought),
+  count(*) FILTER (x.bought AND c.win),
+  count(x.exp) FILTER (x.bought),
+  count(*) FILTER (x.bought AND c.win AND x.exp IS NOT NULL),
+  round(coalesce(sum(x.exp) FILTER (x.bought), 0), 3)
+FROM (
+  SELECT s.run_hash, s.entity_type, s.id, s.bought, {exp_expr} AS exp
+  FROM read_parquet('{lake}/shop_items.parquet') s
+  {exp_join}
+  WHERE s.id IS NOT NULL AND s.id <> ''
+) x
+JOIN cells c ON x.run_hash = c.run_hash
 GROUP BY 1, 2, 3
 """
 
 _CUBE_EVENTS_SQL = """
-SELECT h.cell, split_part((ec.u).title."key", '.', 1),
-  split_part(split_part((ec.u).title."key", '.options.', 2), '.', 1),
-  count(*), count(*) FILTER (h.win),
-  count(x.exp), count(*) FILTER (h.win AND x.exp IS NOT NULL),
+SELECT x.cell, split_part(x.key, '.', 1),
+  split_part(split_part(x.key, '.options.', 2), '.', 1),
+  count(*), count(*) FILTER (x.win),
+  count(x.exp), count(*) FILTER (x.win AND x.exp IS NOT NULL),
   round(coalesce(sum(x.exp), 0), 3)
-FROM pfloors h
-LEFT JOIN run_exp x ON h.run_hash = x.run_hash,
-LATERAL (SELECT unnest((h.p).event_choices) AS u) ec
-WHERE (ec.u).title."table" = 'events'
-  AND (ec.u).title."key" LIKE '%.options.%'
+FROM (
+  SELECT c.cell, c.win, c.key, {exp_expr} AS exp
+  FROM (
+    SELECT h.run_hash, h.cell, h.win, (ec.u).title."key" AS key,
+      ao.floor_offset + h.floor_idx AS floor
+    FROM pfloors h
+    JOIN act_offsets ao ON h.run_hash = ao.run_hash AND h.act = ao.act,
+    LATERAL (SELECT unnest((h.p).event_choices) AS u) ec
+    WHERE (ec.u).title."table" = 'events'
+      AND (ec.u).title."key" LIKE '%.options.%'
+  ) c
+  {exp_join}
+) x
 GROUP BY 1, 2, 3
 """
 
@@ -352,15 +433,22 @@ WITH hp AS (
 choices AS (
   SELECT h.run_hash, h.cell, rc.u AS choice, h.win,
     coalesce(h.hp_prev, struct_pack(hp := (h.p).current_hp,
-      mx := coalesce((h.p).max_hp, 0))) AS ref
-  FROM hp h, LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc
+      mx := coalesce((h.p).max_hp, 0))) AS ref,
+    ao.floor_offset + h.floor_idx AS floor
+  FROM hp h
+  JOIN act_offsets ao ON h.run_hash = ao.run_hash AND h.act = ao.act,
+  LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc
   WHERE rc.u IS NOT NULL AND rc.u <> ''
+),
+scored AS (
+  SELECT c.*, {exp_expr} AS exp FROM choices c
+  {exp_join}
 )
-SELECT c.cell, c.choice, count(*), count(*) FILTER (c.win),
+SELECT cell, choice, count(*), count(*) FILTER (win),
   count(*) FILTER (ref.mx > 0 AND ref.hp IS NOT NULL AND ref.hp * 2 < ref.mx),
-  count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
-  round(coalesce(sum(x.exp), 0), 3)
-FROM choices c LEFT JOIN run_exp x ON c.run_hash = x.run_hash
+  count(exp), count(*) FILTER (win AND exp IS NOT NULL),
+  round(coalesce(sum(exp), 0), 3)
+FROM scored
 GROUP BY 1, 2
 """
 
@@ -390,8 +478,26 @@ def _membership_where(table: str, con, wax: bool = False) -> str:
     return _WAX_ONLY if wax else _NO_WAX
 
 
-def _ensure_run_exp(con) -> None:
-    con.execute(_RUN_EXP_SQL)
+# (entity type, parquet table, id column, the seat's acquisition floor).
+# Potions carry no pickup floor, so their expectation is the floor-1 curve.
+_CUBE_TABLES = (
+    ("cards", "deck", "card", "min(coalesce(floor_added, 0))"),
+    ("relics", "relics", "relic", "min(coalesce(floor_added, 0))"),
+    ("potions", "potions", "potion", "1"),
+)
+
+
+def _cube_membership_sql(col: str, table: str, floor_col: str, where: str) -> str:
+    exp_join, exp_expr = _exp_sql("m.run_hash", "m.f")
+    return _CUBE_MEMBERSHIP_SQL.format(
+        col=col,
+        table=table,
+        lake=LAKE_DIR,
+        where=where,
+        floor_col=floor_col,
+        exp_join=exp_join,
+        exp_expr=exp_expr,
+    )
 
 
 _MODE_KEYS = frozenset(("standard", "daily", "custom"))
@@ -908,13 +1014,20 @@ def _ensure_choice_rows(con) -> None:
     )
 
 
+# A free relic choice: not a shop shelf, two or more options, fewer taken
+# than offered (a list where everything was taken is relics gained on that
+# floor, not a decision), and never a starter relic.
+_FREE_RELIC_SCREEN = (
+    "NOT {a}.is_shop AND {a}.n_options >= 2 AND {a}.n_picked < {a}.n_options"
+)
+
 _RELIC_CHOICES_SQL = """
 CREATE TABLE IF NOT EXISTS relic_choice_rows AS
 SELECT c.run_hash, c.act, c.floor_idx, c.player_idx AS pidx,
   c.relic AS cid, c.picked
 FROM read_parquet('{lake}/relic_choices.parquet') c
 JOIN eligible e ON c.run_hash = e.run_hash
-WHERE NOT c.is_shop AND c.n_options >= 2
+WHERE {free} AND c.relic NOT IN (SELECT cid FROM starter_relics)
 """
 
 
@@ -926,8 +1039,13 @@ def _ensure_relic_choice_rows(con) -> None:
     """The relic analogue of choice_rows: one row per option on a free
     relic screen (ancient offers, boss relics, two-option events). Shop
     shelves are left out -- a price is not a preference."""
+    from . import run_entity_stats as res
+
     con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
-    con.execute(_RELIC_CHOICES_SQL.format(lake=LAKE_DIR))
+    _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
+    con.execute(
+        _RELIC_CHOICES_SQL.format(lake=LAKE_DIR, free=_FREE_RELIC_SCREEN.format(a="c"))
+    )
 
 
 def _ensure_run_tiers(con) -> None:
@@ -1673,12 +1791,15 @@ def build_entity_cube(con=None) -> dict:
     players x skill x version bracket folds from these cells at request
     time, which is what lets the tier pages compose mode with the other
     axes instead of one replacing the rest."""
+    from . import run_entity_stats as res
+
     own = con is None
     if own:
         con = _connect(build=True)
     try:
         _prepare_sources(con, str(LAKE_DIR))
-        _ensure_run_exp(con)
+        _ensure_floor_curves(con)
+        _ids_temp_table(con, "starter_relics", res._starter_relic_ids())
         runs_cells = {
             cell: [t, w, int(seats or t)]
             for cell, t, w, seats in con.execute(
@@ -1687,11 +1808,7 @@ def build_entity_cube(con=None) -> dict:
         }
         types: dict[str, dict] = {}
         by_char: dict[str, dict] = {}
-        for etype, table, col in (
-            ("cards", "deck", "card"),
-            ("relics", "relics", "relic"),
-            ("potions", "potions", "potion"),
-        ):
+        for etype, table, col, floor_col in _CUBE_TABLES:
             per: dict[str, dict] = {}
             per_char: dict[str, dict] = {}
             # One scan yields both sections: the entity cells (summed over
@@ -1699,11 +1816,8 @@ def build_entity_cube(con=None) -> dict:
             # by-character views a live source. Seat-set rows: the
             # character is the seat's own, and a 4P run is four seats.
             for cell, eid, ch, p_, w, n_exp, w_exp, exp_sum in con.execute(
-                _CUBE_MEMBERSHIP_SQL.format(
-                    col=col,
-                    table=table,
-                    lake=LAKE_DIR,
-                    where=_membership_where(table, con),
+                _cube_membership_sql(
+                    col, table, floor_col, _membership_where(table, con)
                 )
             ).fetchall():
                 cur = per.setdefault(cell, {}).setdefault(eid, [0, 0, 0, 0, 0.0])
@@ -1719,11 +1833,11 @@ def build_entity_cube(con=None) -> dict:
         wax: dict[str, dict] = {}
         if _relics_have_wax(con):
             for cell, eid, _ch, p_, w, _ne, _we, _es in con.execute(
-                _CUBE_MEMBERSHIP_SQL.format(
-                    col="relic",
-                    table="relics",
-                    lake=LAKE_DIR,
-                    where=_membership_where("relics", con, wax=True),
+                _cube_membership_sql(
+                    "relic",
+                    "relics",
+                    _CUBE_TABLES[1][3],
+                    _membership_where("relics", con, wax=True),
                 )
             ).fetchall():
                 cur = wax.setdefault(cell, {}).setdefault(eid, [0, 0])
@@ -1763,7 +1877,8 @@ def build_entity_cube(con=None) -> dict:
                   count(*) FILTER (r.picked)
                 FROM read_parquet('{LAKE_DIR}/relic_choices.parquet') r
                 JOIN cells e ON r.run_hash = e.run_hash
-                WHERE NOT r.is_shop AND r.n_options >= 2
+                WHERE {_FREE_RELIC_SCREEN.format(a="r")}
+                  AND r.relic NOT IN (SELECT cid FROM starter_relics)
                 GROUP BY 1, 2, 3
                 """
             ).fetchall():
@@ -1772,8 +1887,11 @@ def build_entity_cube(con=None) -> dict:
                 ] = [offered, picked]
         shops: dict[str, dict] = {}
         if (LAKE_DIR / "shop_items.parquet").exists():
+            shop_join, shop_exp = _exp_sql("s.run_hash", "s.floor")
             for cell, etype, eid, *counts in con.execute(
-                _CUBE_SHOPS_SQL.format(lake=LAKE_DIR)
+                _CUBE_SHOPS_SQL.format(
+                    lake=LAKE_DIR, exp_join=shop_join, exp_expr=shop_exp
+                )
             ).fetchall():
                 shops.setdefault(cell, {}).setdefault(etype, {})[eid] = [
                     int(counts[0]),
@@ -1784,7 +1902,10 @@ def build_entity_cube(con=None) -> dict:
                     float(counts[5] or 0.0),
                 ]
         events: dict[str, dict] = {}
-        for cell, eid, oid, *counts in con.execute(_CUBE_EVENTS_SQL).fetchall():
+        ev_join, ev_exp = _exp_sql("c.run_hash", "c.floor")
+        for cell, eid, oid, *counts in con.execute(
+            _CUBE_EVENTS_SQL.format(exp_join=ev_join, exp_expr=ev_exp)
+        ).fetchall():
             if eid and oid:
                 events.setdefault(cell, {}).setdefault(eid, {})[oid] = [
                     int(counts[0]),
@@ -1794,7 +1915,10 @@ def build_entity_cube(con=None) -> dict:
                     float(counts[4] or 0.0),
                 ]
         rest: dict[str, dict] = {}
-        for cell, choice, *counts in con.execute(_CUBE_REST_SQL).fetchall():
+        rest_join, rest_exp = _exp_sql("c.run_hash", "c.floor")
+        for cell, choice, *counts in con.execute(
+            _CUBE_REST_SQL.format(exp_join=rest_join, exp_expr=rest_exp)
+        ).fetchall():
             rest.setdefault(cell, {})[choice] = [
                 int(counts[0]),
                 int(counts[1]),
