@@ -82,6 +82,7 @@ interface ApiResponse {
   total_seats?: number;
   total_wins?: number;
   character_runs?: number | null;
+  character_wins?: number | null;
   data_through?: string | null;
   rows?: ApiRow[];
 }
@@ -164,6 +165,8 @@ function totalsOf(res: ApiResponse | null): GridTotals {
     totalRuns: res?.total_runs ?? 0,
     totalSeats: num(res?.total_seats),
     totalWins: num(res?.total_wins),
+    characterRuns: num(res?.character_runs),
+    characterWins: num(res?.character_wins),
     baselineWinRate: num(res?.baseline_win_rate),
     dataThrough: res?.data_through ?? null,
   };
@@ -274,7 +277,13 @@ async function loadEntity(
     row.losses =
       m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
     row.pickRate = kind === "potions" ? null : num(m.pick_rate);
-    row.holdRate = num(m.hold_rate);
+    const charRuns = character ? num(res?.character_runs) : null;
+    row.holdRate =
+      charRuns && charRuns > 0
+        ? Math.round((row.n / charRuns) * 1000) / 10
+        : character
+          ? null
+          : num(m.hold_rate);
     row.useRate = kind === "potions" ? num(m.use_rate) : null;
     row.offered = kind === "potions" ? null : num(m.offered);
     row.picked = kind === "potions" ? null : num(m.picked);

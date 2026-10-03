@@ -43,6 +43,8 @@ export interface GridTotals {
   totalRuns: number;
   totalSeats: number | null;
   totalWins: number | null;
+  characterRuns: number | null;
+  characterWins: number | null;
   baselineWinRate: number | null;
   dataThrough: string | null;
 }

@@ -228,8 +228,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const [showWax, setShowWax] = useState(false);
   const [showUpgraded, setShowUpgraded] = useState(false);
   const [offColor, setOffColorState] = useState(!!data.offColor);
-  const first =
-    cfg.defaultSort ?? (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]);
+  const first: ColKey =
+    kind === "cards" && (character || data.by === "character")
+      ? "n"
+      : (cfg.defaultSort ??
+        (cfg.columns.includes("elo") ? "elo" : cfg.columns[1]));
   const [sortKey, setSortKey] = useState<ColKey>(first);
   const [dir, setDir] = useState<1 | -1>(-1);
   const [order, setOrder] = useState<ColKey[]>([]);
@@ -290,7 +293,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
 
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase();
-    const field = COLUMN_DEFS[sortKey].sortField;
+    let field = COLUMN_DEFS[sortKey].sortField;
     const out = rows.filter((r) => {
       if (group && r.group !== group) return false;
       if (rarity && r.rarity !== rarity) return false;
@@ -309,6 +312,13 @@ export default function StatsGrid({ data }: { data: GridData }) {
         return false;
       return true;
     });
+    if (
+      field &&
+      out.length > 0 &&
+      out.every((r) => r[field as keyof GridRow] === null)
+    ) {
+      field = "n";
+    }
     if (field) {
       out.sort((a, b) => {
         const primary = cmp(a[field], b[field], dir);
@@ -529,11 +539,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
 
   const cohort = cohortLabel(bracket, t, character);
   const scoreBaseline = totals.baselineWinRate;
-  const seatBaseline =
-    totals.totalWins !== null && totals.totalSeats
+  const scoped = !!character && totals.characterRuns !== null;
+  const seatBaseline = scoped
+    ? totals.characterWins !== null && totals.characterRuns
+      ? (totals.characterWins / totals.characterRuns) * 100
+      : null
+    : totals.totalWins !== null && totals.totalSeats
       ? (totals.totalWins / totals.totalSeats) * 100
       : null;
-  const seats = totals.totalSeats ?? totals.totalRuns;
 
   const cell = (col: Column, r: GridRow) => {
     switch (col.key) {
@@ -770,8 +783,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
         </p>
         <p className="mt-2 text-xs text-[var(--text-muted)]">
           {t("Cohort")}: {cap(cohort)} ·{" "}
-          {t("{n} runs", { n: totals.totalRuns.toLocaleString() })}
-          {totals.totalSeats !== null && totals.totalSeats !== totals.totalRuns
+          {scoped
+            ? t("{n} runs", {
+                n: (totals.characterRuns ?? 0).toLocaleString(),
+              })
+            : t("{n} runs", { n: totals.totalRuns.toLocaleString() })}
+          {!scoped &&
+          totals.totalSeats !== null &&
+          totals.totalSeats !== totals.totalRuns
             ? ` · ${t("{n} seats", { n: totals.totalSeats.toLocaleString() })}`
             : ""}
           {" · "}
