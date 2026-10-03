@@ -1,4 +1,4 @@
-import type { AttackPattern, AttackPatternBranch } from "@/lib/api";
+import type { AttackPattern, AttackPatternBranch } from "@/lib/api/types";
 import type { TFn } from "@/lib/i18n";
 
 export interface RandomBranch {

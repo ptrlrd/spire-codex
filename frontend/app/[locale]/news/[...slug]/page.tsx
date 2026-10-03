@@ -4,7 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, clipMetaDescription, pageHeading } from "@/lib/seo";
-import type { NewsArticle } from "@/lib/api";
+import type { NewsArticle } from "@/lib/api/types";
 import { getT } from "@/lib/i18n-server";
 import { localeOf, localePath } from "@/lib/locale";
 import {

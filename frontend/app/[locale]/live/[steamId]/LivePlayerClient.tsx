@@ -11,7 +11,7 @@ import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";

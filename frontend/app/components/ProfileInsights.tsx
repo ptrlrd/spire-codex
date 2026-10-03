@@ -17,7 +17,7 @@ import {
 import { Chart } from "react-chartjs-2";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import IconSelect from "@/app/components/IconSelect";
 import AscensionHeatmap, {
   type AscensionMatrix,

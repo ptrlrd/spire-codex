@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SLUG_MAP } from "../slug-map";

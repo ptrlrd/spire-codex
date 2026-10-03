@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import type { Guide } from "@/lib/api";
+import type { Guide } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useT } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";

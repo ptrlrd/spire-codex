@@ -5,13 +5,16 @@ import {
   SITE_NAME,
   SITE_URL,
 } from "@/lib/seo";
-import { api } from "@/lib/api";
+import { getApiEndpoint } from "@/lib/api/endpoint.server";
 
 export async function generateMetadata(): Promise<Metadata> {
   let count = "289+";
   try {
-    const stats = await api.getStatsBounded();
-    count = String(stats.relics);
+    const stats = await getApiEndpoint("stats", undefined, {
+      timeoutMs: 3000,
+      revalidate: 3600,
+    });
+    if (typeof stats?.relics === "number") count = String(stats.relics);
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }

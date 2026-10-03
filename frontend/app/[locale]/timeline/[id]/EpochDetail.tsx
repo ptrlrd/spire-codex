@@ -9,7 +9,7 @@ import {
 } from "react";
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
-import type { Epoch, Card, Relic, Potion } from "@/lib/api";
+import type { Epoch, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";

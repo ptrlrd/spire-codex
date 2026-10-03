@@ -4,7 +4,7 @@ import { useGameLocale, useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import RichDescription from "@/app/components/RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";

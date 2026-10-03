@@ -10,17 +10,6 @@ const cache = new Map<string, { data: unknown; timestamp: number }>();
 const inflight = new Map<string, Promise<unknown>>();
 const MAX_AGE = 5 * 60 * 1000; // 5 minutes
 
-// Beta version, set by BetaVersionContext, read by cachedFetch
-let _betaVersion: string | null = null;
-
-export function setBetaVersion(v: string | null) {
-  _betaVersion = v;
-}
-
-export function getBetaVersion(): string | null {
-  return _betaVersion;
-}
-
 const LANG_CODES = LANG_PREFIXES;
 
 /** "beta" when the browser is on a /beta path (optionally language-prefixed,
@@ -36,10 +25,6 @@ function pathChannel(): "beta" | null {
 
 export function buildApiUrl(url: string): string {
   let out = url;
-  if (_betaVersion) {
-    const sep = out.includes("?") ? "&" : "?";
-    out = `${out}${sep}version=${_betaVersion}`;
-  }
   // On a /beta page every API read should come from the beta channel; doing
   // it here makes every cachedFetch caller channel-aware without edits.
   if (

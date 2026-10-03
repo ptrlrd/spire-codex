@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { AttackPattern } from "./api";
+import type { AttackPattern } from "./api/types";
 import { randomPatternSentences, randomPatternSummary } from "./attack-pattern";
 
 const t = (key: string, values?: Record<string, string | number>) =>

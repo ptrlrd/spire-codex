@@ -3,9 +3,9 @@
 import { useT } from "@/lib/i18n";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import CardImage from "@/app/components/CardImage";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
 
 /**

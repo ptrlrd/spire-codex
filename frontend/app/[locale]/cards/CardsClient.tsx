@@ -11,14 +11,14 @@ import {
   useCallback,
 } from "react";
 import { useSearchParams } from "next/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { cardHasKeyword } from "@/lib/card-display";
 import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
 import { CDN_BASE } from "@/lib/image-url";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 

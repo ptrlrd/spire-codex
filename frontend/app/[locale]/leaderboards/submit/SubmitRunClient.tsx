@@ -3,7 +3,7 @@
 import { useT } from "@/lib/i18n";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useAuth } from "@/app/contexts/AuthContext";
 import RunDropZone from "@/app/components/RunDropZone";
 import { characterHex } from "@/lib/character-colors";

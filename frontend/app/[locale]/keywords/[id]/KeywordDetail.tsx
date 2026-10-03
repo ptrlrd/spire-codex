@@ -4,7 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Link, useRouter } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import RichDescription from "@/app/components/RichDescription";
 import SearchFilter from "@/app/components/SearchFilter";

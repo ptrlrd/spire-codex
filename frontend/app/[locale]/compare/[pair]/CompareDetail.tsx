@@ -3,7 +3,7 @@
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Character, Card } from "@/lib/api";
+import type { Character, Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";

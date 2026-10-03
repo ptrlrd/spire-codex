@@ -4,7 +4,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "./ancients.css";

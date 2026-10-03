@@ -1,6 +1,6 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
-import type { NewsArticle, NewsListResponse } from "@/lib/api";
+import type { NewsArticle, NewsListResponse } from "@/lib/api/types";
 import {
   firstNewsImage,
   newsExcerpt,

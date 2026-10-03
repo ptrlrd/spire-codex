@@ -3,8 +3,8 @@
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useRef, type CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Stats } from "@/lib/api";
-import { cachedFetch, getBetaVersion } from "@/lib/fetch-cache";
+import type { Stats } from "@/lib/api/types";
+import { cachedFetch } from "@/lib/fetch-cache";
 import { useAuth } from "./contexts/AuthContext";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -103,7 +103,7 @@ export default function HomeClient({
   useEffect(() => {
     if (initialRender.current) {
       initialRender.current = false;
-      if (lang === "eng" && initialStats && !getBetaVersion()) return;
+      if (lang === "eng" && initialStats) return;
     }
     cachedFetch<Stats>(`${API}/api/stats?lang=${lang}`).then(setStats);
     cachedFetch<Translations>(`${API}/api/translations?lang=${lang}`).then(

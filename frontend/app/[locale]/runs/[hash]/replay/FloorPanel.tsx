@@ -34,7 +34,7 @@ import {
   type PotionInfo,
   type RelicInfo,
 } from "../RunPills";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 export interface EventInfo extends EventText {
   id: string;

@@ -1,7 +1,7 @@
 import { getT } from "@/lib/i18n-server";
 import JsonLd from "./JsonLd";
 import { buildFAQPageJsonLd } from "@/lib/jsonld";
-import type { Stats } from "@/lib/api";
+import type { Stats } from "@/lib/api/types";
 
 /** Plain-English answers to the questions a first-time visitor most often
  * lands on the home page asking. The visible copy doubles as the source

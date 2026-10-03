@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import type { Card } from "./api";
+import type { Card } from "./api/types";
 import { cardHasKeyword, getCardDisplayModel } from "./card-display";
 
 function createCard(overrides: Partial<Card> = {}): Card {

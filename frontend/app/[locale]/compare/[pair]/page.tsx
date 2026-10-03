@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { permanentRedirect } from "next/navigation";
-import type { Character, Card } from "@/lib/api";
+import type { Character, Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { getT } from "@/lib/i18n-server";

@@ -16,14 +16,14 @@ import type {
   MonsterMovePower,
   Power,
   AttackPattern,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import type { EncounterStat } from "@/lib/encounter-stats";
 import {
   randomPatternSentences,
   randomPatternSummary,
 } from "@/lib/attack-pattern";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import RichDescription from "@/app/components/RichDescription";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";

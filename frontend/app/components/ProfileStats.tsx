@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import MyTierLists from "@/app/[locale]/tier-list-maker/MyTierLists";
 import ProfileInsights from "./ProfileInsights";
 import { characterHex } from "@/lib/character-colors";

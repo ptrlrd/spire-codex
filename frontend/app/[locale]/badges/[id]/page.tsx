@@ -21,7 +21,7 @@ import {
   clipMetaDescription,
   buildPageMetadata,
 } from "@/lib/seo";
-import type { Badge } from "@/lib/api";
+import type { Badge } from "@/lib/api/types";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/meta-extra.css";

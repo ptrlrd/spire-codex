@@ -6,7 +6,7 @@ import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
-import type { Badge } from "@/lib/api";
+import type { Badge } from "@/lib/api/types";
 import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";

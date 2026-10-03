@@ -11,7 +11,7 @@ import type {
   Intent,
   Modifier,
   Achievement,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import ReferenceClient from "./ReferenceClient";

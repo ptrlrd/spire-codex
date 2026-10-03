@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import type { Guide } from "@/lib/api";
+import type { Guide } from "@/lib/api/types";
 import {
   buildPageMetadata,
   stripTagsFlat,

@@ -4,7 +4,7 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { getT } from "@/lib/i18n-server";
 import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import {
   buildCollectionPageJsonLd,

@@ -3,7 +3,7 @@
 import { Fragment } from "react";
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { characterName } from "@/app/components/CharacterTag";
 import {
   pct,

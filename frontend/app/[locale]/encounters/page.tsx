@@ -3,7 +3,7 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { Encounter } from "@/lib/api";
+import type { Encounter } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
