@@ -708,7 +708,7 @@ export default async function DevelopersPage({ params }: Props) {
                   method: "GET",
                   path: "/api/charts/meta",
                   desc: t(
-                    "Chart registry for the /charts explorer: available charts, filters, splits, and run stats",
+                    "Chart registry for the /stats/charts explorer: available charts, filters, splits, and run stats",
                   ),
                 },
                 {

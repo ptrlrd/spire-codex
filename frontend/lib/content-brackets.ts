@@ -155,6 +155,33 @@ export function combineBracket(
   return base || version || "all";
 }
 
+/** The cohort a stats page shows when its URL carries no ?bracket=: standard
+ * solo runs. "all" must be asked for explicitly. */
+export const DEFAULT_CONTENT_BRACKET = "solo:standard";
+
+/** The default on surfaces whose data has no game-mode axis (encounter
+ * stats, the entity-page bracket pills). */
+export const DEFAULT_SOLO_BRACKET = "solo";
+
+/** The bracket a page should use for a raw ?bracket= value: the page default
+ * when the URL carries none, else the normalized value. */
+export function defaultBracket(
+  raw: string | undefined | null,
+  fallback = DEFAULT_CONTENT_BRACKET,
+): string {
+  return raw ? normalizeBracket(raw) : fallback;
+}
+
+/** The ?bracket= value to write into a page URL: nothing for the page
+ * default (the URL stays clean), the explicit key otherwise, "all" included. */
+export function bracketQuery(
+  bracket: string | undefined | null,
+  fallback = DEFAULT_CONTENT_BRACKET,
+): string | null {
+  const n = normalizeBracket(bracket);
+  return n === fallback ? null : n;
+}
+
 /** Normalize a raw ?bracket= value to a known bracket key, a player:skill
  * composite, a game version, or any of those with a trailing version
  * ("all" if unknown). */

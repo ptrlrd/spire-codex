@@ -150,7 +150,11 @@ export default function LeaderboardBrowseClient() {
   const [lbChar, setLbChar] = useState(
     () => searchParams.get("character") || "",
   );
-  const [lbPage, setLbPage] = useState(1);
+  const [lbPage, setLbPage] = useState(() => {
+    if (tabFromParam(searchParams.get("tab")) === "browse") return 1;
+    const n = Number(searchParams.get("page"));
+    return Number.isInteger(n) && n > 1 ? n : 1;
+  });
   const [lbEntries, setLbEntries] = useState<LeaderboardEntry[]>([]);
   const [lbTotal, setLbTotal] = useState(0);
   const [lbTotalPages, setLbTotalPages] = useState(0);
@@ -166,7 +170,9 @@ export default function LeaderboardBrowseClient() {
   const [browseUser, setBrowseUser] = useState(
     () => searchParams.get("username") || "",
   );
-  const [browseSeed, setBrowseSeed] = useState("");
+  const [browseSeed, setBrowseSeed] = useState(
+    () => searchParams.get("seed") || "",
+  );
   const [browseBuildId, setBrowseBuildId] = useState(
     () => searchParams.get("build_id") || "",
   );
@@ -174,8 +180,17 @@ export default function LeaderboardBrowseClient() {
   const [browseBracket, setBrowseBracket] = useState(() =>
     normalizeBracket(searchParams.get("bracket")),
   );
-  const [browseSort, setBrowseSort] = useState("date");
-  const [browsePage, setBrowsePage] = useState(1);
+  const [browseSort, setBrowseSort] = useState(() => {
+    const v = searchParams.get("sort");
+    return v === "time_asc" || v === "time_desc" || v === "ascension_desc"
+      ? v
+      : "date";
+  });
+  const [browsePage, setBrowsePage] = useState(() => {
+    if (tabFromParam(searchParams.get("tab")) !== "browse") return 1;
+    const n = Number(searchParams.get("page"));
+    return Number.isInteger(n) && n > 1 ? n : 1;
+  });
   const [runList, setRunList] = useState<BrowseRun[]>([]);
   const [browseTotal, setBrowseTotal] = useState(0);
   const [browseTotalPages, setBrowseTotalPages] = useState(0);
@@ -226,8 +241,12 @@ export default function LeaderboardBrowseClient() {
     if (browseChar) params.set("browse_character", browseChar);
     if (browseWin) params.set("win", browseWin);
     if (browseUser) params.set("username", browseUser);
+    if (browseSeed) params.set("seed", browseSeed);
     if (browseBuildId) params.set("build_id", browseBuildId);
     if (browseBracket !== "all") params.set("bracket", browseBracket);
+    if (browseSort !== "date") params.set("sort", browseSort);
+    const activePage = tab === "browse" ? browsePage : lbPage;
+    if (activePage > 1) params.set("page", String(activePage));
     const qs = params.toString();
     const url = qs
       ? `${window.location.pathname}?${qs}`
@@ -244,8 +263,12 @@ export default function LeaderboardBrowseClient() {
     browseChar,
     browseWin,
     browseUser,
+    browseSeed,
     browseBuildId,
     browseBracket,
+    browseSort,
+    lbPage,
+    browsePage,
   ]);
 
   // Reset leaderboard page when filters change

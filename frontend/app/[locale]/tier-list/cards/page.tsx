@@ -10,7 +10,11 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
-import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import {
+  bracketParam,
+  bracketQuery,
+  defaultBracket,
+} from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
 import {
   gameNameFor,
@@ -187,7 +191,7 @@ export default async function CardsTierListPage({
   const sp = await searchParams;
   const color = sp.color?.toLowerCase();
   const sort: SortMode = sp.sort === "elo" ? "elo" : "score";
-  const bracket = normalizeBracket(sp.bracket);
+  const bracket = defaultBracket(sp.bracket);
   const param = bracketParam(bracket);
   const { cards, scores } = await fetchData(locale, color, param);
 
@@ -235,7 +239,8 @@ export default async function CardsTierListPage({
     const params = new URLSearchParams();
     if (color) params.set("color", color);
     if (s === "elo") params.set("sort", "elo");
-    if (bracket !== "all") params.set("bracket", bracket);
+    const bq = bracketQuery(bracket);
+    if (bq) params.set("bracket", bq);
     const qs = params.toString();
     return `/tier-list/cards${qs ? `?${qs}` : ""}`;
   };
@@ -293,7 +298,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.",
             )}{" "}
             <Link
-              href="/leaderboards/scoring"
+              href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("How is the score calculated?")}
@@ -305,7 +310,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.",
             )}{" "}
             <Link
-              href="/leaderboards/scoring#limitations"
+              href="/stats/scoring#limitations"
               className="text-[var(--accent-gold)] hover:underline"
             >
               {t("Known biases")}
@@ -356,7 +361,8 @@ export default async function CardsTierListPage({
           const params = new URLSearchParams();
           if (opt.value) params.set("color", opt.value);
           if (sort === "elo") params.set("sort", "elo");
-          if (bracket !== "all") params.set("bracket", bracket);
+          const bq = bracketQuery(bracket);
+          if (bq) params.set("bracket", bq);
           const qs = params.toString();
           const href = `/tier-list/cards${qs ? `?${qs}` : ""}`;
           return (

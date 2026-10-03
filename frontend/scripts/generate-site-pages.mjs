@@ -111,27 +111,24 @@ export const PAGE_OVERRIDES = {
   "/leaderboards": {
     keywords: ["leaderboard", "fastest", "ascension", "ladder", "ranking"],
   },
-  "/leaderboards/metrics": {
+  "/stats/cards": {
     name: "Card Metrics",
     keywords: ["metrics", "elo", "codex elo", "pick rate", "win rate", "table"],
   },
-  "/leaderboards/scoring": {
+  "/stats/scoring": {
     name: "Codex Score",
     keywords: ["score", "codex score", "scoring", "methodology", "tier bands"],
   },
-  "/leaderboards/stats": {
-    name: "Run Stats",
-    keywords: ["stats", "win rate", "pick rate"],
-  },
-  "/leaderboards/encounters": {
+  "/stats/encounters": {
     name: "Encounter Stats",
     keywords: ["encounter", "deadliest", "stats"],
   },
-  "/leaderboards/submit": {
-    name: "Submit a Run",
-    keywords: ["submit", "upload", "run file"],
+  "/runs/submit": {
+    name: "Contribute",
+    keywords: ["submit", "upload", "run file", "contribute"],
   },
-  "/community-stats": {
+  "/stats": {
+    name: "Community Stats",
     keywords: [
       "community",
       "stats",
@@ -140,6 +137,19 @@ export const PAGE_OVERRIDES = {
       "deadliest",
       "records",
     ],
+  },
+  "/stats/relics": {
+    name: "Relic Metrics",
+    keywords: ["metrics", "elo", "relic", "pick rate", "win rate", "wax"],
+  },
+  "/stats/charts": { name: "Run Charts", keywords: ["charts", "explorer"] },
+  "/stats/shops": {
+    name: "Shop Stats",
+    keywords: ["shop", "merchant", "bought", "purchase", "buy rate"],
+  },
+  "/stats/events": {
+    name: "Event Choices",
+    keywords: ["event", "choice", "option", "votes"],
   },
   "/badges": { keywords: ["badge", "frame", "cosmetic"] },
   "/mechanics": {
@@ -174,7 +184,7 @@ export const PAGE_OVERRIDES = {
     ],
   },
   "/images": { keywords: ["image", "sprite", "asset", "art", "download"] },
-  "/leaderboards/elo": {
+  "/top-players": {
     name: "Top Players",
     keywords: ["elo", "top players", "top 100", "ladder", "ranking"],
   },

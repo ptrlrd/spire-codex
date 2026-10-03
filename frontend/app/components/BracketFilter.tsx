@@ -4,12 +4,14 @@ import {
   PLAYER_BRACKETS,
   MODE_BRACKETS,
   CHARACTER_BRACKETS,
+  bracketQuery,
   normalizeBracket,
   splitBracket,
   combineBracket,
   stripVersion,
   type ContentBracket,
 } from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 import VersionSelectNav from "@/app/components/VersionSelectNav";
 import { imageUrl } from "@/lib/image-url";
 import { getT } from "@/lib/i18n-server";
@@ -54,10 +56,18 @@ export default async function BracketFilter({
     for (const [k, v] of Object.entries(extraParams ?? {})) {
       if (v) params.set(k, v);
     }
-    if (bracketValue !== "all") params.set("bracket", bracketValue);
+    const bq = bracketQuery(bracketValue);
+    if (bq) params.set("bracket", bq);
     const qs = params.toString();
     return `${basePath}${qs ? `?${qs}` : ""}`;
   };
+
+  const cohortLine = (
+    <p className="text-xs text-[var(--text-muted)]">
+      {t("Cohort")}:{" "}
+      {cohortLabel(active, t, character ? character.toUpperCase() : "")}
+    </p>
+  );
 
   const pillCls = (isActive: boolean) =>
     `text-xs px-3 py-1.5 rounded-md border transition-colors ${
@@ -82,13 +92,18 @@ export default async function BracketFilter({
               ? `${b.key}:${version}`
               : b.key,
         )}
-        className={pillCls(base === b.key || (b.key === "all" && !base))}
+        className={pillCls(
+          b.key === "all"
+            ? !skill && !player
+            : skill === b.key || player === b.key,
+        )}
       >
         {t(b.label)}
       </Link>
     );
     return (
       <div className="mb-5 space-y-1.5">
+        {cohortLine}
         <div className="flex flex-wrap items-center gap-1.5">
           <span className="text-xs text-[var(--text-muted)] mr-1">
             {t("Bracket")}
@@ -115,7 +130,7 @@ export default async function BracketFilter({
                   : base
                 : version || "all",
             )}
-            className={pillCls(!MODE_BRACKETS.some((m) => m.key === base))}
+            className={pillCls(!mode)}
           >
             {t("All")}
           </Link>
@@ -125,7 +140,7 @@ export default async function BracketFilter({
               rel="nofollow"
               key={m.key}
               href={hrefFor(version ? `${m.key}:${version}` : m.key)}
-              className={pillCls(base === m.key)}
+              className={pillCls(mode === m.key)}
             >
               {t(m.label)}
             </Link>
@@ -148,6 +163,7 @@ export default async function BracketFilter({
   const playerOpts = [{ key: "", label: "All" }, ...PLAYER_BRACKETS];
   return (
     <div className="mb-5 space-y-1.5">
+      {cohortLine}
       <div className="flex flex-wrap items-center gap-1.5">
         <span className="w-14 text-xs text-[var(--text-muted)]">
           {t("Bracket")}

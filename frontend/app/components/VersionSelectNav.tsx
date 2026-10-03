@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "@/i18n/navigation";
-import { splitBracket } from "@/lib/content-brackets";
+import { bracketQuery, splitBracket } from "@/lib/content-brackets";
 import { useT } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -53,7 +53,8 @@ export default function VersionSelectNav({
     for (const [k, val] of Object.entries(extraParams ?? {})) {
       if (val) params.set(k, val);
     }
-    if (bracket && bracket !== "all") params.set("bracket", bracket);
+    const bq = bracketQuery(bracket || "all");
+    if (bq) params.set("bracket", bq);
     const qs = params.toString();
     router.push(qs ? `${basePath}?${qs}` : basePath);
   };

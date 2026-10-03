@@ -6,6 +6,7 @@ import {
   LANG_PREFIXES,
 } from "@/lib/languages";
 import { routing } from "@/i18n/routing";
+import { MOVED_PAGES } from "@/lib/moved-pages";
 
 /** Canonicalise news article URLs.
  *
@@ -195,13 +196,18 @@ function renamedToolRedirect(req: NextRequest): NextResponse | null {
   return NextResponse.redirect(target, 308);
 }
 
-function metaRedirect(req: NextRequest): NextResponse | null {
-  const parts = req.nextUrl.pathname.split("/");
-  const i = LANG_CODES.has(parts[1]) ? 2 : 1;
-  if (parts[i] !== "meta" || parts.length !== i + 1) return null;
-  const url = req.nextUrl.clone();
-  url.pathname = [...parts.slice(0, i), "leaderboards", "stats"].join("/");
-  return NextResponse.redirect(url, 308);
+function movedPageRedirect(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.replace(/\/+$/, "").split("/");
+  let i = 1;
+  if (LANG_CODES.has(parts[i])) i++;
+  if (parts[i] === "beta") i++;
+  const rest = "/" + parts.slice(i).join("/");
+  const to = MOVED_PAGES[rest];
+  if (!to) return null;
+  const target = new URL(req.nextUrl.origin);
+  target.pathname = [...parts.slice(0, i), ...to.slice(1).split("/")].join("/");
+  target.search = req.nextUrl.search;
+  return NextResponse.redirect(target, 301);
 }
 
 function localeRewrite(req: NextRequest): NextResponse {
@@ -229,8 +235,8 @@ export function proxy(req: NextRequest) {
   if (lower) return lower;
   const news = newsRedirect(req);
   if (news) return news;
-  const meta = metaRedirect(req);
-  if (meta) return meta;
+  const moved = movedPageRedirect(req);
+  if (moved) return moved;
   const renamed = renamedToolRedirect(req);
   if (renamed) return renamed;
   const beta = betaRewrite(req);

@@ -42,6 +42,32 @@ describe("locale routing", () => {
     expect(run("/jpn")).toMatchObject({ rewrite: null, location: null });
   });
 
+  it("redirects moved stats pages in every prefix form", () => {
+    expect(run("/community-stats?bracket=a10")).toMatchObject({
+      status: 301,
+      location: "/stats?bracket=a10",
+    });
+    expect(run("/jpn/leaderboards/metrics")).toMatchObject({
+      status: 301,
+      location: "/jpn/stats/cards",
+    });
+    expect(run("/beta/leaderboards/elo")).toMatchObject({
+      status: 301,
+      location: "/beta/top-players",
+    });
+    expect(run("/deu/beta/charts")).toMatchObject({
+      status: 301,
+      location: "/deu/beta/stats/charts",
+    });
+    expect(run("/leaderboards/submit/")).toMatchObject({
+      status: 301,
+      location: "/runs/submit",
+    });
+    expect(run("/leaderboards")).toMatchObject({
+      rewrite: "/eng/leaderboards",
+    });
+  });
+
   it("sends localized URLs of English-only sections to the English page", () => {
     expect(run("/jpn/admin")).toMatchObject({
       status: 308,
@@ -52,12 +78,12 @@ describe("locale routing", () => {
       location: null,
     });
     expect(run("/deu/meta")).toMatchObject({
-      status: 308,
-      location: "/deu/leaderboards/stats",
+      status: 301,
+      location: "/deu/stats",
     });
     expect(run("/meta")).toMatchObject({
-      status: 308,
-      location: "/leaderboards/stats",
+      status: 301,
+      location: "/stats",
     });
     expect(run("/seed-lab")).toMatchObject({
       status: 308,

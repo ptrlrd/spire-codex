@@ -33,7 +33,7 @@ export const ANNOUNCEMENTS: Announcement[] = [
     date: "2026-07-19",
     title: "Instant insights when you upload a run",
     body: "Submitting a run now shows which community archetype your deck matches, its win rate, and how your seed stacks up, right on the upload page.",
-    href: "/leaderboards/submit",
+    href: "/runs/submit",
   },
 ];
 

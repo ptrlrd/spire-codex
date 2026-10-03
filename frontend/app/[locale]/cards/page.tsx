@@ -332,7 +332,7 @@ export default async function CardsPage({ params }: Props) {
             for S-through-F tiers, or check the{" "}
             <Link
               prefetch={false}
-              href="/leaderboards/stats"
+              href="/stats"
               className="text-[var(--accent-gold)] hover:underline"
             >
               community stats page

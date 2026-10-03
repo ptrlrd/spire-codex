@@ -33,7 +33,7 @@ const API =
  * list-only entries get only the index page.
  *
  * Re-verified 2026-07-25 against the tree: added the hubs that had
- * landed since May (charts, community-stats, tier-list, mod, overlay,
+ * landed since May (stats, tier-list, mod, overlay,
  * knowledge-demon, giveaway, meta) plus modifiers, which always had a
  * localized list page but was only in the detail set. `runs` joined
  * when the localized runs pages became real translations (next-intl).
@@ -63,8 +63,16 @@ const LANG_LIST_ROUTES = [
   "seed-finder",
   "deck-builder",
   "tier-list",
-  "charts",
-  "community-stats",
+  "stats",
+  "stats/cards",
+  "stats/relics",
+  "stats/encounters",
+  "stats/charts",
+  "stats/scoring",
+  "stats/shops",
+  "stats/events",
+  "top-players",
+  "runs/submit",
   "compare",
   "changelog",
   "developers",
@@ -132,27 +140,31 @@ const STATIC_PAGES = [
   { path: "/modifiers", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/leaderboards", priority: 0.7, changeFrequency: "daily" as const },
   {
-    path: "/leaderboards/submit",
+    path: "/runs/submit",
     priority: 0.6,
     changeFrequency: "monthly" as const,
   },
   {
-    path: "/leaderboards/stats",
-    priority: 0.8,
-    changeFrequency: "daily" as const,
-  },
-  {
-    path: "/leaderboards/elo",
+    path: "/top-players",
     priority: 0.7,
     changeFrequency: "daily" as const,
   },
   {
-    path: "/community-stats",
+    path: "/stats",
     priority: 0.7,
     changeFrequency: "daily" as const,
   },
+  { path: "/stats/cards", priority: 0.8, changeFrequency: "daily" as const },
+  { path: "/stats/relics", priority: 0.8, changeFrequency: "daily" as const },
   {
-    path: "/leaderboards/scoring",
+    path: "/stats/encounters",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  { path: "/stats/shops", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/stats/events", priority: 0.6, changeFrequency: "daily" as const },
+  {
+    path: "/stats/scoring",
     priority: 0.6,
     changeFrequency: "monthly" as const,
   },
@@ -196,7 +208,7 @@ const STATIC_PAGES = [
   { path: "/unlocks", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/runs", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/replays", priority: 0.6, changeFrequency: "daily" as const },
-  { path: "/charts", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/stats/charts", priority: 0.6, changeFrequency: "daily" as const },
   { path: "/mod", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/exporter", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/overlay", priority: 0.5, changeFrequency: "monthly" as const },

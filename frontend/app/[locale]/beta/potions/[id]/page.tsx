@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import PotionDetail from "@/app/[locale]/potions/[id]/PotionDetail";
 
 /** Beta-channel potion detail. See beta/cards/[id]/page.tsx for why this
@@ -42,5 +43,9 @@ export default async function Page({ params }: Props) {
     // PotionDetail refetches client-side (with channel=beta via the /beta
     // path) and renders its own not-found state.
   }
-  return <PotionDetail initialPotion={item} />;
+  return (
+    <Suspense fallback={null}>
+      <PotionDetail initialPotion={item} />
+    </Suspense>
+  );
 }

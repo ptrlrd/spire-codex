@@ -104,7 +104,7 @@ export default function HomeStatsLive({
             <Link
               prefetch={false}
               className="viewmore"
-              href={`${runsHost}/leaderboards/stats`}
+              href={`${runsHost}/stats`}
             >
               {t("View all stats")} {ARROW}
             </Link>

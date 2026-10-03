@@ -12,6 +12,8 @@ import {
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
 import { pct2 } from "@/lib/pct";
+import { DEFAULT_SOLO_BRACKET } from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -183,7 +185,7 @@ export default function MonsterEncounterStats({
   const ids = encounters.map((e) => e.encounter_id).join(",");
   const [series, setSeries] = useState<Series | null | undefined>(undefined);
   const [enc, setEnc] = useState<string>("");
-  const [bracket, setBracket] = useState("all");
+  const [bracket, setBracket] = useState<string>(DEFAULT_SOLO_BRACKET);
   const [version, setVersion] = useState("");
   const [th, setTh] = useState<Theme | null>(null);
 
@@ -304,6 +306,9 @@ export default function MonsterEncounterStats({
             </button>
           ))}
         </div>
+        <p className="text-xs text-[var(--text-muted)]">
+          {t("Cohort")}: {version ? version : cohortLabel(bracket, t)}
+        </p>
         {series.version_order.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5">
             <span className="text-xs text-[var(--text-muted)] w-16">

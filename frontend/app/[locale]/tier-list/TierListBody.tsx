@@ -288,7 +288,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           "Click any tier list below to see the full ranking with character or pool filters.",
         )}{" "}
         <Link
-          href="/leaderboards/scoring"
+          href="/stats/scoring"
           className="text-[var(--accent-gold)] hover:underline"
         >
           {t("How is the score calculated?")}
@@ -468,7 +468,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           )}
         </p>
         <Link
-          href="/leaderboards/scoring#limitations"
+          href="/stats/scoring#limitations"
           className="inline-block mt-4 text-sm font-medium text-[var(--accent-gold)] hover:underline"
         >
           → {t("How the score works and where it's biased")}
