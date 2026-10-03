@@ -10,7 +10,11 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
-import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import {
+  bracketParam,
+  bracketQuery,
+  defaultBracket,
+} from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
 import {
   gameNameFor,
@@ -187,7 +191,7 @@ export default async function CardsTierListPage({
   const sp = await searchParams;
   const color = sp.color?.toLowerCase();
   const sort: SortMode = sp.sort === "elo" ? "elo" : "score";
-  const bracket = normalizeBracket(sp.bracket);
+  const bracket = defaultBracket(sp.bracket);
   const param = bracketParam(bracket);
   const { cards, scores } = await fetchData(locale, color, param);
 
@@ -235,7 +239,8 @@ export default async function CardsTierListPage({
     const params = new URLSearchParams();
     if (color) params.set("color", color);
     if (s === "elo") params.set("sort", "elo");
-    if (bracket !== "all") params.set("bracket", bracket);
+    const bq = bracketQuery(bracket);
+    if (bq) params.set("bracket", bq);
     const qs = params.toString();
     return `/tier-list/cards${qs ? `?${qs}` : ""}`;
   };
@@ -356,7 +361,8 @@ export default async function CardsTierListPage({
           const params = new URLSearchParams();
           if (opt.value) params.set("color", opt.value);
           if (sort === "elo") params.set("sort", "elo");
-          if (bracket !== "all") params.set("bracket", bracket);
+          const bq = bracketQuery(bracket);
+          if (bq) params.set("bracket", bq);
           const qs = params.toString();
           const href = `/tier-list/cards${qs ? `?${qs}` : ""}`;
           return (

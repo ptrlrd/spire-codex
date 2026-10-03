@@ -10,7 +10,11 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
-import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import {
+  bracketParam,
+  bracketQuery,
+  defaultBracket,
+} from "@/lib/content-brackets";
 import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
@@ -111,7 +115,8 @@ function relicHref(
   if (rarity) params.set("rarity", rarity);
   if (act) params.set("act", act);
   if (ancient) params.set("ancient", ancient);
-  if (bracket && bracket !== "all") params.set("bracket", bracket);
+  const bq = bracketQuery(bracket || "all");
+  if (bq) params.set("bracket", bq);
   const qs = params.toString();
   return `/tier-list/relics${qs ? `?${qs}` : ""}`;
 }
@@ -252,7 +257,7 @@ export default async function RelicsTierListPage({
   const rarity = sp.rarity?.toLowerCase();
   const act = parseAct(sp.act);
   const ancient = parseAncient(sp.ancient);
-  const bracket = normalizeBracket(sp.bracket);
+  const bracket = defaultBracket(sp.bracket);
   const param = bracketParam(bracket);
   const { relics, scores } = await fetchData(locale, pool, act, param, ancient);
 

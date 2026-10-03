@@ -32,6 +32,7 @@ import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import "@/app/card-revamp.css";
+import { DEFAULT_SOLO_BRACKET } from "@/lib/content-brackets";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -268,7 +269,7 @@ export default function CardDetail({
   const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
-  const [statsBracket, setStatsBracket] = useState("all");
+  const [statsBracket, setStatsBracket] = useState(DEFAULT_SOLO_BRACKET);
   const [powerData, setPowerData] = useState<
     Record<
       string,

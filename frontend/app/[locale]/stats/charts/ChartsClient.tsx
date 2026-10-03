@@ -9,6 +9,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { CONTENT_BRACKETS, normalizeBracket } from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 import {
   Chart as ChartJS,
   LineElement,
@@ -200,14 +201,14 @@ interface Meta {
 }
 
 const PLAYER_OPTS = [
-  { value: "", label: "All runs" },
+  { value: "all", label: "All runs" },
   { value: "1", label: "Solo" },
   { value: "2", label: "2P" },
   { value: "3", label: "3P" },
   { value: "4", label: "4P" },
 ];
 const MODE_OPTS = [
-  { value: "", label: "All modes" },
+  { value: "all", label: "All modes" },
   { value: "standard", label: "Standard" },
   { value: "daily", label: "Daily" },
   { value: "custom", label: "Custom" },
@@ -360,7 +361,10 @@ function ChartsClientInner() {
   const [chart, setChart] = useState(
     searchParams.get("chart") || "winrate-by-floor",
   );
-  const [players, setPlayers] = useState(searchParams.get("players") || "");
+  const [players, setPlayers] = useState(() => {
+    const v = searchParams.get("players");
+    return v === null ? "1" : v || "all";
+  });
   const [ascension, setAscension] = useState(
     searchParams.get("ascension") || "",
   );
@@ -377,7 +381,10 @@ function ChartsClientInner() {
       .then((d) => setVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const [gameMode, setGameMode] = useState(searchParams.get("mode") || "");
+  const [gameMode, setGameMode] = useState(() => {
+    const v = searchParams.get("mode");
+    return v === null ? "standard" : v || "all";
+  });
   const [usernameInput, setUsernameInput] = useState(
     searchParams.get("user") || "",
   );
@@ -512,11 +519,11 @@ function ChartsClientInner() {
   useEffect(() => {
     const p = new URLSearchParams();
     if (chart !== "winrate-by-floor") p.set("chart", chart);
-    if (players) p.set("players", players);
+    if (players !== "1") p.set("players", players);
     if (ascension) p.set("ascension", ascension);
     if (bracket !== "all") p.set("bracket", bracket);
     if (buildId) p.set("version", buildId);
-    if (gameMode) p.set("mode", gameMode);
+    if (gameMode !== "standard") p.set("mode", gameMode);
     if (username) p.set("user", username);
     if (split !== "character" && spec?.splits.includes(split))
       p.set("split", split);
@@ -562,12 +569,12 @@ function ChartsClientInner() {
     if (spec.needs.includes("event") && !event) return;
     if (needsEntity && !entity) return;
     const p = new URLSearchParams();
-    if (players) p.set("players", players);
+    if (players !== "all") p.set("players", players);
     if (spec.kind === "frame" && !spec.daily && ascension)
       p.set("ascension", ascension);
     if (!spec.daily && bracket !== "all") p.set("bracket", bracket);
     if (buildId) p.set("build_id", buildId);
-    if (spec.kind === "frame" && !spec.daily && gameMode)
+    if (spec.kind === "frame" && !spec.daily && gameMode !== "all")
       p.set("game_mode", gameMode);
     if (username) p.set("username", username);
     if (spec.splits.includes(split) && split !== "character")
@@ -872,6 +879,20 @@ function ChartsClientInner() {
             </span>
           )}
         </div>
+        <p className="text-xs text-[var(--text-muted)]">
+          {t("Cohort")}:{" "}
+          {cohortLabel(
+            [
+              { "1": "solo", "2": "2p", "3": "3p", "4": "4p" }[players] ?? "",
+              bracket === "all" ? "" : bracket,
+              gameMode === "all" ? "" : gameMode,
+              buildId,
+            ]
+              .filter(Boolean)
+              .join(":") || "all",
+            t,
+          )}
+        </p>
       </div>
 
       {/* Chart card */}

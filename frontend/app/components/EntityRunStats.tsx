@@ -13,10 +13,12 @@ import ScoreBadge, { scoreToTier } from "@/app/components/ScoreBadge";
 const EntityTrends = dynamic(() => import("./EntityTrends"), { ssr: false });
 import {
   CONTENT_BRACKETS,
+  DEFAULT_SOLO_BRACKET,
   PLAYER_BRACKETS,
   combineBracket,
   splitBracket,
 } from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -83,15 +85,19 @@ function MetricsStrip({
   const t = useT();
   const bp = useBetaPrefix();
   const page = METRICS_PAGE[entityType];
+  const base = stats.brackets?.[DEFAULT_SOLO_BRACKET];
+  const winRate = base?.win_rate ?? stats.win_rate;
+  const elo = base?.elo ?? stats.elo;
+  const picks = base?.picks ?? stats.picks;
   const items: [string, string, string][] = [
     [
       t("Win%"),
-      fmtPct(stats.win_rate),
+      fmtPct(winRate),
       t("Share of seats that held it and went on to win the run."),
     ],
     [
       t("Hold%"),
-      fmtPct(stats.hold_rate ?? stats.pick_rate),
+      fmtPct(stats.hold_rate ?? base?.pick_rate ?? stats.pick_rate),
       t("Share of all seats in the cohort that held it at some point."),
     ],
     [
@@ -103,19 +109,22 @@ function MetricsStrip({
     ],
     [
       t("Elo"),
-      typeof stats.elo === "number" ? String(Math.round(stats.elo)) : "–",
+      typeof elo === "number" ? String(Math.round(elo)) : "–",
       t(
         "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
       ),
     ],
     [
       t("Sample"),
-      stats.picks.toLocaleString(),
+      picks.toLocaleString(),
       t("Seats that held it (sample size)"),
     ],
   ];
   return (
     <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 px-3 py-2 text-sm">
+      <span className="text-xs text-[var(--text-muted)]">
+        {t("Cohort")}: {cohortLabel(DEFAULT_SOLO_BRACKET, t)}
+      </span>
       {items.map(([k, v, title]) => (
         <span
           key={k}
@@ -342,7 +351,7 @@ export default function EntityRunStats({
   onBracketChange,
 }: Props) {
   const [stats, setStats] = useState<EntityStats | null>(initialStats);
-  const [internalBracket, setInternalBracket] = useState("all");
+  const [internalBracket, setInternalBracket] = useState(DEFAULT_SOLO_BRACKET);
   // Controlled when a parent passes `bracket`; internal otherwise.
   const selectedBracket = bracket ?? internalBracket;
   const setSelectedBracket = onBracketChange ?? setInternalBracket;

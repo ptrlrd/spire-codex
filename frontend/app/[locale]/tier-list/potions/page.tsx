@@ -10,7 +10,7 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
-import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import { bracketParam, defaultBracket } from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
 import {
   gameNameFor,
@@ -109,7 +109,7 @@ export default async function PotionsTierListPage({
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const sp = await searchParams;
-  const bracket = normalizeBracket(sp.bracket);
+  const bracket = defaultBracket(sp.bracket);
   const param = bracketParam(bracket);
   const { potions, scores } = await fetchData(locale, param);
 

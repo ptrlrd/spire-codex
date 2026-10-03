@@ -1,4 +1,5 @@
 import type { EntityStats } from "@/app/components/EntityRunStats";
+import { DEFAULT_SOLO_BRACKET } from "@/lib/content-brackets";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -54,7 +55,7 @@ async function fetchMetricsRow(
 ): Promise<MetricsRow | null> {
   try {
     const res = await fetch(
-      `${API_INTERNAL}/api/runs/metrics/${entityType}?bracket=all`,
+      `${API_INTERNAL}/api/runs/metrics/${entityType}?bracket=${DEFAULT_SOLO_BRACKET}`,
       { next: { revalidate: 300 } },
     );
     if (!res.ok) return null;

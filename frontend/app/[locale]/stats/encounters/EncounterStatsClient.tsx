@@ -5,7 +5,12 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { CONTENT_BRACKETS, PLAYER_BRACKETS } from "@/lib/content-brackets";
+import {
+  CONTENT_BRACKETS,
+  DEFAULT_SOLO_BRACKET,
+  PLAYER_BRACKETS,
+} from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -85,7 +90,7 @@ export default function EncounterStatsClient() {
   const [multiplayer, setMultiplayer] = useState<"any" | "only" | "exclude">(
     "any",
   );
-  const [bracket, setBracket] = useState("all");
+  const [bracket, setBracket] = useState(DEFAULT_SOLO_BRACKET);
   // Game versions the snapshot keeps encounter slices for; filters via the
   // endpoint's build_id param. Combines with the bracket (v20 snapshots
   // keep bracket x version buckets).
@@ -303,6 +308,14 @@ export default function EncounterStatsClient() {
             );
           })}
         </div>
+
+        <p className="text-xs text-[var(--text-muted)]">
+          {t("Cohort")}: {cohortLabel(bracket, t)}
+          {version ? `, ${version}` : ""} ·{" "}
+          {t(
+            "Encounter stats carry no game-mode axis, so every mode is included.",
+          )}
+        </p>
 
         {statVersions.length > 0 && (
           <div className="flex flex-wrap items-center gap-2">
