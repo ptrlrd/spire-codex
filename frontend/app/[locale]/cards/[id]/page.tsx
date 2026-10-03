@@ -10,6 +10,7 @@ import {
   fetchRelatedGroups,
   relatedCardGroups,
 } from "@/lib/entity-links";
+import { Suspense } from "react";
 import { buildEntitySummary } from "@/lib/entity-summary";
 import {
   stripTags,
@@ -192,15 +193,17 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CardDetail
-        initialCard={card}
-        initialEnchantments={enchantmentsForCard(id)}
-        initialStats={initialStats}
-        initialPairings={initialPairings}
-        initialRecs={initialRecs}
-        initialRelated={initialRelated}
-        summary={summary}
-      />
+      <Suspense fallback={null}>
+        <CardDetail
+          initialCard={card}
+          initialEnchantments={enchantmentsForCard(id)}
+          initialStats={initialStats}
+          initialPairings={initialPairings}
+          initialRecs={initialRecs}
+          initialRelated={initialRelated}
+          summary={summary}
+        />
+      </Suspense>
     </>
   );
 }

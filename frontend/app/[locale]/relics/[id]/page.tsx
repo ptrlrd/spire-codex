@@ -3,6 +3,7 @@ import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import RelicDetail from "./RelicDetail";
+import { Suspense } from "react";
 import { fetchEntityStats } from "@/lib/entity-stats";
 import {
   fetchDraftRecs,
@@ -158,14 +159,16 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <RelicDetail
-        initialRelic={relic}
-        initialStats={initialStats}
-        initialPairings={initialPairings}
-        initialRecs={initialRecs}
-        initialRelated={initialRelated}
-        summary={summary}
-      />
+      <Suspense fallback={null}>
+        <RelicDetail
+          initialRelic={relic}
+          initialStats={initialStats}
+          initialPairings={initialPairings}
+          initialRecs={initialRecs}
+          initialRelated={initialRelated}
+          summary={summary}
+        />
+      </Suspense>
     </>
   );
 }

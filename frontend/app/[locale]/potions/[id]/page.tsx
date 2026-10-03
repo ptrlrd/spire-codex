@@ -3,6 +3,7 @@ import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { entityFallbackDescription, uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import PotionDetail from "./PotionDetail";
+import { Suspense } from "react";
 import { fetchEntityStats } from "@/lib/entity-stats";
 import {
   fetchPairings,
@@ -135,13 +136,15 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PotionDetail
-        initialPotion={potion}
-        initialStats={initialStats}
-        initialPairings={initialPairings}
-        initialRelated={initialRelated}
-        summary={summary}
-      />
+      <Suspense fallback={null}>
+        <PotionDetail
+          initialPotion={potion}
+          initialStats={initialStats}
+          initialPairings={initialPairings}
+          initialRelated={initialRelated}
+          summary={summary}
+        />
+      </Suspense>
     </>
   );
 }

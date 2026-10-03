@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import RelicDetail from "@/app/[locale]/relics/[id]/RelicDetail";
 
 /** Beta-channel relic detail. See beta/cards/[id]/page.tsx for why this is
@@ -41,5 +42,9 @@ export default async function Page({ params }: Props) {
   } catch {
     // RelicDetail refetches client-side and renders its own not-found state.
   }
-  return <RelicDetail initialRelic={relic} />;
+  return (
+    <Suspense fallback={null}>
+      <RelicDetail initialRelic={relic} />
+    </Suspense>
+  );
 }
