@@ -18,13 +18,18 @@ Spire Codex is not affiliated with Mega Crit. Game content belongs to Mega Crit;
 - [Merchant guide](https://spire-codex.com/merchant): shop prices and mechanics
 - [Reference](https://spire-codex.com/reference): keywords, orbs, afflictions, intents, modifiers, achievements, acts, and ascensions
 
-## Community stats
+## Stats
 
+- [Stats](https://spire-codex.com/stats): community run statistics hub, character stats, event decisions, deadliest encounters
+- [Card metrics](https://spire-codex.com/stats/cards): win rate, pick rate, hold rate, and Codex Elo per card
+- [Relic metrics](https://spire-codex.com/stats/relics): win rate, hold rate, wax blocks, and Codex Elo per relic
+- [Potion metrics](https://spire-codex.com/stats/potions): win rate and use rate per potion
+- [Encounters](https://spire-codex.com/stats/encounters): deadliest encounters and combat outcomes
+- [Decision pages](https://spire-codex.com/stats/shops): shop purchases, event choices, and campfire picks
+- [Run charts](https://spire-codex.com/stats/charts): interactive charts over community-submitted runs, plus a chart builder
 - [Tier list](https://spire-codex.com/tier-list): cards, relics, and potions ranked by Codex Score from community runs
-- [Card metrics](https://spire-codex.com/leaderboards/metrics): win rate, pick rate, and Codex Elo per card
-- [Community stats](https://spire-codex.com/community-stats): event decisions, deadliest encounters, win rates
 - [Leaderboards](https://spire-codex.com/leaderboards): fastest wins and daily climbs
-- [Run charts](https://spire-codex.com/charts): interactive charts over community-submitted runs
+- [Top players](https://spire-codex.com/top-players): highest-rated players by Codex Elo
 
 ## Developers
 
