@@ -16,14 +16,18 @@ from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
+    UnknownBracket,
+    ensure_known_bracket,
     full_walk_in_progress as entity_stats_full_walk_in_progress,
     get_all_entity_scores,
+    get_campfire_metrics_table,
     get_community_stats as get_community_fun_stats,
     get_entity_metric_history,
     get_entity_metrics_table,
     get_entity_stats,
+    get_event_metrics_table,
+    get_shop_metrics_table,
     get_top_entities_for_character,
-    is_valid_stat_bracket,
     snapshot_loaded,
     snapshot_status,
 )
@@ -1252,19 +1256,15 @@ def get_entity_scores(
     # onto the bracket dimension (the website uses ?bracket= directly).
     if stat_filter:
         bracket = _STAT_FILTER_TO_BRACKET.get(stat_filter.strip().lower(), bracket)
-    # Unknown bracket -> None so it grades against all runs (and shares that
-    # cache slot) rather than 400ing. Lake-foldable brackets (mode axes and
-    # composites like solo:standard) pass through even though the snapshot's
-    # validator doesn't know them — the entity cube folds them.
-    brk = bracket if is_valid_stat_bracket(bracket) else None
-    if brk is None and bracket:
-        try:
-            from ..services.lake_stats import _parse_lake_bracket
-
-            if _parse_lake_bracket(bracket) is not None:
-                brk = bracket
-        except Exception:
-            pass
+    # Lake-foldable brackets (mode axes and composites like solo:standard)
+    # pass through even though the snapshot's validator doesn't know them;
+    # anything neither side knows is a 400, never a silent all-runs answer.
+    try:
+        brk = ensure_known_bracket(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    if brk == "all":
+        brk = None
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
     cache_key = app_cache.entity_scores_key(
@@ -1416,6 +1416,73 @@ def my_picks(request: Request, response: Response):
     return get_user_picks(steam_id)
 
 
+def _section_cache_control(response: Response) -> None:
+    response.headers["Cache-Control"] = (
+        "public, max-age=300, stale-while-revalidate=600"
+        if snapshot_loaded()
+        else "no-store"
+    )
+
+
+@router.get("/metrics/shops", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_shop_metrics", "60/minute"))
+def get_shop_metrics(request: Request, response: Response, bracket: str = "all"):
+    """Shop shelf table for one run bracket, powers /stats/shops.
+
+    One row per (entity_type, id) seen on a shop shelf: `seen` shelf
+    appearances (one per seat per visit), `bought`, `buy_rate`, the win
+    rate of the seats that bought it with a Wilson `win_rate_ci`, and
+    `lift` (win rate minus those players' own expected win rate, in
+    percentage points; null under 20 seats). `bracket` takes the same keys
+    as /metrics/{entity_type}; an unknown bracket is a 400.
+    """
+    try:
+        table = get_shop_metrics_table(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
+@router.get("/metrics/events", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_event_metrics", "60/minute"))
+def get_event_metrics(request: Request, response: Response, bracket: str = "all"):
+    """Event choice table for one run bracket, powers /stats/events.
+
+    One row per (event, option): `chosen` seats, `share` of that event's
+    choices, the win rate of the seats that chose it with a Wilson
+    `win_rate_ci`, and `lift` (null under 20 seats). `bracket` takes the
+    same keys as /metrics/{entity_type}; an unknown bracket is a 400.
+    """
+    try:
+        table = get_event_metrics_table(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
+@router.get("/metrics/campfires", tags=["Runs"])
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_campfire_metrics", "60/minute")
+)
+def get_campfire_metrics(request: Request, response: Response, bracket: str = "all"):
+    """Rest-site choice table for one run bracket, powers /stats/campfires.
+
+    One row per choice (REST, SMITH, ...): `chosen` seats, `share` of all
+    campfire choices, `low_hp_share` (chosen below half HP), the win rate
+    with a Wilson `win_rate_ci`, and `lift` (null under 20 seats).
+    `bracket` takes the same keys as /metrics/{entity_type}; an unknown
+    bracket is a 400.
+    """
+    try:
+        table = get_campfire_metrics_table(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
 @router.get("/metrics/{entity_type}", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_entity_metrics", "60/minute"))
 def get_entity_metrics(
@@ -1428,12 +1495,17 @@ def get_entity_metrics(
 ):
     """Dense metrics table for one entity type, powers /leaderboards/metrics.
 
-    Each row carries the win-outcome metrics (Codex Score, Win%) AND the
-    revealed-preference metrics (Codex Elo, Pick%, per-act pick splits) plus
-    raw counts. Served from the same pre-built snapshot as /scores, so it's
-    one in-memory pass with no per-request aggregation; the client sorts
-    and filters the whole table locally. Cards carry Elo/Pick%; relics and
-    potions only the win-outcome columns (rewards don't offer them this way).
+    Each row carries the win-outcome metrics (Codex Score, Win% with a
+    Wilson 95% `win_rate_ci`, `lift` = win rate minus those players' own
+    expected win rate in percentage points over `lift_n` seats, null under
+    20) AND the revealed-preference metrics (Codex Elo, Pick%, per-act pick
+    splits) plus raw counts. Counts are per seat: a 4P run is four seats,
+    `hold_rate` = picks / `total_seats`. Cards carry Elo/Pick% from reward
+    screens, relics from free relic screens (ancient offers, boss relics,
+    event choices; shop shelves are not offers) plus a `wax` block for Toy
+    Box copies, potions `used` / `use_rate` and no Pick%. Served from the
+    lake's entity cube, so it's one in-memory fold per bracket; the client
+    sorts and filters the whole table locally.
 
     `bracket` slices to a pre-built run bracket: `all` (default), `solo`,
     `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`, plus the
@@ -1469,6 +1541,10 @@ def get_entity_metrics(
             status_code=400,
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
+    try:
+        bracket = ensure_known_bracket(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
     # Snapshot refreshes at most every 10 min; let edges/clients cache it.
     # Except while a post-deploy rebuild runs: an empty table cached at the
     # edge would outlive the rebuild.

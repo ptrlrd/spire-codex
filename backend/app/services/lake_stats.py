@@ -170,6 +170,8 @@ def prepare_build_session():
     con.execute("CREATE TABLE cells_mat AS SELECT * FROM cells")
     con.execute("DROP VIEW cells")
     con.execute("ALTER TABLE cells_mat RENAME TO cells")
+    con.execute("DROP TABLE IF EXISTS run_exp")
+    con.execute(_RUN_EXP_SQL)
     con.execute("DROP TABLE IF EXISTS pfloors")
     body = _PFLOORS_SQL.format(lake=lake).replace(
         "CREATE OR REPLACE TEMP VIEW pfloors AS", "CREATE TABLE pfloors AS", 1
@@ -187,6 +189,8 @@ def cleanup_build_session(con=None) -> None:
     try:
         con.execute("DROP TABLE IF EXISTS pfloors")
         con.execute("DROP TABLE IF EXISTS cells")
+        con.execute("DROP TABLE IF EXISTS run_exp")
+        con.execute("DROP TABLE IF EXISTS relic_choice_rows")
     finally:
         if own:
             con.close()
@@ -219,33 +223,177 @@ FROM eligible e
 LEFT JOIN user_wr u ON lower(e.username) = u.uname
 """
 
-# Entity membership is RUN-SET, not per-copy: DISTINCT (run, entity) is the
-# walk's per-run dedupe — a deck with 5 Strikes is ONE pick, so win rate
-# stays "win rate when X is in your deck" instead of copy-weighted, and a
-# co-op run where two players hold the same relic still counts once.
+# Entity membership is SEAT-set, not per-copy: DISTINCT (run, seat, entity)
+# — a deck with 5 Strikes is ONE pick for that seat, so win rate stays "win
+# rate when X is in your deck", and a 4P run is four seats so co-op
+# inclusion rates divide by seats, not runs. The character is the seat's own.
 _MEMBERSHIP_SQL = """
-SELECT m.{col}, e.character, count(*), count(*) FILTER (e.win),
+SELECT m.{col}, coalesce(upper(m.character), e.character, ''),
+  count(*), count(*) FILTER (e.win),
   max(e.submitted_at), arg_max(m.run_hash, e.submitted_at)
 FROM (
-  SELECT DISTINCT run_hash, {col}
+  SELECT DISTINCT run_hash, player_idx, {col}, character
   FROM read_parquet('{lake}/{table}.parquet')
-  WHERE {col} IS NOT NULL AND {col} <> ''
+  WHERE {col} IS NOT NULL AND {col} <> ''{where}
 ) m
 JOIN eligible e ON m.run_hash = e.run_hash
 GROUP BY 1, 2
 """
 
+# Per seat: the player's leave-one-out win rate over their other eligible
+# runs with the same A10 flag (five or more of them), the expectation the
+# lift metric subtracts. Keyed by the submitter's username like user_wr.
+_RUN_EXP_SQL = """
+CREATE TABLE IF NOT EXISTS run_exp AS
+WITH u AS (
+  SELECT lower(username) AS uname, coalesce(ascension, 0) = 10 AS a10,
+    count(*) AS n, count(*) FILTER (win) AS w
+  FROM eligible
+  WHERE username IS NOT NULL AND username <> ''
+  GROUP BY 1, 2
+)
+SELECT e.run_hash, (u.w - e.win::INT) * 1.0 / (u.n - 1) AS exp
+FROM eligible e
+JOIN u ON lower(e.username) = u.uname
+  AND (coalesce(e.ascension, 0) = 10) = u.a10
+WHERE u.n >= 6
+"""
+
+# Five counters per (cell, entity): seats, wins, seats with an expectation,
+# wins among those, and the summed expectation -- lift's inputs ride along.
 _CUBE_MEMBERSHIP_SQL = """
-SELECT c.cell, m.{col}, coalesce(c.character, ''),
-  count(*), count(*) FILTER (c.win)
+SELECT c.cell, m.{col}, coalesce(upper(m.character), c.character, ''),
+  count(*), count(*) FILTER (c.win),
+  count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
+  round(coalesce(sum(x.exp), 0), 3)
 FROM (
-  SELECT DISTINCT run_hash, {col}
+  SELECT DISTINCT run_hash, player_idx, {col}, character
   FROM read_parquet('{lake}/{table}.parquet')
-  WHERE {col} IS NOT NULL AND {col} <> ''
+  WHERE {col} IS NOT NULL AND {col} <> ''{where}
 ) m
 JOIN cells c ON m.run_hash = c.run_hash
+LEFT JOIN run_exp x ON m.run_hash = x.run_hash
 GROUP BY 1, 2, 3
 """
+
+_CUBE_RUNS_SQL = """
+SELECT c.cell, count(*), count(*) FILTER (c.win),
+  sum(coalesce(n.np, c.player_count, 1))
+FROM cells c
+LEFT JOIN (
+  SELECT run_hash, count(*) AS np
+  FROM read_parquet('{lake}/players.parquet') GROUP BY 1
+) n ON c.run_hash = n.run_hash
+GROUP BY 1
+"""
+
+_CUBE_SHOPS_SQL = """
+SELECT c.cell, s.entity_type, s.id,
+  count(*), count(*) FILTER (s.bought),
+  count(*) FILTER (s.bought AND c.win),
+  count(x.exp) FILTER (s.bought),
+  count(*) FILTER (s.bought AND c.win AND x.exp IS NOT NULL),
+  round(coalesce(sum(x.exp) FILTER (s.bought), 0), 3)
+FROM read_parquet('{lake}/shop_items.parquet') s
+JOIN cells c ON s.run_hash = c.run_hash
+LEFT JOIN run_exp x ON s.run_hash = x.run_hash
+WHERE s.id IS NOT NULL AND s.id <> ''
+GROUP BY 1, 2, 3
+"""
+
+_CUBE_EVENTS_SQL = """
+SELECT c.cell, split_part(ec.u.title."key", '.', 1),
+  split_part(split_part(ec.u.title."key", '.options.', 2), '.', 1),
+  count(*), count(*) FILTER (c.win),
+  count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
+  round(coalesce(sum(x.exp), 0), 3)
+FROM read_parquet('{lake}/floors.parquet') f
+JOIN cells c ON f.run_hash = c.run_hash
+LEFT JOIN run_exp x ON f.run_hash = x.run_hash,
+LATERAL (SELECT unnest(f.players) AS u) ps,
+LATERAL (SELECT unnest(ps.u.event_choices) AS u) ec
+WHERE ec.u.title."table" = 'events'
+  AND ec.u.title."key" LIKE '%.options.%'
+GROUP BY 1, 2, 3
+"""
+
+_POTION_USED_SQL = """
+SELECT u.potion, count(*)
+FROM (
+  SELECT run_hash, player_idx, potion
+  FROM read_parquet('{lake}/potions.parquet')
+  WHERE potion IS NOT NULL AND potion <> '' AND coalesce(was_used, false)
+  GROUP BY 1, 2, 3
+) u
+JOIN eligible e ON u.run_hash = e.run_hash
+GROUP BY 1
+"""
+
+_CUBE_POTION_USED_SQL = """
+SELECT c.cell, u.potion, count(*)
+FROM (
+  SELECT run_hash, player_idx, potion
+  FROM read_parquet('{lake}/potions.parquet')
+  WHERE potion IS NOT NULL AND potion <> '' AND coalesce(was_used, false)
+  GROUP BY 1, 2, 3
+) u
+JOIN cells c ON u.run_hash = c.run_hash
+GROUP BY 1, 2
+"""
+
+_CUBE_REST_SQL = """
+WITH hp AS (
+  SELECT run_hash, cell, act, floor_idx, p, win,
+    last_value(CASE WHEN (p).current_hp IS NOT NULL
+      AND coalesce((p).max_hp, 0) > 0 THEN
+      struct_pack(hp := (p).current_hp, mx := (p).max_hp) END IGNORE NULLS)
+    OVER (PARTITION BY run_hash, (p).player_id ORDER BY act, floor_idx
+      ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS hp_prev
+  FROM pfloors
+),
+choices AS (
+  SELECT h.run_hash, h.cell, rc.u AS choice, h.win,
+    coalesce(h.hp_prev, struct_pack(hp := (h.p).current_hp,
+      mx := coalesce((h.p).max_hp, 0))) AS ref
+  FROM hp h, LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc
+  WHERE rc.u IS NOT NULL AND rc.u <> ''
+)
+SELECT c.cell, c.choice, count(*), count(*) FILTER (c.win),
+  count(*) FILTER (ref.mx > 0 AND ref.hp IS NOT NULL AND ref.hp * 2 < ref.mx),
+  count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
+  round(coalesce(sum(x.exp), 0), 3)
+FROM choices c LEFT JOIN run_exp x ON c.run_hash = x.run_hash
+GROUP BY 1, 2
+"""
+
+_WAX_ONLY = " AND coalesce(is_wax, false)"
+_NO_WAX = " AND NOT coalesce(is_wax, false)"
+
+
+def _relics_have_wax(con) -> bool:
+    try:
+        cols = [
+            d[0]
+            for d in con.execute(
+                f"SELECT * FROM read_parquet('{LAKE_DIR}/relics.parquet') LIMIT 0"
+            ).description
+        ]
+    except Exception:
+        return False
+    return "is_wax" in cols
+
+
+def _membership_where(table: str, con, wax: bool = False) -> str:
+    """The wax guard for the relics table: base rows drop wax copies and the
+    wax section keeps only them. Empty for other tables or a lake built
+    before the flag existed."""
+    if table != "relics" or not _relics_have_wax(con):
+        return "" if not wax else " AND false"
+    return _WAX_ONLY if wax else _NO_WAX
+
+
+def _ensure_run_exp(con) -> None:
+    con.execute(_RUN_EXP_SQL)
 
 
 _MODE_KEYS = frozenset(("standard", "daily", "custom"))
@@ -762,6 +910,28 @@ def _ensure_choice_rows(con) -> None:
     )
 
 
+_RELIC_CHOICES_SQL = """
+CREATE TABLE IF NOT EXISTS relic_choice_rows AS
+SELECT c.run_hash, c.act, c.floor_idx, c.player_idx AS pidx,
+  c.relic AS cid, c.picked
+FROM read_parquet('{lake}/relic_choices.parquet') c
+JOIN eligible e ON c.run_hash = e.run_hash
+WHERE NOT c.is_shop AND c.n_options >= 2
+"""
+
+
+def relic_choices_available() -> bool:
+    return (LAKE_DIR / "relic_choices.parquet").exists()
+
+
+def _ensure_relic_choice_rows(con) -> None:
+    """The relic analogue of choice_rows: one row per option on a free
+    relic screen (ancient offers, boss relics, two-option events). Shop
+    shelves are left out -- a price is not a preference."""
+    con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+    con.execute(_RELIC_CHOICES_SQL.format(lake=LAKE_DIR))
+
+
 def _ensure_run_tiers(con) -> None:
     """Skill-ladder tier (A10 flag + winrate band) per eligible run, from
     the same user-winrate cells the community cube uses — so per-bracket
@@ -780,7 +950,7 @@ _PAIR_BUCKETS = 8
 
 
 def reward_pair_counts_by_tier(
-    con=None,
+    con=None, table: str = "choice_rows"
 ) -> dict[tuple[int, int], dict[tuple[str, str], int]]:
     """(a10, band) -> {(picked, skipped) -> count} over card-reward
     screens, mirroring the walk: eligible runs only, CARD-namespaced ids,
@@ -798,7 +968,10 @@ def reward_pair_counts_by_tier(
     if own:
         con = _connect(build=True)
     try:
-        _ensure_choice_rows(con)
+        if table == "relic_choice_rows":
+            _ensure_relic_choice_rows(con)
+        else:
+            _ensure_choice_rows(con)
         _ensure_run_tiers(con)
         # Relational form: a pick beats each pass on its own screen, so a
         # 1-to-K join on the screen key streams straight into a compact
@@ -823,8 +996,8 @@ def reward_pair_counts_by_tier(
                 for a10, band, ver, w, lo, n in con.execute(
                     f"""
                     SELECT t.a10, t.band, t.ver, p.cid, q.cid, count(*)
-                    FROM choice_rows p
-                    JOIN choice_rows q
+                    FROM {table} p
+                    JOIN {table} q
                       ON q.run_hash = p.run_hash AND q.act = p.act
                      AND q.floor_idx = p.floor_idx AND q.pidx = p.pidx
                     JOIN run_tiers t ON t.run_hash = p.run_hash
@@ -838,22 +1011,22 @@ def reward_pair_counts_by_tier(
         finally:
             con.execute("SET threads=5")
         for a10, band, ver, cid, n in con.execute(
-            """
+            f"""
             SELECT t.a10, t.band, t.ver, c.cid, count(*)
-            FROM choice_rows c JOIN run_tiers t ON t.run_hash = c.run_hash
+            FROM {table} c JOIN run_tiers t ON t.run_hash = c.run_hash
             WHERE c.picked
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
             cell(a10, band, ver)[(cid, SKIP_ID)] = n
         for a10, band, ver, cid, n in con.execute(
-            """
+            f"""
             SELECT t.a10, t.band, t.ver, c.cid, count(*)
-            FROM choice_rows c
+            FROM {table} c
             JOIN run_tiers t ON t.run_hash = c.run_hash
             ANTI JOIN (
               SELECT DISTINCT run_hash, act, floor_idx, pidx
-              FROM choice_rows WHERE picked
+              FROM {table} WHERE picked
             ) ps ON c.run_hash = ps.run_hash AND c.act = ps.act
                 AND c.floor_idx = ps.floor_idx AND c.pidx = ps.pidx
             WHERE NOT c.picked
@@ -894,7 +1067,7 @@ def reward_pair_counts(con=None) -> dict[tuple[str, str], int]:
     return fold_tier_pairs(reward_pair_counts_by_tier(con))
 
 
-def skip_screen_counts(con=None) -> dict:
+def skip_screen_counts(con=None, table: str = "choice_rows") -> dict:
     """Card-reward screen totals for the SKIP pseudo-entry: offered = every
     screen shown, picked = screens where nothing was taken, with the same
     3-bucket act split the card pick entries use."""
@@ -902,13 +1075,16 @@ def skip_screen_counts(con=None) -> dict:
     if own:
         con = _connect(build=True)
     try:
-        _ensure_choice_rows(con)
+        if table == "relic_choice_rows":
+            _ensure_relic_choice_rows(con)
+        else:
+            _ensure_choice_rows(con)
         rows = con.execute(
-            """
+            f"""
             WITH screens AS (
               SELECT run_hash, act, floor_idx, pidx,
                 bool_or(picked) AS any_pick
-              FROM choice_rows GROUP BY 1, 2, 3, 4
+              FROM {table} GROUP BY 1, 2, 3, 4
             )
             SELECT least(act, 2), count(*), count(*) FILTER (NOT any_pick)
             FROM screens GROUP BY 1
@@ -1087,15 +1263,20 @@ def build_entity_store() -> dict | None:
                 },
             )
 
-        # Run-set membership + per-character splits + last-seen, one query
-        # per membership table.
+        # Seat-set membership + per-character splits + last-seen, one query
+        # per membership table; wax relic copies land in their own block.
         for etype, table, col in (
             ("cards", "deck", "card"),
             ("relics", "relics", "relic"),
             ("potions", "potions", "potion"),
         ):
             for eid, char, picks, wins, last_ts, last_hash in con.execute(
-                _MEMBERSHIP_SQL.format(col=col, table=table, lake=LAKE_DIR)
+                _MEMBERSHIP_SQL.format(
+                    col=col,
+                    table=table,
+                    lake=LAKE_DIR,
+                    where=_membership_where(table, con),
+                )
             ).fetchall():
                 a = entry(etype, eid)
                 a["picks"] += picks
@@ -1108,32 +1289,51 @@ def build_entity_store() -> dict | None:
                 if ts and (a["last_submitted_at"] or "") < ts:
                     a["last_submitted_at"] = ts
                     a["last_run_hash"] = last_hash
+        if _relics_have_wax(con):
+            for eid, _char, picks, wins, _ts, _hash in con.execute(
+                _MEMBERSHIP_SQL.format(
+                    col="relic",
+                    table="relics",
+                    lake=LAKE_DIR,
+                    where=_membership_where("relics", con, wax=True),
+                )
+            ).fetchall():
+                wax = entry("relics", eid).setdefault("wax", {"picks": 0, "wins": 0})
+                wax["picks"] += picks
+                wax["wins"] += wins
+        for eid, used in con.execute(_POTION_USED_SQL.format(lake=LAKE_DIR)).fetchall():
+            entry("potions", eid)["used"] = used
 
         # Card-reward offer/pick counts with 3 act buckets (A1/A2/A3+),
         # read off the shared choice_rows materialization -- the pair fits
         # reuse the same scratch table later on their own connection, so
         # the floors unnest happens once per cycle instead of twice.
         _ensure_choice_rows(con)
-        for eid, bucket, offered, picked in con.execute(
-            """
-            SELECT cid, least(act, 2), count(*), count(*) FILTER (picked)
-            FROM choice_rows GROUP BY 1, 2
-            """
-        ).fetchall():
-            a = entry("cards", eid)
-            if "offered" not in a:
-                a.update(
-                    {
-                        "offered": 0,
-                        "picked": 0,
-                        "off_act": [0, 0, 0],
-                        "pick_act": [0, 0, 0],
-                    }
-                )
-            a["offered"] += offered
-            a["picked"] += picked
-            a["off_act"][bucket] += offered
-            a["pick_act"][bucket] += picked
+        offer_tables = [("cards", "choice_rows")]
+        if relic_choices_available():
+            _ensure_relic_choice_rows(con)
+            offer_tables.append(("relics", "relic_choice_rows"))
+        for etype, table in offer_tables:
+            for eid, bucket, offered, picked in con.execute(
+                f"""
+                SELECT cid, least(act, 2), count(*), count(*) FILTER (picked)
+                FROM {table} GROUP BY 1, 2
+                """
+            ).fetchall():
+                a = entry(etype, eid)
+                if "offered" not in a:
+                    a.update(
+                        {
+                            "offered": 0,
+                            "picked": 0,
+                            "off_act": [0, 0, 0],
+                            "pick_act": [0, 0, 0],
+                        }
+                    )
+                a["offered"] += offered
+                a["picked"] += picked
+                a["off_act"][bucket] += offered
+                a["pick_act"][bucket] += picked
 
         # Base vs upgraded deck membership: run-set semantics.
         for eid, upgraded, picks, wins in con.execute(
@@ -1202,9 +1402,17 @@ def build_entity_store() -> dict | None:
 
         totals = dict(
             zip(
-                ("total_runs", "total_wins"),
+                ("total_runs", "total_wins", "total_seats"),
                 con.execute(
-                    "SELECT count(*), count(*) FILTER (win) FROM eligible"
+                    f"""
+                    SELECT count(*), count(*) FILTER (e.win),
+                      sum(coalesce(n.np, e.player_count, 1))::BIGINT
+                    FROM eligible e
+                    LEFT JOIN (
+                      SELECT run_hash, count(*) AS np
+                      FROM read_parquet('{LAKE_DIR}/players.parquet') GROUP BY 1
+                    ) n ON e.run_hash = n.run_hash
+                    """
                 ).fetchone(),
             )
         )
@@ -1216,31 +1424,42 @@ def build_entity_store() -> dict | None:
     finally:
         con.close()
 
-    def _prior_store_elo() -> tuple[dict, dict, dict | None, dict, dict]:
-        """(base, upgrade, skip, strengths, bracket_elo) from the store
-        currently on disk — the previous generation's, since this build
-        hasn't published yet. Strengths are the raw Bradley-Terry fit
-        values, kept for the next cycle's warm start."""
+    def _prior_store_elo() -> dict:
+        """The store currently on disk -- the previous generation's, since
+        this build hasn't published yet: base/upgrade/relic Elo maps, the
+        skip block, the raw Bradley-Terry strengths (next cycle's warm
+        start) and the per-bracket maps."""
         import json as _json
 
+        out = {
+            "base": {},
+            "upg": {},
+            "relic": {},
+            "skip": None,
+            "strengths": {},
+            "bracket": {},
+        }
         try:
             prior = _json.loads((LAKE_DIR / _ENTITY_STORE_NAME).read_text())
             cards = prior["entities"]["cards"]
+            relics = prior["entities"].get("relics") or {}
         except Exception:
-            return {}, {}, None, {}, {}
-        base = {k: v["elo"] for k, v in cards.items() if v.get("elo") is not None}
-        upg = {
+            return out
+        out["base"] = {
+            k: v["elo"] for k, v in cards.items() if v.get("elo") is not None
+        }
+        out["upg"] = {
             k: v["upg"]["elo"]
             for k, v in cards.items()
             if v.get("upg") and v["upg"].get("elo") is not None
         }
-        return (
-            base,
-            upg,
-            prior.get("skip"),
-            prior.get("elo_strengths") or {},
-            prior.get("bracket_elo") or {},
-        )
+        out["relic"] = {
+            k: v["elo"] for k, v in relics.items() if v.get("elo") is not None
+        }
+        out["skip"] = prior.get("skip")
+        out["strengths"] = prior.get("elo_strengths") or {}
+        out["bracket"] = prior.get("bracket_elo") or {}
+        return out
 
     # Each Elo pair extraction gets its own fresh connection: two hours of
     # session state must not sit under the heaviest joins in the build. A
@@ -1254,81 +1473,110 @@ def build_entity_store() -> dict | None:
     # choice_rows materialization happens once, not per builder; the prior
     # store's strengths warm-start both fits (a near-identical ladder
     # converges in a few MM iterations instead of hundreds).
-    _, _, _, prior_strengths, _ = _prior_store_elo()
+    prior = _prior_store_elo()
+    prior_strengths = prior["strengths"]
     strengths_out: dict[str, dict] = {}
+    bracket_elo: dict[str, dict] = {}
+
+    def _fit_family(
+        ccon,
+        etype: str,
+        table: str,
+        strength_key: str,
+        prefix: str,
+        skip_block: dict | None,
+    ) -> None:
+        tiers = reward_pair_counts_by_tier(ccon, table=table)
+        elo, strengths = res._compute_codex_elo(
+            fold_tier_pairs(tiers), warm=prior_strengths.get(strength_key)
+        )
+        strengths_out[strength_key] = {k: round(v, 5) for k, v in strengths.items()}
+        for eid, rating in elo.items():
+            if eid in entities[etype]:
+                entities[etype][eid]["elo"] = rating
+        # Skill-ladder refits from the same extraction, warm-started
+        # from the fresh all-runs strengths so each converges in a few
+        # iterations. Thin entries drop out per bracket (the min-games
+        # floor), which serving reads as "no Elo in that slice".
+        skip_by_bracket: dict[str, float | None] = {}
+        for name, min_band in (
+            ("a10", 0),
+            ("wr30", 1),
+            ("wr50", 2),
+            ("wr75", 3),
+        ):
+            be, _p = res._compute_codex_elo(
+                fold_tier_pairs(tiers, a10_only=True, min_band=min_band),
+                warm=strengths,
+            )
+            skip_by_bracket[name] = be.pop(SKIP_ID, None)
+            bracket_elo[f"{prefix}{name}"] = be
+        for ver in cube_versions():
+            bev, _pv = res._compute_codex_elo(
+                fold_tier_pairs(tiers, version=ver), warm=strengths
+            )
+            bev.pop(SKIP_ID, None)
+            if bev:
+                bracket_elo[f"{prefix}ver:{ver}"] = bev
+        if skip_block is not None:
+            skip_block["elo"] = elo.get(SKIP_ID)
+            skip_block["elo_by_bracket"] = skip_by_bracket
+            skip_block["elo_source"] = "fit"
+
+    def _carry_family(etype: str, prior_map: dict, strength_key: str, prefix: str):
+        if prior_strengths.get(strength_key):
+            strengths_out[strength_key] = prior_strengths[strength_key]
+        for eid, rating in prior_map.items():
+            if eid in entities[etype]:
+                entities[etype][eid]["elo"] = rating
+        for key, val in prior["bracket"].items():
+            family = key.split(":", 1)[0] if ":" in key else ""
+            if (prefix and key.startswith(prefix)) or (
+                not prefix and family in ("", "ver")
+            ):
+                bracket_elo[key] = val
+
     ccon = _connect(build=True)
     try:
         try:
             skip_block: dict | None = dict(skip_screen_counts(ccon), elo=None)
         except Exception:
-            _, _, skip_block, _, _ = _prior_store_elo()
+            skip_block = prior["skip"]
             logger.warning(
                 "skip screen counts failed; carried the prior store's skip block",
                 exc_info=True,
             )
-        bracket_elo: dict[str, dict] = {}
         try:
-            tiers = reward_pair_counts_by_tier(ccon)
-            card_elo, card_p = res._compute_codex_elo(
-                fold_tier_pairs(tiers), warm=prior_strengths.get("reward")
-            )
-            strengths_out["reward"] = {k: round(v, 5) for k, v in card_p.items()}
-            for eid, elo in card_elo.items():
-                if eid in entities["cards"]:
-                    entities["cards"][eid]["elo"] = elo
-            # Skill-ladder refits from the same extraction, warm-started
-            # from the fresh all-runs strengths so each converges in a few
-            # iterations. Thin cards drop out per bracket (the min-games
-            # floor), which serving reads as "no Elo in that slice".
-            skip_by_bracket: dict[str, float | None] = {}
-            for name, min_band in (
-                ("a10", 0),
-                ("wr30", 1),
-                ("wr50", 2),
-                ("wr75", 3),
-            ):
-                be, _p = res._compute_codex_elo(
-                    fold_tier_pairs(tiers, a10_only=True, min_band=min_band),
-                    warm=card_p,
-                )
-                skip_by_bracket[name] = be.pop(SKIP_ID, None)
-                bracket_elo[name] = be
-            # Per-version fits so the metrics page's version charts carry a
-            # real per-patch Elo (the fossil snapshot's composite fits did
-            # this; the lake owes the same).
-            for ver in cube_versions():
-                bev, _pv = res._compute_codex_elo(
-                    fold_tier_pairs(tiers, version=ver), warm=card_p
-                )
-                bev.pop(SKIP_ID, None)
-                if bev:
-                    bracket_elo[f"ver:{ver}"] = bev
-            if skip_block is not None:
-                skip_block["elo"] = card_elo.get(SKIP_ID)
-                skip_block["elo_by_bracket"] = skip_by_bracket
-                skip_block["elo_source"] = "fit"
+            _fit_family(ccon, "cards", "choice_rows", "reward", "", skip_block)
         except Exception:
-            prior_base, _, prior_skip, _, prior_bracket = _prior_store_elo()
-            if prior_strengths.get("reward"):
-                strengths_out["reward"] = prior_strengths["reward"]
-            for eid, elo in prior_base.items():
-                if eid in entities["cards"]:
-                    entities["cards"][eid]["elo"] = elo
-            bracket_elo = prior_bracket
-            if skip_block is not None and prior_skip:
-                skip_block["elo"] = prior_skip.get("elo")
-                skip_block["elo_by_bracket"] = prior_skip.get("elo_by_bracket")
+            _carry_family("cards", prior["base"], "reward", "")
+            if skip_block is not None and prior["skip"]:
+                skip_block["elo"] = prior["skip"].get("elo")
+                skip_block["elo_by_bracket"] = prior["skip"].get("elo_by_bracket")
                 skip_block["elo_source"] = "carried"
             logger.warning(
                 "reward Elo fit failed; carried %d ratings forward from the prior store",
-                len(prior_base),
+                len(prior["base"]),
                 exc_info=True,
             )
+        if relic_choices_available():
+            try:
+                _fit_family(
+                    ccon, "relics", "relic_choice_rows", "relic_reward", "relics:", None
+                )
+            except Exception:
+                _carry_family("relics", prior["relic"], "relic_reward", "relics:")
+                logger.warning(
+                    "relic Elo fit failed; carried %d ratings forward from the prior store",
+                    len(prior["relic"]),
+                    exc_info=True,
+                )
     finally:
         # The materialized rows are ~1-2GB of scratch disk; nothing after
         # this point reads them and the upgrade fit wants the headroom.
         try:
             ccon.execute("DROP TABLE IF EXISTS choice_rows")
+            ccon.execute("DROP TABLE IF EXISTS relic_choice_rows")
         except Exception:
             pass
         ccon.close()
@@ -1342,16 +1590,15 @@ def build_entity_store() -> dict | None:
             if upg is not None:
                 upg["elo"] = elo
     except Exception:
-        _, prior_upg, _, _, _ = _prior_store_elo()
         if prior_strengths.get("upgrade"):
             strengths_out["upgrade"] = prior_strengths["upgrade"]
-        for eid, elo in prior_upg.items():
+        for eid, elo in prior["upg"].items():
             upg = entities["cards"].get(eid, {}).get("upg")
             if upg is not None:
                 upg["elo"] = elo
         logger.warning(
             "upgrade Elo fit failed; carried %d ratings forward from the prior store",
-            len(prior_upg),
+            len(prior["upg"]),
             exc_info=True,
         )
 
@@ -1433,10 +1680,11 @@ def build_entity_cube(con=None) -> dict:
         con = _connect(build=True)
     try:
         _prepare_sources(con, str(LAKE_DIR))
+        _ensure_run_exp(con)
         runs_cells = {
-            cell: [t, w]
-            for cell, t, w in con.execute(
-                "SELECT cell, count(*), count(*) FILTER (win) FROM cells GROUP BY 1"
+            cell: [t, w, int(seats or t)]
+            for cell, t, w, seats in con.execute(
+                _CUBE_RUNS_SQL.format(lake=LAKE_DIR)
             ).fetchall()
         }
         types: dict[str, dict] = {}
@@ -1450,23 +1698,49 @@ def build_entity_cube(con=None) -> dict:
             per_char: dict[str, dict] = {}
             # One scan yields both sections: the entity cells (summed over
             # characters) and the character axis that gives bracketed
-            # by-character views a live source. The character is the RUN's
-            # (matching the store and the fossil), so each run contributes
-            # exactly once to its cell total.
-            for cell, eid, ch, p, w in con.execute(
-                _CUBE_MEMBERSHIP_SQL.format(col=col, table=table, lake=LAKE_DIR)
+            # by-character views a live source. Seat-set rows: the
+            # character is the seat's own, and a 4P run is four seats.
+            for cell, eid, ch, p_, w, n_exp, w_exp, exp_sum in con.execute(
+                _CUBE_MEMBERSHIP_SQL.format(
+                    col=col,
+                    table=table,
+                    lake=LAKE_DIR,
+                    where=_membership_where(table, con),
+                )
             ).fetchall():
-                cur = per.setdefault(cell, {}).setdefault(eid, [0, 0])
-                cur[0] += p
+                cur = per.setdefault(cell, {}).setdefault(eid, [0, 0, 0, 0, 0.0])
+                cur[0] += p_
                 cur[1] += w
+                cur[2] += n_exp
+                cur[3] += w_exp
+                cur[4] = round(cur[4] + float(exp_sum or 0.0), 3)
                 if ch:
-                    per_char.setdefault(cell, {}).setdefault(eid, {})[ch] = [p, w]
+                    per_char.setdefault(cell, {}).setdefault(eid, {})[ch] = [p_, w]
             types[etype] = per
             by_char[etype] = per_char
-        # Card-reward offer/pick counts per cell with the store's 3 act
-        # buckets (floors.parquet acts are 0-based; least(act,2) = A1/A2/A3+),
-        # so the metrics table's Pick% and per-act splits fold per bracket.
-        offers: dict[str, dict] = {}
+        wax: dict[str, dict] = {}
+        if _relics_have_wax(con):
+            for cell, eid, _ch, p_, w, _ne, _we, _es in con.execute(
+                _CUBE_MEMBERSHIP_SQL.format(
+                    col="relic",
+                    table="relics",
+                    lake=LAKE_DIR,
+                    where=_membership_where("relics", con, wax=True),
+                )
+            ).fetchall():
+                cur = wax.setdefault(cell, {}).setdefault(eid, [0, 0])
+                cur[0] += p_
+                cur[1] += w
+        potion_used: dict[str, dict] = {}
+        for cell, eid, used in con.execute(
+            _CUBE_POTION_USED_SQL.format(lake=LAKE_DIR)
+        ).fetchall():
+            potion_used.setdefault(cell, {})[eid] = used
+        # Offer/pick counts per cell with the store's 3 act buckets
+        # (floors.parquet acts are 0-based; least(act,2) = A1/A2/A3+), so
+        # the metrics table's Pick% and per-act splits fold per bracket.
+        # Cards from reward screens, relics from free relic screens.
+        offers: dict[str, dict] = {"cards": {}, "relics": {}}
         for cell, eid, bucket, offered, picked in con.execute(
             f"""
             SELECT e.cell, upper(split_part(cc.u.card.id, '.', -1)),
@@ -1480,9 +1754,58 @@ def build_entity_cube(con=None) -> dict:
             GROUP BY 1, 2, 3
             """
         ).fetchall():
-            offers.setdefault(cell, {}).setdefault(eid, {})[str(bucket)] = [
+            offers["cards"].setdefault(cell, {}).setdefault(eid, {})[str(bucket)] = [
                 offered,
                 picked,
+            ]
+        if relic_choices_available():
+            for cell, eid, bucket, offered, picked in con.execute(
+                f"""
+                SELECT e.cell, r.relic, least(r.act, 2), count(*),
+                  count(*) FILTER (r.picked)
+                FROM read_parquet('{LAKE_DIR}/relic_choices.parquet') r
+                JOIN cells e ON r.run_hash = e.run_hash
+                WHERE NOT r.is_shop AND r.n_options >= 2
+                GROUP BY 1, 2, 3
+                """
+            ).fetchall():
+                offers["relics"].setdefault(cell, {}).setdefault(eid, {})[
+                    str(bucket)
+                ] = [offered, picked]
+        shops: dict[str, dict] = {}
+        if (LAKE_DIR / "shop_items.parquet").exists():
+            for cell, etype, eid, *counts in con.execute(
+                _CUBE_SHOPS_SQL.format(lake=LAKE_DIR)
+            ).fetchall():
+                shops.setdefault(cell, {}).setdefault(etype, {})[eid] = [
+                    int(counts[0]),
+                    int(counts[1]),
+                    int(counts[2]),
+                    int(counts[3]),
+                    int(counts[4]),
+                    float(counts[5] or 0.0),
+                ]
+        events: dict[str, dict] = {}
+        for cell, eid, oid, *counts in con.execute(
+            _CUBE_EVENTS_SQL.format(lake=LAKE_DIR)
+        ).fetchall():
+            if eid and oid:
+                events.setdefault(cell, {}).setdefault(eid, {})[oid] = [
+                    int(counts[0]),
+                    int(counts[1]),
+                    int(counts[2]),
+                    int(counts[3]),
+                    float(counts[4] or 0.0),
+                ]
+        rest: dict[str, dict] = {}
+        for cell, choice, *counts in con.execute(_CUBE_REST_SQL).fetchall():
+            rest.setdefault(cell, {})[choice] = [
+                int(counts[0]),
+                int(counts[1]),
+                int(counts[2]),
+                int(counts[3]),
+                int(counts[4]),
+                float(counts[5] or 0.0),
             ]
         data_through = str(
             con.execute(
@@ -1497,6 +1820,11 @@ def build_entity_cube(con=None) -> dict:
         "entities": types,
         "by_character": by_char,
         "offers": offers,
+        "wax": wax,
+        "potion_used": potion_used,
+        "shops": shops,
+        "events": events,
+        "rest": rest,
         "data_through": data_through,
     }
     import gzip as _gzip
@@ -1623,15 +1951,62 @@ def cube_versions(min_runs: int = 500, limit: int = 8) -> list[str]:
     return sorted(vs, key=_natural, reverse=True)[:limit]
 
 
+_ENTITY_TYPES = ("cards", "relics", "potions")
+
+
+def _matching_cells(cube: dict, parsed) -> tuple[int, int, int]:
+    """(runs, wins, seats) over the cube cells one parsed bracket covers.
+    Cubes built before seats were counted carry two numbers per cell; a
+    run then counts as one seat."""
+    mode, player, skill, version = parsed
+    total = wins = seats = 0
+    for cell, tw in (cube.get("runs") or {}).items():
+        if _cell_matches(cell, mode, player, skill, version):
+            total += tw[0]
+            wins += tw[1]
+            seats += tw[2] if len(tw) > 2 else tw[0]
+    return total, wins, seats
+
+
+def _fold_counts(section: dict | None, parsed, width: int) -> dict:
+    """Sum a {cell: {id: [counts...]}} section over the bracket's cells
+    into {id: [counts...]}, padding short rows (older cubes) with zeros."""
+    mode, player, skill, version = parsed
+    out: dict[str, list] = {}
+    for cell, ids in (section or {}).items():
+        if not _cell_matches(cell, mode, player, skill, version):
+            continue
+        for eid, counts in ids.items():
+            cur = out.get(eid)
+            if cur is None:
+                cur = [0] * width
+                out[eid] = cur
+            for i, v in enumerate(counts[:width]):
+                cur[i] += v
+    for cur in out.values():
+        if width > 4:
+            cur[4] = round(cur[4], 3)
+    return out
+
+
+def _cube_offers(cube: dict, entity_type: str) -> dict:
+    """The offers section for one entity type: nested per type in cubes
+    built with relic offers, the bare card map in older ones."""
+    offers = cube.get("offers") or {}
+    if offers and set(offers) <= set(_ENTITY_TYPES):
+        return offers.get(entity_type) or {}
+    return offers if entity_type == "cards" else {}
+
+
 def _entity_bracket_fold_uncached(entity_type: str, bracket: str) -> dict | None:
     """Fold the entity cube for one bracket (any mode x players x skill x
-    version combination): {"entries": {id: [picks, wins]}, "total_runs",
-    "total_wins", "data_through"}. None for unknown brackets or a missing
+    version combination): {"entries": {id: [picks, wins, n_exp, wins_exp,
+    exp_sum]}, "offers", "wax", "used", "total_runs", "total_wins",
+    "total_seats", "data_through"}. None for unknown brackets or a missing
     cube (callers fall back to the snapshot's fixed buckets)."""
     parsed = _parse_lake_bracket(bracket)
     if parsed is None:
         return None
-    mode, player, skill, version = parsed
     hit = _entity_cube_with_mtime()
     if hit is None:
         return None
@@ -1639,56 +2014,119 @@ def _entity_bracket_fold_uncached(entity_type: str, bracket: str) -> dict | None
     per = (cube.get("entities") or {}).get(entity_type)
     if per is None:
         return None
-    total = wins = 0
-    for cell, tw in (cube.get("runs") or {}).items():
-        if _cell_matches(cell, mode, player, skill, version):
-            total += tw[0]
-            wins += tw[1]
+    total, wins, seats = _matching_cells(cube, parsed)
     if total == 0:
         return None
-    entries: dict[str, list] = {}
-    for cell, ids in per.items():
+    entries = _fold_counts(per, parsed, 5)
+    # Offer/pick totals plus the 3-bucket per-act splits, folded from the
+    # same matching cells.
+    mode, player, skill, version = parsed
+    offers: dict[str, dict] = {}
+    for cell, ids in _cube_offers(cube, entity_type).items():
         if not _cell_matches(cell, mode, player, skill, version):
             continue
-        for eid, pw in ids.items():
-            cur = entries.get(eid)
-            if cur is None:
-                entries[eid] = [pw[0], pw[1]]
-            else:
-                cur[0] += pw[0]
-                cur[1] += pw[1]
-    # Card-reward metrics (cards only): offered/picked totals plus the
-    # 3-bucket per-act splits, folded from the same matching cells.
-    offers: dict[str, dict] = {}
-    if entity_type == "cards":
-        for cell, ids in (cube.get("offers") or {}).items():
+        for eid, buckets in ids.items():
+            agg = offers.setdefault(
+                eid,
+                {
+                    "offered": 0,
+                    "picked": 0,
+                    "off_act": [0, 0, 0],
+                    "pick_act": [0, 0, 0],
+                },
+            )
+            for b, op in buckets.items():
+                i = int(b)
+                if 0 <= i <= 2:
+                    agg["offered"] += op[0]
+                    agg["picked"] += op[1]
+                    agg["off_act"][i] += op[0]
+                    agg["pick_act"][i] += op[1]
+    wax = _fold_counts(cube.get("wax"), parsed, 2) if entity_type == "relics" else {}
+    used: dict[str, int] = {}
+    if entity_type == "potions":
+        for cell, ids in (cube.get("potion_used") or {}).items():
             if not _cell_matches(cell, mode, player, skill, version):
                 continue
-            for eid, buckets in ids.items():
-                agg = offers.setdefault(
-                    eid,
-                    {
-                        "offered": 0,
-                        "picked": 0,
-                        "off_act": [0, 0, 0],
-                        "pick_act": [0, 0, 0],
-                    },
-                )
-                for b, op in buckets.items():
-                    i = int(b)
-                    if 0 <= i <= 2:
-                        agg["offered"] += op[0]
-                        agg["picked"] += op[1]
-                        agg["off_act"][i] += op[0]
-                        agg["pick_act"][i] += op[1]
+            for eid, n in ids.items():
+                used[eid] = used.get(eid, 0) + n
     return {
         "entries": entries,
         "offers": offers,
+        "wax": wax,
+        "used": used,
         "total_runs": total,
         "total_wins": wins,
-        "parsed": (mode, player, skill, version),
+        "total_seats": seats,
+        "parsed": parsed,
         "data_through": cube.get("data_through"),
     }
+
+
+def _section_fold(name: str, bracket: str, width: int, nested: bool) -> dict | None:
+    """Cached fold of one cube section (shops / events / rest) for a
+    bracket: {"rows": ..., "total_runs", "total_wins", "total_seats"}.
+    Nested sections ({cell: {group: {id: counts}}}) fold to
+    {group: {id: counts}}, flat ones to {id: counts}."""
+    hit = _entity_cube_with_mtime()
+    if hit is None:
+        return None
+    key = (f"section:{name}", bracket)
+    cached = _fold_cache.get(key)
+    if cached is not None and cached[0] == hit[0]:
+        return cached[1]
+    parsed = _parse_lake_bracket(bracket)
+    fold: dict | None = None
+    if parsed is not None:
+        cube = hit[1]
+        total, wins, seats = _matching_cells(cube, parsed)
+        section = cube.get(name)
+        if total and section is not None:
+            if nested:
+                mode, player, skill, version = parsed
+                groups: dict[str, dict] = {}
+                for cell, per_group in section.items():
+                    if not _cell_matches(cell, mode, player, skill, version):
+                        continue
+                    for g in per_group:
+                        groups.setdefault(g, {})
+                rows = {
+                    g: _fold_counts(
+                        {c: v.get(g) or {} for c, v in section.items()},
+                        parsed,
+                        width,
+                    )
+                    for g in groups
+                }
+            else:
+                rows = _fold_counts(section, parsed, width)
+            fold = {
+                "rows": rows,
+                "total_runs": total,
+                "total_wins": wins,
+                "total_seats": seats,
+                "data_through": cube.get("data_through"),
+            }
+    _fold_cache_put(key, (hit[0], fold))
+    return fold
+
+
+def shop_bracket_fold(bracket: str) -> dict | None:
+    """{etype: {id: [seen, bought, wins_bought, n_exp, wins_exp, exp_sum]}}
+    for one bracket, with the bracket totals."""
+    return _section_fold("shops", bracket, 6, nested=True)
+
+
+def event_bracket_fold(bracket: str) -> dict | None:
+    """{event: {option: [chosen, wins, n_exp, wins_exp, exp_sum]}} for one
+    bracket, with the bracket totals."""
+    return _section_fold("events", bracket, 5, nested=True)
+
+
+def campfire_bracket_fold(bracket: str) -> dict | None:
+    """{choice: [chosen, wins, low_hp, n_exp, wins_exp, exp_sum]} for one
+    bracket, with the bracket totals."""
+    return _section_fold("rest", bracket, 6, nested=False)
 
 
 _ENCOUNTER_STORE_NAME = "encounter_store.json"
@@ -1899,12 +2337,13 @@ def skip_summary() -> dict | None:
 _SKILL_BRACKET_NAMES = {0: "a10", 1: "wr30", 2: "wr50", 3: "wr75"}
 
 
-def bracket_elo_for(bracket: str | None) -> dict | None:
-    """Per-bracket card Elo map for a lake bracket: the skill component's
-    fit when the bracket has one (a10/wr30/wr50/wr75, alone or composite),
+def bracket_elo_for(bracket: str | None, entity_type: str = "cards") -> dict | None:
+    """Per-bracket Elo map for a lake bracket: the skill component's fit
+    when the bracket has one (a10/wr30/wr50/wr75, alone or composite),
     else the game version's fit for version brackets. None otherwise —
-    callers then fall back to the all-runs Elo. A card absent from a
-    returned map is below the head-to-head floor in that slice."""
+    callers then fall back to the all-runs Elo. An entity absent from a
+    returned map is below the head-to-head floor in that slice. Card maps
+    sit under the bare bracket key, relic maps under "relics:<key>"."""
     parsed = _parse_lake_bracket(bracket)
     if not parsed:
         return None
@@ -1912,11 +2351,12 @@ def bracket_elo_for(bracket: str | None) -> dict | None:
     if not hit:
         return None
     bmap = hit[1].get("bracket_elo") or {}
+    prefix = "" if entity_type == "cards" else f"{entity_type}:"
     _mode, _player, skill, version = parsed
     if skill is not None:
-        return bmap.get(_SKILL_BRACKET_NAMES[skill]) or None
+        return bmap.get(f"{prefix}{_SKILL_BRACKET_NAMES[skill]}") or None
     if version is not None:
-        return bmap.get(f"ver:{version}") or None
+        return bmap.get(f"{prefix}ver:{version}") or None
     return None
 
 

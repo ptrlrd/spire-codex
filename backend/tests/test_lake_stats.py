@@ -331,7 +331,7 @@ def test_cube_versions_and_fold_cache(monkeypatch):
     f1 = lake_stats.entity_bracket_fold("cards", "a10")
     f2 = lake_stats.entity_bracket_fold("cards", "a10")
     assert f1 is f2, "second fold must come from the mtime-keyed cache"
-    assert f1["entries"]["X"] == [10, 6]
+    assert f1["entries"]["X"][:2] == [10, 6]
     assert f1["total_runs"] == 1400
 
 

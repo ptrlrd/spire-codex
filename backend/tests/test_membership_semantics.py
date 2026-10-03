@@ -1,4 +1,5 @@
-"""Entity membership is run-set: copies and co-op duplicates count once."""
+"""Entity membership is seat-set: copies on one seat count once, every seat
+of a co-op run counts, and the character is the seat's own."""
 
 import duckdb
 import pytest
@@ -23,8 +24,6 @@ def member_lake(tmp_path):
         f"""COPY (SELECT * FROM (VALUES ('none'))
         t(run_hash)) TO '{tmp_path}/excluded.parquet' (FORMAT parquet)"""
     )
-    # r1: three Strikes on player 1 plus one on player 2 (co-op duplicate),
-    # and one Bash. r2: one Strike.
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
         ('r1', 1, 'IRONCLAD', 'STRIKE'),
@@ -38,14 +37,15 @@ def member_lake(tmp_path):
     )
     con.execute(ls._ELIGIBLE_SQL.format(lake=tmp_path))
     con.execute(ls._CELLS_SQL.format(lake=tmp_path))
+    con.execute(ls._RUN_EXP_SQL)
     yield con, tmp_path
     con.close()
 
 
-def test_store_membership_is_run_set(member_lake):
+def test_store_membership_is_seat_set(member_lake):
     con, lake = member_lake
     rows = con.execute(
-        ls._MEMBERSHIP_SQL.format(col="card", table="deck", lake=lake)
+        ls._MEMBERSHIP_SQL.format(col="card", table="deck", lake=lake, where="")
     ).fetchall()
     by_card = {}
     for cid, char, picks, wins, _ts, _hash in rows:
@@ -53,19 +53,23 @@ def test_store_membership_is_run_set(member_lake):
         agg["picks"] += picks
         agg["wins"] += wins
         agg["chars"][char] = (picks, wins)
-    assert by_card["STRIKE"]["picks"] == 2
-    assert by_card["STRIKE"]["wins"] == 1
-    # Attribution is the run's character, not each holder's.
-    assert by_card["STRIKE"]["chars"] == {"IRONCLAD": (1, 1), "SILENT": (1, 0)}
+    assert by_card["STRIKE"]["picks"] == 3
+    assert by_card["STRIKE"]["wins"] == 2
+    assert by_card["STRIKE"]["chars"] == {
+        "IRONCLAD": (1, 1),
+        "DEFECT": (1, 1),
+        "SILENT": (1, 0),
+    }
     assert by_card["BASH"]["picks"] == 1
 
 
-def test_cube_membership_is_run_set(member_lake):
+def test_cube_membership_is_seat_set(member_lake):
     con, lake = member_lake
     rows = con.execute(
-        ls._CUBE_MEMBERSHIP_SQL.format(col="card", table="deck", lake=lake)
+        ls._CUBE_MEMBERSHIP_SQL.format(col="card", table="deck", lake=lake, where="")
     ).fetchall()
-    strike = [(cell, ch, p, w) for cell, cid, ch, p, w in rows if cid == "STRIKE"]
-    assert sum(p for _, _, p, _ in strike) == 2
-    assert sum(w for _, _, _, w in strike) == 2 - 1
-    assert {ch for _, ch, _, _ in strike} == {"IRONCLAD", "SILENT"}
+    strike = [r for r in rows if r[1] == "STRIKE"]
+    assert sum(r[3] for r in strike) == 3
+    assert sum(r[4] for r in strike) == 2
+    assert {r[2] for r in strike} == {"IRONCLAD", "DEFECT", "SILENT"}
+    assert all(r[5] == 0 for r in strike), "no user has five other runs"

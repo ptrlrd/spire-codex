@@ -33,6 +33,30 @@ from pathlib import Path
 from typing import Any, Iterable
 
 from .runs_db import get_conn
+from .stats_math import lift_of, padded_counts, wilson_interval
+
+
+class UnknownBracket(ValueError):
+    """A ?bracket= value neither the lake parser nor the snapshot's bracket
+    list knows; routers answer it with a 400 instead of quietly serving
+    the all-runs numbers."""
+
+
+def ensure_known_bracket(bracket: str | None) -> str:
+    """The bracket to serve, or UnknownBracket. "all" and an empty value
+    mean every run."""
+    b = (bracket or "").strip() or "all"
+    if b == "all" or is_valid_stat_bracket(b):
+        return b
+    try:
+        from .lake_stats import _parse_lake_bracket
+
+        if _parse_lake_bracket(b) is not None:
+            return b
+    except Exception:
+        pass
+    raise UnknownBracket(b)
+
 
 _USING_MONGO = bool(os.environ.get("MONGO_URL", "").strip())
 
@@ -2637,13 +2661,19 @@ def get_all_entity_scores(
             # floor in that slice and stays null. Mode/player/version parts
             # don't refit — those fall back to the all-runs rating.
             bmap = None
-            if entity_type == "cards":
+            if entity_type in ("cards", "relics"):
                 try:
-                    bmap = lake_stats.bracket_elo_for(bracket)
+                    bmap = (
+                        lake_stats.bracket_elo_for(bracket)
+                        if entity_type == "cards"
+                        else lake_stats.bracket_elo_for(bracket, entity_type)
+                    )
                 except Exception:
                     bmap = None
             cube_out: dict[str, dict[str, Any]] = {}
-            for eid, (cpicks, cwins) in entries.items():
+            bseats = fold.get("total_seats") or btot
+            for eid, counts in entries.items():
+                cpicks, cwins = int(counts[0]), int(counts[1])
                 if eid in excluded or (official and eid not in official):
                     continue
                 cube_out[eid] = {
@@ -2654,7 +2684,7 @@ def get_all_entity_scores(
                     "picks": cpicks,
                     "wins": cwins,
                     "win_rate": round(cwins / cpicks * 100, 1) if cpicks else 0.0,
-                    "pick_rate": round(cpicks / btot * 100, 1) if btot else 0.0,
+                    "pick_rate": round(cpicks / bseats * 100, 1) if bseats else 0.0,
                 }
             return cube_out
     # Bracket view (the content brackets: a10 / wr30 / wr50 / wr75 etc.): grade
@@ -2797,18 +2827,23 @@ def get_entity_metrics_table(
     # never materialized for current versions. Character views keep the
     # snapshot path (the cube doesn't track per-character splits yet), and
     # a missing cube or unknown bracket falls through unchanged.
-    if bracket != "all" and character is None:
+    lake_fold: dict | None = None
+    if character is None:
         try:
             from . import lake_stats
 
-            fold = lake_stats.entity_bracket_fold(entity_type, bracket)
+            lake_fold = lake_stats.entity_bracket_fold(entity_type, bracket)
         except Exception:
-            fold = None
+            lake_fold = None
             logger.warning("lake metrics fold failed", exc_info=True)
+        fold = lake_fold if bracket != "all" else None
         if fold:
             entries = fold["entries"]
             offers = fold.get("offers") or {}
+            wax_fold = fold.get("wax") or {}
+            used_fold = fold.get("used") or {}
             btot = fold["total_runs"]
+            bseats = fold.get("total_seats") or btot
             base_p = sum(pw[0] for pw in entries.values())
             base_w = sum(pw[1] for pw in entries.values())
             baseline = (base_w / base_p) if base_p else _baseline_win_rate()
@@ -2823,14 +2858,19 @@ def get_entity_metrics_table(
             )
             official = _official_entity_ids(entity_type)
             bmap = None
-            if entity_type == "cards":
+            if entity_type in ("cards", "relics"):
                 try:
-                    bmap = lake_stats.bracket_elo_for(bracket)
+                    bmap = (
+                        lake_stats.bracket_elo_for(bracket)
+                        if entity_type == "cards"
+                        else lake_stats.bracket_elo_for(bracket, entity_type)
+                    )
                 except Exception:
                     bmap = None
             z3 = [0] * _ACT_BUCKETS
             rows = []
-            for eid, (picks, wins) in entries.items():
+            for eid, counts in entries.items():
+                picks, wins, n_exp, wins_exp, exp_sum = padded_counts(counts, 5)
                 if eid in excluded_cards or eid in solo_cards:
                     continue
                 if official and eid not in official:
@@ -2841,38 +2881,46 @@ def get_entity_metrics_table(
                 off_act = off.get("off_act") or z3
                 pick_act = off.get("pick_act") or z3
                 score = _compute_score(wins, picks, baseline, prior)
-                rows.append(
-                    {
-                        "id": eid,
-                        "upgraded": False,
-                        "score": score,
-                        "tier": _score_to_tier(score),
-                        "elo": bmap.get(eid)
-                        if bmap is not None
-                        else (_cache.get((entity_type, eid)) or {}).get("elo"),
-                        "win_rate": round(wins / picks * 100, 1) if picks else None,
-                        "pick_rate": round(picked / offered * 100, 1)
-                        if offered
-                        else None,
-                        "picks": picks,
-                        "wins": wins,
-                        "losses": picks - wins,
-                        "offered": offered,
-                        "picked": picked,
-                        "pick_rate_by_act": [
-                            round(pick_act[i] / off_act[i] * 100, 1)
-                            if off_act[i]
-                            else None
-                            for i in range(_ACT_BUCKETS)
-                        ],
-                    }
-                )
+                row = {
+                    "id": eid,
+                    "upgraded": False,
+                    "score": score,
+                    "tier": _score_to_tier(score),
+                    "elo": bmap.get(eid)
+                    if bmap is not None
+                    else (_cache.get((entity_type, eid)) or {}).get("elo"),
+                    "win_rate": round(wins / picks * 100, 1) if picks else None,
+                    "win_rate_ci": wilson_interval(wins, picks),
+                    "pick_rate": round(picked / offered * 100, 1) if offered else None,
+                    "hold_rate": round(picks / bseats * 100, 1) if bseats else None,
+                    "lift": lift_of(n_exp, wins_exp, exp_sum),
+                    "lift_n": n_exp,
+                    "picks": picks,
+                    "wins": wins,
+                    "losses": picks - wins,
+                    "offered": offered,
+                    "picked": picked,
+                    "pick_rate_by_act": [
+                        round(pick_act[i] / off_act[i] * 100, 1) if off_act[i] else None
+                        for i in range(_ACT_BUCKETS)
+                    ],
+                }
+                if entity_type == "relics":
+                    row["wax"] = _wax_block(wax_fold.get(eid))
+                if entity_type == "potions":
+                    used = int(used_fold.get(eid) or 0)
+                    row["used"] = used
+                    row["use_rate"] = round(used / picks * 100, 1) if picks else None
+                rows.append(row)
             return {
                 "entity_type": entity_type,
                 "bracket": bracket,
                 "character": None,
                 "baseline_win_rate": round(baseline * 100, 1),
                 "total_runs": btot,
+                "total_seats": bseats,
+                "total_wins": fold.get("total_wins"),
+                "data_through": fold.get("data_through"),
                 "character_runs": None,
                 "character_wins": None,
                 "rows": rows,
@@ -2938,16 +2986,45 @@ def get_entity_metrics_table(
 
     z3 = [0] * _ACT_BUCKETS
 
-    def _row(eid, picks, wins, *, elo, offered, picked, off_act, pick_act, upgraded):
+    total_seats = (
+        (lake_fold or {}).get("total_seats")
+        or (_global_totals.get("total_seats") if not use_bracket else None)
+        or total_runs
+    )
+    lake_entries = (lake_fold or {}).get("entries") or {}
+    lake_wax = (lake_fold or {}).get("wax") or {}
+    lake_used = (lake_fold or {}).get("used") or {}
+
+    def _row(
+        eid,
+        picks,
+        wins,
+        *,
+        elo,
+        offered,
+        picked,
+        off_act,
+        pick_act,
+        upgraded,
+        agg=None,
+    ):
         score = _compute_score(wins, picks, baseline, prior)
-        return {
+        lift = lift_n = None
+        if not upgraded and not character:
+            _p, _w, n_exp, wins_exp, exp_sum = padded_counts(lake_entries.get(eid), 5)
+            lift, lift_n = lift_of(n_exp, wins_exp, exp_sum), n_exp
+        row = {
             "id": eid,
             "upgraded": upgraded,
             "score": score,
             "tier": _score_to_tier(score),
             "elo": elo,
             "win_rate": round(wins / picks * 100, 1) if picks else None,
+            "win_rate_ci": wilson_interval(wins, picks),
             "pick_rate": round(picked / offered * 100, 1) if offered else None,
+            "hold_rate": round(picks / total_seats * 100, 1) if total_seats else None,
+            "lift": lift,
+            "lift_n": lift_n or 0,
             "picks": picks,
             "wins": wins,
             "losses": picks - wins,
@@ -2960,6 +3037,19 @@ def get_entity_metrics_table(
                 for i in range(_ACT_BUCKETS)
             ],
         }
+        if entity_type == "relics":
+            wax = lake_wax.get(eid) if lake_fold else None
+            if wax is None and agg and agg.get("wax"):
+                wax = [agg["wax"].get("picks", 0), agg["wax"].get("wins", 0)]
+            row["wax"] = _wax_block(wax)
+        if entity_type == "potions":
+            used = lake_used.get(eid) if lake_fold else None
+            if used is None and agg:
+                used = agg.get("used")
+            used = int(used or 0)
+            row["used"] = used
+            row["use_rate"] = round(used / picks * 100, 1) if picks else None
+        return row
 
     rows: list[dict[str, Any]] = []
     excluded_cards = _non_reward_card_ids() if entity_type == "cards" else frozenset()
@@ -3076,6 +3166,7 @@ def get_entity_metrics_table(
                     off_act=agg.get("off_act") or z3,
                     pick_act=agg.get("pick_act") or z3,
                     upgraded=False,
+                    agg=agg,
                 )
             )
     return {
@@ -3084,8 +3175,147 @@ def get_entity_metrics_table(
         "character": character,
         "baseline_win_rate": round(baseline * 100, 1),
         "total_runs": total_runs,
+        "total_seats": total_seats,
+        "total_wins": (lake_fold or {}).get("total_wins")
+        or (_global_totals.get("total_wins") if not use_bracket else None),
+        "data_through": (lake_fold or {}).get("data_through"),
         "character_runs": character_runs,
         "character_wins": character_wins,
+        "rows": rows,
+    }
+
+
+def _wax_block(counts) -> dict | None:
+    if not counts or not counts[0]:
+        return None
+    picks, wins = int(counts[0]), int(counts[1])
+    return {
+        "picks": picks,
+        "wins": wins,
+        "win_rate": round(wins / picks * 100, 1),
+        "win_rate_ci": wilson_interval(wins, picks),
+    }
+
+
+def _section_table(name: str, bracket: str) -> dict[str, Any] | None:
+    from . import lake_stats
+
+    bracket = ensure_known_bracket(bracket)
+    getter = {
+        "shops": lake_stats.shop_bracket_fold,
+        "events": lake_stats.event_bracket_fold,
+        "campfires": lake_stats.campfire_bracket_fold,
+    }[name]
+    try:
+        return getter(bracket)
+    except Exception:
+        logger.warning("lake %s fold failed", name, exc_info=True)
+        return None
+
+
+def get_shop_metrics_table(bracket: str = "all") -> dict[str, Any]:
+    """Shop shelf rows for one bracket: how often each card, relic and
+    potion was seen on a shelf, how often it was bought, and how the
+    seats that bought it fared."""
+    fold = _section_table("shops", bracket)
+    rows: list[dict[str, Any]] = []
+    shop_visits = 0
+    if fold:
+        official = {t: _official_entity_ids(t) for t in ("cards", "relics", "potions")}
+        for etype, ids in (fold["rows"] or {}).items():
+            allowed = official.get(etype) or frozenset()
+            for eid, counts in ids.items():
+                seen, bought, wins_b, n_exp, wins_exp, exp_sum = padded_counts(
+                    counts, 6
+                )
+                if allowed and eid not in allowed:
+                    continue
+                rows.append(
+                    {
+                        "entity_type": etype,
+                        "id": eid,
+                        "seen": seen,
+                        "bought": bought,
+                        "buy_rate": round(bought / seen * 100, 1) if seen else None,
+                        "win_rate": round(wins_b / bought * 100, 1) if bought else None,
+                        "win_rate_ci": wilson_interval(wins_b, bought),
+                        "lift": lift_of(n_exp, wins_exp, exp_sum),
+                        "lift_n": n_exp,
+                    }
+                )
+    return {
+        "bracket": bracket or "all",
+        "total_runs": (fold or {}).get("total_runs", 0),
+        "total_seats": (fold or {}).get("total_seats", 0),
+        "total_wins": (fold or {}).get("total_wins", 0),
+        "shop_visits": shop_visits,
+        "data_through": (fold or {}).get("data_through"),
+        "rows": rows,
+    }
+
+
+def get_event_metrics_table(bracket: str = "all") -> dict[str, Any]:
+    """Event option rows for one bracket: how often each option was taken,
+    its share of the event's choices, and how the seats that took it
+    fared."""
+    fold = _section_table("events", bracket)
+    rows: list[dict[str, Any]] = []
+    if fold:
+        for event, options in (fold["rows"] or {}).items():
+            total = sum(padded_counts(c, 5)[0] for c in options.values())
+            for option, counts in options.items():
+                chosen, wins, n_exp, wins_exp, exp_sum = padded_counts(counts, 5)
+                rows.append(
+                    {
+                        "event": event,
+                        "option": option,
+                        "chosen": chosen,
+                        "share": round(chosen / total * 100, 1) if total else None,
+                        "win_rate": round(wins / chosen * 100, 1) if chosen else None,
+                        "win_rate_ci": wilson_interval(wins, chosen),
+                        "lift": lift_of(n_exp, wins_exp, exp_sum),
+                        "lift_n": n_exp,
+                    }
+                )
+    return {
+        "bracket": bracket or "all",
+        "total_runs": (fold or {}).get("total_runs", 0),
+        "total_seats": (fold or {}).get("total_seats", 0),
+        "total_wins": (fold or {}).get("total_wins", 0),
+        "data_through": (fold or {}).get("data_through"),
+        "rows": rows,
+    }
+
+
+def get_campfire_metrics_table(bracket: str = "all") -> dict[str, Any]:
+    """Rest-site choice rows for one bracket: how often each action was
+    taken, its share of all campfire choices, the share taken below half
+    HP, and how the seats that took it fared."""
+    fold = _section_table("campfires", bracket)
+    rows: list[dict[str, Any]] = []
+    if fold:
+        choices = fold["rows"] or {}
+        total = sum(padded_counts(c, 6)[0] for c in choices.values())
+        for choice, counts in choices.items():
+            chosen, wins, low, n_exp, wins_exp, exp_sum = padded_counts(counts, 6)
+            rows.append(
+                {
+                    "choice": choice,
+                    "chosen": chosen,
+                    "share": round(chosen / total * 100, 1) if total else None,
+                    "win_rate": round(wins / chosen * 100, 1) if chosen else None,
+                    "win_rate_ci": wilson_interval(wins, chosen),
+                    "lift": lift_of(n_exp, wins_exp, exp_sum),
+                    "lift_n": n_exp,
+                    "low_hp_share": round(low / chosen * 100, 1) if chosen else None,
+                }
+            )
+    return {
+        "bracket": bracket or "all",
+        "total_runs": (fold or {}).get("total_runs", 0),
+        "total_seats": (fold or {}).get("total_seats", 0),
+        "total_wins": (fold or {}).get("total_wins", 0),
+        "data_through": (fold or {}).get("data_through"),
         "rows": rows,
     }
 
@@ -3172,6 +3402,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
 
     by_character = _shape_chars(agg["by_character"])
     total_runs = _global_totals["total_runs"]
+    all_seats = _global_totals.get("total_seats") or total_runs
     baseline = _type_baseline(entity_type)
     # Per-bracket breakdown for the entity detail page: All + A10 + the win-rate
     # skill tiers, each with Win%, Codex Elo, picks, and Codex Score (graded
@@ -3190,7 +3421,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             # detail page can re-scope it instead of always dividing by the
             # global run count.
             "total_runs": total_runs,
-            "pick_rate": round(picks / total_runs * 100, 1) if total_runs else 0.0,
+            "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
             # "All" reuses the global per-character split.
             "by_character": by_character,
         }
@@ -3278,9 +3509,13 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                 base_w = sum(x[1] for x in fold["entries"].values())
                 cbase = (base_w / base_p) if base_p else _baseline_win_rate()
                 ctot = fold["total_runs"]
+                cseats = fold.get("total_seats") or ctot
                 celo = None
                 if entity_type == "cards":
                     bmap = lake_stats.bracket_elo_for(ck)
+                    celo = bmap.get(eid) if bmap is not None else agg.get("elo")
+                elif entity_type == "relics":
+                    bmap = lake_stats.bracket_elo_for(ck, "relics")
                     celo = bmap.get(eid) if bmap is not None else agg.get("elo")
                 try:
                     cfold = lake_stats.entity_character_fold(entity_type, ck)
@@ -3310,7 +3545,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                         _bracket_prior(ctot) if entity_type == "relics" else None,
                     ),
                     "total_runs": ctot,
-                    "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
+                    "pick_rate": round(cp / cseats * 100, 1) if cseats else 0.0,
                     "by_character": by_char_rows,
                 }
         except Exception:
@@ -3321,8 +3556,9 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "picks": picks,
         "wins": wins,
         "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
-        "pick_rate": round(picks / total_runs * 100, 1) if total_runs else 0.0,
+        "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
         "total_runs": total_runs,
+        "total_seats": all_seats,
         "baseline_win_rate": round(baseline * 100, 1),
         "score": _compute_score(wins, picks, baseline),
         "elo": agg.get("elo"),
