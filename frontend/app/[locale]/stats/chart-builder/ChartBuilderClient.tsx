@@ -3,7 +3,8 @@
 // Chart builder: pick a source, bracket, filters, metrics and chart type;
 // watch the live Chart.js preview; save the spec to your profile and share
 // it. Data is fetched client-side from the metrics API and joined with the
-// catalog exactly like /leaderboards/metrics.
+// catalog exactly like /leaderboards/metrics. The whole spec round-trips in
+// the URL query string (defaults omitted) so an unsaved chart can be linked.
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useEffect, useMemo, useState } from "react";
@@ -30,9 +31,9 @@ import {
   type SavedChartDoc,
   type SavedChartSpec,
 } from "@/lib/saved-chart-spec";
+import { METRIC_LABELS } from "@/lib/chart-metric-labels";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
 const SOURCE_KEYS: Record<ChartSource, string> = {
   cards: "Cards",
   relics: "Relics",
@@ -44,22 +45,84 @@ const SOURCE_KEYS: Record<ChartSource, string> = {
 
 const CHART_TYPE_KEYS: Record<ChartType, string> = {
   bar: "Bar",
-  hbar: "Horizontal bars",
   scatter: "Scatter",
+  hbar: "Horizontal bars",
 };
 
 interface PublicChart {
   id: string;
   title: string;
   owner_name?: string | null;
-  spec: SavedChartSpec;
+}
+
+const DEFAULT_SPEC = defaultSpec();
+
+/** Spec → query string, dropping everything that equals the default so a
+ * shared link stays short and future defaults apply to old links. */
+function specToParams(spec: SavedChartSpec): URLSearchParams {
+  const p = new URLSearchParams();
+  if (spec.source !== DEFAULT_SPEC.source) p.set("source", spec.source);
+  if (spec.bracket !== DEFAULT_SPEC.bracket) p.set("bracket", spec.bracket);
+  if (spec.character) p.set("character", spec.character);
+  if (spec.chart !== DEFAULT_SPEC.chart) p.set("chart", spec.chart);
+  if (spec.x !== DEFAULT_SPEC.x) p.set("x", spec.x);
+  if (spec.y !== DEFAULT_SPEC.y) p.set("y", spec.y);
+  if (spec.top !== DEFAULT_SPEC.top) p.set("top", String(spec.top));
+  if (spec.sort !== DEFAULT_SPEC.sort) p.set("sort", spec.sort);
+  const f = spec.filters ?? {};
+  if (f.search) p.set("search", f.search);
+  if (f.group) p.set("group", f.group);
+  if (f.rarity) p.set("rarity", f.rarity);
+  if (
+    typeof f.min_sample === "number" &&
+    f.min_sample !== DEFAULT_SPEC.filters.min_sample
+  )
+    p.set("min_sample", String(f.min_sample));
+  return p;
+}
+
+function specFromParams(params: URLSearchParams): SavedChartSpec {
+  const spec: SavedChartSpec = {
+    ...DEFAULT_SPEC,
+    filters: { ...DEFAULT_SPEC.filters },
+  };
+  const source = params.get("source") as ChartSource | null;
+  if (source && (CHART_SOURCES as readonly string[]).includes(source))
+    spec.source = source;
+  const bracket = params.get("bracket");
+  if (bracket) spec.bracket = bracket;
+  const character = params.get("character");
+  if (character) spec.character = character;
+  const chart = params.get("chart") as ChartType | null;
+  if (chart && (CHART_TYPES as readonly string[]).includes(chart))
+    spec.chart = chart;
+  const x = params.get("x");
+  if (x) spec.x = x;
+  const y = params.get("y") as MetricKey | null;
+  if (y && (METRIC_KEYS as readonly string[]).includes(y)) spec.y = y;
+  const top = Number(params.get("top"));
+  if (top >= 5 && top <= 100) spec.top = top;
+  const sort = params.get("sort");
+  if (sort === "asc" || sort === "desc") spec.sort = sort;
+  const search = params.get("search");
+  if (search) spec.filters.search = search;
+  const group = params.get("group");
+  if (group) spec.filters.group = group;
+  const rarity = params.get("rarity");
+  if (rarity) spec.filters.rarity = rarity;
+  const minSample = Number(params.get("min_sample"));
+  if (Number.isFinite(minSample) && params.has("min_sample"))
+    spec.filters.min_sample = minSample;
+  return spec;
 }
 
 export default function ChartBuilderClient() {
   const t = useT();
   const { user, loginSteam } = useAuth();
   const locale = useGameLocale();
-  const [spec, setSpec] = useState<SavedChartSpec>(() => defaultSpec());
+  const [spec, setSpec] = useState<SavedChartSpec>(() =>
+    specFromParams(new URLSearchParams(window.location.search)),
+  );
   const [versions, setVersions] = useState<string[]>([]);
   const [title, setTitle] = useState("");
   const [saved, setSaved] = useState<SavedChartDoc | null>(null);
@@ -67,8 +130,19 @@ export default function ChartBuilderClient() {
   const [error, setError] = useState("");
   const [copied, setCopied] = useState(false);
   const [recent, setRecent] = useState<PublicChart[]>([]);
+  const [includeUpgraded, setIncludeUpgraded] = useState(false);
 
   const sel = useMemo(() => parseBracket(spec.bracket), [spec.bracket]);
+
+  useEffect(() => {
+    const params = specToParams(spec);
+    const qs = params.toString();
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${qs ? `?${qs}` : ""}${window.location.hash}`,
+    );
+  }, [spec]);
 
   useEffect(() => {
     fetch(`${API}/api/runs/versions`)
@@ -106,6 +180,18 @@ export default function ChartBuilderClient() {
     version: string,
   ) =>
     patch({ bracket: combineBracket(player, skill, mode, version) || "all" });
+
+  const cohort = (() => {
+    const parts: string[] = [];
+    const pl = PLAYER_AXIS.find((a) => a.key === sel.player);
+    if (sel.player && pl) parts.push(t(pl.label));
+    const sl = SKILL_AXIS.find((a) => a.key === sel.skill);
+    if (sel.skill && sl) parts.push(t(sl.label));
+    const ml = MODE_AXIS.find((a) => a.key === sel.mode);
+    if (sel.mode && ml) parts.push(`${t(ml.label)} ${t("mode")}`);
+    if (sel.version) parts.push(sel.version);
+    return parts.length ? parts.join(", ") : t("All runs");
+  })();
 
   const save = async () => {
     setSaving(true);
@@ -310,7 +396,7 @@ export default function ChartBuilderClient() {
           />
           <input
             className={`${selectCls} mt-1 w-full`}
-            placeholder={t("Min sample")}
+            placeholder="20"
             type="number"
             min={0}
             max={100000}
@@ -321,7 +407,7 @@ export default function ChartBuilderClient() {
                   ...spec.filters,
                   min_sample: e.target.value
                     ? Number(e.target.value)
-                    : undefined,
+                    : DEFAULT_SPEC.filters.min_sample,
                 },
               })
             }
@@ -341,7 +427,7 @@ export default function ChartBuilderClient() {
             >
               {metricOptions.map((m) => (
                 <option key={m} value={m}>
-                  {m}
+                  {t(METRIC_LABELS[m])}
                 </option>
               ))}
             </select>
@@ -359,7 +445,7 @@ export default function ChartBuilderClient() {
               >
                 {METRIC_KEYS.map((m) => (
                   <option key={m} value={m}>
-                    {m}
+                    {t(METRIC_LABELS[m])}
                   </option>
                 ))}
               </select>
@@ -412,6 +498,16 @@ export default function ChartBuilderClient() {
               <option value="asc">{t("Ascending")}</option>
             </select>
           </div>
+        </div>
+        <div>
+          <label className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
+            <input
+              type="checkbox"
+              checked={includeUpgraded}
+              onChange={(e) => setIncludeUpgraded(e.target.checked)}
+            />
+            {t("Include upgraded cards")}
+          </label>
         </div>
 
         <div className="border-t border-[var(--border-subtle)] pt-4">
@@ -481,7 +577,14 @@ export default function ChartBuilderClient() {
 
       <div className="space-y-6">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-          <SavedChartView spec={spec} height={460} />
+          <p className="mb-2 text-sm text-[var(--text-muted)]">
+            {t("Cohort: {cohort}").replace("{cohort}", cohort)}
+          </p>
+          <SavedChartView
+            spec={spec}
+            height={460}
+            includeUpgraded={includeUpgraded}
+          />
         </div>
         {recent.length > 0 && (
           <div>
