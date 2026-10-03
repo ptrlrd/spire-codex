@@ -119,10 +119,6 @@ export const PAGE_OVERRIDES = {
     name: "Codex Score",
     keywords: ["score", "codex score", "scoring", "methodology", "tier bands"],
   },
-  "/stats/characters": {
-    name: "Character Stats",
-    keywords: ["stats", "win rate", "pick rate"],
-  },
   "/stats/encounters": {
     name: "Encounter Stats",
     keywords: ["encounter", "deadliest", "stats"],

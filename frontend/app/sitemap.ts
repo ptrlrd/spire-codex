@@ -66,7 +66,6 @@ const LANG_LIST_ROUTES = [
   "stats",
   "stats/cards",
   "stats/relics",
-  "stats/characters",
   "stats/encounters",
   "stats/charts",
   "stats/scoring",
@@ -144,11 +143,6 @@ const STATIC_PAGES = [
     path: "/runs/submit",
     priority: 0.6,
     changeFrequency: "monthly" as const,
-  },
-  {
-    path: "/stats/characters",
-    priority: 0.8,
-    changeFrequency: "daily" as const,
   },
   {
     path: "/top-players",

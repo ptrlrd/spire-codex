@@ -292,11 +292,6 @@
     ]
   },
   {
-    "path": "/stats/characters",
-    "name": "Character Stats",
-    "keywords": ["stats", "characters", "win rate", "pick rate"]
-  },
-  {
     "path": "/stats/charts",
     "name": "Run Charts",
     "keywords": ["stats", "charts", "explorer"]

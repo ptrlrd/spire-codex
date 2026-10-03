@@ -218,7 +218,6 @@ export const STATS_LINKS = [
   { href: "/stats/shops", label: "Shops" },
   { href: "/stats/events", label: "Events" },
   { href: "/stats/campfires", label: "Campfires" },
-  { href: "/stats/characters", label: "Characters" },
   { href: "/stats/encounters", label: "Encounters" },
   { href: "/stats/charts", label: "Charts" },
   { href: "/stats/scoring", label: "Scoring" },

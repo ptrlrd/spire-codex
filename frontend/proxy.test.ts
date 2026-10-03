@@ -79,11 +79,11 @@ describe("locale routing", () => {
     });
     expect(run("/deu/meta")).toMatchObject({
       status: 308,
-      location: "/deu/stats/characters",
+      location: "/deu/stats",
     });
     expect(run("/meta")).toMatchObject({
       status: 308,
-      location: "/stats/characters",
+      location: "/stats",
     });
     expect(run("/seed-lab")).toMatchObject({
       status: 308,

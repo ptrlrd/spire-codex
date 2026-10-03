@@ -110,7 +110,6 @@ const NAV_GROUPS: NavGroup[] = [
       { href: "/stats/shops", label: "Shops" },
       { href: "/stats/events", label: "Events" },
       { href: "/stats/campfires", label: "Campfires" },
-      { href: "/stats/characters", label: "Characters" },
       { href: "/stats/encounters", label: "Encounters" },
       { href: "/stats/charts", label: "Charts" },
       { href: "/stats/scoring", label: "Scoring" },
@@ -247,7 +246,7 @@ const NAV_COLUMNS: Record<string, { title: string; labels: string[] }[]> = {
     },
     {
       title: "Aggregate data",
-      labels: ["Characters", "Encounters", "Charts", "Scoring", "Tier List"],
+      labels: ["Encounters", "Charts", "Scoring", "Tier List"],
     },
   ],
   Leaderboards: [
