@@ -13,6 +13,8 @@ import { Link } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import { LIVE_TABLES } from "@/lib/game-messages.common";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
@@ -810,6 +812,14 @@ function LiveCoopPanel({
 }
 
 export default function LivePlayerClient() {
+  return (
+    <GameTablesProvider tables={LIVE_TABLES}>
+      <LivePlayerBody />
+    </GameTablesProvider>
+  );
+}
+
+function LivePlayerBody() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
   const bp = useBetaPrefix();

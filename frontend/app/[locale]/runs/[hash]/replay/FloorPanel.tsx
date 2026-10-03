@@ -35,6 +35,7 @@ import {
   type RelicInfo,
 } from "../RunPills";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import type { TryGameT } from "@/lib/game-i18n";
 
 export interface EventInfo extends EventText {
   id: string;
@@ -50,6 +51,7 @@ export interface Catalog {
   encounters: EncounterMap;
   cardScores: ScoresMap;
   relicScores: ScoresMap;
+  gt?: TryGameT;
 }
 
 export const KIND_LABEL: Record<string, string> = {
@@ -68,21 +70,39 @@ export const KIND_LABEL: Record<string, string> = {
 };
 
 function cardName(id: string, cat: Catalog): string {
-  return cat.cards[id]?.name || displayName(`CARD.${id}`);
+  return (
+    cat.gt?.(`cards.${id}.title`) ||
+    cat.cards[id]?.name ||
+    displayName(`CARD.${id}`)
+  );
 }
 function relicName(id: string, cat: Catalog): string {
-  return cat.relics[id]?.name || displayName(`RELIC.${id}`);
+  return (
+    cat.gt?.(`relics.${id}.title`) ||
+    cat.relics[id]?.name ||
+    displayName(`RELIC.${id}`)
+  );
 }
 function potionName(id: string, cat: Catalog): string {
-  return cat.potions[id]?.name || displayName(`POTION.${id}`);
+  return (
+    cat.gt?.(`potions.${id}.title`) ||
+    cat.potions[id]?.name ||
+    displayName(`POTION.${id}`)
+  );
 }
 function monsterName(id: string, cat: Catalog): string {
-  return cat.monsters[cleanId(id)]?.name || displayName(`MONSTER.${id}`);
+  return (
+    cat.gt?.(`monsters.${cleanId(id)}.name`) ||
+    cat.monsters[cleanId(id)]?.name ||
+    displayName(`MONSTER.${id}`)
+  );
 }
 function moveName(monsterId: string, moveId: string, cat: Catalog): string {
   return (
+    cat.gt?.(`monsters.${cleanId(monsterId)}.moves.${moveId}.title`) ||
     cat.monsters[cleanId(monsterId)]?.moves?.find((m) => m.id === moveId)
-      ?.name || displayName(moveId)
+      ?.name ||
+    displayName(moveId)
   );
 }
 
@@ -140,13 +160,21 @@ function withPill(text: string, slot: string, pill: ReactNode): ReactNode {
 }
 export function encounterName(id: string | undefined, cat: Catalog): string {
   if (!id) return "";
-  return cat.encounters[id]?.name || displayName(`ENCOUNTER.${id}`);
+  return (
+    cat.gt?.(`encounters.${id}.title`) ||
+    cat.encounters[id]?.name ||
+    displayName(`ENCOUNTER.${id}`)
+  );
 }
 
 export function floorTitle(f: ReplayFloor, cat: Catalog, t: TFn): string {
   if (isCombatKind(f.kind)) return encounterName(f.id, cat) || t("Combat");
   if (f.kind === "event" && f.id)
-    return cat.events[cleanId(f.id)]?.name || displayName(`EVENT.${f.id}`);
+    return (
+      cat.gt?.(`events.${cleanId(f.id)}.title`) ||
+      cat.events[cleanId(f.id)]?.name ||
+      displayName(`EVENT.${f.id}`)
+    );
   return t(KIND_LABEL[f.kind] ?? displayName(f.kind));
 }
 

@@ -18,12 +18,23 @@ export interface StackEntry {
   first: number;
 }
 
+const RARITY_SCORE: Record<string, number> = {
+  Rare: 5,
+  Uncommon: 4,
+  Common: 3,
+  Starter: 1,
+  Curse: 0,
+  Status: 0,
+};
+
 /** Stacks identical cards and orders the stacks the way the deck was built:
  * starters first, then each pick in the order it joined the deck. Runs that
- * never recorded the floor fall back to rarity, then name. */
+ * never recorded the floor fall back to rarity, then the displayed title
+ * (`title` first, the catalog name next, the id last). */
 export function stackCards(
   deck: StackableCard[],
   cardData: Record<string, { rarity?: string; name?: string }>,
+  title?: (id: string) => string | undefined,
 ): StackEntry[] {
   const map = new Map<string, StackEntry>();
   deck.forEach((card, index) => {
@@ -62,20 +73,11 @@ export function stackCards(
       (a, b) => (a.floor as number) - (b.floor as number) || a.first - b.first,
     );
   }
-  const rarityScore: Record<string, number> = {
-    Rare: 5,
-    Uncommon: 4,
-    Common: 3,
-    Starter: 1,
-    Curse: 0,
-    Status: 0,
-  };
+  const shown = (id: string) => title?.(id) ?? cardData[id]?.name ?? id;
   return stacks.sort((a, b) => {
-    const ra = rarityScore[cardData[a.id]?.rarity ?? ""] ?? 2;
-    const rb = rarityScore[cardData[b.id]?.rarity ?? ""] ?? 2;
+    const ra = RARITY_SCORE[cardData[a.id]?.rarity ?? ""] ?? 2;
+    const rb = RARITY_SCORE[cardData[b.id]?.rarity ?? ""] ?? 2;
     if (ra !== rb) return rb - ra;
-    return (cardData[a.id]?.name ?? a.id).localeCompare(
-      cardData[b.id]?.name ?? b.id,
-    );
+    return shown(a.id).localeCompare(shown(b.id));
   });
 }
