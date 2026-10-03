@@ -9,9 +9,16 @@ export const REST_KEYS: Record<string, string> = {
   LIFT: "Lift",
   HATCH: "Hatch",
   KINDLE: "Kindle",
+  ENHANCE_RELIC: "Enhance relic",
 };
 
 export function restSiteLabel(id: string, t: (k: string) => string): string {
   const key = REST_KEYS[id.toUpperCase()];
-  return key ? t(key) : id.charAt(0) + id.slice(1).toLowerCase();
+  if (key) return t(key);
+  const words = id
+    .toLowerCase()
+    .split(/[_\s]+/)
+    .filter(Boolean)
+    .join(" ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 }

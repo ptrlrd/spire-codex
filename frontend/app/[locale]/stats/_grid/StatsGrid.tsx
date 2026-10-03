@@ -146,12 +146,26 @@ const COLUMN_DEFS: Record<ColKey, Omit<Column, "key">> = {
     descFirst: true,
     sortField: "picked",
   },
-  act: {
-    label: "A1 / A2 / A3",
-    title: "Pick rate by act",
-    align: "center",
+  act1: {
+    label: "A1",
+    title: "Pick rate in act 1",
+    align: "right",
     descFirst: true,
-    sortField: null,
+    sortField: "pickAct1",
+  },
+  act2: {
+    label: "A2",
+    title: "Pick rate in act 2",
+    align: "right",
+    descFirst: true,
+    sortField: "pickAct2",
+  },
+  act3: {
+    label: "A3+",
+    title: "Pick rate in act 3 and later",
+    align: "right",
+    descFirst: true,
+    sortField: "pickAct3",
   },
   wl: {
     label: "W-L",
@@ -208,22 +222,32 @@ export default function StatsGrid({ data }: { data: GridData }) {
     left: number;
   } | null>(null);
 
-  const columns: Column[] = cfg.columns.map((key) => ({
-    key,
-    ...COLUMN_DEFS[key],
-    label:
-      key === "name"
-        ? cfg.nameLabel
-        : key === "n"
-          ? cfg.nLabel
-          : COLUMN_DEFS[key].label,
-    title:
-      key === "name"
-        ? cfg.nameTitle
-        : key === "n"
-          ? cfg.nTitle
-          : COLUMN_DEFS[key].title,
-  }));
+  const hasWins = rows.some((r) => r.wins !== null);
+  const hasUse = rows.some((r) => r.useRate !== null && r.useRate > 0);
+  const columns: Column[] = cfg.columns
+    .filter((key) =>
+      key === "wl" ? hasWins : key === "useRate" ? hasUse : true,
+    )
+    .map((key) => ({
+      key,
+      ...COLUMN_DEFS[key],
+      label:
+        key === "name"
+          ? cfg.nameLabel
+          : key === "n"
+            ? cfg.nLabel
+            : key === "offered"
+              ? cfg.offeredLabel
+              : COLUMN_DEFS[key].label,
+      title:
+        key === "name"
+          ? cfg.nameTitle
+          : key === "n"
+            ? cfg.nTitle
+            : key === "offered"
+              ? cfg.offeredTitle
+              : COLUMN_DEFS[key].title,
+    }));
 
   const groups = useMemo(() => {
     if (cfg.groupFilter === "color") return CARD_COLORS;
@@ -295,10 +319,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
   };
 
   const cohort = cohortLabel(bracket, t, character);
-  const baseline =
+  const scoreBaseline = totals.baselineWinRate;
+  const seatBaseline =
     totals.totalWins !== null && totals.totalSeats
       ? (totals.totalWins / totals.totalSeats) * 100
-      : totals.baselineWinRate;
+      : null;
   const seats = totals.totalSeats ?? totals.totalRuns;
 
   const cell = (col: Column, r: GridRow) => {
@@ -357,13 +382,19 @@ export default function StatsGrid({ data }: { data: GridData }) {
         );
       case "winRate":
         return (
-          <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
-            <div>{pct(r.winRate)}</div>
-            {r.winRateCi && (
-              <div className="text-[10px] leading-tight text-[var(--text-muted)]">
-                {r.winRateCi[0].toFixed(1)}–{r.winRateCi[1].toFixed(1)}
-              </div>
-            )}
+          <td
+            key={col.key}
+            className="px-3 py-1.5 text-right tabular-nums"
+            title={
+              r.winRateCi
+                ? t("95% interval: {lo} to {hi}", {
+                    lo: r.winRateCi[0].toFixed(1),
+                    hi: r.winRateCi[1].toFixed(1),
+                  })
+                : undefined
+            }
+          >
+            {pct(r.winRate)}
           </td>
         );
       case "lift":
@@ -418,14 +449,18 @@ export default function StatsGrid({ data }: { data: GridData }) {
             {int(r[col.key])}
           </td>
         );
-      case "act":
+      case "act1":
+      case "act2":
+      case "act3":
         return (
-          <td
-            key={col.key}
-            className="px-2 py-1.5 text-center tabular-nums text-xs text-[var(--text-secondary)] whitespace-nowrap"
-          >
-            {pct(r.pickByAct[0])} / {pct(r.pickByAct[1])} /{" "}
-            {pct(r.pickByAct[2])}
+          <td key={col.key} className="px-3 py-1.5 text-right tabular-nums">
+            {pct(
+              col.key === "act1"
+                ? r.pickAct1
+                : col.key === "act2"
+                  ? r.pickAct2
+                  : r.pickAct3,
+            )}
           </td>
         );
       case "wl":
@@ -434,55 +469,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
             key={col.key}
             className="px-2 py-1.5 text-right tabular-nums text-xs text-[var(--text-muted)]"
           >
-            {r.wins}-{r.losses}
+            {r.wins === null || r.losses === null
+              ? "–"
+              : `${r.wins}-${r.losses}`}
           </td>
         );
-    }
-  };
-
-  const waxCell = (col: Column, r: GridRow) => {
-    const w = r.wax!;
-    switch (col.key) {
-      case "name":
-        return (
-          <td key={col.key} className="px-3 py-1 pl-8 text-xs">
-            {t("Wax copy")}
-          </td>
-        );
-      case "winRate":
-        return (
-          <td
-            key={col.key}
-            className="px-3 py-1 text-right tabular-nums text-xs"
-          >
-            <div>{pct(w.winRate)}</div>
-            {w.winRateCi && (
-              <div className="text-[10px] leading-tight text-[var(--text-muted)]">
-                {w.winRateCi[0].toFixed(1)}–{w.winRateCi[1].toFixed(1)}
-              </div>
-            )}
-          </td>
-        );
-      case "n":
-        return (
-          <td
-            key={col.key}
-            className="px-3 py-1 text-right tabular-nums text-xs"
-          >
-            {int(w.picks)}
-          </td>
-        );
-      case "wl":
-        return (
-          <td
-            key={col.key}
-            className="px-2 py-1 text-right tabular-nums text-xs"
-          >
-            {w.wins}-{w.picks - w.wins}
-          </td>
-        );
-      default:
-        return <td key={col.key} />;
     }
   };
 
@@ -519,15 +510,21 @@ export default function StatsGrid({ data }: { data: GridData }) {
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
         </p>
-        {baseline !== null && (
+        {(scoreBaseline !== null || seatBaseline !== null) && (
           <p className="mt-1 text-xs text-[var(--text-muted)]">
-            {t("Baseline: {rate}% of seats in {cohort} won", {
-              rate: baseline.toFixed(1),
-              cohort,
-            })}
-            {" · "}
+            {scoreBaseline !== null &&
+              t("Score baseline: {rate}% ({what}).", {
+                rate: scoreBaseline.toFixed(1),
+                what: t(cfg.baselineWhat),
+              })}
+            {scoreBaseline !== null && seatBaseline !== null ? " " : ""}
+            {seatBaseline !== null &&
+              t("{rate}% of all seats in {cohort} won.", {
+                rate: seatBaseline.toFixed(1),
+                cohort,
+              })}{" "}
             {t(
-              "Lift is each row's win rate minus what the same players win on their other runs.",
+              "Lift is each row's win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
             )}
           </p>
         )}
@@ -650,7 +647,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
                 row={r}
                 columns={columns}
                 cell={cell}
-                waxCell={waxCell}
                 smallTitle={t("Small sample: fewer than {min} seats", {
                   min: SMALL_SAMPLE,
                 })}
@@ -714,36 +710,26 @@ function RowGroup({
   row,
   columns,
   cell,
-  waxCell,
   smallTitle,
 }: {
   index: number;
   row: GridRow;
   columns: Column[];
   cell: (col: Column, r: GridRow) => React.ReactNode;
-  waxCell: (col: Column, r: GridRow) => React.ReactNode;
   smallTitle: string;
 }) {
   const small = row.n < SMALL_SAMPLE;
   return (
-    <>
-      <tr
-        className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
-          small ? "opacity-50" : ""
-        }`}
-        title={small ? smallTitle : undefined}
-      >
-        <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
-          {index + 1}
-        </td>
-        {columns.map((col) => cell(col, row))}
-      </tr>
-      {row.wax && (
-        <tr className="border-b border-[var(--border-subtle)]/40 text-[var(--text-secondary)]">
-          <td />
-          {columns.map((col) => waxCell(col, row))}
-        </tr>
-      )}
-    </>
+    <tr
+      className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
+        small ? "opacity-50" : ""
+      }`}
+      title={small ? smallTitle : undefined}
+    >
+      <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
+        {index + 1}
+      </td>
+      {columns.map((col) => cell(col, row))}
+    </tr>
   );
 }

@@ -1,13 +1,6 @@
 export type GridKind =
   "cards" | "relics" | "potions" | "shops" | "events" | "campfires";
 
-export interface WaxBlock {
-  picks: number;
-  wins: number;
-  winRate: number | null;
-  winRateCi: [number, number] | null;
-}
-
 export interface GridRow {
   key: string;
   id: string;
@@ -35,10 +28,11 @@ export interface GridRow {
   liftN: number | null;
   offered: number | null;
   picked: number | null;
-  wins: number;
-  losses: number;
-  pickByAct: (number | null)[];
-  wax: WaxBlock | null;
+  wins: number | null;
+  losses: number | null;
+  pickAct1: number | null;
+  pickAct2: number | null;
+  pickAct3: number | null;
 }
 
 export interface GridTotals {

@@ -15,7 +15,9 @@ export type ColKey =
   | "n"
   | "offered"
   | "picked"
-  | "act"
+  | "act1"
+  | "act2"
+  | "act3"
   | "wl";
 
 export interface KindConfig {
@@ -26,6 +28,9 @@ export interface KindConfig {
   nameTitle: string;
   nLabel: string;
   nTitle: string;
+  offeredLabel: string;
+  offeredTitle: string;
+  baselineWhat: string;
   searchPlaceholder: string;
   emptyText: string;
   columns: ColKey[];
@@ -39,6 +44,9 @@ export interface KindConfig {
 export const KINDS: Record<GridKind, KindConfig> = {
   cards: {
     path: "/stats/cards",
+    baselineWhat: "average win rate across every card held in this cohort",
+    offeredLabel: "Offered",
+    offeredTitle: "Times shown on a reward screen",
     title: "Card Metrics",
     description: "leaderboards_metrics_meta_description",
     nameLabel: "Card",
@@ -57,7 +65,9 @@ export const KINDS: Record<GridKind, KindConfig> = {
       "lift",
       "offered",
       "n",
-      "act",
+      "act1",
+      "act2",
+      "act3",
       "wl",
     ],
     groupFilter: "color",
@@ -68,6 +78,10 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   relics: {
     path: "/stats/relics",
+    baselineWhat: "average win rate across every relic held in this cohort",
+    offeredLabel: "Offered",
+    offeredTitle:
+      "Times shown on a free relic choice (ancient offers, boss relics, events)",
     title: "Relic Metrics",
     description: "relic_metrics_meta_description",
     nameLabel: "Relic",
@@ -86,7 +100,9 @@ export const KINDS: Record<GridKind, KindConfig> = {
       "lift",
       "offered",
       "n",
-      "act",
+      "act1",
+      "act2",
+      "act3",
       "wl",
     ],
     groupFilter: "pool",
@@ -97,6 +113,9 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   potions: {
     path: "/stats/potions",
+    baselineWhat: "average win rate across every potion held in this cohort",
+    offeredLabel: "Offered",
+    offeredTitle: "Times shown on a choice screen",
     title: "Potion Metrics",
     description: "potion_metrics_meta_description",
     nameLabel: "Potion",
@@ -123,6 +142,9 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   shops: {
     path: "/stats/shops",
+    baselineWhat: "average win rate across every purchase in this cohort",
+    offeredLabel: "Seen",
+    offeredTitle: "Times seen on a shop shelf",
     title: "Shop Stats",
     description: "shop_stats_meta_description",
     nameLabel: "Item",
@@ -140,6 +162,9 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   events: {
     path: "/stats/events",
+    baselineWhat: "average win rate across every event choice in this cohort",
+    offeredLabel: "Offered",
+    offeredTitle: "Times shown on a choice screen",
     title: "Event Choices",
     description: "event_choices_meta_description",
     nameLabel: "Event",
@@ -157,6 +182,10 @@ export const KINDS: Record<GridKind, KindConfig> = {
   },
   campfires: {
     path: "/stats/campfires",
+    baselineWhat:
+      "average win rate across every rest site action in this cohort",
+    offeredLabel: "Offered",
+    offeredTitle: "Times shown on a choice screen",
     title: "Campfires",
     description: "campfires_meta_description",
     nameLabel: "Choice",

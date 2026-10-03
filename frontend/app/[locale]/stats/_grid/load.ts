@@ -124,10 +124,11 @@ function baseRow(key: string, id: string, name: string): GridRow {
     liftN: null,
     offered: null,
     picked: null,
-    wins: 0,
-    losses: 0,
-    pickByAct: [null, null, null],
-    wax: null,
+    wins: null,
+    losses: null,
+    pickAct1: null,
+    pickAct2: null,
+    pickAct3: null,
   };
 }
 
@@ -139,7 +140,7 @@ function fillCommon(row: GridRow, m: ApiRow): GridRow {
   row.winRateCi = ci(m.win_rate_ci);
   row.lift = num(m.lift);
   row.liftN = num(m.lift_n);
-  row.wins = m.wins ?? 0;
+  row.wins = num(m.wins);
   return row;
 }
 
@@ -165,7 +166,8 @@ async function loadEntity(
   bracket: string,
   character: string,
 ): Promise<GridData> {
-  const [catalog, res] = await Promise.all([
+  const [t, catalog, res] = await Promise.all([
+    getT(lang as Parameters<typeof getT>[0]),
     fetchJson<Catalog[]>(`${API_INTERNAL}/api/${kind}?lang=${lang}`),
     fetchJson<ApiResponse>(
       `${API_INTERNAL}/api/runs/metrics/${kind}?bracket=${bracket}${
@@ -202,22 +204,37 @@ async function loadEntity(
         ? [c.type, c.rarity].filter(Boolean).join(" · ")
         : c.rarity_key || c.rarity || null;
     row.n = m.picks ?? 0;
-    row.losses = m.losses ?? Math.max(0, row.n - row.wins);
+    row.losses =
+      m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
     row.pickRate = kind === "potions" ? null : num(m.pick_rate);
     row.holdRate = num(m.hold_rate);
     row.useRate = kind === "potions" ? num(m.use_rate) : null;
     row.offered = kind === "potions" ? null : num(m.offered);
     row.picked = kind === "potions" ? null : num(m.picked);
-    row.pickByAct = m.pick_rate_by_act || [null, null, null];
-    row.wax = m.wax
-      ? {
-          picks: m.wax.picks,
-          wins: m.wax.wins,
-          winRate: num(m.wax.win_rate),
-          winRateCi: ci(m.wax.win_rate_ci),
-        }
-      : null;
+    const acts = m.pick_rate_by_act || [];
+    row.pickAct1 = num(acts[0]);
+    row.pickAct2 = num(acts[1]);
+    row.pickAct3 = num(acts[2]);
     rows.push(row);
+    if (m.wax && m.wax.picks > 0) {
+      const w = baseRow(`${id}:WAX`, id, t("Wax {name}", { name: c.name }));
+      w.href = row.href;
+      w.imageUrl = c.image_url;
+      w.color = c.color ?? null;
+      w.group = row.group;
+      w.rarity = row.rarity;
+      w.sub = row.sub;
+      w.n = m.wax.picks;
+      w.wins = m.wax.wins;
+      w.losses = Math.max(0, w.n - w.wins);
+      w.winRate = num(m.wax.win_rate);
+      w.winRateCi = ci(m.wax.win_rate_ci);
+      w.holdRate =
+        typeof res?.total_seats === "number" && res.total_seats > 0
+          ? Math.round((w.n / res.total_seats) * 1000) / 10
+          : null;
+      rows.push(w);
+    }
   }
   return {
     kind,
@@ -256,7 +273,7 @@ async function loadShops(lang: string, bracket: string): Promise<GridData> {
     row.group = etype;
     row.sub = c.rarity_key || c.rarity || null;
     row.n = m.bought ?? 0;
-    row.losses = Math.max(0, row.n - row.wins);
+    row.losses = row.wins === null ? null : Math.max(0, row.n - row.wins);
     row.offered = num(m.seen);
     row.picked = num(m.bought);
     row.buyRate = num(m.buy_rate);
@@ -303,7 +320,7 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     row.sub = title;
     row.group = eid;
     row.n = m.chosen ?? 0;
-    row.losses = Math.max(0, row.n - row.wins);
+    row.losses = row.wins === null ? null : Math.max(0, row.n - row.wins);
     row.share = num(m.share);
     rows.push(row);
   }
@@ -331,7 +348,7 @@ async function loadCampfires(lang: string, bracket: string): Promise<GridData> {
     const row = fillCommon(baseRow(cid, cid, restSiteLabel(cid, t)), m);
     row.group = cid;
     row.n = m.chosen ?? 0;
-    row.losses = Math.max(0, row.n - row.wins);
+    row.losses = row.wins === null ? null : Math.max(0, row.n - row.wins);
     row.share = num(m.share);
     row.lowHpShare = num(m.low_hp_share);
     rows.push(row);
