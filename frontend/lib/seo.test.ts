@@ -2,12 +2,7 @@ import { createTranslator } from "next-intl";
 import { describe, expect, it } from "vitest";
 import { messagesFor } from "@/i18n/messages";
 import { safeKey } from "@/lib/i18n-keys";
-import {
-  buildPageMetadata,
-  entityTitle,
-  pageHeading,
-  pageTitle,
-} from "./seo";
+import { buildPageMetadata, entityTitle, pageHeading, pageTitle } from "./seo";
 
 describe("page titles", () => {
   it("keeps replacement metacharacters in English segments", () => {

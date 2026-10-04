@@ -40,7 +40,11 @@ export const GAME_NAME = "Slay the Spire 2";
  * entity and its translated type word ("Bash - Slay the Spire 2 Card | Spire
  * Codex") and "(sts2)" lives in the page's meta description instead.
  */
-export function entityTitle(locale: Locale, name: string, type: string): string {
+export function entityTitle(
+  locale: Locale,
+  name: string,
+  type: string,
+): string {
   const base = `${name} - ${GAME_NAME} ${type}`;
   return locale === "eng"
     ? `${base} | ${SITE_NAME}`
