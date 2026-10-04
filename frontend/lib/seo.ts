@@ -26,10 +26,30 @@ export const HOME_OG_IMAGE = `${SITE_URL}/spire-codex-black-final.png`;
 /**
  * Title suffixes. English keeps the long-standing "%s - Slay the Spire 2 (sts2) |
  * Spire Codex" shape; every other locale reads "<game name in that language>
- * %s | Spire Codex (<native language name>)".
+ * %s | Spire Codex (<native language name>)". Entity detail pages compose
+ * differently, see `entityTitle`.
  */
 export const TITLE_TEMPLATE = `%s - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
 export const TITLE_DEFAULT = `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
+
+/** The game's name, untranslated in every locale, inside entity detail titles. */
+export const GAME_NAME = "Slay the Spire 2";
+
+/**
+ * Full `<title>` for an entity detail page: the game name sits between the
+ * entity and its translated type word ("Bash - Slay the Spire 2 Card | Spire
+ * Codex") and "(sts2)" lives in the page's meta description instead.
+ */
+export function entityTitle(
+  locale: Locale,
+  name: string,
+  type: string,
+): string {
+  const base = `${name} - ${GAME_NAME} ${type}`;
+  return locale === "eng"
+    ? `${base} | ${SITE_NAME}`
+    : `${base} | ${SITE_NAME} (${LANG_NAMES[locale]})`;
+}
 
 /** The game's name as the locale writes it. */
 export function gameName(locale: Locale): string {
@@ -86,8 +106,18 @@ export interface PageMetadataInput {
   locale: Locale;
   /** Bare path, never locale-prefixed: "/relics", "/cards/strike", "/". */
   path: string;
-  /** This page's own segment, already translated ("Relics", "Bash - Card"). The helper adds the site suffix for the locale. */
+  /**
+   * This page's own segment, already translated ("Relics", "Bash - Card").
+   * On entity pages pass the entity's name here and its translated type
+   * word as `entityType`.
+   */
   title: string;
+  /**
+   * Entity detail pages: the entity's translated type word ("Card"). The
+   * title becomes "<Name> - Slay the Spire 2 <Type>" via `entityTitle`
+   * instead of the "%s - Slay the Spire 2 (sts2)" composition.
+   */
+  entityType?: string;
   description?: string;
   ogType?: "website" | "article" | "profile";
   image?: string;
@@ -109,9 +139,10 @@ export interface PageMetadataInput {
 /** Next `Metadata` for any page in any locale: title, description, Open Graph, Twitter, canonical, hreflang and robots from one call. */
 export function buildPageMetadata({
   locale,
+  description,
   path,
   title,
-  description,
+  entityType,
   ogType,
   image,
   noIndex,
@@ -122,7 +153,10 @@ export function buildPageMetadata({
   const canonical =
     canonicalOverride ??
     localizedPath(supressLanguageAlternates ? "eng" : locale, path);
-  const fullTitle = pageTitle(locale, title);
+  const fullTitle =
+    entityType === undefined
+      ? pageTitle(locale, title)
+      : entityTitle(locale, title, entityType);
   const hidden =
     noIndex === true ||
     (supressLanguageAlternates === true && locale !== "eng");

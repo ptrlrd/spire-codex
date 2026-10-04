@@ -42,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${achievement.name} - ${t("Achievement")}`,
+      title: achievement.name,
+      entityType: t("Achievement"),
       description: clipMetaDescription(
         t("achievement_meta_description", {
           name: achievement.name,

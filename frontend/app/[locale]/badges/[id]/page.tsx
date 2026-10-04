@@ -86,7 +86,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path,
-    title: `${badge.name} - ${t("Badge")}`,
+    title: badge.name,
+    entityType: t("Badge"),
     description: clipMetaDescription(
       t("badge_meta_description", {
         name: badge.name,

@@ -42,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${orb.name} - ${t("Orb")}`,
+      title: orb.name,
+      entityType: t("Orb"),
       description: clipMetaDescription(
         t("orb_meta_description", {
           name: orb.name,

@@ -2,6 +2,7 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import {
+  useMemo,
   useState,
   useEffect,
   type MouseEvent as ReactMouseEvent,
@@ -28,6 +29,8 @@ import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import { imageUrl } from "@/lib/image-url";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
+import { keywordLinkWords, type EntityNameLink } from "@/lib/rich-links";
+import type { KeywordEntry } from "@/lib/entity-catalogs";
 import "@/app/card-revamp.css";
 import "@/app/relic-potion-extra.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
@@ -54,6 +57,8 @@ export default function RelicDetail({
   initialRecs,
   initialRelated,
   summary = null,
+  initialEntityLinks,
+  initialKeywords,
 }: {
   initialRelic?: Relic | null;
   initialStats?: EntityStats | null;
@@ -61,12 +66,29 @@ export default function RelicDetail({
   initialRecs?: DraftRecs | null;
   initialRelated?: RelatedGroup[] | null;
   summary?: EntitySummaryData | null;
+  /** Server-fetched card name links for the description; absent on the beta page. */
+  initialEntityLinks?: EntityNameLink[];
+  /** Server-fetched keyword catalog for the description tooltip words. */
+  initialKeywords?: KeywordEntry[];
 } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
+  // Keyword tooltip words and card name links, built once per render from
+  // the server-fetched catalogs (absent on the beta page: no links).
+  const interactiveWords = useMemo(
+    () =>
+      initialKeywords && initialKeywords.length > 0
+        ? keywordLinkWords(initialKeywords, bp)
+        : undefined,
+    [initialKeywords, bp],
+  );
+  const entityLinks = useMemo(
+    () => (initialEntityLinks?.length ? initialEntityLinks : undefined),
+    [initialEntityLinks],
+  );
   const [relic, setRelic] = useState<Relic | null>(initialRelic ?? null);
   const [selectedVariant, setSelectedVariant] = useState<string | null>(null);
   const [selectedChar, setSelectedChar] = useState<string | null>(null);
@@ -259,12 +281,20 @@ export default function RelicDetail({
             <h2>{t("Description")}</h2>
             <EntitySummary name={relic.name} data={summary} />
             <div className="desc-quote">
-              <RichDescription text={relic.description} />
+              <RichDescription
+                text={relic.description}
+                interactiveWords={interactiveWords}
+                entityLinks={entityLinks}
+              />
             </div>
 
             {relic.flavor && (
               <div className="desc-body rp-flavor">
-                <RichDescription text={relic.flavor} />
+                <RichDescription
+                  text={relic.flavor}
+                  interactiveWords={interactiveWords}
+                  entityLinks={entityLinks}
+                />
               </div>
             )}
 
