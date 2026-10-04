@@ -1,0 +1,27 @@
+local.file_match "nginx" {
+  path_targets = [{
+    __path__  = "/var/log/nginx/*.log",
+    job       = "nginx",
+    container = "web-server",
+  }]
+}
+
+loki.source.file "nginx" {
+  targets    = local.file_match.nginx.targets
+  forward_to = [loki.process.nginx.receiver]
+}
+
+loki.process "nginx" {
+  stage.regex {
+    expression = `^(?P<remote_addr>\S+) \S+ \S+ \[[^\]]+\] "(?P<method>[A-Z]+) \S+ [^"]*" (?P<status>\d{3})`
+  }
+
+  stage.labels {
+    values = {
+      method = "",
+      status = "",
+    }
+  }
+
+  forward_to = [loki.write.default.receiver]
+}
