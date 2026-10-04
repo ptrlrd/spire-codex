@@ -22,6 +22,8 @@ import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
+import { fetchCardCatalog, fetchKeywordCatalog } from "@/lib/entity-catalogs";
+import { entityNameLinks } from "@/lib/rich-links";
 import { imageUrl } from "@/lib/image-url";
 
 // Relic data only changes on deploy. force-static + revalidate
@@ -157,6 +159,12 @@ export default async function Page({ params }: Props) {
     initialPairings,
     initialRecs,
   );
+  // Tooltip keywords and card name links for the description: fetched once
+  // per render here so the links land in the server HTML.
+  const [cards, keywords] = await Promise.all([
+    fetchCardCatalog(locale),
+    fetchKeywordCatalog(locale),
+  ]);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -168,6 +176,8 @@ export default async function Page({ params }: Props) {
           initialRecs={initialRecs}
           initialRelated={initialRelated}
           summary={summary}
+          initialEntityLinks={entityNameLinks(cards, "cards")}
+          initialKeywords={keywords}
         />
       </Suspense>
     </>
