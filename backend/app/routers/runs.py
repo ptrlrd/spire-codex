@@ -1121,7 +1121,11 @@ _ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
     rate_limit_config.endpoint_limit("runs.get_entity_run_stats", "120/minute")
 )
 def get_entity_run_stats(
-    request: Request, response: Response, entity_type: str, entity_id: str
+    request: Request,
+    response: Response,
+    entity_type: str,
+    entity_id: str,
+    bracket: str | None = None,
 ):
     """Community run stats for one card, relic, or potion: Codex Score,
     picks, wins, win rate, pick rate, Codex Elo where one exists, plus
@@ -1133,12 +1137,19 @@ def get_entity_run_stats(
     entity's holders' own track records predict (null under the sample
     floor), `lift_n` the seats with a known expectation, `win_rate_ci`
     the Wilson 95% interval in percent, and `hold_rate` the share of the
-    bracket's seats that held the entity (null when seats are unknown)."""
+    bracket's seats that held the entity (null when seats are unknown).
+    `?bracket=` names one extra cohort to add under `brackets` (any
+    lake-foldable key such as `solo:standard`) — `bracket_missing: true`
+    when the lake can't fold it, a 400 for an unknown key."""
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
+    try:
+        bracket = ensure_known_bracket(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
     # Changes only when a lake generation applies, and the pull purges the
     # /api/runs/stats prefix — so serve it long-lived with background
     # revalidation instead of inheriting the generic 30s /api/runs default
@@ -1148,7 +1159,7 @@ def get_entity_run_stats(
         if snapshot_loaded()
         else "no-store"
     )
-    stats = get_entity_stats(entity_type, entity_id)
+    stats = get_entity_stats(entity_type, entity_id, bracket)
     if stats is None:
         # Entity hasn't appeared in any submitted run yet — return a
         # zero-filled stub so the UI can render "No runs yet" gracefully

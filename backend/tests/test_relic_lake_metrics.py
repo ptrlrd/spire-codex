@@ -718,3 +718,46 @@ def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch)
     for block in (out, out["brackets"]["all"], out["brackets"]["a10"]):
         assert block["lift"] is None and block["lift_n"] == 0
         assert block["win_rate_ci"] is None and block["hold_rate"] is None
+
+
+def test_entity_stats_folds_the_requested_bracket(lake, monkeypatch):
+    monkeypatch.setattr(lake_stats, "bracket_elo_for", lambda *_a: None)
+    _seed_juzu_stats()
+    try:
+        out = res.get_entity_stats("relics", "JUZU", bracket="solo:standard")
+        plain = res.get_entity_stats("relics", "JUZU")
+    finally:
+        res._cache.pop(("relics", "JUZU"), None)
+    assert "solo:standard" not in plain["brackets"]
+    assert "bracket_missing" not in plain
+    table = res.get_entity_metrics_table("relics", "solo:standard")
+    row = next(r for r in table["rows"] if r["id"] == "JUZU")
+    block = out["brackets"]["solo:standard"]
+    assert "bracket_missing" not in out
+    for key in (
+        "picks",
+        "wins",
+        "win_rate",
+        "score",
+        "elo",
+        "lift",
+        "lift_n",
+        "win_rate_ci",
+        "hold_rate",
+    ):
+        assert block[key] == row[key], key
+    assert block["total_runs"] == table["total_runs"]
+
+
+def test_entity_stats_unknown_bracket_raises(lake, monkeypatch):
+    from app.dependencies import shared_limiter
+    from app.main import app
+
+    monkeypatch.setattr(shared_limiter, "enabled", False)
+    client = TestClient(app, raise_server_exceptions=False)
+    with pytest.raises(res.UnknownBracket):
+        res.get_entity_stats("relics", "JUZU", bracket="solo:nope")
+    r = client.get("/api/runs/stats/relics/JUZU?bracket=solo:nope")
+    assert r.status_code == 400
+    assert r.json()["detail"].startswith("unknown bracket")
+    assert client.get("/api/runs/stats/relics/JUZU").status_code == 200

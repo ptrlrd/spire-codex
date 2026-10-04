@@ -3520,13 +3520,21 @@ def get_top_entities_for_character(
     return rows[:limit]
 
 
-def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
+def get_entity_stats(
+    entity_type: str, entity_id: str, bracket: str | None = None
+) -> dict[str, Any] | None:
     """Public accessor — returns the aggregate for one entity or None.
 
     Triggers a cache rebuild if the existing one is stale. First call
     blocks while the initial build runs (a few seconds at current run
     counts); subsequent calls within the TTL window are O(1).
+
+    `bracket` names one extra cohort to add under `brackets` (any
+    lake-foldable key the fixed blocks don't already carry, e.g.
+    "solo:standard"); it raises UnknownBracket for an unknown key and
+    sets `bracket_missing` on the payload when the lake can't fold it.
     """
+    want = ensure_known_bracket(bracket)
     # Tokens can't be obtained in the official game, so any aggregate for them is
     # mod-only noise. Report no data (the endpoint renders a zero-filled stub).
     if entity_type == "cards" and entity_id.upper() in _token_card_ids():
@@ -3738,7 +3746,60 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                 }
         except Exception:
             logger.warning("lake bracket overlay failed", exc_info=True)
-    return {
+    bracket_missing = False
+    if want != "all" and want not in brackets:
+        try:
+            from . import lake_stats
+
+            fold = lake_stats.entity_bracket_fold(entity_type, want)
+            if fold:
+                eid = key[1]
+                entry = (fold.get("entries") or {}).get(eid) or []
+                fp, fw = int(entry[0]) if entry else 0, int(entry[1]) if entry else 0
+                base_p = sum(x[0] for x in fold["entries"].values())
+                base_w = sum(x[1] for x in fold["entries"].values())
+                fbase = (base_w / base_p) if base_p else _baseline_win_rate()
+                ftot = fold["total_runs"]
+                fseats = fold.get("total_seats") or ftot
+                bmap = lake_stats.bracket_elo_for(want, entity_type)
+                try:
+                    cfold = lake_stats.entity_character_fold(entity_type, want)
+                except Exception:
+                    cfold = None
+                chars = (cfold or {}).get(eid) or {}
+                by_char_rows = [
+                    {
+                        "character": ch2,
+                        "picks": pw2[0],
+                        "wins": pw2[1],
+                        "win_rate": round(pw2[1] / pw2[0] * 100, 1) if pw2[0] else 0.0,
+                    }
+                    for ch2, pw2 in sorted(
+                        chars.items(), key=lambda kv: kv[1][0], reverse=True
+                    )
+                ]
+                brackets[want] = {
+                    "picks": fp,
+                    "wins": fw,
+                    "win_rate": round(fw / fp * 100, 1) if fp else 0.0,
+                    "elo": bmap.get(eid) if bmap is not None else agg.get("elo"),
+                    "score": _compute_score(
+                        fw,
+                        fp,
+                        fbase,
+                        _bracket_prior(ftot) if entity_type == "relics" else None,
+                    ),
+                    "total_runs": ftot,
+                    "pick_rate": round(fp / fseats * 100, 1) if fseats else 0.0,
+                    **_lift_block(entry, fseats),
+                    "by_character": by_char_rows,
+                }
+        except Exception:
+            logger.warning("lake bracket fold failed", exc_info=True)
+            fold = None
+        if not fold:
+            bracket_missing = True
+    out = {
         "entity_type": entity_type,
         "entity_id": entity_id.upper(),
         "picks": picks,
@@ -3756,3 +3817,6 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "last_submitted_at": agg["last_submitted_at"],
         "last_run_hash": agg["last_run_hash"],
     }
+    if bracket_missing:
+        out["bracket_missing"] = True
+    return out
