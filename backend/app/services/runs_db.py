@@ -21,6 +21,19 @@ _data_dir = Path(
 DB_PATH = _data_dir / "runs.db"
 
 
+def write_run_file_atomic(run_file, data) -> None:
+    """Write a run JSON file so readers only ever see the complete file:
+    dump to a sibling temp file, then rename it into place."""
+    tmp = run_file.with_name(f"{run_file.name}.{os.getpid()}.tmp")
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:
+            json.dump(data, f, ensure_ascii=False)
+        os.replace(tmp, run_file)
+    finally:
+        if tmp.exists():
+            tmp.unlink()
+
+
 def get_db_path() -> Path:
     """Return the database path, creating the directory if needed."""
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -247,8 +260,7 @@ def submit_run(
                 run_file = runs_dir / f"{run_hash}.json"
                 if not run_file.exists():
                     try:
-                        with open(run_file, "w", encoding="utf-8") as f:
-                            json.dump(data, f, ensure_ascii=False)
+                        write_run_file_atomic(run_file, data)
                     except Exception as e:
                         print(f"Warning: failed to save run {run_hash}: {e}")
 

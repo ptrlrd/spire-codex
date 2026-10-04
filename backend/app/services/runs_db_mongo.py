@@ -687,8 +687,9 @@ def submit_run(
                 fresh = bool(result.get("success") or result.get("reconciled"))
                 if fresh and (result.get("reconciled") or not run_file.exists()):
                     try:
-                        with open(run_file, "w", encoding="utf-8") as f:
-                            json.dump(data, f, ensure_ascii=False)
+                        from .runs_db import write_run_file_atomic
+
+                        write_run_file_atomic(run_file, data)
                     except Exception as e:
                         print(f"Warning: failed to save run {run_hash}: {e}")
                 # Outside the exists-gate on purpose: blob write failures are

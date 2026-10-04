@@ -83,7 +83,12 @@ def _load_run_blob_cached(run_hash: str) -> str:
     run_file = _data_dir / "runs" / f"{run_hash}.json"
     if run_file.exists():
         with open(run_file, "r", encoding="utf-8") as f:
-            return f.read()
+            text = f.read()
+        try:
+            json.loads(text)
+            return text
+        except ValueError:
+            logger.warning("run file %s is empty or truncated", run_hash)
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import get_run_blob
 
@@ -1095,13 +1100,16 @@ def get_shared_run(run_hash: str, request: Request):
     for sib_hash in siblings:
         sib_file = _data_dir / "runs" / f"{sib_hash}.json"
         if sib_file.exists():
-            import shutil
+            with open(sib_file, "r", encoding="utf-8") as f:
+                try:
+                    sib_data = json.load(f)
+                except ValueError:
+                    continue
+            from ..services.runs_db import write_run_file_atomic
 
-            run_file = _data_dir / "runs" / f"{run_hash}.json"
-            shutil.copy2(sib_file, run_file)
+            write_run_file_atomic(_data_dir / "runs" / f"{run_hash}.json", sib_data)
             _load_run_blob.cache_clear()
-            with open(run_file, "r", encoding="utf-8") as f:
-                result = _attach_username(json.load(f))
+            result = _attach_username(sib_data)
             app_cache.set_json(redis_key, result, ttl_seconds=15 * 60)
             return result
 
