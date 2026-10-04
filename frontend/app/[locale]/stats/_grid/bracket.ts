@@ -34,7 +34,7 @@ export const CHARACTERS = [
 const PLAYER_KEYS = PLAYER_AXIS.map((a) => a.key).filter(Boolean);
 const SKILL_KEYS = SKILL_AXIS.map((a) => a.key).filter(Boolean);
 const MODE_KEYS = MODE_AXIS.map((a) => a.key).filter(Boolean);
-const VERSION_RE = /^v\d+(\.\d+)*$/;
+const VERSION_RE = /^v\d+(\.\d+)*(-rc\.\d+)?$/;
 
 export const DEFAULT_BRACKET = "solo:standard";
 

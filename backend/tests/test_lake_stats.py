@@ -477,3 +477,13 @@ def test_elo_numpy_path_matches_python_path(monkeypatch):
         assert abs(elo_np[k] - elo_py[k]) <= 0.1, k
     for k in p_np:
         assert abs(p_np[k] - p_py[k]) < 1e-6, k
+
+
+def test_rc_versions_parse_as_brackets():
+    assert lake_stats._parse_lake_bracket("solo:v0.109.0-rc.1") == (
+        None,
+        "1",
+        None,
+        "v0.109.0-rc.1",
+    )
+    assert lake_stats._parse_lake_bracket("v0.109.0-rc") is None

@@ -239,7 +239,9 @@ function VersionScoreChart({
 }) {
   const t = useT();
   const points = Object.keys(brackets)
-    .filter((k) => /^v\d+(\.\d+)*$/.test(k) && brackets[k].score != null)
+    .filter(
+      (k) => /^v\d+(\.\d+)*(-rc\.\d+)?$/.test(k) && brackets[k].score != null,
+    )
     .sort((a, b) => {
       const ka = versionSortKey(a);
       const kb = versionSortKey(b);

@@ -67,3 +67,8 @@ describe("grid view url params", () => {
     expect(q.toString()).toBe("dir=asc&samples=1");
   });
 });
+
+it("accepts release-candidate versions as brackets", () => {
+  expect(isValidBracket("solo:v0.109.0-rc.1")).toBe(true);
+  expect(isValidBracket("v0.109.0-rc")).toBe(false);
+});
