@@ -1378,7 +1378,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 卡牌, {name}: {descFlat}",
   },
   character_meta_description: {
-    eng: "Slay the Spire 2 playable character, {name}.{stats}{hasDesc, select, yes { {desc}} other {}}",
+    eng: "Slay the Spire 2 (sts2) playable character, {name}.{stats}{hasDesc, select, yes { {desc}} other {}}",
     deu: "Slay the Spire 2 (STS2) Charakter, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Personaje, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Personnage, {name}{hasDesc, select, yes {: {desc}} other {}}",
@@ -1412,7 +1412,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 附魔, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   encounter_meta_description: {
-    eng: "Slay the Spire 2 {roomType} encounter, {name}{actText}.{monsterList}",
+    eng: "Slay the Spire 2 (sts2) {roomType} encounter, {name}{actText}.{monsterList}",
     deu: "Slay the Spire 2 (STS2) Begegnung, {name}{monsterList}",
     esp: "Slay the Spire 2 (STS2) Encuentro, {name}{monsterList}",
     fra: "Slay the Spire 2 (STS2) Rencontre, {name}{monsterList}",

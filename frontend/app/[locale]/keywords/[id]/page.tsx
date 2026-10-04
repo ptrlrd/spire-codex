@@ -64,7 +64,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${data.name} - ${t("Keyword")}`,
+      title: data.name,
+      entityType: t("Keyword"),
       description: clipMetaDescription(
         t("keyword_meta_description", {
           name: data.name,
@@ -79,7 +80,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path,
-    title: `${data.name} - ${t("Game Term")}`,
+    title: data.name,
+    entityType: t("Game Term"),
     description: clipMetaDescription(desc),
     ogType: "article",
   });

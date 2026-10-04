@@ -2,7 +2,12 @@ import { createTranslator } from "next-intl";
 import { describe, expect, it } from "vitest";
 import { messagesFor } from "@/i18n/messages";
 import { safeKey } from "@/lib/i18n-keys";
-import { buildPageMetadata, pageHeading, pageTitle } from "./seo";
+import {
+  buildPageMetadata,
+  entityTitle,
+  pageHeading,
+  pageTitle,
+} from "./seo";
 
 describe("page titles", () => {
   it("keeps replacement metacharacters in English segments", () => {
@@ -16,6 +21,30 @@ describe("page titles", () => {
       /^スレイ・ザ・スパイア2 \(STS2\) レリック \| Spire Codex \(日本語\)$/,
     );
     expect(pageHeading("eng", "Relics")).toBe("Slay the Spire 2 (sts2) Relics");
+  });
+});
+describe("entity titles", () => {
+  it("puts the game name between the entity and its type word", () => {
+    expect(entityTitle("eng", "Bash", "Card")).toBe(
+      "Bash - Slay the Spire 2 Card | Spire Codex",
+    );
+  });
+  it("keeps the untranslated game name and the native suffix elsewhere", () => {
+    expect(entityTitle("deu", "Fackel", "Relikt")).toBe(
+      "Fackel - Slay the Spire 2 Relikt | Spire Codex (Deutsch)",
+    );
+  });
+  it("composes entity titles through buildPageMetadata without (sts2)", () => {
+    const meta = buildPageMetadata({
+      locale: "eng",
+      path: "/cards/bash",
+      title: "Bash",
+      entityType: "Card",
+      description: "A starter card in Slay the Spire 2 (sts2).",
+    });
+    expect(meta.title).toEqual({
+      absolute: "Bash - Slay the Spire 2 Card | Spire Codex",
+    });
   });
 });
 

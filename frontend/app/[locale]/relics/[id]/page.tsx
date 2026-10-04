@@ -63,7 +63,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${relic.name} - ${t("Relic")}`,
+      title: relic.name,
+      entityType: t("Relic"),
       description: clipMetaDescription(
         t("relic_meta_description", {
           name: relic.name,

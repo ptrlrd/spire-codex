@@ -43,7 +43,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${encounter.name} - ${t("Encounter")}`,
+      title: encounter.name,
+      entityType: t("Encounter"),
       description: clipMetaDescription(
         t("encounter_meta_description", {
           roomType: encounter.room_type,
