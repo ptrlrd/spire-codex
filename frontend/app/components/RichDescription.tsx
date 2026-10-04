@@ -3,9 +3,15 @@
 import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 import React, { useState } from "react";
 import { Link } from "@/i18n/navigation";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import {
+  splitRichLinks,
+  type EntityNameLink,
+  type LinkWord,
+} from "@/lib/rich-links";
 
 export interface RelatedCard {
   id: string;
@@ -453,10 +459,7 @@ function splitWithCardRefs(
   return segments;
 }
 
-export interface InteractiveWord {
-  tooltip: string;
-  href: string;
-}
+export type InteractiveWord = LinkWord;
 
 function WordTooltip({
   word,
@@ -504,54 +507,27 @@ export function RichDescriptionSimple({ text }: { text: string }) {
   return <>{renderNode(tree, "colorless", t)}</>;
 }
 
-function splitWithInteractiveWords(
-  text: string,
-  words: Record<string, InteractiveWord>,
-): { text: string; word?: string; info?: InteractiveWord }[] {
-  const entries = Object.entries(words).sort(
-    (a, b) => b[0].length - a[0].length,
-  );
-  if (entries.length === 0) return [{ text }];
-
-  const pattern = new RegExp(
-    `\\b(${entries.map(([w]) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})\\b`,
-    "g",
-  );
-  const segments: { text: string; word?: string; info?: InteractiveWord }[] =
-    [];
-  let last = 0;
-  let m: RegExpExecArray | null;
-  const matched = new Set<string>();
-  while ((m = pattern.exec(text)) !== null) {
-    const matchedWord = m[1];
-    // Find the original case-sensitive key
-    const key = entries.find(
-      ([w]) => w.toLowerCase() === matchedWord.toLowerCase(),
-    )?.[0];
-    if (!key || matched.has(key.toLowerCase())) {
-      continue; // only match each word once
-    }
-    matched.add(key.toLowerCase());
-    if (m.index > last) segments.push({ text: text.slice(last, m.index) });
-    segments.push({ text: matchedWord, word: key, info: words[key] });
-    last = m.index + m[0].length;
-  }
-  if (last < text.length) segments.push({ text: text.slice(last) });
-  return segments;
-}
-
 export default function RichDescription({
   text,
   energyIcon = "colorless",
   relatedCards,
   interactiveWords,
+  entityLinks,
+  nestedInLink,
 }: {
   text: string;
   energyIcon?: string;
   relatedCards?: RelatedCard[];
   interactiveWords?: Record<string, InteractiveWord>;
+  /** Catalog entity names ("Lantern") to link to their pages. */
+  entityLinks?: EntityNameLink[];
+  /** Set when the rendered text already sits inside an anchor: never nest links. */
+  nestedInLink?: boolean;
 }) {
   const t = useT();
+  const bp = useBetaPrefix();
+  // One link per distinct entity for the whole description.
+  const linkedEntityHrefs = new Set<string>();
   keyCounter = 0;
   const cleaned = cleanTemplateVars(text);
   const tokens = tokenize(cleaned);
@@ -589,24 +565,40 @@ export default function RichDescription({
           );
         }
       }
-      // Then check interactive words (powers, keywords, glossary)
-      if (interactiveWords && Object.keys(interactiveWords).length > 0) {
-        const segments = splitWithInteractiveWords(node.text, interactiveWords);
-        if (segments.some((s) => s.info)) {
-          return (
-            <React.Fragment key={key}>
-              {segments.map((seg, i) =>
-                seg.info ? (
+      // Keyword and entity mentions: keyword links keep their tooltip,
+      // entity names link as plain text. splitRichLinks only matches what
+      // the card-ref pass left plain, so links never nest.
+      const segments = splitRichLinks(node.text, {
+        words: interactiveWords,
+        links: nestedInLink ? undefined : entityLinks,
+        linked: linkedEntityHrefs,
+      });
+      if (segments.some((s) => s.info || s.link)) {
+        return (
+          <React.Fragment key={key}>
+            {segments.map((seg, i) => {
+              if (seg.info) {
+                return (
                   <WordTooltip key={i} word={seg.word!} info={seg.info}>
                     {seg.text}
                   </WordTooltip>
-                ) : (
-                  <React.Fragment key={i}>{seg.text}</React.Fragment>
-                ),
-              )}
-            </React.Fragment>
-          );
-        }
+                );
+              }
+              if (seg.link) {
+                return (
+                  <Link
+                    key={i}
+                    href={`${bp}/${seg.link.href.replace(/^\/+/, "")}`}
+                    className="hover:underline underline-offset-2"
+                  >
+                    {seg.text}
+                  </Link>
+                );
+              }
+              return <React.Fragment key={i}>{seg.text}</React.Fragment>;
+            })}
+          </React.Fragment>
+        );
       }
       return node.text;
     }
@@ -623,7 +615,8 @@ export default function RichDescription({
     );
   }
 
-  if (interactiveWords && Object.keys(interactiveWords).length > 0) {
+  const hasWords = interactiveWords && Object.keys(interactiveWords).length > 0;
+  if (hasWords || (entityLinks?.length && !nestedInLink)) {
     return <>{renderWithInteractive(tree)}</>;
   }
   return <>{renderNode(tree, energyIcon, t, relatedCards)}</>;
