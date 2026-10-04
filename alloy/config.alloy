@@ -76,7 +76,6 @@ loki.relabel "journal" {
 }
 
 loki.source.journal "journal" {
-  path          = "/run/log/journal"
   relabel_rules = loki.relabel.journal.rules
   labels        = {
     job = "journal",
