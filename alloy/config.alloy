@@ -1,33 +1,6 @@
-local.file_match "nginx" {
-  path_targets = [{
-    __path__  = "/var/log/nginx/*.log",
-    job       = "nginx",
-    container = "web-server",
-  }]
-}
-
-loki.source.file "nginx" {
-  targets    = local.file_match.nginx.targets
-  forward_to = [loki.process.nginx.receiver]
-}
-
-loki.process "nginx" {
-  stage.regex {
-    expression = `^(?P<remote_addr>\S+) \S+ \S+ \[[^\]]+\] "(?P<method>[A-Z]+) \S+ [^"]*" (?P<status>\d{3})`
-  }
-
-  stage.labels {
-    values = {
-      method = "",
-      status = "",
-    }
-  }
-
-  forward_to = [loki.write.default.receiver]
-}
-
 discovery.docker "containers" {
-  host = "unix:///var/run/docker.sock"
+  host             = "unix:///var/run/docker.sock"
+  refresh_interval = "5s"
 }
 
 discovery.relabel "containers" {
@@ -123,6 +96,31 @@ loki.write "default" {
   }
 
   external_labels = {
-    host = "spire-codex",
+    host = sys.env("HOST_LABEL"),
+  }
+}
+
+prometheus.exporter.cadvisor "containers" {
+  docker_only = true
+}
+
+prometheus.scrape "cadvisor" {
+  targets         = prometheus.exporter.cadvisor.containers.targets
+  scrape_interval = "15s"
+  forward_to      = [prometheus.remote_write.default.receiver]
+}
+
+prometheus.remote_write "default" {
+  endpoint {
+    url = sys.env("PROM_REMOTE_WRITE_URL")
+
+    headers = {
+      "CF-Access-Client-Id"     = sys.env("CF_ACCESS_CLIENT_ID"),
+      "CF-Access-Client-Secret" = sys.env("CF_ACCESS_CLIENT_SECRET"),
+    }
+  }
+
+  external_labels = {
+    host = sys.env("HOST_LABEL"),
   }
 }

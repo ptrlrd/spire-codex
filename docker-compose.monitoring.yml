@@ -34,35 +34,41 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Ships logs to the homelab Loki: Docker container logs, the systemd
-  # journal, /var/log/*.log and the nginx access log (the web-server
-  # container writes it to a real host file, /data/nginx/nginx/logs ->
-  # /var/log/nginx:rw on it, so Alloy reads that same dir read-only). The
-  # Loki endpoint sits behind Cloudflare Access, so every push carries a
-  # service token.
+  # Ships logs to the homelab Loki and container metrics to the homelab
+  # Prometheus (remote write), both behind Cloudflare Access with a service
+  # token. Serving box: shared config plus the nginx file pipeline (nginx
+  # writes its logs to /data/nginx/nginx/logs on the host). The ingest box
+  # runs docker-compose.monitoring-ingest.yml instead.
   #
   # Needs an .env next to this compose (NOT committed, see
-  # .env.monitoring.example) with LOKI_URL, CF_ACCESS_CLIENT_ID and
-  # CF_ACCESS_CLIENT_SECRET.
+  # .env.monitoring.example).
   alloy:
     # Pinned: an unattended :latest pull can silently break log shipping.
     image: grafana/alloy:v1.20.0
     container_name: alloy
     restart: unless-stopped
-    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
+    privileged: true
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/conf.d
     volumes:
       - /data/nginx/nginx/logs:/var/log/nginx:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /var/log:/var/log/host:ro
       - /run/log/journal:/run/log/journal:ro
       - /var/log/journal:/var/log/journal:ro
       - /etc/machine-id:/etc/machine-id:ro
-      - ./alloy/config.alloy:/etc/alloy/config.alloy:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+      - ./alloy/config.alloy:/etc/alloy/conf.d/config.alloy:ro
+      - ./alloy/nginx.alloy:/etc/alloy/conf.d/nginx.alloy:ro
       - alloy-data:/var/lib/alloy/data
     environment:
       LOKI_URL: "${LOKI_URL}"
       CF_ACCESS_CLIENT_ID: "${CF_ACCESS_CLIENT_ID}"
       CF_ACCESS_CLIENT_SECRET: "${CF_ACCESS_CLIENT_SECRET}"
+      PROM_REMOTE_WRITE_URL: "${PROM_REMOTE_WRITE_URL}"
+      HOST_LABEL: "${HOST_LABEL:-spire-codex}"
     logging:
       driver: json-file
       options:
