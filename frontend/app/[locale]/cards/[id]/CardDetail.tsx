@@ -12,6 +12,12 @@ import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import type { RelatedCard } from "@/app/components/RichDescription";
+import type { EntityNameLink } from "@/lib/rich-links";
+import type {
+  KeywordEntry,
+  PowerEntry,
+  SpawnedCardEntry,
+} from "@/lib/entity-catalogs";
 import { getCardDisplayModel } from "@/lib/card-display";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
@@ -230,6 +236,14 @@ function getMerchantPriceRange(
   return { min: Math.floor(base * 0.95), max: Math.ceil(base * 1.05) };
 }
 
+export interface CardCatalogs {
+  keywords: KeywordEntry[];
+  powers: PowerEntry[];
+  glossary: KeywordEntry[];
+  orbs: KeywordEntry[];
+  spawnedCards: SpawnedCardEntry[];
+}
+
 export default function CardDetail({
   initialCard,
   initialEnchantments,
@@ -238,6 +252,8 @@ export default function CardDetail({
   initialRecs,
   initialRelated,
   summary = null,
+  initialCatalogs,
+  initialEntityLinks,
 }: {
   initialCard?: Card | null;
   initialEnchantments?: string[];
@@ -246,6 +262,10 @@ export default function CardDetail({
   initialRecs?: DraftRecs | null;
   initialRelated?: RelatedGroup[] | null;
   summary?: EntitySummaryData | null;
+  /** Server-fetched tooltip catalogs; absent on the beta page, which keeps the client fetches. */
+  initialCatalogs?: CardCatalogs;
+  /** Server-built entity name links for the description. */
+  initialEntityLinks?: EntityNameLink[];
 } = {}) {
   const params = useParams();
   const id = params.id as string;
@@ -255,7 +275,9 @@ export default function CardDetail({
   const bp = useBetaPrefix();
   const channel = useChannel();
   const [card, setCard] = useState<Card | null>(initialCard ?? null);
-  const [spawnedCards, setSpawnedCards] = useState<Card[]>([]);
+  const [spawnedCards, setSpawnedCards] = useState<RelatedCard[]>(
+    initialCatalogs?.spawnedCards ?? [],
+  );
   const [loading, setLoading] = useState(!initialCard);
   const [notFound, setNotFound] = useState(false);
   const [upgraded, setUpgraded] = useState(false);
@@ -270,27 +292,23 @@ export default function CardDetail({
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
   const [statsBracket, setStatsBracket] = useBracketParam();
-  const [powerData, setPowerData] = useState<
-    Record<
-      string,
-      {
-        id: string;
-        name: string;
-        description: string;
-        type: string;
-        image_url: string | null;
-      }
-    >
-  >({});
-  const [keywordData, setKeywordData] = useState<
-    Record<string, { id: string; name: string; description: string }>
-  >({});
+  const byName = <T extends { name: string }>(entries: T[]) => {
+    const map: Record<string, T> = {};
+    for (const e of entries) map[e.name.toLowerCase()] = e;
+    return map;
+  };
+  const [powerData, setPowerData] = useState<Record<string, PowerEntry>>(() =>
+    byName(initialCatalogs?.powers ?? []),
+  );
+  const [keywordData, setKeywordData] = useState<Record<string, KeywordEntry>>(
+    () => byName(initialCatalogs?.keywords ?? []),
+  );
   const [glossaryData, setGlossaryData] = useState<
-    Record<string, { id: string; name: string; description: string }>
-  >({});
-  const [orbData, setOrbData] = useState<
-    Record<string, { id: string; name: string; description: string }>
-  >({});
+    Record<string, KeywordEntry>
+  >(() => byName(initialCatalogs?.glossary ?? []));
+  const [orbData, setOrbData] = useState<Record<string, KeywordEntry>>(() =>
+    byName(initialCatalogs?.orbs ?? []),
+  );
   // Enchantments this card can take (server-passed, from the render manifest)
   // + their localized name/description for the Enchantments section + switcher.
   const cardEnchantments = initialEnchantments ?? [];
@@ -311,7 +329,13 @@ export default function CardDetail({
     cachedFetch<Card>(`${API}/api/cards/${id}?lang=${lang}`)
       .then((data) => {
         setCard(data);
-        if (data.spawns_cards && data.spawns_cards.length > 0) {
+        // With server-fetched catalogs the spawned cards arrive as props;
+        // the beta page has none and keeps this client fetch.
+        if (
+          !initialCatalogs &&
+          data.spawns_cards &&
+          data.spawns_cards.length > 0
+        ) {
           Promise.all(
             data.spawns_cards.map((sid: string) =>
               cachedFetch<Card>(`${API}/api/cards/${sid}?lang=${lang}`).catch(
@@ -327,10 +351,12 @@ export default function CardDetail({
         if (!initialCard) setNotFound(true);
       })
       .finally(() => setLoading(false));
-  }, [id, lang]);
+  }, [id, lang, initialCatalogs]);
 
-  // Load powers, keywords, and glossary for inline tooltips
+  // Load powers, keywords, and glossary for inline tooltips (beta only;
+  // the stable page passes these down from the server).
   useEffect(() => {
+    if (initialCatalogs) return;
     cachedFetch<
       {
         id: string;
@@ -378,7 +404,7 @@ export default function CardDetail({
         for (const e of enchs) m[e.id.toLowerCase()] = e;
         setEnchMeta(m);
       });
-  }, [lang]);
+  }, [lang, initialCatalogs]);
 
   // Headline community numbers for the infobox mini block. Hits the same URL
   // EntityRunStats fetches, so cachedFetch serves it from cache.
@@ -736,15 +762,9 @@ export default function CardDetail({
                   <RichDescription
                     text={descText}
                     energyIcon={energyIcon}
-                    relatedCards={spawnedCards.map((sc): RelatedCard => ({
-                      id: sc.id,
-                      name: sc.name,
-                      image_url: sc.image_url,
-                      type: sc.type,
-                      rarity: sc.rarity,
-                      cost: sc.cost,
-                    }))}
+                    relatedCards={spawnedCards}
                     interactiveWords={interactiveWords}
+                    entityLinks={initialEntityLinks}
                   />
                 </div>
                 {keywordText && (
@@ -753,6 +773,7 @@ export default function CardDetail({
                       text={keywordText}
                       energyIcon={energyIcon}
                       interactiveWords={interactiveWords}
+                      entityLinks={initialEntityLinks}
                     />
                   </div>
                 )}

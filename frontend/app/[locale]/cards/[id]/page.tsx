@@ -24,6 +24,15 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { cardOgImages } from "@/lib/image-url";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
+import {
+  fetchCardCatalog,
+  fetchGlossaryCatalog,
+  fetchKeywordCatalog,
+  fetchOrbCatalog,
+  fetchPowerCatalog,
+  fetchSpawnedCards,
+} from "@/lib/entity-catalogs";
+import { entityNameLinks } from "@/lib/rich-links";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
 // cache even with async-params pages, without it, Next 15+ sees
@@ -191,6 +200,17 @@ export default async function Page({ params }: Props) {
     initialPairings,
     initialRecs,
   );
+  // Tooltip catalogs and name links for the description: fetched once per
+  // render here so keyword and entity links land in the server HTML.
+  const [keywords, powers, glossary, orbs, cards, spawnedCards] =
+    await Promise.all([
+      fetchKeywordCatalog(locale),
+      fetchPowerCatalog(locale),
+      fetchGlossaryCatalog(locale),
+      fetchOrbCatalog(locale),
+      fetchCardCatalog(locale),
+      fetchSpawnedCards(card.spawns_cards ?? [], locale),
+    ]);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -203,6 +223,14 @@ export default async function Page({ params }: Props) {
           initialRecs={initialRecs}
           initialRelated={initialRelated}
           summary={summary}
+          initialCatalogs={{
+            keywords,
+            powers,
+            glossary,
+            orbs,
+            spawnedCards,
+          }}
+          initialEntityLinks={entityNameLinks(cards, "cards", card.id)}
         />
       </Suspense>
     </>
