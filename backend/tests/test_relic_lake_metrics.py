@@ -665,3 +665,56 @@ def test_character_scoped_table_has_its_own_elo_and_offers(lake, monkeypatch):
     silent_all = res.get_entity_metrics_table("relics", "all", "SILENT")
     assert {r["id"] for r in silent_all["rows"]} == {"ANCHOR"}
     assert silent_all["rows"][0]["picks"] == 1
+
+
+def _seed_juzu_stats():
+    res._cache[("relics", "JUZU")] = {
+        "picks": 4,
+        "wins": 3,
+        "elo": None,
+        "by_character": {"IRONCLAD": {"picks": 4, "wins": 3}},
+        "brackets": {"a10": {"picks": 4, "wins": 3, "by_character": {}}},
+        "last_submitted_at": "2026-09-01T00:00:00",
+        "last_run_hash": "r1",
+    }
+
+
+def test_entity_stats_carries_the_lift_family(lake, monkeypatch):
+    monkeypatch.setattr(lake_stats, "bracket_elo_for", lambda *_a: None)
+    _seed_juzu_stats()
+    try:
+        out = res.get_entity_stats("relics", "JUZU")
+    finally:
+        res._cache.pop(("relics", "JUZU"), None)
+    entry = lake_stats.entity_bracket_fold("relics", "all")["entries"]["JUZU"]
+    expected = {
+        "lift": stats_math.lift_of(entry[2], entry[3], entry[4]),
+        "lift_n": entry[2],
+        "win_rate_ci": stats_math.wilson_interval(entry[1], entry[0]),
+    }
+    for block in (out, out["brackets"]["all"]):
+        for key, val in expected.items():
+            assert block[key] == val
+        assert block["hold_rate"] == 40.0
+    solo = out["brackets"]["solo"]
+    sentry = lake_stats.entity_bracket_fold("relics", "solo")["entries"]["JUZU"]
+    assert solo["lift_n"] == sentry[2]
+    assert solo["lift"] == stats_math.lift_of(*sentry[2:])
+    assert solo["win_rate_ci"] == stats_math.wilson_interval(sentry[1], sentry[0])
+    assert solo["hold_rate"] == 50.0
+
+
+def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch):
+    empty = lake / "cubeless"
+    empty.mkdir()
+    monkeypatch.setattr(lake_stats, "LAKE_DIR", empty)
+    monkeypatch.setattr(lake_stats, "_entity_cube_cache", None)
+    monkeypatch.setattr(lake_stats, "_fold_cache", {})
+    _seed_juzu_stats()
+    try:
+        out = res.get_entity_stats("relics", "JUZU")
+    finally:
+        res._cache.pop(("relics", "JUZU"), None)
+    for block in (out, out["brackets"]["all"], out["brackets"]["a10"]):
+        assert block["lift"] is None and block["lift_n"] == 0
+        assert block["win_rate_ci"] is None and block["hold_rate"] is None

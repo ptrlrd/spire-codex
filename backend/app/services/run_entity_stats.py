@@ -3565,6 +3565,27 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     total_runs = _global_totals["total_runs"]
     all_seats = _global_totals.get("total_seats") or total_runs
     baseline = _type_baseline(entity_type)
+    try:
+        from . import lake_stats
+
+        all_fold = lake_stats.entity_bracket_fold(entity_type, "all") or {}
+    except Exception:
+        logger.warning("lake all-runs fold failed", exc_info=True)
+        all_fold = {}
+    all_entry = (all_fold.get("entries") or {}).get(key[1]) or []
+    fold_seats = all_fold.get("total_seats") or 0
+
+    def _lift_block(counts, seats: int) -> dict[str, Any]:
+        """Lift-family keys for one bracket block, from a cube fold entry;
+        empty counts and unknown seats yield the null/0 fallback shape."""
+        p, w, n_exp, wins_exp, exp_sum = padded_counts(counts, 5)
+        return {
+            "lift": lift_of(n_exp, wins_exp, exp_sum),
+            "lift_n": n_exp,
+            "win_rate_ci": wilson_interval(w, p),
+            "hold_rate": round(p / seats * 100, 1) if seats else None,
+        }
+
     # Per-bracket breakdown for the entity detail page: All + A10 + the win-rate
     # skill tiers, each with Win%, Codex Elo, picks, and Codex Score (graded
     # against that bracket's own baseline). Elo is card-reward only, so it's null
@@ -3583,6 +3604,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             # global run count.
             "total_runs": total_runs,
             "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
+            **_lift_block(all_entry, fold_seats),
             # "All" reuses the global per-character split.
             "by_character": by_character,
         }
@@ -3630,6 +3652,10 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             ),
             "total_runs": ctot,
             "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
+            "lift": None,
+            "lift_n": 0,
+            "win_rate_ci": None,
+            "hold_rate": None,
             "by_character": _shape_chars(cd.get("by_character") or {}),
         }
     # Live overlay: every bracket cell the cube can fold replaces the
@@ -3707,6 +3733,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                     ),
                     "total_runs": ctot,
                     "pick_rate": round(cp / cseats * 100, 1) if cseats else 0.0,
+                    **_lift_block(pw, cseats),
                     "by_character": by_char_rows,
                 }
         except Exception:
@@ -3718,6 +3745,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "wins": wins,
         "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
         "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
+        **_lift_block(all_entry, fold_seats),
         "total_runs": total_runs,
         "total_seats": all_seats,
         "baseline_win_rate": round(baseline * 100, 1),
