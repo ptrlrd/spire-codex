@@ -380,6 +380,157 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
         </p>
       </section>
 
+      <section id="columns" className="mb-10 scroll-mt-20">
+        <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
+          {t("What each column means")}
+        </h2>
+        <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+          {t(
+            "Every stats table uses these columns. Hovering a column header on a table shows the same line.",
+          )}
+        </p>
+        <dl className="text-sm rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4">
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Score")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t(
+                "Codex Score: the win rate of seats that held it, shrunk toward the cohort baseline and mapped to 0 to 100.",
+              )}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Elo")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t(
+                "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
+              )}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Win%")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Share of seats that held it and went on to win the run.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Pick%")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t(
+                "How often it was taken when it was offered on a choice screen.",
+              )}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Hold%")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t(
+                "Share of all seats in the cohort that held it at some point.",
+              )}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Lift")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t(
+                "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
+              )}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Offered")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Times offered on a choice screen")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Picks")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Seats that held it (sample size)")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Used%")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Share of seats that obtained it and used it at least once.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Buy%")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("How often it was bought when it appeared on a shop shelf.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Share")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("This option's share of all choices made at this event.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("Low HP")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Share of these choices made while below half HP.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("A1")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Pick rate on choice screens in act 1.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("A2")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Pick rate on choice screens in act 2.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("A3+")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Pick rate on choice screens in act 3 and later.")}
+            </dd>
+          </div>
+          <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
+            <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">
+              {t("W-L")}
+            </dt>
+            <dd className="text-[var(--text-secondary)]">
+              {t("Wins and losses among the seats that held it.")}
+            </dd>
+          </div>
+        </dl>
+      </section>
+
       {/* Limitations / disclaimers */}
       <section id="limitations" className="mb-10 scroll-mt-20">
         <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
