@@ -272,7 +272,21 @@ def load_glossary(lang: str = DEFAULT_LANG) -> list[dict]:
 
 
 def load_epochs(lang: str = DEFAULT_LANG) -> list[dict]:
-    return _load_json(lang, "epochs")
+    """Epochs for a language, with any title the game leaves untranslated
+    (Thai has none) filled from the English entry so every row is valid."""
+    epochs = _load_json(lang, "epochs")
+    if lang == DEFAULT_LANG or all(e.get("title") for e in epochs):
+        return epochs
+    english = {e.get("id"): e for e in _load_json(DEFAULT_LANG, "epochs")}
+    return [
+        e
+        if e.get("title")
+        else {
+            **e,
+            "title": (english.get(e.get("id")) or {}).get("title") or e.get("id"),
+        }
+        for e in epochs
+    ]
 
 
 def load_stories(lang: str = DEFAULT_LANG) -> list[dict]:
