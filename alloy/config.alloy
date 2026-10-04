@@ -1,7 +1,8 @@
 local.file_match "nginx" {
   path_targets = [{
-    __path__ = "/var/log/nginx/access.log",
-    job      = "nginx",
+    __path__  = "/var/log/nginx/*.log",
+    job       = "nginx",
+    container = "web-server",
   }]
 }
 
