@@ -15,7 +15,12 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { imageUrl } from "@/lib/image-url";
-
+import {
+  fetchCardCatalog,
+  fetchKeywordCatalog,
+  fetchRelicCatalog,
+} from "@/lib/entity-catalogs";
+import { entityNameLinks } from "@/lib/rich-links";
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
@@ -129,10 +134,26 @@ export default async function Page({ params }: Props) {
   if (!event) redirectMissingEntity("events", id, locale);
   // Server-render the community choice distribution (unique, crawlable data).
   const voteStats = event ? await fetchEventVotes(id) : null;
+  // Tooltip keywords plus relic and card name links for the descriptions:
+  // fetched once per render here so the links land in the server HTML.
+  const [cards, relics, keywords] = await Promise.all([
+    fetchCardCatalog(locale),
+    fetchRelicCatalog(locale),
+    fetchKeywordCatalog(locale),
+  ]);
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EventDetail initialEvent={event} voteStats={voteStats} />
+      <EventDetail
+        initialEvent={event}
+        voteStats={voteStats}
+        initialEntityLinks={[
+          ...entityNameLinks(cards, "cards"),
+          ...entityNameLinks(relics, "relics"),
+        ]}
+        initialKeywords={keywords}
+        initialRelics={relics}
+      />
     </>
   );
 }

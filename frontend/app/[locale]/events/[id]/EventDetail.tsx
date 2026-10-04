@@ -2,6 +2,7 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import {
+  useMemo,
   useState,
   useEffect,
   type MouseEvent as ReactMouseEvent,
@@ -12,6 +13,9 @@ import { Link, useRouter } from "@/i18n/navigation";
 import type { GameEvent, EventPage } from "@/lib/api/types";
 import type { EventVotes } from "@/lib/event-votes";
 import RichDescription from "@/app/components/RichDescription";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { keywordLinkWords, type EntityNameLink } from "@/lib/rich-links";
+import type { KeywordEntry, RelicEntry } from "@/lib/entity-catalogs";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityProse from "@/app/components/EntityProse";
@@ -29,13 +33,20 @@ const EVENT_SPINE: Record<string, string> = {
   Event: "#7c8ef0",
 };
 
-function PageBlock({ page }: { page: EventPage }) {
+function PageBlock({
+  page,
+  entityLinks,
+  interactiveWords,
+}: {
+  page: EventPage;
+  entityLinks?: EntityNameLink[];
+  interactiveWords?: Record<string, { tooltip: string; href: string }>;
+}) {
   const t = useT();
   const isInitial = page.id === "INITIAL";
   const pageName = page.id
     .replace(/_/g, " ")
     .replace(/\b\w/g, (c) => c.toUpperCase());
-
   return (
     <div className="evt-page">
       <p className="pl">{isInitial ? t("Start") : pageName}</p>
@@ -47,6 +58,8 @@ function PageBlock({ page }: { page: EventPage }) {
                 ? t(page.description)
                 : page.description
             }
+            interactiveWords={interactiveWords}
+            entityLinks={entityLinks}
           />
         </div>
       )}
@@ -55,11 +68,19 @@ function PageBlock({ page }: { page: EventPage }) {
           {page.options.map((opt) => (
             <div key={opt.id} className="choice">
               <div className="ct">
-                <RichDescription text={opt.title} />
+                <RichDescription
+                  text={opt.title}
+                  interactiveWords={interactiveWords}
+                  entityLinks={entityLinks}
+                />
               </div>
               {opt.description && (
                 <div className="cd">
-                  <RichDescription text={opt.description} />
+                  <RichDescription
+                    text={opt.description}
+                    interactiveWords={interactiveWords}
+                    entityLinks={entityLinks}
+                  />
                 </div>
               )}
             </div>
@@ -78,28 +99,53 @@ const SITE_AUTHORED_PREFIX = "A suspicious merchant offers 6 fake relics";
 function siteAuthored(text: string | undefined): boolean {
   return !!text && text.startsWith(SITE_AUTHORED_PREFIX);
 }
+function indexById<T extends { id: string }>(entries: T[]): Record<string, T> {
+  const map: Record<string, T> = {};
+  for (const e of entries) map[e.id] = e;
+  return map;
+}
+
 export default function EventDetail({
   initialEvent,
   voteStats,
-}: { initialEvent?: GameEvent | null; voteStats?: EventVotes | null } = {}) {
+  initialEntityLinks,
+  initialKeywords,
+  initialRelics,
+}: {
+  initialEvent?: GameEvent | null;
+  voteStats?: EventVotes | null;
+  /** Server-fetched card and relic name links for the descriptions; absent on the beta page. */
+  initialEntityLinks?: EntityNameLink[];
+  /** Server-fetched keyword catalog for the description tooltip words. */
+  initialKeywords?: KeywordEntry[];
+  /** Server-fetched relic catalog, also feeding the relic offerings section. */
+  initialRelics?: RelicEntry[];
+} = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const bp = useBetaPrefix();
   const [event, setEvent] = useState<GameEvent | null>(initialEvent ?? null);
   const [loading, setLoading] = useState(!initialEvent);
   const [notFound, setNotFound] = useState(false);
-  const [relicMap, setRelicMap] = useState<
-    Record<
-      string,
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }
-    >
-  >({});
+  // Relic catalog arrives from the server on the stable page (it also feeds
+  // the relic offerings section); the beta page keeps the client fetch.
+  const [relicMap, setRelicMap] = useState<Record<string, RelicEntry>>(() =>
+    indexById(initialRelics ?? []),
+  );
+  // Keyword tooltip words and entity name links for the descriptions.
+  const interactiveWords = useMemo(
+    () =>
+      initialKeywords && initialKeywords.length > 0
+        ? keywordLinkWords(initialKeywords, bp)
+        : undefined,
+    [initialKeywords, bp],
+  );
+  const entityLinks = useMemo(
+    () => (initialEntityLinks?.length ? initialEntityLinks : undefined),
+    [initialEntityLinks],
+  );
   const [expandedDialogue, setExpandedDialogue] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("description");
 
@@ -114,19 +160,11 @@ export default function EventDetail({
   }, [id, lang]);
 
   useEffect(() => {
-    cachedFetch<
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }[]
-    >(`${API}/api/relics?lang=${lang}`).then((relics) => {
-      const map: Record<string, (typeof relics)[number]> = {};
-      for (const r of relics) map[r.id] = r;
-      setRelicMap(map);
-    });
-  }, [lang]);
+    if (initialRelics?.length) return;
+    cachedFetch<RelicEntry[]>(`${API}/api/relics?lang=${lang}`).then((relics) =>
+      setRelicMap(indexById(relics)),
+    );
+  }, [lang, initialRelics]);
 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
@@ -266,7 +304,11 @@ export default function EventDetail({
                 className="desc-body"
                 style={{ whiteSpace: "pre-line", maxWidth: "70ch" }}
               >
-                <RichDescription text={event.description} />
+                <RichDescription
+                  text={event.description}
+                  interactiveWords={interactiveWords}
+                  entityLinks={entityLinks}
+                />
               </div>
             )}
           </section>
@@ -284,11 +326,19 @@ export default function EventDetail({
                   {event.options.map((opt) => (
                     <div key={opt.id} className="choice">
                       <div className="ct">
-                        <RichDescription text={opt.title} />
+                        <RichDescription
+                          text={opt.title}
+                          interactiveWords={interactiveWords}
+                          entityLinks={entityLinks}
+                        />
                       </div>
                       {opt.description && (
                         <div className="cd">
-                          <RichDescription text={opt.description} />
+                          <RichDescription
+                            text={opt.description}
+                            interactiveWords={interactiveWords}
+                            entityLinks={entityLinks}
+                          />
                         </div>
                       )}
                     </div>
@@ -334,7 +384,12 @@ export default function EventDetail({
                   </h3>
                   <div>
                     {event.pages.map((page) => (
-                      <PageBlock key={page.id} page={page} />
+                      <PageBlock
+                        key={page.id}
+                        page={page}
+                        entityLinks={entityLinks}
+                        interactiveWords={interactiveWords}
+                      />
                     ))}
                   </div>
                 </>
@@ -377,7 +432,11 @@ export default function EventDetail({
                             </span>
                             {relic?.description && (
                               <span className="cls">
-                                <RichDescription text={relic.description} />
+                                {/* Inside the offering anchor: never nest links. */}
+                                <RichDescription
+                                  text={relic.description}
+                                  nestedInLink
+                                />
                               </span>
                             )}
                           </span>
@@ -419,7 +478,11 @@ export default function EventDetail({
                       key={i}
                       className={`dlg-line ${line.speaker === "ancient" ? "ancient" : "other"}`}
                     >
-                      <RichDescription text={line.text} />
+                      <RichDescription
+                        text={line.text}
+                        interactiveWords={interactiveWords}
+                        entityLinks={entityLinks}
+                      />
                     </div>
                   ))}
                 </div>
