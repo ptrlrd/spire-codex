@@ -1126,7 +1126,14 @@ def get_entity_run_stats(
     """Community run stats for one card, relic, or potion: Codex Score,
     picks, wins, win rate, pick rate, Codex Elo where one exists, plus
     per-bracket (`brackets`) and per-character (`by_character`) splits.
-    Zero-filled when the entity hasn't shown up in a submitted run yet."""
+    Zero-filled when the entity hasn't shown up in a submitted run yet.
+
+    The top level and every `brackets` entry also carry the metrics
+    table's lift family: `lift` is the win rate in points above what the
+    entity's holders' own track records predict (null under the sample
+    floor), `lift_n` the seats with a known expectation, `win_rate_ci`
+    the Wilson 95% interval in percent, and `hold_rate` the share of the
+    bracket's seats that held the entity (null when seats are unknown)."""
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
