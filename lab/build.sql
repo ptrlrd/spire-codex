@@ -28,8 +28,7 @@ SELECT * FROM read_ndjson('/lake/staging/*.jsonl.gz',
     killed_by_encounter: 'VARCHAR', killed_by_event: 'VARCHAR',
     modifiers: 'VARCHAR[]',
     players: 'STRUCT(id BIGINT, "character" VARCHAR, deck STRUCT(floor_added_to_deck BIGINT, id VARCHAR, current_upgrade_level BIGINT, enchantment STRUCT(id VARCHAR))[], relics STRUCT(id VARCHAR, floor_added_to_deck BIGINT, props STRUCT(bools STRUCT(name VARCHAR, value BOOLEAN)[]))[], potions STRUCT(id VARCHAR, was_used BOOLEAN)[])[]',
-    map_point_history: 'STRUCT(map_point_type VARCHAR, player_stats STRUCT(player_id BIGINT, current_gold BIGINT, current_hp BIGINT, damage_taken BIGINT, max_hp BIGINT, event_choices STRUCT(title STRUCT("key" VARCHAR, "table" VARCHAR))[], rest_site_choices VARCHAR[], upgraded_cards VARCHAR[], ancient_choice STRUCT(TextKey VARCHAR, title STRUCT("key" VARCHAR, "table" VARCHAR), was_chosen BOOLEAN)[], cards_removed JSON[], card_choices STRUCT(was_picked BOOLEAN, card STRUCT(id VARCHAR))[], potion_choices STRUCT(was_picked BOOLEAN, choice VARCHAR)[], relic_choices STRUCT(choice VARCHAR, was_picked BOOLEAN)[], potion_used VARCHAR[], potion_discarded VARCHAR[])[], rooms STRUCT(model_id VARCHAR, room_type VARCHAR, turns_taken BIGINT)[])[][]',
-    _meta: 'STRUCT(username VARCHAR, user_id VARCHAR, hidden BOOLEAN, deleted BOOLEAN, submitted_at TIMESTAMP, played_at TIMESTAMP, player_count BIGINT, "character" VARCHAR)'});
+    map_point_history: 'STRUCT(map_point_type VARCHAR, player_stats STRUCT(player_id BIGINT, current_gold BIGINT, current_hp BIGINT, damage_taken BIGINT, max_hp BIGINT, event_choices STRUCT(title STRUCT("key" VARCHAR, "table" VARCHAR))[], rest_site_choices VARCHAR[], upgraded_cards VARCHAR[], ancient_choice STRUCT(TextKey VARCHAR, title STRUCT("key" VARCHAR, "table" VARCHAR), was_chosen BOOLEAN)[], cards_removed JSON[], card_choices STRUCT(was_picked BOOLEAN, card STRUCT(id VARCHAR))[], potion_choices STRUCT(was_picked BOOLEAN, choice VARCHAR)[], relic_choices STRUCT(choice VARCHAR, was_picked BOOLEAN)[], potion_used VARCHAR[], potion_discarded VARCHAR[], relics_removed VARCHAR[])[], rooms STRUCT(model_id VARCHAR, room_type VARCHAR, turns_taken BIGINT)[])[][]',    _meta: 'STRUCT(username VARCHAR, user_id VARCHAR, hidden BOOLEAN, deleted BOOLEAN, submitted_at TIMESTAMP, played_at TIMESTAMP, player_count BIGINT, "character" VARCHAR)'});
 
 
 COPY (
@@ -119,16 +118,35 @@ SELECT run_hash, act,
     ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING), 0) AS floor_offset
 FROM (SELECT run_hash, act, count(*) AS n FROM read_parquet('/lake/floors.parquet') GROUP BY 1, 2);
 
+-- Per-player identity + deck size: keys player_id to a character for the
+-- co-op attributions, and carries deck size for the records section.
 COPY (
-SELECT r.run_hash, p.i AS player_idx,
-  upper(split_part(rel.u.id, '.', -1)) AS relic,
-  rel.u.floor_added_to_deck AS floor_added,
+SELECT r.run_hash, p.i AS player_idx, p.u.id AS player_id,
   upper(split_part(p.u.character,'.',-1)) AS character,
-  coalesce(len(list_filter(rel.u.props.bools, b -> b.name = 'IsWax' AND b.value)) > 0, false) AS is_wax
+  coalesce(len(p.u.deck), 0) AS deck_size
 FROM raw r,
-  LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
-  LATERAL (SELECT unnest(p.u.relics) AS u) rel
-) TO '/lake/relics.parquet' (FORMAT parquet, COMPRESSION zstd);
+  LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p
+) TO '/lake/players.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+-- Every relic screen a seat saw: free offers (ancient, boss, events with
+-- two options) and shop shelves alike, one row per option. is_shop,
+-- n_options and n_picked let readers separate a real choice (fewer taken
+-- than offered) from a priced shelf or a list of relics simply gained.
+COPY (
+SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx, ps.i AS player_idx,
+  upper(split_part(rc.u.choice, '.', -1)) AS relic,
+  coalesce(rc.u.was_picked, false) AS picked,
+  list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop') AS is_shop,
+  len(ps.u.relic_choices) AS n_options,
+  len(list_filter(ps.u.relic_choices, c -> coalesce(c.was_picked, false))) AS n_picked
+FROM raw r,
+  LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
+  LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+  LATERAL (SELECT unnest(loc.u.player_stats) AS u,
+    generate_subscripts(loc.u.player_stats,1) AS i) ps,
+  LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
+WHERE rc.u.choice IS NOT NULL AND rc.u.choice <> ''
+) TO '/lake/relic_choices.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 COPY (
 SELECT r.run_hash, p.i AS player_idx,
@@ -157,25 +175,75 @@ FROM raw r,
 WHERE list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop')
 ) TO '/lake/shop_potions.parquet' (FORMAT parquet, COMPRESSION zstd);
 
--- Every relic screen a seat saw: free offers (ancient, boss, events with
--- two options) and shop shelves alike, one row per option. is_shop,
--- n_options and n_picked let readers separate a real choice (fewer taken
--- than offered) from a priced shelf or a list of relics simply gained.
+-- Relic removals per seat and floor: Relic Trader trades, Sword of Stone
+-- transforms, starter relics replaced by their upgrades, event removals.
+-- The end-of-run belt only shows what was never taken, so these rows are
+-- the only record a seat ever held them. One row per removal event; `floor`
+-- is absolute via act_off, like the other per-floor extractions.
 COPY (
-SELECT r.run_hash, act.i - 1 AS act, loc.i AS floor_idx, ps.i AS player_idx,
-  upper(split_part(rc.u.choice, '.', -1)) AS relic,
-  coalesce(rc.u.was_picked, false) AS picked,
-  list_contains([lower(x.room_type) FOR x IN loc.u.rooms], 'shop') AS is_shop,
-  len(ps.u.relic_choices) AS n_options,
-  len(list_filter(ps.u.relic_choices, c -> coalesce(c.was_picked, false))) AS n_picked
+SELECT r.run_hash, ps.i AS player_idx,
+  upper(split_part(rr.u, '.', -1)) AS relic,
+  act.i - 1 AS act,
+  loc.i AS floor_idx,
+  ao.floor_offset + loc.i AS floor
 FROM raw r,
   LATERAL (SELECT unnest(map_point_history) AS u, generate_subscripts(map_point_history,1) AS i) act,
   LATERAL (SELECT unnest(act.u) AS u, generate_subscripts(act.u,1) AS i) loc,
+  LATERAL (SELECT floor_offset FROM act_off o WHERE o.run_hash = r.run_hash AND o.act = act.i - 1) ao,
   LATERAL (SELECT unnest(loc.u.player_stats) AS u,
     generate_subscripts(loc.u.player_stats,1) AS i) ps,
-  LATERAL (SELECT unnest(ps.u.relic_choices) AS u) rc
-WHERE rc.u.choice IS NOT NULL AND rc.u.choice <> ''
-) TO '/lake/relic_choices.parquet' (FORMAT parquet, COMPRESSION zstd);
+  LATERAL (SELECT unnest(ps.u.relics_removed) AS u) rr
+WHERE rr.u IS NOT NULL AND rr.u <> ''
+) TO '/lake/relics_removed.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+-- Every relic a seat EVER held: the end-of-run belt (removed=false) plus
+-- removals that were never re-acquired (removed=true, floor_removed = the
+-- floor it left on; floor_added = the pickup floor when a picked
+-- relic_choices row records one, else NULL). One row per (run, seat,
+-- relic): a relic both removed and re-acquired keeps only its end-of-run
+-- row. Column names and types before `removed` are unchanged.
+CREATE OR REPLACE TEMP TABLE relic_held AS
+SELECT r.run_hash, p.i AS player_idx,
+  upper(split_part(rel.u.id, '.', -1)) AS relic,
+  rel.u.floor_added_to_deck AS floor_added,
+  upper(split_part(p.u.character,'.',-1)) AS character,
+  coalesce(len(list_filter(rel.u.props.bools, b -> b.name = 'IsWax' AND b.value)) > 0, false) AS is_wax
+FROM raw r,
+  LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p,
+  LATERAL (SELECT unnest(p.u.relics) AS u) rel;
+
+COPY (
+SELECT run_hash, player_idx, relic, floor_added, character, is_wax,
+  false AS removed, NULL::BIGINT AS floor_removed
+FROM relic_held
+UNION ALL
+SELECT rr.run_hash, rr.player_idx, rr.relic,
+  any_value(picks.floor)::BIGINT AS floor_added,
+  any_value(p.character) AS character,
+  false AS is_wax,
+  true AS removed,
+  max(rr.floor)::BIGINT AS floor_removed
+FROM read_parquet('/lake/relics_removed.parquet') rr
+LEFT JOIN (
+  SELECT rc.run_hash, rc.player_idx, rc.relic,
+    min(ao.floor_offset + rc.floor_idx) AS floor
+  FROM read_parquet('/lake/relic_choices.parquet') rc
+  JOIN act_off ao ON rc.run_hash = ao.run_hash AND rc.act = ao.act
+  WHERE coalesce(rc.picked, false)
+  GROUP BY 1, 2, 3
+) picks ON rr.run_hash = picks.run_hash
+  AND rr.player_idx = picks.player_idx AND rr.relic = picks.relic
+LEFT JOIN read_parquet('/lake/players.parquet') p
+  ON rr.run_hash = p.run_hash AND rr.player_idx = p.player_idx
+WHERE NOT EXISTS (
+  SELECT 1 FROM relic_held h
+  WHERE h.run_hash = rr.run_hash AND h.player_idx = rr.player_idx
+    AND h.relic = rr.relic
+)
+GROUP BY 1, 2, 3
+) TO '/lake/relics.parquet' (FORMAT parquet, COMPRESSION zstd);
+
+DROP TABLE relic_held;
 
 -- Shop shelves: every card, relic and potion a seat saw on a shop floor and
 -- whether it was bought, with the shop's absolute floor (the same numbering
@@ -255,15 +323,6 @@ SELECT run_hash, act, floor_idx, player_idx, potion, kind, floor FROM (
 )
 ) TO '/lake/potion_events.parquet' (FORMAT parquet, COMPRESSION zstd);
 
--- Per-player identity + deck size: keys player_id to a character for the
--- co-op attributions, and carries deck size for the records section.
-COPY (
-SELECT r.run_hash, p.i AS player_idx, p.u.id AS player_id,
-  upper(split_part(p.u.character,'.',-1)) AS character,
-  coalesce(len(p.u.deck), 0) AS deck_size
-FROM raw r,
-  LATERAL (SELECT unnest(players) AS u, generate_subscripts(players,1) AS i) p
-) TO '/lake/players.parquet' (FORMAT parquet, COMPRESSION zstd);
 
 -- Per-user rollups: profile pages become point reads instead of
 -- per-request blob walks. Grouped once per ingest; keyed by user_id.
@@ -294,6 +353,7 @@ UNION ALL SELECT 'floors', count(*) FROM read_parquet('/lake/floors.parquet')
 UNION ALL SELECT 'players', count(*) FROM read_parquet('/lake/players.parquet')
 UNION ALL SELECT 'relics', count(*) FROM read_parquet('/lake/relics.parquet')
 UNION ALL SELECT 'potions', count(*) FROM read_parquet('/lake/potions.parquet')
+UNION ALL SELECT 'relics_removed', count(*) FROM read_parquet('/lake/relics_removed.parquet')
 UNION ALL SELECT 'shop_potions', count(*) FROM read_parquet('/lake/shop_potions.parquet')
 UNION ALL SELECT 'relic_choices', count(*) FROM read_parquet('/lake/relic_choices.parquet')
 UNION ALL SELECT 'shop_items', count(*) FROM read_parquet('/lake/shop_items.parquet')

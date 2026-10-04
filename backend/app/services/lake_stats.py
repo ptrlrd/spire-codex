@@ -453,6 +453,19 @@ JOIN cells c ON u.run_hash = c.run_hash
 GROUP BY 1, 2
 """
 
+# Seats whose relic left before run end and never came back: the removed
+# rows of relics.parquet, one per (run, seat, relic).
+_CUBE_RELIC_REMOVED_SQL = """
+SELECT c.cell, m.relic, count(*)
+FROM (
+  SELECT DISTINCT run_hash, player_idx, relic
+  FROM read_parquet('{lake}/relics.parquet')
+  WHERE coalesce(removed, false)
+) m
+JOIN cells c ON m.run_hash = c.run_hash
+GROUP BY 1, 2
+"""
+
 
 def _potion_events_available() -> bool:
     return (LAKE_DIR / "potion_events.parquet").exists()
@@ -507,7 +520,7 @@ _WAX_ONLY = " AND coalesce(is_wax, false)"
 _NO_WAX = " AND NOT coalesce(is_wax, false)"
 
 
-def _relics_have_wax(con) -> bool:
+def _relics_have_column(con, col: str) -> bool:
     try:
         cols = [
             d[0]
@@ -517,7 +530,15 @@ def _relics_have_wax(con) -> bool:
         ]
     except Exception:
         return False
-    return "is_wax" in cols
+    return col in cols
+
+
+def _relics_have_wax(con) -> bool:
+    return _relics_have_column(con, "is_wax")
+
+
+def _relics_have_removed(con) -> bool:
+    return _relics_have_column(con, "removed")
 
 
 def _membership_where(table: str, con, wax: bool = False) -> str:
@@ -533,7 +554,7 @@ def _membership_where(table: str, con, wax: bool = False) -> str:
 # Potions carry no pickup floor, so their expectation is the floor-1 curve.
 _CUBE_TABLES = (
     ("cards", "deck", "card", "min(coalesce(floor_added, 0))"),
-    ("relics", "relics", "relic", "min(coalesce(floor_added, 0))"),
+    ("relics", "relics", "relic", "min(coalesce(floor_added, 1))"),
     ("potions", "potion_seats", "potion", "min(f)"),
 )
 
@@ -547,6 +568,10 @@ def _source(table: str) -> str:
 
 
 def _cube_membership_sql(col: str, table: str, floor_col: str, where: str) -> str:
+    """One cell-level membership aggregation over `table`. `floor_col` is
+    each seat's acquisition floor feeding the lift expectation; a NULL
+    floor (a relic removed mid-run whose pickup floor no picked
+    relic_choices row records) reads the floor-1 curve, like potions."""
     exp_join, exp_expr = _exp_sql("m.run_hash", "m.f")
     return _CUBE_MEMBERSHIP_SQL.format(
         col=col,
@@ -1452,9 +1477,9 @@ _ENTITY_STORE_NAME = "entity_store.json"
 
 def build_entity_store() -> dict | None:
     """Compute the all-bracket per-entity aggregates (picks, wins,
-    by-character, reward metrics, Elos, base/upgraded, relic act buckets)
-    and store them beside the parquet. Ingest-time only; the serving swap
-    reads this instead of the walked snapshot."""
+    by-character, reward metrics, Elos, base/upgraded, relic act buckets,
+    relic removals) and store them beside the parquet. Ingest-time only;
+    the serving swap reads this instead of the walked snapshot."""
     if not available(*_SERVE_FILES[1:]):
         logger.info("entity store skipped: lake incomplete")
         return None
@@ -1515,6 +1540,22 @@ def build_entity_store() -> dict | None:
                 wax = entry("relics", eid).setdefault("wax", {"picks": 0, "wins": 0})
                 wax["picks"] += picks
                 wax["wins"] += wins
+        if _relics_have_removed(con):
+            for eid in entities["relics"]:
+                entities["relics"][eid].setdefault("removed", 0)
+            for eid, removed in con.execute(
+                f"""
+                SELECT m.relic, count(*)
+                FROM (
+                  SELECT DISTINCT run_hash, player_idx, relic
+                  FROM read_parquet('{LAKE_DIR}/relics.parquet')
+                  WHERE coalesce(removed, false)
+                ) m
+                JOIN eligible e ON m.run_hash = e.run_hash
+                GROUP BY 1
+                """
+            ).fetchall():
+                entry("relics", eid)["removed"] = int(removed)
         for eid, used in con.execute(
             _POTION_USED_SQL.format(used=_potion_used_rows())
         ).fetchall():
@@ -1961,6 +2002,13 @@ def build_entity_cube(con=None) -> dict:
                 cur = wax.setdefault(cell, {}).setdefault(eid, [0, 0])
                 cur[0] += p_
                 cur[1] += w
+        relic_removed: dict[str, dict] | None = None
+        if _relics_have_removed(con):
+            relic_removed = {}
+            for cell, eid, removed in con.execute(
+                _CUBE_RELIC_REMOVED_SQL.format(lake=LAKE_DIR)
+            ).fetchall():
+                relic_removed.setdefault(cell, {})[eid] = int(removed)
         potion_used: dict[str, dict] = {}
         for cell, eid, used in con.execute(
             _CUBE_POTION_USED_SQL.format(used=_potion_used_rows())
@@ -2074,6 +2122,7 @@ def build_entity_cube(con=None) -> dict:
         "runs": runs_cells,
         "entities": types,
         "by_character": by_char,
+        "relic_removed": relic_removed,
         "offers": offers,
         "offers_by_character": offers_by_char,
         "wax": wax,
@@ -2356,10 +2405,19 @@ def _entity_bracket_fold_uncached(entity_type: str, bracket: str) -> dict | None
                 continue
             for eid, n in ids.items():
                 used[eid] = used.get(eid, 0) + n
+    removed: dict[str, int] | None = None
+    if entity_type == "relics" and cube.get("relic_removed") is not None:
+        removed = {}
+        for cell, ids in cube["relic_removed"].items():
+            if not _cell_matches(cell, mode, player, skill, version):
+                continue
+            for eid, n in ids.items():
+                removed[eid] = removed.get(eid, 0) + int(n)
     return {
         "entries": entries,
         "offers": offers,
         "wax": wax,
+        "removed": removed,
         "used": used,
         "total_runs": total,
         "total_wins": wins,
