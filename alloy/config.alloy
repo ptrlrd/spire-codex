@@ -58,6 +58,22 @@ discovery.relabel "containers" {
 loki.source.docker "containers" {
   host       = "unix:///var/run/docker.sock"
   targets    = discovery.relabel.containers.output
+  forward_to = [loki.process.docker.receiver]
+}
+
+loki.process "docker" {
+  stage.match {
+    selector = "{container=\"spire-codex-backend\"}"
+
+    stage.drop {
+      expression = `^INFO:\s+\S+ - "`
+    }
+
+    stage.drop {
+      expression = `INFO spire-codex — (GET|POST) /api/presence(/active)?(\?\S*)? 2\d\d `
+    }
+  }
+
   forward_to = [loki.write.default.receiver]
 }
 
