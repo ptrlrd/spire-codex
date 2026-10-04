@@ -34,26 +34,30 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Ships nginx access logs to Loki. The web-server container writes the
-  # "combined" format to a real host file (monitoring-install.yml mounts
-  # /data/nginx/nginx/logs -> /var/log/nginx:rw on it), so Alloy reads that
-  # same host dir read-only. The Loki endpoint sits behind Cloudflare Access,
-  # so the config sends a service token on every push.
+  # Ships logs to the homelab Loki: Docker container logs, the systemd
+  # journal, /var/log/*.log and the nginx access log (the web-server
+  # container writes it to a real host file, /data/nginx/nginx/logs ->
+  # /var/log/nginx:rw on it, so Alloy reads that same dir read-only). The
+  # Loki endpoint sits behind Cloudflare Access, so every push carries a
+  # service token.
   #
-  # Needs an .env next to this compose (NOT committed) with:
-  #   LOKI_URL=https://<loki-host>/loki/api/v1/push
-  #   CF_ACCESS_CLIENT_ID=<id>.access
-  #   CF_ACCESS_CLIENT_SECRET=<secret>
+  # Needs an .env next to this compose (NOT committed, see
+  # .env.monitoring.example) with LOKI_URL, CF_ACCESS_CLIENT_ID and
+  # CF_ACCESS_CLIENT_SECRET.
   alloy:
     # Pinned: an unattended :latest pull can silently break log shipping.
-    image: grafana/alloy:v1.18.0
+    image: grafana/alloy:v1.20.0
     container_name: alloy
     restart: unless-stopped
-    command: run --server.http.listen-addr=0.0.0.0:12345 /etc/alloy/config.alloy
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/config.alloy
     volumes:
-      # The SAME host dir nginx writes its logs to (see monitoring-install.yml).
       - /data/nginx/nginx/logs:/var/log/nginx:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/log:/var/log/host:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /etc/machine-id:/etc/machine-id:ro
       - ./alloy/config.alloy:/etc/alloy/config.alloy:ro
+      - alloy-data:/var/lib/alloy/data
     environment:
       LOKI_URL: "${LOKI_URL}"
       CF_ACCESS_CLIENT_ID: "${CF_ACCESS_CLIENT_ID}"
@@ -63,3 +67,6 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+volumes:
+  alloy-data:
