@@ -1141,7 +1141,9 @@ def get_entity_run_stats(
     entity's holders' own track records predict (null under the sample
     floor), `lift_n` the seats with a known expectation, `win_rate_ci`
     the Wilson 95% interval in percent, and `hold_rate` the share of the
-    bracket's seats that held the entity (null when seats are unknown)."""
+    bracket's seats that held the entity (null when seats are unknown).
+    Relic blocks also carry `removed` (seats whose copy left before run
+    end) and `removed_rate`."""
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
@@ -1557,7 +1559,8 @@ def get_entity_metrics(
     Cards carry Elo/Pick% from reward screens, relics from free relic
     screens (ancient offers, boss relics, event choices; shop shelves and
     lists where everything was taken are not offers) plus a `wax` block
-    for Toy Box copies, potions `used` / `use_rate` and no Pick%. Served
+    for Toy Box copies, relics `removed` / `removed_rate`, potions `used` /
+    `use_rate` and no Pick%. Served
     from the lake's entity cube, so it's one in-memory fold per bracket;
     the client sorts and filters the whole table locally.
 

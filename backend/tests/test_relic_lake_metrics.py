@@ -98,22 +98,33 @@ def write_lake(tmp_path):
         TO '{tmp_path}/deck.parquet' (FORMAT parquet)"""
     )
     relics = [
-        ("r1", 1, "JUZU", 3, "IRONCLAD", False),
-        ("r2", 1, "JUZU", 3, "IRONCLAD", False),
-        ("r3", 1, "JUZU", 3, "IRONCLAD", False),
-        ("r6", 1, "JUZU", 3, "IRONCLAD", False),
-        ("r4", 1, "JUZU", 5, "IRONCLAD", True),
-        ("r9", 1, "ANCHOR", 2, "DEFECT", False),
-        ("r9", 2, "ANCHOR", 2, "SILENT", False),
+        ("r1", 1, "JUZU", 3, "IRONCLAD", False, False, None),
+        ("r2", 1, "JUZU", 3, "IRONCLAD", False, False, None),
+        ("r3", 1, "JUZU", 3, "IRONCLAD", False, False, None),
+        ("r5", 1, "ANCHOR", 4, "IRONCLAD", False, False, None),
+        ("r6", 1, "JUZU", 3, "IRONCLAD", False, False, None),
+        ("r4", 1, "JUZU", 5, "IRONCLAD", True, False, None),
+        ("r7", 1, "JUZU", 1, "IRONCLAD", False, True, 2),
+        ("r9", 1, "ANCHOR", 2, "DEFECT", False, False, None),
+        ("r9", 2, "ANCHOR", 2, "SILENT", False, False, None),
     ]
     vals = ",".join(
-        f"('{h}', {i}, '{r}', {f}, '{c}', {str(w).lower()})"
-        for h, i, r, f, c, w in relics
+        f"('{h}', {i}, '{r}', {f}, '{c}', {str(w).lower()}, {str(rm).lower()},"
+        f" {'NULL' if fr is None else fr})"
+        for h, i, r, f, c, w, rm, fr in relics
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES {vals})
-        t(run_hash, player_idx, relic, floor_added, character, is_wax))
+        t(run_hash, player_idx, relic, floor_added, character, is_wax, removed,
+          floor_removed))
         TO '{tmp_path}/relics.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+        ('r7', 1, 'JUZU', 0, 2, 2),
+        ('r5', 1, 'ANCHOR', 0, 2, 2))
+        t(run_hash, player_idx, relic, act, floor_idx, floor))
+        TO '{tmp_path}/relics_removed.parquet' (FORMAT parquet)"""
     )
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
@@ -230,18 +241,21 @@ def test_cube_counts_seats_wax_and_lift_inputs(lake):
     fold = lake_stats.entity_bracket_fold("relics", "all")
     assert fold["total_runs"] == 9 and fold["total_seats"] == 10
     picks, wins, n_exp, wins_exp, exp_sum = fold["entries"]["JUZU"]
-    assert (picks, wins) == (4, 3), "the wax copy on r4 stays out of the base row"
-    assert n_exp == 4 and wins_exp == 3
-    # Floor-adjusted: JUZU is picked up on floor 3, and of pro's other runs
-    # only r7 (depth 2) never got there, so each winning seat expects 4/5
-    # and the r6 seat expects 5/5 instead of the flat 4/6 and 5/6.
-    assert exp_sum == pytest.approx(3 * 0.8 + 1.0, abs=0.002)
+    assert (picks, wins) == (5, 3), "r7's removed copy counts, the wax one doesn't"
+    assert n_exp == 5 and wins_exp == 3
+    # Floor-adjusted: the held copies are picked up on floor 3, and of pro's
+    # other runs only r7 (depth 2) never got there, so each winning seat
+    # expects 4/5 and the r6 seat 5/5; r7's removed copy lifts from its
+    # floor-1 pickup curve at 5/6.
+    assert exp_sum == pytest.approx(3 * 0.8 + 1.0 + 5 / 6, abs=0.002)
+    assert fold["removed"] == {"JUZU": 1}
     assert fold["wax"] == {"JUZU": [1, 1]}
     anchor = fold["entries"]["ANCHOR"]
-    assert anchor[:2] == [2, 2], "both seats of the 2P run count"
-    # duo has one run, so both seats fall back to the community A10 curve
-    # at floor 2 minus their own run: 7 of pro's runs, 5 won.
-    assert anchor[2] == 2 and anchor[4] == pytest.approx(2 * 5 / 7, abs=0.002)
+    assert anchor[:2] == [3, 3], "both 2P seats count, plus r5's re-acquired copy"
+    # duo has one run, so both of its seats fall back to the community A10
+    # curve at floor 2 minus their own run (5/7 each); r5's seat reads the
+    # pro curve at floor 4 (five runs, all wins) minus itself: 1.0.
+    assert anchor[2] == 3 and anchor[4] == pytest.approx(2 * 5 / 7 + 1.0, abs=0.002)
     assert fold["offers"]["JUZU"]["offered"] == 2
     assert fold["offers"]["JUZU"]["picked"] == 1
     assert "ORRERY" not in fold["offers"], "shop shelves are not offers"
@@ -272,10 +286,10 @@ def test_metrics_table_rows_carry_the_new_columns(lake, monkeypatch):
     out = res.get_entity_metrics_table("relics", "solo")
     assert out["total_runs"] == 8 and out["total_seats"] == 8
     juzu = next(r for r in out["rows"] if r["id"] == "JUZU")
-    assert juzu["hold_rate"] == 50.0
-    assert juzu["win_rate"] == 75.0
-    assert juzu["win_rate_ci"] == stats_math.wilson_interval(3, 4)
-    assert juzu["lift"] is None and juzu["lift_n"] == 4
+    assert juzu["hold_rate"] == 62.5
+    assert juzu["win_rate"] == 60.0
+    assert juzu["win_rate_ci"] == stats_math.wilson_interval(3, 5)
+    assert juzu["lift"] is None and juzu["lift_n"] == 5
     assert juzu["wax"] == {
         "picks": 1,
         "wins": 1,
@@ -283,9 +297,11 @@ def test_metrics_table_rows_carry_the_new_columns(lake, monkeypatch):
         "win_rate_ci": stats_math.wilson_interval(1, 1),
     }
     assert juzu["pick_rate"] == 50.0 and juzu["offered"] == 2
+    assert (juzu["removed"], juzu["removed_rate"]) == (1, 20.0)
     coop = res.get_entity_metrics_table("relics", "2p")
     anchor = next(r for r in coop["rows"] if r["id"] == "ANCHOR")
     assert coop["total_seats"] == 2 and anchor["hold_rate"] == 100.0
+    assert (anchor["removed"], anchor["removed_rate"]) == (0, 0.0)
     potions = res.get_entity_metrics_table("potions", "solo")
     fire = next(r for r in potions["rows"] if r["id"] == "FIRE")
     assert fire["picks"] == 3
@@ -364,15 +380,71 @@ def test_entity_store_relic_block(lake, monkeypatch):
     monkeypatch.setattr(res, "_upgradeable_card_ids", lambda: frozenset())
     store = lake_stats.build_entity_store()
     juzu = store["entities"]["relics"]["JUZU"]
-    assert (juzu["picks"], juzu["wins"]) == (4, 3)
+    assert (juzu["picks"], juzu["wins"]) == (5, 3)
+    assert juzu["removed"] == 1
     assert juzu["wax"] == {"picks": 1, "wins": 1}
     assert juzu["offered"] == 2 and juzu["picked"] == 1
     assert store["entities"]["potions"]["FIRE"]["used"] == 2
     assert store["entities"]["potions"]["FIRE"]["picks"] == 3
     assert store["entities"]["potions"]["BLOCK"]["picks"] == 1
     assert store["totals"]["total_seats"] == 10
-    assert store["entities"]["relics"]["ANCHOR"]["picks"] == 2
+    assert store["entities"]["relics"]["ANCHOR"]["removed"] == 0
     assert "relic_reward" in store["elo_strengths"]
+
+
+def test_removed_relic_counts_once_and_reacquisition_is_not_removed(lake, monkeypatch):
+    monkeypatch.setattr(lake_stats, "bracket_elo_for", lambda *_a: None)
+    fold = lake_stats.entity_bracket_fold("relics", "all")
+    # r7's JUZU left mid-run: one seat-set pick, one removed seat.
+    assert fold["entries"]["JUZU"][0] == 5 and fold["removed"] == {"JUZU": 1}
+    # r5's ANCHOR was removed and picked up again: still one pick, and the
+    # seat does not count as removed.
+    assert fold["entries"]["ANCHOR"][0] == 3 and "ANCHOR" not in fold["removed"]
+    table = res.get_entity_metrics_table("relics", "solo")
+    juzu = next(r for r in table["rows"] if r["id"] == "JUZU")
+    assert (juzu["removed"], juzu["removed_rate"]) == (1, 20.0)
+    anchor = next(r for r in table["rows"] if r["id"] == "ANCHOR")
+    assert (anchor["removed"], anchor["removed_rate"]) == (0, 0.0)
+
+
+def test_old_lake_without_removed_support_still_serves(lake, monkeypatch):
+    monkeypatch.setattr(lake_stats, "bracket_elo_for", lambda *_a: None)
+    monkeypatch.setattr(res, "_upgradeable_card_ids", lambda: frozenset())
+    con = duckdb.connect()
+    con.execute(
+        f"""COPY (SELECT run_hash, player_idx, relic, floor_added, character,
+        is_wax FROM read_parquet('{lake}/relics.parquet')
+        WHERE NOT coalesce(removed, false))
+        TO '{lake}/relics.old.parquet' (FORMAT parquet)"""
+    )
+    con.close()
+    (lake / "relics.old.parquet").replace(lake / "relics.parquet")
+    (lake / "relics_removed.parquet").unlink()
+    con = lake_stats._connect(build=True)
+    try:
+        lake_stats.build_entity_cube(con)
+    finally:
+        con.close()
+    fold = lake_stats.entity_bracket_fold("relics", "all")
+    assert (fold["entries"]["JUZU"][0], fold["entries"]["JUZU"][1]) == (4, 3)
+    assert fold["removed"] is None
+    juzu = next(
+        r
+        for r in res.get_entity_metrics_table("relics", "solo")["rows"]
+        if r["id"] == "JUZU"
+    )
+    assert (juzu["picks"], juzu["wins"]) == (4, 3)
+    assert juzu["removed"] is None and juzu["removed_rate"] is None
+    assert juzu["hold_rate"] == 50.0
+    store = lake_stats.build_entity_store()
+    assert "removed" not in store["entities"]["relics"]["JUZU"]
+    _seed_juzu_stats()
+    try:
+        out = res.get_entity_stats("relics", "JUZU")
+    finally:
+        res._cache.pop(("relics", "JUZU"), None)
+    assert out["removed"] is None and out["removed_rate"] is None
+    assert out["brackets"]["all"]["removed"] is None
 
 
 def test_unknown_bracket_is_a_400(lake, monkeypatch):
@@ -611,7 +683,7 @@ def test_pairs_and_offers_carry_the_seat_character(lake):
     assert fold["ANCHOR"]["offered"] == 3 and fold["JUZU"]["picked"] == 1
     assert lake_stats.entity_character_offers_fold("relics", "solo", "SILENT") == {}
     chars = lake_stats.entity_character_fold("relics", "all")["JUZU"]
-    assert chars["IRONCLAD"][:2] == [4, 3] and chars["IRONCLAD"][2] == 4
+    assert chars["IRONCLAD"][:2] == [5, 3] and chars["IRONCLAD"][2] == 5
 
 
 def test_store_fits_one_elo_per_character(lake, monkeypatch):
@@ -654,9 +726,10 @@ def test_character_scoped_table_has_its_own_elo_and_offers(lake, monkeypatch):
     assert juzu["elo"] == 1555.5
     assert (juzu["offered"], juzu["picked"], juzu["pick_rate"]) == (2, 1, 50.0)
     assert juzu["pick_rate_by_act"] == [50.0, None, None]
-    assert juzu["lift_n"] == 4 and juzu["lift"] is None
-    assert (juzu["picks"], juzu["wins"]) == (4, 3)
-    assert not any(r["id"] == "ANCHOR" for r in table["rows"])
+    assert juzu["lift_n"] == 5 and juzu["lift"] is None
+    assert juzu["removed"] is None
+    anchor = next(r for r in table["rows"] if r["id"] == "ANCHOR")
+    assert (anchor["picks"], anchor["wins"]) == (1, 1)
     defect = res.get_entity_metrics_table("relics", "all", "DEFECT")["rows"]
     anchor = next(r for r in defect if r["id"] == "ANCHOR")
     assert anchor["elo"] is None and anchor["pick_rate"] is None
@@ -669,11 +742,11 @@ def test_character_scoped_table_has_its_own_elo_and_offers(lake, monkeypatch):
 
 def _seed_juzu_stats():
     res._cache[("relics", "JUZU")] = {
-        "picks": 4,
+        "picks": 5,
         "wins": 3,
         "elo": None,
-        "by_character": {"IRONCLAD": {"picks": 4, "wins": 3}},
-        "brackets": {"a10": {"picks": 4, "wins": 3, "by_character": {}}},
+        "by_character": {"IRONCLAD": {"picks": 5, "wins": 3}},
+        "brackets": {"a10": {"picks": 5, "wins": 3, "by_character": {}}},
         "last_submitted_at": "2026-09-01T00:00:00",
         "last_run_hash": "r1",
     }
@@ -695,13 +768,15 @@ def test_entity_stats_carries_the_lift_family(lake, monkeypatch):
     for block in (out, out["brackets"]["all"]):
         for key, val in expected.items():
             assert block[key] == val
-        assert block["hold_rate"] == 40.0
+        assert block["hold_rate"] == 50.0
+        assert (block["removed"], block["removed_rate"]) == (1, 20.0)
     solo = out["brackets"]["solo"]
     sentry = lake_stats.entity_bracket_fold("relics", "solo")["entries"]["JUZU"]
     assert solo["lift_n"] == sentry[2]
     assert solo["lift"] == stats_math.lift_of(*sentry[2:])
+    assert solo["hold_rate"] == 62.5
+    assert (solo["removed"], solo["removed_rate"]) == (1, 20.0)
     assert solo["win_rate_ci"] == stats_math.wilson_interval(sentry[1], sentry[0])
-    assert solo["hold_rate"] == 50.0
 
 
 def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch):

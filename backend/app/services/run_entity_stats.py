@@ -2915,6 +2915,8 @@ def get_entity_metrics_table(
     pick splits), plus raw counts. Pre-aggregated from the same snapshot
     walk so the route is a single in-memory pass, no per-request DB work.
     The frontend renders + sorts this table entirely client-side.
+    Relic rows also carry `removed` (seats whose copy left before run end)
+    and `removed_rate`.
 
     `bracket` slices to a pre-built run bracket. "all" reads the top-level
     entity fields; any of _BRACKET_KEYS reads the nested per-bracket block
@@ -2971,11 +2973,13 @@ def get_entity_metrics_table(
                 or {}
             )
             wax_fold = {}
+            removed_fold = None
             used_fold = {}
         else:
             entries = fold["entries"]
             offers = fold.get("offers") or {}
             wax_fold = fold.get("wax") or {}
+            removed_fold = fold.get("removed")
             used_fold = fold.get("used") or {}
         btot = fold["total_runs"]
         bseats = fold.get("total_seats") or btot
@@ -3040,6 +3044,13 @@ def get_entity_metrics_table(
             }
             if entity_type == "relics":
                 row["wax"] = _wax_block(wax_fold.get(eid))
+                removed = removed_fold.get(eid, 0) if removed_fold is not None else None
+                row["removed"] = int(removed) if removed is not None else None
+                row["removed_rate"] = (
+                    round(removed / picks * 100, 1)
+                    if removed is not None and picks
+                    else None
+                )
             if entity_type == "potions":
                 used = used_fold.get(eid)
                 row["used"] = int(used or 0)
@@ -3120,6 +3131,7 @@ def get_entity_metrics_table(
     lake_entries = (lake_fold or {}).get("entries") or {}
     lake_wax = (lake_fold or {}).get("wax") or {}
     lake_used = (lake_fold or {}).get("used") or {}
+    lake_removed = (lake_fold or {}).get("removed")
 
     def _row(
         eid,
@@ -3168,6 +3180,15 @@ def get_entity_metrics_table(
             if wax is None and agg and agg.get("wax"):
                 wax = [agg["wax"].get("picks", 0), agg["wax"].get("wins", 0)]
             row["wax"] = _wax_block(wax)
+            removed = lake_removed.get(eid, 0) if lake_removed is not None else None
+            if removed is None and agg:
+                removed = agg.get("removed")
+            row["removed"] = int(removed) if removed is not None else None
+            row["removed_rate"] = (
+                round(removed / picks * 100, 1)
+                if removed is not None and picks
+                else None
+            )
         if entity_type == "potions":
             used = lake_used.get(eid) if lake_fold else None
             if used is None and agg:
@@ -3321,6 +3342,16 @@ def _wax_block(counts) -> dict | None:
         "win_rate": round(wins / picks * 100, 1),
         "win_rate_ci": wilson_interval(wins, picks),
     }
+
+
+def _removed_fields(removed, picks) -> tuple[int | None, float | None]:
+    """(removed, removed_rate) for one relic block: seats where the relic
+    left before run end over seats that ever held it, in percent. None
+    when the store predates the counter."""
+    if removed is None:
+        return None, None
+    removed = int(removed)
+    return removed, (round(removed / picks * 100, 1) if picks else None)
 
 
 def _section_table(name: str, bracket: str) -> dict[str, Any] | None:
@@ -3574,6 +3605,12 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         all_fold = {}
     all_entry = (all_fold.get("entries") or {}).get(key[1]) or []
     fold_seats = all_fold.get("total_seats") or 0
+    all_removed = all_fold.get("removed")
+    top_removed = top_removed_rate = None
+    if entity_type == "relics":
+        top_removed, top_removed_rate = _removed_fields(
+            all_removed.get(key[1], 0) if all_removed is not None else None, picks
+        )
 
     def _lift_block(counts, seats: int) -> dict[str, Any]:
         """Lift-family keys for one bracket block, from a cube fold entry;
@@ -3595,6 +3632,8 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
     brackets: dict[str, Any] = {
         "all": {
             "picks": picks,
+            "removed": top_removed,
+            "removed_rate": top_removed_rate,
             "wins": wins,
             "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
             "elo": agg.get("elo"),
@@ -3658,6 +3697,10 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             "hold_rate": None,
             "by_character": _shape_chars(cd.get("by_character") or {}),
         }
+        if entity_type == "relics":
+            brackets[ck]["removed"], brackets[ck]["removed_rate"] = _removed_fields(
+                cd.get("removed"), cp
+            )
     # Live overlay: every bracket cell the cube can fold replaces the
     # frozen snapshot's number (the retired rebuilder left agg_brackets
     # permanently stale — a card page showed a weeks-old 82.1% next to the
@@ -3736,6 +3779,13 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                     **_lift_block(pw, cseats),
                     "by_character": by_char_rows,
                 }
+                if entity_type == "relics":
+                    rmap = fold.get("removed")
+                    brackets[ck]["removed"], brackets[ck]["removed_rate"] = (
+                        _removed_fields(
+                            rmap.get(eid, 0) if rmap is not None else None, cp
+                        )
+                    )
         except Exception:
             logger.warning("lake bracket overlay failed", exc_info=True)
     return {
@@ -3745,6 +3795,8 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
         "wins": wins,
         "win_rate": round(wins / picks * 100, 1) if picks else 0.0,
         "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
+        "removed": top_removed,
+        "removed_rate": top_removed_rate,
         **_lift_block(all_entry, fold_seats),
         "total_runs": total_runs,
         "total_seats": all_seats,

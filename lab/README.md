@@ -59,13 +59,19 @@ The build also emits the decision-level tables the metrics pages use:
 - `shop_items.parquet` - shop shelf offers with the acquisition floor.
 - `potion_events.parquet` - per-floor potion use events (feeds potion
   use_rate).
+- `relics_removed.parquet` - per-floor relic removal events (Relic Trader
+  trades, Sword of Stone transforms, replaced starters, event removals).
 - `relics.parquet` gains an `is_wax` flag so wax-block copies can be
-  counted separately from Toy Box duplicates.
+  counted separately from Toy Box duplicates, plus `removed` /
+  `floor_removed`: one row per relic a seat EVER held — the end-of-run belt
+  (removed=false) plus removals never re-acquired (removed=true, with the
+  pickup floor filled in from picked relic_choices rows when known).
 
 `lake_stats` session tables (`run_depth`, `floor_curve`, `act_offsets`,
 `relic_choice_rows`) and the entity cube sections (`wax`, `potion_used`,
-`offers` per type, `offers_by_character`, `shops`, `events`, `rest`) are
-loaded from these parquet files by the lake_stats stage.
+`relic_removed`, `offers` per type, `offers_by_character`, `shops`,
+`events`, `rest`) are loaded from these parquet files by the lake_stats
+stage.
 
 ## Running a single stage
 
