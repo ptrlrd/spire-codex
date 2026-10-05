@@ -100,6 +100,12 @@ def publish() -> dict:
         client.upload_file(str(path), bucket, f"gen/{gen_id}/{name}")
         files[name] = {"bytes": st.st_size, "sha256": _sha256(path)}
         print(f"publish: {name} ({st.st_size:,} bytes)", flush=True)
+    for path in sorted((LAKE / "exports_by_version").glob("*.jsonl.gz")):
+        key = f"exports_by_version/{path.name}"
+        st = path.stat()
+        client.upload_file(str(path), bucket, f"gen/{gen_id}/{key}")
+        files[key] = {"bytes": st.st_size, "sha256": _sha256(path)}
+        print(f"publish: {key} ({st.st_size:,} bytes)", flush=True)
 
     manifest = {
         "generation_id": gen_id,
