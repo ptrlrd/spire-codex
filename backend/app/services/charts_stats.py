@@ -780,16 +780,43 @@ def winrate_over_time(rows: list[tuple], split: str) -> list[dict]:
     return series
 
 
+MA_DAYS = 30
+
+
+def _moving_average(days: dict[int, int], first: int, last: int) -> dict[int, float]:
+    """Trailing MA_DAYS-day average in runs per week, keyed by week, read at
+    each week's last day (or the newest day in the data). None until a full
+    window of history exists."""
+    out: dict[int, float] = {}
+    window = 0
+    for d in range(first, last + 1):
+        window += days.get(d, 0)
+        if d - MA_DAYS >= first:
+            window -= days.get(d - MA_DAYS, 0)
+        if (d + 1) % 7 == 0 or d == last:
+            if d - first + 1 >= MA_DAYS:
+                out[d // 7] = round(window * 7 / MA_DAYS, 1)
+    return out
+
+
 def runs_over_time(rows: list[tuple], split: str, day: int = DAY) -> list[dict]:
     series = []
     for sid, label, sub in _series_split(rows, split):
-        weeks: dict[int, int] = {}
+        days: dict[int, int] = {}
         for r in sub:
             if r[day] > 0:
-                weeks[r[day] // 7] = weeks.get(r[day] // 7, 0) + 1
-        points = [{"x": _week_label(wk), "y": n} for wk, n in sorted(weeks.items())]
-        if points:
-            series.append({"id": sid, "label": label, "points": points})
+                days[r[day]] = days.get(r[day], 0) + 1
+        if not days:
+            continue
+        weeks: dict[int, int] = {}
+        for d, n in days.items():
+            weeks[d // 7] = weeks.get(d // 7, 0) + n
+        ma = _moving_average(days, min(days), max(days))
+        points = [
+            {"x": _week_label(wk), "y": n, "ma": ma.get(wk)}
+            for wk, n in sorted(weeks.items())
+        ]
+        series.append({"id": sid, "label": label, "points": points})
     return series
 
 

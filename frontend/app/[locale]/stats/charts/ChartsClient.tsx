@@ -157,6 +157,7 @@ interface ChartSpec {
   horizontal: boolean;
   daily: boolean;
   etype_fixed: string | null;
+  ma?: boolean;
   axis: { x: string; y: string };
   desc: string;
 }
@@ -174,6 +175,7 @@ interface Point {
   y: number;
   n?: number;
   win?: number;
+  ma?: number | null;
 }
 interface Series {
   id: string;
@@ -390,6 +392,7 @@ function ChartsClientInner() {
   );
   const [username, setUsername] = useState(searchParams.get("user") || "");
   const [split, setSplit] = useState(searchParams.get("split") || "character");
+  const [avg, setAvg] = useState(searchParams.get("avg") === "30");
   const [stat, setStat] = useState(searchParams.get("stat") || "deck_size");
   const [xStat, setXStat] = useState(searchParams.get("x") || "floors_reached");
   const [yStat, setYStat] = useState(searchParams.get("y") || "deck_size");
@@ -525,6 +528,7 @@ function ChartsClientInner() {
     if (buildId) p.set("version", buildId);
     if (gameMode !== "standard") p.set("mode", gameMode);
     if (username) p.set("user", username);
+    if (spec?.ma && avg) p.set("avg", "30");
     if (split !== "character" && spec?.splits.includes(split))
       p.set("split", split);
     if (spec?.needs.includes("stat") && stat) p.set("stat", stat);
@@ -550,6 +554,7 @@ function ChartsClientInner() {
     gameMode,
     username,
     split,
+    avg,
     stat,
     xStat,
     yStat,
@@ -878,6 +883,16 @@ function ChartsClientInner() {
               {t("Daily runs only.")}
             </span>
           )}
+          {spec?.ma && (
+            <label className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)]">
+              <input
+                type="checkbox"
+                checked={avg}
+                onChange={(e) => setAvg(e.target.checked)}
+              />
+              {t("30-day average")}
+            </label>
+          )}
         </div>
         <p className="text-xs text-[var(--text-muted)]">
           {t("Cohort")}:{" "}
@@ -916,6 +931,7 @@ function ChartsClientInner() {
             spec={spec!}
             data={localizeChart(data, spec!, t, charNames, xNames)}
             lang={lang}
+            showAvg={!!spec?.ma && avg}
           />
         )}
         {data && !loading && !error && (
@@ -938,14 +954,16 @@ function ExplorerChart({
   spec,
   data,
   lang,
+  showAvg,
 }: {
   spec: ChartSpec;
   data: ChartResponse;
   lang: string;
+  showAvg: boolean;
 }) {
   if (spec.scatter) return <ScatterChart data={data} lang={lang} />;
   if (spec.bars) return <BarRanking data={data} horizontal={spec.horizontal} />;
-  return <LineChart data={data} lang={lang} />;
+  return <LineChart data={data} lang={lang} showAvg={showAvg} />;
 }
 
 function legendOpts(count: number) {
@@ -1021,7 +1039,15 @@ function lineDataset(s: Series, i: number) {
   };
 }
 
-function LineChart({ data, lang }: { data: ChartResponse; lang: string }) {
+function LineChart({
+  data,
+  lang,
+  showAvg,
+}: {
+  data: ChartResponse;
+  lang: string;
+  showAvg: boolean;
+}) {
   const t = useT();
   const numericX = data.series.every((s) =>
     s.points.every((p) => typeof p.x === "number"),
@@ -1054,9 +1080,9 @@ function LineChart({ data, lang }: { data: ChartResponse; lang: string }) {
     }
   }
   labels.sort();
-  const datasets = data.series.map((s, i) => {
+  const datasets = data.series.flatMap((s, i) => {
     const byX = new Map(s.points.map((p) => [String(p.x), p]));
-    return {
+    const line = {
       ...lineDataset(s, i),
       data: labels.map((l) => {
         const p = byX.get(l);
@@ -1065,6 +1091,23 @@ function LineChart({ data, lang }: { data: ChartResponse; lang: string }) {
           : { x: l, y: null as number | null };
       }),
     };
+    if (!showAvg) return [line];
+    const color = seriesColor(s.id, i);
+    return [
+      line,
+      {
+        label: t("{name} 30-day avg", { name: s.label }),
+        borderColor: color,
+        backgroundColor: color,
+        borderWidth: s.id === "ALL" ? 2 : 1.25,
+        borderDash: [6, 4],
+        pointRadius: 0,
+        pointHoverRadius: 3,
+        tension: 0.3,
+        spanGaps: true,
+        data: labels.map((l) => ({ x: l, y: byX.get(l)?.ma ?? null })),
+      },
+    ];
   });
   return (
     <div className="h-[460px]">

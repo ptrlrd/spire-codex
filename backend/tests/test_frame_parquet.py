@@ -207,4 +207,20 @@ def test_uploads_chart_buckets_by_upload_day():
         cs._week_label(20600 // 7),
         cs._week_label(20601 // 7),
     ]
-    assert uploaded[0]["points"] == [{"x": cs._week_label(20705 // 7), "y": 2}]
+    assert uploaded[0]["points"] == [
+        {"x": cs._week_label(20705 // 7), "y": 2, "ma": None}
+    ]
+
+
+def test_runs_over_time_thirty_day_average():
+    base = _sample_rows()[0]
+    start = 20601
+    rows = [base[:9] + (start + i,) + base[10:] for i in range(70)]
+    rows += [base[:9] + (start + 69,) + base[10:]] * 30
+    points = cs.runs_over_time(rows, "none")[0]["points"]
+    by_week = {p["x"]: p for p in points}
+    assert all(p["ma"] is None for p in points[:4])
+    assert by_week[cs._week_label((start + 34) // 7)]["ma"] == 7.0
+    last = points[-1]
+    assert last["x"] == cs._week_label((start + 69) // 7)
+    assert last["ma"] == round(60 * 7 / 30, 1)

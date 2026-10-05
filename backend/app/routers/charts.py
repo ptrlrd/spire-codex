@@ -255,6 +255,7 @@ CHARTS: dict[str, dict] = {
         "label": "Runs played over time",
         "group": "Volume",
         "kind": "frame",
+        "ma": True,
         "splits": _ALL_SPLITS,
         "axis": {"x": "Week", "y": "Runs"},
         "desc": "Weekly runs by the date they were played.",
@@ -263,6 +264,7 @@ CHARTS: dict[str, dict] = {
         "label": "Runs uploaded over time",
         "group": "Volume",
         "kind": "frame",
+        "ma": True,
         "splits": _ALL_SPLITS,
         "axis": {"x": "Week", "y": "Runs"},
         "desc": "Weekly runs by the date they reached Spire Codex.",
@@ -317,6 +319,7 @@ def charts_meta(request: Request):
                 "horizontal": c.get("horizontal", False),
                 "daily": c.get("daily", False),
                 "etype_fixed": c.get("etype_fixed"),
+                "ma": c.get("ma", False),
                 "axis": c["axis"],
                 "desc": c["desc"],
             }
