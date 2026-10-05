@@ -14,6 +14,7 @@ import {
 } from "@/app/components/ProfileInsights";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
+import YourStats from "./YourStats";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -71,7 +72,7 @@ export default function PlayerProfileClient({
 
   if (!data && (status === "loading" || building)) {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-8 space-y-3">
+      <div className="max-w-7xl mx-auto px-4 py-8 space-y-3">
         <div className="h-8 w-56 bg-[var(--bg-card)] rounded animate-pulse" />
         {building && (
           <p className="text-sm text-[var(--text-secondary)]">
@@ -93,7 +94,7 @@ export default function PlayerProfileClient({
 
   if (status === "missing" || !data) {
     return (
-      <div className="max-w-5xl mx-auto px-4 py-12 text-center">
+      <div className="max-w-7xl mx-auto px-4 py-12 text-center">
         <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-3">
           {username}
         </h1>
@@ -105,7 +106,7 @@ export default function PlayerProfileClient({
   }
 
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8 space-y-6">
+    <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
       <OwnerTheme username={data.username || username} />
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
@@ -139,6 +140,7 @@ export default function PlayerProfileClient({
           {t("Not enough data yet.")}
         </p>
       )}
+      <YourStats username={data.username || username} filters={filters} />
     </div>
   );
 }

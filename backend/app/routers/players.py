@@ -100,3 +100,49 @@ def player_insights(
         "public, max-age=300" if data.get("runs_walked") else "no-store"
     )
     return {"username": user.get("username"), **data}
+
+
+@router.get("/{username}/stats", tags=["Players"])
+@limiter.limit(rate_limit_config.endpoint_limit("players.stats", "60/minute"))
+def player_stats(
+    username: str,
+    request: Request,
+    response: Response,
+    character: str | None = None,
+    ascension: int | None = None,
+    version: str | None = None,
+    players: int | None = None,
+):
+    """One player's own cards, relics, potions, events, shops and campfire
+    stats from their uploaded runs, with personal lift. Same filters and
+    privacy rule as /insights: 404 for unknown or private profiles."""
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    from ..services.player_stats import get_player_stats
+    from ..services.run_entity_stats import _official_character_ids
+    from ..services.users_db import get_user_by_username
+
+    character = (character or "").strip().upper() or None
+    _validate_insight_filters(ascension, version, players)
+    if character:
+        official = _official_character_ids()
+        if official and character not in official:
+            raise HTTPException(status_code=400, detail="Unknown character")
+
+    user = get_user_by_username(username)
+    if not user or user.get("profile_private"):
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    data = get_player_stats(
+        str(user["_id"]),
+        character=character,
+        ascension=ascension,
+        version=version,
+        players=players,
+    )
+    if data is None:
+        response.headers["Cache-Control"] = "no-store"
+        return {"username": user.get("username"), "available": False}
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return {"username": user.get("username"), "available": True, **data}

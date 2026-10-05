@@ -32,6 +32,11 @@ def _stages():
 
         return player_elo_board.build()
 
+    def player_stats():
+        import player_stats as stage
+
+        return stage.build()
+
     def frame():
         from app.services.charts_stats import store_frame_parquet
 
@@ -68,6 +73,7 @@ def _stages():
         "profiles": profiles,
         "replay_guard": replay_guard,
         "player_elo": player_elo,
+        "player_stats": player_stats,
     }
 
 

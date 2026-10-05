@@ -1051,6 +1051,13 @@ export default async function DevelopersPage({ params }: Props) {
                 },
                 {
                   method: "GET",
+                  path: "/api/players/{username}/stats",
+                  desc: t(
+                    "One player's own cards, relics, potions, events, shops and campfire stats with personal Lift; same filters and privacy as insights",
+                  ),
+                },
+                {
+                  method: "GET",
                   path: "/api/presence/active",
                   desc: t("Live runs from the in-game mod, deepest first"),
                 },
