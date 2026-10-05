@@ -14,7 +14,10 @@ import { useGameLocale, useT } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { colorTextClass } from "@/lib/character-colors";
 import { restSiteLabel } from "@/lib/rest-site-labels";
-import fixture from "./__design__/fixture.json";
+import {
+  insightFilterQuery,
+  type InsightFilters,
+} from "@/app/components/ProfileInsights";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const SMALL_SAMPLE = 20;
@@ -38,7 +41,7 @@ interface EntityRow {
   runs: number;
   wins: number;
   win_rate: number;
-  lift: number;
+  lift: number | null;
   offered?: number;
   taken?: number;
 }
@@ -61,8 +64,8 @@ interface CampfireRow {
   wins: number;
   win_rate: number;
 }
-interface Fixture {
-  player_id: string;
+interface PlayerStatsData {
+  available: boolean;
   runs: number;
   wins: number;
   tables: {
@@ -74,7 +77,14 @@ interface Fixture {
     campfires: CampfireRow[];
   };
 }
-const data = fixture as unknown as Fixture;
+const EMPTY_TABLES: PlayerStatsData["tables"] = {
+  cards: [],
+  relics: [],
+  potions: [],
+  events: [],
+  shops: [],
+  campfires: [],
+};
 
 interface CatalogEntry {
   id: string;
@@ -103,7 +113,9 @@ interface MetricRow {
   name?: string | null;
   win_rate?: number | null;
   lift?: number | null;
+  elo?: number | null;
   share?: number | null;
+  upgraded?: boolean;
 }
 
 interface PickRow {
@@ -114,11 +126,12 @@ interface PickRow {
   starter: boolean;
   runs: number;
   winRate: number;
-  lift: number;
+  lift: number | null;
   offered: number | null;
   taken: number | null;
   communityWinRate: number | null;
   communityLift: number | null;
+  communityElo: number | null;
 }
 interface EventOptionRow {
   id: string;
@@ -187,7 +200,14 @@ function int(v: number | null): string {
 }
 function isStarter(c: CatalogEntry | undefined): boolean {
   const key = (c?.rarity_key || c?.rarity || "").toLowerCase();
-  return key === "starter" || key === "basic";
+  const type = (c?.type || "").toLowerCase();
+  return (
+    key === "starter" ||
+    key === "basic" ||
+    key === "curse" ||
+    type === "curse" ||
+    type === "status"
+  );
 }
 
 const EMPTY_CATALOG: Record<string, CatalogEntry> = {};
@@ -331,6 +351,8 @@ function SummaryCard({
   );
 }
 
+const PREVIEW_ROWS = 10;
+
 function PersonalStatsTable<T>({
   columns,
   groups,
@@ -374,96 +396,151 @@ function PersonalStatsTable<T>({
         .filter((g) => g.rows.length > 0),
     [groups, active, dir, rowKey],
   );
+  const t = useT();
+  const [expanded, setExpanded] = useState(false);
+  const total = sorted.reduce((n, g) => n + g.rows.length, 0);
+  const shown = useMemo(() => {
+    if (expanded) return sorted;
+    let left = PREVIEW_ROWS;
+    const out: typeof sorted = [];
+    for (const g of sorted) {
+      if (left <= 0) break;
+      out.push({ ...g, rows: g.rows.slice(0, left) });
+      left -= g.rows.length;
+    }
+    return out;
+  }, [sorted, expanded]);
   return (
-    <div className="overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40">
-      <table className="w-full min-w-[720px] border-collapse text-sm">
-        <thead className="sticky top-0 z-10 bg-[var(--bg-card)] text-[var(--text-secondary)]">
-          <tr className="border-b border-[var(--border-subtle)]">
-            <th className="w-10 px-2 py-2 text-right font-medium tabular-nums">
-              #
-            </th>
-            {columns.map((col) => (
-              <th
-                key={col.key}
-                title={col.title}
-                onClick={() => onSort(col)}
-                className={`cursor-help px-3 py-2 font-medium select-none hover:text-[var(--accent-gold)] ${
-                  col.align === "right" ? "text-right" : "text-left"
-                } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
-              >
-                {col.label}
-                {col.key === sortKey ? (dir === -1 ? " ▾" : " ▴") : ""}
+    <>
+      <div
+        className={`overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 ${
+          expanded ? "max-h-[640px] overflow-y-auto" : ""
+        }`}
+      >
+        <table className="w-full min-w-[720px] border-collapse text-sm">
+          <thead className="sticky top-0 z-10 bg-[var(--bg-card)] text-[var(--text-secondary)]">
+            <tr className="border-b border-[var(--border-subtle)]">
+              <th className="w-10 px-2 py-2 text-right font-medium tabular-nums">
+                #
               </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.map((g) => (
-            <Fragment key={g.key}>
-              {g.label !== null && (
-                <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card)]/70">
-                  <td />
-                  <td
-                    colSpan={columns.length}
-                    className="px-3 py-1.5 text-xs font-semibold tracking-wide uppercase text-[var(--text-secondary)]"
-                  >
-                    {g.label}
-                    {g.note && (
-                      <span className="ml-2 font-normal tracking-normal normal-case text-[var(--text-muted)]">
-                        {g.note}
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              )}
-              {g.rows.map((r, i) => {
-                const small = rowSmall(r);
-                return (
-                  <tr
-                    key={rowKey(r)}
-                    className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
-                      small ? "opacity-50" : ""
-                    }`}
-                    title={small ? smallTitle : undefined}
-                  >
-                    <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
-                      {i + 1}
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  title={col.title}
+                  onClick={() => onSort(col)}
+                  className={`cursor-help px-3 py-2 font-medium select-none hover:text-[var(--accent-gold)] ${
+                    col.align === "right" ? "text-right" : "text-left"
+                  } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
+                >
+                  {col.label}
+                  {col.key === sortKey ? (dir === -1 ? " ▾" : " ▴") : ""}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {shown.map((g) => (
+              <Fragment key={g.key}>
+                {g.label !== null && (
+                  <tr className="border-b border-[var(--border-subtle)] bg-[var(--bg-card)]/70">
+                    <td />
+                    <td
+                      colSpan={columns.length}
+                      className="px-3 py-1.5 text-xs font-semibold tracking-wide uppercase text-[var(--text-secondary)]"
+                    >
+                      {g.label}
+                      {g.note && (
+                        <span className="ml-2 font-normal tracking-normal normal-case text-[var(--text-muted)]">
+                          {g.note}
+                        </span>
+                      )}
                     </td>
-                    {columns.map((col) => (
-                      <td
-                        key={col.key}
-                        className={`px-3 py-1.5 ${
-                          col.align === "right" ? "text-right tabular-nums" : ""
-                        }`}
-                      >
-                        {col.cell(r)}
-                      </td>
-                    ))}
                   </tr>
-                );
-              })}
-            </Fragment>
-          ))}
-        </tbody>
-      </table>
-      {sorted.every((g) => g.rows.length === 0) && (
-        <p className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
-          –
-        </p>
+                )}
+                {g.rows.map((r, i) => {
+                  const small = rowSmall(r);
+                  return (
+                    <tr
+                      key={rowKey(r)}
+                      className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
+                        small ? "opacity-50" : ""
+                      }`}
+                      title={small ? smallTitle : undefined}
+                    >
+                      <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
+                        {i + 1}
+                      </td>
+                      {columns.map((col) => (
+                        <td
+                          key={col.key}
+                          className={`px-3 py-1.5 ${
+                            col.align === "right"
+                              ? "text-right tabular-nums"
+                              : ""
+                          }`}
+                        >
+                          {col.cell(r)}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })}
+              </Fragment>
+            ))}
+          </tbody>
+        </table>
+        {sorted.every((g) => g.rows.length === 0) && (
+          <p className="px-4 py-8 text-center text-sm text-[var(--text-muted)]">
+            –
+          </p>
+        )}
+      </div>
+      {total > PREVIEW_ROWS && (
+        <div className="mt-2 text-sm">
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {expanded
+              ? t("Show less")
+              : t("Show more ({n})", { n: total.toLocaleString() })}
+          </button>
+        </div>
       )}
-    </div>
+    </>
   );
 }
 
 const rowKeyOf = (r: { id: string }) => r.id;
 
-function YourStatsInner() {
+function communityQuery(f: InsightFilters): string {
+  const player = { "1": "solo", "2": "2p", "3": "3p", "4": "4p" }[f.players];
+  const parts = [player, f.ascension === "10" ? "a10" : "", f.version].filter(
+    Boolean,
+  );
+  const params = new URLSearchParams({ bracket: parts.join(":") || "all" });
+  if (f.character) params.set("character", f.character);
+  return params.toString();
+}
+
+function YourStatsInner({
+  username,
+  filters,
+}: {
+  username: string;
+  filters: InsightFilters;
+}) {
   const t = useT();
   const lang = useGameLocale();
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-  const design = searchParams.get("design") === "1";
+  const data = useApiData<PlayerStatsData>(
+    `${API}/api/players/${encodeURIComponent(username)}/stats${insightFilterQuery(filters)}`,
+  );
+  const ready = !!data?.available && data.runs > 0;
+  const tables = ready && data ? data.tables : EMPTY_TABLES;
   const rawTab = searchParams.get("stats");
   const tab = TAB_IDS.includes(rawTab as TabId) ? (rawTab as TabId) : "cards";
   const [showStarters, setShowStarters] = useState(false);
@@ -472,8 +549,8 @@ function YourStatsInner() {
 
   const catalog = useCatalogs();
   const communityUrl =
-    design && tab !== "shops"
-      ? `${API}/api/runs/metrics/${tab}?bracket=all${
+    ready && tab !== "shops"
+      ? `${API}/api/runs/metrics/${tab}?${communityQuery(filters)}${
           tab === "campfires" ? `&lang=${encodeURIComponent(lang)}` : ""
         }`
       : null;
@@ -481,7 +558,7 @@ function YourStatsInner() {
     useApiData<{ rows?: MetricRow[] }>(communityUrl)?.rows ?? null;
   const eventCatalog =
     useApiData<EventCatalogEntry[]>(
-      design && tab === "events"
+      ready && tab === "events"
         ? `${API}/api/events?lang=${encodeURIComponent(lang)}`
         : null,
     ) ?? EMPTY_EVENTS;
@@ -490,6 +567,7 @@ function YourStatsInner() {
     const m = new Map<string, MetricRow>();
     if (metrics)
       for (const r of metrics) {
+        if (r.upgraded) continue;
         const key = (r.id || r.choice || "").toUpperCase();
         if (key) m.set(key, r);
       }
@@ -512,7 +590,7 @@ function YourStatsInner() {
       PickRow[]
     >;
     for (const kind of ENTITY_TYPES) {
-      out[kind] = data.tables[kind]
+      out[kind] = tables[kind]
         .map((r) => {
           const c = catalog[r.id.toUpperCase()];
           if (!c) return null;
@@ -533,12 +611,13 @@ function YourStatsInner() {
             taken: r.taken ?? null,
             communityWinRate: m?.win_rate ?? null,
             communityLift: m?.lift ?? null,
+            communityElo: m?.elo ?? null,
           };
         })
         .filter((r) => r !== null);
     }
     return out;
-  }, [catalog, communityById]);
+  }, [catalog, communityById, tables]);
 
   const eventGroups = useMemo(() => {
     const names = new Map<string, string>();
@@ -552,7 +631,7 @@ function YourStatsInner() {
       optionsByEvent.set(e.id.toUpperCase(), opts);
     }
     const byEvent = new Map<string, EventRow[]>();
-    for (const r of data.tables.events) {
+    for (const r of tables.events) {
       const eid = r.event.toUpperCase();
       if (!names.has(eid)) continue;
       const list = byEvent.get(eid);
@@ -572,11 +651,25 @@ function YourStatsInner() {
         key: eid,
         label: names.get(eid) ?? eid,
         note: t("{n} chosen", { n: total.toLocaleString() }),
-        rows: list.map((r) => {
+        rows: list.map((r, _i, all) => {
           const opt = opts[r.option] ?? opts[r.option.replace(/_\d+$/, "")];
+          const base = opt ? opt.title.replace(/\[[^\]]*\]/g, "") : r.option;
+          const twins = all.filter((o) => {
+            const oo = opts[o.option] ?? opts[o.option.replace(/_\d+$/, "")];
+            return (
+              (oo ? oo.title.replace(/\[[^\]]*\]/g, "") : o.option) === base
+            );
+          });
+          const tail = r.option.match(/_(\d+|[A-Z]+)$/);
+          const suffix =
+            twins.length > 1 && tail
+              ? /^\d+$/.test(tail[1])
+                ? ` · ${Number(tail[1]) + 1}`
+                : ` · ${tail[1].toLowerCase()}`
+              : "";
           return {
             id: `${eid}:${r.option}`,
-            title: opt ? opt.title.replace(/\[[^\]]*\]/g, "") : r.option,
+            title: base + suffix,
             hint: opt?.description
               ? opt.description.replace(/\[[^\]]*\]/g, "")
               : null,
@@ -591,11 +684,11 @@ function YourStatsInner() {
     }
     groups.sort((a, b) => a.label.localeCompare(b.label));
     return groups;
-  }, [eventCatalog, communityByEventOption, t]);
+  }, [eventCatalog, communityByEventOption, t, tables]);
 
   const shops = useMemo<ShopItemRow[]>(
     () =>
-      data.tables.shops
+      tables.shops
         .map((s) => {
           const c = catalog[s.id.toUpperCase()];
           if (!c) return null;
@@ -611,12 +704,12 @@ function YourStatsInner() {
           };
         })
         .filter((r) => r !== null),
-    [catalog],
+    [catalog, tables],
   );
 
   const campfires = useMemo<CampfireChoiceRow[]>(() => {
-    const total = data.tables.campfires.reduce((acc, r) => acc + r.chosen, 0);
-    return data.tables.campfires.map((r) => {
+    const total = tables.campfires.reduce((acc, r) => acc + r.chosen, 0);
+    return tables.campfires.map((r) => {
       const m = communityById.get(r.choice.toUpperCase());
       return {
         id: r.choice.toUpperCase(),
@@ -626,7 +719,7 @@ function YourStatsInner() {
         share: total > 0 ? (r.chosen / total) * 100 : 0,
       };
     });
-  }, [communityById, t]);
+  }, [communityById, t, tables]);
 
   const setTab = useCallback(
     (next: TabId) => {
@@ -637,14 +730,15 @@ function YourStatsInner() {
     [router, pathname, searchParams],
   );
 
-  if (!design) return null;
+  if (!ready || !data) return null;
 
   const smallTitle = t("Small sample: fewer than {min} runs", {
     min: SMALL_SAMPLE,
   });
   const winTitle = t("Your win rate in the runs that included it.");
   const ranked = [...picks.cards, ...picks.relics, ...picks.potions].filter(
-    (r) => !r.starter && r.runs >= SMALL_SAMPLE,
+    (r): r is PickRow & { lift: number } =>
+      !r.starter && r.runs >= SMALL_SAMPLE && r.lift !== null,
   );
   const best = ranked.length
     ? ranked.reduce((a, b) => (b.lift > a.lift ? b : a))
@@ -730,6 +824,20 @@ function YourStatsInner() {
     ];
     if (tab !== "potions") {
       columns.push(
+        {
+          key: "communityElo",
+          label: "Community Elo",
+          title: t(
+            "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
+          ),
+          align: "right",
+          descFirst: true,
+          value: (r) => r.communityElo,
+          cell: (r) =>
+            r.communityElo === null
+              ? "–"
+              : Math.round(r.communityElo).toLocaleString(),
+        },
         {
           key: "communityLift",
           label: "Community Lift",
@@ -1036,7 +1144,7 @@ function YourStatsInner() {
               checked={showStarters}
               onChange={(e) => setShowStarters(e.target.checked)}
             />
-            {t("Show starters")}
+            {t("Show starters and curses")}
           </label>
         )}
         {hiddenCount > 0 && (
@@ -1058,10 +1166,16 @@ function YourStatsInner() {
 
 /** useSearchParams needs a Suspense boundary above it now that the root
  * layout no longer provides one; keep it local to this section. */
-export default function YourStats() {
+export default function YourStats({
+  username,
+  filters,
+}: {
+  username: string;
+  filters: InsightFilters;
+}) {
   return (
     <Suspense fallback={null}>
-      <YourStatsInner />
+      <YourStatsInner username={username} filters={filters} />
     </Suspense>
   );
 }

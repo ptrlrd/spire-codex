@@ -140,7 +140,7 @@ export default function PlayerProfileClient({
           {t("Not enough data yet.")}
         </p>
       )}
-      <YourStats />
+      <YourStats username={data.username || username} filters={filters} />
     </div>
   );
 }

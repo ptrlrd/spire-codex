@@ -439,6 +439,18 @@ def main() -> None:
         print(f"player elo board failed: {e}", flush=True)
     _mark("player_elo")
     try:
+        import player_stats
+
+        stats = player_stats.build()
+        print(
+            f"player stats built ({stats['users']} players, {stats['rows']} rows) "
+            f"in {stats['seconds']:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"player stats failed: {e}", flush=True)
+    _mark("player_stats")
+    try:
         import seed_profiles
 
         t_seeds = time.time()
