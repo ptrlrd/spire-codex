@@ -2584,12 +2584,12 @@ def _prune_ghost_rows(accs: dict[str, dict]) -> None:
 def build_encounter_store(con=None) -> dict:
     """Per-bracket encounter-stats blob from the lake, in encounter_stats'
     finalized snapshot shape ({key: {"version": N, "cells": [[enc, act,
-    room_type, character, mp, total, fatal, dmg, turns], ...]}}) so
-    get_encounter_stats can rollup() from it unchanged. floor_events rows
+    room_type, character, mp, total, fatal, dmg, turns, abandoned], ...]}})
+    so get_encounter_stats can rollup() from it unchanged. floor_events rows
     carry the walk's exact semantics (per-location party damage summed to
-    the room, 1-based acts, prefix-stripped encounter ids), and a fatal is
-    counted per visited room whose encounter matches the run's killer on a
-    loss — the accumulator's rule, replicated."""
+    the room, 1-based acts, prefix-stripped encounter ids). A fatal is a
+    visited room whose encounter matches the run's killer on a loss that
+    wasn't abandoned; an abandon in that fight counts as abandoned instead."""
     from . import encounter_stats as es
 
     own = con is None
@@ -2613,10 +2613,15 @@ def build_encounter_store(con=None) -> dict:
               e.cell,
               count(*) AS total,
               count(*) FILTER (
-                NOT e.win AND e.killed_by_encounter = f.encounter
+                NOT e.win AND NOT coalesce(e.was_abandoned, false)
+                AND e.killed_by_encounter = f.encounter
               ) AS fatal,
               sum(coalesce(f.damage_taken, 0)) AS dmg,
-              sum(coalesce(f.turns, 0)) AS turns
+              sum(coalesce(f.turns, 0)) AS turns,
+              count(*) FILTER (
+                coalesce(e.was_abandoned, false)
+                AND e.killed_by_encounter = f.encounter
+              ) AS abandoned
             FROM read_parquet('{LAKE_DIR}/floor_events.parquet') f
             JOIN cells e ON f.run_hash = e.run_hash
             WHERE f.room_type IN ('monster', 'elite', 'boss')
@@ -2635,25 +2640,26 @@ def build_encounter_store(con=None) -> dict:
             con.close()
 
     accs: dict[str, dict] = {}
-    for enc, act, rt, ch, mp, cell, t, fa, d, tu in rows:
+    for enc, act, rt, ch, mp, cell, t, fa, d, tu, ab in rows:
         ck = (enc, act, rt, ch, mp)
         for key in _encounter_blob_keys(cell, recent):
             cells = accs.setdefault(key, {})
             cur = cells.get(ck)
             if cur is None:
-                cells[ck] = [t, fa, float(d or 0), float(tu or 0)]
+                cells[ck] = [t, fa, float(d or 0), float(tu or 0), ab]
             else:
                 cur[0] += t
                 cur[1] += fa
                 cur[2] += float(d or 0)
                 cur[3] += float(tu or 0)
+                cur[4] += ab
     _prune_ghost_rows(accs)
     store: dict = {
         key: {
             "version": es.ENCOUNTER_VERSION,
             "cells": [
-                [enc, act, rt, ch, mp, t, fa, round(d, 1), round(tu, 1)]
-                for (enc, act, rt, ch, mp), (t, fa, d, tu) in cells.items()
+                [enc, act, rt, ch, mp, t, fa, round(d, 1), round(tu, 1), ab]
+                for (enc, act, rt, ch, mp), (t, fa, d, tu, ab) in cells.items()
             ],
         }
         for key, cells in accs.items()

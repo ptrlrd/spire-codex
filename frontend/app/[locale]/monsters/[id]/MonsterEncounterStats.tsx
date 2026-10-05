@@ -83,6 +83,7 @@ interface Row {
   room_type: string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
   characters: CharacterStat[];
@@ -332,9 +333,13 @@ export default function MonsterEncounterStats({
       </div>
 
       {current ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
           {tile(t("Runs"), current.total.toLocaleString())}
           {tile(t("Fatal"), `${fatalPct(current)}%`)}
+          {tile(
+            t("Abandoned"),
+            `${pct2(((current.abandoned ?? 0) / Math.max(current.total, 1)) * 100)}%`,
+          )}
           {tile(t("Avg damage"), current.avg_damage.toFixed(1))}
           {tile(t("Avg turns"), current.avg_turns.toFixed(1))}
         </div>

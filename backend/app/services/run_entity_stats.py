@@ -1454,6 +1454,7 @@ def _accumulate(rows, official_chars, wr_map, recent_versions=(), preloaded_blob
                 is_win=is_win,
                 player_count=row.get("player_count") or 1,
                 killed_by=row.get("killed_by"),
+                is_abandoned=bool(row.get("was_abandoned")),
             )
         except Exception:
             logger.warning(
