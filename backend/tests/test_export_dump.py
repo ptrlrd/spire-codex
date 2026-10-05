@@ -214,3 +214,16 @@ def test_version_export_redirects_404s_and_400s(tmp_path, monkeypatch, no_limite
         "/api/exports/runs", params={"version": "purple"}, follow_redirects=False
     )
     assert r.status_code == 400
+
+
+def test_version_alone_never_streams_live_before_the_first_dump(
+    tmp_path, monkeypatch, no_limiter
+):
+    monkeypatch.setattr(exports, "LAKE_DIR", tmp_path)
+    called = []
+    monkeypatch.setattr(
+        exports, "_page_hashes", lambda *a, **k: called.append(a) or ([], None)
+    )
+    r = client.get("/api/exports/runs?version=v0.111.0", follow_redirects=False)
+    assert r.status_code == 404
+    assert not called

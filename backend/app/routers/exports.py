@@ -110,7 +110,7 @@ def _version_param(
     ),
 ) -> str | None:
     """Validate `version` as a dependency so a malformed value 400s during
-    dependency resolution, before the rate limiter charges the request —
+    dependency resolution, before the rate limiter charges the request, in the
     same phase as the window/cursor params in `_page_params`."""
     if version is not None and not VERSION_RE.match(version):
         raise HTTPException(
@@ -422,6 +422,8 @@ def export_runs(
                         "X-Export-Runs": str(entry.get("runs") or ""),
                     },
                 )
+            raise HTTPException(status_code=404, detail="no export for version")
+        if version is not None:
             raise HTTPException(status_code=404, detail="no export for version")
     hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit, version)
 
