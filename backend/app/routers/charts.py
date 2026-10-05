@@ -252,12 +252,22 @@ CHARTS: dict[str, dict] = {
     },
     # ── Volume / distributions (frame) ──
     "runs-over-time": {
-        "label": "Runs submitted over time",
+        "label": "Runs played over time",
         "group": "Volume",
         "kind": "frame",
+        "ma": True,
         "splits": _ALL_SPLITS,
         "axis": {"x": "Week", "y": "Runs"},
-        "desc": "Weekly submission volume.",
+        "desc": "Weekly runs by the date they were played.",
+    },
+    "uploads-over-time": {
+        "label": "Runs uploaded over time",
+        "group": "Volume",
+        "kind": "frame",
+        "ma": True,
+        "splits": _ALL_SPLITS,
+        "axis": {"x": "Week", "y": "Runs"},
+        "desc": "Weekly runs by the date they reached Spire Codex.",
     },
     "stat-histogram": {
         "label": "Run stat distribution",
@@ -309,6 +319,7 @@ def charts_meta(request: Request):
                 "horizontal": c.get("horizontal", False),
                 "daily": c.get("daily", False),
                 "etype_fixed": c.get("etype_fixed"),
+                "ma": c.get("ma", False),
                 "axis": c["axis"],
                 "desc": c["desc"],
             }
@@ -337,6 +348,8 @@ def _build_frame_chart(
         return cs.winrate_over_time(rows, split)
     if key == "runs-over-time":
         return cs.runs_over_time(rows, split)
+    if key == "uploads-over-time":
+        return cs.runs_over_time(rows, split, cs.UPLOAD_DAY)
     if key == "deaths-by-floor":
         return cs.deaths_by_floor(rows, split)
     if key == "winrate-by-ascension":

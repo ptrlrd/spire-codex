@@ -19,8 +19,26 @@ def _sample_rows():
             3,
             "",
             "0.111.0",
+            20700,
         ),
-        ("ALL", 0, 0, "daily", 2, 0, 12, 15, 3, 20601, "", 1, 1, "2026-08-26", ""),
+        (
+            "ALL",
+            0,
+            0,
+            "daily",
+            2,
+            0,
+            12,
+            15,
+            3,
+            20601,
+            "",
+            1,
+            1,
+            "2026-08-26",
+            "",
+            20601,
+        ),
     ]
 
 
@@ -159,3 +177,50 @@ def test_store_frame_from_lake(monkeypatch, tmp_path):
     r5 = rows["NECROBINDER"]
     assert r5[6:9] == (0, 0, 0) and r5[12] == 0
     assert "DEFECT" not in rows and "IRONCLAD" not in rows
+
+
+def test_old_frame_parquet_without_upload_day_still_loads(monkeypatch, tmp_path):
+    import duckdb
+
+    path = tmp_path / "frame.parquet"
+    monkeypatch.setattr(cs, "_FRAME_PARQUET", path)
+    con = duckdb.connect()
+    con.execute(f"CREATE TABLE f ({cs._FRAME_COLS.rsplit(', upload_day', 1)[0]})")
+    con.executemany(
+        f"INSERT INTO f VALUES ({', '.join('?' * 15)})",
+        [r[:15] for r in _sample_rows()],
+    )
+    con.execute(f"COPY f TO '{path}' (FORMAT parquet)")
+    con.close()
+    loaded, count = cs._load_frame_parquet()
+    assert count == 2
+    rows = loaded.execute(f"SELECT {cs._FRAME_SELECT} FROM frame").fetchall()
+    assert {r[cs.UPLOAD_DAY] for r in rows} == {0}
+    loaded.close()
+
+
+def test_uploads_chart_buckets_by_upload_day():
+    rows = [r[:15] + (20705,) for r in _sample_rows()]
+    played = cs.runs_over_time(rows, "none")
+    uploaded = cs.runs_over_time(rows, "none", cs.UPLOAD_DAY)
+    assert [p["x"] for p in played[0]["points"]] == [
+        cs._week_label(20600 // 7),
+        cs._week_label(20601 // 7),
+    ]
+    assert uploaded[0]["points"] == [
+        {"x": cs._week_label(20705 // 7), "y": 2, "ma": None}
+    ]
+
+
+def test_runs_over_time_thirty_day_average():
+    base = _sample_rows()[0]
+    start = 20601
+    rows = [base[:9] + (start + i,) + base[10:] for i in range(70)]
+    rows += [base[:9] + (start + 69,) + base[10:]] * 30
+    points = cs.runs_over_time(rows, "none")[0]["points"]
+    by_week = {p["x"]: p for p in points}
+    assert all(p["ma"] is None for p in points[:4])
+    assert by_week[cs._week_label((start + 34) // 7)]["ma"] == 7.0
+    last = points[-1]
+    assert last["x"] == cs._week_label((start + 69) // 7)
+    assert last["ma"] == round(60 * 7 / 30, 1)
