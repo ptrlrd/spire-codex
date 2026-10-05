@@ -134,6 +134,32 @@ def raw_client() -> Any:
     return _get_client()
 
 
+_background_client: Any = None
+
+
+def background_client(timeout_seconds: float = 5.0) -> Any:
+    """A separate Redis client with a longer socket timeout for background
+    writers (the live-overlay pipelines), so big writes do not trip the
+    0.25 s budget meant for request-path cache reads."""
+    global _background_client
+    if not _REDIS_URL or _client_init_failed:
+        return None
+    if _background_client is None:
+        try:
+            import redis
+
+            _background_client = redis.Redis.from_url(
+                _REDIS_URL,
+                socket_timeout=timeout_seconds,
+                socket_connect_timeout=_SOCKET_TIMEOUT_SECONDS,
+                decode_responses=True,
+            )
+        except Exception:
+            logger.warning("background redis client init failed", exc_info=True)
+            return None
+    return _background_client
+
+
 def enabled() -> bool:
     """True when a cache backend is configured (not necessarily reachable)."""
     return bool(_REDIS_URL) and not _client_init_failed
