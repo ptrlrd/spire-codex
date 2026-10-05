@@ -4,6 +4,7 @@ import logging
 import io
 import json
 import os
+import re
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
@@ -53,6 +54,8 @@ OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 # while still claiming the cheap (paginated) rate-limit cost.
 MAX_PAGE_LIMIT = 50000
 
+VERSION_RE = re.compile(r"^v\d+(\.\d+)*(-rc\.\d+)?$")
+
 
 def _parse_iso(value: str, field: str) -> datetime:
     """Parse an ISO-8601 timestamp param into an aware UTC datetime (400 on
@@ -100,16 +103,35 @@ def _decode_cursor(token: str):
     return submitted_at, run_hash
 
 
-def _build_match(start, end, cursor) -> dict:
+def _version_param(
+    version: str | None = Query(
+        None,
+        description="Game version (build_id) to export, e.g. v0.111.0.",
+    ),
+) -> str | None:
+    """Validate `version` as a dependency so a malformed value 400s during
+    dependency resolution, before the rate limiter charges the request —
+    same phase as the window/cursor params in `_page_params`."""
+    if version is not None and not VERSION_RE.match(version):
+        raise HTTPException(
+            status_code=400, detail="version must look like v0.111.0 or v0.111.0-rc.1"
+        )
+    return version
+
+
+def _build_match(start, end, cursor, version: str | None = None) -> dict:
     """Mongo filter for the export: official runs (an official character in
     the official ascension range; A11+ is modded), an optional half-open
-    [start, end) submitted_at window, and an optional keyset continuation
-    strictly after `cursor`'s (submitted_at, _id)."""
+    [start, end) submitted_at window, an optional keyset continuation
+    strictly after `cursor`'s (submitted_at, _id), and an optional
+    `build_id` pin (indexed) when exporting one game version."""
     clauses: list[dict] = [
         {"character": {"$in": list(OFFICIAL_CHARACTERS)}},
         {"ascension": {"$gte": 0, "$lte": 10}},
         {"hidden": {"$ne": True}},
     ]
+    if version is not None:
+        clauses.append({"build_id": version})
 
     range_q: dict = {}
     if start is not None:
@@ -150,7 +172,11 @@ def _build_match(start, end, cursor) -> dict:
     return clauses[0] if len(clauses) == 1 else {"$and": clauses}
 
 
-def _page_hashes(start, end, cursor, limit):
+def _page_hashes(start, end, cursor, limit, version: str | None = None):
+    """Return (ordered_hashes, next_cursor). Runs are ordered by
+    (submitted_at, _id); next_cursor is None unless a bounded page is full
+    and at least one more run follows it. `version` pins the match to one
+    build_id."""
     """Return (ordered_hashes, next_cursor). Runs are ordered by
     (submitted_at, _id); next_cursor is None unless a bounded page is full
     and at least one more run follows it."""
@@ -158,7 +184,7 @@ def _page_hashes(start, end, cursor, limit):
 
     coll = _get_collection()
     finder = coll.find(
-        _build_match(start, end, cursor),
+        _build_match(start, end, cursor, version),
         {"_id": 1, "submitted_at": 1},
         no_cursor_timeout=True,
     ).sort([("submitted_at", ASCENDING), ("_id", ASCENDING)])
@@ -318,6 +344,7 @@ def export_runs(
         description="Max runs in this page. Omit for the full (unbounded) export.",
     ),
     page: tuple = Depends(_page_params),
+    version: str | None = Depends(_version_param),
 ):
     """Bulk export of submitted runs as gzipped JSONL.
 
@@ -340,6 +367,12 @@ def export_runs(
     * ``start`` / ``end`` restrict to a half-open ``[start, end)``
       submitted_at window (e.g. an incremental "everything since my last
       sync"). Combine with ``limit`` to also bound each page.
+    * ``version=v0.111.0`` narrows the export to one game patch. Alone, it
+      redirects to that patch's static file from the manifest's ``versions``
+      map (``/exports/runs-v0.111.0.jsonl.gz``; 404 when the manifest has no
+      such version). Combined with ``limit`` / ``start`` / ``end`` /
+      ``cursor`` it filters the paged pull on the indexed ``build_id``
+      instead, so one patch can also be walked in pages.
 
     Consumer notes:
 
@@ -364,16 +397,33 @@ def export_runs(
     if limit is None and start_dt is None and end_dt is None and cursor_key is None:
         manifest = dump_manifest()
         if manifest is not None:
-            return RedirectResponse(
-                DUMP_PATH,
-                status_code=302,
-                headers={
-                    "Cache-Control": "no-store",
-                    "X-Export-Generated-At": str(manifest.get("generated_at") or ""),
-                    "X-Export-Runs": str(manifest.get("runs") or ""),
-                },
-            )
-    hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit)
+            if version is None:
+                return RedirectResponse(
+                    DUMP_PATH,
+                    status_code=302,
+                    headers={
+                        "Cache-Control": "no-store",
+                        "X-Export-Generated-At": str(
+                            manifest.get("generated_at") or ""
+                        ),
+                        "X-Export-Runs": str(manifest.get("runs") or ""),
+                    },
+                )
+            entry = (manifest.get("versions") or {}).get(version)
+            if entry is not None:
+                return RedirectResponse(
+                    entry["url"],
+                    status_code=302,
+                    headers={
+                        "Cache-Control": "no-store",
+                        "X-Export-Generated-At": str(
+                            manifest.get("generated_at") or ""
+                        ),
+                        "X-Export-Runs": str(entry.get("runs") or ""),
+                    },
+                )
+            raise HTTPException(status_code=404, detail="no export for version")
+    hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit, version)
 
     headers = {
         "Content-Disposition": 'attachment; filename="spire-codex-runs.jsonl.gz"',
@@ -392,7 +442,8 @@ def export_runs(
 @router.get("/runs/manifest")
 def export_runs_manifest():
     """When the daily full-corpus dump was generated, how many runs it holds,
-    and where to fetch it. 404 until the first dump has been published."""
+    where to fetch it, and the per-version files under ``versions`` (newest
+    first). 404 until the first dump has been published."""
     manifest = dump_manifest()
     if manifest is None:
         raise HTTPException(status_code=404, detail="no full export published yet")
