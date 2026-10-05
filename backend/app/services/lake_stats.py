@@ -1066,17 +1066,22 @@ _CHOICES_CTE = """
                 {ch} AS ch
               FROM (
                 SELECT f.run_hash, f.act, f.floor_idx, ps.i AS pidx,
-                  upper(split_part(cc.u.card.id, '.', -1)) AS cid,
-                  coalesce(cc.u.was_picked, false) AS picked
-                FROM read_parquet('{lake}/floors.parquet') f
+                  cc.u.cid AS cid, cc.u.picked AS picked
+                FROM (
+                  SELECT run_hash, act, floor_idx,
+                    [[struct_pack(cid := upper(split_part(c.card.id, '.', -1)),
+                                  picked := coalesce(c.was_picked, false))
+                      FOR c IN p.card_choices
+                      IF c.card.id IS NOT NULL
+                        AND upper(split_part(c.card.id, '.', 1)) = 'CARD']
+                     FOR p IN players] AS pcc
+                  FROM read_parquet('{lake}/floors.parquet')
+                ) f
                 JOIN eligible e ON f.run_hash = e.run_hash,
-                LATERAL (SELECT unnest(f.players) AS u,
-                         generate_subscripts(f.players, 1) AS i) ps,
-                LATERAL (SELECT unnest(ps.u.card_choices) AS u) cc
-                WHERE cc.u.card.id IS NOT NULL
-                  AND upper(split_part(cc.u.card.id, '.', 1)) = 'CARD'
-                  AND upper(split_part(cc.u.card.id, '.', -1))
-                      NOT IN (SELECT cid FROM excluded_cards)
+                LATERAL (SELECT unnest(f.pcc) AS u,
+                         generate_subscripts(f.pcc, 1) AS i) ps,
+                LATERAL (SELECT unnest(ps.u) AS u) cc
+                WHERE cc.u.cid NOT IN (SELECT cid FROM excluded_cards)
               ) s
               {seat_join}
             )"""
@@ -1366,13 +1371,21 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
         con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
         _ids_temp_table(con, "upg_ids", upgradeable)
         upg_filter = "IN (SELECT cid FROM upg_ids)" if upgradeable else "IS NOT NULL"
-        rows = con.execute(
+        con.execute(
             f"""
+            CREATE OR REPLACE TABLE upg_winners AS
             WITH floors_g AS (
               SELECT f.run_hash, f.players,
                 row_number() OVER (PARTITION BY f.run_hash
                   ORDER BY f.act, f.floor_idx) AS gfloor
-              FROM read_parquet('{LAKE_DIR}/floors.parquet') f
+              FROM (
+                SELECT run_hash, act, floor_idx,
+                  [struct_pack(player_id := p.player_id,
+                               rest_site_choices := p.rest_site_choices,
+                               upgraded_cards := p.upgraded_cards)
+                   FOR p IN players] AS players
+                FROM read_parquet('{LAKE_DIR}/floors.parquet')
+              ) f
               JOIN eligible e ON f.run_hash = e.run_hash
             ),
             pmap AS (
@@ -1409,7 +1422,13 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
               SELECT run_hash, pidx, gfloor, wu.u AS card
               FROM smith, LATERAL (SELECT unnest(winners_raw) AS u) wu
               WHERE pidx IS NOT NULL AND wu.u {upg_filter}
-            ),
+            )
+            SELECT * FROM winners
+            """
+        )
+        rows = con.execute(
+            f"""
+            WITH winners AS (SELECT * FROM upg_winners),
             events AS (
               SELECT DISTINCT run_hash, pidx, gfloor FROM winners
             ),
@@ -1426,18 +1445,18 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
                 AND d.run_hash IN (SELECT run_hash FROM events)
               GROUP BY 1, 2, 3
             ),
+            deck_fu AS (
+              SELECT dm.run_hash, dm.pidx, dm.card, dm.fa, f2.fu
+              FROM deck_min dm
+              LEFT JOIN first_up f2 ON f2.run_hash = dm.run_hash
+                AND f2.pidx = dm.pidx AND f2.card = dm.card
+            ),
             losers AS (
               SELECT ev.run_hash, ev.pidx, ev.gfloor, dm.card
               FROM events ev
-              JOIN deck_min dm ON ev.run_hash = dm.run_hash AND ev.pidx = dm.pidx
-              LEFT JOIN first_up f2 ON f2.run_hash = ev.run_hash
-                AND f2.pidx = ev.pidx AND f2.card = dm.card
-              LEFT JOIN winners w2 ON w2.run_hash = ev.run_hash
-                AND w2.pidx = ev.pidx AND w2.gfloor = ev.gfloor
-                AND w2.card = dm.card
+              JOIN deck_fu dm ON ev.run_hash = dm.run_hash AND ev.pidx = dm.pidx
               WHERE dm.fa <= ev.gfloor
-                AND (f2.fu IS NULL OR f2.fu >= ev.gfloor)
-                AND w2.card IS NULL
+                AND (dm.fu IS NULL OR dm.fu > ev.gfloor)
             )
             SELECT w.card, l.card, count(*)
             FROM winners w
@@ -1449,6 +1468,10 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
         ).fetchall()
         return {(w, lo): n for w, lo, n in rows}
     finally:
+        try:
+            con.execute("DROP TABLE IF EXISTS upg_winners")
+        except Exception:
+            pass
         if own:
             con.close()
 
@@ -2037,16 +2060,21 @@ def build_entity_cube(con=None) -> dict:
             SELECT s.cell, {ch_expr}, s.cid, s.bucket, count(*),
               count(*) FILTER (s.picked)
             FROM (
-              SELECT e.cell, f.run_hash, ps.i AS pidx,
-                upper(split_part(cc.u.card.id, '.', -1)) AS cid,
-                least(f.act, 2) AS bucket,
-                coalesce(cc.u.was_picked, false) AS picked
-              FROM read_parquet('{LAKE_DIR}/floors.parquet') f
+              SELECT e.cell, f.run_hash, ps.i AS pidx, cc.u.cid AS cid,
+                f.bucket, cc.u.picked AS picked
+              FROM (
+                SELECT run_hash, least(act, 2) AS bucket,
+                  [[struct_pack(cid := upper(split_part(c.card.id, '.', -1)),
+                                picked := coalesce(c.was_picked, false))
+                    FOR c IN p.card_choices
+                    IF c.card.id IS NOT NULL AND c.card.id <> '']
+                   FOR p IN players] AS pcc
+                FROM read_parquet('{LAKE_DIR}/floors.parquet')
+              ) f
               JOIN cells e ON f.run_hash = e.run_hash,
-              LATERAL (SELECT unnest(f.players) AS u,
-                       generate_subscripts(f.players, 1) AS i) ps,
-              LATERAL (SELECT unnest(ps.u.card_choices) AS u) cc
-              WHERE cc.u.card.id IS NOT NULL AND cc.u.card.id <> ''
+              LATERAL (SELECT unnest(f.pcc) AS u,
+                       generate_subscripts(f.pcc, 1) AS i) ps,
+              LATERAL (SELECT unnest(ps.u) AS u) cc
             ) s
             {seat_join}
             GROUP BY 1, 2, 3, 4
