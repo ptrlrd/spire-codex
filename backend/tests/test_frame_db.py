@@ -6,7 +6,24 @@ from app.services import charts_stats as cs
 
 
 def _row(char, win, asc, mode, players, user, build="0.111.0", day=20600):
-    return (char, win, asc, mode, players, 3600, 45, 30, 12, day, user, 0, 3, "", build)
+    return (
+        char,
+        win,
+        asc,
+        mode,
+        players,
+        3600,
+        45,
+        30,
+        12,
+        day,
+        user,
+        0,
+        3,
+        "",
+        build,
+        day,
+    )
 
 
 def _rows():

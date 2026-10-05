@@ -48,7 +48,7 @@ _FRAME_COLS = (
     "character VARCHAR, win TINYINT, ascension INT, game_mode VARCHAR,"
     " player_count INT, run_time BIGINT, floors_reached INT, deck_size INT,"
     " relic_count INT, played_day INT, username VARCHAR, was_abandoned TINYINT,"
-    " acts_completed INT, daily_date VARCHAR, build_id VARCHAR"
+    " acts_completed INT, daily_date VARCHAR, build_id VARCHAR, upload_day INT"
 )
 
 
@@ -93,8 +93,17 @@ def _load_frame_parquet():
             return None
         con = _new_frame_db()
         try:
+            cols = {
+                r[0]
+                for r in con.execute(
+                    f"DESCRIBE SELECT * FROM read_parquet('{_FRAME_PARQUET}')"
+                ).fetchall()
+            }
+            select = _FRAME_SELECT
+            if "upload_day" not in cols:
+                select = select.replace(", upload_day", ", 0 AS upload_day")
             con.execute(
-                f"CREATE TABLE frame AS SELECT {_FRAME_SELECT}"
+                f"CREATE TABLE frame AS SELECT {select}"
                 f" FROM read_parquet('{_FRAME_PARQUET}')"
             )
             n = _finish_frame_db(con)
@@ -149,7 +158,10 @@ def _lake_frame_select(runs_p: Path, scalars_p: Path, with_hash: bool = False) -
               || lpad(string_split(r.seed, '_')[2], 2, '0') || '-'
               || lpad(string_split(r.seed, '_')[1], 2, '0')
             ELSE '' END AS daily_date,
-          trim(coalesce(s.build_id, r.build_id, '')) AS build_id
+          trim(coalesce(s.build_id, r.build_id, '')) AS build_id,
+          coalesce((timezone('America/Los_Angeles',
+              r.submitted_at::TIMESTAMP::TIMESTAMPTZ))::date
+            - DATE '1970-01-01', 0)::INT AS upload_day
         FROM read_parquet('{runs_p}') r
         LEFT JOIN read_parquet('{scalars_p}') s USING (run_hash)
         WHERE coalesce(s.hidden, false) = false
@@ -208,7 +220,7 @@ def store_frame_parquet() -> int:
     con = duckdb.connect()
     try:
         con.execute(f"CREATE TABLE f ({_FRAME_COLS})")
-        con.executemany(f"INSERT INTO f VALUES ({', '.join('?' * 15)})", rows)
+        con.executemany(f"INSERT INTO f VALUES ({', '.join('?' * 16)})", rows)
         tmp = _FRAME_PARQUET.with_suffix(".parquet.tmp")
         con.execute(f"COPY f TO '{tmp}' (FORMAT parquet, COMPRESSION zstd)")
         tmp.replace(_FRAME_PARQUET)
@@ -241,7 +253,8 @@ def store_frame_parquet() -> int:
     ACTS,
     DAILY,
     BUILD,
-) = range(15)
+    UPLOAD_DAY,
+) = range(16)
 
 # The frame lives in a per-worker in-memory DuckDB (tables frame + frame_wr),
 # swapped whole on reload. Columnar: the same 1.4M rows cost ~200MB where the
@@ -259,7 +272,7 @@ _FRAME_FETCH_GATE = threading.BoundedSemaphore(2)
 _FRAME_SELECT = (
     "character, win, ascension, game_mode, player_count, run_time,"
     " floors_reached, deck_size, relic_count, played_day, username,"
-    " was_abandoned, acts_completed, daily_date, build_id"
+    " was_abandoned, acts_completed, daily_date, build_id, upload_day"
 )
 
 # Smallest sample a single point may summarise; thinner buckets are dropped so
@@ -331,7 +344,7 @@ def _load_frame():
     con.execute(f"CREATE TABLE frame ({_FRAME_COLS})")
     for i in range(0, len(rows), 50_000):
         con.executemany(
-            "INSERT INTO frame VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            "INSERT INTO frame VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
             rows[i : i + 50_000],
         )
     return (con, _finish_frame_db(con))
@@ -386,6 +399,7 @@ def _load_frame_from_db() -> list[tuple]:
                     int(d.get("acts_completed") or 0),
                     _daily_date(d.get("seed"), mode),
                     (d.get("build_id") or "").strip(),
+                    _epoch_day(d.get("submitted_at")),
                 )
             )
     else:
@@ -417,6 +431,7 @@ def _load_frame_from_db() -> list[tuple]:
                         int(d["acts_completed"] or 0),
                         _daily_date(d["seed"], mode),
                         (d["build_id"] or "").strip(),
+                        _epoch_day(d["submitted_at"]),
                     )
                 )
     return rows
@@ -765,13 +780,13 @@ def winrate_over_time(rows: list[tuple], split: str) -> list[dict]:
     return series
 
 
-def runs_over_time(rows: list[tuple], split: str) -> list[dict]:
+def runs_over_time(rows: list[tuple], split: str, day: int = DAY) -> list[dict]:
     series = []
     for sid, label, sub in _series_split(rows, split):
         weeks: dict[int, int] = {}
         for r in sub:
-            if r[DAY] > 0:
-                weeks[r[DAY] // 7] = weeks.get(r[DAY] // 7, 0) + 1
+            if r[day] > 0:
+                weeks[r[day] // 7] = weeks.get(r[day] // 7, 0) + 1
         points = [{"x": _week_label(wk), "y": n} for wk, n in sorted(weeks.items())]
         if points:
             series.append({"id": sid, "label": label, "points": points})
