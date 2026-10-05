@@ -244,6 +244,7 @@
     "name": "Runs",
     "keywords": ["runs", "run", "upload", "submit", "history", "win", "loss"]
   },
+  { "path": "/sandbox", "name": "Sandbox", "keywords": ["sandbox"] },
   {
     "path": "/runs/submit",
     "name": "Contribute",
