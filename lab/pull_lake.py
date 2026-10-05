@@ -80,7 +80,8 @@ def main() -> None:
         applied = json.loads((LAKE / PULLED).read_text())
     except Exception:
         pass
-    todo = plan_downloads(manifest["files"], applied.get("files") or {})
+    applied_files = applied.get("files") or {}
+    todo = plan_downloads(manifest["files"], applied_files)
     if not todo:
         print(f"generation {gen_id} already applied; nothing to do", flush=True)
         return
@@ -88,6 +89,7 @@ def main() -> None:
     t0 = time.time()
     for name in todo:
         tmp = LAKE / (name + ".pull.tmp")
+        tmp.parent.mkdir(parents=True, exist_ok=True)
         client.download_file(bucket, f"gen/{gen_id}/{name}", str(tmp))
         want = manifest["files"][name]["sha256"]
         got = publish_lake._sha256(tmp)
@@ -98,6 +100,16 @@ def main() -> None:
         print(f"pulled {name} ({tmp.stat().st_size:,} bytes)", flush=True)
 
     apply_downloads(LAKE, todo)
+    stale = sorted(
+        name
+        for name in applied_files
+        if name.startswith("exports_by_version/") and name not in manifest["files"]
+    )
+    for name in stale:
+        (LAKE / name).unlink(missing_ok=True)
+    if stale:
+        print(f"pulled: dropped {len(stale)} stale per-version file(s)", flush=True)
+
     tmp = LAKE / (PULLED + ".tmp")
     tmp.write_text(json.dumps(manifest, indent=1))
     tmp.replace(LAKE / PULLED)

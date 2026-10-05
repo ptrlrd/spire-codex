@@ -3,6 +3,7 @@ with hidden and deleted runs left out and nothing from the staging envelope
 written through. The bare API call points at it once it exists."""
 
 import gzip
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -111,3 +112,118 @@ def test_manifest_404s_before_the_first_dump(tmp_path, monkeypatch, no_limiter):
     monkeypatch.setattr(exports, "LAKE_DIR", tmp_path)
     assert exports.dump_manifest() is None
     assert client.get("/api/exports/runs/manifest").status_code == 404
+
+
+def test_build_splits_versions_and_prunes_gone_ones(tmp_path, monkeypatch):
+    monkeypatch.setattr(export_dump, "LAKE", tmp_path)
+    monkeypatch.setattr(export_dump, "STAGING", tmp_path / "staging")
+    (tmp_path / "staging").mkdir()
+    monkeypatch.setenv("JWT_SECRET", "s")
+    rows = [
+        {
+            "run_hash": "h1",
+            "build_id": " v0.111.0 ",
+            "seed": "A",
+            "_meta": {"username": "x", "user_id": "u1"},
+        },
+        {"run_hash": "h2", "build_id": "v0.111.0", "seed": "B", "_meta": {}},
+        {
+            "run_hash": "h3",
+            "build_id": "v0.112.0-rc.1",
+            "seed": "C",
+            "_meta": {},
+        },
+        {"run_hash": "h4", "build_id": "24724944", "seed": "D", "_meta": {}},
+        {
+            "run_hash": "h5",
+            "build_id": "v0.111.0+41cef1ea",
+            "seed": "E",
+            "_meta": {},
+        },
+    ]
+    with gzip.open(tmp_path / "staging" / "00001.jsonl.gz", "wt") as f:
+        f.writelines(json.dumps(r) + "\n" for r in rows)
+    vdir = tmp_path / "exports_by_version"
+    vdir.mkdir()
+    (vdir / "runs_v0.110.0.jsonl.gz").write_bytes(b"stale")
+
+    manifest = export_dump.build(force=True)
+
+    assert manifest["runs"] == 5
+    assert list(manifest["versions"]) == ["v0.112.0-rc.1", "v0.111.0"]
+    path = vdir / "runs_v0.111.0.jsonl.gz"
+    entry = manifest["versions"]["v0.111.0"]
+    assert entry["runs"] == 2
+    assert entry["url"] == "/exports/runs-v0.111.0.jsonl.gz"
+    assert entry["bytes"] == path.stat().st_size
+    assert entry["sha256"] == hashlib.sha256(path.read_bytes()).hexdigest()
+    with gzip.open(path, "rt") as f:
+        assert [json.loads(line)["run_hash"] for line in f] == ["h1", "h2"]
+    with gzip.open(vdir / "runs_v0.112.0-rc.1.jsonl.gz", "rt") as f:
+        assert [json.loads(line)["run_hash"] for line in f] == ["h3"]
+    with gzip.open(tmp_path / "runs_export.jsonl.gz", "rt") as f:
+        assert [json.loads(line)["run_hash"] for line in f] == [
+            "h1",
+            "h2",
+            "h3",
+            "h4",
+            "h5",
+        ]
+    assert not (vdir / "runs_v0.110.0.jsonl.gz").exists()
+    assert not list(vdir.glob("*.tmp"))
+
+
+def test_version_export_redirects_404s_and_400s(tmp_path, monkeypatch, no_limiter):
+    monkeypatch.setattr(exports, "LAKE_DIR", tmp_path)
+    (tmp_path / "runs_export.jsonl.gz").write_bytes(b"x")
+    (tmp_path / "runs_export.json").write_text(
+        json.dumps(
+            {
+                "generated_at": "2026-10-03T04:00:00Z",
+                "runs": 7,
+                "versions": {
+                    "v0.111.0": {
+                        "runs": 5,
+                        "bytes": 12,
+                        "sha256": "ab",
+                        "url": "/exports/runs-v0.111.0.jsonl.gz",
+                    }
+                },
+            }
+        )
+    )
+
+    r = client.get(
+        "/api/exports/runs", params={"version": "v0.111.0"}, follow_redirects=False
+    )
+    assert r.status_code == 302
+    assert r.headers["location"] == "/exports/runs-v0.111.0.jsonl.gz"
+    assert r.headers["x-export-generated-at"] == "2026-10-03T04:00:00Z"
+    assert r.headers["x-export-runs"] == "5"
+    m = client.get("/api/exports/runs/manifest")
+    assert m.status_code == 200
+    assert m.json()["versions"]["v0.111.0"]["url"] == "/exports/runs-v0.111.0.jsonl.gz"
+
+    r = client.get(
+        "/api/exports/runs", params={"version": "v0.110.0"}, follow_redirects=False
+    )
+    assert r.status_code == 404
+    assert r.json()["detail"] == "no export for version"
+
+    r = client.get(
+        "/api/exports/runs", params={"version": "purple"}, follow_redirects=False
+    )
+    assert r.status_code == 400
+
+
+def test_version_alone_never_streams_live_before_the_first_dump(
+    tmp_path, monkeypatch, no_limiter
+):
+    monkeypatch.setattr(exports, "LAKE_DIR", tmp_path)
+    called = []
+    monkeypatch.setattr(
+        exports, "_page_hashes", lambda *a, **k: called.append(a) or ([], None)
+    )
+    r = client.get("/api/exports/runs?version=v0.111.0", follow_redirects=False)
+    assert r.status_code == 404
+    assert not called

@@ -242,6 +242,14 @@ http {
           add_header Access-Control-Allow-Origin "*";
       }
 
+      location ~ ^/exports/runs-(v[0-9]+(\.[0-9]+)*(-rc\.[0-9]+)?)\.jsonl\.gz$ {
+          alias /var/www/spire-codex/lake/exports_by_version/runs_$1.jsonl.gz;
+          default_type application/gzip;
+          add_header Content-Disposition 'attachment; filename="spire-codex-runs-$1.jsonl.gz"';
+          add_header Cache-Control "public, max-age=3600";
+          add_header Access-Control-Allow-Origin "*";
+      }
+
       location /docs {
           proxy_pass $codex_backend;
           proxy_http_version 1.1;

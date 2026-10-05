@@ -158,6 +158,13 @@ def test_build_match_cursor_before_start_keeps_start():
     assert range_clause["submitted_at"] == {"$gte": start}
 
 
+def test_build_match_version_pins_build_id():
+    # The paged pull for one game version filters on the indexed build_id.
+    match = _build_match(None, None, None, "v0.111.0")
+    assert {"build_id": "v0.111.0"} in match["$and"]
+    assert len(match["$and"]) == 4
+
+
 # --- _page_params ------------------------------------------------------------
 
 
