@@ -320,6 +320,11 @@ export default async function DevelopersPage({ params }: Props) {
               "Need the whole corpus? A call with no parameters redirects to a static file rebuilt once a day, /exports/runs-latest.jsonl.gz, with the same line shape; /api/exports/runs/manifest reports when it was generated and how many runs it holds. Each line carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
             )}
           </p>
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            {t(
+              "Just one patch? /api/exports/runs?version=v0.111.0 redirects to a per-version static file from the manifest's versions map, /exports/runs-v0.111.0.jsonl.gz; combined with limit and cursor it pages a single patch instead.",
+            )}
+          </p>
         </div>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">

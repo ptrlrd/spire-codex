@@ -130,6 +130,10 @@ extract and the live snapshot's incremental updates.
 line: the raw blob plus `run_hash` and `player_token`) from the staging pages, at
 most once per 20 hours, and writes `runs_export.json` beside it. Both ship with
 the serve artifacts, and nginx serves the file at `/exports/runs-latest.jsonl.gz`.
+The same pass writes one file per release-looking build id into
+`lake/exports_by_version/` (`runs_<build_id>.jsonl.gz`, ids like `v0.111.0`
+or `v0.111.0-rc.1` only), lists them in the manifest's `versions` map, and
+nginx serves them at `/exports/runs-<version>.jsonl.gz`.
 The bare `GET /api/exports/runs` redirects there; `--force` rebuilds now:
 
 ```
