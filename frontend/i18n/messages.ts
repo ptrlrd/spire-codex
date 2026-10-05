@@ -19,7 +19,7 @@ import { X9A } from "@/lib/i18n-x9a";
 import { X9B } from "@/lib/i18n-x9b";
 import { X9C } from "@/lib/i18n-x9c";
 import { X9D } from "@/lib/i18n-x9d";
-import { X9W } from "@/lib/i18n-x9w";
+import { X9E } from "@/lib/i18n-x9e";
 import { X9F } from "@/lib/i18n-x9f";
 import { X9G } from "@/lib/i18n-x9g";
 import { X9H } from "@/lib/i18n-x9h";
