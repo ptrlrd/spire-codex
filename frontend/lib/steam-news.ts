@@ -358,6 +358,22 @@ export function newsExcerpt(raw: string, maxLen = 200): string {
   return (lastSpace > 0 ? slice.slice(0, lastSpace) : slice).trim() + "…";
 }
 
+export function markdownExcerpt(raw: string, maxLen = 200): string {
+  const plain = raw
+    .replaceAll(/```[\s\S]*?```/g, " ")
+    .replaceAll(/!\[[^\]]*\]\([^)]*\)/g, "")
+    .replaceAll(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replaceAll(/^\s{0,3}#{1,6}\s+/gm, "")
+    .replaceAll(/^\s*>\s?/gm, "")
+    .replaceAll(/^\s*(?:[-*+]|\d+\.)\s+/gm, "")
+    .replaceAll(/(\*\*|__|\*|_|~~|`)(.+?)\1/g, "$2")
+    .replaceAll(/([^.!?:\s])[ \t]*\n+/g, "$1. ")
+    .replaceAll(/\n+/g, " ")
+    .replaceAll(/:\s*\.\s/g, ": ")
+    .replaceAll(/\.\s*\./g, ".");
+  return newsExcerpt(plain, maxLen);
+}
+
 /** Pull the first image URL out of a Steam announcement body so callers
  * can use it as a hero/thumbnail. Handles both BBCode (Steam community
  * posts use `[img]{STEAM_CLAN_IMAGE}/...[/img]`) and the raw `<img>` tags
