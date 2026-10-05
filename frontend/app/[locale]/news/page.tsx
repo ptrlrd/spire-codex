@@ -7,6 +7,7 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, gameName } from "@/lib/seo";
 import type { NewsArticle, NewsListResponse } from "@/lib/api/types";
 import {
+  markdownExcerpt,
   newsExcerpt,
   formatNewsDate,
   newsSlugForArticle,
@@ -197,7 +198,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
                     Spire Codex
                   </p>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {newsExcerpt(a.body, 220)}
+                    {markdownExcerpt(a.body, 220)}
                   </p>
                   <span className="inline-block mt-3 text-sm text-[var(--accent-gold)]">
                     {a.href ? "Check it out →" : "Read more →"}
