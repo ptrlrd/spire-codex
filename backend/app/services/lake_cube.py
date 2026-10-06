@@ -287,16 +287,14 @@ def _usable(path: Path) -> bool:
 def build_dir(src: Path, root: Path, sha: str | None = None) -> Path:
     """Convert one entity_cube.json.gz into root/<sha256>.v<FORMAT>/, once:
     the first process to take root/.lock builds, everyone else finds the
-    finished directory. The source is read once, so the build is always
-    named by the bytes it was made from; a broken build is replaced and
-    builds beyond the newest two are pruned."""
+    finished directory. Only the builder reads the source, under the lock,
+    and it refuses bytes that no longer match the sha the build is named
+    for. A broken build is replaced and builds beyond the newest two are
+    pruned."""
     import orjson
 
-    data = Path(src).read_bytes()
-    got = hashlib.sha256(data).hexdigest()
-    if sha is not None and got != sha:
-        raise SourceChanged(f"{src} changed while building ({got} != {sha})")
-    final = root / build_name(got)
+    sha = sha or file_sha256(src)
+    final = root / build_name(sha)
     if _usable(final):
         return final
     root.mkdir(parents=True, exist_ok=True)
@@ -305,11 +303,15 @@ def build_dir(src: Path, root: Path, sha: str | None = None) -> Path:
         try:
             if _usable(final):
                 return final
+            data = Path(src).read_bytes()
+            got = hashlib.sha256(data).hexdigest()
+            if got != sha:
+                raise SourceChanged(f"{src} changed while building ({got} != {sha})")
             cube = orjson.loads(gzip.decompress(data))
             del data
             built = from_cube(cube)
             del cube
-            tmp = root / f".{got}.{os.getpid()}.tmp"
+            tmp = root / f".{sha}.{os.getpid()}.tmp"
             shutil.rmtree(tmp, ignore_errors=True)
             save(built, tmp)
             if final.exists():

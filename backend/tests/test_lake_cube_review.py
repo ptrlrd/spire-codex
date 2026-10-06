@@ -344,7 +344,7 @@ def test_failed_reload_keeps_serving_the_previous_cube(tmp_path, monkeypatch):
     assert hit is good
     fold = ls.entity_bracket_fold("cards", "standard")
     assert fold["entries"]["X"][0] == 4
-    assert ("cards", "standard") not in ls._fold_cache
+    assert ls._fold_cache[("cards", "standard")][0] == good[0]
     monkeypatch.setattr(ls, "_COMPACT_RETRY_SECONDS", 0.0)
     _write_cube(lake / "entity_cube.json.gz", picks=7)
     assert ls.entity_bracket_fold("cards", "standard")["entries"]["X"][0] == 7
@@ -372,3 +372,175 @@ def test_requests_get_the_previous_cube_while_a_new_one_loads(tmp_path, monkeypa
     gate.set()
     loader.join(3)
     assert ls.entity_bracket_fold("cards", "all")["entries"]["X"][0] == 9
+
+
+def test_failed_reload_keeps_hitting_the_fold_cache(tmp_path, monkeypatch):
+    lake = _lake(tmp_path, monkeypatch, picks=5)
+    assert ls.entity_bracket_fold("cards", "all")["entries"]["X"][0] == 5
+    (lake / "entity_cube.json.gz").write_bytes(b"corrupt-gzip-data")
+    calls = []
+    real = lake_cube.bracket_fold
+
+    def counting(*a, **k):
+        calls.append(1)
+        return real(*a, **k)
+
+    monkeypatch.setattr(lake_cube, "bracket_fold", counting)
+    for _ in range(3):
+        assert ls.entity_bracket_fold("cards", "all")["entries"]["X"][0] == 5
+    assert calls == []
+
+
+def test_failed_store_reload_serves_previous_copy(tmp_path, monkeypatch):
+    store = tmp_path / ls._ENTITY_STORE_NAME
+    store.write_text(json.dumps({"version": 1}))
+    monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(ls, "_entity_store_cache", None)
+    monkeypatch.setattr(ls, "_reload_failed", {})
+    assert ls.entity_store_with_mtime()[1]["version"] == 1
+    store.write_text("invalid json {{{")
+    st = store.stat()
+    os.utime(store, ns=(st.st_atime_ns, st.st_mtime_ns + 10**9))
+    reads = []
+    real_read = type(store).read_text
+
+    def counted(self, *a, **k):
+        reads.append(self.name)
+        return real_read(self, *a, **k)
+
+    monkeypatch.setattr(type(store), "read_text", counted)
+    assert ls.entity_store_with_mtime()[1]["version"] == 1
+    assert ls.entity_store_with_mtime()[1]["version"] == 1
+    assert reads.count(ls._ENTITY_STORE_NAME) == 1
+
+
+def test_failed_blob_reload_serves_previous_copy(tmp_path, monkeypatch):
+    from app.services import charts_blob_lake as cbl
+
+    monkeypatch.setattr(cbl, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(cbl, "_blob_cache", None)
+    monkeypatch.setattr(cbl, "_blob_failed", {})
+    blob = tmp_path / cbl._BLOB_NAME
+    blob.write_bytes(gzip.compress(json.dumps({"v": 1}).encode()))
+    assert cbl.charts_blob_with_mtime()[1] == {"v": 1}
+    os.replace(blob, tmp_path / cbl._BLOB_PREV_NAME)
+    blob.write_bytes(b"not gzip")
+    st = blob.stat()
+    os.utime(blob, ns=(st.st_atime_ns, st.st_mtime_ns + 10**9))
+    opens = []
+    real_open = cbl.gzip.open
+
+    def counted(path, *a, **k):
+        opens.append(str(path))
+        return real_open(path, *a, **k)
+
+    monkeypatch.setattr(cbl.gzip, "open", counted)
+    assert cbl.charts_blob_with_mtime()[1] == {"v": 1}
+    assert cbl.charts_blob_with_mtime()[1] == {"v": 1}
+    assert sum(1 for o in opens if o.endswith(cbl._BLOB_NAME)) == 1
+
+
+def test_all_cold_cube_waiters_share_one_bounded_wait(tmp_path, monkeypatch):
+    sig = (10, 20, 30, 40)
+    monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(ls, "_file_sig", lambda path: sig)
+    monkeypatch.setattr(ls, "_cube_sig", lambda: sig)
+    monkeypatch.setattr(ls, "_compact_cube_cache", None)
+    monkeypatch.setattr(ls, "_compact_cube_failed", None)
+    monkeypatch.setattr(ls, "_compact_load_started", None)
+    monkeypatch.setattr(ls, "_compact_cube_lock", threading.Lock())
+    monkeypatch.setattr(ls, "_COMPACT_WAIT_SECONDS", 0.1)
+    monkeypatch.setattr(ls, "_fold_cache", {})
+    monkeypatch.setattr(ls, "_fold_cache_lock", threading.Lock())
+    monkeypatch.setattr(ls, "_fold_inflight", {})
+    pool = _shared_pool(monkeypatch)
+
+    load_started = threading.Event()
+    release_load = threading.Event()
+    errors = []
+    done = [threading.Event() for _ in range(5)]
+    cube = object()
+
+    def blocked_open_for(*args, **kwargs):
+        load_started.set()
+        if not release_load.wait(5):
+            raise TimeoutError("test did not release cube load")
+        return cube
+
+    monkeypatch.setattr(lake_cube, "open_for", blocked_open_for)
+
+    def request(i):
+        try:
+            ls._cached_fold(("cold", str(i)), lambda: ls._loaded_cube())
+        except BaseException as exc:
+            errors.append(exc)
+        finally:
+            done[i].set()
+
+    owner = threading.Thread(target=request, args=(0,))
+    waiters = [threading.Thread(target=request, args=(i,)) for i in range(1, 5)]
+    try:
+        owner.start()
+        assert load_started.wait(1)
+        for thread in waiters:
+            thread.start()
+        time.sleep(0.25)
+        bounded = all(event.is_set() for event in done[1:])
+    finally:
+        release_load.set()
+        owner.join(3)
+        for thread in waiters:
+            thread.join(3)
+        pool.shutdown(wait=True)
+    assert bounded
+    assert not errors
+
+
+def test_build_reads_source_only_after_taking_process_lock(tmp_path, monkeypatch):
+    from pathlib import Path
+
+    src = tmp_path / "entity_cube.json.gz"
+    with gzip.open(src, "wt", encoding="utf-8") as f:
+        json.dump({"runs": {CELL: [1, 1, 1]}, "entities": {}}, f)
+    sha = lake_cube.file_sha256(src)
+    state = {"locked": False}
+    real_flock = lake_cube.fcntl.flock
+    real_read_bytes = Path.read_bytes
+
+    def tracked_flock(fileobj, operation):
+        result = real_flock(fileobj, operation)
+        if operation == lake_cube.fcntl.LOCK_EX:
+            state["locked"] = True
+        elif operation == lake_cube.fcntl.LOCK_UN:
+            state["locked"] = False
+        return result
+
+    def guarded_read_bytes(path):
+        if path == src:
+            assert state["locked"], "cube source was copied before the lock"
+        return real_read_bytes(path)
+
+    monkeypatch.setattr(lake_cube.fcntl, "flock", tracked_flock)
+    monkeypatch.setattr(Path, "read_bytes", guarded_read_bytes)
+    built = lake_cube.build_dir(src, tmp_path / "compact", sha=sha)
+    assert (built / "meta.json").exists()
+
+
+def test_failed_entity_store_reload_returns_previous_copy(tmp_path, monkeypatch):
+    monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(ls, "_entity_store_cache", None)
+    monkeypatch.setattr(ls, "_entity_store_lock", threading.Lock())
+    monkeypatch.setattr(ls, "_reload_failed", {})
+    path = tmp_path / ls._ENTITY_STORE_NAME
+    path.write_text(json.dumps({"generation": 1}), encoding="utf-8")
+    previous = ls.entity_store_with_mtime()
+    assert previous is not None
+    old_stat = path.stat()
+    replacement = tmp_path / "broken-store.replacement"
+    replacement.write_text("{not valid json", encoding="utf-8")
+    os.utime(
+        replacement,
+        ns=(replacement.stat().st_atime_ns, old_stat.st_mtime_ns + 1_000_000_000),
+    )
+    os.replace(replacement, path)
+    assert ls.entity_store_with_mtime() is previous

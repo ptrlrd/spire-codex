@@ -2229,6 +2229,7 @@ _compact_cube_cache: tuple[tuple[float, int], object] | None = None
 _compact_cube_failed: tuple[tuple[float, int], float] | None = None
 _COMPACT_RETRY_SECONDS = 60.0
 _COMPACT_WAIT_SECONDS = 20.0
+_compact_load_started: float | None = None
 _compact_cube_lock = threading.Lock()
 
 
@@ -2245,7 +2246,7 @@ def _compact_entity_cube():
     loads, after it fails (retried at most once a minute), or while the
     file is briefly missing, callers get the previous cube under its own
     signature; with no previous cube they wait a bounded time."""
-    global _compact_cube_cache, _compact_cube_failed
+    global _compact_cube_cache, _compact_cube_failed, _compact_load_started
     import time as _time
 
     path = LAKE_DIR / _ENTITY_CUBE_NAME
@@ -2259,7 +2260,14 @@ def _compact_entity_cube():
     if hit is not None:
         acquired = _compact_cube_lock.acquire(blocking=False)
     else:
-        acquired = _compact_cube_lock.acquire(timeout=_COMPACT_WAIT_SECONDS)
+        started = _compact_load_started
+        wait = _COMPACT_WAIT_SECONDS
+        if started is not None:
+            wait = started + _COMPACT_WAIT_SECONDS - _time.monotonic()
+        if wait > 0:
+            acquired = _compact_cube_lock.acquire(timeout=wait)
+        else:
+            acquired = _compact_cube_lock.acquire(blocking=False)
     if not acquired:
         return hit
     try:
@@ -2270,17 +2278,20 @@ def _compact_entity_cube():
         if (
             failed is not None
             and failed[0] == sig
-            and _time.time() - failed[1] < _COMPACT_RETRY_SECONDS
+            and _time.monotonic() - failed[1] < _COMPACT_RETRY_SECONDS
         ):
             return hit
+        _compact_load_started = _time.monotonic()
         try:
             from . import lake_cube
 
             cube = lake_cube.open_for(path, LAKE_DIR)
         except Exception:
             logger.warning("entity cube load failed", exc_info=True)
-            _compact_cube_failed = (sig, _time.time())
+            _compact_cube_failed = (sig, _time.monotonic())
             return hit
+        finally:
+            _compact_load_started = None
         _compact_cube_cache = (sig, cube)
         return _compact_cube_cache
     finally:
@@ -2307,11 +2318,8 @@ def _fold_cache_put(key, val) -> None:
 
 
 def _cube_sig():
-    try:
-        return _file_sig(LAKE_DIR / _ENTITY_CUBE_NAME)
-    except OSError:
-        hit = _compact_entity_cube()
-        return hit[0] if hit else None
+    hit = _compact_entity_cube()
+    return hit[0] if hit else None
 
 
 class _CubeUnavailable(Exception):
@@ -2712,14 +2720,20 @@ def encounter_store_with_mtime() -> tuple[float, dict] | None:
         hit = _encounter_store_cache
         if hit and hit[0] == mtime:
             return hit
-        if not _encounter_store_lock.acquire(blocking=not hit):
+        if _reload_backing_off(
+            "encounter store", mtime
+        ) or not _encounter_store_lock.acquire(blocking=not hit):
             return hit
         try:
             if _encounter_store_cache and _encounter_store_cache[0] == mtime:
                 return _encounter_store_cache
             import json
 
-            store = json.loads(path.read_text())
+            try:
+                store = json.loads(path.read_text())
+            except Exception:
+                _reload_failure("encounter store", mtime)
+                return hit
             _encounter_store_cache = (mtime, store)
             return _encounter_store_cache
         finally:
@@ -2730,6 +2744,26 @@ def encounter_store_with_mtime() -> tuple[float, dict] | None:
 
 
 _entity_store_lock = threading.Lock()
+_reload_failed: dict[str, tuple[float, float]] = {}
+_RELOAD_RETRY_SECONDS = 60.0
+
+
+def _reload_backing_off(name: str, mtime: float) -> bool:
+    import time as _time
+
+    failed = _reload_failed.get(name)
+    return (
+        failed is not None
+        and failed[0] == mtime
+        and _time.monotonic() - failed[1] < _RELOAD_RETRY_SECONDS
+    )
+
+
+def _reload_failure(name: str, mtime: float) -> None:
+    import time as _time
+
+    logger.warning("%s load failed", name, exc_info=True)
+    _reload_failed[name] = (mtime, _time.monotonic())
 
 
 def entity_store_with_mtime() -> tuple[float, dict] | None:
@@ -2745,14 +2779,20 @@ def entity_store_with_mtime() -> tuple[float, dict] | None:
         hit = _entity_store_cache
         if hit and hit[0] == mtime:
             return hit
-        if not _entity_store_lock.acquire(blocking=not hit):
+        if _reload_backing_off("entity store", mtime) or not _entity_store_lock.acquire(
+            blocking=not hit
+        ):
             return hit
         try:
             if _entity_store_cache and _entity_store_cache[0] == mtime:
                 return _entity_store_cache
             import json
 
-            store = json.loads(path.read_text())
+            try:
+                store = json.loads(path.read_text())
+            except Exception:
+                _reload_failure("entity store", mtime)
+                return hit
             _entity_store_cache = (mtime, store)
             return _entity_store_cache
         finally:
