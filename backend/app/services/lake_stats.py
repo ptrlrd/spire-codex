@@ -907,7 +907,10 @@ def _build_community_cube() -> dict[str, dict]:
             acc_for(cell, char)["floors"][int(floors)] = [runs, wins]
 
         for cell, char, act, ptype, visits, dmg, deaths in con.execute(
-            "WITH typed AS (SELECT f.*, e.cell AS cell, lower(e.character) AS ch,"
+            "WITH typed AS (SELECT f.run_hash, f.act, f.floor_idx, f.map_point_type,"
+            " [struct_pack(damage_taken := x.damage_taken, max_hp := x.max_hp)"
+            " FOR x IN f.players] AS players,"
+            " e.cell AS cell, lower(e.character) AS ch,"
             " coalesce(e.killed_by_encounter, '') <> ''"
             "  OR coalesce(e.killed_by_event, '') <> '' AS died"
             f" FROM read_parquet('{lake}/floors.parquet') f"
@@ -945,7 +948,10 @@ def _build_community_cube() -> dict[str, dict]:
                 acc_for(cell, char)["events"].setdefault(eid, {})[oid] = n
 
         for cell, char, choice, ps_char, n, wins, low in con.execute(
-            "WITH hp AS (SELECT run_hash, cell, act, floor_idx, p, win, run_char,"
+            "WITH hp AS (SELECT run_hash, cell, act, floor_idx,"
+            " struct_pack(player_id := (p).player_id, current_hp := (p).current_hp,"
+            " max_hp := (p).max_hp, rest_site_choices := (p).rest_site_choices) AS p,"
+            " win, run_char,"
             " last_value(CASE WHEN (p).current_hp IS NOT NULL"
             " AND coalesce((p).max_hp, 0) > 0 THEN"
             " struct_pack(hp := (p).current_hp, mx := (p).max_hp) END IGNORE NULLS)"
