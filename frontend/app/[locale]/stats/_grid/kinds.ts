@@ -33,7 +33,6 @@ export interface KindConfig {
   shareTitle?: string;
   defaultSort?: ColKey;
   baselineWhat: string;
-  searchPlaceholder: string;
   emptyText: string;
   columns: ColKey[];
   groupFilter: "color" | "pool" | "entity" | null;
@@ -57,7 +56,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Card name",
     nLabel: "Picks",
     nTitle: "Seats whose deck held this card (sample size)",
-    searchPlaceholder: "Search cards...",
     emptyText: "No cards match your filters.",
     columns: [
       "name",
@@ -93,7 +91,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Relic name",
     nLabel: "Picks",
     nTitle: "Seats that held this relic (sample size)",
-    searchPlaceholder: "Search relics...",
     emptyText: "No relics match your filters.",
     columns: [
       "name",
@@ -126,9 +123,8 @@ export const KINDS: Record<GridKind, KindConfig> = {
     description: "potion_metrics_meta_description",
     nameLabel: "Potion",
     nameTitle: "Potion name",
-    nLabel: "Picks",
     nTitle: "Seats that held this potion (sample size)",
-    searchPlaceholder: "Search potions...",
+    nLabel: "Picks",
     emptyText: "No potions match your filters.",
     columns: [
       "name",
@@ -157,9 +153,8 @@ export const KINDS: Record<GridKind, KindConfig> = {
     description: "shop_stats_meta_description",
     nameLabel: "Item",
     nameTitle: "Shop item",
-    nLabel: "Bought",
     nTitle: "Seats that bought this item (sample size)",
-    searchPlaceholder: "Search shop items...",
+    nLabel: "Bought",
     emptyText: "No shop data yet.",
     columns: ["name", "offered", "n", "buyRate", "winRate", "lift", "wl"],
     groupFilter: "entity",
@@ -179,9 +174,8 @@ export const KINDS: Record<GridKind, KindConfig> = {
     description: "event_choices_meta_description",
     nameLabel: "Option",
     nameTitle: "Event and the option taken",
-    nLabel: "Chosen",
     nTitle: "Seats that took this option (sample size)",
-    searchPlaceholder: "Search events...",
+    nLabel: "Chosen",
     emptyText: "No event data yet.",
     columns: ["name", "n", "share", "winRate", "lift", "wl"],
     groupFilter: null,
@@ -203,9 +197,8 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameLabel: "Choice",
     nameTitle: "Rest site action",
     shareTitle: "This action's share of all choices made at campfires.",
-    nLabel: "Chosen",
     nTitle: "Seats that took this action (sample size)",
-    searchPlaceholder: "Search actions...",
+    nLabel: "Chosen",
     emptyText: "No campfire data yet.",
     columns: ["name", "n", "share", "winRate", "lift", "lowHpShare", "wl"],
     groupFilter: null,

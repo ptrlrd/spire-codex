@@ -21,6 +21,11 @@ import {
   type GridPrefs,
 } from "./prefs";
 import { KINDS, type ColKey } from "./kinds";
+import {
+  GRID_QUERY_FIELDS,
+  matchGridQuery,
+  parseGridQuery,
+} from "@/lib/grid-query";
 import type { GridData, GridRow } from "./types";
 
 const SMALL_SAMPLE = 20;
@@ -224,6 +229,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const rows = byCharacter && data.byCharacter ? data.byCharacter : data.rows;
   const offColorActive = kind === "cards" && (!!character || byCharacter);
   const [search, setSearch] = useState(data.query);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(!!data.samples);
@@ -298,9 +304,29 @@ export default function StatsGrid({ data }: { data: GridData }) {
     for (const r of rows) if (r.rarity) seen.add(r.rarity);
     return [...seen].sort();
   }, [cfg.rarityFilter, rows]);
+  const parsed = useMemo(() => parseGridQuery(search), [search]);
+  const helpFields = useMemo(() => {
+    const parts: string[] = [];
+    for (const f of GRID_QUERY_FIELDS) {
+      const label =
+        f.aliases.length > 0 ? `${f.name} (${f.aliases.join(", ")})` : f.name;
+      if (f.kind === "number") {
+        if (!f.col || cfg.columns.includes(f.col)) parts.push(label);
+      } else if (f.kind === "text") {
+        if (
+          f.key === "name" ||
+          f.key === "sub" ||
+          (f.key === "rarity" && cfg.rarityFilter) ||
+          (f.key === "group" && cfg.groupFilter !== null)
+        )
+          parts.push(label);
+      }
+    }
+    parts.push("is:upgraded", "is:wax");
+    return parts.join(", ");
+  }, [cfg]);
 
   const visible = useMemo(() => {
-    const q = search.trim().toLowerCase();
     let field = COLUMN_DEFS[sortKey].sortField;
     const out = rows.filter((r) => {
       if (group && r.group !== group) return false;
@@ -312,13 +338,17 @@ export default function StatsGrid({ data }: { data: GridData }) {
         const playing = (r.playedBy || character).toLowerCase();
         if (!CHARACTER_COLORS.has(r.group) || r.group === playing) return false;
       }
-      if (
-        q &&
-        !r.name.toLowerCase().includes(q) &&
-        !(r.sub || "").toLowerCase().includes(q)
-      )
+      if (parsed.error) {
+        const q = search.trim().toLowerCase();
+        if (
+          q &&
+          !r.name.toLowerCase().includes(q) &&
+          !(r.sub || "").toLowerCase().includes(q)
+        )
+          return false;
+      } else if (parsed.ast && !matchGridQuery(parsed.ast, r)) {
         return false;
-      return true;
+      }
     });
     if (
       field &&
@@ -338,6 +368,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   }, [
     rows,
     search,
+    parsed,
     group,
     rarity,
     showTiny,
@@ -913,13 +944,69 @@ export default function StatsGrid({ data }: { data: GridData }) {
       />
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => onSearch(e.target.value)}
-          placeholder={t(cfg.searchPlaceholder)}
-          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
-        />
+        <div>
+          <div className="flex items-center gap-2">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => onSearch(e.target.value)}
+              placeholder={t("Search or filter, e.g. lift>2 rarity:rare")}
+              className="w-72 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setHelpOpen((v) => !v)}
+              aria-label={t("Filter help")}
+              className="rounded-lg border border-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-muted)] hover:border-[var(--accent-gold)] hover:text-[var(--text-primary)]"
+            >
+              ?
+            </button>
+          </div>
+          {parsed.error ? (
+            <p className="mt-1 text-xs text-[var(--text-muted)]">
+              {t("The query could not be read, so plain text search is used.")}
+            </p>
+          ) : parsed.unknown.length > 0 ? (
+            <p className="mt-1 text-xs text-[var(--text-muted)]">
+              {t("Unknown field: {field}", {
+                field: parsed.unknown.join(", "),
+              })}
+            </p>
+          ) : null}
+          {helpOpen && (
+            <div className="mt-2 max-w-xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3 text-xs text-[var(--text-primary)]">
+              <p className="mb-1 font-medium">{t("Filter help")}</p>
+              <p className="text-[var(--text-muted)]">
+                {t(
+                  "Spaces combine terms with AND, OR offers choices, and a leading - excludes.",
+                )}
+              </p>
+              <p className="text-[var(--text-muted)]">
+                {t(
+                  "Numbers: > >= < <= = != and : compare, a percent sign after the number is ignored.",
+                )}
+              </p>
+              <p className="text-[var(--text-muted)]">
+                {t(
+                  "Text: field:value matches inside, field=value matches exactly.",
+                )}
+              </p>
+              <p className="mt-1 break-words text-[var(--text-muted)]">
+                {helpFields}
+              </p>
+              <p className="mt-1 text-[var(--text-muted)]">{t("Examples")}</p>
+              <p className="break-words font-mono">
+                lift&gt;2
+                <br />
+                rarity:rare OR rarity:uncommon
+                <br />
+                -rarity:common picks&gt;1000
+                <br />
+                &quot;body slam&quot; elo&gt;1600
+              </p>
+            </div>
+          )}
+        </div>
         {groups.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             <button
