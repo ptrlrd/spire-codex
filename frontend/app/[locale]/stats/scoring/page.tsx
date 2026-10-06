@@ -389,6 +389,11 @@ score      = clamp(raw, 0, 100)            # rounded to integer`}
             "Every stats table uses these columns. Hovering a column header on a table shows the same line.",
           )}
         </p>
+        <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-4">
+          {t(
+            "Runs abandoned by floor 5 are left out of every stat in these tables, since most are Neow rerolls that were never played. They still count in the run totals.",
+          )}
+        </p>
         <dl className="text-sm rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-4">
           <div className="flex gap-3 py-2 border-b border-[var(--border-subtle)] last:border-b-0">
             <dt className="w-20 shrink-0 font-semibold text-[var(--text-primary)]">

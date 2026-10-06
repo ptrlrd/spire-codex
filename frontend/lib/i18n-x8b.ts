@@ -1749,4 +1749,22 @@ export const X8B: Record<string, Record<string, string>> = {
     zhs: "{name} 30 日均线",
     zht: "{name} 30 日均線",
   },
+  "Runs abandoned by floor 5 are left out of every stat in these tables, since most are Neow rerolls that were never played. They still count in the run totals.":
+    {
+      eng: "Runs abandoned by floor 5 are left out of every stat in these tables, since most are Neow rerolls that were never played. They still count in the run totals.",
+      deu: "Runs, die bis Etage 5 abgebrochen wurden, fließen in keine Statistik dieser Tabellen ein, da es meist Neow-Neustarts sind, die nie gespielt wurden. In den Run-Gesamtzahlen zählen sie weiterhin.",
+      esp: "Las partidas abandonadas hasta el piso 5 quedan fuera de todas las estadísticas de estas tablas, ya que la mayoría son reinicios en Neow que nunca se jugaron. Siguen contando en los totales de partidas.",
+      fra: "Les runs abandonnés avant l'étage 6 sont exclus de toutes les stats de ces tableaux, car la plupart sont des relances de Neow jamais jouées. Ils comptent toujours dans les totaux de runs.",
+      ita: "Le run abbandonate entro il piano 5 sono escluse da tutte le statistiche di queste tabelle, perché per lo più sono riavvii a Neow mai giocati. Contano comunque nei totali delle run.",
+      jpn: "5階までに放棄されたランは、ほとんどがプレイされていないネオウでのリセットのため、これらの表の統計から除外されます。ラン総数には引き続き含まれます。",
+      kor: "5층 이하에서 포기한 런은 대부분 실제로 플레이하지 않은 니오우 리롤이므로 이 표의 모든 통계에서 제외됩니다. 런 총계에는 계속 포함됩니다.",
+      pol: "Runy porzucone do 5. piętra są pomijane we wszystkich statystykach w tych tabelach, bo to głównie restarty u Neow, które nigdy nie zostały rozegrane. Nadal liczą się do sumy runów.",
+      ptb: "Runs abandonadas até o andar 5 ficam de fora de todas as estatísticas destas tabelas, pois a maioria são reinícios no Neow que nunca foram jogados. Elas continuam contando nos totais de runs.",
+      rus: "Забеги, брошенные до 5-го этажа включительно, не учитываются ни в одной статистике этих таблиц: в основном это перезапуски у Нео, которые так и не были сыграны. В общем числе забегов они по-прежнему учитываются.",
+      spa: "Las partidas abandonadas hasta el piso 5 quedan fuera de todas las estadísticas de estas tablas, ya que la mayoría son reinicios en Neow que nunca se jugaron. Siguen contando en los totales de partidas.",
+      tha: "รันที่ถูกละทิ้งภายในชั้น 5 จะไม่ถูกนับในสถิติใดๆ ของตารางเหล่านี้ เพราะส่วนใหญ่เป็นการรีโรลที่ Neow ซึ่งไม่ได้เล่นจริง แต่ยังนับรวมในจำนวนรันทั้งหมด",
+      tur: "5. kata kadar terk edilen koşular, çoğu hiç oynanmamış Neow yeniden denemeleri olduğu için bu tablolardaki hiçbir istatistiğe dahil edilmez. Toplam koşu sayılarında yine sayılırlar.",
+      zhs: "在第 5 层及以前放弃的游戏不计入这些表格的任何统计，因为它们大多是在 Neow 处重开、并未真正游玩的局。它们仍计入游戏总数。",
+      zht: "在第 5 層及以前放棄的遊戲不計入這些表格的任何統計，因為它們大多是在 Neow 處重開、並未真正遊玩的局。它們仍計入遊戲總數。",
+    },
 };

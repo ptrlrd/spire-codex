@@ -75,6 +75,7 @@ def _finish_frame_db(con) -> int:
         "CREATE OR REPLACE TABLE frame_wr AS"
         " SELECT username, count(*) AS t, sum(win) AS w FROM frame"
         " WHERE username IS NOT NULL AND username <> ''"
+        f" AND NOT {_SHORT_ABANDON}"
         " GROUP BY 1 HAVING count(*) >= 5"
     )
     return con.execute("SELECT count(*) FROM frame").fetchone()[0]
@@ -268,6 +269,8 @@ _FRAME_TS: float = 0.0
 _FRAME_TTL = 3600
 _FRAME_LOCK = threading.Lock()
 _FRAME_FETCH_GATE = threading.BoundedSemaphore(2)
+
+_SHORT_ABANDON = "(was_abandoned = 1 AND floors_reached <= 5)"
 
 _FRAME_SELECT = (
     "character, win, ascension, game_mode, player_count, run_time,"
@@ -582,11 +585,14 @@ def filter_rows(
     username: str | None,
     bracket: str | None = None,
     build_id: str | None = None,
+    include_short_abandons: bool = False,
 ) -> list[tuple]:
     """The filtered frame as positional tuples (CHAR..BUILD). Filtering runs
     as SQL in the frame db; `rows` is get_frame()'s count and only marks an
     unloaded frame. The wr tiers keep their semantics: A10 floor, submitter
-    overall win rate strictly above the threshold, 5-run floor."""
+    overall win rate strictly above the threshold, 5-run floor. Runs
+    abandoned by floor 5 are left out unless a run-count chart asks for
+    every run."""
     with _FRAME_LOCK:
         con = _FRAME_DB
     if con is None:
@@ -618,6 +624,8 @@ def filter_rows(
             "username IN (SELECT username FROM frame_wr WHERE w * 100.0 / t > ?)"
         )
         args.append(wr_floor)
+    if not include_short_abandons:
+        where.append(f"NOT {_SHORT_ABANDON}")
     sql = f"SELECT {_FRAME_SELECT} FROM frame"
     if where:
         sql += " WHERE " + " AND ".join(where)

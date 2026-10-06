@@ -81,11 +81,37 @@ def _connect(build: bool = False):
 _PAYLOAD_TTL_SECONDS = 60.0
 _payload_cache: dict[str, tuple[float, dict]] = {}
 
+SHORT_ABANDON_MAX_FLOOR = 5
+
+
+def _excluded_runs_sql(lake) -> str:
+    """Runs every stat leaves out: hidden or deleted runs, plus runs
+    abandoned by floor 5 (Neow rerolls and quick restarts that were never
+    really played). Headline totals read the raw runs instead."""
+    sql = f"SELECT run_hash FROM read_parquet('{lake}/excluded.parquet')"
+    if (Path(lake) / "run_scalars.parquet").exists():
+        sql += f"""
+  UNION ALL
+  SELECT r.run_hash FROM read_parquet('{lake}/runs.parquet') r
+  JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
+  WHERE coalesce(try_cast(r.was_abandoned AS BOOLEAN), false)
+    AND s.floors_reached <= {SHORT_ABANDON_MAX_FLOOR}"""
+    return f"({sql})"
+
+
+def _eligible_sql(lake) -> str:
+    return _ELIGIBLE_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+
+
+def _cells_sql(lake) -> str:
+    return _CELLS_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+
+
 _ELIGIBLE_SQL = """
 CREATE OR REPLACE TEMP VIEW eligible AS
 SELECT r.*
 FROM read_parquet('{lake}/runs.parquet') r
-ANTI JOIN read_parquet('{lake}/excluded.parquet') x ON r.run_hash = x.run_hash
+ANTI JOIN {excluded} x ON r.run_hash = x.run_hash
 WHERE r.ascension BETWEEN 0 AND 10
   AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')
 """
@@ -135,7 +161,7 @@ def _ensure_cells(con, lake: str) -> None:
     a real table -- every builder re-expanded the view (runs scan + the
     user_wr aggregation) per query before this."""
     if not _cells_table_exists(con):
-        con.execute(_CELLS_SQL.format(lake=lake))
+        con.execute(_cells_sql(lake))
 
 
 def _pfloors_table_exists(con) -> bool:
@@ -151,7 +177,7 @@ def _prepare_sources(con, lake: str) -> None:
     view when no materialized table exists in the scratch database -- the
     session prepared by the ingest materializes it once and every later
     connection reuses it instead of re-unnesting 45M player-floor rows."""
-    con.execute(_ELIGIBLE_SQL.format(lake=lake))
+    con.execute(_eligible_sql(lake))
     _ensure_cells(con, lake)
     con.execute(_PID_CHAR_SQL.format(lake=lake))
     if not _pfloors_table_exists(con):
@@ -164,9 +190,9 @@ def prepare_build_session():
     done."""
     con = _connect(build=True)
     lake = str(LAKE_DIR)
-    con.execute(_ELIGIBLE_SQL.format(lake=lake))
+    con.execute(_eligible_sql(lake))
     con.execute("DROP TABLE IF EXISTS cells")
-    con.execute(_CELLS_SQL.format(lake=lake))
+    con.execute(_cells_sql(lake))
     con.execute("CREATE TABLE cells_mat AS SELECT * FROM cells")
     con.execute("DROP VIEW cells")
     con.execute("ALTER TABLE cells_mat RENAME TO cells")
@@ -206,7 +232,7 @@ _CELLS_SQL = """
 CREATE OR REPLACE TEMP VIEW user_wr AS
 SELECT lower(username) AS uname, count(*) FILTER (win) * 1.0 / count(*) AS wr
 FROM read_parquet('{lake}/runs.parquet') r
-ANTI JOIN read_parquet('{lake}/excluded.parquet') x ON r.run_hash = x.run_hash
+ANTI JOIN {excluded} x ON r.run_hash = x.run_hash
 WHERE username IS NOT NULL AND username <> ''
 GROUP BY 1 HAVING count(*) >= 5;
 CREATE OR REPLACE TEMP VIEW cells AS
@@ -305,7 +331,7 @@ CASE WHEN uc.n - 1 >= 5 THEN (uc.w - d.win::INT) * 1.0 / (uc.n - 1)
 
 def _ensure_floor_curves(con) -> None:
     lake = str(LAKE_DIR)
-    con.execute(_ELIGIBLE_SQL.format(lake=lake))
+    con.execute(_eligible_sql(lake))
     con.execute(_RUN_DEPTH_SQL.format(lake=lake))
     con.execute(_FLOOR_CURVE_SQL)
     con.execute(_FLOOR_CURVE_ALL_SQL)
@@ -1099,7 +1125,7 @@ def _ensure_choice_rows(con) -> None:
     scratch reset cleans it up."""
     from . import run_entity_stats as res
 
-    con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+    con.execute(_eligible_sql(LAKE_DIR))
     _ids_temp_table(con, "excluded_cards", res._non_reward_card_ids())
     seat_join, ch = _seat_character_sql("s.run_hash", "s.pidx")
     con.execute(
@@ -1162,7 +1188,7 @@ def _ensure_relic_choice_rows(con) -> None:
     """The relic analogue of choice_rows: one row per option on a free
     relic screen (ancient offers, boss relics, two-option events). Shop
     shelves are left out -- a price is not a preference."""
-    con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+    con.execute(_eligible_sql(LAKE_DIR))
     seat_join, ch = _seat_character_sql("c.run_hash", "c.player_idx")
     con.execute(
         _RELIC_CHOICES_SQL.format(
@@ -1368,7 +1394,7 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
     if own:
         con = _connect(build=True)
     try:
-        con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+        con.execute(_eligible_sql(LAKE_DIR))
         _ids_temp_table(con, "upg_ids", upgradeable)
         upg_filter = "IN (SELECT cid FROM upg_ids)" if upgradeable else "IS NOT NULL"
         con.execute(
@@ -1511,7 +1537,7 @@ def build_entity_store() -> dict | None:
 
     con = _connect(build=True)
     try:
-        con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+        con.execute(_eligible_sql(LAKE_DIR))
         entities: dict[str, dict[str, dict]] = {
             "cards": {},
             "relics": {},
@@ -3008,7 +3034,7 @@ def build_deep_tables() -> int:
         logger.info("deep tables skipped: lake incomplete")
         return 0
     runs_p = f"read_parquet('{LAKE_DIR}/runs.parquet')"
-    excl_p = f"read_parquet('{LAKE_DIR}/excluded.parquet')"
+    excl_p = _excluded_runs_sql(LAKE_DIR)
     players_p = f"read_parquet('{LAKE_DIR}/players.parquet')"
     con = _connect(build=True)
     try:
@@ -3024,6 +3050,7 @@ def build_deep_tables() -> int:
             ANTI JOIN {excl_p} x ON r.run_hash = x.run_hash
             WHERE r.ascension BETWEEN 0 AND 10
               AND NOT coalesce(r.win, false)
+              AND NOT coalesce(try_cast(r.was_abandoned AS BOOLEAN), false)
               AND coalesce(r.killed_by_encounter, r.killed_by_event) IS NOT NULL
               -- The game stamps ENCOUNTER.NONE on deaths with no killer;
               -- counting it crowned "NONE" the deadliest encounter.

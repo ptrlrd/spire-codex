@@ -21,7 +21,7 @@ from datetime import datetime
 
 from . import charts_stats
 from .lake_stats import (
-    _ELIGIBLE_SQL,
+    _eligible_sql,
     LAKE_DIR,
     _connect,
     _ensure_cells,
@@ -249,7 +249,7 @@ def build_charts_blob() -> dict | None:
     con = _connect(build=True)
     stage = LAKE_DIR / "tmp" / _STAGE_DIR
     try:
-        con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+        con.execute(_eligible_sql(LAKE_DIR))
         _ensure_cells(con, str(LAKE_DIR))
         # Fewer threads: parallel hash aggregation keeps thread-local list
         # state; the budget here is memory, not wall clock.
