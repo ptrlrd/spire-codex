@@ -2220,10 +2220,11 @@ def _entity_cube_with_mtime() -> tuple[float, dict] | None:
         if _entity_cube_cache and _entity_cube_cache[0] == mtime:
             return _entity_cube_cache
         import gzip as _gzip
-        import json as _json
 
-        with _gzip.open(path, "rt", encoding="utf-8") as f:
-            cube = _json.loads(f.read())
+        import orjson
+
+        with _gzip.open(path, "rb") as f:
+            cube = orjson.loads(f.read())
         _entity_cube_cache = (mtime, cube)
         return _entity_cube_cache
     except Exception:
@@ -2243,33 +2244,74 @@ def _fold_cache_put(key, val) -> None:
     _fold_cache[key] = val
 
 
+_SHARED_FOLD_TTL = 2 * 24 * 3600
+_SHARED_FOLD_WAIT = 20.0
+
+
+def _cube_mtime() -> float | None:
+    try:
+        return (LAKE_DIR / _ENTITY_CUBE_NAME).stat().st_mtime
+    except OSError:
+        hit = _entity_cube_with_mtime()
+        return hit[0] if hit else None
+
+
+def _shared_fold(key: tuple[str, str], compute):
+    """One fold per cube generation across every worker: the worker's own
+    cache, then Redis, then a single-flight compute (the lock holder folds
+    and publishes; the others wait briefly for it). The cube itself is only
+    parsed by a worker that actually has to fold."""
+    import time as _time
+
+    from . import cache as _cache
+
+    mtime = _cube_mtime()
+    if mtime is None:
+        return None
+    local = _fold_cache.get(key)
+    if local is not None and local[0] == mtime:
+        return local[1]
+    rkey = f"lakefold:{int(mtime)}:{key[0]}:{key[1]}"
+    hit = _cache.get_json(rkey)
+    if hit is None and not _cache.acquire_lock(rkey + ":lock", 120):
+        deadline = _time.time() + _SHARED_FOLD_WAIT
+        while hit is None and _time.time() < deadline:
+            _time.sleep(0.25)
+            hit = _cache.get_json(rkey)
+    if hit is not None:
+        fold = hit.get("v")
+    else:
+        fold = compute()
+        _cache.set_json(rkey, {"v": fold}, _SHARED_FOLD_TTL)
+        _cache.delete(rkey + ":lock")
+    _fold_cache_put(key, (mtime, fold))
+    return fold
+
+
 def entity_bracket_fold(entity_type: str, bracket: str) -> dict | None:
     """Cached fold: the entity detail page reads ~20 brackets per request
     and every entity shares the same folds, so cache per (type, bracket)
     keyed on the cube file's mtime."""
-    hit = _entity_cube_with_mtime()
-    if hit is None:
-        return None
-    key = (entity_type, bracket)
-    cached = _fold_cache.get(key)
-    if cached is not None and cached[0] == hit[0]:
-        return cached[1]
-    fold = _entity_bracket_fold_uncached(entity_type, bracket)
-    _fold_cache_put(key, (hit[0], fold))
-    return fold
+    return _shared_fold(
+        (entity_type, bracket),
+        lambda: _entity_bracket_fold_uncached(entity_type, bracket),
+    )
 
 
 def entity_character_fold(entity_type: str, bracket: str) -> dict | None:
     """{eid: {CHARACTER: [picks, wins]}} folded from the cube's character
     axis for one bracket, fold-cached like entity_bracket_fold. None until
     a cube with the axis is published or for unfoldable brackets."""
+    return _shared_fold(
+        (f"char:{entity_type}", bracket),
+        lambda: _entity_character_fold_uncached(entity_type, bracket),
+    )
+
+
+def _entity_character_fold_uncached(entity_type: str, bracket: str) -> dict | None:
     hit = _entity_cube_with_mtime()
     if hit is None:
         return None
-    key = (f"char:{entity_type}", bracket)
-    cached = _fold_cache.get(key)
-    if cached is not None and cached[0] == hit[0]:
-        return cached[1]
     parsed = _parse_lake_bracket(bracket)
     per = ((hit[1].get("by_character") or {}).get(entity_type)) or None
     fold: dict | None = None
@@ -2291,7 +2333,6 @@ def entity_character_fold(entity_type: str, bracket: str) -> dict | None:
                     cur[4] = round(cur[4], 3)
         if not fold:
             fold = None
-    _fold_cache_put(key, (hit[0], fold))
     return fold
 
 
@@ -2302,13 +2343,18 @@ def entity_character_offers_fold(
     seats in one bracket, from the cube's offers_by_character section.
     None until a cube with that section is published or for unfoldable
     brackets."""
+    return _shared_fold(
+        (f"offers:{entity_type}:{character}", bracket),
+        lambda: _entity_character_offers_fold_uncached(entity_type, bracket, character),
+    )
+
+
+def _entity_character_offers_fold_uncached(
+    entity_type: str, bracket: str, character: str
+) -> dict | None:
     hit = _entity_cube_with_mtime()
     if hit is None:
         return None
-    key = (f"offers:{entity_type}:{character}", bracket)
-    cached = _fold_cache.get(key)
-    if cached is not None and cached[0] == hit[0]:
-        return cached[1]
     parsed = _parse_lake_bracket(bracket)
     per = ((hit[1].get("offers_by_character") or {}).get(entity_type)) or None
     fold: dict | None = None
@@ -2335,19 +2381,31 @@ def entity_character_offers_fold(
                         agg["picked"] += op[1]
                         agg["off_act"][i] += op[0]
                         agg["pick_act"][i] += op[1]
-    _fold_cache_put(key, (hit[0], fold))
     return fold
 
 
 def cube_has_character_offers() -> bool:
-    hit = _entity_cube_with_mtime()
-    return bool(hit and hit[1].get("offers_by_character"))
+    def _compute():
+        hit = _entity_cube_with_mtime()
+        return bool(hit and hit[1].get("offers_by_character"))
+
+    return bool(_shared_fold(("meta", "has_character_offers"), _compute))
 
 
 def cube_versions(min_runs: int = 500, limit: int = 8) -> list[str]:
     """Game versions present in the entity cube with at least min_runs
     eligible runs, newest first. The detail page's version picker reads
     this now that the snapshot's version list is frozen."""
+    return list(
+        _shared_fold(
+            ("meta", f"versions:{min_runs}:{limit}"),
+            lambda: _cube_versions_uncached(min_runs, limit),
+        )
+        or []
+    )
+
+
+def _cube_versions_uncached(min_runs: int, limit: int) -> list[str]:
     hit = _entity_cube_with_mtime()
     if hit is None:
         return []
@@ -2492,13 +2550,18 @@ def _section_fold(name: str, bracket: str, width: int, nested: bool) -> dict | N
     bracket: {"rows": ..., "total_runs", "total_wins", "total_seats"}.
     Nested sections ({cell: {group: {id: counts}}}) fold to
     {group: {id: counts}}, flat ones to {id: counts}."""
+    return _shared_fold(
+        (f"section:{name}", bracket),
+        lambda: _section_fold_uncached(name, bracket, width, nested),
+    )
+
+
+def _section_fold_uncached(
+    name: str, bracket: str, width: int, nested: bool
+) -> dict | None:
     hit = _entity_cube_with_mtime()
     if hit is None:
         return None
-    key = (f"section:{name}", bracket)
-    cached = _fold_cache.get(key)
-    if cached is not None and cached[0] == hit[0]:
-        return cached[1]
     parsed = _parse_lake_bracket(bracket)
     fold: dict | None = None
     if parsed is not None:
@@ -2531,7 +2594,6 @@ def _section_fold(name: str, bracket: str, width: int, nested: bool) -> dict | N
                 "total_seats": seats,
                 "data_through": cube.get("data_through"),
             }
-    _fold_cache_put(key, (hit[0], fold))
     return fold
 
 
@@ -3375,7 +3437,6 @@ def start_artifact_warmer(interval: int = 60) -> None:
         for load in (
             lambda: community_payload(None),
             lambda: community_payload("a10"),
-            _entity_cube_with_mtime,
             entity_store_with_mtime,
             encounter_store_with_mtime,
             deep_tables_by_key,
@@ -3391,10 +3452,17 @@ def start_artifact_warmer(interval: int = 60) -> None:
         except Exception:
             pass
         try:
-            hot = ["a10", "wr30", "wr50", "wr75", "solo", "2p", *cube_versions()]
-            for etype in ("cards", "relics", "potions"):
-                for bk in hot:
-                    entity_bracket_fold(etype, bk)
+            from . import cache as _cache
+
+            mtime = _cube_mtime()
+            if mtime is not None and _cache.acquire_lock(
+                f"lakewarm:{int(mtime)}", 3600
+            ):
+                hot = ["all", "a10", "wr30", "wr50", "wr75", "solo", "2p"]
+                hot += cube_versions()
+                for etype in ("cards", "relics", "potions"):
+                    for bk in hot:
+                        entity_bracket_fold(etype, bk)
         except Exception:
             pass
 
