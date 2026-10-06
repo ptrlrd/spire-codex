@@ -40,8 +40,8 @@ def member_lake(tmp_path, monkeypatch):
         t(run_hash, act, floor_idx))
         TO '{tmp_path}/floors.parquet' (FORMAT parquet)"""
     )
-    con.execute(ls._ELIGIBLE_SQL.format(lake=tmp_path))
-    con.execute(ls._CELLS_SQL.format(lake=tmp_path))
+    con.execute(ls._eligible_sql(tmp_path))
+    con.execute(ls._cells_sql(tmp_path))
     monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)
     ls._ensure_floor_curves(con)
     yield con, tmp_path

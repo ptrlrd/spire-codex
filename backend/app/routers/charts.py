@@ -53,6 +53,8 @@ _WARM_TTL = 8 * 60 * 60
 
 _ALL_SPLITS = ["character", "players", "outcome", "ascension"]
 # Win-rate charts can't split by outcome (a winners-only win rate is 100%).
+_ALL_RUNS_CHARTS = frozenset({"runs-over-time", "uploads-over-time"})
+
 _RATE_SPLITS = ["character", "players", "ascension"]
 
 # Registry: which charts exist, how they're built, and which filters apply.
@@ -469,7 +471,14 @@ def _compute_chart(
         mode = "daily" if spec.get("daily") else game_mode
         frame = cs.get_frame()
         rows = cs.filter_rows(
-            frame, players, ascension, mode, username, bracket, build_id
+            frame,
+            players,
+            ascension,
+            mode,
+            username,
+            bracket,
+            build_id,
+            include_short_abandons=chart_key in _ALL_RUNS_CHARTS,
         )
         series = _build_frame_chart(chart_key, rows, stat, x, y, split)
         total = len(rows)

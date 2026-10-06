@@ -29,6 +29,8 @@ MIN_OWN_CURVE = 5
 
 
 def _sql(lake: str) -> list[str]:
+    from app.services.lake_stats import _excluded_runs_sql
+
     p = lambda name: f"read_parquet('{lake}/{name}.parquet')"  # noqa: E731
     exp = f"""
       CASE WHEN uc.n - 1 >= {MIN_OWN_CURVE} THEN (uc.w - s.win::INT) * 1.0 / (uc.n - 1)
@@ -60,7 +62,7 @@ def _sql(lake: str) -> list[str]:
           least(coalesce(r.player_count, 1), 4)::INT AS players,
           r.character AS run_char
         FROM {p("runs")} r
-        ANTI JOIN {p("excluded")} x ON r.run_hash = x.run_hash
+        ANTI JOIN {_excluded_runs_sql(lake)} x ON r.run_hash = x.run_hash
         WHERE r.ascension BETWEEN 0 AND 10 AND r.character IN {OFFICIAL}""",
         f"""CREATE TEMP TABLE depth AS
         SELECT run_hash, count(*)::INT AS reached FROM {p("floors")} GROUP BY 1""",
