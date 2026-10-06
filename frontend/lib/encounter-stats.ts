@@ -10,6 +10,7 @@ export interface EncounterStat {
   act?: number | string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
 }

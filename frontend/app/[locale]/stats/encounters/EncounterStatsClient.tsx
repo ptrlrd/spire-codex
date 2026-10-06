@@ -20,6 +20,7 @@ interface CharacterStat {
   character: string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
 }
@@ -30,6 +31,7 @@ interface EncounterRow {
   room_type: string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
   characters: CharacterStat[];
@@ -400,12 +402,13 @@ export default function EncounterStatsClient() {
         </div>
       ) : (
         <>
-          <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg overflow-hidden">
-            <div className="grid grid-cols-12 gap-2 px-4 py-2 text-xs uppercase tracking-wider text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
-              <div className="col-span-5">{t("Encounter")}</div>
+          <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg overflow-x-auto">
+            <div className="min-w-[720px] grid grid-cols-12 gap-2 px-4 py-2 text-xs uppercase tracking-wider text-[var(--text-muted)] border-b border-[var(--border-subtle)]">
+              <div className="col-span-4">{t("Encounter")}</div>
               <div className="col-span-2 text-right">{t("Runs")}</div>
               <div className="col-span-2 text-right">{t("Fatal")}</div>
-              <div className="col-span-2 text-right">{t("Avg Dmg")}</div>
+              <div className="col-span-2 text-right">{t("Abandoned")}</div>
+              <div className="col-span-1 text-right">{t("Avg Dmg")}</div>
               <div className="col-span-1 text-right">{t("Avg Turns")}</div>
             </div>
 
@@ -416,16 +419,20 @@ export default function EncounterStatsClient() {
               const fatalPct = row.total
                 ? ((row.fatal / row.total) * 100).toFixed(1)
                 : "0";
+              const abandoned = row.abandoned ?? 0;
+              const abandonedPct = row.total
+                ? ((abandoned / row.total) * 100).toFixed(1)
+                : "0";
               return (
                 <div
                   key={`${row.encounter_id}-${row.act}-${row.room_type}`}
-                  className="border-b border-[var(--border-subtle)] last:border-0"
+                  className="min-w-[720px] border-b border-[var(--border-subtle)] last:border-0"
                 >
                   <button
                     onClick={() => toggleExpanded(row.encounter_id)}
                     className="w-full grid grid-cols-12 gap-2 px-4 py-3 items-center text-sm hover:bg-[var(--bg-card-hover)] transition-colors text-left"
                   >
-                    <div className="col-span-5 flex items-center gap-2">
+                    <div className="col-span-4 flex items-center gap-2">
                       <span
                         className={`inline-block w-3 text-[var(--text-muted)] text-xs transition-transform ${isOpen ? "rotate-90" : ""}`}
                       >
@@ -455,6 +462,12 @@ export default function EncounterStatsClient() {
                       </span>
                     </div>
                     <div className="col-span-2 text-right tabular-nums">
+                      {abandoned.toLocaleString()}
+                      <span className="text-xs text-[var(--text-muted)] ml-1">
+                        ({abandonedPct}%)
+                      </span>
+                    </div>
+                    <div className="col-span-1 text-right tabular-nums">
                       {row.avg_damage.toFixed(1)}
                     </div>
                     <div className="col-span-1 text-right tabular-nums">
@@ -470,7 +483,7 @@ export default function EncounterStatsClient() {
                         </div>
                       ) : (
                         <div className="grid grid-cols-12 gap-2 text-xs">
-                          <div className="col-span-5 text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
+                          <div className="col-span-4 text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
                             {t("Character")}
                           </div>
                           <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
@@ -480,6 +493,9 @@ export default function EncounterStatsClient() {
                             {t("Fatal")}
                           </div>
                           <div className="col-span-2 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
+                            {t("Abandoned")}
+                          </div>
+                          <div className="col-span-1 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
                             {t("Avg Dmg")}
                           </div>
                           <div className="col-span-1 text-right text-[var(--text-muted)] pb-1 border-b border-[var(--border-subtle)]">
@@ -487,7 +503,7 @@ export default function EncounterStatsClient() {
                           </div>
                           {row.characters.map((c) => (
                             <div className="contents" key={c.character}>
-                              <div className="col-span-5 pt-2 capitalize">
+                              <div className="col-span-4 pt-2 capitalize">
                                 {c.character.toLowerCase()}
                               </div>
                               <div className="col-span-2 pt-2 text-right tabular-nums">
@@ -504,6 +520,19 @@ export default function EncounterStatsClient() {
                                 </span>
                               </div>
                               <div className="col-span-2 pt-2 text-right tabular-nums">
+                                {c.abandoned ?? 0}
+                                <span className="text-[var(--text-muted)] ml-1">
+                                  (
+                                  {c.total
+                                    ? (
+                                        ((c.abandoned ?? 0) / c.total) *
+                                        100
+                                      ).toFixed(1)
+                                    : "0"}
+                                  %)
+                                </span>
+                              </div>
+                              <div className="col-span-1 pt-2 text-right tabular-nums">
                                 {c.avg_damage.toFixed(1)}
                               </div>
                               <div className="col-span-1 pt-2 text-right tabular-nums">
