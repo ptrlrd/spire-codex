@@ -122,10 +122,13 @@ def main() -> None:
     try:
         prebuild_compact(LAKE, todo, manifest)
     except Exception as e:
+        for name in todo:
+            (LAKE / (name + ".pull.tmp")).unlink(missing_ok=True)
         print(
-            f"entity cube columnar build failed ({e}); workers will build it",
+            f"pull ABORTED: entity cube columnar build failed ({e!r}); nothing applied",
             flush=True,
         )
+        sys.exit(1)
     apply_downloads(LAKE, todo)
     stale = sorted(
         name

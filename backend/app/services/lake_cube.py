@@ -12,6 +12,7 @@ import fcntl
 import gzip
 import hashlib
 import json
+import logging
 import os
 import shutil
 from array import array
@@ -22,6 +23,17 @@ import numpy as np
 FORMAT = 2
 ETYPES = ("cards", "relics", "potions")
 _KEEP_BUILDS = 2
+_MASK_CAP = 4096
+
+logger = logging.getLogger(__name__)
+
+
+class SourceChanged(ValueError):
+    pass
+
+
+def build_name(sha: str) -> str:
+    return f"{sha}.v{FORMAT}"
 
 
 class _Table:
@@ -262,29 +274,46 @@ def file_sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def _usable(path: Path) -> bool:
+    if not (path / "meta.json").exists():
+        return False
+    try:
+        CompactCube(path)
+    except Exception:
+        return False
+    return True
+
+
 def build_dir(src: Path, root: Path, sha: str | None = None) -> Path:
-    """Convert one entity_cube.json.gz into root/<sha256>/, once: the
-    first process to take root/.lock builds, everyone else finds the
-    finished directory. Builds beyond the newest two are pruned."""
+    """Convert one entity_cube.json.gz into root/<sha256>.v<FORMAT>/, once:
+    the first process to take root/.lock builds, everyone else finds the
+    finished directory. The source is read once, so the build is always
+    named by the bytes it was made from; a broken build is replaced and
+    builds beyond the newest two are pruned."""
     import orjson
 
-    sha = sha or file_sha256(src)
-    final = root / sha
-    if (final / "meta.json").exists():
+    data = Path(src).read_bytes()
+    got = hashlib.sha256(data).hexdigest()
+    if sha is not None and got != sha:
+        raise SourceChanged(f"{src} changed while building ({got} != {sha})")
+    final = root / build_name(got)
+    if _usable(final):
         return final
     root.mkdir(parents=True, exist_ok=True)
     with open(root / ".lock", "w") as lock:
         fcntl.flock(lock, fcntl.LOCK_EX)
         try:
-            if (final / "meta.json").exists():
+            if _usable(final):
                 return final
-            with gzip.open(src, "rb") as f:
-                cube = orjson.loads(f.read())
+            cube = orjson.loads(gzip.decompress(data))
+            del data
             built = from_cube(cube)
             del cube
-            tmp = root / f".{sha}.{os.getpid()}.tmp"
+            tmp = root / f".{got}.{os.getpid()}.tmp"
             shutil.rmtree(tmp, ignore_errors=True)
             save(built, tmp)
+            if final.exists():
+                shutil.rmtree(final, ignore_errors=True)
             tmp.rename(final)
             _prune(root, keep=final)
             return final
@@ -293,6 +322,9 @@ def build_dir(src: Path, root: Path, sha: str | None = None) -> Path:
 
 
 def _prune(root: Path, keep: Path) -> None:
+    for p in root.iterdir():
+        if p.is_dir() and p.name.startswith(".") and p.name.endswith(".tmp"):
+            shutil.rmtree(p, ignore_errors=True)
     builds = sorted(
         (p for p in root.iterdir() if p.is_dir() and not p.name.startswith(".")),
         key=lambda p: p.stat().st_mtime,
@@ -344,6 +376,8 @@ class CompactCube:
                 dtype=bool,
                 count=len(self.cells),
             )
+            if len(self._masks) >= _MASK_CAP:
+                self._masks.clear()
             self._masks[parsed] = hit
         return hit
 
@@ -592,13 +626,20 @@ def cache_roots(lake_dir: Path) -> list[Path]:
 
 
 def open_for(src: Path, lake_dir: Path, sha: str | None = None) -> CompactCube:
-    """The compact cube for one entity_cube.json.gz: an existing build
-    when any root has it, else a fresh build in the first writable root."""
+    """The compact cube for one entity_cube.json.gz: a readable existing
+    build in any root, else a fresh build in the first writable root.
+    A damaged or unreadable build is skipped, never served."""
     sha = sha or file_sha256(src)
     roots = cache_roots(lake_dir)
     for root in roots:
-        if (root / sha / "meta.json").exists():
-            return CompactCube(root / sha)
+        path = root / build_name(sha)
+        if (path / "meta.json").exists():
+            try:
+                return CompactCube(path)
+            except Exception:
+                logger.warning(
+                    "skipping unreadable compact cube %s", path, exc_info=True
+                )
     last: Exception | None = None
     for root in roots:
         try:

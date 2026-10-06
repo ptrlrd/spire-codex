@@ -93,5 +93,21 @@ def test_pull_prebuilds_the_columnar_cube(tmp_path):
     pull_lake.prebuild_compact(tmp_path, ["entity_store.json"], manifest)
     assert not (tmp_path / "entity_cube.compact").exists()
     pull_lake.prebuild_compact(tmp_path, ["entity_cube.json.gz"], manifest)
-    built = lake_cube.CompactCube(tmp_path / "entity_cube.compact" / sha)
+    built = lake_cube.CompactCube(
+        tmp_path / "entity_cube.compact" / lake_cube.build_name(sha)
+    )
     assert built.versions() == {"v0.1": 3}
+
+
+def test_pull_prebuild_rejects_a_cube_it_cannot_convert(tmp_path):
+    import pytest
+
+    from app.services import lake_cube
+
+    tmp = tmp_path / "entity_cube.json.gz.pull.tmp"
+    tmp.write_bytes(b"not a gzip stream")
+    sha = lake_cube.file_sha256(tmp)
+    manifest = {"files": {"entity_cube.json.gz": {"sha256": sha}}}
+    with pytest.raises(Exception):
+        pull_lake.prebuild_compact(tmp_path, ["entity_cube.json.gz"], manifest)
+    assert not list((tmp_path / "entity_cube.compact").glob("*.v*"))

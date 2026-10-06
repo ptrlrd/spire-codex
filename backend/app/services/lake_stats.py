@@ -2228,37 +2228,51 @@ def build_entity_cube(con=None) -> dict:
 _compact_cube_cache: tuple[tuple[float, int], object] | None = None
 _compact_cube_failed: tuple[tuple[float, int], float] | None = None
 _COMPACT_RETRY_SECONDS = 60.0
+_COMPACT_WAIT_SECONDS = 20.0
 _compact_cube_lock = threading.Lock()
 
 
+def _file_sig(path: Path):
+    st = path.stat()
+    return (st.st_ino, st.st_size, st.st_mtime_ns, st.st_ctime_ns)
+
+
 def _compact_entity_cube():
-    """(mtime, CompactCube) for the entity cube on disk, or None. The
+    """(signature, CompactCube) for the entity cube on disk, or None. The
     columnar build lives on disk and every worker memory-maps the same
-    one (see lake_cube); a failed build is retried at most once a minute
-    instead of on every fold."""
+    one (see lake_cube). The signature changes with any replacement of
+    the file, timestamp-preserving copies included. While a new cube
+    loads, after it fails (retried at most once a minute), or while the
+    file is briefly missing, callers get the previous cube under its own
+    signature; with no previous cube they wait a bounded time."""
     global _compact_cube_cache, _compact_cube_failed
     import time as _time
 
     path = LAKE_DIR / _ENTITY_CUBE_NAME
-    try:
-        st = path.stat()
-    except OSError:
-        return None
-    sig = (st.st_mtime, st.st_size)
     hit = _compact_cube_cache
+    try:
+        sig = _file_sig(path)
+    except OSError:
+        return hit
     if hit is not None and hit[0] == sig:
-        return st.st_mtime, hit[1]
-    with _compact_cube_lock:
+        return hit
+    if hit is not None:
+        acquired = _compact_cube_lock.acquire(blocking=False)
+    else:
+        acquired = _compact_cube_lock.acquire(timeout=_COMPACT_WAIT_SECONDS)
+    if not acquired:
+        return hit
+    try:
         hit = _compact_cube_cache
         if hit is not None and hit[0] == sig:
-            return st.st_mtime, hit[1]
+            return hit
         failed = _compact_cube_failed
         if (
             failed is not None
             and failed[0] == sig
             and _time.time() - failed[1] < _COMPACT_RETRY_SECONDS
         ):
-            return None
+            return hit
         try:
             from . import lake_cube
 
@@ -2266,9 +2280,11 @@ def _compact_entity_cube():
         except Exception:
             logger.warning("entity cube load failed", exc_info=True)
             _compact_cube_failed = (sig, _time.time())
-            return None
+            return hit
         _compact_cube_cache = (sig, cube)
-        return st.st_mtime, cube
+        return _compact_cube_cache
+    finally:
+        _compact_cube_lock.release()
 
 
 def entity_cube_data_through() -> str | None:
@@ -2290,18 +2306,30 @@ def _fold_cache_put(key, val) -> None:
         _fold_cache[key] = val
 
 
-def _cube_mtime() -> float | None:
+def _cube_sig():
     try:
-        return (LAKE_DIR / _ENTITY_CUBE_NAME).stat().st_mtime
+        return _file_sig(LAKE_DIR / _ENTITY_CUBE_NAME)
     except OSError:
         hit = _compact_entity_cube()
         return hit[0] if hit else None
 
 
-_fold_inflight: dict[tuple[str, str], threading.Event] = {}
-_FOLD_WAIT_SECONDS = 30.0
+class _CubeUnavailable(Exception):
+    pass
+
+
+def _loaded_cube():
+    hit = _compact_entity_cube()
+    if hit is None:
+        raise _CubeUnavailable
+    _in_fold.cube_sig = hit[0]
+    return hit[1]
+
+
+_fold_inflight: dict[tuple[str, str], tuple] = {}
 _fold_pool = None
 _fold_pool_lock = threading.Lock()
+_in_fold = threading.local()
 
 
 def _fold_executor():
@@ -2318,40 +2346,56 @@ def _fold_executor():
 
 
 def _cached_fold(key: tuple[str, str], compute):
-    """One fold per key per cube generation in each worker. A burst of
-    requests for the same key waits on the one computing it, and every
-    fold runs on the same two threads: numpy temporaries freed by a
-    request thread stay in that thread's malloc arena, so folds spread
-    over the whole request pool held gigabytes after a post-pull burst."""
-    mtime = _cube_mtime()
-    if mtime is None:
+    """One fold per key per cube generation in each worker. Concurrent
+    requests for a key share one future, so they get the owner's result
+    or error instead of computing again, and every fold runs on the same
+    two threads: numpy temporaries freed by a request thread stay in that
+    thread's malloc arena, so folds spread over the whole request pool
+    held gigabytes after a post-pull burst. A cube that failed to load is
+    never cached as an empty fold."""
+    sig = _cube_sig()
+    if sig is None:
         return None
     local = _fold_cache.get(key)
-    if local is not None and local[0] == mtime:
+    if local is not None and local[0] == sig:
         return local[1]
+    if getattr(_in_fold, "active", False):
+        return _run_fold(key, sig, compute)
     with _fold_cache_lock:
         local = _fold_cache.get(key)
-        if local is not None and local[0] == mtime:
+        if local is not None and local[0] == sig:
             return local[1]
-        event = _fold_inflight.get(key)
-        owner = event is None
-        if owner:
-            event = threading.Event()
-            _fold_inflight[key] = event
-    if not owner:
-        event.wait(_FOLD_WAIT_SECONDS)
-        local = _fold_cache.get(key)
-        if local is not None and local[0] == mtime:
-            return local[1]
+        running = _fold_inflight.get(key)
+        if running is None or running[0] != sig:
+            future = _fold_executor().submit(_run_fold, key, sig, compute)
+            _fold_inflight[key] = (sig, future)
+        else:
+            future = running[1]
+    return future.result()
+
+
+def _run_fold(key: tuple[str, str], sig, compute):
+    nested = getattr(_in_fold, "active", False)
+    outer_sig = getattr(_in_fold, "cube_sig", None)
+    _in_fold.active = True
+    _in_fold.cube_sig = None
     try:
-        fold = _fold_executor().submit(compute).result()
-        _fold_cache_put(key, (mtime, fold))
+        fold = compute()
+    except _CubeUnavailable:
+        return None
+    else:
+        used = _in_fold.cube_sig
+        if used is None or used == sig:
+            _fold_cache_put(key, (sig, fold))
         return fold
     finally:
-        if owner:
+        _in_fold.active = nested
+        _in_fold.cube_sig = outer_sig
+        if not nested:
             with _fold_cache_lock:
-                _fold_inflight.pop(key, None)
-            event.set()
+                running = _fold_inflight.get(key)
+                if running is not None and running[0] == sig:
+                    _fold_inflight.pop(key, None)
 
 
 def entity_bracket_fold(entity_type: str, bracket: str) -> dict | None:
@@ -2379,12 +2423,9 @@ def _entity_character_fold_uncached(entity_type: str, bracket: str) -> dict | No
     parsed = _parse_lake_bracket(bracket)
     if parsed is None:
         return None
-    hit = _compact_entity_cube()
-    if hit is None:
-        return None
     from . import lake_cube
 
-    return lake_cube.character_fold(hit[1], entity_type, parsed)
+    return lake_cube.character_fold(_loaded_cube(), entity_type, parsed)
 
 
 def entity_character_offers_fold(
@@ -2406,12 +2447,11 @@ def _entity_character_offers_fold_uncached(
     parsed = _parse_lake_bracket(bracket)
     if parsed is None:
         return None
-    hit = _compact_entity_cube()
-    if hit is None:
-        return None
     from . import lake_cube
 
-    return lake_cube.character_offers_fold(hit[1], entity_type, parsed, character)
+    return lake_cube.character_offers_fold(
+        _loaded_cube(), entity_type, parsed, character
+    )
 
 
 def cube_has_character_offers() -> bool:
@@ -2433,10 +2473,7 @@ def cube_versions(min_runs: int = 500, limit: int = 8) -> list[str]:
 
 
 def _cube_versions_uncached(min_runs: int, limit: int) -> list[str]:
-    hit = _compact_entity_cube()
-    if hit is None:
-        return []
-    counts = hit[1].versions()
+    counts = _loaded_cube().versions()
     import re as _re
 
     def _natural(v: str) -> list[int]:
@@ -2455,12 +2492,9 @@ def _entity_bracket_fold_uncached(entity_type: str, bracket: str) -> dict | None
     parsed = _parse_lake_bracket(bracket)
     if parsed is None:
         return None
-    hit = _compact_entity_cube()
-    if hit is None:
-        return None
     from . import lake_cube
 
-    return lake_cube.bracket_fold(hit[1], entity_type, parsed)
+    return lake_cube.bracket_fold(_loaded_cube(), entity_type, parsed)
 
 
 def _section_fold(name: str, bracket: str, width: int, nested: bool) -> dict | None:
@@ -2480,12 +2514,9 @@ def _section_fold_uncached(
     parsed = _parse_lake_bracket(bracket)
     if parsed is None:
         return None
-    hit = _compact_entity_cube()
-    if hit is None:
-        return None
     from . import lake_cube
 
-    return lake_cube.section_fold(hit[1], name, parsed, width, nested)
+    return lake_cube.section_fold(_loaded_cube(), name, parsed, width, nested)
 
 
 def shop_bracket_fold(bracket: str) -> dict | None:
@@ -3352,23 +3383,6 @@ def start_artifact_warmer(interval: int = 60) -> None:
     warmed: dict = {}
 
     def _tick() -> None:
-        for load in (
-            lambda: community_payload(None),
-            lambda: community_payload("a10"),
-            entity_store_with_mtime,
-            encounter_store_with_mtime,
-            deep_tables_by_key,
-        ):
-            try:
-                load()
-            except Exception:
-                pass
-        try:
-            from . import charts_blob_lake
-
-            charts_blob_lake.charts_blob_with_mtime()
-        except Exception:
-            pass
         try:
             hit = _compact_entity_cube()
             if hit is not None and warmed.get("cube") != hit[0]:
@@ -3388,6 +3402,23 @@ def start_artifact_warmer(interval: int = 60) -> None:
                         entity_bracket_fold(etype, bk)
                         entity_character_fold(etype, bk)
                 warmed["cube"] = hit[0]
+        except Exception:
+            pass
+        for load in (
+            lambda: community_payload(None),
+            lambda: community_payload("a10"),
+            entity_store_with_mtime,
+            encounter_store_with_mtime,
+            deep_tables_by_key,
+        ):
+            try:
+                load()
+            except Exception:
+                pass
+        try:
+            from . import charts_blob_lake
+
+            charts_blob_lake.charts_blob_with_mtime()
         except Exception:
             pass
 
