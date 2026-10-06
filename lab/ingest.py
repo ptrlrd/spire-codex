@@ -471,20 +471,6 @@ def main() -> None:
         print(f"seed predictions failed: {e}", flush=True)
     _mark("seed_predict")
     try:
-        import export_dump
-
-        t_dump = time.time()
-        dump = export_dump.build()
-        print(
-            f"runs export built ({dump['runs']} runs, {dump['bytes']:,} bytes) in {time.time() - t_dump:.0f}s"
-            if dump
-            else "runs export still fresh, kept",
-            flush=True,
-        )
-    except Exception as e:
-        print(f"runs export failed: {e}", flush=True)
-    _mark("runs_export")
-    try:
         import replay_guard
 
         guard = replay_guard.run()
@@ -578,6 +564,7 @@ def main() -> None:
                 publish_lake.publish()
             except Exception as e:
                 print(f"lake publish failed: {e}", flush=True)
+        _runs_export()
         print("ingest complete", flush=True)
     else:
         reasons = [f"stale {n}" for n in required if mtimes.get(n, 0.0) < t0]
@@ -589,6 +576,22 @@ def main() -> None:
         )
         sys.exit(1)
         sys.exit(1)
+
+
+def _runs_export() -> None:
+    try:
+        import export_dump
+
+        t_dump = time.time()
+        dump = export_dump.build()
+        print(
+            f"runs export built ({dump['runs']} runs, {dump['bytes']:,} bytes) in {time.time() - t_dump:.0f}s"
+            if dump
+            else "runs export still fresh, kept",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"runs export failed: {e}", flush=True)
 
 
 if __name__ == "__main__":
