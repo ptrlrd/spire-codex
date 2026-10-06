@@ -83,7 +83,9 @@ def snapshot(top: int = 25) -> dict:
             "payload_json_mb": _json_mb(ls._payload_cache),
             "cube_json_mb": _json_mb(ls._cube_cache),
             "entity_store_json_mb": _json_mb(ls._entity_store_cache),
-            "entity_cube_json_mb": _json_mb(ls._entity_cube_cache),
+            "entity_cube_path": str(ls._compact_cube_cache[1].path)
+            if ls._compact_cube_cache
+            else None,
             "encounter_json_mb": _json_mb(ls._encounter_store_cache),
         }
 

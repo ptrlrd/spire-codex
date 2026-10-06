@@ -13,6 +13,7 @@ import sys
 import time
 
 sys.path.insert(0, "/lab")
+sys.path.append("/app")
 
 LAKE = pathlib.Path(os.environ.get("LAKE_DIR", "/lake"))
 PULLED = "pulled.json"
@@ -27,6 +28,25 @@ def plan_downloads(manifest_files: dict, applied_files: dict) -> list[str]:
         for name, meta in manifest_files.items()
         if (applied_files.get(name) or {}).get("sha256") != meta.get("sha256")
     ]
+
+
+def prebuild_compact(lake: pathlib.Path, todo: list[str], manifest: dict) -> None:
+    """Build the columnar entity cube from the fresh download before it
+    goes live, so no backend worker has to convert it on demand."""
+    name = "entity_cube.json.gz"
+    if name not in todo:
+        return
+    from app.services import lake_cube
+
+    started = time.time()
+    lake_cube.build_dir(
+        lake / (name + ".pull.tmp"),
+        lake / "entity_cube.compact",
+        sha=manifest["files"][name]["sha256"],
+    )
+    print(
+        f"entity cube columnar build ready in {time.time() - started:.0f}s", flush=True
+    )
 
 
 def apply_downloads(lake: pathlib.Path, names: list[str]) -> None:
@@ -99,6 +119,13 @@ def main() -> None:
             sys.exit(1)
         print(f"pulled {name} ({tmp.stat().st_size:,} bytes)", flush=True)
 
+    try:
+        prebuild_compact(LAKE, todo, manifest)
+    except Exception as e:
+        print(
+            f"entity cube columnar build failed ({e}); workers will build it",
+            flush=True,
+        )
     apply_downloads(LAKE, todo)
     stale = sorted(
         name

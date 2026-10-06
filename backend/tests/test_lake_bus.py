@@ -76,3 +76,22 @@ def test_serve_set_covers_request_path_reads():
         "ingest_metrics.jsonl",
     ):
         assert name in publish_lake.SERVE_FILES
+
+
+def test_pull_prebuilds_the_columnar_cube(tmp_path):
+    import gzip
+    import json
+
+    cube = {"runs": {"standard|1|0|0|v0.1": [3, 1, 3]}, "entities": {"cards": {}}}
+    tmp = tmp_path / "entity_cube.json.gz.pull.tmp"
+    with gzip.open(tmp, "wt") as f:
+        json.dump(cube, f)
+    from app.services import lake_cube
+
+    sha = lake_cube.file_sha256(tmp)
+    manifest = {"files": {"entity_cube.json.gz": {"sha256": sha}}}
+    pull_lake.prebuild_compact(tmp_path, ["entity_store.json"], manifest)
+    assert not (tmp_path / "entity_cube.compact").exists()
+    pull_lake.prebuild_compact(tmp_path, ["entity_cube.json.gz"], manifest)
+    built = lake_cube.CompactCube(tmp_path / "entity_cube.compact" / sha)
+    assert built.versions() == {"v0.1": 3}

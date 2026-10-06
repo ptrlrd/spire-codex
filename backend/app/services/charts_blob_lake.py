@@ -17,6 +17,7 @@ from __future__ import annotations
 import gzip
 import json
 import logging
+import threading
 from datetime import datetime
 
 from . import charts_stats
@@ -323,9 +324,13 @@ def build_charts_blob() -> dict | None:
 _blob_cache: tuple[float, dict] | None = None
 
 
+_blob_lock = threading.Lock()
+
+
 def charts_blob_with_mtime() -> tuple[float, dict] | None:
     """Current generation, else previous, else None — per the fallback
-    ruling the frozen snapshot is never served."""
+    ruling the frozen snapshot is never served. One thread per worker
+    parses a new blob; the rest keep the previous one until it lands."""
     global _blob_cache
     for name in (_BLOB_NAME, _BLOB_PREV_NAME):
         path = LAKE_DIR / name
@@ -333,11 +338,19 @@ def charts_blob_with_mtime() -> tuple[float, dict] | None:
             if not path.exists():
                 continue
             mtime = path.stat().st_mtime
-            if _blob_cache and _blob_cache[0] == mtime:
+            hit = _blob_cache
+            if hit and hit[0] == mtime:
+                return hit
+            if not _blob_lock.acquire(blocking=not hit):
+                return hit
+            try:
+                if _blob_cache and _blob_cache[0] == mtime:
+                    return _blob_cache
+                with gzip.open(path, "rt", encoding="utf-8") as f:
+                    _blob_cache = (mtime, json.load(f))
                 return _blob_cache
-            with gzip.open(path, "rt", encoding="utf-8") as f:
-                _blob_cache = (mtime, json.load(f))
-            return _blob_cache
+            finally:
+                _blob_lock.release()
         except Exception:
             logger.warning("charts blob load failed for %s", name, exc_info=True)
     return None
