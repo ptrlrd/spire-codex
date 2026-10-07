@@ -6,16 +6,16 @@ import { cachedFetch } from "@/lib/fetch-cache";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import {
-  AncientPools,
   fetchPoolNames,
   namesById,
   noteText,
   type AncientPool,
   type GameNames,
   type RelicInfo,
-} from "./pools";
+} from "./pool-data";
 import "@/app/card-revamp.css";
 import "./ancients.css";
+import { AncientPools } from "./pools";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 

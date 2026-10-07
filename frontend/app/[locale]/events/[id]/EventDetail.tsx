@@ -22,14 +22,14 @@ import EntityProse from "@/app/components/EntityProse";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { imageUrl } from "@/lib/image-url";
 import {
-  AncientPools,
   fetchPoolNames,
   noteText,
   type AncientPool,
   type GameNames,
-} from "@/app/[locale]/ancients/pools";
+} from "@/app/[locale]/ancients/pool-data";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
+import { AncientPools } from "@/app/[locale]/ancients/pools";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -119,6 +119,7 @@ export default function EventDetail({
   initialKeywords,
   initialRelics,
   initialPool,
+  initialPoolNames,
 }: {
   initialEvent?: GameEvent | null;
   voteStats?: EventVotes | null;
@@ -130,6 +131,8 @@ export default function EventDetail({
   initialRelics?: RelicEntry[];
   /** Server-fetched relic pools when the event is an Ancient; absent on the beta page. */
   initialPool?: AncientPool | null;
+  /** Server-fetched names the pool condition notes refer to. */
+  initialPoolNames?: Omit<GameNames, "relics">;
 } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -157,13 +160,18 @@ export default function EventDetail({
     [initialEntityLinks],
   );
   const [fetchedPool, setFetchedPool] = useState<AncientPool | null>(null);
-  const [poolExtras, setPoolExtras] = useState<Omit<GameNames, "relics">>({
-    enchants: {},
-    modifiers: {},
-    cards: {},
-  });
+  const [fetchedPoolNames, setFetchedPoolNames] = useState<Omit<
+    GameNames,
+    "relics"
+  > | null>(null);
+  const poolExtras = initialPoolNames ?? fetchedPoolNames;
   const poolNames = useMemo(
-    () => ({ relics: relicMap, ...poolExtras }),
+    () => ({
+      relics: relicMap,
+      enchants: poolExtras?.enchants ?? {},
+      modifiers: poolExtras?.modifiers ?? {},
+      cards: poolExtras?.cards ?? {},
+    }),
     [relicMap, poolExtras],
   );
   const [expandedDialogue, setExpandedDialogue] = useState<string | null>(null);
@@ -195,17 +203,26 @@ export default function EventDetail({
         : null;
   useEffect(() => {
     if (initialPool !== undefined || !ancientId) return;
+    let live = true;
     cachedFetch<AncientPool>(`${API}/api/ancient-pools/${ancientId}`)
-      .then((data) => setFetchedPool(data))
-      .catch(() => setFetchedPool(null));
+      .then((data) => live && setFetchedPool(data))
+      .catch(() => live && setFetchedPool(null));
+    return () => {
+      live = false;
+    };
   }, [ancientId, initialPool]);
 
+  const needPoolNames = !!pool && initialPoolNames === undefined;
   useEffect(() => {
-    if (!pool) return;
+    if (!needPoolNames) return;
+    let live = true;
     fetchPoolNames(lang)
-      .then((names) => setPoolExtras(names))
+      .then((names) => live && setFetchedPoolNames(names))
       .catch(() => {});
-  }, [pool, lang]);
+    return () => {
+      live = false;
+    };
+  }, [needPoolNames, lang]);
 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
@@ -224,7 +241,7 @@ export default function EventDetail({
     );
     secs.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [event]);
+  }, [event, pool]);
 
   const handleTocClick = (e: ReactMouseEvent, secId: string) => {
     e.preventDefault();
@@ -467,7 +484,7 @@ export default function EventDetail({
                         return (
                           <Link
                             key={relicId}
-                            href={`/relics/${relicId.toLowerCase()}`}
+                            href={`${bp}/relics/${relicId.toLowerCase()}`}
                             className="cardlink"
                           >
                             {relic?.image_url && (
