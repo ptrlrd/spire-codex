@@ -31,7 +31,7 @@ SELECT * FROM read_ndjson('__SRC__',
 COPY (
 -- _meta.character is THIS document's player (party siblings share one blob
 -- where players[1] is only right for player 1); the blob fallback covers
--- pages extracted before the field existed — re-extract to fix history.
+-- pages extracted before the field existed; re-extract to fix history.
 SELECT run_hash,
   coalesce(upper(_meta."character"), upper(split_part(players[1].character,'.',-1))) AS character,
   win, coalesce(was_abandoned, false) AS was_abandoned,
