@@ -10,6 +10,12 @@ import ProfileStats from "@/app/components/ProfileStats";
 import { SupporterBadge } from "@/app/components/SupporterBadge";
 import { forgetFlair } from "@/lib/supporter-flair";
 import MyChartsSection from "@/app/components/MyChartsSection";
+import {
+  EMPTY_INSIGHT_FILTERS,
+  InsightsFilterBar,
+  type InsightFilters,
+} from "@/app/components/ProfileInsights";
+import YourStats from "@/app/[locale]/players/[username]/YourStats";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -376,6 +382,8 @@ export default function ProfileClient() {
         />
       </section>
 
+      {user.username && <OwnStats username={user.username} />}
+
       {/* Claim Runs */}
       <section>
         <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
@@ -515,6 +523,19 @@ export default function ProfileClient() {
           )}
         </section>
       )}
+    </div>
+  );
+}
+
+function OwnStats({ username }: { username: string }) {
+  const lang = useGameLocale();
+  const [filters, setFilters] = useState<InsightFilters>(EMPTY_INSIGHT_FILTERS);
+  return (
+    <div className="space-y-3">
+      <div className="flex justify-end">
+        <InsightsFilterBar value={filters} onChange={setFilters} lang={lang} />
+      </div>
+      <YourStats username={username} filters={filters} own />
     </div>
   );
 }

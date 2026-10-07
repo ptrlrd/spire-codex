@@ -241,7 +241,7 @@ function useCatalogs(): Record<string, CatalogEntry> {
   return state.lang === lang ? state.map : EMPTY_CATALOG;
 }
 
-function useApiData<T>(url: string | null): T | null {
+function useApiData<T>(url: string | null, withCookies = false): T | null {
   const [state, setState] = useState<{ url: string; data: T | null }>({
     url: "",
     data: null,
@@ -249,7 +249,12 @@ function useApiData<T>(url: string | null): T | null {
   useEffect(() => {
     if (!url) return;
     let alive = true;
-    cachedFetch<T>(url)
+    const load: Promise<T | null> = withCookies
+      ? fetch(url, { credentials: "include" }).then((r) =>
+          r.ok ? (r.json() as Promise<T>) : null,
+        )
+      : cachedFetch<T>(url);
+    load
       .then((d) => {
         if (alive) setState({ url, data: d });
       })
@@ -259,7 +264,7 @@ function useApiData<T>(url: string | null): T | null {
     return () => {
       alive = false;
     };
-  }, [url]);
+  }, [url, withCookies]);
   return state.url === url ? state.data : null;
 }
 
@@ -527,9 +532,11 @@ function communityQuery(f: InsightFilters): string {
 function YourStatsInner({
   username,
   filters,
+  own,
 }: {
   username: string;
   filters: InsightFilters;
+  own: boolean;
 }) {
   const t = useT();
   const lang = useGameLocale();
@@ -537,7 +544,10 @@ function YourStatsInner({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const data = useApiData<PlayerStatsData>(
-    `${API}/api/players/${encodeURIComponent(username)}/stats${insightFilterQuery(filters)}`,
+    own
+      ? `${API}/api/auth/player-stats${insightFilterQuery(filters)}`
+      : `${API}/api/players/${encodeURIComponent(username)}/stats${insightFilterQuery(filters)}`,
+    own,
   );
   const ready = !!data?.available && data.runs > 0;
   const tables = ready && data ? data.tables : EMPTY_TABLES;
@@ -1160,6 +1170,12 @@ function YourStatsInner({
       </div>
 
       {table}
+      <p className="text-xs text-[var(--text-muted)]">
+        {t(
+          "Rows under {min} samples are greyed out; rows under {hidden} are hidden until you switch them on.",
+          { min: SMALL_SAMPLE, hidden: HIDDEN_SAMPLE },
+        )}
+      </p>
     </section>
   );
 }
@@ -1169,13 +1185,15 @@ function YourStatsInner({
 export default function YourStats({
   username,
   filters,
+  own = false,
 }: {
   username: string;
   filters: InsightFilters;
+  own?: boolean;
 }) {
   return (
     <Suspense fallback={null}>
-      <YourStatsInner username={username} filters={filters} />
+      <YourStatsInner username={username} filters={filters} own={own} />
     </Suspense>
   );
 }
