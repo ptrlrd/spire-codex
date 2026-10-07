@@ -156,7 +156,7 @@ export default function EventDetail({
     () => (initialEntityLinks?.length ? initialEntityLinks : undefined),
     [initialEntityLinks],
   );
-  const [pool, setPool] = useState<AncientPool | null>(initialPool ?? null);
+  const [fetchedPool, setFetchedPool] = useState<AncientPool | null>(null);
   const [poolExtras, setPoolExtras] = useState<Omit<GameNames, "relics">>({
     enchants: {},
     modifiers: {},
@@ -186,12 +186,18 @@ export default function EventDetail({
     );
   }, [lang, initialRelics]);
 
-  const ancientId = event?.type === "Ancient" ? event.id : null;
+  const ancientId = event?.type === "Ancient" ? event.id.toUpperCase() : null;
+  const pool =
+    initialPool !== undefined
+      ? initialPool
+      : fetchedPool && fetchedPool.id === ancientId
+        ? fetchedPool
+        : null;
   useEffect(() => {
     if (initialPool !== undefined || !ancientId) return;
     cachedFetch<AncientPool>(`${API}/api/ancient-pools/${ancientId}`)
-      .then((data) => setPool(data))
-      .catch(() => setPool(null));
+      .then((data) => setFetchedPool(data))
+      .catch(() => setFetchedPool(null));
   }, [ancientId, initialPool]);
 
   useEffect(() => {
