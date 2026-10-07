@@ -382,7 +382,9 @@ export default function ProfileClient() {
         />
       </section>
 
-      {user.username && <OwnStats username={user.username} />}
+      {user.username && (
+        <OwnStats key={user.user_id} username={user.username} />
+      )}
 
       {/* Claim Runs */}
       <section>

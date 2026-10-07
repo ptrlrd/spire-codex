@@ -269,3 +269,19 @@ def test_own_stats_serve_a_private_profile_uncached(lake, client, monkeypatch):
     assert client.get("/api/auth/player-stats?players=9").status_code == 400
     _user(monkeypatch, owner)
     assert client.get("/api/players/A/stats").status_code == 404
+
+
+def test_public_stats_cache_headers(lake, client, monkeypatch):
+    _build(monkeypatch, [("a", 100)])
+    _user(monkeypatch, {"_id": "a", "username": "A"})
+    r = client.get("/api/players/A/stats")
+    assert r.status_code == 200 and r.json()["available"]
+    assert r.headers["cache-control"] == "public, max-age=300"
+
+
+def test_filter_validation_precedes_user_lookup(lake, client, monkeypatch):
+    _build(monkeypatch, [("a", 100)])
+    _user(monkeypatch, {"_id": "a", "username": "A"})
+    existing = client.get("/api/players/A/stats?players=9")
+    ghost = client.get("/api/players/GHOST/stats?players=9")
+    assert existing.status_code == ghost.status_code == 400
