@@ -180,6 +180,11 @@ function tokenize(input: string): Token[] | null {
       input[end] !== "(" &&
       input[end] !== ")"
     ) {
+      if (input[end] === '"') {
+        const close = input.indexOf('"', end + 1);
+        if (close === -1) return null;
+        end = close;
+      }
       end += 1;
     }
     const text = input.slice(start, end);
@@ -205,7 +210,10 @@ export function parseGridQuery(input: string): {
   error: string | null;
 } {
   const tokens = tokenize(input);
-  if (!tokens || tokens.length === 0) {
+  if (!tokens) {
+    return { ast: null, unknown: [], error: "unclosed quote" };
+  }
+  if (tokens.length === 0) {
     return { ast: null, unknown: [], error: null };
   }
   const unknown: string[] = [];
@@ -215,7 +223,7 @@ export function parseGridQuery(input: string): {
   const peek = () => (pos < tokens.length ? tokens[pos] : null);
   const take = () => tokens[pos++];
 
-  const parseTerm = (neg: boolean, text: string): Node | null => {
+  const parseTerm = (text: string): Node | null => {
     const lower = text.toLowerCase();
     const flag = lower.startsWith("is:") ? FIELD_INDEX[lower] : undefined;
     if (flag) {
@@ -238,7 +246,10 @@ export function parseGridQuery(input: string): {
       return { kind: "text", text: text.toLowerCase() };
     }
     const field = FIELD_INDEX[text.slice(0, opIndex).toLowerCase()];
-    const value = text.slice(opIndex + op.length);
+    let value = text.slice(opIndex + op.length);
+    if (value.length > 1 && value.startsWith('"') && value.endsWith('"')) {
+      value = value.slice(1, -1);
+    }
     if (!field || field.kind === "flag" || value === "") {
       if (field && field.kind !== "flag") {
         error = text;
@@ -298,7 +309,7 @@ export function parseGridQuery(input: string): {
     }
     if (token.t === "term") {
       take();
-      const node = parseTerm(token.neg, token.text);
+      const node = parseTerm(token.text);
       if (node && token.neg) return { kind: "not", of: node };
       return node;
     }
@@ -402,6 +413,17 @@ function match(node: Node, row: GridRow): boolean {
     case "flag":
       return row[node.field.key as keyof GridRow] === true;
   }
+}
+
+export function gridQueryFlags(node: Node | null): Set<string> {
+  const out = new Set<string>();
+  const walk = (n: Node) => {
+    if (n.kind === "flag") out.add(n.field.key);
+    else if (n.kind === "not") walk(n.of);
+    else if (n.kind === "and" || n.kind === "or") n.of.forEach(walk);
+  };
+  if (node) walk(node);
+  return out;
 }
 
 export function matchGridQuery(ast: Node | null, row: GridRow): boolean {

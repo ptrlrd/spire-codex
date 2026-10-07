@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { matchGridQuery, parseGridQuery } from "./grid-query";
+import { gridQueryFlags, matchGridQuery, parseGridQuery } from "./grid-query";
 import type { GridRow } from "@/app/[locale]/stats/_grid/types";
 
 function row(overrides: Partial<GridRow> = {}): GridRow {
@@ -110,10 +110,32 @@ describe("operators", () => {
     expect(matches("r:common", row())).toBe(true);
   });
 
+  it("reads quoted text field values with spaces", () => {
+    const slam = row({ name: "Body Slam" });
+    expect(matches('name:"body slam"', slam)).toBe(true);
+    expect(matches('name="body slam"', slam)).toBe(true);
+    expect(matches('-name:"body slam"', slam)).toBe(false);
+    expect(matches('name:"body slam" lift>1', slam)).toBe(true);
+    expect(parseGridQuery('name:"body slam').error).not.toBeNull();
+  });
+
   it("supports flags", () => {
     expect(matches("is:upgraded", row({ upgraded: true }))).toBe(true);
     expect(matches("is:upgraded", row())).toBe(false);
     expect(matches("-is:wax", row({ wax: true }))).toBe(false);
+  });
+});
+
+describe("flags in a query", () => {
+  it("collects every flag, negated or nested", () => {
+    const flags = (q: string) => [...gridQueryFlags(parseGridQuery(q).ast)];
+    expect(flags("is:upgraded lift>1")).toEqual(["upgraded"]);
+    expect(flags("(strike OR -is:wax) is:upgraded").sort()).toEqual([
+      "upgraded",
+      "wax",
+    ]);
+    expect(flags("lift>1")).toEqual([]);
+    expect(flags("")).toEqual([]);
   });
 });
 
@@ -142,6 +164,10 @@ describe("errors and unknown fields", () => {
   it("falls back on a dangling operator", () => {
     const parsed = parseGridQuery("lift>");
     expect(parsed.error).not.toBeNull();
+  });
+
+  it("falls back on an unclosed quote", () => {
+    expect(parseGridQuery('"body slam').error).not.toBeNull();
   });
 
   it("returns a null ast for an empty query", () => {
