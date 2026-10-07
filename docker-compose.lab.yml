@@ -5,7 +5,7 @@ name: spire-codex-lab
 # targets, memory-capped so they can never starve the site.
 #
 #   docker compose -f docker-compose.lab.yml run --rm extract
-#   docker compose -f docker-compose.lab.yml run --rm duckdb /lake/build.duckdb -c ".read /lake/lab/build.sql"
+#   docker compose -f docker-compose.lab.yml run --rm --entrypoint python extract /lab/build_lake.py
 #   docker compose -f docker-compose.lab.yml run --rm duckdb -c "SELECT ... FROM read_parquet('/lake/runs.parquet')"
 
 services:
