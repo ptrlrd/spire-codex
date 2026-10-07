@@ -2340,12 +2340,12 @@ def _lake_data_through() -> str | None:
     try:
         from . import lake_stats
 
-        for hit in (
-            lake_stats.entity_store_with_mtime(),
-            lake_stats._entity_cube_with_mtime(),
-        ):
-            if hit and hit[1].get("data_through"):
-                return str(hit[1]["data_through"])
+        hit = lake_stats.entity_store_with_mtime()
+        if hit and hit[1].get("data_through"):
+            return str(hit[1]["data_through"])
+        through = lake_stats.entity_cube_data_through()
+        if through:
+            return str(through)
     except Exception:
         logger.warning("lake data_through read failed", exc_info=True)
     return None

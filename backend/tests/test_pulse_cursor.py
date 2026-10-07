@@ -27,9 +27,7 @@ def test_status_falls_back_to_the_cube_cursor(monkeypatch):
     monkeypatch.setattr(res, "_data_through", None)
     monkeypatch.setattr(lake_stats, "entity_store_with_mtime", lambda: None)
     monkeypatch.setattr(
-        lake_stats,
-        "_entity_cube_with_mtime",
-        lambda: (1.0, {"data_through": "2026-09-09 11:00:00"}),
+        lake_stats, "entity_cube_data_through", lambda: "2026-09-09 11:00:00"
     )
     assert res.snapshot_status()["data_through"] == "2026-09-09 11:00:00"
 
@@ -37,7 +35,7 @@ def test_status_falls_back_to_the_cube_cursor(monkeypatch):
 def test_status_stays_null_without_any_cursor(monkeypatch):
     monkeypatch.setattr(res, "_data_through", None)
     monkeypatch.setattr(lake_stats, "entity_store_with_mtime", lambda: None)
-    monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: None)
+    monkeypatch.setattr(lake_stats, "entity_cube_data_through", lambda: None)
     assert res.snapshot_status()["data_through"] is None
 
 

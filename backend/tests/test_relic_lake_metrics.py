@@ -2,6 +2,7 @@
 shops, events and campfires through the lake cube and the tables the
 stats pages read, plus the 400 on an unknown bracket."""
 
+import gzip
 import json
 
 import duckdb
@@ -217,7 +218,7 @@ def write_lake(tmp_path):
 def lake(tmp_path, monkeypatch):
     write_lake(tmp_path)
     monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
-    monkeypatch.setattr(lake_stats, "_entity_cube_cache", None)
+    monkeypatch.setattr(lake_stats, "_compact_cube_cache", None)
     monkeypatch.setattr(lake_stats, "_entity_store_cache", None)
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
@@ -580,7 +581,7 @@ def modded_lake(tmp_path, monkeypatch):
     write_lake(tmp_path)
     _add_modded_rows(tmp_path)
     monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
-    monkeypatch.setattr(lake_stats, "_entity_cube_cache", None)
+    monkeypatch.setattr(lake_stats, "_compact_cube_cache", None)
     monkeypatch.setattr(lake_stats, "_entity_store_cache", None)
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
@@ -675,7 +676,8 @@ def test_pairs_and_offers_carry_the_seat_character(lake):
         lake_stats.fold_tier_pairs(tiers, character="IRONCLAD")[("JUZU", "ANCHOR")] == 1
     )
     assert lake_stats.fold_tier_pairs(tiers, character="SILENT") == {}
-    cube = lake_stats._entity_cube_with_mtime()[1]
+    with gzip.open(lake_stats.LAKE_DIR / "entity_cube.json.gz", "rb") as f:
+        cube = json.load(f)
     by_char = cube["offers_by_character"]["relics"]
     cell = next(iter(by_char))
     assert by_char[cell]["IRONCLAD"]["ANCHOR"]["0"] == [3, 0]
@@ -783,7 +785,7 @@ def test_entity_stats_without_cube_keeps_the_lift_family_null(lake, monkeypatch)
     empty = lake / "cubeless"
     empty.mkdir()
     monkeypatch.setattr(lake_stats, "LAKE_DIR", empty)
-    monkeypatch.setattr(lake_stats, "_entity_cube_cache", None)
+    monkeypatch.setattr(lake_stats, "_compact_cube_cache", None)
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     _seed_juzu_stats()
     try:

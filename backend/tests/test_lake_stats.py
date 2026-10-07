@@ -1,4 +1,4 @@
-from app.services import lake_stats
+from app.services import lake_cube, lake_stats
 
 
 def test_available_false_without_lake(monkeypatch, tmp_path):
@@ -312,7 +312,7 @@ def test_bracket_elo_for(monkeypatch, tmp_path):
     assert lake_stats.bracket_elo_for("wr75") is None
 
 
-def test_cube_versions_and_fold_cache(monkeypatch):
+def test_cube_versions_and_fold_cache(monkeypatch, tmp_path):
     cube = {
         "runs": {
             "standard|1|1|0|v0.111.0": [600, 300],
@@ -324,7 +324,8 @@ def test_cube_versions_and_fold_cache(monkeypatch):
         "entities": {"cards": {"standard|1|1|0|v0.111.0": {"X": [10, 6]}}},
         "offers": {},
     }
-    monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: (1.0, cube))
+    compact = lake_cube.from_dict(cube, tmp_path / "cube")
+    monkeypatch.setattr(lake_stats, "_compact_entity_cube", lambda: (1.0, compact))
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     # Version floor (500 runs) drops v0.9.9; blank build ids never count.
     assert lake_stats.cube_versions() == ["v0.111.0", "v0.110.2"]
@@ -363,7 +364,7 @@ def test_overlay_carries_store_totals(monkeypatch, tmp_path):
         res._global_totals.update(old)
 
 
-def test_recent_versions_include_cube_and_validate(monkeypatch):
+def test_recent_versions_include_cube_and_validate(monkeypatch, tmp_path):
     from app.services import run_entity_stats as res
 
     cube = {
@@ -371,7 +372,9 @@ def test_recent_versions_include_cube_and_validate(monkeypatch):
         "entities": {},
         "offers": {},
     }
-    monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: (1.0, cube))
+    compact = lake_cube.from_dict(cube, tmp_path / "cube")
+    monkeypatch.setattr(lake_stats, "_compact_entity_cube", lambda: (1.0, compact))
+    monkeypatch.setattr(lake_stats, "_fold_cache", {})
     monkeypatch.setattr(res, "_recent_stat_versions", ["v0.110.2"])
     monkeypatch.setattr(res, "_maybe_rebuild", lambda: None)
     assert res.get_recent_stat_versions() == ["v0.112.0", "v0.110.2"]
@@ -392,7 +395,7 @@ def test_get_community_stats_is_lake_first(monkeypatch):
     assert isinstance(out, dict) and out is not live
 
 
-def test_entity_character_fold(monkeypatch):
+def test_entity_character_fold(monkeypatch, tmp_path):
     cube = {
         "runs": {"standard|1|1|0|v1": [100, 50], "standard|2|1|0|v1": [40, 10]},
         "entities": {},
@@ -404,7 +407,8 @@ def test_entity_character_fold(monkeypatch):
         },
         "offers": {},
     }
-    monkeypatch.setattr(lake_stats, "_entity_cube_with_mtime", lambda: (2.0, cube))
+    compact = lake_cube.from_dict(cube, tmp_path / "cube")
+    monkeypatch.setattr(lake_stats, "_compact_entity_cube", lambda: (2.0, compact))
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     fold = lake_stats.entity_character_fold("cards", "a10")
     assert fold["X"]["IRONCLAD"][:2] == [13, 8]
@@ -412,11 +416,10 @@ def test_entity_character_fold(monkeypatch):
     solo = lake_stats.entity_character_fold("cards", "solo")
     assert solo["X"]["IRONCLAD"][:2] == [10, 6]
     # Cube without the axis (pre-upgrade store) -> None, callers go empty.
-    monkeypatch.setattr(
-        lake_stats,
-        "_entity_cube_with_mtime",
-        lambda: (3.0, {"runs": {}, "entities": {}, "offers": {}}),
+    bare = lake_cube.from_dict(
+        {"runs": {}, "entities": {}, "offers": {}}, tmp_path / "bare"
     )
+    monkeypatch.setattr(lake_stats, "_compact_entity_cube", lambda: (3.0, bare))
     monkeypatch.setattr(lake_stats, "_fold_cache", {})
     assert lake_stats.entity_character_fold("cards", "a10") is None
 
