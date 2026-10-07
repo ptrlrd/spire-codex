@@ -1,4 +1,4 @@
-"""SQL filter_rows must keep the old Python filter's exact semantics."""
+"""frame_query must keep the old Python filter's exact semantics."""
 
 import pytest
 
@@ -48,12 +48,18 @@ def frame_db(monkeypatch, tmp_path):
     con.close()
 
 
+def _users(fq):
+    return {u for (u,) in fq.run(f"SELECT username FROM {fq.src}")}
+
+
 def test_no_filters_returns_everything(frame_db):
-    assert len(cs.filter_rows(len(_rows()), None, None, None, None)) == len(_rows())
+    assert cs.frame_count(cs.frame_query(None, None, None, None)) == len(_rows())
 
 
 def test_positional_order_matches_constants(frame_db):
-    r = cs.filter_rows(1, None, None, "daily", None)[0]
+    r = frame_db.execute(
+        f"SELECT {cs._FRAME_SELECT} FROM frame WHERE game_mode = 'daily'"
+    ).fetchone()
     assert r[cs.CHAR] == "REGENT"
     assert r[cs.USER] == "newbie"
     assert r[cs.PLAYERS] == 1
@@ -61,27 +67,29 @@ def test_positional_order_matches_constants(frame_db):
 
 
 def test_axis_filters(frame_db):
-    assert len(cs.filter_rows(1, 2, None, None, None)) == 6
-    assert len(cs.filter_rows(1, None, 3, None, None)) == 1
-    assert len(cs.filter_rows(1, None, None, None, "Ace ")) == 7
-    assert len(cs.filter_rows(1, None, None, None, None, build_id="0.112.0")) == 1
+    assert cs.frame_count(cs.frame_query(2, None, None, None)) == 6
+    assert cs.frame_count(cs.frame_query(None, 3, None, None)) == 1
+    assert cs.frame_count(cs.frame_query(None, None, None, "Ace ")) == 7
+    fq = cs.frame_query(None, None, None, None, build_id="0.112.0")
+    assert cs.frame_count(fq) == 1
 
 
 def test_a10_bracket_floors_ascension(frame_db):
-    rows = cs.filter_rows(1, None, None, None, None, bracket="a10")
-    assert len(rows) == len(_rows()) - 1
-    assert all(r[cs.ASC] >= 10 for r in rows)
+    fq = cs.frame_query(None, None, None, None, bracket="a10")
+    assert cs.frame_count(fq) == len(_rows()) - 1
+    assert fq.run(f"SELECT min(ascension) FROM {fq.src}") == [(10,)]
 
 
 def test_wr_bracket_strict_threshold_and_run_floor(frame_db):
     # ace: 4/7 overall (57.1%) passes wr50; mid: 3/6 (50.0%) fails the
     # strict >; newbie: 2 runs, under the 5-run floor.
-    rows = cs.filter_rows(1, None, None, None, None, bracket="wr50")
-    users = {r[cs.USER] for r in rows}
-    assert users == {"ace"}
-    assert all(r[cs.ASC] >= 10 for r in rows)
+    fq = cs.frame_query(None, None, None, None, bracket="wr50")
+    assert _users(fq) == {"ace"}
+    assert fq.run(f"SELECT min(ascension) FROM {fq.src}") == [(10,)]
 
 
 def test_unloaded_frame_returns_empty(monkeypatch):
     monkeypatch.setattr(cs, "_FRAME_DB", None)
-    assert cs.filter_rows(0, None, None, None, None) == []
+    fq = cs.frame_query(None, None, None, None)
+    assert cs.frame_count(fq) == 0
+    assert cs.winrate_by_floor(fq, "character") == []

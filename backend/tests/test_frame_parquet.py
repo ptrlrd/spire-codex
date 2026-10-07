@@ -199,10 +199,16 @@ def test_old_frame_parquet_without_upload_day_still_loads(monkeypatch, tmp_path)
     loaded.close()
 
 
-def test_uploads_chart_buckets_by_upload_day():
-    rows = [r[:15] + (20705,) for r in _sample_rows()]
-    played = cs.runs_over_time(rows, "none")
-    uploaded = cs.runs_over_time(rows, "none", cs.UPLOAD_DAY)
+def _frame(monkeypatch, rows):
+    con, _n = cs._frame_db(rows)
+    monkeypatch.setattr(cs, "_FRAME_DB", con)
+    return cs.frame_query(None, None, None, None, include_short_abandons=True)
+
+
+def test_uploads_chart_buckets_by_upload_day(monkeypatch):
+    fq = _frame(monkeypatch, [r[:15] + (20705,) for r in _sample_rows()])
+    played = cs.runs_over_time(fq, "none")
+    uploaded = cs.runs_over_time(fq, "none", "upload_day")
     assert [p["x"] for p in played[0]["points"]] == [
         cs._week_label(20600 // 7),
         cs._week_label(20601 // 7),
@@ -212,12 +218,12 @@ def test_uploads_chart_buckets_by_upload_day():
     ]
 
 
-def test_runs_over_time_thirty_day_average():
+def test_runs_over_time_thirty_day_average(monkeypatch):
     base = _sample_rows()[0]
     start = 20601
     rows = [base[:9] + (start + i,) + base[10:] for i in range(70)]
     rows += [base[:9] + (start + 69,) + base[10:]] * 30
-    points = cs.runs_over_time(rows, "none")[0]["points"]
+    points = cs.runs_over_time(_frame(monkeypatch, rows), "none")[0]["points"]
     by_week = {p["x"]: p for p in points}
     assert all(p["ma"] is None for p in points[:4])
     assert by_week[cs._week_label((start + 34) // 7)]["ma"] == 7.0
