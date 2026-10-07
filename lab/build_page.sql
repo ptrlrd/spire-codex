@@ -15,7 +15,7 @@
 -- Parse the page ONCE into a scratch table carrying the superset of every
 -- field any output table needs; the extractions below read that instead of
 -- re-parsing the JSON per table.
-CREATE OR REPLACE TABLE raw AS
+CREATE OR REPLACE TEMP TABLE raw AS
 SELECT * FROM read_ndjson('__SRC__',
   maximum_object_size=33554432, ignore_errors=true,
   columns={run_hash: 'VARCHAR',

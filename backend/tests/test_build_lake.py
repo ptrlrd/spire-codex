@@ -4,7 +4,9 @@ a cycle with one new page parses only that page."""
 import gzip
 import importlib.util
 import json
+import os
 import pathlib
+import shutil
 
 import duckdb
 import pytest
@@ -152,3 +154,93 @@ def test_rewritten_page_and_new_sql_reparse(lake):
 def test_no_pages_is_an_error(lake):
     with pytest.raises(RuntimeError):
         _build(_load(), lake)
+
+
+def _stored_page(lake: pathlib.Path, n: int, run: dict) -> pathlib.Path:
+    page = lake / "staging" / f"{n:05d}.jsonl.gz"
+    with page.open("wb") as raw:
+        with gzip.GzipFile(
+            fileobj=raw, mode="wb", filename="", compresslevel=0, mtime=0
+        ) as out:
+            out.write((json.dumps(run) + "\n").encode())
+    return page
+
+
+def test_rewrite_with_same_size_and_mtime_is_reparsed(lake):
+    mod = _load()
+    page = _stored_page(lake, 0, _run("a", "ace", True))
+    _build(mod, lake)
+    before = page.stat()
+    _stored_page(lake, 0, _run("b", "ace", True))
+    assert page.stat().st_size == before.st_size
+    os.utime(page, ns=(before.st_atime_ns, before.st_mtime_ns))
+    assert _build(mod, lake)["parsed"] == 1
+    assert duckdb.sql(
+        f"SELECT run_hash FROM read_parquet('{lake}/runs.parquet')"
+    ).fetchall() == [("b",)]
+
+
+def test_failed_build_leaves_the_previous_lake(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _build(mod, lake)
+    _page(lake, 1, [_run("b", "bee", True)])
+    (lake / "excluded_current.jsonl.gz").unlink()
+    with pytest.raises(duckdb.Error):
+        _build(mod, lake)
+    assert _count(lake, "runs") == 1
+    assert _count(lake, "deck") == 1
+    assert _count(lake, "user_rollup") == 1
+
+
+def test_leftover_dirs_are_never_assembled(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True), _run("b", "ace", False)])
+    _build(mod, lake)
+    rogue = lake / "parts" / ".09999.tmp"
+    shutil.copytree(lake / "parts" / "00000", rogue)
+    stray = lake / "parts" / "00000.bak"
+    shutil.copytree(lake / "parts" / "00000", stray)
+    assert _build(mod, lake)["parsed"] == 0
+    assert _count(lake, "runs") == 2
+    assert not rogue.exists() and not stray.exists()
+
+
+def test_missing_part_dir_is_reparsed(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _build(mod, lake)
+    shutil.rmtree(lake / "parts" / "00000")
+    assert _build(mod, lake)["parsed"] == 1
+    assert _count(lake, "runs") == 1
+
+
+def test_empty_page_builds(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _page(lake, 1, [])
+    out = _build(mod, lake)
+    assert (out["pages"], out["parsed"]) == (2, 2)
+    assert _count(lake, "runs") == 1
+    _page(lake, 1, [_run("c", "sea", True)])
+    assert _build(mod, lake)["parsed"] == 1
+    assert _count(lake, "runs") == 2
+
+
+def test_unreadable_manifest_reparses_everything(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _page(lake, 1, [_run("b", "bee", True)])
+    _build(mod, lake)
+    manifest = lake / "parts" / "manifest.json"
+    manifest.write_text("{not json")
+    assert _build(mod, lake)["parsed"] == 2
+    manifest.write_text("[]")
+    assert _build(mod, lake)["parsed"] == 2
+
+
+def test_run_in_two_pages_is_reported(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _page(lake, 1, [_run("a", "ace", True)])
+    assert _build(mod, lake)["shared_runs"] == 1
