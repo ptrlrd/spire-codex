@@ -255,8 +255,11 @@ services:
     image: ptrlrd/spire-codex-frontend:latest
     container_name: spire-codex-frontend
     restart: unless-stopped
-    # Next server sits ~400M; 1G leaves room for ISR render spikes.
-    mem_limit: 1g
+    # Next server sits ~400M plus up to 256M of in-memory page cache
+    # (cacheMaxMemorySize). The heap is pinned below so the cache can't
+    # crowd it: a 1g cap gave Node a ~512M heap and the old 512M cache
+    # filled it, crash-looping the frontend (2026-10-07).
+    mem_limit: ${FRONTEND_MEM_LIMIT:-1536m}
     stop_grace_period: 15s
     depends_on:
       - backend
@@ -266,6 +269,7 @@ services:
       - next-cache:/app/.next/cache/fetch-cache
     environment:
       - HOSTNAME=0.0.0.0
+      - NODE_OPTIONS=--max-old-space-size=${FRONTEND_HEAP_MB:-1024}
       - API_INTERNAL_URL=http://spire-codex-backend:8000
       - NEXT_PUBLIC_SITE_URL=https://spire-codex.com
     healthcheck:

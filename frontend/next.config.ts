@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     staleTimes: { dynamic: 180, static: 300 },
     isrFlushToDisk: false,
   },
-  cacheMaxMemorySize: 512 * 1024 * 1024,
+  cacheMaxMemorySize: 256 * 1024 * 1024,
   // NitroPay hosts our ads.txt so exchange entries stay current without
   // deploys; the 301 is their recommended setup.
   async redirects() {
