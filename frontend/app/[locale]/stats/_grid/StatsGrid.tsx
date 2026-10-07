@@ -21,6 +21,12 @@ import {
   type GridPrefs,
 } from "./prefs";
 import { KINDS, type ColKey } from "./kinds";
+import {
+  GRID_QUERY_FIELDS,
+  gridQueryFlags,
+  matchGridQuery,
+  parseGridQuery,
+} from "@/lib/grid-query";
 import type { GridData, GridRow } from "./types";
 
 const SMALL_SAMPLE = 20;
@@ -224,6 +230,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const rows = byCharacter && data.byCharacter ? data.byCharacter : data.rows;
   const offColorActive = kind === "cards" && (!!character || byCharacter);
   const [search, setSearch] = useState(data.query);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [group, setGroup] = useState("");
   const [rarity, setRarity] = useState("");
   const [showTiny, setShowTiny] = useState(!!data.samples);
@@ -298,26 +305,84 @@ export default function StatsGrid({ data }: { data: GridData }) {
     for (const r of rows) if (r.rarity) seen.add(r.rarity);
     return [...seen].sort();
   }, [cfg.rarityFilter, rows]);
+  const parsed = useMemo(() => parseGridQuery(search), [search]);
+  const queryFlags = useMemo(() => gridQueryFlags(parsed.ast), [parsed]);
+  const hasRarity = useMemo(() => rows.some((r) => r.rarity), [rows]);
+  const helpFields = useMemo(() => {
+    const hasSub = rows.some((r) => r.sub);
+    const parts: string[] = [];
+    for (const f of GRID_QUERY_FIELDS) {
+      const label =
+        f.aliases.length > 0 ? `${f.name} (${f.aliases.join(", ")})` : f.name;
+      if (f.kind === "number") {
+        if (!f.col || cfg.columns.includes(f.col)) parts.push(label);
+      } else if (f.kind === "text") {
+        if (
+          f.key === "name" ||
+          (f.key === "sub" && hasSub) ||
+          (f.key === "rarity" && hasRarity) ||
+          (f.key === "group" && cfg.groupFilter !== null)
+        )
+          parts.push(label);
+      }
+    }
+    if (rows.some((r) => r.upgraded)) parts.push("is:upgraded");
+    if (rows.some((r) => r.wax)) parts.push("is:wax");
+    return parts.join(", ");
+  }, [cfg, rows, hasRarity]);
+  const helpExamples = useMemo(() => {
+    const label = cfg.nLabel.toLowerCase();
+    const nWord = GRID_QUERY_FIELDS.some(
+      (f) => f.key === "n" && (f.name === label || f.aliases.includes(label)),
+    )
+      ? label
+      : "picks";
+    const out = ["lift>2", `win>55 ${nWord}>1000`];
+    if (hasRarity) {
+      out.push(
+        "(rarity:rare OR rarity:uncommon) lift>0",
+        `-rarity:common ${nWord}>1000`,
+      );
+    } else {
+      out.push(`-lift<0 ${nWord}>100`);
+    }
+    const sample = rows.find(
+      (r) =>
+        r.n >= SMALL_SAMPLE &&
+        !r.upgraded &&
+        !r.wax &&
+        r.name.includes(" ") &&
+        !r.name.includes('"'),
+    )?.name;
+    if (sample) out.push(`name:"${sample.toLowerCase()}"`);
+    return out;
+  }, [cfg, hasRarity, rows]);
 
   const visible = useMemo(() => {
-    const q = search.trim().toLowerCase();
     let field = COLUMN_DEFS[sortKey].sortField;
+    const q = search.trim().toLowerCase();
     const out = rows.filter((r) => {
       if (group && r.group !== group) return false;
       if (rarity && r.rarity !== rarity) return false;
       if (!showTiny && r.n < HIDDEN_SAMPLE) return false;
-      if (!showWax && r.wax) return false;
-      if (!showUpgraded && r.upgraded) return false;
+      if (!showWax && r.wax && !queryFlags.has("wax")) return false;
+      if (!showUpgraded && r.upgraded && !queryFlags.has("upgraded")) {
+        return false;
+      }
       if (offColor && offColorActive) {
         const playing = (r.playedBy || character).toLowerCase();
         if (!CHARACTER_COLORS.has(r.group) || r.group === playing) return false;
       }
-      if (
-        q &&
-        !r.name.toLowerCase().includes(q) &&
-        !(r.sub || "").toLowerCase().includes(q)
-      )
+      if (parsed.error) {
+        if (
+          q &&
+          !r.name.toLowerCase().includes(q) &&
+          !(r.sub || "").toLowerCase().includes(q)
+        )
+          return false;
+      } else if (parsed.ast && !matchGridQuery(parsed.ast, r)) {
         return false;
+      }
       return true;
     });
     if (
@@ -338,6 +403,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
   }, [
     rows,
     search,
+    parsed,
+    queryFlags,
     group,
     rarity,
     showTiny,
@@ -913,13 +980,23 @@ export default function StatsGrid({ data }: { data: GridData }) {
       />
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => onSearch(e.target.value)}
-          placeholder={t(cfg.searchPlaceholder)}
-          className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
-        />
+        <div className="flex items-center gap-2">
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => onSearch(e.target.value)}
+            placeholder={t("Search or filter, e.g. lift>2 win>55")}
+            className="w-72 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
+          />
+          <button
+            type="button"
+            onClick={() => setHelpOpen((v) => !v)}
+            aria-label={t("Filter help")}
+            className="rounded-lg border border-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-muted)] hover:border-[var(--accent-gold)] hover:text-[var(--text-primary)]"
+          >
+            ?
+          </button>
+        </div>
         {groups.length > 0 && (
           <div className="flex flex-wrap gap-1.5">
             <button
@@ -1030,6 +1107,46 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </label>
         )}
       </div>
+      {parsed.error ? (
+        <p className="-mt-2 mb-3 text-xs text-[var(--text-muted)]">
+          {t("The query could not be read, so plain text search is used.")}
+        </p>
+      ) : parsed.unknown.length > 0 ? (
+        <p className="-mt-2 mb-3 text-xs text-[var(--text-muted)]">
+          {t("Unknown field: {field}", {
+            field: parsed.unknown.join(", "),
+          })}
+        </p>
+      ) : null}
+      {helpOpen && (
+        <div className="mb-4 max-w-xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3 text-xs text-[var(--text-primary)]">
+          <p className="mb-1 font-medium">{t("Filter help")}</p>
+          <p className="text-[var(--text-muted)]">
+            {t(
+              "Spaces combine terms with AND, OR offers choices, and a leading - excludes.",
+            )}
+          </p>
+          <p className="text-[var(--text-muted)]">
+            {t(
+              "Numbers: > >= < <= = != and : compare, a percent sign after the number is ignored.",
+            )}
+          </p>
+          <p className="text-[var(--text-muted)]">
+            {t(
+              "Text: field:value matches part of the text (rarity and group match whole values), field=value matches exactly.",
+            )}
+          </p>
+          <p className="mt-1 break-words text-[var(--text-muted)]">
+            {helpFields}
+          </p>
+          <p className="mt-1 text-[var(--text-muted)]">{t("Examples")}</p>
+          <ul className="break-words font-mono">
+            {helpExamples.map((ex) => (
+              <li key={ex}>{ex}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40">
         <table className="w-full min-w-[720px] border-collapse text-sm">

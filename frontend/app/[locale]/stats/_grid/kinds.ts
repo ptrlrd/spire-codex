@@ -33,7 +33,6 @@ export interface KindConfig {
   shareTitle?: string;
   defaultSort?: ColKey;
   baselineWhat: string;
-  searchPlaceholder: string;
   emptyText: string;
   columns: ColKey[];
   groupFilter: "color" | "pool" | "entity" | null;
@@ -57,7 +56,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Card name",
     nLabel: "Picks",
     nTitle: "Seats whose deck held this card (sample size)",
-    searchPlaceholder: "Search cards...",
     emptyText: "No cards match your filters.",
     columns: [
       "name",
@@ -93,7 +91,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Relic name",
     nLabel: "Picks",
     nTitle: "Seats that held this relic (sample size)",
-    searchPlaceholder: "Search relics...",
     emptyText: "No relics match your filters.",
     columns: [
       "name",
@@ -128,7 +125,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Potion name",
     nLabel: "Picks",
     nTitle: "Seats that held this potion (sample size)",
-    searchPlaceholder: "Search potions...",
     emptyText: "No potions match your filters.",
     columns: [
       "name",
@@ -159,7 +155,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Shop item",
     nLabel: "Bought",
     nTitle: "Seats that bought this item (sample size)",
-    searchPlaceholder: "Search shop items...",
     emptyText: "No shop data yet.",
     columns: ["name", "offered", "n", "buyRate", "winRate", "lift", "wl"],
     groupFilter: "entity",
@@ -181,7 +176,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     nameTitle: "Event and the option taken",
     nLabel: "Chosen",
     nTitle: "Seats that took this option (sample size)",
-    searchPlaceholder: "Search events...",
     emptyText: "No event data yet.",
     columns: ["name", "n", "share", "winRate", "lift", "wl"],
     groupFilter: null,
@@ -205,7 +199,6 @@ export const KINDS: Record<GridKind, KindConfig> = {
     shareTitle: "This action's share of all choices made at campfires.",
     nLabel: "Chosen",
     nTitle: "Seats that took this action (sample size)",
-    searchPlaceholder: "Search actions...",
     emptyText: "No campfire data yet.",
     columns: ["name", "n", "share", "winRate", "lift", "lowHpShare", "wl"],
     groupFilter: null,
