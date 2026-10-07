@@ -309,6 +309,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const queryFlags = useMemo(() => gridQueryFlags(parsed.ast), [parsed]);
   const hasRarity = useMemo(() => rows.some((r) => r.rarity), [rows]);
   const helpFields = useMemo(() => {
+    const hasSub = rows.some((r) => r.sub);
     const parts: string[] = [];
     for (const f of GRID_QUERY_FIELDS) {
       const label =
@@ -318,7 +319,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
       } else if (f.kind === "text") {
         if (
           f.key === "name" ||
-          f.key === "sub" ||
+          (f.key === "sub" && hasSub) ||
           (f.key === "rarity" && hasRarity) ||
           (f.key === "group" && cfg.groupFilter !== null)
         )
@@ -330,19 +331,36 @@ export default function StatsGrid({ data }: { data: GridData }) {
     return parts.join(", ");
   }, [cfg, rows, hasRarity]);
   const helpExamples = useMemo(() => {
-    const out = ["lift>2", "win>55 picks>1000"];
+    const label = cfg.nLabel.toLowerCase();
+    const nWord = GRID_QUERY_FIELDS.some(
+      (f) => f.key === "n" && (f.name === label || f.aliases.includes(label)),
+    )
+      ? label
+      : "picks";
+    const out = ["lift>2", `win>55 ${nWord}>1000`];
     if (hasRarity) {
-      out.push("rarity:rare OR rarity:uncommon", "-rarity:common picks>1000");
+      out.push(
+        "(rarity:rare OR rarity:uncommon) lift>0",
+        `-rarity:common ${nWord}>1000`,
+      );
+    } else {
+      out.push(`-lift<0 ${nWord}>100`);
     }
     const sample = rows.find(
-      (r) => r.name.includes(" ") && !r.name.includes('"'),
+      (r) =>
+        r.n >= SMALL_SAMPLE &&
+        !r.upgraded &&
+        !r.wax &&
+        r.name.includes(" ") &&
+        !r.name.includes('"'),
     )?.name;
-    if (sample) out.push(`"${sample.toLowerCase()}" lift>0`);
+    if (sample) out.push(`name:"${sample.toLowerCase()}"`);
     return out;
-  }, [hasRarity, rows]);
+  }, [cfg, hasRarity, rows]);
 
   const visible = useMemo(() => {
     let field = COLUMN_DEFS[sortKey].sortField;
+    const q = search.trim().toLowerCase();
     const out = rows.filter((r) => {
       if (group && r.group !== group) return false;
       if (rarity && r.rarity !== rarity) return false;
@@ -356,7 +374,6 @@ export default function StatsGrid({ data }: { data: GridData }) {
         if (!CHARACTER_COLORS.has(r.group) || r.group === playing) return false;
       }
       if (parsed.error) {
-        const q = search.trim().toLowerCase();
         if (
           q &&
           !r.name.toLowerCase().includes(q) &&
@@ -1116,7 +1133,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           </p>
           <p className="text-[var(--text-muted)]">
             {t(
-              "Text: field:value matches inside, field=value matches exactly.",
+              "Text: field:value matches part of the text (rarity and group match whole values), field=value matches exactly.",
             )}
           </p>
           <p className="mt-1 break-words text-[var(--text-muted)]">

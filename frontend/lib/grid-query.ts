@@ -7,6 +7,7 @@ export interface GridQueryField {
   kind: "number" | "text" | "flag";
   key: string;
   col?: ColKey;
+  exact?: boolean;
 }
 
 export const GRID_QUERY_FIELDS: GridQueryField[] = [
@@ -58,7 +59,7 @@ export const GRID_QUERY_FIELDS: GridQueryField[] = [
   { name: "lift", aliases: [], kind: "number", key: "lift", col: "lift" },
   {
     name: "picks",
-    aliases: ["n", "sample"],
+    aliases: ["n", "sample", "bought", "chosen"],
     kind: "number",
     key: "n",
     col: "n",
@@ -98,11 +99,17 @@ export const GRID_QUERY_FIELDS: GridQueryField[] = [
     key: "pickAct3",
     col: "act3",
   },
-  { name: "wins", aliases: [], kind: "number", key: "wins" },
-  { name: "losses", aliases: [], kind: "number", key: "losses" },
+  { name: "wins", aliases: [], kind: "number", key: "wins", col: "wl" },
+  { name: "losses", aliases: [], kind: "number", key: "losses", col: "wl" },
   { name: "name", aliases: [], kind: "text", key: "name" },
-  { name: "rarity", aliases: ["r"], kind: "text", key: "rarity" },
-  { name: "group", aliases: ["color", "char"], kind: "text", key: "group" },
+  { name: "rarity", aliases: ["r"], kind: "text", key: "rarity", exact: true },
+  {
+    name: "group",
+    aliases: ["color", "char"],
+    kind: "text",
+    key: "group",
+    exact: true,
+  },
   { name: "sub", aliases: [], kind: "text", key: "sub" },
   { name: "type", aliases: ["t"], kind: "text", key: "sub" },
   { name: "is:upgraded", aliases: [], kind: "flag", key: "upgraded" },
@@ -138,64 +145,76 @@ type Token =
   | { t: "lp" }
   | { t: "rp" }
   | { t: "or" }
-  | { t: "term"; neg: boolean; text: string };
+  | { t: "not" }
+  | { t: "term"; neg: boolean; text: string; quoted: boolean };
 
-function tokenize(input: string): Token[] | null {
+const MAX_TOKENS = 200;
+const MAX_DEPTH = 20;
+const SPACE = /\s/;
+const NUMBER = /^-?(\d+([.,]\d+)?|[.,]\d+)$/;
+
+function tokenize(input: string): Token[] | string {
   const tokens: Token[] = [];
   let i = 0;
   while (i < input.length) {
     const c = input[i];
-    if (c === " " || c === "\t") {
+    if (SPACE.test(c)) {
       i += 1;
       continue;
     }
-    if (c === "(") {
-      tokens.push({ t: "lp" });
-      i += 1;
-      continue;
-    }
-    if (c === ")") {
-      tokens.push({ t: "rp" });
+    if (tokens.length >= MAX_TOKENS) return "too many terms";
+    if (c === "(" || c === ")") {
+      tokens.push({ t: c === "(" ? "lp" : "rp" });
       i += 1;
       continue;
     }
     let neg = false;
     let start = i;
-    if (c === "-" && i + 1 < input.length && input[i + 1] !== " ") {
+    if (c === "-") {
+      const next = input[i + 1];
+      if (next === undefined || SPACE.test(next) || next === ")") {
+        return "dangling -";
+      }
+      if (next === "(") {
+        tokens.push({ t: "not" });
+        i += 1;
+        continue;
+      }
       neg = true;
       start = i + 1;
     }
     if (input[start] === '"') {
-      const end = input.indexOf('"', start + 1);
-      if (end === -1) return null;
-      tokens.push({ t: "term", neg, text: input.slice(start + 1, end) });
-      i = end + 1;
+      const close = input.indexOf('"', start + 1);
+      if (close === -1) return "unclosed quote";
+      const text = input.slice(start + 1, close);
+      const after = input[close + 1];
+      if (!text.trim()) return "empty quote";
+      if (after !== undefined && !SPACE.test(after) && after !== ")") {
+        return "text right after a quote";
+      }
+      tokens.push({ t: "term", neg, text, quoted: true });
+      i = close + 1;
       continue;
     }
     let end = start;
     while (
       end < input.length &&
-      input[end] !== " " &&
-      input[end] !== "\t" &&
+      !SPACE.test(input[end]) &&
       input[end] !== "(" &&
       input[end] !== ")"
     ) {
       if (input[end] === '"') {
         const close = input.indexOf('"', end + 1);
-        if (close === -1) return null;
+        if (close === -1) return "unclosed quote";
         end = close;
       }
       end += 1;
     }
     const text = input.slice(start, end);
-    if (!text) {
-      i = end + 1;
-      continue;
-    }
     if (!neg && text.toLowerCase() === "or") {
       tokens.push({ t: "or" });
     } else {
-      tokens.push({ t: "term", neg, text });
+      tokens.push({ t: "term", neg, text, quoted: false });
     }
     i = end;
   }
@@ -203,6 +222,18 @@ function tokenize(input: string): Token[] | null {
 }
 
 const OPS = [">=", "<=", "!=", ">", "<", "=", ":"];
+const NUMBER_OPS: Record<string, "gt" | "ge" | "lt" | "le" | "eq" | "ne"> = {
+  ">": "gt",
+  ">=": "ge",
+  "<": "lt",
+  "<=": "le",
+  "=": "eq",
+  "!=": "ne",
+  ":": "eq",
+};
+const NONE: Node = { kind: "or", of: [] };
+
+class QueryError extends Error {}
 
 export function parseGridQuery(input: string): {
   ast: Node | null;
@@ -210,26 +241,22 @@ export function parseGridQuery(input: string): {
   error: string | null;
 } {
   const tokens = tokenize(input);
-  if (!tokens) {
-    return { ast: null, unknown: [], error: "unclosed quote" };
+  if (typeof tokens === "string") {
+    return { ast: null, unknown: [], error: tokens };
   }
   if (tokens.length === 0) {
     return { ast: null, unknown: [], error: null };
   }
   const unknown: string[] = [];
-  let error: string | null = null;
   let pos = 0;
-
   const peek = () => (pos < tokens.length ? tokens[pos] : null);
-  const take = () => tokens[pos++];
 
-  const parseTerm = (text: string): Node | null => {
+  const parseTerm = (text: string, quoted: boolean): Node | null => {
+    if (quoted) return { kind: "text", text: text.toLowerCase() };
     const lower = text.toLowerCase();
-    const flag = lower.startsWith("is:") ? FIELD_INDEX[lower] : undefined;
-    if (flag) {
-      return { kind: "flag", field: flag };
-    }
     if (lower.startsWith("is:")) {
+      const flag = FIELD_INDEX[lower];
+      if (flag?.kind === "flag") return { kind: "flag", field: flag };
       unknown.push(text);
       return null;
     }
@@ -243,142 +270,146 @@ export function parseGridQuery(input: string): {
       }
     }
     if (opIndex === -1) {
-      return { kind: "text", text: text.toLowerCase() };
+      if (text.includes('"')) throw new QueryError(text);
+      return { kind: "text", text: lower };
     }
-    const field = FIELD_INDEX[text.slice(0, opIndex).toLowerCase()];
-    let value = text.slice(opIndex + op.length);
-    if (value.length > 1 && value.startsWith('"') && value.endsWith('"')) {
-      value = value.slice(1, -1);
-    }
-    if (!field || field.kind === "flag" || value === "") {
-      if (field && field.kind !== "flag") {
-        error = text;
-      } else if (!field) {
-        unknown.push(text.slice(0, opIndex));
-      }
+    if (opIndex === 0) throw new QueryError(text);
+    const name = lower.slice(0, opIndex);
+    const field = FIELD_INDEX[name];
+    if (!field || field.kind === "flag") {
+      unknown.push(text.slice(0, opIndex));
       return null;
     }
-    if (field.kind === "number") {
-      const numeric = value.endsWith("%") ? value.slice(0, -1) : value;
-      const num = Number(numeric);
-      if (numeric === "" || Number.isNaN(num)) {
-        error = text;
-        return null;
+    let value = text.slice(opIndex + op.length);
+    if (value.includes('"')) {
+      const inner = value.slice(1, -1);
+      if (
+        value.length < 3 ||
+        !value.startsWith('"') ||
+        !value.endsWith('"') ||
+        inner.includes('"') ||
+        !inner.trim()
+      ) {
+        throw new QueryError(text);
       }
-      const mapped: Record<string, "gt" | "ge" | "lt" | "le" | "eq" | "ne"> = {
-        ">": "gt",
-        ">=": "ge",
-        "<": "lt",
-        "<=": "le",
-        "=": "eq",
-        "!=": "ne",
-        ":": "eq",
-      };
+      value = inner;
+    }
+    if (value === "") throw new QueryError(text);
+    if (field.kind === "number") {
+      const numeric = (
+        value.endsWith("%") ? value.slice(0, -1) : value
+      ).replace(",", ".");
+      if (!NUMBER.test(numeric)) throw new QueryError(text);
       return {
         kind: "compare",
         field,
-        op: mapped[op],
-        value: num,
+        op: NUMBER_OPS[op],
+        value: Number(numeric),
       };
     }
+    const lowered = value.toLowerCase();
     if (op === ":") {
-      return {
-        kind: "textfield",
-        field,
-        op: "contains",
-        value: value.toLowerCase(),
-      };
+      const how = field.exact ? "exact" : "contains";
+      return { kind: "textfield", field, op: how, value: lowered };
     }
     if (op === "=") {
+      return { kind: "textfield", field, op: "exact", value: lowered };
+    }
+    if (op === "!=") {
       return {
-        kind: "textfield",
-        field,
-        op: "exact",
-        value: value.toLowerCase(),
+        kind: "not",
+        of: { kind: "textfield", field, op: "exact", value: lowered },
       };
     }
-    error = text;
-    return null;
+    throw new QueryError(text);
   };
 
-  const parseUnary = (): Node | null => {
-    const token = peek();
-    if (!token) {
-      error = "unexpected end";
-      return null;
-    }
+  const parseUnary = (depth: number): Node | null => {
+    const token = tokens[pos++];
     if (token.t === "term") {
-      take();
-      const node = parseTerm(token.text);
-      if (node && token.neg) return { kind: "not", of: node };
-      return node;
+      const node = parseTerm(token.text, token.quoted);
+      return node && token.neg ? { kind: "not", of: node } : node;
+    }
+    if (token.t === "not") {
+      const node = parseUnary(depth);
+      return node ? { kind: "not", of: node } : null;
     }
     if (token.t === "lp") {
-      take();
-      const node = parseOr();
-      const next = take();
-      if (!next || next.t !== "rp") {
-        error = "unbalanced parentheses";
-        return null;
-      }
+      if (depth >= MAX_DEPTH) throw new QueryError("too deep");
+      const node = parseOr(depth + 1);
+      if (peek()?.t !== "rp") throw new QueryError("unbalanced parentheses");
+      pos += 1;
       return node;
     }
-    error = "unexpected token";
-    return null;
+    throw new QueryError("unexpected token");
   };
 
-  const parseAnd = (): Node | null => {
+  const parseAnd = (depth: number): Node | null => {
     const parts: Node[] = [];
+    let consumed = false;
     for (;;) {
       const token = peek();
       if (!token || token.t === "rp" || token.t === "or") break;
-      const node = parseUnary();
-      if (error) return null;
+      consumed = true;
+      const node = parseUnary(depth);
+      if (node) parts.push(node);
+    }
+    if (!consumed) throw new QueryError("missing term");
+    if (parts.length === 0) return null;
+    return parts.length === 1 ? parts[0] : { kind: "and", of: parts };
+  };
+
+  const parseOr = (depth: number): Node | null => {
+    const parts: Node[] = [];
+    const first = parseAnd(depth);
+    if (first) parts.push(first);
+    while (peek()?.t === "or") {
+      pos += 1;
+      const node = parseAnd(depth);
       if (node) parts.push(node);
     }
     if (parts.length === 0) return null;
-    if (parts.length === 1) return parts[0];
-    return { kind: "and", of: parts };
+    return parts.length === 1 ? parts[0] : { kind: "or", of: parts };
   };
 
-  const parseOr = (): Node | null => {
-    const parts: Node[] = [];
-    const first = parseAnd();
-    if (error) return null;
-    if (first) parts.push(first);
-    while (peek()?.t === "or") {
-      take();
-      const node = parseAnd();
-      if (error) return null;
-      if (!node) {
-        error = "missing term after OR";
-        return null;
-      }
-      parts.push(node);
-    }
-    if (parts.length === 0) return null;
-    if (parts.length === 1) return parts[0];
-    return { kind: "or", of: parts };
-  };
-
-  const ast = parseOr();
-  if (!error && pos < tokens.length) {
-    error = "unexpected token";
+  try {
+    const ast = parseOr(0);
+    if (pos < tokens.length) throw new QueryError("unexpected token");
+    return {
+      ast: ast ?? (unknown.length > 0 ? NONE : null),
+      unknown,
+      error: null,
+    };
+  } catch (e) {
+    if (!(e instanceof QueryError)) throw e;
+    return { ast: null, unknown, error: e.message || "unreadable" };
   }
-  if (error) {
-    return { ast: null, unknown, error };
-  }
-  return { ast, unknown, error: null };
 }
 
-function match(node: Node, row: GridRow): boolean {
+function match(node: Node, row: GridRow): boolean | null {
   switch (node.kind) {
-    case "and":
-      return node.of.every((n) => match(n, row));
-    case "or":
-      return node.of.some((n) => match(n, row));
-    case "not":
-      return !match(node.of, row);
+    case "and": {
+      let unknownSeen = false;
+      for (const n of node.of) {
+        const v = match(n, row);
+        if (v === false) return false;
+        if (v === null) unknownSeen = true;
+      }
+      return unknownSeen ? null : true;
+    }
+    case "or": {
+      let unknownSeen = false;
+      for (const n of node.of) {
+        const v = match(n, row);
+        if (v === true) return true;
+        if (v === null) unknownSeen = true;
+      }
+      return unknownSeen ? null : false;
+    }
+    case "not": {
+      const v = match(node.of, row);
+      return v === null ? null : !v;
+    }
     case "text": {
       const name = row.name.toLowerCase();
       const sub = (row.sub || "").toLowerCase();
@@ -386,7 +417,7 @@ function match(node: Node, row: GridRow): boolean {
     }
     case "compare": {
       const value = row[node.field.key as keyof GridRow];
-      if (typeof value !== "number") return false;
+      if (typeof value !== "number") return null;
       switch (node.op) {
         case "gt":
           return value > node.value;
@@ -401,11 +432,11 @@ function match(node: Node, row: GridRow): boolean {
         case "ne":
           return value !== node.value;
       }
-      return false;
+      return null;
     }
     case "textfield": {
       const raw = row[node.field.key as keyof GridRow];
-      if (typeof raw !== "string") return false;
+      if (typeof raw !== "string") return null;
       const value = raw.toLowerCase();
       if (node.op === "exact") return value === node.value;
       return value.includes(node.value);
@@ -417,16 +448,20 @@ function match(node: Node, row: GridRow): boolean {
 
 export function gridQueryFlags(node: Node | null): Set<string> {
   const out = new Set<string>();
-  const walk = (n: Node) => {
-    if (n.kind === "flag") out.add(n.field.key);
-    else if (n.kind === "not") walk(n.of);
-    else if (n.kind === "and" || n.kind === "or") n.of.forEach(walk);
+  const walk = (n: Node, positive: boolean) => {
+    if (n.kind === "flag") {
+      if (positive) out.add(n.field.key);
+    } else if (n.kind === "not") {
+      walk(n.of, !positive);
+    } else if (n.kind === "and" || n.kind === "or") {
+      for (const child of n.of) walk(child, positive);
+    }
   };
-  if (node) walk(node);
+  if (node) walk(node, true);
   return out;
 }
 
 export function matchGridQuery(ast: Node | null, row: GridRow): boolean {
   if (!ast) return true;
-  return match(ast, row);
+  return match(ast, row) === true;
 }

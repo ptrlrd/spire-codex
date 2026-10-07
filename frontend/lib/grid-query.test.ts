@@ -103,7 +103,8 @@ describe("operators", () => {
   });
 
   it("treats : as substring and = as exact for text fields", () => {
-    expect(matches("rarity:comm", row())).toBe(true);
+    expect(matches("name:stri", row())).toBe(true);
+    expect(matches("type:att", row())).toBe(true);
     expect(matches("rarity=common", row())).toBe(true);
     expect(matches("rarity=Common", row())).toBe(true);
     expect(matches("rarity=comm", row())).toBe(false);
@@ -127,15 +128,131 @@ describe("operators", () => {
 });
 
 describe("flags in a query", () => {
-  it("collects every flag, negated or nested", () => {
+  it("collects only the flags a row must have", () => {
     const flags = (q: string) => [...gridQueryFlags(parseGridQuery(q).ast)];
     expect(flags("is:upgraded lift>1")).toEqual(["upgraded"]);
-    expect(flags("(strike OR -is:wax) is:upgraded").sort()).toEqual([
-      "upgraded",
-      "wax",
-    ]);
+    expect(flags("(strike OR -is:wax) is:upgraded")).toEqual(["upgraded"]);
+    expect(flags("-(-is:wax)")).toEqual(["wax"]);
     expect(flags("lift>1")).toEqual([]);
     expect(flags("")).toEqual([]);
+  });
+});
+
+describe("query grammar edge cases", () => {
+  it("keeps operators inside quoted phrases literal", () => {
+    expect(
+      matches('"lift>2"', row({ name: "Lift>2", sub: null, lift: 0 })),
+    ).toBe(true);
+    expect(
+      matches('"lift>2"', row({ name: "Strike", sub: "Attack", lift: 3 })),
+    ).toBe(false);
+    expect(matches('"a=b"', row({ name: "A=B", sub: null }))).toBe(true);
+    expect(matches('"a=b"', row({ name: "Strike", sub: "Attack" }))).toBe(
+      false,
+    );
+  });
+
+  it("rejects a missing OR operand or an empty group", () => {
+    expect(parseGridQuery("OR strike").error).not.toBeNull();
+    expect(parseGridQuery("strike OR").error).not.toBeNull();
+    expect(parseGridQuery("()").error).not.toBeNull();
+    expect(parseGridQuery("(strike OR ())").error).not.toBeNull();
+  });
+
+  it("ignores an unknown term on either side of OR", () => {
+    for (const q of ["strike OR bogus:value", "bogus:value OR strike"]) {
+      const parsed = parseGridQuery(q);
+      expect(parsed.error).toBeNull();
+      expect(parsed.unknown).toEqual(["bogus"]);
+      expect(matchGridQuery(parsed.ast, row())).toBe(true);
+      expect(
+        matchGridQuery(parsed.ast, row({ name: "Defend", sub: "Skill" })),
+      ).toBe(false);
+    }
+  });
+
+  it("matches nothing when every term is unknown", () => {
+    const parsed = parseGridQuery("rarit:rare is:shiny");
+    expect(parsed.error).toBeNull();
+    expect(parsed.unknown).toEqual(["rarit", "is:shiny"]);
+    expect(matchGridQuery(parsed.ast, row())).toBe(false);
+  });
+
+  it("does not let missing values satisfy negated comparisons", () => {
+    expect(matches("-lift>2", row({ lift: null }))).toBe(false);
+    expect(matches("-lift!=2", row({ lift: null }))).toBe(false);
+    expect(matches("-lift>2", row({ lift: 1 }))).toBe(true);
+    expect(matches("strike OR lift>2", row({ lift: null }))).toBe(true);
+  });
+
+  it("negates parenthesized groups", () => {
+    const parsed = parseGridQuery("-(strike OR defend)");
+    expect(parsed.error).toBeNull();
+    expect(matchGridQuery(parsed.ast, row({ name: "Strike" }))).toBe(false);
+    expect(
+      matchGridQuery(parsed.ast, row({ name: "Defend", sub: "Skill" })),
+    ).toBe(false);
+    expect(
+      matchGridQuery(parsed.ast, row({ name: "Bash", sub: "Attack" })),
+    ).toBe(true);
+  });
+
+  it("rejects empty phrases and text glued to a closing quote", () => {
+    expect(parseGridQuery('""').error).not.toBeNull();
+    expect(parseGridQuery('rarity:rare OR ""').error).not.toBeNull();
+    expect(parseGridQuery('name:""').error).not.toBeNull();
+    expect(parseGridQuery('"body slam"x').error).not.toBeNull();
+    expect(parseGridQuery('name:"body slam"x').error).not.toBeNull();
+  });
+
+  it("treats a bare or spaced minus as unreadable", () => {
+    expect(parseGridQuery("-").error).not.toBeNull();
+    expect(parseGridQuery("-\tstrike").error).not.toBeNull();
+    expect(parseGridQuery("strike -").error).not.toBeNull();
+  });
+
+  it("treats spaced or fieldless operators as unreadable", () => {
+    expect(parseGridQuery("lift > 2").error).not.toBeNull();
+    expect(parseGridQuery(">50").error).not.toBeNull();
+    expect(parseGridQuery(":foo").error).not.toBeNull();
+  });
+
+  it("bounds nesting and length instead of exhausting the stack", () => {
+    const deep = `${"(".repeat(10_000)}strike${")".repeat(10_000)}`;
+    expect(parseGridQuery(deep).error).not.toBeNull();
+    expect(parseGridQuery(deep).ast).toBeNull();
+    const nested = `${"(".repeat(25)}strike${")".repeat(25)}`;
+    expect(parseGridQuery(nested).error).not.toBeNull();
+    expect(
+      parseGridQuery(`${"(".repeat(5)}strike${")".repeat(5)}`).error,
+    ).toBeNull();
+  });
+
+  it("accepts plain decimals only", () => {
+    expect(parseGridQuery("lift<Infinity").error).not.toBeNull();
+    expect(parseGridQuery("picks=0x64").error).not.toBeNull();
+    expect(parseGridQuery("win>5e1").error).not.toBeNull();
+    expect(matches("win>50,5", row({ winRate: 50.6 }))).toBe(true);
+    expect(matches("lift>.5", row({ lift: 2 }))).toBe(true);
+  });
+
+  it("matches rarity and group as whole values", () => {
+    const uncommon = row({ rarity: "uncommon" });
+    expect(matches("rarity:common", uncommon)).toBe(false);
+    expect(matches("-rarity:common", uncommon)).toBe(true);
+    expect(matches("rarity:uncommon", uncommon)).toBe(true);
+    expect(matches("color:red", row())).toBe(true);
+    expect(matches("color:re", row())).toBe(false);
+  });
+
+  it("supports != on text fields", () => {
+    expect(matches("rarity!=common", row())).toBe(false);
+    expect(matches("rarity!=rare", row())).toBe(true);
+    expect(parseGridQuery("rarity>common").error).not.toBeNull();
+  });
+
+  it("treats newlines as spaces", () => {
+    expect(matches("strike\nattack", row())).toBe(true);
   });
 });
 
