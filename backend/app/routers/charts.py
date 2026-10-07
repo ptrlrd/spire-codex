@@ -338,38 +338,38 @@ def charts_meta(request: Request):
 
 def _build_frame_chart(
     key: str,
-    rows: list[tuple],
+    fq: cs.FrameQuery,
     stat: str | None,
     x: str | None,
     y: str | None,
     split: str,
 ):
     if key == "winrate-by-floor":
-        return cs.winrate_by_floor(rows, split)
+        return cs.winrate_by_floor(fq, split)
     if key == "winrate-over-time":
-        return cs.winrate_over_time(rows, split)
+        return cs.winrate_over_time(fq, split)
     if key == "runs-over-time":
-        return cs.runs_over_time(rows, split)
+        return cs.runs_over_time(fq, split)
     if key == "uploads-over-time":
-        return cs.runs_over_time(rows, split, cs.UPLOAD_DAY)
+        return cs.runs_over_time(fq, split, "upload_day")
     if key == "deaths-by-floor":
-        return cs.deaths_by_floor(rows, split)
+        return cs.deaths_by_floor(fq, split)
     if key == "winrate-by-ascension":
-        return cs.winrate_by_stat(rows, "ascension", split)
+        return cs.winrate_by_stat(fq, "ascension", split)
     if key == "winrate-by-stat":
-        return cs.winrate_by_stat(rows, stat or "deck_size", split)
+        return cs.winrate_by_stat(fq, stat or "deck_size", split)
     if key == "stat-histogram":
-        return cs.stat_histogram(rows, stat or "floors_reached", split)
+        return cs.stat_histogram(fq, stat or "floors_reached", split)
     if key == "time-to-win":
-        return cs.time_to_win(rows, split)
+        return cs.time_to_win(fq, split)
     if key == "avg-win-time-daily":
-        return cs.time_to_win_daily(rows, split)
+        return cs.time_to_win_daily(fq, split)
     if key == "stat-scatter":
-        return cs.stat_scatter(rows, x or "floors_reached", y or "deck_size", split)
+        return cs.stat_scatter(fq, x or "floors_reached", y or "deck_size", split)
     if key == "acts-funnel":
-        return cs.acts_funnel(rows, split)
+        return cs.acts_funnel(fq, split)
     if key == "hardest-dailies":
-        return cs.hardest_dailies(rows)
+        return cs.hardest_dailies(fq)
     raise HTTPException(status_code=404, detail="Unknown chart")
 
 
@@ -469,9 +469,8 @@ def _compute_chart(
     building = False
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
-        frame = cs.get_frame()
-        rows = cs.filter_rows(
-            frame,
+        cs.get_frame()
+        fq = cs.frame_query(
             players,
             ascension,
             mode,
@@ -480,12 +479,11 @@ def _compute_chart(
             build_id,
             include_short_abandons=chart_key in _ALL_RUNS_CHARTS,
         )
-        series = _build_frame_chart(chart_key, rows, stat, x, y, split)
-        total = len(rows)
+        series = _build_frame_chart(chart_key, fq, stat, x, y, split)
+        total = cs.frame_count(fq)
         # A cold worker's frame is still loading in the background; say so
         # instead of caching a bogus empty chart for the full TTL.
-        if not frame and cs.frame_loading():
-            building = True
+        building = fq.con is None
     else:
         # Blob charts: snapshot rollup (sliced to the requested content bracket
         # and/or game version — the v20 blob keeps bracket x version buckets),

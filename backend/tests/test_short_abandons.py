@@ -90,10 +90,13 @@ def _frame(monkeypatch, rows):
 def test_charts_skip_short_abandons_unless_counting_runs(monkeypatch):
     rows = [_row(1, 1), _row(1, 5), _row(1, 6), _row(0, 2)]
     _frame(monkeypatch, rows)
-    kept = cs.filter_rows(4, None, None, None, None)
-    assert sorted(r[cs.FLOORS] for r in kept) == [2, 6]
-    every = cs.filter_rows(4, None, None, None, None, include_short_abandons=True)
-    assert len(every) == 4
+    kept = cs.frame_query(None, None, None, None)
+    assert kept.run(f"SELECT floors_reached FROM {kept.src} ORDER BY 1") == [
+        (2,),
+        (6,),
+    ]
+    every = cs.frame_query(None, None, None, None, include_short_abandons=True)
+    assert cs.frame_count(every) == 4
 
 
 def test_skill_tiers_ignore_short_abandons(monkeypatch):

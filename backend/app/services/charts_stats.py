@@ -4,12 +4,13 @@ Two data paths, both designed so the browser only ever receives a small,
 ready-to-plot JSON (the usual community charts sites ship every run to the
 client and aggregate there, which is why they crawl):
 
-- Metadata frame: one process-wide list of per-run scalar tuples (character,
-  win, ascension, mode, players, floors, deck size, ...) loaded from the run
-  store and refreshed lazily. Every metadata chart is a single pass over the
-  frame with the request's filters applied, and supports splitting the series
-  by character, player count, outcome, or ascension band. 200k+ runs
-  aggregate in well under a second, and the router caches responses on top.
+- Metadata frame: a per-worker DuckDB table of per-run scalars (character,
+  win, ascension, mode, players, floors, deck size, ...) loaded from the
+  ingest-built frame.parquet and refreshed lazily. Every metadata chart is a
+  grouped query over the frame with the request's filters applied, and
+  supports splitting the series by character, player count, outcome, or
+  ascension band. Only the grouped result leaves DuckDB, and the router
+  caches responses on top.
 - Blob stats: anything per-floor or per-entity (damage, HP/gold/deck curves,
   encounter histograms, event outcomes, card/relic weekly stats) needs the
   full run blobs, so they piggyback on the single snapshot walk in
@@ -24,7 +25,6 @@ from __future__ import annotations
 
 import json
 import logging
-import math
 import os
 import threading
 import time
@@ -103,8 +103,9 @@ def _load_frame_parquet():
             select = _FRAME_SELECT
             if "upload_day" not in cols:
                 select = select.replace(", upload_day", ", 0 AS upload_day")
+            con.execute(f"CREATE TABLE frame ({_FRAME_COLS})")
             con.execute(
-                f"CREATE TABLE frame AS SELECT {select}"
+                f"INSERT INTO frame SELECT {select}"
                 f" FROM read_parquet('{_FRAME_PARQUET}')"
             )
             n = _finish_frame_db(con)
@@ -260,8 +261,9 @@ def store_frame_parquet() -> int:
 # The frame lives in a per-worker in-memory DuckDB (tables frame + frame_wr),
 # swapped whole on reload. Columnar: the same 1.4M rows cost ~200MB where the
 # old list of Python tuples cost ~1.5GB per worker (OOM-killed workers,
-# 2026-08-30). Readers take a cursor; the old db is closed on a delay so a
-# reload can't yank a table out from under an in-flight query.
+# 2026-08-30). Requests hold the db they started on (FrameQuery), so a
+# swapped-out db is freed when the last of them finishes, never closed
+# under one.
 _FRAME_DB = None
 _FRAME_ROWS = 0
 _FRAME_TS: float = 0.0
@@ -342,7 +344,10 @@ def _load_frame():
     cached = _load_frame_parquet()
     if cached is not None:
         return cached
-    rows = _load_frame_from_db()
+    return _frame_db(_load_frame_from_db())
+
+
+def _frame_db(rows: list[tuple]):
     con = _new_frame_db()
     con.execute(f"CREATE TABLE frame ({_FRAME_COLS})")
     for i in range(0, len(rows), 50_000):
@@ -465,16 +470,9 @@ def _kick_frame_refresh() -> None:
             con, n = _load_frame()
             with _FRAME_LOCK:
                 if n or _FRAME_DB is None:
-                    old = _FRAME_DB
                     _FRAME_DB, _FRAME_ROWS = con, n
-                else:
-                    # Keep the populated frame over an empty reload.
-                    old = con
                 _FRAME_TS = time.time()
                 _FRAME_OK = True
-            if old is not None:
-                # Delay past the request timeout so in-flight cursors finish.
-                threading.Timer(180.0, _close_quiet, args=(old,)).start()
             logger.info(
                 "charts frame loaded: %d rows in %.1fs",
                 n,
@@ -489,13 +487,6 @@ def _kick_frame_refresh() -> None:
                 _FRAME_REFRESHING = False
 
     threading.Thread(target=_run, name="charts-frame-refresh", daemon=True).start()
-
-
-def _close_quiet(con) -> None:
-    try:
-        con.close()
-    except Exception:
-        pass
 
 
 def frame_loading() -> bool:
@@ -526,7 +517,7 @@ def _frame_fresh() -> bool:
 def get_frame(wait: bool = False) -> int:
     """The frame's row count, refreshing the frame db from the store at
     most every TTL. Truthiness is the contract (callers ask "is a frame
-    loaded"); the rows themselves are only reachable through filter_rows.
+    loaded"); charts read the rows through frame_query.
 
     Request path (wait=False): never blocks. A fresh frame serves as-is; a
     stale or missing one kicks a background reload (throttled after
@@ -577,8 +568,30 @@ _BRACKET_FILTERS: dict[str, tuple[int, float | None]] = {
 }
 
 
-def filter_rows(
-    rows,
+class FrameQuery:
+    """A request's filters over the frame db. It holds the db it started on,
+    so a reload can't mix two frames into one chart, and a swapped-out db
+    lives until its last request lets go of it."""
+
+    def __init__(self, con, where: list[str], args: list):
+        self.con = con
+        self.args = args
+        self.total: int | None = None
+        clause = f" WHERE {' AND '.join(where)}" if where else ""
+        self.src = f"(SELECT rowid AS seq, * FROM frame{clause}) f"
+
+    def run(self, sql: str) -> list[tuple]:
+        if self.con is None:
+            return []
+        cur = self.con.cursor()
+        try:
+            with _FRAME_FETCH_GATE:
+                return cur.execute(sql, self.args).fetchall()
+        finally:
+            cur.close()
+
+
+def frame_query(
     players: int | None,
     ascension: int | None,
     game_mode: str | None,
@@ -586,17 +599,12 @@ def filter_rows(
     bracket: str | None = None,
     build_id: str | None = None,
     include_short_abandons: bool = False,
-) -> list[tuple]:
-    """The filtered frame as positional tuples (CHAR..BUILD). Filtering runs
-    as SQL in the frame db; `rows` is get_frame()'s count and only marks an
-    unloaded frame. The wr tiers keep their semantics: A10 floor, submitter
-    overall win rate strictly above the threshold, 5-run floor. Runs
-    abandoned by floor 5 are left out unless a run-count chart asks for
-    every run."""
+) -> FrameQuery:
+    """The wr tiers keep their semantics: A10 floor, submitter overall win
+    rate strictly above the threshold, 5-run floor. Runs abandoned by floor 5
+    are left out unless a run-count chart asks for every run."""
     with _FRAME_LOCK:
         con = _FRAME_DB
-    if con is None:
-        return []
     u = (username or "").lower().strip()
     asc_floor, wr_floor = _BRACKET_FILTERS.get(bracket or "", (None, None))
     where: list[str] = []
@@ -626,15 +634,14 @@ def filter_rows(
         args.append(wr_floor)
     if not include_short_abandons:
         where.append(f"NOT {_SHORT_ABANDON}")
-    sql = f"SELECT {_FRAME_SELECT} FROM frame"
-    if where:
-        sql += " WHERE " + " AND ".join(where)
-    cur = con.cursor()
-    try:
-        with _FRAME_FETCH_GATE:
-            return cur.execute(sql, args).fetchall()
-    finally:
-        cur.close()
+    return FrameQuery(con, where, args)
+
+
+def frame_count(fq: FrameQuery) -> int:
+    if fq.total is None:
+        rows = fq.run(f"SELECT count(*) FROM {fq.src}")
+        fq.total = rows[0][0] if rows else 0
+    return fq.total
 
 
 # ── Series splitting ─────────────────────────────────────────────────────────
@@ -651,43 +658,75 @@ _ASC_BANDS = [
 _PLAYER_LABELS = {1: "Solo", 2: "2 Players", 3: "3 Players", 4: "4 Players"}
 
 
-def _series_split(
-    rows: list[tuple], split: str = "character"
-) -> list[tuple[str, str, list[tuple]]]:
-    """(series_id, label, rows) for the requested split, plus the ALL series.
-    Splits with too little sample are dropped; for the character split,
-    modded characters fold into ALL only."""
-    out: list[tuple[str, str, list[tuple]]] = [("ALL", "All runs", rows)]
+def _split_spec(split: str) -> tuple[str, str, list[tuple[str, str, Any]]]:
+    """(ALL label, SQL series key, [(series id, label, key value)]) for a
+    split. Anything else splits by character, where modded characters fold
+    into ALL only."""
     if split == "players":
-        by: dict[int, list[tuple]] = {}
-        for r in rows:
-            by.setdefault(min(r[PLAYERS], 4), []).append(r)
-        for p in (1, 2, 3, 4):
-            sub = by.get(p) or []
-            if len(sub) >= MIN_SERIES_N:
-                out.append((f"P{p}", _PLAYER_LABELS[p], sub))
-    elif split == "outcome":
-        wins = [r for r in rows if r[WIN]]
-        losses = [r for r in rows if not r[WIN]]
-        if len(wins) >= MIN_SERIES_N:
-            out.append(("WIN", "Wins", wins))
-        if len(losses) >= MIN_SERIES_N:
-            out.append(("LOSS", "Losses", losses))
-    elif split == "ascension":
-        for lo, hi, label in _ASC_BANDS:
-            sub = [r for r in rows if lo <= r[ASC] <= hi]
-            if len(sub) >= MIN_SERIES_N:
-                out.append((label, label, sub))
-    else:  # character
-        chars = _official_characters()
-        by_char: dict[str, list[tuple]] = {}
-        for r in rows:
-            by_char.setdefault(r[CHAR], []).append(r)
-        out = [("ALL", "All characters", rows)]
-        for cid, name in chars.items():
-            sub = by_char.get(cid) or []
-            if len(sub) >= MIN_SERIES_N:
-                out.append((cid, name, sub))
+        return (
+            "All runs",
+            "least(player_count, 4)",
+            [(f"P{p}", label, p) for p, label in _PLAYER_LABELS.items()],
+        )
+    if split == "outcome":
+        return (
+            "All runs",
+            "win <> 0",
+            [("WIN", "Wins", True), ("LOSS", "Losses", False)],
+        )
+    if split == "ascension":
+        bands = "".join(
+            f" WHEN ascension BETWEEN {lo} AND {hi} THEN '{label}'"
+            for lo, hi, label in _ASC_BANDS
+        )
+        return (
+            "All runs",
+            f"CASE{bands} END",
+            [(label, label, label) for _lo, _hi, label in _ASC_BANDS],
+        )
+    chars = _official_characters()
+    ids = ", ".join("'" + cid.replace("'", "''") + "'" for cid in chars)
+    return (
+        "All characters",
+        f"CASE WHEN character IN ({ids}) THEN character END" if chars else "NULL",
+        [(cid, name, cid) for cid, name in chars.items()],
+    )
+
+
+def _grouped(
+    fq: FrameQuery,
+    split: str,
+    bucket: str,
+    aggs: str = "",
+    where: str | None = None,
+) -> list[tuple[str, str, int, dict]]:
+    """(series id, label, runs, {bucket: [count, *aggs]}) for ALL plus every
+    split series with at least MIN_SERIES_N runs. Rows outside `where` count
+    toward a series' runs but land in no bucket. aggs must be sums so ALL can
+    add the series keys up."""
+    all_label, key, cands = _split_spec(split)
+    b = bucket if where is None else f"CASE WHEN {where} THEN {bucket} END"
+    extra = f", {aggs}" if aggs else ""
+    sizes: dict = {}
+    cells: dict = {}
+    for k, bv, *vals in fq.run(
+        f"SELECT {key}, {b}, count(*){extra} FROM {fq.src} GROUP BY ALL"
+    ):
+        sizes[k] = sizes.get(k, 0) + vals[0]
+        if bv is not None:
+            cells.setdefault(k, {})[bv] = vals
+    fq.total = sum(sizes.values())
+    merged: dict = {}
+    for by_bucket in cells.values():
+        for bv, vals in by_bucket.items():
+            acc = merged.get(bv)
+            merged[bv] = vals if acc is None else [a + v for a, v in zip(acc, vals)]
+    out = [("ALL", all_label, fq.total, merged)]
+    out += [
+        (sid, label, sizes[k], cells.get(k, {}))
+        for sid, label, k in cands
+        if sizes.get(k, 0) >= MIN_SERIES_N
+    ]
     return out
 
 
@@ -697,92 +736,94 @@ def _series_split(
 STATS: dict[str, dict[str, Any]] = {
     "floors_reached": {
         "label": "Floors reached",
-        "idx": FLOORS,
+        "col": "floors_reached",
         "bucket": 1,
         "max": 60,
     },
-    "deck_size": {"label": "Deck size", "idx": DECK, "bucket": 2, "max": 90},
-    "relic_count": {"label": "Relic count", "idx": RELICS, "bucket": 1, "max": 45},
+    "deck_size": {"label": "Deck size", "col": "deck_size", "bucket": 2, "max": 90},
+    "relic_count": {
+        "label": "Relic count",
+        "col": "relic_count",
+        "bucket": 1,
+        "max": 45,
+    },
     "run_minutes": {
         "label": "Run length (minutes)",
-        "idx": TIME,
+        "col": "run_time",
         "bucket": 5,
         "max": 240,
-        "scale": 1 / 60,
+        "per": 60,
     },
-    "ascension": {"label": "Ascension", "idx": ASC, "bucket": 1, "max": 10},
+    "ascension": {"label": "Ascension", "col": "ascension", "bucket": 1, "max": 10},
 }
 
 
-def _stat_value(row: tuple, stat: dict) -> float:
-    return row[stat["idx"]] * stat.get("scale", 1)
+def _stat_buckets(stat: dict) -> tuple[str, str]:
+    """(bucket, in range) as SQL over the stored column, in plotted units."""
+    col, per = stat["col"], stat.get("per", 1)
+    return (
+        f"({col} // {stat['bucket'] * per}) * {stat['bucket']}",
+        f"{col} BETWEEN 0 AND {stat['max'] * per}",
+    )
 
 
-def winrate_by_floor(rows: list[tuple], split: str) -> list[dict]:
+def _stat_point(raw: int, stat: dict) -> float:
+    per = stat.get("per")
+    return round(raw, 2) if per is None else round(raw * (1 / per), 2)
+
+
+def winrate_by_floor(fq: FrameQuery, split: str) -> list[dict]:
     """Of the runs that reached floor X, how many went on to win."""
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        max_f = min(max((r[FLOORS] for r in sub), default=0), 60)
-        total = [0] * (max_f + 1)
-        wins = [0] * (max_f + 1)
-        for r in sub:
-            f = min(r[FLOORS], 60)
-            if f >= 1:
-                total[f] += 1
-                wins[f] += r[WIN]
+    for sid, label, _n, cells in _grouped(
+        fq, split, "least(floors_reached, 60)", "sum(win)", "floors_reached >= 1"
+    ):
         points = []
-        reach = 0
-        reach_w = 0
-        suffix = []
-        for f in range(max_f, 0, -1):
-            reach += total[f]
-            reach_w += wins[f]
-            suffix.append((f, reach, reach_w))
-        for f, n, w in reversed(suffix):
-            if n >= MIN_POINT_N:
-                points.append({"x": f, "y": round(w / n * 100, 1), "n": n})
+        reach = reach_w = 0
+        for f in range(max(cells, default=0), 0, -1):
+            n, w = cells.get(f, (0, 0))
+            reach += n
+            reach_w += w
+            if reach >= MIN_POINT_N:
+                points.append(
+                    {"x": f, "y": round(reach_w / reach * 100, 1), "n": reach}
+                )
         if points:
+            points.reverse()
             series.append({"id": sid, "label": label, "points": points})
     return series
 
 
-def deaths_by_floor(rows: list[tuple], split: str) -> list[dict]:
+def deaths_by_floor(fq: FrameQuery, split: str) -> list[dict]:
     """Where losses end. Abandoned runs are excluded, they end anywhere."""
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        losses = [r for r in sub if not r[WIN] and not r[ABANDONED]]
-        if len(losses) < MIN_POINT_N:
+    for sid, label, _n, cells in _grouped(
+        fq,
+        split,
+        "least(greatest(floors_reached, 1), 60)",
+        where="win = 0 AND was_abandoned = 0",
+    ):
+        n_total = sum(c[0] for c in cells.values())
+        if n_total < MIN_POINT_N:
             continue
-        counts: dict[int, int] = {}
-        for r in losses:
-            f = min(max(r[FLOORS], 1), 60)
-            counts[f] = counts.get(f, 0) + 1
-        n_total = len(losses)
         points = [
-            {"x": f, "y": round(c / n_total * 100, 2), "n": c}
-            for f, c in sorted(counts.items())
+            {"x": f, "y": round(c[0] / n_total * 100, 2), "n": c[0]}
+            for f, c in sorted(cells.items())
         ]
         series.append({"id": sid, "label": label, "points": points, "total": n_total})
     return series
 
 
-def winrate_over_time(rows: list[tuple], split: str) -> list[dict]:
+def winrate_over_time(fq: FrameQuery, split: str) -> list[dict]:
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        weeks: dict[int, list[int]] = {}
-        for r in sub:
-            if r[DAY] <= 0:
-                continue
-            cell = weeks.setdefault(r[DAY] // 7, [0, 0])
-            cell[0] += 1
-            cell[1] += r[WIN]
-        points = []
-        for wk in sorted(weeks):
-            n, w = weeks[wk]
-            if n >= 10:
-                points.append(
-                    {"x": _week_label(wk), "y": round(w / n * 100, 1), "n": n}
-                )
+    for sid, label, _n, cells in _grouped(
+        fq, split, "played_day // 7", "sum(win)", "played_day > 0"
+    ):
+        points = [
+            {"x": _week_label(wk), "y": round(w / n * 100, 1), "n": n}
+            for wk, (n, w) in sorted(cells.items())
+            if n >= 10
+        ]
         if points:
             series.append({"id": sid, "label": label, "points": points})
     return series
@@ -807,15 +848,12 @@ def _moving_average(days: dict[int, int], first: int, last: int) -> dict[int, fl
     return out
 
 
-def runs_over_time(rows: list[tuple], split: str, day: int = DAY) -> list[dict]:
+def runs_over_time(fq: FrameQuery, split: str, day: str = "played_day") -> list[dict]:
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        days: dict[int, int] = {}
-        for r in sub:
-            if r[day] > 0:
-                days[r[day]] = days.get(r[day], 0) + 1
-        if not days:
+    for sid, label, _n, cells in _grouped(fq, split, day, where=f"{day} > 0"):
+        if not cells:
             continue
+        days = {d: c[0] for d, c in cells.items()}
         weeks: dict[int, int] = {}
         for d, n in days.items():
             weeks[d // 7] = weeks.get(d // 7, 0) + n
@@ -828,22 +866,13 @@ def runs_over_time(rows: list[tuple], split: str, day: int = DAY) -> list[dict]:
     return series
 
 
-def winrate_by_stat(rows: list[tuple], stat_key: str, split: str) -> list[dict]:
-    stat = STATS[stat_key]
+def winrate_by_stat(fq: FrameQuery, stat_key: str, split: str) -> list[dict]:
+    bucket, in_range = _stat_buckets(STATS[stat_key])
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        buckets: dict[int, list[int]] = {}
-        for r in sub:
-            v = _stat_value(r, stat)
-            if v < 0 or v > stat["max"]:
-                continue
-            b = int(v // stat["bucket"]) * stat["bucket"]
-            cell = buckets.setdefault(b, [0, 0])
-            cell[0] += 1
-            cell[1] += r[WIN]
+    for sid, label, _n, cells in _grouped(fq, split, bucket, "sum(win)", in_range):
         points = [
             {"x": b, "y": round(w / n * 100, 1), "n": n}
-            for b, (n, w) in sorted(buckets.items())
+            for b, (n, w) in sorted(cells.items())
             if n >= MIN_POINT_N
         ]
         if points:
@@ -851,53 +880,46 @@ def winrate_by_stat(rows: list[tuple], stat_key: str, split: str) -> list[dict]:
     return series
 
 
-def stat_histogram(rows: list[tuple], stat_key: str, split: str) -> list[dict]:
-    stat = STATS[stat_key]
+def stat_histogram(fq: FrameQuery, stat_key: str, split: str) -> list[dict]:
+    bucket, in_range = _stat_buckets(STATS[stat_key])
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        buckets: dict[int, int] = {}
-        kept = 0
-        for r in sub:
-            v = _stat_value(r, stat)
-            if v < 0 or v > stat["max"]:
-                continue
-            b = int(v // stat["bucket"]) * stat["bucket"]
-            buckets[b] = buckets.get(b, 0) + 1
-            kept += 1
+    for sid, label, _n, cells in _grouped(fq, split, bucket, where=in_range):
+        kept = sum(c[0] for c in cells.values())
         if kept < MIN_POINT_N:
             continue
         points = [
-            {"x": b, "y": round(c / kept * 100, 2), "n": c}
-            for b, c in sorted(buckets.items())
+            {"x": b, "y": round(c[0] / kept * 100, 2), "n": c[0]}
+            for b, c in sorted(cells.items())
         ]
         series.append({"id": sid, "label": label, "points": points, "total": kept})
     return series
 
 
-def time_to_win(rows: list[tuple], split: str) -> list[dict]:
+def _win_seconds() -> str:
+    stat = STATS["run_minutes"]
+    return f"win <> 0 AND {stat['col']} BETWEEN 1 AND {stat['max'] * stat['per']}"
+
+
+def time_to_win(fq: FrameQuery, split: str) -> list[dict]:
     """How long winning runs take: run length of wins in 5-minute buckets,
     with each series' average and median baked into its label so "how long
     does it take to beat a run" is answered right in the legend. Zero-length
     times are runs whose file carried no timer, not instant wins."""
     stat = STATS["run_minutes"]
+    width, per = stat["bucket"] * stat["per"], stat["per"]
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        mins = sorted(
-            v
-            for r in sub
-            if r[WIN]
-            for v in (_stat_value(r, stat),)
-            if 0 < v <= stat["max"]
-        )
-        n = len(mins)
+    for sid, label, _n, cells in _grouped(fq, split, stat["col"], where=_win_seconds()):
+        hist = sorted((t, c[0]) for t, c in cells.items())
+        n = sum(c for _t, c in hist)
         if n < MIN_POINT_N:
             continue
         buckets: dict[int, int] = {}
-        for v in mins:
-            b = int(v // stat["bucket"]) * stat["bucket"]
-            buckets[b] = buckets.get(b, 0) + 1
-        avg = sum(mins) / n
-        med = mins[n // 2] if n % 2 else (mins[n // 2 - 1] + mins[n // 2]) / 2
+        for t, c in hist:
+            b = (t // width) * stat["bucket"]
+            buckets[b] = buckets.get(b, 0) + c
+        avg = sum(t * c for t, c in hist) / (n * per)
+        mid = _nth(hist, n // 2) * (1 / per)
+        med = mid if n % 2 else (_nth(hist, n // 2 - 1) * (1 / per) + mid) / 2
         points = [
             {"x": b, "y": round(c / n * 100, 2), "n": c}
             for b, c in sorted(buckets.items())
@@ -915,26 +937,26 @@ def time_to_win(rows: list[tuple], split: str) -> list[dict]:
     return series
 
 
-def time_to_win_daily(rows: list[tuple], split: str) -> list[dict]:
+def _nth(hist: list[tuple[int, int]], i: int) -> int:
+    for t, c in hist:
+        if i < c:
+            return t
+        i -= c
+    raise IndexError(i)
+
+
+def time_to_win_daily(fq: FrameQuery, split: str) -> list[dict]:
     """Average length of winning runs per day: the pace trend behind the
     time-to-win distribution. Days with under 10 wins are dropped rather
     than plotted as noise (mirrors winrate_over_time's per-point floor)."""
-    stat = STATS["run_minutes"]
+    per = STATS["run_minutes"]["per"]
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        days: dict[int, list[float]] = {}
-        for r in sub:
-            if not r[WIN] or r[DAY] <= 0:
-                continue
-            v = _stat_value(r, stat)
-            if v <= 0 or v > stat["max"]:
-                continue
-            cell = days.setdefault(r[DAY], [0, 0.0])
-            cell[0] += 1
-            cell[1] += v
+    for sid, label, _n, cells in _grouped(
+        fq, split, "played_day", "sum(run_time)", f"played_day > 0 AND {_win_seconds()}"
+    ):
         points = [
-            {"x": _day_label(d), "y": round(total / n, 1), "n": n}
-            for d, (n, total) in sorted(days.items())
+            {"x": _day_label(d), "y": round(secs / (n * per), 1), "n": n}
+            for d, (n, secs) in sorted(cells.items())
             if n >= 10
         ]
         if points:
@@ -942,63 +964,78 @@ def time_to_win_daily(rows: list[tuple], split: str) -> list[dict]:
     return series
 
 
-def stat_scatter(rows: list[tuple], x_key: str, y_key: str, split: str) -> list[dict]:
+def stat_scatter(fq: FrameQuery, x_key: str, y_key: str, split: str) -> list[dict]:
+    """Every series sampled down to SCATTER_PER_SERIES points by taking every
+    stride-th run in frame order."""
     sx, sy = STATS[x_key], STATS[y_key]
-    groups = [g for g in _series_split(rows, split) if g[0] != "ALL"]
+    _all_label, key, cands = _split_spec(split)
+    sizes = dict(fq.run(f"SELECT {key}, count(*) FROM {fq.src} GROUP BY 1"))
+    fq.total = sum(sizes.values())
+    groups = [
+        (sid, label, k) for sid, label, k in cands if sizes.get(k, 0) >= MIN_SERIES_N
+    ]
+    rows = f"{fq.src} WHERE {key} IS NOT NULL"
     if not groups:
-        groups = [("ALL", "All runs", rows)]
-    series = []
-    for sid, label, sub in groups:
-        stride = max(1, math.ceil(len(sub) / SCATTER_PER_SERIES))
-        points = []
-        for i in range(0, len(sub), stride):
-            r = sub[i]
-            points.append(
-                {
-                    "x": round(_stat_value(r, sx), 2),
-                    "y": round(_stat_value(r, sy), 2),
-                    "win": r[WIN],
-                }
-            )
-        if points:
-            series.append(
-                {"id": sid, "label": label, "points": points, "sampled_from": len(sub)}
-            )
-    return series
+        key, rows = "true", fq.src
+        groups = [("ALL", "All runs", True)]
+    sampled: dict = {}
+    for k, xv, yv, win, cnt in fq.run(
+        f"SELECT k, x, y, win, cnt FROM (SELECT {key} AS k,"
+        f" {sx['col']} AS x, {sy['col']} AS y, win,"
+        f" row_number() OVER (PARTITION BY {key} ORDER BY seq) AS rn,"
+        f" count(*) OVER (PARTITION BY {key}) AS cnt FROM {rows})"
+        f" WHERE (rn - 1) % greatest(1, ceil(cnt / {SCATTER_PER_SERIES}))::BIGINT = 0"
+        " ORDER BY rn"
+    ):
+        point = {"x": _stat_point(xv, sx), "y": _stat_point(yv, sy), "win": win}
+        sampled.setdefault(k, (cnt, []))[1].append(point)
+    return [
+        {
+            "id": sid,
+            "label": label,
+            "points": sampled[k][1],
+            "sampled_from": sampled[k][0],
+        }
+        for sid, label, k in groups
+        if k in sampled
+    ]
 
 
-_FUNNEL_STAGES = [
-    ("Started", lambda r: True),
-    ("Reached Act 2", lambda r: r[ACTS] >= 1),
-    ("Reached Act 3", lambda r: r[ACTS] >= 2),
-    ("Won", lambda r: bool(r[WIN])),
-]
+_FUNNEL_STAGES = ("Started", "Reached Act 2", "Reached Act 3", "Won")
 
 
-def acts_funnel(rows: list[tuple], split: str) -> list[dict]:
+def acts_funnel(fq: FrameQuery, split: str) -> list[dict]:
     """How far runs get: share surviving each act boundary, ending in wins."""
     series = []
-    for sid, label, sub in _series_split(rows, split):
-        n = len(sub)
+    for sid, label, n, cells in _grouped(
+        fq,
+        split,
+        "0",
+        "count(*) FILTER (WHERE acts_completed >= 1),"
+        " count(*) FILTER (WHERE acts_completed >= 2),"
+        " count(*) FILTER (WHERE win <> 0)",
+    ):
         if n < MIN_POINT_N:
             continue
-        points = []
-        for stage, pred in _FUNNEL_STAGES:
-            c = sum(1 for r in sub if pred(r))
-            points.append({"x": stage, "y": round(c / n * 100, 1), "n": c})
+        counts = cells.get(0, [n, 0, 0, 0])
+        points = [
+            {"x": stage, "y": round(c / n * 100, 1), "n": c}
+            for stage, c in zip(_FUNNEL_STAGES, counts)
+        ]
         series.append({"id": sid, "label": label, "points": points, "total": n})
     return series
 
 
-def hardest_dailies(rows: list[tuple], limit: int = 42) -> list[dict]:
+def hardest_dailies(fq: FrameQuery, limit: int = 42) -> list[dict]:
     """Win rate per daily date (the seed encodes the daily's date)."""
-    by_date: dict[str, list[int]] = {}
-    for r in rows:
-        if r[DAILY]:
-            cell = by_date.setdefault(r[DAILY], [0, 0])
-            cell[0] += 1
-            cell[1] += r[WIN]
-    dates = sorted(by_date)[-limit:]
+    by_date = {
+        d: (n, w)
+        for d, n, w in fq.run(
+            f"SELECT daily_date, count(*), sum(win) FROM {fq.src}"
+            f" WHERE daily_date <> '' GROUP BY 1 ORDER BY 1 DESC LIMIT {int(limit)}"
+        )
+    }
+    dates = sorted(by_date)
     points = [
         {
             "x": d,
