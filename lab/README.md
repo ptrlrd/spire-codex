@@ -40,16 +40,17 @@ docker compose -f docker-compose.lab.yml run --rm extract --bootstrap
 ## 2. Build the lake
 
 ```
-docker compose -f docker-compose.lab.yml run --rm duckdb /lake/build.duckdb -c ".read /lake/lab/build.sql"
+docker compose -f docker-compose.lab.yml run --rm -e LAKE_BUILD_MEMORY=1000MB --entrypoint python extract /lab/build_lake.py
 ```
 
 Produces `lake/runs.parquet`, `excluded.parquet`, `floor_events.parquet`,
-`deck.parquet` and prints row counts. Capped at 2GB RAM (1.5GB inside
-DuckDB). The `/lake/build.duckdb` argument matters: the corpus is far
-larger than the memory cap, so the build needs a disk-backed database to
-spill into. `lake/build.duckdb` and `lake/tmp/` are scratch — delete them
-(and `lake/staging/` if you want the ~4GB back) once the parquet files
-exist.
+`deck.parquet` and the rest, and prints row counts. Each staging page is
+parsed once by `build_page.sql` into `lake/parts/<page>/` and kept, so a
+rerun only parses pages that are new or changed; `build.sql` then
+reassembles the single-file tables from the parts. Editing `build_page.sql`
+reparses every page on the next run. `lake/build.duckdb` and `lake/tmp/`
+are scratch; `lake/parts/` is what makes the next build fast, so keep it
+(delete it to force a full parse).
 
 The build also emits the decision-level tables the metrics pages use:
 
@@ -101,8 +102,8 @@ the site.
 
 ## Refresh
 
-Re-run steps 1-2. The extract is a full re-pull (staging pages are
-overwritten); incremental append is a later problem, this is a lab.
+Re-run steps 1-2. The extract appends only new runs as a new page, and
+the build parses only that page before reassembling the tables.
 
 ## Shadow-diff: lake vs the live site
 
@@ -112,7 +113,7 @@ first so the lake is minutes behind the live snapshot, then:
 
 ```
 docker compose -f docker-compose.lab.yml run --rm extract
-docker compose -f docker-compose.lab.yml run --rm duckdb /lake/build.duckdb -c ".read /lake/lab/build.sql"
+docker compose -f docker-compose.lab.yml run --rm --entrypoint python extract /lab/build_lake.py
 docker compose -f docker-compose.lab.yml run --rm duckdb /lake/build.duckdb -c ".read /lake/lab/shadow_deaths.sql"
 docker compose -f docker-compose.lab.yml run --rm shadow
 ```

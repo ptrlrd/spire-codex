@@ -193,17 +193,15 @@ def main() -> None:
         con.execute("SET threads=5")
         con.execute("SET temp_directory='/lake/tmp'")
         con.execute("SET preserve_insertion_order=false")
-        # The shadow SQLs were the migration validation gate; the gate
-        # passed, and the payload builder computes the same sections anyway,
-        # so the nightly run skips them (halves the tail). Run them by hand
-        # from lab/ when a fresh lake-vs-snapshot diff is wanted.
-        for name in ("build.sql",):
-            path = pathlib.Path("/lab") / name
-            if not path.exists():
-                print(f"{name}: not present, skipped", flush=True)
-                continue
-            con.execute(path.read_text())
-            print(f"{name}: done", flush=True)
+        import build_lake
+
+        built = build_lake.build(con)
+        print(
+            f"build.sql: done ({built['parsed']} of {built['pages']} pages parsed in "
+            f"{built['parse_seconds']:.0f}s, tables assembled in "
+            f"{built['assemble_seconds']:.0f}s)",
+            flush=True,
+        )
     except Exception as e:
         record = {
             "generation_id": generation_id,
