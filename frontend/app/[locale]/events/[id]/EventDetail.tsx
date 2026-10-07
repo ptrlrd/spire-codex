@@ -21,8 +21,15 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityProse from "@/app/components/EntityProse";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { imageUrl } from "@/lib/image-url";
+import {
+  fetchPoolNames,
+  noteText,
+  type AncientPool,
+  type GameNames,
+} from "@/app/[locale]/ancients/pool-data";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
+import { AncientPools } from "@/app/[locale]/ancients/pools";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -111,6 +118,8 @@ export default function EventDetail({
   initialEntityLinks,
   initialKeywords,
   initialRelics,
+  initialPool,
+  initialPoolNames,
 }: {
   initialEvent?: GameEvent | null;
   voteStats?: EventVotes | null;
@@ -120,6 +129,10 @@ export default function EventDetail({
   initialKeywords?: KeywordEntry[];
   /** Server-fetched relic catalog, also feeding the relic offerings section. */
   initialRelics?: RelicEntry[];
+  /** Server-fetched relic pools when the event is an Ancient; absent on the beta page. */
+  initialPool?: AncientPool | null;
+  /** Server-fetched names the pool condition notes refer to. */
+  initialPoolNames?: Omit<GameNames, "relics">;
 } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -146,6 +159,21 @@ export default function EventDetail({
     () => (initialEntityLinks?.length ? initialEntityLinks : undefined),
     [initialEntityLinks],
   );
+  const [fetchedPool, setFetchedPool] = useState<AncientPool | null>(null);
+  const [fetchedPoolNames, setFetchedPoolNames] = useState<Omit<
+    GameNames,
+    "relics"
+  > | null>(null);
+  const poolExtras = initialPoolNames ?? fetchedPoolNames;
+  const poolNames = useMemo(
+    () => ({
+      relics: relicMap,
+      enchants: poolExtras?.enchants ?? {},
+      modifiers: poolExtras?.modifiers ?? {},
+      cards: poolExtras?.cards ?? {},
+    }),
+    [relicMap, poolExtras],
+  );
   const [expandedDialogue, setExpandedDialogue] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("description");
 
@@ -166,6 +194,36 @@ export default function EventDetail({
     );
   }, [lang, initialRelics]);
 
+  const ancientId = event?.type === "Ancient" ? event.id.toUpperCase() : null;
+  const pool =
+    initialPool !== undefined
+      ? initialPool
+      : fetchedPool && fetchedPool.id === ancientId
+        ? fetchedPool
+        : null;
+  useEffect(() => {
+    if (initialPool !== undefined || !ancientId) return;
+    let live = true;
+    cachedFetch<AncientPool>(`${API}/api/ancient-pools/${ancientId}`)
+      .then((data) => live && setFetchedPool(data))
+      .catch(() => live && setFetchedPool(null));
+    return () => {
+      live = false;
+    };
+  }, [ancientId, initialPool]);
+
+  const needPoolNames = !!pool && initialPoolNames === undefined;
+  useEffect(() => {
+    if (!needPoolNames) return;
+    let live = true;
+    fetchPoolNames(lang)
+      .then((names) => live && setFetchedPoolNames(names))
+      .catch(() => {});
+    return () => {
+      live = false;
+    };
+  }, [needPoolNames, lang]);
+
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
     if (!event) return;
@@ -183,7 +241,7 @@ export default function EventDetail({
     );
     secs.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [event]);
+  }, [event, pool]);
 
   const handleTocClick = (e: ReactMouseEvent, secId: string) => {
     e.preventDefault();
@@ -220,7 +278,11 @@ export default function EventDetail({
   const hasChoices =
     (event.options && event.options.length > 0) ||
     (event.pages && event.pages.length > 1);
-  const hasRelics = event.relics && event.relics.length > 0;
+  const hasPools = !!pool && pool.pools.length > 0;
+  const relicCount = hasPools
+    ? new Set(pool.pools.flatMap((p) => p.relics.map((r) => r.id))).size
+    : (event.relics?.length ?? 0);
+  const hasRelics = relicCount > 0;
   const hasDialogue = event.dialogue && Object.keys(event.dialogue).length > 0;
 
   const tocItems: { id: string; label: string }[] = [
@@ -398,55 +460,68 @@ export default function EventDetail({
           )}
 
           {/* Relic offerings */}
-          {hasRelics && (
+          {pool && hasPools ? (
             <section id="relics">
               <h2>{t("Relics")}</h2>
-              <p className="h-note">{t("Relics this event can offer.")}</p>
-              <div className="rel">
-                <div className="rel-block">
-                  <div className="chips">
-                    {event.relics!.map((relicId) => {
-                      const relic = relicMap[relicId];
-                      return (
-                        <Link
-                          key={relicId}
-                          href={`/relics/${relicId.toLowerCase()}`}
-                          className="cardlink"
-                        >
-                          {relic?.image_url && (
-                            <img
-                              className="cardimg xs"
-                              src={imageUrl(relic.image_url)}
-                              alt={t("{name} - Slay the Spire 2 Relic", {
-                                name: relic.name,
-                              })}
-                              crossOrigin="anonymous"
-                            />
-                          )}
-                          <span>
-                            <span className="cln">
-                              {relic?.name ||
-                                relicId
-                                  .replace(/_/g, " ")
-                                  .replace(/\b\w/g, (c) => c.toUpperCase())}
-                            </span>
-                            {relic?.description && (
-                              <span className="cls">
-                                {/* Inside the offering anchor: never nest links. */}
-                                <RichDescription
-                                  text={relic.description}
-                                  nestedInLink
-                                />
-                              </span>
+              <p className="anc-sel">
+                {noteText(pool.selection, t, poolNames)}
+              </p>
+              <p className="h-note">
+                {noteText(pool.description, t, poolNames)}
+              </p>
+              <AncientPools ancient={pool} names={poolNames} bp={bp} />
+            </section>
+          ) : (
+            hasRelics && (
+              <section id="relics">
+                <h2>{t("Relics")}</h2>
+                <p className="h-note">{t("Relics this event can offer.")}</p>
+                <div className="rel">
+                  <div className="rel-block">
+                    <div className="chips">
+                      {event.relics!.map((relicId) => {
+                        const relic = relicMap[relicId];
+                        return (
+                          <Link
+                            key={relicId}
+                            href={`${bp}/relics/${relicId.toLowerCase()}`}
+                            className="cardlink"
+                          >
+                            {relic?.image_url && (
+                              <img
+                                className="cardimg xs"
+                                src={imageUrl(relic.image_url)}
+                                alt={t("{name} - Slay the Spire 2 Relic", {
+                                  name: relic.name,
+                                })}
+                                crossOrigin="anonymous"
+                              />
                             )}
-                          </span>
-                        </Link>
-                      );
-                    })}
+                            <span>
+                              <span className="cln">
+                                {relic?.name ||
+                                  relicId
+                                    .replace(/_/g, " ")
+                                    .replace(/\b\w/g, (c) => c.toUpperCase())}
+                              </span>
+                              {relic?.description && (
+                                <span className="cls">
+                                  {/* Inside the offering anchor: never nest links. */}
+                                  <RichDescription
+                                    text={relic.description}
+                                    nestedInLink
+                                  />
+                                </span>
+                              )}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )
           )}
 
           {/* Dialogue */}
@@ -532,7 +607,7 @@ export default function EventDetail({
                 {hasRelics && (
                   <div className="frow">
                     <dt>{t("Relics")}</dt>
-                    <dd>{event.relics!.length}</dd>
+                    <dd>{relicCount}</dd>
                   </div>
                 )}
               </dl>
