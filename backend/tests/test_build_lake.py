@@ -244,3 +244,180 @@ def test_run_in_two_pages_is_reported(lake):
     _page(lake, 0, [_run("a", "ace", True)])
     _page(lake, 1, [_run("a", "ace", True)])
     assert _build(mod, lake)["shared_runs"] == 1
+
+
+def test_floor_tables(lake):
+    mod = _load()
+    run = _run("a", "ace", True)
+
+    def seat(hp, **extra):
+        return {"player_id": 1, "current_hp": hp, "max_hp": 80, **extra}
+
+    def floor(kind, s):
+        return {"map_point_type": kind, "player_stats": [s], "rooms": []}
+
+    run["map_point_history"] = [
+        [
+            floor(
+                "monster",
+                seat(
+                    30,
+                    card_choices=[
+                        {"was_picked": True, "card": {"id": "CARD.BASH"}},
+                        {"was_picked": False, "card": {"id": "MOD.ODDITY"}},
+                    ],
+                ),
+            ),
+            floor(
+                "rest",
+                seat(
+                    50,
+                    rest_site_choices=["SMITH"],
+                    upgraded_cards=["CARD.BASH", "RELIC.NOPE"],
+                ),
+            ),
+        ],
+        [
+            floor(
+                "event",
+                seat(
+                    None,
+                    event_choices=[
+                        {
+                            "title": {
+                                "key": "DOORS.pages.INITIAL.options.DARK.title",
+                                "table": "events",
+                            }
+                        },
+                        {"title": {"key": "OTHER.title", "table": "events"}},
+                    ],
+                ),
+            ),
+            floor("rest", seat(70, rest_site_choices=["HEAL"])),
+        ],
+    ]
+    _page(lake, 0, [run])
+    _build(mod, lake)
+
+    def rows(table, cols):
+        return duckdb.sql(
+            f"SELECT {cols} FROM read_parquet('{lake}/{table}.parquet') ORDER BY ALL"
+        ).fetchall()
+
+    assert rows(
+        "card_choices", "act, floor_idx, player_idx, card, picked, is_card, character"
+    ) == [
+        (0, 1, 1, "BASH", True, True, "IRONCLAD"),
+        (0, 1, 1, "ODDITY", False, False, "IRONCLAD"),
+    ]
+    assert rows("rest_choices", "floor, choice, ref_hp, ref_mx") == [
+        (2, "SMITH", 30, 80),
+        (4, "HEAL", 50, 80),
+    ]
+    assert rows("upgrades", "floor, player_id, card") == [(2, 1, "BASH")]
+    assert rows("event_choices", "floor, player_idx, event, option") == [
+        (3, 1, "DOORS", "DARK")
+    ]
+
+
+def test_missing_table_file_reparses_the_page(lake):
+    mod = _load()
+    _page(lake, 0, [_run("a", "ace", True)])
+    _build(mod, lake)
+    member = lake / "parts" / "00000" / "card_choices.parquet"
+    member.unlink()
+    assert _build(mod, lake)["parsed"] == 1
+    assert member.exists()
+    assert _count(lake, "card_choices") == 2
+
+
+def test_floor_tables_can_be_empty(lake):
+    mod = _load()
+    run = _run("a", "ace", True)
+    for act in run["map_point_history"]:
+        for floor in act:
+            floor["player_stats"] = [
+                dict(
+                    s,
+                    card_choices=[],
+                    rest_site_choices=[],
+                    upgraded_cards=[],
+                    event_choices=[],
+                )
+                for s in floor["player_stats"]
+            ]
+    _page(lake, 0, [run])
+    _build(mod, lake)
+    for table in ("card_choices", "rest_choices", "upgrades", "event_choices"):
+        assert _count(lake, table) == 0
+
+
+def test_floor_tables_keep_choices_with_their_seat(lake):
+    mod = _load()
+    run = _run("a", "ace", True)
+    run["players"] = [
+        dict(run["players"][0], id=1, character="CHARACTER.IRONCLAD"),
+        dict(run["players"][0], id=2, character="CHARACTER.SILENT"),
+        dict(run["players"][0], id=3, character="CHARACTER.DEFECT"),
+    ]
+
+    def seat(pid, **extra):
+        return {"player_id": pid, "current_hp": 10 * pid, "max_hp": 80, **extra}
+
+    def event(option):
+        return {
+            "title": {"key": f"DOORS.pages.I.options.{option}.t", "table": "events"}
+        }
+
+    run["map_point_history"] = [
+        [
+            {
+                "map_point_type": "monster",
+                "rooms": [],
+                "player_stats": [
+                    seat(1, card_choices=[{"card": {"id": "CARD.A"}}]),
+                    seat(2, card_choices=[]),
+                    seat(3, card_choices=[{"card": {"id": "CARD.C"}}]),
+                ],
+            },
+            {
+                "map_point_type": "rest",
+                "rooms": [],
+                "player_stats": [
+                    seat(1, rest_site_choices=["HEAL"]),
+                    seat(2, event_choices=[event("TWO")]),
+                    seat(
+                        3,
+                        rest_site_choices=["SMITH"],
+                        upgraded_cards=["CARD.C"],
+                        event_choices=[event("THREE")],
+                    ),
+                ],
+            },
+        ]
+    ]
+    _page(lake, 0, [run])
+    _build(mod, lake)
+
+    def rows(table, cols):
+        return duckdb.sql(
+            f"SELECT {cols} FROM read_parquet('{lake}/{table}.parquet') ORDER BY ALL"
+        ).fetchall()
+
+    assert rows("card_choices", "player_idx, card, character") == [
+        (1, "A", "IRONCLAD"),
+        (3, "C", "DEFECT"),
+    ]
+    assert rows("rest_choices", "player_idx, player_id, choice, ref_hp") == [
+        (1, 1, "HEAL", 10),
+        (3, 3, "SMITH", 30),
+    ]
+    assert rows("upgrades", "player_id, card") == [(3, "C")]
+    assert rows("event_choices", "player_idx, option") == [(2, "TWO"), (3, "THREE")]
+
+
+def test_a_duplicated_run_does_not_multiply_card_rows(lake):
+    mod = _load()
+    _page(lake, 0, [_run("dup", "ace", True), _run("dup", "ace", True)])
+    _build(mod, lake)
+    assert _count(lake, "card_choices") == 4

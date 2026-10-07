@@ -1,12 +1,13 @@
 """Staging pages -> the parquet lake, parsing only what changed.
 
-Every page is parsed once by build_page.sql into /lake/parts/<page>/ and
-kept. A cycle parses the pages that are new or changed, drops the output of
-pages that are gone, reassembles the single-file tables every reader uses
-from the live pages' parts, and lets build.sql rebuild the sidecar and
-per-user tables. Everything is written to /lake/.next first and moved into
-the lake only after every statement succeeded. Editing build_page.sql
-reparses every page on the next cycle.
+Every page is parsed once by build_page.sql, plus the flat per-seat tables
+in floor_tables.sql, into /lake/parts/<page>/ and kept. A cycle parses the
+pages that are new or changed, drops the output of pages that are gone,
+reassembles the single-file tables every reader uses from the live pages'
+parts, and lets build.sql rebuild the sidecar and per-user tables.
+Everything is written to /lake/.next first and moved into the lake only
+after every statement succeeded. Editing either SQL file reparses every
+page on the next cycle.
 
     docker compose -f docker-compose.prod.yml run --rm --entrypoint python \
         lake-ingest /lab/build_lake.py
@@ -35,6 +36,10 @@ TABLES = (
     "relics",
     "shop_items",
     "potion_events",
+    "card_choices",
+    "rest_choices",
+    "upgrades",
+    "event_choices",
 )
 
 
@@ -87,9 +92,10 @@ def build(con, lake: pathlib.Path = LAKE) -> dict:
     nxt.mkdir()
 
     template = (LAB / "build_page.sql").read_text()
+    floor_tables = (LAB / "floor_tables.sql").read_text()
     manifest_path = parts / "manifest.json"
     manifest = _load_manifest(
-        manifest_path, hashlib.sha256(template.encode()).hexdigest()
+        manifest_path, hashlib.sha256((template + floor_tables).encode()).hexdigest()
     )
     done = manifest["pages"]
     removed = False
@@ -108,12 +114,15 @@ def build(con, lake: pathlib.Path = LAKE) -> dict:
     for page in pages:
         stem, key = _stem(page), _key(page)
         final = parts / stem
-        if done.get(stem) == key and final.is_dir():
+        if done.get(stem) == key and all(
+            (final / f"{t}.parquet").is_file() for t in TABLES
+        ):
             continue
         started = time.time()
         tmp = parts / f".{stem}.tmp"
         tmp.mkdir()
         con.execute(template.replace("__SRC__", str(page)).replace("__OUT__", str(tmp)))
+        con.execute(floor_tables.replace("__OUT__", str(tmp)))
         if final.exists():
             shutil.rmtree(final)
         tmp.rename(final)

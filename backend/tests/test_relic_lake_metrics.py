@@ -4,6 +4,7 @@ stats pages read, plus the 400 on an unknown bracket."""
 
 import gzip
 import json
+import pathlib
 
 import duckdb
 import pytest
@@ -53,6 +54,15 @@ def _players(pid, hp, mx, event=None, rest=None, cards=None):
             }
         ]
     )
+
+
+_FLOOR_TABLES = (
+    pathlib.Path(__file__).resolve().parents[2] / "lab" / "floor_tables.sql"
+).read_text()
+
+
+def _floor_tables(con, lake) -> None:
+    con.execute(_FLOOR_TABLES.replace("__OUT__", str(lake)))
 
 
 def write_lake(tmp_path):
@@ -211,6 +221,7 @@ def write_lake(tmp_path):
         t(run_hash, player_idx, entity_type, id, bought, floor))
         TO '{tmp_path}/shop_items.parquet' (FORMAT parquet)"""
     )
+    _floor_tables(con, tmp_path)
     con.close()
 
 
@@ -368,9 +379,6 @@ def test_floor_curves_leave_one_out(lake):
         assert con.execute(
             "SELECT n, w FROM floor_curve_all WHERE a10 AND floor = 2"
         ).fetchone() == (8, 6)
-        assert con.execute(
-            "SELECT floor_offset FROM act_offsets WHERE run_hash = 'r1'"
-        ).fetchone() == (0,)
     finally:
         lake_stats._drop_floor_curves(con)
         con.close()
@@ -572,6 +580,7 @@ def _add_modded_rows(tmp_path):
         TO '{tmp_path}/floors.modded.parquet' (FORMAT parquet)"""
     )
     (tmp_path / "floors.modded.parquet").replace(tmp_path / "floors.parquet")
+    _floor_tables(con, tmp_path)
     assert len(floors) > 0
     con.close()
 

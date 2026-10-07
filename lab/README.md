@@ -45,12 +45,12 @@ docker compose -f docker-compose.lab.yml run --rm -e LAKE_BUILD_MEMORY=1000MB --
 
 Produces `lake/runs.parquet`, `excluded.parquet`, `floor_events.parquet`,
 `deck.parquet` and the rest, and prints row counts. Each staging page is
-parsed once by `build_page.sql` into `lake/parts/<page>/` and kept, so a
-rerun only parses pages that are new or changed; `build.sql` then
-reassembles the single-file tables from the parts. Editing `build_page.sql`
-reparses every page on the next run. `lake/build.duckdb` and `lake/tmp/`
-are scratch; `lake/parts/` is what makes the next build fast, so keep it
-(delete it to force a full parse).
+parsed once by `build_page.sql` and `floor_tables.sql` into
+`lake/parts/<page>/` and kept, so a rerun only parses pages that are new or
+changed; `build.sql` then reassembles the single-file tables from the
+parts. Editing either SQL file reparses every page on the next run.
+`lake/build.duckdb` and `lake/tmp/` are scratch; `lake/parts/` is what
+makes the next build fast, so keep it (delete it to force a full parse).
 
 The build also emits the decision-level tables the metrics pages use:
 
@@ -62,6 +62,11 @@ The build also emits the decision-level tables the metrics pages use:
   use_rate).
 - `relics_removed.parquet` - per-floor relic removal events (Relic Trader
   trades, Sword of Stone transforms, replaced starters, event removals).
+- `card_choices.parquet`, `rest_choices.parquet`, `upgrades.parquet` and
+  `event_choices.parquet` - flat per-seat rows cut from `floors.parquet` by
+  `floor_tables.sql` (card screens, rest sites with the HP the seat walked
+  in with, smith upgrades, event options), so the store stages never
+  unnest the nested `players` column.
 - `relics.parquet` gains an `is_wax` flag so wax-block copies can be
   counted separately from Toy Box duplicates, plus `removed` /
   `floor_removed`: one row per relic a seat EVER held — the end-of-run belt
