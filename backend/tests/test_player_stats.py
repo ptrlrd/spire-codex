@@ -247,3 +247,41 @@ def test_endpoint_serves_and_validates(lake, client, monkeypatch):
     body = r.json()
     assert r.status_code == 200 and body["available"] and body["runs"] == 2
     assert client.get("/api/players/A/stats?players=9").status_code == 400
+
+
+def test_own_stats_need_sign_in(client, monkeypatch):
+    import app.services.auth_jwt as auth_jwt
+
+    monkeypatch.setattr(auth_jwt, "get_current_user", lambda request: None)
+    assert client.get("/api/auth/player-stats").status_code == 401
+
+
+def test_own_stats_serve_a_private_profile_uncached(lake, client, monkeypatch):
+    import app.routers.auth as auth_router
+
+    _build(monkeypatch, [("a", 100)])
+    owner = {"_id": "a", "username": "A", "profile_private": True}
+    monkeypatch.setattr(auth_router, "require_user", lambda request: owner)
+    r = client.get("/api/auth/player-stats?character=ironclad")
+    body = r.json()
+    assert r.status_code == 200 and body["available"] and body["runs"] == 2
+    assert r.headers["cache-control"] == "private, no-store"
+    assert client.get("/api/auth/player-stats?players=9").status_code == 400
+    _user(monkeypatch, owner)
+    assert client.get("/api/players/A/stats").status_code == 404
+
+
+def test_public_stats_cache_headers(lake, client, monkeypatch):
+    _build(monkeypatch, [("a", 100)])
+    _user(monkeypatch, {"_id": "a", "username": "A"})
+    r = client.get("/api/players/A/stats")
+    assert r.status_code == 200 and r.json()["available"]
+    assert r.headers["cache-control"] == "public, max-age=300"
+
+
+def test_filter_validation_precedes_user_lookup(lake, client, monkeypatch):
+    _build(monkeypatch, [("a", 100)])
+    _user(monkeypatch, {"_id": "a", "username": "A"})
+    existing = client.get("/api/players/A/stats?players=9")
+    ghost = client.get("/api/players/GHOST/stats?players=9")
+    assert existing.status_code == ghost.status_code == 400

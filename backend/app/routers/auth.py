@@ -323,6 +323,27 @@ def user_stats(request: Request):
     return get_stats(username=username)
 
 
+@router.get("/player-stats")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.player_stats", "60/minute"))
+def own_player_stats(
+    request: Request,
+    response: Response,
+    character: str | None = None,
+    ascension: int | None = None,
+    version: str | None = None,
+    players: int | None = None,
+):
+    """The signed-in player's own stats tables, private profiles included."""
+    user = require_user(request)
+    response.headers["Cache-Control"] = "private, no-store"
+    from .players import stats_filters, stats_for_user
+
+    character = stats_filters(character, ascension, version, players)
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"username": user.get("username"), "available": False}
+    return stats_for_user(user, character, ascension, version, players)
+
+
 # Per-user cache for personal bests: both /personal-bests and /competitive need
 # them, so without this a single profile load computed the same five sorted
 # queries twice. 60s is plenty; a just-submitted run shows up on the next load.

@@ -241,7 +241,7 @@ function useCatalogs(): Record<string, CatalogEntry> {
   return state.lang === lang ? state.map : EMPTY_CATALOG;
 }
 
-function useApiData<T>(url: string | null): T | null {
+function useApiData<T>(url: string | null, withCookies = false): T | null {
   const [state, setState] = useState<{ url: string; data: T | null }>({
     url: "",
     data: null,
@@ -249,7 +249,12 @@ function useApiData<T>(url: string | null): T | null {
   useEffect(() => {
     if (!url) return;
     let alive = true;
-    cachedFetch<T>(url)
+    const load: Promise<T | null> = withCookies
+      ? fetch(url, { credentials: "include" }).then((r) =>
+          r.ok ? (r.json() as Promise<T>) : null,
+        )
+      : cachedFetch<T>(url);
+    load
       .then((d) => {
         if (alive) setState({ url, data: d });
       })
@@ -259,7 +264,7 @@ function useApiData<T>(url: string | null): T | null {
     return () => {
       alive = false;
     };
-  }, [url]);
+  }, [url, withCookies]);
   return state.url === url ? state.data : null;
 }
 
@@ -357,18 +362,14 @@ function PersonalStatsTable<T>({
   columns,
   groups,
   rowKey,
-  rowSmall,
   defaultKey,
   defaultDir,
-  smallTitle,
 }: {
   columns: StatColumn<T>[];
   groups: StatGroup<T>[];
   rowKey: (r: T) => string;
-  rowSmall: (r: T) => boolean;
   defaultKey: string;
   defaultDir: 1 | -1;
-  smallTitle: string;
 }) {
   const [sortKey, setSortKey] = useState(defaultKey);
   const [dir, setDir] = useState<1 | -1>(defaultDir);
@@ -458,14 +459,10 @@ function PersonalStatsTable<T>({
                   </tr>
                 )}
                 {g.rows.map((r, i) => {
-                  const small = rowSmall(r);
                   return (
                     <tr
                       key={rowKey(r)}
-                      className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
-                        small ? "opacity-50" : ""
-                      }`}
-                      title={small ? smallTitle : undefined}
+                      className="border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40"
                     >
                       <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
                         {i + 1}
@@ -527,9 +524,11 @@ function communityQuery(f: InsightFilters): string {
 function YourStatsInner({
   username,
   filters,
+  own,
 }: {
   username: string;
   filters: InsightFilters;
+  own: boolean;
 }) {
   const t = useT();
   const lang = useGameLocale();
@@ -537,7 +536,10 @@ function YourStatsInner({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const data = useApiData<PlayerStatsData>(
-    `${API}/api/players/${encodeURIComponent(username)}/stats${insightFilterQuery(filters)}`,
+    own
+      ? `${API}/api/auth/player-stats${insightFilterQuery(filters)}`
+      : `${API}/api/players/${encodeURIComponent(username)}/stats${insightFilterQuery(filters)}`,
+    own,
   );
   const ready = !!data?.available && data.runs > 0;
   const tables = ready && data ? data.tables : EMPTY_TABLES;
@@ -732,9 +734,6 @@ function YourStatsInner({
 
   if (!ready || !data) return null;
 
-  const smallTitle = t("Small sample: fewer than {min} runs", {
-    min: SMALL_SAMPLE,
-  });
   const winTitle = t("Your win rate in the runs that included it.");
   const ranked = [...picks.cards, ...picks.relics, ...picks.potions].filter(
     (r): r is PickRow & { lift: number } =>
@@ -874,10 +873,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.runs < SMALL_SAMPLE}
         defaultKey="took"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else if (tab === "events") {
@@ -943,10 +940,8 @@ function YourStatsInner({
         columns={columns}
         groups={groups}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.chosen < SMALL_SAMPLE}
         defaultKey="chosen"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else if (tab === "shops") {
@@ -996,10 +991,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.bought < SMALL_SAMPLE}
         defaultKey="bought"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else {
@@ -1048,10 +1041,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.chosen < SMALL_SAMPLE}
         defaultKey="chosen"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   }
@@ -1169,13 +1160,15 @@ function YourStatsInner({
 export default function YourStats({
   username,
   filters,
+  own = false,
 }: {
   username: string;
   filters: InsightFilters;
+  own?: boolean;
 }) {
   return (
     <Suspense fallback={null}>
-      <YourStatsInner username={username} filters={filters} />
+      <YourStatsInner username={username} filters={filters} own={own} />
     </Suspense>
   );
 }

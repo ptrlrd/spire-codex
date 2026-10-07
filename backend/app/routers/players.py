@@ -119,9 +119,28 @@ def player_stats(
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=404, detail="Player not found")
 
-    from ..services.player_stats import get_player_stats
-    from ..services.run_entity_stats import _official_character_ids
     from ..services.users_db import get_user_by_username
+
+    character = stats_filters(character, ascension, version, players)
+    user = get_user_by_username(username)
+    if not user or user.get("profile_private"):
+        raise HTTPException(status_code=404, detail="Player not found")
+
+    out = stats_for_user(user, character, ascension, version, players)
+    response.headers["Cache-Control"] = (
+        "public, max-age=300" if out["available"] else "no-store"
+    )
+    return out
+
+
+def stats_filters(
+    character: str | None,
+    ascension: int | None,
+    version: str | None,
+    players: int | None,
+) -> str | None:
+    """Validates the stats filters and returns the normalized character."""
+    from ..services.run_entity_stats import _official_character_ids
 
     character = (character or "").strip().upper() or None
     _validate_insight_filters(ascension, version, players)
@@ -129,10 +148,17 @@ def player_stats(
         official = _official_character_ids()
         if official and character not in official:
             raise HTTPException(status_code=400, detail="Unknown character")
+    return character
 
-    user = get_user_by_username(username)
-    if not user or user.get("profile_private"):
-        raise HTTPException(status_code=404, detail="Player not found")
+
+def stats_for_user(
+    user: dict,
+    character: str | None,
+    ascension: int | None,
+    version: str | None,
+    players: int | None,
+) -> dict:
+    from ..services.player_stats import get_player_stats
 
     data = get_player_stats(
         str(user["_id"]),
@@ -142,7 +168,5 @@ def player_stats(
         players=players,
     )
     if data is None:
-        response.headers["Cache-Control"] = "no-store"
         return {"username": user.get("username"), "available": False}
-    response.headers["Cache-Control"] = "public, max-age=300"
     return {"username": user.get("username"), "available": True, **data}
