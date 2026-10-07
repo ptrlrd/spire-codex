@@ -362,18 +362,14 @@ function PersonalStatsTable<T>({
   columns,
   groups,
   rowKey,
-  rowSmall,
   defaultKey,
   defaultDir,
-  smallTitle,
 }: {
   columns: StatColumn<T>[];
   groups: StatGroup<T>[];
   rowKey: (r: T) => string;
-  rowSmall: (r: T) => boolean;
   defaultKey: string;
   defaultDir: 1 | -1;
-  smallTitle: string;
 }) {
   const [sortKey, setSortKey] = useState(defaultKey);
   const [dir, setDir] = useState<1 | -1>(defaultDir);
@@ -463,14 +459,10 @@ function PersonalStatsTable<T>({
                   </tr>
                 )}
                 {g.rows.map((r, i) => {
-                  const small = rowSmall(r);
                   return (
                     <tr
                       key={rowKey(r)}
-                      className={`border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40 ${
-                        small ? "opacity-50" : ""
-                      }`}
-                      title={small ? smallTitle : undefined}
+                      className="border-b border-[var(--border-subtle)]/40 hover:bg-[var(--bg-card-hover)]/40"
                     >
                       <td className="px-2 py-1.5 text-right tabular-nums text-[var(--text-muted)]">
                         {i + 1}
@@ -742,9 +734,6 @@ function YourStatsInner({
 
   if (!ready || !data) return null;
 
-  const smallTitle = t("Small sample: fewer than {min} runs", {
-    min: SMALL_SAMPLE,
-  });
   const winTitle = t("Your win rate in the runs that included it.");
   const ranked = [...picks.cards, ...picks.relics, ...picks.potions].filter(
     (r): r is PickRow & { lift: number } =>
@@ -884,10 +873,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.runs < SMALL_SAMPLE}
         defaultKey="took"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else if (tab === "events") {
@@ -953,10 +940,8 @@ function YourStatsInner({
         columns={columns}
         groups={groups}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.chosen < SMALL_SAMPLE}
         defaultKey="chosen"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else if (tab === "shops") {
@@ -1006,10 +991,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.bought < SMALL_SAMPLE}
         defaultKey="bought"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   } else {
@@ -1058,10 +1041,8 @@ function YourStatsInner({
         columns={columns}
         groups={[{ key: "all", label: null, note: null, rows: visible }]}
         rowKey={rowKeyOf}
-        rowSmall={(r) => r.chosen < SMALL_SAMPLE}
         defaultKey="chosen"
         defaultDir={-1}
-        smallTitle={smallTitle}
       />
     );
   }
@@ -1170,12 +1151,6 @@ function YourStatsInner({
       </div>
 
       {table}
-      <p className="text-xs text-[var(--text-muted)]">
-        {t(
-          "Rows under {min} samples are greyed out; rows under {hidden} are hidden until you switch them on.",
-          { min: SMALL_SAMPLE, hidden: HIDDEN_SAMPLE },
-        )}
-      </p>
     </section>
   );
 }

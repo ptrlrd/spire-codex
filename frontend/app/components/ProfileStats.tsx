@@ -1,7 +1,7 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
@@ -184,6 +184,7 @@ interface ProfileStatsProps {
   deleteConfirm: string | null;
   onDeleteConfirm: (hash: string | null) => void;
   onDeleteRuns: (hashes: string[]) => Promise<void> | void;
+  overviewExtra?: ReactNode;
 }
 
 type Tab = "overview" | "runs" | "cards" | "relics" | "potions" | "tierlists";
@@ -199,6 +200,7 @@ export default function ProfileStats({
   deleteConfirm,
   onDeleteConfirm,
   onDeleteRuns,
+  overviewExtra,
 }: ProfileStatsProps) {
   const t = useT();
   const bp = useBetaPrefix();
@@ -358,10 +360,13 @@ export default function ProfileStats({
       </div>
 
       {tab === "overview" && (
-        <ProfileInsights
-          bests={bests}
-          personalRanks={competitive?.personal_ranks}
-        />
+        <>
+          <ProfileInsights
+            bests={bests}
+            personalRanks={competitive?.personal_ranks}
+          />
+          {overviewExtra}
+        </>
       )}
 
       {tab === "runs" && (

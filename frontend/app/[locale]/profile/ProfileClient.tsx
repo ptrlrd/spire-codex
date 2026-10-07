@@ -379,12 +379,13 @@ export default function ProfileClient() {
           deleteConfirm={deleteConfirm}
           onDeleteConfirm={setDeleteConfirm}
           onDeleteRuns={handleDeleteMany}
+          overviewExtra={
+            user.username ? (
+              <OwnStats key={user.user_id} username={user.username} />
+            ) : null
+          }
         />
       </section>
-
-      {user.username && (
-        <OwnStats key={user.user_id} username={user.username} />
-      )}
 
       {/* Claim Runs */}
       <section>
