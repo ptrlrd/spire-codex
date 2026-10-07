@@ -21,6 +21,7 @@ import {
   fetchRelicCatalog,
 } from "@/lib/entity-catalogs";
 import { entityNameLinks } from "@/lib/rich-links";
+import type { AncientPool } from "@/app/[locale]/ancients/pools";
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
   process.env.NEXT_PUBLIC_API_URL ||
@@ -29,6 +30,17 @@ const API_PUBLIC =
   process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
+
+async function fetchAncientPool(id: string): Promise<AncientPool | null> {
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/ancient-pools/${id}`, {
+      next: { revalidate: 3600 },
+    });
+    return res.ok ? await res.json() : null;
+  } catch {
+    return null;
+  }
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
@@ -136,10 +148,11 @@ export default async function Page({ params }: Props) {
   const voteStats = event ? await fetchEventVotes(id) : null;
   // Tooltip keywords plus relic and card name links for the descriptions:
   // fetched once per render here so the links land in the server HTML.
-  const [cards, relics, keywords] = await Promise.all([
+  const [cards, relics, keywords, pool] = await Promise.all([
     fetchCardCatalog(locale),
     fetchRelicCatalog(locale),
     fetchKeywordCatalog(locale),
+    event?.type === "Ancient" ? fetchAncientPool(event.id) : null,
   ]);
   return (
     <>
@@ -153,6 +166,7 @@ export default async function Page({ params }: Props) {
         ]}
         initialKeywords={keywords}
         initialRelics={relics}
+        initialPool={pool}
       />
     </>
   );

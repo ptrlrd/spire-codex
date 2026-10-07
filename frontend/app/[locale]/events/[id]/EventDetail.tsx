@@ -21,6 +21,13 @@ import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityProse from "@/app/components/EntityProse";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import { imageUrl } from "@/lib/image-url";
+import {
+  AncientPools,
+  fetchPoolNames,
+  noteText,
+  type AncientPool,
+  type GameNames,
+} from "@/app/[locale]/ancients/pools";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
 
@@ -111,6 +118,7 @@ export default function EventDetail({
   initialEntityLinks,
   initialKeywords,
   initialRelics,
+  initialPool,
 }: {
   initialEvent?: GameEvent | null;
   voteStats?: EventVotes | null;
@@ -120,6 +128,8 @@ export default function EventDetail({
   initialKeywords?: KeywordEntry[];
   /** Server-fetched relic catalog, also feeding the relic offerings section. */
   initialRelics?: RelicEntry[];
+  /** Server-fetched relic pools when the event is an Ancient; absent on the beta page. */
+  initialPool?: AncientPool | null;
 } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
@@ -146,6 +156,16 @@ export default function EventDetail({
     () => (initialEntityLinks?.length ? initialEntityLinks : undefined),
     [initialEntityLinks],
   );
+  const [pool, setPool] = useState<AncientPool | null>(initialPool ?? null);
+  const [poolExtras, setPoolExtras] = useState<Omit<GameNames, "relics">>({
+    enchants: {},
+    modifiers: {},
+    cards: {},
+  });
+  const poolNames = useMemo(
+    () => ({ relics: relicMap, ...poolExtras }),
+    [relicMap, poolExtras],
+  );
   const [expandedDialogue, setExpandedDialogue] = useState<string | null>(null);
   const [activeSection, setActiveSection] = useState<string>("description");
 
@@ -165,6 +185,21 @@ export default function EventDetail({
       setRelicMap(indexById(relics)),
     );
   }, [lang, initialRelics]);
+
+  const ancientId = event?.type === "Ancient" ? event.id : null;
+  useEffect(() => {
+    if (initialPool !== undefined || !ancientId) return;
+    cachedFetch<AncientPool>(`${API}/api/ancient-pools/${ancientId}`)
+      .then((data) => setPool(data))
+      .catch(() => setPool(null));
+  }, [ancientId, initialPool]);
+
+  useEffect(() => {
+    if (!pool) return;
+    fetchPoolNames(lang)
+      .then((names) => setPoolExtras(names))
+      .catch(() => {});
+  }, [pool, lang]);
 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
@@ -220,7 +255,11 @@ export default function EventDetail({
   const hasChoices =
     (event.options && event.options.length > 0) ||
     (event.pages && event.pages.length > 1);
-  const hasRelics = event.relics && event.relics.length > 0;
+  const hasPools = !!pool && pool.pools.length > 0;
+  const relicCount = hasPools
+    ? new Set(pool.pools.flatMap((p) => p.relics.map((r) => r.id))).size
+    : (event.relics?.length ?? 0);
+  const hasRelics = relicCount > 0;
   const hasDialogue = event.dialogue && Object.keys(event.dialogue).length > 0;
 
   const tocItems: { id: string; label: string }[] = [
@@ -398,55 +437,68 @@ export default function EventDetail({
           )}
 
           {/* Relic offerings */}
-          {hasRelics && (
+          {pool && hasPools ? (
             <section id="relics">
               <h2>{t("Relics")}</h2>
-              <p className="h-note">{t("Relics this event can offer.")}</p>
-              <div className="rel">
-                <div className="rel-block">
-                  <div className="chips">
-                    {event.relics!.map((relicId) => {
-                      const relic = relicMap[relicId];
-                      return (
-                        <Link
-                          key={relicId}
-                          href={`/relics/${relicId.toLowerCase()}`}
-                          className="cardlink"
-                        >
-                          {relic?.image_url && (
-                            <img
-                              className="cardimg xs"
-                              src={imageUrl(relic.image_url)}
-                              alt={t("{name} - Slay the Spire 2 Relic", {
-                                name: relic.name,
-                              })}
-                              crossOrigin="anonymous"
-                            />
-                          )}
-                          <span>
-                            <span className="cln">
-                              {relic?.name ||
-                                relicId
-                                  .replace(/_/g, " ")
-                                  .replace(/\b\w/g, (c) => c.toUpperCase())}
-                            </span>
-                            {relic?.description && (
-                              <span className="cls">
-                                {/* Inside the offering anchor: never nest links. */}
-                                <RichDescription
-                                  text={relic.description}
-                                  nestedInLink
-                                />
-                              </span>
+              <p className="anc-sel">
+                {noteText(pool.selection, t, poolNames)}
+              </p>
+              <p className="h-note">
+                {noteText(pool.description, t, poolNames)}
+              </p>
+              <AncientPools ancient={pool} names={poolNames} bp={bp} />
+            </section>
+          ) : (
+            hasRelics && (
+              <section id="relics">
+                <h2>{t("Relics")}</h2>
+                <p className="h-note">{t("Relics this event can offer.")}</p>
+                <div className="rel">
+                  <div className="rel-block">
+                    <div className="chips">
+                      {event.relics!.map((relicId) => {
+                        const relic = relicMap[relicId];
+                        return (
+                          <Link
+                            key={relicId}
+                            href={`/relics/${relicId.toLowerCase()}`}
+                            className="cardlink"
+                          >
+                            {relic?.image_url && (
+                              <img
+                                className="cardimg xs"
+                                src={imageUrl(relic.image_url)}
+                                alt={t("{name} - Slay the Spire 2 Relic", {
+                                  name: relic.name,
+                                })}
+                                crossOrigin="anonymous"
+                              />
                             )}
-                          </span>
-                        </Link>
-                      );
-                    })}
+                            <span>
+                              <span className="cln">
+                                {relic?.name ||
+                                  relicId
+                                    .replace(/_/g, " ")
+                                    .replace(/\b\w/g, (c) => c.toUpperCase())}
+                              </span>
+                              {relic?.description && (
+                                <span className="cls">
+                                  {/* Inside the offering anchor: never nest links. */}
+                                  <RichDescription
+                                    text={relic.description}
+                                    nestedInLink
+                                  />
+                                </span>
+                              )}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </section>
+              </section>
+            )
           )}
 
           {/* Dialogue */}
@@ -532,7 +584,7 @@ export default function EventDetail({
                 {hasRelics && (
                   <div className="frow">
                     <dt>{t("Relics")}</dt>
-                    <dd>{event.relics!.length}</dd>
+                    <dd>{relicCount}</dd>
                   </div>
                 )}
               </dl>
