@@ -126,10 +126,6 @@ CREATE OR REPLACE TEMP VIEW pfloors AS
 SELECT f.run_hash, f.act, f.floor_idx,
   struct_pack(
     player_id := ps.u.player_id,
-    current_hp := ps.u.current_hp,
-    max_hp := ps.u.max_hp,
-    event_choices := ps.u.event_choices,
-    rest_site_choices := ps.u.rest_site_choices,
     ancient_choice := ps.u.ancient_choice,
     cards_removed := ps.u.cards_removed
   ) AS p,
@@ -302,17 +298,6 @@ LATERAL (SELECT unnest(generate_series(0, r.floors_reached)) AS f) g
 GROUP BY 1, 2
 """
 
-_ACT_OFFSETS_SQL = """
-CREATE TABLE IF NOT EXISTS act_offsets AS
-SELECT run_hash, act,
-  coalesce(sum(n) OVER (PARTITION BY run_hash ORDER BY act
-    ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING), 0)::INT AS floor_offset
-FROM (
-  SELECT run_hash, act, count(*) AS n FROM read_parquet('{lake}/floors.parquet')
-  GROUP BY 1, 2
-)
-"""
-
 # Joins and the expectation expression for a row keyed by {run} (a run
 # hash column) acquiring at floor {floor}; the floor is clamped to the
 # run's depth so the leave-one-out subtraction always has the run inside
@@ -336,7 +321,6 @@ def _ensure_floor_curves(con) -> None:
     con.execute(_RUN_DEPTH_SQL.format(lake=lake))
     con.execute(_FLOOR_CURVE_SQL)
     con.execute(_FLOOR_CURVE_ALL_SQL)
-    con.execute(_ACT_OFFSETS_SQL.format(lake=lake))
 
 
 def _drop_floor_curves(con) -> None:
@@ -344,7 +328,6 @@ def _drop_floor_curves(con) -> None:
         "floor_curve",
         "floor_curve_all",
         "run_depth",
-        "act_offsets",
         "potion_seats",
     ):
         con.execute(f"DROP TABLE IF EXISTS {t}")
@@ -360,7 +343,7 @@ def _exp_sql(run: str, floor: str) -> tuple[str, str]:
 # wins among those, and the summed expectation -- lift's inputs ride along.
 # {floor_col} is the seat's acquisition floor (min over copies).
 _CUBE_MEMBERSHIP_SQL = """
-SELECT c.cell, m.{col}, coalesce(upper(m.character), c.character, ''),
+SELECT c.cell, x.{col}, coalesce(upper(x.character), c.character, ''),
   count(*), count(*) FILTER (c.win),
   count(x.exp), count(*) FILTER (c.win AND x.exp IS NOT NULL),
   round(coalesce(sum(x.exp), 0), 3)
@@ -374,8 +357,7 @@ FROM (
   ) m
   {exp_join}
 ) x
-JOIN cells c ON x.run_hash = c.run_hash,
-LATERAL (SELECT x.{col}, x.character) m
+JOIN cells c ON x.run_hash = c.run_hash
 GROUP BY 1, 2, 3
 """
 
@@ -408,21 +390,16 @@ GROUP BY 1, 2, 3
 """
 
 _CUBE_EVENTS_SQL = """
-SELECT x.cell, split_part(x.key, '.', 1),
-  split_part(split_part(x.key, '.options.', 2), '.', 1),
+SELECT x.cell, x.event, x.option,
   count(*), count(*) FILTER (x.win),
   count(x.exp), count(*) FILTER (x.win AND x.exp IS NOT NULL),
   round(coalesce(sum(x.exp), 0), 3)
 FROM (
-  SELECT c.cell, c.win, c.key, {exp_expr} AS exp
+  SELECT c.cell, c.win, c.event, c.option, {exp_expr} AS exp
   FROM (
-    SELECT h.run_hash, h.cell, h.win, (ec.u).title."key" AS key,
-      ao.floor_offset + h.floor_idx AS floor
-    FROM pfloors h
-    JOIN act_offsets ao ON h.run_hash = ao.run_hash AND h.act = ao.act,
-    LATERAL (SELECT unnest((h.p).event_choices) AS u) ec
-    WHERE (ec.u).title."table" = 'events'
-      AND (ec.u).title."key" LIKE '%.options.%'
+    SELECT v.run_hash, e.cell, e.win, v.event, v.option, v.floor
+    FROM read_parquet('{lake}/event_choices.parquet') v
+    JOIN cells e ON v.run_hash = e.run_hash
   ) c
   {exp_join}
 ) x
@@ -512,31 +489,17 @@ def _potion_used_rows() -> str:
 
 
 _CUBE_REST_SQL = """
-WITH hp AS (
-  SELECT run_hash, cell, act, floor_idx, p, win,
-    last_value(CASE WHEN (p).current_hp IS NOT NULL
-      AND coalesce((p).max_hp, 0) > 0 THEN
-      struct_pack(hp := (p).current_hp, mx := (p).max_hp) END IGNORE NULLS)
-    OVER (PARTITION BY run_hash, (p).player_id ORDER BY act, floor_idx
-      ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS hp_prev
-  FROM pfloors
-),
-choices AS (
-  SELECT h.run_hash, h.cell, rc.u AS choice, h.win,
-    coalesce(h.hp_prev, struct_pack(hp := (h.p).current_hp,
-      mx := coalesce((h.p).max_hp, 0))) AS ref,
-    ao.floor_offset + h.floor_idx AS floor
-  FROM hp h
-  JOIN act_offsets ao ON h.run_hash = ao.run_hash AND h.act = ao.act,
-  LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc
-  WHERE rc.u IS NOT NULL AND rc.u <> ''
+WITH choices AS (
+  SELECT r.run_hash, e.cell, r.choice, e.win, r.ref_hp, r.ref_mx, r.floor
+  FROM read_parquet('{lake}/rest_choices.parquet') r
+  JOIN cells e ON r.run_hash = e.run_hash
 ),
 scored AS (
   SELECT c.*, {exp_expr} AS exp FROM choices c
   {exp_join}
 )
 SELECT cell, choice, count(*), count(*) FILTER (win),
-  count(*) FILTER (ref.mx > 0 AND ref.hp IS NOT NULL AND ref.hp * 2 < ref.mx),
+  count(*) FILTER (ref_mx > 0 AND ref_hp IS NOT NULL AND ref_hp * 2 < ref_mx),
   count(exp), count(*) FILTER (win AND exp IS NOT NULL),
   round(coalesce(sum(exp), 0), 3)
 FROM scored
@@ -982,37 +945,22 @@ def _build_community_cube() -> dict[str, dict]:
             ]
 
         for cell, char, eid, oid, n in con.execute(
-            "SELECT cell, run_char, split_part((ec.u).title.\"key\", '.', 1),"
-            " split_part(split_part((ec.u).title.\"key\", '.options.', 2), '.', 1),"
-            " count(*) FROM pfloors, LATERAL (SELECT unnest((p).event_choices) AS u) ec"
-            " WHERE (ec.u).title.\"table\" = 'events'"
-            " AND (ec.u).title.\"key\" LIKE '%.options.%' GROUP BY 1, 2, 3, 4"
+            "SELECT e.cell, lower(e.character), v.event, v.option, count(*)"
+            f" FROM read_parquet('{lake}/event_choices.parquet') v"
+            " JOIN cells e ON v.run_hash = e.run_hash GROUP BY 1, 2, 3, 4"
         ).fetchall():
             if eid and oid:
                 acc_for(cell, char)["events"].setdefault(eid, {})[oid] = n
 
         for cell, char, choice, ps_char, n, wins, low in con.execute(
-            "WITH hp AS (SELECT run_hash, cell, act, floor_idx,"
-            " struct_pack(player_id := (p).player_id, current_hp := (p).current_hp,"
-            " max_hp := (p).max_hp, rest_site_choices := (p).rest_site_choices) AS p,"
-            " win, run_char,"
-            " last_value(CASE WHEN (p).current_hp IS NOT NULL"
-            " AND coalesce((p).max_hp, 0) > 0 THEN"
-            " struct_pack(hp := (p).current_hp, mx := (p).max_hp) END IGNORE NULLS)"
-            " OVER (PARTITION BY run_hash, (p).player_id ORDER BY act, floor_idx"
-            " ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING) AS hp_prev"
-            " FROM pfloors)"
-            ", choices AS (SELECT h.cell, h.run_char, rc.u AS choice, h.win,"
-            " coalesce(h.hp_prev, struct_pack(hp := (h.p).current_hp,"
-            " mx := coalesce((h.p).max_hp, 0))) AS ref,"
-            " coalesce(pc.character, h.run_char) AS ps_char FROM hp h"
-            " LEFT JOIN pid_char pc ON h.run_hash = pc.run_hash"
-            " AND (h.p).player_id = pc.player_id,"
-            " LATERAL (SELECT unnest((h.p).rest_site_choices) AS u) rc"
-            " WHERE rc.u IS NOT NULL AND rc.u <> '')"
-            " SELECT cell, run_char, choice, ps_char, count(*), count(*) FILTER (win),"
-            " count(*) FILTER (ref.mx > 0 AND ref.hp IS NOT NULL"
-            " AND ref.hp * 2 < ref.mx) FROM choices GROUP BY 1, 2, 3, 4"
+            "SELECT e.cell, lower(e.character), r.choice,"
+            " coalesce(pc.character, lower(e.character)), count(*),"
+            " count(*) FILTER (e.win), count(*) FILTER (r.ref_mx > 0"
+            " AND r.ref_hp IS NOT NULL AND r.ref_hp * 2 < r.ref_mx)"
+            f" FROM read_parquet('{lake}/rest_choices.parquet') r"
+            " JOIN cells e ON r.run_hash = e.run_hash"
+            " LEFT JOIN pid_char pc ON r.run_hash = pc.run_hash"
+            " AND r.player_id = pc.player_id GROUP BY 1, 2, 3, 4"
         ).fetchall():
             acc = acc_for(cell, char)
             rec = acc["rest"].setdefault(choice, [0, 0, 0])
@@ -1112,35 +1060,19 @@ SKIP_ID = "SKIP"
 # were taken. Requires the `eligible` view and the `excluded_cards` temp table.
 _CHOICES_CTE = """
             choices AS (
-              SELECT s.run_hash, s.act, s.floor_idx, s.pidx, s.cid, s.picked,
-                {ch} AS ch
-              FROM (
-                SELECT f.run_hash, f.act, f.floor_idx, ps.i AS pidx,
-                  cc.u.cid AS cid, cc.u.picked AS picked
-                FROM (
-                  SELECT run_hash, act, floor_idx,
-                    [[struct_pack(cid := upper(split_part(c.card.id, '.', -1)),
-                                  picked := coalesce(c.was_picked, false))
-                      FOR c IN p.card_choices
-                      IF c.card.id IS NOT NULL
-                        AND upper(split_part(c.card.id, '.', 1)) = 'CARD']
-                     FOR p IN players] AS pcc
-                  FROM read_parquet('{lake}/floors.parquet')
-                ) f
-                JOIN eligible e ON f.run_hash = e.run_hash,
-                LATERAL (SELECT unnest(f.pcc) AS u,
-                         generate_subscripts(f.pcc, 1) AS i) ps,
-                LATERAL (SELECT unnest(ps.u) AS u) cc
-                WHERE cc.u.cid NOT IN (SELECT cid FROM excluded_cards)
-              ) s
-              {seat_join}
+              SELECT c.run_hash, c.act, c.floor_idx, c.player_idx AS pidx,
+                c.card AS cid, c.picked, coalesce(upper(c.character), '') AS ch
+              FROM read_parquet('{lake}/card_choices.parquet') c
+              JOIN eligible e ON c.run_hash = e.run_hash
+              WHERE c.is_card
+                AND c.card NOT IN (SELECT cid FROM excluded_cards)
             )"""
 
 
 def _ensure_choice_rows(con) -> None:
     """Materialize the card-choice rows once. The pair query references the
     extraction five times and the skip counts once more; each reference
-    re-unnests floors.parquet unless the rows are a real table.
+    rereads card_choices.parquet unless the rows are a real table.
 
     A REAL table in the scratch db, not TEMP: temp tables sit inside
     DuckDB's memory budget, and the ~50M-row materialization plus the pair
@@ -1151,10 +1083,9 @@ def _ensure_choice_rows(con) -> None:
 
     con.execute(_eligible_sql(LAKE_DIR))
     _ids_temp_table(con, "excluded_cards", res._non_reward_card_ids())
-    seat_join, ch = _seat_character_sql("s.run_hash", "s.pidx")
     con.execute(
         "CREATE TABLE IF NOT EXISTS choice_rows AS WITH "
-        + _CHOICES_CTE.format(lake=LAKE_DIR, seat_join=seat_join, ch=ch)
+        + _CHOICES_CTE.format(lake=LAKE_DIR)
         + " SELECT * FROM choices"
     )
 
@@ -1424,21 +1355,7 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
         con.execute(
             f"""
             CREATE OR REPLACE TABLE upg_winners AS
-            WITH floors_g AS (
-              SELECT f.run_hash, f.players,
-                row_number() OVER (PARTITION BY f.run_hash
-                  ORDER BY f.act, f.floor_idx) AS gfloor
-              FROM (
-                SELECT run_hash, act, floor_idx,
-                  [struct_pack(player_id := p.player_id,
-                               rest_site_choices := p.rest_site_choices,
-                               upgraded_cards := p.upgraded_cards)
-                   FOR p IN players] AS players
-                FROM read_parquet('{LAKE_DIR}/floors.parquet')
-              ) f
-              JOIN eligible e ON f.run_hash = e.run_hash
-            ),
-            pmap AS (
+            WITH pmap AS (
               SELECT run_hash, player_id, player_idx
               FROM read_parquet('{LAKE_DIR}/players.parquet')
               WHERE player_id IS NOT NULL
@@ -1449,31 +1366,19 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
               SELECT run_hash, count(*) AS np
               FROM read_parquet('{LAKE_DIR}/players.parquet') GROUP BY 1
             ),
-            smith_raw AS (
-              SELECT f.run_hash, f.gfloor, ps.u.player_id AS pid,
-                [upper(split_part(u, '.', -1)) FOR u IN ps.u.upgraded_cards
-                 IF upper(split_part(u, '.', 1)) = 'CARD'] AS winners_raw
-              FROM floors_g f,
-              LATERAL (SELECT unnest(f.players) AS u) ps
-              WHERE list_contains(ps.u.rest_site_choices, 'SMITH')
-                AND len(ps.u.upgraded_cards) > 0
-            ),
             smith AS (
-              SELECT sr.run_hash,
+              SELECT u.run_hash,
                 CASE WHEN n.np = 1 THEN 1 ELSE pm.player_idx END AS pidx,
-                sr.gfloor, sr.winners_raw
-              FROM smith_raw sr
-              JOIN nplayers n ON sr.run_hash = n.run_hash
-              LEFT JOIN pmap pm ON sr.run_hash = pm.run_hash
-                AND sr.pid = pm.player_id
+                u.floor AS gfloor, u.card
+              FROM read_parquet('{LAKE_DIR}/upgrades.parquet') u
+              JOIN eligible e ON u.run_hash = e.run_hash
+              JOIN nplayers n ON u.run_hash = n.run_hash
+              LEFT JOIN pmap pm ON u.run_hash = pm.run_hash
+                AND u.player_id = pm.player_id
               WHERE n.np = 1 OR pm.player_idx IS NOT NULL
-            ),
-            winners AS (
-              SELECT run_hash, pidx, gfloor, wu.u AS card
-              FROM smith, LATERAL (SELECT unnest(winners_raw) AS u) wu
-              WHERE pidx IS NOT NULL AND wu.u {upg_filter}
             )
-            SELECT * FROM winners
+            SELECT run_hash, pidx, gfloor, card FROM smith
+            WHERE pidx IS NOT NULL AND card {upg_filter}
             """
         )
         rows = con.execute(
@@ -2104,29 +2009,12 @@ def build_entity_cube(con=None) -> dict:
                     ch, {}
                 ).setdefault(eid, {})[str(bucket)] = [offered, picked]
 
-        seat_join, ch_expr = _seat_character_sql("s.run_hash", "s.pidx")
         for cell, ch, eid, bucket, offered, picked in con.execute(
             f"""
-            SELECT s.cell, {ch_expr}, s.cid, s.bucket, count(*),
-              count(*) FILTER (s.picked)
-            FROM (
-              SELECT e.cell, f.run_hash, ps.i AS pidx, cc.u.cid AS cid,
-                f.bucket, cc.u.picked AS picked
-              FROM (
-                SELECT run_hash, least(act, 2) AS bucket,
-                  [[struct_pack(cid := upper(split_part(c.card.id, '.', -1)),
-                                picked := coalesce(c.was_picked, false))
-                    FOR c IN p.card_choices
-                    IF c.card.id IS NOT NULL AND c.card.id <> '']
-                   FOR p IN players] AS pcc
-                FROM read_parquet('{LAKE_DIR}/floors.parquet')
-              ) f
-              JOIN cells e ON f.run_hash = e.run_hash,
-              LATERAL (SELECT unnest(f.pcc) AS u,
-                       generate_subscripts(f.pcc, 1) AS i) ps,
-              LATERAL (SELECT unnest(ps.u) AS u) cc
-            ) s
-            {seat_join}
+            SELECT e.cell, coalesce(upper(c.character), ''), c.card,
+              least(c.act, 2), count(*), count(*) FILTER (c.picked)
+            FROM read_parquet('{LAKE_DIR}/card_choices.parquet') c
+            JOIN cells e ON c.run_hash = e.run_hash
             GROUP BY 1, 2, 3, 4
             """
         ).fetchall():
@@ -2165,7 +2053,7 @@ def build_entity_cube(con=None) -> dict:
         events: dict[str, dict] = {}
         ev_join, ev_exp = _exp_sql("c.run_hash", "c.floor")
         for cell, eid, oid, *counts in con.execute(
-            _CUBE_EVENTS_SQL.format(exp_join=ev_join, exp_expr=ev_exp)
+            _CUBE_EVENTS_SQL.format(lake=LAKE_DIR, exp_join=ev_join, exp_expr=ev_exp)
         ).fetchall():
             if eid and oid:
                 events.setdefault(cell, {}).setdefault(eid, {})[oid] = [
@@ -2178,7 +2066,7 @@ def build_entity_cube(con=None) -> dict:
         rest: dict[str, dict] = {}
         rest_join, rest_exp = _exp_sql("c.run_hash", "c.floor")
         for cell, choice, *counts in con.execute(
-            _CUBE_REST_SQL.format(exp_join=rest_join, exp_expr=rest_exp)
+            _CUBE_REST_SQL.format(lake=LAKE_DIR, exp_join=rest_join, exp_expr=rest_exp)
         ).fetchall():
             rest.setdefault(cell, {})[choice] = [
                 int(counts[0]),

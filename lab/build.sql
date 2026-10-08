@@ -56,4 +56,8 @@ UNION ALL SELECT 'relics_removed', count(*) FROM read_parquet('__NEXT__/relics_r
 UNION ALL SELECT 'shop_potions', count(*) FROM read_parquet('__NEXT__/shop_potions.parquet')
 UNION ALL SELECT 'relic_choices', count(*) FROM read_parquet('__NEXT__/relic_choices.parquet')
 UNION ALL SELECT 'shop_items', count(*) FROM read_parquet('__NEXT__/shop_items.parquet')
-UNION ALL SELECT 'potion_events', count(*) FROM read_parquet('__NEXT__/potion_events.parquet');
+UNION ALL SELECT 'potion_events', count(*) FROM read_parquet('__NEXT__/potion_events.parquet')
+UNION ALL SELECT 'card_choices', count(*) FROM read_parquet('__NEXT__/card_choices.parquet')
+UNION ALL SELECT 'rest_choices', count(*) FROM read_parquet('__NEXT__/rest_choices.parquet')
+UNION ALL SELECT 'upgrades', count(*) FROM read_parquet('__NEXT__/upgrades.parquet')
+UNION ALL SELECT 'event_choices', count(*) FROM read_parquet('__NEXT__/event_choices.parquet');

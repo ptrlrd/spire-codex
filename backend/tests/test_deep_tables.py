@@ -74,17 +74,15 @@ def tiny_lake(tmp_path, monkeypatch):
         t(run_hash, player_idx, potion, was_picked))
         TO '{tmp_path}/shop_potions.parquet' (FORMAT parquet)"""
     )
-    # Floors with card_choices so _ensure_choice_rows has something real:
-    # r1's player saw STRIKE (picked) and DEFEND (skipped) on one screen.
+    # Card choices so _ensure_choice_rows has something real: r1's player
+    # saw STRIKE (picked) and DEFEND (skipped) on one screen.
     con.execute(
-        f"""COPY (SELECT 'r1' AS run_hash, 0 AS act, 1 AS floor_idx,
-        [struct_pack(player_id := 1,
-           card_choices := [
-             struct_pack(was_picked := true,
-               card := struct_pack(id := 'CARD.STRIKE')),
-             struct_pack(was_picked := false,
-               card := struct_pack(id := 'CARD.DEFEND'))])] AS players)
-        TO '{tmp_path}/floors.parquet' (FORMAT parquet)"""
+        f"""COPY (SELECT * FROM (VALUES
+        ('r1', 0, 1, 1, 'STRIKE', true, true, 'IRONCLAD'),
+        ('r1', 0, 1, 1, 'DEFEND', false, true, 'IRONCLAD'))
+        t(run_hash, act, floor_idx, player_idx, card, picked, is_card,
+          character))
+        TO '{tmp_path}/card_choices.parquet' (FORMAT parquet)"""
     )
     con.close()
     monkeypatch.setattr(ls, "LAKE_DIR", tmp_path)

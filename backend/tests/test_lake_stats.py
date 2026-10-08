@@ -185,14 +185,13 @@ def _write_skip_fixture_lake(tmp_path):
     # Z offered, nothing taken — a skip screen in the A0 tier.
     con.execute(
         f"""COPY (SELECT * FROM (VALUES
-        ('r1', 0, 1, [{{'card_choices': [
-            {{'was_picked': true, 'card': {{'id': 'CARD.X'}}}},
-            {{'was_picked': false, 'card': {{'id': 'CARD.Y'}}}}]}}]),
-        ('r2', 1, 5, [{{'card_choices': [
-            {{'was_picked': false, 'card': {{'id': 'CARD.Y'}}}},
-            {{'was_picked': false, 'card': {{'id': 'CARD.Z'}}}}]}}]))
-        t(run_hash, act, floor_idx, players))
-        TO '{tmp_path}/floors.parquet' (FORMAT parquet)"""
+        ('r1', 0, 1, 1, 'X', true, true, NULL::VARCHAR),
+        ('r1', 0, 1, 1, 'Y', false, true, NULL),
+        ('r2', 1, 5, 1, 'Y', false, true, NULL),
+        ('r2', 1, 5, 1, 'Z', false, true, NULL))
+        t(run_hash, act, floor_idx, player_idx, card, picked, is_card,
+          character))
+        TO '{tmp_path}/card_choices.parquet' (FORMAT parquet)"""
     )
     con.close()
 
