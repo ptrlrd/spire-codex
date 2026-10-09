@@ -12,6 +12,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pymongo.errors import ExecutionTimeout
 from starlette.concurrency import run_in_threadpool
 from ..dependencies import get_lang, shared_limiter
+from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
@@ -2120,11 +2121,29 @@ def get_similar_runs(
     return payload
 
 
-@router.get("/archetypes", tags=["Runs"])
+@router.get(
+    "/archetypes",
+    tags=["Runs"],
+    responses={200: {"model": ArchetypesResponse}},
+)
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_archetypes", "60/minute"))
-def get_archetypes(request: Request, response: Response, lang: str = "eng"):
-    """Community deck archetypes, clustered nightly from run-composition
-    vectors: defining cards/relics, share, and win rate per build."""
+def get_archetypes(
+    request: Request,
+    response: Response,
+    lang: str = Query(
+        "eng", description="Language for card and relic names, e.g. eng, deu, jpn."
+    ),
+):
+    """Community deck archetypes per character, the data behind /archetypes.
+
+    Runs are clustered nightly by what they held (cards and relics). Each
+    archetype lists the cards and relics that define it, how many runs fall
+    in it, its share of the character's runs, its win rate, example run
+    hashes, and its share and win rate across recent game versions.
+
+    Only clusters with 50+ runs and at least one defining card are listed;
+    shares still count every run, so they don't sum to 100.
+    `available` is false until the first build exists. Cached for 10 minutes."""
     cache_key = f"archetypes:{lang}"
     cached = app_cache.get_json(cache_key)
     if cached is not None:
