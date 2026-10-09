@@ -25,7 +25,20 @@ OVERWOLF_JWKS_URL = os.environ.get(
 OVERWOLF_SUBSCRIPTIONS_URL = os.environ.get(
     "OVERWOLF_SUBSCRIPTIONS_URL", "https://subscriptions-api.overwolf.com"
 )
-OVERWOLF_GRACE_DAYS = int(os.environ.get("OVERWOLF_GRACE_DAYS", "35"))
+OVERWOLF_GRACE_DAYS = int(os.environ.get("OVERWOLF_GRACE_DAYS", "7"))
+OVERWOLF_PACKAGE_TIERS = {
+    str(k).strip(): str(v).strip().lower()
+    for k, v in (
+        pair.split(":", 1)
+        for pair in os.environ.get(
+            "OVERWOLF_PACKAGE_TIERS", "7721358:common,7700984:rare,7700985:ancient"
+        ).split(",")
+        if ":" in pair
+    )
+}
+OVERWOLF_PERK_TIERS = ("rare", "ancient")
+_TIER_RANK = {"common": 1, "rare": 2, "ancient": 3}
+_OW_ENTITLED = {"active", "pending_cancellation"}
 KOFI_MONTHLY_GRACE_DAYS = int(os.environ.get("KOFI_MONTHLY_GRACE_DAYS", "40"))
 _ACTIVE_STATES = {"active", "cancelled", "canceled", "grace"}
 THEME_CHARACTERS = ("ironclad", "silent", "defect", "necrobinder", "regent")
@@ -92,7 +105,7 @@ def verify_overwolf_token(token: str) -> dict:
     except Exception as exc:
         raise OverwolfError(f"invalid token: {exc}") from exc
     user_id = str(
-        claims.get("sub") or claims.get("userId") or claims.get("uuid") or ""
+        claims.get("uuid") or claims.get("sub") or claims.get("userId") or ""
     ).strip()
     if not user_id:
         raise OverwolfError("token has no user id")
@@ -127,18 +140,28 @@ def fetch_overwolf_subscription(token: str) -> dict | None:
         if not isinstance(row, dict):
             continue
         state = str(row.get("state") or "").lower()
+        package = row.get("packageId") or row.get("package_id")
         candidate = {
             "state": state or "unknown",
-            "package_id": row.get("packageId") or row.get("package_id"),
+            "package_id": package,
+            "tier": OVERWOLF_PACKAGE_TIERS.get(str(package)) if package else None,
             "recurring_payment_id": row.get("recurringPaymentId"),
         }
-        if state in _ACTIVE_STATES and (
-            best is None or best["state"] not in _ACTIVE_STATES
-        ):
+
+        def rank(c: dict) -> tuple[int, int]:
+            return (int(c["state"] in _OW_ENTITLED), _TIER_RANK.get(c["tier"], 0))
+
+        if best is None or rank(candidate) > rank(best):
             best = candidate
-        elif best is None:
-            best = candidate
-    return best or {"state": "none", "package_id": None}
+    return best or {"state": "none", "package_id": None, "tier": None}
+
+
+def _overwolf_perks(sub: dict | None) -> bool:
+    """Ad-free and the higher API bucket: an entitled Rare or Ancient
+    subscription. Common is a Discord role only."""
+    return bool(sub) and (
+        sub.get("state") in _OW_ENTITLED and sub.get("tier") in OVERWOLF_PERK_TIERS
+    )
 
 
 def link_overwolf(user_id: str, token: str) -> dict:
@@ -155,12 +178,13 @@ def link_overwolf(user_id: str, token: str) -> dict:
         sub = fetch_overwolf_subscription(token)
     except Exception:
         logger.warning("overwolf subscription check failed", exc_info=True)
-        sub = {"state": "error", "package_id": None}
+        sub = {"state": "error", "package_id": None, "tier": None}
     now = _now()
-    active = bool(sub) and sub["state"] in _ACTIVE_STATES
+    active = _overwolf_perks(sub)
     record = {
         "state": sub["state"] if sub else "unconfigured",
         "package_id": (sub or {}).get("package_id"),
+        "tier": (sub or {}).get("tier"),
         "checked_at": now,
         "expires_at": now + timedelta(days=OVERWOLF_GRACE_DAYS) if active else None,
     }
@@ -175,7 +199,22 @@ def link_overwolf(user_id: str, token: str) -> dict:
         {"_id": ObjectId(user_id)},
         {"$set": {"overwolf_id": ow_id, "overwolf_subscription": record}},
     )
-    return {"overwolf_id": ow_id, "active": active, "state": record["state"]}
+    return {
+        "overwolf_id": ow_id,
+        "active": active,
+        "ad_free": active,
+        "state": record["state"],
+        "tier": record["tier"],
+    }
+
+
+def _overwolf_live(ow: dict) -> bool:
+    """A stored check that still grants perks. Records written before tiers
+    existed carry no tier; they keep their perks until the next re-link
+    stores one or their expiry passes."""
+    if "tier" not in ow:
+        return ow.get("state") in _ACTIVE_STATES
+    return _overwolf_perks(ow)
 
 
 def unlink_overwolf(user_id: str) -> dict:
@@ -253,10 +292,11 @@ def status(user: dict | None, now: datetime | None = None) -> dict:
         sources.append({"source": "patreon", "since": None, "expires_at": None})
     ow = user.get("overwolf_subscription") or {}
     ow_exp = _aware(ow.get("expires_at"))
-    if ow.get("state") in _ACTIVE_STATES and ow_exp and ow_exp > now:
+    if _overwolf_live(ow) and ow_exp and ow_exp > now:
         sources.append(
             {
                 "source": "overwolf",
+                "tier": ow.get("tier"),
                 "since": _iso(ow.get("since")),
                 "expires_at": _iso(ow_exp),
             }

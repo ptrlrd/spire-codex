@@ -227,6 +227,29 @@ def admin_list_keys(q: str | None = None, limit: int = 200) -> list[dict]:
     return out
 
 
+SUPPORTER_TIER = "paid"
+_BOOSTABLE_TIERS = ("general", "registered")
+
+
+def _supporter_tier(tier: str, user_id) -> str:
+    """Keys owned by an active supporter (Patreon, monthly Ko-fi, or an
+    Overwolf Rare/Ancient subscription) get at least the paid bucket."""
+    if tier not in _BOOSTABLE_TIERS or not user_id:
+        return tier
+    try:
+        from bson import ObjectId
+
+        from . import supporters
+        from .users_db import _get_collection
+
+        user = _get_collection().find_one({"_id": ObjectId(str(user_id))})
+        if user and supporters.status(user)["active"]:
+            return SUPPORTER_TIER
+    except Exception:
+        logger.warning("supporter tier lookup failed", exc_info=True)
+    return tier
+
+
 def resolve(raw_key: str) -> dict | None:
     """Resolve an ``X-API-Key`` to {tier, key_id, user_id}, cached. None when the
     key is missing, malformed, unknown, or revoked."""
@@ -251,7 +274,9 @@ def resolve(raw_key: str) -> dict | None:
         )
         if doc:
             result = {
-                "tier": doc.get("tier", _DEFAULT_TIER),
+                "tier": _supporter_tier(
+                    doc.get("tier", _DEFAULT_TIER), doc.get("user_id")
+                ),
                 "key_id": doc["_id"],
                 "user_id": doc.get("user_id"),
             }
