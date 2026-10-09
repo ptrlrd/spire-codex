@@ -7,20 +7,11 @@ import KeyPicks, {
 import { useT } from "@/lib/i18n";
 import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
-import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl } from "@/lib/image-url";
-import { useBetaPrefix } from "@/lib/api/prefix.client";
 import MyTierLists from "@/app/[locale]/tier-list-maker/MyTierLists";
 import ProfileInsights from "./ProfileInsights";
 import { characterHex } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-
-interface EntityInfo {
-  id: string;
-  name: string;
-  image_url: string | null;
-}
 
 interface PersonalBest {
   run_hash: string;
@@ -97,76 +88,6 @@ interface Stats {
   deadliest?: { encounter: string; count: number }[];
 }
 
-function displayName(id: string): string {
-  return id
-    .replace(
-      /^(CARD|RELIC|ENCHANTMENT|MONSTER|ENCOUNTER|CHARACTER|ACT|POTION)\./,
-      "",
-    )
-    .replace(/_/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
-function EntityRow({
-  name,
-  imageSrc,
-  stat,
-  href,
-}: {
-  name: string;
-  imageSrc: string | null;
-  stat: string;
-  href: string;
-}) {
-  return (
-    <Link
-      prefetch={false}
-      href={href}
-      className="flex items-center gap-3 py-1.5 hover:bg-[var(--bg-card-hover)] rounded px-2 -mx-2 transition-colors"
-    >
-      <span className="flex-shrink-0 w-8 h-8 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] overflow-hidden flex items-center justify-center">
-        {imageSrc ? (
-          <img
-            src={imageSrc}
-            alt={name}
-            className="w-full h-full object-contain p-0.5"
-            crossOrigin="anonymous"
-          />
-        ) : (
-          <span className="text-[9px] text-[var(--text-muted)]">—</span>
-        )}
-      </span>
-      <span className="flex-1 truncate text-sm text-[var(--text-primary)]">
-        {name}
-      </span>
-      <span className="text-xs text-[var(--text-tertiary)] tabular-nums">
-        {stat}
-      </span>
-    </Link>
-  );
-}
-
-const STARTER_CARDS = new Set([
-  "STRIKE_IRONCLAD",
-  "STRIKE_SILENT",
-  "STRIKE_DEFECT",
-  "STRIKE_NECROBINDER",
-  "STRIKE_REGENT",
-  "DEFEND_IRONCLAD",
-  "DEFEND_SILENT",
-  "DEFEND_DEFECT",
-  "DEFEND_NECROBINDER",
-  "DEFEND_REGENT",
-]);
-
-const STARTER_RELICS = new Set([
-  "BURNING_BLOOD",
-  "RING_OF_THE_SNAKE",
-  "CRACKED_CORE",
-  "BOUND_PHYLACTERY",
-  "DIVINE_RIGHT",
-]);
-
 interface Run {
   run_hash: string;
   character: string;
@@ -193,11 +114,26 @@ interface ProfileStatsProps {
   onDeleteConfirm: (hash: string | null) => void;
   onDeleteRuns: (hashes: string[]) => Promise<void> | void;
   overviewExtra?: ReactNode;
+  statsTab?: (tab: StatsTab) => ReactNode;
+  chartsTab?: ReactNode;
   runsQuery: string;
   onRunsQueryChange: (q: string) => void;
 }
 
-type Tab = "overview" | "runs" | "cards" | "relics" | "potions" | "tierlists";
+const STATS_TABS = [
+  "cards",
+  "relics",
+  "potions",
+  "events",
+  "shops",
+  "campfires",
+] as const;
+export type StatsTab = (typeof STATS_TABS)[number];
+type Tab = "overview" | "runs" | StatsTab | "charts" | "tierlists";
+
+function isStatsTab(tab: Tab): tab is StatsTab {
+  return (STATS_TABS as readonly string[]).includes(tab);
+}
 
 export default function ProfileStats({
   runs,
@@ -211,11 +147,12 @@ export default function ProfileStats({
   onDeleteConfirm,
   onDeleteRuns,
   overviewExtra,
+  statsTab,
+  chartsTab,
   runsQuery,
   onRunsQueryChange,
 }: ProfileStatsProps) {
   const t = useT();
-  const bp = useBetaPrefix();
   // Bulk delete: selection is per page, so paging away clears it rather than
   // silently carrying hashes the user can no longer see.
   const [selected, setSelected] = useState<string[]>([]);
@@ -250,9 +187,6 @@ export default function ProfileStats({
   const [stats, setStats] = useState<Stats | null>(null);
   const [bests, setBests] = useState<PersonalBests | null>(null);
   const [competitive, setCompetitive] = useState<CompetitiveData | null>(null);
-  const [cardData, setCardData] = useState<Record<string, EntityInfo>>({});
-  const [relicData, setRelicData] = useState<Record<string, EntityInfo>>({});
-  const [potionData, setPotionData] = useState<Record<string, EntityInfo>>({});
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<Tab>("overview");
 
@@ -281,31 +215,6 @@ export default function ProfileStats({
     fetch(`${API}/api/auth/competitive`, { credentials: "include" })
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => alive && d && setCompetitive(d))
-      .catch(() => {});
-
-    cachedFetch<EntityInfo[]>(`${API}/api/cards`)
-      .then((cards) => {
-        if (!alive) return;
-        const cm: Record<string, EntityInfo> = {};
-        for (const c of cards) cm[c.id] = c;
-        setCardData(cm);
-      })
-      .catch(() => {});
-    cachedFetch<EntityInfo[]>(`${API}/api/relics`)
-      .then((relics) => {
-        if (!alive) return;
-        const rm: Record<string, EntityInfo> = {};
-        for (const r of relics) rm[r.id] = r;
-        setRelicData(rm);
-      })
-      .catch(() => {});
-    cachedFetch<EntityInfo[]>(`${API}/api/potions`)
-      .then((potions) => {
-        if (!alive) return;
-        const pm: Record<string, EntityInfo> = {};
-        for (const p of potions) pm[p.id] = p;
-        setPotionData(pm);
-      })
       .catch(() => {});
 
     return () => {
@@ -340,18 +249,12 @@ export default function ProfileStats({
     { key: "cards", label: t("Cards") },
     { key: "relics", label: t("Relics") },
     { key: "potions", label: t("Potions") },
+    { key: "events", label: t("Events") },
+    { key: "shops", label: t("Shops") },
+    { key: "campfires", label: t("Campfires") },
+    { key: "charts", label: t("Charts") },
     { key: "tierlists", label: t("Tier Lists") },
   ];
-
-  const topCards = (stats.top_cards || [])
-    .filter((c) => !STARTER_CARDS.has(c.card_id))
-    .slice(0, 10);
-  const topRelics = (stats.top_relics || [])
-    .filter((r) => !STARTER_RELICS.has(r.relic_id))
-    .slice(0, 10);
-  const topPotions = (stats.top_potions || [])
-    .sort((a, b) => b.picked - a.picked)
-    .slice(0, 10);
 
   return (
     <div className="space-y-4">
@@ -591,89 +494,9 @@ export default function ProfileStats({
         </div>
       )}
 
-      {tab === "cards" && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-            {t("Most Used Cards")}
-          </h3>
-          {topCards.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">
-              {t("No card data yet.")}
-            </p>
-          ) : (
-            <div className="space-y-0.5">
-              {topCards.map((c) => {
-                const info = cardData[c.card_id];
-                return (
-                  <EntityRow
-                    key={c.card_id}
-                    name={info?.name || displayName(c.card_id)}
-                    imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${c.count} ${t("copies")}`}
-                    href={`${bp}/cards/${c.card_id.toLowerCase()}`}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
+      {isStatsTab(tab) && statsTab?.(tab)}
 
-      {tab === "relics" && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-            {t("Most Used Relics")}
-          </h3>
-          {topRelics.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">
-              {t("No relic data yet.")}
-            </p>
-          ) : (
-            <div className="space-y-0.5">
-              {topRelics.map((r) => {
-                const info = relicData[r.relic_id];
-                return (
-                  <EntityRow
-                    key={r.relic_id}
-                    name={info?.name || displayName(r.relic_id)}
-                    imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${r.total_runs_with} ${t("runs")}`}
-                    href={`${bp}/relics/${r.relic_id.toLowerCase()}`}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
-
-      {tab === "potions" && (
-        <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
-            {t("Most Picked Potions")}
-          </h3>
-          {topPotions.length === 0 ? (
-            <p className="text-sm text-[var(--text-tertiary)]">
-              {t("No potion data yet.")}
-            </p>
-          ) : (
-            <div className="space-y-0.5">
-              {topPotions.map((p) => {
-                const info = potionData[p.potion_id];
-                return (
-                  <EntityRow
-                    key={p.potion_id}
-                    name={info?.name || displayName(p.potion_id)}
-                    imageSrc={info?.image_url ? imageUrl(info.image_url) : null}
-                    stat={`${p.pick_rate}% ${t("pick")}`}
-                    href={`${bp}/potions/${p.potion_id.toLowerCase()}`}
-                  />
-                );
-              })}
-            </div>
-          )}
-        </div>
-      )}
+      {tab === "charts" && chartsTab}
 
       {tab === "tierlists" && (
         <div>
