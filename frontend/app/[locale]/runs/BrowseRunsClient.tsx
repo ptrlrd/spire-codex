@@ -18,6 +18,10 @@ import {
   parseWinrate,
 } from "@/lib/run-query";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import KeyPicks, {
+  type KeyBoss,
+  type KeyCard,
+} from "@/app/components/KeyPicks";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -35,6 +39,10 @@ interface BrowseRun {
   build_id?: string;
   seed?: string;
   replay_url?: string;
+  key_cards?: KeyCard[];
+  key_relics?: string[];
+  last_bosses?: KeyBoss[];
+  killed_by?: string | null;
 }
 
 interface CharacterNameRow {
@@ -594,6 +602,13 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                   )}
                   <PlayerBadge username={r.username} />
                 </div>
+                <KeyPicks
+                  cards={r.key_cards}
+                  relics={r.key_relics}
+                  bosses={r.last_bosses}
+                  killedBy={r.killed_by}
+                  className="sm:ml-auto"
+                />
                 <div className="flex items-center gap-3 sm:gap-4 text-xs text-[var(--text-muted)] shrink-0">
                   <span className="hidden sm:inline">
                     {t("{n} cards", { n: r.deck_size })}
