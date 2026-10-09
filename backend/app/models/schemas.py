@@ -2,7 +2,7 @@
 
 import os
 
-from pydantic import BaseModel, computed_field
+from pydantic import BaseModel, Field, computed_field
 
 # Base URL for the full game-rendered card images (the whole card: frame, art,
 # banner, animated flame). Stable channel by default; a beta deploy can point
@@ -509,3 +509,47 @@ class GuideSummary(BaseModel):
 
 class Guide(GuideSummary):
     content: str
+
+
+class ArchetypeEntity(BaseModel):
+    id: str
+    name: str
+
+
+class ArchetypeTrend(BaseModel):
+    version: str = Field(description="Newest tracked game version.")
+    delta: float = Field(
+        description="Change in share, in percentage points, since the previous tracked version."
+    )
+
+
+class ArchetypeHistoryPoint(BaseModel):
+    version: str
+    share: float = Field(description="Percent of the character's runs on this version.")
+    win_rate: float = Field(description="Win rate on this version, 0-100.")
+
+
+class Archetype(BaseModel):
+    name: str = Field(description="Known build name, else its top two defining cards.")
+    size: int = Field(description="Runs in the cluster.")
+    share: float = Field(description="Percent of the character's runs, 0-100.")
+    win_rate: float = Field(description="Win rate, 0-100.")
+    defining_cards: list[ArchetypeEntity]
+    defining_relics: list[ArchetypeEntity]
+    example_runs: list[str] = Field(description="Run hashes, open at /runs/{hash}.")
+    trend: ArchetypeTrend | None = Field(
+        description="Null until two game versions each have 200+ runs for the character."
+    )
+    history: list[ArchetypeHistoryPoint] = Field(
+        description="Share and win rate on up to the last six versions with 200+ runs."
+    )
+
+
+class ArchetypesResponse(BaseModel):
+    available: bool = Field(description="False until the first nightly build exists.")
+    built_at: str | None = Field(
+        None, description="When the clusters were built (UTC, ISO 8601)."
+    )
+    characters: dict[str, list[Archetype]] = Field(
+        description="Archetypes per character id (IRONCLAD, SILENT, ...)."
+    )
