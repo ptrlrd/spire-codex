@@ -151,22 +151,28 @@ def test_overwolf_link_verifies_token_and_sets_grace(env, monkeypatch):
     monkeypatch.setattr(
         supporters,
         "fetch_overwolf_subscription",
-        lambda t: {"state": "active", "package_id": 7},
+        lambda t: {"state": "active", "package_id": 7700984, "tier": "rare"},
     )
     out = supporters.link_overwolf(UID, "a.b.c")
-    assert out == {"overwolf_id": "ow-1", "active": True, "state": "active"}
+    assert out == {
+        "overwolf_id": "ow-1",
+        "active": True,
+        "ad_free": True,
+        "state": "active",
+        "tier": "rare",
+    }
     u = _user(users)
     assert u["overwolf_id"] == "ow-1"
     st = supporters.status(u, datetime.now(timezone.utc))
     assert [s["source"] for s in st["sources"]] == ["overwolf"]
     assert (
-        supporters.status(u, datetime.now(timezone.utc) + timedelta(days=36))["active"]
+        supporters.status(u, datetime.now(timezone.utc) + timedelta(days=8))["active"]
         is False
     )
     monkeypatch.setattr(
         supporters,
         "fetch_overwolf_subscription",
-        lambda t: {"state": "expired", "package_id": 7},
+        lambda t: {"state": "expired", "package_id": 7700984, "tier": "rare"},
     )
     assert supporters.link_overwolf(UID, "a.b.c")["active"] is False
     assert (
@@ -221,7 +227,7 @@ def test_routes_require_login_and_verified_token(env, monkeypatch):
     monkeypatch.setattr(
         supporters,
         "fetch_overwolf_subscription",
-        lambda t: {"state": "active", "package_id": 1},
+        lambda t: {"state": "active", "package_id": 7700985, "tier": "ancient"},
     )
     r = client.post("/api/auth/overwolf/link", json={"token": "x.y.z"})
     assert r.status_code == 200 and r.json()["supporter"]["active"] is True
@@ -336,3 +342,72 @@ def test_flair_shows_active_public_supporters_only(env):
     assert r.status_code == 200 and r.json() == {"dobo": {"theme": "#123456"}}
     assert r.headers["cache-control"] == "public, max-age=300"
     assert client.get("/api/players/flair").json() == {}
+
+
+class _Resp:
+    def __init__(self, rows):
+        self.rows = rows
+        self.status_code = 200
+
+    def raise_for_status(self):
+        pass
+
+    def json(self):
+        return self.rows
+
+
+def _subscriptions(monkeypatch, rows):
+    import httpx
+
+    monkeypatch.setenv("OVERWOLF_STORE_ID", "13blc")
+    monkeypatch.setattr(httpx, "get", lambda *a, **k: _Resp(rows))
+    return supporters.fetch_overwolf_subscription("a.b.c")
+
+
+def test_package_tiers_and_entitled_states(monkeypatch):
+    common = _subscriptions(monkeypatch, [{"packageId": 7721358, "state": "ACTIVE"}])
+    assert common["tier"] == "common" and not supporters._overwolf_perks(common)
+    rare = _subscriptions(
+        monkeypatch, [{"packageId": 7700984, "state": "PENDING_CANCELLATION"}]
+    )
+    assert rare["tier"] == "rare" and supporters._overwolf_perks(rare)
+    for gone in ("EXPIRED", "CANCELLED"):
+        sub = _subscriptions(monkeypatch, [{"packageId": 7700985, "state": gone}])
+        assert not supporters._overwolf_perks(sub)
+    best = _subscriptions(
+        monkeypatch,
+        [
+            {"packageId": 7700985, "state": "EXPIRED"},
+            {"packageId": 7721358, "state": "ACTIVE"},
+            {"packageId": 7700984, "state": "ACTIVE"},
+        ],
+    )
+    assert best["tier"] == "rare" and supporters._overwolf_perks(best)
+
+
+def test_common_link_keeps_ads(env, monkeypatch):
+    users, _ = env
+    monkeypatch.setattr(
+        supporters, "verify_overwolf_token", lambda t: {"overwolf_user_id": "ow-c"}
+    )
+    monkeypatch.setattr(
+        supporters,
+        "fetch_overwolf_subscription",
+        lambda t: {"state": "active", "package_id": 7721358, "tier": "common"},
+    )
+    out = supporters.link_overwolf(UID, "a.b.c")
+    assert out["tier"] == "common" and out["ad_free"] is False
+    assert (
+        supporters.status(_user(users), datetime.now(timezone.utc))["active"] is False
+    )
+
+
+def test_supporter_keys_get_the_paid_bucket(monkeypatch):
+    from app.services import api_key_service, users_db as udb
+
+    owner = {"_id": ObjectId(UID), "is_paid": True}
+    monkeypatch.setattr(udb, "_get_collection", lambda: _Coll([owner]))
+    assert api_key_service._supporter_tier("registered", UID) == "paid"
+    assert api_key_service._supporter_tier("academia", UID) == "academia"
+    owner["is_paid"] = False
+    assert api_key_service._supporter_tier("registered", UID) == "registered"
