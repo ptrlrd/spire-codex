@@ -105,6 +105,7 @@ def test_nobody_is_a_supporter_by_default(env):
         "sources": [],
         "since": None,
         "expires_at": None,
+        "thanks_eligible": False,
         "listed": False,
         "theme": None,
         "theme_public": False,
@@ -397,9 +398,10 @@ def test_common_link_keeps_ads(env, monkeypatch):
     )
     out = supporters.link_overwolf(UID, "a.b.c")
     assert out["tier"] == "common" and out["ad_free"] is False
-    assert (
-        supporters.status(_user(users), datetime.now(timezone.utc))["active"] is False
-    )
+    st = supporters.status(_user(users), datetime.now(timezone.utc))
+    assert st["active"] is False and st["thanks_eligible"] is True
+    later = datetime.now(timezone.utc) + timedelta(days=8)
+    assert supporters.status(_user(users), later)["thanks_eligible"] is False
 
 
 def test_supporter_keys_get_the_paid_bucket(monkeypatch):

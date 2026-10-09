@@ -186,7 +186,9 @@ def link_overwolf(user_id: str, token: str) -> dict:
         "package_id": (sub or {}).get("package_id"),
         "tier": (sub or {}).get("tier"),
         "checked_at": now,
-        "expires_at": now + timedelta(days=OVERWOLF_GRACE_DAYS) if active else None,
+        "expires_at": now + timedelta(days=OVERWOLF_GRACE_DAYS)
+        if (sub or {}).get("state") in _OW_ENTITLED
+        else None,
     }
     coll = _get_collection()
     existing = coll.find_one({"_id": ObjectId(user_id)}, {"overwolf_subscription": 1})
@@ -284,6 +286,7 @@ def status(user: dict | None, now: datetime | None = None) -> dict:
             "sources": [],
             "since": None,
             "expires_at": None,
+            "thanks_eligible": False,
             "listed": False,
             "theme": None,
             "theme_public": False,
@@ -313,8 +316,15 @@ def status(user: dict | None, now: datetime | None = None) -> dict:
             }
         )
     expiries = [s["expires_at"] for s in sources if s["expires_at"]]
+    ow_common = (
+        ow.get("tier") == "common"
+        and ow.get("state") in _OW_ENTITLED
+        and ow_exp is not None
+        and ow_exp > now
+    )
     return {
         "active": bool(sources),
+        "thanks_eligible": bool(sources) or ow_common,
         "sources": sources,
         "since": min((s["since"] for s in sources if s["since"]), default=None),
         "expires_at": max(expiries)
@@ -423,8 +433,8 @@ def flair(usernames: list[str], now: datetime | None = None) -> dict[str, dict]:
 
 
 def public_subscribers(limit: int = 500) -> list[dict]:
-    """Names for the Thank You page: accounts that are active supporters
-    right now and opted in to be listed. Never exposes ids or emails."""
+    """Names for the Thank You page: accounts that are active supporters,
+    or Overwolf Common members, right now and opted in to be listed. Never exposes ids or emails."""
     if not os.environ.get("MONGO_URL", "").strip():
         return []
     from .users_db import _get_collection
@@ -440,12 +450,12 @@ def public_subscribers(limit: int = 500) -> list[dict]:
         if not name:
             continue
         st = status(user, now)
-        if not st["active"]:
+        if not st["thanks_eligible"]:
             continue
         out.append(
             {
                 "name": name,
-                "sources": sorted(s["source"] for s in st["sources"]),
+                "sources": sorted(s["source"] for s in st["sources"]) or ["overwolf"],
                 "since": st["since"],
             }
         )
