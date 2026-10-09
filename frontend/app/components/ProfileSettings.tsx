@@ -142,17 +142,23 @@ export default function ProfileSettings() {
               </span>
             </label>
           </div>
-          {user.supporter?.active && (
+          {(user.supporter?.active || user.supporter?.thanks_eligible) && (
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[var(--border-subtle)] pt-4">
               <div className="min-w-0">
                 <div className="text-sm font-semibold text-[var(--text-primary)]">
-                  {t("You're a supporter, thank you. Ads are off for you.")}
+                  {user.supporter.active
+                    ? t("You're a supporter, thank you. Ads are off for you.")
+                    : t(
+                        "Thanks for your Overwolf Common membership. You can list your name on the Thank You page.",
+                      )}
                 </div>
-                <p className="text-xs text-[var(--text-muted)]">
-                  {user.supporter.sources
-                    .map((s) => SOURCE_LABELS[s.source] ?? s.source)
-                    .join(" · ")}
-                </p>
+                {user.supporter.active && (
+                  <p className="text-xs text-[var(--text-muted)]">
+                    {user.supporter.sources
+                      .map((s) => SOURCE_LABELS[s.source] ?? s.source)
+                      .join(" · ")}
+                  </p>
+                )}
               </div>
               <label className="flex items-center gap-2 cursor-pointer select-none shrink-0">
                 <input
