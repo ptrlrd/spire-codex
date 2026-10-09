@@ -372,10 +372,27 @@ def invalidate_flair(username: Any) -> None:
         _flair_cache.pop(username.strip().lower(), None)
 
 
+def overwolf_tier(user: dict, now: datetime | None = None) -> str | None:
+    """The Overwolf subscription tier to show on someone's name: an entitled,
+    unexpired link, and only for people who opted into something public
+    (the Thank You listing or showing their theme)."""
+    if not (user.get("thanks_listed") or user.get("theme_public")):
+        return None
+    ow = user.get("overwolf_subscription") or {}
+    exp = _aware(ow.get("expires_at"))
+    tier = ow.get("tier")
+    if tier not in _TIER_RANK or ow.get("state") not in _OW_ENTITLED:
+        return None
+    if not exp or exp <= (now or _now()):
+        return None
+    return tier
+
+
 def flair(usernames: list[str], now: datetime | None = None) -> dict[str, dict]:
     """Public per-player flair keyed by lowercased username: the saved theme
-    of every active supporter who chose to show it. Names that are not
-    supporters, lapsed, or private are simply absent."""
+    of every active supporter who chose to show it, and the Overwolf
+    subscription tier of anyone who opted into being shown. Names with
+    neither are simply absent."""
     keys = sorted(
         {u.strip().lower() for u in usernames if isinstance(u, str) and u.strip()}
     )[:FLAIR_MAX_NAMES]
@@ -401,14 +418,14 @@ def flair(usernames: list[str], now: datetime | None = None) -> dict[str, dict]:
         cursor = _get_collection().find(
             {
                 "username_lower": {"$in": missing},
-                "theme_public": True,
-                "theme": {"$exists": True},
+                "$or": [{"theme_public": True}, {"thanks_listed": True}],
             },
             {
                 "username": 1,
                 "username_lower": 1,
                 "theme": 1,
                 "theme_public": 1,
+                "thanks_listed": 1,
                 "is_paid": 1,
                 "overwolf_subscription": 1,
                 "email": 1,
@@ -416,12 +433,17 @@ def flair(usernames: list[str], now: datetime | None = None) -> dict[str, dict]:
         )
         for user in cursor:
             key = str(user.get("username_lower") or "").lower()
+            if not key:
+                continue
+            entry: dict = {}
             theme = normalize_theme(user.get("theme"))
-            if not key or not theme or not user.get("theme_public"):
-                continue
-            if not status(user, now)["active"]:
-                continue
-            found[key] = {"theme": theme}
+            if theme and user.get("theme_public") and status(user, now)["active"]:
+                entry["theme"] = theme
+            tier = overwolf_tier(user, now)
+            if tier:
+                entry["tier"] = tier
+            if entry:
+                found[key] = entry
     except Exception:
         logger.warning("flair lookup failed", exc_info=True)
         return out

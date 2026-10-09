@@ -94,6 +94,9 @@
   --color-spire: #ac6345;
   --tier-bronze: #a87a3d;
   --tier-silver: #9ca6b4;
+  --sub-common: #f0883e;
+  --sub-rare: #e8b830;
+  --sub-ancient: #b28cff;
   /* Third-party brands, used only on their own sign-in buttons and links */
   --brand-twitch: #9146ff;
   --brand-twitch-light: #b794ff;
@@ -137,6 +140,9 @@
   --color-silent: #2e7d32;
   --shadow-card:
     0 1px 2px rgba(76, 79, 105, 0.1), 0 2px 6px rgba(76, 79, 105, 0.08);
+  --sub-common: #b45309;
+  --sub-rare: #8a6a00;
+  --sub-ancient: #6d28d9;
 }
 
 /* Character themes: the dark ground and accent follow one character. Every
@@ -301,6 +307,9 @@
   --color-spire: var(--color-spire);
   --color-bronze: var(--tier-bronze);
   --color-silver: var(--tier-silver);
+  --color-sub-common: var(--sub-common);
+  --color-sub-rare: var(--sub-rare);
+  --color-sub-ancient: var(--sub-ancient);
   --color-twitch: var(--brand-twitch);
   --color-twitch-light: var(--brand-twitch-light);
   --color-bluesky: var(--brand-bluesky);
