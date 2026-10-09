@@ -6,8 +6,25 @@ import { normalizeTheme } from "./theme-palette";
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const BATCH = 100;
 
+export type SubscriberTier = "common" | "rare" | "ancient";
+
 export interface Flair {
-  theme: string;
+  theme?: string;
+  tier?: SubscriberTier;
+}
+
+const TIERS: readonly string[] = ["common", "rare", "ancient"];
+
+function parseFlair(v: Partial<Flair> | undefined): Flair | null {
+  const theme = normalizeTheme(v?.theme);
+  const tier = TIERS.includes(v?.tier ?? "")
+    ? (v?.tier as SubscriberTier)
+    : undefined;
+  if (!theme && !tier) return null;
+  return {
+    ...(theme ? { theme } : {}),
+    ...(tier ? { tier } : {}),
+  };
 }
 
 export type FlairMap = Record<string, Flair>;
@@ -50,8 +67,7 @@ export function flairFor(name: string | null | undefined): Flair | null {
 
 export function primeFlair(entries: FlairMap): void {
   for (const [k, v] of Object.entries(entries)) {
-    const theme = normalizeTheme(v?.theme);
-    cache.set(k.toLowerCase(), theme ? { theme } : null);
+    cache.set(k.toLowerCase(), parseFlair(v));
   }
   notify();
 }
@@ -67,8 +83,7 @@ async function load(keys: string[]): Promise<void> {
     const res = await fetch(`${API_BASE}/api/players/flair?${qs}`);
     const data = res.ok ? ((await res.json()) as FlairMap) : {};
     for (const k of keys) {
-      const theme = normalizeTheme(data[k]?.theme);
-      cache.set(k, theme ? { theme } : null);
+      cache.set(k, parseFlair(data[k]));
     }
   } catch {
     for (const k of keys) cache.set(k, null);

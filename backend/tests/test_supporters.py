@@ -28,10 +28,11 @@ class _Coll:
         return dict(d) if d else None
 
     def find(self, flt=None, proj=None):
-        flt = flt or {}
+        flt = dict(flt or {})
+        alts = flt.pop("$or", None)
         out = []
         for d in self.docs.values():
-            ok = True
+            ok = not alts or any(self.find_match(d, a) for a in alts)
             for k, v in flt.items():
                 if isinstance(v, dict) and "$ne" in v:
                     ok = ok and d.get(k) != v["$ne"]
@@ -44,6 +45,9 @@ class _Coll:
             if ok:
                 out.append(dict(d))
         return out
+
+    def find_match(self, d, flt):
+        return all(d.get(k) == v for k, v in flt.items())
 
     def update_one(self, flt, update, upsert=False):
         created = flt["_id"] not in self.docs
@@ -413,3 +417,33 @@ def test_supporter_keys_get_the_paid_bucket(monkeypatch):
     assert api_key_service._supporter_tier("academia", UID) == "academia"
     owner["is_paid"] = False
     assert api_key_service._supporter_tier("registered", UID) == "registered"
+
+
+def test_flair_shows_the_overwolf_tier_only_when_opted_in(env):
+    users, _ = env
+    doc = _user(users)
+    doc.update(
+        {
+            "overwolf_subscription": {
+                "state": "active",
+                "tier": "rare",
+                "expires_at": NOW + timedelta(days=3),
+            },
+        }
+    )
+    supporters.invalidate_flair("dobo")
+    assert supporters.flair(["dobo"], NOW) == {}
+    doc["thanks_listed"] = True
+    supporters.invalidate_flair("dobo")
+    assert supporters.flair(["dobo"], NOW) == {"dobo": {"tier": "rare"}}
+    doc["overwolf_subscription"]["state"] = "expired"
+    supporters.invalidate_flair("dobo")
+    assert supporters.flair(["dobo"], NOW) == {}
+    doc["overwolf_subscription"].update({"state": "active", "tier": "common"})
+    supporters.invalidate_flair("dobo")
+    assert supporters.flair(["dobo"], NOW) == {"dobo": {"tier": "common"}}
+    assert supporters.flair(["dobo"], NOW + timedelta(days=4)) == {
+        "dobo": {"tier": "common"}
+    }
+    supporters.invalidate_flair("dobo")
+    assert supporters.flair(["dobo"], NOW + timedelta(days=4)) == {}
