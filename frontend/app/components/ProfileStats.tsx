@@ -185,6 +185,8 @@ interface ProfileStatsProps {
   onDeleteConfirm: (hash: string | null) => void;
   onDeleteRuns: (hashes: string[]) => Promise<void> | void;
   overviewExtra?: ReactNode;
+  runsQuery: string;
+  onRunsQueryChange: (q: string) => void;
 }
 
 type Tab = "overview" | "runs" | "cards" | "relics" | "potions" | "tierlists";
@@ -201,6 +203,8 @@ export default function ProfileStats({
   onDeleteConfirm,
   onDeleteRuns,
   overviewExtra,
+  runsQuery,
+  onRunsQueryChange,
 }: ProfileStatsProps) {
   const t = useT();
   const bp = useBetaPrefix();
@@ -371,6 +375,28 @@ export default function ProfileStats({
 
       {tab === "runs" && (
         <div>
+          <div className="mb-3">
+            <input
+              type="text"
+              value={runsQuery}
+              onChange={(e) => onRunsQueryChange(e.target.value)}
+              placeholder={t('Try: "{example}"', {
+                example: "char:ironclad asc:10 relic:burning_blood",
+              })}
+              className="w-full text-sm px-4 py-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
+            />
+            <p className="mt-1.5 text-[10px] text-[var(--text-tertiary)]">
+              {t("Expressions:")} <code>char:ironclad</code>,{" "}
+              <code>asc:10</code> {t("or")} <code>asc:3-7</code>,{" "}
+              <code>card:bash,anger</code>, <code>relic:burning_blood</code>{" "}
+              {t("(combine for AND)")}, <code>shop:orange_dough</code>{" "}
+              {t("(bought at a shop: cards, relics, or potions)")},{" "}
+              <code>version:v0.106.0</code> {t("or")}{" "}
+              <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>,{" "}
+              <code>mode:daily</code>, <code>result:win</code>,{" "}
+              <code>players:single</code>
+            </p>
+          </div>
           {runsLoading ? (
             <div className="space-y-2">
               {[...Array(5)].map((_, i) => (
@@ -382,7 +408,9 @@ export default function ProfileStats({
             </div>
           ) : runs.length === 0 ? (
             <p className="text-sm text-[var(--text-secondary)] py-4">
-              {t("No runs yet. Upload .run files to get started.")}
+              {runsQuery.trim()
+                ? t("No runs found.")
+                : t("No runs yet. Upload .run files to get started.")}
             </p>
           ) : (
             <>

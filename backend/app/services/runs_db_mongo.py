@@ -2558,14 +2558,13 @@ def count_with_budget(
 
 
 @_instrument("list_runs")
-def list_runs(
+def _run_filter(
     character: str | None = None,
     win: str | None = None,
     username: str | None = None,
     winrate_min: float | None = None,
     winrate_max: float | None = None,
     seed: str | None = None,
-    sort: str | None = None,
     build_id: str | None = None,
     build_ids: str | None = None,
     players: str | None = None,
@@ -2577,16 +2576,11 @@ def list_runs(
     relic: str | None = None,
     shop: str | None = None,
     today: bool = False,
-    page: int = 1,
-    limit: int = 50,
     include_hidden: bool = False,
     has_replay: bool | None = None,
-) -> dict:
-    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
-
-    include_hidden is for the admin console only; public callers leave it False
-    so admin-flagged cheated runs stay out of the run browser."""
-    coll = _get_collection()
+) -> dict | None:
+    """The Mongo match for the run browser's filters, or None when the
+    winrate filter rules out every run."""
     q: dict[str, Any] = {}
     if not include_hidden:
         q["hidden"] = {"$ne": True}
@@ -2621,14 +2615,7 @@ def list_runs(
         # only needs to qualify; without one, restrict to the qualifying users.
         disqualified = (username.lower() not in set(names)) if username else (not names)
         if disqualified:
-            return {
-                "runs": [],
-                "total": 0,
-                "page": max(page, 1),
-                "per_page": min(limit, 100),
-                "total_pages": 0,
-                "total_is_lower_bound": False,
-            }
+            return None
         if not username:
             q["username_lower"] = {"$in": names}
     if seed:
@@ -2690,6 +2677,69 @@ def list_runs(
             q["bought"] = {"$all": bought_f}
     if today:
         q["seed"] = _today_daily_seed_match()
+
+    return q
+
+
+def list_runs(
+    character: str | None = None,
+    win: str | None = None,
+    username: str | None = None,
+    winrate_min: float | None = None,
+    winrate_max: float | None = None,
+    seed: str | None = None,
+    sort: str | None = None,
+    build_id: str | None = None,
+    build_ids: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    card: str | None = None,
+    relic: str | None = None,
+    shop: str | None = None,
+    today: bool = False,
+    page: int = 1,
+    limit: int = 50,
+    include_hidden: bool = False,
+    has_replay: bool | None = None,
+) -> dict:
+    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
+
+    include_hidden is for the admin console only; public callers leave it False
+    so admin-flagged cheated runs stay out of the run browser."""
+    coll = _get_collection()
+    q = _run_filter(
+        character=character,
+        win=win,
+        username=username,
+        winrate_min=winrate_min,
+        winrate_max=winrate_max,
+        seed=seed,
+        build_id=build_id,
+        build_ids=build_ids,
+        players=players,
+        game_mode=game_mode,
+        ascension=ascension,
+        ascension_min=ascension_min,
+        ascension_max=ascension_max,
+        card=card,
+        relic=relic,
+        shop=shop,
+        today=today,
+        include_hidden=include_hidden,
+        has_replay=has_replay,
+    )
+    if q is None:
+        return {
+            "runs": [],
+            "total": 0,
+            "page": max(page, 1),
+            "per_page": min(limit, 100),
+            "total_pages": 0,
+            "total_is_lower_bound": False,
+        }
 
     sort_map = {
         "time_asc": [("run_time", 1)],
@@ -3696,11 +3746,15 @@ def get_user_runs(
     user_id: str,
     page: int = 1,
     limit: int = 50,
+    **filters,
 ) -> dict:
     coll = _get_collection()
     from bson import ObjectId
 
-    match = {"user_id": ObjectId(user_id), "deleted_at": None}
+    q = _run_filter(include_hidden=True, **filters) if filters else {}
+    if q is None:
+        return {"runs": [], "total": 0, "page": page, "limit": limit}
+    match = {**q, "user_id": ObjectId(user_id), "deleted_at": None}
     total = coll.count_documents(match)
     skip = (page - 1) * limit
 
