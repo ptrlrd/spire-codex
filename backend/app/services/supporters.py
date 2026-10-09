@@ -105,7 +105,7 @@ def verify_overwolf_token(token: str) -> dict:
     except Exception as exc:
         raise OverwolfError(f"invalid token: {exc}") from exc
     user_id = str(
-        claims.get("uuid") or claims.get("sub") or claims.get("userId") or ""
+        claims.get("sub") or claims.get("uuid") or claims.get("userId") or ""
     ).strip()
     if not user_id:
         raise OverwolfError("token has no user id")
