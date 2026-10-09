@@ -35,6 +35,7 @@ interface User {
     }[];
     since?: string | null;
     expires_at?: string | null;
+    thanks_eligible?: boolean;
     listed: boolean;
     theme?: string | null;
     theme_public?: boolean;
