@@ -1,5 +1,9 @@
 "use client";
 
+import KeyPicks, {
+  type KeyBoss,
+  type KeyCard,
+} from "@/app/components/KeyPicks";
 import { useT } from "@/lib/i18n";
 import { useState, useEffect, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
@@ -171,6 +175,10 @@ interface Run {
   ascension: number;
   floors_reached: number;
   submitted_at: string;
+  key_cards?: KeyCard[];
+  key_relics?: string[];
+  last_bosses?: KeyBoss[];
+  killed_by?: string | null;
 }
 
 interface ProfileStatsProps {
@@ -482,6 +490,13 @@ export default function ProfileStats({
                       F{run.floors_reached}
                     </span>
                     <span className="flex-1" />
+                    <KeyPicks
+                      cards={run.key_cards}
+                      relics={run.key_relics}
+                      bosses={run.last_bosses}
+                      killedBy={run.killed_by}
+                      className="hidden sm:flex"
+                    />
                     <Link
                       prefetch={false}
                       href={`/runs/${run.run_hash}`}

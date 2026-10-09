@@ -2438,7 +2438,77 @@ def _projection_row() -> dict:
         "has_replay": 1,
         "user_id": 1,
         "steam_id": 1,
+        **_KEY_PICK_FIELDS,
     }
+
+
+_KEY_PICK_FIELDS = {
+    "deck.id": 1,
+    "deck.upgraded": 1,
+    "deck.floor_added": 1,
+    "relics.id": 1,
+    "relics.floor_added": 1,
+    "boss_rooms": {
+        "$map": {
+            "input": {
+                "$cond": [
+                    {"$isArray": "$map_point_history"},
+                    "$map_point_history",
+                    [],
+                ]
+            },
+            "as": "act",
+            "in": {
+                "$map": {
+                    "input": {
+                        "$filter": {
+                            "input": {
+                                "$reduce": {
+                                    "input": {
+                                        "$cond": [{"$isArray": "$$act"}, "$$act", []]
+                                    },
+                                    "initialValue": [],
+                                    "in": {
+                                        "$concatArrays": [
+                                            "$$value",
+                                            {
+                                                "$cond": [
+                                                    {"$isArray": "$$this.rooms"},
+                                                    "$$this.rooms",
+                                                    [],
+                                                ]
+                                            },
+                                        ]
+                                    },
+                                }
+                            },
+                            "as": "r",
+                            "cond": {
+                                "$eq": [
+                                    {"$toLower": {"$ifNull": ["$$r.room_type", ""]}},
+                                    "boss",
+                                ]
+                            },
+                        }
+                    },
+                    "as": "r",
+                    "in": "$$r.model_id",
+                }
+            },
+        }
+    },
+}
+
+
+def _with_key_picks(out: dict) -> dict:
+    from .key_picks import key_picks
+
+    from .key_picks import last_bosses
+
+    deck, relics = out.pop("deck", None), out.pop("relics", None)
+    out["key_cards"], out["key_relics"] = key_picks(deck, relics)
+    out["last_bosses"] = last_bosses(out.pop("boss_rooms", None))
+    return out
 
 
 def _row_to_dict(doc: dict) -> dict:
@@ -2448,7 +2518,7 @@ def _row_to_dict(doc: dict) -> dict:
         return doc
     from .player_token import player_token
 
-    out = {**doc}
+    out = _with_key_picks({**doc})
     out["run_hash"] = out.pop("_id")
     out["player_token"] = player_token(doc)
     out.pop("user_id", None)
@@ -3719,6 +3789,7 @@ def get_user_runs(
         "username": 1,
         "submitted_at": 1,
         "played_at": 1,
+        **_KEY_PICK_FIELDS,
     }
     # Played order, not upload order — a backlog upload lands hundreds of old
     # runs with fresh submitted_at and used to bury the actual latest run.
@@ -3746,6 +3817,13 @@ def get_user_runs(
                 "username": r.get("username"),
                 "submitted_at": r.get("submitted_at"),
                 "played_at": r.get("played_at") or r.get("submitted_at"),
+                **_with_key_picks(
+                    {
+                        "deck": r.get("deck"),
+                        "relics": r.get("relics"),
+                        "boss_rooms": r.get("boss_rooms"),
+                    }
+                ),
             }
         )
 
