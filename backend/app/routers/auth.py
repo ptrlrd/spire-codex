@@ -57,6 +57,7 @@ def me(request: Request):
         "profile_private": bool(user.get("profile_private")),
         "supporter": supporters.status(user),
         "overwolf_id": user.get("overwolf_id"),
+        "overwolf_tier": supporters.linked_overwolf_tier(user),
     }
 
 

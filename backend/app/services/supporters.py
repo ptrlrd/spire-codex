@@ -219,6 +219,18 @@ def _overwolf_live(ow: dict) -> bool:
     return _overwolf_perks(ow)
 
 
+def linked_overwolf_tier(user: dict, now: datetime | None = None) -> str | None:
+    """The account owner's own Overwolf tier while the last check still
+    holds, for their Settings page. Unlike public flair, no opt-in."""
+    ow = user.get("overwolf_subscription") or {}
+    exp = _aware(ow.get("expires_at"))
+    if ow.get("tier") not in _TIER_RANK or ow.get("state") not in _OW_ENTITLED:
+        return None
+    if not exp or exp <= (now or _now()):
+        return None
+    return ow["tier"]
+
+
 def unlink_overwolf(user_id: str) -> dict:
     from bson import ObjectId
 

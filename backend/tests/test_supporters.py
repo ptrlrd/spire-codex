@@ -447,3 +447,18 @@ def test_flair_shows_the_overwolf_tier_only_when_opted_in(env):
     }
     supporters.invalidate_flair("dobo")
     assert supporters.flair(["dobo"], NOW + timedelta(days=4)) == {}
+
+
+def test_owner_sees_their_overwolf_tier_without_opt_in():
+    user = {
+        "overwolf_subscription": {
+            "state": "active",
+            "tier": "common",
+            "expires_at": NOW + timedelta(days=2),
+        }
+    }
+    assert supporters.linked_overwolf_tier(user, NOW) == "common"
+    assert supporters.linked_overwolf_tier(user, NOW + timedelta(days=3)) is None
+    user["overwolf_subscription"]["state"] = "expired"
+    assert supporters.linked_overwolf_tier(user, NOW) is None
+    assert supporters.linked_overwolf_tier({}, NOW) is None

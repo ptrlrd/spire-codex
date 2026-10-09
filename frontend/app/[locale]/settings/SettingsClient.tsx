@@ -8,6 +8,13 @@ import ProfileSettings from "@/app/components/ProfileSettings";
 import { useToast } from "@/app/components/Toast";
 import DiscordIcon from "@/app/components/DiscordIcon";
 import TwitchIcon from "@/app/components/TwitchIcon";
+import { Link } from "@/i18n/navigation";
+
+const OVERWOLF_TIER_LABELS = {
+  common: "Common Subscriber",
+  rare: "Rare Subscriber",
+  ancient: "Ancient Subscriber",
+} as const;
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -28,7 +35,7 @@ export default function SettingsClient() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [disconnecting, setDisconnecting] = useState<
-    "steam" | "discord" | "twitch" | "patreon" | null
+    "steam" | "discord" | "twitch" | "patreon" | "overwolf" | null
   >(null);
   const [changesRemaining, setChangesRemaining] = useState(3);
   const [saving, setSaving] = useState<"username" | "email" | null>(null);
@@ -143,6 +150,26 @@ export default function SettingsClient() {
       }
     } catch {
       toast(t("Network error"), "error");
+    } finally {
+      setDisconnecting(null);
+    }
+  };
+
+  const disconnectOverwolf = async () => {
+    setDisconnecting("overwolf");
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/overwolf`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!res.ok) throw new Error();
+      toast(t("{provider} disconnected", { provider: "Overwolf" }), "success");
+      refresh();
+    } catch {
+      toast(
+        t("Failed to disconnect {provider}", { provider: "Overwolf" }),
+        "error",
+      );
     } finally {
       setDisconnecting(null);
     }
@@ -489,6 +516,56 @@ export default function SettingsClient() {
                     {t("Connect")}
                   </span>
                 </a>
+              )}
+              {user.overwolf_id ? (
+                <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)]">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <img
+                      src="/overwolf-logo.png"
+                      alt=""
+                      className="w-4 h-4 object-contain"
+                    />
+                    <span className="text-sm text-[var(--text-primary)] shrink-0">
+                      Overwolf
+                    </span>
+                    {user.overwolf_tier && (
+                      <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 shrink-0">
+                        {t(OVERWOLF_TIER_LABELS[user.overwolf_tier])}
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3 shrink-0">
+                    <span className="text-xs text-[var(--text-muted)]">
+                      {t("Connected")}
+                    </span>
+                    <button
+                      onClick={disconnectOverwolf}
+                      disabled={disconnecting === "overwolf"}
+                      className="text-xs text-[var(--text-secondary)] hover:text-danger disabled:opacity-40"
+                    >
+                      {disconnecting === "overwolf" ? "..." : t("Disconnect")}
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <Link
+                  href="/overlay"
+                  className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
+                >
+                  <div className="flex items-center gap-2">
+                    <img
+                      src="/overwolf-logo.png"
+                      alt=""
+                      className="w-4 h-4 object-contain opacity-70"
+                    />
+                    <span className="text-sm text-[var(--text-primary)]">
+                      Overwolf
+                    </span>
+                  </div>
+                  <span className="text-xs text-[var(--text-secondary)]">
+                    {t("Connect from the Spire Codex overlay")}
+                  </span>
+                </Link>
               )}
             </div>
             <p className="text-xs text-[var(--text-tertiary)]">
