@@ -26,6 +26,7 @@ interface User {
   is_admin?: boolean;
   profile_private?: boolean;
   overwolf_id?: string | null;
+  overwolf_tier?: "common" | "rare" | "ancient" | null;
   supporter?: {
     active: boolean;
     sources: {
