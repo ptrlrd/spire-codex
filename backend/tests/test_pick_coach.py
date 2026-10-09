@@ -60,7 +60,7 @@ def index(tmp_path, monkeypatch):
         dtype=np.float32,
     )
     centers /= np.linalg.norm(centers, axis=1, keepdims=True)
-    monkeypatch.setattr(run_vectors, "_VEC_DIR", tmp_path)
+    monkeypatch.setenv("VECTORS_DIR", str(tmp_path))
     np.save(tmp_path / "IRONCLAD_centroids.npy", centers)
     return clusters
 

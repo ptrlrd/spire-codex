@@ -12,10 +12,21 @@ from typing import Any
 
 logger = logging.getLogger(__name__)
 
-_VEC_DIR = (
-    Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
-    / "vectors"
-)
+
+def _vec_dir() -> Path:
+    """VECTORS_DIR when set (the lake ingest builds into /lake/vectors),
+    else the copy the lake pull brought down, else data/vectors."""
+    explicit = os.environ.get("VECTORS_DIR", "").strip()
+    if explicit:
+        return Path(explicit)
+    lake = Path(os.environ.get("LAKE_DIR", "/lake")) / "vectors"
+    if (lake / "archetypes.json").exists():
+        return lake
+    return (
+        Path(os.environ.get("DATA_DIR", Path(__file__).resolve().parents[3] / "data"))
+        / "vectors"
+    )
+
 
 _OFFICIAL_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 
@@ -27,7 +38,7 @@ _labels_cache: dict[str, Any] = {}
 
 
 def available() -> bool:
-    return (_VEC_DIR / "vocab.json").exists()
+    return (_vec_dir() / "vocab.json").exists()
 
 
 def _build_vocab() -> list[str]:
@@ -125,7 +136,7 @@ def build_run_vectors() -> dict:
             }
         )
 
-    _VEC_DIR.mkdir(parents=True, exist_ok=True)
+    _vec_dir().mkdir(parents=True, exist_ok=True)
     total = 0
     archetypes: dict[str, list] = {}
     for ch, acc in per_char.items():
@@ -147,12 +158,12 @@ def build_run_vectors() -> dict:
         mat = sparse.diags(1.0 / norms).dot(mat).tocsr()
         # Raw .npy components instead of one .npz: workers reload them with
         # mmap_mode="r", so all four share a single page-cache copy.
-        np.save(_VEC_DIR / f"{ch}_vdata.npy", mat.data.astype(np.float32))
-        np.save(_VEC_DIR / f"{ch}_vindices.npy", mat.indices.astype(np.int32))
-        np.save(_VEC_DIR / f"{ch}_vindptr.npy", mat.indptr.astype(np.int32))
+        np.save(_vec_dir() / f"{ch}_vdata.npy", mat.data.astype(np.float32))
+        np.save(_vec_dir() / f"{ch}_vindices.npy", mat.indices.astype(np.int32))
+        np.save(_vec_dir() / f"{ch}_vindptr.npy", mat.indptr.astype(np.int32))
         m = acc["meta"]
         np.savez(
-            _VEC_DIR / f"{ch}_meta.npz",
+            _vec_dir() / f"{ch}_meta.npz",
             hash=np.array([r["hash"] for r in m], dtype="S24"),
             win=np.array([r["win"] for r in m], dtype=np.uint8),
             asc=np.array([r["asc"] for r in m], dtype=np.int8),
@@ -170,9 +181,9 @@ def build_run_vectors() -> dict:
                 clusters, labels, dists, centers = _cluster_shard(
                     ch, mat, acc["meta"], vocab_list, k
                 )
-                np.save(_VEC_DIR / f"{ch}_dists.npy", dists)
-                np.save(_VEC_DIR / f"{ch}_labels.npy", labels)
-                np.save(_VEC_DIR / f"{ch}_centroids.npy", centers)
+                np.save(_vec_dir() / f"{ch}_dists.npy", dists)
+                np.save(_vec_dir() / f"{ch}_labels.npy", labels)
+                np.save(_vec_dir() / f"{ch}_centroids.npy", centers)
                 archetypes[ch] = clusters
             except Exception:
                 logger.warning("archetype clustering failed for %s", ch, exc_info=True)
@@ -180,7 +191,7 @@ def build_run_vectors() -> dict:
         # tmp + replace like vocab.json below: a reader catching a direct
         # write_text mid-flight got truncated JSON, which cascaded into
         # "available: false" getting baked into page caches for hours.
-        arch_tmp = _VEC_DIR / "archetypes.json.tmp"
+        arch_tmp = _vec_dir() / "archetypes.json.tmp"
         arch_tmp.write_text(
             json.dumps(
                 {
@@ -190,8 +201,8 @@ def build_run_vectors() -> dict:
             ),
             encoding="utf-8",
         )
-        arch_tmp.replace(_VEC_DIR / "archetypes.json")
-    tmp = _VEC_DIR / "vocab.json.tmp"
+        arch_tmp.replace(_vec_dir() / "archetypes.json")
+    tmp = _vec_dir() / "vocab.json.tmp"
     tmp.write_text(
         json.dumps(
             {
@@ -201,7 +212,7 @@ def build_run_vectors() -> dict:
         ),
         encoding="utf-8",
     )
-    tmp.replace(_VEC_DIR / "vocab.json")
+    tmp.replace(_vec_dir() / "vocab.json")
     with _lock:
         _shards.clear()
         _labels_cache.clear()
@@ -218,7 +229,7 @@ def build_run_vectors() -> dict:
 
 def _load_vocab() -> dict[str, int] | None:
     global _vocab, _vocab_mtime
-    path = _VEC_DIR / "vocab.json"
+    path = _vec_dir() / "vocab.json"
     try:
         mtime = path.stat().st_mtime
     except OSError:
@@ -246,15 +257,15 @@ def _load_shard(character: str):
     if vocab is None:
         return None
     try:
-        data = np.load(_VEC_DIR / f"{character}_vdata.npy", mmap_mode="r")
-        indices = np.load(_VEC_DIR / f"{character}_vindices.npy", mmap_mode="r")
-        indptr = np.load(_VEC_DIR / f"{character}_vindptr.npy", mmap_mode="r")
+        data = np.load(_vec_dir() / f"{character}_vdata.npy", mmap_mode="r")
+        indices = np.load(_vec_dir() / f"{character}_vindices.npy", mmap_mode="r")
+        indptr = np.load(_vec_dir() / f"{character}_vindptr.npy", mmap_mode="r")
         mat = sparse.csr_matrix(
             (data, indices, indptr),
             shape=(len(indptr) - 1, len(vocab)),
             copy=False,
         )
-        with np.load(_VEC_DIR / f"{character}_meta.npz") as z:
+        with np.load(_vec_dir() / f"{character}_meta.npz") as z:
             meta = {k: z[k] for k in z.files}
     except OSError:
         return None
@@ -460,7 +471,7 @@ def _cluster_shard(character: str, mat, meta: list, vocab_list: list[str], k: in
 
 def load_archetypes() -> dict | None:
     try:
-        return json.loads((_VEC_DIR / "archetypes.json").read_text(encoding="utf-8"))
+        return json.loads((_vec_dir() / "archetypes.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return None
 
@@ -473,7 +484,7 @@ def _load_labels(character: str):
         if hit is not None:
             return hit
     try:
-        labels = np.load(_VEC_DIR / f"{character}_labels.npy", mmap_mode="r")
+        labels = np.load(_vec_dir() / f"{character}_labels.npy", mmap_mode="r")
     except OSError:
         return None
     with _lock:
@@ -600,7 +611,7 @@ def match_archetype(character: str, deck: list, relics: list) -> dict | None:
     if not clusters:
         return None
     try:
-        centers = np.load(_VEC_DIR / f"{character}_centroids.npy")
+        centers = np.load(_vec_dir() / f"{character}_centroids.npy")
     except OSError:
         return None
     if centers.shape[0] != len(clusters):
@@ -684,7 +695,7 @@ def pick_coach(
     if not clusters:
         return None
     try:
-        centers = np.load(_VEC_DIR / f"{character}_centroids.npy")
+        centers = np.load(_vec_dir() / f"{character}_centroids.npy")
     except OSError:
         return None
     if centers.shape[0] != len(clusters):
@@ -820,7 +831,7 @@ _alias_cache: tuple[float, dict] | None = None
 def archetype_alias(defining_cards: list[str]) -> str | None:
     """Community name for a cluster signature from data/archetype_names.json."""
     global _alias_cache
-    path = _VEC_DIR.parent / "archetype_names.json"
+    path = _vec_dir().parent / "archetype_names.json"
     try:
         mtime = path.stat().st_mtime
     except OSError:
