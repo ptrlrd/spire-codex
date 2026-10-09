@@ -26,7 +26,8 @@ const CATALOG_PATHS = ["/api/cards", "/api/relics", "/api/potions"];
 const ENTITY_TYPES = ["cards", "relics", "potions"] as const;
 type EntityType = (typeof ENTITY_TYPES)[number];
 
-type TabId = "cards" | "relics" | "potions" | "events" | "shops" | "campfires";
+export type TabId =
+  "cards" | "relics" | "potions" | "events" | "shops" | "campfires";
 const TAB_IDS: TabId[] = [
   "cards",
   "relics",
@@ -525,10 +526,12 @@ function YourStatsInner({
   username,
   filters,
   own,
+  fixedTab,
 }: {
   username: string;
   filters: InsightFilters;
   own: boolean;
+  fixedTab?: TabId;
 }) {
   const t = useT();
   const lang = useGameLocale();
@@ -544,7 +547,9 @@ function YourStatsInner({
   const ready = !!data?.available && data.runs > 0;
   const tables = ready && data ? data.tables : EMPTY_TABLES;
   const rawTab = searchParams.get("stats");
-  const tab = TAB_IDS.includes(rawTab as TabId) ? (rawTab as TabId) : "cards";
+  const tab =
+    fixedTab ??
+    (TAB_IDS.includes(rawTab as TabId) ? (rawTab as TabId) : "cards");
   const [showStarters, setShowStarters] = useState(false);
   const [showTiny, setShowTiny] = useState(false);
   const [etype, setEtype] = useState<EntityType | "">("");
@@ -1049,30 +1054,32 @@ function YourStatsInner({
 
   return (
     <section className="space-y-4">
-      <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-        <h2 className="text-xl font-bold text-[var(--text-primary)]">
-          {t("Your stats")}
-        </h2>
-        <nav
-          aria-label={t("Your stats")}
-          className="flex flex-wrap items-center gap-1.5 text-xs"
-        >
-          {TAB_IDS.map((id) => (
-            <button
-              key={id}
-              type="button"
-              onClick={() => setTab(id)}
-              className={`rounded-md border px-2.5 py-1 transition-colors ${
-                id === tab
-                  ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                  : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
-              }`}
-            >
-              {t(id.charAt(0).toUpperCase() + id.slice(1))}
-            </button>
-          ))}
-        </nav>
-      </div>
+      {!fixedTab && (
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <h2 className="text-xl font-bold text-[var(--text-primary)]">
+            {t("Your stats")}
+          </h2>
+          <nav
+            aria-label={t("Your stats")}
+            className="flex flex-wrap items-center gap-1.5 text-xs"
+          >
+            {TAB_IDS.map((id) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => setTab(id)}
+                className={`rounded-md border px-2.5 py-1 transition-colors ${
+                  id === tab
+                    ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
+                    : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:border-[var(--border-accent)] hover:text-[var(--text-primary)]"
+                }`}
+              >
+                {t(id.charAt(0).toUpperCase() + id.slice(1))}
+              </button>
+            ))}
+          </nav>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         <SummaryCard label={t("Runs")} value={int(data.runs)} />
@@ -1161,14 +1168,21 @@ export default function YourStats({
   username,
   filters,
   own = false,
+  tab,
 }: {
   username: string;
   filters: InsightFilters;
   own?: boolean;
+  tab?: TabId;
 }) {
   return (
     <Suspense fallback={null}>
-      <YourStatsInner username={username} filters={filters} own={own} />
+      <YourStatsInner
+        username={username}
+        filters={filters}
+        own={own}
+        fixedTab={tab}
+      />
     </Suspense>
   );
 }

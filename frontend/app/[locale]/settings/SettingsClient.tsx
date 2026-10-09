@@ -4,6 +4,7 @@ import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
 import ApiKeysSection from "@/app/components/ApiKeysSection";
+import ProfileSettings from "@/app/components/ProfileSettings";
 import { useToast } from "@/app/components/Toast";
 import DiscordIcon from "@/app/components/DiscordIcon";
 import TwitchIcon from "@/app/components/TwitchIcon";
@@ -496,6 +497,7 @@ export default function SettingsClient() {
               )}
             </p>
           </section>
+          <ProfileSettings />
         </>
       )}
     </div>
