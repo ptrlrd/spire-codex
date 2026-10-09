@@ -224,6 +224,19 @@ def get_my_runs(
     request: Request,
     page: int = 1,
     limit: int = 50,
+    character: str | None = None,
+    win: str | None = None,
+    seed: str | None = None,
+    build_id: str | None = None,
+    build_ids: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    card: str | None = None,
+    relic: str | None = None,
+    shop: str | None = None,
 ):
     user = require_user(request)
     if limit > 100:
@@ -236,7 +249,26 @@ def get_my_runs(
 
     from ..services.runs_db_mongo import get_user_runs
 
-    return get_user_runs(user["_id"], page=page, limit=limit)
+    filters = {
+        k: v
+        for k, v in {
+            "character": character,
+            "win": win,
+            "seed": seed,
+            "build_id": build_id,
+            "build_ids": build_ids,
+            "players": players,
+            "game_mode": game_mode,
+            "ascension": ascension,
+            "ascension_min": ascension_min,
+            "ascension_max": ascension_max,
+            "card": card,
+            "relic": relic,
+            "shop": shop,
+        }.items()
+        if v not in (None, "")
+    }
+    return get_user_runs(user["_id"], page=page, limit=limit, **filters)
 
 
 @router.delete("/runs/{run_hash}")

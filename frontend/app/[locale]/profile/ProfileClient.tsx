@@ -16,6 +16,7 @@ import {
   type InsightFilters,
 } from "@/app/components/ProfileInsights";
 import YourStats from "@/app/[locale]/players/[username]/YourStats";
+import { parseQuery, queryParams } from "@/lib/run-query";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -54,6 +55,9 @@ export default function ProfileClient() {
   const [runs, setRuns] = useState<Run[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [runsQuery, setRunsQuery] = useState("");
+  const [appliedQuery, setAppliedQuery] = useState("");
+  const [versions, setVersions] = useState<string[]>([]);
   const [runsLoading, setRunsLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadResults, setUploadResults] = useState<UploadResult[] | null>(
@@ -148,16 +152,40 @@ export default function ProfileClient() {
     }
   };
 
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setAppliedQuery(runsQuery);
+      setPage(1);
+    }, 300);
+    return () => clearTimeout(id);
+  }, [runsQuery]);
+
+  useEffect(() => {
+    if (!parseQuery(appliedQuery).filters.version || versions.length) return;
+    fetch(`${API_BASE}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : { versions: [] }))
+      .then((d) =>
+        setVersions(
+          (d.versions || [])
+            .filter((v: string) => !v.toLowerCase().includes("nonreleased"))
+            .sort((a: string, b: string) =>
+              b.localeCompare(a, undefined, { numeric: true }),
+            ),
+        ),
+      )
+      .catch(() => {});
+  }, [appliedQuery, versions.length]);
+
   const fetchRuns = useCallback(
     async (p: number) => {
       setRunsLoading(true);
       try {
-        const res = await fetch(
-          `${API_BASE}/api/auth/runs?page=${p}&limit=20`,
-          {
-            credentials: "include",
-          },
-        );
+        const params = queryParams(parseQuery(appliedQuery).filters, versions);
+        params.set("page", String(p));
+        params.set("limit", "20");
+        const res = await fetch(`${API_BASE}/api/auth/runs?${params}`, {
+          credentials: "include",
+        });
         if (res.ok) {
           const data = await res.json();
           setRuns(data.runs || []);
@@ -169,7 +197,7 @@ export default function ProfileClient() {
         setRunsLoading(false);
       }
     },
-    [toast, lang],
+    [toast, lang, appliedQuery, versions],
   );
 
   useEffect(() => {
@@ -379,6 +407,8 @@ export default function ProfileClient() {
           deleteConfirm={deleteConfirm}
           onDeleteConfirm={setDeleteConfirm}
           onDeleteRuns={handleDeleteMany}
+          runsQuery={runsQuery}
+          onRunsQueryChange={setRunsQuery}
           overviewExtra={
             user.username ? (
               <OwnStats key={user.user_id} username={user.username} />
