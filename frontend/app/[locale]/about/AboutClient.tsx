@@ -128,6 +128,53 @@ export default function AboutClient() {
           </p>
         </div>
 
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-6">
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
+            {t("Behind the Codex")}
+          </h2>
+          <p className="text-[var(--text-secondary)] leading-relaxed">
+            {t(
+              "Hi! I am Peter, I am a self-taught technologist, rad dad, cool husband, and chronic tinkerer. I took a non-traditional path into software engineering and tech, building things from the ground up out of sheer curiosity and passion. I would not have it any other way. I've had quite a few projects (DPC, a Discord community with 10K+ DevOps and platform professionals, and Genshin News, a webhook service for the latest Genshin Impact news) but Spire Codex has been my biggest and proudest project.",
+            )}
+          </p>
+        </div>
+
+        <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-6">
+          <h2 className="text-xl font-semibold text-[var(--text-primary)] mb-3">
+            {t("Supporting Spire Codex")}
+          </h2>
+          <div className="text-[var(--text-secondary)] leading-relaxed space-y-3">
+            <p>
+              {t(
+                "Spire Codex started as a passion project born from a love for Slay the Spire and a desire to build useful, performant developer tools for the gaming community.",
+              )}
+            </p>
+            <p>
+              {t(
+                "Running high-traffic databases and fast API infrastructure incurs real server costs and time. If Spire Codex has saved you a wipe, helped you theorycraft a run, or powered your own project, consider dropping a tip or picking up a membership! Thanks for your support whether you're monetarily supporting or not!",
+              )}
+            </p>
+          </div>
+          <div className="mt-4 flex flex-wrap gap-2">
+            <a
+              href="https://ko-fi.com/spirecodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-[var(--text-on-accent)] hover:opacity-90 transition-opacity"
+            >
+              Ko-fi
+            </a>
+            <a
+              href="https://www.patreon.com/cw/SpireCodex"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center rounded-lg border border-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-[var(--accent-gold)] hover:bg-[var(--accent-gold)]/10 transition-colors"
+            >
+              Patreon
+            </a>
+          </div>
+        </div>
+
         {/* Stats */}
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-6">
           <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-4">
