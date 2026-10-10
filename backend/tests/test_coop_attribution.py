@@ -851,3 +851,20 @@ def test_verified_reupload_replaces_a_planted_rows_content(coll):
     assert doc["win"] is True and doc["ascension"] == 10
     assert doc["user_id"] == ObjectId(ME_ID) and doc["username"] == "PC-Reviver"
     assert "attribution_unverified" not in doc and "steam_id_hint" not in doc
+
+
+def test_signed_backfill_recovers_a_username_only_overlay_upload(coll):
+    blob = _blob(with_ids=False)
+    blob["players"] = blob["players"][:1]
+    submit_run(blob, username="PC-Reviver", verified=False)
+    h = next(iter(coll.docs))
+    submitted = coll.docs[h]["submitted_at"]
+    assert coll.docs[h]["username"] is None
+    assert "steam_id_hint" not in coll.docs[h]
+    result = submit_run(blob, username="PC-Reviver", steam_id=ME_SID)
+    assert result["duplicate"] is True
+    doc = coll.docs[h]
+    assert doc["user_id"] == ObjectId(ME_ID) and doc["steam_id"] == ME_SID
+    assert doc["username_lower"] == "pc-reviver"
+    assert doc["submitted_at"] == submitted
+    assert "attribution_unverified" not in doc and "username_hint" not in doc
