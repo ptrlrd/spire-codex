@@ -84,24 +84,53 @@ def _overwolf_config() -> tuple[str, str]:
     )
 
 
+_jwks_client = None
+
+
+def _overwolf_jwks():
+    global _jwks_client
+    if _jwks_client is None:
+        import jwt
+
+        _jwks_client = jwt.PyJWKClient(
+            OVERWOLF_JWKS_URL, cache_keys=True, lifespan=3600, timeout=10
+        )
+    return _jwks_client
+
+
 def verify_overwolf_token(token: str) -> dict:
     """Validate the overlay's Overwolf session token against Overwolf's
     published keys and return its claims. Raises OverwolfError on anything
-    that is not a signed, unexpired Overwolf token."""
+    that is not a signed, unexpired Overwolf token. The session tokens carry
+    no kid header, so without one every published key is tried."""
     import jwt
 
     token = (token or "").strip()
     if not token or token.count(".") != 2:
         raise OverwolfError("missing token")
     try:
-        client = jwt.PyJWKClient(OVERWOLF_JWKS_URL, cache_keys=True)
-        key = client.get_signing_key_from_jwt(token)
-        claims = jwt.decode(
-            token,
-            key.key,
-            algorithms=["RS256", "ES256"],
-            options={"verify_aud": False},
-        )
+        client = _overwolf_jwks()
+        kid = jwt.get_unverified_header(token).get("kid")
+        published = client.get_signing_keys()
+        keys = [k for k in published if kid and k.key_id == kid] or published
+        claims = None
+        last_exc: Exception | None = None
+        for key in keys:
+            try:
+                claims = jwt.decode(
+                    token,
+                    key.key,
+                    algorithms=["RS256", "ES256"],
+                    options={"verify_aud": False},
+                    leeway=30,
+                )
+                break
+            except jwt.InvalidSignatureError as exc:
+                last_exc = exc
+        if claims is None:
+            raise last_exc or OverwolfError("no signing key")
+    except OverwolfError:
+        raise
     except Exception as exc:
         raise OverwolfError(f"invalid token: {exc}") from exc
     user_id = str(

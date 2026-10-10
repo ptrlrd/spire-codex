@@ -462,3 +462,60 @@ def test_owner_sees_their_overwolf_tier_without_opt_in():
     user["overwolf_subscription"]["state"] = "expired"
     assert supporters.linked_overwolf_tier(user, NOW) is None
     assert supporters.linked_overwolf_tier({}, NOW) is None
+
+
+def _rsa_jwk():
+    import json as _json
+
+    import jwt
+    from cryptography.hazmat.primitives.asymmetric import rsa
+
+    key = rsa.generate_private_key(public_exponent=65537, key_size=2048)
+    jwk = _json.loads(jwt.algorithms.RSAAlgorithm.to_jwk(key.public_key()))
+    jwk.update({"kid": "gBdaS-G8RLax2qgObTD94w", "alg": "RS256", "use": "sig"})
+    return key, jwt.PyJWK(jwk)
+
+
+class _FakeJwks:
+    def __init__(self, keys):
+        self.keys = keys
+
+    def get_signing_keys(self):
+        return self.keys
+
+    def get_signing_key(self, kid):
+        for k in self.keys:
+            if k.key_id == kid:
+                return k
+        raise LookupError(kid)
+
+
+def test_overwolf_token_without_kid_verifies(monkeypatch):
+    import time
+
+    import jwt
+
+    key, jwk = _rsa_jwk()
+    other_key, other_jwk = _rsa_jwk()
+    monkeypatch.setattr(supporters, "_jwks_client", _FakeJwks([other_jwk, jwk]))
+    now = int(time.time())
+    claims = {
+        "sub": "b779116f-e976-4f95-8809-22fcd33b4c1a",
+        "iat": now,
+        "exp": now + 900,
+    }
+    token = jwt.encode(claims, key, algorithm="RS256")
+    assert "kid" not in jwt.get_unverified_header(token)
+    out = supporters.verify_overwolf_token(token)
+    assert out["overwolf_user_id"] == "b779116f-e976-4f95-8809-22fcd33b4c1a"
+
+    forged = jwt.encode(claims, _rsa_jwk()[0], algorithm="RS256")
+    with pytest.raises(supporters.OverwolfError):
+        supporters.verify_overwolf_token(forged)
+    expired = jwt.encode({**claims, "exp": now - 120}, key, algorithm="RS256")
+    with pytest.raises(supporters.OverwolfError):
+        supporters.verify_overwolf_token(expired)
+    with_kid = jwt.encode(
+        claims, key, algorithm="RS256", headers={"kid": "gBdaS-G8RLax2qgObTD94w"}
+    )
+    assert supporters.verify_overwolf_token(with_kid)["overwolf_user_id"]
