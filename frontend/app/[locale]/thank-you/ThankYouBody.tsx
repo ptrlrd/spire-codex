@@ -1,3 +1,4 @@
+import { Link } from "@/i18n/navigation";
 import { hreflangOf, type Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 
@@ -92,19 +93,9 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
         </p>
 
         <section className="not-prose rounded-xl border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 p-5">
-          <div className="flex flex-wrap items-center justify-between gap-3 mb-1">
-            <h2 className="text-sm font-semibold text-[var(--accent-gold)] uppercase tracking-wider">
-              {t("Subscribers")}
-            </h2>
-            <a
-              href={PATREON_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-muted)] transition-colors"
-            >
-              {t("Subscribe on Patreon")}
-            </a>
-          </div>
+          <h2 className="text-sm font-semibold text-[var(--accent-gold)] uppercase tracking-wider mb-1">
+            {t("Subscribers")}
+          </h2>
           <p className="text-sm text-[var(--text-muted)] mb-3">
             {t(
               "Everyone backing the site month after month through Patreon, a Ko-fi membership or the Overwolf overlay. Subscribers see no ads and get a badge and a theme of their own.",
@@ -122,6 +113,67 @@ export default async function ThankYouBody({ lang }: { lang: Locale }) {
               ))}
             </p>
           )}
+          <div className="mt-4 grid gap-2 sm:grid-cols-3">
+            <a
+              href={PATREON_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-patreon/40 bg-patreon/10 p-3 hover:bg-patreon/20 transition-colors"
+            >
+              <span className="flex items-center gap-2 text-sm font-semibold text-patreon">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <circle cx="14.5" cy="9.5" r="7.5" />
+                  <rect x="2" y="2" width="4" height="20" />
+                </svg>
+                Patreon
+              </span>
+              <span className="mt-1 block text-xs text-[var(--text-muted)]">
+                {t("Monthly membership")}
+              </span>
+            </a>
+            <a
+              href={KOFI_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-lg border border-info/40 bg-info/10 p-3 hover:bg-info/20 transition-colors"
+            >
+              <span className="flex items-center gap-2 text-sm font-semibold text-info">
+                <svg
+                  className="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden
+                >
+                  <path d="M3 7h13v7a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V7zm13 1h2a3 3 0 0 1 0 6h-2V8z" />
+                </svg>
+                Ko-fi
+              </span>
+              <span className="mt-1 block text-xs text-[var(--text-muted)]">
+                {t("Monthly membership")}
+              </span>
+            </a>
+            <Link
+              href="/overlay"
+              className="rounded-lg border border-[var(--text-primary)]/30 bg-[var(--text-primary)]/10 p-3 hover:bg-[var(--text-primary)]/15 transition-colors"
+            >
+              <span className="flex items-center gap-2 text-sm font-semibold text-[var(--text-primary)]">
+                <img
+                  src="/overwolf-logo.png"
+                  alt=""
+                  className="w-4 h-4 object-contain"
+                />
+                Overwolf
+              </span>
+              <span className="mt-1 block text-xs text-[var(--text-muted)]">
+                {t("Common, Rare or Ancient, in the overlay")}
+              </span>
+            </Link>
+          </div>
         </section>
 
         <section className="not-prose rounded-xl border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/5 p-5">
