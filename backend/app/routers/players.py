@@ -46,7 +46,7 @@ def players_flair(
     supporter chose to show, keyed by lowercased username."""
     if len(u) > supporters.FLAIR_MAX_NAMES:
         raise HTTPException(status_code=400, detail="Too many names")
-    response.headers["Cache-Control"] = "public, max-age=300"
+    response.headers["Cache-Control"] = "public, max-age=30"
     return supporters.flair(u)
 
 

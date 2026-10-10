@@ -43,7 +43,7 @@ KOFI_MONTHLY_GRACE_DAYS = int(os.environ.get("KOFI_MONTHLY_GRACE_DAYS", "40"))
 _ACTIVE_STATES = {"active", "cancelled", "canceled", "grace"}
 THEME_CHARACTERS = ("ironclad", "silent", "defect", "necrobinder", "regent")
 _HEX_THEME = re.compile(r"^#[0-9a-f]{6}$")
-FLAIR_TTL_SECONDS = 300
+FLAIR_TTL_SECONDS = 30
 FLAIR_MAX_NAMES = 100
 _flair_cache: dict[str, tuple[float, dict | None]] = {}
 
