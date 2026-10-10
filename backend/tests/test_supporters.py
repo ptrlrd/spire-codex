@@ -345,7 +345,7 @@ def test_flair_shows_active_public_supporters_only(env):
     assert supporters.flair(["dobo"], NOW) == {"dobo": {"theme": "#123456"}}
     r = client.get("/api/players/flair?u=dobo&u=quiet")
     assert r.status_code == 200 and r.json() == {"dobo": {"theme": "#123456"}}
-    assert r.headers["cache-control"] == "public, max-age=300"
+    assert r.headers["cache-control"] == "public, max-age=30"
     assert client.get("/api/players/flair").json() == {}
 
 
