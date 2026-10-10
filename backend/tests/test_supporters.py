@@ -524,7 +524,6 @@ def test_overwolf_token_without_kid_verifies(monkeypatch):
 def test_overwolf_token_other_algorithms(monkeypatch):
     import time
 
-    import httpx
     import jwt
 
     key, jwk = _rsa_jwk()
@@ -537,19 +536,55 @@ def test_overwolf_token_other_algorithms(monkeypatch):
     )
 
     hs = jwt.encode(claims, "overwolf-only-secret-0123456789abcdef", algorithm="HS256")
-
-    class _R:
-        def __init__(self, code, body):
-            self.status_code, self.body = code, body
-
-        def json(self):
-            return self.body
-
-    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(200, {"sub": "b779116f-uuid"}))
-    assert supporters.verify_overwolf_token(hs)["overwolf_user_id"] == "b779116f-uuid"
-    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(401, {}))
+    out = supporters.verify_overwolf_token(hs)
+    assert out["overwolf_user_id"] == "b779116f-uuid" and out["confirm_with_overwolf"]
+    expired = jwt.encode(
+        {**claims, "exp": now - 120}, "overwolf-only-secret-0123456789abcdef"
+    )
     with pytest.raises(supporters.OverwolfError):
-        supporters.verify_overwolf_token(hs)
-    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(200, {"sub": "someone-else"}))
+        supporters.verify_overwolf_token(expired)
+
+
+class _HttpResp:
+    def __init__(self, code, body):
+        self.status_code, self.body = code, body
+
+    def raise_for_status(self):
+        if self.status_code >= 400:
+            raise RuntimeError(self.status_code)
+
+    def json(self):
+        return self.body
+
+
+def test_secret_signed_token_links_only_when_overwolf_accepts_it(env, monkeypatch):
+    import time
+
+    import httpx
+    import jwt
+
+    users, _ = env
+    now = int(time.time())
+    hs = jwt.encode(
+        {"sub": "b779116f-uuid", "iat": now, "exp": now + 900},
+        "overwolf-only-secret-0123456789abcdef",
+    )
+    monkeypatch.setenv("OVERWOLF_STORE_ID", "13blc")
+    monkeypatch.setattr(
+        httpx,
+        "get",
+        lambda *a, **k: _HttpResp(200, [{"packageId": 7700984, "state": "ACTIVE"}]),
+    )
+    out = supporters.link_overwolf(UID, hs)
+    assert out["tier"] == "rare" and out["ad_free"] is True
+    assert _user(users)["overwolf_id"] == "b779116f-uuid"
+
+    monkeypatch.setattr(
+        httpx, "get", lambda *a, **k: _HttpResp(400, {"message": "Unauthorized"})
+    )
     with pytest.raises(supporters.OverwolfError):
-        supporters.verify_overwolf_token(hs)
+        supporters.link_overwolf(UID, hs)
+
+    monkeypatch.delenv("OVERWOLF_STORE_ID", raising=False)
+    with pytest.raises(supporters.OverwolfError):
+        supporters.link_overwolf(UID, hs)
