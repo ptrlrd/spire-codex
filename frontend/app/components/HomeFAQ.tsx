@@ -75,7 +75,7 @@ export default async function HomeFAQ({
               <details
                 key={faq.question}
                 // `name` groups these like radio buttons, opening one auto-
-                // closes any other with the same name, native browser behaviour
+                // closes any other with the same name, native browser behavior
                 // (HTML Living Standard, shipped Chrome 120 / Safari 17.2 /
                 // Firefox 136, fully supported in current evergreens).
                 name="home-faq"

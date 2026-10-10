@@ -27,7 +27,7 @@ const ARROW = (
   </svg>
 );
 
-/** Category to a chip colour (drives `--cc` on the card). */
+/** Category to a chip color (drives `--cc` on the card). */
 const CATEGORY_CC: Record<string, string> = {
   api: "#23935b",
   widget: "#9b6bd6",

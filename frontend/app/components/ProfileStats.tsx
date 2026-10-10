@@ -258,15 +258,15 @@ export default function ProfileStats({
 
   return (
     <div className="space-y-4">
-      <div className="flex gap-1 border-b border-[var(--border-subtle)]">
+      <div className="flex flex-wrap gap-1.5 pb-3 sm:flex-nowrap sm:gap-1 sm:pb-0 sm:overflow-x-auto border-b border-[var(--border-subtle)]">
         {tabs.map((tb) => (
           <button
             key={tb.key}
             onClick={() => setTab(tb.key)}
-            className={`px-3 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
+            className={`rounded-md border px-2.5 py-1 text-xs font-medium whitespace-nowrap transition-colors sm:rounded-none sm:border-0 sm:border-b-2 sm:-mb-px sm:px-3 sm:py-2 sm:text-sm ${
               tab === tb.key
-                ? "border-[var(--accent-gold)] text-[var(--accent-gold)]"
-                : "border-transparent text-[var(--text-muted)] hover:text-[var(--text-secondary)]"
+                ? "border-[var(--accent-gold)] bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] sm:bg-transparent"
+                : "border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-secondary)] sm:border-transparent"
             }`}
           >
             {tb.label}
@@ -378,7 +378,7 @@ export default function ProfileStats({
                 {runs.map((run) => (
                   <div
                     key={run.run_hash}
-                    className="flex items-center gap-2 sm:gap-3 px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] text-sm"
+                    className="flex flex-wrap items-center gap-x-2 gap-y-1.5 sm:flex-nowrap sm:gap-3 px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] text-sm"
                   >
                     <input
                       type="checkbox"
@@ -414,10 +414,10 @@ export default function ProfileStats({
                     >
                       {run.win ? "W" : run.was_abandoned ? "A" : "L"}
                     </span>
-                    <span className="text-[var(--text-tertiary)] text-xs hidden sm:inline">
+                    <span className="text-[var(--text-tertiary)] text-xs">
                       A{run.ascension}
                     </span>
-                    <span className="text-[var(--text-tertiary)] text-xs hidden sm:inline">
+                    <span className="text-[var(--text-tertiary)] text-xs">
                       F{run.floors_reached}
                     </span>
                     <span className="flex-1" />
@@ -426,7 +426,7 @@ export default function ProfileStats({
                       relics={run.key_relics}
                       bosses={run.last_bosses}
                       killedBy={run.killed_by}
-                      className="hidden sm:flex"
+                      className="order-last basis-full pl-6 sm:order-none sm:basis-auto sm:pl-0"
                     />
                     <Link
                       prefetch={false}

@@ -557,7 +557,7 @@ async def thanks_listing(request: Request):
 @router.patch("/theme")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.theme", "20/minute"))
 async def theme_setting(request: Request):
-    """Save the supporter theme (a character preset or a hex colour) and
+    """Save the supporter theme (a character preset or a hex color) and
     whether other people see it on the profile, run and replay pages."""
     user = require_user(request)
     try:

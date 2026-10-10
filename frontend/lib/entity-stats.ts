@@ -14,7 +14,7 @@ const API_INTERNAL =
  *
  * Returns null on any error or for entities with no runs yet (the endpoint
  * hands back a zero-filled stub in that case). A null just falls back to the
- * existing client-only behaviour, since EntityRunStats still re-fetches on
+ * existing client-only behavior, since EntityRunStats still re-fetches on
  * mount for freshness.
  */
 export async function fetchEntityStats(

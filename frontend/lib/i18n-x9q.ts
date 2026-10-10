@@ -6,13 +6,13 @@ export const X9Q: Record<string, Record<string, string>> = {
   "What {name} says in combat.": { eng: "What {name} says in combat." },
   Supporter: { eng: "Supporter" },
   Custom: { eng: "Custom" },
-  "Pick a colour": { eng: "Pick a colour" },
-  "Your colour": { eng: "Your colour" },
+  "Pick a color": { eng: "Pick a color" },
+  "Your color": { eng: "Your color" },
   "Your theme": { eng: "Your theme" },
   "Show my theme to others": { eng: "Show my theme to others" },
-  "Thanks for supporting the site. Your colour shows on your profile and runs when you turn that on in your profile settings.":
+  "Thanks for supporting the site. Your color shows on your profile and runs when you turn that on in your profile settings.":
     {
-      eng: "Thanks for supporting the site. Your colour shows on your profile and runs when you turn that on in your profile settings.",
+      eng: "Thanks for supporting the site. Your color shows on your profile and runs when you turn that on in your profile settings.",
     },
   "Your theme now shows on your profile and runs.": {
     eng: "Your theme now shows on your profile and runs.",
@@ -20,13 +20,13 @@ export const X9Q: Record<string, Record<string, string>> = {
   "Your theme is only visible to you.": {
     eng: "Your theme is only visible to you.",
   },
-  "Pick a character or a custom colour from the theme menu in the top bar. When shown, people see your colours on your profile, your runs and your replays, and your badge everywhere your name appears.":
+  "Pick a character or a custom color from the theme menu in the top bar. When shown, people see your colors on your profile, your runs and your replays, and your badge everywhere your name appears.":
     {
-      eng: "Pick a character or a custom colour from the theme menu in the top bar. When shown, people see your colours on your profile, your runs and your replays, and your badge everywhere your name appears.",
+      eng: "Pick a character or a custom color from the theme menu in the top bar. When shown, people see your colors on your profile, your runs and your replays, and your badge everywhere your name appears.",
     },
-  "Pick a character or a custom colour from the theme menu in the top bar to set your theme.":
+  "Pick a character or a custom color from the theme menu in the top bar to set your theme.":
     {
-      eng: "Pick a character or a custom colour from the theme menu in the top bar to set your theme.",
+      eng: "Pick a character or a custom color from the theme menu in the top bar to set your theme.",
     },
   "Subscribe on Patreon": { eng: "Subscribe on Patreon" },
   "Everyone backing the site month after month through Patreon, a Ko-fi membership or the Overwolf overlay. Subscribers see no ads and get a badge and a theme of their own.":

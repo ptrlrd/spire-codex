@@ -20,7 +20,7 @@ Grammar, as far as the game data shows it:
 
 ICU export conventions:
 - {Var} and every value-only formatter ({Var:diff()}, inverseDiff, n, abs, percentMore,
-  percentLess, list) become {Var}. Colouring and sign display are a UI concern.
+  percentLess, list) become {Var}. Coloring and sign display are a UI concern.
 - {} (the current value) becomes # inside a plural body, otherwise the enclosing
   conditional's variable, otherwise {value}.
 - {Var:plural:a|b} follows SmartFormat's plural rule for the table's language (pass it as

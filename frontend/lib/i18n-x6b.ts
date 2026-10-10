@@ -105,9 +105,9 @@ export const X6B: Record<string, Record<string, string>> = {
       zhs: "按稀有度和角色池列出的所有遗物、效果、风味文本、商店价格和升级版初始遗物。",
       zht: "按稀有度和角色池列出的所有遺物、效果、風味文字、商店價格和升級版初始遺物。",
     },
-  "Every buff, debuff, and neutral power with descriptions, icons, and stack behaviour.":
+  "Every buff, debuff, and neutral power with descriptions, icons, and stack behavior.":
     {
-      eng: "Every buff, debuff, and neutral power with descriptions, icons, and stack behaviour.",
+      eng: "Every buff, debuff, and neutral power with descriptions, icons, and stack behavior.",
       deu: "Jeder Buff, Debuff und neutrale Kraft mit Beschreibungen, Symbolen und Stapelverhalten.",
       esp: "Todos los buffs, debuffs y poderes neutros con descripciones, iconos y comportamiento de acumulación.",
       fra: "Tous les buffs, débuffs et pouvoirs neutres avec descriptions, icônes et comportement de cumul.",
