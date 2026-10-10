@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 
 from fastapi import APIRouter, HTTPException, Request, Response, UploadFile, File
@@ -17,6 +18,8 @@ from ..services.auth_jwt import (
     require_user,
     clear_auth_cookie,
 )
+
+logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
 limiter = shared_limiter
@@ -523,6 +526,7 @@ async def overwolf_link(request: Request):
     try:
         result = supporters.link_overwolf(user["_id"], token)
     except supporters.OverwolfError as exc:
+        logger.warning("overwolf link rejected for %s: %s", user["_id"], exc)
         raise HTTPException(status_code=401, detail=str(exc))
     fresh = get_current_user(request) or user
     return {**result, "supporter": supporters.status(fresh)}

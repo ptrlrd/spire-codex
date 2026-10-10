@@ -21,7 +21,7 @@ type State =
   | { kind: "working" }
   | { kind: "signin" }
   | { kind: "done"; result: OverwolfLinkResult }
-  | { kind: "error" }
+  | { kind: "error"; reason: string }
   | { kind: "missing" };
 
 export default function LinkOverwolfClient() {
@@ -59,7 +59,7 @@ export default function LinkOverwolfClient() {
         setState({ kind: "done", result });
         refresh();
       })
-      .catch(() => setState({ kind: "error" }));
+      .catch((e: Error) => setState({ kind: "error", reason: e.message }));
   }, [loading, user, refresh]);
 
   return (
@@ -106,11 +106,16 @@ export default function LinkOverwolfClient() {
         </>
       )}
       {state.kind === "error" && (
-        <p className="text-danger">
-          {t(
-            "Linking failed. The link from the overlay is valid for 15 minutes, so press Link in the overlay again.",
-          )}
-        </p>
+        <>
+          <p className="text-danger">
+            {t(
+              "Linking failed. The link from the overlay is valid for 15 minutes, so press Link in the overlay again.",
+            )}
+          </p>
+          <p className="text-xs text-[var(--text-muted)] font-mono break-all">
+            {state.reason}
+          </p>
+        </>
       )}
       {state.kind === "missing" && (
         <p className="text-[var(--text-secondary)]">
