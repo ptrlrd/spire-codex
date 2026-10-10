@@ -236,6 +236,7 @@ async def submit_run_endpoint(
 
     # Enrich for the in-game post-run card: the shareable page URL, and (when this
     # run is itself a completed upload on a known seed) its seed standing.
+    result["verified"] = verified
     run_hash = result.get("run_hash")
     if run_hash:
         result["url"] = f"{site_base}/runs/{run_hash}"
