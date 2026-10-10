@@ -41,6 +41,7 @@ def test_bare_steam_id_is_only_a_hint(seen):
     assert r.status_code == 200
     assert seen["steam_id"] is None and seen["verified"] is False
     assert seen["steam_id_hint"] == "76561198000000009"
+    assert r.json()["verified"] is False
     assert seen["username"] == "Victim" and seen["discord_id"] is None
 
 
@@ -52,13 +53,27 @@ def test_bearer_token_attributes_and_outranks_the_param(seen):
     )
     assert r.status_code == 200
     assert seen["steam_id"] == "76561198000000001" and seen["verified"] is True
+    assert r.json()["verified"] is True
     assert seen["steam_id_hint"] is None
 
 
 def test_bad_token_falls_back_to_a_hint(seen):
-    client.post(
+    r = client.post(
         "/api/runs?steam_id=76561198000000009",
         json=BODY,
         headers={"Authorization": "Bearer nope"},
     )
     assert seen["verified"] is False and seen["steam_id_hint"] == "76561198000000009"
+    assert r.status_code == 200 and r.json()["verified"] is False
+
+
+def test_duplicate_reports_whether_the_upload_was_verified(seen, monkeypatch):
+    monkeypatch.setattr(
+        runs_router,
+        "submit_run",
+        lambda data, **kw: {"error": "dup", "duplicate": True, "run_hash": "abc"},
+    )
+    r = client.post("/api/runs", json=BODY, headers={"Authorization": "Bearer nope"})
+    assert r.json()["duplicate"] is True and r.json()["verified"] is False
+    r = client.post("/api/runs", json=BODY, headers={"Authorization": "Bearer good"})
+    assert r.json()["duplicate"] is True and r.json()["verified"] is True
