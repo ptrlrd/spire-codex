@@ -341,14 +341,14 @@ function SummaryCard({
 }) {
   return (
     <div
-      className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3"
+      className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2 sm:p-3"
       title={title}
     >
-      <div className="text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
+      <div className="truncate text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] sm:text-xs">
         {label}
       </div>
       <div
-        className={`mt-1 truncate text-lg font-semibold text-[var(--text-primary)] ${valueClass ?? ""}`}
+        className={`mt-1 truncate text-base font-semibold text-[var(--text-primary)] sm:text-lg ${valueClass ?? ""}`}
       >
         {value}
       </div>
@@ -358,6 +358,7 @@ function SummaryCard({
 }
 
 const PREVIEW_ROWS = 10;
+const BAR_COLUMNS = new Set(["took", "share", "buyRate"]);
 
 function PersonalStatsTable<T>({
   columns,
@@ -412,10 +413,83 @@ function PersonalStatsTable<T>({
     }
     return out;
   }, [sorted, expanded]);
+  const [head, ...rest] = columns;
   return (
     <>
+      <div className="sm:hidden space-y-2">
+        <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+          <label htmlFor="ys-sort">{t("Sort by")}</label>
+          <select
+            id="ys-sort"
+            value={sortKey}
+            onChange={(e) => {
+              const col = columns.find((c) => c.key === e.target.value);
+              if (col) onSort(col);
+            }}
+            className="rounded-md border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-2 py-1 text-xs text-[var(--text-primary)]"
+          >
+            {columns.map((col) => (
+              <option key={col.key} value={col.key}>
+                {col.label}
+              </option>
+            ))}
+          </select>
+          <button
+            type="button"
+            onClick={() => setDir(dir === 1 ? -1 : 1)}
+            aria-label={t("Reverse order")}
+            className="rounded-md border border-[var(--border-subtle)] px-2 py-1 text-xs text-[var(--text-primary)]"
+          >
+            {dir === -1 ? "▾" : "▴"}
+          </button>
+        </div>
+        {shown.map((g) => (
+          <div key={g.key} className="space-y-1.5">
+            {g.label !== null && (
+              <div className="pt-1 text-xs font-semibold uppercase tracking-wide text-[var(--text-secondary)]">
+                {g.label}
+              </div>
+            )}
+            {g.rows.map((r, i) => (
+              <div
+                key={rowKey(r)}
+                className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/60 px-3 py-2"
+              >
+                <div className="flex items-baseline gap-2 text-sm">
+                  <span className="tabular-nums text-xs text-[var(--text-muted)]">
+                    {i + 1}
+                  </span>
+                  <span className="min-w-0">{head.cell(r)}</span>
+                </div>
+                <dl className="mt-1.5 grid grid-cols-3 gap-x-3 gap-y-1 text-xs">
+                  {rest.map((col) => (
+                    <div
+                      key={col.key}
+                      className={`min-w-0 ${BAR_COLUMNS.has(col.key) ? "col-span-2" : ""}`}
+                    >
+                      <dt
+                        className={`truncate text-[10px] uppercase tracking-wide ${
+                          col.key === sortKey
+                            ? "text-[var(--accent-gold)]"
+                            : "text-[var(--text-muted)]"
+                        }`}
+                      >
+                        {col.label}
+                      </dt>
+                      <dd className="truncate tabular-nums">{col.cell(r)}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            ))}
+          </div>
+        ))}
+        {sorted.every((g) => g.rows.length === 0) && (
+          <p className="py-8 text-center text-sm text-[var(--text-muted)]">–</p>
+        )}
+      </div>
       <div
-        className={`overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 ${
+        className={`hidden sm:block overflow-x-auto rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 ${
           expanded ? "max-h-[640px] overflow-y-auto" : ""
         }`}
       >
@@ -1081,7 +1155,7 @@ function YourStatsInner({
         </div>
       )}
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-5">
         <SummaryCard label={t("Runs")} value={int(data.runs)} />
         <SummaryCard label={t("Wins")} value={int(data.wins)} />
         <SummaryCard
