@@ -196,8 +196,8 @@ const MARKUP_TONE: Record<string, string> = {
   blue: "font-semibold text-[var(--text-primary)]",
 };
 
-// The game's option text uses [gold]..[/gold] style tags; colour the ones
-// the map colours use and drop the rest (images, unknown tags).
+// The game's option text uses [gold]..[/gold] style tags; color the ones
+// the map colors use and drop the rest (images, unknown tags).
 function Markup({ text }: { text: string }) {
   const parts: ReactNode[] = [];
   const re = /\[(\/?)([a-z]+)[^\]]*\]/gi;

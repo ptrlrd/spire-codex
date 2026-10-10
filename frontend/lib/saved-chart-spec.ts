@@ -179,7 +179,7 @@ function rowSample(row: MetricRow): number {
 /** Join metrics with the catalog, apply filters, and keep the top N by the
  * chart's metric. Rows with no catalog entry are dropped exactly like the
  * metrics grid (a raw id never becomes a label); upgraded "+" rows are
- * excluded unless explicitly included. Bars colour by the card colour for
+ * excluded unless explicitly included. Bars color by the card color for
  * the cards source, otherwise the caller's accent applies. */
 export function buildChartRows(
   rows: MetricRow[],

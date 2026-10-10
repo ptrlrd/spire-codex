@@ -1605,8 +1605,8 @@ export const X5: Record<string, Record<string, string>> = {
     zhs: "多页选项与分支结果",
     zht: "多頁選項與分支結果",
   },
-  "Buff / debuff descriptions and stack behaviour": {
-    eng: "Buff / debuff descriptions and stack behaviour",
+  "Buff / debuff descriptions and stack behavior": {
+    eng: "Buff / debuff descriptions and stack behavior",
     deu: "Buff-/Debuff-Beschreibungen und Stapelverhalten",
     esp: "Descripciones de buffs/debuffs y comportamiento de acumulación",
     fra: "Descriptions des buffs/debuffs et comportement de cumul",

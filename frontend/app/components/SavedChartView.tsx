@@ -2,7 +2,7 @@
 
 // Chart.js renderer for a saved chart spec. Shared by the builder's live
 // preview and the /charts/<id> share page: both re-read the live metrics API
-// client-side (the spec is all the server stores). Canvas colours resolve
+// client-side (the spec is all the server stores). Canvas colors resolve
 // CSS variables at runtime — see community-stats/charts.tsx resolveColor.
 
 import {

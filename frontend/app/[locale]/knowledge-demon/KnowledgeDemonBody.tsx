@@ -16,7 +16,7 @@ const SLASH_COMMANDS = [
   { cmd: "/event <name>", desc: "Multi-page choices and branching outcomes" },
   {
     cmd: "/power <name>",
-    desc: "Buff / debuff descriptions and stack behaviour",
+    desc: "Buff / debuff descriptions and stack behavior",
   },
   {
     cmd: "/enchantment <name>",

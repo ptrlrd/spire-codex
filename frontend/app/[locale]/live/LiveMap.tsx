@@ -672,7 +672,7 @@ export default function LiveMap({
         />
         <defs>
           {/* The boss map icon ships as a white silhouette; the game tints it
-              with the act's ink colour at draw time, so do the same. */}
+              with the act's ink color at draw time, so do the same. */}
           <filter id={inkTint} x="-10%" y="-10%" width="120%" height="120%">
             <feFlood style={{ floodColor: "var(--map-ink)" }} result="ink" />
             <feComposite in="ink" in2="SourceAlpha" operator="in" />

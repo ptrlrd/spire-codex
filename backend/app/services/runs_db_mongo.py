@@ -908,7 +908,7 @@ def _played_at_from_blob(data: dict) -> datetime:
     """When the run was actually played: the blob's epoch start_time. Bounded
     to [2020, now+1d] so a client with a broken clock can't pin itself to the
     top of a profile forever; out-of-range or missing falls back to upload
-    time (the pre-played_at sort behaviour)."""
+    time (the pre-played_at sort behavior)."""
     try:
         ts = int(data.get("start_time") or 0)
     except (TypeError, ValueError):

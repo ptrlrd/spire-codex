@@ -42,7 +42,7 @@ describe("theme palette", () => {
     expect(normalizeTheme(null)).toBeNull();
   });
 
-  it("keeps any picked colour readable in both modes", () => {
+  it("keeps any picked color readable in both modes", () => {
     const picks = [
       "#ffff00",
       "#000000",
@@ -75,7 +75,7 @@ describe("theme palette", () => {
     }
   });
 
-  it("gives a badge colour for every theme", () => {
+  it("gives a badge color for every theme", () => {
     expect(accentFor("ironclad", "dark")).toBe("#e06454");
     expect(accentFor("#3873a9", "light")).toMatch(/^#[0-9a-f]{6}$/);
     expect(accentFor("nope", "dark")).toBeNull();

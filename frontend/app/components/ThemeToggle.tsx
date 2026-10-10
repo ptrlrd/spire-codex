@@ -153,7 +153,7 @@ function characterIcon(key: CharacterTheme) {
 /** Light / Dark / Character / Custom theme picker. Flips `data-theme` on
  * <html> and the Tailwind `dark` class, persists the choice, and the inline
  * script in the root layout applies it before first paint. Character
- * palettes live in globals.css; a custom colour derives its palette at
+ * palettes live in globals.css; a custom color derives its palette at
  * runtime (lib/theme-palette.ts) and is saved to the account for
  * supporters so other people see it on their pages.
  *
@@ -304,7 +304,7 @@ export default function ThemeToggle({
         type="color"
         value={custom}
         onChange={(e) => chooseCustom(e.target.value)}
-        aria-label={t("Pick a colour")}
+        aria-label={t("Pick a color")}
         className="h-9 w-12 cursor-pointer rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-1"
       />
       <span className="font-mono text-xs text-[var(--text-secondary)]">
@@ -324,25 +324,34 @@ export default function ThemeToggle({
 
   if (variant === "segmented") {
     return (
-      <div className="px-5 py-4">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-lg font-semibold text-[var(--text-primary)]">
-            {t("Theme")}
-          </span>
-          {segments(true)}
+      <div className="px-5 py-4 space-y-3">
+        <span className="block text-lg font-semibold text-[var(--text-primary)]">
+          {t("Theme")}
+        </span>
+        <div
+          className={`grid gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-1 ${
+            supporter ? "grid-cols-2 min-[420px]:grid-cols-4" : "grid-cols-3"
+          } [&>button]:justify-center`}
+        >
+          {segment("light", t("Light"), sun, true)}
+          {segment("dark", t("Dark"), moon, true)}
+          {segment("character", t("Character"), swords, true)}
+          {supporter && segment("custom", t("Custom"), drop, true)}
         </div>
         {mode === "character" && (
-          <div className="mt-3 flex items-center justify-between gap-3">
-            <span className="text-sm text-[var(--text-secondary)]">
+          <div className="space-y-2">
+            <span className="block text-sm text-[var(--text-secondary)]">
               {CHARACTER_NAMES[character]}
             </span>
-            {characterRow}
+            <div className="grid grid-cols-5 gap-2 [&>div]:contents [&_button]:h-11 [&_button]:w-full">
+              {characterRow}
+            </div>
           </div>
         )}
         {mode === "custom" && supporter && (
-          <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3">
             <span className="text-sm text-[var(--text-secondary)]">
-              {t("Your colour")}
+              {t("Your color")}
             </span>
             {customRow}
           </div>
@@ -410,12 +419,12 @@ export default function ThemeToggle({
           {mode === "custom" && supporter && (
             <div className="mt-3 border-t border-[var(--border-subtle)] pt-3">
               <div className="mb-2 text-xs uppercase tracking-wider text-[var(--text-muted)]">
-                {t("Pick a colour")}
+                {t("Pick a color")}
               </div>
               {customRow}
               <p className="mt-2 text-xs text-[var(--text-muted)]">
                 {t(
-                  "Thanks for supporting the site. Your colour shows on your profile and runs when you turn that on in your profile settings.",
+                  "Thanks for supporting the site. Your color shows on your profile and runs when you turn that on in your profile settings.",
                 )}
               </p>
             </div>

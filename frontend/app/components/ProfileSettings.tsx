@@ -186,10 +186,10 @@ export default function ProfileSettings() {
                 <p className="text-xs text-[var(--text-muted)]">
                   {user.supporter.theme
                     ? t(
-                        "Pick a character or a custom colour from the theme menu in the top bar. When shown, people see your colours on your profile, your runs and your replays, and your badge everywhere your name appears.",
+                        "Pick a character or a custom color from the theme menu in the top bar. When shown, people see your colors on your profile, your runs and your replays, and your badge everywhere your name appears.",
                       )
                     : t(
-                        "Pick a character or a custom colour from the theme menu in the top bar to set your theme.",
+                        "Pick a character or a custom color from the theme menu in the top bar to set your theme.",
                       )}
                 </p>
               </div>

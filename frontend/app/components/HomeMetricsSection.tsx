@@ -16,7 +16,7 @@ const ARROW = (
 );
 
 /** Card-color to an inline hex/token, mirroring `colorTextClass`. Inline so
- * it beats the `.dtable td` colour, which a plain class would lose to. */
+ * it beats the `.dtable td` color, which a plain class would lose to. */
 function cardHex(color: string): string {
   switch ((color || "").toLowerCase()) {
     case "ironclad":
@@ -43,7 +43,7 @@ function cardHex(color: string): string {
   }
 }
 
-/** Win-rate colour ramp, reusing the .wr-* classes from home-revamp.css. */
+/** Win-rate color ramp, reusing the .wr-* classes from home-revamp.css. */
 function winClass(v: number | null): string {
   if (v === null || v === undefined) return "dim";
   if (v >= 50) return "wr-sg";
