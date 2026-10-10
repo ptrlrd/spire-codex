@@ -98,37 +98,83 @@ def _overwolf_jwks():
     return _jwks_client
 
 
+_ASYMMETRIC_ALGS = [
+    "RS256",
+    "RS384",
+    "RS512",
+    "PS256",
+    "PS384",
+    "PS512",
+    "ES256",
+    "ES384",
+]
+OVERWOLF_USERINFO_URL = os.environ.get(
+    "OVERWOLF_USERINFO_URL", "https://accounts.overwolf.com/oauth2/me"
+)
+
+
+def _overwolf_userinfo_sub(token: str) -> str:
+    """Ask Overwolf who the token belongs to. Used for tokens signed with a
+    secret only Overwolf holds, so the signature can't be checked here."""
+    import httpx
+
+    resp = httpx.get(
+        OVERWOLF_USERINFO_URL,
+        headers={"Authorization": f"Bearer {token}"},
+        timeout=10,
+    )
+    if resp.status_code != 200:
+        raise OverwolfError(f"invalid token: overwolf userinfo {resp.status_code}")
+    sub = str((resp.json() or {}).get("sub") or "").strip()
+    if not sub:
+        raise OverwolfError("invalid token: overwolf userinfo has no sub")
+    return sub
+
+
 def verify_overwolf_token(token: str) -> dict:
-    """Validate the overlay's Overwolf session token against Overwolf's
-    published keys and return its claims. Raises OverwolfError on anything
-    that is not a signed, unexpired Overwolf token. The session tokens carry
-    no kid header, so without one every published key is tried."""
+    """Validate the overlay's Overwolf session token and return its claims.
+    Tokens signed with a public key are checked against Overwolf's published
+    keys (the session tokens carry no kid, so every key is tried). Tokens
+    signed with a shared secret are confirmed by Overwolf's userinfo
+    endpoint, and only its sub is trusted. Raises OverwolfError otherwise."""
     import jwt
 
     token = (token or "").strip()
     if not token or token.count(".") != 2:
         raise OverwolfError("missing token")
     try:
-        client = _overwolf_jwks()
-        kid = jwt.get_unverified_header(token).get("kid")
-        published = client.get_signing_keys()
-        keys = [k for k in published if kid and k.key_id == kid] or published
-        claims = None
-        last_exc: Exception | None = None
-        for key in keys:
-            try:
-                claims = jwt.decode(
-                    token,
-                    key.key,
-                    algorithms=["RS256", "ES256"],
-                    options={"verify_aud": False},
-                    leeway=30,
-                )
-                break
-            except jwt.InvalidSignatureError as exc:
-                last_exc = exc
-        if claims is None:
-            raise last_exc or OverwolfError("no signing key")
+        header = jwt.get_unverified_header(token)
+        alg = str(header.get("alg") or "")
+        if alg.startswith("HS"):
+            claims = jwt.decode(
+                token,
+                options={"verify_signature": False, "verify_aud": False},
+            )
+            sub = _overwolf_userinfo_sub(token)
+            if str(claims.get("sub") or sub) != sub:
+                raise OverwolfError("invalid token: sub mismatch")
+            claims["sub"] = sub
+        else:
+            client = _overwolf_jwks()
+            kid = header.get("kid")
+            published = client.get_signing_keys()
+            keys = [k for k in published if kid and k.key_id == kid] or published
+            claims = None
+            last_exc: Exception | None = None
+            for key in keys:
+                try:
+                    claims = jwt.decode(
+                        token,
+                        key.key,
+                        algorithms=_ASYMMETRIC_ALGS,
+                        options={"verify_aud": False},
+                        leeway=30,
+                    )
+                    break
+                except jwt.InvalidSignatureError as exc:
+                    last_exc = exc
+            if claims is None:
+                raise last_exc or OverwolfError("no signing key")
     except OverwolfError:
         raise
     except Exception as exc:

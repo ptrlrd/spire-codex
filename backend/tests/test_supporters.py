@@ -519,3 +519,37 @@ def test_overwolf_token_without_kid_verifies(monkeypatch):
         claims, key, algorithm="RS256", headers={"kid": "gBdaS-G8RLax2qgObTD94w"}
     )
     assert supporters.verify_overwolf_token(with_kid)["overwolf_user_id"]
+
+
+def test_overwolf_token_other_algorithms(monkeypatch):
+    import time
+
+    import httpx
+    import jwt
+
+    key, jwk = _rsa_jwk()
+    monkeypatch.setattr(supporters, "_jwks_client", _FakeJwks([jwk]))
+    now = int(time.time())
+    claims = {"sub": "b779116f-uuid", "iat": now, "exp": now + 900}
+    rs512 = jwt.encode(claims, key, algorithm="RS512")
+    assert (
+        supporters.verify_overwolf_token(rs512)["overwolf_user_id"] == "b779116f-uuid"
+    )
+
+    hs = jwt.encode(claims, "overwolf-only-secret-0123456789abcdef", algorithm="HS256")
+
+    class _R:
+        def __init__(self, code, body):
+            self.status_code, self.body = code, body
+
+        def json(self):
+            return self.body
+
+    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(200, {"sub": "b779116f-uuid"}))
+    assert supporters.verify_overwolf_token(hs)["overwolf_user_id"] == "b779116f-uuid"
+    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(401, {}))
+    with pytest.raises(supporters.OverwolfError):
+        supporters.verify_overwolf_token(hs)
+    monkeypatch.setattr(httpx, "get", lambda *a, **k: _R(200, {"sub": "someone-else"}))
+    with pytest.raises(supporters.OverwolfError):
+        supporters.verify_overwolf_token(hs)
