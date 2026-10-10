@@ -1,5 +1,7 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
+import { hasPendingOverwolfToken } from "@/lib/overwolf-link";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
@@ -40,6 +42,10 @@ interface UploadResult {
 
 export default function ProfileClient() {
   const { user, loading } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (user && hasPendingOverwolfToken()) router.replace("/link/overwolf");
+  }, [user, router]);
   const lang = useGameLocale();
   const t = useT();
   const { toast } = useToast();

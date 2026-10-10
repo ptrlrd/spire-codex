@@ -250,7 +250,7 @@ export const EXCLUDE = new Set([
   "/live",
 ]);
 
-const EXCLUDE_PREFIXES = ["/admin", "/seed-lab", "/deck-lab"];
+const EXCLUDE_PREFIXES = ["/admin", "/seed-lab", "/deck-lab", "/link"];
 
 const LOCALE_SEGMENT = "[locale]";
 
