@@ -44,7 +44,10 @@ export async function linkOverwolf(token: string): Promise<OverwolfLinkResult> {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token }),
   });
-  if (!res.ok) throw new Error(String(res.status));
+  if (!res.ok) {
+    const body = await res.json().catch(() => null);
+    throw new Error(`${res.status}${body?.detail ? `: ${body.detail}` : ""}`);
+  }
   const data = await res.json();
   return { tier: data.tier ?? null, adFree: Boolean(data.ad_free) };
 }
