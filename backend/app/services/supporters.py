@@ -108,35 +108,16 @@ _ASYMMETRIC_ALGS = [
     "ES256",
     "ES384",
 ]
-OVERWOLF_USERINFO_URL = os.environ.get(
-    "OVERWOLF_USERINFO_URL", "https://accounts.overwolf.com/oauth2/me"
-)
-
-
-def _overwolf_userinfo_sub(token: str) -> str:
-    """Ask Overwolf who the token belongs to. Used for tokens signed with a
-    secret only Overwolf holds, so the signature can't be checked here."""
-    import httpx
-
-    resp = httpx.get(
-        OVERWOLF_USERINFO_URL,
-        headers={"Authorization": f"Bearer {token}"},
-        timeout=10,
-    )
-    if resp.status_code != 200:
-        raise OverwolfError(f"invalid token: overwolf userinfo {resp.status_code}")
-    sub = str((resp.json() or {}).get("sub") or "").strip()
-    if not sub:
-        raise OverwolfError("invalid token: overwolf userinfo has no sub")
-    return sub
 
 
 def verify_overwolf_token(token: str) -> dict:
     """Validate the overlay's Overwolf session token and return its claims.
     Tokens signed with a public key are checked against Overwolf's published
     keys (the session tokens carry no kid, so every key is tried). Tokens
-    signed with a shared secret are confirmed by Overwolf's userinfo
-    endpoint, and only its sub is trusted. Raises OverwolfError otherwise."""
+    signed with a shared secret can't be checked here: they come back
+    marked confirm_with_overwolf, and link_overwolf only accepts them once
+    Overwolf's subscriptions API takes the token. Raises OverwolfError
+    otherwise."""
     import jwt
 
     token = (token or "").strip()
@@ -148,12 +129,14 @@ def verify_overwolf_token(token: str) -> dict:
         if alg.startswith("HS"):
             claims = jwt.decode(
                 token,
-                options={"verify_signature": False, "verify_aud": False},
+                options={
+                    "verify_signature": False,
+                    "verify_aud": False,
+                    "verify_exp": True,
+                },
+                leeway=30,
             )
-            sub = _overwolf_userinfo_sub(token)
-            if str(claims.get("sub") or sub) != sub:
-                raise OverwolfError("invalid token: sub mismatch")
-            claims["sub"] = sub
+            claims["confirm_with_overwolf"] = True
         else:
             client = _overwolf_jwks()
             kid = header.get("kid")
@@ -206,6 +189,8 @@ def fetch_overwolf_subscription(token: str) -> dict | None:
     )
     if resp.status_code == 404:
         return {"state": "none", "package_id": None}
+    if resp.status_code in (400, 401, 403):
+        raise OverwolfError(f"invalid token: overwolf subscriptions {resp.status_code}")
     resp.raise_for_status()
     rows = resp.json()
     if isinstance(rows, dict):
@@ -249,9 +234,16 @@ def link_overwolf(user_id: str, token: str) -> dict:
 
     claims = verify_overwolf_token(token)
     ow_id = claims["overwolf_user_id"]
+    confirm = bool(claims.get("confirm_with_overwolf"))
+    if confirm and not _overwolf_config()[0]:
+        raise OverwolfError("invalid token: cannot confirm without OVERWOLF_STORE_ID")
     try:
         sub = fetch_overwolf_subscription(token)
+    except OverwolfError:
+        raise
     except Exception:
+        if confirm:
+            raise OverwolfError("invalid token: overwolf could not confirm it")
         logger.warning("overwolf subscription check failed", exc_info=True)
         sub = {"state": "error", "package_id": None, "tier": None}
     now = _now()
