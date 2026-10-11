@@ -16,6 +16,7 @@ import {
   clipMetaDescription,
   stripTags,
   stripTagsFlat,
+  entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -55,6 +56,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path,
       title: potion.name,
       entityType: t("Potion"),
+      entityQualifier: entityQualifier({
+        character: potion.pool,
+        rarity: potion.rarity_key,
+      }),
       description: clipMetaDescription(
         t("potion_meta_description", {
           name: potion.name,

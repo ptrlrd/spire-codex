@@ -17,6 +17,7 @@ import {
   stripTagsFlat,
   clipMetaDescription,
   buildPageMetadata,
+  entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -86,6 +87,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path,
       title: card.name,
       entityType: t("Card"),
+      entityQualifier: entityQualifier({
+        character: card.color,
+        rarity: card.rarity_key === card.type_key ? null : card.rarity_key,
+        kind: card.type_key,
+      }),
       description: clipMetaDescription(
         t("card_meta_description", {
           name: card.name,

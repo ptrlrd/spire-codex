@@ -44,11 +44,51 @@ export function entityTitle(
   locale: Locale,
   name: string,
   type: string,
+  qualifier?: string,
 ): string {
+  if (locale === "eng" && qualifier)
+    return `${name} - ${qualifier} ${type} - ${GAME_NAME} | ${SITE_NAME}`;
   const base = `${name} - ${GAME_NAME} ${type}`;
   return locale === "eng"
     ? `${base} | ${SITE_NAME}`
     : `${base} | ${SITE_NAME} (${LANG_NAMES[locale]})`;
+}
+
+const TITLE_CHARACTERS = new Set([
+  "ironclad",
+  "silent",
+  "defect",
+  "regent",
+  "necrobinder",
+  "colorless",
+]);
+const TITLE_RARITIES = new Set([
+  "Basic",
+  "Common",
+  "Uncommon",
+  "Rare",
+  "Ancient",
+  "Starter",
+  "Shop",
+  "Event",
+]);
+
+/** English words that sit before the type word in an entity title: "Ironclad Rare Skill". */
+export function entityQualifier(parts: {
+  character?: string | null;
+  rarity?: string | null;
+  kind?: string | null;
+}): string {
+  const character = (parts.character ?? "").toLowerCase();
+  return [
+    TITLE_CHARACTERS.has(character)
+      ? character.replace(/^\w/, (c) => c.toUpperCase())
+      : "",
+    parts.rarity && TITLE_RARITIES.has(parts.rarity) ? parts.rarity : "",
+    parts.kind ?? "",
+  ]
+    .filter(Boolean)
+    .join(" ");
 }
 
 /** The game's name as the locale writes it. */
@@ -118,6 +158,8 @@ export interface PageMetadataInput {
    * instead of the "%s - Slay the Spire 2 (sts2)" composition.
    */
   entityType?: string;
+  /** English-only words before the type word ("Ironclad Rare Skill"), see `entityQualifier`. */
+  entityQualifier?: string;
   description?: string;
   ogType?: "website" | "article" | "profile";
   image?: string;
@@ -143,6 +185,7 @@ export function buildPageMetadata({
   path,
   title,
   entityType,
+  entityQualifier: qualifier,
   ogType,
   image,
   noIndex,
@@ -156,7 +199,7 @@ export function buildPageMetadata({
   const fullTitle =
     entityType === undefined
       ? pageTitle(locale, title)
-      : entityTitle(locale, title, entityType);
+      : entityTitle(locale, title, entityType, qualifier);
   const hidden =
     noIndex === true ||
     (supressLanguageAlternates === true && locale !== "eng");
