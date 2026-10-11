@@ -117,9 +117,6 @@ const LANG_DETAIL_ROUTES = new Set([
   "afflictions",
   "modifiers",
   "achievements",
-  // app/[locale]/guides/[slug]/page.tsx exists; localized guide URLs were
-  // never emitted even though the pages render.
-  "guides",
 ]);
 
 const STATIC_PAGES = [
@@ -542,18 +539,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Localized mechanics detail pages, page.tsx lives at
-  // `app/[locale]/mechanics/[slug]/page.tsx`, so each slug × each lang
-  // is a real URL.
-  const langMechanicsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap(
-    (lang) =>
-      mechanicSections.map((s) => ({
-        url: `${SITE_URL}/${lang}/mechanics/${s.slug}`,
-        changeFrequency: "monthly" as const,
-        priority: 0.4,
-      })),
-  );
-
   // Localized entity detail pages, only for routes that have a real
   // [id]/page.tsx under `app/[locale]/`. Previously this expanded ALL
   // DYNAMIC_ROUTES including timeline/acts/etc, producing 13 × 57 = 741
@@ -582,7 +567,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tierListVariants,
     ...browseEntries,
     ...langListEntries,
-    ...langMechanicsEntries,
     ...langDetailEntries,
     ...englishDetailEntries,
   ].filter((entry) => {
