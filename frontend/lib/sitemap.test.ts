@@ -84,15 +84,22 @@ describe("sitemap", () => {
     expect(
       byUrl.get(`${SITE}/guides/first-guide`)?.lastModified,
     ).toBeUndefined();
-    expect(
-      byUrl.get(`${SITE}/fra/guides/first-guide`)?.lastModified,
-    ).toBeUndefined();
     expect(byUrl.get(`${SITE}/cards/alpha`)?.lastModified).toEqual(
       new Date("2026-08-14"),
     );
     expect(byUrl.get(`${SITE}/fra/cards/alpha`)?.lastModified).toEqual(
       new Date("2026-08-14"),
     );
+  });
+
+  it("leaves out the noindex localized copies of guides and mechanics", async () => {
+    stubApi(healthyApi);
+    const urls = new Set((await sitemap()).map((e) => e.url));
+    expect(urls.has(`${SITE}/guides/first-guide`)).toBe(true);
+    expect(urls.has(`${SITE}/mechanics/score-formula`)).toBe(true);
+    expect(urls.has(`${SITE}/fra/guides/first-guide`)).toBe(false);
+    expect(urls.has(`${SITE}/fra/mechanics/score-formula`)).toBe(false);
+    expect(urls.has(`${SITE}/fra/cards/alpha`)).toBe(true);
   });
 
   it("fails the build when a list endpoint errors instead of dropping the section", async () => {
