@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useState, type HTMLAttributes, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import RichDescription from "@/app/components/RichDescription";
 import { imageUrl } from "@/lib/image-url";
@@ -58,7 +58,6 @@ export function CardPill({
 }) {
   const [show, setShow] = useState(false);
   const [above, setAbove] = useState(true);
-  const ref = useRef<HTMLAnchorElement>(null);
   const gt = useTryGameTranslations();
   const info = cardData[cardId];
   const name =
@@ -68,14 +67,17 @@ export function CardPill({
       displayName(`ENCHANTMENT.${enchantment}`))
     : undefined;
   return (
-    <Link
-      ref={ref}
-      href={`${bp}/cards/${cardId.toLowerCase()}`}
+    <PillLink
+      href={
+        catalogKnows(cardData, cardId)
+          ? `${bp}/cards/${cardId.toLowerCase()}`
+          : null
+      }
       className={`relative ${className || ""}`}
-      onMouseEnter={() => {
+      onMouseEnter={(e) => {
         // Flip the card preview below when there isn't room above (small
         // screens / cards near the top, e.g. the deck modal on the live page).
-        setAbove((ref.current?.getBoundingClientRect().top ?? 999) > 240);
+        setAbove(e.currentTarget.getBoundingClientRect().top > 240);
         setShow(true);
       }}
       onMouseLeave={() => setShow(false)}
@@ -110,7 +112,7 @@ export function CardPill({
           />
         </span>
       )}
-    </Link>
+    </PillLink>
   );
 }
 
@@ -139,8 +141,12 @@ export function RelicPill({
       gt(`gameplay_ui.RELIC_RARITY.${info.rarity_key.toUpperCase()}`)) ||
     info?.rarity;
   return (
-    <Link
-      href={`${bp}/relics/${relicId.toLowerCase()}`}
+    <PillLink
+      href={
+        catalogKnows(relicData, relicId)
+          ? `${bp}/relics/${relicId.toLowerCase()}`
+          : null
+      }
       className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
@@ -172,7 +178,7 @@ export function RelicPill({
           <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
         </div>
       )}
-    </Link>
+    </PillLink>
   );
 }
 
@@ -201,8 +207,12 @@ export function PotionPill({
       gt(`gameplay_ui.POTION_RARITY.${info.rarity_key.toUpperCase()}`)) ||
     info?.rarity;
   return (
-    <Link
-      href={`${bp}/potions/${potionId.toLowerCase()}`}
+    <PillLink
+      href={
+        catalogKnows(potionData, potionId)
+          ? `${bp}/potions/${potionId.toLowerCase()}`
+          : null
+      }
       className={`relative ${className || ""}`}
       onMouseEnter={() => setShow(true)}
       onMouseLeave={() => setShow(false)}
@@ -234,6 +244,17 @@ export function PotionPill({
           <div className="absolute left-1/2 -translate-x-1/2 top-full w-2 h-2 bg-[var(--bg-card)] border-r border-b border-[var(--border-subtle)] rotate-45 -mt-1" />
         </div>
       )}
-    </Link>
+    </PillLink>
   );
+}
+
+function catalogKnows(catalog: Record<string, unknown>, id: string) {
+  return id in catalog || Object.keys(catalog).length === 0;
+}
+
+function PillLink({
+  href,
+  ...rest
+}: { href: string | null } & HTMLAttributes<HTMLElement>) {
+  return href ? <Link href={href} {...rest} /> : <span {...rest} />;
 }
