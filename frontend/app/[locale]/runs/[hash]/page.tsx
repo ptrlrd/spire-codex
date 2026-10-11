@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { cache } from "react";
 import JsonLd from "@/app/components/JsonLd";
 import GameMessagesProvider from "@/app/components/GameMessagesProvider";
@@ -36,17 +37,19 @@ export const dynamic = "force-dynamic";
 type Props = { params: Promise<{ locale: string; hash: string }> };
 
 const fetchRun = cache(async (hash: string): Promise<Run | null> => {
+  let res: Response;
   try {
-    const res = await fetch(
+    res = await fetch(
       `${API_INTERNAL}/api/runs/shared/${encodeURIComponent(hash)}`,
     );
-    if (!res.ok) return null;
-    const body: unknown = await res.json();
-    if (!body || typeof body !== "object") return null;
-    return cleanRun(body as RawRun);
   } catch {
-    return null;
+    throw new Error("run API unreachable");
   }
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`run API returned ${res.status}`);
+  const body: unknown = await res.json();
+  if (!body || typeof body !== "object") return null;
+  return cleanRun(body as RawRun);
 });
 
 const fetchRunMessages = cache(
@@ -127,7 +130,8 @@ export default async function SharedRunPage({ params }: Props) {
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
   const run = await fetchRun(hash);
-  const messages = run ? await fetchRunMessages(hash, locale) : {};
+  if (!run) notFound();
+  const messages = await fetchRunMessages(hash, locale);
   let jsonLd: ReturnType<typeof buildDetailPageJsonLd> | null = null;
   if (run) {
     const gt = createGameTranslator(messages, locale);
