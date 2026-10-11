@@ -14,6 +14,7 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { imageUrl } from "@/lib/image-url";
+import { powerHeading } from "@/lib/power-heading";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: power.name,
+      title: await powerHeading(power, locale),
       entityType: t("Power"),
       description: clipMetaDescription(
         t("power_meta_description", {
@@ -73,6 +74,7 @@ export default async function Page({ params }: Props) {
   const locale = localeOf(rawLocale);
   let jsonLd = null;
   let power = null;
+  let heading: string | undefined;
   let apiUnreachable = false;
   try {
     const res = await fetchEntityRes(
@@ -80,9 +82,10 @@ export default async function Page({ params }: Props) {
     );
     if (res.ok) {
       power = await res.json();
+      heading = await powerHeading(power, locale);
       const desc = stripTags(power.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
-        name: power.name,
+        name: heading,
         description:
           desc || entityFallbackDescription(locale, power.name, "power"),
         path: localePath(locale, `/powers/${id}`),
@@ -95,7 +98,7 @@ export default async function Page({ params }: Props) {
             name: uiText(locale, "Powers"),
             href: localePath(locale, "/powers"),
           },
-          { name: power.name, href: localePath(locale, `/powers/${id}`) },
+          { name: heading, href: localePath(locale, `/powers/${id}`) },
         ],
       });
       const faqQuestions = [
@@ -122,7 +125,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PowerDetail initialPower={power} />
+      <PowerDetail initialPower={power} heading={heading} />
     </>
   );
 }
