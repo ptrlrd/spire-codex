@@ -166,3 +166,15 @@ export function entityNameLinks(
     .filter((e) => e.id !== excludeId && e.name.trim().length > 0)
     .map((e) => ({ name: e.name, href: `${type}/${e.id.toLowerCase()}` }));
 }
+
+/** Catalog entries whose name appears anywhere in `source` (any casing),
+ * so a page ships only the names its own text can link. */
+export function mentionedIn<T extends { name: string }>(
+  entries: ReadonlyArray<T>,
+  source: unknown,
+): T[] {
+  const text = JSON.stringify(source ?? "").toLowerCase();
+  return entries.filter(
+    (e) => e.name.trim().length > 0 && text.includes(e.name.toLowerCase()),
+  );
+}

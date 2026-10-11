@@ -32,7 +32,7 @@ import {
   fetchPowerCatalog,
   fetchSpawnedCards,
 } from "@/lib/entity-catalogs";
-import { entityNameLinks } from "@/lib/rich-links";
+import { entityNameLinks, mentionedIn } from "@/lib/rich-links";
 
 // 1h on-demand ISR. force-static + revalidate forces Next.js to
 // cache even with async-params pages, without it, Next 15+ sees
@@ -225,12 +225,24 @@ export default async function Page({ params }: Props) {
           summary={summary}
           initialCatalogs={{
             keywords,
-            powers,
-            glossary,
-            orbs,
+            powers: mentionedIn(powers, card).map(
+              ({ id, name, description, type, image_url }) => ({
+                id,
+                name,
+                description,
+                type,
+                image_url,
+              }),
+            ),
+            glossary: mentionedIn(glossary, card),
+            orbs: mentionedIn(orbs, card),
             spawnedCards,
           }}
-          initialEntityLinks={entityNameLinks(cards, "cards", card.id)}
+          initialEntityLinks={entityNameLinks(
+            mentionedIn(cards, card),
+            "cards",
+            card.id,
+          )}
         />
       </Suspense>
     </>

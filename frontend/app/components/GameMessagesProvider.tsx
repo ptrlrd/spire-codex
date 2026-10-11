@@ -10,6 +10,7 @@ import {
 import { useMemo, type ReactNode } from "react";
 import { useGameTables } from "@/lib/game-i18n";
 import { GAME_ROOT, type GameMessages } from "@/lib/game-messages.common";
+import { unsafeKey } from "@/lib/i18n-keys";
 
 /** Adds a page's game strings under the "game" namespace next to the UI
  * catalog the layout already provides. */
@@ -32,7 +33,11 @@ export default function GameMessagesProvider({
       locale={locale}
       timeZone={timeZone}
       messages={merged}
-      getMessageFallback={({ key }) => key}
+      getMessageFallback={({ key, namespace }) =>
+        namespace === GAME_ROOT || namespace?.startsWith(`${GAME_ROOT}.`)
+          ? key
+          : unsafeKey(key)
+      }
       onError={() => undefined}
     >
       {children}

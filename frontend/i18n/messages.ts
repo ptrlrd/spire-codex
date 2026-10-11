@@ -41,7 +41,8 @@ import { X9X } from "@/lib/i18n-x9x";
 import { X9Y } from "@/lib/i18n-x9y";
 import { X9Z } from "@/lib/i18n-x9z";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
-import { safeKey } from "@/lib/i18n-keys";
+import { safeKey, unsafeKey } from "@/lib/i18n-keys";
+import SERVER_ONLY_KEYS from "@/lib/i18n-server-only-keys.json";
 import type { Locale } from "./routing";
 
 // The UI string tables stay the single source of truth (English text as the
@@ -109,5 +110,25 @@ export function messagesFor(locale: Locale): Record<string, string> {
     }
   }
   cache.set(locale, out);
+  return out;
+}
+
+const serverOnly = new Set(SERVER_ONLY_KEYS.map(safeKey));
+const clientCache = new Map<string, Record<string, string>>();
+
+/** The part of the catalog the browser needs: strings only server code
+ * translates stay out, and so do entries that read the same as the English
+ * key, since the missing-message fallback already renders that text. */
+export function clientMessagesFor(locale: Locale): Record<string, string> {
+  const hit = clientCache.get(locale);
+  if (hit) return hit;
+  const out: Record<string, string> = {};
+  for (const [key, text] of Object.entries(messagesFor(locale))) {
+    if (serverOnly.has(key)) continue;
+    if (!/[{}<]/.test(text) && text.replace(/''/g, "'") === unsafeKey(key))
+      continue;
+    out[key] = text;
+  }
+  clientCache.set(locale, out);
   return out;
 }
