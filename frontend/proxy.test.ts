@@ -155,6 +155,16 @@ describe("existing redirects", () => {
     });
   });
 
+  it("leaves percent-escapes alone so non-ASCII slugs never loop", () => {
+    const thai = "/tha/keywords/%E0%B8%99%E0%B8%B4%E0%B8%A3";
+    expect(run(thai).status).not.toBe(308);
+    expect(run(thai.toLowerCase()).status).not.toBe(308);
+    expect(run("/deu/keywords/FL%C3%BCchtig")).toMatchObject({
+      status: 308,
+      location: "/deu/keywords/fl%C3%BCchtig",
+    });
+  });
+
   it("canonicalises encoded Steam news URLs to the gid", () => {
     const encoded = encodeURIComponent(
       "https://store.steampowered.com/news/app/2868840/view/123456789",
