@@ -186,6 +186,7 @@ interface Props {
   relicData: Record<string, RelicInfo>;
   potionData: Record<string, PotionInfo>;
   charColor: string;
+  charLinked: boolean;
   langPrefix: string;
   charName: string;
   killedByName?: string;
@@ -198,6 +199,7 @@ export default function RunSummary({
   relicData,
   potionData,
   charColor,
+  charLinked,
   langPrefix: bp,
   charName,
   killedByName,
@@ -245,6 +247,15 @@ export default function RunSummary({
     gt(`cards.${id}.title`),
   );
 
+  const charAvatar = (
+    <img
+      src={charIcon}
+      alt={charName}
+      className="w-9 h-9 rounded-full object-cover border-2"
+      style={{ borderColor: charColor }}
+      crossOrigin="anonymous"
+    />
+  );
   return (
     <div
       className="rounded-xl border p-4 sm:p-5 mb-4"
@@ -255,15 +266,13 @@ export default function RunSummary({
     >
       {/* Top stats bar, game iconography */}
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm mb-3 pb-3 border-b border-[var(--border-subtle)]">
-        <Link href={`${bp}/characters/${charSlug}`} className="flex-shrink-0">
-          <img
-            src={charIcon}
-            alt={charName}
-            className="w-9 h-9 rounded-full object-cover border-2"
-            style={{ borderColor: charColor }}
-            crossOrigin="anonymous"
-          />
-        </Link>
+        {charLinked ? (
+          <Link href={`${bp}/characters/${charSlug}`} className="flex-shrink-0">
+            {charAvatar}
+          </Link>
+        ) : (
+          <span className="flex-shrink-0">{charAvatar}</span>
+        )}
         <IconStat
           icon={imageUrl("/static/images/ui/top_bar/top_bar_heart.webp")}
           alt={t("HP")}

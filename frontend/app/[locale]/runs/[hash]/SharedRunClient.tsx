@@ -255,6 +255,7 @@ export default function SharedRunClient({
   const player = run.players[run.player_index ?? 0] ?? run.players[0];
   const charId = player.character;
   const charColor = CHAR_CSS_VAR[charId.toUpperCase()] || "var(--accent-gold)";
+  const charLinked = charId.toUpperCase() in CHAR_CSS_VAR;
   const charName = characterTitle(charId, gt);
   const killedBy =
     !run.win && !run.was_abandoned
@@ -430,13 +431,22 @@ export default function SharedRunClient({
                 ? t("Abandoned")
                 : t("Defeat")}
           </span>
-          <Link
-            href={`${bp}/characters/${charId.toLowerCase()}`}
-            className="text-base font-normal hover:underline"
-            style={{ color: charColor }}
-          >
-            {charName}
-          </Link>
+          {charLinked ? (
+            <Link
+              href={`${bp}/characters/${charId.toLowerCase()}`}
+              className="text-base font-normal hover:underline"
+              style={{ color: charColor }}
+            >
+              {charName}
+            </Link>
+          ) : (
+            <span
+              className="text-base font-normal"
+              style={{ color: charColor }}
+            >
+              {charName}
+            </span>
+          )}
         </h1>
         <div className="text-sm text-[var(--text-muted)]">
           {t("Ascension")} {run.ascension || 0}
@@ -464,6 +474,7 @@ export default function SharedRunClient({
         relicData={relicData}
         potionData={potionData}
         charColor={charColor}
+        charLinked={charLinked}
         langPrefix={bp}
         charName={charName}
         killedByName={killedBy?.name}

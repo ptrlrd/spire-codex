@@ -96,6 +96,8 @@ const LOWERCASE_DETAIL_TYPES = new Set([
   "timeline",
 ]);
 
+const ESCAPE = /%[0-9A-Fa-f]{2}/g;
+
 function lowercaseRedirect(req: NextRequest): NextResponse | null {
   const parts = req.nextUrl.pathname.split("/");
   let i = 1;
@@ -103,11 +105,15 @@ function lowercaseRedirect(req: NextRequest): NextResponse | null {
   if (parts[i] === "beta") i++;
   if (!LOWERCASE_DETAIL_TYPES.has(parts[i])) return null;
   const slug = parts.slice(i + 1);
-  if (slug.length === 0 || !slug.some((s) => /[A-Z]/.test(s))) return null;
+  if (!slug.some((s) => /[A-Z]/.test(s.replace(ESCAPE, "")))) return null;
   const url = req.nextUrl.clone();
   url.pathname = [
     ...parts.slice(0, i + 1),
-    ...slug.map((s) => s.toLowerCase()),
+    ...slug.map((s) =>
+      s.replace(/%[0-9A-Fa-f]{2}|[^%]+/g, (m) =>
+        m.startsWith("%") ? m : m.toLowerCase(),
+      ),
+    ),
   ].join("/");
   return NextResponse.redirect(url, 308);
 }
