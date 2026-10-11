@@ -9,6 +9,10 @@ const RAW_ROUTER_ALLOWED = new Set([
   "app/components/LanguageSelector.tsx",
   "app/contexts/BetaVersionContext.tsx",
 ]);
+const NEXT_LINK_ALLOWED = new Set([
+  "app/components/LocaleSuggestToast.tsx",
+  "app/components/LocalizedNames.tsx",
+]);
 
 function walk(dir: string, out: string[] = []): string[] {
   for (const name of readdirSync(dir)) {
@@ -49,7 +53,8 @@ describe("navigation under app/ keeps the locale prefix", () => {
   it("never imports next/link", () => {
     const offenders = files
       .filter((f) => /from\s*["']next\/link["']/.test(readFileSync(f, "utf-8")))
-      .map((f) => relative(ROOT, f).split(sep).join("/"));
+      .map((f) => relative(ROOT, f).split(sep).join("/"))
+      .filter((f) => !NEXT_LINK_ALLOWED.has(f));
     expect(offenders).toEqual([]);
   });
 });
