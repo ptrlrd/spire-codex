@@ -18,7 +18,7 @@ services:
     image: mongo:7.0
     container_name: spire-codex-mongo
     restart: unless-stopped
-    # WiredTiger is already capped at 4G below; this bounds cache + the
+    # WiredTiger is already capped at 2G below; this bounds cache + the
     # per-connection and aggregation overhead on top of it, so a heavy
     # aggregation burst can't push the box into a machine-wide OOM.
     mem_limit: 5g
@@ -31,7 +31,7 @@ services:
       - "--keyFile"
       - "/etc/mongo/keyfile"
       - "--wiredTigerCacheSizeGB"
-      - "4"
+      - "2"
     volumes:
       - ./mongo-data:/data/db
       - ./mongo-keyfile:/etc/mongo/keyfile:ro
