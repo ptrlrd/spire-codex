@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import NextLink from "next/link";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useGameLocale } from "@/lib/i18n";
 import {
@@ -135,14 +136,25 @@ export default function LocaleSuggestToast() {
       className="fixed bottom-4 right-4 z-50 max-w-xs rounded-lg border border-[var(--accent-gold)] bg-[var(--bg-secondary)] p-3 pr-8 text-sm text-[var(--text-primary)] shadow-lg"
     >
       <p className="mb-2">{copy.text}</p>
-      <Link
-        href={pathname}
-        locale={suggested}
-        className="font-semibold underline text-[var(--accent-gold-light)]"
-        onClick={dismiss}
-      >
-        {copy.open} ({suggested === "eng" ? "English" : LANG_NAMES[suggested]})
-      </Link>
+      {suggested === "eng" ? (
+        <NextLink
+          href={pathname}
+          hrefLang="en"
+          className="font-semibold underline text-[var(--accent-gold-light)]"
+          onClick={dismiss}
+        >
+          {copy.open} (English)
+        </NextLink>
+      ) : (
+        <Link
+          href={pathname}
+          locale={suggested}
+          className="font-semibold underline text-[var(--accent-gold-light)]"
+          onClick={dismiss}
+        >
+          {copy.open} ({LANG_NAMES[suggested]})
+        </Link>
+      )}
       <button
         type="button"
         onClick={dismiss}
