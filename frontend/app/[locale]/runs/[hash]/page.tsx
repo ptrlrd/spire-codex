@@ -113,12 +113,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const relicCount = player?.relics.length || 0;
   // Co-op sibling pages (one share hash per player, identical content)
   // canonical to the player-0 hash the API reports, so crawlers stop
-  // counting each seat as a duplicate page. Each locale is a real
-  // translation (title, labels, card and relic names), so it carries its
-  // own canonical and the same hreflang set as every other page.
+  // counting each seat as a duplicate page. The run is the same data in
+  // every locale, so the localized copies canonicalize to English like the
+  // replay does.
   return buildPageMetadata({
     locale,
     path: `/runs/${run.primary_hash || hash}`,
+    supressLanguageAlternates: true,
     title: `${username} - ${char} - ${t("Ascension")} ${ascension} ${resultLabel}${anonTag}`,
     description: `${username}: ${char}, ${t("Ascension")} ${ascension}, ${resultLabel}. ${deckSize} ${t("cards")}, ${relicCount} ${t("relics")}.`,
     ogType: "article",
