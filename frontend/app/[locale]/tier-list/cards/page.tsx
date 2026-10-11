@@ -4,8 +4,11 @@ import {
   SITE_URL,
   SITE_NAME,
   DEFAULT_OG_IMAGE,
+  GAME_NAME,
   buildLanguageAlternates,
+  pageHeading,
 } from "@/lib/seo";
+import { fmtDatePacific } from "@/lib/pacific";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
@@ -18,6 +21,7 @@ import {
 import { getT } from "@/lib/i18n-server";
 import {
   gameNameFor,
+  hreflangOf,
   langQuery,
   localeOf,
   localePath,
@@ -37,6 +41,7 @@ interface ApiCard {
   id: string;
   name: string;
   image_url: string | null;
+  color?: string;
 }
 
 interface ScoresMap {
@@ -83,6 +88,7 @@ interface BaseCard {
   image_url: string | null;
   score: number | null;
   elo: number | null;
+  color?: string;
 }
 
 // Band cards by Codex Elo percentile. Only cards with an Elo are shown: Elo
@@ -126,9 +132,10 @@ export async function generateMetadata({
   const charLabel = COLOR_FILTERS.find((c) => c.value === color)?.label;
   const char = charLabel ? t(charLabel) : "";
   const scope = charLabel && color ? t("{char} Cards", { char }) : t("Cards");
-  // Title leads with STS2 abbreviation + full game name to capture both
-  // query phrasings ("sts2 tier list" vs "slay the spire 2 tier list").
-  const title = `${t("{scope} Tier List", { scope })} - ${gameNameFor(locale)} | ${SITE_NAME}`;
+  const title =
+    locale === "eng"
+      ? `${GAME_NAME} ${charLabel && color ? `${charLabel} ` : ""}Card Tier List (${fmtDatePacific(new Date(), { month: "long", year: "numeric" }, "en-US")}) | ${SITE_NAME}`
+      : `${t("{scope} Tier List", { scope })} - ${gameNameFor(locale)} | ${SITE_NAME}`;
   const description = color
     ? t(
         "{char} card tier list for {game}. Every {char} card ranked S through F based on community win-rate data.",
@@ -211,6 +218,7 @@ export default async function CardsTierListPage({
         image_url: c.image_url,
         score: sc?.score ?? null,
         elo: sc?.elo ?? null,
+        color: c.color,
       };
     });
 
@@ -245,6 +253,19 @@ export default async function CardsTierListPage({
     return `/tier-list/cards${qs ? `?${qs}` : ""}`;
   };
   const metric = sort === "elo" ? "Codex Elo" : "Codex Score";
+  const byCharacter =
+    !color && sort === "score"
+      ? COLOR_FILTERS.filter((c) => c.value).map((c) => ({
+          ...c,
+          top: base
+            .filter((e) => e.color === c.value && e.score != null)
+            .sort(
+              (a, b) =>
+                (b.score ?? 0) - (a.score ?? 0) || (b.elo ?? 0) - (a.elo ?? 0),
+            )
+            .slice(0, 5),
+        }))
+      : [];
 
   // Top-30 for the ItemList JSON-LD, gives Google a structured ranked list
   // it can render as carousel-style rich results. Capped at 30 because
@@ -285,10 +306,20 @@ export default async function CardsTierListPage({
 
       <div className="flex items-baseline gap-3 mb-2 flex-wrap">
         <h1 className="text-3xl font-bold">
-          <span className="text-[var(--accent-gold)]">{heading}</span>
+          <span className="text-[var(--accent-gold)]">
+            {pageHeading(locale, heading)}
+          </span>
         </h1>
         <span className="text-sm text-[var(--text-muted)]">
           {t("{n} cards", { n: entities.length.toLocaleString() })}
+          {" · "}
+          {t("Updated {date}", {
+            date: fmtDatePacific(
+              new Date(),
+              { month: "long", day: "numeric", year: "numeric" },
+              hreflangOf(locale),
+            ),
+          })}
         </span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-4">
@@ -395,6 +426,51 @@ export default async function CardsTierListPage({
         entities={entities}
         valueLabel={sort === "elo" ? "Elo" : "Score"}
       />
+
+      {byCharacter.some((c) => c.top.length) && (
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold mb-4">
+            {t("Top-tier Cards right now")}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {byCharacter
+              .filter((c) => c.top.length)
+              .map((c) => (
+                <div
+                  key={c.value}
+                  className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+                >
+                  <h3 className="text-sm font-semibold mb-2">
+                    <Link
+                      href={`/tier-list/cards?color=${c.value}`}
+                      className="text-[var(--accent-gold)] hover:underline"
+                    >
+                      {t("{char} Card Tier List", { char: t(c.label) })}
+                    </Link>
+                  </h3>
+                  <ol className="space-y-1 text-sm">
+                    {c.top.map((e, i) => (
+                      <li key={e.id} className="flex items-baseline gap-2">
+                        <span className="w-4 text-[var(--text-muted)] tabular-nums">
+                          {i + 1}.
+                        </span>
+                        <Link
+                          href={`/cards/${e.id.toLowerCase()}`}
+                          className="text-[var(--text-primary)] hover:text-[var(--accent-gold)]"
+                        >
+                          {e.name}
+                        </Link>
+                        <span className="ml-auto text-xs font-mono tabular-nums text-[var(--text-muted)]">
+                          {Math.round(e.score ?? 0)}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
