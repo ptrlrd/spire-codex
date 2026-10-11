@@ -2,7 +2,13 @@ import { createTranslator } from "next-intl";
 import { describe, expect, it } from "vitest";
 import { messagesFor } from "@/i18n/messages";
 import { safeKey } from "@/lib/i18n-keys";
-import { buildPageMetadata, entityTitle, pageHeading, pageTitle } from "./seo";
+import {
+  buildPageMetadata,
+  entityQualifier,
+  entityTitle,
+  pageHeading,
+  pageTitle,
+} from "./seo";
 
 describe("page titles", () => {
   it("keeps replacement metacharacters in English segments", () => {
@@ -28,6 +34,33 @@ describe("entity titles", () => {
     expect(entityTitle("deu", "Fackel", "Relikt")).toBe(
       "Fackel - Slay the Spire 2 Relikt | Spire Codex (Deutsch)",
     );
+  });
+  it("leads English titles with character, rarity and type", () => {
+    const qualifier = entityQualifier({
+      character: "ironclad",
+      rarity: "Rare",
+      kind: "Skill",
+    });
+    expect(entityTitle("eng", "Stoke", "Card", qualifier)).toBe(
+      "Stoke - Ironclad Rare Skill Card - Slay the Spire 2 | Spire Codex",
+    );
+    expect(
+      entityTitle(
+        "eng",
+        "Fire Potion",
+        "Potion",
+        entityQualifier({ character: "shared", rarity: "Common" }),
+      ),
+    ).toBe("Fire Potion - Common Potion - Slay the Spire 2 | Spire Codex");
+    expect(entityTitle("fra", "Attiser", "Carte", qualifier)).toBe(
+      "Attiser - Slay the Spire 2 Carte | Spire Codex (Francais)",
+    );
+  });
+  it("skips colors and rarities that are not words a player searches", () => {
+    expect(
+      entityQualifier({ character: "curse", rarity: null, kind: "Curse" }),
+    ).toBe("Curse");
+    expect(entityQualifier({ character: "shared", rarity: "None" })).toBe("");
   });
   it("composes entity titles through buildPageMetadata without (sts2)", () => {
     const meta = buildPageMetadata({

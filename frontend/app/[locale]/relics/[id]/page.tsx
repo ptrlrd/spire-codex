@@ -17,6 +17,7 @@ import {
   clipMetaDescription,
   stripTags,
   stripTagsFlat,
+  entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
@@ -67,6 +68,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       path,
       title: relic.name,
       entityType: t("Relic"),
+      entityQualifier: entityQualifier({
+        character: relic.pool,
+        rarity: relic.rarity_key,
+      }),
       description: clipMetaDescription(
         t("relic_meta_description", {
           name: relic.name,
