@@ -32,7 +32,8 @@ const SPINE_BY_TYPE: Record<string, string> = {
 
 export default function PowerDetail({
   initialPower,
-}: { initialPower?: Power | null } = {}) {
+  heading,
+}: { initialPower?: Power | null; heading?: string } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -170,7 +171,7 @@ export default function PowerDetail({
               <span>&middot;</span>
               <span>{power.stack_type}</span>
             </p>
-            <h1>{power.name}</h1>
+            <h1>{heading ?? power.name}</h1>
             {ledeText && <p className="lede">{ledeText}</p>}
           </div>
 
