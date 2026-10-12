@@ -28,6 +28,8 @@ const sortOptions = [
   { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
   { label: "Z → A", value: "za" },
+  { label: "Cost: low → high", value: "cost" },
+  { label: "Cost: high → low", value: "cost-desc" },
   { label: "Compendium", value: "compendium" },
 ];
 
@@ -74,6 +76,7 @@ const costOptions = [
   { label: "3", value: "3", group: "Energy", icon: ENERGY_ICON },
   { label: "4+", value: "4plus", group: "Energy", icon: ENERGY_ICON },
   { label: "X", value: "x", group: "Energy", icon: ENERGY_ICON },
+  { label: "Any Star Cost", value: "starany", group: "Star", icon: STAR_ICON },
   { label: "1", value: "star1", group: "Star", icon: STAR_ICON },
   { label: "2", value: "star2", group: "Star", icon: STAR_ICON },
   { label: "3", value: "star3", group: "Star", icon: STAR_ICON },
@@ -85,6 +88,8 @@ function matchesCost(c: Card, want: string): boolean {
   if (!want) return true;
   if (want === "x") return !!c.is_x_cost;
   if (want === "starx") return !!c.is_x_star_cost;
+  if (want === "starany")
+    return typeof c.star_cost === "number" || !!c.is_x_star_cost;
   if (want.startsWith("star")) {
     if (typeof c.star_cost !== "number") return false;
     return want === "star4plus"
@@ -93,6 +98,31 @@ function matchesCost(c: Card, want: string): boolean {
   }
   if (typeof c.cost !== "number" || c.cost < 0) return false;
   return want === "4plus" ? c.cost >= 4 : want === String(c.cost);
+}
+
+function energyRank(c: Card): number {
+  if (c.is_x_cost) return 100;
+  if (typeof c.cost !== "number" || c.cost < 0) return Infinity;
+  return c.cost;
+}
+
+function starRank(c: Card): number {
+  if (c.is_x_star_cost) return 100;
+  return typeof c.star_cost === "number" ? c.star_cost : -1;
+}
+
+function compareCost(a: Card, b: Card, dir: 1 | -1): number {
+  const ea = energyRank(a);
+  const eb = energyRank(b);
+  if (ea !== eb) {
+    if (ea === Infinity) return 1;
+    if (eb === Infinity) return -1;
+    return (ea - eb) * dir;
+  }
+  const sa = starRank(a);
+  const sb = starRank(b);
+  if (sa !== sb) return (sa - sb) * dir;
+  return a.name.localeCompare(b.name);
 }
 
 const keywordOptions = [
@@ -241,6 +271,8 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     const sorted = [...withBeta];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
+    else if (sort === "cost") sorted.sort((a, b) => compareCost(a, b, 1));
+    else if (sort === "cost-desc") sorted.sort((a, b) => compareCost(a, b, -1));
     else if (sort === "compendium")
       sorted.sort((a, b) => a.compendium_order - b.compendium_order);
     else if (sort === "score") {
@@ -308,6 +340,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
             value: cost,
             options: costOptions.map((o) => ({
               ...o,
+              label: o.value === "starany" ? t(o.label) : o.label,
               group: o.group === "Energy" ? t("Energy") : t("Star Cost"),
             })),
             onChange: (v) => setFilterAndUrl("cost", v, setCost),
