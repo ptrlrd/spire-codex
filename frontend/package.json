@@ -6,9 +6,9 @@
     "node": ">=24"
   },
   "scripts": {
-    "predev": "node scripts/generate-site-pages.mjs",
+    "predev": "node scripts/generate-site-pages.mjs && node scripts/generate-client-i18n.mjs",
     "dev": "next dev",
-    "prebuild": "node scripts/generate-site-pages.mjs",
+    "prebuild": "node scripts/generate-site-pages.mjs && node scripts/generate-client-i18n.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

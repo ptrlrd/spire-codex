@@ -24,7 +24,7 @@ import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { fetchCardCatalog, fetchKeywordCatalog } from "@/lib/entity-catalogs";
-import { entityNameLinks } from "@/lib/rich-links";
+import { entityNameLinks, mentionedIn } from "@/lib/rich-links";
 import { imageUrl } from "@/lib/image-url";
 
 // Relic data only changes on deploy. force-static + revalidate
@@ -181,7 +181,10 @@ export default async function Page({ params }: Props) {
           initialRecs={initialRecs}
           initialRelated={initialRelated}
           summary={summary}
-          initialEntityLinks={entityNameLinks(cards, "cards")}
+          initialEntityLinks={entityNameLinks(
+            mentionedIn(cards, relic),
+            "cards",
+          )}
           initialKeywords={keywords}
         />
       </Suspense>

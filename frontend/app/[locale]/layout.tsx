@@ -11,7 +11,8 @@ import FloatingFeedback from "@/app/components/FloatingFeedback";
 import NitroAnchor from "@/app/components/NitroAnchor";
 import HighlightFeedback from "@/app/components/HighlightFeedback";
 import { hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+import { clientMessagesFor } from "@/i18n/messages";
 import IntlProvider from "@/app/components/IntlProvider";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
@@ -136,7 +137,6 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
   return (
     <html lang={hreflangOf(locale)} className="dark">
       {/* React hoists these into <head>. Preconnecting to the CDN saves a
@@ -199,10 +199,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             so non-JS crawlers saw pages with no h1 and no text. The only
             component that needed it (BetaVersionProvider's useSearchParams)
             reads window.location instead now. */}
-        <IntlProvider
-          locale={locale}
-          messages={messages as Record<string, string>}
-        >
+        <IntlProvider locale={locale} messages={clientMessagesFor(locale)}>
           <ApiConfigProvider>
             <AuthProvider>
               <ToastProvider>

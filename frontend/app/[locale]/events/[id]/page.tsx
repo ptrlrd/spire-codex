@@ -20,7 +20,7 @@ import {
   fetchKeywordCatalog,
   fetchRelicCatalog,
 } from "@/lib/entity-catalogs";
-import { entityNameLinks } from "@/lib/rich-links";
+import { entityNameLinks, mentionedIn } from "@/lib/rich-links";
 import {
   namesById,
   type AncientPool,
@@ -194,8 +194,8 @@ export default async function Page({ params }: Props) {
         initialEvent={event}
         voteStats={voteStats}
         initialEntityLinks={[
-          ...entityNameLinks(cards, "cards"),
-          ...entityNameLinks(relics, "relics"),
+          ...entityNameLinks(mentionedIn(cards, event), "cards"),
+          ...entityNameLinks(mentionedIn(relics, event), "relics"),
         ]}
         initialKeywords={keywords}
         initialRelics={relics}

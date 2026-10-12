@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   entityNameLinks,
   keywordLinkWords,
+  mentionedIn,
   splitRichLinks,
   type EntityNameLink,
 } from "./rich-links";
@@ -136,5 +137,17 @@ describe("splitRichLinks", () => {
     expect(entityNameLinks(entries, "cards", "BASH")).toEqual([
       { name: "Strike", href: "cards/strike" },
     ]);
+  });
+});
+
+describe("mentionedIn", () => {
+  it("keeps entries whose name appears in the source, any casing", () => {
+    const entries = [
+      { id: "STRENGTH", name: "Strength" },
+      { id: "FRAIL", name: "Frail" },
+      { id: "BLANK", name: " " },
+    ];
+    const card = { description: "Gain 2 [gold]strength[/gold]." };
+    expect(mentionedIn(entries, card).map((e) => e.id)).toEqual(["STRENGTH"]);
   });
 });
