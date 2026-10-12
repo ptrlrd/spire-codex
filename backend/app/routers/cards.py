@@ -13,6 +13,10 @@ def _matches_cost(card: dict, want: str) -> bool:
         return bool(card.get("is_x_cost"))
     if want == "starx":
         return bool(card.get("is_x_star_cost"))
+    if want == "starany":
+        return isinstance(card.get("star_cost"), int) or bool(
+            card.get("is_x_star_cost")
+        )
     if want.startswith("star"):
         sc = card.get("star_cost")
         if not isinstance(sc, int):
@@ -78,7 +82,8 @@ def get_cards(
         None,
         description=(
             "Filter by cost: energy as 0, 1, 2, 3, 4plus, or x; star cost "
-            "(Regent) as star1, star2, star3, star4plus, or starx"
+            "(Regent) as star1, star2, star3, star4plus, or starx, or starany "
+            "for any star cost"
         ),
     ),
     search: str | None = Query(None, description="Search by name or description"),
