@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { cachedFetch } from "@/lib/fetch-cache";
 import {
@@ -13,6 +13,7 @@ import {
   normalizeBracket,
 } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -88,7 +89,6 @@ export default function EncounterStatsClient() {
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
-  const router = useRouter();
   const searchParams = useSearchParams();
 
   const [acts, setActs] = useState<Set<number>>(() => {
@@ -201,10 +201,8 @@ export default function EncounterStatsClient() {
     if (version) p.set("version", version);
     if (page !== 1) p.set("page", String(page));
     const qs = p.toString();
-    router.replace(`/stats/encounters${qs ? `?${qs}` : ""}`, {
-      scroll: false,
-    });
-  }, [acts, roomTypes, multiplayer, bracket, version, page, router]);
+    replaceQuery(qs);
+  }, [acts, roomTypes, multiplayer, bracket, version, page]);
 
   function toggleExpanded(id: string) {
     setExpanded((prev) => toggle(prev, id));

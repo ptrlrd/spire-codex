@@ -12,7 +12,7 @@ import {
 import { useSearchParams } from "next/navigation";
 import type { Relic } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
@@ -20,6 +20,7 @@ import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -73,7 +74,6 @@ const sortOptions = [
 function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [relics, setRelics] = useState<Relic[]>(initialRelics);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
@@ -93,9 +93,9 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
         if (v && v !== "az") params.set(k, v);
       }
       const qs = params.toString();
-      router.replace(`${bp}/relics${qs ? `?${qs}` : ""}`, { scroll: false });
+      replaceQuery(qs);
     },
-    [router, bp],
+    [],
   );
 
   const setFilterAndUrl = useCallback(

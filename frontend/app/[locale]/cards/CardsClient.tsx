@@ -1,7 +1,6 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useRouter } from "@/i18n/navigation";
 import {
   Suspense,
   useState,
@@ -9,6 +8,7 @@ import {
   useRef,
   useMemo,
   useCallback,
+  useDeferredValue,
 } from "react";
 import { useSearchParams } from "next/navigation";
 import type { Card } from "@/lib/api/types";
@@ -18,9 +18,10 @@ import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
 import { CDN_BASE } from "@/lib/image-url";
-import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
+import { useChannel } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -136,9 +137,7 @@ const keywordOptions = [
 ];
 
 function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
-  const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const [cards, setCards] = useState<Card[]>(initialCards);
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -167,17 +166,14 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   const initialRender = useRef(true);
 
   // Sync filter state to URL search params
-  const updateUrl = useCallback(
-    (newState: Record<string, string>) => {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(newState)) {
-        if (v && v !== "az") params.set(k, v);
-      }
-      const qs = params.toString();
-      router.replace(`${bp}/cards${qs ? `?${qs}` : ""}`, { scroll: false });
-    },
-    [router, bp],
-  );
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v && v !== "az") params.set(k, v);
+    }
+    const qs = params.toString();
+    replaceQuery(qs);
+  }, []);
 
   // Wrap setters to also update URL
   const setFilterAndUrl = useCallback(
@@ -285,6 +281,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     }
     return sorted;
   }, [withBeta, sort, scores]);
+  const gridCards = useDeferredValue(sortedCards);
 
   return (
     <>
@@ -360,12 +357,12 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
         // as a contained module instead of floating on the page background.
         <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 p-3 sm:p-5">
           <FullCardGrid
-            cards={sortedCards}
+            cards={gridCards}
             stats={sort === "score" ? scores : undefined}
           />
         </div>
       ) : (
-        <CardGrid cards={sortedCards} />
+        <CardGrid cards={gridCards} />
       )}
     </>
   );

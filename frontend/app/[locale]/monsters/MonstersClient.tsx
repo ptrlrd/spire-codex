@@ -3,7 +3,7 @@
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import type { Monster } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
@@ -11,6 +11,7 @@ import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -56,7 +57,6 @@ function MonstersClientInner({
   const channel = useChannel();
   const betaAdditions = useBetaAdditions<Monster>("monsters", lang);
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
@@ -90,9 +90,9 @@ function MonstersClientInner({
         if (v) params.set(k, v);
       }
       const qs = params.toString();
-      router.replace(`${bp}/monsters${qs ? `?${qs}` : ""}`, { scroll: false });
+      replaceQuery(qs);
     },
-    [router, bp],
+    [],
   );
 
   const setFilterAndUrl = useCallback(

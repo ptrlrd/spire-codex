@@ -215,7 +215,7 @@ export default async function RootLayout({ children, params }: LayoutProps) {
                     the entire content area, which read as a stray "tab" line
                     underneath the donation banner on every navigation. */}
                   <BetaChrome />
-                  <main tabIndex={-1} className="outline-none">
+                  <main tabIndex={-1} className="outline-none min-h-screen">
                     {children}
                   </main>
                 </div>

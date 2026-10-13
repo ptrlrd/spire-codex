@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
 import { characterHex } from "@/lib/character-colors";
 import CharacterTag from "@/app/components/CharacterTag";
@@ -26,6 +26,7 @@ import {
   takePercent,
   type DeckBuilderState,
 } from "@/lib/deck-builder-state";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const UNDO_WINDOW_MS = 8000;
@@ -104,7 +105,6 @@ async function fetchIntel<T extends { available: boolean; detail?: string }>(
 
 export default function DeckBuilderClient() {
   const t = useT();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const { toast } = useToast();
   const [state, setState] = useState<DeckBuilderState>(() =>
@@ -153,15 +153,14 @@ export default function DeckBuilderClient() {
   useEffect(() => {
     const qs = paramsFromState(state).toString();
     written.current = qs;
-    if (qs !== searchParams.toString())
-      router.replace(`/deck-builder${qs ? `?${qs}` : ""}`, { scroll: false });
+    if (qs !== searchParams.toString()) replaceQuery(qs);
     try {
       if (isEmptyDraft(state))
         window.localStorage.removeItem(DRAFT_STORAGE_KEY);
       else
         window.localStorage.setItem(DRAFT_STORAGE_KEY, draftToStorage(state));
     } catch {}
-  }, [state, router, searchParams]);
+  }, [state, searchParams]);
 
   useEffect(() => {
     let dead = false;

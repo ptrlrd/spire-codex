@@ -10,6 +10,7 @@ import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -171,9 +172,9 @@ function EventsClientInner({
         if (v) params.set(k, v);
       }
       const qs = params.toString();
-      router.replace(`${bp}/events${qs ? `?${qs}` : ""}`, { scroll: false });
+      replaceQuery(qs);
     },
-    [router, bp],
+    [],
   );
 
   const setFilterAndUrl = useCallback(

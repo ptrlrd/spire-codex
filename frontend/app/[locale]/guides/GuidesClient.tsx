@@ -5,9 +5,10 @@ import { useSearchParams } from "next/navigation";
 import { useT } from "@/lib/i18n";
 import type { GuideSummary } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -52,7 +53,6 @@ function GuidesClientInner({
   const t = useT();
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [guides, setGuides] = useState<GuideSummary[]>(initialGuides);
   const [search, setSearch] = useState(searchParams.get("search") || "");
 
@@ -76,9 +76,9 @@ function GuidesClientInner({
         if (v && v !== "newest") params.set(k, v);
       }
       const qs = params.toString();
-      router.replace(`${bp}/guides${qs ? `?${qs}` : ""}`, { scroll: false });
+      replaceQuery(qs);
     },
-    [router, bp],
+    [],
   );
 
   const setFilterAndUrl = useCallback(

@@ -29,6 +29,7 @@ import {
   type Pick,
   type SeedFinderState,
 } from "@/lib/seed-finder-state";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const HISTORY_KEY = "spire-codex:seed-finder-history";
@@ -160,8 +161,7 @@ export default function SeedFinderClient() {
     const qs = paramsFromState(state).toString();
     written.current = qs;
     const current = searchParams.toString();
-    if (qs !== current)
-      router.replace(`/seed-finder${qs ? `?${qs}` : ""}`, { scroll: false });
+    if (qs !== current) replaceQuery(qs);
   }, [state, router, searchParams]);
 
   useEffect(() => {

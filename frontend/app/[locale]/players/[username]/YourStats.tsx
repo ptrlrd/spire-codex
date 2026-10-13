@@ -9,7 +9,6 @@ import {
   useState,
 } from "react";
 import { useSearchParams } from "next/navigation";
-import { usePathname, useRouter } from "@/i18n/navigation";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { colorTextClass } from "@/lib/character-colors";
@@ -18,6 +17,7 @@ import {
   insightFilterQuery,
   type InsightFilters,
 } from "@/app/components/ProfileInsights";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const SMALL_SAMPLE = 20;
@@ -609,8 +609,6 @@ function YourStatsInner({
 }) {
   const t = useT();
   const lang = useGameLocale();
-  const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const data = useApiData<PlayerStatsData>(
     own
@@ -806,9 +804,9 @@ function YourStatsInner({
     (next: TabId) => {
       const p = new URLSearchParams(searchParams.toString());
       p.set("stats", next);
-      router.replace(`${pathname}?${p.toString()}`, { scroll: false });
+      replaceQuery(p.toString());
     },
-    [router, pathname, searchParams],
+    [searchParams],
   );
 
   if (!ready || !data) return null;
