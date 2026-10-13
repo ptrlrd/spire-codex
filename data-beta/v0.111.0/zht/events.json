@@ -4244,9 +4244,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "放入Common藥水",
-        "description": "失去[gold]a Potion[/gold]。獲得一張[gold]已升級[/gold]的[gold]CommonSkill牌[/gold]。"
+        "id": "POTION_COMMON",
+        "title": "放入普通藥水",
+        "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]普通攻擊/技能牌[/gold]。"
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "放入罕見藥水",
+        "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]罕見攻擊/技能/能力牌[/gold]。"
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "放入稀有藥水",
+        "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]稀有攻擊/技能/能力牌[/gold]。"
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "放入事件藥水",
+        "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]稀有攻擊/技能/能力牌[/gold]。"
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "放入衍生藥水",
+        "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]普通攻擊/技能牌[/gold]。"
       }
     ],
     "pages": [
@@ -4259,9 +4279,29 @@
         "description": "你轉過彎時感覺到一陣微弱震動，隨即發現一部巨大的旋轉裝置！\n上面有數個槽孔，似乎能將液體轉化為高度壓縮、可供吞食的藥錠。\n\n把這些藥水壓成一小顆藥錠的想法實在令人不太舒服，但也許嘗試新事物也不錯？",
         "options": [
           {
-            "id": "POTION",
-            "title": "放入Common藥水",
-            "description": "失去[gold]a Potion[/gold]。獲得一張[gold]已升級[/gold]的[gold]CommonSkill牌[/gold]。"
+            "id": "POTION_COMMON",
+            "title": "放入普通藥水",
+            "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]普通攻擊/技能牌[/gold]。"
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "放入罕見藥水",
+            "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]罕見攻擊/技能/能力牌[/gold]。"
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "放入稀有藥水",
+            "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]稀有攻擊/技能/能力牌[/gold]。"
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "放入事件藥水",
+            "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]稀有攻擊/技能/能力牌[/gold]。"
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "放入衍生藥水",
+            "description": "失去[gold]一瓶藥水[/gold]。獲得一張[gold]已升級[/gold]的[gold]普通攻擊/技能牌[/gold]。"
           }
         ]
       }

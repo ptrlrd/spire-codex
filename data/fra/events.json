@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "Insérer une potion Common",
-        "description": "Perdez [gold]a Potion[/gold]. Obtenez une [gold]Skill Common[/gold] [gold]Améliorée[/gold]."
+        "id": "POTION_COMMON",
+        "title": "Insérer une potion Commun",
+        "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence Commun[/gold] [gold]Améliorée[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Insérer une potion Inhabituel",
+        "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Inhabituel[/gold] [gold]Améliorée[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Insérer une potion Rare",
+        "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Rare[/gold] [gold]Améliorée[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Insérer une potion Événement",
+        "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Rare[/gold] [gold]Améliorée[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Insérer une potion Généré",
+        "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence Commun[/gold] [gold]Améliorée[/gold]."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "Vous vous apprêtez à tourner au coin lorsque vous ressentez un léger bourdonnement, et découvrez un énorme appareil qui pivote sur son axe !\nVous remarquez qu’il dispose d’emplacements où des liquides semblent pouvoir être transformés en petits comprimés faciles à digérer.\n\nL’idée de convertir vos potions tonifiantes en toutes petites bouchées vous gêne un peu, mais c’est peut-être l’occasion d’essayer de nouvelles choses ?",
         "options": [
           {
-            "id": "POTION",
-            "title": "Insérer une potion Common",
-            "description": "Perdez [gold]a Potion[/gold]. Obtenez une [gold]Skill Common[/gold] [gold]Améliorée[/gold]."
+            "id": "POTION_COMMON",
+            "title": "Insérer une potion Commun",
+            "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence Commun[/gold] [gold]Améliorée[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Insérer une potion Inhabituel",
+            "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Inhabituel[/gold] [gold]Améliorée[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Insérer une potion Rare",
+            "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Rare[/gold] [gold]Améliorée[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Insérer une potion Événement",
+            "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence/Pouvoir Rare[/gold] [gold]Améliorée[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Insérer une potion Généré",
+            "description": "Perdez [gold]une potion[/gold]. Obtenez une [gold]Attaque/Compétence Commun[/gold] [gold]Améliorée[/gold]."
           }
         ]
       }

@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "ポーション（Common）を投入",
-        "description": "[gold]a Potion[/gold]を失う。 [gold]アップグレード[/gold]した[gold]CommonのSkill[/gold]を1つ入手する。"
+        "id": "POTION_COMMON",
+        "title": "ポーション（コモン）を投入",
+        "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]コモンのアタック/スキル[/gold]を1つ入手する。"
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "ポーション（アンコモン）を投入",
+        "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]アンコモンのアタック/スキル/パワー[/gold]を1つ入手する。"
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "ポーション（レア）を投入",
+        "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]レアのアタック/スキル/パワー[/gold]を1つ入手する。"
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "ポーション（イベント）を投入",
+        "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]レアのアタック/スキル/パワー[/gold]を1つ入手する。"
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "ポーション（トークン）を投入",
+        "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]コモンのアタック/スキル[/gold]を1つ入手する。"
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "角を曲がると、かすかな地響きを感じる。 そこには、巨大な回転する装置があった！\nいくつかの投入口を備えており、液体を高度に圧縮し、服用可能な錠剤に変換するようだ。\n\nポーションを、ほんの小さな一口サイズに変えてしまうというアイデアには不安を覚える。 だが、何事もまずは試してみるべきか？",
         "options": [
           {
-            "id": "POTION",
-            "title": "ポーション（Common）を投入",
-            "description": "[gold]a Potion[/gold]を失う。 [gold]アップグレード[/gold]した[gold]CommonのSkill[/gold]を1つ入手する。"
+            "id": "POTION_COMMON",
+            "title": "ポーション（コモン）を投入",
+            "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]コモンのアタック/スキル[/gold]を1つ入手する。"
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "ポーション（アンコモン）を投入",
+            "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]アンコモンのアタック/スキル/パワー[/gold]を1つ入手する。"
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "ポーション（レア）を投入",
+            "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]レアのアタック/スキル/パワー[/gold]を1つ入手する。"
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "ポーション（イベント）を投入",
+            "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]レアのアタック/スキル/パワー[/gold]を1つ入手する。"
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "ポーション（トークン）を投入",
+            "description": "[gold]ポーション[/gold]を失う。 [gold]アップグレード[/gold]した[gold]コモンのアタック/スキル[/gold]を1つ入手する。"
           }
         ]
       }

@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
+        "id": "POTION_COMMON",
         "title": "Insert Common Potion",
-        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Skill[/gold]."
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Attack/Skill[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Insert Uncommon Potion",
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Uncommon Attack/Skill/Power[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Insert Rare Potion",
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Rare Attack/Skill/Power[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Insert Event Potion",
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Rare Attack/Skill/Power[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Insert Token Potion",
+        "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Attack/Skill[/gold]."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "You feel a faint rumbling as you round the corner to discover a gigantic spinning apparatus!\nIt has several slots which appear to convert liquids into a highly compressed digestible tablet.\n\nThe idea of turning these health tonics into a tiny morsel is uncomfortable but perhaps it's good to try new things?",
         "options": [
           {
-            "id": "POTION",
+            "id": "POTION_COMMON",
             "title": "Insert Common Potion",
-            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Skill[/gold]."
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Attack/Skill[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Insert Uncommon Potion",
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Uncommon Attack/Skill/Power[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Insert Rare Potion",
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Rare Attack/Skill/Power[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Insert Event Potion",
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Rare Attack/Skill/Power[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Insert Token Potion",
+            "description": "Lose [gold]a Potion[/gold]. Obtain an [gold]Upgraded[/gold] [gold]Common Attack/Skill[/gold]."
           }
         ]
       }

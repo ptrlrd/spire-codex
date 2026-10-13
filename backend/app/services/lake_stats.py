@@ -389,6 +389,42 @@ JOIN cells c ON x.run_hash = c.run_hash
 GROUP BY 1, 2, 3
 """
 
+
+def _event_choices_src(lake) -> str:
+    """event_choices, with The Future of Potions keyed by the rarity of the
+    potion the seat discarded on that floor (POTION_COMMON, POTION_RARE...).
+    The run file's Rarity variable is display text in the player's language,
+    the discarded potion id is not."""
+    plain = f"read_parquet('{lake}/event_choices.parquet')"
+    if not (Path(lake) / "potion_events.parquet").exists():
+        return plain
+    from .community_stats import RARITY_SPLIT_EVENTS, _potion_rarities
+
+    pairs = sorted(_potion_rarities().items())
+    if not pairs:
+        return plain
+    values = ", ".join(f"('{pid}', '{rar}')" for pid, rar in pairs)
+    events = ", ".join(f"'{e}'" for e in RARITY_SPLIT_EVENTS)
+    return f"""(
+  SELECT run_hash, floor, player_idx, event, option FROM {plain}
+  WHERE event NOT IN ({events})
+  UNION ALL
+  SELECT v.run_hash, v.floor, v.player_idx, v.event,
+    CASE WHEN r.rarity IS NOT NULL THEN v.option || '_' || r.rarity
+      ELSE v.option END AS option
+  FROM (SELECT * FROM {plain} WHERE event IN ({events})) v
+  LEFT JOIN (
+    SELECT run_hash, floor::BIGINT AS floor, player_idx,
+      any_value(potion) AS potion
+    FROM read_parquet('{lake}/potion_events.parquet')
+    WHERE kind = 'discarded'
+    GROUP BY 1, 2, 3
+  ) d ON d.run_hash = v.run_hash AND d.floor = v.floor
+    AND d.player_idx = v.player_idx
+  LEFT JOIN (VALUES {values}) r(potion, rarity) ON r.potion = d.potion
+)"""
+
+
 _CUBE_EVENTS_SQL = """
 SELECT x.cell, x.event, x.option,
   count(*), count(*) FILTER (x.win),
@@ -398,7 +434,7 @@ FROM (
   SELECT c.cell, c.win, c.event, c.option, {exp_expr} AS exp
   FROM (
     SELECT v.run_hash, e.cell, e.win, v.event, v.option, v.floor
-    FROM read_parquet('{lake}/event_choices.parquet') v
+    FROM {events_src} v
     JOIN cells e ON v.run_hash = e.run_hash
   ) c
   {exp_join}
@@ -946,7 +982,7 @@ def _build_community_cube() -> dict[str, dict]:
 
         for cell, char, eid, oid, n in con.execute(
             "SELECT e.cell, lower(e.character), v.event, v.option, count(*)"
-            f" FROM read_parquet('{lake}/event_choices.parquet') v"
+            f" FROM {_event_choices_src(lake)} v"
             " JOIN cells e ON v.run_hash = e.run_hash GROUP BY 1, 2, 3, 4"
         ).fetchall():
             if eid and oid:
@@ -2053,7 +2089,12 @@ def build_entity_cube(con=None) -> dict:
         events: dict[str, dict] = {}
         ev_join, ev_exp = _exp_sql("c.run_hash", "c.floor")
         for cell, eid, oid, *counts in con.execute(
-            _CUBE_EVENTS_SQL.format(lake=LAKE_DIR, exp_join=ev_join, exp_expr=ev_exp)
+            _CUBE_EVENTS_SQL.format(
+                lake=LAKE_DIR,
+                events_src=_event_choices_src(LAKE_DIR),
+                exp_join=ev_join,
+                exp_expr=ev_exp,
+            )
         ).fetchall():
             if eid and oid:
                 events.setdefault(cell, {}).setdefault(eid, {})[oid] = [

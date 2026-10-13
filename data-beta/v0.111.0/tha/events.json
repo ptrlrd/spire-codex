@@ -2945,9 +2945,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "ใส่ขวดยาCommon",
-        "description": "เสีย[gold]a Potion[/gold] ได้รับ[gold]SkillCommon[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+        "id": "POTION_COMMON",
+        "title": "ใส่ขวดยาธรรมดา",
+        "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "ใส่ขวดยาไม่ธรรมดา",
+        "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังไม่ธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "ใส่ขวดยาหายาก",
+        "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "ใส่ขวดยาเหตุการณ์",
+        "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "ใส่ขวดยาโทเคน",
+        "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
       }
     ],
     "pages": [
@@ -2960,9 +2980,29 @@
         "description": "คุณสัมผัสได้ถึงการสั่นเบาๆ ตอนเลี้ยวที่หัวมุม และค้นพบกลไกขนาดใหญ่ที่กำลังหมุนอยู่!\nมันมีช่องให้ใส่มากมาย ซึ่งดูเหมือนจะเป็นเครื่องแปรรูปของเหลวให้กลายเป็นยาอัดเม็ด\n\nการเปลี่ยนน้ำยาบำรุงเหล่านี้ให้กลายเป็นเม็ดเล็กจิ๋วนั้นฟังดูไม่น่าสบายใจเท่าไร แต่การลองสิ่งใหม่ๆ อาจเป็นเรื่องดีก็ได้นะ",
         "options": [
           {
-            "id": "POTION",
-            "title": "ใส่ขวดยาCommon",
-            "description": "เสีย[gold]a Potion[/gold] ได้รับ[gold]SkillCommon[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+            "id": "POTION_COMMON",
+            "title": "ใส่ขวดยาธรรมดา",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "ใส่ขวดยาไม่ธรรมดา",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังไม่ธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "ใส่ขวดยาหายาก",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "ใส่ขวดยาเหตุการณ์",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะ/พลังหายาก[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "ใส่ขวดยาโทเคน",
+            "description": "เสีย[gold]โพชั่น[/gold] ได้รับ[gold]โจมตี/ทักษะธรรมดา[/gold] [gold]แบบพัฒนาแล้ว[/gold]"
           }
         ]
       }

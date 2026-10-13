@@ -4244,9 +4244,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
+        "id": "POTION_COMMON",
+        "title": "Umieść pospolitą Miksturę",
+        "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]pospolitą kartę Ataku[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Umieść niepospolitą Miksturę",
+        "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]niepospolitą kartę Ataku[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Umieść rzadką Miksturę",
+        "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]rzadką kartę Ataku[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Umieść unikalną Miksturę",
+        "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]rzadką kartę Ataku[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
         "title": "Umieść specjalną Miksturę",
-        "description": "Utrać Miksturę: [gold]a Potion[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]specjalną kartę Ataku[/gold]."
+        "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]pospolitą kartę Ataku[/gold]."
       }
     ],
     "pages": [
@@ -4259,9 +4279,29 @@
         "description": "Słyszysz delikatne buczenie, gdy nagle za rogiem znajdujesz gigantyczne, wirujące urządzenie!\nZnajduje się w nim kilka miejsc na mikstury, które są w pewien sposób przetwarzane w jadalne tabliczki.\n\nPrzemiana napoju w małą porcję jedzenia nie brzmi zbyt apetycznie, ale może warto spróbować czegoś nowego?",
         "options": [
           {
-            "id": "POTION",
+            "id": "POTION_COMMON",
+            "title": "Umieść pospolitą Miksturę",
+            "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]pospolitą kartę Ataku[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Umieść niepospolitą Miksturę",
+            "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]niepospolitą kartę Ataku[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Umieść rzadką Miksturę",
+            "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]rzadką kartę Ataku[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Umieść unikalną Miksturę",
+            "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]rzadką kartę Ataku[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
             "title": "Umieść specjalną Miksturę",
-            "description": "Utrać Miksturę: [gold]a Potion[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]specjalną kartę Ataku[/gold]."
+            "description": "Utrać Miksturę: [gold]mikstura[/gold]. Otrzymaj [gold]Ulepszoną[/gold] [gold]pospolitą kartę Ataku[/gold]."
           }
         ]
       }

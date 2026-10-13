@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "{}en Trank einfüllen",
-        "description": "Verliere [gold]a Potion[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Commone {}[/gold]."
+        "id": "POTION_COMMON",
+        "title": "Gewöhnlichen Trank einfüllen",
+        "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Gewöhnliche Angriff/Fertigkeit[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Ungewöhnlichen Trank einfüllen",
+        "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Ungewöhnliche Angriff/Fertigkeit/Macht[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Seltenen Trank einfüllen",
+        "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Seltene Angriff/Fertigkeit/Macht[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Ereignis-Trank einfüllen",
+        "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Seltene Angriff/Fertigkeit/Macht[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Token-Trank einfüllen",
+        "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Gewöhnliche Angriff/Fertigkeit[/gold]."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "Du spürst ein entferntes Rumpeln, dann entdeckst du hinter der nächsten Ecke einen riesigen drehenden Apparat!\nEr hat verschiedene Öffnungen, die anscheinend Flüssigkeiten in eine sehr komprimierte essbare Tablette umwandeln.\n\nDer Gedanke, aus diesen starken Tränken einen winzigen Happen zu machen, klingt unangenehm. Aber vielleicht ist es gut, neue Dinge auszuprobieren?",
         "options": [
           {
-            "id": "POTION",
-            "title": "{}en Trank einfüllen",
-            "description": "Verliere [gold]a Potion[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Commone {}[/gold]."
+            "id": "POTION_COMMON",
+            "title": "Gewöhnlichen Trank einfüllen",
+            "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Gewöhnliche Angriff/Fertigkeit[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Ungewöhnlichen Trank einfüllen",
+            "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Ungewöhnliche Angriff/Fertigkeit/Macht[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Seltenen Trank einfüllen",
+            "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Seltene Angriff/Fertigkeit/Macht[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Ereignis-Trank einfüllen",
+            "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Seltene Angriff/Fertigkeit/Macht[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Token-Trank einfüllen",
+            "description": "Verliere [gold]ein Trank[/gold]. Erhalte eine [gold]Verbesserte[/gold] [gold]Gewöhnliche Angriff/Fertigkeit[/gold]."
           }
         ]
       }
