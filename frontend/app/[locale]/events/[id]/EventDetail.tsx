@@ -30,6 +30,7 @@ import {
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
 import { AncientPools } from "@/app/[locale]/ancients/pools";
+import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -590,7 +591,7 @@ export default function EventDetail({
               <dl>
                 <div className="frow">
                   <dt>{t("Type")}</dt>
-                  <dd style={{ color: "var(--spine)" }}>{event.type}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{event.type}</dd>
                 </div>
                 {event.act && (
                   <div className="frow">

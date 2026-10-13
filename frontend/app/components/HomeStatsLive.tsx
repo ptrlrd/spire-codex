@@ -3,7 +3,7 @@
 import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { characterHex } from "@/lib/character-colors";
+import { characterHex, textColor } from "@/lib/character-colors";
 import type { CommunityStats } from "./HomeStatsSection";
 import { pct } from "@/lib/pct";
 
@@ -167,7 +167,10 @@ export default function HomeStatsLive({
                 const relPct = (c.win_rate / maxWinRate) * 100;
                 return (
                   <div key={c.character} className="wr-row wr-stat">
-                    <span className="wr-name" style={{ color: charColor }}>
+                    <span
+                      className="wr-name"
+                      style={{ color: textColor(charColor) }}
+                    >
                       {characterLabel(c.character, characterNames)}
                     </span>
                     <span className="wr-track">

@@ -335,6 +335,7 @@ export default async function RelicsTierListPage({
               { ancient: ancientLabel ?? "" },
             )}{" "}
             <Link
+              prefetch={false}
               href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
@@ -354,6 +355,7 @@ export default async function RelicsTierListPage({
               "Ranked by Codex Score, community win-rate data with Bayesian shrinkage so a 5-pick relic doesn't outrank a 500-pick one. Click any relic for full stats.",
             )}{" "}
             <Link
+              prefetch={false}
               href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
@@ -372,6 +374,7 @@ export default async function RelicsTierListPage({
           const isActive = (pool ?? "") === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all"}
               href={relicHref(
                 opt.value || undefined,
@@ -400,6 +403,7 @@ export default async function RelicsTierListPage({
           const isActive = (rarity ?? "") === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all-rarities"}
               rel="nofollow"
               href={relicHref(
@@ -429,6 +433,7 @@ export default async function RelicsTierListPage({
           const isActive = ancient === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all-ancients"}
               href={relicHref(
                 pool,
@@ -457,6 +462,7 @@ export default async function RelicsTierListPage({
           const isActive = act === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all-acts"}
               href={relicHref(
                 pool,

@@ -9,6 +9,7 @@ import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import HighestRated from "@/app/components/HighestRated";
 import RelicsClient from "./RelicsClient";
+import { fetchBetaAdditions } from "@/lib/beta-additions.server";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -40,6 +41,7 @@ export default async function RelicsPage({ params }: Props) {
     });
     if (res.ok) relics = await res.json();
   } catch {}
+  const betaRelics = await fetchBetaAdditions<Relic>("relics", locale);
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -77,8 +79,11 @@ export default async function RelicsPage({ params }: Props) {
 
       <RecentlyAdded entityType="relics" label="Relic" pathPrefix="/relics" />
 
-      <Suspense>
-        <RelicsClient initialRelics={relics} />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <RelicsClient
+          initialRelics={relics}
+          initialBeta={{ lang: locale, items: betaRelics }}
+        />
       </Suspense>
     </div>
   );

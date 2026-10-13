@@ -99,7 +99,11 @@
   align-items: center;
 }
 .card-rvmp .eyebrow .dot {
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
 }
 .card-rvmp .hero h1 {
   font-family: var(--serif);
@@ -196,7 +200,11 @@
   text-underline-offset: 5px;
 }
 .card-rvmp .toc a.on {
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   text-decoration: underline;
   text-underline-offset: 5px;
   text-decoration-thickness: 2px;

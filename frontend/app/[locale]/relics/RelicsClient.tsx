@@ -21,7 +21,6 @@ import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
 import { replaceQuery } from "@/lib/replace-query";
-import { chunked } from "@/lib/chunked";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -72,7 +71,13 @@ const sortOptions = [
   { label: "Compendium", value: "compendium" },
 ];
 
-function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
+function RelicsClientInner({
+  initialRelics,
+  initialBeta,
+}: {
+  initialRelics: Relic[];
+  initialBeta?: { lang: string; items: Relic[] };
+}) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
   const [relics, setRelics] = useState<Relic[]>(initialRelics);
@@ -84,7 +89,7 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
-  const betaAdditions = useBetaAdditions<Relic>("relics", lang);
+  const betaAdditions = useBetaAdditions<Relic>("relics", lang, initialBeta);
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -213,66 +218,60 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
       />
 
       <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4">
-        {chunked(sortedRelics).map((chunk, i) => (
-          <Suspense key={i} fallback={null}>
-            {chunk.map((relic) => {
-              const style =
-                rarityColors[relic.rarity] ||
-                "border-[var(--border-subtle)] text-fg-muted";
-              return (
-                <Link
-                  prefetch={false}
-                  key={relic.id}
-                  href={
-                    relic.beta
-                      ? `${bp}/beta/relics/${relic.id.toLowerCase()}`
-                      : `${bp}/relics/${relic.id.toLowerCase()}`
-                  }
-                  className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
-                >
-                  <div className="flex gap-3">
-                    {relic.image_url && (
-                      <img
-                        src={imageUrl(relic.image_url)}
-                        alt={t("{name} - Slay the Spire 2 Relic", {
-                          name: relic.name,
-                        })}
-                        className="w-12 h-12 object-contain flex-shrink-0"
-                        loading="lazy"
-                        crossOrigin="anonymous"
-                      />
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
-                          {relic.name}
-                          {relic.beta && <BetaBadge />}
-                        </h3>
-                      </div>
-                      <div className="flex items-center gap-2 mb-3 text-xs">
-                        <span className={style.split(" ").slice(1).join(" ")}>
-                          {t(relic.rarity)}
-                        </span>
-                        <span className="text-[var(--text-muted)]">
-                          &middot;
-                        </span>
-                        <span className="text-[var(--text-muted)] capitalize">
-                          {t(
-                            relic.pool.charAt(0).toUpperCase() +
-                              relic.pool.slice(1),
-                          )}
-                        </span>
-                      </div>
-                      <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
-                        <RichDescription text={relic.description} />
-                      </p>
-                    </div>
+        {sortedRelics.map((relic) => {
+          const style =
+            rarityColors[relic.rarity] ||
+            "border-[var(--border-subtle)] text-fg-muted";
+          return (
+            <Link
+              prefetch={false}
+              key={relic.id}
+              href={
+                relic.beta
+                  ? `${bp}/beta/relics/${relic.id.toLowerCase()}`
+                  : `${bp}/relics/${relic.id.toLowerCase()}`
+              }
+              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
+            >
+              <div className="flex gap-3">
+                {relic.image_url && (
+                  <img
+                    src={imageUrl(relic.image_url)}
+                    alt={t("{name} - Slay the Spire 2 Relic", {
+                      name: relic.name,
+                    })}
+                    className="w-12 h-12 object-contain flex-shrink-0"
+                    loading="lazy"
+                    crossOrigin="anonymous"
+                  />
+                )}
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-start justify-between mb-2">
+                    <h2 className="text-base font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
+                      {relic.name}
+                      {relic.beta && <BetaBadge />}
+                    </h2>
                   </div>
-                </Link>
-              );
-            })}
-          </Suspense>
-        ))}
+                  <div className="flex items-center gap-2 mb-3 text-xs">
+                    <span className={style.split(" ").slice(1).join(" ")}>
+                      {t(relic.rarity)}
+                    </span>
+                    <span className="text-[var(--text-muted)]">&middot;</span>
+                    <span className="text-[var(--text-muted)] capitalize">
+                      {t(
+                        relic.pool.charAt(0).toUpperCase() +
+                          relic.pool.slice(1),
+                      )}
+                    </span>
+                  </div>
+                  <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
+                    <RichDescription text={relic.description} />
+                  </p>
+                </div>
+              </div>
+            </Link>
+          );
+        })}
       </div>
     </>
   );
@@ -286,7 +285,7 @@ export default function RelicsClient(
   props: Parameters<typeof RelicsClientInner>[0],
 ) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <RelicsClientInner {...props} />
     </Suspense>
   );

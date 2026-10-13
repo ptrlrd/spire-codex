@@ -93,7 +93,11 @@
   font-size: 10.5px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
 }
 .rvmp .gcard-foot {
   display: flex;

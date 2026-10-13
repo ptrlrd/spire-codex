@@ -329,6 +329,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.",
             )}{" "}
             <Link
+              prefetch={false}
               href="/stats/scoring"
               className="text-[var(--accent-gold)] hover:underline"
             >
@@ -341,6 +342,7 @@ export default async function CardsTierListPage({
               "Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.",
             )}{" "}
             <Link
+              prefetch={false}
               href="/stats/scoring#limitations"
               className="text-[var(--accent-gold)] hover:underline"
             >
@@ -366,6 +368,7 @@ export default async function CardsTierListPage({
           const isActive = sort === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value}
               rel="nofollow"
               href={sortHref(opt.value)}
@@ -398,6 +401,7 @@ export default async function CardsTierListPage({
           const href = `/tier-list/cards${qs ? `?${qs}` : ""}`;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all"}
               href={href}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
@@ -442,6 +446,7 @@ export default async function CardsTierListPage({
                 >
                   <h3 className="text-sm font-semibold mb-2">
                     <Link
+                      prefetch={false}
                       href={`/tier-list/cards?color=${c.value}`}
                       className="text-[var(--accent-gold)] hover:underline"
                     >
@@ -455,6 +460,7 @@ export default async function CardsTierListPage({
                           {i + 1}.
                         </span>
                         <Link
+                          prefetch={false}
                           href={`/cards/${e.id.toLowerCase()}`}
                           className="text-[var(--text-primary)] hover:text-[var(--accent-gold)]"
                         >

@@ -16,6 +16,7 @@ import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 import { fullCardUrl } from "@/lib/image-url";
 import { gridCard } from "@/lib/card-display";
+import { fetchBetaAdditions } from "@/lib/beta-additions.server";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -115,9 +116,10 @@ export default async function CardsPage({ params }: Props) {
   // step is required for Google to see the intro prose, the top-N
   // section, or the character breakdown -- they're all in the initial
   // response.
-  const [cards, scoresRaw] = await Promise.all([
+  const [cards, scoresRaw, betaCards] = await Promise.all([
     fetchJSON<Card[]>(`${API}/api/cards?lang=${locale}`, []),
     fetchJSON<Record<string, ScoreEntry>>(`${API}/api/runs/scores/cards`, {}),
+    fetchBetaAdditions<Card>("cards", locale),
   ]);
   // The endpoint keys the score by entity_id; carry that through onto
   // each row so the .map below can look the card up. Previously the
@@ -345,8 +347,11 @@ export default async function CardsPage({ params }: Props) {
 
       <RecentlyAdded entityType="cards" label="Card" pathPrefix="/cards" />
 
-      <Suspense>
-        <CardsClient initialCards={cards.map(gridCard)} />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <CardsClient
+          initialCards={cards.map(gridCard)}
+          initialBeta={{ lang: locale, items: betaCards.map(gridCard) }}
+        />
       </Suspense>
 
       {/* FAQ block: visible content plus FAQPage JSON-LD above gives

@@ -178,7 +178,7 @@ export default async function TierList({
             <span className="text-3xl sm:text-4xl font-bold leading-none">
               {tier?.letter ?? "—"}
             </span>
-            <span className="text-[10px] uppercase tracking-wider opacity-70 ml-2 sm:ml-0 sm:mt-1.5">
+            <span className="text-[10px] uppercase tracking-wider opacity-90 ml-2 sm:ml-0 sm:mt-1.5">
               {tier ? t(tier.label) : t("Unrated")}
             </span>
           </div>

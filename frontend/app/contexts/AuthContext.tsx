@@ -84,13 +84,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (token) {
         headers["Authorization"] = `Bearer ${token}`;
       }
-      const res = await fetch(`${API_BASE}/api/auth/me`, {
+      const res = await fetch(`${API_BASE}/api/auth/session`, {
         credentials: "include",
         headers,
       });
       if (res.ok) {
         const data = await res.json();
-        setUser(data);
+        setUser(data.user ?? null);
       } else {
         setUser(null);
       }

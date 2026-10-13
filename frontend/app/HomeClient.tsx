@@ -415,7 +415,7 @@ export default function HomeClient({
             );
           })}
         </div>
-        <div className="gs-dots" role="tablist" aria-label={t("Get started")}>
+        <div className="gs-dots" role="group" aria-label={t("Get started")}>
           {Array.from({ length: gsCount }, (_, i) => (
             <button
               key={i}
@@ -423,12 +423,17 @@ export default function HomeClient({
               onClick={() => gsGoTo(i)}
               aria-label={`${i + 1} / ${gsCount}`}
               aria-current={i === gsIndex}
-              className={`h-1.5 rounded-full transition-all ${
-                i === gsIndex
-                  ? "w-4 bg-on-fill/80"
-                  : "w-1.5 bg-on-fill/30 hover:bg-on-fill/50"
-              }`}
-            />
+              className="group flex h-6 min-w-6 items-center justify-center"
+            >
+              <span
+                aria-hidden="true"
+                className={`block h-1.5 rounded-full transition-all ${
+                  i === gsIndex
+                    ? "w-4 bg-on-fill/80"
+                    : "w-1.5 bg-on-fill/30 group-hover:bg-on-fill/50"
+                }`}
+              />
+            </button>
           ))}
         </div>
       </section>
@@ -452,6 +457,7 @@ export default function HomeClient({
                 key={char.id}
                 href={`/characters/${char.id.toLowerCase()}`}
                 className="charp"
+                aria-label={charName}
                 style={{ ["--cc"]: char.cssColor } as CSSProperties}
               >
                 <span className="charp-art">

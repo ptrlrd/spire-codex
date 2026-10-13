@@ -36,6 +36,17 @@ def me(request: Request):
     user = get_current_user(request)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
+    return _me_payload(user)
+
+
+@router.get("/session")
+def session(request: Request):
+    """The signed-in user, or null for anonymous visitors (where /me 401s)."""
+    user = get_current_user(request)
+    return {"user": _me_payload(user) if user else None}
+
+
+def _me_payload(user: dict) -> dict:
     if os.environ.get("MONGO_URL", "").strip():
         try:
             from ..services.user_insights import prewarm_user_insights

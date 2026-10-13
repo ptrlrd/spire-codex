@@ -4,7 +4,7 @@ import { useT, type TFn } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
-import { characterHex } from "@/lib/character-colors";
+import { characterHex, textColor } from "@/lib/character-colors";
 import type { FastestBlock, RunRow } from "./HomeLeaderboardSection";
 import { dedupePartyRows } from "@/lib/party-dedupe";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
@@ -228,8 +228,9 @@ export default function HomeLeaderboardLive({
                                 <span
                                   className="lb-name"
                                   style={{
-                                    color:
-                                      characterHex(r.character) || undefined,
+                                    color: characterHex(r.character)
+                                      ? textColor(characterHex(r.character))
+                                      : undefined,
                                   }}
                                 >
                                   {characterLabel(r.character, characterNames)}
@@ -308,8 +309,9 @@ export default function HomeLeaderboardLive({
                                 <span
                                   className="lb-name"
                                   style={{
-                                    color:
-                                      characterHex(r.character) || undefined,
+                                    color: characterHex(r.character)
+                                      ? textColor(characterHex(r.character))
+                                      : undefined,
                                   }}
                                 >
                                   {characterLabel(r.character, characterNames)}
@@ -397,8 +399,9 @@ export default function HomeLeaderboardLive({
                                 <span
                                   className="lb-name"
                                   style={{
-                                    color:
-                                      characterHex(r.character) || undefined,
+                                    color: characterHex(r.character)
+                                      ? textColor(characterHex(r.character))
+                                      : undefined,
                                   }}
                                 >
                                   {characterLabel(r.character, characterNames)}

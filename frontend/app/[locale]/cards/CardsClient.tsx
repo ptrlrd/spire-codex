@@ -136,7 +136,13 @@ const keywordOptions = [
   { label: "Eternal", value: "Eternal" },
 ];
 
-function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
+function CardsClientInner({
+  initialCards,
+  initialBeta,
+}: {
+  initialCards: Card[];
+  initialBeta?: { lang: string; items: Card[] };
+}) {
   const searchParams = useSearchParams();
 
   const [cards, setCards] = useState<Card[]>(initialCards);
@@ -162,7 +168,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
-  const betaAdditions = useBetaAdditions<Card>("cards", lang);
+  const betaAdditions = useBetaAdditions<Card>("cards", lang, initialBeta);
   const initialRender = useRef(true);
 
   // Sync filter state to URL search params
@@ -377,7 +383,7 @@ export default function CardsClient(
   props: Parameters<typeof CardsClientInner>[0],
 ) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <CardsClientInner {...props} />
     </Suspense>
   );

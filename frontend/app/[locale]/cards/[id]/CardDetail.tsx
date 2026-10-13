@@ -39,6 +39,7 @@ import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaDiffNotice from "@/app/components/BetaDiffNotice";
 import "@/app/card-revamp.css";
 import { useBracketParam } from "@/lib/use-bracket-param";
+import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -1011,7 +1012,7 @@ export default function CardDetail({
                 </div>
                 <div className="frow">
                   <dt>{t("Character")}</dt>
-                  <dd style={{ color: "var(--spine)" }}>{characterLabel}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{characterLabel}</dd>
                 </div>
                 {targetLabel && (
                   <div className="frow">

@@ -15,6 +15,7 @@ import {
   bracketListParams,
 } from "@/lib/content-brackets";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { textColor } from "@/lib/character-colors";
 
 function cleanId(id: string): string {
   return id.replace(
@@ -644,7 +645,7 @@ export default function LeaderboardBrowseClient() {
                           </td>
                           <td
                             className="py-2.5 px-2 sm:px-3"
-                            style={{ color: charColor }}
+                            style={{ color: textColor(charColor) }}
                           >
                             <span className="sm:hidden">
                               {localizedName.slice(0, 3)}

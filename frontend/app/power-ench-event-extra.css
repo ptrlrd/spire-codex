@@ -44,7 +44,11 @@
   font-family: var(--serif);
   font-style: italic;
   font-size: 18px;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   margin: 8px 0 0;
 }
 

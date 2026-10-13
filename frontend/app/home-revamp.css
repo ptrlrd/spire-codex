@@ -46,7 +46,11 @@
   font-size: 12px;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   margin-bottom: 15px;
 }
 .rvmp .wordmark {
@@ -194,7 +198,11 @@
   font-size: 10.5px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   width: 100%;
   margin-bottom: -4px;
 }
@@ -209,7 +217,11 @@
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -322,7 +334,11 @@
   font-family: var(--serif);
   font-weight: 700;
   font-size: 26px;
-  color: var(--cc);
+  color: color-mix(
+    in oklab,
+    var(--cc) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   font-variant-numeric: tabular-nums;
 }
 .rvmp .newsrow {
@@ -349,7 +365,11 @@
   font-size: 10.5px;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
 }
 .rvmp .news-title {
   font-family: var(--serif);
@@ -518,7 +538,11 @@
   font-size: 10.5px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   margin: 4px 0 10px;
 }
 .rvmp .wr-row {
@@ -583,7 +607,11 @@
   font-family: var(--sans);
   font-size: 12.5px;
   font-weight: 600;
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -659,7 +687,11 @@
 }
 .rvmp .faq[open] summary svg {
   transform: rotate(180deg);
-  color: var(--spine);
+  color: color-mix(
+    in oklab,
+    var(--spine) calc(100% - var(--text-lift)),
+    var(--lift-to)
+  );
 }
 .rvmp .faq p {
   padding: 0 18px 16px;
@@ -844,7 +876,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 6px;
     margin-top: 10px;
   }
 }

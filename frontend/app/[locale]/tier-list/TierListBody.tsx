@@ -288,6 +288,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           "Click any tier list below to see the full ranking with character or pool filters.",
         )}{" "}
         <Link
+          prefetch={false}
           href="/stats/scoring"
           className="text-[var(--accent-gold)] hover:underline"
         >
@@ -299,6 +300,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
         {secs.map((s) => (
           <Link
+            prefetch={false}
             key={s.href}
             href={s.href}
             className={`block p-5 rounded-lg border bg-gradient-to-br ${s.accent} hover:scale-[1.02] transition-transform`}
@@ -333,6 +335,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                       {block.title}
                     </h3>
                     <Link
+                      prefetch={false}
                       href={block.href}
                       className="text-xs text-[var(--accent-gold)] hover:underline"
                     >
@@ -343,6 +346,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                     {block.entities.map((ent) =>
                       block.route === "cards" ? (
                         <Link
+                          prefetch={false}
                           key={ent.id}
                           href={`/cards/${ent.id.toLowerCase()}`}
                           className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
@@ -358,6 +362,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                         </Link>
                       ) : (
                         <Link
+                          prefetch={false}
                           key={ent.id}
                           href={`/${block.route}/${ent.id.toLowerCase()}`}
                           className="flex flex-col items-center gap-1 w-20 p-2 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
@@ -399,6 +404,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                 {t("Lowest-scoring Cards right now")}
               </h3>
               <Link
+                prefetch={false}
                 href="/tier-list/cards"
                 className="text-xs text-[var(--accent-gold)] hover:underline"
               >
@@ -408,6 +414,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
             <div className="flex flex-wrap gap-2">
               {bottomCards.map((ent) => (
                 <Link
+                  prefetch={false}
                   key={ent.id}
                   href={`/cards/${ent.id.toLowerCase()}`}
                   className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
@@ -468,6 +475,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           )}
         </p>
         <Link
+          prefetch={false}
           href="/stats/scoring#limitations"
           className="inline-block mt-4 text-sm font-medium text-[var(--accent-gold)] hover:underline"
         >

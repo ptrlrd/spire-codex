@@ -260,7 +260,7 @@ export default function AlertTicker() {
           {active.node}
         </div>
         {count > 1 && (
-          <div className="flex items-center gap-1.5 flex-shrink-0">
+          <div className="flex items-center flex-shrink-0">
             {slots.map((s, i) => (
               <button
                 key={s.key}
@@ -271,12 +271,17 @@ export default function AlertTicker() {
                   n: count,
                 })}
                 aria-current={i === safeIndex}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === safeIndex
-                    ? "w-4 bg-on-fill/80"
-                    : "w-1.5 bg-on-fill/30 hover:bg-on-fill/50"
-                }`}
-              />
+                className="group flex h-6 min-w-6 items-center justify-center"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block h-1.5 rounded-full transition-all ${
+                    i === safeIndex
+                      ? "w-4 bg-on-fill/80"
+                      : "w-1.5 bg-on-fill/30 group-hover:bg-on-fill/50"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}
