@@ -42,17 +42,14 @@ function EnchantmentsClientInner({
   const channel = useChannel();
   const initialRender = useRef(true);
 
-  const updateUrl = useCallback(
-    (newState: Record<string, string>) => {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(newState)) {
-        if (v) params.set(k, v);
-      }
-      const qs = params.toString();
-      replaceQuery(qs);
-    },
-    [],
-  );
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    replaceQuery(qs);
+  }, []);
 
   const setFilterAndUrl = useCallback(
     (key: string, value: string, setter: (v: string) => void) => {
