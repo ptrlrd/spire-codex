@@ -77,7 +77,7 @@ const costOptions = [
   { label: "3", value: "3", group: "Energy", icon: ENERGY_ICON },
   { label: "4+", value: "4plus", group: "Energy", icon: ENERGY_ICON },
   { label: "X", value: "x", group: "Energy", icon: ENERGY_ICON },
-  { label: "Any Star Cost", value: "starany", group: "Star", icon: STAR_ICON },
+  { label: "Any", value: "starany", group: "Star", icon: STAR_ICON },
   { label: "1", value: "star1", group: "Star", icon: STAR_ICON },
   { label: "2", value: "star2", group: "Star", icon: STAR_ICON },
   { label: "3", value: "star3", group: "Star", icon: STAR_ICON },
