@@ -1,12 +1,13 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api/types";
 import CardImage from "@/app/components/CardImage";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
+import { chunked } from "@/lib/chunked";
 
 /**
  * "Card view" of the card list: the full game-rendered card images (frame, art,
@@ -34,7 +35,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const href = card.beta ? `${bp}/beta/cards/${id}` : `${bp}/cards/${id}`;
 
   return (
-    <div className="group relative">
+    <div className="group relative [content-visibility:auto] [contain-intrinsic-size:auto_230px]">
       {card.beta && (
         <span className="absolute top-1 right-1 z-20">
           <BetaBadge />
@@ -110,12 +111,16 @@ export default function FullCardGrid({
         "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3"
       }
     >
-      {cards.map((card) => (
-        <FullCardItem
-          key={card.id}
-          card={card}
-          stat={stats?.[card.id.toUpperCase()]}
-        />
+      {chunked(cards).map((chunk, i) => (
+        <Suspense key={i} fallback={null}>
+          {chunk.map((card) => (
+            <FullCardItem
+              key={card.id}
+              card={card}
+              stat={stats?.[card.id.toUpperCase()]}
+            />
+          ))}
+        </Suspense>
       ))}
     </div>
   );

@@ -376,3 +376,30 @@ export function getCardProseFacts(
     ],
   };
 }
+
+export function gridCard(card: Card): Card {
+  const upgrade = card.upgrade
+    ? Object.fromEntries(
+        Object.keys(ADDED_KEYWORD_FLAGS)
+          .filter((flag) => card.upgrade?.[flag])
+          .map((flag) => [flag, true]),
+      )
+    : null;
+  return {
+    id: card.id,
+    name: card.name,
+    color: card.color,
+    type: card.type,
+    rarity: card.rarity,
+    cost: card.cost,
+    star_cost: card.star_cost,
+    is_x_cost: card.is_x_cost,
+    is_x_star_cost: card.is_x_star_cost,
+    keywords: card.keywords,
+    keywords_key: card.keywords_key,
+    upgrade,
+    image_url: card.image_url,
+    beta_image_url: card.beta_image_url,
+    compendium_order: card.compendium_order,
+  } as Card;
+}

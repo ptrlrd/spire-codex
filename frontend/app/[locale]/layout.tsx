@@ -149,12 +149,9 @@ export default async function RootLayout({ children, params }: LayoutProps) {
       />
       <link rel="dns-prefetch" href="https://cdn.spire-codex.com" />
       {/* NitroPay: the queue stub must exist before any createAd call, so it
-          stays beforeInteractive (it's one statement). The loader itself is
-          deferred to lazyOnload: its stack owned every top main-thread
-          blocking task in the field (INP 221ms p75 on mobile, the one
-          failing Core Web Vital), so the auction now starts after load
-          instead of before hydration. The preconnects keep the deferred
-          path fast once it fires. Production builds only — Nitro authorizes
+          stays beforeInteractive (it's one statement). NitroAnchor injects
+          the loader once the page has sat idle after load, since the auction
+          stack is most of the main-thread blocking on phones. Production builds only — Nitro authorizes
           spire-codex.com, so dev would just log errors. */}
       {process.env.NODE_ENV === "production" && (
         <>
@@ -169,12 +166,6 @@ export default async function RootLayout({ children, params }: LayoutProps) {
           <Script id="nitro-stub" strategy="beforeInteractive">
             {`window.nitroAds=window.nitroAds||{createAd:function(){return new Promise(e=>{window.nitroAds.queue.push(["createAd",arguments,e])})},addUserToken:function(){window.nitroAds.queue.push(["addUserToken",arguments])},queue:[]};`}
           </Script>
-          <Script
-            src="https://s.nitropay.com/ads-2467.js"
-            strategy="lazyOnload"
-            data-cfasync="false"
-            data-spa="auto"
-          />
         </>
       )}
       <body

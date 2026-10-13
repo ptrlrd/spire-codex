@@ -226,6 +226,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
         !keyword &&
         !cost &&
         !search &&
+        view === "card" &&
         initialCards.length > 0
       ) {
         return;
@@ -240,7 +241,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     if (search) params.set("search", search);
     params.set("lang", lang);
     cachedFetch<Card[]>(`${API}/api/cards?${params}`).then(setCards);
-  }, [color, type, rarity, keyword, cost, search, lang, channel]);
+  }, [color, type, rarity, keyword, cost, search, lang, channel, view]);
 
   const scores = useEntityScores("cards");
 
