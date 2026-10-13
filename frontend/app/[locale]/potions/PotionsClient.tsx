@@ -12,12 +12,13 @@ import {
 import { useSearchParams } from "next/navigation";
 import type { Potion } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -56,7 +57,6 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
   const bp = useBetaPrefix();
   const channel = useChannel();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [potions, setPotions] = useState<Potion[]>(initialPotions);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
@@ -65,17 +65,14 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
   const [loading, setLoading] = useState(false);
   const initialRender = useRef(true);
 
-  const updateUrl = useCallback(
-    (newState: Record<string, string>) => {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(newState)) {
-        if (v && v !== "az") params.set(k, v);
-      }
-      const qs = params.toString();
-      router.replace(`${bp}/potions${qs ? `?${qs}` : ""}`, { scroll: false });
-    },
-    [router, bp],
-  );
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v && v !== "az") params.set(k, v);
+    }
+    const qs = params.toString();
+    replaceQuery(qs);
+  }, []);
 
   const setFilterAndUrl = useCallback(
     (key: string, value: string, setter: (v: string) => void) => {

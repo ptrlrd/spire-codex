@@ -10,6 +10,7 @@ import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -164,17 +165,14 @@ function EventsClientInner({
       .catch(() => {});
   }, [lang]);
 
-  const updateUrl = useCallback(
-    (newState: Record<string, string>) => {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(newState)) {
-        if (v) params.set(k, v);
-      }
-      const qs = params.toString();
-      router.replace(`${bp}/events${qs ? `?${qs}` : ""}`, { scroll: false });
-    },
-    [router, bp],
-  );
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    replaceQuery(qs);
+  }, []);
 
   const setFilterAndUrl = useCallback(
     (key: string, value: string, setter: (v: string) => void) => {

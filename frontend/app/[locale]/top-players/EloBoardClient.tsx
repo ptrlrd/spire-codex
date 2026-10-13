@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { fmtDateTimePacific } from "@/lib/pacific";
@@ -14,6 +14,7 @@ import {
   type SortKey,
 } from "@/lib/elo-board";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -34,7 +35,6 @@ function rankTone(rank: number): string {
 export default function EloBoardClient() {
   const t = useT();
   const lang = useGameLocale();
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [board, setBoard] = useState<EloBoard | null>(null);
   const [failed, setFailed] = useState(false);
@@ -86,12 +86,7 @@ export default function EloBoardClient() {
 
   const setSort = (key: SortKey) => {
     setSortKey(key);
-    router.replace(
-      key === "elo" ? "/top-players" : "/top-players?sort=lifetime",
-      {
-        scroll: false,
-      },
-    );
+    replaceQuery(key === "elo" ? "" : "sort=lifetime");
   };
 
   return (

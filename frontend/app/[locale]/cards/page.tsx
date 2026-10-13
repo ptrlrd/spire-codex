@@ -15,6 +15,7 @@ import ScoreBadge from "@/app/components/ScoreBadge";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 import { fullCardUrl } from "@/lib/image-url";
+import { gridCard } from "@/lib/card-display";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -345,7 +346,7 @@ export default async function CardsPage({ params }: Props) {
       <RecentlyAdded entityType="cards" label="Card" pathPrefix="/cards" />
 
       <Suspense>
-        <CardsClient initialCards={cards} />
+        <CardsClient initialCards={cards.map(gridCard)} />
       </Suspense>
 
       {/* FAQ block: visible content plus FAQPage JSON-LD above gives

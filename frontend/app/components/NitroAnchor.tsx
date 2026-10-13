@@ -16,6 +16,31 @@ declare global {
   }
 }
 
+const NITRO_SRC = "https://s.nitropay.com/ads-2467.js";
+const IDLE_DELAY_MS = 4000;
+let nitroQueued = false;
+
+function loadNitroWhenIdle() {
+  if (nitroQueued) return;
+  nitroQueued = true;
+  const inject = () => {
+    const s = document.createElement("script");
+    s.src = NITRO_SRC;
+    s.async = true;
+    s.setAttribute("data-cfasync", "false");
+    s.setAttribute("data-spa", "auto");
+    document.head.appendChild(s);
+  };
+  const whenIdle = () =>
+    window.setTimeout(() => {
+      if ("requestIdleCallback" in window)
+        window.requestIdleCallback(inject, { timeout: 3000 });
+      else inject();
+    }, IDLE_DELAY_MS);
+  if (document.readyState === "complete") whenIdle();
+  else window.addEventListener("load", whenIdle, { once: true });
+}
+
 /** The site's single ad unit: the dashboard-configured "scnp-anchor"
  * floating bottom anchor. The head stub queues this call if the loader
  * hasn't arrived yet, and data-spa="auto" keeps it fresh across
@@ -27,6 +52,7 @@ export default function NitroAnchor() {
     isAdFree(pathname) || loading || Boolean(user?.supporter?.active);
   useEffect(() => {
     if (adFree) return;
+    loadNitroWhenIdle();
     window.nitroAds?.createAd("scnp-anchor", {
       format: "anchor-v2",
       anchor: "bottom",

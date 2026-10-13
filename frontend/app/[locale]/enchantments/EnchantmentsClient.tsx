@@ -3,13 +3,14 @@
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
-import { Link, useRouter } from "@/i18n/navigation";
+import { Link } from "@/i18n/navigation";
 import type { Enchantment } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -32,7 +33,6 @@ function EnchantmentsClientInner({
 }) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [enchantments, setEnchantments] =
     useState<Enchantment[]>(initialEnchantments);
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -42,19 +42,14 @@ function EnchantmentsClientInner({
   const channel = useChannel();
   const initialRender = useRef(true);
 
-  const updateUrl = useCallback(
-    (newState: Record<string, string>) => {
-      const params = new URLSearchParams();
-      for (const [k, v] of Object.entries(newState)) {
-        if (v) params.set(k, v);
-      }
-      const qs = params.toString();
-      router.replace(`${bp}/enchantments${qs ? `?${qs}` : ""}`, {
-        scroll: false,
-      });
-    },
-    [router, bp],
-  );
+  const updateUrl = useCallback((newState: Record<string, string>) => {
+    const params = new URLSearchParams();
+    for (const [k, v] of Object.entries(newState)) {
+      if (v) params.set(k, v);
+    }
+    const qs = params.toString();
+    replaceQuery(qs);
+  }, []);
 
   const setFilterAndUrl = useCallback(
     (key: string, value: string, setter: (v: string) => void) => {

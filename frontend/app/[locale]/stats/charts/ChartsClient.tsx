@@ -6,7 +6,6 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useRouter } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { CONTENT_BRACKETS, normalizeBracket } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
@@ -25,6 +24,7 @@ import {
 } from "chart.js";
 import { Line, Bar, Scatter } from "react-chartjs-2";
 import { fmtNum } from "@/lib/pct";
+import { replaceQuery } from "@/lib/replace-query";
 
 ChartJS.register(
   LineElement,
@@ -354,7 +354,6 @@ const selectCls =
   "bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-md px-3 py-1.5 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 max-w-72";
 
 function ChartsClientInner() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const lang = useGameLocale();
   const t = useT();
@@ -544,7 +543,7 @@ function ChartsClientInner() {
       p.set("entity", entity);
     }
     const qs = p.toString();
-    router.replace(`/stats/charts${qs ? `?${qs}` : ""}`, { scroll: false });
+    replaceQuery(qs);
   }, [
     chart,
     players,
@@ -564,7 +563,6 @@ function ChartsClientInner() {
     entity,
     needsEntity,
     spec,
-    router,
   ]);
 
   // Fetch the chart itself.
