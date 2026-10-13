@@ -998,11 +998,11 @@
   {
     "gid": "1826992588596430",
     "title": "Latest Slay The Spire 2 update stops you having over a billion HP, while tweaking the deckbuilder's mod support",
-    "url": "https://steamstore-a.akamaihd.net/news/externalpost/Rock, Paper, Shotgun/1826992588596430",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/rps/1826992588596430",
     "is_external_url": true,
     "author": "",
     "feedlabel": "Rock, Paper, Shotgun",
-    "feedname": "Rock, Paper, Shotgun",
+    "feedname": "rps",
     "feed_type": 0,
     "tags": [],
     "date": 1773424800,
@@ -1208,19 +1208,6 @@
     "appid": 2868840
   },
   {
-    "gid": "1826362059922226",
-    "title": "Slay the Spire 2 peaks at 574k players",
-    "url": "https://steamstore-a.akamaihd.net/news/externalpost/SteamDB/1826362059922226",
-    "is_external_url": true,
-    "author": "SteamDB",
-    "feedlabel": "SteamDB",
-    "feedname": "SteamDB",
-    "feed_type": 0,
-    "tags": [],
-    "date": 1772979603,
-    "appid": 2868840
-  },
-  {
     "gid": "1826362059928140",
     "title": "Slay the Spire 2 dev Mega Crit is \"totally blown away\" by its half-million player peak, but it's another indie triumph",
     "url": "https://steamstore-a.akamaihd.net/news/externalpost/PCGamesN/1826362059928140",
@@ -1326,6 +1313,19 @@
     "feed_type": 0,
     "tags": [],
     "date": 1772737887,
+    "appid": 2868840
+  },
+  {
+    "gid": "1826362059922226",
+    "title": "Slay the Spire 2 peaks at 574k players",
+    "url": "https://steamstore-a.akamaihd.net/news/externalpost/SteamDB/1826362059922226",
+    "is_external_url": true,
+    "author": "SteamDB",
+    "feedlabel": "SteamDB",
+    "feedname": "SteamDB",
+    "feed_type": 0,
+    "tags": [],
+    "date": 1772735705,
     "appid": 2868840
   },
   {
