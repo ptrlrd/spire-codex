@@ -6,7 +6,13 @@ router is a thin read-only view over that archive plus a couple of
 filters; everything is in-memory after first load.
 """
 
-from fastapi import APIRouter, HTTPException, Request, Response
+import io
+from collections import OrderedDict
+from urllib.parse import urlsplit
+
+import httpx
+from fastapi import APIRouter, HTTPException, Query, Request, Response
+from PIL import Image, ImageOps
 
 from ..services import cache as app_cache
 from ..services.data_service import load_news_index, load_news_item
@@ -92,6 +98,104 @@ def list_news(
         "offset": offset,
         "items": sliced,
     }
+
+
+THUMB_HOSTS = {
+    "clan.steamstatic.com",
+    "cdn.steamstatic.com",
+    "shared.steamstatic.com",
+    "clan.cloudflare.steamstatic.com",
+    "clan.akamai.steamstatic.com",
+    "cdn.cloudflare.steamstatic.com",
+    "cdn.akamai.steamstatic.com",
+    "shared.cloudflare.steamstatic.com",
+    "shared.akamai.steamstatic.com",
+    "shared.fastly.steamstatic.com",
+    "steamcdn-a.akamaihd.net",
+}
+THUMB_WIDTHS = (320, 640)
+THUMB_MAX_SOURCE_BYTES = 15 * 1024 * 1024
+THUMB_MAX_PIXELS = 40_000_000
+THUMB_CACHE_SIZE = 64
+_thumb_cache: OrderedDict[tuple[str, int], bytes] = OrderedDict()
+
+
+def thumb_source_allowed(src: str) -> bool:
+    parts = urlsplit(src)
+    return (
+        parts.scheme == "https"
+        and parts.hostname in THUMB_HOSTS
+        and parts.port is None
+        and not parts.username
+    )
+
+
+def make_thumb(data: bytes, width: int) -> bytes:
+    with Image.open(io.BytesIO(data)) as img:
+        if img.width * img.height > THUMB_MAX_PIXELS:
+            raise ValueError("image too large")
+        img.seek(0)
+        frame = ImageOps.exif_transpose(img.convert("RGBA"))
+    if frame.width > width:
+        frame = frame.resize(
+            (width, max(1, round(frame.height * width / frame.width))),
+            Image.Resampling.LANCZOS,
+        )
+    out = io.BytesIO()
+    frame.save(out, "WEBP", quality=72, method=4)
+    return out.getvalue()
+
+
+async def _fetch_source(src: str) -> bytes:
+    async with httpx.AsyncClient(timeout=10, follow_redirects=False) as client:
+        url = src
+        for _ in range(4):
+            async with client.stream("GET", url) as res:
+                if res.is_redirect:
+                    url = str(res.url.join(res.headers.get("location", "")))
+                    if not thumb_source_allowed(url):
+                        break
+                    continue
+                if res.status_code != 200:
+                    break
+                chunks = []
+                size = 0
+                async for chunk in res.aiter_bytes():
+                    size += len(chunk)
+                    if size > THUMB_MAX_SOURCE_BYTES:
+                        raise HTTPException(status_code=413, detail="Source too large")
+                    chunks.append(chunk)
+                return b"".join(chunks)
+    raise HTTPException(status_code=502, detail="Source image unavailable")
+
+
+@router.get("/thumb.webp")
+async def news_thumb(
+    src: str = Query(..., max_length=500),
+    w: int = 640,
+) -> Response:
+    """Small webp thumbnail of a Steam news image (first frame for GIFs)."""
+    if not thumb_source_allowed(src):
+        raise HTTPException(status_code=400, detail="Unsupported image host")
+    width = min(THUMB_WIDTHS, key=lambda x: abs(x - w))
+    key = (src, width)
+    body = _thumb_cache.get(key)
+    if body is None:
+        data = await _fetch_source(src)
+        try:
+            body = make_thumb(data, width)
+        except (OSError, ValueError, Image.DecompressionBombError):
+            raise HTTPException(status_code=422, detail="Unreadable image")
+        _thumb_cache[key] = body
+        while len(_thumb_cache) > THUMB_CACHE_SIZE:
+            _thumb_cache.popitem(last=False)
+    else:
+        _thumb_cache.move_to_end(key)
+    return Response(
+        content=body,
+        media_type="image/webp",
+        headers={"Cache-Control": "public, max-age=604800, immutable"},
+    )
 
 
 @router.get("/{gid}")

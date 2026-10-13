@@ -379,6 +379,12 @@ export function markdownExcerpt(raw: string, maxLen = 200): string {
  * posts use `[img]{STEAM_CLAN_IMAGE}/...[/img]`) and the raw `<img>` tags
  * external press articles ship with. Returns null when the article has
  * no inline imagery, caller should fall back to a placeholder. */
+const NEWS_THUMB_BASE = `${process.env.NEXT_PUBLIC_API_URL ?? ""}/api/news/thumb.webp`;
+
+export function newsThumbUrl(src: string, width: 320 | 640): string {
+  return `${NEWS_THUMB_BASE}?src=${encodeURIComponent(src)}&w=${width}`;
+}
+
 export function firstNewsImage(raw: string | undefined | null): string | null {
   if (!raw) return null;
   // BBCode form: [img]{STEAM_CLAN_IMAGE}/29087962/abc.png[/img] or [img]https://.../foo.jpg[/img]

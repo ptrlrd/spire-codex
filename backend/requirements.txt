@@ -15,6 +15,7 @@ numpy==2.2.6
 tantivy==0.26.2
 scipy==1.14.1
 tzdata==2025.2
+pillow==12.3.0
 # Analytics lake (pinned exactly; see lab/README.md)
 duckdb==1.5.5
 pyarrow==21.0.0

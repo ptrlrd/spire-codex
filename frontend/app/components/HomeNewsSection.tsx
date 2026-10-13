@@ -6,6 +6,7 @@ import {
   newsExcerpt,
   formatNewsDate,
   newsSlugForArticle,
+  newsThumbUrl,
 } from "@/lib/steam-news";
 import "../home-sections.css";
 
@@ -111,7 +112,9 @@ export default async function HomeNewsSection({
                 >
                   <img
                     className="news-thumb"
-                    src={hero}
+                    src={newsThumbUrl(hero, 640)}
+                    srcSet={`${newsThumbUrl(hero, 320)} 320w, ${newsThumbUrl(hero, 640)} 640w`}
+                    sizes="(max-width: 900px) 100vw, 380px"
                     alt=""
                     width={640}
                     height={360}
