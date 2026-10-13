@@ -853,8 +853,14 @@ def get_chart(
         raise HTTPException(status_code=404, detail=f"Unknown chart '{chart_key}'")
     # Brackets now apply to both frame and blob charts (the blob is accumulated
     # per bracket in the snapshot).
-    if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
-        raise HTTPException(status_code=400, detail="bad bracket")
+    if bracket is not None:
+        if spec["kind"] == "blob":
+            try:
+                ensure_known_bracket(bracket)
+            except UnknownBracket:
+                raise HTTPException(status_code=400, detail="bad bracket")
+        elif bracket not in ("a10", "wr30", "wr50", "wr75"):
+            raise HTTPException(status_code=400, detail="bad bracket")
     if build_id is not None and not re.fullmatch(r"v[\d.]+", build_id):
         raise HTTPException(status_code=400, detail="bad build_id")
     if game_mode and game_mode not in ("standard", "daily", "custom"):

@@ -32,6 +32,7 @@ import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
 import MonsterEncounterStats from "./MonsterEncounterStats";
+import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -660,7 +661,7 @@ export default function MonsterDetail({
                     <div className="k">{t("Type")}</div>
                     <div
                       className="v"
-                      style={{ color: "var(--spine)", fontSize: 20 }}
+                      style={{ color: SPINE_TEXT, fontSize: 20 }}
                     >
                       {monster.type}
                     </div>
@@ -1041,7 +1042,7 @@ export default function MonsterDetail({
                 )}
                 <div className="frow">
                   <dt>{t("Type")}</dt>
-                  <dd style={{ color: "var(--spine)" }}>{monster.type}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{monster.type}</dd>
                 </div>
                 {acts.length > 0 && (
                   <div className="frow">

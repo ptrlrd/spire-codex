@@ -1,13 +1,12 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api/types";
 import CardImage from "@/app/components/CardImage";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
-import { chunked } from "@/lib/chunked";
 
 /**
  * "Card view" of the card list: the full game-rendered card images (frame, art,
@@ -50,7 +49,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
           alt={t("{name} - Slay the Spire 2", {
             name: `${card.name}${showUpgraded ? "+" : ""}`,
           })}
-          className="w-full h-auto aspect-[400/520] transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
+          className="w-full h-auto aspect-[400/520] object-contain transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         />
       </Link>
       {stat && (
@@ -111,16 +110,12 @@ export default function FullCardGrid({
         "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 sm:gap-3"
       }
     >
-      {chunked(cards).map((chunk, i) => (
-        <Suspense key={i} fallback={null}>
-          {chunk.map((card) => (
-            <FullCardItem
-              key={card.id}
-              card={card}
-              stat={stats?.[card.id.toUpperCase()]}
-            />
-          ))}
-        </Suspense>
+      {cards.map((card) => (
+        <FullCardItem
+          key={card.id}
+          card={card}
+          stat={stats?.[card.id.toUpperCase()]}
+        />
       ))}
     </div>
   );

@@ -20,6 +20,7 @@ import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
+import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -277,7 +278,7 @@ export default function PowerDetail({
               <dl>
                 <div className="frow">
                   <dt>{t("Type")}</dt>
-                  <dd style={{ color: "var(--spine)" }}>{power.type}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{power.type}</dd>
                 </div>
                 <div className="frow">
                   <dt>{t("Stacking")}</dt>

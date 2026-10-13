@@ -24,6 +24,7 @@ import AscensionHeatmap, {
 } from "@/app/components/AscensionHeatmap";
 import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
 import CharacterTag from "@/app/components/CharacterTag";
+import { textColor } from "@/lib/character-colors";
 
 ChartJS.register(
   BarElement,
@@ -1254,7 +1255,10 @@ export function InsightsPanels({
               return (
                 <div key={c.id} className="space-y-1">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium" style={{ color: hex }}>
+                    <span
+                      className="font-medium"
+                      style={{ color: textColor(hex) }}
+                    >
                       {(c.name || displayCharacter(c.id)).replace(
                         /^The\s+/i,
                         "",

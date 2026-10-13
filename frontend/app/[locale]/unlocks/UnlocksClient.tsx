@@ -9,6 +9,7 @@ import RichDescription from "@/app/components/RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { textColor } from "@/lib/character-colors";
 
 interface UnlockEntity {
   id: string;
@@ -121,7 +122,9 @@ function EntityCard({
           {entity.rarity && <span>{t(entity.rarity)}</span>}
           {entity.type && <span>{t(entity.type)}</span>}
           <span>&middot;</span>
-          <span style={{ color: charColor }}>{t(entity.character)}</span>
+          <span style={{ color: textColor(charColor) }}>
+            {t(entity.character)}
+          </span>
         </div>
         {entity.unlock_info && (
           <div className="text-[11px] text-[var(--text-secondary)] mt-0.5">

@@ -1,5 +1,6 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
+import { textColor } from "@/lib/character-colors";
 
 const ARROW = (
   <svg
@@ -148,7 +149,7 @@ export default async function HomeMetricsSection({
                     <td className="ent">
                       <a
                         href={`${lang === "eng" ? "" : `/${lang}`}/cards/${c.id.toLowerCase()}`}
-                        style={{ color: cardHex(c.color) }}
+                        style={{ color: textColor(cardHex(c.color)) }}
                       >
                         {c.name}
                       </a>

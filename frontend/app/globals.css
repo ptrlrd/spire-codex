@@ -239,6 +239,84 @@
   --shadow-card: none;
 }
 
+:root {
+  --text-ironclad: #e67663;
+  --text-silent: #56a677;
+  --text-defect: #729bc3;
+  --text-necrobinder: #d07f9f;
+  --text-regent: #f07c1e;
+  --text-ancient: #9c92b2;
+  --text-colorless: #9196a1;
+  --text-lift: 27%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="light"] {
+  --text-ironclad: #bf3422;
+  --text-silent: #1a7548;
+  --text-defect: #346b9e;
+  --text-necrobinder: #a14b6f;
+  --text-regent: #a05110;
+  --text-ancient: #6b5b8a;
+  --text-colorless: #616774;
+  --text-lift: 28%;
+  --lift-to: #000000;
+}
+:root[data-theme="ironclad"] {
+  --text-ironclad: #e16350;
+  --text-silent: #3d9c67;
+  --text-defect: #608ebb;
+  --text-necrobinder: #c86e93;
+  --text-regent: #f07c1e;
+  --text-ancient: #9085a9;
+  --text-colorless: #858b97;
+  --text-lift: 22%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="silent"] {
+  --text-ironclad: #e67663;
+  --text-silent: #56a677;
+  --text-defect: #729bc3;
+  --text-necrobinder: #cf7d9d;
+  --text-regent: #f07c1e;
+  --text-ancient: #9c92b2;
+  --text-colorless: #9196a1;
+  --text-lift: 31%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="defect"] {
+  --text-ironclad: #e26754;
+  --text-silent: #439e6b;
+  --text-defect: #6491bd;
+  --text-necrobinder: #ca7295;
+  --text-regent: #f07c1e;
+  --text-ancient: #9388ab;
+  --text-colorless: #878d98;
+  --text-lift: 24%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="necrobinder"] {
+  --text-ironclad: #e16350;
+  --text-silent: #3d9c67;
+  --text-defect: #6290bc;
+  --text-necrobinder: #c86e93;
+  --text-regent: #f07c1e;
+  --text-ancient: #9085a9;
+  --text-colorless: #858b97;
+  --text-lift: 23%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="regent"] {
+  --text-ironclad: #e46e5a;
+  --text-silent: #48a06e;
+  --text-defect: #6894be;
+  --text-necrobinder: #cc7598;
+  --text-regent: #f07c1e;
+  --text-ancient: #958aad;
+  --text-colorless: #8b919c;
+  --text-lift: 26%;
+  --lift-to: #ffffff;
+}
+
 /* Light-mode fixes that are about layout, not palette. Palette differences
    live in the tokens above. */
 :root[data-theme="light"] .bt-count,
@@ -476,4 +554,10 @@ body:has(.card-rvmp[style*="--entity-bg"])::before {
   .sc-ticker-fade {
     animation: none;
   }
+}
+
+p a:not([role="button"]) {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }

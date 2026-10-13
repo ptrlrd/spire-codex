@@ -23,13 +23,18 @@ interface BetaDiff {
 export function useBetaAdditions<T extends { id: string }>(
   type: string,
   lang: string,
+  initial?: { lang: string; items: T[] },
 ): T[] {
   const channel = useChannel();
-  const [items, setItems] = useState<T[]>([]);
+  const [items, setItems] = useState<T[]>(initial?.items ?? []);
 
   useEffect(() => {
     if (channel === "beta") {
       setItems([]);
+      return;
+    }
+    if (initial && initial.lang === lang) {
+      setItems(initial.items);
       return;
     }
     let active = true;
@@ -58,7 +63,7 @@ export function useBetaAdditions<T extends { id: string }>(
     return () => {
       active = false;
     };
-  }, [type, lang, channel]);
+  }, [type, lang, channel, initial]);
 
   return items;
 }

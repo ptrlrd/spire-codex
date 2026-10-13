@@ -29,6 +29,7 @@ import {
   roomTypeTitle,
   typedRoom,
 } from "./run-names";
+import { textColor } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -435,14 +436,14 @@ export default function SharedRunClient({
             <Link
               href={`${bp}/characters/${charId.toLowerCase()}`}
               className="text-base font-normal hover:underline"
-              style={{ color: charColor }}
+              style={{ color: textColor(charColor) }}
             >
               {charName}
             </Link>
           ) : (
             <span
               className="text-base font-normal"
-              style={{ color: charColor }}
+              style={{ color: textColor(charColor) }}
             >
               {charName}
             </span>

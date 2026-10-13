@@ -94,6 +94,7 @@ export default function BracketPicker({
             {t("Version")}
           </span>
           <select
+            aria-label={t("Version")}
             value={sel.version}
             onChange={(e) =>
               nav(
