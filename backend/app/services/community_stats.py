@@ -246,6 +246,28 @@ def _abandoned(rec: list) -> int:
     return rec[2] if len(rec) > 2 else 0
 
 
+RARITY_SPLIT_EVENTS = ("THE_FUTURE_OF_POTIONS",)
+
+
+@lru_cache(maxsize=1)
+def _potion_rarities() -> dict[str, str]:
+    from .data_service import load_potions
+
+    return {
+        str(p["id"]).upper(): str(p["rarity_key"]).upper()
+        for p in load_potions()
+        if p.get("id") and p.get("rarity_key")
+    }
+
+
+def _rarity_option(option_id: str, ps: dict) -> str:
+    for raw in ps.get("potion_discarded") or []:
+        rarity = _potion_rarities().get(str(raw).split(".")[-1].upper())
+        if rarity:
+            return f"{option_id}_{rarity}"
+    return option_id
+
+
 def _bump(d: dict, key: Any, n: int = 1) -> None:
     d[key] = d.get(key, 0) + n
 
@@ -397,6 +419,8 @@ def _accumulate_one(
                     option_id = key.split(".options.", 1)[1].split(".", 1)[0]
                     if not event_id or not option_id:
                         continue
+                    if event_id in RARITY_SPLIT_EVENTS:
+                        option_id = _rarity_option(option_id, ps)
                     opts = acc["events"].setdefault(event_id, {})
                     _bump(opts, option_id)
 

@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "Common Bir İksir Yerleştir",
-        "description": "İksiri kaybet: [gold]a Potion[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Common Skill[/gold] elde et."
+        "id": "POTION_COMMON",
+        "title": "Yaygın Bir İksir Yerleştir",
+        "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Yaygın Atak/Beceri[/gold] elde et."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Az Yaygın Bir İksir Yerleştir",
+        "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Az Yaygın Atak/Beceri/Güç[/gold] elde et."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Nadir Bir İksir Yerleştir",
+        "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Nadir Atak/Beceri/Güç[/gold] elde et."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Etkinlik Bir İksir Yerleştir",
+        "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Nadir Atak/Beceri/Güç[/gold] elde et."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Token Bir İksir Yerleştir",
+        "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Yaygın Atak/Beceri[/gold] elde et."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "Köşeyi döndüğünde hafif bir sarsıntı hissedersin ve devasa, dönen bir aygıtla karşılaşırsın!\nÜzerindeki birkaç yuva vardır; bu yuvaların sıvıları son derece sıkıştırılmış ve yenilebilir tabletlere dönüştürdüğü anlaşılmaktadır.\n\nBu sağlık iksirlerini minicik bir lokmaya dönüştürme fikri rahatsız edici olabilir. Yine de yeni bir şeyler denemek iyi olabilir mi?",
         "options": [
           {
-            "id": "POTION",
-            "title": "Common Bir İksir Yerleştir",
-            "description": "İksiri kaybet: [gold]a Potion[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Common Skill[/gold] elde et."
+            "id": "POTION_COMMON",
+            "title": "Yaygın Bir İksir Yerleştir",
+            "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Yaygın Atak/Beceri[/gold] elde et."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Az Yaygın Bir İksir Yerleştir",
+            "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Az Yaygın Atak/Beceri/Güç[/gold] elde et."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Nadir Bir İksir Yerleştir",
+            "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Nadir Atak/Beceri/Güç[/gold] elde et."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Etkinlik Bir İksir Yerleştir",
+            "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Nadir Atak/Beceri/Güç[/gold] elde et."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Token Bir İksir Yerleştir",
+            "description": "İksiri kaybet: [gold]bir iksir[/gold]. [gold]Geliştirilmiş[/gold] bir [gold]Yaygın Atak/Beceri[/gold] elde et."
           }
         ]
       }
