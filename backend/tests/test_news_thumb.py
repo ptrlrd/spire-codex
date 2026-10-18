@@ -107,3 +107,14 @@ def test_follows_steam_redirects_only(monkeypatch):
     with pytest.raises(news.HTTPException) as err:
         asyncio.run(news._fetch_source(SRC))
     assert err.value.status_code == 502
+
+
+def test_network_failure_is_a_502_not_a_crash(monkeypatch):
+    news._thumb_cache.clear()
+
+    def boom(request):
+        raise news.httpx.ConnectTimeout("timed out", request=request)
+
+    _mock_client(monkeypatch, boom)
+    res = client.get("/api/news/thumb.webp", params={"src": SRC})
+    assert res.status_code == 502

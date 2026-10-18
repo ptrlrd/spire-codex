@@ -147,25 +147,30 @@ def make_thumb(data: bytes, width: int) -> bytes:
 
 
 async def _fetch_source(src: str) -> bytes:
-    async with httpx.AsyncClient(timeout=10, follow_redirects=False) as client:
-        url = src
-        for _ in range(4):
-            async with client.stream("GET", url) as res:
-                if res.is_redirect:
-                    url = str(res.url.join(res.headers.get("location", "")))
-                    if not thumb_source_allowed(url):
+    try:
+        async with httpx.AsyncClient(timeout=10, follow_redirects=False) as client:
+            url = src
+            for _ in range(4):
+                async with client.stream("GET", url) as res:
+                    if res.is_redirect:
+                        url = str(res.url.join(res.headers.get("location", "")))
+                        if not thumb_source_allowed(url):
+                            break
+                        continue
+                    if res.status_code != 200:
                         break
-                    continue
-                if res.status_code != 200:
-                    break
-                chunks = []
-                size = 0
-                async for chunk in res.aiter_bytes():
-                    size += len(chunk)
-                    if size > THUMB_MAX_SOURCE_BYTES:
-                        raise HTTPException(status_code=413, detail="Source too large")
-                    chunks.append(chunk)
-                return b"".join(chunks)
+                    chunks = []
+                    size = 0
+                    async for chunk in res.aiter_bytes():
+                        size += len(chunk)
+                        if size > THUMB_MAX_SOURCE_BYTES:
+                            raise HTTPException(
+                                status_code=413, detail="Source too large"
+                            )
+                        chunks.append(chunk)
+                    return b"".join(chunks)
+    except httpx.HTTPError:
+        pass
     raise HTTPException(status_code=502, detail="Source image unavailable")
 
 
