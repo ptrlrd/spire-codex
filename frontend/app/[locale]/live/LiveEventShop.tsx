@@ -94,7 +94,7 @@ export function LiveEventPanel({
                 key={key}
                 className={`flex items-start gap-2 rounded-md border px-2.5 py-1.5 text-sm ${
                   o.chosen
-                    ? "border-[var(--accent-gold)]/50 bg-[var(--accent-gold)]/10 text-[var(--text-primary)]"
+                    ? "border-[var(--accent-gold)] bg-[var(--bg-primary)] text-[var(--text-primary)] ring-1 ring-[var(--accent-gold)]"
                     : disabled
                       ? "border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-muted)]"
                       : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)]"

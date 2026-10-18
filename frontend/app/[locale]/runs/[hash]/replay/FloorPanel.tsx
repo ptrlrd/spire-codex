@@ -69,35 +69,39 @@ export const KIND_LABEL: Record<string, string> = {
   ancient: "Ancient",
 };
 
-function cardName(id: string, cat: Catalog): string {
+export function cardName(id: string, cat: Catalog): string {
   return (
     cat.gt?.(`cards.${id}.title`) ||
     cat.cards[id]?.name ||
     displayName(`CARD.${id}`)
   );
 }
-function relicName(id: string, cat: Catalog): string {
+export function relicName(id: string, cat: Catalog): string {
   return (
     cat.gt?.(`relics.${id}.title`) ||
     cat.relics[id]?.name ||
     displayName(`RELIC.${id}`)
   );
 }
-function potionName(id: string, cat: Catalog): string {
+export function potionName(id: string, cat: Catalog): string {
   return (
     cat.gt?.(`potions.${id}.title`) ||
     cat.potions[id]?.name ||
     displayName(`POTION.${id}`)
   );
 }
-function monsterName(id: string, cat: Catalog): string {
+export function monsterName(id: string, cat: Catalog): string {
   return (
     cat.gt?.(`monsters.${cleanId(id)}.name`) ||
     cat.monsters[cleanId(id)]?.name ||
     displayName(`MONSTER.${id}`)
   );
 }
-function moveName(monsterId: string, moveId: string, cat: Catalog): string {
+export function moveName(
+  monsterId: string,
+  moveId: string,
+  cat: Catalog,
+): string {
   return (
     cat.gt?.(`monsters.${cleanId(monsterId)}.moves.${moveId}.title`) ||
     cat.monsters[cleanId(monsterId)]?.moves?.find((m) => m.id === moveId)
