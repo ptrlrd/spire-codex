@@ -38,6 +38,8 @@ import FloorPanel, {
   type EventInfo,
 } from "./FloorPanel";
 import type { ReplayRunInfo } from "./page";
+import ReplayScene from "./ReplayScene";
+import { buildScene } from "@/lib/replay-scene";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import { OwnerTheme } from "@/app/components/OwnerTheme";
 import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
@@ -328,6 +330,9 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
   const lp = useBetaPrefix();
   const gt = useTryGameTranslations();
   const [model, setModel] = useState<ReplayModel | null>(null);
+  const [journal, setJournal] = useState<string | null>(null);
+  const [view, setView] = useState<"timeline" | "scene">("timeline");
+  const [stepAt, setStepAt] = useState(0);
   const [error, setError] = useState<string | null>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [cards, setCards] = useState<Record<string, CardInfo>>({});
@@ -351,10 +356,10 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
         if (!alive) return;
         const parsed = parseReplay(text);
         setModel(parsed);
-        const wanted = parseInt(
-          new URLSearchParams(window.location.search).get("floor") || "",
-          10,
-        );
+        setJournal(text);
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("view") === "scene") setView("scene");
+        const wanted = parseInt(params.get("floor") || "", 10);
         const first =
           parsed.floors.find((f) => f.floor === wanted) ?? parsed.floors[0];
         setSelected(first?.floor ?? null);
@@ -397,6 +402,44 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
   }, [lang]);
 
   const floors = useMemo(() => model?.floors ?? [], [model]);
+  const scene = useMemo(
+    () => (journal && view === "scene" ? buildScene(journal) : null),
+    [journal, view],
+  );
+  const steps = useMemo(() => {
+    const listed = new Set(floors.map((f) => f.floor));
+    return (scene?.steps ?? []).filter((st) => listed.has(st.floor));
+  }, [scene, floors]);
+  const floorStart = steps.findIndex((st) => st.floor === selected);
+  const floorEnd =
+    floorStart < 0
+      ? -1
+      : floorStart +
+        steps.slice(floorStart).findIndex((st) => st.floor !== selected);
+  const floorSteps =
+    floorStart < 0
+      ? 0
+      : (floorEnd < floorStart ? steps.length : floorEnd) - floorStart;
+  const stepIndex =
+    floorStart < 0
+      ? -1
+      : floorStart +
+        (stepAt < 0
+          ? floorSteps - 1
+          : Math.min(stepAt, Math.max(0, floorSteps - 1)));
+
+  const switchView = (next: "timeline" | "scene") => {
+    setView(next);
+    setStepAt(0);
+    try {
+      const url = new URL(window.location.href);
+      if (next === "scene") url.searchParams.set("view", "scene");
+      else url.searchParams.delete("view");
+      window.history.replaceState(null, "", url.toString());
+    } catch {
+      // history is a convenience only
+    }
+  };
   const current = floors.find((f) => f.floor === selected);
   const act = current?.act ?? floors[0]?.act ?? 1;
   const acts = Array.from(new Set(floors.map((f) => f.act))).sort(
@@ -423,8 +466,9 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
   const offMap = route.filter((e) => e.offMap).length;
   const positionsRecorded = model ? hasMapPositions(model) : false;
 
-  const pick = useCallback((floor: number) => {
+  const pick = useCallback((floor: number, at = 0) => {
     setSelected(floor);
+    setStepAt(at);
     try {
       const url = new URL(window.location.href);
       url.searchParams.set("floor", String(floor));
@@ -434,9 +478,18 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
     }
   }, []);
 
+  const goStep = useCallback(
+    (i: number) => {
+      const st = steps[i];
+      if (!st) return;
+      const start = steps.findIndex((x) => x.floor === st.floor);
+      pick(st.floor, i - start);
+    },
+    [steps, pick],
+  );
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (!floors.length || selected === null) return;
+      if (!floors.length || selected === null || view === "scene") return;
       if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
       if (
         e.altKey ||
@@ -464,7 +517,7 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [floors, selected, pick]);
+  }, [floors, selected, pick, view]);
 
   const mapBox = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -536,7 +589,9 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
           &larr; {t("Back to run")}
         </Link>
         <span className="text-xs text-[var(--text-muted)]">
-          {t("Use ← → to step floors")}
+          {view === "scene"
+            ? t("← → step through the replay · Space plays")
+            : t("Use ← → to step floors")}
         </span>
       </div>
 
@@ -730,8 +785,41 @@ function ReplayBody({ hash, run }: { hash: string; run: ReplayRunInfo }) {
                 })}
             </ol>
           </aside>
-          <main className="min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-            {current ? (
+          <main
+            className={`min-w-0 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 ${view === "scene" ? "order-first lg:order-none" : ""}`}
+          >
+            <div
+              role="tablist"
+              className="mb-4 inline-flex rounded-md border border-[var(--border-subtle)] p-0.5"
+            >
+              {(["timeline", "scene"] as const).map((v) => (
+                <button
+                  key={v}
+                  type="button"
+                  role="tab"
+                  aria-selected={view === v}
+                  onClick={() => switchView(v)}
+                  className={`rounded px-3 py-1 text-xs font-semibold transition-colors ${view === v ? "bg-[var(--accent-gold)]/15 text-[var(--accent-gold)]" : "text-[var(--text-muted)] hover:text-[var(--text-primary)]"}`}
+                >
+                  {v === "scene" ? t("Scene") : t("Timeline")}
+                </button>
+              ))}
+            </div>
+            {view === "scene" ? (
+              stepIndex >= 0 ? (
+                <ReplayScene
+                  steps={steps}
+                  index={stepIndex}
+                  onIndex={goStep}
+                  cat={cat}
+                  bp={lp}
+                />
+              ) : (
+                <p className="text-sm text-[var(--text-muted)]">
+                  {t("Nothing recorded")}
+                </p>
+              )
+            ) : current ? (
               <FloorPanel
                 f={current}
                 prev={floors[floors.indexOf(current) - 1]}

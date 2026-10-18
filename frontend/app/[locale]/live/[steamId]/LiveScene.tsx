@@ -378,12 +378,14 @@ export default function LiveScene({
   monsters,
   encounters,
   bp,
+  height = "h-[80vh]",
 }: {
   p: LivePlayer;
   cat: LiveCatalogs;
   monsters: MonsterMap;
   encounters: EncounterMap;
   bp: string;
+  height?: string;
 }) {
   const t = useT();
   const char = (p.character ?? "colorless").toLowerCase();
@@ -438,7 +440,9 @@ export default function LiveScene({
           : [];
 
   return (
-    <div className="flex h-[80vh] flex-col rounded-xl border border-[var(--border-subtle)]">
+    <div
+      className={`flex ${height} flex-col rounded-xl border border-[var(--border-subtle)]`}
+    >
       {/* Top bar: character + vitals + potions on the left, the act/boss
           progress, then the map + deck buttons on the right. */}
       <div className="relative z-20 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-t-xl border-b border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2">
