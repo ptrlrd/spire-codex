@@ -99,6 +99,22 @@ def _load_run_blob_cached(run_hash: str) -> str:
     raise FileNotFoundError(run_hash)
 
 
+BSON_INT_MIN, BSON_INT_MAX = -(2**63), 2**63 - 1
+
+
+def _has_oversized_int(data) -> bool:
+    stack = [data]
+    while stack:
+        v = stack.pop()
+        if isinstance(v, dict):
+            stack.extend(v.values())
+        elif isinstance(v, list):
+            stack.extend(v)
+        elif isinstance(v, int) and not BSON_INT_MIN <= v <= BSON_INT_MAX:
+            return True
+    return False
+
+
 def _load_run_blob(run_hash: str) -> str | None:
     try:
         return _load_run_blob_cached(run_hash)
@@ -159,6 +175,11 @@ async def submit_run_endpoint(
     except Exception:
         run_errors.labels(reason="invalid_json").inc()
         raise HTTPException(status_code=400, detail="Invalid JSON body")
+    if _has_oversized_int(data):
+        run_errors.labels(reason="int_overflow").inc()
+        raise HTTPException(
+            status_code=400, detail="Run has a number too large to store"
+        )
 
     # Sanitize username — alphanumeric, underscores, hyphens, spaces only
     clean_username = None

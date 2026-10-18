@@ -77,3 +77,10 @@ def test_duplicate_reports_whether_the_upload_was_verified(seen, monkeypatch):
     assert r.json()["duplicate"] is True and r.json()["verified"] is False
     r = client.post("/api/runs", json=BODY, headers={"Authorization": "Bearer good"})
     assert r.json()["duplicate"] is True and r.json()["verified"] is True
+
+
+def test_number_past_int64_is_a_400_not_a_crash(seen):
+    body = {**BODY, "map_point_history": [[{"damage_taken": 2**64}]]}
+    r = client.post("/api/runs", json=body)
+    assert r.status_code == 400
+    assert seen == {}
