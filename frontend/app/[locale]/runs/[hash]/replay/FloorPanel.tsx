@@ -9,6 +9,7 @@ import type { ScoresMap } from "@/lib/use-entity-scores";
 import type {
   BuyLine,
   HitLine,
+  HpLine,
   ReplayCombat,
   ReplayDecision,
   ReplayFloor,
@@ -380,7 +381,7 @@ function describeLine(
         `${t("Bought")} ${itemName(l.kind, l.id ?? "", cat)} (${costLabel(l)})`,
       );
     case "hp":
-      if (!l.d) return undefined;
+      if (!l.d || l.mine === false) return undefined;
       return plain(
         l.d > 0
           ? t("{who} healed for {n} HP", { who, n: l.d })
@@ -1185,7 +1186,15 @@ function TurnBlock({
             );
           break;
         case "hp":
-          if (l.d)
+          if (l.mine === false) {
+            if (l.d && l.d > 0)
+              items.push(
+                t("{who} healed for {n} HP", {
+                  who: monsterName(l.dst ?? "", cat),
+                  n: l.d,
+                }),
+              );
+          } else if (l.d)
             items.push(
               l.d > 0
                 ? t("Healed {n} HP", { n: l.d })
@@ -1210,7 +1219,12 @@ function TurnBlock({
             );
             for (let j = i - 1; j >= 0 && j >= i - 2; j--) {
               const h = lines[j];
-              if (h.t === "hp" && h.d === -l.dmg && !claimed.has(j)) {
+              if (
+                h.t === "hp" &&
+                h.mine !== false &&
+                h.d === -l.dmg &&
+                !claimed.has(j)
+              ) {
                 claimed.add(j);
                 break;
               }
@@ -1276,15 +1290,27 @@ function TurnBlock({
       );
     }
     lines.forEach((l, i) => {
-      if (l.t === "hp" && l.d && !claimed.has(i))
-        items.push(
-          l.d > 0
-            ? t("Healed {n} HP", { n: l.d })
-            : t("Lost {n} HP", { n: -l.d }),
-        );
+      if (l.t !== "hp" || !l.d || claimed.has(i)) return;
+      if (l.mine === false) {
+        if (l.d > 0)
+          items.push(
+            t("{who} healed for {n} HP", {
+              who: monsterName(l.dst ?? "", cat),
+              n: l.d,
+            }),
+          );
+        return;
+      }
+      items.push(
+        l.d > 0
+          ? t("Healed {n} HP", { n: l.d })
+          : t("Lost {n} HP", { n: -l.d }),
+      );
     });
   }
-  const hpLine = lines.findLast((l) => l.t === "hp");
+  const hpLine = lines.findLast(
+    (l): l is HpLine => l.t === "hp" && l.mine !== false,
+  );
   const player = turn.side === "player";
   const start = turn.side === "start";
   return (
@@ -1502,6 +1528,7 @@ function LootLine({
     ? f.lines.filter(
         (l) =>
           l.t === "hp" &&
+          l.mine !== false &&
           (l.d ?? 0) > 0 &&
           (l.src === undefined || l.src === "heal"),
       )
