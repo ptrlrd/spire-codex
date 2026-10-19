@@ -1,20 +1,66 @@
 # On-box analytics lab (DuckDB 1.5.5)
 
-Tooling to build a Parquet lake from prod Mongo, on the box itself.
-Nothing here touches the running services: `extract` is a throwaway container
-using the existing backend image, `duckdb` is the official `duckdb/duckdb`
-image pinned to 1.5.5. Output lands in `./lake/` (gitignored, local to the box).
+Tooling to build a Parquet lake from prod Mongo, on the box itself, and the
+ingest cycle that turns it into what the site serves. `lab/` is on `main`;
+nothing to check out separately. The backend reads the lake read-only through
+`backend/app/services/lake_stats.py`: the community payload and cube, the
+entity store and cube, encounter stats, deep item tables, charts, the
+leaderboard boards and the frame all serve from the stored artifacts, so a
+completed cycle is what changes the live numbers. The `extract` and `duckdb`
+helper containers in `docker-compose.lab.yml` are still side tools (the
+`duckdb` one is the official `duckdb/duckdb` image pinned to 1.5.5). Output
+lands in `./lake/` (gitignored, local to the box).
 
-## One-time setup (on the box, from the repo root)
+## The ingest cycle
+
+`ingest.py` is the nightly job: incremental extract, rebuild the parquet lake,
+then run every stage in order and publish. On the box:
 
 ```
-git fetch origin lab/on-box-lake
-git checkout origin/lab/on-box-lake -- lab docker-compose.lab.yml
-mkdir -p lake
+docker compose -f docker-compose.prod.yml run --rm lake-ingest
 ```
 
-This only copies the lab files into the working tree; the checked-out branch
-stays `main` and the deploy script is unaffected.
+(`lake-ingest` is the `ops` profile service in `docker-compose.prod.yml`; its
+entrypoint is `python /lab/ingest.py`.)
+
+Stages, from `run_stage.py`:
+
+| Stage | What it builds |
+|---|---|
+| `payload` | The community-stats payload and cube (`lake_stats.build_and_store_payload`) |
+| `entity_store` | Per-entity run stats store (`build_entity_store`) |
+| `encounter_store` | Encounter stats store (`build_encounter_store`) |
+| `entity_cube` | The entity cube the `/stats` metrics tables fold per bracket (`build_entity_cube`) |
+| `deep_tables` | Per-combo deep item tables for the materialized stats docs (`build_deep_tables`) |
+| `charts_blob` | The charts blob (`charts_blob_lake.build_charts_blob`) |
+| `stats_core` | Refreshes the Mongo `stats_summary` docs from the lake (`refresh_stats_core`) |
+| `leaderboard_summary` | Leaderboard boards (`runs_db_mongo.refresh_leaderboard_summary`) |
+| `frame` | The charts frame as parquet (`charts_stats.store_frame_parquet`) |
+| `history` | Daily Codex Score + Elo history per entity (`archive_entity_metric_history_from_lake`) |
+| `profiles` | Profile insights for every linked account (`precompute_insights.py`) |
+| `replay_guard` | Save-reload detection over replays (`replay_guard.py`) |
+| `player_elo` | Nightly player Elo board (`player_elo_board.py`) |
+| `player_stats` | Per-player stats tables for the profile (`player_stats.py`) |
+
+Run one stage on its own with the same lock the cycle holds:
+
+```
+docker compose -f docker-compose.prod.yml run -d --rm --entrypoint python lake-ingest /lab/run_stage.py entity_store
+```
+
+## File index
+
+- `extract.py`: every run from Mongo into gzipped JSONL pages in `/lake/staging`
+- `build_lake.py`, `build.sql`, `build_page.sql`, `floor_tables.sql`: staging pages into the parquet lake, parsing only what changed
+- `ingest.py`, `run_stage.py`: the nightly cycle and the single-stage runner
+- `publish_lake.py`, `pull_lake.py`: upload the serve artifacts to R2 after a cycle; pull the newest generation into `/lake` on the serving box
+- `edge_purge.py`: Cloudflare purge for the analytics endpoints after a cycle
+- `export_dump.py`: the daily full-corpus run export
+- `precompute_insights.py`, `player_elo_board.py`, `player_stats.py`, `replay_guard.py`: the stages of the same name
+- `seed_profiles.py`: nightly seed profiles, everything the community's runs have shown for a seed (`seed_predict.py` is its companion, no docstring yet)
+- `replays_explode.py`: stored replays into parquet for DuckDB
+- `parity_elo.py`, `validate_deep_tables.py`, `validate_fossil_parity.py`, `validate_frame_lake.py`, `validate_payload_rewrite.py`, `shadow_diff.py`, `shadow_community.sql`, `shadow_deaths.sql`: parity and shadow-diff gates against the old Mongo paths
+- `queries/`: the SQL behind the lake stages (`card_rewards`, `charts_blob`, `charts_frame`, `elo_pairs`, `tierlist_cards`, `winrate_brackets`)
 
 ## 1. Extract (wait for any full walk to finish first — it reads the same blobs)
 

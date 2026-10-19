@@ -9,7 +9,21 @@ npm install
 NEXT_PUBLIC_API_URL=http://localhost:8000 npm run dev
 ```
 
-Runs at **http://localhost:3000**. Requires the backend running on port 8000.
+Needs Node >=24 (`engines` in `package.json`). Runs at **http://localhost:3000**. Requires the backend running on port 8000.
+
+`predev` and `prebuild` run two generators first: `scripts/generate-site-pages.mjs` (the page inventory for global search, written to `lib/site-pages.json` and `data/site_pages.json`) and `scripts/generate-client-i18n.mjs` (`lib/i18n-server-only-keys.json`, the UI strings the browser catalog can skip).
+
+## Scripts
+
+| Script | What it does |
+| ---------------------- | ----------------------------------------------- |
+| `npm run dev`          | Dev server (after the generators)               |
+| `npm run build`        | Production build                                |
+| `npm run lint`         | ESLint                                          |
+| `npm run format:check` | Prettier check; `npm run format` writes         |
+| `npm test`             | vitest                                          |
+
+CI runs `lint`, `npx tsc --noEmit` and `format:check` on every PR; run `npm test` yourself before pushing.
 
 ## Pages
 
@@ -51,8 +65,19 @@ Every page lives under `app/[locale]/` (next-intl); English has no prefix and th
 | `/runs`                | Run browser over `/api/runs/list`                                                                               |
 | `/runs/submit`         | Upload `.run` files                                                                                             |
 | `/replays`             | Runs with a replay journal, from `/api/replays`                                                                 |
-| `/news`                | Mirrored Steam announcements feed                                                                               |
-| `/news/[gid]`          | Single Steam announcement — sanitized BBCode body, NewsArticle JSON-LD                                          |
+| `/runs/[hash]/replay`  | Replay viewer for one run                                                                                       |
+| `/live`                | Live runs from the mod's presence heartbeats; `/live/[steamId]` is one player's run                             |
+| `/players/[username]`  | Public player profile (stats + insights from `/api/players/{username}/*`)                                       |
+| `/profile`, `/settings` | Signed-in profile and account settings                                                                         |
+| `/tier-list-maker`     | Tier list maker, saved to the account (`/api/tierlists`) and shareable by handle                                |
+| `/deck-builder`        | Deck builder                                                                                                    |
+| `/seed-finder`         | Seed finder over `/api/runs/seed-finder`                                                                        |
+| `/compare/[pair]`      | Character comparison pages                                                                                      |
+| `/archetypes`          | Community deck archetypes                                                                                       |
+| `/ancients`, `/badges`, `/unlocks`, `/mechanics/[slug]`, `/merchant`, `/guides/[slug]` | Reference and guide pages                                                   |
+| `/mod`, `/overlay`, `/exporter`, `/knowledge-demon`, `/developers` | The Steam mod, Overwolf overlay, exporter, Discord bot and API docs pages                |
+| `/news`                | Mirrored Steam announcements feed; `/news/codex` is site news                                                   |
+| `/news/[...slug]`      | Single news article: sanitized BBCode body, NewsArticle JSON-LD                                                |
 | `/runs/[hash]`         | Shared run — in-game-style summary with "by {username}" link                                                    |
 
 ## Key Components
@@ -79,24 +104,13 @@ Every page includes structured data and meta tags:
 
 ### Sitemap
 
-`app/sitemap.ts` uses `generateSitemaps()` to produce a sitemap index with 8 sub-sitemaps (~1,385 URLs):
-
-- `/sitemap/static.xml` — 15 static pages (home, list pages, reference, etc.)
-- `/sitemap/cards.xml` — ~576 card detail pages with image URLs
-- `/sitemap/characters.xml` — 5 character pages with image URLs
-- `/sitemap/relics.xml` — ~289 relic pages with image URLs
-- `/sitemap/monsters.xml` — ~111 monster pages with image URLs
-- `/sitemap/potions.xml` — ~63 potion pages with image URLs
-- `/sitemap/powers.xml` — ~260 power pages with image URLs
-- `/sitemap/events.xml` — ~66 event pages with image URLs
-
-Sitemaps use ISR (`revalidate: 3600`) so they regenerate hourly at runtime — this is critical because the backend API isn't available during the Docker build. Entity entries include `images` for Google Image search indexing.
+`app/sitemap.ts` is one flat `force-dynamic` sitemap at `/sitemap.xml`, rendered at request time (the backend API isn't available during the Docker build) and cached for about 30 minutes between crawler hits. It emits the static pages, every entity list and detail page, the tier-list filter pages and the localized copies, but only for routes that really exist under `app/[locale]/`: `LANG_LIST_ROUTES` and `LANG_DETAIL_ROUTES` in the file are the allowlist, so a new page needs an entry there to be crawled in other languages.
 
 Shared utilities in `lib/seo.ts` (stripTags, SITE_URL, SITE_NAME, `buildLanguageAlternates(path)`) and `lib/jsonld.ts` (schema builders for BreadcrumbList, CollectionPage, Article, NewsArticle, WebSite).
 
 **Title format (standardized)**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`. Run pages use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" is inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
 
-**Bidirectional hreflang**: English root pages emit alternates for all 13 locales + `x-default` via `buildLanguageAlternates(path)`. Fixes the GSC "Crawled - not indexed" cluster where Google was treating localized pages as duplicates without back-references.
+**Bidirectional hreflang**: English root pages emit alternates for all 14 other locales + `x-default` via `buildLanguageAlternates(path)`. Fixes the GSC "Crawled - not indexed" cluster where Google was treating localized pages as duplicates without back-references.
 
 ## Environment Variables
 
@@ -105,6 +119,8 @@ Shared utilities in `lib/seo.ts` (stripTags, SITE_URL, SITE_NAME, `buildLanguage
 | `NEXT_PUBLIC_API_URL`  | `http://localhost:8000`   | Backend API URL                                              |
 | `NEXT_PUBLIC_SITE_URL` | `https://spire-codex.com` | Public site URL (used for canonical URLs, JSON-LD, OG tags)  |
 | `API_INTERNAL_URL`     | (none)                    | Internal API URL for server-side fetches (Docker networking) |
+| `NEXT_PUBLIC_CDN_URL`  | (none)                    | Image CDN base (`https://cdn.spire-codex.com`), used by `lib/image-url.ts` |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | (site default)    | Umami analytics website id, a build-time var (Dockerfile build ARG) read in `app/[locale]/layout.tsx` |
 
 ## Docker
 

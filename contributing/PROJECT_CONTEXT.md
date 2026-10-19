@@ -15,7 +15,7 @@ spire-codex/
     raw/                    # GDRE extracted Godot project (stable branch)
       images/               # Game images (card portraits, relics, potions, monsters)
       animations/           # Spine skeletal animations (.skel, .atlas, .png)
-      localization/eng/     # Localization JSON (names, descriptions) — 14 languages
+      localization/eng/     # Localization JSON (names, descriptions): 15 languages
     decompiled/             # ILSpy decompiled C# (stable branch)
     beta/                   # Steam beta branch extraction
       raw/                  # GDRE extracted (beta)
@@ -24,10 +24,10 @@ spire-codex/
     app/
       main.py               # FastAPI app + CORS middleware + GZip
       models/schemas.py      # Pydantic models (with compendium_order)
-      routers/               # API routes (25+ routers)
+      routers/               # API routes (~65 routers)
         cards.py             # Cards (filter: color, type, rarity, keyword, tag, search)
         characters.py        # Characters
-        relics.py            # Relics (filter: rarity, pool, search)
+        relics.py            # Relics (filter: rarity, pool, ancient, search)
         monsters.py          # Monsters (filter: type, search)
         potions.py           # Potions (filter: rarity, pool, search)
         powers.py            # Powers (filter: type, stack_type, search)
@@ -35,20 +35,34 @@ spire-codex/
         encounters.py        # Encounters (filter: room_type, act, search)
         enchantments.py      # Enchantments
         keywords.py          # Keywords
-        intents.py orbs.py afflictions.py modifiers.py achievements.py
-        epochs.py stories.py acts.py ascensions.py
+        intents.py orbs.py afflictions.py modifiers.py achievements.py badges.py
+        epochs.py stories.py glossary.py acts.py ascensions.py ancient_pools.py
         names.py             # Cross-language entity name lookup
-        exports.py           # ZIP data downloads per language
-        entity_history.py    # Per-entity version history from changelogs
+        exports.py           # ZIP data downloads per language + gzipped JSONL run export
+        entity_history.py update_history.py  # Per-entity version history from changelogs / game patches
         changelogs.py        # Changelog API
         guides.py            # Guides (list, detail, Discord webhook submission)
-        runs.py              # Run submission + community stats + shared runs + Codex Score/Elo (`/api/runs/scores/{type}`, `/api/runs/community-stats`)
-        news.py              # Steam news passthrough — list + detail (`/api/news`, `/api/news/{gid}`)
-        merchant.py          # Merchant pricing config (auto-extracted constants)
-        unlocks.py versions.py
-        images.py feedback.py
+        runs.py              # Run submission, browse, leaderboards, shared runs, Codex Score/Elo, /stats metrics tables, seed finder, deck advisor
+        draft.py pairings.py # Draft recs/advice and item pairings from the nightly run vectors
+        replays.py replays_browse.py  # Replay upload/download per run + the /replays browser
+        presence.py          # Live run heartbeats from the mod (/live)
+        leaderboards.py players.py    # Elo board, public player stats/insights, supporter flair
+        charts.py tierlists.py        # Chart explorer + saved charts, tier-list maker CRUD + shares
+        search.py            # tantivy site search + semantic search
+        api_keys.py          # X-API-Key management + GET /api/rate-limits
+        auth.py auth_steam.py auth_discord.py auth_twitch.py auth_patreon.py
+        news.py              # Steam news archive + site news (`/api/news`, `/api/news/{gid}`, `/api/news/codex`)
+        merchant.py mechanics.py localizations.py beta.py mod_meta.py announcements.py thanks.py
+        unlocks.py versions.py images.py feedback.py
+        admin*.py telemetry.py uninstall.py qa_feedback.py  # Hidden: admin console, mod telemetry, feedback forms
       services/              # data_service (loads JSON, lru_cache, ContextVar version-aware loading)
-        run_entity_stats.py  # Codex Score — Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tier; pre-warmed on startup
+        lake_stats.py        # Read-only DuckDB access to the analytics lake; every analytics surface serves from here
+        cache.py             # Fail-safe Redis JSON cache in front of the hot read endpoints
+        rate_limit_config.py # Admin-tunable rate limits per API-key tier, Redis-backed counters
+        search_index.py      # Embedded tantivy index (entities, reference, mechanics, guides, news, images)
+        semantic_search.py run_vectors.py  # Workers AI embeddings search; nightly run-composition vectors
+        run_entity_stats.py  # Codex Score: Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tier
+        r2_storage.py        # R2 upload helper for tier-list preview images
       parsers/               # C# -> JSON parsers
         card_parser.py       # Cards with DynamicVars, upgrades, compendium_order
         character_parser.py
@@ -59,25 +73,34 @@ spire-codex/
         encounter_parser.py
         event_parser.py      # Events with C# source-order choice extraction
         power_parser.py      # Powers with Temporary*Power inheritance resolution
-        keyword_parser.py    # Keywords, intents, orbs, afflictions, modifiers, achievements (with unlock conditions)
+        keyword_parser.py    # Keywords, intents, orbs, afflictions
+        badge_parser.py epoch_parser.py act_parser.py ascension_parser.py
+        pool_parser.py ancient_pool_parser.py rest_site_parser.py
+        merchant_parser.py mechanics_constants_parser.py
+        localization_parser.py message_parser.py icu_check.py  # Game strings → ICU messages.json packs
+        translation_parser.py news_parser.py orphan_filter.py
         guide_parser.py      # Markdown guides with YAML frontmatter → JSON
         description_resolver.py
-        parser_paths.py      # Shared path config (supports EXTRACTION_DIR/DATA_DIR env vars)
-        parse_all.py         # Runs all parsers for all 14 languages
-    static/images/           # Served static images
+        parser_paths.py      # Shared path config (supports EXTRACTION_DIR/DATA_DIR env vars, CDN_BASE_URL)
+        parse_all.py         # Runs all parsers for all 15 languages
+    scripts/                 # One-off builders: search index, embeddings, run vectors, draft recs, pairings, repairs
     Dockerfile
+  lab/                       # DuckDB analytics lake: ingest cycle + stages (see lab/README.md)
+  infrastructure/ansible/    # Playbooks for the boxes (see infrastructure/ansible/README.md)
   frontend/
     app/
-      layout.tsx             # Root layout
-      page.tsx               # Home page — WebSite + VideoGame JSON-LD
+      [locale]/layout.tsx    # Locale layout (next-intl); English is the unprefixed root, 14 other locales get /{lang}/
+      [locale]/page.tsx      # Home page: WebSite + VideoGame JSON-LD
+      (everything below is under app/[locale]/)
       cards/page.tsx         # Cards list with sort (A-Z, Z-A, Compendium)
       cards/[id]/page.tsx    # Card detail, tabbed (Overview/Details/Stats/Enchants/Info)
-      cards/browse/          # 41 programmatic filter pages (rare-attacks, ironclad-skills, etc.)
+      cards/browse/          # Programmatic filter pages (rare-attacks, ironclad-skills, etc.)
       characters/page.tsx    # Characters with hub sections (all cards, all relics)
       monsters/page.tsx relics/page.tsx potions/page.tsx
       enchantments/page.tsx encounters/page.tsx events/page.tsx
       powers/page.tsx        # Powers with "cards that apply this" reverse links
       keywords/page.tsx      # Keyword hub pages — list + [id] detail with card grids
+      ancients/ archetypes/ badges/ unlocks/
       merchant/page.tsx      # Merchant guide — prices, fake merchant, card removal
       compare/page.tsx       # Character comparison hub (10 pairs)
       compare/[pair]/        # Side-by-side comparison detail pages
@@ -87,24 +110,27 @@ spire-codex/
       guides/[slug]/         # Guide detail with markdown rendering + tooltip widget
       guides/submit/         # Guide submission form → Discord webhook
       leaderboards/page.tsx  # Fastest Wins + Highest Ascension ladders (single/co-op, game-mode + Today filters, shareable URLs)
-      leaderboards/submit/   # Drag-and-drop .run upload
-      leaderboards/stats/    # Ranked-table stats (cards/relics/potions/encounters pick + win rates)
-      leaderboards/scoring/  # Codex Score methodology page (Bayesian shrinkage explainer)
-      community-stats/       # Fun community datasets: event votes, deadliest encounters, records (Recharts)
+      top-players/           # Nightly Codex Elo board
+      stats/                 # Stats hub: cards/relics/potions/shops/events/campfires/encounters grids, charts, chart-builder, scoring (chart.js)
       tier-list/page.tsx     # Codex Score tier-list hub (cards/relics/potions)
-      tier-list/[type]/      # Visual S→F tier rows per entity type
+      tier-list/{cards,relics,potions}/  # Visual S→F tier rows per entity type
+      tier-list-maker/       # Tier list maker, saved to the account (/api/tierlists) and shareable by handle
+      deck-builder/ seed-finder/        # Deck builder and seed finder
       runs/[hash]/           # Shared-run detail — "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
       runs/page.tsx          # Browse Runs — expression search bar + filters + shareable URLs
+      runs/submit/           # Drag-and-drop .run upload
+      replays/               # Replay browser + viewer
+      live/ live/[steamId]/  # Live runs from the mod's presence heartbeats
+      players/[username]/    # Public player profile
       profile/page.tsx       # Signed-in user profile — stats, personal bests, competitive comparison, run management
-      settings/page.tsx      # Account settings (username, email, linked Steam/Discord)
-      meta/page.tsx          # Redirect to /leaderboards/stats (old URL preserved)
-      news/page.tsx          # Steam news list (mirrored archive)
-      news/[gid]/page.tsx    # Single Steam news article — NewsArticle JSON-LD, canonical → Steam, BBCode-sanitized body
+      settings/page.tsx      # Account settings (username, email, linked accounts)
+      news/page.tsx          # Steam news list (mirrored archive) + news/codex site news
+      news/[...slug]/        # Single news article: NewsArticle JSON-LD, BBCode-sanitized body
       showcase/page.tsx      # Community project gallery
       developers/page.tsx    # API docs, widget docs, data exports
+      mod/ overlay/ exporter/ knowledge-demon/  # The Steam mod, Overwolf overlay, exporter and Discord bot pages
       timeline/page.tsx reference/page.tsx images/page.tsx
-      changelog/page.tsx about/page.tsx
-      [lang]/                # International SEO — 13 non-English localized landing pages
+      changelog/page.tsx about/page.tsx thank-you/page.tsx
       */[id]/page.tsx        # Detail pages — Article + BreadcrumbList + FAQPage JSON-LD
       components/
         CardGrid.tsx         # Card grid with inline icons, upgrade rendering
@@ -122,19 +148,24 @@ spire-codex/
         ScoreBadge.tsx       # S/A/B/C/D/F tier letter pill (sm/md/lg) — detail-page Stats tab + tier-list rows
         EntityRunStats.tsx   # Detail-page Stats tab — score hero badge + prose summary + recent runs links
         TierList.tsx         # Visual S→F tier rows for /tier-list/{cards,relics,potions}
-      runs/[hash]/
+      [locale]/runs/[hash]/
         RunSummary.tsx       # In-game-style summary — stats bar + act rows + relic strip + TinyCard grid
         RunPills.tsx         # CardPill / RelicPill / PotionPill — hover tooltips with full entity info
         SharedRunClient.tsx  # Run hash loader + top-level layout
+        SimilarRuns.tsx      # Nearest winning decks from /api/runs/{hash}/similar
+        replay/              # Replay viewer for this run
+    i18n/                   # next-intl routing, request config and the message loader
     lib/
-      api.ts                # API client + TypeScript interfaces (with compendium_order); `getStats` + `getStatsBounded` (3s AbortSignal.timeout for `generateMetadata`)
-      seo.ts                # stripTags, SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, `buildLanguageAlternates(path)` → hreflang map for 13 locales + x-default + English self-reference
+      api/                  # API client: endpoint.server.ts / endpoint.client.ts, endpoint.common.ts (endpoint table), prefix.*.ts (beta channel), types.ts (all TypeScript interfaces)
+      seo.ts                # Title builders, SITE constants, `buildLanguageAlternates(path)` → hreflang map for all locales + x-default
       jsonld.ts             # JSON-LD builders (BreadcrumbList, CollectionPage, Article, NewsArticle, WebSite, VideoGame, FAQPage, SoftwareApplication)
       steam-news.ts         # Steam HTML/BBCode → safe HTML sanitizer for /news
-      merchant-config.ts    # Loader + helpers for /api/merchant/config with hardcoded fallback for build-time
       fetch-cache.ts        # Client-side in-memory fetch cache (5min TTL)
       use-entity-scores.ts  # Client hook — bulk Codex Scores per entity type
-      languages.ts          # i18n config — 13 language codes, hreflang mappings, native names
+      languages.ts          # i18n config: 15 language codes, hreflang mappings, native names
+      i18n-x*.ts            # The UI message modules next-intl loads per locale
+      replay.ts replay-scene.ts  # Replay journal parsing + battle-scene rebuild
+      image-url.ts          # CDN image URLs from NEXT_PUBLIC_CDN_URL
     public/widget/
       spire-codex-tooltip.js   # Embeddable tooltip widget — all 13 entity types
       spire-codex-changelog.js # Embeddable changelog viewer with version switching
@@ -151,29 +182,38 @@ spire-codex/
     diff_data.py             # Data diff tool — generates per-entity changelogs between git refs
     deploy.py                # Build + push Docker images to Docker Hub (--beta for beta images)
     update.py               # Cross-platform extraction + parse + render pipeline
-  data/                     # Parsed JSON output (14 language directories)
+    startup.sh              # Release / rollback script run on the box
+  data/                     # Parsed JSON output (15 language directories)
     changelogs/             # Version changelogs with per-entity diffs
     guides/                 # Markdown guide files with YAML frontmatter
     guides.json             # Parsed guide data
-    runs/                   # Submitted run JSON files (per player hash) — deck/relic data read by the Codex Score builder
+    mechanics_pages/        # Mechanics markdown served by /api/mechanics/sections
+    merchant_config.json    # Shop prices extracted from C# (served by /api/merchant/config)
+    mechanics_constants.json news/ site_pages.json relic_notes.json archetype_names.json image_dumps.json
+    runs/                   # Submitted run JSON files (per player hash), not committed
     runs.db                 # Legacy SQLite (fallback when MONGO_URL unset; run metadata now lives in MongoDB)
     showcase.json           # Community project gallery data
-  docker-compose.yml        # Local dev
-  docker-compose.prod.yml   # Production (Docker Hub images + nginx network)
+  docker-compose.yml                  # Local dev (backend, redis, frontend)
+  docker-compose.prod.yml             # Production (backend, lake-ingest, redis, frontend; Docker Hub images + nginx network)
+  docker-compose.mongo.yml            # Mongo on the DB box
+  docker-compose.lab.yml              # Lake build helpers (extract, shadow, duckdb)
+  docker-compose.monitoring.yml       # node-exporter + Alloy log shipping (monitoring-ingest.yml is the ingest box flavor)
+  docker-compose.umami.yml            # Self-hosted Umami analytics
 ```
 
 ## Data Parsed (stable — beta counts may vary)
-- **576 cards** — cost, type, rarity, target, damage, block, keywords, tags, upgrades, X-cost, vars, resolved descriptions, compendium_order
+- **577 cards**: cost, type, rarity, target, damage, block, keywords, tags, upgrades, X-cost, vars, resolved descriptions, compendium_order
 - **5 characters** — Ironclad, Silent, Defect, Necrobinder, Regent (HP, gold, energy, deck, relics)
-- **293 relics** — rarity, pool (with upgraded starter relic mapping from TouchOfOrobas), compendium_order
+- **296 relics**: rarity, pool (with upgraded starter relic mapping from TouchOfOrobas), compendium_order
 - **115 monsters** — HP ranges, ascension scaling, moves, damage values, hit counts, innate powers (42+ monsters), idle pose sprites
 - **63 potions** — rarity, pool, resolved descriptions, compendium_order
 - **22 enchantments** — card type restrictions, stackability, descriptions
 - **87 encounters** — monster compositions, room type, act placement, tags
 - **66 events** — multi-page decision trees, choices in C# source order, runtime-computed values (escalating costs, gold ranges), preconditions (`IsAllowed` / `IRunState` bodies translated to human-readable strings)
-- **259 powers** — type (Buff/Debuff), stack type, descriptions (3 abstract bases excluded, 19 inherited powers resolved)
-- **8 keywords** — Exhaust, Ethereal, Innate, Retain, Sly, Eternal, Unplayable (+ Period)
-- **14 intents** · **5 orbs** · **9 afflictions** · **16 modifiers** · **33 achievements** (with unlock conditions, thresholds, categories)
+- **257 powers**: type (Buff/Debuff), stack type, descriptions (3 abstract bases excluded, 19 inherited powers resolved)
+- **7 keywords**
+- **14 intents** · **5 orbs** · **7 afflictions** · **16 modifiers** · **22 achievements** (with unlock conditions, thresholds, categories) · **23 badges**
+- Plus 57 epochs, 8 stories, 28 glossary terms, 9 rest-site options, and the game's own strings as `messages.json` (46 tables). Counts are `data/eng/*.json` as of 2026-10-18; run `python3 -c "import json; print(len(json.load(open('data/eng/cards.json'))))"` for a live number.
 
 ## API Endpoints
 - `GET /api/stats` — Data counts
@@ -207,25 +247,29 @@ spire-codex/
 - `GET /api/merchant/config` — Auto-extracted merchant pricing
 - `GET /api/versions` — Version metadata exposed by the active data root
 - `GET /api/unlocks` — Aggregated unlockables grouped by type
-- `GET /api/languages` / `GET /api/translations`
-- All endpoints accept `?lang=` (default: eng) — 14 languages supported
-- Public beta entity requests use `?channel=beta`; beta image archives accept `?version=`
-- Docs: `http://localhost:8000/docs`
+- `GET /api/languages` / `GET /api/localizations` (`/api/translations` is deprecated)
+- `GET /api/search?q=`: tantivy site search; `GET /api/search/semantic?q=`: embeddings
+- `GET /api/runs/metrics/{type}?bracket=&character=`: the `/stats` tables, folded from the DuckDB lake
+- `GET /api/leaderboards/elo`, `GET /api/players/{username}/stats`, `GET /api/presence/active`, `GET /api/replays`
+- `GET /api/rate-limits`, `GET|POST /api/keys`: API keys (`X-API-Key` header, tiered caps)
+- All endpoints accept `?lang=` (default: eng): 15 languages supported
+- Public beta entity requests use `?channel=beta`; CDN image folders browse per game version at `/api/images/game/{version}/{category}/browse`
+- Docs: `http://localhost:8000/docs`, full list in `contributing/API_REFERENCE.md`
 
-## Merchant Pricing (from decompiled C#)
+## Merchant Pricing (from decompiled C#, served as `data/merchant_config.json`)
 ### Cards (MerchantCardEntry.cs)
-- Common: base 50, range 48–53 (×0.95–1.05). Colorless +15%. On sale: half price.
+- Common: base 50, range 48–52 (×0.95–1.05). Colorless +15%. On sale: half price.
 - Uncommon: base 75, range 71–79
-- Rare: base 150, range 143–158
+- Rare: base 150, range 142–158
 ### Relics (RelicModel.cs + MerchantRelicEntry.cs)
-- Common: base 200, range 170–230 (×0.85–1.15)
-- Shop: base 225, range 191–259
-- Uncommon: base 250, range 213–288
-- Rare: base 300, range 255–345
+- Common: base 175, range 149–201 (×0.85–1.15)
+- Shop: base 200, range 170–230
+- Uncommon: base 225, range 191–259
+- Rare: base 275, range 234–316
 - Fake Merchant relics: all 50g flat (10 fakes)
 - Blacklisted: The Courier, Old Coin
 ### Potions (MerchantPotionEntry.cs)
-- Common: base 50, range 48–53
+- Common: base 50, range 48–52
 - Uncommon: base 75, range 71–79
 - Rare: base 100, range 95–105
 ### Card Removal: 75 + 25 × removals used (no RNG)
@@ -235,7 +279,7 @@ spire-codex/
 - **Structured data**: JSON-LD on all pages — WebSite + VideoGame (home), CollectionPage+ItemList (list pages), Article+BreadcrumbList+FAQPage (detail pages), SoftwareApplication (developers), NewsArticle (news/[gid])
 - **Title format**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` — standardized. Runs use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
 - **Sitemap**: Flat XML at `/sitemap.xml`, `force-dynamic` (renders server-side, not build-time). ~20,000+ URLs including browse pages, tier-list pages, scoring methodology, `runs/[hash]` detail, and i18n landing pages
-- **International SEO**: `/{lang}/` routes for 13 non-English languages with **bidirectional** hreflang alternates — English root pages also emit alternates for all locales + `x-default` via `buildLanguageAlternates(path)` in `lib/seo.ts` (fixes GSC "Crawled - not indexed" duplicate-content cluster)
+- **International SEO**: `/{lang}/` routes for 14 non-English languages with **bidirectional** hreflang alternates: English root pages also emit alternates for all locales + `x-default` via `buildLanguageAlternates(path)` in `lib/seo.ts` (fixes GSC "Crawled - not indexed" duplicate-content cluster)
 - **Programmatic SEO**: 41 card browse pages at `/cards/browse/` + 3 tier-list pages
 - **Locale-aware EntityProse**: avoids cross-locale identical English bodies that GSC flagged as duplicates
 - **Internal linking**: Powers ↔ cards, encounters → monsters, card keywords → keyword hub pages, tier-list rows → entity detail Stats tab
@@ -262,8 +306,8 @@ spire-codex/
 - 138 of 158 skeletons render successfully; 20 skip (no atlas, VFX-only, blank)
 - Hidden slots: `smokeTex`, `smoke_placeholder` excluded from rendering (removes "Smoke Placeholder" text from gas_bomb, living_smog)
 - Auto-crop pipeline for undersized sprites: crops to content bbox, rescales to fill 512x512 frame (fuzzy_wurm_crawler, thieving_hopper, terror_eel, myte, leaf_slime_m, sludge_spinner)
-- Monster sprites served from `backend/static/images/monsters/` (512x512)
-- Hi-res ancients (Neow, Tezcatara) at `backend/static/images/misc/` (2048x2048)
+- Renders are staged under `backend/static/images/` and served from the CDN (`cdn.spire-codex.com`); `parser_paths.py` writes CDN URLs when `CDN_BASE_URL` is set and the frontend builds them from `NEXT_PUBLIC_CDN_URL`
+- Monster sprites 512x512, hi-res ancients (Neow, Tezcatara) 2048x2048
 
 ## Key Technical Patterns
 - **Card DynamicVars**: `new DamageVar(8m)`, `new BlockVar(5m)`, `new PowerVar<VulnerablePower>(2m)`
@@ -320,10 +364,10 @@ python3 tools/deploy.py
 
 ## Beta Channel (spire-codex.com/beta)
 
-The public application serves both channels: the backend resolves `?channel=beta|stable` into a request-local `ContextVar` and loads beta data from `data-beta/<latest>/`, with per-file fallback to stable. Beta pages live at `spire-codex.com/beta`. Cloudflare redirects `beta.spire-codex.com` to the same path on the apex without adding `/beta` or `channel=beta`, so clients must use the main beta route or explicit query parameter. The standalone beta images and `docker-compose.beta.yml` stack are still retained by CI and autodeploy, but are not the public beta site while that redirect is active.
+The public application serves both channels: the backend resolves `?channel=beta|stable` into a request-local `ContextVar` and loads beta data from `data-beta/<latest>/`, with per-file fallback to stable. Beta pages live at `spire-codex.com/beta`. Cloudflare redirects `beta.spire-codex.com` to the same path on the apex without adding `/beta` or `channel=beta`, so clients must use the main beta route or explicit query parameter. There is no separate beta stack anymore; the one deployment serves both channels.
 
 - **Extraction**: `extraction/beta/raw/` + `extraction/beta/decompiled/`
-- **Parsed data**: `data-beta/` (14 languages, versioned dirs + `latest` pointer)
+- **Parsed data**: `data-beta/` (15 languages, versioned dirs + `latest` pointer)
 - **Parser env vars**: `EXTRACTION_DIR` and `DATA_DIR` via `parser_paths.py`
 
 ## Versioning
@@ -336,11 +380,7 @@ Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/imp
 - Card color "event" has no matching energy icon — falls back to "colorless"
 - Docker builds can fail with Turbopack panic if disk space is low (`docker system prune -f`)
 - Root-level `data/*.json` files may be stale/wrong language — always use `data/eng/*.json` for diffs
-- i18n is partial — entity data fully translated via API, UI chrome ~60% translated via `lib/ui-translations.ts`
-  - Compare graphs broken in non-English (keyword matching uses English names)
-  - Merchant page section headings/descriptions/fake relic table still English
-  - About and Changelog pages delegate to English components (content not translated)
-  - Recommend migrating to `next-intl` for complete i18n coverage
+- Some English still leaks through in non-English locales where the game data itself has no translation (`zht` ships with English fallback for untranslated strings)
 
 ## Future Enhancements
 - ~~Individual detail pages~~ ✅
@@ -372,18 +412,21 @@ Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/imp
 - ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid; shows "by {username}" link
 - ~~TinyCard primitive + docs~~ ✅ — shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`
 - ~~Search bar redesign~~ ✅ — hero search on home, middle-of-nav on other pages, icon-only on mobile
-- ~~Codex Score & Tier List~~ ✅ — Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tiers, dedicated tier-list pages, methodology page at `/leaderboards/scoring`. Pre-warmed on FastAPI startup so first request isn't a cold cache.
+- ~~Codex Score & Tier List~~ ✅: Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tiers, dedicated tier-list pages, methodology page at `/stats/scoring`.
 - ~~Detail-page Stats tab~~ ✅ — score hero badge + prose summary + recent runs via `EntityRunStats`
 - ~~Bidirectional hreflang~~ ✅ — English root pages emit alternates for 13 locales + x-default via `buildLanguageAlternates`
 - ~~News mirror~~ ✅ — `/news` mirrors Steam's announcement feed with locally archived `data/news/{gid}.json` so the archive survives Steam's sliding window
 - ~~Unified SEO title format~~ ✅ — `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`
-- i18n refactor — migrate from manual t() calls to `next-intl` for complete translation coverage
-  - Known gaps: compare graphs (keyword matching), merchant prose, about/changelog content, scattered client component strings
-  - Current t() approach doesn't scale — hundreds of strings across dozens of components
-  - `next-intl` handles URL-based locale detection, server/client components, centralized message files
-- ~~Database instead of JSON files for runs~~ ✅ — MongoDB (community stats, leaderboards, accounts); materialized `stats_summary` + `entity_stats_snapshot` collections via a leader-elected refresher
-- ~~User accounts~~ ✅ — Steam OpenID + Discord OAuth, JWT sessions, profile stats, personal bests, competitive comparison, run claiming/upload
+- ~~i18n refactor~~ ✅: every page under `app/[locale]/` on `next-intl`
+- ~~Database instead of JSON files for runs~~ ✅: MongoDB (community stats, leaderboards, accounts)
+- ~~Analytics lake~~ ✅: DuckDB lake built by `lab/` on the ingest box, served read-only by `services/lake_stats.py`
+- ~~Redis~~ ✅: fail-safe JSON cache + shared rate-limit counters
+- ~~Site search~~ ✅: tantivy index (`/api/search`) plus semantic search over embeddings
+- ~~User accounts~~ ✅: Steam OpenID (Discord kept for existing accounts), JWT sessions, profile stats, personal bests, competitive comparison, run claiming/upload
+- ~~Twitch + Patreon links~~ ✅: Twitch for the `/live` roster, Patreon for the paid API-key tier
+- ~~API keys~~ ✅: `X-API-Key` tiers, `/api/keys`, `GET /api/rate-limits`
+- ~~Replays and live presence~~ ✅: the mod uploads replay journals and heartbeats live runs (`/replays`, `/live`)
+- ~~Tier-list maker~~ ✅: saved to the account, shareable by handle
 - ~~Discord bot (card lookup)~~ ✅ — Knowledge Demon (see /knowledge-demon)
 - ~~CDN for images~~ ✅ — Cloudflare R2 at `cdn.spire-codex.com` (webp)
-- Deck builder / run simulator
-- Patreon-to-account linking for supporter perks
+- ~~Deck builder~~ ✅: `/deck-builder`, with `/seed-finder` next to it

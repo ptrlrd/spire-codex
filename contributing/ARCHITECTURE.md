@@ -19,12 +19,18 @@ The game is built with Godot 4 but all logic is in a C#/.NET 8 DLL, not GDScript
 ## Backend (`backend/`)
 
 - **FastAPI** with Pydantic schemas, slowapi rate limiting, GZip compression
-- **25+ routers** in `app/routers/` — one per entity type + guides, runs, feedback, news, merchant
+- **~65 routers** in `app/routers/` (68 `include_router` lines in `main.py`): one per entity type + guides, runs, search, leaderboards, players, presence, replays, charts, tier lists, API keys, auth connectors, feedback, news, merchant, admin
 - **Data service** loads stable JSON from `data/{lang}/` and active beta JSON from `data-beta/<latest>/{lang}/` with LRU caching. `get_channel` resolves `?channel=beta|stable` into a request-local `ContextVar`, and beta files fall back to stable when absent.
-- **MongoDB** (self-hosted single-node replica set on the DB origin) for community run submissions. Materialized `stats_summary` collection populated by a background refresher (one worker via a Mongo TTL lease) — API handlers read the precomputed doc in sub-millisecond time. SQLite (`data/runs.db`) is kept as the offline-fallback codepath in `services/runs_db.py` when `MONGO_URL` is unset.
-- **Run entity stats service** (`app/services/run_entity_stats.py`) — computes the Codex Score (Bayesian-shrunk win rate, graded against the per-type average → 0–100 → S/A/B/C/D/F tier) per card/relic/potion. The heavy 100k-file walk runs in a single leader process (same stats-refresher lease) and is materialized to the `entity_stats_snapshot` collection; every worker reads that shared snapshot rather than re-walking the run files.
-- **User accounts** (`app/routers/auth.py`, `services/auth_jwt.py`, `services/users_db.py`) — Steam OpenID + Discord OAuth, JWT session cookies, profile stats, personal bests, and competitive comparison. Users + their claimed runs live in MongoDB. Needs `JWT_SECRET`, `DISCORD_CLIENT_ID/SECRET`, `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE`.
-- **Static images** served from `backend/static/images/` in dev; in production they're served from a Cloudflare R2 CDN at `cdn.spire-codex.com` (webp). `resolve_image_url` emits CDN URLs when `CDN_BASE_URL` is set; the frontend rewrites `/static/images/` to `NEXT_PUBLIC_CDN_URL` at build time.
+- **MongoDB** (self-hosted single-node replica set on the DB origin) for community run submissions, users, saved charts and tier lists. SQLite (`data/runs.db`) is kept as the offline-fallback codepath in `services/runs_db.py` when `MONGO_URL` is unset.
+- **DuckDB lake** (`app/services/lake_stats.py`, built by `lab/`): every analytics surface serves from here: the community payload and cube, the entity store and cube, encounter stats, deep item tables, charts, the leaderboard boards and the frame. The lake is mounted at `LAKE_DIR` (default `/lake`), built by the ingest box's cycle and delivered by the artifact bus. Serving reads stored artifacts; only builders touch parquet. The Mongo `stats_summary` docs that `/api/runs/stats` reads are filled by the lake's `stats_core` and `deep_tables` stages (the old Mongo aggregation is retired), and the entity snapshot stays as the automatic fallback for unsupported brackets and errors.
+- **Codex Score** (`app/services/run_entity_stats.py`): the Bayesian-shrunk win rate, graded against the per-type average → 0–100 → S/A/B/C/D/F tier, per card/relic/potion. The lake's entity cube is what the metrics endpoints fold; the snapshot walk is the fallback.
+- **Redis** (`app/services/cache.py`, `services/rate_limit_config.py`): a fail-safe JSON cache in front of the hot read endpoints, and the shared store for the rate-limit counters so a cap means the same thing across all workers. `REDIS_URL` unset means every cache call no-ops and slowapi falls back to per-worker counters.
+- **API keys** (`routers/api_keys.py`, `services/rate_limit_config.py`): `X-API-Key` buckets by key and uses its tier's cap (general 15, registered 60, academia 100, paid 120 per minute per route); no key is 300/min per IP. Tiers and per-path clamps are editable at runtime from the admin console.
+- **Search** (`app/services/search_index.py`): one tantivy index over every entity in every language, reference entries, mechanics pages, guides, news, site pages and image files. One worker builds it under a file lock at startup, the rest mmap it. `services/semantic_search.py` adds meaning-based entity search over Workers AI bge-m3 embeddings (`scripts.build_embeddings`), with Redis in front of query embeddings; it degrades to nothing when no vectors or token exist.
+- **Run vectors** (`app/services/run_vectors.py`): nightly per-character run-composition shards behind similar runs, archetypes, deck advisor, pick coach and encounter builds.
+- **User accounts** (`app/routers/auth.py`, `services/auth_jwt.py`, `services/users_db.py`): Steam OpenID sign-in (Discord OAuth kept for existing accounts), JWT session cookies, profile stats, personal bests, and competitive comparison. Twitch (`auth_twitch.py`) links power the `/live` roster; Patreon (`auth_patreon.py`) links drive the paid API-key tier. Users + their claimed runs live in MongoDB. Needs `JWT_SECRET`, `DISCORD_CLIENT_ID/SECRET`, `FRONTEND_URL`, `SPIRE_CODEX_PUBLIC_BASE`.
+- **Presence and replays** (`routers/presence.py`, `routers/replays.py`, `routers/replays_browse.py`): the in-game mod heartbeats a live run to `/api/presence` (bearer token) and uploads gzipped NDJSON replays against runs the player owns; `/live` and `/replays` read them.
+- **Images** are served from the Cloudflare R2 CDN at `cdn.spire-codex.com` (webp). `resolve_image_url` builds CDN URLs from `CDN_BASE_URL`; the frontend uses `NEXT_PUBLIC_CDN_URL`. `services/r2_storage.py` uploads tier-list preview images to their own R2 bucket.
 
 ### Parsers (`backend/app/parsers/`)
 
@@ -35,13 +41,28 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 | `card_parser.py` | Cards — cost, type, rarity, damage, block, keywords, upgrades, DynamicVars |
 | `monster_parser.py` | Monsters — HP, moves with intents/powers/damage/hit counts, innate powers, encounter context |
 | `relic_parser.py` | Relics — rarity, pool, descriptions, image variants |
+| `potion_parser.py` | Potions |
 | `power_parser.py` | Powers — type (Buff/Debuff), stack type, inheritance resolution |
 | `event_parser.py` | Events — multi-page decision trees, choices from C# source order, runtime-computed values |
-| `guide_parser.py` | Guides — markdown with YAML frontmatter |
 | `encounter_parser.py` | Encounters — monster compositions, room type, act, tags |
+| `character_parser.py` | Characters |
+| `enchantment_parser.py` | Enchantments |
+| `keyword_parser.py` | Keywords, intents, orbs and afflictions |
+| `act_parser.py`, `ascension_parser.py` | Acts and ascension levels |
+| `badge_parser.py` | Run-end badges |
+| `epoch_parser.py` | Epochs and story/timeline data |
+| `pool_parser.py`, `ancient_pool_parser.py` | Item pool assignments and ancient relic-offering pools |
+| `rest_site_parser.py` | Rest-site option catalog |
+| `merchant_parser.py` | Merchant pricing constants → `data/merchant_config.json` |
+| `mechanics_constants_parser.py` | Named numeric constants from the odds / economy / progression files |
+| `localization_parser.py`, `message_parser.py`, `icu_check.py` | The game's localization tables as an ICU MessageFormat pack (`data/{lang}/messages.json`), the SmartFormat → ICU converter, and the structural validator |
+| `translation_parser.py` | `translations.json` per language (English filter values → localized names) |
+| `guide_parser.py` | Guides: markdown with YAML frontmatter |
+| `news_parser.py` | Steam announcements + community news archive |
+| `orphan_filter.py` | Detects orphan C# class files left over from previous game versions |
 | `description_resolver.py` | Shared SmartFormat template resolver |
-| `parser_paths.py` | Shared path config — supports `EXTRACTION_DIR`/`DATA_DIR` env vars for beta |
-| `parse_all.py` | Orchestrates all parsers for all 14 languages |
+| `parser_paths.py` | Shared path config: supports `EXTRACTION_DIR`/`DATA_DIR` env vars for beta, `CDN_BASE_URL` for image URLs |
+| `parse_all.py` | Orchestrates all parsers for all 15 languages |
 
 ### Key Patterns
 
@@ -58,26 +79,28 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 
 - **Next.js 16** App Router with server + client components
 - **Tailwind CSS** with CSS variables for theming
-- **On-demand ISR via `dynamic = "force-static"` + `revalidate = N`** on every server-fetching page. Next.js 15+ treats `await params` as dynamic by default — `force-static` overrides that, and the per-request fetch options (`{ next: { revalidate: N } }`) make them participate in ISR rather than fight it. Combined with the CF Cache Rules below, this gets every cacheable page to 50–80ms HIT globally.
-- **TypeScript** strict mode, interfaces in `lib/api.ts`
+- **Every page lives under `app/[locale]/`** and `next-intl` (`i18n/routing.ts`, `i18n/request.ts`, `i18n/messages.ts` assembling the `lib/i18n-x*.ts` message modules) owns locale detection, the `/{lang}/` prefixes and the UI strings. English is the unprefixed root.
+- **Rendering**: `dynamic = "force-dynamic"` is the norm (34 `page.tsx` files, server rendered per request behind the Cloudflare cache). Only 6 pages still use `force-static` + `revalidate = N` (the cards, relics, monsters, acts, ascensions and compare detail pages). The caching work is done by the response headers and the CF Cache Rules below, not by build-time generation.
+- **TypeScript** strict mode, interfaces in `lib/api/types.ts`
 
 ### Key Files
 
 | File | Purpose |
 |------|---------|
-| `lib/api.ts` | API client + all TypeScript interfaces |
-| `lib/ui-translations.ts` | Manual UI string translations for 13 languages |
-| `lib/use-lang-prefix.ts` | Hook for language-aware URL construction |
-| `lib/seo.ts` | `buildLanguageAlternates(path)` returns the hreflang map for all 13 locales + `x-default`. Used in `generateMetadata` for both English root pages and `/{lang}/` mirrors so the alternates are bidirectional (fixes GSC duplicate-content cluster). |
+| `lib/api/` | API client: `endpoint.server.ts` (server fetches with `timeoutMs` and ISR windows) and `endpoint.client.ts` (hooks over `fetch-cache`), `endpoint.common.ts` (the endpoint table), `prefix.*.ts` (beta channel detection from the path) and `types.ts` (all TypeScript interfaces) |
+| `lib/languages.ts` | The 15 locale codes, hreflang mappings, native names |
+| `lib/ui-translations.ts` | Manual UI string translations for non-game-data text; every key has an `eng` fallback |
+| `lib/seo.ts` | Title builders (`entityTitle`, `pageTitle`, `gameName`) and SEO constants |
 | `lib/use-entity-scores.ts` | Client hook — bulk-fetches Codex Scores per entity type via `/api/runs/scores/{type}`. |
 | `lib/steam-news.ts` | Steam HTML/BBCode → safe HTML sanitizer for `/news` (resolves `{STEAM_CLAN_IMAGE}`, BBCode → HTML, strips scripts/iframes/event handlers). |
+| `lib/replay.ts`, `lib/replay-scene.ts` | Replay file decoding and the battle-scene model for `/replays` |
 | `app/globals.css` | CSS variables — colors, theme |
 | `app/components/RichDescription.tsx` | BBCode tag renderer for game text |
 | `app/components/CardGrid.tsx` | Card grid with inline icons |
 | `app/components/ScoreBadge.tsx` | S/A/B/C/D/F tier pill (sm/md/lg) used on detail Stats tabs and tier-list rows. |
 | `app/components/EntityRunStats.tsx` | Detail-page Stats tab — score hero badge + prose summary + recent runs links. |
 | `app/components/TierList.tsx` | Visual S→F rows for `/tier-list/{cards,relics,potions}`. |
-| `app/contexts/LanguageContext.tsx` | i18n state from URL path |
+| `app/contexts/AuthContext.tsx` | Signed-in user state |
 
 ### Color System
 
@@ -101,7 +124,9 @@ All endpoints accept `?lang=` (default: `eng`). Responses are GZip-compressed; e
 
 - **List endpoints**: `GET /api/cards`, `GET /api/monsters`, etc. with filters
 - **Detail endpoints**: `GET /api/cards/{id}`, `GET /api/monsters/{id}`, etc.
-- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta — reads from materialized `stats_summary` collection), `GET /api/runs/list` (browse — accepts `seed`, `build_id`, `sort` filters), `GET /api/runs/leaderboard` (ranked wins-only), `GET /api/runs/versions` (distinct game versions), `GET /api/runs/shared/{hash}` (shared run detail — merges `username` from MongoDB so the shared-run page can show "by {username}"), `GET /api/runs/scores/{type}` (Codex Score per entity)
+- **Runs**: `POST /api/runs` (submit), `GET /api/runs/stats` (aggregated meta: reads the materialized `stats_summary` docs the lake fills), `GET /api/runs/list` (browse: accepts `seed`, `build_id`, `sort` filters), `GET /api/runs/leaderboard` (ranked wins-only), `GET /api/runs/versions` (distinct game versions), `GET /api/runs/shared/{hash}` (shared run detail: merges `username` from MongoDB so the shared-run page can show "by {username}"), `GET /api/runs/scores/{type}` (Codex Score per entity), `GET /api/runs/metrics/{type}` (the dense `/stats` tables, folded from the lake's entity cube per `bracket`)
+- **Search**: `GET /api/search` (tantivy, everything in every language), `GET /api/search/semantic` (embeddings)
+- **Keys**: `GET /api/rate-limits`, `GET|POST /api/keys`, `DELETE /api/keys/{id}`
 - **Guides**: `GET /api/guides` (list with filters), `GET /api/guides/{slug}` (detail), `POST /api/guides` (Discord webhook submission)
 - **News**: `GET /api/news`, `GET /api/news/{gid}` — Steam announcement archive (`data/news/{gid}.json`, survives Steam's sliding window)
 - **Merchant config**: `GET /api/merchant/config` — auto-extracted from C# pricing constants
@@ -132,7 +157,7 @@ Tier cutoffs (from `frontend/app/components/ScoreBadge.tsx::scoreToTier`): **S**
 
 The site serves cached responses in 50–80ms edge-to-end globally (17–25ms warm-tab). Three layers cooperate:
 
-1. **Materialized `stats_summary` collection (MongoDB).** `/api/runs/stats` and per-character variants used to run ~8 aggregations per request against the `runs` collection (~9.9K docs × `$unwind`'d nested arrays = 5–15s tail latency). A background daemon — gated by a Mongo TTL lease so only one worker across the pool runs it — refreshes the hot filter combos every 60s and writes the result to `stats_summary`. API handlers do `find_one({_id: filter_key})`. Sub-millisecond reads, hidden from the user path. See `services/runs_db_mongo.py::refresh_stats_summary` and `routers/runs.py::start_stats_refresher`.
+1. **The DuckDB lake + materialized docs.** Nothing aggregates at request time. The ingest box runs the lake cycle (`lab/ingest.py`, stages in `lab/run_stage.py`: `payload`, `entity_store`, `encounter_store`, `entity_cube`, `deep_tables`, `charts_blob`, `stats_core`, `leaderboard_summary`, `frame`, `history`, `profiles`, `replay_guard`, `player_elo`, `player_stats`) and publishes the artifacts; the serving box pulls them and `services/lake_stats.py` reads stored artifacts. `/api/runs/stats` still does a `find_one` on the `stats_summary` docs, which the `stats_core` and `deep_tables` stages fill (the ~80 min Mongo aggregation that used to do it is retired). Hot read endpoints also sit behind the Redis JSON cache in `services/cache.py`.
 
 2. **Backend cache-control middleware** (`main.py::CORSStaticMiddleware`). Path-tiered `Cache-Control` so CF and browsers cache appropriately:
    - `/static/*` → `max-age=31536000, immutable`
@@ -144,21 +169,22 @@ The site serves cached responses in 50–80ms edge-to-end globally (17–25ms wa
 3. **Cloudflare Cache Rules + ISR.** Two CF Cache Rules opt JSON / HTML into caching (off by default for `Content-Type: application/json`):
    - **API rule**: URI starts with `/api/` → eligible, use origin TTL.
    - **HTML rule**: URI doesn't start with `/api/` and doesn't start with `/static/` → eligible, use origin TTL.
-   - Pages set their own `revalidate = N` (60s for `/`, 300s for tier-list, 3600s for entity data). Combined with `dynamic = "force-static"`, Next.js emits `Cache-Control: s-maxage=N, stale-while-revalidate=...` and CF honors it.
+   - The few `force-static` detail pages set their own `revalidate = N`, and Next.js emits `Cache-Control: s-maxage=N, stale-while-revalidate=...` for them. The `force-dynamic` majority renders per request; the server-side fetches in `lib/api/endpoint.server.ts` carry their own ISR windows (catalog data 3600s, run-derived stats 300s) so the backend calls are still cached.
 
-Pages that intrinsically can't be cached (those using `searchParams` for filters: `/leaderboards`, `/tier-list/cards`, `/tier-list/relics`, `/news`) stay BYPASS and serve at 130–360ms from origin. They're the trade — caching them would require moving the filter logic client-side.
+Pages that read `searchParams` for filters (`/leaderboards`, `/tier-list/*`, `/news`, the `/stats` grids) serve from origin per request. They're the trade: caching them would require moving the filter logic client-side.
 
 Surfaces:
 - `GET /api/runs/scores/{type}` — bulk feed for tier-list pages
 - `ScoreBadge` on entity detail Stats tab (`EntityRunStats`)
 - `/tier-list/{cards,relics,potions}` — visual S→F rows
-- `/leaderboards/scoring` — methodology page (explains the formula above for end users)
+- `/stats/{cards,relics,potions,shops,events,campfires,encounters}`: the dense metric grids
+- `/stats/scoring`: methodology page (explains the formula above for end users)
 
 ## Localization
 
-- 14 languages from game's localization files
+- 15 languages from game's localization files (`zht` shipped in game v0.109.0 with English fallback for untranslated strings)
 - `_key` fields preserve English values alongside localized display strings (e.g., `rarity_key: "Rare"` stays English while `rarity: "稀有"` is localized)
-- UI chrome partially translated via `lib/ui-translations.ts`
+- UI chrome goes through next-intl; the game's own strings ship as ICU packs in `data/{lang}/messages.json` and `GET /api/localizations`
 
 ## Spine Rendering
 
@@ -202,13 +228,13 @@ Run-end mini-achievements awarded on the Game Over screen (introduced in v0.103.
 - **Parser** (`backend/app/parsers/badge_parser.py`) — reads `MegaCrit.Sts2.Core.Models.Badges/*.cs` for `Id` / `RequiresWin` / `MultiplayerOnly`, groups bronze/silver/gold tier titles + descriptions from `localization/<lang>/badges.json`. Outputs 25 badges per language (Thai is empty upstream).
 - **Schema** (`backend/app/models/schemas.py`): `Badge` + `BadgeTier` Pydantic models.
 - **Router** (`backend/app/routers/badges.py`): `GET /api/badges` (filters: `tiered`, `multiplayer_only`, `requires_win`, `search`), `GET /api/badges/{id}`.
-- **Frontend**: `/badges` list page (tiered / single-tier / multiplayer sections), `/badges/[id]` detail page (Bronze / Silver / Gold tier breakdown). Mirror routes at `/[lang]/badges` for all 14 languages.
+- **Frontend**: `/badges` list page (tiered / single-tier / multiplayer sections), `/badges/[id]` detail page (Bronze / Silver / Gold tier breakdown). Lives under `app/[locale]/badges`, so every one of the 15 languages gets it.
 
 ## Image Pipeline
 
 `backend/scripts/copy_images.py` copies game art from `extraction/raw/images/` to `backend/static/images/`. Each PNG is copied **and** a sibling WebP is generated from the same source (`quality=95`, `method=6`) — never a re-conversion of an existing backend WebP. Skips when the WebP is already newer than the source PNG so reruns don't churn untouched art.
 
-Frontend serves the WebP as the primary asset (smaller, faster), with PNG as the fallback and the format offered for download from `/images`.
+That tree is only the staging copy. What the site serves is the R2 bucket behind `cdn.spire-codex.com`; `parser_paths.py` writes CDN URLs into the JSON when `CDN_BASE_URL` is set, and `/images` browses and zips the CDN folders through `GET /api/images/game/{version}/{category}/...`.
 
 ## Entity Version History
 
