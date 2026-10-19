@@ -1,6 +1,6 @@
 # spire-codex Ansible
 
-Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). One-shot deploys, the manual deploy script installer, and the housekeeping toolkit.
+Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). Deploys, the deploy script installer, and the housekeeping toolkit.
 
 Everything sensitive (SSH keys, usernames, IPs, third-party credentials) lives in 1Password and is fetched at runtime via the wrapper script. Nothing secret or identifying lands in git.
 
