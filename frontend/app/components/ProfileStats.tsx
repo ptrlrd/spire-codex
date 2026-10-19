@@ -100,6 +100,8 @@ interface Run {
   key_relics?: string[];
   last_bosses?: KeyBoss[];
   killed_by?: string | null;
+  hidden?: boolean;
+  hidden_reason?: string | null;
 }
 
 interface ProfileStatsProps {
@@ -113,6 +115,8 @@ interface ProfileStatsProps {
   deleteConfirm: string | null;
   onDeleteConfirm: (hash: string | null) => void;
   onDeleteRuns: (hashes: string[]) => Promise<void> | void;
+  onHideRun: (hash: string, hidden: boolean) => Promise<void> | void;
+  onHideRuns: (hashes: string[], hidden: boolean) => Promise<void> | void;
   overviewExtra?: ReactNode;
   statsTab?: (tab: StatsTab) => ReactNode;
   chartsTab?: ReactNode;
@@ -146,6 +150,8 @@ export default function ProfileStats({
   deleteConfirm,
   onDeleteConfirm,
   onDeleteRuns,
+  onHideRun,
+  onHideRuns,
   overviewExtra,
   statsTab,
   chartsTab,
@@ -178,6 +184,20 @@ export default function ProfileStats({
     setBulkDeleting(true);
     try {
       await onDeleteRuns(selected);
+      setSelected([]);
+    } finally {
+      setBulkDeleting(false);
+      setConfirmBulk(false);
+    }
+  }
+  const allSelectedHidden =
+    selected.length > 0 &&
+    selected.every((h) => runs.find((r) => r.run_hash === h)?.hidden);
+  async function hideSelected() {
+    if (selected.length === 0) return;
+    setBulkDeleting(true);
+    try {
+      await onHideRuns(selected, !allSelectedHidden);
       setSelected([]);
     } finally {
       setBulkDeleting(false);
@@ -345,6 +365,15 @@ export default function ProfileStats({
                     <span className="text-[var(--text-tertiary)]">
                       {t("{n} selected", { n: selected.length })}
                     </span>
+                    <button
+                      onClick={hideSelected}
+                      disabled={bulkDeleting}
+                      className="text-[var(--text-tertiary)] hover:text-[var(--accent-gold)] transition-colors disabled:opacity-50"
+                    >
+                      {allSelectedHidden
+                        ? t("Unhide selected")
+                        : t("Hide selected")}
+                    </button>
                     {confirmBulk ? (
                       <span className="inline-flex items-center gap-2">
                         <button
@@ -435,6 +464,19 @@ export default function ProfileStats({
                     >
                       {t("View")}
                     </Link>
+                    {run.hidden && run.hidden_reason !== "owner" ? (
+                      <span className="text-xs text-[var(--text-tertiary)] shrink-0">
+                        {t("Hidden")}
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => onHideRun(run.run_hash, !run.hidden)}
+                        disabled={bulkDeleting}
+                        className="text-xs text-[var(--text-tertiary)] hover:text-[var(--accent-gold)] transition-colors shrink-0 disabled:opacity-50"
+                      >
+                        {run.hidden ? t("Unhide") : t("Hide")}
+                      </button>
+                    )}
                     {deleteConfirm === run.run_hash ? (
                       <div className="flex items-center gap-1 shrink-0">
                         <button

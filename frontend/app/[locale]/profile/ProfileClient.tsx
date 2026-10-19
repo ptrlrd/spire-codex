@@ -31,6 +31,8 @@ interface Run {
   killed_by: string | null;
   username: string | null;
   submitted_at: string;
+  hidden?: boolean;
+  hidden_reason?: string | null;
 }
 
 interface UploadResult {
@@ -277,6 +279,74 @@ export default function ProfileClient() {
     }
   };
 
+  const applyHidden = (hashes: Set<string>, hidden: boolean) =>
+    setRuns((prev) =>
+      prev.map((r) =>
+        hashes.has(r.run_hash)
+          ? { ...r, hidden, hidden_reason: hidden ? "owner" : null }
+          : r,
+      ),
+    );
+
+  const handleHide = async (runHash: string, hidden: boolean) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/runs/${runHash}/hidden`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hidden }),
+      });
+      if (res.ok) {
+        applyHidden(new Set([runHash]), hidden);
+        toast(hidden ? t("Run hidden") : t("Run unhidden"), "success");
+      } else if (res.status === 403) {
+        toast(t("You do not own this run"), "error");
+      } else if (res.status === 404) {
+        toast(t("Run not found"), "error");
+      } else if (res.status === 409) {
+        toast(t("This run was hidden by a moderator"), "error");
+      } else {
+        toast(t("Failed to update this run"), "error");
+      }
+    } catch {
+      toast(t("Network error"), "error");
+    }
+  };
+
+  const handleHideMany = async (hashes: string[], hidden: boolean) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/runs/bulk-hide`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ run_hashes: hashes, hidden }),
+      });
+      if (!res.ok) {
+        toast(t("Failed to update this run"), "error");
+        return;
+      }
+      const body = (await res.json()) as {
+        updated: string[];
+        failed: Record<string, string>;
+      };
+      applyHidden(new Set(body.updated), hidden);
+      const failedCount = Object.keys(body.failed ?? {}).length;
+      if (failedCount > 0) {
+        toast(
+          t("Updated {n} runs, {failed} could not be updated", {
+            n: body.updated.length,
+            failed: failedCount,
+          }),
+          "error",
+        );
+      } else {
+        toast(t("Updated {n} runs", { n: body.updated.length }), "success");
+      }
+    } catch {
+      toast(t("Network error"), "error");
+    }
+  };
+
   if (loading) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12">
@@ -323,6 +393,8 @@ export default function ProfileClient() {
           deleteConfirm={deleteConfirm}
           onDeleteConfirm={setDeleteConfirm}
           onDeleteRuns={handleDeleteMany}
+          onHideRun={handleHide}
+          onHideRuns={handleHideMany}
           runsQuery={runsQuery}
           onRunsQueryChange={setRunsQuery}
           overviewExtra={
