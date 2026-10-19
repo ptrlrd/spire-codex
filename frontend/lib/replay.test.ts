@@ -1622,6 +1622,41 @@ describe("HP lost is reported only where the journal supports a total", () => {
     expect(c.hpEnd).toBe(53);
   });
 
+  it("reads dst when the journal carries no mine flag", () => {
+    const r = parseReplay(
+      journal([
+        v1,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "combat", id: "A" },
+        { t: "hp", s: 2, floor: 1, act: 1, hp: 60, d: 0, dst: "player" },
+        {
+          t: "combat_start",
+          s: 3,
+          floor: 1,
+          act: 1,
+          encounter: "E",
+          enemies: [],
+        },
+        { t: "hp", s: 4, floor: 1, act: 1, hp: 47, d: -13, dst: "player" },
+        {
+          t: "hp",
+          s: 5,
+          floor: 1,
+          act: 1,
+          hp: 317,
+          d: 30,
+          dst: "KNOWLEDGE_DEMON",
+          dst_cid: 229,
+          src: "heal",
+        },
+        { t: "combat_end", s: 6, floor: 1, act: 1, turns: 1, hp: 47 },
+      ]),
+    );
+    const c = r.floors[0].combats[0];
+    expect(c.hpEnd).toBe(47);
+    expect(c.hpLossRecorded).toBe(13);
+    expect(r.floors[0].hpAfter).toBe(47);
+  });
+
   it("records zero for a fight whose start and end HP agree with no changes", () => {
     const c = fight([
       { t: "combat_end", s: 4, floor: 1, act: 1, turns: 1, hp: 60 },
