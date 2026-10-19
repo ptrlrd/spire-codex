@@ -3926,26 +3926,48 @@ def set_run_hidden_by_owner(run_hash: str, user: dict, hidden: bool) -> dict:
     return {"success": True, "hidden": hidden}
 
 
-def soft_delete_run(run_hash: str, user_id: str) -> dict:
+def delete_run_permanently(run_hash: str, user: dict) -> dict:
+    """Remove one of the caller's own runs for good: the run doc, its blob, the
+    file on disk and its replay. The live stats counters give the run back and
+    the lake drops it on the next ingest. A later upload of the same file
+    comes in as a new run."""
     coll = _get_collection()
-
-    run = coll.find_one({"_id": run_hash}, {"user_id": 1, "deleted_at": 1})
+    run = coll.find_one(
+        {"_id": run_hash},
+        {
+            "user_id": 1,
+            "steam_id": 1,
+            "hidden": 1,
+            "deleted_at": 1,
+            "character": 1,
+            "win": 1,
+            "was_abandoned": 1,
+            "ascension": 1,
+        },
+    )
     if not run:
         return {"error": "Run not found"}
 
-    run_owner = run.get("user_id")
-    if not run_owner or str(run_owner) != user_id:
+    from .replays_db import owns_run
+
+    if not owns_run(run, user):
         return {"error": "You do not own this run"}
 
-    if run.get("deleted_at"):
-        return {"success": True}
+    if not run.get("hidden") and not run.get("deleted_at"):
+        bump_stats_counters(run, -1)
+    coll.delete_one({"_id": run_hash})
+    _blob_collection().delete_one({"_id": run_hash})
+    try:
+        from .replays_db import _coll as _replays
 
-    from datetime import datetime, timezone
-
-    coll.update_one(
-        {"_id": run_hash},
-        {"$set": {"deleted_at": datetime.now(timezone.utc)}},
-    )
+        _replays().delete_one({"_id": run_hash})
+    except Exception:
+        logger.warning("replay delete failed for %s", run_hash, exc_info=True)
+    try:
+        (_data_dir / "runs" / f"{run_hash}.json").unlink(missing_ok=True)
+    except OSError:
+        logger.warning("run file delete failed for %s", run_hash, exc_info=True)
+    evict_run_pages([run_hash])
     return {"success": True}
 
 

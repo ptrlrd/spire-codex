@@ -375,7 +375,12 @@ export default function ProfileStats({
                         : t("Hide selected")}
                     </button>
                     {confirmBulk ? (
-                      <span className="inline-flex items-center gap-2">
+                      <span className="inline-flex flex-wrap items-center gap-2">
+                        <span className="text-danger">
+                          {t("This permanently deletes {n} runs. No undo.", {
+                            n: selected.length,
+                          })}
+                        </span>
                         <button
                           onClick={deleteSelected}
                           disabled={bulkDeleting}
@@ -478,12 +483,15 @@ export default function ProfileStats({
                       </button>
                     )}
                     {deleteConfirm === run.run_hash ? (
-                      <div className="flex items-center gap-1 shrink-0">
+                      <div className="flex flex-wrap items-center gap-1.5 shrink-0 text-xs">
+                        <span className="text-danger">
+                          {t("This permanently deletes the run. No undo.")}
+                        </span>
                         <button
                           onClick={() => onDeleteRun(run.run_hash)}
-                          className="text-xs text-danger hover:text-danger"
+                          className="text-xs font-semibold text-danger hover:text-danger"
                         >
-                          {t("Confirm")}
+                          {t("Delete")}
                         </button>
                         <button
                           onClick={() => onDeleteConfirm(null)}
