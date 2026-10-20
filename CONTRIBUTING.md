@@ -1,6 +1,6 @@
 # Contributing to Spire Codex
 
-Thanks for your interest in contributing! This project is open to community contributions — bug fixes, data corrections, new features, and improvements are all welcome.
+Thanks for your interest in contributing! This project is open to community contributions - bug fixes, data corrections, new features, and improvements are all welcome.
 
 ## Getting Started
 
@@ -8,39 +8,45 @@ Thanks for your interest in contributing! This project is open to community cont
 2. **Clone your fork** locally
 3. **Set up the dev environment** (see below)
 4. **Create a branch** for your changes (never commit directly to `main`)
-5. **Submit a PR** against `main` — CI will run lint, type-check, format check, and secret scanning automatically
-6. **Once approved and merged**, CI builds Docker images and deploys to production
+5. **Submit a PR** against `main`: CI runs ESLint, `tsc` and Prettier on the frontend, ruff (lint + format check) and pytest on the backend, and a secret scan
+6. **Once approved and merged**, CI builds the Docker images; the release itself is run on the box by hand
 
 ## Dev Environment
 
 ### Prerequisites
-- Docker
+- Docker (runs backend, Redis and frontend together), or
+- Node 24 + Python 3.12 to run the two sides directly
 
 ### Running Locally
 ```bash
 docker compose up --build
 ```
 
-Backend runs at `http://localhost:8000`, frontend at `http://localhost:3000`.
+Backend runs at `http://localhost:8000`, frontend at `http://localhost:3000`. Redis is optional for local work: without `REDIS_URL` the cache no-ops and rate limits fall back to in-memory counters.
 
 ## Project Structure
 
 ```
 backend/          Python FastAPI backend
   app/
-    routers/      API endpoints
-    services/     Data loading, SQLite runs DB
+    routers/      API endpoints (~65 routers)
+    services/     Data loading, Mongo runs store (SQLite fallback), DuckDB lake reads, Redis cache, rate-limit tiers, tantivy search, auth
     parsers/      C# source → JSON parsers
     models/       Pydantic schemas
-  static/images/  Game images (not committed)
+  scripts/        One-off builders (search index, embeddings, run vectors) and Mongo repairs
+  static/images/  Game images (not committed; the site serves from the CDN)
 frontend/         Next.js 16 + TypeScript + Tailwind
-  app/            Pages and components
-  lib/            API client, utilities, i18n
+  app/[locale]/   Pages (next-intl)
+  app/components/ Shared components
+  i18n/           next-intl routing + message loader
+  lib/            API client (lib/api/), utilities, i18n message modules
 data/             Parsed JSON data (per-language, stable)
   changelogs/     Version changelogs
   ancient_pools.json
-data-beta/        Parsed beta data (versioned: v0.102.0/, v0.103.0/, latest symlink)
-tools/            Spine renderer, diff tool, deploy script
+data-beta/        Parsed beta data (versioned: v0.110.0/, v0.111.0/, latest symlink)
+lab/              DuckDB analytics lake: ingest cycle + stages
+infrastructure/   Ansible playbooks for the boxes
+tools/            Spine renderer, diff tool, deploy + release scripts
 ```
 
 ## What to Contribute
@@ -54,14 +60,14 @@ tools/            Spine renderer, diff tool, deploy script
 If a card description, damage value, or relic effect is wrong:
 - Check the parsed JSON in `data/eng/` first
 - If the data is wrong, the fix is usually in `backend/app/parsers/`
-- The parsers extract data from decompiled C# in `extraction/decompiled/` (not committed — see README for extraction instructions)
+- The parsers extract data from decompiled C# in `extraction/decompiled/` (not committed - see README for extraction instructions)
 
 ### Frontend Changes
 - Pages are in `frontend/app/[locale]/` using Next.js App Router and next-intl
 - Components are in `frontend/app/components/`
 - API client and types are in `frontend/lib/api/`
 - `fetch-cache.ts` handles channel-aware API calls: on a `/beta` page every `cachedFetch` call gets `channel=beta` appended
-- Colors use CSS variables defined in `frontend/app/globals.css` — character colors are sampled from the game's energy icons
+- Colors use CSS variables defined in `frontend/app/globals.css` - character colors are sampled from the game's energy icons
 
 ### New API Endpoints
 - Routers go in `backend/app/routers/`
@@ -73,14 +79,14 @@ If a card description, damage value, or relic effect is wrong:
 - Guides are markdown files in `data/guides/` with YAML frontmatter
 - Parser at `backend/app/parsers/guide_parser.py` converts to `data/guides.json`
 - Supports `[[Card Name]]` tooltip syntax (rendered via the tooltip widget)
-- Submissions go through Discord webhook — reviewer creates the `.md` file
+- Submissions go through Discord webhook - reviewer creates the `.md` file
 - Author social links (website, Bluesky, Twitter, Twitch) shown at bottom of guide
 
 ### Run Data / Meta
 - Run submission and stats use MongoDB (`MONGO_URL`); without it the backend falls back to legacy SQLite (`data/runs.db`)
 - Queries are in `backend/app/services/runs_db_mongo.py` (SQLite fallback in `runs_db.py`)
 - The stats pages live under `frontend/app/[locale]/stats/` (the old `/meta`, `/community-stats`, `/leaderboards/metrics` and `/charts` pages redirect into `/stats`); the metrics tables read `GET /api/runs/metrics/{type}` plus `/metrics/shops`, `/metrics/events` and `/metrics/campfires`
-- **Codex Score** lives in `backend/app/services/run_entity_stats.py` — Bayesian-shrunk win rate per entity → 0–100 score → S/A/B/C/D/F tier. Pre-warmed on startup. Exposed at `GET /api/runs/scores/{type}` (`cards`/`relics`/`potions`) and surfaced via the `ScoreBadge`/`EntityRunStats`/`TierList` components. Methodology page at `/stats/scoring`.
+- **Codex Score** lives in `backend/app/services/run_entity_stats.py` - Bayesian-shrunk win rate per entity → 0–100 score → S/A/B/C/D/F tier. Pre-warmed on startup. Exposed at `GET /api/runs/scores/{type}` (`cards`/`relics`/`potions`) and surfaced via the `ScoreBadge`/`EntityRunStats`/`TierList` components. Methodology page at `/stats/scoring`.
 
 ### Game Mechanics
 - Pages at `frontend/app/[locale]/mechanics/`
@@ -90,12 +96,12 @@ If a card description, damage value, or relic effect is wrong:
 ## Changelog Retention
 
 Files under `data/changelogs/` are the **only durable record of per-version
-data history** — every entity-detail page reads them through `/api/history/`
+data history** - every entity-detail page reads them through `/api/history/`
 to render its version-history rail. Once a tag's changelog is in `main`, it
 is **write-once**. CI (`.github/workflows/changelog-guard.yml`) blocks any
 PR that modifies or deletes an existing file under `data/changelogs/`.
 
-**Adding a new tag** — always allowed:
+**Adding a new tag** - always allowed:
 
 ```bash
 # After parsing the new game data into data/eng/...
@@ -107,17 +113,17 @@ python3 tools/diff_data.py vPREV --format json \
 
 The PR shows `A data/changelogs/NEW.json` → guard passes.
 
-**Editing an existing changelog** — requires the `changelog-edit-approved`
+**Editing an existing changelog** - requires the `changelog-edit-approved`
 label. Legitimate cases:
 
 - Typo / metadata fix in `title`, `date`, etc.
 - Re-running `diff_data.py` against a tag (e.g. after fixing a parser bug
   that produced incorrect values). Hand-curated `features` / `fixes` /
-  `api_changes` are preserved through regen — `diff_data.py` merges them
+  `api_changes` are preserved through regen - `diff_data.py` merges them
   back in if the file already exists.
 - One-time format normalization across all historical changelogs.
 
-Add the label on the GitHub PR page — the check re-runs on label change
+Add the label on the GitHub PR page - the check re-runs on label change
 and turns green. The bar isn't "you can't edit", it's "you must consciously
 say you meant to."
 
@@ -168,8 +174,8 @@ The character colors are sampled from the game's energy icons: Ironclad `#d53b27
 
 ## Localization
 
-- Game entity data (names, descriptions) comes from the game's localization files in 14 languages
-- UI chrome translations are in `frontend/lib/ui-translations.ts`
+- Game entity data (names, descriptions) comes from the game's localization files in 15 languages
+- UI chrome goes through next-intl (`frontend/i18n/`, message modules in `frontend/lib/i18n-x*.ts`); `frontend/lib/ui-translations.ts` still holds some older strings
 - All parsers run per-language via `backend/app/parsers/parse_all.py`
 - Filter parameters always use English values regardless of display language
 
@@ -183,16 +189,30 @@ docker compose up --build
 - Backend API: `http://localhost:8000`
 - API docs: `http://localhost:8000/docs`
 
+Run what CI runs before you push (plus `npm test`, which CI does not run yet):
+
+```bash
+# frontend
+cd frontend && npm ci
+npm run lint && npx tsc --noEmit && npm run format:check && npm test
+
+# backend
+cd backend && pip install -r requirements.txt pytest
+ruff check app/ && ruff format --check app/ && python -m pytest -q
+```
+
+CI pins `ruff==0.15.14`; `ruff format` on your changes keeps the format check green.
+
 ## Community
 
-- **Discord**: [discord.gg/xMsTBeh](https://discord.gg/xMsTBeh) — discuss changes before big PRs
+- **Discord**: [discord.gg/xMsTBeh](https://discord.gg/xMsTBeh) - discuss changes before big PRs
 - **Showcase**: Built something with the API? Share it in Discord and we'll add it to `/showcase`
 
 ## Reference Docs
 
-- **[Architecture](contributing/ARCHITECTURE.md)** — how the project is structured, backend/frontend patterns, color system, Spine rendering
-- **[Data Guide](contributing/DATA_GUIDE.md)** — what data is parsed, file structure, parsing commands, rich text tags, merchant pricing
-- **[API Reference](contributing/API_REFERENCE.md)** — all endpoints with filters and descriptions
+- **[Architecture](contributing/ARCHITECTURE.md)** - how the project is structured, backend/frontend patterns, color system, Spine rendering
+- **[Data Guide](contributing/DATA_GUIDE.md)** - what data is parsed, file structure, parsing commands, rich text tags, merchant pricing
+- **[API Reference](contributing/API_REFERENCE.md)** - all endpoints with filters and descriptions
 
 ## Development Assistance
 
@@ -200,6 +220,6 @@ AI-assisted contributions are welcome. Contributors are responsible for understa
 
 ## License
 
-Contributions are accepted under the project's [PolyForm Noncommercial 1.0.0](LICENSE.md) license — by opening a PR you agree your contribution is licensed under the same terms as the rest of the code. Noncommercial use, modification, and redistribution are all permitted; selling the software is not.
+Contributions are accepted under the project's [PolyForm Noncommercial 1.0.0](LICENSE.md) license - by opening a PR you agree your contribution is licensed under the same terms as the rest of the code. Noncommercial use, modification, and redistribution are all permitted; selling the software is not.
 
 Game data (cards, relics, monsters, etc.) belongs to **Mega Crit Games** and is served here as a community reference under fair-use / educational terms. See [API_TERMS.md](API_TERMS.md) for the hosted API's usage policy.
