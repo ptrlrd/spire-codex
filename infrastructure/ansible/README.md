@@ -101,7 +101,7 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend, frontend 
 2. Tag the running images as `:previous`, `docker compose pull`, `up -d --force-recreate backend frontend`, wait for both container healthchecks (abort before touching nginx if one never turns healthy), clear nginx's page cache, nginx reload (recreated containers get new IPs)
 3. No Cloudflare purge on code deploys; news-only commits purge the news URLs (token + zone live in `/etc/spire-codex/cf-purge.env` on the box, mode 600, root-only)
 
-News-only updates (`data/news/*.json`) skip the recreate — the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
+News-only updates (`data/news/*.json`) skip the recreate - the backend mounts `./data:/data` so the news API re-reads from disk on every request, no restart needed.
 
 ```bash
 # Watch the log

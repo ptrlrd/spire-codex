@@ -6,11 +6,11 @@ Spire Codex extracts game data from Slay the Spire 2 (Godot 4 / C#/.NET 8) and s
 
 ## Data Pipeline
 
-1. **PCK Extraction** — GDRE Tools extracts the Godot `.pck` file → images, Spine animations, localization (~9,947 files)
-2. **DLL Decompilation** — ILSpy decompiles `sts2.dll` → ~3,300 C# source files
-3. **Data Parsing** — Python regex parsers extract structured data from C# + localization JSON → per-language JSON in `data/{lang}/`
-4. **Spine Rendering** — Headless Node.js renderer (Playwright + spine-webgl) → 512×512 monster/character PNGs
-5. **API + Frontend** — FastAPI serves parsed JSON, Next.js consumes it
+1. **PCK Extraction** - GDRE Tools extracts the Godot `.pck` file → images, Spine animations, localization (~9,947 files)
+2. **DLL Decompilation** - ILSpy decompiles `sts2.dll` → ~3,300 C# source files
+3. **Data Parsing** - Python regex parsers extract structured data from C# + localization JSON → per-language JSON in `data/{lang}/`
+4. **Spine Rendering** - Headless Node.js renderer (Playwright + spine-webgl) → 512×512 monster/character PNGs
+5. **API + Frontend** - FastAPI serves parsed JSON, Next.js consumes it
 
 ## Key Discovery
 
@@ -38,13 +38,13 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 
 | Parser | Extracts |
 |--------|----------|
-| `card_parser.py` | Cards — cost, type, rarity, damage, block, keywords, upgrades, DynamicVars |
-| `monster_parser.py` | Monsters — HP, moves with intents/powers/damage/hit counts, innate powers, encounter context |
-| `relic_parser.py` | Relics — rarity, pool, descriptions, image variants |
+| `card_parser.py` | Cards - cost, type, rarity, damage, block, keywords, upgrades, DynamicVars |
+| `monster_parser.py` | Monsters - HP, moves with intents/powers/damage/hit counts, innate powers, encounter context |
+| `relic_parser.py` | Relics - rarity, pool, descriptions, image variants |
 | `potion_parser.py` | Potions |
-| `power_parser.py` | Powers — type (Buff/Debuff), stack type, inheritance resolution |
-| `event_parser.py` | Events — multi-page decision trees, choices from C# source order, runtime-computed values |
-| `encounter_parser.py` | Encounters — monster compositions, room type, act, tags |
+| `power_parser.py` | Powers - type (Buff/Debuff), stack type, inheritance resolution |
+| `event_parser.py` | Events - multi-page decision trees, choices from C# source order, runtime-computed values |
+| `encounter_parser.py` | Encounters - monster compositions, room type, act, tags |
 | `character_parser.py` | Characters |
 | `enchantment_parser.py` | Enchantments |
 | `keyword_parser.py` | Keywords, intents, orbs and afflictions |
@@ -67,7 +67,7 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 ### Key Patterns
 
 - **Card DynamicVars**: `new DamageVar(8m)`, `new BlockVar(5m)`, `new PowerVar<VulnerablePower>(2m)`
-- **CalculatedDamage**: Cards like Ashen Strike use `CalculationBase + ExtraDamage * multiplier` — display shows base only
+- **CalculatedDamage**: Cards like Ashen Strike use `CalculationBase + ExtraDamage * multiplier` - display shows base only
 - **Power inheritance**: 19 powers inherit from Temporary{Strength,Dexterity,Focus}Power
 - **Monster move effects**: Extracted from `PowerCmd.Apply<T>()` in move method bodies
 - **Monster innate powers**: Extracted from `AfterAddedToRoom` (42 monsters)
@@ -91,14 +91,14 @@ Each parser reads decompiled C# source + localization JSON and outputs structure
 | `lib/languages.ts` | The 15 locale codes, hreflang mappings, native names |
 | `lib/ui-translations.ts` | Manual UI string translations for non-game-data text; every key has an `eng` fallback |
 | `lib/seo.ts` | Title builders (`entityTitle`, `pageTitle`, `gameName`) and SEO constants |
-| `lib/use-entity-scores.ts` | Client hook — bulk-fetches Codex Scores per entity type via `/api/runs/scores/{type}`. |
+| `lib/use-entity-scores.ts` | Client hook - bulk-fetches Codex Scores per entity type via `/api/runs/scores/{type}`. |
 | `lib/steam-news.ts` | Steam HTML/BBCode → safe HTML sanitizer for `/news` (resolves `{STEAM_CLAN_IMAGE}`, BBCode → HTML, strips scripts/iframes/event handlers). |
 | `lib/replay.ts`, `lib/replay-scene.ts` | Replay file decoding and the battle-scene model for `/replays` |
-| `app/globals.css` | CSS variables — colors, theme |
+| `app/globals.css` | CSS variables - colors, theme |
 | `app/components/RichDescription.tsx` | BBCode tag renderer for game text |
 | `app/components/CardGrid.tsx` | Card grid with inline icons |
 | `app/components/ScoreBadge.tsx` | S/A/B/C/D/F tier pill (sm/md/lg) used on detail Stats tabs and tier-list rows. |
-| `app/components/EntityRunStats.tsx` | Detail-page Stats tab — score hero badge + prose summary + recent runs links. |
+| `app/components/EntityRunStats.tsx` | Detail-page Stats tab - score hero badge + prose summary + recent runs links. |
 | `app/components/TierList.tsx` | Visual S→F rows for `/tier-list/{cards,relics,potions}`. |
 | `app/contexts/AuthContext.tsx` | Signed-in user state |
 
@@ -128,8 +128,8 @@ All endpoints accept `?lang=` (default: `eng`). Responses are GZip-compressed; e
 - **Search**: `GET /api/search` (tantivy, everything in every language), `GET /api/search/semantic` (embeddings)
 - **Keys**: `GET /api/rate-limits`, `GET|POST /api/keys`, `DELETE /api/keys/{id}`
 - **Guides**: `GET /api/guides` (list with filters), `GET /api/guides/{slug}` (detail), `POST /api/guides` (Discord webhook submission)
-- **News**: `GET /api/news`, `GET /api/news/{gid}` — Steam announcement archive (`data/news/{gid}.json`, survives Steam's sliding window)
-- **Merchant config**: `GET /api/merchant/config` — auto-extracted from C# pricing constants
+- **News**: `GET /api/news`, `GET /api/news/{gid}` - Steam announcement archive (`data/news/{gid}.json`, survives Steam's sliding window)
+- **Merchant config**: `GET /api/merchant/config` - auto-extracted from C# pricing constants
 - **Docs**: `http://localhost:8000/docs` (Swagger UI)
 
 Filter parameters always use English values regardless of language.
@@ -146,8 +146,8 @@ score = clamp((shrunk_rate - baseline) / SCALE_RANGE × 50 + 50, 0, 100)
 ```
 
 Constants:
-- `PRIOR_WEIGHT = 50` — pulls low-sample entries toward the baseline
-- `SCALE_RANGE = 0.15` — a 15-point swing in shrunk win rate is the full 0–100 scale
+- `PRIOR_WEIGHT = 50` - pulls low-sample entries toward the baseline
+- `SCALE_RANGE = 0.15` - a 15-point swing in shrunk win rate is the full 0–100 scale
 
 Tier cutoffs (from `frontend/app/components/ScoreBadge.tsx::scoreToTier`): **S** ≥90, **A** 78–89, **B** 65–77, **C** 50–64, **D** 35–49, **F** <35.
 
@@ -174,9 +174,9 @@ The site serves cached responses in 50–80ms edge-to-end globally (17–25ms wa
 Pages that read `searchParams` for filters (`/leaderboards`, `/tier-list/*`, `/news`, the `/stats` grids) serve from origin per request. They're the trade: caching them would require moving the filter logic client-side.
 
 Surfaces:
-- `GET /api/runs/scores/{type}` — bulk feed for tier-list pages
+- `GET /api/runs/scores/{type}` - bulk feed for tier-list pages
 - `ScoreBadge` on entity detail Stats tab (`EntityRunStats`)
-- `/tier-list/{cards,relics,potions}` — visual S→F rows
+- `/tier-list/{cards,relics,potions}` - visual S→F rows
 - `/stats/{cards,relics,potions,shops,events,campfires,encounters}`: the dense metric grids
 - `/stats/scoring`: methodology page (explains the formula above for end users)
 
@@ -190,9 +190,9 @@ Surfaces:
 
 Monster sprites are Spine skeletal animations (.skel + .atlas + .png), not static images.
 
-- **WebGL renderer** (`tools/spine-renderer/render_webgl.mjs`) — Playwright + spine-webgl via headless Chrome, single frame.
-- **Batch renderer** (`tools/spine-renderer/render_all_webgl.mjs`) — all 138 skeletons as static PNGs.
-- **Animation renderer** (`tools/spine-renderer/render_gif.mjs`) — animated WebP/GIF/APNG with skin variant and animation selection support. Streams frames to disk for WebP/APNG to avoid OOM.
+- **WebGL renderer** (`tools/spine-renderer/render_webgl.mjs`) - Playwright + spine-webgl via headless Chrome, single frame.
+- **Batch renderer** (`tools/spine-renderer/render_all_webgl.mjs`) - all 138 skeletons as static PNGs.
+- **Animation renderer** (`tools/spine-renderer/render_gif.mjs`) - animated WebP/GIF/APNG with skin variant and animation selection support. Streams frames to disk for WebP/APNG to avoid OOM.
 - **Static output**: 512×512 transparent PNGs (+ same-source WebPs).
 - **Animation output**: 209 lossless animated WebPs (characters at 512×512, monsters at 256×256).
 
@@ -203,15 +203,15 @@ Monster sprites are Spine skeletal animations (.skel + .atlas + .png), not stati
 | `--skin=a,b,c` | Combine variant skins with `default`. Required for skeletons that split body / eye / variant across multiple skins. | `--skin=moss1,diamondeye` for cubex_construct, `--skin=skin1` for scroll_of_biting |
 | `--anim=name` | Override the auto-picked idle animation. | `--anim=attack` |
 | `--anim-time=<seconds>` | Advance the animation N seconds before snapshotting. For skeletons that assemble over the first few frames. | `--anim-time=0.5` |
-| `--white` | Convert all visible pixels to white silhouette. | — |
-| `--only-slots=<pattern>` | Render only slots matching a substring. | — |
+| `--white` | Convert all visible pixels to white silhouette. | - |
+| `--only-slots=<pattern>` | Render only slots matching a substring. | - |
 
 ### Hidden slots + smoke substitution
 
 The renderer maintains two lists for placeholder content the game replaces with shaders at runtime:
 
-- **`HIDDEN_SLOTS`** (stripped before draw) — `smokeplacholder`, `smoke_placeholder`, `megatail`, `megablade`, `soundwave`, `beckonwave`. These are weapon / soundwave VFX with no good static substitute.
-- **`SMOKE_PLACEHOLDER_PAGES`** (texture swapped with a generated cloud) — `gas_bomb_2.png`, `the_forgotten_2.png`, `living_smog_2.png`. Each placeholder atlas page is replaced with a procedurally generated dark plum smoke texture at the same dimensions before GL upload, so the slot's mesh deformation drives a real-looking smoke effect. Slot `color.a` is forced to `1.0` for substituted slots — the original artists set low alpha (0.26-0.38) expecting a shader to add density, and without the shader the cloud reads washed out.
+- **`HIDDEN_SLOTS`** (stripped before draw) - `smokeplacholder`, `smoke_placeholder`, `megatail`, `megablade`, `soundwave`, `beckonwave`. These are weapon / soundwave VFX with no good static substitute.
+- **`SMOKE_PLACEHOLDER_PAGES`** (texture swapped with a generated cloud) - `gas_bomb_2.png`, `the_forgotten_2.png`, `living_smog_2.png`. Each placeholder atlas page is replaced with a procedurally generated dark plum smoke texture at the same dimensions before GL upload, so the slot's mesh deformation drives a real-looking smoke effect. Slot `color.a` is forced to `1.0` for substituted slots - the original artists set low alpha (0.26-0.38) expecting a shader to add density, and without the shader the cloud reads washed out.
 
 ### Re-framing undersized renders
 
@@ -225,14 +225,14 @@ python3 tools/rescale_bestiary.py fuzzy_wurm_crawler thieving_hopper terror_eel
 
 Run-end mini-achievements awarded on the Game Over screen (introduced in v0.103.x beta, shipped to stable in Major Update #1).
 
-- **Parser** (`backend/app/parsers/badge_parser.py`) — reads `MegaCrit.Sts2.Core.Models.Badges/*.cs` for `Id` / `RequiresWin` / `MultiplayerOnly`, groups bronze/silver/gold tier titles + descriptions from `localization/<lang>/badges.json`. Outputs 25 badges per language (Thai is empty upstream).
+- **Parser** (`backend/app/parsers/badge_parser.py`) - reads `MegaCrit.Sts2.Core.Models.Badges/*.cs` for `Id` / `RequiresWin` / `MultiplayerOnly`, groups bronze/silver/gold tier titles + descriptions from `localization/<lang>/badges.json`. Outputs 25 badges per language (Thai is empty upstream).
 - **Schema** (`backend/app/models/schemas.py`): `Badge` + `BadgeTier` Pydantic models.
 - **Router** (`backend/app/routers/badges.py`): `GET /api/badges` (filters: `tiered`, `multiplayer_only`, `requires_win`, `search`), `GET /api/badges/{id}`.
 - **Frontend**: `/badges` list page (tiered / single-tier / multiplayer sections), `/badges/[id]` detail page (Bronze / Silver / Gold tier breakdown). Lives under `app/[locale]/badges`, so every one of the 15 languages gets it.
 
 ## Image Pipeline
 
-`backend/scripts/copy_images.py` copies game art from `extraction/raw/images/` to `backend/static/images/`. Each PNG is copied **and** a sibling WebP is generated from the same source (`quality=95`, `method=6`) — never a re-conversion of an existing backend WebP. Skips when the WebP is already newer than the source PNG so reruns don't churn untouched art.
+`backend/scripts/copy_images.py` copies game art from `extraction/raw/images/` to `backend/static/images/`. Each PNG is copied **and** a sibling WebP is generated from the same source (`quality=95`, `method=6`) - never a re-conversion of an existing backend WebP. Skips when the WebP is already newer than the source PNG so reruns don't churn untouched art.
 
 That tree is only the staging copy. What the site serves is the R2 bucket behind `cdn.spire-codex.com`; `parser_paths.py` writes CDN URLs into the JSON when `CDN_BASE_URL` is set, and `/images` browses and zips the CDN folders through `GET /api/images/game/{version}/{category}/...`.
 
@@ -240,7 +240,7 @@ That tree is only the staging copy. What the site serves is the R2 bucket behind
 
 Every detail page renders a Version History rail powered by `GET /api/history/{entity_type}/{entity_id}`. The endpoint scans every changelog under `data/changelogs/` for entries that touched the requested entity, returns them **newest first**, and matches case-insensitively (URLs use lowercased ids; changelog ids are upper-snake).
 
-`tools/diff_data.py` produces the field-level changes via `_deep_diff()` — recurses into nested dicts and lists so each leaf becomes its own row (`vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. List items with stable `id` fields are matched by id (so `moves[BEAM_MOVE]` rather than `moves[2]`).
+`tools/diff_data.py` produces the field-level changes via `_deep_diff()` - recurses into nested dicts and lists so each leaf becomes its own row (`vars.DamageVar: 8 → 10`) instead of opaque `vars: 2 fields → 2 fields`. List items with stable `id` fields are matched by id (so `moves[BEAM_MOVE]` rather than `moves[2]`).
 
 Hand-curated `features` / `fixes` / `api_changes` arrays in a changelog are preserved through regenerations of an existing tag. The data-diff portion is overwritten but those release-note arrays merge through.
 

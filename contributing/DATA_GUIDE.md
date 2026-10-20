@@ -149,7 +149,7 @@ The frontend `RichDescription` component renders these.
 ### Relics
 Major Update #1 (v0.103.2) reduced every relic base by 25g:
 - Common: 149-201 (base 175). Shop: 170-230 (base 200). Uncommon: 191-259 (base 225). Rare: 234-316 (base 275).
-- Fake Merchant: all 50 gold flat (10 fakes — `IsAllowedInShops => false`)
+- Fake Merchant: all 50 gold flat (10 fakes - `IsAllowedInShops => false`)
 - Blacklisted from regular shop: The Courier, Old Coin, Lucky Fysh, Bowler Hat, Amethyst Aubergine (last three added in MU#1)
 
 ### Potions
@@ -157,11 +157,11 @@ Major Update #1 (v0.103.2) reduced every relic base by 25g:
 
 ### Card Removal
 - 75 + 25 × removals used (no RNG)
-- Ascension 6+ — Inflation: 100 + 50 × removals used (replaced Gloom / 1-fewer-rest-site in Major Update #1)
+- Ascension 6+ - Inflation: 100 + 50 × removals used (replaced Gloom / 1-fewer-rest-site in Major Update #1)
 
 ## Versioning
 
-`1.X.Y` — 1 = Codex major, X = bumps on Mega Crit game patch, Y = our fixes/improvements.
+`1.X.Y` - 1 = Codex major, X = bumps on Mega Crit game patch, Y = our fixes/improvements.
 
 ## Generating Changelogs
 
@@ -193,7 +193,7 @@ After running the script, hand-edit the JSON to add three arrays at the top leve
 - `fixes`: bullet per bug fix
 - `api_changes`: bullet per new/changed API endpoint
 
-These survive a regen — `diff_data.py` merges them through if the file at the target tag already exists. The data-diff portion is always overwritten on regen, but the curated notes are preserved.
+These survive a regen - `diff_data.py` merges them through if the file at the target tag already exists. The data-diff portion is always overwritten on regen, but the curated notes are preserved.
 
 ### Write-once rule
 

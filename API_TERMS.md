@@ -1,8 +1,8 @@
-# Spire Codex API — Terms of Use
+# Spire Codex API - Terms of Use
 
 Everything under `https://spire-codex.com/api/*` is free for community use, within the rate limits below. If your project needs more, open a [GitHub issue](https://github.com/ptrlrd/spire-codex/issues) or ping the [Discord](https://discord.gg/xMsTBeh) and we'll work something out.
 
-These terms cover the **hosted API and the tooltip / changelog widgets at spire-codex.com**. They do not replace the software license — source code is covered by [LICENSE.md](LICENSE.md) (PolyForm Noncommercial 1.0.0).
+These terms cover the **hosted API and the tooltip / changelog widgets at spire-codex.com**. They do not replace the software license - source code is covered by [LICENSE.md](LICENSE.md) (PolyForm Noncommercial 1.0.0).
 
 ## Rate limits
 
@@ -24,7 +24,7 @@ Hit a limit and you'll get `429 Too Many Requests`. Back off and retry. The per-
 
 Keys are optional. Browsing without one is fine within the per-IP limit. A key moves your requests into a per-key bucket at your tier's limit and is sent as an `X-API-Key` header. Sign in at spire-codex.com and create keys under your account (`GET`/`POST /api/keys`, `DELETE /api/keys/{id}`); new keys are the registered tier. The raw key is shown once at creation and cannot be recovered. Keys are personal: do not share them, and revoke any key you believe has leaked. Linking a Patreon membership to your account moves your keys to the paid tier.
 
-If you're building a bot, a site, or a large-scale tool and the default limits aren't enough, reach out — higher limits are usually fine, we just want to know about the traffic.
+If you're building a bot, a site, or a large-scale tool and the default limits aren't enough, reach out - higher limits are usually fine, we just want to know about the traffic.
 
 ## Attribution (encouraged, not required)
 

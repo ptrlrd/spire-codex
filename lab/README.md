@@ -62,7 +62,7 @@ docker compose -f docker-compose.prod.yml run -d --rm --entrypoint python lake-i
 - `parity_elo.py`, `validate_deep_tables.py`, `validate_fossil_parity.py`, `validate_frame_lake.py`, `validate_payload_rewrite.py`, `shadow_diff.py`, `shadow_community.sql`, `shadow_deaths.sql`: parity and shadow-diff gates against the old Mongo paths
 - `queries/`: the SQL behind the lake stages (`card_rewards`, `charts_blob`, `charts_frame`, `elo_pairs`, `tierlist_cards`, `winrate_brackets`)
 
-## 1. Extract (wait for any full walk to finish first — it reads the same blobs)
+## 1. Extract (wait for any full walk to finish first - it reads the same blobs)
 
 ```
 docker compose -f docker-compose.lab.yml run --rm extract
@@ -70,7 +70,7 @@ docker compose -f docker-compose.lab.yml run --rm extract
 
 Streams every run (Mongo blobs first, file fallback) into
 `lake/staging/*.jsonl.gz` pages of 50k, each line tagged with `_meta`
-(username, hidden, deleted, submitted_at, played_at, player_count) — fields
+(username, hidden, deleted, submitted_at, played_at, player_count) - fields
 the HTTP export doesn't carry. Prints progress per page; capped at 1.5GB RAM.
 
 Incremental: `lake/staging/state.json` records the cursor, so re-running
@@ -115,7 +115,7 @@ The build also emits the decision-level tables the metrics pages use:
   unnest the nested `players` column.
 - `relics.parquet` gains an `is_wax` flag so wax-block copies can be
   counted separately from Toy Box duplicates, plus `removed` /
-  `floor_removed`: one row per relic a seat EVER held — the end-of-run belt
+  `floor_removed`: one row per relic a seat EVER held - the end-of-run belt
   (removed=false) plus removals never re-acquired (removed=true, with the
   pickup floor filled in from picked relic_choices rows when known).
 
@@ -146,7 +146,7 @@ GROUP BY 1 ORDER BY 2 DESC LIMIT 15"
 ```
 
 Interactive shell: `docker compose -f docker-compose.lab.yml run --rm duckdb`
-(`.quit` to exit). Queries read the parquet files directly — no database
+(`.quit` to exit). Queries read the parquet files directly - no database
 file argument needed. Always anti-join `excluded.parquet` (with an explicit ON -- DuckDB
 rejects ANTI JOIN with USING) so hidden/deleted runs stay out, same as
 the site.
@@ -173,7 +173,7 @@ docker compose -f docker-compose.lab.yml run --rm shadow
 the sidecar, A0-A10 only, official characters only, losses only, NONE
 sentinels dropped); `shadow` fetches the live payload (backend-direct, so
 no edge cache) and prints a per-id drift table for both top-15 lists. The
-verdict passes under 1% worst drift — the residual is fold lag between the
+verdict passes under 1% worst drift - the residual is fold lag between the
 extract and the live snapshot's incremental updates.
 
 ## Daily run export

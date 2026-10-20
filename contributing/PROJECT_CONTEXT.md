@@ -1,4 +1,4 @@
-# Spire Codex — Slay the Spire 2 Data API + Website
+# Spire Codex - Slay the Spire 2 Data API + Website
 
 ## Project Goal
 Extract game data from Slay the Spire 2 (Godot 4 / C#/.NET 8) and expose it through a FastAPI backend + Next.js frontend.
@@ -99,12 +99,12 @@ spire-codex/
       monsters/page.tsx relics/page.tsx potions/page.tsx
       enchantments/page.tsx encounters/page.tsx events/page.tsx
       powers/page.tsx        # Powers with "cards that apply this" reverse links
-      keywords/page.tsx      # Keyword hub pages — list + [id] detail with card grids
+      keywords/page.tsx      # Keyword hub pages - list + [id] detail with card grids
       ancients/ archetypes/ badges/ unlocks/
-      merchant/page.tsx      # Merchant guide — prices, fake merchant, card removal
+      merchant/page.tsx      # Merchant guide - prices, fake merchant, card removal
       compare/page.tsx       # Character comparison hub (10 pairs)
       compare/[pair]/        # Side-by-side comparison detail pages
-      mechanics/page.tsx     # Game mechanics hub — 27 clickable sections
+      mechanics/page.tsx     # Game mechanics hub - 27 clickable sections
       mechanics/[slug]/      # Individual mechanic detail pages with SEO
       guides/page.tsx        # Community guides list with search/filter
       guides/[slug]/         # Guide detail with markdown rendering + tooltip widget
@@ -116,13 +116,13 @@ spire-codex/
       tier-list/{cards,relics,potions}/  # Visual S→F tier rows per entity type
       tier-list-maker/       # Tier list maker, saved to the account (/api/tierlists) and shareable by handle
       deck-builder/ seed-finder/        # Deck builder and seed finder
-      runs/[hash]/           # Shared-run detail — "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
-      runs/page.tsx          # Browse Runs — expression search bar + filters + shareable URLs
+      runs/[hash]/           # Shared-run detail - "by {username}" link + in-game-style summary with TinyCard grid, clickable map nodes
+      runs/page.tsx          # Browse Runs - expression search bar + filters + shareable URLs
       runs/submit/           # Drag-and-drop .run upload
       replays/               # Replay browser + viewer
       live/ live/[steamId]/  # Live runs from the mod's presence heartbeats
       players/[username]/    # Public player profile
-      profile/page.tsx       # Signed-in user profile — stats, personal bests, competitive comparison, run management
+      profile/page.tsx       # Signed-in user profile - stats, personal bests, competitive comparison, run management
       settings/page.tsx      # Account settings (username, email, linked accounts)
       news/page.tsx          # Steam news list (mirrored archive) + news/codex site news
       news/[...slug]/        # Single news article: NewsArticle JSON-LD, BBCode-sanitized body
@@ -131,26 +131,26 @@ spire-codex/
       mod/ overlay/ exporter/ knowledge-demon/  # The Steam mod, Overwolf overlay, exporter and Discord bot pages
       timeline/page.tsx reference/page.tsx images/page.tsx
       changelog/page.tsx about/page.tsx thank-you/page.tsx
-      */[id]/page.tsx        # Detail pages — Article + BreadcrumbList + FAQPage JSON-LD
+      */[id]/page.tsx        # Detail pages - Article + BreadcrumbList + FAQPage JSON-LD
       components/
         CardGrid.tsx         # Card grid with inline icons, upgrade rendering
         RichDescription.tsx  # Tokenizer + tree builder for nested rich text tags
         SearchFilter.tsx     # Reusable search + filter + sort bar
         SearchTrigger.tsx    # Input-styled trigger for the global search modal (hero/nav/icon variants)
         GlobalSearch.tsx     # Centralized cmd-K–style search modal (opens on ".")
-        TinyCard.tsx         # In-game card thumbnail primitive — 6-layer mask composite, pool/rarity colors from decompiled C#
+        TinyCard.tsx         # In-game card thumbnail primitive - 6-layer mask composite, pool/rarity colors from decompiled C#
         JsonLd.tsx           # Server component for JSON-LD
         Navbar.tsx           # Nav groups (Database, Game Info, Tools, About) + middle search on non-home pages
         Footer.tsx           # API, Developers, GitHub, Discord, Feedback
         LocalizedNames.tsx   # Collapsible cross-language name display
         EntityHistory.tsx    # Collapsible version history timeline
         RelatedCards.tsx     # Cards sharing keywords/tags
-        ScoreBadge.tsx       # S/A/B/C/D/F tier letter pill (sm/md/lg) — detail-page Stats tab + tier-list rows
-        EntityRunStats.tsx   # Detail-page Stats tab — score hero badge + prose summary + recent runs links
+        ScoreBadge.tsx       # S/A/B/C/D/F tier letter pill (sm/md/lg) - detail-page Stats tab + tier-list rows
+        EntityRunStats.tsx   # Detail-page Stats tab - score hero badge + prose summary + recent runs links
         TierList.tsx         # Visual S→F tier rows for /tier-list/{cards,relics,potions}
       [locale]/runs/[hash]/
-        RunSummary.tsx       # In-game-style summary — stats bar + act rows + relic strip + TinyCard grid
-        RunPills.tsx         # CardPill / RelicPill / PotionPill — hover tooltips with full entity info
+        RunSummary.tsx       # In-game-style summary - stats bar + act rows + relic strip + TinyCard grid
+        RunPills.tsx         # CardPill / RelicPill / PotionPill - hover tooltips with full entity info
         SharedRunClient.tsx  # Run hash loader + top-level layout
         SimilarRuns.tsx      # Nearest winning decks from /api/runs/{hash}/similar
         replay/              # Replay viewer for this run
@@ -161,25 +161,25 @@ spire-codex/
       jsonld.ts             # JSON-LD builders (BreadcrumbList, CollectionPage, Article, NewsArticle, WebSite, VideoGame, FAQPage, SoftwareApplication)
       steam-news.ts         # Steam HTML/BBCode → safe HTML sanitizer for /news
       fetch-cache.ts        # Client-side in-memory fetch cache (5min TTL)
-      use-entity-scores.ts  # Client hook — bulk Codex Scores per entity type
+      use-entity-scores.ts  # Client hook - bulk Codex Scores per entity type
       languages.ts          # i18n config: 15 language codes, hreflang mappings, native names
       i18n-x*.ts            # The UI message modules next-intl loads per locale
       replay.ts replay-scene.ts  # Replay journal parsing + battle-scene rebuild
       image-url.ts          # CDN image URLs from NEXT_PUBLIC_CDN_URL
     public/widget/
-      spire-codex-tooltip.js   # Embeddable tooltip widget — all 13 entity types
+      spire-codex-tooltip.js   # Embeddable tooltip widget - all 13 entity types
       spire-codex-changelog.js # Embeddable changelog viewer with version switching
     Dockerfile
     next.config.ts          # output: "standalone", CORS headers for /widget/*
   tools/
     spine-renderer/          # Headless Spine renderer (Node.js)
-      render_webgl.mjs       # WebGL renderer (single skeleton) — Playwright + spine-webgl, no seam artifacts
-      render_all_webgl.mjs   # WebGL batch renderer — re-renders ALL .skel files via headless Chrome
-      render.mjs             # Legacy canvas renderer — monster-specific (has triangle seam artifacts)
-      render_all.mjs         # Legacy canvas renderer — ALL .skel files (has triangle seam artifacts)
+      render_webgl.mjs       # WebGL renderer (single skeleton) - Playwright + spine-webgl, no seam artifacts
+      render_all_webgl.mjs   # WebGL batch renderer - re-renders ALL .skel files via headless Chrome
+      render.mjs             # Legacy canvas renderer - monster-specific (has triangle seam artifacts)
+      render_all.mjs         # Legacy canvas renderer - ALL .skel files (has triangle seam artifacts)
       render_hires.mjs       # Legacy canvas hi-res renderer (2048x2048)
       render_skins2.mjs      # Skin variants (Cultists, Bowlbugs, Cubex)
-    diff_data.py             # Data diff tool — generates per-entity changelogs between git refs
+    diff_data.py             # Data diff tool - generates per-entity changelogs between git refs
     deploy.py                # Build + push Docker images to Docker Hub (--beta for beta images)
     update.py               # Cross-platform extraction + parse + render pipeline
     startup.sh              # Release / rollback script run on the box
@@ -201,24 +201,24 @@ spire-codex/
   docker-compose.umami.yml            # Self-hosted Umami analytics
 ```
 
-## Data Parsed (stable — beta counts may vary)
+## Data Parsed (stable - beta counts may vary)
 - **577 cards**: cost, type, rarity, target, damage, block, keywords, tags, upgrades, X-cost, vars, resolved descriptions, compendium_order
-- **5 characters** — Ironclad, Silent, Defect, Necrobinder, Regent (HP, gold, energy, deck, relics)
+- **5 characters** - Ironclad, Silent, Defect, Necrobinder, Regent (HP, gold, energy, deck, relics)
 - **296 relics**: rarity, pool (with upgraded starter relic mapping from TouchOfOrobas), compendium_order
-- **115 monsters** — HP ranges, ascension scaling, moves, damage values, hit counts, innate powers (42+ monsters), idle pose sprites
-- **63 potions** — rarity, pool, resolved descriptions, compendium_order
-- **22 enchantments** — card type restrictions, stackability, descriptions
-- **87 encounters** — monster compositions, room type, act placement, tags
-- **66 events** — multi-page decision trees, choices in C# source order, runtime-computed values (escalating costs, gold ranges), preconditions (`IsAllowed` / `IRunState` bodies translated to human-readable strings)
+- **115 monsters** - HP ranges, ascension scaling, moves, damage values, hit counts, innate powers (42+ monsters), idle pose sprites
+- **63 potions** - rarity, pool, resolved descriptions, compendium_order
+- **22 enchantments** - card type restrictions, stackability, descriptions
+- **87 encounters** - monster compositions, room type, act placement, tags
+- **66 events** - multi-page decision trees, choices in C# source order, runtime-computed values (escalating costs, gold ranges), preconditions (`IsAllowed` / `IRunState` bodies translated to human-readable strings)
 - **257 powers**: type (Buff/Debuff), stack type, descriptions (3 abstract bases excluded, 19 inherited powers resolved)
 - **7 keywords**
 - **14 intents** · **5 orbs** · **7 afflictions** · **16 modifiers** · **22 achievements** (with unlock conditions, thresholds, categories) · **23 badges**
 - Plus 57 epochs, 8 stories, 28 glossary terms, 9 rest-site options, and the game's own strings as `messages.json` (46 tables). Counts are `data/eng/*.json` as of 2026-10-18; run `python3 -c "import json; print(len(json.load(open('data/eng/cards.json'))))"` for a live number.
 
 ## API Endpoints
-- `GET /api/stats` — Data counts
-- `GET /api/cards?color=&rarity=&type=&keyword=&tag=&search=` — Cards with filtering
-- `GET /api/cards/{id}` — Single card
+- `GET /api/stats` - Data counts
+- `GET /api/cards?color=&rarity=&type=&keyword=&tag=&search=` - Cards with filtering
+- `GET /api/cards/{id}` - Single card
 - `GET /api/characters` / `GET /api/characters/{id}`
 - `GET /api/relics?rarity=&pool=&search=` / `GET /api/relics/{id}`
 - `GET /api/monsters?type=&search=` / `GET /api/monsters/{id}`
@@ -229,24 +229,24 @@ spire-codex/
 - `GET /api/enchantments?card_type=&search=` / `GET /api/enchantments/{id}`
 - `GET /api/keywords` / `GET /api/orbs` / `GET /api/afflictions` / `GET /api/intents`
 - `GET /api/modifiers` / `GET /api/achievements`
-- `GET /api/names/{entity_type}/{entity_id}` — Cross-language name lookup
-- `GET /api/exports/{lang}` — ZIP download of all entity JSON for a language
-- `GET /api/history/{entity_type}/{entity_id}` — Per-entity version history
-- `GET /api/changelogs` / `GET /api/changelogs/{tag}` — Version changelogs
-- `GET /api/guides?category=&difficulty=&tag=&search=` / `GET /api/guides/{slug}` — Guides
-- `POST /api/guides` — Guide submission (Discord webhook, rate-limited)
-- `POST /api/runs` — Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
-- `GET /api/runs/leaderboard` — ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
+- `GET /api/names/{entity_type}/{entity_id}` - Cross-language name lookup
+- `GET /api/exports/{lang}` - ZIP download of all entity JSON for a language
+- `GET /api/history/{entity_type}/{entity_id}` - Per-entity version history
+- `GET /api/changelogs` / `GET /api/changelogs/{tag}` - Version changelogs
+- `GET /api/guides?category=&difficulty=&tag=&search=` / `GET /api/guides/{slug}` - Guides
+- `POST /api/guides` - Guide submission (Discord webhook, rate-limited)
+- `POST /api/runs` - Run submission / `GET /api/runs/list` (filters: character, win, username, seed, build_id, sort, page, limit) / `GET /api/runs/shared/{hash}` (merges `username` from DB) / `GET /api/runs/stats`
+- `GET /api/runs/leaderboard` - ranked wins-only list (category: fastest|highest_ascension, character, page, limit)
 - `GET /api/runs/scores/{type}`: Bulk Codex Scores + Codex Elo for cards/relics/potions (Bayesian-shrunk win rate mapped 0-100 to S/A/B/C/D/F; non-reward cards + starters excluded; materialized to Mongo by a single leader)
 - `GET /api/runs/community-stats`: Fun community datasets for `/community-stats` (per-event decision splits, deadliest encounters/events, win rates by ascension/character, records; official content only)
-- `GET /api/runs/leaderboard/rank/{hash}` — rank of one winning run; `POST /api/runs/claim` — attach username to prior runs
-- `GET /api/runs/encounter-stats` — per-encounter aggregates (Mongo-only)
-- `GET /api/runs/versions` — distinct build_ids across submitted runs
-- `/api/auth/*` — user accounts: Steam/Discord sign-in, `me`, `runs`, `runs/upload`, `stats`, `personal-bests`, `competitive` (cookie/JWT session)
-- `GET /api/news?feed_type=&feedname=&tag=&since=&search=&limit=&offset=` / `GET /api/news/{gid}` — Steam announcements (locally archived)
-- `GET /api/merchant/config` — Auto-extracted merchant pricing
-- `GET /api/versions` — Version metadata exposed by the active data root
-- `GET /api/unlocks` — Aggregated unlockables grouped by type
+- `GET /api/runs/leaderboard/rank/{hash}` - rank of one winning run; `POST /api/runs/claim` - attach username to prior runs
+- `GET /api/runs/encounter-stats` - per-encounter aggregates (Mongo-only)
+- `GET /api/runs/versions` - distinct build_ids across submitted runs
+- `/api/auth/*` - user accounts: Steam/Discord sign-in, `me`, `runs`, `runs/upload`, `stats`, `personal-bests`, `competitive` (cookie/JWT session)
+- `GET /api/news?feed_type=&feedname=&tag=&since=&search=&limit=&offset=` / `GET /api/news/{gid}` - Steam announcements (locally archived)
+- `GET /api/merchant/config` - Auto-extracted merchant pricing
+- `GET /api/versions` - Version metadata exposed by the active data root
+- `GET /api/unlocks` - Aggregated unlockables grouped by type
 - `GET /api/languages` / `GET /api/localizations` (`/api/translations` is deprecated)
 - `GET /api/search?q=`: tantivy site search; `GET /api/search/semantic?q=`: embeddings
 - `GET /api/runs/metrics/{type}?bracket=&character=`: the `/stats` tables, folded from the DuckDB lake
@@ -276,8 +276,8 @@ spire-codex/
 ### Shop Inventory: 5 character cards (2 ATK, 2 SKL, 1 PWR) + 2 colorless (UNC, RARE) + 3 relics + 3 potions + removal
 
 ## SEO
-- **Structured data**: JSON-LD on all pages — WebSite + VideoGame (home), CollectionPage+ItemList (list pages), Article+BreadcrumbList+FAQPage (detail pages), SoftwareApplication (developers), NewsArticle (news/[gid])
-- **Title format**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` — standardized. Runs use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
+- **Structured data**: JSON-LD on all pages - WebSite + VideoGame (home), CollectionPage+ItemList (list pages), Article+BreadcrumbList+FAQPage (detail pages), SoftwareApplication (developers), NewsArticle (news/[gid])
+- **Title format**: `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"` - standardized. Runs use `"{username} - {char} - Ascension {N} {win/loss} - Slay the Spire 2 (sts2) | Spire Codex"`. "(sts2)" inline so cross-locale `sts2 tier list` / `sts2 card list` queries match.
 - **Sitemap**: Flat XML at `/sitemap.xml`, `force-dynamic` (renders server-side, not build-time). ~20,000+ URLs including browse pages, tier-list pages, scoring methodology, `runs/[hash]` detail, and i18n landing pages
 - **International SEO**: `/{lang}/` routes for 14 non-English languages with **bidirectional** hreflang alternates: English root pages also emit alternates for all locales + `x-default` via `buildLanguageAlternates(path)` in `lib/seo.ts` (fixes GSC "Crawled - not indexed" duplicate-content cluster)
 - **Programmatic SEO**: 41 card browse pages at `/cards/browse/` + 3 tier-list pages
@@ -299,8 +299,8 @@ spire-codex/
 ## Spine Rendering
 - Game sprites are **Spine skeletal animations** (.skel + .atlas + .png spritesheet), NOT static images
 - Skeletons are Spine 4.2.x binary format; runtime is 4.2.107
-- **WebGL renderer** (preferred): `render_webgl.mjs` / `render_all_webgl.mjs` — uses Playwright + spine-webgl to render via headless Chrome's GPU. No triangle seam artifacts.
-- **Canvas renderer** (legacy): `render.mjs` / `render_all.mjs` — uses spine-canvas with `triangleRendering = true`. Has visible wireframe mesh artifacts from canvas clip paths.
+- **WebGL renderer** (preferred): `render_webgl.mjs` / `render_all_webgl.mjs` - uses Playwright + spine-webgl to render via headless Chrome's GPU. No triangle seam artifacts.
+- **Canvas renderer** (legacy): `render.mjs` / `render_all.mjs` - uses spine-canvas with `triangleRendering = true`. Has visible wireframe mesh artifacts from canvas clip paths.
 - WebGL renderer requires: `npm install playwright @esotericsoftware/spine-webgl` + `npx playwright install chromium`
 - Uses system Chrome (`channel: "chrome"`) for WebGL support since headless shell lacks GPU
 - 138 of 158 skeletons render successfully; 20 skip (no atlas, VFX-only, blank)
@@ -313,16 +313,16 @@ spire-codex/
 - **Card DynamicVars**: `new DamageVar(8m)`, `new BlockVar(5m)`, `new PowerVar<VulnerablePower>(2m)`
 - **Compendium order**: Cards sorted by pool→rarity→ID, relics/potions by rarity→name
 - **Event choice ordering**: Extracted from C# source localization key order, not alphabetical
-- **Power inheritance**: 19 powers inherit from Temporary{Strength,Dexterity,Focus}Power — type/description resolved from parent
+- **Power inheritance**: 19 powers inherit from Temporary{Strength,Dexterity,Focus}Power - type/description resolved from parent
 - **Starter relic upgrades**: Mapped via TouchOfOrobas.RefinementUpgrades to correct character pools
 - **Detail page tabs**: Overview (stats/description), Details (merchant price, powers, related), Info (localized names, version history)
-- **i18n key fields**: `rarity_key`, `type_key` on cards/relics/potions, `power_key` on powers_applied — English values preserved alongside localized display strings for logic (merchant prices, power links)
-- **Card upgrade descriptions**: `upgrade_description` field on all 403 upgradable cards — resolved with upgraded var values for correct plurals, icons, and text
+- **i18n key fields**: `rarity_key`, `type_key` on cards/relics/potions, `power_key` on powers_applied - English values preserved alongside localized display strings for logic (merchant prices, power links)
+- **Card upgrade descriptions**: `upgrade_description` field on all 403 upgradable cards - resolved with upgraded var values for correct plurals, icons, and text
 - **Monster multi-hit**: `hit_count` extracted from `WithHitCount(N)` in C# source (including AscensionHelper patterns), displayed as `damage × hits = total`
 - **Monster innate powers**: 42 monsters have powers applied at spawn (Territorial, Artifact, Slippery, etc.) extracted from `AfterAddedToRoom`
 - **Event dynamic values**: Runtime-computed values (escalating costs, gold ranges, heal-to-full) resolved per-step with special handlers for Tablet of Truth, Abyssal Baths, and CalculateVars patterns
 - **Guides**: Markdown files in `data/guides/` with YAML frontmatter, parsed to JSON, rendered with react-markdown + tooltip widget (`[[Card Name]]` syntax)
-- **Mechanics page**: 27 individual SEO pages at `/mechanics/{slug}` — drop rates, combat formulas, map generation, boss pools, secrets & trivia
+- **Mechanics page**: 27 individual SEO pages at `/mechanics/{slug}` - drop rates, combat formulas, map generation, boss pools, secrets & trivia
 - **IndexNow**: Deploy script pings api.indexnow.org with all 1,522 URLs after every push
 - **Shareable changelogs**: `/changelog#1.0.6` auto-selects version via URL hash
 - **Nav grouping**: Collapsible sections (Database, Game Info, About the Site) with auto-expand for active page
@@ -371,15 +371,15 @@ The public application serves both channels: the backend resolves `?channel=beta
 - **Parser env vars**: `EXTRACTION_DIR` and `DATA_DIR` via `parser_paths.py`
 
 ## Versioning
-Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
+Uses `1.X.Y` - 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/improvements.
 
 ## Known Limitations
 - 6 monsters lack images entirely (Crusher, Doormaker, Flyconid, Ovicopter, Rocket, Decimillipede)
 - Some monster sprites are low-res due to tiny source atlas textures (fuzzy_wurm_crawler, thieving_hopper)
 - Some card descriptions have unresolved conditionals (`{InCombat:...}`, `{IsTargeting:...}`)
-- Card color "event" has no matching energy icon — falls back to "colorless"
+- Card color "event" has no matching energy icon - falls back to "colorless"
 - Docker builds can fail with Turbopack panic if disk space is low (`docker system prune -f`)
-- Root-level `data/*.json` files may be stale/wrong language — always use `data/eng/*.json` for diffs
+- Root-level `data/*.json` files may be stale/wrong language - always use `data/eng/*.json` for diffs
 - Some English still leaks through in non-English locales where the game data itself has no translation (`zht` ships with English fallback for untranslated strings)
 
 ## Future Enhancements
@@ -396,27 +396,27 @@ Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/imp
 - ~~Monster multi-hit display~~ ✅
 - ~~IndexNow integration~~ ✅
 - ~~Shareable changelogs~~ ✅
-- ~~Localized detail pages (/{lang}/cards/{id})~~ ✅ — all entity types, 1:1 with English
-- ~~Full site localization routes~~ ✅ — all 30+ pages have /{lang}/ equivalents
-- ~~UI translations (tabs, nav, headings, taglines)~~ ✅ — partial, via lib/ui-translations.ts
-- ~~Community guides~~ ✅ — markdown guides with submission form, tooltip widget, author socials
-- ~~Game mechanics / drop rates page~~ ✅ — 27 individual SEO pages covering card/relic/potion odds, map generation, combat, boss pools, secrets
-- ~~Monster innate powers~~ ✅ — 42 monsters with powers parsed from AfterAddedToRoom
-- ~~Achievement unlock conditions~~ ✅ — category, character, threshold, condition from C# source
-- ~~Card upgrade descriptions~~ ✅ — upgrade_description for all 403 upgradable cards
-- ~~Event dynamic values~~ ✅ — escalating costs, gold ranges, heal-to-full resolved correctly
-- ~~Event preconditions~~ ✅ — `IsAllowed` bodies translated to human-readable strings (gold thresholds, act restrictions, deck requirements); handles both `RunState` and `IRunState` signatures
-- ~~Monster attack patterns~~ ✅ — cycle/random/conditional move-machine parsing from `GenerateMoveStateMachine`
-- ~~Beta data archives~~ ✅ — versioned `data-beta/vX.Y.Z/` directories with a `latest` pointer; the public `/beta` channel serves the active version
-- ~~Leaderboards + run browser revamp~~ ✅ — `/leaderboards` 3-tab page (Fastest Wins, Highest Ascension, Browse), drag-and-drop submit, ranked-table stats replacing `/meta`, filter by seed/username/character/win/version/sort
-- ~~In-game-style run summary~~ ✅ — `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid; shows "by {username}" link
-- ~~TinyCard primitive + docs~~ ✅ — shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`
-- ~~Search bar redesign~~ ✅ — hero search on home, middle-of-nav on other pages, icon-only on mobile
+- ~~Localized detail pages (/{lang}/cards/{id})~~ ✅ - all entity types, 1:1 with English
+- ~~Full site localization routes~~ ✅ - all 30+ pages have /{lang}/ equivalents
+- ~~UI translations (tabs, nav, headings, taglines)~~ ✅ - partial, via lib/ui-translations.ts
+- ~~Community guides~~ ✅ - markdown guides with submission form, tooltip widget, author socials
+- ~~Game mechanics / drop rates page~~ ✅ - 27 individual SEO pages covering card/relic/potion odds, map generation, combat, boss pools, secrets
+- ~~Monster innate powers~~ ✅ - 42 monsters with powers parsed from AfterAddedToRoom
+- ~~Achievement unlock conditions~~ ✅ - category, character, threshold, condition from C# source
+- ~~Card upgrade descriptions~~ ✅ - upgrade_description for all 403 upgradable cards
+- ~~Event dynamic values~~ ✅ - escalating costs, gold ranges, heal-to-full resolved correctly
+- ~~Event preconditions~~ ✅ - `IsAllowed` bodies translated to human-readable strings (gold thresholds, act restrictions, deck requirements); handles both `RunState` and `IRunState` signatures
+- ~~Monster attack patterns~~ ✅ - cycle/random/conditional move-machine parsing from `GenerateMoveStateMachine`
+- ~~Beta data archives~~ ✅ - versioned `data-beta/vX.Y.Z/` directories with a `latest` pointer; the public `/beta` channel serves the active version
+- ~~Leaderboards + run browser revamp~~ ✅ - `/leaderboards` 3-tab page (Fastest Wins, Highest Ascension, Browse), drag-and-drop submit, ranked-table stats replacing `/meta`, filter by seed/username/character/win/version/sort
+- ~~In-game-style run summary~~ ✅ - `/runs/[hash]` mimics the end-of-run screen with map-node rows, clickable encounter/event links, tiny-card deck grid; shows "by {username}" link
+- ~~TinyCard primitive + docs~~ ✅ - shared React component reproducing the in-game card thumbnail; live preview + recipes on `/developers`
+- ~~Search bar redesign~~ ✅ - hero search on home, middle-of-nav on other pages, icon-only on mobile
 - ~~Codex Score & Tier List~~ ✅: Bayesian-shrunk win-rate per entity, S/A/B/C/D/F tiers, dedicated tier-list pages, methodology page at `/stats/scoring`.
-- ~~Detail-page Stats tab~~ ✅ — score hero badge + prose summary + recent runs via `EntityRunStats`
-- ~~Bidirectional hreflang~~ ✅ — English root pages emit alternates for 13 locales + x-default via `buildLanguageAlternates`
-- ~~News mirror~~ ✅ — `/news` mirrors Steam's announcement feed with locally archived `data/news/{gid}.json` so the archive survives Steam's sliding window
-- ~~Unified SEO title format~~ ✅ — `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`
+- ~~Detail-page Stats tab~~ ✅ - score hero badge + prose summary + recent runs via `EntityRunStats`
+- ~~Bidirectional hreflang~~ ✅ - English root pages emit alternates for 13 locales + x-default via `buildLanguageAlternates`
+- ~~News mirror~~ ✅ - `/news` mirrors Steam's announcement feed with locally archived `data/news/{gid}.json` so the archive survives Steam's sliding window
+- ~~Unified SEO title format~~ ✅ - `"Slay the Spire 2 (sts2) {Page Title} | Spire Codex"`
 - ~~i18n refactor~~ ✅: every page under `app/[locale]/` on `next-intl`
 - ~~Database instead of JSON files for runs~~ ✅: MongoDB (community stats, leaderboards, accounts)
 - ~~Analytics lake~~ ✅: DuckDB lake built by `lab/` on the ingest box, served read-only by `services/lake_stats.py`
@@ -427,6 +427,6 @@ Uses `1.X.Y` — 1=codex major, X=bumps on Mega Crit game patch, Y=our fixes/imp
 - ~~API keys~~ ✅: `X-API-Key` tiers, `/api/keys`, `GET /api/rate-limits`
 - ~~Replays and live presence~~ ✅: the mod uploads replay journals and heartbeats live runs (`/replays`, `/live`)
 - ~~Tier-list maker~~ ✅: saved to the account, shareable by handle
-- ~~Discord bot (card lookup)~~ ✅ — Knowledge Demon (see /knowledge-demon)
-- ~~CDN for images~~ ✅ — Cloudflare R2 at `cdn.spire-codex.com` (webp)
+- ~~Discord bot (card lookup)~~ ✅ - Knowledge Demon (see /knowledge-demon)
+- ~~CDN for images~~ ✅ - Cloudflare R2 at `cdn.spire-codex.com` (webp)
 - ~~Deck builder~~ ✅: `/deck-builder`, with `/seed-finder` next to it

@@ -72,7 +72,7 @@ frontend/app/[locale]/layout.tsx          → Locale layout (navbar, footer, pro
 frontend/app/globals.css                  → CSS variables, theme
 frontend/lib/api/                         → API client (endpoint.server.ts / endpoint.client.ts) + `types.ts` interfaces
 frontend/lib/seo.ts                       → Title builders, SITE constants, `buildLanguageAlternates(path)` for bidirectional hreflang
-frontend/lib/use-entity-scores.ts         → Hook — bulk Codex Scores per type via `/api/runs/scores/{type}`
+frontend/lib/use-entity-scores.ts         → Hook - bulk Codex Scores per type via `/api/runs/scores/{type}`
 frontend/i18n/                            → next-intl routing, request config, message loader (`lib/i18n-x*.ts`)
 frontend/app/components/                  → Shared components (incl. ScoreBadge, EntityRunStats, TierList)
 ```
@@ -97,6 +97,6 @@ python -m pytest -q
 
 ## See Also
 
-- [ARCHITECTURE.md](ARCHITECTURE.md) — full system architecture
-- [DATA_GUIDE.md](DATA_GUIDE.md) — data structure and parsing
-- [API_REFERENCE.md](API_REFERENCE.md) — complete API documentation
+- [ARCHITECTURE.md](ARCHITECTURE.md) - full system architecture
+- [DATA_GUIDE.md](DATA_GUIDE.md) - data structure and parsing
+- [API_REFERENCE.md](API_REFERENCE.md) - complete API documentation
