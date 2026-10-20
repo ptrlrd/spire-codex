@@ -213,7 +213,7 @@ export default function ProfileClient() {
         credentials: "include",
       });
       if (res.ok) {
-        toast(t("Run removed from your profile"), "success");
+        toast(t("Run deleted"), "success");
         setRuns((prev) => prev.filter((r) => r.run_hash !== runHash));
         setTotal((prev) => prev - 1);
       } else if (res.status === 403) {
@@ -262,17 +262,14 @@ export default function ProfileClient() {
       const failedCount = Object.keys(body.failed ?? {}).length;
       if (failedCount > 0) {
         toast(
-          t("Removed {n} runs, {failed} could not be removed", {
+          t("Deleted {n} runs, {failed} could not be deleted", {
             n: removed.size,
             failed: failedCount,
           }),
           "error",
         );
       } else {
-        toast(
-          t("Removed {n} runs from your profile", { n: removed.size }),
-          "success",
-        );
+        toast(t("Deleted {n} runs", { n: removed.size }), "success");
       }
     } catch {
       toast(t("Network error"), "error");

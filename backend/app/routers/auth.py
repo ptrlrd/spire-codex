@@ -294,9 +294,9 @@ def delete_run(run_hash: str, request: Request):
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=404, detail="Run not found")
 
-    from ..services.runs_db_mongo import soft_delete_run
+    from ..services.runs_db_mongo import delete_run_permanently
 
-    result = soft_delete_run(run_hash, user["_id"])
+    result = delete_run_permanently(run_hash, user)
     if result.get("error"):
         status_map = {
             "Run not found": 404,
@@ -318,12 +318,12 @@ class BulkDeleteRequest(BaseModel):
 @router.post("/runs/bulk-delete")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_delete_runs", "10/minute"))
 def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
-    """Soft-delete several of the caller's own runs in one request.
+    """Permanently delete several of the caller's own runs in one request.
 
     Each hash goes through the same ownership check as the single delete, so a
     hash the caller does not own is reported back rather than failing the whole
-    call. Sync on purpose: soft_delete_run talks to Mongo synchronously, and an
-    async route would run the whole batch on the event loop.
+    call. Sync on purpose: delete_run_permanently talks to Mongo synchronously,
+    and an async route would run the whole batch on the event loop.
     """
     user = require_user(request)
 
@@ -340,12 +340,12 @@ def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
     if not hashes:
         raise HTTPException(status_code=400, detail="run_hashes must not be empty")
 
-    from ..services.runs_db_mongo import soft_delete_run
+    from ..services.runs_db_mongo import delete_run_permanently
 
     deleted: list[str] = []
     failed: dict[str, str] = {}
     for run_hash in hashes:
-        result = soft_delete_run(run_hash, user["_id"])
+        result = delete_run_permanently(run_hash, user)
         if result.get("error"):
             failed[run_hash] = result["error"]
         else:
