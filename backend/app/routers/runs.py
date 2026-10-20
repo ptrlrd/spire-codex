@@ -1071,6 +1071,7 @@ def get_shared_run(run_hash: str, request: Request):
                 blob["username"] = meta["username"]
             if meta.get("hidden"):
                 blob["hidden"] = True
+                blob["hidden_reason"] = meta.get("hidden_reason")
             blob["has_replay"] = bool(meta.get("has_replay"))
             return blob
 
@@ -2888,21 +2889,35 @@ def get_pick_coach(
 
 @router.post("/{run_hash}/hidden", tags=["Runs"])
 def set_hidden_from_run_page(request: Request, run_hash: str, body: dict | None = None):
-    """Hide or unhide a run from its own page. Same effect as the admin
-    console's route, but it lives outside the /api/admin prefix that the edge
-    login screen protects, so a signed-in admin's browser can call it from the
-    public site without an edge session."""
-    from ..services.auth_jwt import require_admin
+    """Hide or unhide a run from its own page or the owner's profile.
 
-    require_admin(request)
+    Admins can hide any run. The run's owner can hide and unhide their own
+    runs, except a run a moderator hid. Hidden runs stay on the site but drop
+    out of leaderboards, stats and the run browser. Body: {"hidden": bool}.
+    """
+    from ..services.auth_jwt import get_current_user, is_admin
+
+    user = get_current_user(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Sign in to hide a run")
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=503, detail="run hiding needs MongoDB")
     hidden = bool((body or {}).get("hidden", True))
-    from ..services.runs_db_mongo import set_run_hidden
+    from ..services.runs_db_mongo import set_run_hidden, set_run_hidden_by_owner
 
-    result = set_run_hidden(run_hash.strip(), hidden)
+    if is_admin(user):
+        result = set_run_hidden(run_hash.strip(), hidden)
+        logger.info(
+            "admin set hidden=%s on run %s from its page: %s", hidden, run_hash, result
+        )
+    else:
+        result = set_run_hidden_by_owner(run_hash.strip(), user, hidden)
+        if result.get("error"):
+            status = {
+                "Run not found": 404,
+                "You do not own this run": 403,
+                "This run was hidden by a moderator": 409,
+            }.get(result["error"], 400)
+            raise HTTPException(status_code=status, detail=result["error"])
     _load_run_blob_cached.cache_clear()
-    logger.info(
-        "admin set hidden=%s on run %s from its page: %s", hidden, run_hash, result
-    )
     return {"run_hash": run_hash, "hidden": hidden, **result}

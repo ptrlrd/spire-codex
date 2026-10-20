@@ -52,15 +52,43 @@ def test_hidden_defaults_to_true(monkeypatch):
     assert calls == [("abc123", True)]
 
 
-def test_non_admin_and_anonymous_see_nothing(monkeypatch):
+def _owner_env(monkeypatch, result):
     calls = _env(monkeypatch, PLAYER)
-    assert (
-        client.post("/api/runs/abc123/hidden", json={"hidden": False}).status_code
-        == 404
+    owner_calls = []
+    monkeypatch.setattr(
+        runs_db_mongo,
+        "set_run_hidden_by_owner",
+        lambda h, user, hidden: owner_calls.append((h, user["_id"], hidden)) or result,
     )
-    _env(monkeypatch, None)
+    return calls, owner_calls
+
+
+def test_owner_hides_and_unhides_their_own_run(monkeypatch):
+    admin_calls, owner_calls = _owner_env(
+        monkeypatch, {"success": True, "hidden": True}
+    )
+    r = client.post("/api/runs/abc123/hidden", json={"hidden": True})
+    assert r.status_code == 200, r.text
+    assert r.json()["hidden"] is True
+    assert owner_calls == [("abc123", "u2", True)]
+    assert admin_calls == []
+
+
+def test_owner_cannot_touch_a_moderator_hidden_run(monkeypatch):
+    _owner_env(monkeypatch, {"error": "This run was hidden by a moderator"})
+    r = client.post("/api/runs/abc123/hidden", json={"hidden": False})
+    assert r.status_code == 409
+
+
+def test_someone_else_gets_a_403(monkeypatch):
+    _owner_env(monkeypatch, {"error": "You do not own this run"})
+    assert client.post("/api/runs/abc123/hidden").status_code == 403
+
+
+def test_anonymous_gets_a_401(monkeypatch):
+    calls = _env(monkeypatch, None)
     assert (
         client.post("/api/runs/abc123/hidden", json={"hidden": False}).status_code
-        == 404
+        == 401
     )
     assert calls == []

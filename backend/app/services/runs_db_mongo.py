@@ -3620,12 +3620,14 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
     """Username + hidden flag for the share page in one lookup, so the page
     can banner runs excluded from leaderboards and aggregates."""
     doc = _get_collection().find_one(
-        {"_id": run_hash}, {"username": 1, "hidden": 1, "has_replay": 1}
+        {"_id": run_hash},
+        {"username": 1, "hidden": 1, "hidden_reason": 1, "has_replay": 1},
     )
     return {
         "exists": doc is not None,
         "username": (doc or {}).get("username"),
         "hidden": bool((doc or {}).get("hidden")),
+        "hidden_reason": (doc or {}).get("hidden_reason"),
         "has_replay": bool((doc or {}).get("has_replay")),
     }
 
@@ -3843,6 +3845,8 @@ def get_user_runs(
         "username": 1,
         "submitted_at": 1,
         "played_at": 1,
+        "hidden": 1,
+        "hidden_reason": 1,
         **_KEY_PICK_FIELDS,
     }
     # Played order, not upload order — a backlog upload lands hundreds of old
@@ -3871,6 +3875,8 @@ def get_user_runs(
                 "username": r.get("username"),
                 "submitted_at": r.get("submitted_at"),
                 "played_at": r.get("played_at") or r.get("submitted_at"),
+                "hidden": bool(r.get("hidden")),
+                "hidden_reason": r.get("hidden_reason"),
                 **_with_key_picks(
                     {
                         "deck": r.get("deck"),
@@ -3892,6 +3898,32 @@ def _undelete_on_reupload(coll, run_hash: str, extra: dict | None = None) -> Non
         {"_id": run_hash, "deleted_at": {"$ne": None}, **(extra or {})},
         {"$unset": {"deleted_at": ""}},
     )
+
+
+OWNER_HIDDEN = "owner"
+
+
+def set_run_hidden_by_owner(run_hash: str, user: dict, hidden: bool) -> dict:
+    """Hide or unhide one of the caller's own runs. A run a moderator hid stays
+    out of the owner's reach, so an appeal still goes through an admin."""
+    coll = _get_collection()
+    run = coll.find_one(
+        {"_id": run_hash},
+        {"user_id": 1, "steam_id": 1, "hidden": 1, "hidden_reason": 1},
+    )
+    if not run:
+        return {"error": "Run not found"}
+
+    from .replays_db import owns_run
+
+    if not owns_run(run, user):
+        return {"error": "You do not own this run"}
+    if run.get("hidden") and run.get("hidden_reason") != OWNER_HIDDEN:
+        return {"error": "This run was hidden by a moderator"}
+    if bool(run.get("hidden")) == hidden:
+        return {"success": True, "hidden": hidden}
+    set_run_hidden(run_hash, hidden, OWNER_HIDDEN if hidden else None)
+    return {"success": True, "hidden": hidden}
 
 
 def soft_delete_run(run_hash: str, user_id: str) -> dict:

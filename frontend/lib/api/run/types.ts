@@ -120,6 +120,7 @@ export interface RawRun {
   primary_hash?: string;
   has_replay?: boolean;
   hidden?: boolean;
+  hidden_reason?: string | null;
 }
 
 export type EncounterType = "BOSS" | "ELITE" | "ENEMY";
@@ -223,4 +224,5 @@ export interface Run {
   primary_hash?: string;
   has_replay?: boolean;
   hidden?: boolean;
+  hidden_reason?: string | null;
 }

@@ -292,7 +292,10 @@ export default function SharedRunClient({
               {t("Replay")}
             </Link>
           )}
-          {user?.is_admin && (
+          {(user?.is_admin ||
+            (!!run.username &&
+              user?.username === run.username &&
+              (!run.hidden || run.hidden_reason === "owner"))) && (
             <button
               onClick={() => setHidden(!run.hidden)}
               disabled={unhiding}

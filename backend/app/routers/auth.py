@@ -354,6 +354,56 @@ def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
     return {"deleted": deleted, "failed": failed, "requested": len(hashes)}
 
 
+class BulkHideRequest(BaseModel):
+    run_hashes: list[str] = Field(..., min_length=1, max_length=MAX_BULK_DELETE)
+    hidden: bool = True
+
+
+@router.post("/runs/bulk-hide")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_hide_runs", "10/minute"))
+def bulk_hide_runs(payload: BulkHideRequest, request: Request):
+    """Hide or unhide several of the caller's own runs in one request.
+
+    Same shape and ownership rules as bulk-delete. A run a moderator hid is
+    reported back as failed rather than unhidden.
+    """
+    user = require_user(request)
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    hashes: list[str] = []
+    seen: set[str] = set()
+    for value in payload.run_hashes:
+        cleaned = value.strip()
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            hashes.append(cleaned)
+    if not hashes:
+        raise HTTPException(status_code=400, detail="run_hashes must not be empty")
+
+    from ..services.runs_db_mongo import set_run_hidden_by_owner
+    from .runs import _load_run_blob_cached
+
+    updated: list[str] = []
+    failed: dict[str, str] = {}
+    for run_hash in hashes:
+        result = set_run_hidden_by_owner(run_hash, user, payload.hidden)
+        if result.get("error"):
+            failed[run_hash] = result["error"]
+        else:
+            updated.append(run_hash)
+    if updated:
+        _load_run_blob_cached.cache_clear()
+
+    return {
+        "updated": updated,
+        "failed": failed,
+        "requested": len(hashes),
+        "hidden": payload.hidden,
+    }
+
+
 @router.get("/stats")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.user_stats", "10/minute"))
 def user_stats(request: Request):

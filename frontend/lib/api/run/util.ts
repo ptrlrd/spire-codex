@@ -53,6 +53,7 @@ export const cleanRun = (raw: RawRun): Run => ({
   primary_hash: raw.primary_hash,
   has_replay: raw.has_replay,
   hidden: raw.hidden,
+  hidden_reason: raw.hidden_reason,
   acts: raw.acts?.map((a) => strip(a, "ACT")) ?? [],
   modifiers: raw.modifiers?.map(cleanModifier) ?? [],
   floor_history:
