@@ -2,4 +2,4 @@
 #   pip install -r requirements.txt -r requirements-dev.txt
 # Run the tests from the backend/ dir:
 #   pytest
-pytest>=8,<10
+pytest>=9.1.1,<10
