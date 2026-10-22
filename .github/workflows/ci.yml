@@ -34,7 +34,7 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dorny/paths-filter@6852f92c20ea7fd3b0c25de3b5112db3a98da050 # v3
         id: filter
         with:
@@ -51,7 +51,7 @@ jobs:
     steps:
       # Shallow checkout: trufflehog scans the working tree (filesystem
       # mode), so full history only inflated the .git dir it walks.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: TruffleHog secret scan
         # Version-pinned so a hijacked :latest can't silently defeat the gate.
@@ -78,7 +78,7 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-node@v4
         with:
@@ -114,7 +114,7 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v5
         with:
@@ -140,7 +140,7 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v5
         with:
@@ -172,7 +172,7 @@ jobs:
       (needs.backend-tests.result == 'success' || needs.backend-tests.result == 'skipped') &&
       (needs.changes.outputs.frontend == 'true' || needs.changes.outputs.backend == 'true')
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # No setup-buildx-action on purpose: it boots a fresh ephemeral
       # builder every run (and destroys it in post), which throws away
