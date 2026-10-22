@@ -547,7 +547,7 @@ If you're consuming the API directly, you can strip these with a regex like `\[/
 ### Prerequisites
 
 - Python 3.12 (what the Dockerfile and CI use)
-- Node.js 24+
+- Node.js 26+
 
 ### Backend
 
@@ -721,7 +721,7 @@ The script auto-detects your OS and finds the Steam install directory. Requireme
 | DLL decompilation | `ilspycmd` | `dotnet tool install ilspycmd -g` |
 | Data parsing | Python 3.12 | Built-in |
 | Image copying | Python 3.12 | Built-in |
-| Spine rendering | Node.js 24+ | [nodejs.org](https://nodejs.org) |
+| Spine rendering | Node.js 26+ | [nodejs.org](https://nodejs.org) |
 
 ### Manual Steps
 

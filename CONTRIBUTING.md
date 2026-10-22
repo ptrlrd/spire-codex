@@ -15,7 +15,7 @@ Thanks for your interest in contributing! This project is open to community cont
 
 ### Prerequisites
 - Docker (runs backend, Redis and frontend together), or
-- Node 24 + Python 3.12 to run the two sides directly
+- Node 26 + Python 3.12 to run the two sides directly
 
 ### Running Locally
 ```bash

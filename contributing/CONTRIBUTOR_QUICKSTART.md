@@ -14,7 +14,7 @@ Spire Codex is a comprehensive database for Slay the Spire 2, built by reverse-e
 - **Redis**: fail-safe JSON cache + shared rate-limit counters (`REDIS_URL`; everything works without it)
 - **Search**: tantivy index (`services/search_index.py`), built at startup
 - **Accounts**: Steam OpenID sign-in (Discord OAuth for existing accounts), JWT session cookies; Twitch and Patreon are account links
-- **Frontend**: Node 24, Next.js 16, TypeScript, Tailwind CSS, chart.js (`react-chartjs-2`), next-intl
+- **Frontend**: Node 26, Next.js 16, TypeScript, Tailwind CSS, chart.js (`react-chartjs-2`), next-intl
 - **Data**: game-entity JSON files in `data/{lang}/`, 15 languages (runs live in MongoDB)
 - **Images**: Cloudflare R2 CDN (`cdn.spire-codex.com`) when `NEXT_PUBLIC_CDN_URL` is set
 - **API docs**: `http://localhost:8000/docs`
@@ -82,7 +82,7 @@ frontend/app/components/                  → Shared components (incl. ScoreBadg
 CI runs everything below except `npm test`; run that one yourself.
 
 ```bash
-# frontend (Node >=24)
+# frontend (Node >=26)
 cd frontend && npm ci
 npm run lint            # eslint
 npx tsc --noEmit        # type-check
