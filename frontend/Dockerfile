@@ -1,5 +1,5 @@
 ARG BUILDPLATFORM=linux/amd64
-FROM --platform=$BUILDPLATFORM node:24-alpine AS deps
+FROM --platform=$BUILDPLATFORM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 # The cache mount keeps the npm download cache on the builder between
@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 
 ARG BUILDPLATFORM=linux/amd64
-FROM --platform=$BUILDPLATFORM node:24-alpine AS builder
+FROM --platform=$BUILDPLATFORM node:26-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -30,7 +30,7 @@ ENV NEXT_DEPLOYMENT_ID=${NEXT_DEPLOYMENT_ID}
 # what makes the rebuild incremental instead of from scratch.
 RUN --mount=type=cache,target=/app/.next/cache npm run build
 
-FROM node:24-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
