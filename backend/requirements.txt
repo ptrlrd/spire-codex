@@ -17,6 +17,6 @@ scipy==1.18.1
 tzdata==2026.5
 pillow==13.0.0
 # Analytics lake (pinned exactly; see lab/README.md)
-duckdb==1.5.5
+duckdb==1.5.6
 pyarrow==26.0.0
 orjson==3.13.0
