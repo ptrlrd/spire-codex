@@ -1,81 +1,58 @@
+# Freshness check for the daily on-box Mongo backup (installed by
+# infrastructure/ansible/playbooks/install-backup.yml, which also offloads
+# each verified archive to a private R2 bucket).
+#
+# This job no longer SSHes to prod — that dependency broke every time the
+# box's authorized keys changed, and the backups silently stopped. Instead
+# it lists the R2 backup prefix and FAILS if the newest archive is older
+# than 48 hours, so a dead cron surfaces as a red run within a day.
+#
+# Required repo secrets (read-only R2 credentials for the backup bucket):
+#   R2_BACKUP_ENDPOINT, R2_BACKUP_BUCKET, R2_BACKUP_KEY_ID, R2_BACKUP_SECRET
+# Unset secrets fail the run with a clear message on purpose: a check that
+# passes while unconfigured is worse than no check.
+
 name: Runs DB backup
 
-# Daily mongodump of the live runs store onto the prod host under
-# ~/backups/spire-codex-mongo/. The old SQLite snapshot this replaces
-# targeted the frozen legacy runs.db; Mongo has been the source of
-# truth since the migration, so this is the backup that matters.
-#
-# The dump runs through the official mongo image (the host has no
-# mongo tools installed), reading MONGO_URL from the box's .env, and
-# is verified with a dry-run restore before it counts. Keeps 14 daily
-# archives. Still single-host risk — ship to R2 later if the corpus
-# becomes irreplaceable.
-
 on:
-  workflow_dispatch: {}
   schedule:
-    # 03:15 UTC every day — off-peak for traffic, well clear of the
-    # hourly news-refresh cron so the two don't stomp on each other.
-    - cron: "15 3 * * *"
-
-concurrency:
-  group: runs-db-backup
-  cancel-in-progress: false
+    - cron: "30 7 * * *" # 07:30 UTC, ~80 min after the on-box 06:10 dump
+  workflow_dispatch:
 
 jobs:
-  backup:
-    name: mongodump on prod
-    runs-on: self-hosted
+  freshness:
+    name: verify newest backup in R2
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.R2_BACKUP_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_BACKUP_SECRET }}
+      R2_ENDPOINT: ${{ secrets.R2_BACKUP_ENDPOINT }}
+      R2_BUCKET: ${{ secrets.R2_BACKUP_BUCKET }}
     steps:
-      - name: SSH — dump + verify + rotate
-        # SHA-pinned: this third-party action receives the prod SSH key.
-        uses: appleboy/ssh-action@0ff4204d59e8e51228ff73bce53f80d53301dee2 # v1.2.5
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          # A full dump can take a while as the corpus grows; don't let the
-          # action's 10m default kill it mid-archive.
-          command_timeout: 60m
-          script: |
-            set -euo pipefail
-            BACKUP_DIR="$HOME/backups/spire-codex-mongo"
-            STAMP=$(date -u +%Y-%m-%dT%H-%M-%SZ)
-            DEST="$BACKUP_DIR/mongo-${STAMP}.archive.gz"
-
-            mkdir -p "$BACKUP_DIR"
-
-            MONGO_URL=$(grep -E '^MONGO_URL=' /var/www/spire-codex/.env | head -1 | cut -d= -f2-)
-            if [ -z "$MONGO_URL" ]; then
-              echo "ERROR: MONGO_URL not found in /var/www/spire-codex/.env" >&2
-              exit 1
-            fi
-
-            TMP=$(mktemp "$BACKUP_DIR/.mongo.XXXXXX")
-            trap 'rm -f "$TMP"' EXIT
-
-            # --network host so localhost and public-IP URIs both work.
-            docker run --rm --network host mongo:7.0 \
-              mongodump --uri="$MONGO_URL" --archive --gzip --quiet > "$TMP"
-
-            if [ ! -s "$TMP" ]; then
-              echo "ERROR: mongodump produced an empty archive" >&2
-              exit 1
-            fi
-
-            # Verify the archive actually restores before retaining it.
-            docker run --rm -i --network none mongo:7.0 \
-              mongorestore --archive --gzip --dryRun --quiet < "$TMP" \
-              || { echo "ERROR: archive failed dry-run restore" >&2; exit 1; }
-
-            mv "$TMP" "$DEST"
-            trap - EXIT
-            echo "wrote $DEST ($(du -h "$DEST" | cut -f1))"
-
-            # Retention — keep the last 14 daily archives. mtime-based so a
-            # run that accidentally happens twice in a day doesn't double
-            # up the count.
-            find "$BACKUP_DIR" -maxdepth 1 -name 'mongo-*.archive.gz' -mtime +14 -print -delete
-
-            echo "retained:"
-            ls -1h "$BACKUP_DIR" | tail -10
+      - name: Check newest archive age
+        run: |
+          set -euo pipefail
+          if [ -z "$R2_BUCKET" ] || [ -z "$R2_ENDPOINT" ]; then
+            echo "::error::R2_BACKUP_* secrets are not configured. The on-box" \
+                 "backup may still be running (check /var/log/spire-codex-backup.log" \
+                 "on the box), but this check cannot verify it." >&2
+            exit 1
+          fi
+          newest=$(aws s3 ls "s3://$R2_BUCKET/mongo/" --endpoint-url "$R2_ENDPOINT" \
+                   | sort | tail -1)
+          if [ -z "$newest" ]; then
+            echo "::error::No archives found under s3://$R2_BUCKET/mongo/" >&2
+            exit 1
+          fi
+          echo "newest: $newest"
+          key=$(echo "$newest" | awk '{print $4}')
+          stamp="${key#mongo-}"; stamp="${stamp%.archive.gz}"
+          # Stamps are UTC like 2026-08-01T06-10-02Z; normalize to epoch.
+          iso=$(echo "$stamp" | sed 's/T\([0-9]*\)-\([0-9]*\)-\([0-9]*\)Z/T\1:\2:\3Z/')
+          age=$(( $(date -u +%s) - $(date -u -d "$iso" +%s) ))
+          echo "age: $((age / 3600))h"
+          if [ "$age" -gt $((48 * 3600)) ]; then
+            echo "::error::Newest backup is older than 48h ($key)" >&2
+            exit 1
+          fi
