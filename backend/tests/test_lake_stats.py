@@ -70,6 +70,38 @@ def test_lake_entity_overlay(monkeypatch, tmp_path):
         res._type_baselines.pop("cards", None)
 
 
+def test_lake_overlay_swaps_the_cache_instead_of_growing_it(monkeypatch, tmp_path):
+    import json
+
+    from app.services import run_entity_stats as res
+
+    monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
+    monkeypatch.setattr(lake_stats, "_entity_store_cache", None)
+    store = {
+        "entities": {"cards": {"ZAP": {"picks": 100, "wins": 60}}},
+        "baselines": {"cards": 0.5},
+        "totals": {"total_runs": 10, "total_wins": 4},
+    }
+    (tmp_path / "entity_store.json").write_text(json.dumps(store))
+    monkeypatch.setattr(res, "_lake_overlay_checked", 0.0)
+    monkeypatch.setattr(res, "_lake_overlay_mtime", 0.0)
+    monkeypatch.setattr(res, "_cache", {("cards", "OLD"): {"picks": 1, "wins": 0}})
+    monkeypatch.setattr(res, "_type_baselines", {"relics": 0.4})
+    monkeypatch.setattr(res, "_global_totals", {"total_runs": 1})
+    reader = res._cache
+    walking = iter(reader.items())
+    next(walking)
+
+    res._maybe_overlay_lake_entities()
+
+    assert list(walking) == []
+    assert ("cards", "ZAP") not in reader
+    assert res._cache[("cards", "ZAP")]["picks"] == 100
+    assert res._cache[("cards", "OLD")]["picks"] == 1
+    assert res._type_baselines == {"relics": 0.4, "cards": 0.5}
+    assert res._global_totals == {"total_runs": 10, "total_wins": 4}
+
+
 def test_stats_core_excludes_modded_characters(monkeypatch):
     cells = [
         ("IRONCLAD", 0, 1, 100, 30, 5),
