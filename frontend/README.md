@@ -9,7 +9,7 @@ npm install
 NEXT_PUBLIC_API_URL=http://localhost:8000 npm run dev
 ```
 
-Needs Node >=24 (`engines` in `package.json`). Runs at **http://localhost:3000**. Requires the backend running on port 8000.
+Needs Node >=26 (`engines` in `package.json`). Runs at **http://localhost:3000**. Requires the backend running on port 8000.
 
 `predev` and `prebuild` run two generators first: `scripts/generate-site-pages.mjs` (the page inventory for global search, written to `lib/site-pages.json` and `data/site_pages.json`) and `scripts/generate-client-i18n.mjs` (`lib/i18n-server-only-keys.json`, the UI strings the browser catalog can skip).
 
