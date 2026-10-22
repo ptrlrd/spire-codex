@@ -2359,8 +2359,11 @@ def _maybe_overlay_lake_entities() -> None:
     """Overlay the ingest-built lake aggregates onto the snapshot cache:
     the all-bracket fields (picks/wins/by_character/reward metrics/Elos/
     base-upg/act buckets) come from the store each cycle; per-bracket
-    blocks fold from the cube at read time. No-op without a built store."""
+    blocks fold from the cube at read time. No-op without a built store.
+    The merged view is built on copies and swapped in once, so request
+    threads iterating the cache never see it change size."""
     global _lake_overlay_mtime, _lake_overlay_checked
+    global _cache, _type_baselines, _global_totals
     now = time.time()
     if now - _lake_overlay_checked < 30:
         return
@@ -2372,23 +2375,28 @@ def _maybe_overlay_lake_entities() -> None:
         if not loaded or loaded[0] == _lake_overlay_mtime:
             return
         mtime, store = loaded
+        merged = dict(_cache)
         n = 0
         for etype, entries in (store.get("entities") or {}).items():
             for eid, entry in entries.items():
                 key = (etype, eid)
-                old = _cache.get(key)
+                old = merged.get(key)
                 new_entry = dict(entry)
                 if old and old.get("brackets"):
                     new_entry["brackets"] = old["brackets"]
-                _cache[key] = new_entry
+                merged[key] = new_entry
                 n += 1
-        _type_baselines.update(store.get("baselines") or {})
+        baselines = {**_type_baselines, **(store.get("baselines") or {})}
         # The store's run totals must ride along: live picks divided by the
         # frozen snapshot's total_runs skewed every headline pick rate, the
         # /pulse baseline, and the relic bracket prior (2026-08-29 audit).
         totals = store.get("totals") or {}
-        if totals.get("total_runs"):
-            _global_totals.update(totals)
+        new_totals = (
+            {**_global_totals, **totals} if totals.get("total_runs") else _global_totals
+        )
+        _cache = merged
+        _type_baselines = baselines
+        _global_totals = new_totals
         _lake_overlay_mtime = mtime
         logger.info("lake entity overlay applied: %d entities", n)
     except Exception:
