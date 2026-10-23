@@ -105,7 +105,11 @@ function PowerRow({ powers, names }: { powers: LivePower[]; names: NamedMap }) {
   return (
     <div className="flex flex-wrap justify-center gap-1">
       {powers.map((pw) => (
-        <span key={pw.id} className="relative inline-flex" title={powerName(pw.id, names)}>
+        <span
+          key={pw.id}
+          className="relative inline-flex"
+          title={powerName(pw.id, names)}
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             // power ids already end in _POWER (e.g. DEXTERITY_POWER), and the
@@ -190,12 +194,16 @@ function Vitals({
   block?: number | null;
 }) {
   const t = useT();
-  const pct = hp != null && maxHp ? Math.max(0, Math.min(100, (hp / maxHp) * 100)) : null;
+  const pct =
+    hp != null && maxHp ? Math.max(0, Math.min(100, (hp / maxHp) * 100)) : null;
   return (
     <div className="w-32 max-w-full">
       {pct != null && (
         <div className="relative h-4 rounded bg-scrim/50 ring-1 ring-scrim/40">
-          <div className="h-4 rounded bg-danger-fill" style={{ width: `${pct}%` }} />
+          <div
+            className="h-4 rounded bg-danger-fill"
+            style={{ width: `${pct}%` }}
+          />
           <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-on-fill tabular-nums drop-shadow">
             {hp}/{maxHp}
           </span>
@@ -261,7 +269,10 @@ function PartyMate({
           </span>
         )}
         {!down && seat.ended_turn && turnSide === "player" && (
-          <span className="text-[10px] text-success" title={t("Turn locked in")}>
+          <span
+            className="text-[10px] text-success"
+            title={t("Turn locked in")}
+          >
             ✓
           </span>
         )}
@@ -271,15 +282,19 @@ function PartyMate({
   );
 }
 
-
 function PetRow({ pets, monsters }: { pets: LivePet[]; monsters: MonsterMap }) {
   const t = useT();
-  const live = pets.filter((pt) => pt && pt.alive !== false && (pt.id || pt.name));
+  const live = pets.filter(
+    (pt) => pt && pt.alive !== false && (pt.id || pt.name),
+  );
   if (!live.length) return null;
   return (
     <div className="mt-1 flex flex-wrap items-start justify-center gap-3">
       {live.map((pt, i) => (
-        <div key={(pt.id || pt.name || "pet") + i} className="flex flex-col items-center gap-1">
+        <div
+          key={(pt.id || pt.name || "pet") + i}
+          className="flex flex-col items-center gap-1"
+        >
           <EnemyCircle
             id={pt.id || ""}
             monsters={monsters}
@@ -295,7 +310,13 @@ function PetRow({ pets, monsters }: { pets: LivePet[]; monsters: MonsterMap }) {
   );
 }
 
-function HudStat({ icon, children }: { icon: string; children: React.ReactNode }) {
+function HudStat({
+  icon,
+  children,
+}: {
+  icon: string;
+  children: React.ReactNode;
+}) {
   return (
     <span className="inline-flex items-center gap-1 text-sm font-semibold tabular-nums text-[var(--text-primary)]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -339,7 +360,12 @@ function PileButton({
     >
       <span className="inline-flex items-center gap-1 text-sm font-semibold tabular-nums text-[var(--text-secondary)]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={img} alt={label} className="h-8 w-8 object-contain" crossOrigin="anonymous" />
+        <img
+          src={img}
+          alt={label}
+          className="h-8 w-8 object-contain"
+          crossOrigin="anonymous"
+        />
         {count}
       </span>
     </button>
@@ -352,12 +378,14 @@ export default function LiveScene({
   monsters,
   encounters,
   bp,
+  height = "h-[80vh]",
 }: {
   p: LivePlayer;
   cat: LiveCatalogs;
   monsters: MonsterMap;
   encounters: EncounterMap;
   bp: string;
+  height?: string;
 }) {
   const t = useT();
   const char = (p.character ?? "colorless").toLowerCase();
@@ -380,9 +408,10 @@ export default function LiveScene({
       : 0;
   // Deck / pile viewer modal + the map modal (the Deck/Map buttons + the pile
   // buttons open these). `openCards` holds the title + the card-id list.
-  const [openCards, setOpenCards] = useState<{ title: string; ids: string[] } | null>(
-    null,
-  );
+  const [openCards, setOpenCards] = useState<{
+    title: string;
+    ids: string[];
+  } | null>(null);
   const [showMap, setShowMap] = useState(false);
   const groupCards = (ids: string[]): [string, number][] => {
     const m = new Map<string, number>();
@@ -411,7 +440,9 @@ export default function LiveScene({
           : [];
 
   return (
-    <div className="flex h-[80vh] flex-col rounded-xl border border-[var(--border-subtle)]">
+    <div
+      className={`flex ${height} flex-col rounded-xl border border-[var(--border-subtle)]`}
+    >
       {/* Top bar: character + vitals + potions on the left, the act/boss
           progress, then the map + deck buttons on the right. */}
       <div className="relative z-20 flex flex-wrap items-center gap-x-3 gap-y-2 rounded-t-xl border-b border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2">
@@ -426,7 +457,10 @@ export default function LiveScene({
         {p.hp != null && (
           <span className="inline-flex items-center gap-1.5">
             <span className="relative block h-3.5 w-24 overflow-hidden rounded bg-scrim/40 ring-1 ring-scrim/30">
-              <span className="block h-full bg-danger-fill" style={{ width: `${hpPct}%` }} />
+              <span
+                className="block h-full bg-danger-fill"
+                style={{ width: `${hpPct}%` }}
+              />
             </span>
             <span className="text-xs font-semibold tabular-nums text-danger">
               {p.hp}/{p.max_hp}
@@ -474,12 +508,16 @@ export default function LiveScene({
         <div className="flex items-center gap-1.5">
           <span className="text-xs font-semibold tabular-nums text-[var(--text-secondary)]">
             {p.act != null ? t("Act {n}", { n: p.act }) : ""}
-            {p.total_floor != null ? ` · ${t("F{n}", { n: p.total_floor })}` : ""}
+            {p.total_floor != null
+              ? ` · ${t("F{n}", { n: p.total_floor })}`
+              : ""}
           </span>
           {p.route?.boss?.id && (
             <span
               className="inline-flex items-center gap-1"
-              title={t("Act boss: {name}", { name: enemyName(p.route.boss, monsters, encounters) })}
+              title={t("Act boss: {name}", {
+                name: enemyName(p.route.boss, monsters, encounters),
+              })}
             >
               <span className="text-[var(--text-muted)]">→</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -517,7 +555,9 @@ export default function LiveScene({
           {p.deck != null && (
             <button
               type="button"
-              onClick={() => setOpenCards({ title: t("Deck"), ids: p.deck ?? [] })}
+              onClick={() =>
+                setOpenCards({ title: t("Deck"), ids: p.deck ?? [] })
+              }
               title={t("Deck")}
               className="relative shrink-0 hover:opacity-80"
             >
@@ -613,7 +653,9 @@ export default function LiveScene({
               )}
               {p.death?.by && (
                 <div className="text-sm text-[var(--text-muted)]">
-                  {t("Slain by {name}", { name: monsterName(p.death.by, monsters) })}
+                  {t("Slain by {name}", {
+                    name: monsterName(p.death.by, monsters),
+                  })}
                 </div>
               )}
             </div>
@@ -641,19 +683,31 @@ export default function LiveScene({
                       : "border-[var(--accent-gold)]/60"
                   }`}
                 >
-                  <CharacterIcon character={p.character} className="h-[88%] w-[88%]" />
+                  <CharacterIcon
+                    character={p.character}
+                    className="h-[88%] w-[88%]"
+                  />
                 </span>
                 <div className="text-sm font-semibold text-[var(--text-primary)]">
                   {p.username || characterName(p.character, cat.characterNames)}
                 </div>
                 <Vitals hp={p.hp} maxHp={p.max_hp} block={p.block} />
                 <PowerRow powers={p.player_powers ?? []} names={cat.powers} />
-                <OrbRow orbs={p.orbs ?? []} slots={p.orb_slots} names={cat.orbs} />
+                <OrbRow
+                  orbs={p.orbs ?? []}
+                  slots={p.orb_slots}
+                  names={cat.orbs}
+                />
                 <PetRow pets={p.pets ?? []} monsters={monsters} />
                 {mates.length > 0 && (
                   <div className="mt-2 flex max-w-[16rem] flex-wrap justify-center gap-4">
                     {mates.map((s, i) => (
-                      <PartyMate key={i} seat={s} turnSide={p.turn_side} names={cat.characterNames} />
+                      <PartyMate
+                        key={i}
+                        seat={s}
+                        turnSide={p.turn_side}
+                        names={cat.characterNames}
+                      />
                     ))}
                   </div>
                 )}
@@ -706,7 +760,10 @@ export default function LiveScene({
             // right, the wares (with prices) between them.
             <div className="flex items-center justify-between gap-4 px-[5%]">
               <span className="inline-flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--accent-gold)]/60 bg-[var(--bg-primary)]">
-                <CharacterIcon character={p.character} className="h-[88%] w-[88%]" />
+                <CharacterIcon
+                  character={p.character}
+                  className="h-[88%] w-[88%]"
+                />
               </span>
               <div className="min-w-0 max-w-2xl flex-1">
                 <LiveShopPanel
@@ -730,7 +787,10 @@ export default function LiveScene({
           ) : p.screen === "rest" ? (
             <div className="mx-auto flex max-w-md flex-col items-center gap-3 py-8 text-center">
               <span className="inline-flex h-24 w-24 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--accent-gold)]/60 bg-[var(--bg-primary)]">
-                <CharacterIcon character={p.character} className="h-[88%] w-[88%]" />
+                <CharacterIcon
+                  character={p.character}
+                  className="h-[88%] w-[88%]"
+                />
               </span>
               <div className="text-base font-semibold text-warning">
                 {t("Resting at a campfire")}
@@ -759,7 +819,11 @@ export default function LiveScene({
             </div>
           ) : (
             <div className="py-12 text-center text-sm text-on-fill/70">
-              {p.screen ? t("On the {screen} screen", { screen: screenLabel(p.screen, t) }) : t("Between rooms")}
+              {p.screen
+                ? t("On the {screen} screen", {
+                    screen: screenLabel(p.screen, t),
+                  })
+                : t("Between rooms")}
             </div>
           )}
         </div>
@@ -777,7 +841,10 @@ export default function LiveScene({
               img={imageUrl("/static/images/ui/combat/draw_pile.png")}
               count={p.draw_count}
               onClick={() =>
-                setOpenCards({ title: t("{label} pile", { label: t("Draw") }), ids: p.draw_pile ?? [] })
+                setOpenCards({
+                  title: t("{label} pile", { label: t("Draw") }),
+                  ids: p.draw_pile ?? [],
+                })
               }
               disabled={!p.draw_pile?.length}
             />
@@ -831,7 +898,10 @@ export default function LiveScene({
               img={imageUrl("/static/images/ui/combat/discard_pile.png")}
               count={p.discard_count}
               onClick={() =>
-                setOpenCards({ title: t("{label} pile", { label: t("Discard") }), ids: p.discard_pile ?? [] })
+                setOpenCards({
+                  title: t("{label} pile", { label: t("Discard") }),
+                  ids: p.discard_pile ?? [],
+                })
               }
               disabled={!p.discard_pile?.length}
             />
@@ -840,7 +910,10 @@ export default function LiveScene({
               img={imageUrl("/static/images/ui/combat/exhaust_pile.png")}
               count={p.exhaust_count}
               onClick={() =>
-                setOpenCards({ title: t("{label} pile", { label: t("Exhaust") }), ids: p.exhaust_pile ?? [] })
+                setOpenCards({
+                  title: t("{label} pile", { label: t("Exhaust") }),
+                  ids: p.exhaust_pile ?? [],
+                })
               }
               disabled={!p.exhaust_pile?.length}
             />
@@ -872,7 +945,9 @@ export default function LiveScene({
               </button>
             </div>
             {openCards.ids.length === 0 ? (
-              <p className="text-sm text-[var(--text-muted)]">{t("No cards on this beat.")}</p>
+              <p className="text-sm text-[var(--text-muted)]">
+                {t("No cards on this beat.")}
+              </p>
             ) : (
               <div className="flex flex-wrap gap-2">
                 {groupCards(openCards.ids).map(([raw, count]) => {
@@ -919,7 +994,9 @@ export default function LiveScene({
           >
             <div className="mb-3 flex items-center justify-between">
               <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
-                {p.map?.act != null ? t("Map · Act {n}", { n: p.map.act }) : t("Map")}
+                {p.map?.act != null
+                  ? t("Map · Act {n}", { n: p.map.act })
+                  : t("Map")}
               </h3>
               <button
                 type="button"
@@ -940,6 +1017,8 @@ export default function LiveScene({
               encounters={encounters}
               floorHistory={p.floor_history}
               cat={cat}
+              actName={p.act_name}
+              character={p.character}
             />
           </div>
         </div>

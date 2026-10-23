@@ -23,7 +23,12 @@ interface IconSelectProps {
  * and star icons can't render inside one). Mirrors the filter-select look;
  * group headers and rows show the real game asset.
  */
-export default function IconSelect({ label, value, options, onChange }: IconSelectProps) {
+export default function IconSelect({
+  label,
+  value,
+  options,
+  onChange,
+}: IconSelectProps) {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(-1);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -55,10 +60,18 @@ export default function IconSelect({ label, value, options, onChange }: IconSele
       setOpen(false);
       return;
     }
-    if (!open && (e.key === "Enter" || e.key === " " || e.key === "ArrowDown")) {
+    if (
+      !open &&
+      (e.key === "Enter" || e.key === " " || e.key === "ArrowDown")
+    ) {
       e.preventDefault();
       setOpen(true);
-      setActive(Math.max(0, flat.findIndex((o) => o.value === value)));
+      setActive(
+        Math.max(
+          0,
+          flat.findIndex((o) => o.value === value),
+        ),
+      );
       return;
     }
     if (!open) return;
@@ -93,11 +106,27 @@ export default function IconSelect({ label, value, options, onChange }: IconSele
         className="filter-select inline-flex items-center gap-1.5 px-3 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 cursor-pointer text-sm"
       >
         {selected?.icon && (
-          <img src={imageUrl(selected.icon)} alt="" className="w-4 h-4" crossOrigin="anonymous" />
+          <img
+            src={imageUrl(selected.icon)}
+            alt=""
+            className="w-4 h-4"
+            crossOrigin="anonymous"
+          />
         )}
         <span>{selected ? selected.label : label}</span>
-        <svg className="w-3 h-3 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        <svg
+          className="w-3 h-3 opacity-70"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          aria-hidden
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M19 9l-7 7-7-7"
+          />
         </svg>
       </button>
 
@@ -116,7 +145,12 @@ export default function IconSelect({ label, value, options, onChange }: IconSele
                   className="px-3 pt-2 pb-1 text-[10px] font-semibold uppercase tracking-wider text-[var(--text-muted)] flex items-center gap-1.5"
                 >
                   {opt.icon && (
-                    <img src={imageUrl(opt.icon)} alt="" className="w-3.5 h-3.5" crossOrigin="anonymous" />
+                    <img
+                      src={imageUrl(opt.icon)}
+                      alt=""
+                      className="w-3.5 h-3.5"
+                      crossOrigin="anonymous"
+                    />
                   )}
                   {opt.group}
                 </div>
@@ -137,7 +171,12 @@ export default function IconSelect({ label, value, options, onChange }: IconSele
                   } ${isSelected ? "text-[var(--accent-gold)]" : "text-[var(--text-primary)]"}`}
                 >
                   {opt.icon && (
-                    <img src={imageUrl(opt.icon)} alt="" className="w-4 h-4" crossOrigin="anonymous" />
+                    <img
+                      src={imageUrl(opt.icon)}
+                      alt=""
+                      className="w-4 h-4"
+                      crossOrigin="anonymous"
+                    />
                   )}
                   {opt.label}
                 </button>

@@ -27,7 +27,8 @@ export function useEntityScores(
   const [scores, setScores] = useState<ScoresMap>({});
 
   useEffect(() => {
-    const qs = param && param !== "all" ? `?bracket=${encodeURIComponent(param)}` : "";
+    const qs =
+      param && param !== "all" ? `?bracket=${encodeURIComponent(param)}` : "";
     cachedFetch<ScoresMap>(`${API}/api/runs/scores/${entityType}${qs}`)
       .then(setScores)
       .catch(() => setScores({}));

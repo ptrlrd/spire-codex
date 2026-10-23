@@ -8,7 +8,10 @@
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
-import { ANNOUNCEMENT_SEEN_KEY, LATEST_ANNOUNCEMENT_ID } from "@/lib/announcements";
+import {
+  ANNOUNCEMENT_SEEN_KEY,
+  LATEST_ANNOUNCEMENT_ID,
+} from "@/lib/announcements";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 

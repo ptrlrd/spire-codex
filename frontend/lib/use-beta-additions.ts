@@ -11,7 +11,7 @@
 
 import { useEffect, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useChannel } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -20,29 +20,39 @@ interface BetaDiff {
   types: Record<string, { added: string[] }>;
 }
 
-export function useBetaAdditions<T extends { id: string }>(type: string, lang: string): T[] {
+export function useBetaAdditions<T extends { id: string }>(
+  type: string,
+  lang: string,
+  initial?: { lang: string; items: T[] },
+): T[] {
   const channel = useChannel();
-  const [items, setItems] = useState<T[]>([]);
+  const [items, setItems] = useState<T[]>(initial?.items ?? []);
 
   useEffect(() => {
     if (channel === "beta") {
       setItems([]);
       return;
     }
+    if (initial && initial.lang === lang) {
+      setItems(initial.items);
+      return;
+    }
     let active = true;
     (async () => {
       try {
         const diff = await cachedFetch<BetaDiff>(`${API}/api/beta/diff`);
-        const added = diff?.beta_version ? (diff.types?.[type]?.added ?? []) : [];
+        const added = diff?.beta_version
+          ? (diff.types?.[type]?.added ?? [])
+          : [];
         if (added.length === 0) {
           if (active) setItems([]);
           return;
         }
         const fetched = await Promise.all(
           added.map((id) =>
-            cachedFetch<T>(`${API}/api/${type}/${id.toLowerCase()}?lang=${lang}&channel=beta`).catch(
-              () => null,
-            ),
+            cachedFetch<T>(
+              `${API}/api/${type}/${id.toLowerCase()}?lang=${lang}&channel=beta`,
+            ).catch(() => null),
           ),
         );
         if (active) setItems(fetched.filter(Boolean) as T[]);
@@ -53,7 +63,7 @@ export function useBetaAdditions<T extends { id: string }>(type: string, lang: s
     return () => {
       active = false;
     };
-  }, [type, lang, channel]);
+  }, [type, lang, channel, initial]);
 
   return items;
 }

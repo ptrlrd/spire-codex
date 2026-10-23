@@ -993,6 +993,18 @@
       ],
       "description": "沉睡 → 苏醒 → 斩击 → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "沉睡",
+        "text": "你的旅程，到此为止……"
+      },
+      {
+        "key": "speakLine2",
+        "move": "沉睡",
+        "text": "那么，我们开始吧？"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses 念咒"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "念咒",
+        "text": "我们的力量无人能及！"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses 念咒"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "念咒",
+        "text": "咔！\n咔——"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses 禁忌唱诵"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "禁忌唱诵",
+        "text": "咔咔——！！"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with 顺走"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "激怒",
+        "text": "哼，不付钱可以，那就付点别的吧……"
+      },
+      {
+        "key": "speakLine2",
+        "move": "激怒",
+        "text": "今晚你就要与异鱼同眠了！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "喷吐硬币",
+        "text": "大赚一笔！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "顺走",
+        "text": "来打啊！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "投掷遗物",
+        "text": "你想要？来拿啊！"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses 醒来"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "逃跑",
+        "text": "我溜啦！"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "拿来 → 双重猛击 → 嘿嘿 → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "拿来",
+        "text": "钱钱！\n钱钱！"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "脆弱法球 → 虚弱法球 → 灵魂光束 → 黑暗仪式 → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "不可能！"
+      },
+      {
+        "key": "speakLine1",
+        "move": "黑暗仪式",
+        "text": "呱——咔！！"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: 知识的诅咒 → 抽打 → 知识过载 → 思考; then conditional: 知识的诅咒 (if curse of knowledge counter < 3) / 抽打 (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "知识的诅咒",
+        "text": "此事已成。"
+      },
+      {
+        "key": "startLine",
+        "move": "知识的诅咒",
+        "text": "做出选择。"
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "冲锋 → 喷火器 → 举起蓄力 → 重斩 → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "护盾消失！"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "护盾重新上线！"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → 你是我的了; then conditional: 为我尽力燃烧吧 (if does not have amalgam died) / 将头砍下 (if has amalgam died); then conditional: 为我尽力燃烧吧 (if does not have amalgam died) / 将头砍下 (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "……"
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "你是我的了！"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

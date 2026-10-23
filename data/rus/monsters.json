@@ -993,6 +993,18 @@
       ],
       "description": "Сон → Пробуждение → Разрез → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Сон",
+        "text": "Твой путь подошел к концу!"
+      },
+      {
+        "key": "speakLine2",
+        "move": "Сон",
+        "text": "Начнем?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Заклинание"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Заклинание",
+        "text": "НАШУ СИЛУ НЕ ПРЕВЗОЙТИ!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Заклинание"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Заклинание",
+        "text": "КАР!\nКАР-Р-Р"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Запретное заклинание"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Запретное заклинание",
+        "text": "КАР-Р-Р!!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Замах"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Гнев",
+        "text": "Ты за это заплатишь!"
+      },
+      {
+        "key": "speakLine2",
+        "move": "Гнев",
+        "text": "Чтоб тебя рыб сожрал!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Плевок монетами",
+        "text": "Дзынь-дзынь!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Замах",
+        "text": "Поднимай кулаки!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Бросок реликвией",
+        "text": "Хочешь реликвию? Забирай!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Пробуждение"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Побег",
+        "text": "Я сваливаю!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Дай сюда → Двойной удар → Хе-хе → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Дай сюда",
+        "text": "Деньги!\nДенюжки!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Сфера хрупкости → Сфера слабости → Луч души → Темный ритуал → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Не может быть!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Темный ритуал",
+        "text": "Куа кварр!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Бремя созидания → Шлепок → Непостижимая истина → Раздумья; then conditional: Бремя созидания (if curse of knowledge counter < 3) / Шлепок (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Бремя созидания",
+        "text": "Сделано."
+      },
+      {
+        "key": "startLine",
+        "move": "Бремя созидания",
+        "text": "Выбирай."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Рывок → Огнемет → Широкий замах → Мощный тесак → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Щиты вышли из строя!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Щиты перезаряжены!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Ты принадлежишь мне!; then conditional: Гори ясно! (if does not have amalgam died) / Голову с плеч! (if has amalgam died); then conditional: Гори ясно! (if does not have amalgam died) / Голову с плеч! (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "…"
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Ты принадлежишь мне!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

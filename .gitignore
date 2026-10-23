@@ -30,6 +30,7 @@ docker-compose.override.yml
 
 # Runtime data
 data/runs.db
+backend/.search_index*
 data/runs/
 data-beta/runs.db
 data-beta/runs/

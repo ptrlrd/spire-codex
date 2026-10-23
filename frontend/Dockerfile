@@ -1,5 +1,5 @@
 ARG BUILDPLATFORM=linux/amd64
-FROM --platform=$BUILDPLATFORM node:24-alpine AS deps
+FROM --platform=$BUILDPLATFORM node:26-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 # The cache mount keeps the npm download cache on the builder between
@@ -8,7 +8,7 @@ COPY package.json package-lock.json ./
 RUN --mount=type=cache,target=/root/.npm npm ci
 
 ARG BUILDPLATFORM=linux/amd64
-FROM --platform=$BUILDPLATFORM node:24-alpine AS builder
+FROM --platform=$BUILDPLATFORM node:26-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -23,20 +23,25 @@ ARG NEXT_PUBLIC_UMAMI_WEBSITE_ID
 ENV NEXT_PUBLIC_UMAMI_WEBSITE_ID=${NEXT_PUBLIC_UMAMI_WEBSITE_ID}
 ARG NEXT_PUBLIC_CDN_URL
 ENV NEXT_PUBLIC_CDN_URL=${NEXT_PUBLIC_CDN_URL}
+ARG NEXT_DEPLOYMENT_ID
+ENV NEXT_DEPLOYMENT_ID=${NEXT_DEPLOYMENT_ID}
 # Persist Next's incremental compiler cache across builds. Source always
 # changes between releases so this stage never layer-caches; the mount is
 # what makes the rebuild incremental instead of from scratch.
 RUN --mount=type=cache,target=/app/.next/cache npm run build
 
-FROM node:24-alpine AS runner
+FROM node:26-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+COPY --from=builder /app/.next/static ./static-build
+COPY --chmod=755 docker-entrypoint.sh ./docker-entrypoint.sh
+RUN mkdir -p /app/.next/static /app/.next/cache/fetch-cache
 
 EXPOSE 3000
 
+ENTRYPOINT ["sh", "/app/docker-entrypoint.sh"]
 CMD ["node", "server.js"]

@@ -34,7 +34,8 @@ export async function fetchSteamMeta(): Promise<SteamMeta | null> {
       ratingCount: total,
     };
     if (priceRes.ok) {
-      const price = (await priceRes.json())?.[String(STEAM_APP_ID)]?.data?.price_overview;
+      const price = (await priceRes.json())?.[String(STEAM_APP_ID)]?.data
+        ?.price_overview;
       if (price?.final && price?.currency) {
         meta.price = (price.final / 100).toFixed(2);
         meta.priceCurrency = price.currency;

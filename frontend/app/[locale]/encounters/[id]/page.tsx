@@ -10,8 +10,12 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import { fetchEncounterStats } from "@/lib/encounter-stats";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
+const API_PUBLIC =
+  process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -21,8 +25,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/encounters/${id}`;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`);
-    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Encounter Not Found"), noIndex: true });
+    const res = await fetch(
+      `${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`,
+    );
+    if (!res.ok)
+      return buildPageMetadata({
+        locale,
+        path,
+        title: t("Encounter Not Found"),
+        noIndex: true,
+      });
     const encounter = await res.json();
     const monsterList = encounter.monsters?.length
       ? ` Monsters: ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
@@ -31,14 +43,25 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${encounter.name} - ${t("Encounter")}`,
+      title: encounter.name,
+      entityType: t("Encounter"),
       description: clipMetaDescription(
-        t("encounter_meta_description", { roomType: encounter.room_type, name: encounter.name, actText, monsterList }),
+        t("encounter_meta_description", {
+          roomType: encounter.room_type,
+          name: encounter.name,
+          actText,
+          monsterList,
+        }),
       ),
       ogType: "article",
     });
   } catch {
-    return buildPageMetadata({ locale, path, title: t("Database"), noIndex: true });
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Database"),
+      noIndex: true,
+    });
   }
 }
 
@@ -49,7 +72,9 @@ export default async function Page({ params }: Props) {
   let encounter = null;
   let apiUnreachable = false;
   try {
-    const res = await fetchEntityRes(`${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`);
+    const res = await fetchEntityRes(
+      `${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`,
+    );
     if (res.ok) {
       encounter = await res.json();
       const desc = encounter.monsters?.length
@@ -63,15 +88,32 @@ export default async function Page({ params }: Props) {
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-          { name: uiText(locale, "Encounters"), href: localePath(locale, "/encounters") },
-          { name: encounter.name, href: localePath(locale, `/encounters/${id}`) },
+          {
+            name: uiText(locale, "Encounters"),
+            href: localePath(locale, "/encounters"),
+          },
+          {
+            name: encounter.name,
+            href: localePath(locale, `/encounters/${id}`),
+          },
         ],
       });
       const faqQuestions = [
-        { question: `What type of encounter is ${encounter.name} in Slay the Spire 2?`, answer: `${encounter.name} is a ${encounter.room_type} encounter${encounter.act ? ` found in ${encounter.act}` : ""}.` },
-        { question: `What monsters appear in ${encounter.name}?`, answer: encounter.monsters?.length ? `${encounter.name} features: ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.` : `${encounter.name} has no listed monsters.` },
+        {
+          question: `What type of encounter is ${encounter.name} in Slay the Spire 2?`,
+          answer: `${encounter.name} is a ${encounter.room_type} encounter${encounter.act ? ` found in ${encounter.act}` : ""}.`,
+        },
+        {
+          question: `What monsters appear in ${encounter.name}?`,
+          answer: encounter.monsters?.length
+            ? `${encounter.name} features: ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
+            : `${encounter.name} has no listed monsters.`,
+        },
       ];
-      jsonLd = locale === "eng" ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)] : detailJsonLd;
+      jsonLd =
+        locale === "eng"
+          ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)]
+          : detailJsonLd;
     }
   } catch {
     apiUnreachable = true;
@@ -85,7 +127,10 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EncounterDetail initialEncounter={encounter} encounterStat={encounterStat} />
+      <EncounterDetail
+        initialEncounter={encounter}
+        encounterStat={encounterStat}
+      />
     </>
   );
 }

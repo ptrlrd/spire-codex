@@ -14,10 +14,20 @@ interface ShowcaseProject {
 }
 
 const ARROW = (
-  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  <svg
+    className="arw"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
 );
 
-/** Category to a chip colour (drives `--cc` on the card). */
+/** Category to a chip color (drives `--cc` on the card). */
 const CATEGORY_CC: Record<string, string> = {
   api: "#23935b",
   widget: "#9b6bd6",

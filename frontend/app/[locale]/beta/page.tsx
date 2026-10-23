@@ -23,7 +23,9 @@ export async function generateMetadata({
 export const revalidate = 300;
 
 const API =
-  process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 interface TypeDiff {
   added: string[];
@@ -59,9 +61,12 @@ async function fetchJson<T>(url: string): Promise<T | null> {
 }
 
 /** id -> display name from a channel's catalog. */
-async function nameMap(type: string, channel: "beta" | "stable"): Promise<Map<string, string>> {
+async function nameMap(
+  type: string,
+  channel: "beta" | "stable",
+): Promise<Map<string, string>> {
   const rows = await fetchJson<{ id: string; name: string }[]>(
-    `${API}/api/${type}?lang=eng&channel=${channel}`
+    `${API}/api/${type}?lang=eng&channel=${channel}`,
   );
   return new Map((rows ?? []).map((r) => [r.id, r.name]));
 }
@@ -82,42 +87,53 @@ export default async function BetaLandingPage({
   const sections = await Promise.all(
     TYPES.map(async ({ key, label, route }) => {
       const td = diff?.types?.[key];
-      if (!td || (td.added.length === 0 && Object.keys(td.changed).length === 0 && td.removed.length === 0)) {
+      if (
+        !td ||
+        (td.added.length === 0 &&
+          Object.keys(td.changed).length === 0 &&
+          td.removed.length === 0)
+      ) {
         return null;
       }
       // Added entities only exist in the beta catalog; removed only in stable.
       const [betaNames, stableNames] = await Promise.all([
-        td.added.length ? nameMap(key, "beta") : Promise.resolve(new Map<string, string>()),
+        td.added.length
+          ? nameMap(key, "beta")
+          : Promise.resolve(new Map<string, string>()),
         nameMap(key, "stable"),
       ]);
       return { key, label, route, td, betaNames, stableNames };
-    })
+    }),
   );
 
-  const live = sections.filter(Boolean) as NonNullable<(typeof sections)[number]>[];
+  const live = sections.filter(Boolean) as NonNullable<
+    (typeof sections)[number]
+  >[];
 
   // The same shape the changelog page renders: per-category collapsible
   // sections under one overall summary line.
-  const rendered = live.map(({ key, label, route, td, betaNames, stableNames }) => ({
-    key,
-    label: t(label),
-    added: td.added.map((id): DiffEntry => ({
-      id,
-      name: betaNames.get(id) ?? prettify(id),
-      href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
-    })),
-    changed: Object.entries(td.changed).map(([id, fields]): DiffEntry => ({
-      id,
-      name: stableNames.get(id) ?? prettify(id),
-      href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
-      note: fields.join(", "),
-    })),
-    removed: td.removed.map((id): DiffEntry => ({
-      id,
-      name: stableNames.get(id) ?? prettify(id),
-      href: route ? `/${route}/${id.toLowerCase()}` : null,
-    })),
-  }));
+  const rendered = live.map(
+    ({ key, label, route, td, betaNames, stableNames }) => ({
+      key,
+      label: t(label),
+      added: td.added.map((id): DiffEntry => ({
+        id,
+        name: betaNames.get(id) ?? prettify(id),
+        href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+      })),
+      changed: Object.entries(td.changed).map(([id, fields]): DiffEntry => ({
+        id,
+        name: stableNames.get(id) ?? prettify(id),
+        href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+        note: fields.join(", "),
+      })),
+      removed: td.removed.map((id): DiffEntry => ({
+        id,
+        name: stableNames.get(id) ?? prettify(id),
+        href: route ? `/${route}/${id.toLowerCase()}` : null,
+      })),
+    }),
+  );
 
   const totals = rendered.reduce(
     (acc, s) => ({
@@ -133,10 +149,14 @@ export default async function BetaLandingPage({
       <BetaBanner />
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-success">{t("Beta")}</span>{" "}
-        <span className="text-[var(--accent-gold)]">{diff?.beta_version ?? ""}</span>
+        <span className="text-[var(--accent-gold)]">
+          {diff?.beta_version ?? ""}
+        </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-3">
-        {t("Everything the current beta branch adds, changes, or removes compared to main, straight from the game data. Presentation-only differences (art, ordering) are filtered out.")}
+        {t(
+          "Everything the current beta branch adds, changes, or removes compared to main, straight from the game data. Presentation-only differences (art, ordering) are filtered out.",
+        )}
       </p>
       <div className="mb-6">
         <SummaryBadge {...totals} />
@@ -150,7 +170,13 @@ export default async function BetaLandingPage({
 
       <div className="space-y-3">
         {rendered.map(({ key, label, added, changed, removed }) => (
-          <DiffSection key={key} label={label} added={added} changed={changed} removed={removed} />
+          <DiffSection
+            key={key}
+            label={label}
+            added={added}
+            changed={changed}
+            removed={removed}
+          />
         ))}
       </div>
     </div>

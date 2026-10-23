@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
-import { api } from "@/lib/api";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
+import { getApiEndpoint } from "@/lib/api/endpoint.server";
 
 export async function generateMetadata(): Promise<Metadata> {
   let count = "289+";
   try {
-    const stats = await api.getStatsBounded();
-    count = String(stats.relics);
+    const stats = await getApiEndpoint("stats", undefined, {
+      timeoutMs: 3000,
+      revalidate: 3600,
+    });
+    if (typeof stats?.relics === "number") count = String(stats.relics);
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
-  const title = "Relics - Complete Relic List - Slay the Spire 2 (sts2) | Spire Codex";
+  const title =
+    "Relics - Complete Relic List - Slay the Spire 2 (sts2) | Spire Codex";
   const ogDesc = `Browse all ${count} Slay the Spire 2 (sts2) relics. Filter by rarity and character pool. View relic effects and images.`;
   return {
     title,
@@ -24,7 +33,10 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: DEFAULT_OG_IMAGE }],
     },
     twitter: { card: "summary_large_image", title, description: ogDesc },
-    alternates: { canonical: "/relics", languages: buildLanguageAlternates("/relics") },
+    alternates: {
+      canonical: "/relics",
+      languages: buildLanguageAlternates("/relics"),
+    },
   };
 }
 

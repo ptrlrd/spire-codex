@@ -2,15 +2,30 @@ import type { Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 
 const SLASH_COMMANDS = [
-  { cmd: "/card <name>", desc: "Cost, type, rarity, damage, keywords, upgrade text" },
+  {
+    cmd: "/card <name>",
+    desc: "Cost, type, rarity, damage, keywords, upgrade text",
+  },
   { cmd: "/relic <name>", desc: "Rarity, pool, description, shop price" },
-  { cmd: "/monster <name>", desc: "HP ranges, moves, innate powers, attack patterns" },
+  {
+    cmd: "/monster <name>",
+    desc: "HP ranges, moves, innate powers, attack patterns",
+  },
   { cmd: "/potion <name>", desc: "Rarity, pool, resolved description" },
   { cmd: "/character <name>", desc: "Starting deck, relics, HP, energy" },
   { cmd: "/event <name>", desc: "Multi-page choices and branching outcomes" },
-  { cmd: "/power <name>", desc: "Buff / debuff descriptions and stack behaviour" },
-  { cmd: "/enchantment <name>", desc: "Card-type restrictions and stackability" },
-  { cmd: "/lookup <query>", desc: "Cross-category fuzzy search across everything" },
+  {
+    cmd: "/power <name>",
+    desc: "Buff / debuff descriptions and stack behavior",
+  },
+  {
+    cmd: "/enchantment <name>",
+    desc: "Card-type restrictions and stackability",
+  },
+  {
+    cmd: "/lookup <query>",
+    desc: "Cross-category fuzzy search across everything",
+  },
   { cmd: "/meta", desc: "Live counts and patch info pulled from Spire Codex" },
 ];
 
@@ -32,7 +47,9 @@ export default async function KnowledgeDemonBody({ lang }: { lang: Locale }) {
         <span className="text-[var(--text-primary)]">Demon</span>
       </h1>
       <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
-        {t("A Discord bot for Slay the Spire 2 communities, with slash-command lookups for every card, relic, monster, potion, and event in the game, plus a full moderation toolkit. Powered by the Spire Codex API, so the data stays current with every patch.")}
+        {t(
+          "A Discord bot for Slay the Spire 2 communities, with slash-command lookups for every card, relic, monster, potion, and event in the game, plus a full moderation toolkit. Powered by the Spire Codex API, so the data stays current with every patch.",
+        )}
       </p>
 
       <div className="flex flex-wrap gap-3 mb-12">
@@ -60,7 +77,9 @@ export default async function KnowledgeDemonBody({ lang }: { lang: Locale }) {
           {t("Slay the Spire 2 lookups")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Every command resolves through the public Spire Codex API, so a card looked up in Discord matches what you'd see on this site.")}
+          {t(
+            "Every command resolves through the public Spire Codex API, so a card looked up in Discord matches what you'd see on this site.",
+          )}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {SLASH_COMMANDS.map((c) => (
@@ -71,7 +90,9 @@ export default async function KnowledgeDemonBody({ lang }: { lang: Locale }) {
               <code className="block text-sm font-mono text-[var(--accent-gold)] mb-1">
                 {c.cmd}
               </code>
-              <p className="text-sm text-[var(--text-secondary)]">{t(c.desc)}</p>
+              <p className="text-sm text-[var(--text-secondary)]">
+                {t(c.desc)}
+              </p>
             </div>
           ))}
         </div>
@@ -86,7 +107,12 @@ export default async function KnowledgeDemonBody({ lang }: { lang: Locale }) {
           <ul className="space-y-2 text-sm text-[var(--text-secondary)]">
             {MODERATION.map((item) => (
               <li key={item} className="flex gap-3">
-                <span aria-hidden className="text-[var(--accent-gold)] shrink-0">→</span>
+                <span
+                  aria-hidden
+                  className="text-[var(--accent-gold)] shrink-0"
+                >
+                  →
+                </span>
                 <span>{t(item)}</span>
               </li>
             ))}
@@ -100,7 +126,9 @@ export default async function KnowledgeDemonBody({ lang }: { lang: Locale }) {
           {t("News feed")}
         </h2>
         <p className="text-[var(--text-secondary)]">
-          {t("Polls RSS feeds you configure per guild and posts new entries to the channel of your choice. Add the Slay the Spire 2 Steam announcements feed (")}
+          {t(
+            "Polls RSS feeds you configure per guild and posts new entries to the channel of your choice. Add the Slay the Spire 2 Steam announcements feed (",
+          )}
           <a
             href="https://store.steampowered.com/feeds/news/app/2868840/"
             target="_blank"

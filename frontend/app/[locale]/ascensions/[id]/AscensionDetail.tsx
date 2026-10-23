@@ -1,13 +1,18 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Ascension } from "@/lib/api";
+import {
+  useState,
+  useEffect,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Ascension } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
@@ -16,13 +21,17 @@ import "@/app/meta-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function AscensionDetail({ initialAscension }: { initialAscension?: Ascension | null } = {}) {
+export default function AscensionDetail({
+  initialAscension,
+}: { initialAscension?: Ascension | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
-  const [ascension, setAscension] = useState<Ascension | null>(initialAscension ?? null);
+  const [ascension, setAscension] = useState<Ascension | null>(
+    initialAscension ?? null,
+  );
   const [allAscensions, setAllAscensions] = useState<Ascension[]>([]);
   const [loading, setLoading] = useState(!initialAscension);
   const [notFound, setNotFound] = useState(false);
@@ -47,7 +56,9 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
     if (!ascension) return;
-    const secs = Array.from(document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"));
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
     if (secs.length === 0) return;
     const obs = new IntersectionObserver(
       (entries) => {
@@ -81,8 +92,13 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
   if (notFound || !ascension) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-[var(--text-muted)] mb-4">{t("Ascension level not found.")}</p>
-        <Link href={`${bp}/reference`} className="text-[var(--accent-gold)] hover:underline">
+        <p className="text-[var(--text-muted)] mb-4">
+          {t("Ascension level not found.")}
+        </p>
+        <Link
+          href={`${bp}/reference`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Reference")}
         </Link>
       </div>
@@ -102,7 +118,10 @@ export default function AscensionDetail({ initialAscension }: { initialAscension
   ];
 
   return (
-    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
+    <div
+      className="card-rvmp"
+      style={{ "--spine": "var(--accent-gold)" } as CSSProperties}
+    >
       <div className="cd-top solo">
         <button onClick={() => router.back()} className="cd-back">
           &larr; {t("Back to")} {t("Reference")}

@@ -13,7 +13,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/tier-list", title: t("Tier List - Cards, Relics & Potions Ranked"), description: t("tier-list_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/tier-list",
+    title: t("Tier List - Cards, Relics & Potions Ranked"),
+    description: t("tier-list_meta_description"),
+  });
 }
 
 export default async function TierListIndex({ params }: Props) {

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { setBetaRenderVersion } from "@/lib/image-url";
-import { useChannel } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 import { LANG_PREFIXES } from "@/lib/languages";
 import { useT } from "@/lib/i18n";
 
@@ -21,7 +21,11 @@ function stripSuffix(v: string): string {
  * version on beta.spire-codex.com; per the migration plan only the newest
  * beta is supported, and the channel indicator lives here and in the
  * per-page beta banner, never next to the logo. */
-export default function SiteSwitcher() {
+export default function SiteSwitcher({
+  align = "right",
+}: {
+  align?: "left" | "right";
+} = {}) {
   const t = useT();
   const [betaVersion, setBetaVersion] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -78,7 +82,9 @@ export default function SiteSwitcher() {
     return () => document.removeEventListener("mousedown", handleClick);
   }, [open]);
 
-  const betaLabel = betaVersion ? t("beta {version}", { version: stripSuffix(betaVersion) }) : t("beta");
+  const betaLabel = betaVersion
+    ? t("beta {version}", { version: stripSuffix(betaVersion) })
+    : t("beta");
 
   // min-w on the beta state so first-paint "beta" -> post-fetch
   // "beta v0.107.0" doesn't widen the navbar and push the mobile burger
@@ -116,7 +122,7 @@ export default function SiteSwitcher() {
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50"
+          className={`absolute ${align === "left" ? "left-0" : "right-0"} top-full mt-2 w-56 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50`}
         >
           <div className="py-1">
             {onBeta ? (

@@ -54,7 +54,10 @@ const TIME_BASE: Intl.DateTimeFormatOptions = {
   minute: "2-digit",
   second: "2-digit",
 };
-const DATETIME_BASE: Intl.DateTimeFormatOptions = { ...DATE_BASE, ...TIME_BASE };
+const DATETIME_BASE: Intl.DateTimeFormatOptions = {
+  ...DATE_BASE,
+  ...TIME_BASE,
+};
 
 export function fmtDate(
   ts: string | number | Date,

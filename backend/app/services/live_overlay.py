@@ -39,7 +39,7 @@ def _client():
         return None
     from . import cache
 
-    return cache.raw_client()
+    return cache.background_client()
 
 
 def delta_fields(partial: dict) -> dict[tuple[str, str], int]:
@@ -166,8 +166,11 @@ def apply_run(run_hash: str, blob: dict) -> bool:
         )
         _write(r, fields, cursor)
         return True
-    except Exception:
-        logger.warning("live overlay apply failed for %s", run_hash, exc_info=True)
+    except Exception as e:
+        if type(e).__name__ in ("TimeoutError", "ConnectionError"):
+            logger.warning("live overlay skipped %s: redis %s", run_hash, e)
+        else:
+            logger.warning("live overlay apply failed for %s", run_hash, exc_info=True)
         return False
 
 

@@ -89,9 +89,9 @@ export default function KeysClient() {
   return (
     <AdminShell title="API keys" subtitle="tiers + revocation">
       <p className="text-sm text-[var(--text-secondary)] mb-4 max-w-2xl">
-        Every issued key. Move a key to another tier from the dropdown (academia is
-        granted here; paid will come from Patreon), or revoke it. Changes are live
-        within seconds.
+        Every issued key. Move a key to another tier from the dropdown (academia
+        is granted here; paid will come from Patreon), or revoke it. Changes are
+        live within seconds.
       </p>
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -137,19 +137,30 @@ export default function KeysClient() {
             >
               <div className="flex-1 min-w-[10rem]">
                 <div className="text-sm text-[var(--text-primary)] truncate">
-                  {k.username || <span className="text-[var(--text-muted)]">unknown user</span>}
+                  {k.username || (
+                    <span className="text-[var(--text-muted)]">
+                      unknown user
+                    </span>
+                  )}
                   {k.label && (
-                    <span className="text-[var(--text-muted)]"> · {k.label}</span>
+                    <span className="text-[var(--text-muted)]">
+                      {" "}
+                      · {k.label}
+                    </span>
                   )}
                 </div>
                 <div className="text-xs text-[var(--text-muted)] font-mono">
-                  {k.id} · created {fmt(k.created_at)} · last used {fmt(k.last_used_at)}
+                  {k.id} · created {fmt(k.created_at)} · last used{" "}
+                  {fmt(k.last_used_at)}
                 </div>
               </div>
               <div className="shrink-0 text-right tabular-nums">
                 <div className="text-sm text-[var(--text-primary)]">
                   {(k.requests_today ?? 0).toLocaleString()}
-                  <span className="text-xs text-[var(--text-muted)]"> today</span>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {" "}
+                    today
+                  </span>
                 </div>
                 <div className="text-xs text-[var(--text-muted)]">
                   {(k.requests_week ?? 0).toLocaleString()} / 7d

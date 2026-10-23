@@ -13,7 +13,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/ancients", title: t("Ancient Relic Pools - All Ancient Offerings"), description: t("ancients_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/ancients",
+    title: t("Ancient Relic Pools - All Ancient Offerings"),
+    description: t("ancients_meta_description"),
+  });
 }
 
 export default async function AncientsPage({ params }: Props) {

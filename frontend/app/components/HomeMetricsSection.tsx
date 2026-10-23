@@ -1,12 +1,23 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
+import { textColor } from "@/lib/character-colors";
 
 const ARROW = (
-  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  <svg
+    className="arw"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
 );
 
 /** Card-color to an inline hex/token, mirroring `colorTextClass`. Inline so
- * it beats the `.dtable td` colour, which a plain class would lose to. */
+ * it beats the `.dtable td` color, which a plain class would lose to. */
 function cardHex(color: string): string {
   switch ((color || "").toLowerCase()) {
     case "ironclad":
@@ -33,7 +44,7 @@ function cardHex(color: string): string {
   }
 }
 
-/** Win-rate colour ramp, reusing the .wr-* classes from home-revamp.css. */
+/** Win-rate color ramp, reusing the .wr-* classes from home-revamp.css. */
 function winClass(v: number | null): string {
   if (v === null || v === undefined) return "dim";
   if (v >= 50) return "wr-sg";
@@ -78,7 +89,7 @@ function pct(v: number | null): string {
 
 /**
  * Home-page preview of the Card Metrics table, scoped to the A10 bracket
- * (ascension 10) and ranked by Codex Elo, the way /leaderboards/metrics
+ * (ascension 10) and ranked by Codex Elo, the way /stats/cards
  * opens. Server-rendered; renders nothing when there's no A10 data yet so
  * the home page never shows an empty block.
  */
@@ -89,7 +100,9 @@ export default async function HomeMetricsSection({
 }) {
   const t = await getT();
   const [metrics, cards] = await Promise.all([
-    fetchJson<{ rows: ApiMetricRow[] }>(`${API}/api/runs/metrics/cards?bracket=a10`),
+    fetchJson<{ rows: ApiMetricRow[] }>(
+      `${API}/api/runs/metrics/cards?bracket=a10`,
+    ),
     fetchJson<ApiCard[]>(`${API}/api/cards?lang=${lang}`),
   ]);
   if (!metrics?.rows || !cards) return null;
@@ -104,7 +117,7 @@ export default async function HomeMetricsSection({
     .slice(0, 8);
   if (top.length === 0) return null;
 
-  const href = `/leaderboards/metrics?bracket=a10`;
+  const href = `/stats/cards?bracket=a10`;
 
   return (
     <div className="rvmp">
@@ -118,32 +131,41 @@ export default async function HomeMetricsSection({
             </Link>
           </div>
 
-          <div className="overflow-x-auto"><table className="dtable">
-            <thead>
-              <tr>
-                <th className="rk">#</th>
-                <th>{t("Card")}</th>
-                <th className="num">{t("Codex Elo")}</th>
-                <th className="num">{t("Win%")}</th>
-                <th className="num">{t("Pick%")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {top.map(({ r, c }, i) => (
-                <tr key={c.id}>
-                  <td className="rk">{i + 1}</td>
-                  <td className="ent">
-                    <Link prefetch={false} href={`/cards/${c.id.toLowerCase()}`} style={{ color: cardHex(c.color) }}>
-                      {c.name}
-                    </Link>
-                  </td>
-                  <td className="num mono">{r.elo === null ? "·" : Math.round(r.elo)}</td>
-                  <td className={`num ${winClass(r.win_rate)}`}>{pct(r.win_rate)}</td>
-                  <td className="num dim">{pct(r.pick_rate)}</td>
+          <div className="overflow-x-auto">
+            <table className="dtable">
+              <thead>
+                <tr>
+                  <th className="rk">#</th>
+                  <th>{t("Card")}</th>
+                  <th className="num">{t("Codex Elo")}</th>
+                  <th className="num">{t("Win%")}</th>
+                  <th className="num">{t("Pick%")}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table></div>
+              </thead>
+              <tbody>
+                {top.map(({ r, c }, i) => (
+                  <tr key={c.id}>
+                    <td className="rk">{i + 1}</td>
+                    <td className="ent">
+                      <a
+                        href={`${lang === "eng" ? "" : `/${lang}`}/cards/${c.id.toLowerCase()}`}
+                        style={{ color: textColor(cardHex(c.color)) }}
+                      >
+                        {c.name}
+                      </a>
+                    </td>
+                    <td className="num mono">
+                      {r.elo === null ? "·" : Math.round(r.elo)}
+                    </td>
+                    <td className={`num ${winClass(r.win_rate)}`}>
+                      {pct(r.win_rate)}
+                    </td>
+                    <td className="num dim">{pct(r.pick_rate)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </section>
       </section>
     </div>

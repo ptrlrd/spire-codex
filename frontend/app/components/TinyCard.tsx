@@ -83,13 +83,21 @@ export interface TinyCardProps {
   className?: string;
 }
 
-export default function TinyCard({ color, type, rarity, className = "w-6 h-6" }: TinyCardProps) {
+export default function TinyCard({
+  color,
+  type,
+  rarity,
+  className = "w-6 h-6",
+}: TinyCardProps) {
   const back = TINY_CARD_POOL_COLOR[(color ?? "").toLowerCase()] ?? "#FFFFFF";
   const banner = TINY_CARD_BANNER_COLOR[rarity ?? ""] ?? "#FFFFFF";
   const shape = portraitShape(type);
   return (
     <span className={`relative inline-block flex-shrink-0 ${className}`}>
-      <span className="absolute inset-0" style={maskStyle(`${BASE}/card_back.png`, back)} />
+      <span
+        className="absolute inset-0"
+        style={maskStyle(`${BASE}/card_back.png`, back)}
+      />
       <img
         src={`${BASE}/desc_box.png`}
         alt=""
@@ -115,7 +123,10 @@ export default function TinyCard({ color, type, rarity, className = "w-6 h-6" }:
         className="absolute inset-0 w-full h-full object-contain opacity-60"
         crossOrigin="anonymous"
       />
-      <span className="absolute inset-0" style={maskStyle(`${BASE}/banner.png`, banner)} />
+      <span
+        className="absolute inset-0"
+        style={maskStyle(`${BASE}/banner.png`, banner)}
+      />
     </span>
   );
 }

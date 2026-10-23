@@ -4,7 +4,11 @@
 
 import { cachedFetch } from "./fetch-cache";
 
-export type RecentEntity = { type: string; id: string; names?: Record<string, string> };
+export type RecentEntity = {
+  type: string;
+  id: string;
+  names?: Record<string, string>;
+};
 
 const KEY = "sc-recent-entities";
 const MAX = 12;
@@ -61,7 +65,12 @@ export function recordRecent(type: string, id: string): void {
   }
 }
 
-export function rememberRecentName(type: string, id: string, lang: string, name: string): void {
+export function rememberRecentName(
+  type: string,
+  id: string,
+  lang: string,
+  name: string,
+): void {
   try {
     const raw = localStorage.getItem(KEY);
     const list: RecentEntity[] = raw ? JSON.parse(raw) : [];
@@ -75,9 +84,15 @@ export function rememberRecentName(type: string, id: string, lang: string, name:
 }
 
 /** The entity's display name in `lang`, from the same detail endpoint its page reads. */
-export function fetchRecentName(type: string, id: string, lang: string): Promise<string | null> {
+export function fetchRecentName(
+  type: string,
+  id: string,
+  lang: string,
+): Promise<string | null> {
   const path = API_PATH[type] ?? type;
-  return cachedFetch<{ name?: string; title?: string }>(`${API}/api/${path}/${id}?lang=${lang}`)
+  return cachedFetch<{ name?: string; title?: string }>(
+    `${API}/api/${path}/${id}?lang=${lang}`,
+  )
     .then((d) => d?.name || d?.title || null)
     .catch(() => null);
 }

@@ -60,7 +60,9 @@ function IdentityBadges({ u }: { u: UserRow }) {
         </span>
       )}
       {u.is_partner && (
-        <span className={`${badge} bg-warning/10 text-warning border-warning/30`}>
+        <span
+          className={`${badge} bg-warning/10 text-warning border-warning/30`}
+        >
           Partner
         </span>
       )}
@@ -82,9 +84,14 @@ export default function UsersClient() {
     setBusy(true);
     setNote(null);
     try {
-      const params = new URLSearchParams({ page: String(pg), limit: String(LIMIT) });
+      const params = new URLSearchParams({
+        page: String(pg),
+        limit: String(LIMIT),
+      });
       if (search.trim()) params.set("q", search.trim());
-      const data = await adminFetch<UsersResponse>(`/api/admin/users?${params}`);
+      const data = await adminFetch<UsersResponse>(
+        `/api/admin/users?${params}`,
+      );
       setRows(data.users ?? []);
       setTotal(data.total ?? 0);
       setPage(data.page ?? pg);
@@ -106,17 +113,25 @@ export default function UsersClient() {
   }
 
   async function rename(u: UserRow) {
-    const next = window.prompt(`New display name for "${u.username ?? u._id}":`, u.username ?? "");
+    const next = window.prompt(
+      `New display name for "${u.username ?? u._id}":`,
+      u.username ?? "",
+    );
     if (next == null) return;
     if (!next.trim() || next.trim() === (u.username ?? "")) return;
     try {
-      const res = await adminFetch<{ username: string }>(`/api/admin/users/${u._id}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username: next.trim() }),
-      });
+      const res = await adminFetch<{ username: string }>(
+        `/api/admin/users/${u._id}`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: next.trim() }),
+        },
+      );
       setRows((prev) =>
-        prev.map((r) => (r._id === u._id ? { ...r, username: res.username } : r)),
+        prev.map((r) =>
+          r._id === u._id ? { ...r, username: res.username } : r,
+        ),
       );
       setNote(`Renamed to "${res.username}".`);
     } catch (e) {
@@ -137,7 +152,9 @@ export default function UsersClient() {
       );
       setRows((prev) => prev.filter((r) => r._id !== u._id));
       setTotal((t) => Math.max(0, t - 1));
-      setNote(`Deleted "${u.username ?? u._id}". ${res.runs_unlinked} run(s) unlinked.`);
+      setNote(
+        `Deleted "${u.username ?? u._id}". ${res.runs_unlinked} run(s) unlinked.`,
+      );
     } catch (e) {
       setNote(String((e as Error)?.message || e));
     }
@@ -231,8 +248,8 @@ export default function UsersClient() {
       {mergeSource && (
         <div className="flex items-center gap-3 mb-4 px-3 py-2 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10">
           <span className="text-sm text-[var(--text-primary)]">
-            Merging <b>{mergeSource.username ?? mergeSource._id}</b> into… pick a target
-            row.
+            Merging <b>{mergeSource.username ?? mergeSource._id}</b> into… pick
+            a target row.
           </span>
           <button
             onClick={() => setMergeSource(null)}
@@ -243,7 +260,9 @@ export default function UsersClient() {
         </div>
       )}
 
-      {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>
+      )}
 
       {rows.length > 0 && (
         <div className="overflow-x-auto rounded-lg border border-[var(--border-subtle)]">
@@ -268,7 +287,9 @@ export default function UsersClient() {
                     }`}
                   >
                     <td className="px-3 py-2">
-                      <div className="text-[var(--text-primary)]">{u.username ?? "-"}</div>
+                      <div className="text-[var(--text-primary)]">
+                        {u.username ?? "-"}
+                      </div>
                       <div className="font-mono text-[10px] text-[var(--text-muted)]">
                         {u._id}
                         {u.email ? ` · ${u.email}` : ""}
@@ -298,7 +319,10 @@ export default function UsersClient() {
                           )
                         ) : (
                           <>
-                            <button onClick={() => rename(u)} className={actionBtn}>
+                            <button
+                              onClick={() => rename(u)}
+                              className={actionBtn}
+                            >
                               Rename
                             </button>
                             <button

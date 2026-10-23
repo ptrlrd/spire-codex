@@ -1,16 +1,24 @@
 "use client";
 
 import { useGameLocale, useT } from "@/lib/i18n";
-import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import type { Potion } from "@/lib/api";
+import {
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
+import { useSearchParams } from "next/navigation";
+import type { Potion } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -49,7 +57,6 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
   const bp = useBetaPrefix();
   const channel = useChannel();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [potions, setPotions] = useState<Potion[]>(initialPotions);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
@@ -64,21 +71,31 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/potions${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, rarity, pool, sort };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, rarity, pool, sort, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = { search, rarity, pool, sort };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, rarity, pool, sort, updateUrl],
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !rarity && !pool && !search && initialPotions.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !rarity &&
+        !pool &&
+        !search &&
+        initialPotions.length > 0
+      ) {
         return;
       }
     }
@@ -98,7 +115,8 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
     const sorted = [...potions];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
-    else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "compendium")
+      sorted.sort((a, b) => a.compendium_order - b.compendium_order);
     else if (sort === "score") {
       sorted.sort((a, b) => {
         const sa = scores[a.id.toUpperCase()]?.score ?? -1;
@@ -159,7 +177,9 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
                   {potion.image_url && (
                     <img
                       src={imageUrl(potion.image_url)}
-                      alt={t("{name} - Slay the Spire 2 Potion", { name: potion.name })}
+                      alt={t("{name} - Slay the Spire 2 Potion", {
+                        name: potion.name,
+                      })}
                       className="w-12 h-12 object-contain flex-shrink-0"
                       loading="lazy"
                       crossOrigin="anonymous"
@@ -194,7 +214,9 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function PotionsClient(props: Parameters<typeof PotionsClientInner>[0]) {
+export default function PotionsClient(
+  props: Parameters<typeof PotionsClientInner>[0],
+) {
   return (
     <Suspense fallback={null}>
       <PotionsClientInner {...props} />

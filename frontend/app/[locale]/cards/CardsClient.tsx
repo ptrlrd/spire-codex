@@ -1,17 +1,27 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import type { Card } from "@/lib/api";
+import {
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+  useDeferredValue,
+} from "react";
+import { useSearchParams } from "next/navigation";
+import type { Card } from "@/lib/api/types";
+import { cardHasKeyword } from "@/lib/card-display";
 import { cachedFetch } from "@/lib/fetch-cache";
 import CardGrid from "@/app/components/CardGrid";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
 import { CDN_BASE } from "@/lib/image-url";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -19,6 +29,8 @@ const sortOptions = [
   { label: "Top tier", value: "score" },
   { label: "A → Z", value: "az" },
   { label: "Z → A", value: "za" },
+  { label: "Cost: low → high", value: "cost" },
+  { label: "Cost: high → low", value: "cost-desc" },
   { label: "Compendium", value: "compendium" },
 ];
 
@@ -65,6 +77,7 @@ const costOptions = [
   { label: "3", value: "3", group: "Energy", icon: ENERGY_ICON },
   { label: "4+", value: "4plus", group: "Energy", icon: ENERGY_ICON },
   { label: "X", value: "x", group: "Energy", icon: ENERGY_ICON },
+  { label: "Any", value: "starany", group: "Star", icon: STAR_ICON },
   { label: "1", value: "star1", group: "Star", icon: STAR_ICON },
   { label: "2", value: "star2", group: "Star", icon: STAR_ICON },
   { label: "3", value: "star3", group: "Star", icon: STAR_ICON },
@@ -76,12 +89,41 @@ function matchesCost(c: Card, want: string): boolean {
   if (!want) return true;
   if (want === "x") return !!c.is_x_cost;
   if (want === "starx") return !!c.is_x_star_cost;
+  if (want === "starany")
+    return typeof c.star_cost === "number" || !!c.is_x_star_cost;
   if (want.startsWith("star")) {
     if (typeof c.star_cost !== "number") return false;
-    return want === "star4plus" ? c.star_cost >= 4 : want === `star${c.star_cost}`;
+    return want === "star4plus"
+      ? c.star_cost >= 4
+      : want === `star${c.star_cost}`;
   }
   if (typeof c.cost !== "number" || c.cost < 0) return false;
   return want === "4plus" ? c.cost >= 4 : want === String(c.cost);
+}
+
+function energyRank(c: Card): number {
+  if (c.is_x_cost) return 100;
+  if (typeof c.cost !== "number" || c.cost < 0) return Infinity;
+  return c.cost;
+}
+
+function starRank(c: Card): number {
+  if (c.is_x_star_cost) return 100;
+  return typeof c.star_cost === "number" ? c.star_cost : -1;
+}
+
+function compareCost(a: Card, b: Card, dir: 1 | -1): number {
+  const ea = energyRank(a);
+  const eb = energyRank(b);
+  if (ea !== eb) {
+    if (ea === Infinity) return 1;
+    if (eb === Infinity) return -1;
+    return (ea - eb) * dir;
+  }
+  const sa = starRank(a);
+  const sb = starRank(b);
+  if (sa !== sb) return (sa - sb) * dir;
+  return a.name.localeCompare(b.name);
 }
 
 const keywordOptions = [
@@ -94,10 +136,14 @@ const keywordOptions = [
   { label: "Eternal", value: "Eternal" },
 ];
 
-function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
-  const bp = useBetaPrefix();
+function CardsClientInner({
+  initialCards,
+  initialBeta,
+}: {
+  initialCards: Card[];
+  initialBeta?: { lang: string; items: Card[] };
+}) {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const [cards, setCards] = useState<Card[]>(initialCards);
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -122,7 +168,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
-  const betaAdditions = useBetaAdditions<Card>("cards", lang);
+  const betaAdditions = useBetaAdditions<Card>("cards", lang, initialBeta);
   const initialRender = useRef(true);
 
   // Sync filter state to URL search params
@@ -132,16 +178,27 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/cards${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
   // Wrap setters to also update URL
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, color, type, rarity, keyword, cost, sort };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, color, type, rarity, keyword, cost, sort, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = {
+        search,
+        color,
+        type,
+        rarity,
+        keyword,
+        cost,
+        sort,
+      };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, color, type, rarity, keyword, cost, sort, updateUrl],
+  );
 
   // Pull the discrete filters back out of the URL whenever it changes from
   // outside this component, e.g. clicking a "Browse cards by character"
@@ -166,7 +223,18 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !color && !type && !rarity && !keyword && !cost && !search && initialCards.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !color &&
+        !type &&
+        !rarity &&
+        !keyword &&
+        !cost &&
+        !search &&
+        view === "card" &&
+        initialCards.length > 0
+      ) {
         return;
       }
     }
@@ -178,9 +246,8 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     if (cost) params.set("cost", cost);
     if (search) params.set("search", search);
     params.set("lang", lang);
-    cachedFetch<Card[]>(`${API}/api/cards?${params}`)
-      .then(setCards);
-  }, [color, type, rarity, keyword, cost, search, lang, channel]);
+    cachedFetch<Card[]>(`${API}/api/cards?${params}`).then(setCards);
+  }, [color, type, rarity, keyword, cost, search, lang, channel, view]);
 
   const scores = useEntityScores("cards");
 
@@ -195,7 +262,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
           (!color || c.color === color) &&
           (!type || c.type === type) &&
           (!rarity || c.rarity === rarity) &&
-          (!keyword || (c.keywords ?? []).some((k) => k.toLowerCase() === keyword.toLowerCase())) &&
+          (!keyword || cardHasKeyword(c, keyword)) &&
           matchesCost(c, cost) &&
           (!search || c.name.toLowerCase().includes(search.toLowerCase())),
       )
@@ -207,7 +274,10 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     const sorted = [...withBeta];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
-    else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "cost") sorted.sort((a, b) => compareCost(a, b, 1));
+    else if (sort === "cost-desc") sorted.sort((a, b) => compareCost(a, b, -1));
+    else if (sort === "compendium")
+      sorted.sort((a, b) => a.compendium_order - b.compendium_order);
     else if (sort === "score") {
       sorted.sort((a, b) => {
         const sa = scores[a.id.toUpperCase()]?.score ?? -1;
@@ -218,6 +288,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
     }
     return sorted;
   }, [withBeta, sort, scores]);
+  const gridCards = useDeferredValue(sortedCards);
 
   return (
     <>
@@ -273,6 +344,7 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
             value: cost,
             options: costOptions.map((o) => ({
               ...o,
+              label: o.value === "starany" ? t(o.label) : o.label,
               group: o.group === "Energy" ? t("Energy") : t("Star Cost"),
             })),
             onChange: (v) => setFilterAndUrl("cost", v, setCost),
@@ -291,10 +363,13 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
         // Sit the transparent card renders on a subtle panel so the grid reads
         // as a contained module instead of floating on the page background.
         <div className="rounded-2xl border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 p-3 sm:p-5">
-          <FullCardGrid cards={sortedCards} stats={sort === "score" ? scores : undefined} />
+          <FullCardGrid
+            cards={gridCards}
+            stats={sort === "score" ? scores : undefined}
+          />
         </div>
       ) : (
-        <CardGrid cards={sortedCards} />
+        <CardGrid cards={gridCards} />
       )}
     </>
   );
@@ -304,9 +379,11 @@ function CardsClientInner({ initialCards }: { initialCards: Card[] }) {
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function CardsClient(props: Parameters<typeof CardsClientInner>[0]) {
+export default function CardsClient(
+  props: Parameters<typeof CardsClientInner>[0],
+) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <CardsClientInner {...props} />
     </Suspense>
   );

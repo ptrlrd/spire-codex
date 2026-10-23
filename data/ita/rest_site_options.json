@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clona"
+  },
+  {
+    "id": "COOK",
+    "name": "Cucina"
+  },
+  {
+    "id": "DIG",
+    "name": "Scava"
+  },
+  {
+    "id": "HATCH",
+    "name": "Schiudi"
+  },
+  {
+    "id": "HEAL",
+    "name": "Riposa"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Accendi"
+  },
+  {
+    "id": "LIFT",
+    "name": "Allenati"
+  },
+  {
+    "id": "MEND",
+    "name": "Cura"
+  },
+  {
+    "id": "SMITH",
+    "name": "Fabbrica"
+  }
+]

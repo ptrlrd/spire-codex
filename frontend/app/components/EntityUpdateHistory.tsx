@@ -51,7 +51,9 @@ export default function EntityUpdateHistory({
   const [entries, setEntries] = useState<UpdateEntry[] | null | "none">(null);
 
   useEffect(() => {
-    cachedFetch<UpdateEntry[]>(`${API}/api/update-history/${entityType}/${entityId}`)
+    cachedFetch<UpdateEntry[]>(
+      `${API}/api/update-history/${entityType}/${entityId}`,
+    )
       .then((d) => setEntries(d.length > 0 ? d : "none"))
       .catch(() => setEntries("none"));
   }, [entityType, entityId]);
@@ -80,9 +82,13 @@ export default function EntityUpdateHistory({
                     <span className="font-semibold text-[var(--text-primary)]">
                       {entry.version ?? t("Unknown")}
                     </span>
-                    {entry.type && <span className={kindText[kind]}>{entry.type}</span>}
+                    {entry.type && (
+                      <span className={kindText[kind]}>{entry.type}</span>
+                    )}
                     {entry.date && (
-                      <span className="text-[var(--text-muted)]">{entry.date}</span>
+                      <span className="text-[var(--text-muted)]">
+                        {entry.date}
+                      </span>
                     )}
                   </div>
                   <ul className="mt-1.5 space-y-1 list-none m-0 p-0">

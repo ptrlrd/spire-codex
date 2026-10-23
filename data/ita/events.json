@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "Inserisci pozione Common",
-        "description": "Perdi [gold]a Potion[/gold]. Ottieni una carta [gold]Skill Common[/gold] [gold]potenziata[/gold]."
+        "id": "POTION_COMMON",
+        "title": "Inserisci pozione Comune",
+        "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità Comune[/gold] [gold]potenziata[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Inserisci pozione Non comune",
+        "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Non comune[/gold] [gold]potenziata[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Inserisci pozione Rara",
+        "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Rara[/gold] [gold]potenziata[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Inserisci pozione Evento",
+        "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Rara[/gold] [gold]potenziata[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Inserisci pozione Segnalino",
+        "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità Comune[/gold] [gold]potenziata[/gold]."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "Svoltando l'angolo, avverti un leggero rumore e scopri un gigantesco apparecchio rotante!\nPresenta diverse fessure che sembrano trasformare i liquidi in pillole digeribili altamente compresse.\n\nL'idea di trasformare questi tonici per la salute in un bocconi minuscoli è alquanto inquietante, però forse a volte bisogna sperimentare...",
         "options": [
           {
-            "id": "POTION",
-            "title": "Inserisci pozione Common",
-            "description": "Perdi [gold]a Potion[/gold]. Ottieni una carta [gold]Skill Common[/gold] [gold]potenziata[/gold]."
+            "id": "POTION_COMMON",
+            "title": "Inserisci pozione Comune",
+            "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità Comune[/gold] [gold]potenziata[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Inserisci pozione Non comune",
+            "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Non comune[/gold] [gold]potenziata[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Inserisci pozione Rara",
+            "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Rara[/gold] [gold]potenziata[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Inserisci pozione Evento",
+            "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità/Potere Rara[/gold] [gold]potenziata[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Inserisci pozione Segnalino",
+            "description": "Perdi [gold]una pozione[/gold]. Ottieni una carta [gold]Attacco/Abilità Comune[/gold] [gold]potenziata[/gold]."
           }
         ]
       }

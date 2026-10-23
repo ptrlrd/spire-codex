@@ -27,6 +27,16 @@ def _stages():
 
         return precompute_insights.refresh_profiles()
 
+    def player_elo():
+        import player_elo_board
+
+        return player_elo_board.build()
+
+    def player_stats():
+        import player_stats as stage
+
+        return stage.build()
+
     def frame():
         from app.services.charts_stats import store_frame_parquet
 
@@ -44,6 +54,11 @@ def _stages():
 
         return refresh_leaderboard_summary()
 
+    def replay_guard():
+        import replay_guard as guard
+
+        return guard.run()
+
     return {
         "payload": lake_stats.build_and_store_payload,
         "entity_store": lake_stats.build_entity_store,
@@ -56,6 +71,9 @@ def _stages():
         "frame": frame,
         "history": history,
         "profiles": profiles,
+        "replay_guard": replay_guard,
+        "player_elo": player_elo,
+        "player_stats": player_stats,
     }
 
 

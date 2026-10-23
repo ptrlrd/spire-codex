@@ -3,20 +3,28 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { GuideSummary } from "@/lib/api";
+import type { GuideSummary } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import GuidesClient from "./GuidesClient";
 import { Link } from "@/i18n/navigation";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/guides", title: t("Guides"), description: t("guides_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/guides",
+    title: t("Guides"),
+    description: t("guides_meta_description"),
+  });
 }
 
 export default async function GuidesPage({ params }: Props) {

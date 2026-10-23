@@ -4,14 +4,32 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import { authHeaders } from "@/app/[locale]/admin/shared";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { useTryGameTranslations } from "@/lib/game-i18n";
+import type { RawRun, Run } from "@/lib/api/run/types";
+import { cleanRun } from "@/lib/api/run/util";
 import RunSummary, { type PotionInfo } from "./RunSummary";
 import SimilarRuns from "./SimilarRuns";
-import { CardPill, RelicPill, cleanId, displayName, type CardInfo, type RelicInfo } from "./RunPills";
+import {
+  CardPill,
+  RelicPill,
+  displayName,
+  type CardInfo,
+  type RelicInfo,
+} from "./RunPills";
+import {
+  characterTitle,
+  eventChoiceName,
+  restChoiceName,
+  roomTitle,
+  roomTypeTitle,
+  typedRoom,
+} from "./run-names";
+import { textColor } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -23,34 +41,48 @@ const CHAR_CSS_VAR: Record<string, string> = {
   REGENT: "var(--color-regent)",
 };
 
+const ROOM_COLORS: Record<string, string> = {
+  monster: "var(--text-secondary)",
+  elite: "var(--accent-gold)",
+  boss: "var(--color-ironclad)",
+  rest: "var(--color-silent)",
+  rest_site: "var(--color-silent)",
+  shop: "var(--accent-teal)",
+  event: "var(--color-necrobinder)",
+  treasure: "var(--accent-gold)",
+};
+
 // `initialRun` is the server-fetched run from page.tsx. With it, the whole
 // page server-renders with real data — before, the body was an empty shell
 // until the client refetched the same endpoint, so every run page looked
 // identical to crawlers (duplicate content) and carried no unique text.
-export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
+export default function SharedRunClient({
+  initialRun,
+}: {
+  initialRun?: Run | null;
+}) {
   const { hash } = useParams<{ hash: string }>();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const t = useT();
+  const gt = useTryGameTranslations();
   const { user } = useAuth();
   const { toast } = useToast();
-  const [run, setRun] = useState<any>(initialRun ?? null);
+  const [run, setRun] = useState<Run | null>(initialRun ?? null);
   const [loading, setLoading] = useState(!initialRun);
   const [notFound, setNotFound] = useState(false);
   const [copied, setCopied] = useState(false);
   const [showReport, setShowReport] = useState(false);
   const [reportEmail, setReportEmail] = useState("");
   const [reportReason, setReportReason] = useState("");
-  const [reportState, setReportState] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [reportState, setReportState] = useState<
+    "idle" | "sending" | "sent" | "error"
+  >("idle");
   const [reportError, setReportError] = useState<string | null>(null);
   const [unhiding, setUnhiding] = useState(false);
   const [cardData, setCardData] = useState<Record<string, CardInfo>>({});
   const [relicData, setRelicData] = useState<Record<string, RelicInfo>>({});
   const [potionData, setPotionData] = useState<Record<string, PotionInfo>>({});
-  const [charNames, setCharNames] = useState<Record<string, string>>({});
-  const [encounterNames, setEncounterNames] = useState<Record<string, string>>({});
-  const [actNames, setActNames] = useState<Record<string, string>>({});
-  const [monsterNames, setMonsterNames] = useState<Record<string, string>>({});
   const [showDetails, setShowDetails] = useState(false);
 
   useEffect(() => {
@@ -58,8 +90,11 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
     // Server already delivered the run; no need to refetch it client-side.
     if (!initialRun) {
       fetch(`${API}/api/runs/shared/${hash}`)
-        .then((r) => { if (!r.ok) throw new Error(); return r.json(); })
-        .then(setRun)
+        .then((r) => {
+          if (!r.ok) throw new Error();
+          return r.json();
+        })
+        .then((raw: RawRun) => setRun(cleanRun(raw)))
         .catch(() => setNotFound(true))
         .finally(() => setLoading(false));
     }
@@ -69,39 +104,20 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
       for (const c of cards) m[c.id] = c;
       setCardData(m);
     });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then((relics) => {
-      const m: Record<string, RelicInfo> = {};
-      for (const r of relics) m[r.id] = r;
-      setRelicData(m);
-    });
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then((potions) => {
-      const m: Record<string, PotionInfo> = {};
-      for (const p of potions) m[p.id] = p;
-      setPotionData(m);
-    });
-    // Localized character names so the header reads "戦士" etc. instead of
-    // the displayName(id) English derivation.
-    cachedFetch<{ id: string; name: string }[]>(`${API}/api/characters?lang=${lang}`).then((chars) => {
-      const m: Record<string, string> = {};
-      for (const c of chars) m[c.id.toUpperCase()] = c.name;
-      setCharNames(m);
-    });
-    // Localized encounter names so "Killed by …" shows the locale's name.
-    cachedFetch<{ id: string; name: string }[]>(`${API}/api/encounters?lang=${lang}`).then((encs) => {
-      const m: Record<string, string> = {};
-      for (const e of encs) m[e.id.toUpperCase()] = e.name;
-      setEncounterNames(m);
-    });
-    cachedFetch<{ id: string; name: string }[]>(`${API}/api/acts?lang=${lang}`).then((acts) => {
-      const m: Record<string, string> = {};
-      for (const a of acts) m[a.id.toUpperCase()] = a.name;
-      setActNames(m);
-    });
-    cachedFetch<{ id: string; name: string }[]>(`${API}/api/monsters?lang=${lang}`).then((monsters) => {
-      const m: Record<string, string> = {};
-      for (const mo of monsters) m[mo.id.toUpperCase()] = mo.name;
-      setMonsterNames(m);
-    });
+    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}`).then(
+      (relics) => {
+        const m: Record<string, RelicInfo> = {};
+        for (const r of relics) m[r.id] = r;
+        setRelicData(m);
+      },
+    );
+    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}`).then(
+      (potions) => {
+        const m: Record<string, PotionInfo> = {};
+        for (const p of potions) m[p.id] = p;
+        setPotionData(m);
+      },
+    );
   }, [hash, lang]);
 
   // Beta-build runs reference cards/relics/potions that only exist in the beta
@@ -111,15 +127,19 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
   useEffect(() => {
     if (!run?.is_beta) return;
     let cancelled = false;
-    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}&channel=beta`).then((cards) => {
-      if (cancelled) return;
-      setCardData((prev) => {
-        const m = { ...prev };
-        for (const c of cards) if (!(c.id in m)) m[c.id] = c;
-        return m;
-      });
-    });
-    cachedFetch<RelicInfo[]>(`${API}/api/relics?lang=${lang}&channel=beta`).then((relics) => {
+    cachedFetch<CardInfo[]>(`${API}/api/cards?lang=${lang}&channel=beta`).then(
+      (cards) => {
+        if (cancelled) return;
+        setCardData((prev) => {
+          const m = { ...prev };
+          for (const c of cards) if (!(c.id in m)) m[c.id] = c;
+          return m;
+        });
+      },
+    );
+    cachedFetch<RelicInfo[]>(
+      `${API}/api/relics?lang=${lang}&channel=beta`,
+    ).then((relics) => {
       if (cancelled) return;
       setRelicData((prev) => {
         const m = { ...prev };
@@ -127,24 +147,13 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
         return m;
       });
     });
-    cachedFetch<PotionInfo[]>(`${API}/api/potions?lang=${lang}&channel=beta`).then((potions) => {
+    cachedFetch<PotionInfo[]>(
+      `${API}/api/potions?lang=${lang}&channel=beta`,
+    ).then((potions) => {
       if (cancelled) return;
       setPotionData((prev) => {
         const m = { ...prev };
         for (const p of potions) if (!(p.id in m)) m[p.id] = p;
-        return m;
-      });
-    });
-    cachedFetch<{ id: string; name: string }[]>(
-      `${API}/api/encounters?lang=${lang}&channel=beta`,
-    ).then((encs) => {
-      if (cancelled) return;
-      setEncounterNames((prev) => {
-        const m = { ...prev };
-        for (const e of encs) {
-          const k = e.id.toUpperCase();
-          if (!(k in m)) m[k] = e.name;
-        }
         return m;
       });
     });
@@ -153,14 +162,16 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
     };
   }, [run?.is_beta, lang]);
 
-  function localizedCharName(id: string): string {
-    const key = cleanId(id).toUpperCase();
-    return charNames[key] ?? displayName(id);
-  }
-  function localizedEncounterName(id: string): string {
-    const key = cleanId(id).toUpperCase();
-    return encounterNames[key] ?? displayName(id);
-  }
+  const cardTitle = (id: string) =>
+    gt(`cards.${id}.title`) ?? cardData[id]?.name ?? displayName(`CARD.${id}`);
+  const relicTitle = (id: string) =>
+    gt(`relics.${id}.title`) ??
+    relicData[id]?.name ??
+    displayName(`RELIC.${id}`);
+  const encounterTitle = (id: string) =>
+    gt(`encounters.${id}.title`) ?? displayName(`ENCOUNTER.${id}`);
+  const eventTitle = (id: string) =>
+    gt(`events.${id}.title`) ?? displayName(`EVENT.${id}`);
 
   function copyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -178,7 +189,11 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
     fetch(`${API}/api/feedback/run-report`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ run_hash: hash, email: reportEmail.trim(), reason: reportReason.trim() }),
+      body: JSON.stringify({
+        run_hash: hash,
+        email: reportEmail.trim(),
+        reason: reportReason.trim(),
+      }),
     })
       .then(async (r) => {
         if (!r.ok) {
@@ -200,8 +215,9 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
   }
 
   function setHidden(hidden: boolean) {
+    if (!run) return;
     setUnhiding(true);
-    fetch(`${API}/api/admin/runs/${hash}/hide`, {
+    fetch(`${API}/api/runs/${hash}/hidden`, {
       method: "POST",
       credentials: "include",
       headers: { "Content-Type": "application/json", ...authHeaders() },
@@ -216,79 +232,161 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
       .finally(() => setUnhiding(false));
   }
 
-  if (loading) return <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">{t("Loading...")}</div>;
-  if (notFound || !run) return (
-    <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-      <p className="text-[var(--text-muted)] mb-4">{t("Run not found.")}</p>
-      <Link href={`${bp}/leaderboards`} className="text-[var(--accent-gold)] hover:underline">&larr; {t("Back to")}</Link>
-    </div>
-  );
+  if (loading)
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-12 text-center text-[var(--text-muted)]">
+        {t("Loading...")}
+      </div>
+    );
+  if (notFound || !run)
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-12 text-center">
+        <p className="text-[var(--text-muted)] mb-4">{t("Run not found.")}</p>
+        <Link
+          href={`${bp}/leaderboards`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
+          &larr; {t("Back to")}
+        </Link>
+      </div>
+    );
 
   // Co-op siblings all serve the same blob; player_index says which
   // players[] entry the viewed hash belongs to (0 = host / single-player).
   const player = run.players[run.player_index ?? 0] ?? run.players[0];
-  const charId = cleanId(player.character);
+  const charId = player.character;
   const charColor = CHAR_CSS_VAR[charId.toUpperCase()] || "var(--accent-gold)";
-  const totalFloors = run.map_point_history?.reduce((sum: number, act: any[]) => sum + act.length, 0) || 0;
+  const charLinked = charId.toUpperCase() in CHAR_CSS_VAR;
+  const charName = characterTitle(charId, gt);
+  const killedBy =
+    !run.win && !run.was_abandoned
+      ? run.killed_by_encounter
+        ? {
+            href: `${bp}/encounters/${run.killed_by_encounter.toLowerCase()}`,
+            name: encounterTitle(run.killed_by_encounter),
+          }
+        : run.killed_by_event
+          ? {
+              href: `${bp}/events/${run.killed_by_event.toLowerCase()}`,
+              name: eventTitle(run.killed_by_event),
+            }
+          : undefined
+      : undefined;
+  const sortedDeck = [...player.deck].sort((a, b) => a.id.localeCompare(b.id));
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div className="flex items-center justify-between mb-4">
-        <Link href={`${bp}/leaderboards`} className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <Link
+          href={`${bp}/leaderboards`}
+          className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
           &larr; {t("Back to")}
         </Link>
         <div className="flex items-center gap-2">
-          {user?.is_admin && (
-            <button onClick={() => setHidden(!run.hidden)} disabled={unhiding}
-              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50">
+          {run.has_replay && (
+            <Link
+              href={`/runs/${hash}/replay`}
+              className="text-xs px-3 py-1.5 rounded-lg border border-accent text-accent hover:bg-accent/10 transition-colors"
+            >
+              {t("Replay")}
+            </Link>
+          )}
+          {(user?.is_admin ||
+            (!!run.username &&
+              user?.username === run.username &&
+              (!run.hidden || run.hidden_reason === "owner"))) && (
+            <button
+              onClick={() => setHidden(!run.hidden)}
+              disabled={unhiding}
+              className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
+            >
               {unhiding ? "..." : run.hidden ? t("Unhide") : t("Hide")}
             </button>
           )}
-          <button onClick={() => setShowReport(true)}
-            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors">
+          <button
+            onClick={() => setShowReport(true)}
+            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+          >
             {t("Report")}
           </button>
-          <button onClick={copyLink}
-            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors">
+          <button
+            onClick={copyLink}
+            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
+          >
             {copied ? t("Copied!") : t("Share")}
           </button>
         </div>
       </div>
       {showReport && (
-        <div className="fixed inset-0 z-50 bg-scrim/60 flex items-center justify-center p-4"
-          onClick={() => reportState !== "sending" && setShowReport(false)}>
-          <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-xl p-5 w-full max-w-md"
-            onClick={(e) => e.stopPropagation()}>
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-3">{t("Report run")}</h2>
+        <div
+          className="fixed inset-0 z-50 bg-scrim/60 flex items-center justify-center p-4"
+          onClick={() => reportState !== "sending" && setShowReport(false)}
+        >
+          <div
+            className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-xl p-5 w-full max-w-md"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-3">
+              {t("Report run")}
+            </h2>
             {reportState === "sent" ? (
-              <p className="text-sm text-[var(--color-silent)] py-4">{t("Report sent. Thanks!")}</p>
+              <p className="text-sm text-[var(--color-silent)] py-4">
+                {t("Report sent. Thanks!")}
+              </p>
             ) : (
               <div className="space-y-3">
                 <label className="block">
-                  <span className="text-xs text-[var(--text-muted)]">{t("Why are you reporting this run?")}</span>
-                  <textarea value={reportReason} onChange={(e) => setReportReason(e.target.value)}
-                    rows={4} maxLength={2000}
-                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none" />
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {t("Why are you reporting this run?")}
+                  </span>
+                  <textarea
+                    value={reportReason}
+                    onChange={(e) => setReportReason(e.target.value)}
+                    rows={4}
+                    maxLength={2000}
+                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
+                  />
                 </label>
                 <label className="block">
-                  <span className="text-xs text-[var(--text-muted)]">{t("Email")}</span>
-                  <input type="email" value={reportEmail} onChange={(e) => setReportEmail(e.target.value)}
-                    required maxLength={254}
-                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none" />
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {t("Email")}
+                  </span>
+                  <input
+                    type="email"
+                    value={reportEmail}
+                    onChange={(e) => setReportEmail(e.target.value)}
+                    required
+                    maxLength={254}
+                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
+                  />
                   {reportEmail.trim() !== "" && !emailOk && (
-                    <span className="text-xs text-[var(--color-ironclad)]">{t("Enter a valid email address.")}</span>
+                    <span className="text-xs text-[var(--color-ironclad)]">
+                      {t("Enter a valid email address.")}
+                    </span>
                   )}
                 </label>
                 {reportState === "error" && (
-                  <p className="text-xs text-[var(--color-ironclad)]">{reportError || t("Could not send the report.")}</p>
+                  <p className="text-xs text-[var(--color-ironclad)]">
+                    {reportError || t("Could not send the report.")}
+                  </p>
                 )}
                 <div className="flex justify-end gap-2 pt-1">
-                  <button onClick={() => setShowReport(false)}
-                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+                  <button
+                    onClick={() => setShowReport(false)}
+                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                  >
                     {t("Cancel")}
                   </button>
-                  <button onClick={submitReport} disabled={reportState === "sending" || !emailOk || !reportReason.trim()}
-                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50">
+                  <button
+                    onClick={submitReport}
+                    disabled={
+                      reportState === "sending" ||
+                      !emailOk ||
+                      !reportReason.trim()
+                    }
+                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
+                  >
                     {reportState === "sending" ? "..." : t("Send report")}
                   </button>
                 </div>
@@ -314,27 +412,58 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
       {/* Compact header, Victory/Defeat banner + ascension */}
       <div
         className="rounded-xl border px-4 py-3 mb-4 flex items-center justify-between flex-wrap gap-2"
-        style={{ borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`, background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))` }}
+        style={{
+          borderColor: `color-mix(in srgb, ${charColor} 40%, transparent)`,
+          background: `color-mix(in srgb, ${charColor} 8%, var(--bg-card))`,
+        }}
       >
         {/* h1 on purpose: this line is the page's one heading, and run pages
             audited as headingless before it. */}
         <h1 className="flex items-center gap-3 text-xl font-bold">
           <span
-            style={{ color: run.win ? "var(--color-silent)" : run.was_abandoned ? "var(--text-muted)" : "var(--color-ironclad)" }}
+            style={{
+              color: run.win
+                ? "var(--color-silent)"
+                : run.was_abandoned
+                  ? "var(--text-muted)"
+                  : "var(--color-ironclad)",
+            }}
           >
-            {run.win ? t("Victory") : run.was_abandoned ? t("Abandoned") : t("Defeat")}
+            {run.win
+              ? t("Victory")
+              : run.was_abandoned
+                ? t("Abandoned")
+                : t("Defeat")}
           </span>
-          <Link href={`${bp}/characters/${charId.toLowerCase()}`} className="text-base font-normal hover:underline" style={{ color: charColor }}>
-            {localizedCharName(player.character)}
-          </Link>
+          {charLinked ? (
+            <Link
+              href={`${bp}/characters/${charId.toLowerCase()}`}
+              className="text-base font-normal hover:underline"
+              style={{ color: textColor(charColor) }}
+            >
+              {charName}
+            </Link>
+          ) : (
+            <span
+              className="text-base font-normal"
+              style={{ color: textColor(charColor) }}
+            >
+              {charName}
+            </span>
+          )}
         </h1>
         <div className="text-sm text-[var(--text-muted)]">
           {t("Ascension")} {run.ascension || 0}
-          {!run.win && !run.was_abandoned && run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" && (
+          {killedBy && (
             <>
-              {" · "}{t("Killed by")}{" "}
-              <Link href={`${bp}/encounters/${cleanId(run.killed_by_encounter).toLowerCase()}`} className="hover:underline" style={{ color: "var(--color-ironclad)" }}>
-                {localizedEncounterName(run.killed_by_encounter)}
+              {" · "}
+              {t("Killed by")}{" "}
+              <Link
+                href={killedBy.href}
+                className="hover:underline"
+                style={{ color: "var(--color-ironclad)" }}
+              >
+                {killedBy.name}
               </Link>
             </>
           )}
@@ -349,11 +478,10 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
         relicData={relicData}
         potionData={potionData}
         charColor={charColor}
+        charLinked={charLinked}
         langPrefix={bp}
-        charName={localizedCharName(player.character)}
-        encounterName={run.killed_by_encounter && run.killed_by_encounter !== "NONE.NONE" ? localizedEncounterName(run.killed_by_encounter) : undefined}
-        actNames={actNames}
-        monsterNames={monsterNames}
+        charName={charName}
+        killedByName={killedBy?.name}
       />
 
       {/* Detailed history toggle */}
@@ -361,96 +489,193 @@ export default function SharedRunClient({ initialRun }: { initialRun?: any }) {
         onClick={() => setShowDetails((v) => !v)}
         className="w-full text-left text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors mb-3 flex items-center gap-2"
       >
-        <span className={`inline-block transition-transform ${showDetails ? "rotate-90" : ""}`}>&gt;</span>
+        <span
+          className={`inline-block transition-transform ${showDetails ? "rotate-90" : ""}`}
+        >
+          &gt;
+        </span>
         {showDetails ? t("Hide") : t("Show")} {t("detailed history")}
       </button>
 
-      {showDetails && <>
-      {/* Deck */}
-      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Final Deck")} ({player.deck.length})</h2>
-        <div className="flex flex-wrap gap-1.5">
-          {player.deck.sort((a: any, b: any) => cleanId(a.id).localeCompare(cleanId(b.id))).map((card: any, i: number) => {
-            const cid = cleanId(card.id);
-            return (
-              <CardPill key={`${cid}-${i}`} cardId={cid} upgraded={!!card.current_upgrade_level}
-                enchantment={card.enchantment ? cleanId(card.enchantment.id) : undefined}
-                cardData={cardData} bp={bp}
-                className={`text-xs px-2 py-1 rounded border transition-colors hover:bg-[var(--bg-card-hover)] ${
-                  card.current_upgrade_level
-                    ? "border-[var(--color-silent)]/30 bg-[var(--color-silent)]/10 text-[var(--color-silent)]"
-                    : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-secondary)]"
-                }`} />
-            );
-          })}
-        </div>
-      </div>
+      {showDetails && (
+        <>
+          {/* Deck */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
+              {t("Final Deck")} ({player.deck.length})
+            </h2>
+            <div className="flex flex-wrap gap-1.5">
+              {sortedDeck.map((card, i) => (
+                <CardPill
+                  key={`${card.id}-${i}`}
+                  cardId={card.id}
+                  upgraded={!!card.current_upgrade_level}
+                  enchantment={card.enchantment?.id}
+                  cardData={cardData}
+                  bp={bp}
+                  className={`text-xs px-2 py-1 rounded border transition-colors hover:bg-[var(--bg-card-hover)] ${
+                    card.current_upgrade_level
+                      ? "border-[var(--color-silent)]/30 bg-[var(--color-silent)]/10 text-[var(--color-silent)]"
+                      : "bg-[var(--bg-primary)] border-[var(--border-subtle)] text-[var(--text-secondary)]"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
 
-      {/* Relics */}
-      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Relics")} ({player.relics.length})</h2>
-        <div className="flex flex-wrap gap-1.5">
-          {player.relics.map((relic: any, i: number) => {
-            const rid = cleanId(relic.id);
-            return (
-              <RelicPill key={`${rid}-${i}`} relicId={rid} relicData={relicData} bp={bp}
-                className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)] transition-colors">
-                {displayName(relic.id)}
-                <span className="text-[var(--text-muted)] ml-1">F{relic.floor_added_to_deck}</span>
-              </RelicPill>
-            );
-          })}
-        </div>
-      </div>
+          {/* Relics */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
+              {t("Relics")} ({player.relics.length})
+            </h2>
+            <div className="flex flex-wrap gap-1.5">
+              {player.relics.map((relic, i) => (
+                <RelicPill
+                  key={`${relic.id}-${i}`}
+                  relicId={relic.id}
+                  relicData={relicData}
+                  bp={bp}
+                  className="text-xs px-2 py-1 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--accent-gold)] hover:bg-[var(--bg-card-hover)] transition-colors"
+                >
+                  {relicTitle(relic.id)}
+                  <span className="text-[var(--text-muted)] ml-1">
+                    F{relic.floor_added_to_deck}
+                  </span>
+                </RelicPill>
+              ))}
+            </div>
+          </div>
 
-      {/* Floor History */}
-      <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Floor History")}</h2>
-        <div className="space-y-1">
-          {run.map_point_history?.map((actFloors: any[], actIdx: number) => (
-            <div key={actIdx}>
-              <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mt-3 mb-1.5">
-                {displayName(run.acts?.[actIdx] || `Act ${actIdx + 1}`)}
-              </h3>
-              {actFloors.map((floor: any, floorIdx: number) => {
-                const ps = floor.player_stats?.[0];
-                const room = floor.rooms?.[0];
-                const encounter = room?.model_id ? displayName(room.model_id) : floor.map_point_type;
-                const roomColors: Record<string, string> = {
-                  monster: "var(--text-secondary)", elite: "var(--accent-gold)", boss: "var(--color-ironclad)",
-                  rest: "var(--color-silent)", shop: "var(--accent-teal)", event: "var(--color-necrobinder)", treasure: "var(--accent-gold)",
-                };
-                const picked = ps?.card_choices?.filter((c: any) => c.was_picked).map((c: any) => displayName(c.card.id)) || [];
-                const skipped = ps?.card_choices?.filter((c: any) => !c.was_picked).map((c: any) => displayName(c.card.id)) || [];
+          {/* Floor History */}
+          <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5">
+            <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
+              {t("Floor History")}
+            </h2>
+            <div className="space-y-1">
+              {run.floor_history.map((actFloors, actIdx) => {
+                const actId = run.acts[actIdx];
+                const actName =
+                  (actId ? gt(`acts.${actId}.title`) : undefined) ??
+                  t("Act {n}", { n: actIdx + 1 });
                 return (
-                  <div key={floorIdx} className="flex items-start gap-3 py-1.5 border-b border-[var(--border-subtle)] last:border-0 text-xs">
-                    <span className="text-[var(--text-muted)] w-6 text-right flex-shrink-0">{floorIdx + 1}</span>
-                    <span className="w-14 flex-shrink-0 font-medium" style={{ color: roomColors[floor.map_point_type] || "var(--text-secondary)" }}>
-                      {floor.map_point_type}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <span className="text-[var(--text-secondary)]">{encounter}</span>
-                      {room?.turns_taken != null && <span className="text-[var(--text-muted)] ml-1">({room.turns_taken}T)</span>}
-                      {picked.length > 0 && <span className="ml-2" style={{ color: "var(--color-silent)" }}>+{picked.join(", ")}</span>}
-                      {skipped.length > 0 && <span className="text-[var(--text-muted)] ml-1 line-through">{skipped.join(", ")}</span>}
-                    </div>
-                    {ps && (
-                      <div className="flex items-center gap-2 flex-shrink-0 text-[var(--text-muted)]">
-                        {ps.damage_taken > 0 && <span style={{ color: "var(--color-ironclad)" }}>-{ps.damage_taken}</span>}
-                        {ps.hp_healed > 0 && <span style={{ color: "var(--color-silent)" }}>+{ps.hp_healed}</span>}
-                        <span>{ps.current_hp}/{ps.max_hp}</span>
-                      </div>
-                    )}
+                  <div key={actIdx}>
+                    <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mt-3 mb-1.5">
+                      {actName}
+                    </h3>
+                    {actFloors.map((floor, floorIdx) => {
+                      const ps = floor.player_stats[0];
+                      const room = typedRoom(floor);
+                      const picked =
+                        ps?.card_choices
+                          ?.filter((c) => c.was_picked)
+                          .map((c) => cardTitle(c.card.id)) || [];
+                      const skipped =
+                        ps?.card_choices
+                          ?.filter((c) => !c.was_picked)
+                          .map((c) => cardTitle(c.card.id)) || [];
+                      const rested =
+                        ps?.rest_site_choices?.map((c) =>
+                          restChoiceName(c, gt, t),
+                        ) || [];
+                      const upgraded =
+                        ps?.upgraded_cards?.map((id) => cardTitle(id)) || [];
+                      const chose =
+                        ps?.event_choices
+                          ?.map((c) => eventChoiceName(c, gt))
+                          .filter((name): name is string => !!name) || [];
+                      return (
+                        <div
+                          key={floorIdx}
+                          className="flex items-start gap-3 py-1.5 border-b border-[var(--border-subtle)] last:border-0 text-xs"
+                        >
+                          <span className="text-[var(--text-muted)] w-6 text-right flex-shrink-0">
+                            {floorIdx + 1}
+                          </span>
+                          <span
+                            className="w-14 flex-shrink-0 font-medium"
+                            style={{
+                              color:
+                                ROOM_COLORS[floor.raw_type] ||
+                                "var(--text-secondary)",
+                            }}
+                          >
+                            {roomTypeTitle(floor, gt, t)}
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <span className="text-[var(--text-secondary)]">
+                              {roomTitle(floor, gt)}
+                            </span>
+                            {room?.type === "ENCOUNTER" &&
+                              room.turns_taken != null && (
+                                <span className="text-[var(--text-muted)] ml-1">
+                                  ({room.turns_taken}T)
+                                </span>
+                              )}
+                            {rested.length > 0 && (
+                              <span className="text-[var(--text-secondary)] ml-1">
+                                {rested.join(", ")}
+                              </span>
+                            )}
+                            {chose.length > 0 && (
+                              <span className="text-[var(--text-secondary)] ml-1 italic">
+                                {t("chose {choice}", {
+                                  choice: chose.join(", "),
+                                })}
+                              </span>
+                            )}
+                            {picked.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--color-silent)" }}
+                              >
+                                +{picked.join(", ")}
+                              </span>
+                            )}
+                            {skipped.length > 0 && (
+                              <span className="text-[var(--text-muted)] ml-1 line-through">
+                                {skipped.join(", ")}
+                              </span>
+                            )}
+                            {upgraded.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--accent-gold)" }}
+                              >
+                                ⬆ {upgraded.join(", ")}
+                              </span>
+                            )}
+                          </div>
+                          {ps && (
+                            <div className="flex items-center gap-2 flex-shrink-0 text-[var(--text-muted)]">
+                              {(ps.damage_taken ?? 0) > 0 && (
+                                <span
+                                  style={{ color: "var(--color-ironclad)" }}
+                                >
+                                  -{ps.damage_taken}
+                                </span>
+                              )}
+                              {(ps.hp_healed ?? 0) > 0 && (
+                                <span style={{ color: "var(--color-silent)" }}>
+                                  +{ps.hp_healed}
+                                </span>
+                              )}
+                              <span>
+                                {ps.current_hp}/{ps.max_hp}
+                              </span>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 );
               })}
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
 
-      <SimilarRuns hash={hash} />
-      </>}
+          <SimilarRuns hash={hash} />
+        </>
+      )}
     </div>
   );
 }

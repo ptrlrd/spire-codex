@@ -8,7 +8,10 @@ import CodexMarkdown from "@/app/components/CodexMarkdown";
 import { localeOf } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 export const revalidate = 300;
 
@@ -22,7 +25,9 @@ interface CodexEntry {
 
 async function loadEntry(slug: string): Promise<CodexEntry | null> {
   try {
-    const res = await fetch(`${API}/api/news/codex/${slug}`, { next: { revalidate } });
+    const res = await fetch(`${API}/api/news/codex/${slug}`, {
+      next: { revalidate },
+    });
     if (!res.ok) return null;
     return (await res.json()) as CodexEntry;
   } catch {
@@ -39,7 +44,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = `${entry.title} | ${SITE_NAME}`;
   return {
     title,
-    description: entry.body.slice(0, 200).replace(/[#*_>`]/g, "").trim(),
+    description: entry.body
+      .slice(0, 200)
+      .replace(/[#*_>`]/g, "")
+      .trim(),
     alternates: { canonical: `${SITE_URL}/news/codex/${slug}` },
     openGraph: {
       title,
@@ -66,10 +74,15 @@ export default async function CodexNewsEntryPage({ params }: Props) {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
-      <Link href="/news?tab=codex" className="text-sm text-[var(--accent-gold)] hover:underline">
+      <Link
+        href="/news?tab=codex"
+        className="text-sm text-[var(--accent-gold)] hover:underline"
+      >
         ← All Spire Codex news
       </Link>
-      <h1 className="text-3xl font-bold mt-4 mb-1 text-[var(--text-primary)]">{entry.title}</h1>
+      <h1 className="text-3xl font-bold mt-4 mb-1 text-[var(--text-primary)]">
+        {entry.title}
+      </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         Spire Codex · {entry.date}
       </p>

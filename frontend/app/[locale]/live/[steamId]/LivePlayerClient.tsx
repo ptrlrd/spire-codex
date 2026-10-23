@@ -11,8 +11,10 @@ import { useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { useParams } from "next/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import { LIVE_TABLES } from "@/lib/game-messages.common";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
 import { LiveEventPanel, LiveLootPanel, LiveShopPanel } from "../LiveEventShop";
@@ -79,7 +81,11 @@ function TickerRow({
   switch (e.k) {
     case "card": {
       if (!e.v) {
-        body = <span className="text-[var(--text-secondary)]">{t("Played a card")}</span>;
+        body = (
+          <span className="text-[var(--text-secondary)]">
+            {t("Played a card")}
+          </span>
+        );
         break;
       }
       const { id, upgraded } = parseDeckId(e.v);
@@ -98,7 +104,13 @@ function TickerRow({
       body = (
         <>
           {t("Played")}{" "}
-          <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} bp={bp} className={TICKER_LINK}>
+          <CardPill
+            cardId={id}
+            upgraded={upgraded}
+            cardData={cat.cards}
+            bp={bp}
+            className={TICKER_LINK}
+          >
             {info?.name || displayName(`CARD.${id}`)}
             {upgraded ? "+" : ""}
           </CardPill>
@@ -128,7 +140,13 @@ function TickerRow({
       body = (
         <>
           <span className="text-danger">{t("Removed")}</span>{" "}
-          <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} bp={bp} className={TICKER_LINK}>
+          <CardPill
+            cardId={id}
+            upgraded={upgraded}
+            cardData={cat.cards}
+            bp={bp}
+            className={TICKER_LINK}
+          >
             {info?.name || displayName(`CARD.${id}`)}
             {upgraded ? "+" : ""}
           </CardPill>
@@ -153,7 +171,12 @@ function TickerRow({
       body = (
         <>
           {t("Used")}{" "}
-          <PotionPill potionId={id} potionData={cat.potions} bp={bp} className={TICKER_LINK}>
+          <PotionPill
+            potionId={id}
+            potionData={cat.potions}
+            bp={bp}
+            className={TICKER_LINK}
+          >
             {info?.name || displayName(`POTION.${id}`)}
           </PotionPill>
         </>
@@ -164,7 +187,11 @@ function TickerRow({
       if (!e.v) {
         // The mod did not resolve the purchased item on this beat; there is
         // nothing to drill into until it ships the entity id.
-        body = <span className="text-[var(--text-secondary)]">{t("Bought something at the shop")}</span>;
+        body = (
+          <span className="text-[var(--text-secondary)]">
+            {t("Bought something at the shop")}
+          </span>
+        );
         break;
       }
       // Shops sell relics, cards, and potions; resolve across all three
@@ -176,27 +203,51 @@ function TickerRow({
       const img = relic?.image_url || card?.image_url || potion?.image_url;
       if (img) {
         icon = (
-          <img src={imageUrl(img)} alt="" className="w-6 h-6 object-contain" crossOrigin="anonymous" loading="lazy" />
+          <img
+            src={imageUrl(img)}
+            alt=""
+            className="w-6 h-6 object-contain"
+            crossOrigin="anonymous"
+            loading="lazy"
+          />
         );
       }
       body = (
         <>
           {t("Bought")}{" "}
           {relic ? (
-            <RelicPill relicId={id} relicData={cat.relics} bp={bp} className={TICKER_LINK}>
+            <RelicPill
+              relicId={id}
+              relicData={cat.relics}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {relic.name}
             </RelicPill>
           ) : card ? (
-            <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} bp={bp} className={TICKER_LINK}>
+            <CardPill
+              cardId={id}
+              upgraded={upgraded}
+              cardData={cat.cards}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {card.name}
               {upgraded ? "+" : ""}
             </CardPill>
           ) : potion ? (
-            <PotionPill potionId={id} potionData={cat.potions} bp={bp} className={TICKER_LINK}>
+            <PotionPill
+              potionId={id}
+              potionData={cat.potions}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {potion.name}
             </PotionPill>
           ) : (
-            <span className="text-[var(--text-primary)]">{displayName(`CARD.${id}`)}</span>
+            <span className="text-[var(--text-primary)]">
+              {displayName(`CARD.${id}`)}
+            </span>
           )}
         </>
       );
@@ -222,7 +273,12 @@ function TickerRow({
       body = id ? (
         <>
           <span className="text-warning">{verb}</span>{" "}
-          <RelicPill relicId={id} relicData={cat.relics} bp={bp} className={TICKER_LINK}>
+          <RelicPill
+            relicId={id}
+            relicData={cat.relics}
+            bp={bp}
+            className={TICKER_LINK}
+          >
             {info?.name || displayName(`RELIC.${id}`)}
           </RelicPill>
         </>
@@ -238,11 +294,17 @@ function TickerRow({
       // a card, potion, or relic -- so resolve across the catalogs like a buy.
       const num = Number(e.v);
       if (e.v && Number.isFinite(num)) {
-        body = <span className="text-[var(--accent-gold)]">{t("Took {n} gold", { n: num })}</span>;
+        body = (
+          <span className="text-[var(--accent-gold)]">
+            {t("Took {n} gold", { n: num })}
+          </span>
+        );
         break;
       }
       if (!e.v) {
-        body = <span className="text-[var(--text-secondary)]">{t("Took loot")}</span>;
+        body = (
+          <span className="text-[var(--text-secondary)]">{t("Took loot")}</span>
+        );
         break;
       }
       const { id, upgraded } = parseDeckId(e.v);
@@ -265,20 +327,38 @@ function TickerRow({
         <>
           {t("Took")}{" "}
           {card ? (
-            <CardPill cardId={id} upgraded={upgraded} cardData={cat.cards} bp={bp} className={TICKER_LINK}>
+            <CardPill
+              cardId={id}
+              upgraded={upgraded}
+              cardData={cat.cards}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {card.name}
               {upgraded ? "+" : ""}
             </CardPill>
           ) : potion ? (
-            <PotionPill potionId={id} potionData={cat.potions} bp={bp} className={TICKER_LINK}>
+            <PotionPill
+              potionId={id}
+              potionData={cat.potions}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {potion.name}
             </PotionPill>
           ) : relic ? (
-            <RelicPill relicId={id} relicData={cat.relics} bp={bp} className={TICKER_LINK}>
+            <RelicPill
+              relicId={id}
+              relicData={cat.relics}
+              bp={bp}
+              className={TICKER_LINK}
+            >
               {relic.name}
             </RelicPill>
           ) : (
-            <span className="text-[var(--text-primary)]">{displayName(`CARD.${id}`)}</span>
+            <span className="text-[var(--text-primary)]">
+              {displayName(`CARD.${id}`)}
+            </span>
           )}
         </>
       );
@@ -311,7 +391,13 @@ function TickerRow({
       body = (
         <>
           <span className="text-info">{t("Upgraded")}</span>{" "}
-          <CardPill cardId={id} upgraded cardData={cat.cards} bp={bp} className={TICKER_LINK}>
+          <CardPill
+            cardId={id}
+            upgraded
+            cardData={cat.cards}
+            bp={bp}
+            className={TICKER_LINK}
+          >
             {info?.name || displayName(`CARD.${id}`)}
           </CardPill>
         </>
@@ -347,7 +433,9 @@ function TickerRow({
       body = (
         <span className="inline-flex items-center gap-1.5 text-warning">
           {t("Fight started")}
-          {monId &&<EnemyCircle id={monId} monsters={monsters} className="h-5 w-5" />}
+          {monId && (
+            <EnemyCircle id={monId} monsters={monsters} className="h-5 w-5" />
+          )}
         </span>
       );
       break;
@@ -360,7 +448,9 @@ function TickerRow({
         : "";
       body = (
         <span className="text-success">
-          {wonName ? t("Won the fight against {name}", { name: wonName }) : t("Won the fight")}
+          {wonName
+            ? t("Won the fight against {name}", { name: wonName })
+            : t("Won the fight")}
         </span>
       );
       break;
@@ -379,7 +469,9 @@ function TickerRow({
     case "act":
       body = (
         <span className="text-[var(--accent-gold)]">
-          {e.v ? t("Entered {act}", { act: namedOr(e.v, cat.acts) }) : t("Entered a new act")}
+          {e.v
+            ? t("Entered {act}", { act: namedOr(e.v, cat.acts) })
+            : t("Entered a new act")}
         </span>
       );
       break;
@@ -404,8 +496,12 @@ function TickerRow({
       {/* No truncate/overflow-hidden here: the pill hover popups (full
           card render, relic tooltip) position outside the row and would
           get clipped by an overflow-hidden ancestor. */}
-      <span className="w-6 h-6 flex items-center justify-center shrink-0">{icon}</span>
-      <span className="text-sm text-[var(--text-secondary)] min-w-0 flex-1 break-words">{body}</span>
+      <span className="w-6 h-6 flex items-center justify-center shrink-0">
+        {icon}
+      </span>
+      <span className="text-sm text-[var(--text-secondary)] min-w-0 flex-1 break-words">
+        {body}
+      </span>
       {meta && (
         <span className="text-[10px] text-[var(--text-muted)] tabular-nums whitespace-nowrap shrink-0">
           {meta}
@@ -452,15 +548,23 @@ function LiveCombatPanel({
   };
   const openIds = openPile ? (pileCards[openPile] ?? []) : [];
   const openGroups = new Map<string, number>();
-  for (const raw of openIds) openGroups.set(raw, (openGroups.get(raw) ?? 0) + 1);
+  for (const raw of openIds)
+    openGroups.set(raw, (openGroups.get(raw) ?? 0) + 1);
   const powers = p.player_powers ?? [];
   const hand = p.hand ?? [];
-  if (!shownDmg.length && !shownPiles.length && !powers.length && !hand.length) {
+  if (
+    !shownDmg.length &&
+    !shownPiles.length &&
+    !powers.length &&
+    !hand.length
+  ) {
     return null;
   }
   return (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">{t("Combat")}</h2>
+      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">
+        {t("Combat")}
+      </h2>
       {powers.length > 0 && (
         <div className="mb-3 flex flex-wrap gap-1">
           {powers.map((pw) => (
@@ -573,7 +677,10 @@ function LiveCombatPanel({
           >
             <div className="mb-3 flex items-center justify-between">
               <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
-                {t("{label} pile ({n})", { label: t(openPile), n: openIds.length })}
+                {t("{label} pile ({n})", {
+                  label: t(openPile),
+                  n: openIds.length,
+                })}
               </h3>
               <button
                 type="button"
@@ -632,7 +739,9 @@ function LiveCoopPanel({
   if (!players.length) return null;
   return (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">{t("Party")}</h2>
+      <h2 className="mb-2 text-sm font-semibold text-[var(--accent-gold)]">
+        {t("Party")}
+      </h2>
       <div className="space-y-2">
         {players.map((s, i) => {
           const hpPct =
@@ -648,7 +757,10 @@ function LiveCoopPanel({
                   : "border-[var(--border-subtle)] bg-[var(--bg-primary)]"
               } ${s.alive === false ? "opacity-50" : ""}`}
             >
-              <CharacterIcon character={s.character} className="h-9 w-9 shrink-0" />
+              <CharacterIcon
+                character={s.character}
+                className="h-9 w-9 shrink-0"
+              />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2 text-sm">
                   <span className="truncate text-[var(--text-secondary)]">
@@ -673,14 +785,22 @@ function LiveCoopPanel({
                 )}
                 <div className="mt-1 flex flex-wrap gap-x-3 text-[10px] tabular-nums text-[var(--text-muted)]">
                   {s.hp != null && (
-                    <span>{t("{hp}/{max} HP", { hp: s.hp, max: s.max_hp ?? "?" })}</span>
+                    <span>
+                      {t("{hp}/{max} HP", { hp: s.hp, max: s.max_hp ?? "?" })}
+                    </span>
                   )}
                   {(s.block ?? 0) > 0 && (
-                    <span className="text-info">{t("Block {n}", { n: s.block ?? 0 })}</span>
+                    <span className="text-info">
+                      {t("Block {n}", { n: s.block ?? 0 })}
+                    </span>
                   )}
                   {s.gold != null && <span>{t("{n}g", { n: s.gold })}</span>}
-                  {s.deck_size != null && <span>{t("{n} cards", { n: s.deck_size })}</span>}
-                  {s.relic_count != null && <span>{t("{n} relics", { n: s.relic_count })}</span>}
+                  {s.deck_size != null && (
+                    <span>{t("{n} cards", { n: s.deck_size })}</span>
+                  )}
+                  {s.relic_count != null && (
+                    <span>{t("{n} relics", { n: s.relic_count })}</span>
+                  )}
                 </div>
               </div>
             </div>
@@ -692,6 +812,14 @@ function LiveCoopPanel({
 }
 
 export default function LivePlayerClient() {
+  return (
+    <GameTablesProvider tables={LIVE_TABLES}>
+      <LivePlayerBody />
+    </GameTablesProvider>
+  );
+}
+
+function LivePlayerBody() {
   const params = useParams<{ steamId: string }>();
   const steamId = (params?.steamId ?? "").replace(/\D/g, "");
   const bp = useBetaPrefix();
@@ -700,7 +828,9 @@ export default function LivePlayerClient() {
   const [player, setPlayer] = useState<LivePlayer | null>(null);
   // null = still loading; afterwards: live, ended (was live, dropped off),
   // or missing (never seen this session).
-  const [status, setStatus] = useState<"loading" | "live" | "ended" | "missing">("loading");
+  const [status, setStatus] = useState<
+    "loading" | "live" | "ended" | "missing"
+  >("loading");
   const cat = useLiveCatalogs();
   const monsters = useMonsterMap(true);
   const encounters = useEncounterMap(true);
@@ -727,7 +857,9 @@ export default function LivePlayerClient() {
       if (r.status === 404) {
         // Keep the last snapshot on screen when a watched run ends, so the
         // viewer sees the final state instead of a sudden blank.
-        setStatus((prev) => (prev === "live" || prev === "ended" ? "ended" : "missing"));
+        setStatus((prev) =>
+          prev === "live" || prev === "ended" ? "ended" : "missing",
+        );
         return;
       }
       if (!r.ok) throw new Error(`presence ${r.status}`);
@@ -749,11 +881,16 @@ export default function LivePlayerClient() {
   if (status === "missing" || !player) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-24 text-center">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{t("Not live right now")}</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
+          {t("Not live right now")}
+        </h1>
         <p className="text-sm text-[var(--text-muted)] mb-6">
           {t("This player is not in a run, or their live status is off.")}
         </p>
-        <Link href="/live" className="text-sm text-[var(--accent-gold)] hover:underline">
+        <Link
+          href="/live"
+          className="text-sm text-[var(--accent-gold)] hover:underline"
+        >
           ← {t("Back to the live roster")}
         </Link>
       </div>
@@ -762,7 +899,9 @@ export default function LivePlayerClient() {
 
   const p = player;
   const hpPct =
-    p.hp != null && p.max_hp ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100)) : null;
+    p.hp != null && p.max_hp
+      ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100))
+      : null;
   // Stable per-event keys: ordinals computed over the original (append-order)
   // array, so a new beat appending at the end and the 50-window rolling off the
   // front both leave surviving rows' keys unchanged. Index keys would shift
@@ -840,7 +979,9 @@ export default function LivePlayerClient() {
               </span>
             )}
             {(p.player_count ?? 1) > 1 && (
-              <span className="text-xs text-[var(--text-muted)]">{t("co-op ×{n}", { n: p.player_count ?? 0 })}</span>
+              <span className="text-xs text-[var(--text-muted)]">
+                {t("co-op ×{n}", { n: p.player_count ?? 0 })}
+              </span>
             )}
             {p.is_partner && <PartnerBadge />}
             {status === "ended" && (
@@ -878,14 +1019,19 @@ export default function LivePlayerClient() {
           )}
           {p.twitch_live && p.twitch_login && (
             <div className="mt-2">
-              <WatchOnTwitch login={p.twitch_login} viewers={p.twitch_viewers} />
+              <WatchOnTwitch
+                login={p.twitch_login}
+                viewers={p.twitch_viewers}
+              />
             </div>
           )}
         </div>
         <div className="text-right shrink-0">
           <div className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
             {p.act != null ? t("Act {n}", { n: p.act }) : ""}
-            {p.total_floor != null ? ` · ${t("F{n}", { n: p.total_floor })}` : ""}
+            {p.total_floor != null
+              ? ` · ${t("F{n}", { n: p.total_floor })}`
+              : ""}
           </div>
           <div className="mt-0.5 flex items-center justify-end gap-3 text-sm tabular-nums">
             {p.energy != null && (
@@ -940,7 +1086,10 @@ export default function LivePlayerClient() {
             </span>
           </div>
           <div className="h-2 rounded bg-[var(--bg-primary)]">
-            <div className="h-2 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
+            <div
+              className="h-2 rounded bg-danger-fill"
+              style={{ width: `${hpPct}%` }}
+            />
           </div>
         </div>
       )}
@@ -992,10 +1141,14 @@ export default function LivePlayerClient() {
 
   const playByPlay = (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">{t("Play-by-play")}</h2>
+      <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+        {t("Play-by-play")}
+      </h2>
       {events.length === 0 ? (
         <p className="text-sm text-[var(--text-muted)]">
-          {t("No plays yet. Card plays, potions, fights, and purchases show up here as they happen.")}
+          {t(
+            "No plays yet. Card plays, potions, fights, and purchases show up here as they happen.",
+          )}
         </p>
       ) : (
         <ul>
@@ -1022,7 +1175,9 @@ export default function LivePlayerClient() {
           {p.deck ? t("Deck ({n})", { n: p.deck.length }) : t("Deck")}
         </h2>
         {deckGroups.length === 0 ? (
-          <p className="text-sm text-[var(--text-muted)]">{t("No deck data on this beat.")}</p>
+          <p className="text-sm text-[var(--text-muted)]">
+            {t("No deck data on this beat.")}
+          </p>
         ) : (
           <div className="flex flex-wrap gap-1.5">
             {deckGroups.map(({ raw, count }) => {
@@ -1056,9 +1211,13 @@ export default function LivePlayerClient() {
       </div>
 
       <div>
-        <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">{t("Relics")}</h2>
+        <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+          {t("Relics")}
+        </h2>
         {(p.relics ?? []).length === 0 ? (
-          <p className="text-sm text-[var(--text-muted)]">{t("No relic data on this beat.")}</p>
+          <p className="text-sm text-[var(--text-muted)]">
+            {t("No relic data on this beat.")}
+          </p>
         ) : (
           <div className="flex flex-wrap gap-1.5">
             {(p.relics ?? []).map((raw) => {
@@ -1094,7 +1253,9 @@ export default function LivePlayerClient() {
 
       {(p.potions ?? []).length > 0 && (
         <div>
-          <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">{t("Potions")}</h2>
+          <h2 className="text-sm font-semibold text-[var(--accent-gold)] mb-2">
+            {t("Potions")}
+          </h2>
           <div className="flex flex-wrap gap-1.5">
             {withOrdinalKeys(p.potions ?? []).map(({ item: raw, key }) => {
               const pid = cleanId(raw);
@@ -1142,7 +1303,10 @@ export default function LivePlayerClient() {
 
   return (
     <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link href="/live" className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]">
+      <Link
+        href="/live"
+        className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+      >
         ← {t("Live roster")}
       </Link>
 
@@ -1198,7 +1362,9 @@ export default function LivePlayerClient() {
           </div>
           <div className="space-y-4 min-w-0">{screenPanels}</div>
           {mapCard && (
-            <div className="order-first self-start min-w-0 lg:order-none lg:sticky lg:top-4">{mapCard}</div>
+            <div className="order-first self-start min-w-0 lg:order-none lg:sticky lg:top-4">
+              {mapCard}
+            </div>
           )}
         </div>
       )}

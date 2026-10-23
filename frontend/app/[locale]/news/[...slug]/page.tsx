@@ -4,7 +4,7 @@ import { notFound, permanentRedirect } from "next/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildNewsArticleJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, clipMetaDescription, pageHeading } from "@/lib/seo";
-import type { NewsArticle } from "@/lib/api";
+import type { NewsArticle } from "@/lib/api/types";
 import { getT } from "@/lib/i18n-server";
 import { localeOf, localePath } from "@/lib/locale";
 import {
@@ -17,7 +17,10 @@ import {
   firstNewsImage,
 } from "@/lib/steam-news";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 // Skip the build-time prerender, CI doesn't have the backend so it would
 // 404 every article and bake those 404s into the image.
@@ -58,7 +61,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, slug } = await params;
   const locale = localeOf(rawLocale);
   const t = await getT(locale);
-  const missing = buildPageMetadata({ locale, path: "/news", title: `${t("News")} - ${t("Not Found")}`, noIndex: true });
+  const missing = buildPageMetadata({
+    locale,
+    path: "/news",
+    title: `${t("News")} - ${t("Not Found")}`,
+    noIndex: true,
+  });
   const joined = joinSlug(slug);
   const gid = gidFromSlug(joined);
   if (!gid) return missing;
@@ -72,7 +80,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     locale,
     path: newsSlugForArticle(article.gid),
     title: `${article.title} - ${t("News")}`,
-    description: clipMetaDescription(`${pageHeading(locale, t("News"))}, ${article.title}. ${excerpt}`),
+    description: clipMetaDescription(
+      `${pageHeading(locale, t("News"))}, ${article.title}. ${excerpt}`,
+    ),
     ogType: "article",
     image: firstNewsImage(article.contents) ?? undefined,
     supressLanguageAlternates: true,
@@ -167,12 +177,15 @@ export default async function NewsArticlePage({ params }: Props) {
               className="underline hover:text-[var(--accent-gold)]"
             >
               {article.is_external_url ? "the original publisher" : "Steam"}
-            </a>
-            {" "}content © Mega Crit Games / respective publisher. Spire Codex mirrors this
-            announcement so it stays searchable after Steam rotates it off the news feed.
+            </a>{" "}
+            content © Mega Crit Games / respective publisher. Spire Codex
+            mirrors this announcement so it stays searchable after Steam rotates
+            it off the news feed.
           </p>
         ) : (
-          <p className="text-xs text-[var(--text-muted)] mb-6">{t("news_attribution")}</p>
+          <p className="text-xs text-[var(--text-muted)] mb-6">
+            {t("news_attribution")}
+          </p>
         )}
 
         <div

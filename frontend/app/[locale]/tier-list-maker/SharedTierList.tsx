@@ -26,7 +26,8 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
         setList(l);
         setEntities(ents);
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error && e.message ? e.message : "");
+        if (!cancelled)
+          setError(e instanceof Error && e.message ? e.message : "");
       }
     })();
     return () => {
@@ -44,7 +45,10 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
     return (
       <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">
         <p>{error || t("Not found")}</p>
-        <Link href="/tier-list-maker" className="mt-3 inline-block text-info hover:underline">
+        <Link
+          href="/tier-list-maker"
+          className="mt-3 inline-block text-info hover:underline"
+        >
           {t("Make your own tier list")}
         </Link>
       </div>
@@ -52,16 +56,24 @@ export default function SharedTierList({ shareId }: { shareId: string }) {
   }
 
   if (!list) {
-    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">{t("Loading…")}</div>;
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-12 text-center text-[var(--text-secondary)]">
+        {t("Loading…")}
+      </div>
+    );
   }
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
       <div className="mb-4">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)]">{list.title}</h1>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)]">
+          {list.title}
+        </h1>
         <p className="text-sm text-[var(--text-secondary)]">
           {t(ENTITY_LABEL[list.entity_type])}
-          {list.owner_username ? ` · ${t("by {name}", { name: list.owner_username })}` : ""}
+          {list.owner_username
+            ? ` · ${t("by {name}", { name: list.owner_username })}`
+            : ""}
         </p>
       </div>
       <TierListView list={list} entities={entityMap} />

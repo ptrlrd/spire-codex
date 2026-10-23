@@ -4,7 +4,7 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { getT } from "@/lib/i18n-server";
 import { Suspense } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import {
   buildCollectionPageJsonLd,
@@ -15,6 +15,8 @@ import ScoreBadge from "@/app/components/ScoreBadge";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import CardsClient from "./CardsClient";
 import { fullCardUrl } from "@/lib/image-url";
+import { gridCard } from "@/lib/card-display";
+import { fetchBetaAdditions } from "@/lib/beta-additions.server";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -47,11 +49,31 @@ async function fetchJSON<T>(url: string, fallback: T): Promise<T> {
 // matches for character-specific long-tail queries (e.g. "silent cards
 // sts2 poison") without bloating the page.
 const CHARACTERS: { id: string; name: string; tagline: string }[] = [
-  { id: "ironclad", name: "Ironclad", tagline: "Strength and heavy block, grindy attack chains." },
-  { id: "silent", name: "Silent", tagline: "Poison, shivs, discard-fuel combos." },
-  { id: "defect", name: "Defect", tagline: "Orb stacking, Lightning, Frost, Plasma, Dark." },
-  { id: "necrobinder", name: "Necrobinder", tagline: "Bone tokens, summons, sacrifice loops." },
-  { id: "regent", name: "Regent", tagline: "Court attendants, decree powers, prestige scaling." },
+  {
+    id: "ironclad",
+    name: "Ironclad",
+    tagline: "Strength and heavy block, grindy attack chains.",
+  },
+  {
+    id: "silent",
+    name: "Silent",
+    tagline: "Poison, shivs, discard-fuel combos.",
+  },
+  {
+    id: "defect",
+    name: "Defect",
+    tagline: "Orb stacking, Lightning, Frost, Plasma, Dark.",
+  },
+  {
+    id: "necrobinder",
+    name: "Necrobinder",
+    tagline: "Bone tokens, summons, sacrifice loops.",
+  },
+  {
+    id: "regent",
+    name: "Regent",
+    tagline: "Court attendants, decree powers, prestige scaling.",
+  },
 ];
 
 // Matches the shape returned by /api/runs/scores/{entity_type}
@@ -73,7 +95,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/cards", title: t("Cards"), description: t("cards_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/cards",
+    title: t("Cards"),
+    description: t("cards_meta_description"),
+  });
 }
 
 export default async function CardsPage({ params }: Props) {
@@ -89,12 +116,10 @@ export default async function CardsPage({ params }: Props) {
   // step is required for Google to see the intro prose, the top-N
   // section, or the character breakdown -- they're all in the initial
   // response.
-  const [cards, scoresRaw] = await Promise.all([
+  const [cards, scoresRaw, betaCards] = await Promise.all([
     fetchJSON<Card[]>(`${API}/api/cards?lang=${locale}`, []),
-    fetchJSON<Record<string, ScoreEntry>>(
-      `${API}/api/runs/scores/cards`,
-      {},
-    ),
+    fetchJSON<Record<string, ScoreEntry>>(`${API}/api/runs/scores/cards`, {}),
+    fetchBetaAdditions<Card>("cards", locale),
   ]);
   // The endpoint keys the score by entity_id; carry that through onto
   // each row so the .map below can look the card up. Previously the
@@ -163,7 +188,10 @@ export default async function CardsPage({ params }: Props) {
         "Browse every card across Ironclad, Silent, Defect, Necrobinder, and Regent.",
       path: localePath(locale, "/cards"),
       inLanguage: inLanguageOf(locale),
-      items: cards.map((c) => ({ name: c.name, path: `/cards/${c.id.toLowerCase()}` })),
+      items: cards.map((c) => ({
+        name: c.name,
+        path: `/cards/${c.id.toLowerCase()}`,
+      })),
     }),
     ...(locale === "eng" ? [buildFAQPageJsonLd(faq)] : []),
   ];
@@ -181,25 +209,25 @@ export default async function CardsPage({ params }: Props) {
           cards" category query intent with real factual content rather
           than a one-line directory header. */}
       {locale === "eng" && (
-      <section className="mb-8 space-y-3 text-[var(--text-default)] max-w-3xl">
-        <p>
-          Every <strong>Slay the Spire 2</strong> card in one place, all{" "}
-          {totalCards.toLocaleString()} cards from the five characters (
-          {CHARACTERS.map((c) => t(c.name)).join(", ")}), with live pick rates,
-          win rates, and tier scores aggregated from community-tracked runs.
-          The card catalog is parsed directly from the game on every patch,
-          so values stay canonical, and stats update continuously as players
-          upload runs from the Overwolf overlay.
-        </p>
-        <p className="text-sm text-[var(--text-muted)]">
-          Sort the grid below by Codex Score to see the current meta picks at
-          a glance, or filter by character, rarity, type, or keyword to dig
-          into a specific archetype. Each card links to a detail page with
-          per-character win rates, upgrade values, recent runs that picked
-          it, and the full description (including resolved DynamicVars for
-          upgraded variants).
-        </p>
-      </section>
+        <section className="mb-8 space-y-3 text-[var(--text-default)] max-w-3xl">
+          <p>
+            Every <strong>Slay the Spire 2</strong> card in one place, all{" "}
+            {totalCards.toLocaleString()} cards from the five characters (
+            {CHARACTERS.map((c) => t(c.name)).join(", ")}), with live pick
+            rates, win rates, and tier scores aggregated from community-tracked
+            runs. The card catalog is parsed directly from the game on every
+            patch, so values stay canonical, and stats update continuously as
+            players upload runs from the Overwolf overlay.
+          </p>
+          <p className="text-sm text-[var(--text-muted)]">
+            Sort the grid below by Codex Score to see the current meta picks at
+            a glance, or filter by character, rarity, type, or keyword to dig
+            into a specific archetype. Each card links to a detail page with
+            per-character win rates, upgrade values, recent runs that picked it,
+            and the full description (including resolved DynamicVars for
+            upgraded variants).
+          </p>
+        </section>
       )}
 
       {/* Top by Codex Score: server-rendered ranked content that the wiki
@@ -226,15 +254,23 @@ export default async function CardsPage({ params }: Props) {
             </Link>
           </div>
           <p className="text-sm text-[var(--text-muted)] mb-4 max-w-3xl">
-            {t("Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a card with a 60% win rate over 5 runs doesn't outrank one with a 55% win rate over 5,000. Updates continuously from submitted runs.")}
+            {t(
+              "Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a card with a 60% win rate over 5 runs doesn't outrank one with a 55% win rate over 5,000. Updates continuously from submitted runs.",
+            )}
           </p>
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {topByScore.map(({ card, score }) => (
               <li key={card.id}>
-                <Link prefetch={false} href={`/cards/${card.id.toLowerCase()}`} className="block group">
+                <Link
+                  prefetch={false}
+                  href={`/cards/${card.id.toLowerCase()}`}
+                  className="block group"
+                >
                   <img
                     src={fullCardUrl(card.id.toLowerCase())}
-                    alt={t("{name} - Slay the Spire 2 card", { name: card.name })}
+                    alt={t("{name} - Slay the Spire 2 card", {
+                      name: card.name,
+                    })}
                     className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                     loading="lazy"
                     crossOrigin="anonymous"
@@ -246,7 +282,9 @@ export default async function CardsPage({ params }: Props) {
                     <span className="text-[var(--text-muted)]">
                       {score.picks.toLocaleString()} {t("picks")}
                     </span>
-                    {score.score != null && <ScoreBadge score={score.score} size="sm" />}
+                    {score.score != null && (
+                      <ScoreBadge score={score.score} size="sm" />
+                    )}
                   </div>
                 </Link>
               </li>
@@ -260,7 +298,9 @@ export default async function CardsPage({ params }: Props) {
           "silent cards", etc.). Each link uses the color query param so
           the destination is the filtered grid view rather than a 404. */}
       <section className="mb-10">
-        <h2 className="text-xl font-semibold mb-3">{t("Browse cards by character")}</h2>
+        <h2 className="text-xl font-semibold mb-3">
+          {t("Browse cards by character")}
+        </h2>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
           {cardsByCharacter.map((char) => (
             <li key={char.id}>
@@ -283,55 +323,58 @@ export default async function CardsPage({ params }: Props) {
           ))}
         </ul>
         {locale === "eng" && (
-        <p className="text-sm text-[var(--text-muted)] mt-4">
-          Looking for tier rankings? See the full{" "}
-          <Link
-            prefetch={false}
-            href="/tier-list/cards"
-            className="text-[var(--accent-gold)] hover:underline"
-          >
-            sts2 card tier list
-          </Link>{" "}
-          for S-through-F tiers, or check the{" "}
-          <Link
-            prefetch={false}
-            href="/leaderboards/stats"
-            className="text-[var(--accent-gold)] hover:underline"
-          >
-            community stats page
-          </Link>{" "}
-          for win-rate breakdowns by ascension level.
-        </p>
+          <p className="text-sm text-[var(--text-muted)] mt-4">
+            Looking for tier rankings? See the full{" "}
+            <Link
+              prefetch={false}
+              href="/tier-list/cards"
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              sts2 card tier list
+            </Link>{" "}
+            for S-through-F tiers, or check the{" "}
+            <Link
+              prefetch={false}
+              href="/stats"
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              community stats page
+            </Link>{" "}
+            for win-rate breakdowns by ascension level.
+          </p>
         )}
       </section>
 
       <RecentlyAdded entityType="cards" label="Card" pathPrefix="/cards" />
 
-      <Suspense>
-        <CardsClient initialCards={cards} />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <CardsClient
+          initialCards={cards.map(gridCard)}
+          initialBeta={{ lang: locale, items: betaCards.map(gridCard) }}
+        />
       </Suspense>
 
       {/* FAQ block: visible content plus FAQPage JSON-LD above gives
           Google a chance at the People-Also-Ask rich result. Below the
           grid so it doesn't push the catalog below the fold. */}
       {locale === "eng" && (
-      <section className="mt-12 max-w-3xl">
-        <h2 className="text-xl font-semibold mb-4">
-          {t("Frequently asked about sts2 cards")}
-        </h2>
-        <dl className="space-y-4">
-          {faq.map((q) => (
-            <div key={q.question}>
-              <dt className="font-medium text-[var(--accent-gold)]">
-                {q.question}
-              </dt>
-              <dd className="text-sm text-[var(--text-default)] mt-1">
-                {q.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+        <section className="mt-12 max-w-3xl">
+          <h2 className="text-xl font-semibold mb-4">
+            {t("Frequently asked about sts2 cards")}
+          </h2>
+          <dl className="space-y-4">
+            {faq.map((q) => (
+              <div key={q.question}>
+                <dt className="font-medium text-[var(--accent-gold)]">
+                  {q.question}
+                </dt>
+                <dd className="text-sm text-[var(--text-default)] mt-1">
+                  {q.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
       )}
     </div>
   );

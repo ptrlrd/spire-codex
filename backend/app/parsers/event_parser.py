@@ -1285,6 +1285,63 @@ def _fix_fake_merchant(event: dict, lang: str = "eng") -> dict:
     return event
 
 
+FUTURE_OF_POTIONS_ROWS = (
+    ("COMMON", "COMMON", ("ATTACK", "SKILL")),
+    ("UNCOMMON", "UNCOMMON", ("ATTACK", "SKILL", "POWER")),
+    ("RARE", "RARE", ("ATTACK", "SKILL", "POWER")),
+    ("EVENT", "RARE", ("ATTACK", "SKILL", "POWER")),
+    ("TOKEN", "COMMON", ("ATTACK", "SKILL")),
+)
+
+
+def _fix_future_of_potions(
+    event: dict, localization: dict, loc_dir: Path, lang: str = "eng"
+) -> dict:
+    """One option per potion rarity. The game builds the options at runtime
+    from the first three potions held: the card rarity follows the potion
+    rarity and the card type is rolled, Power excluded for Common and Token.
+    Japanese POTION_RARITY already reads ポーション（コモン） and the title wraps
+    it in ポーション（…） again, so that title takes the card rarity word."""
+    if event["id"] != "THE_FUTURE_OF_POTIONS":
+        return event
+    ui_file = loc_dir / "gameplay_ui.json"
+    if not ui_file.exists():
+        return event
+    with open(ui_file, encoding="utf-8") as f:
+        ui = json.load(f)
+    key = "THE_FUTURE_OF_POTIONS.pages.INITIAL.options.POTION"
+    title_raw = localization.get(f"{key}.title")
+    desc_raw = localization.get(f"{key}.description")
+    if not title_raw or not desc_raw:
+        return event
+    options = []
+    for potion_rarity, card_rarity, types in FUTURE_OF_POTIONS_ROWS:
+        rarity_table = "CARD_RARITY" if lang == "jpn" else "POTION_RARITY"
+        title = resolve_description(
+            title_raw, {"Rarity": ui[f"{rarity_table}.{potion_rarity}"]}
+        )
+        desc = resolve_description(
+            desc_raw,
+            {
+                "Potion": phrase("a Potion", lang),
+                "Rarity": ui[f"CARD_RARITY.{card_rarity}"],
+                "Type": "/".join(ui[f"CARD_TYPE.{t}"] for t in types),
+            },
+        )
+        options.append(
+            {
+                "id": f"POTION_{potion_rarity}",
+                "title": strip_rich_tags(title),
+                "description": strip_rich_tags(desc),
+            }
+        )
+    event["options"] = options
+    for page in event.get("pages") or []:
+        if page.get("id") == "INITIAL" and page.get("options"):
+            page["options"] = options
+    return event
+
+
 def parse_all_events(loc_dir: Path, data_dir: Path, lang: str = "eng") -> list[dict]:
     localization = load_localization(loc_dir)
     act_mapping = build_act_mapping()
@@ -1307,6 +1364,7 @@ def parse_all_events(loc_dir: Path, data_dir: Path, lang: str = "eng") -> list[d
             event = _fix_ranwid_the_elder(event)
             event = _fix_lost_wisp(event)
             event = _fix_fake_merchant(event, lang)
+            event = _fix_future_of_potions(event, localization, loc_dir, lang)
             events.append(event)
     return events
 

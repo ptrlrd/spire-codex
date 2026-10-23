@@ -33,17 +33,34 @@ export type LangCode = (typeof SUPPORTED_LANGS)[number];
 export const LANG_PREFIXES: ReadonlySet<string> = new Set(SUPPORTED_LANGS);
 
 /** Sections and paths that only exist in English: localized URLs 308 to the bare path. */
-export const ENGLISH_ONLY_SECTIONS: ReadonlySet<string> = new Set(["admin", "players"]);
-export const ENGLISH_ONLY_PATHS: ReadonlySet<string> = new Set(["news/codex", "cards/browse"]);
+export const ENGLISH_ONLY_SECTIONS: ReadonlySet<string> = new Set([
+  "admin",
+  "players",
+]);
+export const ENGLISH_ONLY_PATHS: ReadonlySet<string> = new Set([
+  "news/codex",
+  "cards/browse",
+]);
 
 /** Browser language (BCP-47) to the game code it should be offered, most specific first. */
 export function langFromBrowser(tag: string): LangCode | "eng" | null {
   const t = tag.toLowerCase();
   if (t.startsWith("en")) return "eng";
   if (t.startsWith("zh")) return /hant|tw|hk|mo/.test(t) ? "zht" : "zhs";
-  if (t.startsWith("es")) return t === "es" || t.startsWith("es-es") ? "esp" : "spa";
+  if (t.startsWith("es"))
+    return t === "es" || t.startsWith("es-es") ? "esp" : "spa";
   if (t.startsWith("pt")) return "ptb";
-  const two: Record<string, LangCode> = { de: "deu", fr: "fra", it: "ita", ja: "jpn", ko: "kor", pl: "pol", ru: "rus", th: "tha", tr: "tur" };
+  const two: Record<string, LangCode> = {
+    de: "deu",
+    fr: "fra",
+    it: "ita",
+    ja: "jpn",
+    ko: "kor",
+    pl: "pol",
+    ru: "rus",
+    th: "tha",
+    tr: "tur",
+  };
   return two[t.slice(0, 2)] ?? null;
 }
 
@@ -182,5 +199,3 @@ export const LANG_RELICS: Record<LangCode, string> = {
   zhs: "遗物",
   zht: "遺物",
 };
-
-

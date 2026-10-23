@@ -3,21 +3,30 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { Relic } from "@/lib/api";
+import type { Relic } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import HighestRated from "@/app/components/HighestRated";
 import RelicsClient from "./RelicsClient";
+import { fetchBetaAdditions } from "@/lib/beta-additions.server";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/relics", title: t("Relics"), description: t("relics_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/relics",
+    title: t("Relics"),
+    description: t("relics_meta_description"),
+  });
 }
 
 export default async function RelicsPage({ params }: Props) {
@@ -27,9 +36,12 @@ export default async function RelicsPage({ params }: Props) {
   const tagline = t("relics_tagline");
   let relics: Relic[] = [];
   try {
-    const res = await fetch(`${API}/api/relics?lang=${locale}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/relics?lang=${locale}`, {
+      next: { revalidate: 300 },
+    });
     if (res.ok) relics = await res.json();
   } catch {}
+  const betaRelics = await fetchBetaAdditions<Relic>("relics", locale);
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -41,7 +53,10 @@ export default async function RelicsPage({ params }: Props) {
       description: t("relics_meta_description"),
       path: localePath(locale, "/relics"),
       inLanguage: inLanguageOf(locale),
-      items: relics.map((r) => ({ name: r.name, path: localePath(locale, `/relics/${r.id.toLowerCase()}`) })),
+      items: relics.map((r) => ({
+        name: r.name,
+        path: localePath(locale, `/relics/${r.id.toLowerCase()}`),
+      })),
     }),
   ];
 
@@ -64,8 +79,11 @@ export default async function RelicsPage({ params }: Props) {
 
       <RecentlyAdded entityType="relics" label="Relic" pathPrefix="/relics" />
 
-      <Suspense>
-        <RelicsClient initialRelics={relics} />
+      <Suspense fallback={<div className="min-h-screen" />}>
+        <RelicsClient
+          initialRelics={relics}
+          initialBeta={{ lang: locale, items: betaRelics }}
+        />
       </Suspense>
     </div>
   );

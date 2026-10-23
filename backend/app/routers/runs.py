@@ -7,22 +7,28 @@ import re
 import time
 from functools import lru_cache
 from pathlib import Path
-from fastapi import APIRouter, HTTPException, Query, Request, Response
+from typing import Literal
+from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pymongo.errors import ExecutionTimeout
 from starlette.concurrency import run_in_threadpool
-from ..dependencies import shared_limiter
+from ..dependencies import get_lang, shared_limiter
+from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
 from ..services.runs_db import submit_run, get_stats, claim_runs
 from ..services import cache as app_cache
 from ..services.run_entity_stats import (
+    UnknownBracket,
+    ensure_known_bracket,
     full_walk_in_progress as entity_stats_full_walk_in_progress,
     get_all_entity_scores,
+    get_campfire_metrics_table,
     get_community_stats as get_community_fun_stats,
     get_entity_metric_history,
     get_entity_metrics_table,
     get_entity_stats,
+    get_event_metrics_table,
+    get_shop_metrics_table,
     get_top_entities_for_character,
-    is_valid_stat_bracket,
     snapshot_loaded,
     snapshot_status,
 )
@@ -78,7 +84,12 @@ def _load_run_blob_cached(run_hash: str) -> str:
     run_file = _data_dir / "runs" / f"{run_hash}.json"
     if run_file.exists():
         with open(run_file, "r", encoding="utf-8") as f:
-            return f.read()
+            text = f.read()
+        try:
+            json.loads(text)
+            return text
+        except ValueError:
+            logger.warning("run file %s is empty or truncated", run_hash)
     if os.environ.get("MONGO_URL", "").strip():
         from ..services.runs_db_mongo import get_run_blob
 
@@ -86,6 +97,22 @@ def _load_run_blob_cached(run_hash: str) -> str:
         if blob is not None:
             return json.dumps(blob, ensure_ascii=False)
     raise FileNotFoundError(run_hash)
+
+
+BSON_INT_MIN, BSON_INT_MAX = -(2**63), 2**63 - 1
+
+
+def _has_oversized_int(data) -> bool:
+    stack = [data]
+    while stack:
+        v = stack.pop()
+        if isinstance(v, dict):
+            stack.extend(v.values())
+        elif isinstance(v, list):
+            stack.extend(v)
+        elif isinstance(v, int) and not BSON_INT_MIN <= v <= BSON_INT_MAX:
+            return True
+    return False
 
 
 def _load_run_blob(run_hash: str) -> str | None:
@@ -110,9 +137,12 @@ async def submit_run_endpoint(
 ):
     """Submit a run for community stats. Paste the .run file JSON content. Optional ?username= param.
 
-    Pass ?steam_id=<SteamID64> (the overlay / Compendium send the signed-in
-    player's Steam ID) and/or ?discord_id=<id> to tag the run with its owner
-    so it links to their account on sign-in without a manual claim.
+    Ownership only comes from a verified identity: send
+    `Authorization: Bearer <jwt>` from the Steam sign-in flow (the in-game
+    mod and the overlay do) and the run is attached to that account, along
+    with ?discord_id= if given. A bare ?steam_id=<SteamID64> without a token
+    is stored as a hint only: it feeds the rank line and lets a later signed-in
+    re-upload claim the run, but it never makes the run anyone's.
 
     Rate limit: 3000/hour (~50/min sustained, with room for burst). The
     earlier 600/hour ceiling was sized for "a few hundred backlog runs
@@ -145,6 +175,11 @@ async def submit_run_endpoint(
     except Exception:
         run_errors.labels(reason="invalid_json").inc()
         raise HTTPException(status_code=400, detail="Invalid JSON body")
+    if _has_oversized_int(data):
+        run_errors.labels(reason="int_overflow").inc()
+        raise HTTPException(
+            status_code=400, detail="Run has a number too large to store"
+        )
 
     # Sanitize username — alphanumeric, underscores, hyphens, spaces only
     clean_username = None
@@ -162,8 +197,11 @@ async def submit_run_endpoint(
         digits = "".join(ch for ch in steam_id if ch.isdigit())
         clean_steam_id = digits or None
 
-    # Authenticated uploads (the in-game mod sends `Authorization: Bearer <jwt>` from the
-    # Steam sign-in flow): the token's verified steamid outranks the spoofable query param.
+    # Only a verified identity attributes a run to an account: the in-game
+    # mod and the overlay send `Authorization: Bearer <jwt>` from the Steam
+    # sign-in flow. A bare ?steam_id is kept on the row as a hint for the
+    # rank line and for a later authenticated re-upload, never as ownership.
+    verified_steam_id = None
     auth_header = request.headers.get("authorization") or ""
     if auth_header.lower().startswith("bearer "):
         from ..services.auth_jwt import decode_token
@@ -171,7 +209,10 @@ async def submit_run_endpoint(
         claims = decode_token(auth_header[7:].strip())
         token_steamid = str((claims or {}).get("steam_id") or "")
         if token_steamid.isdigit():
-            clean_steam_id = token_steamid
+            verified_steam_id = token_steamid
+    verified = verified_steam_id is not None
+    if verified:
+        clean_steam_id = verified_steam_id
 
     clean_discord_id = None
     if discord_id:
@@ -185,8 +226,10 @@ async def submit_run_endpoint(
         submit_run,
         data,
         username=clean_username,
-        steam_id=clean_steam_id,
-        discord_id=clean_discord_id,
+        steam_id=verified_steam_id,
+        discord_id=clean_discord_id if verified else None,
+        steam_id_hint=None if verified else clean_steam_id,
+        verified=verified,
     )
 
     site_base = os.environ.get("PUBLIC_SITE_BASE", "https://spire-codex.com").rstrip(
@@ -214,6 +257,7 @@ async def submit_run_endpoint(
 
     # Enrich for the in-game post-run card: the shareable page URL, and (when this
     # run is itself a completed upload on a known seed) its seed standing.
+    result["verified"] = verified
     run_hash = result.get("run_hash")
     if run_hash:
         result["url"] = f"{site_base}/runs/{run_hash}"
@@ -302,32 +346,30 @@ MAX_CLAIM_HASHES = 5000
     rate_limit_config.endpoint_limit("runs.claim_runs_endpoint", "10/minute")
 )
 async def claim_runs_endpoint(request: Request):
-    """Attach a username to previously-submitted runs by hash.
+    """Attach the signed-in account to previously-submitted runs by hash.
 
-    Body: `{ "username": "name", "hashes": ["abc123...", ...] }`
+    Body: `{ "hashes": ["abc123...", ...] }` with the session cookie or a
+    bearer token. The account comes from the verified session only; a
+    `username` in the body is ignored.
 
     Only rows with a NULL/empty username are updated — existing
-    claims are never overwritten. Intended for the Spire Compendium
-    desktop app: after Steam sign-in, the client computes hashes
-    for every local run and claims the ones it already uploaded
-    anonymously.
+    claims are never overwritten. The overlay calls this after Steam
+    sign-in with hashes of every local run so the ones it already uploaded
+    anonymously attach to the account.
     """
+    from ..services.auth_jwt import get_current_user
+
+    user = get_current_user(request)
+    sanitized = str((user or {}).get("username") or "").strip()[:32]
+    if not user or not sanitized:
+        raise HTTPException(status_code=401, detail="Sign in to claim runs")
+
     try:
         payload = await request.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
-
-    raw_username = payload.get("username")
-    if not raw_username or not isinstance(raw_username, str):
-        raise HTTPException(status_code=400, detail="username is required")
-
-    import re
-
-    sanitized = re.sub(r"[^a-zA-Z0-9_\- ]", "", raw_username.strip())[:32].strip()
-    if not sanitized:
-        raise HTTPException(
-            status_code=400, detail="username is empty after sanitization"
-        )
+    if not isinstance(payload, dict):
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
 
     hashes = payload.get("hashes")
     if not isinstance(hashes, list):
@@ -371,6 +413,8 @@ def list_runs(
     relic: str | None = None,
     shop: str | None = None,
     today: bool = False,
+    has_replay: bool | None = None,
+    steam_id: str | None = None,
     page: int = 1,
     limit: int = 50,
 ):
@@ -380,14 +424,45 @@ def list_runs(
     win rate percentage; only users with at least 5 submitted runs qualify,
     and anonymous runs never match.
 
+    `has_replay=true` keeps only runs with a replay journal to watch.
+
+    `steam_id=<SteamID64>` lists the runs of the account linked to that Steam
+    ID (what the in-game mod sends); an unknown Steam ID lists nothing rather
+    than everything.
+
     `shop` matches runs that bought the item (card, relic, or potion) at a
     shop; comma-separated ids AND together like `card`/`relic`. Mongo only —
     the dev SQLite fallback ignores it, like the card/relic filters.
+
+    Responses carry `total_is_lower_bound`: true when the exact filtered
+    count exceeded its time budget and `total` is a capped lower bound
+    (10,000), so the frontend can say "more than 10,000 runs" and keep
+    paginating; false when `total` is exact.
     """
     # Normalize once so the cache key and the DB filter key off the same
     # case-insensitive value (the runs are matched on username_lower).
     if username:
         username = username.strip().lower()
+    if steam_id and not username:
+        digits = "".join(ch for ch in steam_id if ch.isdigit())
+        owner = None
+        if digits and os.environ.get("MONGO_URL", "").strip():
+            try:
+                from ..services.users_db import get_user_by_steam_id
+
+                owner = get_user_by_steam_id(digits)
+            except Exception:
+                owner = None
+        if not owner or not owner.get("username"):
+            return {
+                "runs": [],
+                "total": 0,
+                "page": page,
+                "per_page": limit,
+                "total_pages": 0,
+                "total_is_lower_bound": False,
+            }
+        username = str(owner["username"]).strip().lower()
     # Browser/edge caching: new runs arrive constantly, but 30s of staleness
     # on a browse page is invisible and lets Cloudflare absorb repeat hits.
     # stale-while-revalidate makes expiry a background refresh instead of one
@@ -418,6 +493,7 @@ def list_runs(
             relic,
             shop,
             int(today),
+            "" if has_replay is None else int(has_replay),
             page,
             limit,
         )
@@ -447,6 +523,7 @@ def list_runs(
             relic=relic,
             shop=shop,
             today=today,
+            has_replay=has_replay,
             page=page,
             limit=limit,
         )
@@ -569,6 +646,10 @@ def get_leaderboard(
     explicitly so users can opt into the other pools.
     Single-player and multiplayer runs aren't directly comparable, so the
     frontend reads them as disjoint pools.
+
+    Responses carry `total_is_lower_bound`: true when the exact count
+    exceeded its time budget and `total` is a capped lower bound (10,000),
+    false when `total` is exact.
     """
     # Same canonicalize-before-keys rule as /stats: reject unknown spellings
     # instead of minting per-spelling cache keys (an invalid category used to
@@ -808,8 +889,11 @@ def get_encounter_stats_endpoint(
         `exclude` removes multiplayer runs, omit for both.
       * `page` (default 1) + `limit` (default 50, max 200) — pagination
         applied after grouping, sorted by sample size descending.
-      * `bracket` — content bracket: `a10`, `wr30`, `wr50`, `wr75`
-        (A10-gated win-rate tiers). Omit for all runs.
+      * `bracket` — `solo`, `2p`, `3p`, `4p`, or a content bracket: `a10`,
+        `wr30`, `wr50`, `wr75` (A10-gated win-rate tiers). Omit for all
+        runs; anything else is a 400.
+      * `build_id` — one of the recent game versions the snapshot keeps a
+        slice for (e.g. `v0.107.1`); an unknown version is a 400.
       * `encounter` — comma-separated encounter ids to keep (a monster
         page asks for just its own fights). Omit for all.
 
@@ -896,6 +980,8 @@ def get_encounter_series_endpoint(request: Request, response: Response, encounte
 def get_run_versions(request: Request):
     """Return distinct build_id values from submitted runs.
 
+    `versions` includes release-candidate builds (`v0.109.0-rc.1`); those are
+    valid version brackets too, with their own cells.
     `stat_versions` is the subset (newest first) the stats snapshot carries a
     per-version encounter slice for — the options the stats-page version
     dropdown should offer, since only these have version-filtered data.
@@ -985,6 +1071,7 @@ def get_shared_run(run_hash: str, request: Request):
                 blob["username"] = meta["username"]
             if meta.get("hidden"):
                 blob["hidden"] = True
+                blob["hidden_reason"] = meta.get("hidden_reason")
             blob["has_replay"] = bool(meta.get("has_replay"))
             return blob
 
@@ -1037,13 +1124,16 @@ def get_shared_run(run_hash: str, request: Request):
     for sib_hash in siblings:
         sib_file = _data_dir / "runs" / f"{sib_hash}.json"
         if sib_file.exists():
-            import shutil
+            with open(sib_file, "r", encoding="utf-8") as f:
+                try:
+                    sib_data = json.load(f)
+                except ValueError:
+                    continue
+            from ..services.runs_db import write_run_file_atomic
 
-            run_file = _data_dir / "runs" / f"{run_hash}.json"
-            shutil.copy2(sib_file, run_file)
+            write_run_file_atomic(_data_dir / "runs" / f"{run_hash}.json", sib_data)
             _load_run_blob.cache_clear()
-            with open(run_file, "r", encoding="utf-8") as f:
-                result = _attach_username(json.load(f))
+            result = _attach_username(sib_data)
             app_cache.set_json(redis_key, result, ttl_seconds=15 * 60)
             return result
 
@@ -1065,6 +1155,19 @@ _ENTITY_STATS_TYPES = {"relics", "cards", "potions"}
 def get_entity_run_stats(
     request: Request, response: Response, entity_type: str, entity_id: str
 ):
+    """Community run stats for one card, relic, or potion: Codex Score,
+    picks, wins, win rate, pick rate, Codex Elo where one exists, plus
+    per-bracket (`brackets`) and per-character (`by_character`) splits.
+    Zero-filled when the entity hasn't shown up in a submitted run yet.
+
+    The top level and every `brackets` entry also carry the metrics
+    table's lift family: `lift` is the win rate in points above what the
+    entity's holders' own track records predict (null under the sample
+    floor), `lift_n` the seats with a known expectation, `win_rate_ci`
+    the Wilson 95% interval in percent, and `hold_rate` the share of the
+    bracket's seats that held the entity (null when seats are unknown).
+    Relic blocks also carry `removed` (seats whose copy left before run
+    end) and `removed_rate`."""
     if entity_type not in _ENTITY_STATS_TYPES:
         raise HTTPException(
             status_code=400,
@@ -1185,7 +1288,7 @@ def get_entity_scores(
     """All Codex Scores for one entity type, keyed by ID.
 
     Each entry carries the 0-100 Codex Score plus picks/wins/win_rate, and
-    for cards the Codex Elo (null for entities without one). Cards that are
+    the Codex Elo where one exists (null otherwise). Cards that are
     never a reward pick (curses, statuses, events, tokens, starters) are
     excluded. With `act` set (relics only), stats cover only pickups made
     during that act, graded against that act's baseline. Used by list pages
@@ -1216,19 +1319,15 @@ def get_entity_scores(
     # onto the bracket dimension (the website uses ?bracket= directly).
     if stat_filter:
         bracket = _STAT_FILTER_TO_BRACKET.get(stat_filter.strip().lower(), bracket)
-    # Unknown bracket -> None so it grades against all runs (and shares that
-    # cache slot) rather than 400ing. Lake-foldable brackets (mode axes and
-    # composites like solo:standard) pass through even though the snapshot's
-    # validator doesn't know them — the entity cube folds them.
-    brk = bracket if is_valid_stat_bracket(bracket) else None
-    if brk is None and bracket:
-        try:
-            from ..services.lake_stats import _parse_lake_bracket
-
-            if _parse_lake_bracket(bracket) is not None:
-                brk = bracket
-        except Exception:
-            pass
+    # Lake-foldable brackets (mode axes and composites like solo:standard)
+    # pass through even though the snapshot's validator doesn't know them;
+    # anything neither side knows is a 400, never a silent all-runs answer.
+    try:
+        brk = ensure_known_bracket(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    if brk == "all":
+        brk = None
     # Redis layer (5min TTL): hit constantly by tier-list pages and detail
     # sort columns. Key carries every response-shaping param.
     cache_key = app_cache.entity_scores_key(
@@ -1302,9 +1401,10 @@ def runs_snapshot_status(request: Request, response: Response):
 @router.get("/pulse", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.runs_pulse", "240/minute"))
 def runs_pulse(request: Request, response: Response):
-    """Live community totals: the snapshot baseline plus the hot overlay's
-    counters, which update within milliseconds of each accepted upload.
-    5s shared cache so the edge absorbs all polling."""
+    """Community totals as of the store cursor, plus the hot overlay's
+    counters. The hot counters are reported, not added: nothing rebases them
+    against the store yet, so adding them counts every upload since the
+    cursor a second time. 5s shared cache so the edge absorbs all polling."""
     response.headers["Cache-Control"] = "public, max-age=5, s-maxage=5"
     from ..services.live_overlay import hot_totals
     from ..services.run_entity_stats import global_totals
@@ -1313,8 +1413,8 @@ def runs_pulse(request: Request, response: Response):
     hot = hot_totals()
     st = snapshot_status()
     return {
-        "total_runs": (base.get("total_runs") or 0) + hot.get("runs", 0),
-        "total_wins": (base.get("total_wins") or 0) + hot.get("wins", 0),
+        "total_runs": base.get("total_runs") or 0,
+        "total_wins": base.get("total_wins") or 0,
         "hot_runs": hot.get("runs", 0),
         "data_through": st.get("data_through"),
     }
@@ -1323,14 +1423,17 @@ def runs_pulse(request: Request, response: Response):
 @router.get("/community-stats", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.community_stats", "60/minute"))
 def community_stats(request: Request, response: Response, bracket: str | None = None):
-    """Community / fun stats for the /community-stats page: per-event player
-    decision breakdowns, deadliest encounters/events, headline totals by
+    """Community / fun stats for the /stats hub and /stats/encounters: per-event
+    player decision breakdowns, deadliest encounters/events, headline totals by
     ascension and character, and a few records and quirks. Official game
-    content only (modded entities are filtered out). Built in the same walk
-    as the Codex Score cache, so this is an in-memory read.
+    content only (modded entities are filtered out). Served from the lake
+    when it's loaded, else from the stats snapshot, so this is an in-memory
+    read.
 
-    `bracket` slices to a content bracket (`a10`, `wr30`, `wr50`, `wr75`);
-    omit for all runs."""
+    `bracket` takes the same keys as /api/runs/metrics/{entity_type}: plain
+    keys (`solo`, `a10`, `wr50`, ...), player:skill composites, a game
+    version, or any of those composed with a version (`solo:wr50:v0.107.1`).
+    Omit it for all runs. An unknown bracket is a 400."""
     # One grammar for every bracket surface: plain keys, player:skill
     # composites, game versions, and any of those composed with a version
     # (solo:wr50:v0.107.1). Shared with the entity endpoints so this route
@@ -1379,6 +1482,82 @@ def my_picks(request: Request, response: Response):
     return get_user_picks(steam_id)
 
 
+def _section_cache_control(response: Response) -> None:
+    response.headers["Cache-Control"] = (
+        "public, max-age=300, stale-while-revalidate=600"
+        if snapshot_loaded()
+        else "no-store"
+    )
+
+
+@router.get("/metrics/shops", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_shop_metrics", "60/minute"))
+def get_shop_metrics(request: Request, response: Response, bracket: str = "all"):
+    """Shop shelf table for one run bracket, powers /stats/shops.
+
+    One row per (entity_type, id) seen on a shop shelf: `seen` shelf
+    appearances (one per seat per visit), `bought`, `buy_rate`, `wins` and
+    the win rate of the seats that bought it with a Wilson `win_rate_ci`,
+    and `lift` (win rate minus those players' floor-adjusted expected win
+    rate at the shop's floor, in percentage points; null under 20 seats).
+    `bracket` takes the same keys as /metrics/{entity_type}; an unknown
+    bracket is a 400.
+    """
+    try:
+        table = get_shop_metrics_table(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
+@router.get("/metrics/events", tags=["Runs"])
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_event_metrics", "60/minute"))
+def get_event_metrics(request: Request, response: Response, bracket: str = "all"):
+    """Event choice table for one run bracket, powers /stats/events.
+
+    One row per (event, option): `chosen` seats, `share` of that event's
+    choices, `wins` and the win rate of the seats that chose it with a
+    Wilson `win_rate_ci`, and `lift` against the floor-adjusted expectation
+    at the event's floor (null under 20 seats). `bracket` takes the same
+    keys as /metrics/{entity_type}; an unknown bracket is a 400.
+    """
+    try:
+        table = get_event_metrics_table(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
+@router.get("/metrics/campfires", tags=["Runs"])
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_campfire_metrics", "60/minute")
+)
+def get_campfire_metrics(
+    request: Request,
+    response: Response,
+    bracket: str = "all",
+    lang: str = Depends(get_lang),
+):
+    """Rest-site choice table for one run bracket, powers /stats/campfires.
+
+    One row per choice (HEAL, SMITH, ...) with its `name` in `lang`:
+    `chosen` seats, `share` of all
+    campfire choices, `low_hp_share` (chosen below half HP), `wins` and the
+    win rate with a Wilson `win_rate_ci`, and `lift` against the
+    floor-adjusted expectation at the campfire's floor (null under 20
+    seats). `bracket` takes the same keys as /metrics/{entity_type}; an
+    unknown bracket is a 400.
+    """
+    try:
+        table = get_campfire_metrics_table(bracket, lang)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
+    _section_cache_control(response)
+    return table
+
+
 @router.get("/metrics/{entity_type}", tags=["Runs"])
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_entity_metrics", "60/minute"))
 def get_entity_metrics(
@@ -1389,24 +1568,35 @@ def get_entity_metrics(
     character: str | None = None,
     cohort: str | None = None,
 ):
-    """Dense metrics table for one entity type, powers /leaderboards/metrics.
+    """Dense metrics table for one entity type, powers /stats/cards, /stats/relics and /stats/potions.
 
-    Each row carries the win-outcome metrics (Codex Score, Win%) AND the
-    revealed-preference metrics (Codex Elo, Pick%, per-act pick splits) plus
-    raw counts. Served from the same pre-built snapshot as /scores, so it's
-    one in-memory pass with no per-request aggregation; the client sorts
-    and filters the whole table locally. Cards carry Elo/Pick%; relics and
-    potions only the win-outcome columns (rewards don't offer them this way).
+    Each row carries the win-outcome metrics (Codex Score, Win% with a
+    Wilson 95% `win_rate_ci`, `lift` = win rate minus those players' own
+    expected win rate in percentage points over `lift_n` seats, null under
+    20) AND the revealed-preference metrics (Codex Elo, Pick%, per-act pick
+    splits) plus raw counts. The expectation behind `lift` is
+    floor-adjusted: a seat that acquired the entity at floor f is compared
+    with P(win | the run reached f), from that player's other runs when
+    they have five that deep, else the community curve. Potions carry no
+    pickup floor, so their lift is unadjusted (floor 1). Counts are per
+    seat: a 4P run is four seats, `hold_rate` = picks / `total_seats`.
+    Cards carry Elo/Pick% from reward screens, relics from free relic
+    screens (ancient offers, boss relics, event choices; shop shelves and
+    lists where everything was taken are not offers) plus a `wax` block
+    for Toy Box copies, relics `removed` / `removed_rate`, potions `used` /
+    `use_rate` and no Pick%. Served
+    from the lake's entity cube, so it's one in-memory fold per bracket;
+    the client sorts and filters the whole table locally.
 
-    `bracket` slices to a pre-built run bracket: `all` (default), `solo`,
-    `2p`, `3p`, `4p`, `a10` (ascension 10), `daily`, `custom`, plus the
-    win-rate skill tiers `wr30`/`wr50`/`wr75`. Brackets also compose with
-    game versions: a bare version is a bracket (`?bracket=v0.110.0`), and
-    any key composes with one (`?bracket=solo:wr30:v0.110.0`); the versions
-    the snapshot carries are listed by `/api/runs/versions`, and without one
-    the table spans every patch. Every bracket is materialized in the same
-    snapshot, so this stays a single cached read. `cohort` is a deprecated
-    alias for `bracket` (the param was renamed).
+    `bracket` slices to a run bracket: `all` (default), `solo`, `2p`, `3p`,
+    `4p`, `a10` (ascension 10), `daily`, `custom`, `standard`, plus the
+    win-rate skill tiers `wr30`/`wr50`/`wr75`, and composites of those
+    (`solo:standard`, `solo:a10`). Brackets also compose with game versions:
+    a bare version is a bracket (`?bracket=v0.110.0`), and any key composes
+    with one (`?bracket=solo:wr30:v0.110.0`); the versions on offer are
+    listed by `/api/runs/versions`, and without one the table spans every
+    patch. An unknown bracket is a 400, never a quiet all-runs answer.
+    `cohort` is a deprecated alias for `bracket` (the param was renamed).
 
     Source data: every submitted run at Ascension 0-10 played on an official
     character, all game modes included unless a mode bracket says otherwise,
@@ -1416,9 +1606,10 @@ def get_entity_metrics(
 
     `character` (e.g. IRONCLAD) combines with any bracket, including the
     player x skill composites: `?bracket=solo:a10&character=IRONCLAD` is
-    Ironclad's solo A10 table. Character rows carry Score and Win% only;
-    the reward-preference metrics (Elo, Pick%, offered/picked, per-act)
-    aren't tracked per character. Character views also return
+    Ironclad's solo A10 table. From the lake, character rows carry their own
+    Codex Elo (fitted over that character's choice screens only), Pick%,
+    per-act splits and lift; the snapshot fallback carries Score and Win%
+    only. Character views also return
     `character_runs` / `character_wins`, that character's own run count
     inside the bracket, next to the bracket-wide `total_runs`, so clients
     can show the character's real share. Null when the bracket carries no
@@ -1432,6 +1623,10 @@ def get_entity_metrics(
             status_code=400,
             detail=f"entity_type must be one of {sorted(_ENTITY_STATS_TYPES)}",
         )
+    try:
+        bracket = ensure_known_bracket(bracket)
+    except UnknownBracket as e:
+        raise HTTPException(status_code=400, detail=f"unknown bracket: {e}")
     # Snapshot refreshes at most every 10 min; let edges/clients cache it.
     # Except while a post-deploy rebuild runs: an empty table cached at the
     # edge would outlive the rebuild.
@@ -1949,11 +2144,29 @@ def get_similar_runs(
     return payload
 
 
-@router.get("/archetypes", tags=["Runs"])
+@router.get(
+    "/archetypes",
+    tags=["Runs"],
+    responses={200: {"model": ArchetypesResponse}},
+)
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_archetypes", "60/minute"))
-def get_archetypes(request: Request, response: Response, lang: str = "eng"):
-    """Community deck archetypes, clustered nightly from run-composition
-    vectors: defining cards/relics, share, and win rate per build."""
+def get_archetypes(
+    request: Request,
+    response: Response,
+    lang: str = Query(
+        "eng", description="Language for card and relic names, e.g. eng, deu, jpn."
+    ),
+):
+    """Community deck archetypes per character, the data behind /archetypes.
+
+    Runs are clustered nightly by what they held (cards and relics). Each
+    archetype lists the cards and relics that define it, how many runs fall
+    in it, its share of the character's runs, its win rate, example run
+    hashes, and its share and win rate across recent game versions.
+
+    Only clusters with 50+ runs and at least one defining card are listed;
+    shares still count every run, so they don't sum to 100.
+    `available` is false until the first build exists. Cached for 10 minutes."""
     cache_key = f"archetypes:{lang}"
     cached = app_cache.get_json(cache_key)
     if cached is not None:
@@ -2074,6 +2287,97 @@ def get_archetypes(request: Request, response: Response, lang: str = "eng"):
     return payload
 
 
+def _seed_predicates(
+    deck: str,
+    offered: str,
+    relics: str,
+    events: str,
+    ancient: str | None,
+    ancient_act: int | None,
+    neow: str,
+    bosses: str,
+    elites: str,
+    shop: str,
+    ancient_offers: str,
+) -> list:
+    """The finder's query language, one comma list per kind. Items are
+    ID[:count][@act][<=floor][>=floor][#seat], e.g. BASH:2@1<=5 means at
+    least two offers of Bash in act 1 by floor 5. Anything that does not
+    parse is a 422, never a silently different search."""
+    import re
+
+    from ..services.seed_profiles import (
+        MAX_PREDICATES,
+        Predicate,
+        PredicateError,
+    )
+
+    item_re = re.compile(
+        r"^(?P<id>[A-Z0-9_]+)(?::(?P<count>\d{1,2}))?(?:@(?P<act>\d))?"
+        r"(?:<=(?P<fmax>\d{1,2}))?(?:>=(?P<fmin>\d{1,2}))?(?:#(?P<seat>\d))?$"
+    )
+    out: list = []
+
+    def take(kind: str, raw: str, act: int | None = None) -> None:
+        for part in raw.split(","):
+            part = part.strip().upper().replace(" ", "")
+            if not part:
+                continue
+            m = item_re.match(part)
+            if not m:
+                raise PredicateError(f"cannot read {part!r}")
+            out.append(
+                Predicate(
+                    kind,
+                    m.group("id"),
+                    act=int(m.group("act")) if m.group("act") else act,
+                    floor_max=int(m.group("fmax")) if m.group("fmax") else None,
+                    floor_min=int(m.group("fmin")) if m.group("fmin") else None,
+                    seat=int(m.group("seat")) if m.group("seat") else None,
+                    count=int(m.group("count") or 1),
+                )
+            )
+
+    take("deck", deck)
+    take("offered", offered)
+    take("relic", relics)
+    take("event", events)
+    take("neow", neow, act=1)
+    take("ancient_offer", ancient_offers)
+    take("boss", bosses)
+    take("elite", elites)
+    if ancient:
+        take("ancient", ancient, act=ancient_act)
+    for part in shop.split(","):
+        part = part.strip().upper()
+        if not part:
+            continue
+        kind = "shop_card"
+        if ":" in part and part.split(":", 1)[0] in ("CARD", "RELIC", "POTION"):
+            prefix, part = part.split(":", 1)
+            kind = f"shop_{prefix.lower()}"
+        take(kind, part)
+    if len(out) > MAX_PREDICATES:
+        raise PredicateError(f"at most {MAX_PREDICATES} predicates")
+    return out
+
+
+def _legacy_compatible(predicates: list, chars: tuple, build_id, players, win) -> bool:
+    """The pre-index scan only knew deck, offered, relic, event and one
+    ancient with an act, for one character; anything else has no legacy
+    answer and must wait for the index rather than return a looser one."""
+    if build_id or players or win or len(chars) > 1:
+        return False
+    for pr in predicates:
+        if pr.kind not in ("deck", "offered", "relic", "event", "ancient"):
+            return False
+        if pr.floor_max is not None or pr.floor_min is not None or pr.seat is not None:
+            return False
+        if pr.act is not None and pr.kind != "ancient":
+            return False
+    return True
+
+
 @router.get("/seed-finder", tags=["Runs"], include_in_schema=False)
 @limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_finder", "20/minute"))
 def get_seed_finder(
@@ -2086,12 +2390,146 @@ def get_seed_finder(
     events: str = "",
     ancient: str | None = None,
     ancient_act: int | None = Query(None, ge=1, le=4),
+    neow: str = "",
+    ancient_offers: str = "",
+    bosses: str = "",
+    elites: str = "",
+    shop: str = "",
+    build_id: str | None = Query(None, max_length=24),
+    players: int | None = Query(None, ge=1, le=4),
+    win: bool = False,
+    evidence: Literal["recorded", "predicted", "any"] = "any",
     limit: int = Query(20, ge=1, le=50),
 ):
-    """Find community runs whose seed demonstrated a combination of content:
-    cards kept or offered (ID or ID:count), relics obtained, events seen, and
-    ancient relic offers. Ranked by how many predicates matched."""
+    """Find seeds the community has demonstrably played into a combination
+    of content: Neow and ancient offers, card rewards (by act, floor window
+    and count), relics, events, bosses, elites, shop stock and final deck,
+    scoped to a game version, lobby size and characters. Every hit is one
+    real run that showed all of it. Ranked by predicates matched, then
+    wins, then runs."""
     import hashlib
+
+    from ..services import seed_profiles
+    from ..services.seed_profiles import PredicateError
+
+    chars = tuple(
+        sorted(
+            {
+                c.strip()
+                for c in (character or "")
+                .upper()
+                .replace("+", ",")
+                .replace(" ", ",")
+                .split(",")
+                if c.strip() and c.strip() != "ANY"
+            }
+        )
+    )
+    try:
+        predicates = _seed_predicates(
+            deck,
+            offered,
+            relics,
+            events,
+            ancient,
+            ancient_act,
+            neow,
+            bosses,
+            elites,
+            shop,
+            ancient_offers,
+        )
+    except PredicateError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    if not predicates:
+        response.headers["Cache-Control"] = "no-store"
+        return {"available": False, "detail": "give me at least one predicate"}
+
+    if not seed_profiles.available():
+        if evidence != "predicted" and _legacy_compatible(
+            predicates, chars, build_id, players, win
+        ):
+            found = _legacy_seed_finder(
+                chars[0] if chars else None,
+                deck,
+                offered,
+                relics,
+                events,
+                ancient,
+                ancient_act,
+                limit,
+            )
+            response.headers["Cache-Control"] = "no-store"
+            if not found or found.get("available") is False:
+                return {
+                    "available": False,
+                    "detail": (found or {}).get("detail") or "error",
+                }
+            return {"available": True, **found}
+        response.headers["Cache-Control"] = "no-store"
+        response.status_code = 503
+        return {"available": False, "detail": "index_building"}
+
+    key_src = "|".join(
+        [
+            seed_profiles.generation(),
+            ",".join(chars),
+            ";".join(pr.label() for pr in predicates),
+            build_id or "",
+            str(players or ""),
+            str(win),
+            evidence,
+            str(limit),
+        ]
+    )
+    cache_key = "seedfind2:" + hashlib.sha1(key_src.encode()).hexdigest()
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    try:
+        found = seed_profiles.search(
+            predicates,
+            seed_profiles.Scope(
+                build_id=build_id or None,
+                player_count=players,
+                characters=chars,
+                win_only=win,
+                evidence=evidence,
+            ),
+            limit=limit,
+        )
+    except PredicateError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    except Exception:
+        logger.exception("seed finder index query failed")
+        response.headers["Cache-Control"] = "no-store"
+        response.status_code = 503
+        return {"available": False, "detail": "index_error"}
+    payload = {
+        "available": True,
+        "engine": "index",
+        "index": seed_profiles.meta(),
+        **found,
+    }
+    app_cache.set_json(cache_key, payload, ttl_seconds=600)
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return payload
+
+
+def _legacy_seed_finder(
+    char: str | None,
+    deck: str,
+    offered: str,
+    relics: str,
+    events: str,
+    ancient: str | None,
+    ancient_act: int | None,
+    limit: int,
+) -> dict:
+    """The live Mongo scan the finder used before the seed index existed;
+    still the answer on a box that has not pulled the index yet, and only
+    for the queries it can express."""
 
     def _counted(raw: str) -> list[tuple[str, int]]:
         out = []
@@ -2106,42 +2544,118 @@ def get_seed_finder(
                 out.append((pid, 1))
         return out
 
-    char = (character or "").strip().upper() or None
-    deck_cards = _counted(deck)
-    offered_cards = _counted(offered)
-    relic_ids = sorted(r.strip().upper() for r in relics.split(",") if r.strip())
-    event_ids = sorted(e.strip().upper() for e in events.split(",") if e.strip())
-    ancient_id = (ancient or "").strip().upper() or None
-    if not (deck_cards or offered_cards or relic_ids or event_ids or ancient_id):
-        response.headers["Cache-Control"] = "no-store"
-        return {"available": False, "detail": "give me at least one predicate"}
-
-    key_src = f"{char}|{deck_cards}|{offered_cards}|{relic_ids}|{event_ids}|{ancient_id}|{ancient_act}|{limit}"
-    cache_key = "seedfind:" + hashlib.sha1(key_src.encode()).hexdigest()
-    cached = app_cache.get_json(cache_key)
-    if cached is not None:
-        response.headers["Cache-Control"] = "public, max-age=300"
-        return cached
     from ..services.seed_finder import find_seeds
 
     try:
         found = find_seeds(
             char,
-            deck_cards,
-            offered_cards,
-            relic_ids,
-            event_ids,
-            ancient_id,
+            _counted(deck),
+            _counted(offered),
+            sorted(r.strip().upper() for r in relics.split(",") if r.strip()),
+            sorted(e.strip().upper() for e in events.split(",") if e.strip()),
+            (ancient or "").strip().upper() or None,
             ancient_act,
             limit=limit,
         )
     except Exception:
         logger.warning("seed finder failed", exc_info=True)
-        found = None
-    if found is None:
+        return {"available": False, "detail": "error"}
+    if found:
+        found["engine"] = "legacy"
+    return found or {"available": False, "detail": "error"}
+
+
+@router.get("/seed-finder/meta", tags=["Runs"], include_in_schema=False)
+def get_seed_finder_meta(request: Request, response: Response):
+    from ..services import seed_profiles
+
+    response.headers["Cache-Control"] = "public, max-age=300"
+    return {"available": seed_profiles.available(), **seed_profiles.meta()}
+
+
+@router.get("/seed-finder/random", tags=["Runs"], include_in_schema=False)
+@limiter.limit(
+    rate_limit_config.endpoint_limit("runs.get_seed_finder_random", "10/minute")
+)
+def get_seed_finder_random(
+    request: Request,
+    response: Response,
+    build_id: str | None = Query(None, max_length=24),
+    min_runs: int = Query(1, ge=1, le=100),
+):
+    from ..services import seed_profiles
+
+    response.headers["Cache-Control"] = "no-store"
+    if not seed_profiles.available():
+        response.status_code = 503
+        return {"available": False, "detail": "index_building"}
+    try:
+        pick = seed_profiles.random_seed(build_id or None, min_runs)
+    except Exception:
+        logger.exception("seed finder random failed")
+        response.status_code = 503
+        return {"available": False, "detail": "index_error"}
+    if pick is None:
+        return {"available": False, "detail": "no_seed"}
+    return {"available": True, "seed": pick}
+
+
+@router.get("/seed-finder/seed/{seed}", tags=["Runs"], include_in_schema=False)
+@limiter.limit(rate_limit_config.endpoint_limit("runs.get_seed_profile", "20/minute"))
+def get_seed_profile(
+    request: Request,
+    response: Response,
+    seed: str,
+    build_id: str | None = Query(None, max_length=24),
+    party: str = Query("", max_length=64),
+):
+    """Everything the community's runs have shown for one seed: Neow offers,
+    bosses, ancients, events, card rewards by floor, relics, final deck,
+    shop stock and the act 1 map when a replay recorded it, per version and
+    party."""
+    from ..services import seed_profiles
+
+    cleaned = seed_profiles.normalize_seed(seed)
+    if not cleaned:
+        raise HTTPException(status_code=422, detail="seed is required")
+    characters = tuple(
+        ch.strip().upper() for ch in party.replace("+", ",").split(",") if ch.strip()
+    )
+    if characters and (
+        not 1 <= len(characters) <= 4
+        or any(
+            ch not in {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+            for ch in characters
+        )
+    ):
+        raise HTTPException(status_code=422, detail="unsupported party")
+    if not seed_profiles.available() and not (build_id and characters):
         response.headers["Cache-Control"] = "no-store"
-        return {"available": False}
-    payload = {"available": True, **found}
+        response.status_code = 503
+        return {
+            "available": False,
+            "detail": "index_building",
+            "seed": cleaned,
+            "variants": [],
+        }
+    cache_key = f"seedprofile:{seed_profiles.generation()}:{cleaned}:{build_id or ''}:{'+'.join(characters)}"
+    cached = app_cache.get_json(cache_key)
+    if cached is not None:
+        response.headers["Cache-Control"] = "public, max-age=300"
+        return cached
+    try:
+        prof = seed_profiles.profile(cleaned, build_id or None, characters)
+    except Exception:
+        logger.exception("seed profile failed")
+        response.headers["Cache-Control"] = "no-store"
+        response.status_code = 503
+        return {
+            "available": False,
+            "detail": "index_error",
+            "seed": cleaned,
+            "variants": [],
+        }
+    payload = {"available": True, **prof}
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
@@ -2371,3 +2885,39 @@ def get_pick_coach(
     app_cache.set_json(cache_key, payload, ttl_seconds=600)
     response.headers["Cache-Control"] = "public, max-age=300"
     return payload
+
+
+@router.post("/{run_hash}/hidden", tags=["Runs"])
+def set_hidden_from_run_page(request: Request, run_hash: str, body: dict | None = None):
+    """Hide or unhide a run from its own page or the owner's profile.
+
+    Admins can hide any run. The run's owner can hide and unhide their own
+    runs, except a run a moderator hid. Hidden runs stay on the site but drop
+    out of leaderboards, stats and the run browser. Body: {"hidden": bool}.
+    """
+    from ..services.auth_jwt import get_current_user, is_admin
+
+    user = get_current_user(request)
+    if not user:
+        raise HTTPException(status_code=401, detail="Sign in to hide a run")
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=503, detail="run hiding needs MongoDB")
+    hidden = bool((body or {}).get("hidden", True))
+    from ..services.runs_db_mongo import set_run_hidden, set_run_hidden_by_owner
+
+    if is_admin(user):
+        result = set_run_hidden(run_hash.strip(), hidden)
+        logger.info(
+            "admin set hidden=%s on run %s from its page: %s", hidden, run_hash, result
+        )
+    else:
+        result = set_run_hidden_by_owner(run_hash.strip(), user, hidden)
+        if result.get("error"):
+            status = {
+                "Run not found": 404,
+                "You do not own this run": 403,
+                "This run was hidden by a moderator": 409,
+            }.get(result["error"], 400)
+            raise HTTPException(status_code=status, detail=result["error"])
+    _load_run_blob_cached.cache_clear()
+    return {"run_hash": run_hash, "hidden": hidden, **result}

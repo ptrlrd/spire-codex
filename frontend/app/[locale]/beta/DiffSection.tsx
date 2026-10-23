@@ -46,7 +46,13 @@ export function SummaryBadge({
   );
 }
 
-function EntryLink({ entry, className }: { entry: DiffEntry; className: string }) {
+function EntryLink({
+  entry,
+  className,
+}: {
+  entry: DiffEntry;
+  className: string;
+}) {
   if (!entry.href) return <span className={className}>{entry.name}</span>;
   return (
     <Link href={entry.href} className={`${className} hover:underline`}>
@@ -81,12 +87,18 @@ export default function DiffSection({
           >
             &gt;
           </span>
-          <span className="font-semibold text-[var(--text-primary)]">{label}</span>
+          <span className="font-semibold text-[var(--text-primary)]">
+            {label}
+          </span>
           <span className="text-xs text-[var(--text-muted)]">
             {total} {total === 1 ? "change" : "changes"}
           </span>
         </div>
-        <SummaryBadge added={added.length} removed={removed.length} changed={changed.length} />
+        <SummaryBadge
+          added={added.length}
+          removed={removed.length}
+          changed={changed.length}
+        />
       </div>
 
       {open && (
@@ -129,9 +141,14 @@ export default function DiffSection({
               <ul className="space-y-1.5">
                 {changed.map((e) => (
                   <li key={e.id} className="text-sm">
-                    <EntryLink entry={e} className="font-medium text-[var(--text-secondary)]" />
+                    <EntryLink
+                      entry={e}
+                      className="font-medium text-[var(--text-secondary)]"
+                    />
                     {e.note && (
-                      <span className="text-[11px] text-[var(--text-muted)] ml-2">{e.note}</span>
+                      <span className="text-[11px] text-[var(--text-muted)] ml-2">
+                        {e.note}
+                      </span>
                     )}
                   </li>
                 ))}

@@ -12,7 +12,10 @@ import { clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -22,21 +25,38 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/acts/${id}`;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`, {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Act Not Found"), noIndex: true });
+    const res = await fetch(
+      `${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`,
+      {
+        next: { revalidate: 3600 },
+      },
+    );
+    if (!res.ok)
+      return buildPageMetadata({
+        locale,
+        path,
+        title: t("Act Not Found"),
+        noIndex: true,
+      });
     const act = await res.json();
     const desc = `${act.num_rooms || "?"} rooms, ${act.bosses.length} bosses, ${act.encounters.length} encounters, ${act.events.length} events.`;
     return buildPageMetadata({
       locale,
       path,
-      title: `${act.name} - ${t("Act")}`,
-      description: clipMetaDescription(t("act_meta_description", { name: act.name, desc })),
+      title: act.name,
+      entityType: t("Act"),
+      description: clipMetaDescription(
+        t("act_meta_description", { name: act.name, desc }),
+      ),
       ogType: "article",
     });
   } catch {
-    return buildPageMetadata({ locale, path, title: t("Database"), noIndex: true });
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Database"),
+      noIndex: true,
+    });
   }
 }
 
@@ -47,9 +67,12 @@ export default async function Page({ params }: Props) {
   let act = null;
   let apiUnreachable = false;
   try {
-    const res = await fetchEntityRes(`${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`, {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetchEntityRes(
+      `${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`,
+      {
+        next: { revalidate: 3600 },
+      },
+    );
     if (res.ok) {
       act = await res.json();
       jsonLd = buildDetailPageJsonLd({
@@ -60,7 +83,10 @@ export default async function Page({ params }: Props) {
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-          { name: uiText(locale, "Reference"), href: localePath(locale, "/reference") },
+          {
+            name: uiText(locale, "Reference"),
+            href: localePath(locale, "/reference"),
+          },
           { name: act.name, href: localePath(locale, `/acts/${id}`) },
         ],
       });

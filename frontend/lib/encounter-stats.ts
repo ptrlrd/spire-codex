@@ -1,5 +1,7 @@
 const API_INTERNAL =
-  process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 export interface EncounterStat {
   encounter_id: string;
@@ -8,6 +10,7 @@ export interface EncounterStat {
   act?: number | string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
 }
@@ -25,9 +28,12 @@ export async function fetchEncounterStats(
 ): Promise<EncounterStat[]> {
   if (!encounterIds?.length) return [];
   try {
-    const res = await fetch(`${API_INTERNAL}/api/runs/encounter-stats?limit=200`, {
-      next: { revalidate: 600 },
-    });
+    const res = await fetch(
+      `${API_INTERNAL}/api/runs/encounter-stats?limit=200`,
+      {
+        next: { revalidate: 600 },
+      },
+    );
     if (!res.ok) return [];
     const data = (await res.json()) as { encounters?: EncounterStat[] };
     // The endpoint can return several rows for one encounter_id (tiny beta /

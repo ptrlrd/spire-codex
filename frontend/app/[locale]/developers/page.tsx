@@ -5,25 +5,47 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
-import { buildSoftwareApplicationJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
-import TinyCard, { TINY_CARD_POOL_COLOR, TINY_CARD_BANNER_COLOR } from "@/app/components/TinyCard";
+import {
+  buildSoftwareApplicationJsonLd,
+  buildBreadcrumbJsonLd,
+} from "@/lib/jsonld";
+import TinyCard, {
+  TINY_CARD_POOL_COLOR,
+  TINY_CARD_BANNER_COLOR,
+} from "@/app/components/TinyCard";
 
 const API_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 // Live tier caps from the admin-tunable config, so this table can't drift from
 // what the limiter actually enforces. Falls back to the shipped defaults.
-async function fetchRateLimits(): Promise<{ browse: string; tiers: Record<string, string> }> {
+async function fetchRateLimits(): Promise<{
+  browse: string;
+  tiers: Record<string, string>;
+}> {
   const fallback = {
     browse: "300/minute",
-    tiers: { general: "15/minute", registered: "60/minute", academia: "100/minute", paid: "120/minute" },
+    tiers: {
+      general: "15/minute",
+      registered: "60/minute",
+      academia: "100/minute",
+      paid: "120/minute",
+    },
   };
   try {
-    const res = await fetch(`${API_INTERNAL}/api/rate-limits`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API_INTERNAL}/api/rate-limits`, {
+      next: { revalidate: 300 },
+    });
     if (!res.ok) return fallback;
     const d = await res.json();
-    return { browse: d.browse || fallback.browse, tiers: { ...fallback.tiers, ...(d.tiers || {}) } };
+    return {
+      browse: d.browse || fallback.browse,
+      tiers: { ...fallback.tiers, ...(d.tiers || {}) },
+    };
   } catch {
     return fallback;
   }
@@ -32,7 +54,11 @@ async function fetchRateLimits(): Promise<{ browse: string; tiers: Record<string
 function tierRows(t: TFn): { key: string; label: string; how: string }[] {
   return [
     { key: "general", label: t("No API key"), how: "" },
-    { key: "registered", label: t("Registered User"), how: t("create one on your profile") },
+    {
+      key: "registered",
+      label: t("Registered User"),
+      how: t("create one on your profile"),
+    },
     { key: "academia", label: t("Academia"), how: t("granted on request") },
     { key: "paid", label: t("Paid"), how: t("supporters") },
   ];
@@ -43,7 +69,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/developers", title: t("Developer API & Tooltip Widget"), description: t("developers_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/developers",
+    title: t("Developer API & Tooltip Widget"),
+    description: t("developers_meta_description"),
+  });
 }
 
 export default async function DevelopersPage({ params }: Props) {
@@ -67,7 +98,9 @@ export default async function DevelopersPage({ params }: Props) {
         {heading}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        {t("Build tools, bots, and content with Spire Codex data. Everything is free and open.")}
+        {t(
+          "Build tools, bots, and content with Spire Codex data. Everything is free and open.",
+        )}
       </p>
 
       {/* Tooltip Widget */}
@@ -76,7 +109,9 @@ export default async function DevelopersPage({ params }: Props) {
           {t("Tooltip Widget")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Add Wowhead-style hoverable tooltips for cards, relics, and potions to any website. One script tag, zero dependencies.")}
+          {t(
+            "Add Wowhead-style hoverable tooltips for cards, relics, and potions to any website. One script tag, zero dependencies.",
+          )}
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -110,7 +145,9 @@ export default async function DevelopersPage({ params }: Props) {
               { syntax: "[[achievement:Minimalist]]", desc: t("Achievement") },
             ].map((item) => (
               <div key={item.syntax} className="flex gap-4">
-                <code className="text-[var(--accent-gold)] whitespace-nowrap">{item.syntax}</code>
+                <code className="text-[var(--accent-gold)] whitespace-nowrap">
+                  {item.syntax}
+                </code>
                 <span className="text-[var(--text-muted)]">{item.desc}</span>
               </div>
             ))}
@@ -123,12 +160,20 @@ export default async function DevelopersPage({ params }: Props) {
           </h3>
           <div className="space-y-2 text-sm">
             <div>
-              <code className="text-[var(--accent-gold)]">SpireCodex.scan()</code>
-              <span className="text-[var(--text-muted)] ml-2">{t("Re-scan the page for new [[...]] patterns (for SPAs)")}</span>
+              <code className="text-[var(--accent-gold)]">
+                SpireCodex.scan()
+              </code>
+              <span className="text-[var(--text-muted)] ml-2">
+                {t("Re-scan the page for new [[...]] patterns (for SPAs)")}
+              </span>
             </div>
             <div>
-              <code className="text-[var(--accent-gold)]">SpireCodex.scan(element)</code>
-              <span className="text-[var(--text-muted)] ml-2">{t("Scan a specific DOM element")}</span>
+              <code className="text-[var(--accent-gold)]">
+                SpireCodex.scan(element)
+              </code>
+              <span className="text-[var(--text-muted)] ml-2">
+                {t("Scan a specific DOM element")}
+              </span>
             </div>
           </div>
         </div>
@@ -140,7 +185,9 @@ export default async function DevelopersPage({ params }: Props) {
           {t("Changelog Widget")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Embed a compact, interactive changelog viewer showing Spire Codex update history with version switching.")}
+          {t(
+            "Embed a compact, interactive changelog viewer showing Spire Codex update history with version switching.",
+          )}
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -153,8 +200,12 @@ export default async function DevelopersPage({ params }: Props) {
           </pre>
           <div className="space-y-2 text-sm mt-3">
             <div className="flex gap-4">
-              <code className="text-[var(--accent-gold)] whitespace-nowrap">data-version=&quot;1.0.4&quot;</code>
-              <span className="text-[var(--text-muted)]">{t("Show a specific version (default: latest)")}</span>
+              <code className="text-[var(--accent-gold)] whitespace-nowrap">
+                data-version=&quot;1.0.4&quot;
+              </code>
+              <span className="text-[var(--text-muted)]">
+                {t("Show a specific version (default: latest)")}
+              </span>
             </div>
           </div>
         </div>
@@ -166,10 +217,21 @@ export default async function DevelopersPage({ params }: Props) {
           {t("REST API")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Full game database accessible via a public REST API. No authentication required: the per-IP website allowance covers browsing and casual calls, and keyless API usage gets the base rate below.")}{" "}
-          {t("For scripts and tools, create an API key and send it as the X-API-Key header.")}{" "}
-          <Link href="/profile" className="text-[var(--accent-gold)] hover:underline">{t("Create one on your profile page.")}</Link>{" "}
-          {t("A key buckets your requests by identity instead of IP (stable across networks, never shared with other users behind the same NAT) and gives you usage tracking; its tier cap applies per endpoint. Responses carry X-RateLimit-Remaining / X-RateLimit-Reset so you can pace requests.")}
+          {t(
+            "Full game database accessible via a public REST API. No authentication required: the per-IP website allowance covers browsing and casual calls, and keyless API usage gets the base rate below.",
+          )}{" "}
+          {t(
+            "For scripts and tools, create an API key and send it as the X-API-Key header.",
+          )}{" "}
+          <Link
+            href="/profile"
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {t("Create one on your profile page.")}
+          </Link>{" "}
+          {t(
+            "A key buckets your requests by identity instead of IP (stable across networks, never shared with other users behind the same NAT) and gives you usage tracking; its tier cap applies per endpoint. Responses carry X-RateLimit-Remaining / X-RateLimit-Reset so you can pace requests.",
+          )}
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -180,22 +242,39 @@ export default async function DevelopersPage({ params }: Props) {
             <table className="w-full text-sm">
               <tbody>
                 <tr className="border-b border-[var(--border-subtle)]">
-                  <td className="py-2 pr-4 text-[var(--text-primary)]">{t("Website Traffic")}</td>
-                  <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">{limits.browse}</td>
-                  <td className="py-2 text-[var(--text-muted)]">{t("per IP")}</td>
+                  <td className="py-2 pr-4 text-[var(--text-primary)]">
+                    {t("Website Traffic")}
+                  </td>
+                  <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">
+                    {limits.browse}
+                  </td>
+                  <td className="py-2 text-[var(--text-muted)]">
+                    {t("per IP")}
+                  </td>
                 </tr>
                 {tiers.map((tier) => (
-                  <tr key={tier.key} className="border-b border-[var(--border-subtle)] last:border-0">
-                    <td className="py-2 pr-4 text-[var(--text-primary)]">{tier.label}</td>
-                    <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">{limits.tiers[tier.key]}</td>
-                    <td className="py-2 text-[var(--text-muted)]">{tier.how}</td>
+                  <tr
+                    key={tier.key}
+                    className="border-b border-[var(--border-subtle)] last:border-0"
+                  >
+                    <td className="py-2 pr-4 text-[var(--text-primary)]">
+                      {tier.label}
+                    </td>
+                    <td className="py-2 pr-4 font-mono text-[var(--accent-gold)]">
+                      {limits.tiers[tier.key]}
+                    </td>
+                    <td className="py-2 text-[var(--text-muted)]">
+                      {tier.how}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p className="mt-3 text-xs text-[var(--text-muted)]">
-            {t("All caps count per endpoint: the table is your allowance on each route, not a global pool. A few heavy endpoints carry their own budgets that apply to every caller regardless of key (see the run export below; the language ZIP is 10/hour). Watch X-RateLimit-Remaining and back off on 429 (Retry-After is set).")}
+            {t(
+              "All caps count per endpoint: the table is your allowance on each route, not a global pool. A few heavy endpoints carry their own budgets that apply to every caller regardless of key (see the run export below; the language ZIP is 10/hour). Watch X-RateLimit-Remaining and back off on 429 (Retry-After is set).",
+            )}
           </p>
         </div>
 
@@ -204,24 +283,47 @@ export default async function DevelopersPage({ params }: Props) {
             {t("Bulk run export")}
           </h3>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-sm text-[var(--text-secondary)] overflow-x-auto mb-3">
-            <code>{`GET /api/runs/export?limit=1000&start=2026-06-01T00:00:00Z`}</code>
+            <code>{`GET /api/exports/runs?limit=1000&start=2026-06-01T00:00:00Z`}</code>
           </pre>
           <p className="text-sm text-[var(--text-secondary)] mb-2">
             {t("Streams official runs as JSONL, one run per line.")}
           </p>
           <div className="space-y-1.5 text-sm text-[var(--text-secondary)] mb-2">
             <div>
-              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">limit</code>{" "}
-              {t("Bounds the page; a full page returns a cursor for the next one.")}
+              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">
+                limit
+              </code>{" "}
+              {t(
+                "Bounds the page; a full page returns a cursor for the next one.",
+              )}
             </div>
             <div>
-              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">start</code> /{" "}
-              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">end</code>{" "}
-              {t("Restrict to a half-open submitted-at window. Keep them constant while paging; the cursor does not embed them.")}
+              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">
+                start
+              </code>{" "}
+              /{" "}
+              <code className="text-xs bg-[var(--bg-primary)] px-1.5 py-0.5 rounded">
+                end
+              </code>{" "}
+              {t(
+                "Restrict to a half-open submitted-at window. Keep them constant while paging; the cursor does not embed them.",
+              )}
             </div>
           </div>
           <p className="text-xs text-[var(--text-muted)]">
-            {t("This endpoint has its own budget of 120 credits per hour, shared by keyed and anonymous callers alike: a paginated request costs 1 credit, an unbounded pull (no limit) costs 60. Sustained syncing therefore works best as paginated pulls spaced ~30s apart; on 429, honor Retry-After and resume with the same cursor.")}
+            {t(
+              "This endpoint has its own budget of 120 credits per hour, shared by keyed and anonymous callers alike: a paginated request costs 1 credit, an unbounded pull (no limit) costs 60. Sustained syncing therefore works best as paginated pulls spaced ~30s apart; on 429, honor Retry-After and resume with the same cursor.",
+            )}
+          </p>
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            {t(
+              "Need the whole corpus? A call with no parameters redirects to a static file rebuilt once a day, /exports/runs-latest.jsonl.gz, with the same line shape; /api/exports/runs/manifest reports when it was generated and how many runs it holds. Each line carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
+            )}
+          </p>
+          <p className="text-xs text-[var(--text-muted)] mt-2">
+            {t(
+              "Just one patch? /api/exports/runs?version=v0.111.0 redirects to a per-version static file from the manifest's versions map, /exports/runs-v0.111.0.jsonl.gz; combined with limit and cursor it pages a single patch instead.",
+            )}
           </p>
         </div>
 
@@ -231,123 +333,811 @@ export default async function DevelopersPage({ params }: Props) {
           </h3>
           <code className="text-[var(--accent-gold)]">{API_URL}</code>
           <p className="text-xs text-[var(--text-muted)] mt-2">
-            {t("Beta channel (unreleased content from the Steam beta branch): add this to any entity endpoint:")}{" "}
+            {t(
+              "Beta channel (unreleased content from the Steam beta branch): add this to any entity endpoint:",
+            )}{" "}
             <code className="text-[var(--text-secondary)]">?channel=beta</code>.{" "}
             {t("Current beta version:")}{" "}
-            <code className="text-[var(--text-secondary)]">/api/beta/version</code>.{" "}
-            {t("Full diff against main:")}{" "}
-            <code className="text-[var(--text-secondary)]">/api/beta/diff</code>.
+            <code className="text-[var(--text-secondary)]">
+              /api/beta/version
+            </code>
+            . {t("Full diff against main:")}{" "}
+            <code className="text-[var(--text-secondary)]">/api/beta/diff</code>
+            .
           </p>
         </div>
+
+        <p className="text-xs text-[var(--text-muted)] mb-4">
+          {t(
+            "The community stats pages were reorganized: /community-stats, /leaderboards/metrics, /charts, and the /meta page now live under /stats, /leaderboards/elo is /top-players, and run submission moved to /runs/submit. Old URLs redirect.",
+          )}
+        </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
           <h3 className="text-sm font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
             {t("Endpoints")}
           </h3>
           <p className="text-xs text-[var(--text-muted)] mb-3">
-            {t("Full interactive docs (auto-generated from the backend, always current):")} <a href={`${API_URL}/docs`} className="text-[var(--accent-gold)] hover:underline">/docs</a>
+            {t(
+              "Full interactive docs (auto-generated from the backend, always current):",
+            )}{" "}
+            <a
+              href={`${API_URL}/docs`}
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              /docs
+            </a>
           </p>
           {[
             {
               category: t("Entities"),
               endpoints: [
-                { method: "GET", path: "/api/cards", desc: t("All cards (filter: color, type, rarity, keyword, tag, spawns, search)") },
-                { method: "GET", path: "/api/cards/{id}", desc: t("Single card") },
-                { method: "GET", path: "/api/characters", desc: t("All characters") },
-                { method: "GET", path: "/api/characters/{id}", desc: t("Single character") },
-                { method: "GET", path: "/api/relics", desc: t("All relics (filter: rarity, pool, ancient, search)") },
-                { method: "GET", path: "/api/relics/{id}", desc: t("Single relic") },
-                { method: "GET", path: "/api/potions", desc: t("All potions (filter: rarity, pool, search)") },
-                { method: "GET", path: "/api/potions/{id}", desc: t("Single potion") },
-                { method: "GET", path: "/api/monsters", desc: t("All monsters (filter: type, search)") },
-                { method: "GET", path: "/api/monsters/{id}", desc: t("Single monster") },
-                { method: "GET", path: "/api/powers", desc: t("All powers (filter: type, stack_type, search)") },
-                { method: "GET", path: "/api/powers/{id}", desc: t("Single power") },
-                { method: "GET", path: "/api/events", desc: t("All events (filter: type, act, search)") },
-                { method: "GET", path: "/api/events/{id}", desc: t("Single event") },
-                { method: "GET", path: "/api/encounters", desc: t("All encounters (filter: room_type, act, search)") },
-                { method: "GET", path: "/api/encounters/{id}", desc: t("Single encounter") },
-                { method: "GET", path: "/api/enchantments", desc: t("All enchantments") },
-                { method: "GET", path: "/api/enchantments/{id}", desc: t("Single enchantment") },
-                { method: "GET", path: "/api/keywords", desc: t("Card keywords") },
-                { method: "GET", path: "/api/keywords/{id}", desc: t("Single keyword") },
-                { method: "GET", path: "/api/intents", desc: t("All intent types") },
-                { method: "GET", path: "/api/intents/{id}", desc: t("Single intent") },
+                {
+                  method: "GET",
+                  path: "/api/cards",
+                  desc: t(
+                    "All cards (filter: color, type, rarity, keyword, tag, spawns, search)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/cards/{id}",
+                  desc: t("Single card"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/characters",
+                  desc: t("All characters"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/characters/{id}",
+                  desc: t("Single character"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/relics",
+                  desc: t("All relics (filter: rarity, pool, ancient, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/relics/{id}",
+                  desc: t("Single relic"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/potions",
+                  desc: t("All potions (filter: rarity, pool, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/potions/{id}",
+                  desc: t("Single potion"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/monsters",
+                  desc: t("All monsters (filter: type, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/monsters/{id}",
+                  desc: t("Single monster"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/powers",
+                  desc: t("All powers (filter: type, stack_type, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/powers/{id}",
+                  desc: t("Single power"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/events",
+                  desc: t("All events (filter: type, act, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/events/{id}",
+                  desc: t("Single event"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/encounters",
+                  desc: t("All encounters (filter: room_type, act, search)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/encounters/{id}",
+                  desc: t("Single encounter"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/enchantments",
+                  desc: t("All enchantments"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/enchantments/{id}",
+                  desc: t("Single enchantment"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/keywords",
+                  desc: t("Card keywords"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/keywords/{id}",
+                  desc: t("Single keyword"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/intents",
+                  desc: t("All intent types"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/intents/{id}",
+                  desc: t("Single intent"),
+                },
                 { method: "GET", path: "/api/orbs", desc: t("All orb types") },
-                { method: "GET", path: "/api/orbs/{id}", desc: t("Single orb") },
-                { method: "GET", path: "/api/afflictions", desc: t("Affliction types") },
-                { method: "GET", path: "/api/afflictions/{id}", desc: t("Single affliction") },
-                { method: "GET", path: "/api/modifiers", desc: t("Custom mode modifiers") },
-                { method: "GET", path: "/api/modifiers/{id}", desc: t("Single modifier") },
-                { method: "GET", path: "/api/achievements", desc: t("All achievements") },
-                { method: "GET", path: "/api/achievements/{id}", desc: t("Single achievement") },
+                {
+                  method: "GET",
+                  path: "/api/orbs/{id}",
+                  desc: t("Single orb"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/afflictions",
+                  desc: t("Affliction types"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/afflictions/{id}",
+                  desc: t("Single affliction"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/modifiers",
+                  desc: t("Custom mode modifiers"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/modifiers/{id}",
+                  desc: t("Single modifier"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/achievements",
+                  desc: t("All achievements"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/achievements/{id}",
+                  desc: t("Single achievement"),
+                },
                 { method: "GET", path: "/api/badges", desc: t("All badges") },
-                { method: "GET", path: "/api/badges/{id}", desc: t("Single badge") },
+                {
+                  method: "GET",
+                  path: "/api/badges/{id}",
+                  desc: t("Single badge"),
+                },
                 { method: "GET", path: "/api/epochs", desc: t("All epochs") },
-                { method: "GET", path: "/api/epochs/{id}", desc: t("Single epoch") },
+                {
+                  method: "GET",
+                  path: "/api/epochs/{id}",
+                  desc: t("Single epoch"),
+                },
                 { method: "GET", path: "/api/stories", desc: t("All stories") },
-                { method: "GET", path: "/api/stories/{id}", desc: t("Single story") },
+                {
+                  method: "GET",
+                  path: "/api/stories/{id}",
+                  desc: t("Single story"),
+                },
                 { method: "GET", path: "/api/acts", desc: t("All acts") },
-                { method: "GET", path: "/api/acts/{id}", desc: t("Single act") },
-                { method: "GET", path: "/api/ascensions", desc: t("All ascension levels") },
-                { method: "GET", path: "/api/ascensions/{id}", desc: t("Single ascension") },
-                { method: "GET", path: "/api/glossary", desc: t("All glossary terms") },
-                { method: "GET", path: "/api/glossary/{id}", desc: t("Single term") },
+                {
+                  method: "GET",
+                  path: "/api/acts/{id}",
+                  desc: t("Single act"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/ascensions",
+                  desc: t("All ascension levels"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/ascensions/{id}",
+                  desc: t("Single ascension"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/glossary",
+                  desc: t("All glossary terms"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/glossary/{id}",
+                  desc: t("Single term"),
+                },
               ],
             },
             {
               category: t("Aggregations & Lookups"),
               endpoints: [
                 { method: "GET", path: "/api/stats", desc: t("Entity counts") },
-                { method: "GET", path: "/api/ancient-pools", desc: t("All ancient relic pools with conditions") },
-                { method: "GET", path: "/api/ancient-pools/{id}", desc: t("Pools for a single ancient") },
-                { method: "GET", path: "/api/unlocks", desc: t("Unlockable entities grouped by type with epoch context") },
-                { method: "GET", path: "/api/history/{entity_type}/{entity_id}", desc: t("Per-entity version history from changelogs") },
-                { method: "GET", path: "/api/update-history/{entity_type}/{entity_id}", desc: t("Per-entity game-patch update history") },
-                { method: "GET", path: "/api/names/{entity_type}/{entity_id}", desc: t("Cross-language name lookup for an entity") },
-                { method: "GET", path: "/api/search", desc: t("Unified site search across entities, reference entries, mechanics, guides, and news (q, lang)") },
-                { method: "GET", path: "/api/changelogs", desc: t("All changelogs") },
-                { method: "GET", path: "/api/changelogs/recent-additions", desc: t("Newest entities surfaced for the homepage band") },
-                { method: "GET", path: "/api/changelogs/{tag}", desc: t("Single changelog by tag (e.g. v1.0.20)") },
-                { method: "GET", path: "/api/news", desc: t("Steam announcements (mirrored locally for permanence)") },
-                { method: "GET", path: "/api/news/{gid}", desc: t("Single news article with sanitized body") },
-                { method: "GET", path: "/api/versions", desc: t("Available beta data versions for the version picker") },
+                {
+                  method: "GET",
+                  path: "/api/ancient-pools",
+                  desc: t("All ancient relic pools with conditions"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/ancient-pools/{id}",
+                  desc: t("Pools for a single ancient"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/unlocks",
+                  desc: t(
+                    "Unlockable entities grouped by type with epoch context",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/history/{entity_type}/{entity_id}",
+                  desc: t("Per-entity version history from changelogs"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/update-history/{entity_type}/{entity_id}",
+                  desc: t("Per-entity game-patch update history"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/names/{entity_type}/{entity_id}",
+                  desc: t("Cross-language name lookup for an entity"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/search",
+                  desc: t(
+                    "Unified site search across entities, reference entries, mechanics, guides, news, site pages and image files, with typo tolerance (q, lang)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/search/semantic",
+                  desc: t(
+                    "Meaning-based entity search, same item shape as /api/search (q, limit); empty when the feature is off",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/merchant/config",
+                  desc: t("Merchant pricing config extracted from the game"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/constants",
+                  desc: t(
+                    "Mechanics constants: room odds, gold ranges, ascension tuning",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/sections",
+                  desc: t("Index of the mechanics pages"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mechanics/sections/{slug}",
+                  desc: t(
+                    "One mechanics page as markdown with template tokens resolved",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/changelogs",
+                  desc: t("All changelogs"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/changelogs/recent-additions",
+                  desc: t("Newest entities surfaced for the homepage band"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/changelogs/{tag}",
+                  desc: t("Single changelog by tag (e.g. v1.0.20)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/news",
+                  desc: t(
+                    "Steam announcements (mirrored locally for permanence)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/news/{gid}",
+                  desc: t("Single news article with sanitized body"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/versions",
+                  desc: t(
+                    "Available beta data versions for the version picker",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/news/codex",
+                  desc: t("Spire Codex site news, newest first"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/news/codex/{slug}",
+                  desc: t("One site news entry"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/announcements",
+                  desc: t("Active site banner messages"),
+                },
+              ],
+            },
+            {
+              category: t("Languages"),
+              endpoints: [
+                {
+                  method: "GET",
+                  path: "/api/languages",
+                  desc: t("Available languages with display names"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/translations",
+                  desc: t(
+                    "Translation maps for filter values and UI strings (lang)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations",
+                  desc: t(
+                    "The game's own localization tables as ICU MessageFormat, all of them or the ones named in ?tables= (max 50; unknown names are 404)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations/tables",
+                  desc: t("Names of the available localization tables"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/localizations/{table}",
+                  desc: t("One localization table"),
+                },
               ],
             },
             {
               category: t("Community & Submissions"),
               endpoints: [
-                { method: "GET", path: "/api/guides", desc: t("All guides (filter: category, difficulty, tag, search)") },
-                { method: "GET", path: "/api/guides/{slug}", desc: t("Single guide with rendered markdown") },
-                { method: "POST", path: "/api/guides", desc: t("Submit a guide (Discord webhook, rate-limited)") },
-                { method: "POST", path: "/api/runs", desc: t("Submit a run for community stats and leaderboards") },
-                { method: "POST", path: "/api/runs/claim", desc: t("Attach a username to previously-submitted runs by hash") },
-                { method: "GET", path: "/api/runs/list", desc: t("Browse submitted runs with filters and pagination (incl. ascension_min/ascension_max and winrate_min/winrate_max by submitter win rate — the content brackets)") },
-                { method: "GET", path: "/api/runs/leaderboard", desc: t("Run leaderboards (fastest, highest_ascension); filter by character, players, game_mode, ascension_min, winrate_min (the content brackets)") },
-                { method: "GET", path: "/api/runs/shared/{run_hash}", desc: t("Single submitted run by hash (rate-limited)") },
-                { method: "GET", path: "/api/runs/stats", desc: t("Aggregate community stats (filter by character, ascension, username)") },
-                { method: "GET", path: "/api/runs/community-stats", desc: t("Fun community datasets: event decision splits, deadliest encounters, win rates by ascension/character, records") },
-                { method: "GET", path: "/api/charts/meta", desc: t("Chart registry for the /charts explorer: available charts, filters, splits, and run stats") },
-                { method: "GET", path: "/api/charts/{chart}", desc: t("One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75 on frame charts, plus per-chart params)") },
-                { method: "GET", path: "/api/beta/diff", desc: t("What the current beta adds, changes, and removes per entity type; powers every BETA label") },
-                { method: "GET", path: "/api/beta/version", desc: t("The current beta version") },
-                { method: "GET", path: "/api/runs/scores/{type}", desc: t("Codex Score + Codex Elo per entity (cards/relics/potions); ?bracket=a10|wr30|wr50|wr75 grades within a content bracket (the in-game mod sends the same via ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)") },
-                { method: "GET", path: "/api/runs/leaderboard/seed-rank", desc: t("Seed + global standing for one seed (?seed=&steam_id=); rank fields are null without a winning run") },
-                { method: "POST", path: "/api/auth/steam/ticket", desc: t("Exchange a Steamworks web auth ticket for the site JWT (in-game silent sign-in); 503 until the server has a Steam key") },
-                { method: "GET", path: "/api/runs/metrics/{type}", desc: t("Dense metrics table: Codex Score, Codex Elo, win rate, pick rate, per-act splits; ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 (the content brackets)") },
-                { method: "GET", path: "/api/runs/versions", desc: t("Distinct game build IDs that have submitted runs") },
-                { method: "POST", path: "/api/feedback", desc: t("Submit feedback (Discord webhook)") },
+                {
+                  method: "GET",
+                  path: "/api/guides",
+                  desc: t(
+                    "All guides (filter: category, difficulty, tag, search)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/guides/{slug}",
+                  desc: t("Single guide with rendered markdown"),
+                },
+                {
+                  method: "POST",
+                  path: "/api/guides",
+                  desc: t("Submit a guide (Discord webhook, rate-limited)"),
+                },
+                {
+                  method: "POST",
+                  path: "/api/runs",
+                  desc: t(
+                    "Submit a run for community stats and leaderboards. The run is attached to an account only with Authorization: Bearer <jwt>; a bare steam_id is kept as a hint",
+                  ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/runs/claim",
+                  desc: t(
+                    "Attach the signed-in account to previously-submitted anonymous runs by hash",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/list",
+                  desc:
+                    t(
+                      "Browse submitted runs with filters and pagination (incl. ascension_min/ascension_max and winrate_min/winrate_max by submitter win rate — the content brackets)",
+                    ) +
+                    " " +
+                    t(
+                      "Each row carries player_token, a stable pseudonymous id for the submitting account, null on anonymous runs.",
+                    ) +
+                    " " +
+                    t(
+                      "total_is_lower_bound is true when the exact count ran out of time and total is a capped lower bound.",
+                    ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/leaderboard",
+                  desc: t(
+                    "Run leaderboards (fastest, highest_ascension); filter by character, players, game_mode, ascension_min, winrate_min (the content brackets), build_id",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/shared/{run_hash}",
+                  desc: t("Single submitted run by hash (rate-limited)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/stats",
+                  desc: t(
+                    "Aggregate community stats (filter by character, ascension, username)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/community-stats",
+                  desc: t(
+                    "The /stats hub dataset: event decision splits, deadliest encounters, win rates by ascension/character, records. Takes the same bracket keys as the metrics tables; an unknown bracket returns HTTP 400",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/meta",
+                  desc: t(
+                    "Chart registry for the /stats/charts explorer: available charts, filters, splits, and run stats",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/{chart}",
+                  desc: t(
+                    "One pre-aggregated chart (filter: players, ascension, game_mode, username, split, bracket=a10|wr30|wr50|wr75, build_id, plus per-chart params). A saved chart id from the chart builder returns that saved chart instead",
+                  ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/charts",
+                  desc: t(
+                    "Save a chart spec to your profile (bearer token, 100 per account)",
+                  ),
+                },
+                {
+                  method: "PATCH",
+                  path: "/api/charts/{id}",
+                  desc: t(
+                    "Update the title, visibility or spec of your own saved chart; DELETE removes it",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/mine",
+                  desc: t("Your saved charts, newest first (bearer token)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/charts/public",
+                  desc: t("Newest public saved charts (limit)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/tierlists/shared/{share_id}",
+                  desc: t("Public read-only view of a shared tier list"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/beta/diff",
+                  desc: t(
+                    "What the current beta adds, changes, and removes per entity type; powers every BETA label",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/beta/version",
+                  desc: t("The current beta version"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/scores/{type}",
+                  desc: t(
+                    "Codex Score + Codex Elo per entity (cards/relics/potions); ?bracket= grades within a run bracket (a10|wr30|wr50|wr75, a game version, or any metrics bracket; unknown is HTTP 400) (the in-game mod sends the same via ?stat_filter=a10|a10_wr30|a10_wr50|a10_wr75); relics accept ?act=1|2|3 to rank by acquisition act; ?character= switches to that character's slice (entries gain a scope field)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/leaderboard/seed-rank",
+                  desc: t(
+                    "Seed + global standing for one seed (?seed=&steam_id=); rank fields are null without a winning run",
+                  ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/auth/steam/ticket",
+                  desc: t(
+                    "Exchange a Steamworks web auth ticket for the site JWT (in-game silent sign-in); 503 until the server has a Steam key",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/{type}",
+                  desc: t(
+                    "Dense metrics table for cards/relics/potions, one row per entity: Codex Score, win_rate with a Wilson 95% win_rate_ci, hold_rate, lift and lift_n over the floor-adjusted expectation (null under 20 seats), Codex Elo and pick_rate from free choice screens for cards and relics, a wax block on relics (Toy Box copies split out), and used/use_rate on potions. Counts are per seat, so a 4P run is four seats; the response carries total_runs, total_seats, total_wins and data_through. ?bracket=all|solo|2p|3p|4p|a10|daily|custom|wr30|wr50|wr75 or a composite like solo:standard; ?character= switches to that character's slice (rows gain per-character Elo and Pick%). An unknown bracket returns HTTP 400",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/shops",
+                  desc: t(
+                    "Shop shelf table, one row per card, relic or potion: seen, bought, buy_rate, and the buyers' win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/events",
+                  desc: t(
+                    "Event option table: chosen, share of that event's choices, win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/metrics/campfires",
+                  desc: t(
+                    "Rest-site choice table (rest, smith, and the rest) with a localized name per ?lang=: chosen, share, low_hp_share, win_rate, win_rate_ci and lift. Same bracket keys as the other metrics tables",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/versions",
+                  desc: t("Distinct game build IDs that have submitted runs"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/leaderboard/rank/{run_hash}",
+                  desc: t(
+                    "Rank of one winning run within its ladder (category)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/leaderboards/elo",
+                  desc: t(
+                    "Top players by Codex Elo over solo A10 standard runs, refreshed nightly; powers /top-players (limit, min_runs)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/stats/{type}/{id}",
+                  desc: t(
+                    "Community stats for one card, relic or potion, with per-bracket and per-character splits",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/stats/{type}/{id}/history",
+                  desc: t(
+                    "Daily Codex Score and Elo history for one entity (bracket=all|a10|wr30|wr50|wr75)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/top/{type}/{character}",
+                  desc: t(
+                    "Most-picked entities of a type for one character (limit)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-stats",
+                  desc: t(
+                    "Per-encounter appearances, fatal rate, avg damage and turns, per character too (act, room_type, multiplayer, bracket, build_id, encounter, page, limit)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-series",
+                  desc: t(
+                    "The given encounters (max 20) rolled up per bracket and per recent game version",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/pulse",
+                  desc: t("Community run and win totals plus data_through"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/snapshot-status",
+                  desc: t("Whether the stats are loaded or rebuilding"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/{run_hash}/similar",
+                  desc: t(
+                    "Nearest winning solo decks to a run and what they took that it didn't",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/archetypes",
+                  desc: t("Community deck archetypes, clustered nightly"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/encounter-builds",
+                  desc: t(
+                    "Which archetypes die to an encounter and which walk past it (encounter)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/deck-advisor",
+                  desc: t(
+                    "What the winning decks nearest a partial deck carry that it doesn't yet (character, cards, relics)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/pick-coach",
+                  desc: t(
+                    "Nearest archetypes for a partial deck and a score per offered card (character, cards, relics, offer, target)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/pairings/{item_type}/{item_id}",
+                  desc: t(
+                    "Cards, relics and potions that show up in the same runs as this item",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/draft-recs/{item_type}/{item_id}",
+                  desc: t(
+                    "Cards players most often draft when they already hold this item",
+                  ),
+                },
+                {
+                  method: "POST",
+                  path: "/api/draft-advice",
+                  desc: t("Rank the offered cards for the current deck"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/replays",
+                  desc: t(
+                    "Runs with a replay to watch; same filters and row shape as /api/runs/list plus replay_url",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/replays/summary",
+                  desc: t(
+                    "How many replays are watchable, overall and per character",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/runs/{run_hash}/replay",
+                  desc: t(
+                    "The stored replay journal as gzip; POST uploads one for a run you own, DELETE removes it",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/players/{username}/insights",
+                  desc: t(
+                    "One player's public insights with community comparison; 404 for unknown or private profiles",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/players/{username}/stats",
+                  desc: t(
+                    "One player's own cards, relics, potions, events, shops and campfire stats with personal Lift; same filters and privacy as insights",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/presence/active",
+                  desc: t("Live runs from the in-game mod, deepest first"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/presence/{steam_id}",
+                  desc: t("One player's live run; 404 when they aren't in one"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/thanks",
+                  desc: t(
+                    "GitHub contributors, special thanks, and public supporters",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/mod/latest",
+                  desc: t(
+                    "Latest mod build and the game version it was verified against",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/rate-limits",
+                  desc: t("The public rate-limit tiers"),
+                },
+                {
+                  method: "POST",
+                  path: "/api/feedback",
+                  desc: t("Submit feedback (Discord webhook)"),
+                },
               ],
             },
             {
               category: t("Bulk Downloads"),
               endpoints: [
-                { method: "GET", path: "/api/runs/export", desc: t("JSONL stream of official runs (limit/start/end/cursor pagination; own 120-credits-per-hour budget - see Bulk run export above)") },
-                { method: "GET", path: "/api/exports/{lang}", desc: t("ZIP of all entity JSON for one language (10/hour)") },
-                { method: "GET", path: "/api/images", desc: t("Image gallery categories") },
-                { method: "GET", path: "/api/images/search", desc: t("Search images by filename") },
-                { method: "GET", path: "/api/images/game/{version}/{category}/browse", desc: t("Paged folder browsing of a full asset dump (path, offset, limit)") },
-                { method: "GET", path: "/api/images/game/{version}/{category}/download", desc: t("ZIP of one dump folder's files (path; capped at 2000 files)") },
+                {
+                  method: "GET",
+                  path: "/api/exports/runs",
+                  desc: t(
+                    "JSONL stream of official runs (limit/start/end/cursor pagination; own 120-credits-per-hour budget - see Bulk run export above)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/exports/runs/manifest",
+                  desc: t(
+                    "When the daily full run dump was generated and how many runs it holds",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/exports/{lang}",
+                  desc: t("ZIP of all entity JSON for one language (10/hour)"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/images",
+                  desc: t("Image gallery categories"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/images/search",
+                  desc: t("Search images by filename"),
+                },
+                {
+                  method: "GET",
+                  path: "/api/images/game/{version}/{category}/browse",
+                  desc: t(
+                    "Paged folder browsing of a full asset dump (path, offset, limit)",
+                  ),
+                },
+                {
+                  method: "GET",
+                  path: "/api/images/game/{version}/{category}/download",
+                  desc: t(
+                    "ZIP of one dump folder's files (path; capped at 2000 files)",
+                  ),
+                },
               ],
             },
           ].map((group) => (
@@ -357,10 +1147,21 @@ export default async function DevelopersPage({ params }: Props) {
               </h4>
               <div className="space-y-1.5 text-sm font-mono">
                 {group.endpoints.map((ep) => (
-                  <div key={ep.path} className="flex items-start gap-3">
-                    <span className={`${ep.method === "POST" ? "text-info" : "text-success"} w-10 flex-shrink-0`}>{ep.method}</span>
-                    <span className="text-[var(--text-primary)]">{ep.path}</span>
-                    <span className="text-[var(--text-muted)] font-sans text-xs ml-auto text-right">{ep.desc}</span>
+                  <div
+                    key={`${ep.method} ${ep.path}`}
+                    className="flex items-start gap-3"
+                  >
+                    <span
+                      className={`${ep.method === "GET" ? "text-success" : "text-info"} w-12 flex-shrink-0`}
+                    >
+                      {ep.method}
+                    </span>
+                    <span className="text-[var(--text-primary)]">
+                      {ep.path}
+                    </span>
+                    <span className="text-[var(--text-muted)] font-sans text-xs ml-auto text-right">
+                      {ep.desc}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -373,10 +1174,13 @@ export default async function DevelopersPage({ params }: Props) {
             {t("Multi-Language")}
           </h3>
           <p className="text-sm text-[var(--text-secondary)] mb-2">
-            {t("Add this query parameter to any endpoint:")} <code className="text-[var(--accent-gold)]">?lang=jpn</code>. {t("15 languages supported:")}
+            {t("Add this query parameter to any endpoint:")}{" "}
+            <code className="text-[var(--accent-gold)]">?lang=jpn</code>.{" "}
+            {t("15 languages supported:")}
           </p>
           <p className="text-xs text-[var(--text-muted)]">
-            eng, deu, esp, fra, ita, jpn, kor, pol, ptb, rus, spa, tha, tur, zhs, zht
+            eng, deu, esp, fra, ita, jpn, kor, pol, ptb, rus, spa, tha, tur,
+            zhs, zht
           </p>
         </div>
 
@@ -401,7 +1205,9 @@ for card in cards:
               </pre>
             </div>
             <div>
-              <p className="text-xs text-[var(--text-muted)] mb-1">JavaScript</p>
+              <p className="text-xs text-[var(--text-muted)] mb-1">
+                JavaScript
+              </p>
               <pre className="bg-[var(--bg-primary)] rounded-lg p-3 text-sm text-[var(--text-secondary)] overflow-x-auto">
                 <code>{`const res = await fetch("${API_URL}/api/relics?pool=ironclad");
 const relics = await res.json();
@@ -418,10 +1224,15 @@ console.log(relics.map(r => r.name));`}</code>
           {t("Tiny Card Sprite")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Reproduce the game's in-run card thumbnail (used on the Run History / Game Over screens) in any web project. Six PNG layers composited with CSS mask-image, no canvas, no WebGL, just tinted sprites.")}{" "}
+          {t(
+            "Reproduce the game's in-run card thumbnail (used on the Run History / Game Over screens) in any web project. Six PNG layers composited with CSS mask-image, no canvas, no WebGL, just tinted sprites.",
+          )}{" "}
           {t("Colors come straight from the decompiled game code:")}{" "}
           <code className="text-[var(--accent-gold)]">NTinyCard</code>,{" "}
-          <code className="text-[var(--accent-gold)]">CardPoolModel.DeckEntryCardColor</code>.
+          <code className="text-[var(--accent-gold)]">
+            CardPoolModel.DeckEntryCardColor
+          </code>
+          .
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -430,17 +1241,62 @@ console.log(relics.map(r => r.name));`}</code>
           </h3>
           <div className="flex flex-wrap items-end gap-6">
             {[
-              { color: "ironclad", type: "Attack", rarity: "Common", label: "Ironclad / Attack / Common" },
-              { color: "silent", type: "Skill", rarity: "Uncommon", label: "Silent / Skill / Uncommon" },
-              { color: "defect", type: "Power", rarity: "Rare", label: "Defect / Power / Rare" },
-              { color: "necrobinder", type: "Skill", rarity: "Rare", label: "Necrobinder / Skill / Rare" },
-              { color: "regent", type: "Attack", rarity: "Uncommon", label: "Regent / Attack / Uncommon" },
-              { color: "curse", type: "Curse", rarity: "Curse", label: "Curse" },
-              { color: "event", type: "Skill", rarity: "Event", label: "Event" },
-              { color: "quest", type: "Skill", rarity: "Quest", label: "Quest" },
+              {
+                color: "ironclad",
+                type: "Attack",
+                rarity: "Common",
+                label: "Ironclad / Attack / Common",
+              },
+              {
+                color: "silent",
+                type: "Skill",
+                rarity: "Uncommon",
+                label: "Silent / Skill / Uncommon",
+              },
+              {
+                color: "defect",
+                type: "Power",
+                rarity: "Rare",
+                label: "Defect / Power / Rare",
+              },
+              {
+                color: "necrobinder",
+                type: "Skill",
+                rarity: "Rare",
+                label: "Necrobinder / Skill / Rare",
+              },
+              {
+                color: "regent",
+                type: "Attack",
+                rarity: "Uncommon",
+                label: "Regent / Attack / Uncommon",
+              },
+              {
+                color: "curse",
+                type: "Curse",
+                rarity: "Curse",
+                label: "Curse",
+              },
+              {
+                color: "event",
+                type: "Skill",
+                rarity: "Event",
+                label: "Event",
+              },
+              {
+                color: "quest",
+                type: "Skill",
+                rarity: "Quest",
+                label: "Quest",
+              },
             ].map((c) => (
               <div key={c.label} className="flex flex-col items-center gap-1.5">
-                <TinyCard color={c.color} type={c.type} rarity={c.rarity} className="w-16 h-16" />
+                <TinyCard
+                  color={c.color}
+                  type={c.type}
+                  rarity={c.rarity}
+                  className="w-16 h-16"
+                />
                 <span className="text-[10px] text-[var(--text-muted)] text-center leading-tight">
                   {c.label}
                 </span>
@@ -454,7 +1310,9 @@ console.log(relics.map(r => r.name));`}</code>
             {t("Sprite assets")}
           </h3>
           <p className="text-sm text-[var(--text-secondary)] mb-3">
-            {t("All 10 PNGs are served with CORS enabled, drop the base URL in front of each filename. Each sprite is 128×128, RGBA, white-on-transparent (meant to be tinted via CSS).")}
+            {t(
+              "All 10 PNGs are served with CORS enabled, drop the base URL in front of each filename. Each sprite is 128×128, RGBA, white-on-transparent (meant to be tinted via CSS).",
+            )}
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
             <code>{`${API_URL}/static/images/ui/run_history_card/
@@ -477,7 +1335,10 @@ console.log(relics.map(r => r.name));`}</code>
           </h3>
           <p className="text-xs text-[var(--text-muted)] mb-3">
             {t("Source:")} <code>CardPoolModel.DeckEntryCardColor</code>.{" "}
-            {t("Match these against the {field} field returned by {endpoint}.", { field: "color", endpoint: "/api/cards" })}
+            {t(
+              "Match these against the {field} field returned by {endpoint}.",
+              { field: "color", endpoint: "/api/cards" },
+            )}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-1.5 text-sm font-mono">
             {Object.entries(TINY_CARD_POOL_COLOR).map(([pool, hex]) => (
@@ -508,7 +1369,9 @@ console.log(relics.map(r => r.name));`}</code>
                   className="inline-block w-4 h-4 rounded border border-[var(--border-subtle)]"
                   style={{ backgroundColor: hex }}
                 />
-                <span className="text-[var(--text-primary)] w-24">{rarity}</span>
+                <span className="text-[var(--text-primary)] w-24">
+                  {rarity}
+                </span>
                 <span className="text-[var(--text-muted)]">{hex}</span>
               </div>
             ))}
@@ -520,8 +1383,9 @@ console.log(relics.map(r => r.name));`}</code>
             {t("Minimal HTML + CSS recipe")}
           </h3>
           <p className="text-xs text-[var(--text-muted)] mb-3">
-            {t("Portrait filename:")} <code>attack</code> = {t("Attack cards")}, <code>power</code> = {t("Power cards")},
-            {" "}<code>skill</code> = {t("everything else (Skill, Status, Curse, …)")}
+            {t("Portrait filename:")} <code>attack</code> = {t("Attack cards")},{" "}
+            <code>power</code> = {t("Power cards")}, <code>skill</code> ={" "}
+            {t("everything else (Skill, Status, Curse, …)")}
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
             <code>{`<div class="tiny-card" style="
@@ -593,16 +1457,24 @@ console.log(relics.map(r => r.name));`}</code>
             {t("Full card images")}
           </h3>
           <p className="text-[var(--text-secondary)] mb-3">
-            {t("Every card from {endpoint} includes two ready-to-use URLs for the full game-rendered card (frame, art, banner, and text, exactly as it looks in-game). Ancient cards are animated webps.", { endpoint: "/api/cards" })}
+            {t(
+              "Every card from {endpoint} includes two ready-to-use URLs for the full game-rendered card (frame, art, banner, and text, exactly as it looks in-game). Ancient cards are animated webps.",
+              { endpoint: "/api/cards" },
+            )}
           </p>
           <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 mb-3">
             <li>
-              <code className="text-[var(--accent-gold)]">image_url_card</code> —{" "}
-              {t("The base card. null for the one card with no render (mad_science); fall back to image_url (the portrait art) there.")}
+              <code className="text-[var(--accent-gold)]">image_url_card</code>{" "}
+              —{" "}
+              {t(
+                "The base card. null for the one card with no render (mad_science); fall back to image_url (the portrait art) there.",
+              )}
             </li>
             <li>
-              <code className="text-[var(--accent-gold)]">image_url_card_upg</code> —{" "}
-              {t("The upgraded card. null when the card has no upgrade.")}
+              <code className="text-[var(--accent-gold)]">
+                image_url_card_upg
+              </code>{" "}
+              — {t("The upgraded card. null when the card has no upgrade.")}
             </li>
           </ul>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
@@ -615,8 +1487,11 @@ console.log(relics.map(r => r.name));`}</code>
 }`}</code>
           </pre>
           <p className="text-sm text-[var(--text-muted)] mt-3">
-            {t("Localized renders live under a language subfolder, for example:")}{" "}
-            <code>cards-full/stable/jpn/bash.webp</code>. {t("All 15 languages are available.")}
+            {t(
+              "Localized renders live under a language subfolder, for example:",
+            )}{" "}
+            <code>cards-full/stable/jpn/bash.webp</code>.{" "}
+            {t("All 15 languages are available.")}
           </p>
         </div>
 
@@ -625,7 +1500,9 @@ console.log(relics.map(r => r.name));`}</code>
             {t("Enchanted card renders")}
           </h3>
           <p className="text-[var(--text-secondary)] mb-3">
-            {t("Every card is also rendered with each enchantment it can legally take, exactly as the in-game enchant preview draws it (badge, amount, and added card text). The URLs follow one pattern:")}
+            {t(
+              "Every card is also rendered with each enchantment it can legally take, exactly as the in-game enchant preview draws it (badge, amount, and added card text). The URLs follow one pattern:",
+            )}
           </p>
           <pre className="bg-[var(--bg-primary)] rounded-lg p-4 text-xs text-[var(--text-secondary)] overflow-x-auto">
             <code>{`https://cdn.spire-codex.com/cards-full/stable/ench/{enchantment}/{card}.webp        // English, base
@@ -637,15 +1514,21 @@ https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</c
           </pre>
           <ul className="text-sm text-[var(--text-secondary)] space-y-1.5 mt-3">
             <li>
-              <code className="text-[var(--accent-gold)]">{`{enchantment}`}</code> /{" "}
-              <code className="text-[var(--accent-gold)]">{`{card}`}</code>:{" "}
-              {t("lowercase ids from /api/enchantments and /api/cards (e.g. sharp, corrupted, sown).")}
+              <code className="text-[var(--accent-gold)]">{`{enchantment}`}</code>{" "}
+              / <code className="text-[var(--accent-gold)]">{`{card}`}</code>:{" "}
+              {t(
+                "lowercase ids from /api/enchantments and /api/cards (e.g. sharp, corrupted, sown).",
+              )}
             </li>
             <li>
-              {t("Only valid card and enchantment combinations exist (the export uses the game's own applicability rules), so an invalid combo is a 404. The card_type / applicable_to fields on /api/enchantments describe which cards qualify.")}
+              {t(
+                "Only valid card and enchantment combinations exist (the export uses the game's own applicability rules), so an invalid combo is a 404. The card_type / applicable_to fields on /api/enchantments describe which cards qualify.",
+              )}
             </li>
             <li>
-              {t("Base and upgraded variants exist for every combo, in all 14 languages, with the enchantment text fully localized.")}
+              {t(
+                "Base and upgraded variants exist for every combo, in all 14 languages, with the enchantment text fully localized.",
+              )}
             </li>
           </ul>
         </div>
@@ -657,7 +1540,9 @@ https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</c
           {t("Data Exports")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Download all game data as a single ZIP archive. Each archive contains JSON files for every entity type (cards, relics, monsters, powers, and more).")}
+          {t(
+            "Download all game data as a single ZIP archive. Each archive contains JSON files for every entity type (cards, relics, monsters, powers, and more).",
+          )}
         </p>
 
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-5 mb-4">
@@ -696,7 +1581,9 @@ https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</c
           {t("Interactive API Docs")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Full Swagger/OpenAPI documentation with try-it-out functionality.")}
+          {t(
+            "Full Swagger/OpenAPI documentation with try-it-out functionality.",
+          )}
         </p>
         <a
           href={`${API_URL}/docs`}
@@ -714,7 +1601,9 @@ https://cdn.spire-codex.com/cards-full/stable/jpn/ench/corrupted/anger.webp`}</c
           {t("Open Source")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("Spire Codex is open source. The data extraction pipeline, API, and frontend are all available on GitHub.")}
+          {t(
+            "Spire Codex is open source. The data extraction pipeline, API, and frontend are all available on GitHub.",
+          )}
         </p>
         <a
           href="https://github.com/ptrlrd/spire-codex"

@@ -14,9 +14,13 @@ export default function TierListHome() {
 
   return (
     <div className="mx-auto max-w-3xl px-4 py-8">
-      <h1 className="text-2xl font-bold text-[var(--text-primary)]">{t("Tier List Maker")}</h1>
+      <h1 className="text-2xl font-bold text-[var(--text-primary)]">
+        {t("Tier List Maker")}
+      </h1>
       <p className="mt-1 text-[var(--text-secondary)]">
-        {t("Drag and drop to rank the game's cards, relics, potions, and monsters. Sign in with Steam to save your lists and get a shareable link.")}
+        {t(
+          "Drag and drop to rank the game's cards, relics, potions, and monsters. Sign in with Steam to save your lists and get a shareable link.",
+        )}
       </p>
 
       <div className="mt-6 flex flex-wrap items-end gap-3 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
@@ -43,7 +47,9 @@ export default function TierListHome() {
       </div>
 
       <div className="mt-8">
-        <h2 className="text-lg font-semibold text-[var(--text-primary)]">{t("Your tier lists")}</h2>
+        <h2 className="text-lg font-semibold text-[var(--text-primary)]">
+          {t("Your tier lists")}
+        </h2>
         <MyTierLists />
       </div>
     </div>

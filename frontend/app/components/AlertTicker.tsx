@@ -17,7 +17,8 @@ import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const MOD_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911";
+const MOD_URL =
+  "https://steamcommunity.com/sharedfiles/filedetails/?id=3747536911";
 const SLIDE_MS = 5000;
 
 interface Announcement {
@@ -40,7 +41,8 @@ function renderAnnouncement(message: string): ReactNode[] {
   const re = /\[([^\]]+)\]\(([^)\s]+)\)/g;
   let last = 0;
   let m: RegExpExecArray | null;
-  const linkClass = "font-medium text-success underline hover:text-on-fill transition-colors";
+  const linkClass =
+    "font-medium text-success underline hover:text-on-fill transition-colors";
   while ((m = re.exec(message)) !== null) {
     if (m.index > last) out.push(message.slice(last, m.index));
     const [, label, href] = m;
@@ -50,7 +52,13 @@ function renderAnnouncement(message: string): ReactNode[] {
           {label}
         </Link>
       ) : (
-        <a key={m.index} href={href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+        <a
+          key={m.index}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkClass}
+        >
           {label}
         </a>
       ),
@@ -71,7 +79,9 @@ export default function AlertTicker() {
   useEffect(() => {
     fetch(`${API}/api/announcements`)
       .then((r) => (r.ok ? r.json() : null))
-      .then((d: { items?: Announcement[] } | null) => setAnnouncements(d?.items ?? []))
+      .then((d: { items?: Announcement[] } | null) =>
+        setAnnouncements(d?.items ?? []),
+      )
       .catch(() => {});
   }, []);
 
@@ -95,7 +105,8 @@ export default function AlertTicker() {
             </span>{" "}
             <span className="hidden sm:inline">
               {t(
-                "Get the in-game overlay with live card lookups and one-click run uploads.")}{" "}
+                "Get the in-game overlay with live card lookups and one-click run uploads.",
+              )}{" "}
             </span>
             <Link
               prefetch={false}
@@ -125,7 +136,8 @@ export default function AlertTicker() {
             </span>{" "}
             <span className="hidden sm:inline">
               {t(
-                "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner")}
+                "Get it on the Steam Workshop with in-game stats contribution, auto uploads, and route planner",
+              )}
               .{" "}
             </span>
             <a
@@ -153,15 +165,34 @@ export default function AlertTicker() {
             crossOrigin="anonymous"
           />
           <span className="flex-1 min-w-0 text-sm text-success italic line-clamp-2">
-            &ldquo;{t("I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider")}{" "}
-            <a
-              href="https://www.patreon.com/cw/SpireCodex"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
-            >
-              {t("supporting us on Patreon")}
-            </a>
+            &ldquo;
+            {t(
+              "I haven't had a visitor in a millennia! If you wish to support Spire Codex, consider",
+            )}{" "}
+            {t("supporting us on {patreon} or {kofi}", {
+              patreon: "\u0000patreon\u0000",
+              kofi: "\u0000kofi\u0000",
+            })
+              .split("\u0000")
+              .map((part, i) =>
+                part === "patreon" || part === "kofi" ? (
+                  <a
+                    key={i}
+                    href={
+                      part === "patreon"
+                        ? "https://www.patreon.com/cw/SpireCodex"
+                        : "https://ko-fi.com/spirecodex"
+                    }
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-medium not-italic text-success underline hover:text-on-fill transition-colors"
+                  >
+                    {part === "patreon" ? "Patreon" : "Ko-fi"}
+                  </a>
+                ) : (
+                  <span key={i}>{part}</span>
+                ),
+              )}
             . {t("Servants! Fetch tea for")}{" "}
             <Link
               prefetch={false}
@@ -222,24 +253,35 @@ export default function AlertTicker() {
       onMouseLeave={() => setPaused(false)}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[52px] flex items-center gap-3">
-        <div key={active.key} className="sc-ticker-fade flex flex-1 min-w-0 items-center gap-3">
+        <div
+          key={active.key}
+          className="sc-ticker-fade flex flex-1 min-w-0 items-center gap-3"
+        >
           {active.node}
         </div>
         {count > 1 && (
-          <div className="flex items-center gap-1.5 flex-shrink-0">
+          <div className="flex items-center flex-shrink-0">
             {slots.map((s, i) => (
               <button
                 key={s.key}
                 type="button"
                 onClick={() => setIndex(i)}
-                aria-label={t("Show announcement {i} of {n}", { i: i + 1, n: count })}
+                aria-label={t("Show announcement {i} of {n}", {
+                  i: i + 1,
+                  n: count,
+                })}
                 aria-current={i === safeIndex}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === safeIndex
-                    ? "w-4 bg-on-fill/80"
-                    : "w-1.5 bg-on-fill/30 hover:bg-on-fill/50"
-                }`}
-              />
+                className="group flex h-6 min-w-6 items-center justify-center"
+              >
+                <span
+                  aria-hidden="true"
+                  className={`block h-1.5 rounded-full transition-all ${
+                    i === safeIndex
+                      ? "w-4 bg-on-fill/80"
+                      : "w-1.5 bg-on-fill/30 group-hover:bg-on-fill/50"
+                  }`}
+                />
+              </button>
             ))}
           </div>
         )}

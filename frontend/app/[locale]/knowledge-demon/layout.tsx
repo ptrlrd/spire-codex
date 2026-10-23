@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
-const title = "Discord Bot - Knowledge Demon - Slay the Spire 2 (sts2) | Spire Codex";
+const title =
+  "Discord Bot - Knowledge Demon - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
   "Discord bot for Slay the Spire 2 communities. Card, relic, monster, and potion lookups plus moderation tools.";
 

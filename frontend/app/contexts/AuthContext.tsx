@@ -1,6 +1,13 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, useCallback, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useCallback,
+  ReactNode,
+} from "react";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -18,6 +25,22 @@ interface User {
   needs_email: boolean;
   is_admin?: boolean;
   profile_private?: boolean;
+  overwolf_id?: string | null;
+  overwolf_tier?: "common" | "rare" | "ancient" | null;
+  supporter?: {
+    active: boolean;
+    sources: {
+      source: string;
+      since?: string | null;
+      expires_at?: string | null;
+    }[];
+    since?: string | null;
+    expires_at?: string | null;
+    thanks_eligible?: boolean;
+    listed: boolean;
+    theme?: string | null;
+    theme_public?: boolean;
+  };
 }
 
 interface AuthContextType {
@@ -61,13 +84,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (token) {
         headers["Authorization"] = `Bearer ${token}`;
       }
-      const res = await fetch(`${API_BASE}/api/auth/me`, {
+      const res = await fetch(`${API_BASE}/api/auth/session`, {
         credentials: "include",
         headers,
       });
       if (res.ok) {
         const data = await res.json();
-        setUser(data);
+        setUser(data.user ?? null);
       } else {
         setUser(null);
       }
@@ -101,14 +124,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ token }),
-      }).catch(() => {}).finally(() => fetchMe());
+      })
+        .catch(() => {})
+        .finally(() => fetchMe());
     } else {
       fetchMe();
     }
     // Run only once on mount
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
 
   const logout = useCallback(async () => {
     localStorage.removeItem("spire_token");

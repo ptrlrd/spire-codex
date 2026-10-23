@@ -20,7 +20,9 @@ const SECTIONS = [
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getT();
   const title = `${t("Page Not Found")} | ${SITE_NAME}`;
-  const description = t("The page you were looking for doesn't exist on Spire Codex.");
+  const description = t(
+    "The page you were looking for doesn't exist on Spire Codex.",
+  );
   return {
     title,
     description,
@@ -34,8 +36,12 @@ export default async function NotFound() {
   return (
     <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-3">{t("Page Not Found")}</h1>
-        <p className="text-[var(--text-muted)] mb-8">{t("The page you were looking for doesn't exist on Spire Codex.")}</p>
+        <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-3">
+          {t("Page Not Found")}
+        </h1>
+        <p className="text-[var(--text-muted)] mb-8">
+          {t("The page you were looking for doesn't exist on Spire Codex.")}
+        </p>
         <Link
           href="/"
           className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-[var(--accent-gold)] text-[var(--bg-primary)] font-semibold hover:opacity-90 transition-opacity"
@@ -46,7 +52,11 @@ export default async function NotFound() {
           <p>{t("Or browse the database:")}</p>
           <p className="flex flex-wrap gap-3 justify-center">
             {SECTIONS.map(([href, label]) => (
-              <Link key={href} href={href} className="hover:text-[var(--accent-gold)] underline">
+              <Link
+                key={href}
+                href={href}
+                className="hover:text-[var(--accent-gold)] underline"
+              >
                 {t(label)}
               </Link>
             ))}

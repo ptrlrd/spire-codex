@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
+import {
+  SITE_URL,
+  SITE_NAME,
+  DEFAULT_OG_IMAGE,
+  buildLanguageAlternates,
+} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { characterHex } from "@/lib/character-colors";
@@ -8,7 +13,10 @@ import { getT } from "@/lib/i18n-server";
 import { gameNameFor, localeOf, localePath } from "@/lib/locale";
 import { LANG_NAMES } from "@/lib/languages";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 export const revalidate = 600;
 
@@ -28,7 +36,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `${SITE_URL}${localePath(locale, "/archetypes")}`, languages: buildLanguageAlternates("/archetypes") },
+    alternates: {
+      canonical: `${SITE_URL}${localePath(locale, "/archetypes")}`,
+      languages: buildLanguageAlternates("/archetypes"),
+    },
     openGraph: {
       title,
       description,
@@ -64,7 +75,13 @@ interface ArchetypesResponse {
   characters: Record<string, Archetype[]>;
 }
 
-const CHARACTER_ORDER = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"];
+const CHARACTER_ORDER = [
+  "IRONCLAD",
+  "SILENT",
+  "DEFECT",
+  "NECROBINDER",
+  "REGENT",
+];
 
 function characterLabel(c: string): string {
   return c.charAt(0) + c.slice(1).toLowerCase();
@@ -77,7 +94,13 @@ function winRateColor(pct: number): string {
   return "#ef4444";
 }
 
-function Sparkline({ history, color }: { history: { version: string; share: number }[]; color: string }) {
+function Sparkline({
+  history,
+  color,
+}: {
+  history: { version: string; share: number }[];
+  color: string;
+}) {
   if (history.length < 2) return null;
   const w = 96;
   const h = 26;
@@ -96,8 +119,15 @@ function Sparkline({ history, color }: { history: { version: string; share: numb
     .join(" ");
   const [lx, ly] = xy[xy.length - 1];
   return (
-    <svg width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="flex-shrink-0">
-      <title>{history.map((p) => `${p.version}: ${p.share}%`).join("\n")}</title>
+    <svg
+      width={w}
+      height={h}
+      viewBox={`0 0 ${w} ${h}`}
+      className="flex-shrink-0"
+    >
+      <title>
+        {history.map((p) => `${p.version}: ${p.share}%`).join("\n")}
+      </title>
       <path
         d={d}
         fill="none"
@@ -146,7 +176,7 @@ export default async function ArchetypesPage({ params }: Props) {
     : Object.entries(data.characters).flatMap(([ch, list]) =>
         list
           .filter((a) => a.trend && Math.abs(a.trend.delta) >= 0.5)
-          .map((a) => ({ ch, arch: a }))
+          .map((a) => ({ ch, arch: a })),
       );
   const risers = movers
     .filter((m) => m.arch.trend!.delta > 0)
@@ -162,16 +192,21 @@ export default async function ArchetypesPage({ params }: Props) {
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <JsonLd data={jsonLd} />
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{t("Deck Archetypes")}</span>
+        <span className="text-[var(--accent-gold)]">
+          {t("Deck Archetypes")}
+        </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8 max-w-3xl">
-        {t("Builds discovered automatically from community-submitted runs: decks are clustered by their cards and relics, so every archetype below is something players actually pilot, with its real popularity and win rate. Rebuilt daily.")}
+        {t(
+          "Builds discovered automatically from community-submitted runs: decks are clustered by their cards and relics, so every archetype below is something players actually pilot, with its real popularity and win rate. Rebuilt daily.",
+        )}
       </p>
 
       {data?.available && (risers.length > 0 || fallers.length > 0) && (
         <div className="rounded-xl border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 mb-8">
           <div className="text-xs uppercase tracking-wide text-[var(--text-tertiary)] mb-2">
-            {t("Meta movers")}{moversVersion ? ` · ${moversVersion}` : ""}
+            {t("Meta movers")}
+            {moversVersion ? ` · ${moversVersion}` : ""}
           </div>
           <div className="flex flex-wrap gap-2">
             {[...risers, ...fallers].map(({ ch, arch }, i) => (
@@ -183,12 +218,17 @@ export default async function ArchetypesPage({ params }: Props) {
                   className="w-1.5 h-1.5 rounded-full"
                   style={{ backgroundColor: characterHex(ch) || "#888" }}
                 />
-                <span className="text-[var(--text-secondary)]">{arch.name}</span>
+                <span className="text-[var(--text-secondary)]">
+                  {arch.name}
+                </span>
                 <span
                   className="font-semibold tabular-nums"
-                  style={{ color: arch.trend!.delta > 0 ? "#22c55e" : "#ef4444" }}
+                  style={{
+                    color: arch.trend!.delta > 0 ? "#22c55e" : "#ef4444",
+                  }}
                 >
-                  {arch.trend!.delta > 0 ? "▲" : "▼"} {Math.abs(arch.trend!.delta)}%
+                  {arch.trend!.delta > 0 ? "▲" : "▼"}{" "}
+                  {Math.abs(arch.trend!.delta)}%
                 </span>
               </span>
             ))}
@@ -201,7 +241,9 @@ export default async function ArchetypesPage({ params }: Props) {
           {t("Archetype data is still building. Check back shortly.")}
         </p>
       ) : (
-        CHARACTER_ORDER.filter((ch) => (data.characters[ch] ?? []).length > 0).map((ch) => {
+        CHARACTER_ORDER.filter(
+          (ch) => (data.characters[ch] ?? []).length > 0,
+        ).map((ch) => {
           const color = characterHex(ch) || "var(--accent-gold)";
           return (
             <section key={ch} className="mb-10">
@@ -227,14 +269,24 @@ export default async function ArchetypesPage({ params }: Props) {
                     </div>
                     <div className="flex items-end justify-between gap-2 mb-3">
                       <div className="text-xs text-[var(--text-muted)]">
-                        {t("{share}% of {character} runs · {n} decks", { share: a.share, character: t(characterLabel(ch)), n: a.size.toLocaleString() })}
+                        {t("{share}% of {character} runs · {n} decks", {
+                          share: a.share,
+                          character: t(characterLabel(ch)),
+                          n: a.size.toLocaleString(),
+                        })}
                         {a.trend && Math.abs(a.trend.delta) >= 0.5 && (
                           <span
                             className="ml-2 font-semibold"
-                            style={{ color: a.trend.delta > 0 ? "#22c55e" : "#ef4444" }}
-                            title={t("Share change in {version} vs the previous version", { version: a.trend.version })}
+                            style={{
+                              color: a.trend.delta > 0 ? "#22c55e" : "#ef4444",
+                            }}
+                            title={t(
+                              "Share change in {version} vs the previous version",
+                              { version: a.trend.version },
+                            )}
                           >
-                            {a.trend.delta > 0 ? "▲" : "▼"} {Math.abs(a.trend.delta)}%
+                            {a.trend.delta > 0 ? "▲" : "▼"}{" "}
+                            {Math.abs(a.trend.delta)}%
                           </span>
                         )}
                       </div>

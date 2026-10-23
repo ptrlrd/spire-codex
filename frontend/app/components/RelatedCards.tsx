@@ -3,10 +3,11 @@
 import { useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import HoverTooltip from "@/app/components/HoverTooltip";
+import type { RelatedGroup as ServerGroup } from "@/lib/entity-links";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -15,6 +16,7 @@ interface RelatedCardsProps {
   keywords: string[] | null;
   tags: string[] | null;
   color: string;
+  initialGroups?: ServerGroup[] | null;
 }
 
 interface RelatedGroup {
@@ -22,12 +24,25 @@ interface RelatedGroup {
   cards: Card[];
 }
 
-export default function RelatedCards({ currentId, keywords, tags, color }: RelatedCardsProps) {
+export default function RelatedCards({
+  currentId,
+  keywords,
+  tags,
+  color,
+  initialGroups,
+}: RelatedCardsProps) {
   const lang = useGameLocale();
   const bp = useBetaPrefix();
   // null while loading so a card with no relations at all renders nothing
   // instead of a permanent "Loading" stub.
-  const [groups, setGroups] = useState<RelatedGroup[] | null>(null);
+  const [groups, setGroups] = useState<RelatedGroup[] | null>(
+    initialGroups
+      ? initialGroups.map((g) => ({
+          label: g.label,
+          cards: g.items as unknown as Card[],
+        }))
+      : null,
+  );
 
   // Fetch on mount so the related-card <Link>s sit in the rendered DOM
   // without any interaction. This component is a critical internal-linking
@@ -35,29 +50,34 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
   // "Crawled - currently not indexed" bucket when they had no outbound
   // crawl paths.
   useEffect(() => {
+    if (initialGroups !== undefined) return;
     const fetches: Promise<RelatedGroup>[] = [];
 
     // Cards that create or reference this one (spawns_cards reverse lookup),
     // so token pages like Soul lead with their generators. Fetched first so
     // the group renders above the keyword/tag groups.
     fetches.push(
-      cachedFetch<Card[]>(`${API}/api/cards?spawns=${encodeURIComponent(currentId.toUpperCase())}&lang=${lang}`).then(
-        (cards) => ({
-          label: "Created or used by",
-          cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 12),
-        })
-      )
+      cachedFetch<Card[]>(
+        `${API}/api/cards?spawns=${encodeURIComponent(currentId.toUpperCase())}&lang=${lang}`,
+      ).then((cards) => ({
+        label: "Created or used by",
+        cards: cards
+          .filter((c) => c.id !== currentId.toUpperCase())
+          .slice(0, 12),
+      })),
     );
 
     if (keywords?.length) {
       for (const kw of keywords) {
         fetches.push(
-          cachedFetch<Card[]>(`${API}/api/cards?keyword=${encodeURIComponent(kw)}&lang=${lang}`).then(
-            (cards) => ({
-              label: `${kw} cards`,
-              cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 8),
-            })
-          )
+          cachedFetch<Card[]>(
+            `${API}/api/cards?keyword=${encodeURIComponent(kw)}&lang=${lang}`,
+          ).then((cards) => ({
+            label: `${kw} cards`,
+            cards: cards
+              .filter((c) => c.id !== currentId.toUpperCase())
+              .slice(0, 8),
+          })),
         );
       }
     }
@@ -65,20 +85,22 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
     if (tags?.length) {
       for (const tag of tags) {
         fetches.push(
-          cachedFetch<Card[]>(`${API}/api/cards?tag=${encodeURIComponent(tag)}&lang=${lang}`).then(
-            (cards) => ({
-              label: `${tag} cards`,
-              cards: cards.filter((c) => c.id !== currentId.toUpperCase()).slice(0, 8),
-            })
-          )
+          cachedFetch<Card[]>(
+            `${API}/api/cards?tag=${encodeURIComponent(tag)}&lang=${lang}`,
+          ).then((cards) => ({
+            label: `${tag} cards`,
+            cards: cards
+              .filter((c) => c.id !== currentId.toUpperCase())
+              .slice(0, 8),
+          })),
         );
       }
     }
 
     Promise.all(fetches).then((results) =>
-      setGroups(results.filter((g) => g.cards.length > 0))
+      setGroups(results.filter((g) => g.cards.length > 0)),
     );
-  }, [currentId, keywords, tags, color, lang]);
+  }, [currentId, keywords, tags, color, lang, initialGroups]);
 
   // Render nothing until loaded (or if there's nothing related). Once loaded,
   // each group lists directly inside the card's Relations section as its own
@@ -93,7 +115,11 @@ export default function RelatedCards({ currentId, keywords, tags, color }: Relat
           <ul className="space-y-1">
             {group.cards.map((card) => (
               <li key={card.id}>
-                <HoverTooltip title={card.name} content={card.description} image={card.image_url}>
+                <HoverTooltip
+                  title={card.name}
+                  content={card.description}
+                  image={card.image_url}
+                >
                   <Link
                     prefetch={false}
                     href={`${bp}/cards/${card.id.toLowerCase()}`}

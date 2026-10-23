@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clone"
+  },
+  {
+    "id": "COOK",
+    "name": "Cook"
+  },
+  {
+    "id": "DIG",
+    "name": "Dig"
+  },
+  {
+    "id": "HATCH",
+    "name": "Hatch"
+  },
+  {
+    "id": "HEAL",
+    "name": "Rest"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Kindle"
+  },
+  {
+    "id": "LIFT",
+    "name": "Train"
+  },
+  {
+    "id": "MEND",
+    "name": "Mend"
+  },
+  {
+    "id": "SMITH",
+    "name": "Smith"
+  }
+]

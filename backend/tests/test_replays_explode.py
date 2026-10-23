@@ -870,6 +870,17 @@ def test_combat_damage_and_result_are_derived_when_absent():
             },
             {"t": "hp", "s": 2, "ms": 2, "floor": 1, "act": 1, "d": -6, "hp": 74},
             {"t": "hp", "s": 3, "ms": 3, "floor": 1, "act": 1, "d": -4, "hp": 70},
+            {
+                "t": "hp",
+                "s": 3,
+                "ms": 3,
+                "floor": 1,
+                "act": 1,
+                "d": -12,
+                "hp": 8,
+                "mine": False,
+                "dst": "CRAWLER",
+            },
             {"t": "combat_end", "s": 4, "ms": 4, "floor": 1, "act": 1, "turns": 2},
             {
                 "t": "combat_start",
@@ -1290,3 +1301,57 @@ def test_real_journal_explodes_end_to_end_into_duckdb(tmp_path):
     )
     nodes = con.execute("SELECT len(nodes) FROM replay_maps").fetchone()[0]
     assert nodes == 56
+
+
+def test_shop_line_becomes_a_shops_row_with_its_stock():
+    gz = _gz(
+        _journal(
+            {
+                "t": "shop",
+                "s": 1,
+                "ms": 5,
+                "floor": 6,
+                "act": 1,
+                "gold": 150,
+                "removal_cost": 75,
+                "removal_stocked": True,
+                "cards": [
+                    {
+                        "slot": 0,
+                        "id": "WHIRLWIND",
+                        "cost": 120,
+                        "stocked": True,
+                        "sale": False,
+                        "pool": "character",
+                    },
+                    {
+                        "slot": 1,
+                        "id": "FLASH_OF_STEEL",
+                        "cost": 60,
+                        "stocked": True,
+                        "sale": True,
+                        "pool": "colorless",
+                    },
+                ],
+                "relics": [
+                    {"slot": 0, "id": "MEAL_TICKET", "cost": 180, "stocked": True}
+                ],
+                "potions": [
+                    {"slot": 0, "id": "BLOCK_POTION", "cost": 50, "stocked": False}
+                ],
+            }
+        )
+    )
+    rows = ex.parse_replay(gz, _meta("r1", gz), "b1")
+    shop = rows["shops"][0]
+    assert shop["floor"] == 6 and shop["gold"] == 150 and shop["removal_cost"] == 75
+    kinds = [(i["kind"], i["id"], i["cost"], i["stocked"]) for i in shop["items"]]
+    assert kinds == [
+        ("card", "WHIRLWIND", 120, True),
+        ("card", "FLASH_OF_STEEL", 60, True),
+        ("relic", "MEAL_TICKET", 180, True),
+        ("potion", "BLOCK_POTION", 50, False),
+    ]
+    assert shop["items"][1]["sale"] is True and shop["items"][0]["pool"] == "character"
+    table = ex.to_tables(rows)["shops"]
+    assert table.num_rows == 1 and table.schema.field("items").type == ex.SHOP_ITEMS

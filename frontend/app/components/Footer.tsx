@@ -14,7 +14,13 @@ declare global {
   }
 }
 
-function FeedbackModal({ onClose, page }: { onClose: () => void; page: string }) {
+function FeedbackModal({
+  onClose,
+  page,
+}: {
+  onClose: () => void;
+  page: string;
+}) {
   const t = useT();
   const [type, setType] = useState("Bug");
   const [contact, setContact] = useState("");
@@ -48,19 +54,28 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+      onClick={onClose}
+    >
       <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
       <div
         className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">{t("Submit Feedback")}</h2>
+        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">
+          {t("Submit Feedback")}
+        </h2>
 
         {sent ? (
-          <p className="text-success text-sm py-4">{t("Sent successfully. Thank you!")}</p>
+          <p className="text-success text-sm py-4">
+            {t("Sent successfully. Thank you!")}
+          </p>
         ) : (
           <>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Page")}</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">
+              {t("Page")}
+            </label>
             <input
               type="text"
               value={page}
@@ -68,7 +83,9 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Type")}</label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">
+              {t("Type")}
+            </label>
             <select
               value={type}
               onChange={(e) => setType(e.target.value)}
@@ -79,7 +96,10 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               <option value="Localization">{t("Localization")}</option>
             </select>
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Discord Username or Email")} <span className="text-danger">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">
+              {t("Discord Username or Email")}{" "}
+              <span className="text-danger">*</span>
+            </label>
             <input
               type="text"
               value={contact}
@@ -88,7 +108,9 @@ function FeedbackModal({ onClose, page }: { onClose: () => void; page: string })
               className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
             />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">{t("Contents")} <span className="text-danger">*</span></label>
+            <label className="block text-sm text-[var(--text-secondary)] mb-1">
+              {t("Contents")} <span className="text-danger">*</span>
+            </label>
             <textarea
               value={contents}
               onChange={(e) => setContents(e.target.value)}
@@ -143,7 +165,11 @@ export default function Footer() {
   function closeFeedback() {
     setShowFeedback(false);
     if (window.location.hash === "#feedback") {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
+      history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search,
+      );
     }
   }
 
@@ -158,7 +184,9 @@ export default function Footer() {
         >
           {t("API")}
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <Link
           prefetch={false}
           href="/developers"
@@ -166,7 +194,9 @@ export default function Footer() {
         >
           {t("Developers")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <a
           href="https://github.com/ptrlrd/spire-codex"
           target="_blank"
@@ -175,7 +205,9 @@ export default function Footer() {
         >
           GitHub
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <a
           href="https://discord.gg/xMsTBeh"
           target="_blank"
@@ -184,23 +216,29 @@ export default function Footer() {
         >
           Discord
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <a
-          href="https://ko-fi.com/yitsy"
+          href="https://ko-fi.com/spirecodex"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           Ko-Fi
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <button
           onClick={() => setShowFeedback(true)}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Submit Feedback")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <Link
           prefetch={false}
           href="/privacy"
@@ -208,21 +246,27 @@ export default function Footer() {
         >
           {t("Privacy")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <button
           onClick={() => window.__tcfapi?.("displayConsentUi", 2, () => {})}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Manage Consent")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <button
           onClick={() => window.__uspapi?.("displayUspUi")}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Do Not Sell My Personal Information")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <Link
           prefetch={false}
           href="/terms"
@@ -230,7 +274,9 @@ export default function Footer() {
         >
           {t("Terms")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>·</span>
+        <span className="text-[var(--border-subtle)]" aria-hidden>
+          ·
+        </span>
         <Link
           prefetch={false}
           href="/beta"
@@ -239,7 +285,9 @@ export default function Footer() {
           {t("Beta Site")}
         </Link>
       </div>
-      {showFeedback && <FeedbackModal onClose={closeFeedback} page={pathname} />}
+      {showFeedback && (
+        <FeedbackModal onClose={closeFeedback} page={pathname} />
+      )}
     </footer>
   );
 }

@@ -49,13 +49,17 @@ export default function BannersClient() {
   }
 
   async function toggle(id: string) {
-    await adminFetch(`/api/admin/announcements/${id}/toggle`, { method: "POST" }).catch(() => {});
+    await adminFetch(`/api/admin/announcements/${id}/toggle`, {
+      method: "POST",
+    }).catch(() => {});
     load();
   }
 
   async function remove(id: string) {
     if (!window.confirm("Delete this announcement?")) return;
-    await adminFetch(`/api/admin/announcements/${id}`, { method: "DELETE" }).catch(() => {});
+    await adminFetch(`/api/admin/announcements/${id}`, {
+      method: "DELETE",
+    }).catch(() => {});
     load();
   }
 
@@ -64,8 +68,8 @@ export default function BannersClient() {
       <p className="text-sm text-[var(--text-secondary)] mb-2">
         Plain text plus inline links as{" "}
         <code className="text-[var(--accent-gold)]">[label](/path)</code> or{" "}
-        <code className="text-[var(--accent-gold)]">[label](https://...)</code>. The newest active
-        announcement renders site-wide with the NEW badge.
+        <code className="text-[var(--accent-gold)]">[label](https://...)</code>.
+        The newest active announcement renders site-wide with the NEW badge.
       </p>
       <textarea
         value={message}
@@ -84,11 +88,16 @@ export default function BannersClient() {
           Publish
         </button>
       </div>
-      {note && <p className="text-sm text-[var(--text-secondary)] mt-3">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mt-3">{note}</p>
+      )}
 
       <div className="space-y-3 mt-8">
         {items.map((a) => (
-          <div key={a.id} className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+          <div
+            key={a.id}
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+          >
             <div className="flex items-center justify-between gap-3 mb-2">
               <div className="text-xs text-[var(--text-muted)]">
                 <span
@@ -117,7 +126,9 @@ export default function BannersClient() {
                 </button>
               </div>
             </div>
-            <p className="text-sm text-[var(--text-primary)] whitespace-pre-wrap break-words">{a.message}</p>
+            <p className="text-sm text-[var(--text-primary)] whitespace-pre-wrap break-words">
+              {a.message}
+            </p>
           </div>
         ))}
       </div>

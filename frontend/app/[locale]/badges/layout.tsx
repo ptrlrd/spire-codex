@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
 const title = "Badges - Run-End Awards - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
@@ -18,7 +23,10 @@ export const metadata: Metadata = {
     images: [{ url: DEFAULT_OG_IMAGE }],
   },
   twitter: { card: "summary_large_image", title, description: ogDesc },
-  alternates: { canonical: "/badges", languages: buildLanguageAlternates("/badges") },
+  alternates: {
+    canonical: "/badges",
+    languages: buildLanguageAlternates("/badges"),
+  },
 };
 
 export default function BadgesLayout({

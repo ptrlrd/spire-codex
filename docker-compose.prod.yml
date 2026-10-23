@@ -62,13 +62,21 @@ services:
     # multiplies by 4-ish and dashboards show wildly inflated traffic.
     # The dir must be empty at boot so we don't include stale files
     # from previously-exited worker pids.
+    #
+    # Workers creep a few MB a minute under steady traffic and got
+    # OOM-killed at ~2.5G each eight hours after a deploy (2026-10-11).
+    # --limit-max-requests recycles a worker after ~50k requests as a
+    # backstop; jitter keeps the four from recycling together. A recycled
+    # worker lingers until the supervisor's health ping times out
+    # (BACKEND_WORKER_HEALTHCHECK), so keep the limit high enough that
+    # recycles are hours apart.
     command:
       - sh
       - -c
       - >-
         mkdir -p "$$PROMETHEUS_MULTIPROC_DIR" &&
         rm -rf "$$PROMETHEUS_MULTIPROC_DIR"/* &&
-        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${BACKEND_WEB_WORKERS:-4}
+        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${BACKEND_WEB_WORKERS:-4} --timeout-worker-healthcheck ${BACKEND_WORKER_HEALTHCHECK:-120} --limit-max-requests ${BACKEND_MAX_REQUESTS:-50000} --limit-max-requests-jitter ${BACKEND_MAX_REQUESTS_JITTER:-10000}
     volumes:
       - ./data:/data
       - ./data-beta:/data-beta:ro
@@ -78,9 +86,14 @@ services:
       # served from the CDN (nginx 301s /static/images/*).
       - ./backend/static:/app/static:ro
       - ./lake:/lake:ro
+      - /opt/spire-sim:/opt/spire-sim:ro
       - ./.secrets:/secrets:ro
     environment:
       <<: *shared-env
+      # glibc gives every request thread its own malloc arena, and freed
+      # memory stays parked in them. Two arenas halved the per-worker creep
+      # under a load test with no latency change.
+      MALLOC_ARENA_MAX: ${BACKEND_MALLOC_ARENA_MAX:-2}
       FEEDBACK_WEBHOOK_URL: ${FEEDBACK_WEBHOOK_URL:-}
       # Cloudflare purge from the admin cache tab. Same token/zone the
       # autodeploy script uses; set them in the box's .env.
@@ -111,6 +124,15 @@ services:
       # on a small corpus. See services/community_stats.py.
       COMMUNITY_ANCIENT_MIN_OFFERS: ${COMMUNITY_ANCIENT_MIN_OFFERS:-}
       STEAM_WEB_API_KEY: ${STEAM_WEB_API_KEY:-}
+      # Thank You page: Ko-fi webhook token, GitHub contributor sources,
+      # logins kept off the public list, optional token for the rate limit.
+      KOFI_VERIFICATION_TOKEN: ${KOFI_VERIFICATION_TOKEN:-}
+      THANKS_GITHUB_REPOS: ${THANKS_GITHUB_REPOS:-}
+      THANKS_GITHUB_EXCLUDE: ${THANKS_GITHUB_EXCLUDE:-}
+      GITHUB_TOKEN: ${GITHUB_TOKEN:-}
+      OVERWOLF_STORE_ID: ${OVERWOLF_STORE_ID:-}
+      OVERWOLF_EXTENSION_ID: ${OVERWOLF_EXTENSION_ID:-}
+      SUPPORTER_EMAIL_SALT: ${SUPPORTER_EMAIL_SALT:-}
       GITHUB_APP_ID: ${GITHUB_APP_ID:-}
       GITHUB_APP_INSTALLATION_ID: ${GITHUB_APP_INSTALLATION_ID:-}
       GITHUB_APP_REPO: ${GITHUB_APP_REPO:-}
@@ -159,6 +181,13 @@ services:
     # Redis down, since the cache layer is fail-safe by design.
     depends_on:
       - redis
+    stop_grace_period: 15s
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://127.0.0.1:8000/health',timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
     networks:
       - nginx_web-network
     logging:
@@ -200,6 +229,7 @@ services:
       - ./lab:/lab:ro
       - ./data:/data:ro
       - ./lake:/lake
+      - /opt/spire-sim:/opt/spire-sim:ro
     networks:
       - nginx_web-network
 
@@ -237,15 +267,35 @@ services:
     image: ptrlrd/spire-codex-frontend:latest
     container_name: spire-codex-frontend
     restart: unless-stopped
-    # Next server sits ~400M; 1G leaves room for ISR render spikes.
-    mem_limit: 1g
+    # Next server sits ~400M plus up to 256M of in-memory page cache
+    # (cacheMaxMemorySize). The heap is pinned below so the cache can't
+    # crowd it: a 1g cap gave Node a ~512M heap and the old 512M cache
+    # filled it, crash-looping the frontend (2026-10-07).
+    mem_limit: ${FRONTEND_MEM_LIMIT:-1536m}
+    stop_grace_period: 15s
     depends_on:
       - backend
     volumes:
       - ./data:/data:ro
+      - next-static:/app/.next/static
+      - next-cache:/app/.next/cache/fetch-cache
     environment:
+      - HOSTNAME=0.0.0.0
+      - NODE_OPTIONS=--max-old-space-size=${FRONTEND_HEAP_MB:-1024}
       - API_INTERNAL_URL=http://spire-codex-backend:8000
       - NEXT_PUBLIC_SITE_URL=https://spire-codex.com
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "node",
+          "-e",
+          "fetch('http://127.0.0.1:3000/robots.txt').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 20s
     networks:
       - nginx_web-network
     logging:
@@ -257,3 +307,9 @@ services:
 networks:
   nginx_web-network:
     external: true
+
+volumes:
+  next-static:
+    name: spire-codex_next-static
+    external: true
+  next-cache:

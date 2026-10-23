@@ -15,7 +15,10 @@ export function enchantmentsForCard(cardId: string): string[] {
 }
 
 /** Cards that can take an enchantment: a capped, sorted sample + the total. */
-export function cardsForEnchantment(enchId: string): { cardIds: string[]; total: number } {
+export function cardsForEnchantment(enchId: string): {
+  cardIds: string[];
+  total: number;
+} {
   const ench = enchId.toLowerCase();
   const all: string[] = [];
   for (const [cardId, enchs] of Object.entries(MANIFEST)) {

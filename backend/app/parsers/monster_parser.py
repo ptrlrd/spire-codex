@@ -724,6 +724,62 @@ def _humanize_condition(cond: str) -> str:
     return cleaned
 
 
+def _join_words(items: list[str], word: str = "and") -> str:
+    if len(items) <= 1:
+        return "".join(items)
+    if len(items) == 2:
+        return f"{items[0]} {word} {items[1]}"
+    return ", ".join(items[:-1]) + f", {word} {items[-1]}"
+
+
+def _random_pattern_sentences(
+    branches, init_name, all_equal, weights, move_name_fn
+) -> str:
+    """The random-branch shape as sentences: the opening move, the pick and
+    its odds, the repeat rules, and the alternation those rules force once a
+    once-per-fight move is spent."""
+    named = [(move_name_fn(re.sub(r"_MOVE$", "", b["move_id"])), b) for b in branches]
+    total = sum(weights) or 1
+    out = []
+    if init_name:
+        out.append(f"Opens with {init_name}.")
+    after = "Every turn after that" if init_name else "Every turn"
+    if all_equal:
+        out.append(
+            f"{after} is an even random pick between {_join_words([n for n, _ in named])}."
+        )
+    else:
+        choices = [
+            f"{n} {int(b['weight'] / total * 100)} percent of the time"
+            for n, b in named
+        ]
+        out.append(f"{after} it picks {_join_words(choices, 'or')}.")
+    no_repeat = [n for n, b in named if b.get("repeat") == "CannotRepeat"]
+    if no_repeat and len(no_repeat) == len(named):
+        out.append("An attack never repeats back to back.")
+    elif no_repeat:
+        out.append(f"{_join_words(no_repeat)} never repeat back to back.")
+    once = [n for n, b in named if b.get("repeat") == "UseOnlyOnce"]
+    for n in once:
+        out.append(f"{n} happens once per fight.")
+    for n, b in named:
+        if b.get("repeat") == "CanRepeatXTimes" and b.get("max_times"):
+            out.append(f"{n} happens at most {b['max_times']} times in a row.")
+    rest = [(n, b) for n, b in named if b.get("repeat") != "UseOnlyOnce"]
+    if (
+        len(once) == 1
+        and len(rest) == 2
+        and all(b.get("repeat") == "CannotRepeat" for _, b in rest)
+    ):
+        a, c = rest[0][0], rest[1][0]
+        if init_name == c:
+            a, c = c, a
+        out.append(
+            f"Once {once[0]} is spent, the rest of the fight alternates {a} and {c}."
+        )
+    return " ".join(out)
+
+
 def _build_pattern_description(
     states: dict, initial_var: str | None, move_name_fn
 ) -> str:
@@ -781,12 +837,15 @@ def _build_pattern_description(
                     name += f" ({', '.join(qualifiers)})"
                 parts.append(name)
 
-            # Check if there's an initial move before the random
             init_state = states.get(initial_var, {})
-            if init_state.get("type") == "move":
-                init_name = move_name_fn(re.sub(r"_MOVE$", "", init_state["id"]))
-                return f"Starts with {init_name}, then random: " + ", ".join(parts)
-            return "Random: " + ", ".join(parts)
+            init_name = (
+                move_name_fn(re.sub(r"_MOVE$", "", init_state["id"]))
+                if init_state.get("type") == "move"
+                else None
+            )
+            return _random_pattern_sentences(
+                branches, init_name, all_equal, weights, move_name_fn
+            )
 
     # --- Mixed / complex patterns ---
     parts = []
@@ -846,6 +905,36 @@ def _build_pattern_description(
             parts.append("then conditional: " + " / ".join(cond_parts))
 
     return "; ".join(parts) if parts else ""
+
+
+_QUOTE_SKIP_LEAVES = {"name", "title", "description"}
+_QUOTE_TAG = re.compile(r"\[/?[a-zA-Z][a-zA-Z0-9_=#:.,\- ]*\]")
+
+
+def collect_quotes(localization: dict, monster_id: str) -> list[dict] | None:
+    """Every spoken line the localization table holds for a monster: banter,
+    speak lines, death lines. Keys look like MONSTER.moves.MOVE.banter or
+    MONSTER.someDeathLine; name/title/description leaves are not speech."""
+    prefix = f"{monster_id}."
+    out: list[dict] = []
+    for key in sorted(localization):
+        if not key.startswith(prefix):
+            continue
+        parts = key[len(prefix) :].split(".")
+        leaf = parts[-1]
+        if leaf in _QUOTE_SKIP_LEAVES or not isinstance(localization[key], str):
+            continue
+        text = _QUOTE_TAG.sub("", localization[key]).strip()
+        if not text:
+            continue
+        move = None
+        if len(parts) >= 3 and parts[0] == "moves":
+            move_id = parts[1]
+            move = localization.get(
+                f"{monster_id}.moves.{move_id}.title", move_id.replace("_", " ").title()
+            )
+        out.append({"key": leaf, "move": move, "text": text})
+    return out or None
 
 
 def parse_single_monster(
@@ -1200,6 +1289,7 @@ def parse_single_monster(
         "encounters": encounters if encounters else None,
         "innate_powers": innate_powers if innate_powers else None,
         "attack_pattern": attack_pattern,
+        "quotes": collect_quotes(localization, monster_id),
         "image_url": image_url,
         "beta_image_url": beta_image_url,
     }
@@ -1357,6 +1447,8 @@ def parse_all_monsters(loc_dir: Path, data_dir: Path) -> list[dict]:
                 "damage_values": parent.get("damage_values"),
                 "block_values": parent.get("block_values"),
                 "encounters": monster_encounters.get(child_monster_id, []) or None,
+                "quotes": collect_quotes(localization, child_monster_id)
+                or parent.get("quotes"),
                 "image_url": image_url,
             }
 

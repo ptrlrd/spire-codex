@@ -32,7 +32,8 @@ export default function FeedbackClient() {
     )
       .then((d) => {
         setItems(d.items ?? []);
-        if (!(d.items ?? []).length) setNote("Inbox empty. New submissions land here from now on.");
+        if (!(d.items ?? []).length)
+          setNote("Inbox empty. New submissions land here from now on.");
         else setNote(null);
       })
       .catch((e) => setNote(String((e as Error)?.message || e)));
@@ -64,7 +65,10 @@ export default function FeedbackClient() {
 
       <div className="space-y-3">
         {items.map((i) => (
-          <div key={i.id} className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+          <div
+            key={i.id}
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+          >
             <div className="flex items-center justify-between gap-3 mb-2">
               <div className="text-xs text-[var(--text-muted)]">
                 <span className="px-1.5 py-0.5 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] mr-2 uppercase">

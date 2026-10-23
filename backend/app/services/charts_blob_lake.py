@@ -17,11 +17,13 @@ from __future__ import annotations
 import gzip
 import json
 import logging
+import threading
+import time
 from datetime import datetime
 
 from . import charts_stats
 from .lake_stats import (
-    _ELIGIBLE_SQL,
+    _eligible_sql,
     LAKE_DIR,
     _connect,
     _ensure_cells,
@@ -249,7 +251,7 @@ def build_charts_blob() -> dict | None:
     con = _connect(build=True)
     stage = LAKE_DIR / "tmp" / _STAGE_DIR
     try:
-        con.execute(_ELIGIBLE_SQL.format(lake=LAKE_DIR))
+        con.execute(_eligible_sql(LAKE_DIR))
         _ensure_cells(con, str(LAKE_DIR))
         # Fewer threads: parallel hash aggregation keeps thread-local list
         # state; the budget here is memory, not wall clock.
@@ -323,9 +325,15 @@ def build_charts_blob() -> dict | None:
 _blob_cache: tuple[float, dict] | None = None
 
 
+_blob_lock = threading.Lock()
+_blob_failed: dict[str, tuple[float, float]] = {}
+_BLOB_RETRY_SECONDS = 60.0
+
+
 def charts_blob_with_mtime() -> tuple[float, dict] | None:
     """Current generation, else previous, else None — per the fallback
-    ruling the frozen snapshot is never served."""
+    ruling the frozen snapshot is never served. One thread per worker
+    parses a new blob; the rest keep the previous one until it lands."""
     global _blob_cache
     for name in (_BLOB_NAME, _BLOB_PREV_NAME):
         path = LAKE_DIR / name
@@ -333,11 +341,33 @@ def charts_blob_with_mtime() -> tuple[float, dict] | None:
             if not path.exists():
                 continue
             mtime = path.stat().st_mtime
-            if _blob_cache and _blob_cache[0] == mtime:
+            hit = _blob_cache
+            if hit and hit[0] == mtime:
+                return hit
+            failed = _blob_failed.get(name)
+            if (
+                failed is not None
+                and failed[0] == mtime
+                and time.monotonic() - failed[1] < _BLOB_RETRY_SECONDS
+            ):
+                continue
+            if not _blob_lock.acquire(blocking=not hit):
+                return hit
+            try:
+                if _blob_cache and _blob_cache[0] == mtime:
+                    return _blob_cache
+                try:
+                    with gzip.open(path, "rt", encoding="utf-8") as f:
+                        _blob_cache = (mtime, json.load(f))
+                except Exception:
+                    logger.warning(
+                        "charts blob load failed for %s", name, exc_info=True
+                    )
+                    _blob_failed[name] = (mtime, time.monotonic())
+                    continue
                 return _blob_cache
-            with gzip.open(path, "rt", encoding="utf-8") as f:
-                _blob_cache = (mtime, json.load(f))
-            return _blob_cache
+            finally:
+                _blob_lock.release()
         except Exception:
             logger.warning("charts blob load failed for %s", name, exc_info=True)
     return None

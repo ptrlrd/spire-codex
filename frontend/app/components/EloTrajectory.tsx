@@ -17,7 +17,14 @@ import {
 import { Line } from "react-chartjs-2";
 import { fmtDate } from "@/lib/pacific";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Filler,
+);
 
 export interface EloPoint {
   n: number;
@@ -69,8 +76,17 @@ export default function EloTrajectory({
             x: {
               grid: { display: false },
               border: { display: false },
-              ticks: { color: "#8a8a93", font: { size: 10 }, maxTicksLimit: 14 },
-              title: { display: true, text: axisLabel, color: "#8a8a93", font: { size: 10 } },
+              ticks: {
+                color: "#8a8a93",
+                font: { size: 10 },
+                maxTicksLimit: 14,
+              },
+              title: {
+                display: true,
+                text: axisLabel,
+                color: "#8a8a93",
+                font: { size: 10 },
+              },
             },
             y: {
               border: { display: false },

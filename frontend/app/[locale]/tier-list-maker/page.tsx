@@ -9,7 +9,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/tier-list-maker", title: t("Tier List Maker"), description: t("tier-list-maker_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/tier-list-maker",
+    title: t("Tier List Maker"),
+    description: t("tier-list-maker_meta_description"),
+  });
 }
 
 export default function Page() {

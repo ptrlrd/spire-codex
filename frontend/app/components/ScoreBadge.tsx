@@ -24,15 +24,48 @@ interface Tier {
  * backend/app/services/run_entity_stats.py for the underlying math.
  */
 function scoreToTier(score: number): Tier {
-  if (score >= 90) return { letter: "S", label: "Top tier", className: "bg-warning/10 border-warning/60 text-warning" };
-  if (score >= 78) return { letter: "A", label: "Strong",   className: "bg-success/10 border-success/60 text-success" };
-  if (score >= 65) return { letter: "B", label: "Solid",    className: "bg-info/10 border-info/60 text-info" };
-  if (score >= 50) return { letter: "C", label: "Average",  className: "bg-surface/60 border-line-strong/60 text-fg-secondary" };
-  if (score >= 35) return { letter: "D", label: "Below average", className: "bg-warning/10 border-warning/60 text-warning" };
-  return { letter: "F", label: "Underperforming", className: "bg-danger/10 border-danger/30 text-danger" };
+  if (score >= 90)
+    return {
+      letter: "S",
+      label: "Top tier",
+      className: "bg-warning/10 border-warning/60 text-warning",
+    };
+  if (score >= 78)
+    return {
+      letter: "A",
+      label: "Strong",
+      className: "bg-success/10 border-success/60 text-success",
+    };
+  if (score >= 65)
+    return {
+      letter: "B",
+      label: "Solid",
+      className: "bg-info/10 border-info/60 text-info",
+    };
+  if (score >= 50)
+    return {
+      letter: "C",
+      label: "Average",
+      className: "bg-surface/60 border-line-strong/60 text-fg-secondary",
+    };
+  if (score >= 35)
+    return {
+      letter: "D",
+      label: "Below average",
+      className: "bg-warning/10 border-warning/60 text-warning",
+    };
+  return {
+    letter: "F",
+    label: "Underperforming",
+    className: "bg-danger/10 border-danger/30 text-danger",
+  };
 }
 
-export default function ScoreBadge({ score, size = "md", showNumber = false }: ScoreBadgeProps) {
+export default function ScoreBadge({
+  score,
+  size = "md",
+  showNumber = false,
+}: ScoreBadgeProps) {
   const t = useT();
   if (score == null) return null;
   const tier = scoreToTier(score);
@@ -55,7 +88,11 @@ export default function ScoreBadge({ score, size = "md", showNumber = false }: S
       title={t("Codex Score: {score} ({tier})", { score, tier: t(tier.label) })}
     >
       {tier.letter}
-      {showNumber && <span className={`font-mono font-medium opacity-80 ${numberSize}`}>{score}</span>}
+      {showNumber && (
+        <span className={`font-mono font-medium opacity-80 ${numberSize}`}>
+          {score}
+        </span>
+      )}
     </span>
   );
 }

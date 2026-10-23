@@ -46,7 +46,8 @@ export default function BuilderLoader({
         setInitial(loaded);
         setEntities(ents);
       } catch (e) {
-        if (!cancelled) setError(e instanceof Error && e.message ? e.message : "");
+        if (!cancelled)
+          setError(e instanceof Error && e.message ? e.message : "");
       }
     })();
     return () => {
@@ -66,8 +67,14 @@ export default function BuilderLoader({
   }
 
   if (!entities || !type) {
-    return <div className="mx-auto max-w-2xl px-4 py-12 text-center text-fg-muted">{t("Loading…")}</div>;
+    return (
+      <div className="mx-auto max-w-2xl px-4 py-12 text-center text-fg-muted">
+        {t("Loading…")}
+      </div>
+    );
   }
 
-  return <TierListBuilder entityType={type} entities={entities} initial={initial} />;
+  return (
+    <TierListBuilder entityType={type} entities={entities} initial={initial} />
+  );
 }

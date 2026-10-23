@@ -38,12 +38,42 @@ interface Tier {
 // Tier bands match _compute_score in run_entity_stats.py and the
 // scoreToTier function in ScoreBadge. Keep the three in sync.
 const TIERS: Tier[] = [
-  { letter: "S", min: 90, className: "bg-warning/10 border-warning/60 text-warning",     label: "Top tier" },
-  { letter: "A", min: 78, className: "bg-success/10 border-success/60 text-success", label: "Strong" },
-  { letter: "B", min: 65, className: "bg-info/10 border-info/60 text-info",           label: "Solid" },
-  { letter: "C", min: 50, className: "bg-surface/60 border-line-strong/60 text-fg-secondary",        label: "Average" },
-  { letter: "D", min: 35, className: "bg-warning/10 border-warning/60 text-warning",  label: "Below average" },
-  { letter: "F", min: 0,  className: "bg-danger/10 border-danger/30 text-danger",        label: "Underperforming" },
+  {
+    letter: "S",
+    min: 90,
+    className: "bg-warning/10 border-warning/60 text-warning",
+    label: "Top tier",
+  },
+  {
+    letter: "A",
+    min: 78,
+    className: "bg-success/10 border-success/60 text-success",
+    label: "Strong",
+  },
+  {
+    letter: "B",
+    min: 65,
+    className: "bg-info/10 border-info/60 text-info",
+    label: "Solid",
+  },
+  {
+    letter: "C",
+    min: 50,
+    className: "bg-surface/60 border-line-strong/60 text-fg-secondary",
+    label: "Average",
+  },
+  {
+    letter: "D",
+    min: 35,
+    className: "bg-warning/10 border-warning/60 text-warning",
+    label: "Below average",
+  },
+  {
+    letter: "F",
+    min: 0,
+    className: "bg-danger/10 border-danger/30 text-danger",
+    label: "Underperforming",
+  },
 ];
 
 function tierForScore(score: number): Tier {
@@ -72,7 +102,12 @@ interface TierListProps {
  * within the tier. Designed for the /tier-list/* pages but reusable
  * anywhere we want a tier-grouped display.
  */
-export default async function TierList({ route, entities, showUnrated = true, valueLabel = "Score" }: TierListProps) {
+export default async function TierList({
+  route,
+  entities,
+  showUnrated = true,
+  valueLabel = "Score",
+}: TierListProps) {
   const t = await getT();
   const lang = await getGameLocale();
   // Group entities by tier, the unrated go to the bottom in a separate
@@ -143,7 +178,7 @@ export default async function TierList({ route, entities, showUnrated = true, va
             <span className="text-3xl sm:text-4xl font-bold leading-none">
               {tier?.letter ?? "—"}
             </span>
-            <span className="text-[10px] uppercase tracking-wider opacity-70 ml-2 sm:ml-0 sm:mt-1.5">
+            <span className="text-[10px] uppercase tracking-wider opacity-90 ml-2 sm:ml-0 sm:mt-1.5">
               {tier ? t(tier.label) : t("Unrated")}
             </span>
           </div>
@@ -157,7 +192,11 @@ export default async function TierList({ route, entities, showUnrated = true, va
                   prefetch={false}
                   key={ent.id}
                   href={`/cards/${ent.id.toLowerCase()}`}
-                  title={tileValue(ent) != null ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})` : ent.name}
+                  title={
+                    tileValue(ent) != null
+                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})`
+                      : ent.name
+                  }
                   className="group relative flex flex-col items-center gap-0.5 w-[130px] sm:w-[150px] hover:scale-[1.04] transition-transform"
                 >
                   <LocalizedCardImage
@@ -177,7 +216,11 @@ export default async function TierList({ route, entities, showUnrated = true, va
                   prefetch={false}
                   key={ent.id}
                   href={`/${route}/${ent.id.toLowerCase()}`}
-                  title={tileValue(ent) != null ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})` : ent.name}
+                  title={
+                    tileValue(ent) != null
+                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})`
+                      : ent.name
+                  }
                   className="group relative flex flex-col items-center gap-1 w-16 sm:w-20 p-1.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
                 >
                   {ent.image_url ? (
@@ -202,7 +245,7 @@ export default async function TierList({ route, entities, showUnrated = true, va
                     </span>
                   )}
                 </Link>
-              )
+              ),
             )}
           </div>
         </div>

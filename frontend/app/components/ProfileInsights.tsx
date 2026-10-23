@@ -17,13 +17,24 @@ import {
 import { Chart } from "react-chartjs-2";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { CDN_BASE, fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import IconSelect from "@/app/components/IconSelect";
-import AscensionHeatmap, { type AscensionMatrix } from "@/app/components/AscensionHeatmap";
+import AscensionHeatmap, {
+  type AscensionMatrix,
+} from "@/app/components/AscensionHeatmap";
 import EloTrajectory, { type EloPoint } from "@/app/components/EloTrajectory";
 import CharacterTag from "@/app/components/CharacterTag";
+import { textColor } from "@/lib/character-colors";
 
-ChartJS.register(BarElement, LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
+ChartJS.register(
+  BarElement,
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Filler,
+);
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const GRID = "rgba(140,140,150,0.14)";
@@ -198,7 +209,13 @@ const CHARACTER_HEX: Record<string, string> = {
   regent: "#f07c1e",
 };
 
-const CHARACTERS = ["ironclad", "silent", "defect", "necrobinder", "regent"] as const;
+const CHARACTERS = [
+  "ironclad",
+  "silent",
+  "defect",
+  "necrobinder",
+  "regent",
+] as const;
 // Same canonical order the stats page uses, so both lists line up.
 const CHAR_ORDER = ["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"];
 
@@ -247,7 +264,8 @@ export function InsightsFilterBar({
       .then((d) => setVersions(d?.stat_versions || []))
       .catch(() => {});
   }, []);
-  const set = (patch: Partial<InsightFilters>) => onChange({ ...value, ...patch });
+  const set = (patch: Partial<InsightFilters>) =>
+    onChange({ ...value, ...patch });
 
   return (
     <div className="flex flex-wrap items-center gap-2">
@@ -334,31 +352,59 @@ function formatTime(seconds: number): string {
   return `${m}m ${s}s`;
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-      <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">{title}</h3>
+      <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-3">
+        {title}
+      </h3>
       {children}
     </div>
   );
 }
 
 // The "you vs everyone" primitive: two thin bars on one scale.
-function CompareBars({ you, community, lang }: { you: number; community: number | null | undefined; lang: string }) {
+function CompareBars({
+  you,
+  community,
+  lang,
+}: {
+  you: number;
+  community: number | null | undefined;
+  lang: string;
+}) {
   const t = useT();
   return (
     <div className="space-y-0.5">
       <div className="flex items-center gap-2">
-        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
+        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+          {t("You")}
+        </span>
         <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
-          <div className="h-full rounded-full bg-[var(--accent-gold)]" style={{ width: `${Math.min(you, 100)}%` }} />
+          <div
+            className="h-full rounded-full bg-[var(--accent-gold)]"
+            style={{ width: `${Math.min(you, 100)}%` }}
+          />
         </div>
-        <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">{you}%</span>
+        <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">
+          {you}%
+        </span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
+        <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+          {t("Community")}
+        </span>
         <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
-          <div className="h-full rounded-full bg-[var(--accent-gold)] opacity-40" style={{ width: `${Math.min(community ?? 0, 100)}%` }} />
+          <div
+            className="h-full rounded-full bg-[var(--accent-gold)] opacity-40"
+            style={{ width: `${Math.min(community ?? 0, 100)}%` }}
+          />
         </div>
         <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-tertiary)]">
           {community != null ? `${community}%` : "—"}
@@ -369,7 +415,17 @@ function CompareBars({ you, community, lang }: { you: number; community: number 
 }
 
 // Savant-style percentile slider: a track with a positioned, color-coded dot.
-function PercentileSlider({ label, valueText, percentile, lang }: { label: string; valueText: string; percentile: number; lang: string }) {
+function PercentileSlider({
+  label,
+  valueText,
+  percentile,
+  lang,
+}: {
+  label: string;
+  valueText: string;
+  percentile: number;
+  lang: string;
+}) {
   const t = useT();
   const hue = Math.round((percentile / 100) * 120); // red 0 → green 120
   const color = `hsl(${hue}, 65%, 52%)`;
@@ -377,13 +433,21 @@ function PercentileSlider({ label, valueText, percentile, lang }: { label: strin
     <div className="space-y-1">
       <div className="flex items-center justify-between text-sm">
         <span className="text-[var(--text-secondary)]">{label}</span>
-        <span className="text-[var(--text-primary)] font-medium tabular-nums">{valueText}</span>
+        <span className="text-[var(--text-primary)] font-medium tabular-nums">
+          {valueText}
+        </span>
       </div>
       <div className="relative h-2 rounded-full bg-[var(--bg-primary)]">
-        <div className="absolute inset-y-0 left-0 rounded-full opacity-25" style={{ width: `${percentile}%`, backgroundColor: color }} />
+        <div
+          className="absolute inset-y-0 left-0 rounded-full opacity-25"
+          style={{ width: `${percentile}%`, backgroundColor: color }}
+        />
         <div
           className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-5 h-5 rounded-full border-2 border-[var(--bg-card)] flex items-center justify-center text-[8px] font-bold text-on-fill"
-          style={{ left: `${Math.min(Math.max(percentile, 3), 97)}%`, backgroundColor: color }}
+          style={{
+            left: `${Math.min(Math.max(percentile, 3), 97)}%`,
+            backgroundColor: color,
+          }}
         >
           {percentile}
         </div>
@@ -396,7 +460,12 @@ function PercentileSlider({ label, valueText, percentile, lang }: { label: strin
 }
 
 function GapBadge({ gap }: { gap: number }) {
-  const cls = gap > 0 ? "text-success" : gap < 0 ? "text-danger" : "text-[var(--text-muted)]";
+  const cls =
+    gap > 0
+      ? "text-success"
+      : gap < 0
+        ? "text-danger"
+        : "text-[var(--text-muted)]";
   return (
     <span className={`text-xs font-medium tabular-nums ${cls}`}>
       {gap > 0 ? "+" : ""}
@@ -405,11 +474,23 @@ function GapBadge({ gap }: { gap: number }) {
   );
 }
 
-function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record<string, EntityInfo>; lang: string }) {
+function CardDeltaList({
+  rows,
+  cards,
+  lang,
+}: {
+  rows: CardDelta[];
+  cards: Record<string, EntityInfo>;
+  lang: string;
+}) {
   const t = useT();
   const bp = useBetaPrefix();
   if (rows.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
+    return (
+      <p className="text-xs text-[var(--text-muted)]">
+        {t("Not enough data yet.")}
+      </p>
+    );
   }
   return (
     <div className="space-y-1">
@@ -441,11 +522,14 @@ function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record
             </span>
             <span className="flex-1 min-w-0">
               <span className="flex items-center gap-1.5 min-w-0">
-                <span className="truncate text-sm text-[var(--text-primary)]">{info?.name || d.id.replace(/_/g, " ")}</span>
+                <span className="truncate text-sm text-[var(--text-primary)]">
+                  {info?.name || d.id.replace(/_/g, " ")}
+                </span>
                 <CharacterPill color={info?.color} />
               </span>
               <span className="block text-[10px] text-[var(--text-muted)] tabular-nums">
-                {t("You")} {d.your_pick_rate}% · {t("Community")} {d.community_pick_rate}% · {d.picked}/{d.offered} {t("offers")}
+                {t("You")} {d.your_pick_rate}% · {t("Community")}{" "}
+                {d.community_pick_rate}% · {d.picked}/{d.offered} {t("offers")}
               </span>
             </span>
             <GapBadge gap={d.gap} />
@@ -456,11 +540,23 @@ function CardDeltaList({ rows, cards, lang }: { rows: CardDelta[]; cards: Record
   );
 }
 
-function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Record<string, EntityInfo>; lang: string }) {
+function RelicDeltaList({
+  rows,
+  relics,
+  lang,
+}: {
+  rows: RelicDelta[];
+  relics: Record<string, EntityInfo>;
+  lang: string;
+}) {
   const t = useT();
   const bp = useBetaPrefix();
   if (rows.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
+    return (
+      <p className="text-xs text-[var(--text-muted)]">
+        {t("Not enough data yet.")}
+      </p>
+    );
   }
   return (
     <div className="space-y-1">
@@ -475,18 +571,27 @@ function RelicDeltaList({ rows, relics, lang }: { rows: RelicDelta[]; relics: Re
           >
             <span className="flex-shrink-0 w-9 h-9 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] overflow-hidden flex items-center justify-center">
               {info?.image_url ? (
-                <img src={imageUrl(info.image_url)} alt={info?.name || d.id} className="w-full h-full object-contain p-0.5" crossOrigin="anonymous" loading="lazy" />
+                <img
+                  src={imageUrl(info.image_url)}
+                  alt={info?.name || d.id}
+                  className="w-full h-full object-contain p-0.5"
+                  crossOrigin="anonymous"
+                  loading="lazy"
+                />
               ) : (
                 <span className="text-[9px] text-[var(--text-muted)]">—</span>
               )}
             </span>
             <span className="flex-1 min-w-0">
               <span className="flex items-center gap-1.5 min-w-0">
-                <span className="truncate text-sm text-[var(--text-primary)]">{info?.name || d.id.replace(/_/g, " ")}</span>
+                <span className="truncate text-sm text-[var(--text-primary)]">
+                  {info?.name || d.id.replace(/_/g, " ")}
+                </span>
                 <CharacterPill color={info?.pool} />
               </span>
               <span className="block text-[10px] text-[var(--text-muted)] tabular-nums">
-                {t("You")} {d.your_rate}% · {t("Community")} {d.community_rate}% · {d.runs_with}/{d.runs} {t("runs")}
+                {t("You")} {d.your_rate}% · {t("Community")} {d.community_rate}%
+                · {d.runs_with}/{d.runs} {t("runs")}
               </span>
             </span>
             <GapBadge gap={d.gap} />
@@ -552,8 +657,24 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
       },
     },
     scales: {
-      x: { stacked: true, grid: { display: false }, border: { display: false }, ticks: { color: TICK, font: { size: 9 }, maxRotation: 0, autoSkip: true } },
-      y: { stacked: true, position: "left", grid: { color: GRID }, border: { display: false }, ticks: { color: TICK, font: { size: 10 }, precision: 0 } },
+      x: {
+        stacked: true,
+        grid: { display: false },
+        border: { display: false },
+        ticks: {
+          color: TICK,
+          font: { size: 9 },
+          maxRotation: 0,
+          autoSkip: true,
+        },
+      },
+      y: {
+        stacked: true,
+        position: "left",
+        grid: { color: GRID },
+        border: { display: false },
+        ticks: { color: TICK, font: { size: 10 }, precision: 0 },
+      },
       y1: {
         position: "right",
         min: 0,
@@ -573,8 +694,14 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
         {modeKeys
           .filter((k) => rows.some((r) => r[k] > 0))
           .map((k) => (
-            <span key={k} className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]">
-              <span className="w-2.5 h-2.5 rounded-[3px]" style={{ background: MODE_COLORS[k] }} />
+            <span
+              key={k}
+              className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]"
+            >
+              <span
+                className="w-2.5 h-2.5 rounded-[3px]"
+                style={{ background: MODE_COLORS[k] }}
+              />
               {modeLabels[k]}
             </span>
           ))}
@@ -589,13 +716,27 @@ function ActivityChart({ rows, lang }: { rows: ActivityWeek[]; lang: string }) {
 
 // Compact act x node-type table: your death rate per cell, community's under
 // it. Red when you die there more than the community, green when less.
-function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>; lang: string }) {
+function DangerTable({
+  rows,
+  lang,
+}: {
+  rows: NonNullable<Insights["map_danger"]>;
+  lang: string;
+}) {
   const t = useT();
-  const acts = rows.filter((a) => Object.values(a.types || {}).some((c) => (c.visits || 0) >= 10));
+  const acts = rows.filter((a) =>
+    Object.values(a.types || {}).some((c) => (c.visits || 0) >= 10),
+  );
   if (acts.length === 0) {
-    return <p className="text-xs text-[var(--text-muted)]">{t("Not enough data yet.")}</p>;
+    return (
+      <p className="text-xs text-[var(--text-muted)]">
+        {t("Not enough data yet.")}
+      </p>
+    );
   }
-  const cols = DANGER_TYPES.filter((ty) => acts.some((a) => (a.types?.[ty]?.visits || 0) >= 10));
+  const cols = DANGER_TYPES.filter((ty) =>
+    acts.some((a) => (a.types?.[ty]?.visits || 0) >= 10),
+  );
   return (
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
@@ -603,7 +744,10 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
           <tr>
             <th className="text-left font-normal text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] pb-2" />
             {cols.map((ty) => (
-              <th key={ty} className="text-right font-normal text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] pb-2 pl-4">
+              <th
+                key={ty}
+                className="text-right font-normal text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] pb-2 pl-4"
+              >
                 {t(DANGER_LABELS[ty])}
               </th>
             ))}
@@ -619,7 +763,10 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
                 const cell = a.types?.[ty];
                 if (!cell || (cell.visits || 0) < 10) {
                   return (
-                    <td key={ty} className="py-1.5 pl-4 text-right text-[var(--text-muted)]">
+                    <td
+                      key={ty}
+                      className="py-1.5 pl-4 text-right text-[var(--text-muted)]"
+                    >
                       —
                     </td>
                   );
@@ -629,10 +776,22 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
                 const better = comm != null && cell.death_rate < comm;
                 return (
                   <td key={ty} className="py-1.5 pl-4 text-right tabular-nums">
-                    <span className={worse ? "text-danger" : better ? "text-success" : "text-[var(--text-primary)]"}>
+                    <span
+                      className={
+                        worse
+                          ? "text-danger"
+                          : better
+                            ? "text-success"
+                            : "text-[var(--text-primary)]"
+                      }
+                    >
                       {cell.death_rate}%
                     </span>
-                    {comm != null && <span className="block text-[10px] text-[var(--text-muted)]">{comm}%</span>}
+                    {comm != null && (
+                      <span className="block text-[10px] text-[var(--text-muted)]">
+                        {comm}%
+                      </span>
+                    )}
                   </td>
                 );
               })}
@@ -645,13 +804,32 @@ function DangerTable({ rows, lang }: { rows: NonNullable<Insights["map_danger"]>
 }
 
 // One 100%-stacked campfire distribution bar with per-segment colors.
-function RestStack({ rows, pctKey, dim }: { rows: ComparableRow[]; pctKey: "pct" | "pct_low_hp"; dim?: boolean }) {
+function RestStack({
+  rows,
+  pctKey,
+  dim,
+}: {
+  rows: ComparableRow[];
+  pctKey: "pct" | "pct_low_hp";
+  dim?: boolean;
+}) {
   return (
-    <div className={`flex h-3 rounded-full overflow-hidden bg-[var(--bg-primary)] ${dim ? "opacity-50" : ""}`}>
+    <div
+      className={`flex h-3 rounded-full overflow-hidden bg-[var(--bg-primary)] ${dim ? "opacity-50" : ""}`}
+    >
       {rows.map((r) => {
         const w = pctKey === "pct" ? r.pct : r.pct_low_hp;
         if (!w || w <= 0) return null;
-        return <div key={r.id} style={{ width: `${w}%`, background: REST_COLORS[r.id] || "#596068" }} title={`${r.label || r.id}: ${w}%`} />;
+        return (
+          <div
+            key={r.id}
+            style={{
+              width: `${w}%`,
+              background: REST_COLORS[r.id] || "#596068",
+            }}
+            title={`${r.label || r.id}: ${w}%`}
+          />
+        );
       })}
     </div>
   );
@@ -661,42 +839,78 @@ function RestSection({ mine, lang }: { mine: ComparableRow[]; lang: string }) {
   const t = useT();
   // Community distribution rebuilt from the community_pct fields riding on
   // the personal rows (same ids, same order).
-  const commAll: ComparableRow[] = mine.map((r) => ({ ...r, pct: r.community_pct ?? 0 }));
+  const commAll: ComparableRow[] = mine.map((r) => ({
+    ...r,
+    pct: r.community_pct ?? 0,
+  }));
   const hasLowHp = mine.some((r) => (r.pct_low_hp ?? 0) > 0);
   return (
     <div className="space-y-4">
       <div className="space-y-1.5">
-        <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("All campfire visits")}</p>
+        <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">
+          {t("All campfire visits")}
+        </p>
         <div className="flex items-center gap-2">
-          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
-          <div className="flex-1"><RestStack rows={mine} pctKey="pct" /></div>
+          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+            {t("You")}
+          </span>
+          <div className="flex-1">
+            <RestStack rows={mine} pctKey="pct" />
+          </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
-          <div className="flex-1"><RestStack rows={commAll} pctKey="pct" dim /></div>
+          <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+            {t("Community")}
+          </span>
+          <div className="flex-1">
+            <RestStack rows={commAll} pctKey="pct" dim />
+          </div>
         </div>
       </div>
       {hasLowHp && (
         <div className="space-y-1.5">
-          <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">{t("Arriving below half HP")}</p>
+          <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)]">
+            {t("Arriving below half HP")}
+          </p>
           <div className="flex items-center gap-2">
-            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
-            <div className="flex-1"><RestStack rows={mine} pctKey="pct_low_hp" /></div>
+            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+              {t("You")}
+            </span>
+            <div className="flex-1">
+              <RestStack rows={mine} pctKey="pct_low_hp" />
+            </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
+            <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+              {t("Community")}
+            </span>
             <div className="flex-1">
-              <RestStack rows={mine.map((r) => ({ ...r, pct_low_hp: r.community_pct_low_hp ?? 0 }))} pctKey="pct_low_hp" dim />
+              <RestStack
+                rows={mine.map((r) => ({
+                  ...r,
+                  pct_low_hp: r.community_pct_low_hp ?? 0,
+                }))}
+                pctKey="pct_low_hp"
+                dim
+              />
             </div>
           </div>
         </div>
       )}
       <div className="flex flex-wrap gap-3">
         {mine.map((r) => (
-          <span key={r.id} className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]">
-            <span className="w-2.5 h-2.5 rounded-[3px]" style={{ background: REST_COLORS[r.id] || "#596068" }} />
+          <span
+            key={r.id}
+            className="flex items-center gap-1.5 text-[10px] text-[var(--text-muted)]"
+          >
+            <span
+              className="w-2.5 h-2.5 rounded-[3px]"
+              style={{ background: REST_COLORS[r.id] || "#596068" }}
+            />
             {r.label || r.id} {r.pct}%
-            <span className="text-[var(--text-tertiary)]">({r.community_pct ?? "—"}%)</span>
+            <span className="text-[var(--text-tertiary)]">
+              ({r.community_pct ?? "—"}%)
+            </span>
           </span>
         ))}
       </div>
@@ -704,19 +918,34 @@ function RestSection({ mine, lang }: { mine: ComparableRow[]; lang: string }) {
   );
 }
 
-function DeathColumn({ title, rows, lang }: { title: string; rows: ComparableRow[]; lang: string }) {
+function DeathColumn({
+  title,
+  rows,
+  lang,
+}: {
+  title: string;
+  rows: ComparableRow[];
+  lang: string;
+}) {
   if (rows.length === 0) return null;
   return (
     <div>
-      <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] mb-1.5">{title}</p>
+      <p className="text-[10px] uppercase tracking-wider text-[var(--text-tertiary)] mb-1.5">
+        {title}
+      </p>
       <div className="space-y-1.5">
         {rows.map((d) => (
           <div key={d.id} className="flex items-center justify-between text-sm">
-            <span className="text-[var(--text-primary)] truncate">{d.name || d.id.replace(/_/g, " ")}</span>
+            <span className="text-[var(--text-primary)] truncate">
+              {d.name || d.id.replace(/_/g, " ")}
+            </span>
             <span className="text-xs text-[var(--text-tertiary)] tabular-nums shrink-0 ml-2">
               {d.count} · {d.pct.toFixed(1)}%
               {d.community_pct != null && (
-                <span className="text-[var(--text-muted)]"> ({d.community_pct.toFixed(1)}%)</span>
+                <span className="text-[var(--text-muted)]">
+                  {" "}
+                  ({d.community_pct.toFixed(1)}%)
+                </span>
               )}
             </span>
           </div>
@@ -727,20 +956,50 @@ function DeathColumn({ title, rows, lang }: { title: string; rows: ComparableRow
 }
 
 function displayCharacter(id: string): string {
-  const bare = id.replace(/^CHARACTER\./, "").replace(/_/g, " ").toLowerCase();
+  const bare = id
+    .replace(/^CHARACTER\./, "")
+    .replace(/_/g, " ")
+    .toLowerCase();
   return bare.charAt(0).toUpperCase() + bare.slice(1);
 }
 
-function BestTile({ href, value, label, sub, rank }: { href: string; value: string; label: string; sub?: string; rank?: { rank: number; total: number } | null }) {
+function BestTile({
+  href,
+  value,
+  label,
+  sub,
+  rank,
+}: {
+  href: string;
+  value: string;
+  label: string;
+  sub?: string;
+  rank?: { rank: number; total: number } | null;
+}) {
   return (
-    <Link prefetch={false} href={href} className="bg-[var(--bg-primary)] rounded-lg p-3 text-center hover:bg-[var(--bg-card-hover)] transition-colors">
-      <p className="text-lg font-bold text-[var(--text-primary)] tabular-nums">{value}</p>
-      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-0.5">{label}</p>
+    <Link
+      prefetch={false}
+      href={href}
+      className="bg-[var(--bg-primary)] rounded-lg p-3 text-center hover:bg-[var(--bg-card-hover)] transition-colors"
+    >
+      <p className="text-lg font-bold text-[var(--text-primary)] tabular-nums">
+        {value}
+      </p>
+      <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-0.5">
+        {label}
+      </p>
       {(sub || rank) && (
         <p className="text-[10px] text-[var(--text-tertiary)] mt-0.5">
           {sub}
           {rank?.rank ? (
-            <span className="text-[var(--accent-gold)]"> #{rank.rank.toLocaleString()}<span className="text-[var(--text-muted)]"> / {rank.total.toLocaleString()}</span></span>
+            <span className="text-[var(--accent-gold)]">
+              {" "}
+              #{rank.rank.toLocaleString()}
+              <span className="text-[var(--text-muted)]">
+                {" "}
+                / {rank.total.toLocaleString()}
+              </span>
+            </span>
           ) : null}
         </p>
       )}
@@ -773,11 +1032,17 @@ export function InsightsPanels({
   const deathsEnc = data.deaths?.encounters || [];
   const bosses = deathsEnc.filter((d) => d.id.endsWith("_BOSS")).slice(0, 5);
   const elites = deathsEnc.filter((d) => d.id.endsWith("_ELITE")).slice(0, 5);
-  const fights = deathsEnc.filter((d) => !d.id.endsWith("_BOSS") && !d.id.endsWith("_ELITE")).slice(0, 5);
+  const fights = deathsEnc
+    .filter((d) => !d.id.endsWith("_BOSS") && !d.id.endsWith("_ELITE"))
+    .slice(0, 5);
   const restSites = data.rest_sites || [];
   const boons = (data.ancient_picks || [])
     .filter((b) => (b.offered ?? 0) >= 5 && b.take_rate != null)
-    .sort((a, b) => Math.abs((b.take_rate! - (b.community_take_rate ?? b.take_rate!))) - Math.abs((a.take_rate! - (a.community_take_rate ?? a.take_rate!))))
+    .sort(
+      (a, b) =>
+        Math.abs(b.take_rate! - (b.community_take_rate ?? b.take_rate!)) -
+        Math.abs(a.take_rate! - (a.community_take_rate ?? a.take_rate!)),
+    )
     .slice(0, 8);
   const divergence = data.event_divergence || [];
   const records = data.records || {};
@@ -785,15 +1050,19 @@ export function InsightsPanels({
   const pct = data.percentiles;
   const streaks = data.streaks;
   const elo = data.elo;
-  const hasRecords = records.fastest_win || records.longest_run || records.biggest_deck;
+  const hasRecords =
+    records.fastest_win || records.longest_run || records.biggest_deck;
   const hasBests = bests && Object.values(bests).some(Boolean);
   const characters = (data.by_character || [])
     .filter((c) => c.runs > 0)
     .sort(
       (a, b) =>
-        CHAR_ORDER.indexOf(a.id.toUpperCase()) - CHAR_ORDER.indexOf(b.id.toUpperCase()),
+        CHAR_ORDER.indexOf(a.id.toUpperCase()) -
+        CHAR_ORDER.indexOf(b.id.toUpperCase()),
     );
-  const losses = data.total_losses ?? (data.total_wins != null ? data.total_runs - data.total_wins : null);
+  const losses =
+    data.total_losses ??
+    (data.total_wins != null ? data.total_runs - data.total_wins : null);
 
   return (
     <div className="space-y-4">
@@ -804,9 +1073,16 @@ export function InsightsPanels({
           [t("Losses"), losses ?? 0],
           [t("Win rate"), `${data.win_rate ?? 0}%`],
         ].map(([label, value]) => (
-          <div key={String(label)} className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 text-center">
-            <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{value}</p>
-            <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{label}</p>
+          <div
+            key={String(label)}
+            className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 text-center"
+          >
+            <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+              {value}
+            </p>
+            <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">
+              {label}
+            </p>
           </div>
         ))}
       </div>
@@ -816,8 +1092,18 @@ export function InsightsPanels({
           {pct && (
             <Section title={t("How you rank")}>
               <div className="space-y-4">
-                <PercentileSlider label={t("Win rate")} valueText={`${pct.win_rate}%`} percentile={pct.win_rate_percentile} lang={lang} />
-                <PercentileSlider label={t("Runs submitted")} valueText={`${pct.runs}`} percentile={pct.runs_percentile} lang={lang} />
+                <PercentileSlider
+                  label={t("Win rate")}
+                  valueText={`${pct.win_rate}%`}
+                  percentile={pct.win_rate_percentile}
+                  lang={lang}
+                />
+                <PercentileSlider
+                  label={t("Runs submitted")}
+                  valueText={`${pct.runs}`}
+                  percentile={pct.runs_percentile}
+                  lang={lang}
+                />
               </div>
             </Section>
           )}
@@ -825,12 +1111,20 @@ export function InsightsPanels({
             <Section title={t("Streaks")}>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{streaks.current_win_streak}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current win streak")}</p>
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+                    {streaks.current_win_streak}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">
+                    {t("Current win streak")}
+                  </p>
                 </div>
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{streaks.best_win_streak}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Best win streak")}</p>
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+                    {streaks.best_win_streak}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">
+                    {t("Best win streak")}
+                  </p>
                 </div>
               </div>
             </Section>
@@ -839,12 +1133,20 @@ export function InsightsPanels({
             <Section title={t("Elo")}>
               <div className="grid grid-cols-2 gap-3">
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.current)}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Current Elo")}</p>
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+                    {Math.round(elo.current)}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">
+                    {t("Current Elo")}
+                  </p>
                 </div>
                 <div className="bg-[var(--bg-primary)] rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{Math.round(elo.peak)}</p>
-                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">{t("Highest Elo Score Achieved")}</p>
+                  <p className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+                    {Math.round(elo.peak)}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mt-1">
+                    {t("Highest Elo Score Achieved")}
+                  </p>
                 </div>
               </div>
               {/* Each character is its own ladder; the tiles above blend them
@@ -852,12 +1154,21 @@ export function InsightsPanels({
               {elo.by_character && Object.keys(elo.by_character).length > 0 && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
                   {Object.entries(elo.by_character)
-                    .sort(([a], [b]) => CHAR_ORDER.indexOf(a.toUpperCase()) - CHAR_ORDER.indexOf(b.toUpperCase()))
+                    .sort(
+                      ([a], [b]) =>
+                        CHAR_ORDER.indexOf(a.toUpperCase()) -
+                        CHAR_ORDER.indexOf(b.toUpperCase()),
+                    )
                     .map(([id, bc]) => (
-                      <div key={id} className="bg-[var(--bg-primary)] rounded-lg px-3 py-2 flex items-center justify-between gap-2 text-xs">
+                      <div
+                        key={id}
+                        className="bg-[var(--bg-primary)] rounded-lg px-3 py-2 flex items-center justify-between gap-2 text-xs"
+                      >
                         <CharacterTag id={id} size={16} />
                         <span className="text-right shrink-0">
-                          <span className="text-sm font-semibold tabular-nums text-[var(--text-primary)]">{Math.round(bc.elo)}</span>
+                          <span className="text-sm font-semibold tabular-nums text-[var(--text-primary)]">
+                            {Math.round(bc.elo)}
+                          </span>
                           <span className="text-[10px] text-[var(--text-muted)] ml-1.5">
                             {bc.runs.toLocaleString()} {t("Runs")}
                           </span>
@@ -875,25 +1186,61 @@ export function InsightsPanels({
         <Section title={t("Personal Bests")}>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {bests?.fastest_solo && (
-              <BestTile href={`${bp}/runs/${bests.fastest_solo.run_hash}`} value={formatTime(bests.fastest_solo.run_time)} label={t("Fastest Solo")} sub={`${displayCharacter(bests.fastest_solo.character)} A${bests.fastest_solo.ascension}`} rank={personalRanks?.fastest_solo} />
+              <BestTile
+                href={`${bp}/runs/${bests.fastest_solo.run_hash}`}
+                value={formatTime(bests.fastest_solo.run_time)}
+                label={t("Fastest Solo")}
+                sub={`${displayCharacter(bests.fastest_solo.character)} A${bests.fastest_solo.ascension}`}
+                rank={personalRanks?.fastest_solo}
+              />
             )}
             {bests?.fastest_multi && (
-              <BestTile href={`${bp}/runs/${bests.fastest_multi.run_hash}`} value={formatTime(bests.fastest_multi.run_time)} label={t("Fastest Co-op")} sub={`${displayCharacter(bests.fastest_multi.character)} A${bests.fastest_multi.ascension}`} rank={personalRanks?.fastest_multi} />
+              <BestTile
+                href={`${bp}/runs/${bests.fastest_multi.run_hash}`}
+                value={formatTime(bests.fastest_multi.run_time)}
+                label={t("Fastest Co-op")}
+                sub={`${displayCharacter(bests.fastest_multi.character)} A${bests.fastest_multi.ascension}`}
+                rank={personalRanks?.fastest_multi}
+              />
             )}
             {bests?.highest_ascension && (
-              <BestTile href={`${bp}/runs/${bests.highest_ascension.run_hash}`} value={`A${bests.highest_ascension.ascension}`} label={t("Highest Ascension")} sub={displayCharacter(bests.highest_ascension.character)} rank={personalRanks?.highest_ascension} />
+              <BestTile
+                href={`${bp}/runs/${bests.highest_ascension.run_hash}`}
+                value={`A${bests.highest_ascension.ascension}`}
+                label={t("Highest Ascension")}
+                sub={displayCharacter(bests.highest_ascension.character)}
+                rank={personalRanks?.highest_ascension}
+              />
             )}
             {bests?.fastest_daily && (
-              <BestTile href={`${bp}/runs/${bests.fastest_daily.run_hash}`} value={formatTime(bests.fastest_daily.run_time)} label={t("Fastest Daily (All Time)")} sub={displayCharacter(bests.fastest_daily.character)} rank={personalRanks?.fastest_daily} />
+              <BestTile
+                href={`${bp}/runs/${bests.fastest_daily.run_hash}`}
+                value={formatTime(bests.fastest_daily.run_time)}
+                label={t("Fastest Daily (All Time)")}
+                sub={displayCharacter(bests.fastest_daily.character)}
+                rank={personalRanks?.fastest_daily}
+              />
             )}
             {!bests?.fastest_solo && records.fastest_win && (
-              <BestTile href={`${bp}/runs/${records.fastest_win.run_hash}`} value={formatTime(records.fastest_win.run_time)} label={t("Fastest win")} />
+              <BestTile
+                href={`${bp}/runs/${records.fastest_win.run_hash}`}
+                value={formatTime(records.fastest_win.run_time)}
+                label={t("Fastest win")}
+              />
             )}
             {records.longest_run && (
-              <BestTile href={`${bp}/runs/${records.longest_run.run_hash}`} value={formatTime(records.longest_run.run_time)} label={t("Longest run")} />
+              <BestTile
+                href={`${bp}/runs/${records.longest_run.run_hash}`}
+                value={formatTime(records.longest_run.run_time)}
+                label={t("Longest run")}
+              />
             )}
             {records.biggest_deck && (
-              <BestTile href={`${bp}/runs/${records.biggest_deck.run_hash}`} value={`${records.biggest_deck.size} ${t("cards")}`} label={t("Biggest deck")} />
+              <BestTile
+                href={`${bp}/runs/${records.biggest_deck.run_hash}`}
+                value={`${records.biggest_deck.size} ${t("cards")}`}
+                label={t("Biggest deck")}
+              />
             )}
           </div>
         </Section>
@@ -903,12 +1250,19 @@ export function InsightsPanels({
         <Section title={t("Characters")}>
           <div className="space-y-3">
             {characters.map((c) => {
-              const hex = CHARACTER_HEX[c.id.toLowerCase()] || "var(--text-muted)";
+              const hex =
+                CHARACTER_HEX[c.id.toLowerCase()] || "var(--text-muted)";
               return (
                 <div key={c.id} className="space-y-1">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="font-medium" style={{ color: hex }}>
-                      {(c.name || displayCharacter(c.id)).replace(/^The\s+/i, "")}
+                    <span
+                      className="font-medium"
+                      style={{ color: textColor(hex) }}
+                    >
+                      {(c.name || displayCharacter(c.id)).replace(
+                        /^The\s+/i,
+                        "",
+                      )}
                     </span>
                     <span className="text-xs text-[var(--text-tertiary)] tabular-nums">
                       {c.runs} {t("runs")} · {c.share}%
@@ -916,19 +1270,39 @@ export function InsightsPanels({
                   </div>
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-2">
-                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("You")}</span>
+                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+                        {t("You")}
+                      </span>
                       <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
-                        <div className="h-full rounded-full" style={{ width: `${Math.min(c.win_rate, 100)}%`, backgroundColor: hex }} />
+                        <div
+                          className="h-full rounded-full"
+                          style={{
+                            width: `${Math.min(c.win_rate, 100)}%`,
+                            backgroundColor: hex,
+                          }}
+                        />
                       </div>
-                      <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">{c.win_rate}%</span>
+                      <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-primary)]">
+                        {c.win_rate}%
+                      </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">{t("Community")}</span>
+                      <span className="w-16 text-[10px] text-[var(--text-tertiary)]">
+                        {t("Community")}
+                      </span>
                       <div className="flex-1 h-1.5 rounded-full bg-[var(--bg-primary)] overflow-hidden">
-                        <div className="h-full rounded-full opacity-40" style={{ width: `${Math.min(c.community_win_rate ?? 0, 100)}%`, backgroundColor: hex }} />
+                        <div
+                          className="h-full rounded-full opacity-40"
+                          style={{
+                            width: `${Math.min(c.community_win_rate ?? 0, 100)}%`,
+                            backgroundColor: hex,
+                          }}
+                        />
                       </div>
                       <span className="w-12 text-right text-[10px] tabular-nums text-[var(--text-tertiary)]">
-                        {c.community_win_rate != null ? `${c.community_win_rate}%` : "—"}
+                        {c.community_win_rate != null
+                          ? `${c.community_win_rate}%`
+                          : "—"}
                       </span>
                     </div>
                   </div>
@@ -965,7 +1339,9 @@ export function InsightsPanels({
 
       {(bosses.length > 0 || elites.length > 0 || fights.length > 0) && (
         <Section title={t("What kills you")}>
-          <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("Share of your deaths. Gray = community share.")}</p>
+          <p className="text-[11px] text-[var(--text-muted)] mb-3">
+            {t("Share of your deaths. Gray = community share.")}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <DeathColumn title={t("Bosses")} rows={bosses} lang={lang} />
             <DeathColumn title={t("Elites")} rows={elites} lang={lang} />
@@ -977,7 +1353,9 @@ export function InsightsPanels({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {(data.map_danger || []).length > 0 && (
           <Section title={t("Where you die")}>
-            <p className="text-[11px] text-[var(--text-muted)] mb-3">{t("How often a visit kills you. Gray = community.")}</p>
+            <p className="text-[11px] text-[var(--text-muted)] mb-3">
+              {t("How often a visit kills you. Gray = community.")}
+            </p>
             <DangerTable rows={data.map_danger!} lang={lang} />
           </Section>
         )}
@@ -991,24 +1369,42 @@ export function InsightsPanels({
       {data.card_picks && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Section title={t("Cards you take more than most")}>
-            <CardDeltaList rows={data.card_picks.over_picked || []} cards={cards} lang={lang} />
+            <CardDeltaList
+              rows={data.card_picks.over_picked || []}
+              cards={cards}
+              lang={lang}
+            />
           </Section>
           <Section title={t("Cards you take less than most")}>
-            <CardDeltaList rows={data.card_picks.under_picked || []} cards={cards} lang={lang} />
+            <CardDeltaList
+              rows={data.card_picks.under_picked || []}
+              cards={cards}
+              lang={lang}
+            />
           </Section>
         </div>
       )}
 
-      {data.relic_picks && (data.relic_picks.over_carried.length > 0 || data.relic_picks.under_carried.length > 0) && (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <Section title={t("Relics you take more than most")}>
-            <RelicDeltaList rows={data.relic_picks.over_carried || []} relics={relics} lang={lang} />
-          </Section>
-          <Section title={t("Relics you take less than most")}>
-            <RelicDeltaList rows={data.relic_picks.under_carried || []} relics={relics} lang={lang} />
-          </Section>
-        </div>
-      )}
+      {data.relic_picks &&
+        (data.relic_picks.over_carried.length > 0 ||
+          data.relic_picks.under_carried.length > 0) && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <Section title={t("Relics you take more than most")}>
+              <RelicDeltaList
+                rows={data.relic_picks.over_carried || []}
+                relics={relics}
+                lang={lang}
+              />
+            </Section>
+            <Section title={t("Relics you take less than most")}>
+              <RelicDeltaList
+                rows={data.relic_picks.under_carried || []}
+                relics={relics}
+                lang={lang}
+              />
+            </Section>
+          </div>
+        )}
 
       {divergence.length > 0 && (
         <Section title={t("Event choices where you differ")}>
@@ -1017,14 +1413,25 @@ export function InsightsPanels({
               <div key={`${d.event_id}-${d.option_id}`} className="space-y-1">
                 <div className="flex items-center justify-between text-sm gap-2">
                   <span className="min-w-0 truncate">
-                    <Link prefetch={false} href={`${bp}/events/${d.event_id.toLowerCase()}`} className="text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors">
+                    <Link
+                      prefetch={false}
+                      href={`${bp}/events/${d.event_id.toLowerCase()}`}
+                      className="text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                    >
                       {d.event_name || d.event_id.replace(/_/g, " ")}
                     </Link>
-                    <span className="text-[var(--text-muted)]"> · {d.option_label || d.option_id.replace(/_/g, " ")}</span>
+                    <span className="text-[var(--text-muted)]">
+                      {" "}
+                      · {d.option_label || d.option_id.replace(/_/g, " ")}
+                    </span>
                   </span>
                   <GapBadge gap={d.gap} />
                 </div>
-                <CompareBars you={d.your_pct} community={d.community_pct} lang={lang} />
+                <CompareBars
+                  you={d.your_pct}
+                  community={d.community_pct}
+                  lang={lang}
+                />
               </div>
             ))}
           </div>
@@ -1037,12 +1444,18 @@ export function InsightsPanels({
             {boons.map((b) => (
               <div key={b.id} className="space-y-1">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-[var(--text-primary)]">{b.name || b.id.replace(/_/g, " ")}</span>
+                  <span className="text-[var(--text-primary)]">
+                    {b.name || b.id.replace(/_/g, " ")}
+                  </span>
                   <span className="text-xs text-[var(--text-tertiary)] tabular-nums">
                     {b.count}/{b.offered} {t("offers")}
                   </span>
                 </div>
-                <CompareBars you={b.take_rate!} community={b.community_take_rate} lang={lang} />
+                <CompareBars
+                  you={b.take_rate!}
+                  community={b.community_take_rate}
+                  lang={lang}
+                />
               </div>
             ))}
           </div>
@@ -1058,14 +1471,18 @@ export function InsightsPanels({
 function useEntityMap(path: string): Record<string, EntityInfo> {
   const lang = useGameLocale();
   const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}`;
-  const [state, setState] = useState<{ url: string; map: Record<string, EntityInfo> }>({ url: "", map: {} });
+  const [state, setState] = useState<{
+    url: string;
+    map: Record<string, EntityInfo>;
+  }>({ url: "", map: {} });
   useEffect(() => {
     let alive = true;
     cachedFetch<EntityInfo[]>(url)
       .then((rows) => {
         if (!alive) return;
         const m: Record<string, EntityInfo> = {};
-        for (const c of Array.isArray(rows) ? rows : []) m[c.id.toUpperCase()] = c;
+        for (const c of Array.isArray(rows) ? rows : [])
+          m[c.id.toUpperCase()] = c;
         setState({ url, map: m });
       })
       .catch(() => {
@@ -1103,7 +1520,10 @@ export default function ProfileInsights({
   const [claimedRuns, setClaimedRuns] = useState<number | null>(null);
   const [filters, setFilters] = useState<InsightFilters>(EMPTY_INSIGHT_FILTERS);
   const filtered =
-    !!filters.character || !!filters.ascension || !!filters.players || !!filters.version;
+    !!filters.character ||
+    !!filters.ascension ||
+    !!filters.players ||
+    !!filters.version;
   const cards = useCardMap();
   const relics = useRelicMap();
 
@@ -1121,7 +1541,8 @@ export default function ProfileInsights({
           if (!alive) return;
           if (d && d.building) {
             setBuilding(true);
-            if (typeof d.claimed_runs === "number") setClaimedRuns(d.claimed_runs);
+            if (typeof d.claimed_runs === "number")
+              setClaimedRuns(d.claimed_runs);
             timer = setTimeout(load, 5000);
             return;
           }
@@ -1148,11 +1569,16 @@ export default function ProfileInsights({
         {building && (
           <p className="text-sm text-[var(--text-secondary)]">
             {t("Crunching your runs. The first load can take a minute or two.")}
-            {claimedRuns ? ` · ${claimedRuns.toLocaleString()} ${t("runs")}` : ""}
+            {claimedRuns
+              ? ` · ${claimedRuns.toLocaleString()} ${t("runs")}`
+              : ""}
           </p>
         )}
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="h-24 bg-[var(--bg-card)] rounded-lg animate-pulse" />
+          <div
+            key={i}
+            className="h-24 bg-[var(--bg-card)] rounded-lg animate-pulse"
+          />
         ))}
       </div>
     );
@@ -1170,8 +1596,12 @@ export default function ProfileInsights({
     <div className={`space-y-4 ${loading ? "opacity-60" : ""}`}>
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs text-[var(--text-muted)]">
-          {t("Your runs through the community lens. Every section compares you with all submitted runs.")}
-          {data?.runs_capped ? ` ${t("Based on your most recent runs only.")}` : ""}
+          {t(
+            "Your runs through the community lens. Every section compares you with all submitted runs.",
+          )}
+          {data?.runs_capped
+            ? ` ${t("Based on your most recent runs only.")}`
+            : ""}
         </p>
         <InsightsFilterBar value={filters} onChange={setFilters} lang={lang} />
       </div>
@@ -1185,7 +1615,9 @@ export default function ProfileInsights({
           personalRanks={filtered ? undefined : personalRanks}
         />
       ) : (
-        <p className="text-sm text-[var(--text-secondary)] py-4">{t("Not enough data yet.")}</p>
+        <p className="text-sm text-[var(--text-secondary)] py-4">
+          {t("Not enough data yet.")}
+        </p>
       )}
     </div>
   );

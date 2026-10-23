@@ -6,9 +6,15 @@ import { useState, useEffect, type MouseEvent as ReactMouseEvent } from "react";
 // Sticky scroll-spy table of contents for the merchant guide pages. Mirrors the
 // ToC on the card/relic entity pages: it observes the `.card-rvmp section[id]`
 // blocks and highlights the link for whichever section is currently in view.
-export default function MerchantToc({ items }: { items: { id: string; label: string }[] }) {
+export default function MerchantToc({
+  items,
+}: {
+  items: { id: string; label: string }[];
+}) {
   const t = useT();
-  const [activeSection, setActiveSection] = useState<string>(items[0]?.id ?? "");
+  const [activeSection, setActiveSection] = useState<string>(
+    items[0]?.id ?? "",
+  );
 
   // Scroll-spy: highlight the section currently in view.
   useEffect(() => {

@@ -175,6 +175,7 @@ def get_my_tierlist(tierlist_id: str, request: Request):
 
 @router.patch("/{tierlist_id}")
 def update_my_tierlist(tierlist_id: str, payload: TierListUpdate, request: Request):
+    """Owner-only update of a saved tier list."""
     user_id = _owner_id(request)
     fields: dict = {}
     if payload.title is not None:
@@ -211,6 +212,7 @@ def update_my_tierlist(tierlist_id: str, payload: TierListUpdate, request: Reque
 def delete_my_tierlist(
     tierlist_id: str, request: Request, background_tasks: BackgroundTasks
 ):
+    """Owner-only delete; the share link stops working."""
     user_id = _owner_id(request)
     share_id = tierlists_db.delete_tierlist(tierlist_id, user_id)
     if not share_id:

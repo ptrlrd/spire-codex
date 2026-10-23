@@ -1,12 +1,21 @@
 "use client";
 
+import { useRouter } from "@/i18n/navigation";
+import { hasPendingOverwolfToken } from "@/lib/overwolf-link";
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, useCallback, useRef } from "react";
-import { Link } from "@/i18n/navigation";
+import { useState, useEffect, useCallback } from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
 import RunDropZone from "@/app/components/RunDropZone";
-import ProfileStats from "@/app/components/ProfileStats";
+import ProfileStats, { type StatsTab } from "@/app/components/ProfileStats";
+import MyChartsSection from "@/app/components/MyChartsSection";
+import {
+  EMPTY_INSIGHT_FILTERS,
+  InsightsFilterBar,
+  type InsightFilters,
+} from "@/app/components/ProfileInsights";
+import YourStats from "@/app/[locale]/players/[username]/YourStats";
+import { parseQuery, queryParams } from "@/lib/run-query";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -22,6 +31,8 @@ interface Run {
   killed_by: string | null;
   username: string | null;
   submitted_at: string;
+  hidden?: boolean;
+  hidden_reason?: string | null;
 }
 
 interface UploadResult {
@@ -31,18 +42,26 @@ interface UploadResult {
   run_hash?: string;
 }
 
-
 export default function ProfileClient() {
   const { user, loading } = useAuth();
+  const router = useRouter();
+  useEffect(() => {
+    if (user && hasPendingOverwolfToken()) router.replace("/link/overwolf");
+  }, [user, router]);
   const lang = useGameLocale();
   const t = useT();
   const { toast } = useToast();
   const [runs, setRuns] = useState<Run[]>([]);
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  const [runsQuery, setRunsQuery] = useState("");
+  const [appliedQuery, setAppliedQuery] = useState("");
+  const [versions, setVersions] = useState<string[]>([]);
   const [runsLoading, setRunsLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const [uploadResults, setUploadResults] = useState<UploadResult[] | null>(null);
+  const [uploadResults, setUploadResults] = useState<UploadResult[] | null>(
+    null,
+  );
   const [uploadProgress, setUploadProgress] = useState<{
     total: number;
     done: number;
@@ -50,52 +69,54 @@ export default function ProfileClient() {
     errors: number;
   } | null>(null);
   const [deleteConfirm, setDeleteConfirm] = useState<string | null>(null);
-  const [profilePrivate, setProfilePrivate] = useState<boolean | null>(null);
 
   useEffect(() => {
-    if (user) setProfilePrivate(Boolean(user.profile_private));
-  }, [user]);
+    const id = setTimeout(() => {
+      setAppliedQuery(runsQuery);
+      setPage(1);
+    }, 300);
+    return () => clearTimeout(id);
+  }, [runsQuery]);
 
-  const togglePrivacy = async (next: boolean) => {
-    const prev = profilePrivate;
-    setProfilePrivate(next);
-    try {
-      const res = await fetch(`${API_BASE}/api/auth/profile-privacy`, {
-        method: "PATCH",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ private: next }),
-      });
-      if (!res.ok) throw new Error();
-      toast(
-        next
-          ? t("Your profile is now private.")
-          : t("Your profile is now public."),
-        "success"
-      );
-    } catch {
-      setProfilePrivate(prev);
-      toast(t("Network error"), "error");
-    }
-  };
+  useEffect(() => {
+    if (!parseQuery(appliedQuery).filters.version || versions.length) return;
+    fetch(`${API_BASE}/api/runs/versions`)
+      .then((r) => (r.ok ? r.json() : { versions: [] }))
+      .then((d) =>
+        setVersions(
+          (d.versions || [])
+            .filter((v: string) => !v.toLowerCase().includes("nonreleased"))
+            .sort((a: string, b: string) =>
+              b.localeCompare(a, undefined, { numeric: true }),
+            ),
+        ),
+      )
+      .catch(() => {});
+  }, [appliedQuery, versions.length]);
 
-  const fetchRuns = useCallback(async (p: number) => {
-    setRunsLoading(true);
-    try {
-      const res = await fetch(`${API_BASE}/api/auth/runs?page=${p}&limit=20`, {
-        credentials: "include",
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setRuns(data.runs || []);
-        setTotal(data.total || 0);
+  const fetchRuns = useCallback(
+    async (p: number) => {
+      setRunsLoading(true);
+      try {
+        const params = queryParams(parseQuery(appliedQuery).filters, versions);
+        params.set("page", String(p));
+        params.set("limit", "20");
+        const res = await fetch(`${API_BASE}/api/auth/runs?${params}`, {
+          credentials: "include",
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setRuns(data.runs || []);
+          setTotal(data.total || 0);
+        }
+      } catch {
+        toast(t("Failed to load runs"), "error");
+      } finally {
+        setRunsLoading(false);
       }
-    } catch {
-      toast(t("Failed to load runs"), "error");
-    } finally {
-      setRunsLoading(false);
-    }
-  }, [toast, lang]);
+    },
+    [toast, lang, appliedQuery, versions],
+  );
 
   useEffect(() => {
     if (user) fetchRuns(page);
@@ -155,9 +176,10 @@ export default function ProfileClient() {
         const detail =
           res?.status === 413
             ? t("Too many files or file too large")
-            : err?.detail || (res ? t("Upload failed") : t("Network error during upload"));
+            : err?.detail ||
+              (res ? t("Upload failed") : t("Network error during upload"));
         chunk.forEach((f) =>
-          results.push({ filename: f.name, status: "error", detail })
+          results.push({ filename: f.name, status: "error", detail }),
         );
         summary.errors += chunk.length;
       }
@@ -173,7 +195,7 @@ export default function ProfileClient() {
     } else {
       toast(
         `${summary.claimed} ${t("claimed")}, ${summary.duplicates} ${t("duplicates")}, ${summary.errors} ${t("errors")}`,
-        summary.errors > 0 ? "error" : "success"
+        summary.errors > 0 ? "error" : "success",
       );
       if (summary.claimed > 0) {
         fetchRuns(1);
@@ -191,7 +213,7 @@ export default function ProfileClient() {
         credentials: "include",
       });
       if (res.ok) {
-        toast(t("Run removed from your profile"), "success");
+        toast(t("Run deleted"), "success");
         setRuns((prev) => prev.filter((r) => r.run_hash !== runHash));
         setTotal((prev) => prev - 1);
       } else if (res.status === 403) {
@@ -208,7 +230,6 @@ export default function ProfileClient() {
     }
   };
 
-
   const handleDeleteMany = async (hashes: string[]) => {
     try {
       const res = await fetch(`${API_BASE}/api/auth/runs/bulk-delete`, {
@@ -221,7 +242,10 @@ export default function ProfileClient() {
         toast(t("Failed to delete run"), "error");
         return;
       }
-      const body = (await res.json()) as { deleted: string[]; failed: Record<string, string> };
+      const body = (await res.json()) as {
+        deleted: string[];
+        failed: Record<string, string>;
+      };
       const removed = new Set(body.deleted);
       if (removed.size > 0) {
         // Count what this update actually drops rather than what the server
@@ -230,15 +254,90 @@ export default function ProfileClient() {
         setRuns((prev) => {
           const next = prev.filter((r) => !removed.has(r.run_hash));
           const dropped = prev.length - next.length;
-          if (dropped > 0) setTotal((current) => Math.max(0, current - dropped));
+          if (dropped > 0)
+            setTotal((current) => Math.max(0, current - dropped));
           return next;
         });
       }
       const failedCount = Object.keys(body.failed ?? {}).length;
       if (failedCount > 0) {
-        toast(t("Removed {n} runs, {failed} could not be removed", { n: removed.size, failed: failedCount }), "error");
+        toast(
+          t("Deleted {n} runs, {failed} could not be deleted", {
+            n: removed.size,
+            failed: failedCount,
+          }),
+          "error",
+        );
       } else {
-        toast(t("Removed {n} runs from your profile", { n: removed.size }), "success");
+        toast(t("Deleted {n} runs", { n: removed.size }), "success");
+      }
+    } catch {
+      toast(t("Network error"), "error");
+    }
+  };
+
+  const applyHidden = (hashes: Set<string>, hidden: boolean) =>
+    setRuns((prev) =>
+      prev.map((r) =>
+        hashes.has(r.run_hash)
+          ? { ...r, hidden, hidden_reason: hidden ? "owner" : null }
+          : r,
+      ),
+    );
+
+  const handleHide = async (runHash: string, hidden: boolean) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/runs/${runHash}/hidden`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hidden }),
+      });
+      if (res.ok) {
+        applyHidden(new Set([runHash]), hidden);
+        toast(hidden ? t("Run hidden") : t("Run unhidden"), "success");
+      } else if (res.status === 403) {
+        toast(t("You do not own this run"), "error");
+      } else if (res.status === 404) {
+        toast(t("Run not found"), "error");
+      } else if (res.status === 409) {
+        toast(t("This run was hidden by a moderator"), "error");
+      } else {
+        toast(t("Failed to update this run"), "error");
+      }
+    } catch {
+      toast(t("Network error"), "error");
+    }
+  };
+
+  const handleHideMany = async (hashes: string[], hidden: boolean) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/runs/bulk-hide`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ run_hashes: hashes, hidden }),
+      });
+      if (!res.ok) {
+        toast(t("Failed to update this run"), "error");
+        return;
+      }
+      const body = (await res.json()) as {
+        updated: string[];
+        failed: Record<string, string>;
+      };
+      applyHidden(new Set(body.updated), hidden);
+      const failedCount = Object.keys(body.failed ?? {}).length;
+      if (failedCount > 0) {
+        toast(
+          t("Updated {n} runs, {failed} could not be updated", {
+            n: body.updated.length,
+            failed: failedCount,
+          }),
+          "error",
+        );
+      } else {
+        toast(t("Updated {n} runs", { n: body.updated.length }), "success");
       }
     } catch {
       toast(t("Network error"), "error");
@@ -256,8 +355,14 @@ export default function ProfileClient() {
   if (!user) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">{t("Sign in to view your profile")}</h1>
-        <p className="text-[var(--text-secondary)]">{t("Connect your Steam or Discord account to see your runs and stats.")}</p>
+        <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-4">
+          {t("Sign in to view your profile")}
+        </h1>
+        <p className="text-[var(--text-secondary)]">
+          {t(
+            "Connect your Steam or Discord account to see your runs and stats.",
+          )}
+        </p>
       </div>
     );
   }
@@ -267,7 +372,9 @@ export default function ProfileClient() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 space-y-8">
       <h1 className="text-2xl font-bold text-[var(--text-primary)]">
-        {user.username ? `${user.username}'s ${t("Profile")}` : t("Your Profile")}
+        {user.username
+          ? `${user.username}'s ${t("Profile")}`
+          : t("Your Profile")}
       </h1>
 
       {/* Stats (includes My Runs as a tab) */}
@@ -283,13 +390,38 @@ export default function ProfileClient() {
           deleteConfirm={deleteConfirm}
           onDeleteConfirm={setDeleteConfirm}
           onDeleteRuns={handleDeleteMany}
+          onHideRun={handleHide}
+          onHideRuns={handleHideMany}
+          runsQuery={runsQuery}
+          onRunsQueryChange={setRunsQuery}
+          overviewExtra={
+            user.username ? (
+              <OwnStats key={user.user_id} username={user.username} />
+            ) : null
+          }
+          statsTab={(tab) =>
+            user.username ? (
+              <OwnStats
+                key={`${user.user_id}-${tab}`}
+                username={user.username}
+                tab={tab}
+              />
+            ) : null
+          }
+          chartsTab={<MyChartsSection />}
         />
       </section>
 
       {/* Claim Runs */}
       <section>
-        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">{t("Claim Runs")}</h2>
-        <RunDropZone onFiles={(files) => handleUpload(files)} uploading={uploading} uploadProgress={uploadProgress} />
+        <h2 className="text-lg font-semibold text-[var(--text-primary)] mb-3">
+          {t("Claim Runs")}
+        </h2>
+        <RunDropZone
+          onFiles={(files) => handleUpload(files)}
+          uploading={uploading}
+          uploadProgress={uploadProgress}
+        />
 
         {uploadResults && uploadResults.length > 0 && (
           <div className="mt-3 space-y-1 max-h-40 overflow-y-auto">
@@ -305,46 +437,27 @@ export default function ProfileClient() {
                 }`}
               >
                 <span className="truncate">{r.filename}</span>
-                <span className="shrink-0 ml-2">{r.status === "error" ? r.detail : r.status}</span>
+                <span className="shrink-0 ml-2">
+                  {r.status === "error" ? r.detail : r.status}
+                </span>
               </div>
             ))}
           </div>
         )}
       </section>
+    </div>
+  );
+}
 
-      {/* Public profile */}
-      {user.username && profilePrivate !== null && (
-        <section className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="min-w-0">
-              <h2 className="text-sm font-semibold text-[var(--text-primary)]">{t("Public profile")}</h2>
-              <p className="text-xs text-[var(--text-muted)] mt-0.5">
-                {profilePrivate
-                  ? t("Your profile page is private. Your runs still appear on leaderboards.")
-                  : t("Anyone can view your stats and insights at your player page.")}
-              </p>
-              {!profilePrivate && (
-                <Link
-                  href={`/players/${encodeURIComponent(user.username)}`}
-                  className="inline-block mt-1 text-xs text-[var(--accent-gold)] hover:underline"
-                >
-                  {t("View public profile")}
-                </Link>
-              )}
-            </div>
-            <label className="flex items-center gap-2 cursor-pointer select-none shrink-0">
-              <input
-                type="checkbox"
-                checked={profilePrivate}
-                onChange={(e) => togglePrivacy(e.target.checked)}
-                className="accent-[var(--accent-gold)] w-4 h-4"
-              />
-              <span className="text-sm text-[var(--text-secondary)]">{t("Private profile")}</span>
-            </label>
-          </div>
-        </section>
-      )}
-
+function OwnStats({ username, tab }: { username: string; tab?: StatsTab }) {
+  const lang = useGameLocale();
+  const [filters, setFilters] = useState<InsightFilters>(EMPTY_INSIGHT_FILTERS);
+  return (
+    <div className="space-y-3">
+      <div className="flex justify-end">
+        <InsightsFilterBar value={filters} onChange={setFilters} lang={lang} />
+      </div>
+      <YourStats username={username} filters={filters} own tab={tab} />
     </div>
   );
 }

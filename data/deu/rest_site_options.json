@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Klonen"
+  },
+  {
+    "id": "COOK",
+    "name": "Kochen"
+  },
+  {
+    "id": "DIG",
+    "name": "Graben"
+  },
+  {
+    "id": "HATCH",
+    "name": "Ausbrüten"
+  },
+  {
+    "id": "HEAL",
+    "name": "Ausruhen"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Entfachen"
+  },
+  {
+    "id": "LIFT",
+    "name": "Trainieren"
+  },
+  {
+    "id": "MEND",
+    "name": "Versorgen"
+  },
+  {
+    "id": "SMITH",
+    "name": "Schmieden"
+  }
+]

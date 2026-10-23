@@ -12,10 +12,10 @@ import type {
   Achievement,
   Act,
   Ascension,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -60,7 +60,12 @@ function ReferenceSection<T extends { id: string }>({
     // catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && initialData && initialData.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        initialData &&
+        initialData.length > 0
+      ) {
         return;
       }
     }
@@ -68,7 +73,7 @@ function ReferenceSection<T extends { id: string }>({
   }, [endpoint, lang, channel]);
 
   const filtered = data.filter(
-    (item) => !item.id.startsWith("MOCK_") && item.id !== "PERIOD"
+    (item) => !item.id.startsWith("MOCK_") && item.id !== "PERIOD",
   );
 
   if (filtered.length === 0) return null;
@@ -86,18 +91,23 @@ function ReferenceSection<T extends { id: string }>({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {filtered.map((item) => {
           const content = (
-            <div
-              className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 hover:bg-[var(--bg-card-hover)] transition-all h-full"
-            >
+            <div className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-4 hover:bg-[var(--bg-card-hover)] transition-all h-full">
               {render(item)}
             </div>
           );
           return linkPrefix ? (
-            <Link prefetch={false} key={item.id} href={`${linkPrefix}/${item.id.toLowerCase()}`} className="block h-full">
+            <Link
+              prefetch={false}
+              key={item.id}
+              href={`${linkPrefix}/${item.id.toLowerCase()}`}
+              className="block h-full"
+            >
               {content}
             </Link>
           ) : (
-            <div key={item.id} className="h-full">{content}</div>
+            <div key={item.id} className="h-full">
+              {content}
+            </div>
           );
         })}
       </div>
@@ -129,12 +139,20 @@ export default function ReferenceClient({
               {act.name}
             </h3>
             <div className="text-xs text-[var(--text-muted)] space-y-1">
-              {act.num_rooms && <div>{t("{n} rooms", { n: act.num_rooms })}</div>}
+              {act.num_rooms && (
+                <div>{t("{n} rooms", { n: act.num_rooms })}</div>
+              )}
               <div>
-                {t("{bosses} bosses · {encounters} encounters", { bosses: act.bosses.length, encounters: act.encounters.length })}
+                {t("{bosses} bosses · {encounters} encounters", {
+                  bosses: act.bosses.length,
+                  encounters: act.encounters.length,
+                })}
               </div>
               <div>
-                {t("{events} events · {ancients} ancients", { events: act.events.length, ancients: act.ancients.length })}
+                {t("{events} events · {ancients} ancients", {
+                  events: act.events.length,
+                  ancients: act.ancients.length,
+                })}
               </div>
             </div>
           </>
@@ -151,9 +169,7 @@ export default function ReferenceClient({
         render={(asc) => (
           <>
             <div className="flex items-baseline gap-2 mb-1">
-              <span className="text-lg font-bold text-danger">
-                {asc.level}
-              </span>
+              <span className="text-lg font-bold text-danger">{asc.level}</span>
               <h3 className="font-semibold text-[var(--text-primary)]">
                 {asc.name}
               </h3>

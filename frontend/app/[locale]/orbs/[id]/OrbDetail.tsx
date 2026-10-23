@@ -2,22 +2,24 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Orb } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Orb } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = {}) {
+export default function OrbDetail({
+  initialOrb,
+}: { initialOrb?: Orb | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -49,7 +51,10 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">{t("Orb not found.")}</p>
-        <Link href={`${bp}/reference`} className="text-[var(--accent-gold)] hover:underline">
+        <Link
+          href={`${bp}/reference`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Reference")}
         </Link>
       </div>
@@ -57,8 +62,16 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
   }
 
   const relGroups = [
-    { label: t("Cards that Channel {name}", { name: orb.name }), items: orb.channeled_by_cards, route: "cards" },
-    { label: t("Relics that Channel {name}", { name: orb.name }), items: orb.channeled_by_relics, route: "relics" },
+    {
+      label: t("Cards that Channel {name}", { name: orb.name }),
+      items: orb.channeled_by_cards,
+      route: "cards",
+    },
+    {
+      label: t("Relics that Channel {name}", { name: orb.name }),
+      items: orb.channeled_by_relics,
+      route: "relics",
+    },
   ];
   const hasRelations = relGroups.some((g) => g.items && g.items.length > 0);
 
@@ -138,18 +151,20 @@ export default function OrbDetail({ initialOrb }: { initialOrb?: Orb | null } = 
                     <dt>{t("Type")}</dt>
                     <dd>{t("Orb")}</dd>
                   </div>
-                  {orb.channeled_by_cards && orb.channeled_by_cards.length > 0 && (
-                    <div className="frow">
-                      <dt>{t("Cards")}</dt>
-                      <dd>{orb.channeled_by_cards.length}</dd>
-                    </div>
-                  )}
-                  {orb.channeled_by_relics && orb.channeled_by_relics.length > 0 && (
-                    <div className="frow">
-                      <dt>{t("Relics")}</dt>
-                      <dd>{orb.channeled_by_relics.length}</dd>
-                    </div>
-                  )}
+                  {orb.channeled_by_cards &&
+                    orb.channeled_by_cards.length > 0 && (
+                      <div className="frow">
+                        <dt>{t("Cards")}</dt>
+                        <dd>{orb.channeled_by_cards.length}</dd>
+                      </div>
+                    )}
+                  {orb.channeled_by_relics &&
+                    orb.channeled_by_relics.length > 0 && (
+                      <div className="frow">
+                        <dt>{t("Relics")}</dt>
+                        <dd>{orb.channeled_by_relics.length}</dd>
+                      </div>
+                    )}
                 </dl>
               </div>
             </div>

@@ -3,10 +3,10 @@
 import { useGameLocale, useT } from "@/lib/i18n";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Character, Relic, Card } from "@/lib/api";
+import type { Character, Relic, Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
@@ -27,7 +27,11 @@ const colorStyles: Record<string, string> = {
   orange: "border-warning/60 from-warning/10",
 };
 
-export default function CharactersClient({ initialCharacters }: { initialCharacters: Character[] }) {
+export default function CharactersClient({
+  initialCharacters,
+}: {
+  initialCharacters: Character[];
+}) {
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
@@ -44,7 +48,11 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
     // catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && initialCharacters.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        initialCharacters.length > 0
+      ) {
         // Still need relics and cards for tooltips on initial render
         Promise.all([
           cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
@@ -80,14 +88,18 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
 
   if (loading) {
     return (
-      <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+      <div className="text-center py-12 text-[var(--text-muted)]">
+        {t("Loading...")}
+      </div>
     );
   }
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {characters.map((char) => {
-        const style = colorStyles[char.color || ""] || "border-[var(--border-subtle)] from-line-strong/20";
+        const style =
+          colorStyles[char.color || ""] ||
+          "border-[var(--border-subtle)] from-line-strong/20";
         return (
           <Link
             href={`${bp}/characters/${char.id.toLowerCase()}`}
@@ -99,8 +111,12 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
                 {char.name}
               </h2>
               <img
-                src={imageUrl(`/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`)}
-                alt={t("{name} - Slay the Spire 2 Character", { name: char.name })}
+                src={imageUrl(
+                  `/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`,
+                )}
+                alt={t("{name} - Slay the Spire 2 Character", {
+                  name: char.name,
+                })}
                 className="w-10 h-10 rounded-full object-cover border-2 border-[var(--border-subtle)] ml-auto flex-shrink-0"
                 loading="lazy"
                 crossOrigin="anonymous"
@@ -112,19 +128,25 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
 
             <div className="grid grid-cols-3 gap-3 mb-5">
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">{t("HP")}</div>
+                <div className="text-xs text-[var(--text-muted)] mb-1">
+                  {t("HP")}
+                </div>
                 <div className="text-xl font-bold text-danger">
                   {char.starting_hp}
                 </div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">{t("Gold")}</div>
+                <div className="text-xs text-[var(--text-muted)] mb-1">
+                  {t("Gold")}
+                </div>
                 <div className="text-xl font-bold text-[var(--accent-gold)]">
                   {char.starting_gold}
                 </div>
               </div>
               <div className="bg-[var(--bg-primary)] rounded-lg p-3 text-center">
-                <div className="text-xs text-[var(--text-muted)] mb-1">{t("Energy")}</div>
+                <div className="text-xs text-[var(--text-muted)] mb-1">
+                  {t("Energy")}
+                </div>
                 <div className="text-xl font-bold text-warning">
                   {char.max_energy ?? 3}
                 </div>
@@ -133,7 +155,9 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
 
             <div className="mb-4">
               <h3 className="text-xs font-semibold text-[var(--text-muted)] uppercase tracking-wider mb-2">
-                {t("Starting Deck ({n} cards)", { n: char.starting_deck.length })}
+                {t("Starting Deck ({n} cards)", {
+                  n: char.starting_deck.length,
+                })}
               </h3>
               <div className="flex flex-wrap gap-1">
                 {char.starting_deck.map((cardName, i) => {
@@ -143,11 +167,17 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
                       key={`${cardName}-${i}`}
                       className="relative text-xs px-2 py-0.5 rounded bg-[var(--bg-primary)] text-[var(--text-secondary)] border border-[var(--border-subtle)] cursor-help group/card"
                     >
-                      {cardData?.name ?? cardName.replace(/([A-Z])/g, " $1").trim()}
+                      {cardData?.name ??
+                        cardName.replace(/([A-Z])/g, " $1").trim()}
                       {cardData && (
                         <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-44 opacity-0 group-hover/card:opacity-100 transition-opacity z-20">
                           <img
-                            src={fullCardUrl(cardData.id.toLowerCase(), false, "stable", lang)}
+                            src={fullCardUrl(
+                              cardData.id.toLowerCase(),
+                              false,
+                              "stable",
+                              lang,
+                            )}
                             alt={cardData.name}
                             className="w-44 h-auto drop-shadow-[0_6px_18px_rgba(0,0,0,0.65)]"
                             crossOrigin="anonymous"
@@ -173,7 +203,8 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
                       key={relicName}
                       className="relative text-xs px-2 py-0.5 rounded bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] border border-[var(--accent-gold)]/20 cursor-help group/relic"
                     >
-                      {relicData?.name ?? relicName.replace(/([A-Z])/g, " $1").trim()}
+                      {relicData?.name ??
+                        relicName.replace(/([A-Z])/g, " $1").trim()}
                       {relicData && (
                         <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-60 px-2.5 py-2 rounded bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[11px] text-[var(--text-secondary)] leading-snug shadow-lg opacity-0 group-hover/relic:opacity-100 transition-opacity z-10 flex gap-2 items-start text-left">
                           {relicData.image_url && (
@@ -185,8 +216,14 @@ export default function CharactersClient({ initialCharacters }: { initialCharact
                             />
                           )}
                           <span className="block">
-                            <span className="block font-semibold text-[var(--accent-gold)] mb-1">{relicData.name}</span>
-                            <span className="block"><RichDescription text={cleanDescription(relicData.description)} /></span>
+                            <span className="block font-semibold text-[var(--accent-gold)] mb-1">
+                              {relicData.name}
+                            </span>
+                            <span className="block">
+                              <RichDescription
+                                text={cleanDescription(relicData.description)}
+                              />
+                            </span>
                           </span>
                         </span>
                       )}

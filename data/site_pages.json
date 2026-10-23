@@ -1,0 +1,422 @@
+[
+  {
+    "path": "/about",
+    "name": "About",
+    "keywords": ["about", "info", "credits"]
+  },
+  {
+    "path": "/ancients",
+    "name": "Ancients",
+    "keywords": [
+      "ancients",
+      "ancient",
+      "neow",
+      "darv",
+      "orobas",
+      "pael",
+      "tezcatara",
+      "vakuu",
+      "nonupeipe",
+      "tanx",
+      "offering"
+    ]
+  },
+  { "path": "/archetypes", "name": "Archetypes", "keywords": ["archetypes"] },
+  {
+    "path": "/badges",
+    "name": "Badges",
+    "keywords": ["badges", "badge", "frame", "cosmetic"]
+  },
+  {
+    "path": "/cards",
+    "name": "Cards",
+    "keywords": ["cards", "card", "deck", "attack", "skill", "power"]
+  },
+  {
+    "path": "/cards/browse",
+    "name": "Card Browse",
+    "keywords": ["cards", "browse", "filter", "matrix"]
+  },
+  {
+    "path": "/changelog",
+    "name": "Changelog",
+    "keywords": ["changelog", "patch", "update", "version", "what changed"]
+  },
+  {
+    "path": "/characters",
+    "name": "Characters",
+    "keywords": [
+      "characters",
+      "character",
+      "class",
+      "hero",
+      "ironclad",
+      "silent",
+      "defect",
+      "necrobinder",
+      "regent"
+    ]
+  },
+  {
+    "path": "/compare",
+    "name": "Compare Characters",
+    "keywords": ["compare", "comparison", "versus", "vs"]
+  },
+  {
+    "path": "/deck-builder",
+    "name": "Deck Builder",
+    "keywords": ["deck", "builder", "build", "planner", "preview"]
+  },
+  {
+    "path": "/developers",
+    "name": "Developers",
+    "keywords": [
+      "developers",
+      "developer",
+      "api",
+      "widget",
+      "tooltip",
+      "export",
+      "data"
+    ]
+  },
+  {
+    "path": "/enchantments",
+    "name": "Enchantments",
+    "keywords": ["enchantments", "enchantment", "enchant"]
+  },
+  {
+    "path": "/encounters",
+    "name": "Encounters",
+    "keywords": ["encounters", "encounter", "fight", "combat"]
+  },
+  { "path": "/events", "name": "Events", "keywords": ["events", "event"] },
+  { "path": "/exporter", "name": "Exporter", "keywords": ["exporter"] },
+  {
+    "path": "/guides",
+    "name": "Guides",
+    "keywords": [
+      "guides",
+      "guide",
+      "strategy",
+      "tip",
+      "walkthrough",
+      "tutorial"
+    ]
+  },
+  {
+    "path": "/guides/submit",
+    "name": "Submit Guide",
+    "keywords": ["guides", "submit", "write", "contribute"]
+  },
+  {
+    "path": "/images",
+    "name": "Images",
+    "keywords": ["images", "image", "sprite", "asset", "art", "download"]
+  },
+  {
+    "path": "/keywords",
+    "name": "Keywords",
+    "keywords": [
+      "keywords",
+      "keyword",
+      "exhaust",
+      "ethereal",
+      "innate",
+      "retain",
+      "sly",
+      "eternal",
+      "unplayable"
+    ]
+  },
+  {
+    "path": "/knowledge-demon",
+    "name": "Knowledge Demon",
+    "keywords": ["knowledge", "demon", "discord bot", "bot"]
+  },
+  {
+    "path": "/leaderboards",
+    "name": "Leaderboards",
+    "keywords": [
+      "leaderboards",
+      "leaderboard",
+      "fastest",
+      "ascension",
+      "ladder",
+      "ranking"
+    ]
+  },
+  {
+    "path": "/mechanics",
+    "name": "Mechanics",
+    "keywords": [
+      "mechanics",
+      "mechanic",
+      "formula",
+      "odds",
+      "chance",
+      "drop rate",
+      "probability",
+      "rng"
+    ]
+  },
+  {
+    "path": "/merchant",
+    "name": "Merchant",
+    "keywords": [
+      "merchant",
+      "shop",
+      "store",
+      "buy",
+      "sell",
+      "price",
+      "gold",
+      "removal"
+    ]
+  },
+  { "path": "/mod", "name": "Mod", "keywords": ["mod"] },
+  {
+    "path": "/modifiers",
+    "name": "Custom Mode",
+    "keywords": ["modifiers", "modifier", "custom", "mode", "mutator"]
+  },
+  {
+    "path": "/monsters",
+    "name": "Monsters",
+    "keywords": ["monsters", "monster", "enemy", "boss", "bestiary"]
+  },
+  {
+    "path": "/news",
+    "name": "News",
+    "keywords": [
+      "news",
+      "patch",
+      "patch notes",
+      "announcement",
+      "update",
+      "steam",
+      "press"
+    ]
+  },
+  {
+    "path": "/overlay",
+    "name": "Overlay",
+    "keywords": ["overlay", "overwolf", "in-game", "companion", "app"]
+  },
+  {
+    "path": "/potions",
+    "name": "Potions",
+    "keywords": ["potions", "potion", "flask"]
+  },
+  {
+    "path": "/powers",
+    "name": "Powers",
+    "keywords": ["powers", "power", "buff", "debuff", "status"]
+  },
+  { "path": "/privacy", "name": "Privacy", "keywords": ["privacy"] },
+  { "path": "/profile", "name": "Profile", "keywords": ["profile"] },
+  {
+    "path": "/reference",
+    "name": "Reference",
+    "keywords": [
+      "reference",
+      "intent",
+      "orb",
+      "affliction",
+      "modifier",
+      "achievement",
+      "ascension",
+      "act"
+    ]
+  },
+  {
+    "path": "/relics",
+    "name": "Relics",
+    "keywords": ["relics", "relic", "artifact"]
+  },
+  {
+    "path": "/replays",
+    "name": "Browse Replays",
+    "keywords": ["replays", "replay", "watch", "journal"]
+  },
+  {
+    "path": "/runs",
+    "name": "Runs",
+    "keywords": ["runs", "run", "upload", "submit", "history", "win", "loss"]
+  },
+  {
+    "path": "/runs/submit",
+    "name": "Contribute",
+    "keywords": ["runs", "submit", "upload", "run file", "contribute"]
+  },
+  {
+    "path": "/seed-finder",
+    "name": "Seed Finder",
+    "keywords": ["seed", "finder", "achievement", "ascension", "preview"]
+  },
+  { "path": "/settings", "name": "Settings", "keywords": ["settings"] },
+  {
+    "path": "/showcase",
+    "name": "Showcase",
+    "keywords": ["showcase", "community", "project", "built with"]
+  },
+  {
+    "path": "/stats",
+    "name": "Community Stats",
+    "keywords": [
+      "stats",
+      "community",
+      "statistics",
+      "event votes",
+      "deadliest",
+      "records"
+    ]
+  },
+  {
+    "path": "/stats/campfires",
+    "name": "Stats · Campfires",
+    "keywords": ["stats", "campfires"]
+  },
+  {
+    "path": "/stats/cards",
+    "name": "Card Metrics",
+    "keywords": [
+      "stats",
+      "cards",
+      "metrics",
+      "elo",
+      "codex elo",
+      "pick rate",
+      "win rate",
+      "table"
+    ]
+  },
+  {
+    "path": "/stats/chart-builder",
+    "name": "Chart builder",
+    "keywords": ["stats", "chart", "builder", "share"]
+  },
+  {
+    "path": "/stats/charts",
+    "name": "Run Charts",
+    "keywords": ["stats", "charts", "explorer"]
+  },
+  {
+    "path": "/stats/encounters",
+    "name": "Encounter Stats",
+    "keywords": ["stats", "encounters", "encounter", "deadliest"]
+  },
+  {
+    "path": "/stats/events",
+    "name": "Event Choices",
+    "keywords": ["stats", "events", "event", "choice", "option", "votes"]
+  },
+  {
+    "path": "/stats/potions",
+    "name": "Stats · Potions",
+    "keywords": ["stats", "potions"]
+  },
+  {
+    "path": "/stats/relics",
+    "name": "Relic Metrics",
+    "keywords": [
+      "stats",
+      "relics",
+      "metrics",
+      "elo",
+      "relic",
+      "pick rate",
+      "win rate",
+      "wax"
+    ]
+  },
+  {
+    "path": "/stats/scoring",
+    "name": "Codex Score",
+    "keywords": [
+      "stats",
+      "scoring",
+      "score",
+      "codex score",
+      "methodology",
+      "tier bands"
+    ]
+  },
+  {
+    "path": "/stats/shops",
+    "name": "Shop Stats",
+    "keywords": [
+      "stats",
+      "shops",
+      "shop",
+      "merchant",
+      "bought",
+      "purchase",
+      "buy rate"
+    ]
+  },
+  { "path": "/terms", "name": "Terms", "keywords": ["terms"] },
+  {
+    "path": "/tier-list",
+    "name": "Tier List",
+    "keywords": [
+      "tier",
+      "list",
+      "tier list",
+      "ranking",
+      "best",
+      "worst",
+      "s tier"
+    ]
+  },
+  {
+    "path": "/tier-list-maker",
+    "name": "Tier List Maker",
+    "keywords": ["tier", "list", "maker", "builder", "custom tier"]
+  },
+  {
+    "path": "/tier-list/cards",
+    "name": "Card Tier List",
+    "keywords": ["tier", "list", "cards", "best cards"]
+  },
+  {
+    "path": "/tier-list/potions",
+    "name": "Potion Tier List",
+    "keywords": ["tier", "list", "potions", "best potions"]
+  },
+  {
+    "path": "/tier-list/relics",
+    "name": "Relic Tier List",
+    "keywords": ["tier", "list", "relics", "best relics", "act"]
+  },
+  {
+    "path": "/timeline",
+    "name": "Timeline",
+    "keywords": ["timeline", "epoch", "era", "story", "lore"]
+  },
+  {
+    "path": "/top-players",
+    "name": "Top Players",
+    "keywords": [
+      "top",
+      "players",
+      "elo",
+      "top players",
+      "top 100",
+      "ladder",
+      "ranking"
+    ]
+  },
+  {
+    "path": "/unlocks",
+    "name": "Unlocks",
+    "keywords": [
+      "unlocks",
+      "unlock",
+      "unlockable",
+      "progression",
+      "epoch",
+      "achievement"
+    ]
+  }
+]

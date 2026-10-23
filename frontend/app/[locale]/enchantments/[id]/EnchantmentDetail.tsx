@@ -7,15 +7,15 @@ import {
   type MouseEvent as ReactMouseEvent,
   type CSSProperties,
 } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Enchantment } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Enchantment } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl, enchantedCardUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
@@ -36,7 +36,9 @@ export default function EnchantmentDetail({
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
-  const [enchantment, setEnchantment] = useState<Enchantment | null>(initialEnchantment ?? null);
+  const [enchantment, setEnchantment] = useState<Enchantment | null>(
+    initialEnchantment ?? null,
+  );
   const [loading, setLoading] = useState(!initialEnchantment);
   const [notFound, setNotFound] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("description");
@@ -90,15 +92,23 @@ export default function EnchantmentDetail({
   if (notFound || !enchantment) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-[var(--text-muted)] mb-4">{t("Enchantment not found.")}</p>
-        <Link prefetch={false} href={`${bp}/enchantments`} className="text-[var(--accent-gold)] hover:underline">
+        <p className="text-[var(--text-muted)] mb-4">
+          {t("Enchantment not found.")}
+        </p>
+        <Link
+          prefetch={false}
+          href={`${bp}/enchantments`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Enchantments")}
         </Link>
       </div>
     );
   }
 
-  const cardTypes = enchantment.card_type ? enchantment.card_type.split(", ") : [];
+  const cardTypes = enchantment.card_type
+    ? enchantment.card_type.split(", ")
+    : [];
 
   const tocItems: { id: string; label: string }[] = [
     { id: "description", label: t("Description") },
@@ -109,10 +119,14 @@ export default function EnchantmentDetail({
   return (
     <div
       className="card-rvmp"
-      style={{
-        "--spine": "#a684e8",
-        ...(enchantment.image_url ? { "--entity-bg": `url("${imageUrl(enchantment.image_url)}?bg")` } : {}),
-      } as CSSProperties}
+      style={
+        {
+          "--spine": "#a684e8",
+          ...(enchantment.image_url
+            ? { "--entity-bg": `url("${imageUrl(enchantment.image_url)}?bg")` }
+            : {}),
+        } as CSSProperties
+      }
     >
       <div className="cd-top">
         <button className="cd-back" onClick={() => router.back()}>
@@ -127,7 +141,9 @@ export default function EnchantmentDetail({
           <div className="hero">
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
-              <span>{cardTypes.length > 0 ? cardTypes.join(" · ") : t("All cards")}</span>
+              <span>
+                {cardTypes.length > 0 ? cardTypes.join(" · ") : t("All cards")}
+              </span>
               {enchantment.is_stackable && (
                 <>
                   <span>&middot;</span>
@@ -177,8 +193,15 @@ export default function EnchantmentDetail({
               <h2>{t("Cards")}</h2>
               <p className="h-note">
                 {cardIds.length < totalCards
-                  ? t("{name} applied to {n} cards (showing {shown}).", { name: enchantment.name, n: totalCards.toLocaleString(), shown: cardIds.length })
-                  : t("{name} applied to {n} cards.", { name: enchantment.name, n: totalCards.toLocaleString() })}
+                  ? t("{name} applied to {n} cards (showing {shown}).", {
+                      name: enchantment.name,
+                      n: totalCards.toLocaleString(),
+                      shown: cardIds.length,
+                    })
+                  : t("{name} applied to {n} cards.", {
+                      name: enchantment.name,
+                      n: totalCards.toLocaleString(),
+                    })}
               </p>
               <div className="ench-grid">
                 {cardIds.map((cid) => {
@@ -186,10 +209,18 @@ export default function EnchantmentDetail({
                     .replace(/_/g, " ")
                     .replace(/\b\w/g, (c) => c.toUpperCase());
                   return (
-                    <Link prefetch={false} key={cid} href={`${bp}/cards/${cid}`} className="ench-cell">
+                    <Link
+                      prefetch={false}
+                      key={cid}
+                      href={`${bp}/cards/${cid}`}
+                      className="ench-cell"
+                    >
                       <img
                         src={enchantedCardUrl(cid, id, false, "stable", lang)}
-                        alt={t("{card} with {name} - Slay the Spire 2", { card: cid, name: enchantment.name })}
+                        alt={t("{card} with {name} - Slay the Spire 2", {
+                          card: cid,
+                          name: enchantment.name,
+                        })}
                         loading="lazy"
                         crossOrigin="anonymous"
                       />
@@ -213,7 +244,9 @@ export default function EnchantmentDetail({
                 <img
                   className="cardimg"
                   src={imageUrl(enchantment.image_url)}
-                  alt={t("{name} - Slay the Spire 2 Enchantment", { name: enchantment.name })}
+                  alt={t("{name} - Slay the Spire 2 Enchantment", {
+                    name: enchantment.name,
+                  })}
                   crossOrigin="anonymous"
                 />
               </div>

@@ -74,11 +74,15 @@ function QueryTable({
   return (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] overflow-hidden">
       <div className="px-4 py-3 border-b border-[var(--border-subtle)]">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)]">{title}</h3>
+        <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+          {title}
+        </h3>
         <p className="text-xs text-[var(--text-muted)] mt-0.5">{note}</p>
       </div>
       {rows.length === 0 ? (
-        <p className="px-4 py-6 text-sm text-[var(--text-muted)]">Nothing yet.</p>
+        <p className="px-4 py-6 text-sm text-[var(--text-muted)]">
+          Nothing yet.
+        </p>
       ) : (
         <div className="max-h-[26rem] overflow-y-auto">
           <table className="w-full text-sm">
@@ -100,7 +104,9 @@ function QueryTable({
                   {showZeroRate && (
                     <td
                       className={`px-2 py-2 text-right tabular-nums whitespace-nowrap ${
-                        r.zero_rate > 0 ? "text-danger" : "text-[var(--text-muted)]"
+                        r.zero_rate > 0
+                          ? "text-danger"
+                          : "text-[var(--text-muted)]"
                       }`}
                     >
                       {pct(r.zero_rate)} empty
@@ -130,7 +136,7 @@ function VolumeChart({ volume }: { volume: VolRow[] }) {
           gold = found, red = zero results
         </span>
       </h3>
-      <div className="flex items-end gap-[2px] h-28">
+      <div className="flex gap-[2px] h-28">
         {volume.map((v) => {
           const hits = v.count - v.zero;
           return (
@@ -202,9 +208,17 @@ export default function SearchesClient() {
 
       {s && (
         <div className="grid grid-cols-2 lg:grid-cols-5 gap-3 mb-6">
-          <Card label="Searches" value={s.total.toLocaleString()} sub={`last ${s.days}d`} />
+          <Card
+            label="Searches"
+            value={s.total.toLocaleString()}
+            sub={`last ${s.days}d`}
+          />
           <Card label="Distinct queries" value={s.distinct.toLocaleString()} />
-          <Card label="Click-through" value={pct(s.ctr)} sub="picked a result" />
+          <Card
+            label="Click-through"
+            value={pct(s.ctr)}
+            sub="picked a result"
+          />
           <Card
             label="Zero-result rate"
             value={pct(s.zero_rate)}
@@ -235,17 +249,30 @@ export default function SearchesClient() {
       {data && data.recent.length > 0 && (
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] overflow-hidden">
           <div className="px-4 py-3 border-b border-[var(--border-subtle)]">
-            <h3 className="text-sm font-semibold text-[var(--text-primary)]">Live feed</h3>
-            <p className="text-xs text-[var(--text-muted)] mt-0.5">Newest searches first.</p>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)]">
+              Live feed
+            </h3>
+            <p className="text-xs text-[var(--text-muted)] mt-0.5">
+              Newest searches first.
+            </p>
           </div>
           <div className="max-h-[24rem] overflow-y-auto divide-y divide-[var(--border-subtle)]">
             {data.recent.map((r, i) => (
-              <div key={i} className="flex items-center gap-3 px-4 py-2 text-sm">
-                <span className="flex-1 text-[var(--text-primary)] break-all">{r.query}</span>
-                <span className="text-xs text-[var(--text-muted)] uppercase">{r.lang}</span>
+              <div
+                key={i}
+                className="flex items-center gap-3 px-4 py-2 text-sm"
+              >
+                <span className="flex-1 text-[var(--text-primary)] break-all">
+                  {r.query}
+                </span>
+                <span className="text-xs text-[var(--text-muted)] uppercase">
+                  {r.lang}
+                </span>
                 <span
                   className={`text-xs tabular-nums whitespace-nowrap ${
-                    r.results === 0 ? "text-danger" : "text-[var(--text-secondary)]"
+                    r.results === 0
+                      ? "text-danger"
+                      : "text-[var(--text-secondary)]"
                   }`}
                 >
                   {r.results} hit{r.results === 1 ? "" : "s"}

@@ -8,16 +8,22 @@ import { useT } from "@/lib/i18n";
  * event, dispatching that event is how we open it from anywhere.
  */
 
-
 type Variant = "hero" | "nav" | "icon";
 
 function openGlobalSearch() {
-  document.dispatchEvent(new KeyboardEvent("keydown", { key: ".", bubbles: true }));
+  document.dispatchEvent(
+    new KeyboardEvent("keydown", { key: ".", bubbles: true }),
+  );
 }
 
 function SearchIcon({ className }: { className: string }) {
   return (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <svg
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -34,7 +40,11 @@ interface Props {
   placeholder?: string;
 }
 
-export default function SearchTrigger({ variant, className = "", placeholder }: Props) {
+export default function SearchTrigger({
+  variant,
+  className = "",
+  placeholder,
+}: Props) {
   const t = useT();
 
   if (variant === "icon") {

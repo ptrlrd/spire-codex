@@ -95,3 +95,27 @@ def test_detect_cheats_carries_the_coop_solo_signal(monkeypatch):
     monkeypatch.setattr(res, "_multiplayer_card_ids", lambda: frozenset({"MIDNIGHT"}))
     data = {"players": [{"deck": [{"id": "card.midnight"}]}]}
     assert "coop_card_solo:MIDNIGHT" in detect_cheats(data)
+
+
+def test_five_minute_win_is_impossible_time():
+    data = {"win": True, "run_time": 340, "floors_reached": 49}
+    reasons = detect_cheats(data)
+    assert "impossible_time:340s" in reasons
+    assert "impossible_pace:340s/49fl" in reasons
+
+
+def test_fast_but_plausible_win_is_clean():
+    data = {"win": True, "run_time": 1500, "floors_reached": 49}
+    assert not [r for r in detect_cheats(data) if r.startswith("impossible_")]
+
+
+def test_pace_rule_catches_long_runs_with_too_many_floors():
+    data = {"win": True, "run_time": 950, "floors_reached": 70}
+    reasons = detect_cheats(data)
+    assert "impossible_pace:950s/70fl" in reasons
+    assert not [r for r in reasons if r.startswith("impossible_time")]
+
+
+def test_losses_and_unknown_times_never_flag_time():
+    assert not detect_cheats({"win": False, "run_time": 40, "floors_reached": 3})
+    assert not detect_cheats({"win": True, "run_time": 0, "floors_reached": 49})

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const title = "Overwolf Overlay - Slay the Spire 2 (sts2) | Spire Codex";
-const ogDesc = "In-game overlay for Slay the Spire 2. Card lookups, relic info, and one-click run uploads.";
+const ogDesc =
+  "In-game overlay for Slay the Spire 2. Card lookups, relic info, and one-click run uploads.";
 
 export const metadata: Metadata = {
   title,

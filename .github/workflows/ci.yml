@@ -34,7 +34,7 @@ jobs:
       frontend: ${{ steps.filter.outputs.frontend }}
       backend: ${{ steps.filter.outputs.backend }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: dorny/paths-filter@6852f92c20ea7fd3b0c25de3b5112db3a98da050 # v3
         id: filter
         with:
@@ -51,7 +51,7 @@ jobs:
     steps:
       # Shallow checkout: trufflehog scans the working tree (filesystem
       # mode), so full history only inflated the .git dir it walks.
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: TruffleHog secret scan
         # Version-pinned so a hijacked :latest can't silently defeat the gate.
@@ -78,11 +78,11 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version: 26
           # No `cache: npm` here on purpose. Self-hosted runners give
           # us free compute, but setup-node's npm cache still uploads
           # ~/.npm to GitHub-managed storage (Next.js + sharp + swc
@@ -101,6 +101,9 @@ jobs:
       - name: TypeScript type-check
         run: npx tsc --noEmit
 
+      - name: Prettier
+        run: npm run format:check
+
   # ── Backend checks ─────────────────────────────────────
   backend-lint:
     name: Backend lint
@@ -111,9 +114,9 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -137,9 +140,9 @@ jobs:
       run:
         working-directory: backend
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 
@@ -169,7 +172,7 @@ jobs:
       (needs.backend-tests.result == 'success' || needs.backend-tests.result == 'skipped') &&
       (needs.changes.outputs.frontend == 'true' || needs.changes.outputs.backend == 'true')
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # No setup-buildx-action on purpose: it boots a fresh ephemeral
       # builder every run (and destroys it in post), which throws away
@@ -183,14 +186,14 @@ jobs:
       # occasionally with `docker builder prune --filter until=336h`.
 
       - name: Login to Docker Hub
-        uses: docker/login-action@v3
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build & push backend
         if: needs.changes.outputs.backend == 'true'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./backend
           push: true
@@ -202,7 +205,7 @@ jobs:
 
       - name: Build & push frontend
         if: needs.changes.outputs.frontend == 'true'
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./frontend
           file: ./frontend/Dockerfile
@@ -212,6 +215,7 @@ jobs:
             NEXT_PUBLIC_SITE_URL=https://spire-codex.com
             NEXT_PUBLIC_UMAMI_WEBSITE_ID=${{ secrets.UMAMI_WEBSITE_ID }}
             NEXT_PUBLIC_CDN_URL=https://cdn.spire-codex.com
+            NEXT_DEPLOYMENT_ID=${{ github.sha }}
           tags: |
             ptrlrd/spire-codex-frontend:latest
             ptrlrd/spire-codex-frontend:${{ github.sha }}

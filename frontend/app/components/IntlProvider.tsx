@@ -9,7 +9,15 @@ import { unsafeKey } from "@/lib/i18n-keys";
 // catalog on the server and hands it in, so the string tables (all 15
 // languages, ~780 KB gzipped) never enter the client bundle. A key with no
 // message renders as its English text instead of logging.
-export default function IntlProvider({ locale, messages, children }: { locale: Locale; messages: Record<string, string>; children: ReactNode }) {
+export default function IntlProvider({
+  locale,
+  messages,
+  children,
+}: {
+  locale: Locale;
+  messages: Record<string, string>;
+  children: ReactNode;
+}) {
   return (
     <NextIntlClientProvider
       locale={locale}

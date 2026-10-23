@@ -1,6 +1,12 @@
 import { getT } from "@/lib/i18n-server";
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import {
+  inLanguageOf,
+  langQuery,
+  localeOf,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 import { entityFallbackDescription } from "@/lib/locale-server";
 import type { CSSProperties } from "react";
 import { Link } from "@/i18n/navigation";
@@ -9,8 +15,13 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import RichDescription from "@/app/components/RichDescription";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { stripTags, stripTagsFlat, clipMetaDescription, buildPageMetadata } from "@/lib/seo";
-import type { Badge } from "@/lib/api";
+import {
+  stripTags,
+  stripTagsFlat,
+  clipMetaDescription,
+  buildPageMetadata,
+} from "@/lib/seo";
+import type { Badge } from "@/lib/api/types";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/meta-extra.css";
@@ -50,7 +61,9 @@ const RARITY_COLOR: Record<string, string> = {
 };
 
 async function fetchBadge(id: string, locale: Locale): Promise<Badge | null> {
-  const res = await fetchEntityRes(`${API_INTERNAL}/api/badges/${id}${langQuery(locale)}`);
+  const res = await fetchEntityRes(
+    `${API_INTERNAL}/api/badges/${id}${langQuery(locale)}`,
+  );
   return res.ok ? await res.json() : null;
 }
 
@@ -60,15 +73,29 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/badges/${id}`;
   const badge = await fetchBadge(id, locale);
-  if (!badge) return buildPageMetadata({ locale, path, title: t("Badge Not Found"), noIndex: true });
+  if (!badge)
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Badge Not Found"),
+      noIndex: true,
+    });
 
   const desc = stripTagsFlat(badge.description);
   const subtype = badge.tiered ? "tiered" : "badge";
   return buildPageMetadata({
     locale,
     path,
-    title: `${badge.name} - ${t("Badge")}`,
-    description: clipMetaDescription(t("badge_meta_description", { name: badge.name, subtype, desc, hasDesc: desc ? "yes" : "no" })),
+    title: badge.name,
+    entityType: t("Badge"),
+    description: clipMetaDescription(
+      t("badge_meta_description", {
+        name: badge.name,
+        subtype,
+        desc,
+        hasDesc: desc ? "yes" : "no",
+      }),
+    ),
     ogType: "article",
     image: badge.image_url ? imageUrl(badge.image_url) : undefined,
   });
@@ -88,7 +115,7 @@ export default async function BadgePage({ params }: Props) {
     path: localePath(locale, `/badges/${id}`),
     imageUrl: badge.image_url ? imageUrl(badge.image_url) : undefined,
     category: "Badge",
-        inLanguage: inLanguageOf(locale),
+    inLanguage: inLanguageOf(locale),
     breadcrumbs: [
       { name: t("Home"), href: localePath(locale, "/") },
       { name: t("Badges"), href: localePath(locale, "/badges") },
@@ -115,12 +142,18 @@ export default async function BadgePage({ params }: Props) {
     },
   ];
 
-  const jsonLd = locale === "eng" ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)] : detailJsonLd;
+  const jsonLd =
+    locale === "eng"
+      ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)]
+      : detailJsonLd;
 
   const hasImage = !!badge.image_url;
 
   return (
-    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
+    <div
+      className="card-rvmp"
+      style={{ "--spine": "var(--accent-gold)" } as CSSProperties}
+    >
       <JsonLd data={jsonLd} />
 
       <div className={hasImage ? "cd-top" : "cd-top solo"}>
@@ -137,7 +170,11 @@ export default async function BadgePage({ params }: Props) {
               <span className="dot">&#9670;</span>
               <span>{t("Badge")}</span>
               <span>&middot;</span>
-              <span>{badge.tiered ? `${badge.tiers.length} ${t("tiers")}` : t("Single tier")}</span>
+              <span>
+                {badge.tiered
+                  ? `${badge.tiers.length} ${t("tiers")}`
+                  : t("Single tier")}
+              </span>
               {badge.requires_win && (
                 <>
                   <span>&middot;</span>
@@ -179,10 +216,18 @@ export default async function BadgePage({ params }: Props) {
                 <div
                   key={tier.rarity}
                   className="trow"
-                  style={{ borderLeftColor: RARITY_COLOR[tier.rarity] ?? "var(--border-accent)" }}
+                  style={{
+                    borderLeftColor:
+                      RARITY_COLOR[tier.rarity] ?? "var(--border-accent)",
+                  }}
                 >
                   <div className="tr-head">
-                    <span className="tr-rarity" style={{ color: RARITY_COLOR[tier.rarity] ?? "var(--text-muted)" }}>
+                    <span
+                      className="tr-rarity"
+                      style={{
+                        color: RARITY_COLOR[tier.rarity] ?? "var(--text-muted)",
+                      }}
+                    >
                       {t(RARITY_LABEL[tier.rarity] ?? tier.rarity)}
                     </span>
                     <span className="tr-title">{tier.title}</span>
@@ -199,7 +244,8 @@ export default async function BadgePage({ params }: Props) {
         {hasImage && (
           <aside className="aside">
             <div className="box">
-              <img crossOrigin="anonymous"
+              <img
+                crossOrigin="anonymous"
                 src={imageUrl(badge.image_url!)}
                 alt={t("Slay the Spire 2 {name} badge", { name: badge.name })}
                 className="meta-icon"
@@ -218,7 +264,9 @@ export default async function BadgePage({ params }: Props) {
                   {badge.multiplayer_only && (
                     <div className="frow">
                       <dt>{t("Multiplayer")}</dt>
-                      <dd style={{ color: "var(--accent-gold)" }}>{t("Only")}</dd>
+                      <dd style={{ color: "var(--accent-gold)" }}>
+                        {t("Only")}
+                      </dd>
                     </div>
                   )}
                 </dl>

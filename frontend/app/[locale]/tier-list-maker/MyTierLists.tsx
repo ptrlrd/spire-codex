@@ -48,9 +48,14 @@ export default function MyTierLists() {
       </p>
     );
   }
-  if (loadingMine) return <p className="mt-2 text-[var(--text-secondary)]">{t("Loading…")}</p>;
+  if (loadingMine)
+    return <p className="mt-2 text-[var(--text-secondary)]">{t("Loading…")}</p>;
   if (mine.length === 0) {
-    return <p className="mt-2 text-[var(--text-secondary)]">{t("No saved tier lists yet.")}</p>;
+    return (
+      <p className="mt-2 text-[var(--text-secondary)]">
+        {t("No saved tier lists yet.")}
+      </p>
+    );
   }
 
   return (

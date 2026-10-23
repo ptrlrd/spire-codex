@@ -13,6 +13,7 @@ import sys
 import time
 
 sys.path.insert(0, "/lab")
+sys.path.append("/app")
 
 LAKE = pathlib.Path(os.environ.get("LAKE_DIR", "/lake"))
 PULLED = "pulled.json"
@@ -27,6 +28,25 @@ def plan_downloads(manifest_files: dict, applied_files: dict) -> list[str]:
         for name, meta in manifest_files.items()
         if (applied_files.get(name) or {}).get("sha256") != meta.get("sha256")
     ]
+
+
+def prebuild_compact(lake: pathlib.Path, todo: list[str], manifest: dict) -> None:
+    """Build the columnar entity cube from the fresh download before it
+    goes live, so no backend worker has to convert it on demand."""
+    name = "entity_cube.json.gz"
+    if name not in todo:
+        return
+    from app.services import lake_cube
+
+    started = time.time()
+    lake_cube.build_dir(
+        lake / (name + ".pull.tmp"),
+        lake / "entity_cube.compact",
+        sha=manifest["files"][name]["sha256"],
+    )
+    print(
+        f"entity cube columnar build ready in {time.time() - started:.0f}s", flush=True
+    )
 
 
 def apply_downloads(lake: pathlib.Path, names: list[str]) -> None:
@@ -80,7 +100,8 @@ def main() -> None:
         applied = json.loads((LAKE / PULLED).read_text())
     except Exception:
         pass
-    todo = plan_downloads(manifest["files"], applied.get("files") or {})
+    applied_files = applied.get("files") or {}
+    todo = plan_downloads(manifest["files"], applied_files)
     if not todo:
         print(f"generation {gen_id} already applied; nothing to do", flush=True)
         return
@@ -88,6 +109,7 @@ def main() -> None:
     t0 = time.time()
     for name in todo:
         tmp = LAKE / (name + ".pull.tmp")
+        tmp.parent.mkdir(parents=True, exist_ok=True)
         client.download_file(bucket, f"gen/{gen_id}/{name}", str(tmp))
         want = manifest["files"][name]["sha256"]
         got = publish_lake._sha256(tmp)
@@ -97,7 +119,27 @@ def main() -> None:
             sys.exit(1)
         print(f"pulled {name} ({tmp.stat().st_size:,} bytes)", flush=True)
 
+    try:
+        prebuild_compact(LAKE, todo, manifest)
+    except Exception as e:
+        for name in todo:
+            (LAKE / (name + ".pull.tmp")).unlink(missing_ok=True)
+        print(
+            f"pull ABORTED: entity cube columnar build failed ({e!r}); nothing applied",
+            flush=True,
+        )
+        sys.exit(1)
     apply_downloads(LAKE, todo)
+    stale = sorted(
+        name
+        for name in applied_files
+        if name.startswith("exports_by_version/") and name not in manifest["files"]
+    )
+    for name in stale:
+        (LAKE / name).unlink(missing_ok=True)
+    if stale:
+        print(f"pulled: dropped {len(stale)} stale per-version file(s)", flush=True)
+
     tmp = LAKE / (PULLED + ".tmp")
     tmp.write_text(json.dumps(manifest, indent=1))
     tmp.replace(LAKE / PULLED)

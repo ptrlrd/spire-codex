@@ -3,20 +3,28 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { Encounter } from "@/lib/api";
+import type { Encounter } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import EncountersClient from "./EncountersClient";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/encounters", title: t("Encounters"), description: t("encounters_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/encounters",
+    title: t("Encounters"),
+    description: t("encounters_meta_description"),
+  });
 }
 
 export default async function EncountersPage({ params }: Props) {
@@ -26,7 +34,9 @@ export default async function EncountersPage({ params }: Props) {
   const tagline = t("encounters_tagline");
   let encounters: Encounter[] = [];
   try {
-    const res = await fetch(`${API}/api/encounters?lang=${locale}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/encounters?lang=${locale}`, {
+      next: { revalidate: 300 },
+    });
     if (res.ok) encounters = await res.json();
   } catch {}
 
@@ -51,7 +61,11 @@ export default async function EncountersPage({ params }: Props) {
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
-      <RecentlyAdded entityType="encounters" label="Encounter" pathPrefix="/encounters" />
+      <RecentlyAdded
+        entityType="encounters"
+        label="Encounter"
+        pathPrefix="/encounters"
+      />
 
       <Suspense>
         <EncountersClient initialEncounters={encounters} />

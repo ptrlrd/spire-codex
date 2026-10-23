@@ -66,7 +66,9 @@ export default async function HighestRated({
       const e = byId.get(s.id.toLowerCase());
       return e ? { e, s } : null;
     })
-    .filter((x): x is { e: Entity; s: ScoreEntry & { id: string } } => x !== null)
+    .filter(
+      (x): x is { e: Entity; s: ScoreEntry & { id: string } } => x !== null,
+    )
     .slice(0, 6);
 
   if (top.length === 0) return null;
@@ -90,7 +92,9 @@ export default async function HighestRated({
         </Link>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-4 max-w-3xl">
-        {t("Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a 60% win rate over 5 runs doesn't outrank a 55% win rate over 5,000. Updates continuously from submitted runs.")}
+        {t(
+          "Top picks by Codex Score, a Bayesian-shrunk win rate that adjusts for sample size, so a 60% win rate over 5 runs doesn't outrank a 55% win rate over 5,000. Updates continuously from submitted runs.",
+        )}
       </p>
       <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
         {top.map(({ e, s }) => (

@@ -435,7 +435,7 @@ def _filters_bracket(
     None when nothing maps (character is not a bracket axis, and only A10
     has a skill bracket). Composes player:skill:version in the same order
     as the site's ?bracket= values, so the profile's community comparison
-    numbers match /leaderboards/stats for the same slice."""
+    numbers match the /stats pages for the same slice."""
     player = {1: "solo", 2: "2p", 3: "3p", 4: "4p"}.get(players or 0, "")
     skill = "a10" if ascension == 10 else ""
     parts = [p for p in (player, skill) if p]

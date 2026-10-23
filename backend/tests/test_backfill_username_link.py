@@ -17,6 +17,9 @@ def _matches(doc, cond):
         if k == "$or":
             if not any(_matches(doc, c) for c in v):
                 return False
+        elif isinstance(v, dict) and "$ne" in v:
+            if doc.get(k) == v["$ne"]:
+                return False
         elif doc.get(k) != v:
             return False
     return True

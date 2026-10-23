@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
-const title = "Merchant Guide - Shop Prices & Fake Merchant - Slay the Spire 2 (sts2) | Spire Codex";
+const title =
+  "Merchant Guide - Shop Prices & Fake Merchant - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
   "Complete merchant price guide for Slay the Spire 2. Card, relic, and potion costs by rarity. Fake Merchant relic effects.";
 
@@ -18,7 +24,10 @@ export const metadata: Metadata = {
     images: [{ url: DEFAULT_OG_IMAGE }],
   },
   twitter: { card: "summary_large_image", title, description: ogDesc },
-  alternates: { canonical: "/merchant", languages: buildLanguageAlternates("/merchant") },
+  alternates: {
+    canonical: "/merchant",
+    languages: buildLanguageAlternates("/merchant"),
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

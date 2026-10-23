@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { hreflangOf, inLanguageOf, isLocale, langQuery, localeOf, localePath } from "./locale";
+import {
+  hreflangOf,
+  inLanguageOf,
+  isLocale,
+  langQuery,
+  localeOf,
+  localePath,
+} from "./locale";
 
 describe("locale helpers", () => {
   it("treats English as the unprefixed default", () => {
@@ -26,7 +33,4 @@ describe("locale helpers", () => {
     expect(localeOf("xx")).toBe("eng");
     expect(localeOf("kor")).toBe("kor");
   });
-
-
-
 });

@@ -49,7 +49,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/showcase", title: t("Community Showcase"), description: t("showcase_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/showcase",
+    title: t("Community Showcase"),
+    description: t("showcase_meta_description"),
+  });
 }
 
 export default async function ShowcasePage({ params }: Props) {
@@ -83,7 +88,9 @@ export default async function ShowcasePage({ params }: Props) {
         {heading}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        {t("Projects and tools built with the Spire Codex API. Want to add yours? Share it in the")}{" "}
+        {t(
+          "Projects and tools built with the Spire Codex API. Want to add yours? Share it in the",
+        )}{" "}
         <a
           href="https://discord.gg/xMsTBeh"
           target="_blank"
@@ -91,12 +98,14 @@ export default async function ShowcasePage({ params }: Props) {
           className="text-[var(--accent-gold)] hover:underline"
         >
           Discord
-        </a>
-        {" "}{t("and we'll get it listed here.")}
+        </a>{" "}
+        {t("and we'll get it listed here.")}
       </p>
 
       {projects.length === 0 ? (
-        <p className="text-[var(--text-muted)]">{t("No projects yet. Be the first!")}</p>
+        <p className="text-[var(--text-muted)]">
+          {t("No projects yet. Be the first!")}
+        </p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (

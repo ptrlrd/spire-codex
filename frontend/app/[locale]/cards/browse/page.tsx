@@ -7,7 +7,11 @@ import { localeOf, localePath } from "@/lib/locale";
 
 type Props = { params: Promise<{ locale: string }> };
 
-const GROUPS: { title: string; category: SlugEntry["category"]; icon: string }[] = [
+const GROUPS: {
+  title: string;
+  category: SlugEntry["category"];
+  icon: string;
+}[] = [
   { title: "By Type", category: "type", icon: "⚔" },
   { title: "By Rarity", category: "rarity", icon: "✦" },
   { title: "By Character", category: "character", icon: "👤" },
@@ -50,12 +54,14 @@ function getCardStyle(slug: string, entry: SlugEntry) {
   const rarity = entry.params.rarity?.toLowerCase();
   if (rarity && rarityColors[rarity]) {
     return {
-      border: "border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40",
+      border:
+        "border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40",
       text: rarityColors[rarity],
     };
   }
   return {
-    border: "border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40",
+    border:
+      "border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/40",
     text: "text-[var(--text-primary)]",
   };
 }
@@ -88,14 +94,20 @@ export default async function BrowseHubPage({ params }: Props) {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{t("Browse Cards by Category")}</span>
+        <span className="text-[var(--accent-gold)]">
+          {t("Browse Cards by Category")}
+        </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
-        {t("Explore Slay the Spire 2 cards organized by type, rarity, character, and keyword. Each category shows a filtered view of all matching cards.")}
+        {t(
+          "Explore Slay the Spire 2 cards organized by type, rarity, character, and keyword. Each category shows a filtered view of all matching cards.",
+        )}
       </p>
 
       {GROUPS.map((group) => {
-        const entries = allEntries.filter(([, e]) => e.category === group.category);
+        const entries = allEntries.filter(
+          ([, e]) => e.category === group.category,
+        );
         if (entries.length === 0) return null;
 
         return (
@@ -130,7 +142,10 @@ export default async function BrowseHubPage({ params }: Props) {
       <div className="mt-8 pt-6 border-t border-[var(--border-subtle)]">
         <p className="text-sm text-[var(--text-muted)]">
           {t("Looking for the full card list?")}{" "}
-          <Link href="/cards" className="text-[var(--accent-gold)] hover:underline">
+          <Link
+            href="/cards"
+            className="text-[var(--accent-gold)] hover:underline"
+          >
             {t("View all cards")}
           </Link>
         </p>

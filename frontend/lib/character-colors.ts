@@ -19,15 +19,15 @@ export const CHARACTER_HEX: Record<string, string> = {
 export function colorTextClass(color: string | null | undefined): string {
   switch ((color || "").toLowerCase()) {
     case "ironclad":
-      return "text-[#d53b27]";
+      return "text-[var(--text-ironclad)]";
     case "silent":
-      return "text-[#23935b]";
+      return "text-[var(--text-silent)]";
     case "defect":
-      return "text-[#3873a9]";
+      return "text-[var(--text-defect)]";
     case "necrobinder":
-      return "text-[#bf5a85]";
+      return "text-[var(--text-necrobinder)]";
     case "regent":
-      return "text-[#f07c1e]";
+      return "text-[var(--text-regent)]";
     case "colorless":
       return "text-[var(--text-secondary)]";
     case "curse":
@@ -47,3 +47,22 @@ export function colorTextClass(color: string | null | undefined): string {
 export function characterHex(character: string | null | undefined): string {
   return CHARACTER_HEX[(character || "").toLowerCase()] ?? "";
 }
+
+const TEXT_VARS: Record<string, string> = {
+  "#d53b27": "var(--text-ironclad)",
+  "#23935b": "var(--text-silent)",
+  "#3873a9": "var(--text-defect)",
+  "#bf5a85": "var(--text-necrobinder)",
+  "#f07c1e": "var(--text-regent)",
+  "#6b5b8a": "var(--text-ancient)",
+  "#6b7280": "var(--text-colorless)",
+};
+
+export function textColor(color: string): string {
+  return (
+    TEXT_VARS[color.toLowerCase()] ??
+    `color-mix(in oklab, ${color} calc(100% - var(--text-lift)), var(--lift-to))`
+  );
+}
+
+export const SPINE_TEXT = textColor("var(--spine)");

@@ -11,18 +11,19 @@ import FloatingFeedback from "@/app/components/FloatingFeedback";
 import NitroAnchor from "@/app/components/NitroAnchor";
 import HighlightFeedback from "@/app/components/HighlightFeedback";
 import { hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
+import { clientMessagesFor } from "@/i18n/messages";
 import IntlProvider from "@/app/components/IntlProvider";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { hreflangOf, ogLocaleOf, type Locale } from "@/lib/locale";
 import { LANG_DATABASE, LANG_GAME_NAME, LANG_NAMES } from "@/lib/languages";
-import { BetaVersionProvider } from "@/app/contexts/BetaVersionContext";
 import { AuthProvider } from "@/app/contexts/AuthContext";
 import { ToastProvider } from "@/app/components/Toast";
 import AuthNotice from "@/app/components/AuthNotice";
 import LocaleSuggestToast from "@/app/components/LocaleSuggestToast";
 import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import ApiConfigProvider from "../contexts/api/ApiConfigProvider";
 
 // Self-hosted Umami analytics. Both values are public-by-design, the
 // browser fetches the script + sends the website ID on every page
@@ -45,14 +46,12 @@ import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 // `localhost:3000` are rejected before they land in the stats.
 const UMAMI_SRC = "https://analytics.spire-codex.com/script.js";
 const UMAMI_WEBSITE_ID =
-  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID || "715a2b92-5064-4369-9d33-cdd1c0ea8f93";
+  process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ||
+  "715a2b92-5064-4369-9d33-cdd1c0ea8f93";
 
-// Google Analytics 4 + Google Tag Manager, running alongside Umami. Both ids
-// are public-by-design like the Umami website id. GTM could load the GA tag
-// itself, but keeping the direct gtag include means pageviews keep flowing
-// even while the GTM container is empty or misconfigured.
+// Google Analytics 4, running alongside Umami. The id is public-by-design
+// like the Umami website id.
 const GA_ID = "G-9ZKSNKCV77";
-const GTM_ID = "GTM-NKVKGMVS";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -73,7 +72,10 @@ const kreon = Kreon({
   weight: ["300", "400", "500", "600", "700"],
 });
 
-type LayoutProps = Readonly<{ children: React.ReactNode; params: Promise<{ locale: string }> }>;
+type LayoutProps = Readonly<{
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}>;
 
 const ENGLISH_TITLE = `Database - Slay the Spire 2 (sts2) | ${SITE_NAME}`;
 const ENGLISH_DESCRIPTION =
@@ -82,11 +84,21 @@ const ENGLISH_DESCRIPTION =
 // No `alternates` here on purpose: a layout's canonical is inherited by every
 // child page that doesn't set its own, which would point list pages at the
 // locale home. Pages set their own canonical and hreflang.
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
   const { locale } = await params;
   const loc = (hasLocale(routing.locales, locale) ? locale : "eng") as Locale;
-  const title = loc === "eng" ? ENGLISH_TITLE : `${LANG_GAME_NAME[loc]} ${LANG_DATABASE[loc]} - Spire Codex (${LANG_NAMES[loc]})`;
-  const description = loc === "eng" ? ENGLISH_DESCRIPTION : `Spire Codex, ${LANG_GAME_NAME[loc]} ${LANG_DATABASE[loc]}. ${LANG_NAMES[loc]}.`;
+  const title =
+    loc === "eng"
+      ? ENGLISH_TITLE
+      : `${LANG_GAME_NAME[loc]} ${LANG_DATABASE[loc]} - Spire Codex (${LANG_NAMES[loc]})`;
+  const description =
+    loc === "eng"
+      ? ENGLISH_DESCRIPTION
+      : `Spire Codex, ${LANG_GAME_NAME[loc]} ${LANG_DATABASE[loc]}. ${LANG_NAMES[loc]}.`;
   return {
     metadataBase: new URL(SITE_URL),
     title,
@@ -122,54 +134,43 @@ export default async function RootLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
-  const messages = await getMessages();
   return (
     <html lang={hreflangOf(locale)} className="dark">
       {/* React hoists these into <head>. Preconnecting to the CDN saves a
           DNS + TLS round trip before the first image request — on mobile
           RTTs that's a few hundred ms off every art-heavy page. */}
-      <link rel="preconnect" href="https://cdn.spire-codex.com" crossOrigin="anonymous" />
+      <link
+        rel="preconnect"
+        href="https://cdn.spire-codex.com"
+        crossOrigin="anonymous"
+      />
       <link rel="dns-prefetch" href="https://cdn.spire-codex.com" />
       {/* NitroPay: the queue stub must exist before any createAd call, so it
-          stays beforeInteractive (it's one statement). The loader itself is
-          deferred to lazyOnload: its stack owned every top main-thread
-          blocking task in the field (INP 221ms p75 on mobile, the one
-          failing Core Web Vital), so the auction now starts after load
-          instead of before hydration. The preconnects keep the deferred
-          path fast once it fires. Production builds only — Nitro authorizes
+          stays beforeInteractive (it's one statement). NitroAnchor injects
+          the loader once the page has sat idle after load, since the auction
+          stack is most of the main-thread blocking on phones. Production builds only — Nitro authorizes
           spire-codex.com, so dev would just log errors. */}
       {process.env.NODE_ENV === "production" && (
         <>
-          <link rel="preconnect" href="https://s.nitropay.com" crossOrigin="anonymous" />
+          <link
+            rel="preconnect"
+            href="https://s.nitropay.com"
+            crossOrigin="anonymous"
+          />
           <link rel="dns-prefetch" href="https://consent.nitrocnct.com" />
           <link rel="dns-prefetch" href="https://p.cpx.to" />
           <link rel="dns-prefetch" href="https://prebid.cwi.re" />
           <Script id="nitro-stub" strategy="beforeInteractive">
             {`window.nitroAds=window.nitroAds||{createAd:function(){return new Promise(e=>{window.nitroAds.queue.push(["createAd",arguments,e])})},addUserToken:function(){window.nitroAds.queue.push(["addUserToken",arguments])},queue:[]};`}
           </Script>
-          <Script
-            src="https://s.nitropay.com/ads-2467.js"
-            strategy="lazyOnload"
-            data-cfasync="false"
-            data-spa="auto"
-          />
         </>
       )}
       <body
         className={`${kreon.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
       >
-        {/* Google Tag Manager (noscript) */}
-        <noscript>
-          <iframe
-            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light'){document.documentElement.setAttribute('data-theme','light');document.documentElement.classList.remove('dark');}else{document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');var ok=['light','ironclad','silent','defect','necrobinder','regent','custom'];if(ok.indexOf(t)<0){t='dark';}if(t==='custom'){var c=localStorage.getItem('theme-custom-css');if(c&&/^[-a-z0-9:#;., ()]+$/i.test(c)){document.documentElement.style.cssText=c;}else{t='dark';}}document.documentElement.setAttribute('data-theme',t);if(t==='light'){document.documentElement.classList.remove('dark');}else{document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
         {/* No Suspense between here and the page: a boundary above {children}
@@ -177,32 +178,34 @@ export default async function RootLayout({ children, params }: LayoutProps) {
             so non-JS crawlers saw pages with no h1 and no text. The only
             component that needed it (BetaVersionProvider's useSearchParams)
             reads window.location instead now. */}
-        <IntlProvider locale={locale} messages={messages as Record<string, string>}>
-            <BetaVersionProvider>
-              <AuthProvider>
+        <IntlProvider locale={locale} messages={clientMessagesFor(locale)}>
+          <ApiConfigProvider>
+            <AuthProvider>
               <ToastProvider>
-              <AuthNotice />
-              <Navbar />
-              <LocaleSuggestToast />
-              <div className="pt-16">
-                <AlertTicker />
-                {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
+                <AuthNotice />
+                <Navbar />
+                <LocaleSuggestToast />
+                <div className="pt-16">
+                  <AlertTicker />
+                  {/* tabIndex=-1 lets Navbar's main.focus() (PR #142) clear
                     focus-within from the dropdown after route changes. The
                     outline-none is required because the programmatic focus
                     would otherwise paint a visible browser focus ring around
                     the entire content area, which read as a stray "tab" line
                     underneath the donation banner on every navigation. */}
-                <BetaChrome />
-                <main tabIndex={-1} className="outline-none">{children}</main>
-              </div>
-              <Footer />
-              <GlobalSearch />
-              <FloatingFeedback />
-              {process.env.NODE_ENV === "production" && <NitroAnchor />}
-              <HighlightFeedback />
+                  <BetaChrome />
+                  <main tabIndex={-1} className="outline-none min-h-screen">
+                    {children}
+                  </main>
+                </div>
+                <Footer />
+                <GlobalSearch />
+                <FloatingFeedback />
+                {process.env.NODE_ENV === "production" && <NitroAnchor />}
+                <HighlightFeedback />
               </ToastProvider>
-              </AuthProvider>
-            </BetaVersionProvider>
+            </AuthProvider>
+          </ApiConfigProvider>
         </IntlProvider>
         {UMAMI_SRC && UMAMI_WEBSITE_ID && (
           <Script
@@ -222,14 +225,6 @@ export default async function RootLayout({ children, params }: LayoutProps) {
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${GA_ID}');`}
-        </Script>
-        {/* Google Tag Manager */}
-        <Script id="gtm-init" strategy="afterInteractive">
-          {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`}
         </Script>
       </body>
     </html>

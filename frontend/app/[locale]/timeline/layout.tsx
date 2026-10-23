@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
+import {
+  SITE_NAME,
+  SITE_URL,
+  DEFAULT_OG_IMAGE,
+  buildLanguageAlternates,
+} from "@/lib/seo";
 
-const title = "Timeline - Epochs & Unlocks - Slay the Spire 2 (sts2) | Spire Codex";
+const title =
+  "Timeline - Epochs & Unlocks - Slay the Spire 2 (sts2) | Spire Codex";
 const description =
   "Slay the Spire 2 timeline covering all epochs, eras, and story arcs. Track unlockable cards, relics, and potions across every story progression path.";
-const ogDesc = "Slay the Spire 2 timeline covering all epochs, eras, and story arcs. Track unlockable cards, relics, and potions across every story progression path.";
+const ogDesc =
+  "Slay the Spire 2 timeline covering all epochs, eras, and story arcs. Track unlockable cards, relics, and potions across every story progression path.";
 
 export const metadata: Metadata = {
   title,

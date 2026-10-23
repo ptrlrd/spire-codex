@@ -90,6 +90,19 @@ ENEMIES = pa.list_(
         ]
     )
 )
+SHOP_ITEMS = pa.list_(
+    pa.struct(
+        [
+            ("kind", pa.string()),
+            ("slot", pa.int32()),
+            ("id", pa.string()),
+            ("cost", pa.int32()),
+            ("stocked", pa.bool_()),
+            ("sale", pa.bool_()),
+            ("pool", pa.string()),
+        ]
+    )
+)
 NODES = pa.list_(
     pa.struct(
         [
@@ -243,6 +256,14 @@ SCHEMAS = {
         ]
     ),
     "maps": _schema([("nodes", NODES)]),
+    "shops": _schema(
+        [
+            ("gold", pa.int32()),
+            ("removal_cost", pa.int32()),
+            ("removal_stocked", pa.bool_()),
+            ("items", SHOP_ITEMS),
+        ]
+    ),
     "card_instances": pa.schema(
         [
             ("run_hash", pa.string()),
@@ -648,7 +669,7 @@ def parse_replay(gz: bytes, meta: dict, batch_id: str) -> dict[str, list[dict]]:
         if t == "room":
             rows["rooms"].append({**base(d), "kind": d.get("kind"), "id": d.get("id")})
             continue
-        if t == "hp" and open_combat is not None:
+        if t == "hp" and open_combat is not None and d.get("mine") is not False:
             delta = _int(d.get("d"))
             if delta is not None and delta < 0:
                 open_combat["damage_taken"] = (open_combat["damage_taken"] or 0) - delta
@@ -706,6 +727,33 @@ def parse_replay(gz: bytes, meta: dict, batch_id: str) -> dict[str, list[dict]]:
                         for n in _capped(d.get("nodes") or [], MAX_MAP_NODES, "nodes")
                         if isinstance(n, dict)
                     ],
+                }
+            )
+            continue
+        if t == "shop":
+            items = []
+            for kind in ("cards", "relics", "potions"):
+                for it in _capped(d.get(kind) or [], MAX_LIST, kind):
+                    if not isinstance(it, dict):
+                        continue
+                    items.append(
+                        {
+                            "kind": kind[:-1],
+                            "slot": _int(it.get("slot")),
+                            "id": it.get("id"),
+                            "cost": _int(it.get("cost")),
+                            "stocked": it.get("stocked"),
+                            "sale": it.get("sale"),
+                            "pool": it.get("pool"),
+                        }
+                    )
+            rows["shops"].append(
+                {
+                    **base(d),
+                    "gold": _int(d.get("gold")),
+                    "removal_cost": _int(d.get("removal_cost")),
+                    "removal_stocked": d.get("removal_stocked"),
+                    "items": items,
                 }
             )
             continue

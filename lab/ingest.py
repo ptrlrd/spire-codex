@@ -193,17 +193,15 @@ def main() -> None:
         con.execute("SET threads=5")
         con.execute("SET temp_directory='/lake/tmp'")
         con.execute("SET preserve_insertion_order=false")
-        # The shadow SQLs were the migration validation gate; the gate
-        # passed, and the payload builder computes the same sections anyway,
-        # so the nightly run skips them (halves the tail). Run them by hand
-        # from lab/ when a fresh lake-vs-snapshot diff is wanted.
-        for name in ("build.sql",):
-            path = pathlib.Path("/lab") / name
-            if not path.exists():
-                print(f"{name}: not present, skipped", flush=True)
-                continue
-            con.execute(path.read_text())
-            print(f"{name}: done", flush=True)
+        import build_lake
+
+        built = build_lake.build(con)
+        print(
+            f"build.sql: done ({built['parsed']} of {built['pages']} pages parsed in "
+            f"{built['parse_seconds']:.0f}s, tables assembled in "
+            f"{built['assemble_seconds']:.0f}s)",
+            flush=True,
+        )
     except Exception as e:
         record = {
             "generation_id": generation_id,
@@ -425,6 +423,63 @@ def main() -> None:
     except Exception as e:
         print(f"profile refresh failed: {e}", flush=True)
     _mark("profiles")
+    try:
+        import player_elo_board
+
+        t_elo = time.time()
+        elo = player_elo_board.build()
+        print(
+            f"player elo board built ({len(elo['players'])} shown, {elo['total_rated']} rated) "
+            f"in {time.time() - t_elo:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"player elo board failed: {e}", flush=True)
+    _mark("player_elo")
+    try:
+        import player_stats
+
+        stats = player_stats.build()
+        print(
+            f"player stats built ({stats['users']} players, {stats['rows']} rows) "
+            f"in {stats['seconds']:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"player stats failed: {e}", flush=True)
+    _mark("player_stats")
+    try:
+        import seed_profiles
+
+        t_seeds = time.time()
+        seeds = seed_profiles.build()
+        print(
+            f"seed profiles built ({seeds['seeds']} seeds, {seeds['facts']} facts) in {time.time() - t_seeds:.0f}s",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"seed profiles failed: {e}", flush=True)
+    _mark("seed_profiles")
+    try:
+        import seed_predict
+
+        predictions = seed_predict.build()
+        print(f"seed predictions: {predictions}", flush=True)
+    except Exception as e:
+        print(f"seed predictions failed: {e}", flush=True)
+    _mark("seed_predict")
+    try:
+        import replay_guard
+
+        guard = replay_guard.run()
+        print(
+            f"replay guard: {guard['flagged']} flagged, {guard['hidden']} hidden, "
+            f"{guard['already_hidden']} already hidden",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"replay guard failed: {e}", flush=True)
+    _mark("replay_guard")
     # A box that publishes to R2 must never purge the edge, even if CF creds
     # leak into its env: purging before the serving box pulls would let the
     # edge re-cache stale origin data for the whole pull gap.
@@ -507,6 +562,8 @@ def main() -> None:
                 publish_lake.publish()
             except Exception as e:
                 print(f"lake publish failed: {e}", flush=True)
+        _runs_export()
+        _run_vectors()
         print("ingest complete", flush=True)
     else:
         reasons = [f"stale {n}" for n in required if mtimes.get(n, 0.0) < t0]
@@ -518,6 +575,69 @@ def main() -> None:
         )
         sys.exit(1)
         sys.exit(1)
+
+
+def _runs_export() -> None:
+    try:
+        import export_dump
+
+        t_dump = time.time()
+        dump = export_dump.build()
+        print(
+            f"runs export built ({dump['runs']} runs, {dump['bytes']:,} bytes) in {time.time() - t_dump:.0f}s"
+            if dump
+            else "runs export still fresh, kept",
+            flush=True,
+        )
+    except Exception as e:
+        print(f"runs export failed: {e}", flush=True)
+
+
+VECTORS_MAX_AGE_SECONDS = 20 * 3600
+
+
+def _run_vectors() -> None:
+    """Rebuild the archetype clusters and similar-run vectors once a day
+    into /lake/vectors; the next publish ships them to the main box. Runs
+    in a subprocess so its matrices never share the cycle's memory."""
+    import os
+    import subprocess
+
+    out = LAKE / "vectors"
+    try:
+        age = time.time() - (out / "archetypes.json").stat().st_mtime
+        if age < VECTORS_MAX_AGE_SECONDS:
+            print("run vectors still fresh, kept", flush=True)
+            return
+    except OSError:
+        pass
+    out.mkdir(exist_ok=True)
+    env = {**os.environ, "VECTORS_DIR": str(out)}
+    env.pop("PROMETHEUS_MULTIPROC_DIR", None)
+    env.pop("prometheus_multiproc_dir", None)
+    t_vec = time.time()
+    try:
+        done = subprocess.run(
+            [sys.executable, "-m", "scripts.build_run_vectors"],
+            cwd="/app",
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=3 * 3600,
+        )
+    except Exception as e:
+        print(f"run vectors failed: {e}", flush=True)
+        return
+    tail = (done.stdout or done.stderr or "").strip().splitlines()[-1:] or [""]
+    if done.returncode:
+        print(
+            f"run vectors failed (exit {done.returncode}): {tail[0][:300]}", flush=True
+        )
+    else:
+        print(
+            f"run vectors built in {time.time() - t_vec:.0f}s: {tail[0][:300]}",
+            flush=True,
+        )
 
 
 if __name__ == "__main__":

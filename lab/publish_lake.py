@@ -23,6 +23,15 @@ SERVE_FILES = (
     "frame.parquet",
     "generation.json",
     "ingest_metrics.jsonl",
+    "runs_export.jsonl.gz",
+    "runs_export.json",
+    "player_elo.json",
+    "player_stats.parquet",
+    "seed_facts.parquet",
+    "seed_profiles.parquet",
+    "seed_facts_predicted.parquet",
+    "seed_profiles_predicted.parquet",
+    "seed_profiles_meta.json",
 )
 
 KEEP_GENERATIONS = 2
@@ -92,6 +101,21 @@ def publish() -> dict:
         client.upload_file(str(path), bucket, f"gen/{gen_id}/{name}")
         files[name] = {"bytes": st.st_size, "sha256": _sha256(path)}
         print(f"publish: {name} ({st.st_size:,} bytes)", flush=True)
+    for path in sorted((LAKE / "exports_by_version").glob("*.jsonl.gz")):
+        key = f"exports_by_version/{path.name}"
+        st = path.stat()
+        client.upload_file(str(path), bucket, f"gen/{gen_id}/{key}")
+        files[key] = {"bytes": st.st_size, "sha256": _sha256(path)}
+        print(f"publish: {key} ({st.st_size:,} bytes)", flush=True)
+
+    for path in sorted((LAKE / "vectors").glob("*")):
+        if not path.is_file() or path.name.endswith(".tmp"):
+            continue
+        key = f"vectors/{path.name}"
+        st = path.stat()
+        client.upload_file(str(path), bucket, f"gen/{gen_id}/{key}")
+        files[key] = {"bytes": st.st_size, "sha256": _sha256(path)}
+        print(f"publish: {key} ({st.st_size:,} bytes)", flush=True)
 
     manifest = {
         "generation_id": gen_id,

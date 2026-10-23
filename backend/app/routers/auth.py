@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import logging
 import os
 
 from fastapi import APIRouter, HTTPException, Request, Response, UploadFile, File
@@ -10,13 +11,15 @@ from pydantic import BaseModel, Field
 from fastapi.responses import JSONResponse
 
 from ..dependencies import shared_limiter
-from ..services import rate_limit_config
+from ..services import supporters, rate_limit_config
 from ..services.auth_jwt import (
     get_current_user,
     is_admin,
     require_user,
     clear_auth_cookie,
 )
+
+logger = logging.getLogger("spire-codex.auth")
 
 router = APIRouter(prefix="/api/auth", tags=["Auth"])
 limiter = shared_limiter
@@ -33,6 +36,17 @@ def me(request: Request):
     user = get_current_user(request)
     if not user:
         raise HTTPException(status_code=401, detail="Not authenticated")
+    return _me_payload(user)
+
+
+@router.get("/session")
+def session(request: Request):
+    """The signed-in user, or null for anonymous visitors (where /me 401s)."""
+    user = get_current_user(request)
+    return {"user": _me_payload(user) if user else None}
+
+
+def _me_payload(user: dict) -> dict:
     if os.environ.get("MONGO_URL", "").strip():
         try:
             from ..services.user_insights import prewarm_user_insights
@@ -55,6 +69,9 @@ def me(request: Request):
         "needs_email": not user.get("email"),
         "is_admin": is_admin(user),
         "profile_private": bool(user.get("profile_private")),
+        "supporter": supporters.status(user),
+        "overwolf_id": user.get("overwolf_id"),
+        "overwolf_tier": supporters.linked_overwolf_tier(user),
     }
 
 
@@ -101,6 +118,28 @@ def logout(request: Request):
     return response
 
 
+def _trusted_browser_origin(request: Request) -> bool:
+    """The Origin header names this site (same host as the request, or one
+    of CORS_ORIGINS). A missing Origin fails: browsers always send it on a
+    cross-site POST, and a same-site fetch sends it too."""
+    from urllib.parse import urlparse
+
+    origin = (request.headers.get("origin") or "").strip().rstrip("/")
+    if not origin or origin.lower() == "null":
+        return False
+    allowed = {
+        o.strip().rstrip("/")
+        for o in os.environ.get("CORS_ORIGINS", "").split(",")
+        if o.strip()
+    }
+    if origin in allowed:
+        return True
+    origin_host = (urlparse(origin).hostname or "").lower()
+    own = request.headers.get("host") or request.url.hostname or ""
+    own_host = own.split(":")[0].strip().lower()
+    return bool(origin_host) and origin_host == own_host
+
+
 @router.post("/set-cookie")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.set_cookie", "20/minute"))
 async def set_cookie(request: Request):
@@ -109,12 +148,17 @@ async def set_cookie(request: Request):
     Used by the frontend after OAuth redirects when backend and frontend
     are on different origins (local dev with separate ports).
     """
+    if not _trusted_browser_origin(request):
+        raise HTTPException(status_code=403, detail="Origin not allowed")
+    content_type = (request.headers.get("content-type") or "").split(";")[0]
+    if content_type.strip().lower() != "application/json":
+        raise HTTPException(status_code=415, detail="JSON body required")
     try:
         body = await request.json()
     except Exception:
         raise HTTPException(status_code=400, detail="Invalid JSON body")
 
-    token = body.get("token", "")
+    token = body.get("token", "") if isinstance(body, dict) else ""
     if not token:
         raise HTTPException(status_code=400, detail="Token is required")
 
@@ -195,6 +239,19 @@ def get_my_runs(
     request: Request,
     page: int = 1,
     limit: int = 50,
+    character: str | None = None,
+    win: str | None = None,
+    seed: str | None = None,
+    build_id: str | None = None,
+    build_ids: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    card: str | None = None,
+    relic: str | None = None,
+    shop: str | None = None,
 ):
     user = require_user(request)
     if limit > 100:
@@ -207,7 +264,26 @@ def get_my_runs(
 
     from ..services.runs_db_mongo import get_user_runs
 
-    return get_user_runs(user["_id"], page=page, limit=limit)
+    filters = {
+        k: v
+        for k, v in {
+            "character": character,
+            "win": win,
+            "seed": seed,
+            "build_id": build_id,
+            "build_ids": build_ids,
+            "players": players,
+            "game_mode": game_mode,
+            "ascension": ascension,
+            "ascension_min": ascension_min,
+            "ascension_max": ascension_max,
+            "card": card,
+            "relic": relic,
+            "shop": shop,
+        }.items()
+        if v not in (None, "")
+    }
+    return get_user_runs(user["_id"], page=page, limit=limit, **filters)
 
 
 @router.delete("/runs/{run_hash}")
@@ -218,9 +294,9 @@ def delete_run(run_hash: str, request: Request):
     if not os.environ.get("MONGO_URL", "").strip():
         raise HTTPException(status_code=404, detail="Run not found")
 
-    from ..services.runs_db_mongo import soft_delete_run
+    from ..services.runs_db_mongo import delete_run_permanently
 
-    result = soft_delete_run(run_hash, user["_id"])
+    result = delete_run_permanently(run_hash, user)
     if result.get("error"):
         status_map = {
             "Run not found": 404,
@@ -242,12 +318,12 @@ class BulkDeleteRequest(BaseModel):
 @router.post("/runs/bulk-delete")
 @limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_delete_runs", "10/minute"))
 def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
-    """Soft-delete several of the caller's own runs in one request.
+    """Permanently delete several of the caller's own runs in one request.
 
     Each hash goes through the same ownership check as the single delete, so a
     hash the caller does not own is reported back rather than failing the whole
-    call. Sync on purpose: soft_delete_run talks to Mongo synchronously, and an
-    async route would run the whole batch on the event loop.
+    call. Sync on purpose: delete_run_permanently talks to Mongo synchronously,
+    and an async route would run the whole batch on the event loop.
     """
     user = require_user(request)
 
@@ -264,18 +340,68 @@ def bulk_delete_runs(payload: BulkDeleteRequest, request: Request):
     if not hashes:
         raise HTTPException(status_code=400, detail="run_hashes must not be empty")
 
-    from ..services.runs_db_mongo import soft_delete_run
+    from ..services.runs_db_mongo import delete_run_permanently
 
     deleted: list[str] = []
     failed: dict[str, str] = {}
     for run_hash in hashes:
-        result = soft_delete_run(run_hash, user["_id"])
+        result = delete_run_permanently(run_hash, user)
         if result.get("error"):
             failed[run_hash] = result["error"]
         else:
             deleted.append(run_hash)
 
     return {"deleted": deleted, "failed": failed, "requested": len(hashes)}
+
+
+class BulkHideRequest(BaseModel):
+    run_hashes: list[str] = Field(..., min_length=1, max_length=MAX_BULK_DELETE)
+    hidden: bool = True
+
+
+@router.post("/runs/bulk-hide")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.bulk_hide_runs", "10/minute"))
+def bulk_hide_runs(payload: BulkHideRequest, request: Request):
+    """Hide or unhide several of the caller's own runs in one request.
+
+    Same shape and ownership rules as bulk-delete. A run a moderator hid is
+    reported back as failed rather than unhidden.
+    """
+    user = require_user(request)
+
+    if not os.environ.get("MONGO_URL", "").strip():
+        raise HTTPException(status_code=404, detail="Run not found")
+
+    hashes: list[str] = []
+    seen: set[str] = set()
+    for value in payload.run_hashes:
+        cleaned = value.strip()
+        if cleaned and cleaned not in seen:
+            seen.add(cleaned)
+            hashes.append(cleaned)
+    if not hashes:
+        raise HTTPException(status_code=400, detail="run_hashes must not be empty")
+
+    from ..services.runs_db_mongo import set_run_hidden_by_owner
+    from .runs import _load_run_blob_cached
+
+    updated: list[str] = []
+    failed: dict[str, str] = {}
+    for run_hash in hashes:
+        result = set_run_hidden_by_owner(run_hash, user, payload.hidden)
+        if result.get("error"):
+            failed[run_hash] = result["error"]
+        else:
+            updated.append(run_hash)
+    if updated:
+        _load_run_blob_cached.cache_clear()
+
+    return {
+        "updated": updated,
+        "failed": failed,
+        "requested": len(hashes),
+        "hidden": payload.hidden,
+    }
 
 
 @router.get("/stats")
@@ -292,6 +418,27 @@ def user_stats(request: Request):
     from ..services.runs_db_mongo import get_stats
 
     return get_stats(username=username)
+
+
+@router.get("/player-stats")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.player_stats", "60/minute"))
+def own_player_stats(
+    request: Request,
+    response: Response,
+    character: str | None = None,
+    ascension: int | None = None,
+    version: str | None = None,
+    players: int | None = None,
+):
+    """The signed-in player's own stats tables, private profiles included."""
+    user = require_user(request)
+    response.headers["Cache-Control"] = "private, no-store"
+    from .players import stats_filters, stats_for_user
+
+    character = stats_filters(character, ascension, version, players)
+    if not os.environ.get("MONGO_URL", "").strip():
+        return {"username": user.get("username"), "available": False}
+    return stats_for_user(user, character, ascension, version, players)
 
 
 # Per-user cache for personal bests: both /personal-bests and /competitive need
@@ -386,9 +533,10 @@ def user_insights(
     players: int | None = None,
 ):
     """The signed-in player's personal community-stats: their runs walked
-    through the same accumulator as /community-stats (deaths, campfires,
-    event decisions, boon take rates, records) with the community's numbers
-    attached for comparison, plus card-pick divergence. Self-only.
+    through the same accumulator as /api/runs/community-stats (deaths,
+    campfires, event decisions, boon take rates, records) with the
+    community's numbers attached for comparison, plus card-pick divergence.
+    Self-only.
     `character` (e.g. IRONCLAD) scopes the whole view to that character."""
     user = require_user(request)
     if not os.environ.get("MONGO_URL", "").strip():
@@ -419,6 +567,110 @@ def user_insights(
         "no-store" if data.get("building") else "private, max-age=120"
     )
     return data
+
+
+@router.post("/overwolf/link")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.overwolf_link", "20/minute"))
+async def overwolf_link(request: Request):
+    """Link the signed-in account to an Overwolf user and refresh its
+    subscription state. Body: {"token": <overwolf.profile.generateUserSessionToken()>}.
+    The token is verified against Overwolf's keys; nothing in the body is
+    trusted on its own."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    token = body.get("token")
+    if not isinstance(token, str) or not token.strip():
+        raise HTTPException(status_code=400, detail="token is required")
+    try:
+        result = supporters.link_overwolf(user["_id"], token)
+    except supporters.OverwolfError as exc:
+        logger.warning("overwolf link rejected for %s: %s", user["_id"], exc)
+        raise HTTPException(status_code=401, detail=str(exc))
+    fresh = get_current_user(request) or user
+    return {**result, "supporter": supporters.status(fresh)}
+
+
+@router.delete("/overwolf")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.overwolf_unlink", "10/minute"))
+def overwolf_unlink(request: Request):
+    user = require_user(request)
+    return supporters.unlink_overwolf(user["_id"])
+
+
+@router.patch("/thanks-listing")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.thanks_listing", "10/minute"))
+async def thanks_listing(request: Request):
+    """Opt in or out of being named on the Thank You page as a supporter."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    listed = body.get("listed")
+    if not isinstance(listed, bool):
+        raise HTTPException(status_code=400, detail="listed must be a boolean")
+    return supporters.set_thanks_listing(user["_id"], listed)
+
+
+@router.patch("/theme")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.theme", "20/minute"))
+async def theme_setting(request: Request):
+    """Save the supporter theme (a character preset or a hex color) and
+    whether other people see it on the profile, run and replay pages."""
+    user = require_user(request)
+    try:
+        body = await request.json()
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    if not isinstance(body, dict) or not ({"theme", "public"} & set(body)):
+        raise HTTPException(status_code=400, detail="theme or public required")
+    out: dict = {}
+    if "theme" in body:
+        theme = body.get("theme")
+        if theme is not None:
+            theme = supporters.normalize_theme(theme)
+            if not theme:
+                raise HTTPException(status_code=400, detail="Unknown theme")
+            if not supporters.status(user)["active"]:
+                raise HTTPException(status_code=403, detail="Supporters only")
+        out.update(supporters.set_theme(user["_id"], theme))
+    if "public" in body:
+        public = body.get("public")
+        if not isinstance(public, bool):
+            raise HTTPException(status_code=400, detail="public must be a boolean")
+        out.update(supporters.set_theme_public(user["_id"], public))
+    supporters.invalidate_flair(user.get("username"))
+    return out
+
+
+@router.post("/refresh")
+@limiter.limit(rate_limit_config.endpoint_limit("auth.refresh", "30/minute"))
+def refresh_token(request: Request):
+    """Swap a valid, unexpired token for a fresh one so long-running clients
+    (the overlay stays open for days) never fall off the 7 day expiry. The
+    old token keeps working until it expires; nothing is revoked here."""
+    from fastapi.responses import JSONResponse
+
+    from ..services.auth_jwt import _JWT_EXPIRY_DAYS, create_token, set_auth_cookie
+
+    user = require_user(request)
+    token = create_token(
+        user_id=str(user["_id"]),
+        steam_id=user.get("steam_id"),
+        discord_id=user.get("discord_id"),
+    )
+    response = JSONResponse(
+        {
+            "token": token,
+            "user_id": str(user["_id"]),
+            "expires_in_days": _JWT_EXPIRY_DAYS,
+        }
+    )
+    set_auth_cookie(response, token)
+    return response
 
 
 @router.patch("/profile-privacy")
@@ -704,9 +956,17 @@ def _try_claim_run(run_hash: str, user: dict) -> None:
         }
         if user_sid:
             owner_set["steam_id"] = user_sid
-        coll.update_one(
-            {"_id": run_hash, "user_id": None, "steam_id": {"$in": [None, user_sid]}},
-            {"$set": owner_set},
+        from ..services.runs_db_mongo import (
+            _HINT_UNSET,
+            claimable_by,
+            forget_shared_run,
         )
+
+        coll.update_one(
+            {"_id": run_hash, **claimable_by(user_sid)},
+            {"$set": owner_set, "$unset": _HINT_UNSET},
+        )
+
+        forget_shared_run(run_hash)
     except Exception:
         pass

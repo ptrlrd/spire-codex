@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CardDetail from "@/app/[locale]/cards/[id]/CardDetail";
+import { Suspense } from "react";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
 
 /** Beta-channel card detail. A real route (not a proxy.ts rewrite of
@@ -46,9 +47,11 @@ export default async function Page({ params }: Props) {
     // path) and renders its own not-found state.
   }
   return (
-    <CardDetail
-      initialCard={card}
-      initialEnchantments={enchantmentsForCard(id)}
-    />
+    <Suspense fallback={null}>
+      <CardDetail
+        initialCard={card}
+        initialEnchantments={enchantmentsForCard(id)}
+      />
+    </Suspense>
   );
 }

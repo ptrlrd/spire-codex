@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
-import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import {
+  inLanguageOf,
+  langQuery,
+  localeOf,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import type { CSSProperties } from "react";
 import JsonLd from "@/app/components/JsonLd";
@@ -11,7 +17,10 @@ import "@/app/card-revamp.css";
 import "@/app/meta-extra.css";
 import "@/app/relic-potion-extra.css";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 interface RarityRange {
   base: number;
@@ -83,7 +92,11 @@ const FALLBACK_CONFIG: MerchantConfig = {
   card_removal: {
     base_cost: 75,
     price_increase: 25,
-    inflation_ascension: { level: "Inflation", base_cost: 100, price_increase: 50 },
+    inflation_ascension: {
+      level: "Inflation",
+      base_cost: 100,
+      price_increase: 50,
+    },
   },
   fake_merchant: { relic_cost: 50 },
 };
@@ -108,7 +121,10 @@ interface RarityWords {
 
 async function fetchRarityWords(locale: Locale): Promise<RarityWords> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/translations${langQuery(locale)}`, { next: { revalidate: 3600 } });
+    const res = await fetch(
+      `${API_INTERNAL}/api/translations${langQuery(locale)}`,
+      { next: { revalidate: 3600 } },
+    );
     if (!res.ok) return {};
     return (await res.json()) as RarityWords;
   } catch {
@@ -116,9 +132,13 @@ async function fetchRarityWords(locale: Locale): Promise<RarityWords> {
   }
 }
 
-async function fetchRelicNames(locale: Locale): Promise<Record<string, string>> {
+async function fetchRelicNames(
+  locale: Locale,
+): Promise<Record<string, string>> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, {
+      next: { revalidate: 3600 },
+    });
     if (!res.ok) return {};
     const relics = (await res.json()) as { id: string; name: string }[];
     const names: Record<string, string> = {};
@@ -129,19 +149,80 @@ async function fetchRelicNames(locale: Locale): Promise<Record<string, string>> 
   }
 }
 
-const BLACKLISTED = ["THE_COURIER", "OLD_COIN", "LUCKY_FYSH", "BOWLER_HAT", "AMETHYST_AUBERGINE"];
+const BLACKLISTED = [
+  "THE_COURIER",
+  "OLD_COIN",
+  "LUCKY_FYSH",
+  "BOWLER_HAT",
+  "AMETHYST_AUBERGINE",
+];
 
-const FAKE_RELICS: { fakeId: string; realId: string | null; realName: string; effect: string }[] = [
-  { fakeId: "FAKE_ANCHOR", realId: "ANCHOR", realName: "Anchor", effect: "Gain 4 Block at the start of combat (real: 10)" },
-  { fakeId: "FAKE_BLOOD_VIAL", realId: "BLOOD_VIAL", realName: "Blood Vial", effect: "Heal 1 HP at the start of turn 1 only" },
-  { fakeId: "FAKE_HAPPY_FLOWER", realId: "HAPPY_FLOWER", realName: "Happy Flower", effect: "Gain 1 Energy every 5 turns (real: every 3)" },
-  { fakeId: "FAKE_LEES_WAFFLE", realId: "LEES_WAFFLE", realName: "Lee's Waffle", effect: "Heal 10% Max HP on pickup (real: raise Max HP)" },
-  { fakeId: "FAKE_MANGO", realId: "MANGO", realName: "Mango", effect: "Gain 3 Max HP on pickup (real: 14)" },
-  { fakeId: "FAKE_ORICHALCUM", realId: "ORICHALCUM", realName: "Orichalcum", effect: "Gain 3 Block at end of turn if no Block (real: 6)" },
-  { fakeId: "FAKE_SNECKO_EYE", realId: "SNECKO_EYE", realName: "Snecko Eye", effect: "Applies Confused (randomizes card costs) with no draw bonus" },
-  { fakeId: "FAKE_STRIKE_DUMMY", realId: "STRIKE_DUMMY", realName: "Strike Dummy", effect: "Strike cards deal 1 extra damage (real: 3)" },
-  { fakeId: "FAKE_VENERABLE_TEA_SET", realId: "VENERABLE_TEA_SET", realName: "Venerable Tea Set", effect: "Gain 1 Energy next combat after resting (real: 2)" },
-  { fakeId: "FAKE_MERCHANTS_RUG", realId: null, realName: "Merchant's Rug", effect: "No effect. Purely decorative." },
+const FAKE_RELICS: {
+  fakeId: string;
+  realId: string | null;
+  realName: string;
+  effect: string;
+}[] = [
+  {
+    fakeId: "FAKE_ANCHOR",
+    realId: "ANCHOR",
+    realName: "Anchor",
+    effect: "Gain 4 Block at the start of combat (real: 10)",
+  },
+  {
+    fakeId: "FAKE_BLOOD_VIAL",
+    realId: "BLOOD_VIAL",
+    realName: "Blood Vial",
+    effect: "Heal 1 HP at the start of turn 1 only",
+  },
+  {
+    fakeId: "FAKE_HAPPY_FLOWER",
+    realId: "HAPPY_FLOWER",
+    realName: "Happy Flower",
+    effect: "Gain 1 Energy every 5 turns (real: every 3)",
+  },
+  {
+    fakeId: "FAKE_LEES_WAFFLE",
+    realId: "LEES_WAFFLE",
+    realName: "Lee's Waffle",
+    effect: "Heal 10% Max HP on pickup (real: raise Max HP)",
+  },
+  {
+    fakeId: "FAKE_MANGO",
+    realId: "MANGO",
+    realName: "Mango",
+    effect: "Gain 3 Max HP on pickup (real: 14)",
+  },
+  {
+    fakeId: "FAKE_ORICHALCUM",
+    realId: "ORICHALCUM",
+    realName: "Orichalcum",
+    effect: "Gain 3 Block at end of turn if no Block (real: 6)",
+  },
+  {
+    fakeId: "FAKE_SNECKO_EYE",
+    realId: "SNECKO_EYE",
+    realName: "Snecko Eye",
+    effect: "Applies Confused (randomizes card costs) with no draw bonus",
+  },
+  {
+    fakeId: "FAKE_STRIKE_DUMMY",
+    realId: "STRIKE_DUMMY",
+    realName: "Strike Dummy",
+    effect: "Strike cards deal 1 extra damage (real: 3)",
+  },
+  {
+    fakeId: "FAKE_VENERABLE_TEA_SET",
+    realId: "VENERABLE_TEA_SET",
+    realName: "Venerable Tea Set",
+    effect: "Gain 1 Energy next combat after resting (real: 2)",
+  },
+  {
+    fakeId: "FAKE_MERCHANTS_RUG",
+    realId: null,
+    realName: "Merchant's Rug",
+    effect: "No effect. Purely decorative.",
+  },
 ];
 
 // Display order for the rarity tiers, matches the previous hand-coded
@@ -174,14 +255,23 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/merchant", title: t("Merchant Guide - Prices, Card Removal & Fake Merchant"), description: t("merchant_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/merchant",
+    title: t("Merchant Guide - Prices, Card Removal & Fake Merchant"),
+    description: t("merchant_meta_description"),
+  });
 }
 
 export default async function MerchantPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const heading = pageHeading(locale, t("Merchant Guide"));
-  const [cfg, rarityWords, relicNames] = await Promise.all([fetchMerchantConfig(), fetchRarityWords(locale), fetchRelicNames(locale)]);
+  const [cfg, rarityWords, relicNames] = await Promise.all([
+    fetchMerchantConfig(),
+    fetchRarityWords(locale),
+    fetchRelicNames(locale),
+  ]);
   const blacklisted = BLACKLISTED.map((id) => relicNames[id] ?? id).join(", ");
   const rarityLabel = (kind: "card" | "relic" | "potion", rarity: string) =>
     rarityWords[`${kind}_rarities`]?.[rarity] ?? t(rarity);
@@ -189,7 +279,8 @@ export default async function MerchantPage({ params }: Props) {
   const jsonLd = [
     ...buildDetailPageJsonLd({
       name: "Merchant Guide",
-      description: "Complete Slay the Spire 2 (sts2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
+      description:
+        "Complete Slay the Spire 2 (sts2) merchant price guide with card, relic, and potion costs, card removal pricing, and Fake Merchant relic details.",
       path: localePath(locale, "/merchant"),
       inLanguage: inLanguageOf(locale),
       category: "Guide",
@@ -225,12 +316,21 @@ export default async function MerchantPage({ params }: Props) {
   // lowest base across rarities so a cheaper Shop relic wins over Common.
   const cardsFrom = cfg.cards.by_rarity.Common.base;
   const potionsFrom = cfg.potions.by_rarity.Common.base;
-  const relicsFrom = Math.min(...Object.values(cfg.relics.by_rarity).map((r) => r.base));
+  const relicsFrom = Math.min(
+    ...Object.values(cfg.relics.by_rarity).map((r) => r.base),
+  );
   const cardRemovalFrom = cfg.card_removal.base_cost;
   const colorlessMarkupPct = Math.round((cfg.cards.colorless_markup - 1) * 100);
   const onSalePct = Math.round(100 / cfg.cards.on_sale_divisor);
 
-  const ordinal = (i: number) => (i === 0 ? t("1st") : i === 1 ? t("2nd") : i === 2 ? t("3rd") : t("{n}th", { n: i + 1 }));
+  const ordinal = (i: number) =>
+    i === 0
+      ? t("1st")
+      : i === 1
+        ? t("2nd")
+        : i === 2
+          ? t("3rd")
+          : t("{n}th", { n: i + 1 });
 
   const coin = (
     <img
@@ -244,10 +344,12 @@ export default async function MerchantPage({ params }: Props) {
   return (
     <div
       className="card-rvmp"
-      style={{
-        "--spine": "var(--accent-gold)",
-        "--entity-bg": `url("${imageUrl("/static/images/misc/merchant.webp")}?bg")`,
-      } as CSSProperties}
+      style={
+        {
+          "--spine": "var(--accent-gold)",
+          "--entity-bg": `url("${imageUrl("/static/images/misc/merchant.webp")}?bg")`,
+        } as CSSProperties
+      }
     >
       <JsonLd data={jsonLd} />
 
@@ -263,7 +365,9 @@ export default async function MerchantPage({ params }: Props) {
             </p>
             <h1>{heading}</h1>
             <p className="lede">
-              {t("All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.")}
+              {t(
+                "All merchant pricing extracted from the game source code. Prices vary within the listed ranges due to a per-seed random multiplier.",
+              )}
             </p>
           </div>
 
@@ -284,42 +388,87 @@ export default async function MerchantPage({ params }: Props) {
           <section id="shop-inventory" style={{ scrollMarginTop: 84 }}>
             <h2>{t("Shop Inventory")}</h2>
             <p className="h-note">
-              {t("Each merchant stocks the following items, randomly generated from your seed:")}
+              {t(
+                "Each merchant stocks the following items, randomly generated from your seed:",
+              )}
             </p>
             <div className="trow">
               <div className="tr-head">
                 <span className="tr-title">{t("Character Cards")}</span>
-                <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;5</span>
+                <span
+                  className="tr-rarity"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  &times;5
+                </span>
               </div>
-              <p className="tr-desc">{t("2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.")}</p>
+              <p className="tr-desc">
+                {t(
+                  "2 Attacks, 2 Skills, 1 Power, from your character pool. One random card is on sale for half price.",
+                )}
+              </p>
             </div>
             <div className="trow">
               <div className="tr-head">
                 <span className="tr-title">{t("Colorless Cards")}</span>
-                <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;2</span>
+                <span
+                  className="tr-rarity"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  &times;2
+                </span>
               </div>
-              <p className="tr-desc">{t("1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.", { pct: colorlessMarkupPct })}</p>
+              <p className="tr-desc">
+                {t(
+                  "1 Uncommon, 1 Rare, from the colorless pool. {pct}% price markup.",
+                  { pct: colorlessMarkupPct },
+                )}
+              </p>
             </div>
             <div className="trow">
               <div className="tr-head">
                 <span className="tr-title">{t("Relics")}</span>
-                <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;3</span>
+                <span
+                  className="tr-rarity"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  &times;3
+                </span>
               </div>
-              <p className="tr-desc">{t("2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).", { list: blacklisted })}</p>
+              <p className="tr-desc">
+                {t(
+                  "2 random rarity rolls + 1 guaranteed Shop relic. {list} are blacklisted (gold-generating relics removed in Major Update #1).",
+                  { list: blacklisted },
+                )}
+              </p>
             </div>
             <div className="trow">
               <div className="tr-head">
                 <span className="tr-title">{t("Potions")}</span>
-                <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;3</span>
+                <span
+                  className="tr-rarity"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  &times;3
+                </span>
               </div>
-              <p className="tr-desc">{t("3 random potions from the available pool.")}</p>
+              <p className="tr-desc">
+                {t("3 random potions from the available pool.")}
+              </p>
             </div>
             <div className="trow">
               <div className="tr-head">
                 <span className="tr-title">{t("Card Removal")}</span>
-                <span className="tr-rarity" style={{ color: "var(--accent-gold)" }}>&times;1</span>
+                <span
+                  className="tr-rarity"
+                  style={{ color: "var(--accent-gold)" }}
+                >
+                  &times;1
+                </span>
               </div>
-              <p className="tr-desc">{t("Remove a card from your deck. Price increases each time.")}</p>
+              <p className="tr-desc">
+                {t("Remove a card from your deck. Price increases each time.")}
+              </p>
             </div>
           </section>
 
@@ -330,34 +479,82 @@ export default async function MerchantPage({ params }: Props) {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[var(--border-subtle)]">
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Rarity")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Base")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Range")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Colorless")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("On Sale")}</th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Rarity")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Base")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Range")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Colorless")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("On Sale")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortByOrder(Object.keys(cfg.cards.by_rarity), CARD_RARITY_ORDER).map((rarity, i, arr) => {
+                  {sortByOrder(
+                    Object.keys(cfg.cards.by_rarity),
+                    CARD_RARITY_ORDER,
+                  ).map((rarity, i, arr) => {
                     const r = cfg.cards.by_rarity[rarity];
-                    const colorlessMin = Math.round(r.min * cfg.cards.colorless_markup);
-                    const colorlessMax = Math.round(r.max * cfg.cards.colorless_markup);
-                    const saleMin = Math.round(r.min / cfg.cards.on_sale_divisor);
-                    const saleMax = Math.round(r.max / cfg.cards.on_sale_divisor);
+                    const colorlessMin = Math.round(
+                      r.min * cfg.cards.colorless_markup,
+                    );
+                    const colorlessMax = Math.round(
+                      r.max * cfg.cards.colorless_markup,
+                    );
+                    const saleMin = Math.round(
+                      r.min / cfg.cards.on_sale_divisor,
+                    );
+                    const saleMax = Math.round(
+                      r.max / cfg.cards.on_sale_divisor,
+                    );
                     return (
-                      <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("card", rarity)}</td>
-                        <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
-                        <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
-                        <td className="p-3 text-right text-[var(--text-secondary)]">{colorlessMin}–{colorlessMax}</td>
-                        <td className="p-3 text-right text-success">{saleMin}–{saleMax}</td>
+                      <tr
+                        key={rarity}
+                        className={
+                          i < arr.length - 1
+                            ? "border-b border-[var(--border-subtle)]/50"
+                            : ""
+                        }
+                      >
+                        <td
+                          className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}
+                        >
+                          {rarityLabel("card", rarity)}
+                        </td>
+                        <td className="p-3 text-right text-[var(--text-primary)]">
+                          {r.base}
+                        </td>
+                        <td className="p-3 text-right text-[var(--accent-gold)]">
+                          {r.min}–{r.max}
+                        </td>
+                        <td className="p-3 text-right text-[var(--text-secondary)]">
+                          {colorlessMin}–{colorlessMax}
+                        </td>
+                        <td className="p-3 text-right text-success">
+                          {saleMin}–{saleMax}
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
               <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-                {t("Range: base × random({min}–{max}). Colorless: +{pct}% markup. On sale: {sale}% off.", { min: cfg.cards.variance.min, max: cfg.cards.variance.max, pct: colorlessMarkupPct, sale: onSalePct })}
+                {t(
+                  "Range: base × random({min}–{max}). Colorless: +{pct}% markup. On sale: {sale}% off.",
+                  {
+                    min: cfg.cards.variance.min,
+                    max: cfg.cards.variance.max,
+                    pct: colorlessMarkupPct,
+                    sale: onSalePct,
+                  },
+                )}
               </div>
             </div>
           </section>
@@ -369,28 +566,63 @@ export default async function MerchantPage({ params }: Props) {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[var(--border-subtle)]">
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Rarity")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Base")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Range")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Multiplier")}</th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Rarity")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Base")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Range")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Multiplier")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortByOrder(Object.keys(cfg.relics.by_rarity), RELIC_RARITY_ORDER).map((rarity, i, arr) => {
+                  {sortByOrder(
+                    Object.keys(cfg.relics.by_rarity),
+                    RELIC_RARITY_ORDER,
+                  ).map((rarity, i, arr) => {
                     const r = cfg.relics.by_rarity[rarity];
                     return (
-                      <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("relic", rarity)}</td>
-                        <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
-                        <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
-                        <td className="p-3 text-right text-[var(--text-muted)]">×{cfg.relics.variance.min}–{cfg.relics.variance.max}</td>
+                      <tr
+                        key={rarity}
+                        className={
+                          i < arr.length - 1
+                            ? "border-b border-[var(--border-subtle)]/50"
+                            : ""
+                        }
+                      >
+                        <td
+                          className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}
+                        >
+                          {rarityLabel("relic", rarity)}
+                        </td>
+                        <td className="p-3 text-right text-[var(--text-primary)]">
+                          {r.base}
+                        </td>
+                        <td className="p-3 text-right text-[var(--accent-gold)]">
+                          {r.min}–{r.max}
+                        </td>
+                        <td className="p-3 text-right text-[var(--text-muted)]">
+                          ×{cfg.relics.variance.min}–{cfg.relics.variance.max}
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
               <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-                {t("Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: {list}.", { relicVar: variancePct(cfg.relics.variance), cardVar: variancePct(cfg.cards.variance), list: blacklisted })}
+                {t(
+                  "Relics have a wider price variance ({relicVar}) than cards ({cardVar}). Major Update #1 (v0.103.2) reduced every relic base by 25 gold. Five relics are blacklisted from the shop pool: {list}.",
+                  {
+                    relicVar: variancePct(cfg.relics.variance),
+                    cardVar: variancePct(cfg.cards.variance),
+                    list: blacklisted,
+                  },
+                )}
               </div>
             </div>
           </section>
@@ -402,26 +634,56 @@ export default async function MerchantPage({ params }: Props) {
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[var(--border-subtle)]">
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Rarity")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Base")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Range")}</th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Rarity")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Base")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Range")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {sortByOrder(Object.keys(cfg.potions.by_rarity), POTION_RARITY_ORDER).map((rarity, i, arr) => {
+                  {sortByOrder(
+                    Object.keys(cfg.potions.by_rarity),
+                    POTION_RARITY_ORDER,
+                  ).map((rarity, i, arr) => {
                     const r = cfg.potions.by_rarity[rarity];
                     return (
-                      <tr key={rarity} className={i < arr.length - 1 ? "border-b border-[var(--border-subtle)]/50" : ""}>
-                        <td className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}>{rarityLabel("potion", rarity)}</td>
-                        <td className="p-3 text-right text-[var(--text-primary)]">{r.base}</td>
-                        <td className="p-3 text-right text-[var(--accent-gold)]">{r.min}–{r.max}</td>
+                      <tr
+                        key={rarity}
+                        className={
+                          i < arr.length - 1
+                            ? "border-b border-[var(--border-subtle)]/50"
+                            : ""
+                        }
+                      >
+                        <td
+                          className={`p-3 ${RARITY_COLOR[rarity] ?? "text-[var(--text-secondary)]"}`}
+                        >
+                          {rarityLabel("potion", rarity)}
+                        </td>
+                        <td className="p-3 text-right text-[var(--text-primary)]">
+                          {r.base}
+                        </td>
+                        <td className="p-3 text-right text-[var(--accent-gold)]">
+                          {r.min}–{r.max}
+                        </td>
                       </tr>
                     );
                   })}
                 </tbody>
               </table>
               <div className="px-3 py-2 text-xs text-[var(--text-muted)] border-t border-[var(--border-subtle)]/50">
-                {t("Range: base × random({min}–{max}). Same variance as cards.", { min: cfg.potions.variance.min, max: cfg.potions.variance.max })}
+                {t(
+                  "Range: base × random({min}–{max}). Same variance as cards.",
+                  {
+                    min: cfg.potions.variance.min,
+                    max: cfg.potions.variance.max,
+                  },
+                )}
               </div>
             </div>
           </section>
@@ -430,7 +692,9 @@ export default async function MerchantPage({ params }: Props) {
           <section id="card-removal" style={{ scrollMarginTop: 84 }}>
             <h2>{t("Card Removal")}</h2>
             <p className="h-note">
-              {t("The merchant offers card removal at an escalating price. The cost increases each time you use it during the run. No random variance.")}
+              {t(
+                "The merchant offers card removal at an escalating price. The cost increases each time you use it during the run. No random variance.",
+              )}
             </p>
 
             <h3 className="subh">{t("Ascension 0–5")}</h3>
@@ -439,33 +703,56 @@ export default async function MerchantPage({ params }: Props) {
                 <div key={i} className="tile" style={{ textAlign: "center" }}>
                   <div className="k">{ordinal(i)}</div>
                   <div className="v" style={{ color: "var(--accent-gold)" }}>
-                    {cfg.card_removal.base_cost + cfg.card_removal.price_increase * i}
+                    {cfg.card_removal.base_cost +
+                      cfg.card_removal.price_increase * i}
                   </div>
                   <div className="s">{t("gold")}</div>
                 </div>
               ))}
             </div>
             <p className="meta-note">
-              {t("Formula: {base} + ({inc} × removals used).", { base: cfg.card_removal.base_cost, inc: cfg.card_removal.price_increase })}
+              {t("Formula: {base} + ({inc} × removals used).", {
+                base: cfg.card_removal.base_cost,
+                inc: cfg.card_removal.price_increase,
+              })}
             </p>
 
             <h3 className="subh">
-              {t("Ascension 6+")}, <span style={{ color: "var(--accent-gold)" }}>{cfg.card_removal.inflation_ascension.level}</span>
+              {t("Ascension 6+")},{" "}
+              <span style={{ color: "var(--accent-gold)" }}>
+                {cfg.card_removal.inflation_ascension.level}
+              </span>
             </h3>
             <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
               {[0, 1, 2, 3, 4, 5].map((i) => (
                 <div key={i} className="tile" style={{ textAlign: "center" }}>
                   <div className="k">{ordinal(i)}</div>
                   <div className="v" style={{ color: "var(--accent-gold)" }}>
-                    {cfg.card_removal.inflation_ascension.base_cost + cfg.card_removal.inflation_ascension.price_increase * i}
+                    {cfg.card_removal.inflation_ascension.base_cost +
+                      cfg.card_removal.inflation_ascension.price_increase * i}
                   </div>
                   <div className="s">{t("gold")}</div>
                 </div>
               ))}
             </div>
             <p className="meta-note">
-              {t("Formula: {base} + ({inc} × removals used).", { base: cfg.card_removal.inflation_ascension.base_cost, inc: cfg.card_removal.inflation_ascension.price_increase })}{" "}
-              {t("Major Update #1 reworked Ascension 6 from {old} to {level}, raising the base by {gold} gold and the per-use increment by {inc}.", { old: t("Gloom (less rest sites)"), level: cfg.card_removal.inflation_ascension.level, gold: cfg.card_removal.inflation_ascension.base_cost - cfg.card_removal.base_cost, inc: cfg.card_removal.inflation_ascension.price_increase - cfg.card_removal.price_increase })}
+              {t("Formula: {base} + ({inc} × removals used).", {
+                base: cfg.card_removal.inflation_ascension.base_cost,
+                inc: cfg.card_removal.inflation_ascension.price_increase,
+              })}{" "}
+              {t(
+                "Major Update #1 reworked Ascension 6 from {old} to {level}, raising the base by {gold} gold and the per-use increment by {inc}.",
+                {
+                  old: t("Gloom (less rest sites)"),
+                  level: cfg.card_removal.inflation_ascension.level,
+                  gold:
+                    cfg.card_removal.inflation_ascension.base_cost -
+                    cfg.card_removal.base_cost,
+                  inc:
+                    cfg.card_removal.inflation_ascension.price_increase -
+                    cfg.card_removal.price_increase,
+                },
+              )}
             </p>
           </section>
 
@@ -473,32 +760,56 @@ export default async function MerchantPage({ params }: Props) {
           <section id="fake-merchant" style={{ scrollMarginTop: 84 }}>
             <h2>{t("Fake Merchant")}</h2>
             <p className="h-note">
-              {t("The Fake Merchant is an event that sells counterfeit relics for a flat {cost} gold each. These are weaker versions of well-known relics. All fake relics have Event rarity.", { cost: cfg.fake_merchant.relic_cost })}
+              {t(
+                "The Fake Merchant is an event that sells counterfeit relics for a flat {cost} gold each. These are weaker versions of well-known relics. All fake relics have Event rarity.",
+                { cost: cfg.fake_merchant.relic_cost },
+              )}
             </p>
             <div className="facts overflow-hidden">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-[var(--border-subtle)]">
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Fake Relic")}</th>
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Mimics")}</th>
-                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">{t("Price")}</th>
-                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">{t("Effect")}</th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Fake Relic")}
+                    </th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Mimics")}
+                    </th>
+                    <th className="text-right p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Price")}
+                    </th>
+                    <th className="text-left p-3 text-[var(--text-muted)] font-semibold">
+                      {t("Effect")}
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {FAKE_RELICS.map((row) => (
-                    {
-                      fakeId: row.fakeId,
-                      fake: relicNames[row.fakeId] ?? t("Fake {relic}", { relic: row.realName }),
-                      real: row.realId ? relicNames[row.realId] ?? row.realName : "—",
-                      effect: t(row.effect),
-                    }
-                  )).map((row) => (
-                    <tr key={row.fakeId} className="border-b border-[var(--border-subtle)]/50 last:border-0">
-                      <td className="p-3 text-[var(--text-primary)] font-medium">{row.fake}</td>
-                      <td className="p-3 text-[var(--text-muted)]">{row.real}</td>
-                      <td className="p-3 text-right text-[var(--accent-gold)]">{cfg.fake_merchant.relic_cost}g</td>
-                      <td className="p-3 text-[var(--text-secondary)]">{row.effect}</td>
+                  {FAKE_RELICS.map((row) => ({
+                    fakeId: row.fakeId,
+                    fake:
+                      relicNames[row.fakeId] ??
+                      t("Fake {relic}", { relic: row.realName }),
+                    real: row.realId
+                      ? (relicNames[row.realId] ?? row.realName)
+                      : "—",
+                    effect: t(row.effect),
+                  })).map((row) => (
+                    <tr
+                      key={row.fakeId}
+                      className="border-b border-[var(--border-subtle)]/50 last:border-0"
+                    >
+                      <td className="p-3 text-[var(--text-primary)] font-medium">
+                        {row.fake}
+                      </td>
+                      <td className="p-3 text-[var(--text-muted)]">
+                        {row.real}
+                      </td>
+                      <td className="p-3 text-right text-[var(--accent-gold)]">
+                        {cfg.fake_merchant.relic_cost}g
+                      </td>
+                      <td className="p-3 text-[var(--text-secondary)]">
+                        {row.effect}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -512,18 +823,41 @@ export default async function MerchantPage({ params }: Props) {
             <div className="trow">
               <div className="space-y-3 text-sm text-[var(--text-secondary)]">
                 <p>
-                  {t("All prices come from a seeded random number generator, meaning prices are deterministic per seed.")} {t("Random number generator:")} <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops</code>
+                  {t(
+                    "All prices come from a seeded random number generator, meaning prices are deterministic per seed.",
+                  )}{" "}
+                  {t("Random number generator:")}{" "}
+                  <code className="text-[var(--accent-gold)] text-xs">
+                    PlayerRng.Shops
+                  </code>
                 </p>
                 <p>
-                  {t("Cards use {call} for a {pct} variance.", { call: `NextFloat(${cfg.cards.variance.min}f, ${cfg.cards.variance.max}f)`, pct: variancePct(cfg.cards.variance) })}{" "}
-                  {t("Relics use {call} for a wider {pct} variance.", { call: `NextFloat(${cfg.relics.variance.min}f, ${cfg.relics.variance.max}f)`, pct: variancePct(cfg.relics.variance) })}{" "}
-                  {t("Potions use the same {pct} variance as cards.", { pct: variancePct(cfg.potions.variance) })}
+                  {t("Cards use {call} for a {pct} variance.", {
+                    call: `NextFloat(${cfg.cards.variance.min}f, ${cfg.cards.variance.max}f)`,
+                    pct: variancePct(cfg.cards.variance),
+                  })}{" "}
+                  {t("Relics use {call} for a wider {pct} variance.", {
+                    call: `NextFloat(${cfg.relics.variance.min}f, ${cfg.relics.variance.max}f)`,
+                    pct: variancePct(cfg.relics.variance),
+                  })}{" "}
+                  {t("Potions use the same {pct} variance as cards.", {
+                    pct: variancePct(cfg.potions.variance),
+                  })}
                 </p>
                 <p>
-                  {t("The shop randomly picks one of the 5 character cards to put on sale ({pct}% off).", { pct: onSalePct })} {t("The sale slot is determined by:")} <code className="text-[var(--accent-gold)] text-xs">PlayerRng.Shops.NextInt(5)</code>
+                  {t(
+                    "The shop randomly picks one of the 5 character cards to put on sale ({pct}% off).",
+                    { pct: onSalePct },
+                  )}{" "}
+                  {t("The sale slot is determined by:")}{" "}
+                  <code className="text-[var(--accent-gold)] text-xs">
+                    PlayerRng.Shops.NextInt(5)
+                  </code>
                 </p>
                 <p>
-                  {t("When you buy an item, the slot is emptied. Items only restock if you have The Courier relic, which refills purchased slots with new random items (excluding duplicates already in the shop).")}
+                  {t(
+                    "When you buy an item, the slot is emptied. Items only restock if you have The Courier relic, which refills purchased slots with new random items (excluding duplicates already in the shop).",
+                  )}
                 </p>
               </div>
             </div>
@@ -542,12 +876,42 @@ export default async function MerchantPage({ params }: Props) {
             <div className="facts">
               <div className="fh">{t("At a glance")}</div>
               <dl>
-                <div className="frow"><dt>{t("Cards from")}</dt><dd>{coin}{cardsFrom}g</dd></div>
-                <div className="frow"><dt>{t("Relics from")}</dt><dd>{coin}{relicsFrom}g</dd></div>
-                <div className="frow"><dt>{t("Potions from")}</dt><dd>{coin}{potionsFrom}g</dd></div>
-                <div className="frow"><dt>{t("Card removal")}</dt><dd>{coin}{cardRemovalFrom}g</dd></div>
-                <div className="frow"><dt>{t("Colorless markup")}</dt><dd>+{colorlessMarkupPct}%</dd></div>
-                <div className="frow"><dt>{t("On sale")}</dt><dd>{t("{pct}% off", { pct: onSalePct })}</dd></div>
+                <div className="frow">
+                  <dt>{t("Cards from")}</dt>
+                  <dd>
+                    {coin}
+                    {cardsFrom}g
+                  </dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Relics from")}</dt>
+                  <dd>
+                    {coin}
+                    {relicsFrom}g
+                  </dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Potions from")}</dt>
+                  <dd>
+                    {coin}
+                    {potionsFrom}g
+                  </dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Card removal")}</dt>
+                  <dd>
+                    {coin}
+                    {cardRemovalFrom}g
+                  </dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("Colorless markup")}</dt>
+                  <dd>+{colorlessMarkupPct}%</dd>
+                </div>
+                <div className="frow">
+                  <dt>{t("On sale")}</dt>
+                  <dd>{t("{pct}% off", { pct: onSalePct })}</dd>
+                </div>
               </dl>
             </div>
           </div>

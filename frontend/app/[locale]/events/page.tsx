@@ -3,20 +3,28 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { GameEvent } from "@/lib/api";
+import type { GameEvent } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import EventsClient, { type ActOption } from "./EventsClient";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/events", title: t("Events"), description: t("events_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/events",
+    title: t("Events"),
+    description: t("events_meta_description"),
+  });
 }
 
 export default async function EventsPage({ params }: Props) {
@@ -30,7 +38,9 @@ export default async function EventsPage({ params }: Props) {
   // acts request must not cost us the event catalog.
   const [eventsRes, actsRes] = await Promise.allSettled([
     fetch(`${API}/api/events?lang=${locale}`, { next: { revalidate: 300 } }),
-    fetch(`${API}/api/acts${langQuery(locale)}`, { next: { revalidate: 3600 } }),
+    fetch(`${API}/api/acts${langQuery(locale)}`, {
+      next: { revalidate: 3600 },
+    }),
   ]);
   if (eventsRes.status === "fulfilled" && eventsRes.value.ok) {
     events = await eventsRes.value.json().catch(() => []);
@@ -50,7 +60,10 @@ export default async function EventsPage({ params }: Props) {
       description: "Browse every event in Slay the Spire 2.",
       path: localePath(locale, "/events"),
       inLanguage: inLanguageOf(locale),
-      items: events.map((e) => ({ name: e.name, path: `/events/${e.id.toLowerCase()}` })),
+      items: events.map((e) => ({
+        name: e.name,
+        path: `/events/${e.id.toLowerCase()}`,
+      })),
     }),
   ];
 

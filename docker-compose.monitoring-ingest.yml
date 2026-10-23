@@ -1,0 +1,43 @@
+# Monitoring for the dedicated ingest box: logs and container metrics from
+# the shared Alloy config plus host metrics (no node_exporter on this box).
+# Needs an .env next to this compose (NOT committed, see
+# .env.monitoring.example) with HOST_LABEL=spire-ingest.
+services:
+  alloy:
+    # Pinned: an unattended :latest pull can silently break log shipping.
+    image: grafana/alloy:v1.20.0
+    container_name: alloy
+    restart: unless-stopped
+    privileged: true
+    pid: host
+    command: run --server.http.listen-addr=0.0.0.0:12345 --storage.path=/var/lib/alloy/data /etc/alloy/conf.d
+    volumes:
+      - /var/log:/var/log/host:ro
+      - /run/log/journal:/run/log/journal:ro
+      - /var/log/journal:/var/log/journal:ro
+      - /etc/machine-id:/etc/machine-id:ro
+      - /:/rootfs:ro
+      - /:/host/root:ro,rslave
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+      - ./alloy/config.alloy:/etc/alloy/conf.d/config.alloy:ro
+      - ./alloy/host.alloy:/etc/alloy/conf.d/host.alloy:ro
+      - alloy-data:/var/lib/alloy/data
+    environment:
+      LOKI_URL: "${LOKI_URL}"
+      CF_ACCESS_CLIENT_ID: "${CF_ACCESS_CLIENT_ID}"
+      CF_ACCESS_CLIENT_SECRET: "${CF_ACCESS_CLIENT_SECRET}"
+      PROM_REMOTE_WRITE_URL: "${PROM_REMOTE_WRITE_URL}"
+      HOST_LABEL: "${HOST_LABEL:-spire-ingest}"
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  alloy-data:

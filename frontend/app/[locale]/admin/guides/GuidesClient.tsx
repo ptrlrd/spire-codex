@@ -38,7 +38,9 @@ export default function GuidesClient() {
 
   async function dismiss(id: string) {
     try {
-      await adminFetch(`/api/admin/guides/submissions/${id}/dismiss`, { method: "POST" });
+      await adminFetch(`/api/admin/guides/submissions/${id}/dismiss`, {
+        method: "POST",
+      });
       setItems((prev) => prev.filter((i) => i.id !== id));
     } catch (e) {
       setNote(String((e as Error)?.message || e));
@@ -51,9 +53,14 @@ export default function GuidesClient() {
 
       <div className="space-y-3">
         {items.map((g) => (
-          <div key={g.id} className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+          <div
+            key={g.id}
+            className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+          >
             <div className="flex items-center justify-between gap-3 mb-1">
-              <h3 className="font-semibold text-[var(--text-primary)]">{g.title || "(untitled)"}</h3>
+              <h3 className="font-semibold text-[var(--text-primary)]">
+                {g.title || "(untitled)"}
+              </h3>
               <div className="flex gap-2 shrink-0">
                 <button
                   onClick={() => setOpen(open === g.id ? null : g.id)}
@@ -74,7 +81,11 @@ export default function GuidesClient() {
               {g.character ? ` · ${g.character}` : ""} · {g.difficulty}
               {g.created_at ? ` · ${fmtDateTime(g.created_at)}` : ""}
             </div>
-            {g.summary && <p className="text-sm text-[var(--text-secondary)] mb-2">{g.summary}</p>}
+            {g.summary && (
+              <p className="text-sm text-[var(--text-secondary)] mb-2">
+                {g.summary}
+              </p>
+            )}
             {open === g.id && (
               <pre className="text-xs text-[var(--text-secondary)] whitespace-pre-wrap break-words bg-[var(--bg-primary)] rounded p-3 max-h-96 overflow-y-auto">
                 {g.content || "(no content)"}

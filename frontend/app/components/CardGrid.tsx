@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { getCardDisplayModel } from "@/lib/card-display";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import RichDescription from "./RichDescription";
 import BetaBadge from "./BetaBadge";
 import { useT } from "@/lib/i18n";
@@ -13,12 +13,15 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl } from "@/lib/image-url";
 
 const colorMap: Record<string, string> = {
-  ironclad: "border-[var(--color-ironclad)]/60 hover:border-[var(--color-ironclad)]",
+  ironclad:
+    "border-[var(--color-ironclad)]/60 hover:border-[var(--color-ironclad)]",
   silent: "border-[var(--color-silent)]/60 hover:border-[var(--color-silent)]",
   defect: "border-[var(--color-defect)]/60 hover:border-[var(--color-defect)]",
-  necrobinder: "border-[var(--color-necrobinder)]/60 hover:border-[var(--color-necrobinder)]",
+  necrobinder:
+    "border-[var(--color-necrobinder)]/60 hover:border-[var(--color-necrobinder)]",
   regent: "border-[var(--color-regent)]/60 hover:border-[var(--color-regent)]",
-  colorless: "border-[var(--color-colorless)]/60 hover:border-[var(--color-colorless)]",
+  colorless:
+    "border-[var(--color-colorless)]/60 hover:border-[var(--color-colorless)]",
   curse: "border-[var(--color-curse)]/60 hover:border-[var(--color-curse)]",
   status: "border-line-strong/60 hover:border-line-strong",
 };
@@ -37,8 +40,12 @@ const rarityColors: Record<string, string> = {
 };
 
 const energyIconMap: Record<string, string> = {
-  ironclad: "ironclad", silent: "silent", defect: "defect",
-  necrobinder: "necrobinder", regent: "regent", colorless: "colorless",
+  ironclad: "ironclad",
+  silent: "silent",
+  defect: "defect",
+  necrobinder: "necrobinder",
+  regent: "regent",
+  colorless: "colorless",
 };
 
 // Card grid tiles route through the same `RichDescription` tokenizer the
@@ -66,7 +73,10 @@ function CardItem({ card }: { card: Card }) {
   return (
     <div
       className={`group relative flex flex-col bg-[var(--bg-card)] rounded-lg border-2 ${
-        isUpgraded ? "border-success/60 hover:border-success" : colorMap[card.color] || "border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
+        isUpgraded
+          ? "border-success/60 hover:border-success"
+          : colorMap[card.color] ||
+            "border-[var(--border-subtle)] hover:border-[var(--border-accent)]"
       } p-4 transition-all hover:bg-[var(--bg-card-hover)] hover:shadow-lg hover:shadow-scrim/20`}
     >
       <Link
@@ -80,7 +90,10 @@ function CardItem({ card }: { card: Card }) {
       />
 
       {(() => {
-        const imgUrl = betaArt && card.beta_image_url ? card.beta_image_url : (card.image_url || card.beta_image_url);
+        const imgUrl =
+          betaArt && card.beta_image_url
+            ? card.beta_image_url
+            : card.image_url || card.beta_image_url;
         return imgUrl ? (
           <div className="mb-3 -mx-4 -mt-4">
             <img
@@ -97,20 +110,33 @@ function CardItem({ card }: { card: Card }) {
       {/* Header */}
       <div className="flex items-start justify-between mb-2">
         <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
-          {card.name}{isUpgraded && <span className="text-success">+</span>}
+          {card.name}
+          {isUpgraded && <span className="text-success">+</span>}
           {card.beta && <BetaBadge />}
         </h3>
         <div className="ml-2 flex-shrink-0 flex items-center gap-1">
-          <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
-            isUpgraded && display.upgrade?.cost != null ? "border-success/50 text-success" : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
-          }`}>
-            {card.is_x_cost ? "X" : display.cost != null && display.cost < 0 ? "U" : display.cost}
+          <span
+            className={`inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-primary)] border text-sm font-bold ${
+              isUpgraded && display.upgrade?.cost != null
+                ? "border-success/50 text-success"
+                : "border-[var(--border-subtle)] text-[var(--accent-gold)]"
+            }`}
+          >
+            {card.is_x_cost
+              ? "X"
+              : display.cost != null && display.cost < 0
+                ? "U"
+                : display.cost}
           </span>
           {(card.star_cost != null || card.is_x_star_cost) && (
             <span className="inline-flex items-center gap-0.5 h-7 px-2 rounded-full bg-[var(--bg-primary)] border border-warning/40 text-sm font-bold text-warning">
               {card.is_x_star_cost ? "X" : card.star_cost}
-              <img src={imageUrl("/static/images/icons/star_icon.webp")}
-                alt={t("star")} className="w-3.5 h-3.5" crossOrigin="anonymous" />
+              <img
+                src={imageUrl("/static/images/icons/star_icon.webp")}
+                alt={t("star")}
+                className="w-3.5 h-3.5"
+                crossOrigin="anonymous"
+              />
             </span>
           )}
         </div>
@@ -118,9 +144,7 @@ function CardItem({ card }: { card: Card }) {
 
       {/* Type + Rarity */}
       <div className="flex items-center gap-2 mb-3 text-xs">
-        <span className="text-[var(--text-secondary)]">
-          {card.type}
-        </span>
+        <span className="text-[var(--text-secondary)]">{card.type}</span>
         <span className="text-[var(--text-muted)]">·</span>
         <span className={rarityColors[card.rarity] || "text-fg-muted"}>
           {card.rarity}
@@ -134,9 +158,10 @@ function CardItem({ card }: { card: Card }) {
       {/* Description */}
       <div className="space-y-1.5 text-sm text-[var(--text-secondary)] leading-relaxed">
         <p>{renderDescription(card, display.descriptionText)}</p>
-        {display.keywordText && <p>{renderDescription(card, display.keywordText)}</p>}
+        {display.keywordText && (
+          <p>{renderDescription(card, display.keywordText)}</p>
+        )}
       </div>
-
 
       {/* Spacer to push buttons to bottom */}
       <div className="flex-grow" />
@@ -146,7 +171,11 @@ function CardItem({ card }: { card: Card }) {
         <div className="flex justify-end gap-1.5 mt-3 relative z-20">
           {hasBetaArt && (
             <button
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setBetaArt(!betaArt); }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setBetaArt(!betaArt);
+              }}
               className={`text-base w-7 h-7 flex items-center justify-center rounded transition-colors ${
                 betaArt
                   ? "bg-warning/10 border border-warning/50"
@@ -159,7 +188,11 @@ function CardItem({ card }: { card: Card }) {
           )}
           {hasUpgrade && (
             <button
-              onClick={(e) => { e.preventDefault(); e.stopPropagation(); setUpgraded(!upgraded); }}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setUpgraded(!upgraded);
+              }}
               className={`text-base w-7 h-7 flex items-center justify-center rounded transition-colors ${
                 upgraded
                   ? "bg-success/10 border border-success/50"

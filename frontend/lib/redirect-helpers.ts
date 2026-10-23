@@ -81,7 +81,7 @@ export function redirectMissingEntity(
   legacy: LegacyIdMap = LEGACY_IDS,
 ): never {
   const renamed = legacy[entity]?.[id];
-  if (renamed) permanentRedirect(localizedPath(locale, `/${entity}/${renamed}`));
+  if (renamed)
+    permanentRedirect(localizedPath(locale, `/${entity}/${renamed}`));
   notFound();
 }
-

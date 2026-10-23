@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 import { notFound } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { SLUG_MAP } from "../slug-map";
@@ -44,13 +44,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       images: [{ url: DEFAULT_OG_IMAGE }],
     },
-    twitter: { card: "summary_large_image", title: `${entry.label} - Slay the Spire 2 (sts2) | Spire Codex`, description },
+    twitter: {
+      card: "summary_large_image",
+      title: `${entry.label} - Slay the Spire 2 (sts2) | Spire Codex`,
+      description,
+    },
     alternates: { canonical: `/cards/browse/${slug}` },
   };
 }
 
 async function fetchFilteredCards(
-  filterParams: Record<string, string>
+  filterParams: Record<string, string>,
 ): Promise<Card[]> {
   try {
     const params = new URLSearchParams(filterParams);
@@ -101,7 +105,7 @@ export default async function BrowsePage({ params }: Props) {
   if (entry.params.type) filterParts.push(entry.params.type);
   if (entry.params.color)
     filterParts.push(
-      entry.params.color.charAt(0).toUpperCase() + entry.params.color.slice(1)
+      entry.params.color.charAt(0).toUpperCase() + entry.params.color.slice(1),
     );
   if (entry.params.keyword) filterParts.push(entry.params.keyword);
 
@@ -111,7 +115,10 @@ export default async function BrowsePage({ params }: Props) {
 
       {/* Breadcrumb navigation */}
       <nav className="flex items-center gap-1.5 text-xs text-[var(--text-muted)] mb-4">
-        <Link href="/cards" className="hover:text-[var(--accent-gold)] transition-colors">
+        <Link
+          href="/cards"
+          className="hover:text-[var(--accent-gold)] transition-colors"
+        >
           {t("Cards")}
         </Link>
         <span>/</span>

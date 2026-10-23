@@ -1,11 +1,11 @@
 "use client";
 
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
-import { fullCardUrl, imageUrl } from "@/lib/image-url";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import type { Card } from "@/lib/api/types";
+import CardImage from "@/app/components/CardImage";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import BetaBadge from "./BetaBadge";
 
 /**
@@ -24,10 +24,8 @@ interface CardStat {
 function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const t = useT();
   const bp = useBetaPrefix();
-  const lang = useGameLocale();
   const channel = useChannel();
   const [upgraded, setUpgraded] = useState(false);
-  const [failed, setFailed] = useState(false);
   const id = card.id.toLowerCase();
   const hasUpgrade = !!card.upgrade;
   const showUpgraded = upgraded && hasUpgrade;
@@ -35,30 +33,32 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   // and detail page live on the beta channel.
   const href = card.beta ? `${bp}/beta/cards/${id}` : `${bp}/cards/${id}`;
 
-  const src = failed
-    ? imageUrl(card.image_url || card.beta_image_url)
-    : fullCardUrl(id, showUpgraded, card.beta ? "beta" : channel, lang);
-
   return (
-    <div className="group relative">
+    <div className="group relative [content-visibility:auto] [contain-intrinsic-size:auto_230px]">
       {card.beta && (
         <span className="absolute top-1 right-1 z-20">
           <BetaBadge />
         </span>
       )}
       <Link prefetch={false} href={href} className="block">
-        <img
-          src={src}
-          alt={t("{name} - Slay the Spire 2", { name: `${card.name}${showUpgraded ? "+" : ""}` })}
-          className="w-full h-auto aspect-[400/520] transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-          loading="lazy"
-          crossOrigin="anonymous"
-          onError={() => setFailed(true)}
+        <CardImage
+          id={id}
+          upgraded={showUpgraded}
+          channel={card.beta ? "beta" : channel}
+          art={card.image_url || card.beta_image_url}
+          alt={t("{name} - Slay the Spire 2", {
+            name: `${card.name}${showUpgraded ? "+" : ""}`,
+          })}
+          className="w-full h-auto aspect-[400/520] object-contain transition-transform duration-150 group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
         />
       </Link>
       {stat && (
         // Win rate + pick count in place of a name (score-sorted view).
-        <Link prefetch={false} href={href} className="mt-1 flex items-center justify-center gap-2 text-[11px] leading-none">
+        <Link
+          prefetch={false}
+          href={href}
+          className="mt-1 flex items-center justify-center gap-2 text-[11px] leading-none"
+        >
           {stat.win_rate != null && (
             <span className="font-semibold text-[var(--accent-gold)]">
               {Math.round(stat.win_rate)}% WR
@@ -69,7 +69,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
           )}
         </Link>
       )}
-      {hasUpgrade && !failed && (
+      {hasUpgrade && (
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -111,7 +111,11 @@ export default function FullCardGrid({
       }
     >
       {cards.map((card) => (
-        <FullCardItem key={card.id} card={card} stat={stats?.[card.id.toUpperCase()]} />
+        <FullCardItem
+          key={card.id}
+          card={card}
+          stat={stats?.[card.id.toUpperCase()]}
+        />
       ))}
     </div>
   );

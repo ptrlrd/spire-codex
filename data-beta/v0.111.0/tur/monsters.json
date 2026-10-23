@@ -998,6 +998,18 @@
       ],
       "description": "Uyku → Uyan → Kesikler → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Uyku",
+        "text": "Yolculuğun burada sona eriyor..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Uyku",
+        "text": "Başlayalım mı?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1187,6 +1199,13 @@
       ],
       "description": "Always uses Sihirli Söz"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Sihirli Söz",
+        "text": "GÜCÜMÜZÜN EŞİ BENZERİ YOK!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1929,6 +1948,13 @@
       ],
       "description": "Always uses Sihirli Sözler"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Sihirli Sözler",
+        "text": "GAK!\nGAAAK!"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2121,6 +2147,13 @@
       ],
       "description": "Always uses Yasaklı Büyü"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Yasaklı Büyü",
+        "text": "GAAAAK!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2649,6 +2682,33 @@
       ],
       "description": "Starts with Çiz"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Sinirlen",
+        "text": "Bunun bedelini ödeyeceksin..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Sinirlen",
+        "text": "Baluklarla uyuyacaksın!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Para Kus",
+        "text": "KA-ÇİNG!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Çiz",
+        "text": "Yumruklarını kaldır!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Kalıntı Fırlat",
+        "text": "İstiyorsan gel de al!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2701,6 +2761,13 @@
       ],
       "description": "Always uses Uyan"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Kaç",
+        "text": "Ben kaçar!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3666,6 +3733,13 @@
       ],
       "description": "Ceple → Çifte Eziş → Hihi → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Ceple",
+        "text": "Para!\nPara!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4375,6 +4449,18 @@
       ],
       "description": "Narinlik Küresi → Zayıflık Küresi → Ruh Işını → Karanlık Ritüel → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Olamaz!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Karanlık Ritüel",
+        "text": "Ka Kuaav!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4500,6 +4586,18 @@
       ],
       "description": "Starts: Bilginin Laneti → Tokat → Ezici Bilgi → Düşün; then conditional: Bilginin Laneti (if curse of knowledge counter < 3) / Tokat (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Bilginin Laneti",
+        "text": "Seçimini yaptın."
+      },
+      {
+        "key": "startLine",
+        "move": "Bilginin Laneti",
+        "text": "Kararını ver."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5446,6 +5544,18 @@
       ],
       "description": "Atıl → Alev Makinesi → Güç Topla → Ağır Darbe → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Kalkanlar düştü!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Kalkanlar tekrar aktif!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6569,6 +6679,18 @@
       ],
       "description": "Starts: Puppet Strings → Sen Benimsin; then conditional: Benim İçin Yan (if does not have amalgam died) / Kelleni Alırım (if has amalgam died); then conditional: Benim İçin Yan (if does not have amalgam died) / Kelleni Alırım (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Benimsin!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

@@ -16,8 +16,8 @@ def signed_in(monkeypatch):
     monkeypatch.setattr(auth_router, "require_user", lambda request: {"_id": "user-1"})
     calls: list[tuple[str, str]] = []
 
-    def fake_delete(run_hash: str, user_id: str) -> dict:
-        calls.append((run_hash, user_id))
+    def fake_delete(run_hash: str, user: dict) -> dict:
+        calls.append((run_hash, user["_id"]))
         if run_hash == "not-mine":
             return {"error": "You do not own this run"}
         if run_hash == "missing":
@@ -25,7 +25,9 @@ def signed_in(monkeypatch):
         return {"success": True}
 
     monkeypatch.setattr(
-        "app.services.runs_db_mongo.soft_delete_run", fake_delete, raising=False
+        "app.services.runs_db_mongo.delete_run_permanently",
+        fake_delete,
+        raising=False,
     )
     return calls
 

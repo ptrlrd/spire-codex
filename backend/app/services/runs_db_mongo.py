@@ -41,6 +41,7 @@ import hashlib
 import json
 import logging
 import os
+import secrets
 import time
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
@@ -48,7 +49,8 @@ from pathlib import Path
 from typing import Any
 
 from pymongo import ASCENDING, DESCENDING, MongoClient
-from pymongo.errors import DuplicateKeyError
+from pymongo import ReturnDocument
+from pymongo.errors import DuplicateKeyError, ExecutionTimeout, OperationFailure
 
 from ..metrics import db_operations, db_operation_duration
 from . import cache as app_cache
@@ -178,6 +180,10 @@ def _ensure_indexes(coll) -> None:
     # index above is descending and lacks the _id tiebreaker, so it can't serve
     # the ordered scan the cursor walks.
     coll.create_index([("submitted_at", ASCENDING), ("_id", ASCENDING)])
+    coll.create_index(
+        [("has_replay", ASCENDING), ("submitted_at", DESCENDING)],
+        partialFilterExpression={"has_replay": True},
+    )
     coll.create_index(
         [("character", ASCENDING), ("win", ASCENDING), ("ascension", ASCENDING)]
     )
@@ -453,6 +459,84 @@ def uploader_player_index(players: list, steam_id: str | None) -> int | None:
     return 0
 
 
+_HINT_UNSET = {
+    "steam_id_hint": "",
+    "attribution_unverified": "",
+    "username_hint": "",
+}
+
+
+def forget_shared_run(*hashes: str) -> None:
+    """Drop the cached /api/runs/shared payload for runs whose owner just
+    changed; the blob is immutable but the merged username is not."""
+    from . import cache as app_cache
+
+    for h in hashes:
+        if h:
+            try:
+                app_cache.delete(f"run:{h}")
+            except Exception:
+                pass
+
+
+def _hint_ok(steam_id: str) -> dict:
+    return {"steam_id_hint": {"$in": [None, steam_id]}}
+
+
+def claimable_by(steam_id: str | None) -> dict:
+    """Filter for rows an account may take over: unowned, tagged or hinted
+    to nobody or to this SteamID64, and never an unverified row unless the
+    hint names this account (a planted row must be re-uploaded signed in,
+    which replaces its content, not claimed by hash)."""
+    sid = steam_id or None
+    return {
+        "user_id": None,
+        "steam_id": {"$in": [None, sid]},
+        "steam_id_hint": {"$in": [None, sid]},
+        "$or": [
+            {"attribution_unverified": {"$ne": True}},
+            *([{"steam_id_hint": sid}] if sid else []),
+        ],
+    }
+
+
+def is_claimable(doc: dict, steam_id: str | None) -> bool:
+    sid = steam_id or None
+    if doc.get("user_id") or doc.get("steam_id") not in (None, sid):
+        return False
+    hint = doc.get("steam_id_hint")
+    if hint not in (None, sid):
+        return False
+    if doc.get("attribution_unverified") and not (sid and hint == sid):
+        return False
+    return True
+
+
+def attribute_run_to(run_hash: str, user: dict, coll=None) -> bool:
+    """Give an unowned run to the signed-in account whose SteamID64 matches
+    the hint a bare upload left on it. Returns True when the row changed."""
+    sid = str(user.get("steam_id") or "")
+    if not run_hash or not sid or not user.get("_id"):
+        return False
+    from bson import ObjectId
+
+    owner_set: dict = {"user_id": ObjectId(user["_id"]), "steam_id": sid}
+    username = user.get("username")
+    if username:
+        owner_set["username"] = username
+        owner_set["username_lower"] = str(username).lower()
+    coll = coll if coll is not None else _get_collection()
+    coll.update_one(
+        {"_id": run_hash, "user_id": None, "steam_id": None, "steam_id_hint": sid},
+        {"$set": owner_set, "$unset": _HINT_UNSET},
+    )
+    after = coll.find_one({"_id": run_hash}, {"user_id": 1}) or {}
+    owned = str(after.get("user_id") or "") == str(owner_set["user_id"])
+    if owned:
+        forget_shared_run(run_hash)
+    return owned
+
+
 def _teammate_identity(player: dict) -> tuple[str | None, str | None, str | None]:
     """(username, steam_id, user_id) for a co-op slot the uploader doesn't
     own. Tagged with that player's own SteamID64 and linked to their account
@@ -478,6 +562,8 @@ def submit_run(
     username: str | None = None,
     steam_id: str | None = None,
     discord_id: str | None = None,
+    steam_id_hint: str | None = None,
+    verified: bool = True,
 ) -> dict:
     """Parse a run and store one document per player. Returns the uploader's
     slot's status dict (plus ``player_idx``), matching the SQLite
@@ -497,6 +583,10 @@ def submit_run(
     linked_user_id = None
     linked_username = None
     owner = None
+    if not verified:
+        steam_id_hint = steam_id_hint or steam_id
+        steam_id = None
+        discord_id = None
     if steam_id or discord_id:
         try:
             from .users_db import get_user_by_steam_id, get_user_by_discord_id
@@ -512,7 +602,7 @@ def submit_run(
         except Exception:
             # Linking is best-effort; a lookup failure must not drop the run.
             pass
-    if linked_user_id is None and username:
+    if verified and linked_user_id is None and username:
         # Username-only uploads (Compendium ?username=, mismatched Steam ids)
         # used to stay invisible on the profile until the next sign-in
         # backfill hoovered them (Dobo, 2026-08-30: 304 runs, 0 linked).
@@ -553,17 +643,19 @@ def submit_run(
     )
     players = data["players"]
     player_count = len(players)
-    uploader_idx = uploader_player_index(players, steam_id)
+    uploader_idx = uploader_player_index(players, steam_id or steam_id_hint)
 
     results = []
     owners: list[tuple[str | None, str | None]] = []
     for player_idx, player in enumerate(players):
+        p_hint = None
         if player_idx == uploader_idx:
             p_username = linked_username or username
             p_steam_id, p_discord_id, p_user_id = steam_id, discord_id, linked_user_id
+            p_hint = steam_id_hint if not steam_id else None
         else:
-            p_username, p_steam_id, p_user_id = _teammate_identity(player)
-            p_discord_id = None
+            p_username, p_steam_id, p_user_id, p_discord_id = None, None, None, None
+            p_hint = _steamid64(player.get("id"))
         owners.append((p_user_id, p_username))
         result = _submit_player_run(
             data,
@@ -578,6 +670,8 @@ def submit_run(
             p_discord_id,
             p_user_id,
             is_uploader=player_idx == uploader_idx,
+            steam_id_hint=p_hint,
+            verified=verified,
         )
         results.append(result)
 
@@ -590,11 +684,12 @@ def submit_run(
             run_hash = result.get("run_hash", "")
             if run_hash:
                 run_file = runs_dir / f"{run_hash}.json"
-                fresh = bool(result.get("success"))
-                if fresh and not run_file.exists():
+                fresh = bool(result.get("success") or result.get("reconciled"))
+                if fresh and (result.get("reconciled") or not run_file.exists()):
                     try:
-                        with open(run_file, "w", encoding="utf-8") as f:
-                            json.dump(data, f, ensure_ascii=False)
+                        from .runs_db import write_run_file_atomic
+
+                        write_run_file_atomic(run_file, data)
                     except Exception as e:
                         print(f"Warning: failed to save run {run_hash}: {e}")
                 # Outside the exists-gate on purpose: blob write failures are
@@ -813,7 +908,7 @@ def _played_at_from_blob(data: dict) -> datetime:
     """When the run was actually played: the blob's epoch start_time. Bounded
     to [2020, now+1d] so a client with a broken clock can't pin itself to the
     top of a profile forever; out-of-range or missing falls back to upload
-    time (the pre-played_at sort behaviour)."""
+    time (the pre-played_at sort behavior)."""
     try:
         ts = int(data.get("start_time") or 0)
     except (TypeError, ValueError):
@@ -843,6 +938,8 @@ def _submit_player_run(
     discord_id: str | None = None,
     linked_user_id: str | None = None,
     is_uploader: bool = True,
+    steam_id_hint: str | None = None,
+    verified: bool = True,
 ) -> dict:
     """One Mongo insert per player. The full nested structure goes into
     a single document — no joins required at query time. The mod's damage
@@ -938,11 +1035,12 @@ def _submit_player_run(
         "killed_by": killed_by,
         "deck_size": len(deck),
         "relic_count": len(relics),
-        "username": username,
+        "username": username if verified else None,
         # Normalized for case-insensitive matching (stats/list/leaderboard all
         # filter on this; display `username` keeps its original case). Mirrors
         # the users collection's username_lower convention.
-        "username_lower": username.lower() if username else None,
+        "username_lower": username.lower() if (username and verified) else None,
+        **({"username_hint": username} if (username and not verified) else {}),
         # Submitter identity (when the client sends it). Lets a run be linked
         # to its owner's account on sign-in even if it was submitted
         # anonymously. user_id is set here when an account already exists for
@@ -950,6 +1048,8 @@ def _submit_player_run(
         "steam_id": steam_id,
         "discord_id": discord_id,
         "user_id": ObjectId(linked_user_id) if linked_user_id else None,
+        **({"steam_id_hint": steam_id_hint} if steam_id_hint else {}),
+        **({"attribution_unverified": True} if not verified else {}),
         "build_id": data.get("build_id"),
         "submitted_at": datetime.now(timezone.utc),
         "played_at": _played_at_from_blob(data),
@@ -990,7 +1090,10 @@ def _submit_player_run(
             bump_stats_counters(doc)
     except DuplicateKeyError:
         steam_ok: dict = (
-            {"$or": [{"steam_id": None}, {"steam_id": steam_id}]}
+            {
+                "$or": [{"steam_id": None}, {"steam_id": steam_id}],
+                "steam_id_hint": {"$in": [None, steam_id]},
+            }
             if steam_id
             else {"steam_id": None}
         )
@@ -1000,12 +1103,44 @@ def _submit_player_run(
             )
         }
         own_slot = {**steam_ok, **user_ok}
+        if not verified:
+            return {
+                "error": "This run has already been submitted",
+                "duplicate": True,
+                "run_hash": run_hash,
+            }
+        if is_uploader and linked_user_id and steam_id:
+            planted = coll.find_one(
+                {"_id": run_hash},
+                {
+                    "attribution_unverified": 1,
+                    "steam_id_hint": 1,
+                    "user_id": 1,
+                    "steam_id": 1,
+                },
+            )
+            if (
+                planted
+                and planted.get("attribution_unverified")
+                and is_claimable(planted, steam_id)
+            ):
+                coll.replace_one(
+                    {"_id": run_hash, "attribution_unverified": True, "user_id": None},
+                    doc,
+                )
+                forget_shared_run(run_hash)
+                return {
+                    "error": "This run has already been submitted",
+                    "duplicate": True,
+                    "reconciled": True,
+                    "run_hash": run_hash,
+                }
         if is_uploader:
             _undelete_on_reupload(coll, run_hash, own_slot)
         if steam_id:
             coll.update_one(
-                {"_id": run_hash, "steam_id": None, **user_ok},
-                {"$set": {"steam_id": steam_id}},
+                {"_id": run_hash, "steam_id": None, **user_ok, **_hint_ok(steam_id)},
+                {"$set": {"steam_id": steam_id}, "$unset": _HINT_UNSET},
             )
         if discord_id:
             coll.update_one(
@@ -1019,8 +1154,9 @@ def _submit_player_run(
                 owner_set["username_lower"] = username.lower()
             coll.update_one(
                 {"_id": run_hash, "user_id": None, **steam_ok},
-                {"$set": owner_set},
+                {"$set": owner_set, "$unset": _HINT_UNSET},
             )
+            forget_shared_run(run_hash)
         if is_uploader and doc.get("damage"):
             coll.update_one(
                 {"_id": run_hash, "damage": {"$exists": False}, **own_slot},
@@ -1078,7 +1214,11 @@ def backfill_user_runs(
         update["username_lower"] = username.lower()
 
     result = coll.update_many(
-        {"user_id": None, "$or": identity_conds},
+        {
+            "user_id": None,
+            "attribution_unverified": {"$ne": True},
+            "$or": identity_conds,
+        },
         {"$set": update},
     )
     if result.modified_count:
@@ -1294,15 +1434,20 @@ def claim_runs(username: str, hashes: list[str]) -> dict:
     existing = list(
         coll.find(
             {"_id": {"$in": hashes}},
-            {"_id": 1, "username": 1, "user_id": 1, "steam_id": 1},
+            {
+                "_id": 1,
+                "username": 1,
+                "user_id": 1,
+                "steam_id": 1,
+                "steam_id_hint": 1,
+                "attribution_unverified": 1,
+            },
         )
     )
     unclaimed = [
         d["_id"]
         for d in existing
-        if not d.get("username")
-        and not d.get("user_id")
-        and d.get("steam_id") in (None, owner_sid)
+        if not d.get("username") and is_claimable(d, owner_sid)
     ]
     already_claimed = len(existing) - len(unclaimed)
     unknown = len(hashes) - len(existing)
@@ -1318,12 +1463,14 @@ def claim_runs(username: str, hashes: list[str]) -> dict:
         coll.update_many(
             {
                 "_id": {"$in": unclaimed},
-                "user_id": None,
-                "steam_id": {"$in": [None, owner_sid]},
-                "$or": [{"username": None}, {"username": ""}],
+                "$and": [
+                    claimable_by(owner_sid),
+                    {"$or": [{"username": None}, {"username": ""}]},
+                ],
             },
-            {"$set": update},
+            {"$set": update, "$unset": _HINT_UNSET},
         )
+        forget_shared_run(*unclaimed)
         if owner:
             try:
                 from .user_insights import (
@@ -1805,6 +1952,14 @@ def _leaderboard_summary_coll():
     return _get_collection().database[LEADERBOARD_SUMMARY_COLLECTION_NAME]
 
 
+def _players_key(players: str | None) -> str | None:
+    """One spelling per party size for keys: the page sends "1", the boards
+    were built as "single", and both mean player_count == 1."""
+    if players in ("1", "single"):
+        return "single"
+    return players or None
+
+
 def _leaderboard_key(
     category: str = "fastest",
     character: str | None = None,
@@ -1814,8 +1969,8 @@ def _leaderboard_key(
     """Composite cache key for leaderboard_summary docs. Mirrors the
     HOT_LEADERBOARD_COMBOS shape: (category, character, players,
     game_mode), covering both the bare API default and the combo the
-    frontend actually sends (players=single, game_mode=standard)."""
-    return f"{category}|{character or '_'}|{players or '_'}|{game_mode or '_'}"
+    frontend actually sends (players=1, game_mode=standard)."""
+    return f"{category}|{character or '_'}|{_players_key(players) or '_'}|{game_mode or '_'}"
 
 
 def _lease_coll():
@@ -1937,8 +2092,23 @@ _ASCENSION_COMBOS_PER_CYCLE = 2
 
 # Every combo the refresher owns. Reads serve these regardless of age — a
 # minutes-stale doc beats recomputing a multi-aggregation inline.
+# Third tier: the player-count axis the stats page offers (Solo, 2P, 3P, 4P+),
+# alone, per character, and per ascension. Any of these on the live path scans
+# the whole collection and dies at the 20 s cap, so they are lake-built like
+# the ascension slices.
+PLAYERS_FILTER_COMBOS: list[dict] = [
+    {**({"character": c} if c else {}), "players": p}
+    for p in ("1", "2", "3", "4")
+    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+] + [
+    {"players": p, "ascension": str(a)}
+    for p in ("1", "2", "3", "4")
+    for a in range(0, 11)
+]
+
 MATERIALIZED_STATS_KEYS = frozenset(
-    _filter_key(**f) for f in (*HOT_FILTER_COMBOS, *ASCENSION_FILTER_COMBOS)
+    _filter_key(**f)
+    for f in (*HOT_FILTER_COMBOS, *ASCENSION_FILTER_COMBOS, *PLAYERS_FILTER_COMBOS)
 )
 
 
@@ -1950,12 +2120,27 @@ _LEADERBOARD_CATEGORIES = ("fastest", "highest_ascension")
 _LEADERBOARD_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 # Two variants per (category, character): the bare API default, and the
 # players=single + game_mode=standard combo the frontend always sends.
+# Every party size the page can pick, on the standard ladder, plus the bare
+# API default. Anything outside this list computes live against Mongo, which
+# at 1.6M runs takes tens of seconds, so the list must cover what the page
+# sends by default.
 HOT_LEADERBOARD_COMBOS: list[dict] = [
     {"category": cat, "character": ch, "players": pl, "game_mode": gm}
     for cat in _LEADERBOARD_CATEGORIES
     for ch in (None, *_LEADERBOARD_CHARACTERS)
-    for (pl, gm) in ((None, None), ("single", "standard"))
+    for (pl, gm) in (
+        (None, None),
+        ("single", "standard"),
+        ("2", "standard"),
+        ("3", "standard"),
+        ("4", "standard"),
+        ("multi", "standard"),
+    )
 ]
+
+# Rows stored per materialized board. The page shows 20 a time, so this
+# serves the first 50 pages without touching the live query.
+LEADERBOARD_BOARD_ROWS = 1000
 
 
 def try_acquire_refresh_lease() -> bool:
@@ -1987,7 +2172,7 @@ def try_acquire_refresh_lease() -> bool:
             },
             {"$set": {"holder": holder, "expires_at": expires}},
             upsert=True,
-            return_document=True,
+            return_document=ReturnDocument.AFTER,
         )
         return result is not None and result.get("holder") == holder
     except DuplicateKeyError:
@@ -2153,7 +2338,8 @@ def refresh_leaderboard_summary() -> int:
                 game_mode=game_mode,
                 today=False,
                 page=1,
-                limit=50,
+                limit=LEADERBOARD_BOARD_ROWS,
+                max_time_ms=5000,
             )
             key = _leaderboard_key(
                 category=category,
@@ -2250,15 +2436,93 @@ def _projection_row() -> dict:
         "build_id": 1,
         "hidden": 1,
         "has_replay": 1,
+        "user_id": 1,
+        "steam_id": 1,
+        **_KEY_PICK_FIELDS,
     }
 
 
+_KEY_PICK_FIELDS = {
+    "deck.id": 1,
+    "deck.upgraded": 1,
+    "deck.floor_added": 1,
+    "relics.id": 1,
+    "relics.floor_added": 1,
+    "boss_rooms": {
+        "$map": {
+            "input": {
+                "$cond": [
+                    {"$isArray": "$map_point_history"},
+                    "$map_point_history",
+                    [],
+                ]
+            },
+            "as": "act",
+            "in": {
+                "$map": {
+                    "input": {
+                        "$filter": {
+                            "input": {
+                                "$reduce": {
+                                    "input": {
+                                        "$cond": [{"$isArray": "$$act"}, "$$act", []]
+                                    },
+                                    "initialValue": [],
+                                    "in": {
+                                        "$concatArrays": [
+                                            "$$value",
+                                            {
+                                                "$cond": [
+                                                    {"$isArray": "$$this.rooms"},
+                                                    "$$this.rooms",
+                                                    [],
+                                                ]
+                                            },
+                                        ]
+                                    },
+                                }
+                            },
+                            "as": "r",
+                            "cond": {
+                                "$eq": [
+                                    {"$toLower": {"$ifNull": ["$$r.room_type", ""]}},
+                                    "boss",
+                                ]
+                            },
+                        }
+                    },
+                    "as": "r",
+                    "in": "$$r.model_id",
+                }
+            },
+        }
+    },
+}
+
+
+def _with_key_picks(out: dict) -> dict:
+    from .key_picks import key_picks
+
+    from .key_picks import last_bosses
+
+    deck, relics = out.pop("deck", None), out.pop("relics", None)
+    out["key_cards"], out["key_relics"] = key_picks(deck, relics)
+    out["last_bosses"] = last_bosses(out.pop("boss_rooms", None))
+    return out
+
+
 def _row_to_dict(doc: dict) -> dict:
-    """Strip Mongo's _id wrapper into the run_hash field the API expects."""
+    """Strip Mongo's _id wrapper into the run_hash field the API expects.
+    The account ids never leave: they become the pseudonymous player_token."""
     if not doc:
         return doc
-    out = {**doc}
+    from .player_token import player_token
+
+    out = _with_key_picks({**doc})
     out["run_hash"] = out.pop("_id")
+    out["player_token"] = player_token(doc)
+    out.pop("user_id", None)
+    out.pop("steam_id", None)
     # Coerce booleans to int (0/1) for backward compat with the SQLite
     # response shape that the frontend consumed historically.
     for k in ("win", "was_abandoned"):
@@ -2319,15 +2583,58 @@ def get_user_winrates() -> dict[str, list[int]]:
     return out
 
 
+def count_with_budget(
+    coll,
+    query: dict,
+    *,
+    max_time_ms: int = 1500,
+    cap: int = 10_000,
+) -> tuple[int, bool]:
+    """Exact count for a browse query, without the multi-second scan an
+    unfiltered count over millions of heavyweight docs costs.
+
+    count_documents runs with maxTimeMS; a server timeout (code 50) means
+    the exact count is too expensive right now, so the capped count comes
+    back instead: (cap-capped total, True) — a lower bound, enough to keep
+    pagination working. Exact answers are (n, False).
+
+    Filtered results are cached in Redis for 120s under a stable hash of
+    the collection name and the normalized query, so repeated pages of the
+    same browse never re-count. Unfiltered totals keep the instant
+    estimated_document_count and never reach this helper.
+    """
+    coll_name = getattr(coll, "name", "") or ""
+    key = (
+        "count_budget:"
+        + hashlib.sha256(
+            json.dumps(
+                {"c": coll_name, "q": query}, sort_keys=True, default=str
+            ).encode()
+        ).hexdigest()
+    )
+    cached = app_cache.get_json(key)
+    if cached is not None:
+        return int(cached[0]), bool(cached[1])
+    try:
+        out = (coll.count_documents(query, maxTimeMS=max_time_ms), False)
+    except ExecutionTimeout:
+        out = (coll.count_documents(query, limit=cap), True)
+    except OperationFailure as exc:
+        if getattr(exc, "code", None) != 50:
+            raise
+        out = (coll.count_documents(query, limit=cap), True)
+    app_cache.set_json(key, list(out), ttl_seconds=120)
+    return out
+
+
 @_instrument("list_runs")
-def list_runs(
+def _run_filter(
     character: str | None = None,
     win: str | None = None,
     username: str | None = None,
     winrate_min: float | None = None,
     winrate_max: float | None = None,
     seed: str | None = None,
-    sort: str | None = None,
     build_id: str | None = None,
     build_ids: str | None = None,
     players: str | None = None,
@@ -2339,18 +2646,18 @@ def list_runs(
     relic: str | None = None,
     shop: str | None = None,
     today: bool = False,
-    page: int = 1,
-    limit: int = 50,
     include_hidden: bool = False,
-) -> dict:
-    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
-
-    include_hidden is for the admin console only; public callers leave it False
-    so admin-flagged cheated runs stay out of the run browser."""
-    coll = _get_collection()
+    has_replay: bool | None = None,
+) -> dict | None:
+    """The Mongo match for the run browser's filters, or None when the
+    winrate filter rules out every run."""
     q: dict[str, Any] = {}
     if not include_hidden:
         q["hidden"] = {"$ne": True}
+    if has_replay is True:
+        q["has_replay"] = True
+    elif has_replay is False:
+        q["has_replay"] = {"$ne": True}
     if character:
         q["character"] = character.upper()
     if win == "true":
@@ -2378,13 +2685,7 @@ def list_runs(
         # only needs to qualify; without one, restrict to the qualifying users.
         disqualified = (username.lower() not in set(names)) if username else (not names)
         if disqualified:
-            return {
-                "runs": [],
-                "total": 0,
-                "page": max(page, 1),
-                "per_page": min(limit, 100),
-                "total_pages": 0,
-            }
+            return None
         if not username:
             q["username_lower"] = {"$in": names}
     if seed:
@@ -2447,6 +2748,69 @@ def list_runs(
     if today:
         q["seed"] = _today_daily_seed_match()
 
+    return q
+
+
+def list_runs(
+    character: str | None = None,
+    win: str | None = None,
+    username: str | None = None,
+    winrate_min: float | None = None,
+    winrate_max: float | None = None,
+    seed: str | None = None,
+    sort: str | None = None,
+    build_id: str | None = None,
+    build_ids: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    ascension: int | None = None,
+    ascension_min: int | None = None,
+    ascension_max: int | None = None,
+    card: str | None = None,
+    relic: str | None = None,
+    shop: str | None = None,
+    today: bool = False,
+    page: int = 1,
+    limit: int = 50,
+    include_hidden: bool = False,
+    has_replay: bool | None = None,
+) -> dict:
+    """Paginated, filterable run list. Mirrors the /api/runs/list SQLite path.
+
+    include_hidden is for the admin console only; public callers leave it False
+    so admin-flagged cheated runs stay out of the run browser."""
+    coll = _get_collection()
+    q = _run_filter(
+        character=character,
+        win=win,
+        username=username,
+        winrate_min=winrate_min,
+        winrate_max=winrate_max,
+        seed=seed,
+        build_id=build_id,
+        build_ids=build_ids,
+        players=players,
+        game_mode=game_mode,
+        ascension=ascension,
+        ascension_min=ascension_min,
+        ascension_max=ascension_max,
+        card=card,
+        relic=relic,
+        shop=shop,
+        today=today,
+        include_hidden=include_hidden,
+        has_replay=has_replay,
+    )
+    if q is None:
+        return {
+            "runs": [],
+            "total": 0,
+            "page": max(page, 1),
+            "per_page": min(limit, 100),
+            "total_pages": 0,
+            "total_is_lower_bound": False,
+        }
+
     sort_map = {
         "time_asc": [("run_time", 1)],
         "time_desc": [("run_time", -1)],
@@ -2457,12 +2821,13 @@ def list_runs(
 
     # Counting was the hidden cost: count_documents({}) walks all 216k+
     # heavyweight docs (~8s). Unfiltered uses the instant metadata count;
-    # filtered counts stop at 10k, which caps pagination far beyond what
-    # anyone pages through anyway.
+    # filtered counts get a time budget and fall back to a capped lower
+    # bound the frontend labels "more than 10,000".
     if q:
-        total = coll.count_documents(q, limit=10_000)
+        total, total_is_lower_bound = count_with_budget(coll, q)
     else:
         total = coll.estimated_document_count()
+        total_is_lower_bound = False
     per_page = min(limit, 100)
     offset = (max(page, 1) - 1) * per_page
     cursor = (
@@ -2476,6 +2841,7 @@ def list_runs(
         "page": max(page, 1),
         "per_page": per_page,
         "total_pages": (total + per_page - 1) // per_page,
+        "total_is_lower_bound": total_is_lower_bound,
     }
 
 
@@ -2507,7 +2873,26 @@ def set_run_hidden(run_hash: str, hidden: bool, reason: str | None = None) -> di
     for row in rows:
         if bool(row.get("hidden")) != hidden:
             bump_stats_counters(row, -1 if hidden else 1)
-    return {"matched": result.matched_count, "modified": result.modified_count}
+    hashes = sorted({run_hash, *(str(r["_id"]) for r in rows if r.get("_id"))})
+    evict_run_pages(hashes)
+    return {
+        "matched": result.matched_count,
+        "modified": result.modified_count,
+        "hashes": hashes,
+    }
+
+
+def evict_run_pages(hashes: list[str]) -> None:
+    """Drop the cached share-page payloads for these hashes so a hide or
+    unhide is visible on the next request instead of after the 15 minute
+    Redis TTL."""
+    from . import cache
+
+    for h in hashes:
+        try:
+            cache.delete(f"run:{h}")
+        except Exception:
+            logger.warning("run cache evict failed for %s", h, exc_info=True)
 
 
 def rehide_one_turn_boss_runs(dry_run: bool = False) -> dict:
@@ -2556,6 +2941,48 @@ def rehide_one_turn_boss_runs(dry_run: bool = False) -> dict:
         if not dry_run:
             set_run_hidden(run_hash, True, reason="auto:" + ",".join(reasons[:4]))
             logger.info("auto-hid one-turn-boss run %s: %s", run_hash, reasons[:4])
+    return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
+
+
+def rehide_impossible_time_runs(dry_run: bool = False) -> dict:
+    """Backfill for the win-time signals: sweep stored wins that finished
+    under the minimum or faster than the per-floor floor (submit-time
+    detection only covers new uploads) and hide them with the reasons the
+    detector gives. Returns counts; dry_run only reports."""
+    from .cheat_detect import MIN_SECONDS_PER_FLOOR, MIN_WIN_SECONDS, detect_cheats
+
+    ceiling = max(MIN_WIN_SECONDS, 60 * MIN_SECONDS_PER_FLOOR)
+    coll = _get_collection()
+    cursor = coll.find(
+        {
+            "hidden": {"$ne": True},
+            "win": {"$in": [1, True]},
+            "run_time": {"$gt": 0, "$lt": ceiling},
+        },
+        {"run_hash": 1, "run_time": 1, "floors_reached": 1},
+    )
+    checked = 0
+    hidden_runs: list[str] = []
+    for doc in cursor:
+        checked += 1
+        reasons = [
+            r
+            for r in detect_cheats(
+                {
+                    "win": True,
+                    "run_time": doc.get("run_time"),
+                    "floors_reached": doc.get("floors_reached"),
+                }
+            )
+            if r.startswith("impossible_")
+        ]
+        if not reasons:
+            continue
+        run_hash = doc.get("run_hash") or doc["_id"]
+        hidden_runs.append(run_hash)
+        if not dry_run:
+            set_run_hidden(run_hash, True, reason="auto:" + ",".join(reasons[:4]))
+            logger.info("auto-hid impossible-time run %s: %s", run_hash, reasons[:4])
     return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
 
 
@@ -2627,17 +3054,10 @@ def leaderboard(
     """
     # Fast path: serve from the materialized summary when the combo is one
     # we materialize (find_one misses otherwise and we fall to live). Docs
-    # store 50 rows, so any page-1 request up to that size can be sliced.
-    # An ascension_min / winrate_min / build_id filter isn't materialized, so
-    # skip to live.
-    if (
-        ascension_min is None
-        and winrate_min is None
-        and build_id is None
-        and not today
-        and page == 1
-        and limit <= 50
-    ):
+    # store LEADERBOARD_BOARD_ROWS rows, so any page that fits inside them
+    # is a slice. An ascension_min / winrate_min / build_id filter isn't
+    # materialized, so skip to live.
+    if ascension_min is None and winrate_min is None and build_id is None and not today:
         try:
             key = _leaderboard_key(
                 category=category,
@@ -2647,13 +3067,9 @@ def leaderboard(
             )
             doc = _leaderboard_summary_coll().find_one({"_id": key})
             if doc:
-                doc.pop("_id", None)
-                doc.pop("updated_at", None)
-                if limit < 50:
-                    doc["runs"] = doc.get("runs", [])[:limit]
-                    doc["per_page"] = limit
-                    doc["total_pages"] = (doc.get("total", 0) + limit - 1) // limit
-                return doc
+                sliced = _slice_board(doc, page, limit)
+                if sliced is not None:
+                    return sliced
         except Exception:
             pass
 
@@ -2671,6 +3087,23 @@ def leaderboard(
     )
 
 
+def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
+    """One page out of a stored board, or None when the page runs past the
+    rows the board holds (the live query answers that one)."""
+    rows = doc.get("runs") or []
+    total = int(doc.get("total") or 0)
+    per_page = max(1, min(limit, 100))
+    offset = (max(page, 1) - 1) * per_page
+    if len(rows) < total and offset + per_page > len(rows):
+        return None
+    out = {k: v for k, v in doc.items() if k not in ("_id", "updated_at")}
+    out["runs"] = rows[offset : offset + per_page]
+    out["page"] = max(page, 1)
+    out["per_page"] = per_page
+    out["total_pages"] = (total + per_page - 1) // per_page
+    return out
+
+
 def _leaderboard_live(
     category: str = "fastest",
     character: str | None = None,
@@ -2682,6 +3115,7 @@ def _leaderboard_live(
     ascension_min: int | None = None,
     winrate_min: float | None = None,
     build_id: str | None = None,
+    max_time_ms: int = 1500,
 ) -> dict:
     """Live leaderboard query -- the original implementation, used directly
     by refresh_leaderboard_summary and as the fallback when the summary
@@ -2743,20 +3177,23 @@ def _leaderboard_live(
 
     # Counting was the hidden cost: count_documents({}) walks all 216k+
     # heavyweight docs (~8s). Unfiltered uses the instant metadata count;
-    # filtered counts stop at 10k, which caps pagination far beyond what
-    # anyone pages through anyway. The hidden exclusion is subtracted per
-    # _count_visible rather than kept in the count query: hidden: {$ne: True}
-    # disqualifies the covering index and fetches every candidate doc, a cost
-    # refresh_leaderboard_summary pays for all 24 combos every cycle.
+    # filtered counts get a time budget and fall back to a capped lower
+    # bound the frontend labels "more than 10,000". The hidden exclusion is
+    # subtracted per _count_visible rather than kept in the count query:
+    # hidden: {$ne: True} disqualifies the covering index and fetches every
+    # candidate doc, a cost refresh_leaderboard_summary pays for all 24
+    # combos every cycle.
     if q:
         base_q = {k: v for k, v in q.items() if k != "hidden"}
-        total = max(
-            coll.count_documents(base_q, limit=10_000)
-            - coll.count_documents({**base_q, "hidden": True}, limit=10_000),
-            0,
+        visible, visible_lb = count_with_budget(coll, base_q, max_time_ms=max_time_ms)
+        hidden_count, hidden_lb = count_with_budget(
+            coll, {**base_q, "hidden": True}, max_time_ms=max_time_ms
         )
+        total = max(visible - hidden_count, 0)
+        total_is_lower_bound = visible_lb or hidden_lb
     else:
         total = coll.estimated_document_count()
+        total_is_lower_bound = False
     per_page = min(limit, 100)
     offset = (max(page, 1) - 1) * per_page
     cursor = (
@@ -2770,6 +3207,7 @@ def _leaderboard_live(
         "page": max(page, 1),
         "per_page": per_page,
         "total_pages": (total + per_page - 1) // per_page,
+        "total_is_lower_bound": total_is_lower_bound,
         "category": category,
     }
 
@@ -3182,12 +3620,14 @@ def get_share_meta_for_hash(run_hash: str) -> dict:
     """Username + hidden flag for the share page in one lookup, so the page
     can banner runs excluded from leaderboards and aggregates."""
     doc = _get_collection().find_one(
-        {"_id": run_hash}, {"username": 1, "hidden": 1, "has_replay": 1}
+        {"_id": run_hash},
+        {"username": 1, "hidden": 1, "hidden_reason": 1, "has_replay": 1},
     )
     return {
         "exists": doc is not None,
         "username": (doc or {}).get("username"),
         "hidden": bool((doc or {}).get("hidden")),
+        "hidden_reason": (doc or {}).get("hidden_reason"),
         "has_replay": bool((doc or {}).get("has_replay")),
     }
 
@@ -3378,11 +3818,15 @@ def get_user_runs(
     user_id: str,
     page: int = 1,
     limit: int = 50,
+    **filters,
 ) -> dict:
     coll = _get_collection()
     from bson import ObjectId
 
-    match = {"user_id": ObjectId(user_id), "deleted_at": None}
+    q = _run_filter(include_hidden=True, **filters) if filters else {}
+    if q is None:
+        return {"runs": [], "total": 0, "page": page, "limit": limit}
+    match = {**q, "user_id": ObjectId(user_id), "deleted_at": None}
     total = coll.count_documents(match)
     skip = (page - 1) * limit
 
@@ -3401,6 +3845,9 @@ def get_user_runs(
         "username": 1,
         "submitted_at": 1,
         "played_at": 1,
+        "hidden": 1,
+        "hidden_reason": 1,
+        **_KEY_PICK_FIELDS,
     }
     # Played order, not upload order — a backlog upload lands hundreds of old
     # runs with fresh submitted_at and used to bury the actual latest run.
@@ -3428,6 +3875,15 @@ def get_user_runs(
                 "username": r.get("username"),
                 "submitted_at": r.get("submitted_at"),
                 "played_at": r.get("played_at") or r.get("submitted_at"),
+                "hidden": bool(r.get("hidden")),
+                "hidden_reason": r.get("hidden_reason"),
+                **_with_key_picks(
+                    {
+                        "deck": r.get("deck"),
+                        "relics": r.get("relics"),
+                        "boss_rooms": r.get("boss_rooms"),
+                    }
+                ),
             }
         )
 
@@ -3444,24 +3900,172 @@ def _undelete_on_reupload(coll, run_hash: str, extra: dict | None = None) -> Non
     )
 
 
-def soft_delete_run(run_hash: str, user_id: str) -> dict:
-    coll = _get_collection()
+OWNER_HIDDEN = "owner"
 
-    run = coll.find_one({"_id": run_hash}, {"user_id": 1, "deleted_at": 1})
+
+def set_run_hidden_by_owner(run_hash: str, user: dict, hidden: bool) -> dict:
+    """Hide or unhide one of the caller's own runs. A run a moderator hid stays
+    out of the owner's reach, so an appeal still goes through an admin."""
+    coll = _get_collection()
+    run = coll.find_one(
+        {"_id": run_hash},
+        {"user_id": 1, "steam_id": 1, "hidden": 1, "hidden_reason": 1},
+    )
     if not run:
         return {"error": "Run not found"}
 
-    run_owner = run.get("user_id")
-    if not run_owner or str(run_owner) != user_id:
+    from .replays_db import owns_run
+
+    if not owns_run(run, user):
+        return {"error": "You do not own this run"}
+    if run.get("hidden") and run.get("hidden_reason") != OWNER_HIDDEN:
+        return {"error": "This run was hidden by a moderator"}
+    if bool(run.get("hidden")) == hidden:
+        return {"success": True, "hidden": hidden}
+    set_run_hidden(run_hash, hidden, OWNER_HIDDEN if hidden else None)
+    return {"success": True, "hidden": hidden}
+
+
+def delete_run_permanently(run_hash: str, user: dict) -> dict:
+    """Remove one of the caller's own runs for good: the run doc, its blob, the
+    file on disk and its replay. The live stats counters give the run back and
+    the lake drops it on the next ingest. A later upload of the same file
+    comes in as a new run."""
+    coll = _get_collection()
+    run = coll.find_one(
+        {"_id": run_hash},
+        {
+            "user_id": 1,
+            "steam_id": 1,
+            "hidden": 1,
+            "deleted_at": 1,
+            "character": 1,
+            "win": 1,
+            "was_abandoned": 1,
+            "ascension": 1,
+        },
+    )
+    if not run:
+        return {"error": "Run not found"}
+
+    from .replays_db import owns_run
+
+    if not owns_run(run, user):
         return {"error": "You do not own this run"}
 
-    if run.get("deleted_at"):
-        return {"success": True}
+    if not run.get("hidden") and not run.get("deleted_at"):
+        bump_stats_counters(run, -1)
+    coll.delete_one({"_id": run_hash})
+    _blob_collection().delete_one({"_id": run_hash})
+    try:
+        from .replays_db import _coll as _replays
 
-    from datetime import datetime, timezone
-
-    coll.update_one(
-        {"_id": run_hash},
-        {"$set": {"deleted_at": datetime.now(timezone.utc)}},
-    )
+        _replays().delete_one({"_id": run_hash})
+    except Exception:
+        logger.warning("replay delete failed for %s", run_hash, exc_info=True)
+    try:
+        (_data_dir / "runs" / f"{run_hash}.json").unlink(missing_ok=True)
+    except OSError:
+        logger.warning("run file delete failed for %s", run_hash, exc_info=True)
+    evict_run_pages([run_hash])
     return {"success": True}
+
+
+# ── saved charts (chart builder) ─────────────────────────────────────────
+
+_saved_charts_coll = None
+
+
+def _get_saved_charts_collection():
+    """Lazy saved_charts collection; indexes on owner and public+created_at."""
+    global _client, _saved_charts_coll
+    if _saved_charts_coll is not None:
+        return _saved_charts_coll
+    _get_collection()
+    _saved_charts_coll = _client.get_default_database().saved_charts
+    _saved_charts_coll.create_index([("owner_steam_id", ASCENDING)])
+    _saved_charts_coll.create_index([("public", ASCENDING), ("created_at", DESCENDING)])
+    return _saved_charts_coll
+
+
+def create_saved_chart(owner_steam_id: str, title: str, spec: dict) -> dict:
+    """Insert one saved chart. Retries the 10-char url-safe id on the rare
+    duplicate-key collision."""
+    coll = _get_saved_charts_collection()
+    now = datetime.now(timezone.utc)
+    for _ in range(5):
+        doc = {
+            "_id": _chart_id(),
+            "owner_steam_id": owner_steam_id,
+            "title": title,
+            "spec": spec,
+            "public": False,
+            "created_at": now,
+            "updated_at": now,
+            "views": 0,
+        }
+        try:
+            coll.insert_one(dict(doc))
+            return doc
+        except DuplicateKeyError:
+            continue
+    raise RuntimeError("could not allocate a saved-chart id")
+
+
+def _chart_id() -> str:
+    return secrets.token_urlsafe(7)
+
+
+def get_saved_chart(chart_id: str) -> dict | None:
+    return _get_saved_charts_collection().find_one({"_id": chart_id})
+
+
+def count_saved_charts(owner_steam_id: str) -> int:
+    return _get_saved_charts_collection().count_documents(
+        {"owner_steam_id": owner_steam_id}
+    )
+
+
+def list_saved_charts_for_owner(owner_steam_id: str) -> list[dict]:
+    return list(
+        _get_saved_charts_collection()
+        .find({"owner_steam_id": owner_steam_id})
+        .sort([("created_at", DESCENDING)])
+    )
+
+
+def list_public_saved_charts(limit: int) -> list[dict]:
+    return list(
+        _get_saved_charts_collection()
+        .find({"public": True})
+        .sort([("created_at", DESCENDING)])
+        .limit(limit)
+    )
+
+
+def update_saved_chart(chart_id: str, owner_steam_id: str, fields: dict) -> dict | None:
+    """Owner-scoped partial update; None when the chart doesn't exist or
+    isn't the caller's."""
+    updates: dict = {"$set": {"updated_at": datetime.now(timezone.utc)}}
+    for key in ("title", "public", "spec"):
+        if key in fields:
+            updates["$set"][key] = fields[key]
+    out = _get_saved_charts_collection().find_one_and_update(
+        {"_id": chart_id, "owner_steam_id": owner_steam_id},
+        updates,
+        return_document=ReturnDocument.AFTER,
+    )
+    return out
+
+
+def delete_saved_chart(chart_id: str, owner_steam_id: str) -> bool:
+    out = _get_saved_charts_collection().delete_one(
+        {"_id": chart_id, "owner_steam_id": owner_steam_id}
+    )
+    return out.deleted_count > 0
+
+
+def increment_saved_chart_views(chart_id: str) -> None:
+    _get_saved_charts_collection().update_one(
+        {"_id": chart_id, "public": True}, {"$inc": {"views": 1}}
+    )

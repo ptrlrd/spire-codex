@@ -8,7 +8,10 @@ const MESSAGES: Record<string, [string, "error" | "success"]> = {
     "Sign in with Steam first, then connect Discord or Twitch from Settings.",
     "error",
   ],
-  steam_in_use: ["That Steam account is already linked to another account.", "error"],
+  steam_in_use: [
+    "That Steam account is already linked to another account.",
+    "error",
+  ],
 };
 
 /** Reads the auth query params the backend redirects with and shows them
@@ -33,7 +36,7 @@ export default function AuthNotice() {
     window.history.replaceState(
       window.history.state,
       "",
-      window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash
+      window.location.pathname + (qs ? `?${qs}` : "") + window.location.hash,
     );
   }, [toast]);
   return null;

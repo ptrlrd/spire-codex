@@ -1,5 +1,5 @@
 ---
-- name: Install hourly auto-deploy cron + CF purge env
+- name: Install deploy script + CF purge env, remove the auto-deploy cron
   hosts: prod_origins
   gather_facts: false
   vars:
@@ -20,14 +20,13 @@
         mode: "0755"
         owner: root
         group: root
-    - name: Install cron entry
+
+    - name: Remove the hourly auto-deploy cron (deploys are manual, see startup.sh)
       become: true
-      copy:
-        src: ../files/spire-codex-autodeploy.cron
-        dest: "{{ cron_file }}"
-        mode: "0644"
-        owner: root
-        group: root
+      file:
+        path: "{{ cron_file }}"
+        state: absent
+
     - name: Ensure CF env dir exists
       become: true
       file:
@@ -47,14 +46,14 @@
         owner: root
         group: root
       no_log: true
-    - name: Confirm cron installed
+    - name: Confirm the deploy script is in place
       become: true
-      command: ls -la "{{ cron_file }}" "{{ autodeploy_script }}"
+      command: ls -la "{{ autodeploy_script }}"
       register: install_check
       changed_when: false
     - name: Summary
       debug:
         msg: |
-          Auto-deploy installed. Fires :03 every hour.
+          Deploy script installed; deploys are manual (./tools/startup.sh release).
           Manual trigger: sudo /usr/local/bin/spire-codex-autodeploy
           Logs: /var/log/spire-codex-autodeploy.log

@@ -26,10 +26,17 @@ const CODE_TO_SHORT: Record<string, string> = {
 };
 
 const LANGUAGES: { code: Locale; name: string }[] = routing.locales
-  .map((code) => ({ code, name: code === "eng" ? "English" : LANG_NAMES[code] }))
+  .map((code) => ({
+    code,
+    name: code === "eng" ? "English" : LANG_NAMES[code],
+  }))
   .sort((a, b) => a.code.localeCompare(b.code));
 
-export default function LanguageSelector() {
+export default function LanguageSelector({
+  align = "right",
+}: {
+  align?: "left" | "right";
+} = {}) {
   const lang = useGameLocale();
   const t = useT();
   const [open, setOpen] = useState(false);
@@ -76,18 +83,32 @@ export default function LanguageSelector() {
         // (EN / JP / DE) alongside the globe so the active language is
         // visible without opening the menu.
         className="inline-flex items-center gap-0 sm:gap-1.5 h-9 w-9 sm:w-auto sm:px-3 justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
-        aria-label={t("Select language (current: {code})", { code: CODE_TO_SHORT[lang] || "EN" })}
+        aria-label={t("Select language (current: {code})", {
+          code: CODE_TO_SHORT[lang] || "EN",
+        })}
       >
-        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        <svg
+          className="w-4 h-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
+          />
         </svg>
-        <span className="hidden sm:inline text-xs font-medium">{CODE_TO_SHORT[lang] || "EN"}</span>
+        <span className="hidden sm:inline text-xs font-medium">
+          {CODE_TO_SHORT[lang] || "EN"}
+        </span>
       </button>
 
       {open && (
         <div
           ref={menuRef}
-          className="absolute right-0 top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50"
+          className={`absolute ${align === "left" ? "left-0" : "right-0"} top-full mt-2 w-48 max-h-80 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] shadow-xl shadow-scrim/30 z-50`}
         >
           <div className="py-1">
             {LANGUAGES.map((l) => (
@@ -101,7 +122,9 @@ export default function LanguageSelector() {
                 }`}
               >
                 <span className="font-medium">{l.name}</span>
-                <span className="text-xs text-[var(--text-muted)] ml-2">{CODE_TO_SHORT[l.code]}</span>
+                <span className="text-xs text-[var(--text-muted)] ml-2">
+                  {CODE_TO_SHORT[l.code]}
+                </span>
               </button>
             ))}
           </div>

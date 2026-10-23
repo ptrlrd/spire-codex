@@ -1,10 +1,15 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Epoch, Card, Relic, Potion } from "@/lib/api";
+import {
+  useState,
+  useEffect,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Epoch, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { imageUrl } from "@/lib/image-url";
@@ -32,7 +37,9 @@ function cleanDescription(desc: string): string {
   return desc.replace(/\{[^}]+\}/g, "X");
 }
 
-export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | null } = {}) {
+export default function EpochDetail({
+  initialEpoch,
+}: { initialEpoch?: Epoch | null } = {}) {
   const params = useParams();
   const router = useRouter();
   const id = params.id as string;
@@ -45,7 +52,9 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   const [cardMap, setCardMap] = useState<Record<string, Card>>({});
   const [relicMap, setRelicMap] = useState<Record<string, Relic>>({});
   const [potionMap, setPotionMap] = useState<Record<string, Potion>>({});
-  const [epochTitleMap, setEpochTitleMap] = useState<Record<string, string>>({});
+  const [epochTitleMap, setEpochTitleMap] = useState<Record<string, string>>(
+    {},
+  );
   const [activeSection, setActiveSection] = useState<string>("");
 
   useEffect(() => {
@@ -83,7 +92,9 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
     if (!epoch) return;
-    const secs = Array.from(document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"));
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
     if (secs.length === 0) return;
     const obs = new IntersectionObserver(
       (entries) => {
@@ -109,7 +120,9 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   if (loading) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {t("Loading...")}
+        </div>
       </div>
     );
   }
@@ -117,11 +130,17 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   if (notFound || !epoch) {
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link prefetch={false} href="/timeline" className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <Link
+          prefetch={false}
+          href="/timeline"
+          className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
           &larr; {t("Back to")} {t("Timeline")}
         </Link>
         <div className="text-center py-12">
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{t("Epoch Not Found")}</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
+            {t("Epoch Not Found")}
+          </h1>
         </div>
       </div>
     );
@@ -130,11 +149,22 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   const sk = storyKey(epoch.story_id || "");
   const accent = storyAccent[sk] || "text-[var(--accent-gold)]";
 
-  const hasUnlocks = epoch.unlocks_cards?.length || epoch.unlocks_relics?.length || epoch.unlocks_potions?.length;
+  const hasUnlocks =
+    epoch.unlocks_cards?.length ||
+    epoch.unlocks_relics?.length ||
+    epoch.unlocks_potions?.length;
   const hasImage = !!epoch.image_url;
-  const hasDescription = !!(epoch.unlock_info || epoch.description || epoch.unlock_text);
+  const hasDescription = !!(
+    epoch.unlock_info ||
+    epoch.description ||
+    epoch.unlock_text
+  );
   const storyLabel = (epoch.story_id || "").replace(/_/g, " ");
-  const showYear = !!(epoch.era_year && epoch.era_year !== "???" && epoch.era_year !== "0");
+  const showYear = !!(
+    epoch.era_year &&
+    epoch.era_year !== "???" &&
+    epoch.era_year !== "0"
+  );
 
   const tocItems: { id: string; label: string }[] = [
     ...(hasDescription ? [{ id: "description", label: t("Description") }] : []),
@@ -145,7 +175,10 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
   ];
 
   return (
-    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
+    <div
+      className="card-rvmp"
+      style={{ "--spine": "var(--accent-gold)" } as CSSProperties}
+    >
       <div className={hasImage ? "cd-top" : "cd-top solo"}>
         <button onClick={() => router.back()} className="cd-back">
           &larr; {t("Back to")} {t("Timeline")}
@@ -219,9 +252,20 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
                       {epoch.unlocks_cards.map((cid) => {
                         const card = cardMap[cid];
                         return (
-                          <Link prefetch={false} key={cid} href={`/cards/${cid.toLowerCase()}`} className="chip">
-                            <span className="pip" style={{ background: "#4f7fb3" }} />
-                            {card?.name || cid.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                          <Link
+                            prefetch={false}
+                            key={cid}
+                            href={`/cards/${cid.toLowerCase()}`}
+                            className="chip"
+                          >
+                            <span
+                              className="pip"
+                              style={{ background: "#4f7fb3" }}
+                            />
+                            {card?.name ||
+                              cid
+                                .replace(/_/g, " ")
+                                .replace(/\b\w/g, (c) => c.toUpperCase())}
                           </Link>
                         );
                       })}
@@ -235,9 +279,20 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
                       {epoch.unlocks_relics.map((rid) => {
                         const relic = relicMap[rid];
                         return (
-                          <Link prefetch={false} key={rid} href={`/relics/${rid.toLowerCase()}`} className="chip">
-                            <span className="pip" style={{ background: "#c79a3a" }} />
-                            {relic?.name || rid.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                          <Link
+                            prefetch={false}
+                            key={rid}
+                            href={`/relics/${rid.toLowerCase()}`}
+                            className="chip"
+                          >
+                            <span
+                              className="pip"
+                              style={{ background: "#c79a3a" }}
+                            />
+                            {relic?.name ||
+                              rid
+                                .replace(/_/g, " ")
+                                .replace(/\b\w/g, (c) => c.toUpperCase())}
                           </Link>
                         );
                       })}
@@ -251,9 +306,20 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
                       {epoch.unlocks_potions.map((pid) => {
                         const potion = potionMap[pid];
                         return (
-                          <Link prefetch={false} key={pid} href={`/potions/${pid.toLowerCase()}`} className="chip">
-                            <span className="pip" style={{ background: "#3ca47a" }} />
-                            {potion?.name || pid.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                          <Link
+                            prefetch={false}
+                            key={pid}
+                            href={`/potions/${pid.toLowerCase()}`}
+                            className="chip"
+                          >
+                            <span
+                              className="pip"
+                              style={{ background: "#3ca47a" }}
+                            />
+                            {potion?.name ||
+                              pid
+                                .replace(/_/g, " ")
+                                .replace(/\b\w/g, (c) => c.toUpperCase())}
                           </Link>
                         );
                       })}
@@ -270,9 +336,18 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
               <h2>{t("Expands timeline")}</h2>
               <div className="chips">
                 {epoch.expands_timeline.map((eid) => (
-                  <Link prefetch={false} key={eid} href={`/timeline/${eid.toLowerCase()}`} className="chip">
+                  <Link
+                    prefetch={false}
+                    key={eid}
+                    href={`/timeline/${eid.toLowerCase()}`}
+                    className="chip"
+                  >
                     <span className="pip" style={{ background: "#8a5cc4" }} />
-                    {epochTitleMap[eid] || eid.replace(/_EPOCH$/, "").replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())}
+                    {epochTitleMap[eid] ||
+                      eid
+                        .replace(/_EPOCH$/, "")
+                        .replace(/_/g, " ")
+                        .replace(/\b\w/g, (c) => c.toUpperCase())}
                   </Link>
                 ))}
               </div>
@@ -285,7 +360,9 @@ export default function EpochDetail({ initialEpoch }: { initialEpoch?: Epoch | n
             <div className="box">
               <img
                 src={imageUrl(epoch.image_url!)}
-                alt={t("{name} epoch art - Slay the Spire 2", { name: epoch.title })}
+                alt={t("{name} epoch art - Slay the Spire 2", {
+                  name: epoch.title,
+                })}
                 className="meta-art"
                 loading="lazy"
                 crossOrigin="anonymous"

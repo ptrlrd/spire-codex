@@ -2,20 +2,28 @@ import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
-import type { Power } from "@/lib/api";
+import type { Power } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import PowersClient from "./PowersClient";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/powers", title: t("Powers"), description: t("powers_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/powers",
+    title: t("Powers"),
+    description: t("powers_meta_description"),
+  });
 }
 
 export default async function PowersPage({ params }: Props) {
@@ -25,7 +33,9 @@ export default async function PowersPage({ params }: Props) {
   const tagline = t("powers_tagline");
   let powers: Power[] = [];
   try {
-    const res = await fetch(`${API}/api/powers?lang=${locale}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/powers?lang=${locale}`, {
+      next: { revalidate: 300 },
+    });
     if (res.ok) powers = await res.json();
   } catch {}
 
@@ -39,7 +49,10 @@ export default async function PowersPage({ params }: Props) {
       description: "Browse every power in Slay the Spire 2.",
       path: localePath(locale, "/powers"),
       inLanguage: inLanguageOf(locale),
-      items: powers.map((p) => ({ name: p.name, path: `/powers/${p.id.toLowerCase()}` })),
+      items: powers.map((p) => ({
+        name: p.name,
+        path: `/powers/${p.id.toLowerCase()}`,
+      })),
     }),
   ];
 

@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
-import { withSentryConfig } from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import createNextIntlPlugin from "next-intl/plugin";
+import { MOVED_PAGES } from "./lib/moved-pages";
 
 const LANGS = "eng|deu|esp|fra|ita|jpn|kor|pol|ptb|rus|spa|tha|tur|zhs|zht";
 
 const nextConfig: NextConfig = {
+  deploymentId: process.env.NEXT_DEPLOYMENT_ID || undefined,
   output: "standalone",
   poweredByHeader: false,
   // Without this, dynamic-route prefetches are stale on arrival
@@ -13,7 +15,9 @@ const nextConfig: NextConfig = {
   // fetches of the same footer link per page view in prod.
   experimental: {
     staleTimes: { dynamic: 180, static: 300 },
+    isrFlushToDisk: false,
   },
+  cacheMaxMemorySize: 256 * 1024 * 1024,
   // NitroPay hosts our ads.txt so exchange entries stay current without
   // deploys; the 301 is their recommended setup.
   async redirects() {
@@ -23,6 +27,20 @@ const nextConfig: NextConfig = {
         destination: "https://api.nitropay.com/v1/ads-2467.txt",
         permanent: true,
       },
+      { source: "/giveaway", destination: "/", permanent: true },
+      {
+        source: `/:lang(${LANGS})/giveaway`,
+        destination: "/:lang",
+        permanent: true,
+      },
+      ...Object.entries(MOVED_PAGES).flatMap(([from, to]) => [
+        { source: from, destination: to, statusCode: 301 },
+        {
+          source: `/:lang(${LANGS})${from}`,
+          destination: `/:lang${to}`,
+          statusCode: 301,
+        },
+      ]),
     ];
   },
   // The /beta section itself is wired up in proxy.ts, which rewrites

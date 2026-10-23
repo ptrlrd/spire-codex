@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const title = "Steam Workshop Mod - Slay the Spire 2 (sts2) | Spire Codex";
-const ogDesc = "The official Spire Codex mod for Slay the Spire 2. Automatic run uploads, in-game community insights, and a route planner.";
+const ogDesc =
+  "The official Spire Codex mod for Slay the Spire 2. Automatic run uploads, in-game community insights, and a route planner.";
 
 export const metadata: Metadata = {
   title,

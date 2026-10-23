@@ -2,22 +2,24 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Intent } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Intent } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/reference-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function IntentDetail({ initialIntent }: { initialIntent?: Intent | null } = {}) {
+export default function IntentDetail({
+  initialIntent,
+}: { initialIntent?: Intent | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -48,8 +50,13 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
   if (notFound || !intent) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-[var(--text-muted)] mb-4">{t("Intent not found.")}</p>
-        <Link href={`${bp}/reference`} className="text-[var(--accent-gold)] hover:underline">
+        <p className="text-[var(--text-muted)] mb-4">
+          {t("Intent not found.")}
+        </p>
+        <Link
+          href={`${bp}/reference`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Reference")}
         </Link>
       </div>
@@ -92,7 +99,9 @@ export default function IntentDetail({ initialIntent }: { initialIntent?: Intent
               <div className="ref-icon">
                 <img
                   src={imageUrl(intent.image_url)}
-                  alt={t("{name} - Slay the Spire 2 Intent", { name: intent.name })}
+                  alt={t("{name} - Slay the Spire 2 Intent", {
+                    name: intent.name,
+                  })}
                   crossOrigin="anonymous"
                 />
               </div>

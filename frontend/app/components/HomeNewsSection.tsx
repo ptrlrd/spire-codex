@@ -1,19 +1,33 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
-import type { NewsArticle, NewsListResponse } from "@/lib/api";
+import type { NewsArticle, NewsListResponse } from "@/lib/api/types";
 import {
   firstNewsImage,
   newsExcerpt,
   formatNewsDate,
   newsSlugForArticle,
+  newsThumbUrl,
 } from "@/lib/steam-news";
 import "../home-sections.css";
 
 const ARROW = (
-  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  <svg
+    className="arw"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
 );
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 const REVALIDATE = 1800;
 
@@ -39,9 +53,12 @@ async function loadLatestCommunityNews(): Promise<NewsArticle[]> {
     const full = await Promise.all(
       stubs.map(async (stub) => {
         try {
-          const r = await fetch(`${API}/api/news/${encodeURIComponent(stub.gid)}`, {
-            next: { revalidate: REVALIDATE },
-          });
+          const r = await fetch(
+            `${API}/api/news/${encodeURIComponent(stub.gid)}`,
+            {
+              next: { revalidate: REVALIDATE },
+            },
+          );
           if (!r.ok) return stub;
           return (await r.json()) as NewsArticle;
         } catch {
@@ -81,17 +98,35 @@ export default async function HomeNewsSection({
 
           <div className="newsrow">
             {items.map((article) => {
-              const hero = firstNewsImage(article.contents) ?? STEAM_HEADER_FALLBACK;
+              const hero =
+                firstNewsImage(article.contents) ?? STEAM_HEADER_FALLBACK;
               const blurb = newsExcerpt(article.contents ?? "", 110);
               const date = formatNewsDate(article.date);
               const href = newsSlugForArticle(article.gid, newsBase);
               return (
-                <Link prefetch={false} key={article.gid} href={href} className="news">
-                  <img className="news-thumb" src={hero} alt="" width={640} height={360} loading="lazy" />
+                <Link
+                  prefetch={false}
+                  key={article.gid}
+                  href={href}
+                  className="news"
+                >
+                  <img
+                    className="news-thumb"
+                    src={newsThumbUrl(hero, 640)}
+                    srcSet={`${newsThumbUrl(hero, 320)} 320w, ${newsThumbUrl(hero, 640)} 640w`}
+                    sizes="(max-width: 900px) 100vw, 380px"
+                    alt=""
+                    width={640}
+                    height={360}
+                    loading="lazy"
+                  />
                   <span className="news-src">Mega Crit</span>
                   <span className="news-title">{article.title}</span>
                   {blurb && <span className="news-ex">{blurb}</span>}
-                  <time className="news-date" dateTime={new Date(article.date * 1000).toISOString()}>
+                  <time
+                    className="news-date"
+                    dateTime={new Date(article.date * 1000).toISOString()}
+                  >
                     {date}
                   </time>
                 </Link>

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import type { Card } from "./api";
-import { getCardDisplayModel } from "./card-display";
+import type { Card } from "./api/types";
+import { cardHasKeyword, getCardDisplayModel } from "./card-display";
 
 function createCard(overrides: Partial<Card> = {}): Card {
   return {
@@ -53,7 +53,9 @@ describe("getCardDisplayModel", () => {
 
     const display = getCardDisplayModel(card, true);
 
-    expect(display.descriptionText).toBe("Whenever you play a card, gain 1 Block.");
+    expect(display.descriptionText).toBe(
+      "Whenever you play a card, gain 1 Block.",
+    );
     expect(display.keywordText).toBe("[green]Innate[/green].");
     expect(display.addedKeywords).toEqual(["Innate"]);
   });
@@ -69,7 +71,9 @@ describe("getCardDisplayModel", () => {
 
     const display = getCardDisplayModel(card, true);
 
-    expect(display.descriptionText).toBe("Deal [green]4[/green] damage. Gain [green]4[/green] Block.");
+    expect(display.descriptionText).toBe(
+      "Deal [green]4[/green] damage. Gain [green]4[/green] Block.",
+    );
     expect(display.keywordText).toBe("");
   });
 
@@ -91,20 +95,53 @@ describe("getCardDisplayModel", () => {
     expect(display.keywordText).toBe("[green]Innate[/green].");
   });
 
-it("highlights values inside upgrade_description without replacing from the base description", () => {
-  const card = createCard({
-    description: "Draw 1 card.",
-    damage: null,
-    block: null,
-    vars: { Draw: 1 },
-    upgrade: { draw: "+1" },
-    upgrade_description: "Draw 2 cards.",
+  it("highlights values inside upgrade_description without replacing from the base description", () => {
+    const card = createCard({
+      description: "Draw 1 card.",
+      damage: null,
+      block: null,
+      vars: { Draw: 1 },
+      upgrade: { draw: "+1" },
+      upgrade_description: "Draw 2 cards.",
+    });
+
+    const display = getCardDisplayModel(card, true);
+
+    expect(display.descriptionText).toBe("Draw [green]2[/green] cards.");
+    expect(display.keywordText).toBe("");
+  });
+});
+
+describe("cardHasKeyword", () => {
+  const tyranny = {
+    keywords: ["Erschöpft"],
+    keywords_key: ["Exhaust"],
+    upgrade: { add_innate: true },
+  };
+
+  it("matches base keywords by localized name or English key", () => {
+    expect(cardHasKeyword(tyranny, "Exhaust")).toBe(true);
+    expect(cardHasKeyword(tyranny, "erschöpft")).toBe(true);
   });
 
-  const display = getCardDisplayModel(card, true);
-
-  expect(display.descriptionText).toBe("Draw [green]2[/green] cards.");
-  expect(display.keywordText).toBe("");
+  it("matches a keyword the upgrade adds", () => {
+    expect(cardHasKeyword(tyranny, "Innate")).toBe(true);
+    expect(
+      cardHasKeyword(
+        { keywords: null, keywords_key: null, upgrade: { add_retain: true } },
+        "Retain",
+      ),
+    ).toBe(true);
   });
-  
+
+  it("does not match keywords the card never has", () => {
+    expect(cardHasKeyword(tyranny, "Retain")).toBe(false);
+    expect(
+      cardHasKeyword(
+        { keywords: null, keywords_key: null, upgrade: null },
+        "Innate",
+      ),
+    ).toBe(false);
+    expect(cardHasKeyword(tyranny, "")).toBe(false);
+  });
 });

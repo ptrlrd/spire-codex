@@ -1,12 +1,18 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { localeOf } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 
 const title = "Database - About - Slay the Spire 2 (sts2) | Spire Codex";
-const ogDesc = "About Spire Codex, a community-built database for Slay the Spire 2.";
+const ogDesc =
+  "About Spire Codex, a community-built database for Slay the Spire 2.";
 
 export const metadata: Metadata = {
   title,
@@ -21,10 +27,19 @@ export const metadata: Metadata = {
     images: [{ url: DEFAULT_OG_IMAGE }],
   },
   twitter: { card: "summary_large_image", title, description: ogDesc },
-  alternates: { canonical: "/about", languages: buildLanguageAlternates("/about") },
+  alternates: {
+    canonical: "/about",
+    languages: buildLanguageAlternates("/about"),
+  },
 };
 
-export default async function Layout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
+export default async function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
   const locale = localeOf((await params).locale);
   // /about is a `"use client"` page so JSON-LD has to land in the
   // server layout. We model it as an Article describing the site

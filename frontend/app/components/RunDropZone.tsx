@@ -17,7 +17,11 @@ interface RunDropZoneProps {
   uploadProgress?: UploadProgress | null;
 }
 
-export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunDropZoneProps) {
+export default function RunDropZone({
+  onFiles,
+  uploading,
+  uploadProgress,
+}: RunDropZoneProps) {
   const t = useT();
   const [isDragging, setIsDragging] = useState(false);
   const dragCounter = useRef(0);
@@ -42,14 +46,17 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
     if (dragCounter.current === 0) setIsDragging(false);
   }, []);
 
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
-    dragCounter.current = 0;
-    setIsDragging(false);
-    if (e.dataTransfer.files?.length) onFiles(e.dataTransfer.files);
-  }, [onFiles]);
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+      dragCounter.current = 0;
+      setIsDragging(false);
+      if (e.dataTransfer.files?.length) onFiles(e.dataTransfer.files);
+    },
+    [onFiles],
+  );
 
   return (
     <div
@@ -80,7 +87,9 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
         <p className="text-[var(--text-secondary)]">
           {uploadProgress
             ? `${t("Uploading")} ${uploadProgress.done} / ${uploadProgress.total}` +
-              (uploadProgress.errors ? ` (${uploadProgress.errors} ${t("errors")})` : "")
+              (uploadProgress.errors
+                ? ` (${uploadProgress.errors} ${t("errors")})`
+                : "")
             : t("Uploading...")}
         </p>
       ) : isDragging ? (
@@ -94,7 +103,10 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
       )}
 
       {!isDragging && !uploading && (
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-center gap-2 sm:gap-3"
+          onClick={(e) => e.stopPropagation()}
+        >
           <a
             href="https://www.overwolf.com/app/ptrlrd-spire_codex"
             target="_blank"
@@ -132,20 +144,28 @@ export default function RunDropZone({ onFiles, uploading, uploadProgress }: RunD
           <div className="w-full bg-[var(--bg-primary)] rounded-full h-2 mb-2">
             <div
               className="h-2 rounded-full bg-[var(--accent-gold)] transition-all"
-              style={{ width: `${(uploadProgress.done / uploadProgress.total) * 100}%` }}
+              style={{
+                width: `${(uploadProgress.done / uploadProgress.total) * 100}%`,
+              }}
             />
           </div>
           <p className="text-xs text-[var(--text-muted)]">
             {uploadProgress.done === uploadProgress.total ? (
               <>
                 {t("Done!")}{" "}
-                {uploadProgress.total - uploadProgress.dupes - uploadProgress.errors}{" "}
+                {uploadProgress.total -
+                  uploadProgress.dupes -
+                  uploadProgress.errors}{" "}
                 {t("submitted")}
                 {uploadProgress.dupes > 0 && (
-                  <>, {uploadProgress.dupes} {t("duplicates skipped")}</>
+                  <>
+                    , {uploadProgress.dupes} {t("duplicates skipped")}
+                  </>
                 )}
                 {uploadProgress.errors > 0 && (
-                  <>, {uploadProgress.errors} {t("invalid")}</>
+                  <>
+                    , {uploadProgress.errors} {t("invalid")}
+                  </>
                 )}
               </>
             ) : (

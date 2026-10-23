@@ -2,14 +2,15 @@
 
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { GameEvent, EventPage, DialogueLine } from "@/lib/api";
+import { useSearchParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { GameEvent, EventPage, DialogueLine } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -55,7 +56,6 @@ const PAGE_COLORS = [
   "border-l-special/60",
 ];
 
-
 function PageBlock({
   page,
   index,
@@ -68,12 +68,12 @@ function PageBlock({
   const t = useT();
   const colorClass = PAGE_COLORS[index % PAGE_COLORS.length];
   const isInitial = page.id === "INITIAL";
-  const pageName = page.id.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const pageName = page.id
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 
   return (
-    <div
-      className={`border-l-2 ${colorClass} pl-3 py-1.5`}
-    >
+    <div className={`border-l-2 ${colorClass} pl-3 py-1.5`}>
       <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1">
         {isInitial ? t("Start") : pageName}
       </p>
@@ -105,7 +105,13 @@ function PageBlock({
   );
 }
 
-function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]; acts: ActOption[] }) {
+function EventsClientInner({
+  initialEvents,
+  acts,
+}: {
+  initialEvents: GameEvent[];
+  acts: ActOption[];
+}) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -117,10 +123,18 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
     Record<string, string | null>
   >({});
   const [expandedPages, setExpandedPages] = useState<Record<string, boolean>>(
-    {}
+    {},
   );
   const [relicMap, setRelicMap] = useState<
-    Record<string, { id: string; name: string; description: string; image_url: string | null }>
+    Record<
+      string,
+      {
+        id: string;
+        name: string;
+        description: string;
+        image_url: string | null;
+      }
+    >
   >({});
   const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
   const [charNames, setCharNames] = useState<Record<string, string>>({});
@@ -144,7 +158,9 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
   };
 
   useEffect(() => {
-    cachedFetch<{ character_names?: Record<string, string> }>(`${API}/api/translations?lang=${lang}`)
+    cachedFetch<{ character_names?: Record<string, string> }>(
+      `${API}/api/translations?lang=${lang}`,
+    )
       .then((tr) => setCharNames(tr.character_names ?? {}))
       .catch(() => {});
   }, [lang]);
@@ -155,15 +171,18 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/events${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, type, act };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, type, act, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = { search, type, act };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, type, act, updateUrl],
+  );
 
   const toggleDialogue = (eventId: string, group: string) => {
     setExpandedDialogue((prev) => ({
@@ -180,19 +199,32 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
   };
 
   useEffect(() => {
-    cachedFetch<{ id: string; name: string; description: string; image_url: string | null }[]>(`${API}/api/relics?lang=${lang}`)
-      .then((relics) => {
-        const map: Record<string, typeof relics[number]> = {};
-        for (const r of relics) map[r.id] = r;
-        setRelicMap(map);
-      });
+    cachedFetch<
+      {
+        id: string;
+        name: string;
+        description: string;
+        image_url: string | null;
+      }[]
+    >(`${API}/api/relics?lang=${lang}`).then((relics) => {
+      const map: Record<string, (typeof relics)[number]> = {};
+      for (const r of relics) map[r.id] = r;
+      setRelicMap(map);
+    });
   }, [lang]);
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !type && !act && !search && initialEvents.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !type &&
+        !act &&
+        !search &&
+        initialEvents.length > 0
+      ) {
         return;
       }
     }
@@ -201,8 +233,7 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
     if (act) params.set("act", act);
     if (search) params.set("search", search);
     params.set("lang", lang);
-    cachedFetch<GameEvent[]>(`${API}/api/events?${params}`)
-      .then(setEvents);
+    cachedFetch<GameEvent[]>(`${API}/api/events?${params}`).then(setEvents);
   }, [type, act, search, lang, channel]);
 
   return (
@@ -238,7 +269,9 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
           return (
             <div
               key={event.id}
-              onClick={() => router.push(`${bp}/events/${event.id.toLowerCase()}`)}
+              onClick={() =>
+                router.push(`${bp}/events/${event.id.toLowerCase()}`)
+              }
               className={`bg-[var(--bg-card)] rounded-lg border ${
                 typeColors[event.type] || "border-[var(--border-subtle)]"
               } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}
@@ -248,7 +281,9 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
                   {event.image_url && (
                     <img
                       src={imageUrl(event.image_url)}
-                      alt={t("{name} - Slay the Spire 2 Event", { name: event.name })}
+                      alt={t("{name} - Slay the Spire 2 Event", {
+                        name: event.name,
+                      })}
                       width={40}
                       height={40}
                       loading="lazy"
@@ -295,15 +330,31 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
 
               {event.description && (
                 <div className="mb-3">
-                  <p className={`text-sm text-[var(--text-secondary)] leading-relaxed ${expandedDesc[event.id] ? "" : "line-clamp-3"}`}>
-                    <RichDescription text={siteAuthored(event.description) ? t(event.description) : event.description} />
+                  <p
+                    className={`text-sm text-[var(--text-secondary)] leading-relaxed ${expandedDesc[event.id] ? "" : "line-clamp-3"}`}
+                  >
+                    <RichDescription
+                      text={
+                        siteAuthored(event.description)
+                          ? t(event.description)
+                          : event.description
+                      }
+                    />
                   </p>
                   {event.description.length > 150 && (
                     <button
-                      onClick={(e) => { e.stopPropagation(); setExpandedDesc((prev) => ({ ...prev, [event.id]: !prev[event.id] })); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedDesc((prev) => ({
+                          ...prev,
+                          [event.id]: !prev[event.id],
+                        }));
+                      }}
                       className="text-[10px] text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer mt-0.5 transition-colors"
                     >
-                      {expandedDesc[event.id] ? t("Show less") : t("Show more...")}
+                      {expandedDesc[event.id]
+                        ? t("Show less")
+                        : t("Show more...")}
                     </button>
                   )}
                 </div>
@@ -337,7 +388,10 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
               {event.pages && event.pages.length > 1 && (
                 <div className="mt-3">
                   <button
-                    onClick={(e) => { e.stopPropagation(); togglePages(event.id); }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      togglePages(event.id);
+                    }}
                     className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] hover:text-[var(--text-secondary)] cursor-pointer transition-colors flex items-center gap-1"
                   >
                     <span
@@ -382,7 +436,9 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
                           {relic?.image_url && (
                             <img
                               src={imageUrl(relic.image_url)}
-                              alt={t("{name} - Slay the Spire 2 Relic", { name: relic.name })}
+                              alt={t("{name} - Slay the Spire 2 Relic", {
+                                name: relic.name,
+                              })}
                               width={32}
                               height={32}
                               loading="lazy"
@@ -411,50 +467,52 @@ function EventsClientInner({ initialEvents, acts }: { initialEvents: GameEvent[]
               )}
 
               {/* Dialogue */}
-              {event.dialogue &&
-                Object.keys(event.dialogue).length > 0 && (
-                  <div className="mt-3 space-y-1">
-                    <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
-                      {t("Dialogue")}
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      {Object.keys(event.dialogue).map((group) => (
-                        <button
-                          key={group}
-                          onClick={(e) => { e.stopPropagation(); toggleDialogue(event.id, group); }}
-                          className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
-                            expandedDialogue[event.id] === group
-                              ? "bg-special/10 text-special border-special/30"
-                              : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-special/30"
-                          }`}
-                        >
-                          {dialogueGroupLabel(group)}
-                        </button>
-                      ))}
-                    </div>
-                    {expandedDialogue[event.id] &&
-                      event.dialogue[expandedDialogue[event.id]!] && (
-                        <div className="mt-2 space-y-1.5 max-h-48 overflow-y-auto">
-                          {event.dialogue[expandedDialogue[event.id]!].map(
-                            (line, i) => (
-                              <div
-                                key={i}
-                                className={`text-xs px-2.5 py-1.5 rounded ${
-                                  line.speaker === "ancient"
-                                    ? "bg-special/10 text-special border-l-2 border-special/50"
-                                    : "bg-info/10 text-info border-l-2 border-info/50 ml-4"
-                                }`}
-                              >
-                                <span className="whitespace-pre-line">
-                                  <RichDescription text={line.text} />
-                                </span>
-                              </div>
-                            )
-                          )}
-                        </div>
-                      )}
+              {event.dialogue && Object.keys(event.dialogue).length > 0 && (
+                <div className="mt-3 space-y-1">
+                  <p className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+                    {t("Dialogue")}
+                  </p>
+                  <div className="flex flex-wrap gap-1">
+                    {Object.keys(event.dialogue).map((group) => (
+                      <button
+                        key={group}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleDialogue(event.id, group);
+                        }}
+                        className={`text-[11px] px-2 py-0.5 rounded border transition-colors cursor-pointer ${
+                          expandedDialogue[event.id] === group
+                            ? "bg-special/10 text-special border-special/30"
+                            : "bg-[var(--bg-primary)] text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)] hover:border-special/30"
+                        }`}
+                      >
+                        {dialogueGroupLabel(group)}
+                      </button>
+                    ))}
                   </div>
-                )}
+                  {expandedDialogue[event.id] &&
+                    event.dialogue[expandedDialogue[event.id]!] && (
+                      <div className="mt-2 space-y-1.5 max-h-48 overflow-y-auto">
+                        {event.dialogue[expandedDialogue[event.id]!].map(
+                          (line, i) => (
+                            <div
+                              key={i}
+                              className={`text-xs px-2.5 py-1.5 rounded ${
+                                line.speaker === "ancient"
+                                  ? "bg-special/10 text-special border-l-2 border-special/50"
+                                  : "bg-info/10 text-info border-l-2 border-info/50 ml-4"
+                              }`}
+                            >
+                              <span className="whitespace-pre-line">
+                                <RichDescription text={line.text} />
+                              </span>
+                            </div>
+                          ),
+                        )}
+                      </div>
+                    )}
+                </div>
+              )}
             </div>
           );
         })}
@@ -476,7 +534,9 @@ const SITE_AUTHORED_PREFIX = "A suspicious merchant offers 6 fake relics";
 function siteAuthored(text: string | undefined): boolean {
   return !!text && text.startsWith(SITE_AUTHORED_PREFIX);
 }
-export default function EventsClient(props: Parameters<typeof EventsClientInner>[0]) {
+export default function EventsClient(
+  props: Parameters<typeof EventsClientInner>[0],
+) {
   return (
     <Suspense fallback={null}>
       <EventsClientInner {...props} />

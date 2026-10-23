@@ -144,7 +144,9 @@ export default function AdminClient() {
 
       {data && (
         <>
-          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Runs</h2>
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Runs
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             <Card label="Total runs" value={(r.total ?? 0).toLocaleString()} />
             <Card label="Last 24h" value={(r.last_24h ?? 0).toLocaleString()} />
@@ -153,18 +155,31 @@ export default function AdminClient() {
               value={r.last_submission ? fmtTime(r.last_submission) : "-"}
               sub={r.last_submission ? fmtDate(r.last_submission) : undefined}
             />
-            <Card label="Users" value={(data.users.total ?? 0).toLocaleString()} />
+            <Card
+              label="Users"
+              value={(data.users.total ?? 0).toLocaleString()}
+            />
           </div>
 
-          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Stats snapshot</h2>
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Stats snapshot
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             <Card label="Rebuilt" value={fmtAge(snap.age_seconds)} />
             <Card label="Version" value={String(snap.version ?? "-")} />
-            <Card label="Runs in snapshot" value={(snap.total_runs ?? 0).toLocaleString()} />
-            <Card label="Chart cells" value={snap.has_charts === false ? "building" : "present"} />
+            <Card
+              label="Runs in snapshot"
+              value={(snap.total_runs ?? 0).toLocaleString()}
+            />
+            <Card
+              label="Chart cells"
+              value={snap.has_charts === false ? "building" : "present"}
+            />
           </div>
 
-          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Redis</h2>
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Redis
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
             <Card
               label="Status"
@@ -173,13 +188,21 @@ export default function AdminClient() {
             <Card
               label="Memory"
               value={redis?.used_memory_human ?? "-"}
-              sub={redis?.maxmemory_human ? `cap ${redis.maxmemory_human}` : undefined}
+              sub={
+                redis?.maxmemory_human
+                  ? `cap ${redis.maxmemory_human}`
+                  : undefined
+              }
             />
             <Card label="Keys" value={(redis?.keys ?? 0).toLocaleString()} />
             <Card
               label="Hit rate"
               value={redis?.hit_rate != null ? `${redis.hit_rate}%` : "-"}
-              sub={redis?.uptime_days != null ? `up ${redis.uptime_days}d` : undefined}
+              sub={
+                redis?.uptime_days != null
+                  ? `up ${redis.uptime_days}d`
+                  : undefined
+              }
             />
           </div>
 
@@ -187,7 +210,10 @@ export default function AdminClient() {
             Mod usage
           </h2>
           <div className="grid grid-cols-3 gap-3 mb-4">
-            <Card label="Active today" value={(data.dau?.today ?? 0).toLocaleString()} />
+            <Card
+              label="Active today"
+              value={(data.dau?.today ?? 0).toLocaleString()}
+            />
             <Card
               label="Last 7 days"
               value={(data.dau?.wau ?? 0).toLocaleString()}
@@ -219,14 +245,18 @@ export default function AdminClient() {
                     <div
                       key={d.day}
                       onMouseEnter={() => setHoverDau(i)}
-                      onMouseLeave={() => setHoverDau((h) => (h === i ? null : h))}
+                      onMouseLeave={() =>
+                        setHoverDau((h) => (h === i ? null : h))
+                      }
                       title={`${d.day}: ${d.count} active`}
                       className={`flex-1 rounded-t cursor-default transition-colors ${
                         hoverDau === i
                           ? "bg-[var(--accent-gold)]"
                           : "bg-[var(--accent-gold)]/60"
                       }`}
-                      style={{ height: `${Math.max(4, Math.round((d.count / max) * 100))}%` }}
+                      style={{
+                        height: `${Math.max(4, Math.round((d.count / max) * 100))}%`,
+                      }}
                     />
                   ));
                 })()}
@@ -239,10 +269,17 @@ export default function AdminClient() {
             Live players
           </h2>
           <div className="grid grid-cols-2 gap-3 mb-4 sm:max-w-md">
-            <Card label="Live now" value={(live?.current?.length ?? 0).toLocaleString()} />
+            <Card
+              label="Live now"
+              value={(live?.current?.length ?? 0).toLocaleString()}
+            />
             <Card
               label="Peak concurrent"
-              value={live?.peak?.value != null ? live.peak.value.toLocaleString() : "-"}
+              value={
+                live?.peak?.value != null
+                  ? live.peak.value.toLocaleString()
+                  : "-"
+              }
               sub={
                 live?.peak?.at
                   ? `all-time · ${fmtDate(live.peak.at)}`
@@ -274,7 +311,9 @@ export default function AdminClient() {
                         {[
                           p.character,
                           p.ascension != null ? `A${p.ascension}` : null,
-                          p.total_floor != null ? `Floor ${p.total_floor}` : null,
+                          p.total_floor != null
+                            ? `Floor ${p.total_floor}`
+                            : null,
                         ]
                           .filter(Boolean)
                           .join(" · ")}
@@ -299,7 +338,10 @@ export default function AdminClient() {
               {live && live.current.length > 0 ? (
                 <div className="divide-y divide-[var(--border-subtle)]">
                   {[...live.current]
-                    .sort((a, b) => (b.session_seconds ?? 0) - (a.session_seconds ?? 0))
+                    .sort(
+                      (a, b) =>
+                        (b.session_seconds ?? 0) - (a.session_seconds ?? 0),
+                    )
                     .slice(0, 8)
                     .map((p) => (
                       <div

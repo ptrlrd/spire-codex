@@ -31,7 +31,11 @@ const colorText: Record<string, string> = {
 };
 
 function generatePairs() {
-  const pairs: { a: (typeof CHARACTERS)[number]; b: (typeof CHARACTERS)[number]; slug: string }[] = [];
+  const pairs: {
+    a: (typeof CHARACTERS)[number];
+    b: (typeof CHARACTERS)[number];
+    slug: string;
+  }[] = [];
   for (let i = 0; i < CHARACTERS.length; i++) {
     for (let j = i + 1; j < CHARACTERS.length; j++) {
       const a = CHARACTERS[i];
@@ -47,7 +51,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/compare", title: t("Character Comparisons"), description: t("compare_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/compare",
+    title: t("Character Comparisons"),
+    description: t("compare_meta_description"),
+  });
 }
 
 export default async function ComparePage({ params }: Props) {
@@ -110,8 +119,12 @@ export default async function ComparePage({ params }: Props) {
               </div>
             </div>
             <div className="flex items-center gap-2 mt-3">
-              <div className={`flex-1 h-0.5 rounded ${colorBorder[pair.a.color]} border-t`} />
-              <div className={`flex-1 h-0.5 rounded ${colorBorder[pair.b.color]} border-t`} />
+              <div
+                className={`flex-1 h-0.5 rounded ${colorBorder[pair.a.color]} border-t`}
+              />
+              <div
+                className={`flex-1 h-0.5 rounded ${colorBorder[pair.b.color]} border-t`}
+              />
             </div>
             <p className="text-xs text-[var(--text-muted)] text-center mt-3">
               {t("Stats, cards, keywords & starting decks")}

@@ -35,10 +35,7 @@ export const Chip = memo(function Chip({
   const width = isCard ? 150 : size;
   const height = isCard ? Math.round(width * 1.32) : size;
   return (
-    <div
-      className="group relative shrink-0"
-      style={{ width, height }}
-    >
+    <div className="group relative shrink-0" style={{ width, height }}>
       <div
         // Native title for the name only when there's no rich note tooltip,
         // so a commented chip doesn't show two overlapping tooltips.
@@ -65,6 +62,19 @@ export const Chip = memo(function Chip({
             {entity.name}
           </span>
         )}
+        {entity.badge && (
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 bottom-0.5 text-center font-bold leading-none text-[var(--text-on-fill)]"
+            style={{
+              fontSize: Math.round(width * 0.42),
+              textShadow:
+                "0 0 4px #000, 0 0 2px #000, 1px 1px 0 #000, -1px -1px 0 #000",
+            }}
+          >
+            {entity.badge}
+          </span>
+        )}
         {hasComment && (
           <span
             aria-label={t("Has a note")}
@@ -86,7 +96,9 @@ export const Chip = memo(function Chip({
           role="tooltip"
           className="pointer-events-none absolute bottom-full left-1/2 z-50 mb-1.5 hidden w-max max-w-[220px] -translate-x-1/2 rounded-md border border-[var(--border-subtle)] bg-[var(--bg-card)] px-2.5 py-1.5 text-left shadow-xl group-hover:block"
         >
-          <div className="text-xs font-semibold text-[var(--text-primary)]">{entity.name}</div>
+          <div className="text-xs font-semibold text-[var(--text-primary)]">
+            {entity.name}
+          </div>
           <div className="mt-0.5 whitespace-normal break-words text-xs leading-snug text-[var(--text-secondary)]">
             {commentText}
           </div>
@@ -116,8 +128,14 @@ export function SortableItem({
   onClick?: () => void;
   card?: boolean;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging } =
-    useSortable({ id: entity.id });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: entity.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),

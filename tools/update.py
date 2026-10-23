@@ -68,7 +68,7 @@ STEAM_PATHS = {
 }
 
 # Game files we need
-PCK_NAME = "sts2.pck"
+PCK_NAMES = ["SlayTheSpire2.pck", "sts2.pck"]
 DLL_NAME = "sts2.dll"
 
 
@@ -79,10 +79,18 @@ def info(msg: str):
 
 
 def run(cmd: list[str], cwd: Path | None = None, check: bool = True) -> subprocess.CompletedProcess:
-    """Run a command, printing it first."""
+    """Run a command, printing it first. A failing step ends the update with
+    a one-line error and its exit code instead of a traceback."""
     cmd_str = " ".join(str(c) for c in cmd)
     print(f"  $ {cmd_str}")
-    return subprocess.run(cmd, cwd=cwd, check=check)
+    try:
+        return subprocess.run(cmd, cwd=cwd, check=check)
+    except subprocess.CalledProcessError as exc:
+        print(f"\n  ERROR: {cmd[0]} exited with code {exc.returncode}")
+        sys.exit(exc.returncode if exc.returncode > 0 else 1)
+    except OSError as exc:
+        print(f"\n  ERROR: could not run {cmd[0]}: {exc}")
+        sys.exit(1)
 
 
 def find_executable(name: str, alt_names: list[str] | None = None) -> str | None:
@@ -109,14 +117,19 @@ def find_game_files(game_dir: Path) -> tuple[Path | None, Path | None]:
     """Find .pck and .dll in the game directory (may be in subdirs)."""
     pck = None
     dll = None
-    # Try exact name first, then fall back to any .pck/.dll
-    for f in game_dir.rglob(PCK_NAME):
-        pck = f
-        break
-    if not pck:
-        for f in game_dir.rglob("*.pck"):
-            pck = f
+    # Try the known names first, then any .pck outside the mods folder
+    for name in PCK_NAMES:
+        for f in game_dir.rglob(name):
+            if "mods" not in f.relative_to(game_dir).parts:
+                pck = f
+                break
+        if pck:
             break
+    if not pck:
+        for f in sorted(game_dir.rglob("*.pck")):
+            if "mods" not in f.relative_to(game_dir).parts:
+                pck = f
+                break
     for f in game_dir.rglob(DLL_NAME):
         dll = f
         break
@@ -310,7 +323,7 @@ Examples:
         pck_path, dll_path = find_game_files(game_dir)
 
         if not pck_path:
-            print(f"\n  ERROR: {PCK_NAME} not found in {game_dir}")
+            print(f"\n  ERROR: none of {', '.join(PCK_NAMES)} found in {game_dir}")
             sys.exit(1)
         if not dll_path:
             print(f"\n  ERROR: {DLL_NAME} not found in {game_dir}")
@@ -345,4 +358,8 @@ Examples:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n  Interrupted.")
+        sys.exit(130)

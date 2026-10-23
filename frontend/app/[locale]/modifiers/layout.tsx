@@ -1,3 +1,7 @@
-export default function ModifiersLayout({ children }: { children: React.ReactNode }) {
+export default function ModifiersLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

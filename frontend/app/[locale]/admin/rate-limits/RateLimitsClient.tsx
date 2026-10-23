@@ -22,7 +22,13 @@ interface Config {
   enabled: boolean;
 }
 
-const PRESETS = ["60/minute", "120/minute", "300/minute", "600/minute", "5/second"];
+const PRESETS = [
+  "60/minute",
+  "120/minute",
+  "300/minute",
+  "600/minute",
+  "5/second",
+];
 
 const TIER_META: { key: string; label: string; hint: string }[] = [
   { key: "general", label: "General", hint: "any issued key" },
@@ -75,7 +81,8 @@ export default function RateLimitsClient() {
       .finally(() => setSaving(false));
   };
 
-  const card = "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4";
+  const card =
+    "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4";
   const input =
     "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm font-mono text-[var(--text-primary)]";
   const goldBtn =
@@ -84,13 +91,17 @@ export default function RateLimitsClient() {
   return (
     <AdminShell title="Rate limits" subtitle="browse cap + API-key tiers">
       <p className="text-sm text-[var(--text-secondary)] mb-4 max-w-2xl">
-        Un-keyed traffic (the website + anonymous) is capped per IP by the browse limit.
-        Requests with an <span className="font-mono">X-API-Key</span> get their key&apos;s
-        tier cap instead. Tighter per-endpoint limits (auth, feedback) always apply on top.
-        Changes go live across all workers within ~15 seconds, no redeploy.
+        Un-keyed traffic (the website + anonymous) is capped per IP by the
+        browse limit. Requests with an{" "}
+        <span className="font-mono">X-API-Key</span> get their key&apos;s tier
+        cap instead. Tighter per-endpoint limits (auth, feedback) always apply
+        on top. Changes go live across all workers within ~15 seconds, no
+        redeploy.
       </p>
 
-      {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>
+      )}
       {cfg === null && !note && (
         <p className="text-sm text-[var(--text-muted)]">Loading…</p>
       )}
@@ -171,19 +182,26 @@ export default function RateLimitsClient() {
               API-key tiers
             </label>
             <div className="text-xs text-[var(--text-muted)] mb-3">
-              Cap per <span className="font-mono">X-API-Key</span>, by the key&apos;s tier, counted per endpoint.
+              Cap per <span className="font-mono">X-API-Key</span>, by the
+              key&apos;s tier, counted per endpoint.
             </div>
             <div className="space-y-2">
               {TIER_META.map((t) => (
                 <div key={t.key} className="flex items-center gap-3">
                   <div className="w-28 shrink-0">
-                    <div className="text-sm text-[var(--text-primary)]">{t.label}</div>
-                    <div className="text-[10px] text-[var(--text-muted)]">{t.hint}</div>
+                    <div className="text-sm text-[var(--text-primary)]">
+                      {t.label}
+                    </div>
+                    <div className="text-[10px] text-[var(--text-muted)]">
+                      {t.hint}
+                    </div>
                   </div>
                   <input
                     type="text"
                     value={tiers[t.key] ?? ""}
-                    onChange={(e) => setTiers({ ...tiers, [t.key]: e.target.value })}
+                    onChange={(e) =>
+                      setTiers({ ...tiers, [t.key]: e.target.value })
+                    }
                     placeholder="60/minute"
                     className={`flex-1 ${input}`}
                   />
@@ -199,8 +217,8 @@ export default function RateLimitsClient() {
               Save tiers
             </button>
             <p className="mt-2 text-xs text-[var(--text-muted)]">
-              Format <span className="font-mono">count/period</span> — e.g. 300/minute,
-              5/second, 10000/hour.
+              Format <span className="font-mono">count/period</span> — e.g.
+              300/minute, 5/second, 10000/hour.
             </p>
           </div>
 
@@ -209,9 +227,10 @@ export default function RateLimitsClient() {
               Endpoint clamps
             </label>
             <div className="text-xs text-[var(--text-muted)] mb-3">
-              Clamp a path prefix when it&apos;s being abused. Longest matching prefix
-              wins and applies to everyone, keyed or not. <span className="font-mono">/api/admin</span>{" "}
-              can&apos;t be clamped.
+              Clamp a path prefix when it&apos;s being abused. Longest matching
+              prefix wins and applies to everyone, keyed or not.{" "}
+              <span className="font-mono">/api/admin</span> can&apos;t be
+              clamped.
             </div>
             <div className="space-y-2">
               {overrides.map((o, i) => (
@@ -241,7 +260,9 @@ export default function RateLimitsClient() {
                   <button
                     type="button"
                     disabled={saving}
-                    onClick={() => setOverrides(overrides.filter((_, j) => j !== i))}
+                    onClick={() =>
+                      setOverrides(overrides.filter((_, j) => j !== i))
+                    }
                     className="px-2.5 py-2 rounded-lg text-sm border border-danger/40 bg-danger/10 text-danger disabled:opacity-50"
                     aria-label="Remove clamp"
                   >
@@ -259,7 +280,9 @@ export default function RateLimitsClient() {
               <button
                 type="button"
                 disabled={saving}
-                onClick={() => setOverrides([...overrides, { path: "", limit: "" }])}
+                onClick={() =>
+                  setOverrides([...overrides, { path: "", limit: "" }])
+                }
                 className="px-4 py-2 rounded-lg text-sm border border-[var(--border-subtle)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] disabled:opacity-50"
               >
                 Add clamp
@@ -267,7 +290,13 @@ export default function RateLimitsClient() {
               <button
                 type="button"
                 disabled={saving}
-                onClick={() => save({ overrides: overrides.filter((o) => o.path.trim() && o.limit.trim()) })}
+                onClick={() =>
+                  save({
+                    overrides: overrides.filter(
+                      (o) => o.path.trim() && o.limit.trim(),
+                    ),
+                  })
+                }
                 className={goldBtn}
               >
                 Save clamps
@@ -280,8 +309,8 @@ export default function RateLimitsClient() {
               Endpoint caps
             </label>
             <div className="text-xs text-[var(--text-muted)] mb-3">
-              Every endpoint&apos;s own cap (formerly hardcoded). Empty means the
-              built-in default shown in grey. These always apply, even with
+              Every endpoint&apos;s own cap (formerly hardcoded). Empty means
+              the built-in default shown in grey. These always apply, even with
               limiting off.
             </div>
             <input
@@ -294,11 +323,15 @@ export default function RateLimitsClient() {
             <div className="space-y-1.5 max-h-96 overflow-y-auto pr-1">
               {Object.keys(epDefaults)
                 .sort()
-                .filter((k) => k.toLowerCase().includes(epFilter.trim().toLowerCase()))
+                .filter((k) =>
+                  k.toLowerCase().includes(epFilter.trim().toLowerCase()),
+                )
                 .map((k) => (
                   <div key={k} className="flex items-center gap-2">
                     <div className="flex-1 min-w-0">
-                      <div className="text-xs font-mono text-[var(--text-primary)] truncate">{k}</div>
+                      <div className="text-xs font-mono text-[var(--text-primary)] truncate">
+                        {k}
+                      </div>
                       <div className="text-[10px] text-[var(--text-muted)]">
                         default {epDefaults[k]}
                       </div>

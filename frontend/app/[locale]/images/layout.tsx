@@ -11,10 +11,18 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/images", title: t("Images - Game Art & Assets"), description: t("images_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/images",
+    title: t("Images - Game Art & Assets"),
+    description: t("images_meta_description"),
+  });
 }
 
-export default async function Layout({ children, params }: Props & { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+  params,
+}: Props & { children: React.ReactNode }) {
   const locale = localeOf((await params).locale);
   const jsonLd = [
     buildBreadcrumbJsonLd([

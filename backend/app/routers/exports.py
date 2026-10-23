@@ -4,12 +4,13 @@ import logging
 import io
 import json
 import os
+import re
 import zipfile
 from datetime import datetime, timezone
 from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import RedirectResponse, StreamingResponse
 from pymongo import ASCENDING
 
 from ..dependencies import VALID_LANGUAGES, shared_limiter
@@ -52,6 +53,8 @@ OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
 # Upper bound on a single page so one request can't ask for the whole corpus
 # while still claiming the cheap (paginated) rate-limit cost.
 MAX_PAGE_LIMIT = 50000
+
+VERSION_RE = re.compile(r"^v\d+(\.\d+)*(-rc\.\d+)?$")
 
 
 def _parse_iso(value: str, field: str) -> datetime:
@@ -100,16 +103,35 @@ def _decode_cursor(token: str):
     return submitted_at, run_hash
 
 
-def _build_match(start, end, cursor) -> dict:
+def _version_param(
+    version: str | None = Query(
+        None,
+        description="Game version (build_id) to export, e.g. v0.111.0.",
+    ),
+) -> str | None:
+    """Validate `version` as a dependency so a malformed value 400s during
+    dependency resolution, before the rate limiter charges the request, in the
+    same phase as the window/cursor params in `_page_params`."""
+    if version is not None and not VERSION_RE.match(version):
+        raise HTTPException(
+            status_code=400, detail="version must look like v0.111.0 or v0.111.0-rc.1"
+        )
+    return version
+
+
+def _build_match(start, end, cursor, version: str | None = None) -> dict:
     """Mongo filter for the export: official runs (an official character in
     the official ascension range; A11+ is modded), an optional half-open
-    [start, end) submitted_at window, and an optional keyset continuation
-    strictly after `cursor`'s (submitted_at, _id)."""
+    [start, end) submitted_at window, an optional keyset continuation
+    strictly after `cursor`'s (submitted_at, _id), and an optional
+    `build_id` pin (indexed) when exporting one game version."""
     clauses: list[dict] = [
         {"character": {"$in": list(OFFICIAL_CHARACTERS)}},
         {"ascension": {"$gte": 0, "$lte": 10}},
         {"hidden": {"$ne": True}},
     ]
+    if version is not None:
+        clauses.append({"build_id": version})
 
     range_q: dict = {}
     if start is not None:
@@ -150,7 +172,11 @@ def _build_match(start, end, cursor) -> dict:
     return clauses[0] if len(clauses) == 1 else {"$and": clauses}
 
 
-def _page_hashes(start, end, cursor, limit):
+def _page_hashes(start, end, cursor, limit, version: str | None = None):
+    """Return (ordered_hashes, next_cursor). Runs are ordered by
+    (submitted_at, _id); next_cursor is None unless a bounded page is full
+    and at least one more run follows it. `version` pins the match to one
+    build_id."""
     """Return (ordered_hashes, next_cursor). Runs are ordered by
     (submitted_at, _id); next_cursor is None unless a bounded page is full
     and at least one more run follows it."""
@@ -158,7 +184,7 @@ def _page_hashes(start, end, cursor, limit):
 
     coll = _get_collection()
     finder = coll.find(
-        _build_match(start, end, cursor),
+        _build_match(start, end, cursor, version),
         {"_id": 1, "submitted_at": 1},
         no_cursor_timeout=True,
     ).sort([("submitted_at", ASCENDING), ("_id", ASCENDING)])
@@ -201,6 +227,24 @@ def _page_params(
     )
 
 
+LAKE_DIR = Path(os.environ.get("LAKE_DIR", "/lake"))
+DUMP_NAME = "runs_export.jsonl.gz"
+DUMP_MANIFEST = "runs_export.json"
+DUMP_PATH = "/exports/runs-latest.jsonl.gz"
+
+
+def dump_manifest() -> dict | None:
+    """The daily full-corpus dump's manifest, when the serving box has pulled
+    one alongside the dump itself; None means the streaming path still owes
+    the full export."""
+    try:
+        if not (LAKE_DIR / DUMP_NAME).exists():
+            return None
+        return json.loads((LAKE_DIR / DUMP_MANIFEST).read_text(encoding="utf-8"))
+    except Exception:
+        return None
+
+
 def _export_cost(request: Request) -> int:
     """Rate-limit cost: a bounded (paginated) pull is cheap; an unbounded full
     dump stays rare. 60 against the 120/hour bucket reproduces the historical
@@ -217,6 +261,19 @@ def _read_file_blob(run_hash: str) -> dict | None:
         return None
 
 
+def _player_tokens(hashes: list[str]) -> dict[str, str | None]:
+    """run_hash -> pseudonymous player token for one export batch. The raw
+    blob carries no account identity, so this is the only place it enters the
+    export, already hashed."""
+    from ..services.player_token import player_token
+    from ..services.runs_db_mongo import _get_collection
+
+    docs = _get_collection().find(
+        {"_id": {"$in": hashes}}, {"username": 1, "user_id": 1, "steam_id": 1}
+    )
+    return {doc["_id"]: player_token(doc) for doc in docs}
+
+
 def _stream_runs_jsonl(hashes):
     """Gzipped JSONL of the requested runs: Mongo blobs first (the canonical
     store, batched like _BlobProvider), per-run file fallback for anything
@@ -231,10 +288,12 @@ def _stream_runs_jsonl(hashes):
     for i in range(0, len(hashes), 300):
         batch = hashes[i : i + 300]
         fetched: dict = {}
+        tokens: dict = {}
         try:
             from ..services.runs_db_mongo import get_run_blobs
 
             fetched = get_run_blobs(batch)
+            tokens = _player_tokens(batch)
         except Exception:
             # SQLite dev mode or a Mongo hiccup: files still serve below.
             fetched = {}
@@ -248,6 +307,7 @@ def _stream_runs_jsonl(hashes):
                 # derived), so stamp it in — consumers link back to
                 # /runs/<run_hash> with it.
                 obj["run_hash"] = run_hash
+                obj["player_token"] = tokens.get(run_hash)
                 gz.write(json.dumps(obj, separators=(",", ":")).encode("utf-8"))
                 gz.write(b"\n")
                 written += 1
@@ -284,15 +344,20 @@ def export_runs(
         description="Max runs in this page. Omit for the full (unbounded) export.",
     ),
     page: tuple = Depends(_page_params),
+    version: str | None = Depends(_version_param),
 ):
     """Bulk export of submitted runs as gzipped JSONL.
 
     Each line is the full raw game JSON as submitted by the client,
     including players, map_point_history, acts, deck, relics, and
-    card_choices. Only runs with official characters are included.
+    card_choices, plus ``run_hash`` and ``player_token``: a stable
+    pseudonymous id for the submitting account (same token across renames,
+    not reversible, ``null`` on anonymous runs). Only runs with official
+    characters are included.
 
     Runs are ordered by ``(submitted_at, _id)``. With no params the response
-    is the full corpus (unchanged behaviour). To pull it in reliable chunks:
+    is the full corpus, served as a redirect to the daily dump (see the last
+    note below). To pull it in reliable chunks:
 
     * ``limit=N`` bounds the page to N runs. When more runs follow, the
       response carries an ``X-Next-Cursor`` header; pass it back as
@@ -302,6 +367,12 @@ def export_runs(
     * ``start`` / ``end`` restrict to a half-open ``[start, end)``
       submitted_at window (e.g. an incremental "everything since my last
       sync"). Combine with ``limit`` to also bound each page.
+    * ``version=v0.111.0`` narrows the export to one game patch. Alone, it
+      redirects to that patch's static file from the manifest's ``versions``
+      map (``/exports/runs-v0.111.0.jsonl.gz``; 404 when the manifest has no
+      such version). Combined with ``limit`` / ``start`` / ``end`` /
+      ``cursor`` it filters the paged pull on the indexed ``build_id``
+      instead, so one patch can also be walked in pages.
 
     Consumer notes:
 
@@ -315,11 +386,46 @@ def export_runs(
       runs that have no ``submitted_at``. Omit both to receive the whole corpus.
     * ``X-Next-Cursor`` is in the CORS ``Access-Control-Expose-Headers`` list,
       so browser clients can read it too; non-browser clients never needed it.
+    * With no params at all the response is a 302 to the daily static dump
+      (``/exports/runs-latest.jsonl.gz``, built once a day, same line shape);
+      ``/api/exports/runs/manifest`` says when it was generated. Only until
+      the first dump exists does the bare call still stream the corpus live.
     """
     start_dt, end_dt, cursor_key = page
 
     (run_export_pages if limit is not None else run_exports).inc()
-    hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit)
+    if limit is None and start_dt is None and end_dt is None and cursor_key is None:
+        manifest = dump_manifest()
+        if manifest is not None:
+            if version is None:
+                return RedirectResponse(
+                    DUMP_PATH,
+                    status_code=302,
+                    headers={
+                        "Cache-Control": "no-store",
+                        "X-Export-Generated-At": str(
+                            manifest.get("generated_at") or ""
+                        ),
+                        "X-Export-Runs": str(manifest.get("runs") or ""),
+                    },
+                )
+            entry = (manifest.get("versions") or {}).get(version)
+            if entry is not None:
+                return RedirectResponse(
+                    entry["url"],
+                    status_code=302,
+                    headers={
+                        "Cache-Control": "no-store",
+                        "X-Export-Generated-At": str(
+                            manifest.get("generated_at") or ""
+                        ),
+                        "X-Export-Runs": str(entry.get("runs") or ""),
+                    },
+                )
+            raise HTTPException(status_code=404, detail="no export for version")
+        if version is not None:
+            raise HTTPException(status_code=404, detail="no export for version")
+    hashes, next_cursor = _page_hashes(start_dt, end_dt, cursor_key, limit, version)
 
     headers = {
         "Content-Disposition": 'attachment; filename="spire-codex-runs.jsonl.gz"',
@@ -333,6 +439,17 @@ def export_runs(
         media_type="application/gzip",
         headers=headers,
     )
+
+
+@router.get("/runs/manifest")
+def export_runs_manifest():
+    """When the daily full-corpus dump was generated, how many runs it holds,
+    where to fetch it, and the per-version files under ``versions`` (newest
+    first). 404 until the first dump has been published."""
+    manifest = dump_manifest()
+    if manifest is None:
+        raise HTTPException(status_code=404, detail="no full export published yet")
+    return {**manifest, "url": DUMP_PATH}
 
 
 @router.get("/{lang}")

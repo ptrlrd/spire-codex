@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useT } from "@/lib/i18n";
 import { buildApiUrl } from "@/lib/fetch-cache";
-import { useChannel } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -59,14 +59,24 @@ const versionLabel = (gv: string) => (/^\d/.test(gv) ? `v${gv}` : gv);
 // markup and drop the rest. Input is HTML-escaped first, so the only tags
 // in the output are the ones written here.
 function bbcodeToHtml(src: string): string {
-  let s = src.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  let s = src
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
   s = s.replace(/\[img\][\s\S]*?\[\/img\]/gi, "");
   s = s.replace(/\[previewyoutube[^\]]*\][\s\S]*?\[\/previewyoutube\]/gi, "");
   s = s.replace(
     /\[url=([^\]]+)\]([\s\S]*?)\[\/url\]/gi,
-    '<a href="$1" target="_blank" rel="noopener noreferrer" class="text-[var(--accent-gold)] hover:underline">$2</a>',
+    (_, href: string, text: string) =>
+      /^https?:\/\//i.test(href.trim())
+        ? `<a href="${href.trim()}" target="_blank" rel="noopener noreferrer" class="text-[var(--accent-gold)] hover:underline">${text}</a>`
+        : text,
   );
-  s = s.replace(/\[(\/?)b\]/gi, (_, close) => (close ? "</strong>" : "<strong>"));
+  s = s.replace(/\[(\/?)b\]/gi, (_, close) =>
+    close ? "</strong>" : "<strong>",
+  );
   s = s.replace(/\[(\/?)i\]/gi, (_, close) => (close ? "</em>" : "<em>"));
   s = s.replace(/\[(\/?)u\]/gi, (_, close) => (close ? "</u>" : "<u>"));
   s = s.replace(/\[(\/?)strike\]/gi, (_, close) => (close ? "</s>" : "<s>"));
@@ -76,7 +86,15 @@ function bbcodeToHtml(src: string): string {
   return s.replace(/\r?\n/g, "<br/>");
 }
 
-function SummaryBadge({ added, removed, changed }: { added: number; removed: number; changed: number }) {
+function SummaryBadge({
+  added,
+  removed,
+  changed,
+}: {
+  added: number;
+  removed: number;
+  changed: number;
+}) {
   const t = useT();
   return (
     <div className="flex gap-2 text-xs">
@@ -102,10 +120,14 @@ function SummaryBadge({ added, removed, changed }: { added: number; removed: num
 function CategorySection({ cat }: { cat: CategoryDiff }) {
   const t = useT();
   const [open, setOpen] = useState(false);
-  const total = (cat.added?.length ?? 0) + (cat.removed?.length ?? 0) + (cat.changed?.length ?? 0);
-  const countDiff = cat.new_count !== cat.old_count
-    ? ` (${cat.old_count} → ${cat.new_count})`
-    : "";
+  const total =
+    (cat.added?.length ?? 0) +
+    (cat.removed?.length ?? 0) +
+    (cat.changed?.length ?? 0);
+  const countDiff =
+    cat.new_count !== cat.old_count
+      ? ` (${cat.old_count} → ${cat.new_count})`
+      : "";
 
   return (
     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
@@ -114,11 +136,18 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
         onClick={() => setOpen(!open)}
       >
         <div className="flex items-center gap-2">
-          <span className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${open ? "rotate-90" : ""}`}>
+          <span
+            className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${open ? "rotate-90" : ""}`}
+          >
             &gt;
           </span>
-          <span className="font-semibold text-[var(--text-primary)]">{cat.name}</span>
-          <span className="text-xs text-[var(--text-muted)]">{t("{n} changes", { n: total })}{countDiff}</span>
+          <span className="font-semibold text-[var(--text-primary)]">
+            {cat.name}
+          </span>
+          <span className="text-xs text-[var(--text-muted)]">
+            {t("{n} changes", { n: total })}
+            {countDiff}
+          </span>
         </div>
         <SummaryBadge
           added={cat.added?.length ?? 0}
@@ -137,19 +166,28 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
               <div className="space-y-1.5">
                 {cat.added.map((e) => {
                   const fields = Object.entries(e).filter(
-                    ([k]) => !["id", "name"].includes(k)
+                    ([k]) => !["id", "name"].includes(k),
                   );
                   return (
                     <details key={e.id} className="group">
                       <summary className="text-xs text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] transition-colors">
-                        <span className="font-medium text-success">{e.name}</span>
+                        <span className="font-medium text-success">
+                          {e.name}
+                        </span>
                       </summary>
                       {fields.length > 0 && (
                         <div className="ml-4 mt-1 space-y-0.5">
                           {fields.map(([k, v]) => (
-                            <div key={k} className="text-[11px] text-[var(--text-muted)]">
-                              <span className="text-[var(--text-secondary)]">{k}:</span>{" "}
-                              <span className="text-success/70">{String(v)}</span>
+                            <div
+                              key={k}
+                              className="text-[11px] text-[var(--text-muted)]"
+                            >
+                              <span className="text-[var(--text-secondary)]">
+                                {k}:
+                              </span>{" "}
+                              <span className="text-success/70">
+                                {String(v)}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -187,16 +225,25 @@ function CategorySection({ cat }: { cat: CategoryDiff }) {
                     <summary className="text-xs text-[var(--text-secondary)] cursor-pointer hover:text-[var(--text-primary)] transition-colors">
                       <span className="font-medium">{e.name}</span>
                       <span className="text-[var(--text-muted)] ml-1">
-                        ({e.changes.length === 1
+                        (
+                        {e.changes.length === 1
                           ? t("{n} field", { n: e.changes.length })
-                          : t("{n} fields", { n: e.changes.length })})
+                          : t("{n} fields", { n: e.changes.length })}
+                        )
                       </span>
                     </summary>
                     <div className="ml-4 mt-1 space-y-0.5">
                       {e.changes.map((c) => (
-                        <div key={c.field} className="text-[11px] text-[var(--text-muted)]">
-                          <span className="text-[var(--text-secondary)]">{c.field}:</span>{" "}
-                          <span className="text-danger/70 line-through">{c.old}</span>{" "}
+                        <div
+                          key={c.field}
+                          className="text-[11px] text-[var(--text-muted)]"
+                        >
+                          <span className="text-[var(--text-secondary)]">
+                            {c.field}:
+                          </span>{" "}
+                          <span className="text-danger/70 line-through">
+                            {c.old}
+                          </span>{" "}
                           <span className="text-[var(--text-muted)]">→</span>{" "}
                           <span className="text-success/70">{c.new}</span>
                         </div>
@@ -234,9 +281,10 @@ export default function ChangelogPage() {
         setChangelogs(data);
         // Check URL hash for a specific version (e.g., #1.0.6)
         const hash = window.location.hash.replace("#", "");
-        const targetTag = hash && data.some((d) => d.tag === hash)
-          ? hash
-          : data[0].tag || data[0].game_version;
+        const targetTag =
+          hash && data.some((d) => d.tag === hash)
+            ? hash
+            : data[0].tag || data[0].game_version;
         if (targetTag) {
           loadVersionDirect(targetTag);
         }
@@ -282,18 +330,28 @@ export default function ChangelogPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{isBeta ? t("Beta Changelog") : t("Changelog")}</span>
+        <span className="text-[var(--accent-gold)]">
+          {isBeta ? t("Beta Changelog") : t("Changelog")}
+        </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
         {isBeta
-          ? t("Track what changes between beta updates, compare patches and see what's new.")
-          : t("Track what changes between game updates, new cards, balance tweaks, removed content, and more.")}
+          ? t(
+              "Track what changes between beta updates, compare patches and see what's new.",
+            )
+          : t(
+              "Track what changes between game updates, new cards, balance tweaks, removed content, and more.",
+            )}
       </p>
 
       {loading ? (
-        <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {t("Loading...")}
+        </div>
       ) : changelogs.length === 0 ? (
-        <div className="text-center py-12 text-[var(--text-muted)]">{t("No changelogs yet.")}</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {t("No changelogs yet.")}
+        </div>
       ) : (
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Version list */}
@@ -316,9 +374,13 @@ export default function ChangelogPage() {
                     <span className="font-medium text-sm">
                       {versionLabel(log.game_version)}
                     </span>
-                    <span className="text-[10px] text-[var(--text-muted)]">{log.date}</span>
+                    <span className="text-[10px] text-[var(--text-muted)]">
+                      {log.date}
+                    </span>
                   </div>
-                  <div className="text-xs text-[var(--text-muted)] mt-0.5">{log.title}</div>
+                  <div className="text-xs text-[var(--text-muted)] mt-0.5">
+                    {log.title}
+                  </div>
                 </button>
               ))}
             </div>
@@ -333,7 +395,9 @@ export default function ChangelogPage() {
                     <h2 className="text-xl font-bold text-[var(--text-primary)]">
                       {versionLabel(selected.game_version)}
                     </h2>
-                    <span className="text-sm text-[var(--text-muted)]">{selected.date}</span>
+                    <span className="text-sm text-[var(--text-muted)]">
+                      {selected.date}
+                    </span>
                     <button
                       onClick={copyLink}
                       className="ml-auto text-xs px-2.5 py-1 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
@@ -342,7 +406,9 @@ export default function ChangelogPage() {
                       {copied ? t("Copied!") : t("Share")}
                     </button>
                   </div>
-                  <p className="text-sm text-[var(--text-secondary)] mb-2">{selected.title}</p>
+                  <p className="text-sm text-[var(--text-secondary)] mb-2">
+                    {selected.title}
+                  </p>
                   {selected.steam_url && (
                     <a
                       href={selected.steam_url}
@@ -360,7 +426,9 @@ export default function ChangelogPage() {
                       </summary>
                       <div
                         className="px-4 pb-4 text-sm text-[var(--text-secondary)] leading-relaxed"
-                        dangerouslySetInnerHTML={{ __html: bbcodeToHtml(selected.notes) }}
+                        dangerouslySetInnerHTML={{
+                          __html: bbcodeToHtml(selected.notes),
+                        }}
                       />
                     </details>
                   )}
@@ -376,7 +444,9 @@ export default function ChangelogPage() {
                       </a>
                     )}
                     {selected.build_id && (
-                      <span>{t("Build ID:")} {selected.build_id}</span>
+                      <span>
+                        {t("Build ID:")} {selected.build_id}
+                      </span>
                     )}
                   </div>
                   <SummaryBadge {...selected.summary} />
@@ -386,12 +456,17 @@ export default function ChangelogPage() {
                   {selected.features && selected.features.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-success">{t("Features")}</span>
+                        <span className="font-semibold text-success">
+                          {t("Features")}
+                        </span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.features.map((f, i) => (
-                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                            <li
+                              key={i}
+                              className="text-sm text-[var(--text-secondary)] flex gap-2"
+                            >
                               <span className="text-success shrink-0">+</span>
                               {f}
                             </li>
@@ -404,12 +479,17 @@ export default function ChangelogPage() {
                   {selected.fixes && selected.fixes.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-warning">{t("Fixes")}</span>
+                        <span className="font-semibold text-warning">
+                          {t("Fixes")}
+                        </span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.fixes.map((f, i) => (
-                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                            <li
+                              key={i}
+                              className="text-sm text-[var(--text-secondary)] flex gap-2"
+                            >
                               <span className="text-warning shrink-0">~</span>
                               {f}
                             </li>
@@ -422,12 +502,17 @@ export default function ChangelogPage() {
                   {selected.api_changes && selected.api_changes.length > 0 && (
                     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
                       <div className="px-4 py-2.5">
-                        <span className="font-semibold text-info">{t("API Changes")}</span>
+                        <span className="font-semibold text-info">
+                          {t("API Changes")}
+                        </span>
                       </div>
                       <div className="border-t border-[var(--border-subtle)] px-4 py-3">
                         <ul className="space-y-1.5">
                           {selected.api_changes.map((f, i) => (
-                            <li key={i} className="text-sm text-[var(--text-secondary)] flex gap-2">
+                            <li
+                              key={i}
+                              className="text-sm text-[var(--text-secondary)] flex gap-2"
+                            >
                               <span className="text-info shrink-0">&gt;</span>
                               {f}
                             </li>
@@ -451,14 +536,18 @@ export default function ChangelogPage() {
                       <div className="border border-[var(--border-subtle)] rounded-lg px-4 py-6 text-center text-sm text-[var(--text-muted)]">
                         {t("No entity changes detected in this build.")}
                         <div className="mt-1 text-xs">
-                          {t("Likely an internal refactor with no gameplay-facing data.")}
+                          {t(
+                            "Likely an internal refactor with no gameplay-facing data.",
+                          )}
                         </div>
                       </div>
                     )}
                 </div>
               </>
             ) : (
-              <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading version...")}</div>
+              <div className="text-center py-12 text-[var(--text-muted)]">
+                {t("Loading version...")}
+              </div>
             )}
           </div>
         </div>

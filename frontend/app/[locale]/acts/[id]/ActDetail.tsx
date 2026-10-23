@@ -1,12 +1,17 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Act } from "@/lib/api";
+import {
+  useState,
+  useEffect,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Act } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
@@ -15,7 +20,9 @@ import "@/app/meta-extra.css";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function ActDetail({ initialAct }: { initialAct?: Act | null } = {}) {
+export default function ActDetail({
+  initialAct,
+}: { initialAct?: Act | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -39,7 +46,9 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
     if (!act) return;
-    const secs = Array.from(document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"));
+    const secs = Array.from(
+      document.querySelectorAll<HTMLElement>(".card-rvmp section[id]"),
+    );
     if (secs.length === 0) return;
     const obs = new IntersectionObserver(
       (entries) => {
@@ -74,25 +83,37 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
     return (
       <div className="max-w-3xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">{t("Act not found.")}</p>
-        <Link prefetch={false} href={`${bp}/reference`} className="text-[var(--accent-gold)] hover:underline">
+        <Link
+          prefetch={false}
+          href={`${bp}/reference`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Reference")}
         </Link>
       </div>
     );
   }
 
-  const titleCase = (s: string) => s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  const titleCase = (s: string) =>
+    s.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 
   const tocItems: { id: string; label: string }[] = [
     ...(act.bosses.length > 0 ? [{ id: "bosses", label: t("Bosses") }] : []),
-    ...(act.encounters.length > 0 ? [{ id: "encounters", label: t("Encounters") }] : []),
+    ...(act.encounters.length > 0
+      ? [{ id: "encounters", label: t("Encounters") }]
+      : []),
     ...(act.events.length > 0 ? [{ id: "events", label: t("Events") }] : []),
-    ...(act.ancients.length > 0 ? [{ id: "ancients", label: t("Ancients") }] : []),
+    ...(act.ancients.length > 0
+      ? [{ id: "ancients", label: t("Ancients") }]
+      : []),
     { id: "history", label: t("Version history") },
   ];
 
   return (
-    <div className="card-rvmp" style={{ "--spine": "var(--accent-gold)" } as CSSProperties}>
+    <div
+      className="card-rvmp"
+      style={{ "--spine": "var(--accent-gold)" } as CSSProperties}
+    >
       <div className="cd-top solo">
         <button onClick={() => router.back()} className="cd-back">
           &larr; {t("Back to")} {t("Reference")}
@@ -135,10 +156,17 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
           {/* Bosses */}
           {act.bosses.length > 0 && (
             <section id="bosses">
-              <h2>{t("Bosses")} ({act.bosses.length})</h2>
+              <h2>
+                {t("Bosses")} ({act.bosses.length})
+              </h2>
               <div className="chips">
                 {act.bosses.map((b) => (
-                  <Link prefetch={false} key={b} href={`${bp}/encounters/${b.toLowerCase()}`} className="chip">
+                  <Link
+                    prefetch={false}
+                    key={b}
+                    href={`${bp}/encounters/${b.toLowerCase()}`}
+                    className="chip"
+                  >
                     <span className="pip" style={{ background: "#b3423a" }} />
                     {titleCase(b).replace(/ Boss$/, "")}
                   </Link>
@@ -150,10 +178,17 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
           {/* Encounters */}
           {act.encounters.length > 0 && (
             <section id="encounters">
-              <h2>{t("Encounters")} ({act.encounters.length})</h2>
+              <h2>
+                {t("Encounters")} ({act.encounters.length})
+              </h2>
               <div className="chips">
                 {act.encounters.map((e) => (
-                  <Link prefetch={false} key={e} href={`${bp}/encounters/${e.toLowerCase()}`} className="chip">
+                  <Link
+                    prefetch={false}
+                    key={e}
+                    href={`${bp}/encounters/${e.toLowerCase()}`}
+                    className="chip"
+                  >
                     <span className="pip" />
                     {titleCase(e).replace(/ (Normal|Weak|Elite|Boss)$/, "")}
                   </Link>
@@ -165,10 +200,17 @@ export default function ActDetail({ initialAct }: { initialAct?: Act | null } = 
           {/* Events */}
           {act.events.length > 0 && (
             <section id="events">
-              <h2>{t("Events")} ({act.events.length})</h2>
+              <h2>
+                {t("Events")} ({act.events.length})
+              </h2>
               <div className="chips">
                 {act.events.map((e) => (
-                  <Link prefetch={false} key={e} href={`${bp}/events/${e.toLowerCase()}`} className="chip">
+                  <Link
+                    prefetch={false}
+                    key={e}
+                    href={`${bp}/events/${e.toLowerCase()}`}
+                    className="chip"
+                  >
                     <span className="pip" style={{ background: "#4f7fb3" }} />
                     {titleCase(e)}
                   </Link>

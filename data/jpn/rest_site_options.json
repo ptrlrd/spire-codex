@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "複製"
+  },
+  {
+    "id": "COOK",
+    "name": "料理"
+  },
+  {
+    "id": "DIG",
+    "name": "発掘"
+  },
+  {
+    "id": "HATCH",
+    "name": "ふ化"
+  },
+  {
+    "id": "HEAL",
+    "name": "休憩"
+  },
+  {
+    "id": "KINDLE",
+    "name": "火を灯す"
+  },
+  {
+    "id": "LIFT",
+    "name": "鍛錬"
+  },
+  {
+    "id": "MEND",
+    "name": "治療"
+  },
+  {
+    "id": "SMITH",
+    "name": "鍛冶"
+  }
+]

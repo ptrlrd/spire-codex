@@ -21,7 +21,10 @@ export function authHeaders(): Record<string, string> {
   return headers;
 }
 
-export async function adminFetch<T>(path: string, init: RequestInit = {}): Promise<T> {
+export async function adminFetch<T>(
+  path: string,
+  init: RequestInit = {},
+): Promise<T> {
   const res = await fetch(`${API}${path}`, {
     credentials: "include",
     ...init,
@@ -70,7 +73,10 @@ function cachedGate(): Me | null {
   return null;
 }
 
-export function useAdminGate(): { state: "loading" | "denied" | "ok"; me: Me | null } {
+export function useAdminGate(): {
+  state: "loading" | "denied" | "ok";
+  me: Me | null;
+} {
   const cached = cachedGate();
   const [state, setState] = useState<"loading" | "denied" | "ok">(
     cached ? "ok" : "loading",
@@ -78,7 +84,10 @@ export function useAdminGate(): { state: "loading" | "denied" | "ok"; me: Me | n
   const [me, setMe] = useState<Me | null>(cached);
   useEffect(() => {
     if (cachedGate()) return;
-    fetch(`${API}/api/auth/me`, { credentials: "include", headers: authHeaders() })
+    fetch(`${API}/api/auth/me`, {
+      credentials: "include",
+      headers: authHeaders(),
+    })
       .then((r) => (r.ok ? r.json() : null))
       .then((m: Me | null) => {
         if (!m?.is_admin) {
@@ -102,8 +111,12 @@ export function useAdminGate(): { state: "loading" | "denied" | "ok"; me: Me | n
 function NotFound() {
   return (
     <div className="max-w-2xl mx-auto px-4 py-24 text-center">
-      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">404</h1>
-      <p className="text-sm text-[var(--text-muted)]">This page does not exist.</p>
+      <h1 className="text-3xl font-bold text-[var(--text-primary)] mb-2">
+        404
+      </h1>
+      <p className="text-sm text-[var(--text-muted)]">
+        This page does not exist.
+      </p>
     </div>
   );
 }
@@ -115,6 +128,7 @@ const SECTIONS = [
   { href: "/admin/feedback", label: "Feedback" },
   { href: "/admin/guides", label: "Guides" },
   { href: "/admin/banners", label: "Banners" },
+  { href: "/admin/thanks", label: "Thank You" },
   { href: "/admin/news", label: "Site news" },
   { href: "/admin/analytics", label: "Analytics" },
   { href: "/admin/searches", label: "Searches" },
@@ -174,12 +188,26 @@ export function AdminShell({
   );
 }
 
-export function Card({ label, value, sub }: { label: string; value: string; sub?: string }) {
+export function Card({
+  label,
+  value,
+  sub,
+}: {
+  label: string;
+  value: string;
+  sub?: string;
+}) {
   return (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
-      <div className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">{value}</div>
-      <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mt-1">{label}</div>
-      {sub && <div className="text-xs text-[var(--text-secondary)] mt-1">{sub}</div>}
+      <div className="text-2xl font-bold text-[var(--accent-gold)] tabular-nums">
+        {value}
+      </div>
+      <div className="text-xs uppercase tracking-wider text-[var(--text-muted)] mt-1">
+        {label}
+      </div>
+      {sub && (
+        <div className="text-xs text-[var(--text-secondary)] mt-1">{sub}</div>
+      )}
     </div>
   );
 }

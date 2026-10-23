@@ -1,15 +1,37 @@
 import type { Metadata } from "next";
 import { Link } from "@/i18n/navigation";
-import { SITE_URL, SITE_NAME, DEFAULT_OG_IMAGE, buildLanguageAlternates } from "@/lib/seo";
+import {
+  SITE_URL,
+  SITE_NAME,
+  DEFAULT_OG_IMAGE,
+  GAME_NAME,
+  buildLanguageAlternates,
+  pageHeading,
+} from "@/lib/seo";
+import { fmtDatePacific } from "@/lib/pacific";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import TierList, { type TierEntity } from "@/app/components/TierList";
 import BracketFilter from "@/app/components/BracketFilter";
-import { bracketParam, normalizeBracket } from "@/lib/content-brackets";
+import {
+  bracketParam,
+  bracketQuery,
+  defaultBracket,
+} from "@/lib/content-brackets";
 import { getT } from "@/lib/i18n-server";
-import { gameNameFor, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import {
+  gameNameFor,
+  hreflangOf,
+  langQuery,
+  localeOf,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 // Scores refresh on the backend every 60s; 5min HTML cache keeps
 // edge responses sub-25ms without showing painfully stale data.
@@ -19,20 +41,27 @@ interface ApiCard {
   id: string;
   name: string;
   image_url: string | null;
+  color?: string;
 }
 
 interface ScoresMap {
-  [id: string]: { score: number | null; elo: number | null; picks: number; wins: number; win_rate: number };
+  [id: string]: {
+    score: number | null;
+    elo: number | null;
+    picks: number;
+    wins: number;
+    win_rate: number;
+  };
 }
 
 const COLOR_FILTERS = [
-  { value: "",            label: "All cards" },
-  { value: "ironclad",    label: "Ironclad" },
-  { value: "silent",      label: "Silent" },
-  { value: "defect",      label: "Defect" },
+  { value: "", label: "All cards" },
+  { value: "ironclad", label: "Ironclad" },
+  { value: "silent", label: "Silent" },
+  { value: "defect", label: "Defect" },
   { value: "necrobinder", label: "Necrobinder" },
-  { value: "regent",      label: "Regent" },
-  { value: "colorless",   label: "Colorless" },
+  { value: "regent", label: "Regent" },
+  { value: "colorless", label: "Colorless" },
 ];
 
 type SortMode = "score" | "elo";
@@ -41,12 +70,15 @@ type SortMode = "score" | "elo";
 // fixed Elo thresholds would dump almost everything into one band. Instead the
 // Elo view bands by percentile rank within the rated pool: the top slice is S,
 // and so on. Cumulative upper bounds, walked in order.
-const ELO_TIER_BANDS: { letter: "S" | "A" | "B" | "C" | "D" | "F"; maxPct: number }[] = [
-  { letter: "S", maxPct: 0.10 },
+const ELO_TIER_BANDS: {
+  letter: "S" | "A" | "B" | "C" | "D" | "F";
+  maxPct: number;
+}[] = [
+  { letter: "S", maxPct: 0.1 },
   { letter: "A", maxPct: 0.25 },
-  { letter: "B", maxPct: 0.50 },
+  { letter: "B", maxPct: 0.5 },
   { letter: "C", maxPct: 0.75 },
-  { letter: "D", maxPct: 0.90 },
+  { letter: "D", maxPct: 0.9 },
   { letter: "F", maxPct: 1.0 },
 ];
 
@@ -56,6 +88,7 @@ interface BaseCard {
   image_url: string | null;
   score: number | null;
   elo: number | null;
+  color?: string;
 }
 
 // Band cards by Codex Elo percentile. Only cards with an Elo are shown: Elo
@@ -88,7 +121,10 @@ interface PageProps {
   searchParams: Promise<{ color?: string; sort?: string; bracket?: string }>;
 }
 
-export async function generateMetadata({ params, searchParams }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: PageProps): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const sp = await searchParams;
@@ -96,17 +132,27 @@ export async function generateMetadata({ params, searchParams }: PageProps): Pro
   const charLabel = COLOR_FILTERS.find((c) => c.value === color)?.label;
   const char = charLabel ? t(charLabel) : "";
   const scope = charLabel && color ? t("{char} Cards", { char }) : t("Cards");
-  // Title leads with STS2 abbreviation + full game name to capture both
-  // query phrasings ("sts2 tier list" vs "slay the spire 2 tier list").
-  const title = `${t("{scope} Tier List", { scope })} - ${gameNameFor(locale)} | ${SITE_NAME}`;
+  const title =
+    locale === "eng"
+      ? `${GAME_NAME} ${charLabel && color ? `${charLabel} ` : ""}Card Tier List (${fmtDatePacific(new Date(), { month: "long", year: "numeric" }, "en-US")}) | ${SITE_NAME}`
+      : `${t("{scope} Tier List", { scope })} - ${gameNameFor(locale)} | ${SITE_NAME}`;
   const description = color
-    ? t("{char} card tier list for {game}. Every {char} card ranked S through F based on community win-rate data.", { char, game: gameNameFor(locale) })
-    : t("Every {game} card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.", { game: gameNameFor(locale) });
+    ? t(
+        "{char} card tier list for {game}. Every {char} card ranked S through F based on community win-rate data.",
+        { char, game: gameNameFor(locale) },
+      )
+    : t(
+        "Every {game} card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.",
+        { game: gameNameFor(locale) },
+      );
   const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
   return {
     title,
     description,
-    alternates: { canonical: `${SITE_URL}${localePath(locale, path)}`, languages: buildLanguageAlternates(`${path}`) },
+    alternates: {
+      canonical: `${SITE_URL}${localePath(locale, path)}`,
+      languages: buildLanguageAlternates(`${path}`),
+    },
     openGraph: {
       title,
       description,
@@ -143,13 +189,16 @@ async function fetchData(
   }
 }
 
-export default async function CardsTierListPage({ params, searchParams }: PageProps) {
+export default async function CardsTierListPage({
+  params,
+  searchParams,
+}: PageProps) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
   const sp = await searchParams;
   const color = sp.color?.toLowerCase();
   const sort: SortMode = sp.sort === "elo" ? "elo" : "score";
-  const bracket = normalizeBracket(sp.bracket);
+  const bracket = defaultBracket(sp.bracket);
   const param = bracketParam(bracket);
   const { cards, scores } = await fetchData(locale, color, param);
 
@@ -169,6 +218,7 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
         image_url: c.image_url,
         score: sc?.score ?? null,
         elo: sc?.elo ?? null,
+        color: c.color,
       };
     });
 
@@ -177,10 +227,18 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
   const entities: TierEntity[] =
     sort === "elo"
       ? eloTiered(base)
-      : base.map(({ id, name, image_url, score }) => ({ id, name, image_url, score }));
+      : base.map(({ id, name, image_url, score }) => ({
+          id,
+          name,
+          image_url,
+          score,
+        }));
 
   const charLabel = COLOR_FILTERS.find((c) => c.value === color)?.label;
-  const heading = charLabel && color ? t("{char} Card Tier List", { char: t(charLabel) }) : t("Card Tier List");
+  const heading =
+    charLabel && color
+      ? t("{char} Card Tier List", { char: t(charLabel) })
+      : t("Card Tier List");
   // Canonical path is the Codex Score view; the ?sort=elo variant shares it
   // (set in generateMetadata) so the two don't read as duplicate content.
   const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
@@ -189,11 +247,25 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
     const params = new URLSearchParams();
     if (color) params.set("color", color);
     if (s === "elo") params.set("sort", "elo");
-    if (bracket !== "all") params.set("bracket", bracket);
+    const bq = bracketQuery(bracket);
+    if (bq) params.set("bracket", bq);
     const qs = params.toString();
     return `/tier-list/cards${qs ? `?${qs}` : ""}`;
   };
   const metric = sort === "elo" ? "Codex Elo" : "Codex Score";
+  const byCharacter =
+    !color && sort === "score"
+      ? COLOR_FILTERS.filter((c) => c.value).map((c) => ({
+          ...c,
+          top: base
+            .filter((e) => e.color === c.value && e.score != null)
+            .sort(
+              (a, b) =>
+                (b.score ?? 0) - (a.score ?? 0) || (b.elo ?? 0) - (a.elo ?? 0),
+            )
+            .slice(0, 5),
+        }))
+      : [];
 
   // Top-30 for the ItemList JSON-LD, gives Google a structured ranked list
   // it can render as carousel-style rich results. Capped at 30 because
@@ -201,7 +273,9 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
   const rankedItems = [...base]
     .filter((e) => (sort === "elo" ? e.elo != null : e.score != null))
     .sort((a, b) =>
-      sort === "elo" ? (b.elo ?? 0) - (a.elo ?? 0) : (b.score ?? 0) - (a.score ?? 0),
+      sort === "elo"
+        ? (b.elo ?? 0) - (a.elo ?? 0)
+        : (b.score ?? 0) - (a.score ?? 0),
     )
     .slice(0, 30)
     .map((e) => ({
@@ -217,7 +291,10 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
     ]),
     buildCollectionPageJsonLd({
       name: heading,
-      description: t("{game} {heading} ranked by {metric} from community-submitted run data.", { game: gameNameFor(locale), heading, metric }),
+      description: t(
+        "{game} {heading} ranked by {metric} from community-submitted run data.",
+        { game: gameNameFor(locale), heading, metric },
+      ),
       path: localePath(locale, path),
       items: rankedItems,
     }),
@@ -229,20 +306,48 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
 
       <div className="flex items-baseline gap-3 mb-2 flex-wrap">
         <h1 className="text-3xl font-bold">
-          <span className="text-[var(--accent-gold)]">{heading}</span>
+          <span className="text-[var(--accent-gold)]">
+            {pageHeading(locale, heading)}
+          </span>
         </h1>
-        <span className="text-sm text-[var(--text-muted)]">{t("{n} cards", { n: entities.length.toLocaleString() })}</span>
+        <span className="text-sm text-[var(--text-muted)]">
+          {t("{n} cards", { n: entities.length.toLocaleString() })}
+          {" · "}
+          {t("Updated {date}", {
+            date: fmtDatePacific(
+              new Date(),
+              { month: "long", day: "numeric", year: "numeric" },
+              hreflangOf(locale),
+            ),
+          })}
+        </span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-4">
         {sort === "elo" ? (
           <>
-            {t("Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.")}{" "}
-            <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">{t("How is the score calculated?")}</Link>
+            {t(
+              "Ranked by Codex Elo, a revealed-preference rating from which cards players take over the ones they skip. Banded by percentile, so S is the most-drafted slice. Skill-agnostic and not exposure-weighted, so it dodges the biases the win-rate Score carries.",
+            )}{" "}
+            <Link
+              prefetch={false}
+              href="/stats/scoring"
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              {t("How is the score calculated?")}
+            </Link>
           </>
         ) : (
           <>
-            {t("Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.")}{" "}
-            <Link href="/leaderboards/scoring#limitations" className="text-[var(--accent-gold)] hover:underline">{t("Known biases")}</Link>
+            {t(
+              "Ranked by Codex Score, community-submitted run win rates, Bayesian-shrunk so low-pick cards stay near neutral. It's a naive win-rate signal with known biases (high-exposure staples sink, late rares float), not a verdict, switch to Codex Elo for the less-confounded view. Click any card for full stats.",
+            )}{" "}
+            <Link
+              prefetch={false}
+              href="/stats/scoring#limitations"
+              className="text-[var(--accent-gold)] hover:underline"
+            >
+              {t("Known biases")}
+            </Link>
           </>
         )}
       </p>
@@ -251,14 +356,19 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
           a win-rate outcome signal, Elo is a draft-preference signal, and the
           two are near-uncorrelated, so we never collapse them to one number. */}
       <div className="flex flex-wrap items-center gap-1.5 mb-5">
-        <span className="text-xs text-[var(--text-muted)] mr-1">{t("Rank by")}</span>
-        {([
-          { value: "score", label: "Codex Score" },
-          { value: "elo", label: "Codex Elo" },
-        ] as const).map((opt) => {
+        <span className="text-xs text-[var(--text-muted)] mr-1">
+          {t("Rank by")}
+        </span>
+        {(
+          [
+            { value: "score", label: "Codex Score" },
+            { value: "elo", label: "Codex Elo" },
+          ] as const
+        ).map((opt) => {
           const isActive = sort === opt.value;
           return (
             <Link
+              prefetch={false}
               key={opt.value}
               rel="nofollow"
               href={sortHref(opt.value)}
@@ -277,17 +387,21 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
       {/* Character filter, anchor links so each filtered view is its
           own indexable URL (good for "ironclad tier list" SEO). */}
       <div className="flex flex-wrap items-center gap-1.5 mb-6">
-        <span className="text-xs text-[var(--text-muted)] mr-1">{t("Characters")}</span>
+        <span className="text-xs text-[var(--text-muted)] mr-1">
+          {t("Characters")}
+        </span>
         {COLOR_FILTERS.map((opt) => {
           const isActive = (color ?? "") === opt.value;
           const params = new URLSearchParams();
           if (opt.value) params.set("color", opt.value);
           if (sort === "elo") params.set("sort", "elo");
-          if (bracket !== "all") params.set("bracket", bracket);
+          const bq = bracketQuery(bracket);
+          if (bq) params.set("bracket", bq);
           const qs = params.toString();
           const href = `/tier-list/cards${qs ? `?${qs}` : ""}`;
           return (
             <Link
+              prefetch={false}
               key={opt.value || "all"}
               href={href}
               className={`text-xs px-3 py-1.5 rounded-md border transition-colors ${
@@ -311,7 +425,58 @@ export default async function CardsTierListPage({ params, searchParams }: PagePr
         modeComposes
       />
 
-      <TierList route="cards" entities={entities} valueLabel={sort === "elo" ? "Elo" : "Score"} />
+      <TierList
+        route="cards"
+        entities={entities}
+        valueLabel={sort === "elo" ? "Elo" : "Score"}
+      />
+
+      {byCharacter.some((c) => c.top.length) && (
+        <section className="mt-10">
+          <h2 className="text-xl font-semibold mb-4">
+            {t("Top-tier Cards right now")}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {byCharacter
+              .filter((c) => c.top.length)
+              .map((c) => (
+                <div
+                  key={c.value}
+                  className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
+                >
+                  <h3 className="text-sm font-semibold mb-2">
+                    <Link
+                      prefetch={false}
+                      href={`/tier-list/cards?color=${c.value}`}
+                      className="text-[var(--accent-gold)] hover:underline"
+                    >
+                      {t("{char} Card Tier List", { char: t(c.label) })}
+                    </Link>
+                  </h3>
+                  <ol className="space-y-1 text-sm">
+                    {c.top.map((e, i) => (
+                      <li key={e.id} className="flex items-baseline gap-2">
+                        <span className="w-4 text-[var(--text-muted)] tabular-nums">
+                          {i + 1}.
+                        </span>
+                        <Link
+                          prefetch={false}
+                          href={`/cards/${e.id.toLowerCase()}`}
+                          className="text-[var(--text-primary)] hover:text-[var(--accent-gold)]"
+                        >
+                          {e.name}
+                        </Link>
+                        <span className="ml-auto text-xs font-mono tabular-nums text-[var(--text-muted)]">
+                          {Math.round(e.score ?? 0)}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              ))}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

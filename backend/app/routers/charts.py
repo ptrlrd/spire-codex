@@ -1,4 +1,4 @@
-"""Charts API: pre-aggregated run data for the /charts explorer page.
+"""Charts API: pre-aggregated run data for the /stats/charts explorer page.
 
 Every endpoint returns a small, ready-to-plot payload:
 { chart, params, series: [{id, label, points: [{x, y, n?}]}], total_runs }
@@ -17,13 +17,17 @@ import re
 import time
 
 from fastapi import APIRouter, HTTPException, Query, Request, Response
+from pydantic import BaseModel, ConfigDict, Field
+from typing import Literal
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
-
 from ..services import cache as app_cache
 from ..services import charts_stats as cs
+
 from ..services.run_entity_stats import (
     _BRACKET_KEYS,
+    UnknownBracket,
+    ensure_known_bracket,
     get_charts_blob_stats,
     get_recent_stat_versions,
 )
@@ -49,6 +53,8 @@ _WARM_TTL = 8 * 60 * 60
 
 _ALL_SPLITS = ["character", "players", "outcome", "ascension"]
 # Win-rate charts can't split by outcome (a winners-only win rate is 100%).
+_ALL_RUNS_CHARTS = frozenset({"runs-over-time", "uploads-over-time"})
+
 _RATE_SPLITS = ["character", "players", "ascension"]
 
 # Registry: which charts exist, how they're built, and which filters apply.
@@ -248,12 +254,22 @@ CHARTS: dict[str, dict] = {
     },
     # ── Volume / distributions (frame) ──
     "runs-over-time": {
-        "label": "Runs submitted over time",
+        "label": "Runs played over time",
         "group": "Volume",
         "kind": "frame",
+        "ma": True,
         "splits": _ALL_SPLITS,
         "axis": {"x": "Week", "y": "Runs"},
-        "desc": "Weekly submission volume.",
+        "desc": "Weekly runs by the date they were played.",
+    },
+    "uploads-over-time": {
+        "label": "Runs uploaded over time",
+        "group": "Volume",
+        "kind": "frame",
+        "ma": True,
+        "splits": _ALL_SPLITS,
+        "axis": {"x": "Week", "y": "Runs"},
+        "desc": "Weekly runs by the date they reached Spire Codex.",
     },
     "stat-histogram": {
         "label": "Run stat distribution",
@@ -305,6 +321,7 @@ def charts_meta(request: Request):
                 "horizontal": c.get("horizontal", False),
                 "daily": c.get("daily", False),
                 "etype_fixed": c.get("etype_fixed"),
+                "ma": c.get("ma", False),
                 "axis": c["axis"],
                 "desc": c["desc"],
             }
@@ -321,36 +338,38 @@ def charts_meta(request: Request):
 
 def _build_frame_chart(
     key: str,
-    rows: list[tuple],
+    fq: cs.FrameQuery,
     stat: str | None,
     x: str | None,
     y: str | None,
     split: str,
 ):
     if key == "winrate-by-floor":
-        return cs.winrate_by_floor(rows, split)
+        return cs.winrate_by_floor(fq, split)
     if key == "winrate-over-time":
-        return cs.winrate_over_time(rows, split)
+        return cs.winrate_over_time(fq, split)
     if key == "runs-over-time":
-        return cs.runs_over_time(rows, split)
+        return cs.runs_over_time(fq, split)
+    if key == "uploads-over-time":
+        return cs.runs_over_time(fq, split, "upload_day")
     if key == "deaths-by-floor":
-        return cs.deaths_by_floor(rows, split)
+        return cs.deaths_by_floor(fq, split)
     if key == "winrate-by-ascension":
-        return cs.winrate_by_stat(rows, "ascension", split)
+        return cs.winrate_by_stat(fq, "ascension", split)
     if key == "winrate-by-stat":
-        return cs.winrate_by_stat(rows, stat or "deck_size", split)
+        return cs.winrate_by_stat(fq, stat or "deck_size", split)
     if key == "stat-histogram":
-        return cs.stat_histogram(rows, stat or "floors_reached", split)
+        return cs.stat_histogram(fq, stat or "floors_reached", split)
     if key == "time-to-win":
-        return cs.time_to_win(rows, split)
+        return cs.time_to_win(fq, split)
     if key == "avg-win-time-daily":
-        return cs.time_to_win_daily(rows, split)
+        return cs.time_to_win_daily(fq, split)
     if key == "stat-scatter":
-        return cs.stat_scatter(rows, x or "floors_reached", y or "deck_size", split)
+        return cs.stat_scatter(fq, x or "floors_reached", y or "deck_size", split)
     if key == "acts-funnel":
-        return cs.acts_funnel(rows, split)
+        return cs.acts_funnel(fq, split)
     if key == "hardest-dailies":
-        return cs.hardest_dailies(rows)
+        return cs.hardest_dailies(fq)
     raise HTTPException(status_code=404, detail="Unknown chart")
 
 
@@ -450,16 +469,21 @@ def _compute_chart(
     building = False
     if spec["kind"] == "frame":
         mode = "daily" if spec.get("daily") else game_mode
-        frame = cs.get_frame()
-        rows = cs.filter_rows(
-            frame, players, ascension, mode, username, bracket, build_id
+        cs.get_frame()
+        fq = cs.frame_query(
+            players,
+            ascension,
+            mode,
+            username,
+            bracket,
+            build_id,
+            include_short_abandons=chart_key in _ALL_RUNS_CHARTS,
         )
-        series = _build_frame_chart(chart_key, rows, stat, x, y, split)
-        total = len(rows)
+        series = _build_frame_chart(chart_key, fq, stat, x, y, split)
+        total = cs.frame_count(fq)
         # A cold worker's frame is still loading in the background; say so
         # instead of caching a bogus empty chart for the full TTL.
-        if not frame and cs.frame_loading():
-            building = True
+        building = fq.con is None
     else:
         # Blob charts: snapshot rollup (sliced to the requested content bracket
         # and/or game version — the v20 blob keeps bracket x version buckets),
@@ -521,7 +545,7 @@ def _compute_chart(
 
 def prewarm_charts(budget_s: float | None = None) -> int:
     """Precompute chart payloads into the shared cache so filter clicks on
-    /charts serve from Redis instead of aggregating live.
+    /stats/charts serve from Redis instead of aggregating live.
 
     Greedy with a time budget: the slice list covers EVERY combination the
     UI can request — the unfiltered default, each bracket (plain and
@@ -650,6 +674,133 @@ def prewarm_charts(budget_s: float | None = None) -> int:
     return warmed
 
 
+# ── saved charts (chart builder) ─────────────────────────────────────────
+
+
+class SavedChartFilters(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    search: str | None = Field(None, max_length=60)
+    group: str | None = Field(None, max_length=30)
+    rarity: str | None = Field(None, max_length=30)
+    min_sample: int | None = Field(None, ge=0, le=100000)
+
+
+class SavedChartSpec(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    source: Literal["cards", "relics", "potions", "shops", "events", "campfires"]
+    bracket: str = Field(max_length=80)
+    character: (
+        Literal["IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"] | None
+    ) = None
+    chart: Literal["bar", "scatter", "hbar"]
+    x: str = Field(max_length=80)
+    y: Literal[
+        "win_rate",
+        "lift",
+        "elo",
+        "pick_rate",
+        "hold_rate",
+        "picks",
+        "score",
+        "buy_rate",
+        "share",
+        "use_rate",
+    ]
+    filters: SavedChartFilters = Field(default_factory=SavedChartFilters)
+    top: int = Field(25, ge=5, le=100)
+    sort: Literal["asc", "desc"]
+
+
+class SavedChartCreate(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str = Field(min_length=1, max_length=80)
+    spec: SavedChartSpec
+    public: bool = False
+
+
+class SavedChartPatch(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    title: str | None = Field(None, min_length=1, max_length=80)
+    public: bool | None = None
+    spec: SavedChartSpec | None = None
+
+
+def _validated_spec(body: SavedChartCreate | SavedChartPatch) -> dict | None:
+    """Model-validated spec dict with the bracket resolved against the
+    materialized snapshot slices; raises UnknownBracket past the wrapper."""
+    spec = body.spec
+    if spec is None:
+        return None
+    ensure_known_bracket(spec.bracket)
+    return spec.model_dump(exclude_none=True)
+
+
+def _bearer_steam_id(request: Request) -> str:
+    auth_header = request.headers.get("authorization") or ""
+    if not auth_header.lower().startswith("bearer "):
+        raise HTTPException(status_code=401, detail="auth required")
+    from ..services.auth_jwt import decode_token
+
+    claims = decode_token(auth_header[7:].strip())
+    steam_id = str((claims or {}).get("steam_id") or "")
+    if not steam_id.isdigit():
+        raise HTTPException(status_code=401, detail="invalid token")
+    return steam_id
+
+
+def _chart_public_doc(doc: dict, include_owner: bool = False) -> dict:
+    from ..services.users_db import get_user_by_steam_id
+
+    out = {
+        "id": doc["_id"],
+        "title": doc.get("title", ""),
+        "spec": doc.get("spec", {}),
+        "public": bool(doc.get("public")),
+        "created_at": _iso(doc.get("created_at")),
+        "updated_at": _iso(doc.get("updated_at")),
+        "views": int(doc.get("views", 0)),
+    }
+    if include_owner:
+        owner = get_user_by_steam_id(doc.get("owner_steam_id", ""))
+        out["owner_name"] = (owner or {}).get("username") or None
+    return out
+
+
+def _iso(value) -> str | None:
+    return value.isoformat() if hasattr(value, "isoformat") else None
+
+
+@router.get("/mine", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.my_saved", "60/minute"))
+def my_saved_charts(request: Request, response: Response):
+    """The signed-in player's saved charts, newest first. Scoped to the
+    JWT's verified steam_id; never accepts an arbitrary steam_id param."""
+    steam_id = _bearer_steam_id(request)
+    from ..services.runs_db_mongo import list_saved_charts_for_owner
+
+    response.headers["Cache-Control"] = "no-store"
+    return [_chart_public_doc(d) for d in list_saved_charts_for_owner(steam_id)]
+
+
+@router.get("/public", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.public_saved", "60/minute"))
+def public_saved_charts(
+    request: Request, response: Response, limit: int = Query(12, ge=1, le=50)
+):
+    """Newest public saved charts, for the builder's Recently shared shelf."""
+    from ..services.runs_db_mongo import list_public_saved_charts
+
+    response.headers["Cache-Control"] = "public, max-age=60"
+    return [
+        _chart_public_doc(d, include_owner=True)
+        for d in list_public_saved_charts(limit)
+    ]
+
+
 @router.get("/{chart_key}")
 @limiter.limit(rate_limit_config.endpoint_limit("charts.get_chart", "120/minute"))
 def get_chart(
@@ -687,14 +838,29 @@ def get_chart(
     ),
 ):
     """One pre-aggregated chart. See /api/charts/meta for the available
-    charts, their filters, splits, and the run stats usable for stat/x/y."""
+    charts, their filters, splits, and the run stats usable for stat/x/y.
+
+    A key that isn't an explorer chart is tried as a saved chart id (the
+    10-character ids from POST /api/charts, shared at /charts/{id}): public
+    saved charts come back to anyone and count a view, private ones only to
+    their owner's bearer token. Anything else is a 404."""
     spec = CHARTS.get(chart_key)
     if not spec:
+        saved = _get_saved_chart_response(chart_key, request)
+        if saved is not None:
+            response.headers["Cache-Control"] = "no-store"
+            return saved
         raise HTTPException(status_code=404, detail=f"Unknown chart '{chart_key}'")
     # Brackets now apply to both frame and blob charts (the blob is accumulated
     # per bracket in the snapshot).
-    if bracket is not None and bracket not in ("a10", "wr30", "wr50", "wr75"):
-        raise HTTPException(status_code=400, detail="bad bracket")
+    if bracket is not None:
+        if spec["kind"] == "blob":
+            try:
+                ensure_known_bracket(bracket)
+            except UnknownBracket:
+                raise HTTPException(status_code=400, detail="bad bracket")
+        elif bracket not in ("a10", "wr30", "wr50", "wr75"):
+            raise HTTPException(status_code=400, detail="bad bracket")
     if build_id is not None and not re.fullmatch(r"v[\d.]+", build_id):
         raise HTTPException(status_code=400, detail="bad build_id")
     if game_mode and game_mode not in ("standard", "daily", "custom"):
@@ -753,3 +919,105 @@ def get_chart(
         response.headers["Cache-Control"] = "no-store"
     app_cache.set_json(cache_key, payload, 30 if payload["building"] else _CACHE_TTL)
     return payload
+
+
+def _get_saved_chart_response(chart_id: str, request: Request) -> dict | None:
+    """Serve a saved chart by id when the catch-all key isn't an explorer
+    chart: public docs go to anyone (and count a view), private ones only
+    to the verified owner. None when there's no matching saved chart."""
+    from ..services.runs_db_mongo import get_saved_chart, increment_saved_chart_views
+
+    if len(chart_id) != 10 or not all(c.isalnum() or c in "-_" for c in chart_id):
+        return None
+    doc = get_saved_chart(chart_id)
+    if not doc:
+        return None
+    if doc.get("public"):
+        increment_saved_chart_views(chart_id)
+        doc = get_saved_chart(chart_id) or doc
+        return _chart_public_doc(doc, include_owner=True)
+    try:
+        steam_id = _bearer_steam_id(request)
+    except HTTPException:
+        return None
+    if doc.get("owner_steam_id") != steam_id:
+        return None
+    out = _chart_public_doc(doc)
+    out["owner_view"] = True
+    return out
+
+
+@router.post("", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.save", "20/minute"))
+async def save_chart(request: Request, response: Response):
+    """Save a chart spec to the signed-in player's profile. Capped at 100
+    charts per owner; the metrics data itself is not stored — the share
+    page re-reads the live metrics API."""
+    steam_id = _bearer_steam_id(request)
+    body = await _parse_body(request, SavedChartCreate)
+    try:
+        spec = _validated_spec(body)
+    except UnknownBracket:
+        raise HTTPException(status_code=400, detail="bad bracket")
+    from ..services.runs_db_mongo import count_saved_charts, create_saved_chart
+
+    if count_saved_charts(steam_id) >= 100:
+        raise HTTPException(status_code=409, detail="saved chart limit reached")
+    doc = create_saved_chart(steam_id, body.title, spec)
+    response.headers["Cache-Control"] = "no-store"
+    return _chart_public_doc(doc)
+
+
+@router.patch("/{chart_id}", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.patch_saved", "60/minute"))
+async def patch_saved_chart(request: Request, response: Response, chart_id: str):
+    """Owner-only update of title, visibility, or the spec."""
+    steam_id = _bearer_steam_id(request)
+    body = await _parse_body(request, SavedChartPatch)
+    try:
+        spec = _validated_spec(body)
+    except UnknownBracket:
+        raise HTTPException(status_code=400, detail="bad bracket")
+    from ..services.runs_db_mongo import update_saved_chart
+
+    fields: dict = {}
+    if body.title is not None:
+        fields["title"] = body.title
+    if body.public is not None:
+        fields["public"] = body.public
+    if spec is not None:
+        fields["spec"] = spec
+    doc = update_saved_chart(chart_id, steam_id, fields)
+    if not doc:
+        raise HTTPException(status_code=404, detail="chart not found")
+    response.headers["Cache-Control"] = "no-store"
+    return _chart_public_doc(doc)
+
+
+@router.delete("/{chart_id}", tags=["Charts"])
+@limiter.limit(rate_limit_config.endpoint_limit("charts.delete_saved", "60/minute"))
+def delete_saved_chart(request: Request, response: Response, chart_id: str):
+    """Owner-only delete."""
+    steam_id = _bearer_steam_id(request)
+    from ..services.runs_db_mongo import delete_saved_chart as _delete
+
+    if not _delete(chart_id, steam_id):
+        raise HTTPException(status_code=404, detail="chart not found")
+    response.headers["Cache-Control"] = "no-store"
+    return {"success": True}
+
+
+async def _parse_body(request: Request, model: type[BaseModel]):
+    """Parse + validate a JSON body into `model`, mapping malformed JSON or
+    spec violations to 400 (not FastAPI's default 422)."""
+    import json as _json
+    from pydantic import ValidationError
+
+    try:
+        raw = _json.loads((await request.body()) or b"{}")
+    except Exception:
+        raise HTTPException(status_code=400, detail="Invalid JSON body")
+    try:
+        return model.model_validate(raw)
+    except ValidationError as exc:
+        raise HTTPException(status_code=400, detail=str(exc.errors()[:3]))

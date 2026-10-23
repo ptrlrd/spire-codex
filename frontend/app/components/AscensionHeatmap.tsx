@@ -50,7 +50,10 @@ function relLum(c: [number, number, number]): number {
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
 }
 
-function contrast(a: [number, number, number], b: [number, number, number]): number {
+function contrast(
+  a: [number, number, number],
+  b: [number, number, number],
+): number {
   const [hi, lo] = [relLum(a), relLum(b)].sort((x, y) => y - x);
   return (hi + 0.05) / (lo + 0.05);
 }
@@ -62,10 +65,16 @@ const hex = (c: [number, number, number]) =>
 
 function cellStyle(wr: number, lo: number, hi: number) {
   let c = ramp(hi === lo ? 0.5 : (wr - lo) / (hi - lo));
-  let ink = contrast(c, DARK_INK) >= contrast(c, LIGHT_INK) ? DARK_INK : LIGHT_INK;
+  let ink =
+    contrast(c, DARK_INK) >= contrast(c, LIGHT_INK) ? DARK_INK : LIGHT_INK;
   while (contrast(c, ink) < 4.5) {
-    c = c.map((x) => Math.max(0, Math.round(x * 0.96))) as [number, number, number];
-    ink = contrast(c, DARK_INK) >= contrast(c, LIGHT_INK) ? DARK_INK : LIGHT_INK;
+    c = c.map((x) => Math.max(0, Math.round(x * 0.96))) as [
+      number,
+      number,
+      number,
+    ];
+    ink =
+      contrast(c, DARK_INK) >= contrast(c, LIGHT_INK) ? DARK_INK : LIGHT_INK;
   }
   return { backgroundColor: hex(c), color: hex(ink) };
 }
@@ -91,7 +100,9 @@ export default function AscensionHeatmap({
   if (values.length === 0) return null;
   const lo = Math.min(...values);
   const hi = Math.max(...values);
-  const legend = Array.from({ length: 11 }, (_, i) => hex(ramp(i / 10))).join(", ");
+  const legend = Array.from({ length: 11 }, (_, i) => hex(ramp(i / 10))).join(
+    ", ",
+  );
 
   return (
     <div className="overflow-x-auto">

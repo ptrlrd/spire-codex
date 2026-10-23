@@ -47,7 +47,12 @@ export const CHARACTER_BRACKETS: ContentBracket[] = [
 
 // Both axes are valid ?bracket= values, so normalizeBracket must recognize them.
 const _BY_KEY = new Map(
-  [...CONTENT_BRACKETS, ...PLAYER_BRACKETS, ...MODE_BRACKETS, ...CHARACTER_BRACKETS].map((b) => [b.key, b]),
+  [
+    ...CONTENT_BRACKETS,
+    ...PLAYER_BRACKETS,
+    ...MODE_BRACKETS,
+    ...CHARACTER_BRACKETS,
+  ].map((b) => [b.key, b]),
 );
 const _CHARACTER_KEYS = new Set(CHARACTER_BRACKETS.map((b) => b.key));
 
@@ -63,7 +68,7 @@ const _SKILL_KEYS = new Set(
  * player and skill axes everywhere.
  */
 export function isVersionBracket(raw: string | undefined | null): boolean {
-  return !!raw && /^v\d+(\.\d+)*$/.test(raw);
+  return !!raw && /^v\d+(\.\d+)*(-rc\.\d+)?$/.test(raw);
 }
 
 /** The bracket value minus any trailing version segment ("" for a bare
@@ -150,6 +155,33 @@ export function combineBracket(
   return base || version || "all";
 }
 
+/** The cohort a stats page shows when its URL carries no ?bracket=: standard
+ * solo runs. "all" must be asked for explicitly. */
+export const DEFAULT_CONTENT_BRACKET = "solo:standard";
+
+/** The default on surfaces whose data has no game-mode axis (encounter
+ * stats, the entity-page bracket pills). */
+export const DEFAULT_SOLO_BRACKET = "solo";
+
+/** The bracket a page should use for a raw ?bracket= value: the page default
+ * when the URL carries none, else the normalized value. */
+export function defaultBracket(
+  raw: string | undefined | null,
+  fallback = DEFAULT_CONTENT_BRACKET,
+): string {
+  return raw ? normalizeBracket(raw) : fallback;
+}
+
+/** The ?bracket= value to write into a page URL: nothing for the page
+ * default (the URL stays clean), the explicit key otherwise, "all" included. */
+export function bracketQuery(
+  bracket: string | undefined | null,
+  fallback = DEFAULT_CONTENT_BRACKET,
+): string | null {
+  const n = normalizeBracket(bracket);
+  return n === fallback ? null : n;
+}
+
 /** Normalize a raw ?bracket= value to a known bracket key, a player:skill
  * composite, a game version, or any of those with a trailing version
  * ("all" if unknown). */
@@ -159,7 +191,8 @@ export function normalizeBracket(raw: string | undefined | null): string {
   if (isCompositeBracket(raw)) return raw;
   if (isVersionBracket(raw)) return raw;
   const { base, version } = splitVersion(raw);
-  if (version && base && (_BY_KEY.has(base) || isCompositeBracket(base))) return raw;
+  if (version && base && (_BY_KEY.has(base) || isCompositeBracket(base)))
+    return raw;
   return "all";
 }
 

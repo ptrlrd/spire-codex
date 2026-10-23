@@ -4,7 +4,24 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { Suspense, useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
+import {
+  RUNS_BROWSE,
+  browseRowHref,
+  type BrowseConfig,
+} from "@/lib/browse-config";
+import ReplaySummary from "../replays/ReplaySummary";
+import {
+  expandVersionRange,
+  parseAscension,
+  parseQuery,
+  parseWinrate,
+} from "@/lib/run-query";
+import { PlayerBadge } from "@/app/components/SupporterBadge";
+import KeyPicks, {
+  type KeyBoss,
+  type KeyCard,
+} from "@/app/components/KeyPicks";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -21,6 +38,11 @@ interface BrowseRun {
   run_time: number;
   build_id?: string;
   seed?: string;
+  replay_url?: string;
+  key_cards?: KeyCard[];
+  key_relics?: string[];
+  last_bosses?: KeyBoss[];
+  killed_by?: string | null;
 }
 
 interface CharacterNameRow {
@@ -28,14 +50,25 @@ interface CharacterNameRow {
   name: string;
 }
 
-const CHARACTERS = ["Ironclad", "Silent", "Defect", "Necrobinder", "Regent"] as const;
+const CHARACTERS = [
+  "Ironclad",
+  "Silent",
+  "Defect",
+  "Necrobinder",
+  "Regent",
+] as const;
 
 function cleanId(id: string): string {
-  return id.replace(/^(CHARACTER|CARD|RELIC|ENCOUNTER|EVENT|MONSTER|ACT|POTION)\./, "");
+  return id.replace(
+    /^(CHARACTER|CARD|RELIC|ENCOUNTER|EVENT|MONSTER|ACT|POTION)\./,
+    "",
+  );
 }
 
 function displayName(id: string): string {
-  return cleanId(id).replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return cleanId(id)
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 function stripThe(name: string): string {
@@ -47,124 +80,12 @@ function formatTimeShort(s: number): string {
   return `${m}m`;
 }
 
-// Parse an ascension value: "20" → exact, "3-4" → range, "3+" → min.
-// Tolerates the in-game "A10" spelling ("a10", "a3-a7").
-function parseAscension(value: string): { exact?: number; min?: number; max?: number } {
-  const v = value.trim().replace(/a(?=\d)/gi, "");
-  if (!v) return {};
-  const range = /^(\d+)\s*-\s*(\d+)$/.exec(v);
-  if (range) {
-    const lo = parseInt(range[1], 10);
-    const hi = parseInt(range[2], 10);
-    return { min: Math.min(lo, hi), max: Math.max(lo, hi) };
-  }
-  const min = /^(\d+)\s*\+$/.exec(v);
-  if (min) return { min: parseInt(min[1], 10) };
-  const num = parseInt(v, 10);
-  if (!Number.isNaN(num)) return { exact: num };
-  return {};
-}
-
 type Mode = "" | "single" | "multi";
 type GameMode = "" | "standard" | "daily" | "daily_today" | "custom";
 type WinFilter = "" | "true" | "false";
 type Sort = "date" | "time_asc" | "time_desc" | "ascension_desc";
 
-// Parse `key:value` expressions out of a free-text query.
-// Returns extracted filters and the remaining free-text (after stripping
-// recognized key:value pairs).
-type QueryKey = "user" | "seed" | "char" | "asc" | "version" | "mode" | "result" | "players" | "card" | "relic" | "shop" | "winrate";
-
-function parseQuery(q: string): {
-  filters: Partial<Record<QueryKey, string>>;
-  rest: string;
-} {
-  const filters: Record<string, string> = {};
-  const tokens = q.match(/(\w+):"[^"]+"|\w+:[\S]+|[^\s]+/g) || [];
-  const restTokens: string[] = [];
-  // card/relic accumulate across repeated tokens AND comma-separated values
-  const appendMulti = (existing: string | undefined, value: string) =>
-    existing ? `${existing},${value}` : value;
-  for (let i = 0; i < tokens.length; i++) {
-    let tok = tokens[i];
-    // Tolerate a space after the colon ("asc: 10"): a bare "key:" token
-    // absorbs the next token as its value. Without this the pair fell
-    // through to the username search and silently matched nothing.
-    if (/^[a-z]+:$/i.test(tok) && tokens[i + 1] && !tokens[i + 1].includes(":")) {
-      tok = tok + tokens[i + 1];
-      i++;
-    }
-    const m = /^([a-z]+):"?([^"]+)"?$/i.exec(tok);
-    if (!m) {
-      restTokens.push(tok);
-      continue;
-    }
-    const key = m[1].toLowerCase();
-    const value = m[2];
-    if (["user", "username", "u"].includes(key)) filters.user = value;
-    else if (["seed", "s"].includes(key)) filters.seed = value;
-    else if (["char", "character", "c"].includes(key)) filters.char = value;
-    else if (["asc", "ascension", "a"].includes(key)) filters.asc = value;
-    else if (["version", "v", "build"].includes(key)) filters.version = value;
-    else if (["mode", "gamemode"].includes(key)) filters.mode = value;
-    else if (["result", "win"].includes(key)) filters.result = value;
-    else if (["players", "p"].includes(key)) filters.players = value;
-    else if (["card", "cards"].includes(key)) filters.card = appendMulti(filters.card, value);
-    else if (["relic", "relics"].includes(key)) filters.relic = appendMulti(filters.relic, value);
-    else if (["shop", "bought", "buy"].includes(key)) filters.shop = appendMulti(filters.shop, value);
-    else if (["winrate", "wr"].includes(key)) filters.winrate = value;
-    else restTokens.push(tok);
-  }
-  return { filters, rest: restTokens.join(" ").trim() };
-}
-
-// "50-70" -> {min:50, max:70}; "100" -> {min:100, max:100}; "60-" / "60+" /
-// ">=60" -> {min:60}; "-40" / "<=40" -> {max:40}; ">50" excludes exactly-50
-// via a small epsilon, "<50" likewise. A trailing % is tolerated everywhere.
-// Anything non-numeric parses to {} and is ignored.
-function parseWinrate(expr: string): { min?: number; max?: number } {
-  const clamp = (n: number) => Math.min(100, Math.max(0, n));
-  const e = expr.trim().replace(/%/g, "");
-  const cmp = /^(>=|<=|>|<)\s*(\d{1,3}(?:\.\d+)?)$/.exec(e);
-  if (cmp) {
-    const v = clamp(parseFloat(cmp[2]));
-    if (cmp[1] === ">=") return { min: v };
-    if (cmp[1] === "<=") return { max: v };
-    if (cmp[1] === ">") return { min: clamp(v + 0.01) };
-    return { max: clamp(v - 0.01) };
-  }
-  const plus = /^(\d{1,3}(?:\.\d+)?)\+$/.exec(e);
-  if (plus) return { min: clamp(parseFloat(plus[1])) };
-  const range = /^(\d{1,3}(?:\.\d+)?)?\s*-\s*(\d{1,3}(?:\.\d+)?)?$/.exec(e);
-  if (range && (range[1] !== undefined || range[2] !== undefined)) {
-    const out: { min?: number; max?: number } = {};
-    if (range[1] !== undefined) out.min = clamp(parseFloat(range[1]));
-    if (range[2] !== undefined) out.max = clamp(parseFloat(range[2]));
-    return out;
-  }
-  const single = /^(\d{1,3}(?:\.\d+)?)$/.exec(e);
-  if (single) {
-    const v = clamp(parseFloat(single[1]));
-    return { min: v, max: v };
-  }
-  return {};
-}
-
-// Expand a version expression to the list of build_ids it covers.
-// "v0.104.0-v0.106.0" → all versions between (inclusive), using the
-// already numeric-sorted `versions` list. A single version returns [it].
-function expandVersionRange(expr: string, versions: string[]): string[] {
-  const range = expr.split("-").map((s) => s.trim());
-  if (range.length !== 2) return versions.includes(expr) ? [expr] : [expr];
-  const [a, b] = range;
-  const ia = versions.indexOf(a);
-  const ib = versions.indexOf(b);
-  if (ia === -1 || ib === -1) return [expr];
-  const [lo, hi] = ia <= ib ? [ia, ib] : [ib, ia];
-  return versions.slice(lo, hi + 1);
-}
-
-function BrowseRunsClientInner() {
+function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const t = useT();
@@ -175,27 +96,45 @@ function BrowseRunsClientInner() {
 
   // Filters (mirror the previous browse tab, kept as controlled UI but
   // also derivable from the search expression)
-  const [character, setCharacter] = useState(() => searchParams.get("character") || "");
+  const [character, setCharacter] = useState(
+    () => searchParams.get("character") || "",
+  );
   const [win, setWin] = useState<WinFilter>(() => {
     const v = searchParams.get("win");
     return v === "true" || v === "false" ? v : "";
   });
   const [user, setUser] = useState(() => searchParams.get("username") || "");
   const [seed, setSeed] = useState(() => searchParams.get("seed") || "");
-  const [buildId, setBuildId] = useState(() => searchParams.get("build_id") || "");
+  const [buildId, setBuildId] = useState(
+    () => searchParams.get("build_id") || "",
+  );
   const [mode, setMode] = useState<Mode>(() => {
     const v = searchParams.get("players");
     return v === "single" || v === "multi" ? v : "";
   });
   const [gameMode, setGameMode] = useState<GameMode>(() => {
     const v = searchParams.get("game_mode");
-    if (v === "daily" || v === "custom" || v === "standard" || v === "daily_today") return v;
+    if (
+      v === "daily" ||
+      v === "custom" ||
+      v === "standard" ||
+      v === "daily_today"
+    )
+      return v;
     return "";
   });
-  const [ascension, setAscension] = useState(() => searchParams.get("ascension") || "");
+  const [ascension, setAscension] = useState(
+    () => searchParams.get("ascension") || "",
+  );
   const [sort, setSort] = useState<Sort>(() => {
     const v = searchParams.get("sort");
-    if (v === "date" || v === "time_asc" || v === "time_desc" || v === "ascension_desc") return v;
+    if (
+      v === "date" ||
+      v === "time_asc" ||
+      v === "time_desc" ||
+      v === "ascension_desc"
+    )
+      return v;
     return "date";
   });
   const [page, setPage] = useState(1);
@@ -203,6 +142,8 @@ function BrowseRunsClientInner() {
   const [runs, setRuns] = useState<BrowseRun[]>([]);
   const [total, setTotal] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
+  const [totalIsLowerBound, setTotalIsLowerBound] = useState(false);
+  const [perPage, setPerPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [versions, setVersions] = useState<string[]>([]);
   const [charNames, setCharNames] = useState<Record<string, string>>({});
@@ -213,7 +154,9 @@ function BrowseRunsClientInner() {
       .then((data) => {
         const filtered = (data.versions || [])
           .filter((v: string) => !v.toLowerCase().includes("nonreleased"))
-          .sort((a: string, b: string) => b.localeCompare(a, undefined, { numeric: true }));
+          .sort((a: string, b: string) =>
+            b.localeCompare(a, undefined, { numeric: true }),
+          );
         setVersions(filtered);
       })
       .catch(() => {});
@@ -237,15 +180,29 @@ function BrowseRunsClientInner() {
   // Merge query expression filters with UI filters, UI takes precedence
   // for values explicitly set, otherwise expression filters apply.
   const { filters: queryFilters, rest } = parseQuery(query);
-  const effectiveChar = character || (queryFilters.char ? queryFilters.char.toUpperCase() : "");
-  const effectiveWin = win || (queryFilters.result === "win" ? "true" : queryFilters.result === "loss" ? "false" : "");
+  const effectiveChar =
+    character || (queryFilters.char ? queryFilters.char.toUpperCase() : "");
+  const effectiveWin =
+    win ||
+    (queryFilters.result === "win"
+      ? "true"
+      : queryFilters.result === "loss"
+        ? "false"
+        : "");
   const effectiveUser = user || queryFilters.user || rest || "";
   const effectiveSeed = seed || queryFilters.seed || "";
   const effectiveBuildId = buildId || queryFilters.version || "";
   const effectiveAscension = ascension || queryFilters.asc || "";
-  const effectivePlayers = mode || (queryFilters.players === "single" || queryFilters.players === "multi" ? queryFilters.players : "");
-  const effectiveGameMode = gameMode ||
-    (queryFilters.mode === "daily" || queryFilters.mode === "custom" || queryFilters.mode === "standard"
+  const effectivePlayers =
+    mode ||
+    (queryFilters.players === "single" || queryFilters.players === "multi"
+      ? queryFilters.players
+      : "");
+  const effectiveGameMode =
+    gameMode ||
+    (queryFilters.mode === "daily" ||
+    queryFilters.mode === "custom" ||
+    queryFilters.mode === "standard"
       ? queryFilters.mode
       : "");
   const effectiveCard = queryFilters.card || "";
@@ -256,7 +213,18 @@ function BrowseRunsClientInner() {
   // Reset page when any filter changes
   useEffect(() => {
     setPage(1);
-  }, [query, character, win, user, seed, buildId, mode, gameMode, ascension, sort]);
+  }, [
+    query,
+    character,
+    win,
+    user,
+    seed,
+    buildId,
+    mode,
+    gameMode,
+    ascension,
+    sort,
+  ]);
 
   // Sync state to URL for shareable links
   useEffect(() => {
@@ -272,13 +240,27 @@ function BrowseRunsClientInner() {
     if (ascension) params.set("ascension", ascension);
     if (sort !== "date") params.set("sort", sort);
     const qs = params.toString();
-    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    const url = qs
+      ? `${window.location.pathname}?${qs}`
+      : window.location.pathname;
     window.history.replaceState(null, "", url);
-  }, [query, character, win, user, seed, buildId, mode, gameMode, ascension, sort]);
+  }, [
+    query,
+    character,
+    win,
+    user,
+    seed,
+    buildId,
+    mode,
+    gameMode,
+    ascension,
+    sort,
+  ]);
 
   // Fetch runs
   useEffect(() => {
     setLoading(true);
+    const controller = new AbortController();
     const params = new URLSearchParams();
     if (effectiveChar) params.set("character", effectiveChar);
     if (effectiveWin) params.set("win", effectiveWin);
@@ -286,7 +268,10 @@ function BrowseRunsClientInner() {
     if (effectiveSeed) params.set("seed", effectiveSeed);
     if (effectiveBuildId) {
       if (effectiveBuildId.includes("-") && versions.length > 0) {
-        params.set("build_ids", expandVersionRange(effectiveBuildId, versions).join(","));
+        params.set(
+          "build_ids",
+          expandVersionRange(effectiveBuildId, versions).join(","),
+        );
       } else {
         params.set("build_id", effectiveBuildId);
       }
@@ -316,16 +301,39 @@ function BrowseRunsClientInner() {
     params.set("page", String(page));
     // No cache-buster: the API sends Cache-Control max-age=30, so the edge
     // and browser absorb repeat hits; new runs appear within seconds anyway.
-    fetch(`${API}/api/runs/list?${params}`)
+    fetch(`${API}${config.endpoint}?${params}`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
       .then((data) => {
+        if (controller.signal.aborted) return;
         setRuns(data.runs || []);
         setTotal(data.total || 0);
         setTotalPages(data.total_pages || 0);
+        setTotalIsLowerBound(!!data.total_is_lower_bound);
+        setPerPage(data.per_page || 0);
       })
       .catch(() => {})
-      .finally(() => setLoading(false));
-  }, [effectiveChar, effectiveWin, effectiveUser, effectiveSeed, effectiveBuildId, effectivePlayers, effectiveGameMode, effectiveAscension, effectiveCard, effectiveRelic, effectiveShop, effectiveWinrate, versions, sort, page]);
+      .finally(() => {
+        if (!controller.signal.aborted) setLoading(false);
+      });
+    return () => controller.abort();
+  }, [
+    effectiveChar,
+    effectiveWin,
+    effectiveUser,
+    effectiveSeed,
+    effectiveBuildId,
+    effectivePlayers,
+    effectiveGameMode,
+    effectiveAscension,
+    effectiveCard,
+    effectiveRelic,
+    effectiveShop,
+    effectiveWinrate,
+    versions,
+    sort,
+    page,
+    config.endpoint,
+  ]);
 
   function clearAll() {
     setQuery("");
@@ -341,27 +349,73 @@ function BrowseRunsClientInner() {
   }
 
   const hasAnyFilter =
-    query || character || win || user || seed || buildId || mode || gameMode || ascension || sort !== "date";
+    query ||
+    character ||
+    win ||
+    user ||
+    seed ||
+    buildId ||
+    mode ||
+    gameMode ||
+    ascension ||
+    sort !== "date";
 
   return (
     <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
       <div className="flex items-end justify-between mb-4">
-        <h1 className="text-3xl font-bold text-[var(--accent-gold)]">{t("Browse Runs")}</h1>
-        <Link href={`${bp}/leaderboards`} className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <h1 className="text-3xl font-bold text-[var(--accent-gold)]">
+          {t(config.title)}
+        </h1>
+        <Link
+          href={`${bp}/leaderboards`}
+          className="text-xs text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
           {t("Leaderboards")} →
         </Link>
       </div>
 
       <p className="text-sm text-[var(--text-secondary)] mb-4">
-        <span className="font-semibold text-[var(--text-primary)]">{t("Find any run.")}</span>{" "}
-        {t("Type filters into the search bar or use the dropdowns below. Combine anything:")}{" "}
-        <code className="text-[var(--accent-gold)]">char:ironclad asc:5-10 relic:akabeko</code>{" "}
+        <span className="font-semibold text-[var(--text-primary)]">
+          {t(config.kicker)}
+        </span>{" "}
+        {t(
+          "Type filters into the search bar or use the dropdowns below. Combine anything:",
+        )}{" "}
+        <code className="text-[var(--accent-gold)]">
+          char:ironclad asc:5-10 relic:akabeko
+        </code>{" "}
         {t("finds high-ascension Ironclad runs that had Akabeko.")}{" "}
-        <code className="text-[var(--accent-gold)]">card:bash,anger</code> {t("requires multiple cards.")}{" "}
-        <code className="text-[var(--accent-gold)]">asc:3-7</code> {t("matches a range.")}{" "}
-        <code className="text-[var(--accent-gold)]">version:v0.104.0-v0.106.0</code> {t("spans patches.")}{" "}
-        {t("Click any run to see the full breakdown.")}
+        <code className="text-[var(--accent-gold)]">card:bash,anger</code>{" "}
+        {t("requires multiple cards.")}{" "}
+        <code className="text-[var(--accent-gold)]">asc:3-7</code>{" "}
+        {t("matches a range.")}{" "}
+        <code className="text-[var(--accent-gold)]">
+          version:v0.104.0-v0.106.0
+        </code>{" "}
+        {t("spans patches.")} {t(config.outro)}
       </p>
+
+      {config.hint && config.hintLink && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">
+          {t(config.hint, { mod: "\u0000" })
+            .split("\u0000")
+            .map((part, i, parts) => (
+              <span key={i}>
+                {part}
+                {i < parts.length - 1 && (
+                  <Link
+                    href={config.hintLink!.href}
+                    className="text-[var(--accent-gold)] hover:underline"
+                  >
+                    {t(config.hintLink!.label)}
+                  </Link>
+                )}
+              </span>
+            ))}
+        </p>
+      )}
+
+      {config.summary && <ReplaySummary charName={charName} />}
 
       {/* Search bar */}
       <div className="mb-3">
@@ -369,11 +423,23 @@ function BrowseRunsClientInner() {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={t('Try: "{example}"', { example: "char:ironclad asc:10 relic:burning_blood" })}
+          placeholder={t('Try: "{example}"', {
+            example: "char:ironclad asc:10 relic:burning_blood",
+          })}
           className="w-full text-sm px-4 py-2.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]"
         />
         <p className="mt-1.5 text-[10px] text-[var(--text-tertiary)]">
-          {t("Expressions:")} <code>user:name</code>, <code>char:ironclad</code>, <code>asc:10</code> {t("or")} <code>asc:3-7</code>, <code>card:bash,anger</code>, <code>relic:burning_blood</code> {t("(combine for AND)")}, <code>shop:orange_dough</code> {t("(bought at a shop: cards, relics, or potions)")}, <code>winrate:50-70</code>, <code>winrate:&gt;50</code>, {t("or")} <code>winrate:100</code> {t("(submitter win rate, min 5 runs)")}, <code>version:v0.106.0</code> {t("or")} <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>, <code>mode:daily</code>, <code>result:win</code>, <code>players:single</code>
+          {t("Expressions:")} <code>user:name</code>, <code>char:ironclad</code>
+          , <code>asc:10</code> {t("or")} <code>asc:3-7</code>,{" "}
+          <code>card:bash,anger</code>, <code>relic:burning_blood</code>{" "}
+          {t("(combine for AND)")}, <code>shop:orange_dough</code>{" "}
+          {t("(bought at a shop: cards, relics, or potions)")},{" "}
+          <code>winrate:50-70</code>, <code>winrate:&gt;50</code>, {t("or")}{" "}
+          <code>winrate:100</code> {t("(submitter win rate, min 5 runs)")},{" "}
+          <code>version:v0.106.0</code> {t("or")}{" "}
+          <code>version:v0.104.0-v0.106.0</code>, <code>seed:abc</code>,{" "}
+          <code>mode:daily</code>, <code>result:win</code>,{" "}
+          <code>players:single</code>
         </p>
       </div>
 
@@ -386,7 +452,9 @@ function BrowseRunsClientInner() {
         >
           <option value="">{t("All Characters")}</option>
           {CHARACTERS.map((ch) => (
-            <option key={ch} value={ch.toUpperCase()}>{stripThe(charName(ch))}</option>
+            <option key={ch} value={ch.toUpperCase()}>
+              {stripThe(charName(ch))}
+            </option>
           ))}
         </select>
 
@@ -454,7 +522,9 @@ function BrowseRunsClientInner() {
           >
             <option value="">{t("All Versions")}</option>
             {versions.map((v) => (
-              <option key={v} value={v}>{v}</option>
+              <option key={v} value={v}>
+                {v}
+              </option>
             ))}
           </select>
         )}
@@ -481,17 +551,24 @@ function BrowseRunsClientInner() {
       </div>
 
       <p className="text-xs text-[var(--text-muted)] mb-3">
-        {total.toLocaleString()} {t("runs total")}
+        {totalIsLowerBound
+          ? t("More than 10,000 runs")
+          : `${total.toLocaleString()} ${t(config.totalLabel)}`}
       </p>
 
       {loading ? (
         <div className="space-y-2">
           {[...Array(8)].map((_, i) => (
-            <div key={i} className="h-14 bg-[var(--bg-card)] rounded-lg animate-pulse" />
+            <div
+              key={i}
+              className="h-14 bg-[var(--bg-card)] rounded-lg animate-pulse"
+            />
           ))}
         </div>
       ) : runs.length === 0 ? (
-        <p className="text-center py-8 text-[var(--text-muted)]">{t("No runs found.")}</p>
+        <p className="text-center py-8 text-[var(--text-muted)]">
+          {t(config.emptyLabel)}
+        </p>
       ) : (
         <>
           <div className="space-y-2">
@@ -499,13 +576,15 @@ function BrowseRunsClientInner() {
               <Link
                 prefetch={false}
                 key={r.run_hash}
-                href={`${bp}/runs/${r.run_hash}`}
+                href={browseRowHref(config, bp, r.run_hash)}
                 className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-3 sm:px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
               >
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                   <span
                     className={`text-sm font-medium shrink-0 ${
-                      r.win ? "text-[var(--color-silent)]" : "text-[var(--color-ironclad)]"
+                      r.win
+                        ? "text-[var(--color-silent)]"
+                        : "text-[var(--color-ironclad)]"
                     }`}
                   >
                     {r.win ? "W" : r.was_abandoned ? "A" : "L"}
@@ -513,16 +592,37 @@ function BrowseRunsClientInner() {
                   <span className="text-sm text-[var(--text-primary)] truncate">
                     {stripThe(charName(r.character))}
                   </span>
-                  <span className="text-xs text-[var(--text-muted)] shrink-0">A{r.ascension}</span>
+                  <span className="text-xs text-[var(--text-muted)] shrink-0">
+                    A{r.ascension}
+                  </span>
                   {r.username && (
-                    <span className="text-xs text-[var(--accent-gold)] truncate">{r.username}</span>
+                    <span className="text-xs text-[var(--accent-gold)] truncate">
+                      {r.username}
+                    </span>
                   )}
+                  <PlayerBadge username={r.username} />
                 </div>
+                <KeyPicks
+                  cards={r.key_cards}
+                  relics={r.key_relics}
+                  bosses={r.last_bosses}
+                  killedBy={r.killed_by}
+                  className="sm:ml-auto"
+                />
                 <div className="flex items-center gap-3 sm:gap-4 text-xs text-[var(--text-muted)] shrink-0">
-                  <span className="hidden sm:inline">{t("{n} cards", { n: r.deck_size })}</span>
-                  <span className="hidden sm:inline">{t("{n} relics", { n: r.relic_count })}</span>
+                  <span className="hidden sm:inline">
+                    {t("{n} cards", { n: r.deck_size })}
+                  </span>
+                  <span className="hidden sm:inline">
+                    {t("{n} relics", { n: r.relic_count })}
+                  </span>
                   <span>{r.floors_reached}f</span>
                   <span>{formatTimeShort(r.run_time)}</span>
+                  {config.watch && (
+                    <span className="rounded-md border border-[var(--accent-gold)] px-2 py-0.5 text-[11px] font-semibold text-[var(--accent-gold)]">
+                      ▶ {t("Watch")}
+                    </span>
+                  )}
                 </div>
               </Link>
             ))}
@@ -538,11 +638,15 @@ function BrowseRunsClientInner() {
                 ← {t("Prev")}
               </button>
               <span className="text-xs text-[var(--text-muted)]">
-                {t("Page")} {page} {t("of")} {totalPages}
+                {t("Page")} {page.toLocaleString()} {t("of")}{" "}
+                {totalPages.toLocaleString()}
               </span>
               <button
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-                disabled={page >= totalPages}
+                onClick={() => setPage((p) => p + 1)}
+                disabled={
+                  page >= totalPages &&
+                  !(totalIsLowerBound && perPage > 0 && runs.length >= perPage)
+                }
                 className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
               >
                 {t("Next")} →
@@ -559,7 +663,11 @@ function BrowseRunsClientInner() {
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function BrowseRunsClient() {
+export default function BrowseRunsClient({
+  config = RUNS_BROWSE,
+}: {
+  config?: BrowseConfig;
+}) {
   const t = useT();
   // The fallback carries the page header: it's what static prerendering
   // emits, so crawlers see the h1 even though the browse UI itself needs
@@ -572,11 +680,13 @@ export default function BrowseRunsClient() {
     <Suspense
       fallback={
         <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
-          <h1 className="text-3xl font-bold text-[var(--accent-gold)]">{t("Browse Runs")}</h1>
+          <h1 className="text-3xl font-bold text-[var(--accent-gold)]">
+            {t(config.title)}
+          </h1>
         </div>
       }
     >
-      <BrowseRunsClientInner />
+      <BrowseRunsClientInner config={config} />
     </Suspense>
   );
 }

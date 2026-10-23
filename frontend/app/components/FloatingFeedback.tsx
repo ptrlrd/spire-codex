@@ -5,7 +5,6 @@ import { useT } from "@/lib/i18n";
 // the existing feedback modal (which lives in the Footer and listens for the
 // `#feedback` hash), so there's a single feedback form for the whole site.
 
-
 export default function FloatingFeedback() {
   const t = useT();
 
@@ -26,7 +25,14 @@ export default function FloatingFeedback() {
       aria-label={t("Submit Feedback")}
       className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full border border-[var(--border-accent)] bg-[var(--bg-card)] px-4 py-2.5 text-sm font-medium text-[var(--text-primary)] shadow-lg hover:border-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
     >
-      <svg className="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
+      <svg
+        className="w-4 h-4 shrink-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth={2}
+        aria-hidden
+      >
         <path
           d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
           strokeLinecap="round"

@@ -191,9 +191,25 @@ def test_header_must_match_the_run(env):
     assert _post(_gz(header_patch={"start_time": 1})).status_code == 409
     assert _post(_gz(header_patch={"character": "SILENT"})).status_code == 409
     assert _post(_gz(header_patch={"replay_version": 99})).status_code == 400
+    assert _post(_gz(header_patch={"replay_version": 6})).status_code < 400
     lines = _lines()
     assert _post(_gz(lines[1:])).status_code == 400
     assert _post(_gz(lines[1:2] + lines)).status_code == 400
+
+
+def test_every_shipped_replay_version_passes_the_header_check():
+    from app.services import replays_db
+
+    for version in (1, 2, 3, 4, 5, 6, 7):
+        header = json.dumps(
+            {"t": "header", "replay_version": version, "seed": "S"}
+        ).encode()
+        assert replays_db._parse_header(header)["replay_version"] == version
+    with pytest.raises(replays_db.ReplayRejected) as rejected:
+        replays_db._parse_header(
+            json.dumps({"t": "header", "replay_version": 8}).encode()
+        )
+    assert rejected.value.code == "bad_header"
 
 
 def test_caps_are_enforced_on_decompressed_output(env, monkeypatch):
@@ -416,3 +432,45 @@ def test_storage_failure_is_a_503_not_a_500(env, monkeypatch):
     assert r.status_code == 503
     assert r.json()["detail"]["code"] == "storage"
     assert "has_replay" not in env[0].docs[RUN_HASH]
+
+
+def _unown_run(runs, hint):
+    doc = runs.docs[RUN_HASH]
+    doc["user_id"] = None
+    doc["steam_id"] = None
+    if hint:
+        doc["steam_id_hint"] = hint
+    else:
+        doc.pop("steam_id_hint", None)
+
+
+def test_hinted_run_is_claimed_by_the_replay_upload(env, monkeypatch):
+    runs, _ = env
+    _unown_run(runs, ME["steam_id"])
+    r = _post(_gz())
+    assert r.status_code == 200, r.text
+    doc = runs.docs[RUN_HASH]
+    assert doc["user_id"] == ObjectId(ME["_id"]) and doc["steam_id"] == ME["steam_id"]
+    assert "steam_id_hint" not in doc
+
+
+def test_unclaimed_run_is_retryable_not_permanent(env):
+    runs, _ = env
+    _unown_run(runs, None)
+    r = _post(_gz())
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "not_claimed"
+    _unown_run(runs, OTHER["steam_id"])
+    r = _post(_gz())
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "not_claimed"
+    assert runs.docs[RUN_HASH]["user_id"] is None
+
+
+def test_rejected_replay_does_not_claim_the_hinted_run(env):
+    runs, _ = env
+    _unown_run(runs, ME["steam_id"])
+    r = _post(_gz(header_patch={"seed": "NOPE"}))
+    assert r.status_code == 409 and r.json()["detail"]["code"] == "header_mismatch"
+    assert runs.docs[RUN_HASH]["user_id"] is None
+    assert runs.docs[RUN_HASH]["steam_id_hint"] == ME["steam_id"]
+    assert _post(_gz()).status_code == 200
+    assert runs.docs[RUN_HASH]["user_id"] == ObjectId(ME["_id"])

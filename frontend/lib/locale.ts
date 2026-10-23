@@ -1,7 +1,21 @@
 import type { Metadata } from "next";
-import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL, buildLanguageAlternates, localizedPath, hreflangOf as hreflangOfShared, ogLocaleOf as ogLocaleOfShared } from "./seo";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+  buildLanguageAlternates,
+  localizedPath,
+  hreflangOf as hreflangOfShared,
+  ogLocaleOf as ogLocaleOfShared,
+} from "./seo";
 import type { Locale } from "@/i18n/routing";
-import { LANG_GAME_NAME, LANG_HREFLANG, LANG_NAMES, LANG_OG_LOCALE, SUPPORTED_LANGS } from "./languages";
+import {
+  LANG_GAME_NAME,
+  LANG_HREFLANG,
+  LANG_NAMES,
+  LANG_OG_LOCALE,
+  SUPPORTED_LANGS,
+} from "./languages";
 
 export type { Locale };
 
@@ -25,7 +39,10 @@ export const hreflangOf = hreflangOfShared;
 export const ogLocaleOf = ogLocaleOfShared;
 
 /** The game's name as the locale writes it; English keeps the site's own phrasing. */
-export function gameNameFor(locale: Locale, english = "Slay the Spire 2 (sts2)"): string {
+export function gameNameFor(
+  locale: Locale,
+  english = "Slay the Spire 2 (sts2)",
+): string {
   return locale === "eng" ? english : LANG_GAME_NAME[locale];
 }
 
@@ -43,4 +60,3 @@ export function localeOf(value: string): Locale {
 export function inLanguageOf(locale: Locale): string | undefined {
   return locale === "eng" ? undefined : LANG_HREFLANG[locale];
 }
-

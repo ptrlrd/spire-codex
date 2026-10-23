@@ -11,7 +11,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(localeOf((await params).locale));
   return {
     title: `${t("Profile")} | Spire Codex`,
-    description: "View your runs, upload run files, and see your personal stats.",
+    description:
+      "View your runs, upload run files, and see your personal stats.",
     robots: { index: false },
   };
 }

@@ -77,11 +77,14 @@ export default function GiveawayLookup() {
     setNote(null);
     setWinnerId(null);
     try {
-      const data = await adminFetch<ResolveResponse>("/api/admin/steam/resolve", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ steam_ids: ids }),
-      });
+      const data = await adminFetch<ResolveResponse>(
+        "/api/admin/steam/resolve",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ steam_ids: ids }),
+        },
+      );
       setRows(data.results ?? []);
       setCounts(data.counts ?? null);
       if (!(data.results ?? []).length) setNote("Nothing to resolve.");
@@ -128,7 +131,9 @@ export default function GiveawayLookup() {
         <div className="px-4 pb-4">
           <textarea
             className={`${inputClass} w-full h-28 font-mono resize-y`}
-            placeholder={"Paste SteamID64s (one per line, or comma/space separated)\n76561198000000000\n76561198000000001"}
+            placeholder={
+              "Paste SteamID64s (one per line, or comma/space separated)\n76561198000000000\n76561198000000001"
+            }
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
@@ -157,8 +162,9 @@ export default function GiveawayLookup() {
             </label>
             {counts && (
               <span className="ml-auto text-xs text-[var(--text-muted)] tabular-nums">
-                {counts.total} entrant{counts.total === 1 ? "" : "s"} · {counts.resolved}{" "}
-                resolved · {counts.members} member{counts.members === 1 ? "" : "s"}
+                {counts.total} entrant{counts.total === 1 ? "" : "s"} ·{" "}
+                {counts.resolved} resolved · {counts.members} member
+                {counts.members === 1 ? "" : "s"}
                 {counts.invalid ? ` · ${counts.invalid} invalid` : ""}
               </span>
             )}
@@ -254,7 +260,8 @@ export default function GiveawayLookup() {
                                 Member
                               </span>
                               <span className="text-[var(--text-secondary)]">
-                                {r.member.username ?? "-"} · {r.member.run_count} run
+                                {r.member.username ?? "-"} ·{" "}
+                                {r.member.run_count} run
                                 {r.member.run_count === 1 ? "" : "s"}
                               </span>
                               {r.member.is_partner && (

@@ -52,7 +52,9 @@ export default function StatsRebuildingNotice() {
   return (
     <div className="rounded-lg border border-warning/40 bg-warning/10 px-4 py-2.5 mb-4 text-sm text-[var(--text-secondary)]">
       <span className="font-semibold text-warning mr-2">{t("Heads up")}</span>
-      {t("Stats are rebuilding after an update. Charts, metrics, and scores usually fill back in within 15 minutes; no data is lost.")}
+      {t(
+        "Stats are rebuilding after an update. Charts, metrics, and scores usually fill back in within 15 minutes; no data is lost.",
+      )}
     </div>
   );
 }

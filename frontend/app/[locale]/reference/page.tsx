@@ -11,7 +11,7 @@ import type {
   Intent,
   Modifier,
   Achievement,
-} from "@/lib/api";
+} from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 import ReferenceClient from "./ReferenceClient";
@@ -37,7 +37,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/reference", title: t("Reference"), description: t("reference_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/reference",
+    title: t("Reference"),
+    description: t("reference_meta_description"),
+  });
 }
 
 export default async function ReferencePage({ params }: Props) {
@@ -45,17 +50,25 @@ export default async function ReferencePage({ params }: Props) {
   const t = await getT(locale);
   const heading = pageHeading(locale, t("Reference"));
   const tagline = t("reference_tagline");
-  const [acts, ascensions, keywords, orbs, afflictions, intents, modifiers, achievements] =
-    await Promise.all([
-      fetchSection<Act>("acts", locale),
-      fetchSection<Ascension>("ascensions", locale),
-      fetchSection<Keyword>("keywords", locale),
-      fetchSection<Orb>("orbs", locale),
-      fetchSection<Affliction>("afflictions", locale),
-      fetchSection<Intent>("intents", locale),
-      fetchSection<Modifier>("modifiers", locale),
-      fetchSection<Achievement>("achievements", locale),
-    ]);
+  const [
+    acts,
+    ascensions,
+    keywords,
+    orbs,
+    afflictions,
+    intents,
+    modifiers,
+    achievements,
+  ] = await Promise.all([
+    fetchSection<Act>("acts", locale),
+    fetchSection<Ascension>("ascensions", locale),
+    fetchSection<Keyword>("keywords", locale),
+    fetchSection<Orb>("orbs", locale),
+    fetchSection<Affliction>("afflictions", locale),
+    fetchSection<Intent>("intents", locale),
+    fetchSection<Modifier>("modifiers", locale),
+    fetchSection<Achievement>("achievements", locale),
+  ]);
 
   const data: ReferenceData = {
     acts,

@@ -11,17 +11,28 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/changelog", title: t("Changelog - Update History"), description: t("changelog_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/changelog",
+    title: t("Changelog - Update History"),
+    description: t("changelog_meta_description"),
+  });
 }
 
-export default async function Layout({ children, params }: Props & { children: React.ReactNode }) {
+export default async function Layout({
+  children,
+  params,
+}: Props & { children: React.ReactNode }) {
   const locale = localeOf((await params).locale);
   // Client-rendered changelog page, emit JSON-LD from the server
   // layout so the structured data appears in initial HTML for crawlers.
   const jsonLd = [
     buildBreadcrumbJsonLd([
       { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-      { name: uiText(locale, "Changelog"), href: localePath(locale, "/changelog") },
+      {
+        name: uiText(locale, "Changelog"),
+        href: localePath(locale, "/changelog"),
+      },
     ]),
     buildCollectionPageJsonLd({
       name: "Spire Codex Changelog",

@@ -10,7 +10,11 @@ import { cachedFetch } from "@/lib/fetch-cache";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
-export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }) {
+export default function BetaBanner({
+  stablePath = "/",
+}: {
+  stablePath?: string;
+}) {
   const lang = useGameLocale();
   const t = useT();
   const [version, setVersion] = useState<string | null>(null);
@@ -28,7 +32,8 @@ export default function BetaBanner({ stablePath = "/" }: { stablePath?: string }
       </span>
       <span className="text-[var(--text-muted)] truncate">
         {t(
-          "Preview content; numbers and text can change before they reach main.")}
+          "Preview content; numbers and text can change before they reach main.",
+        )}
       </span>
       <Link
         href={stablePath}

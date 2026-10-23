@@ -1,7 +1,8 @@
 import type { Locale } from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 
-const WORKSHOP_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3776092288";
+const WORKSHOP_URL =
+  "https://steamcommunity.com/sharedfiles/filedetails/?id=3776092288";
 
 const EXPORTS = [
   "Cards: every card at every upgrade level, plus beta art variants, per-language card text, the enchant and affliction attachment matrix, and the card frame template pieces",
@@ -35,10 +36,14 @@ export default async function ExporterBody({ lang }: { lang: Locale }) {
         <span className="text-[var(--text-primary)]">{t("Art Exporter")}</span>
       </h1>
       <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-3">
-        {t("The tool that generates every image on Spire Codex, released so anyone can use it. It renders the game's art straight out of the running engine and saves full-quality PNGs drawn by the game itself, not unpacked or datamined files.")}
+        {t(
+          "The tool that generates every image on Spire Codex, released so anyone can use it. It renders the game's art straight out of the running engine and saves full-quality PNGs drawn by the game itself, not unpacked or datamined files.",
+        )}
       </p>
       <p className="text-[var(--text-secondary)] leading-relaxed mb-8">
-        {t("Useful for wikis, content creators, thumbnail makers, and anyone who wants clean renders of the game's art.")}
+        {t(
+          "Useful for wikis, content creators, thumbnail makers, and anyone who wants clean renders of the game's art.",
+        )}
       </p>
 
       <div className="flex flex-wrap gap-3 mb-12">
@@ -61,7 +66,10 @@ export default async function ExporterBody({ lang }: { lang: Locale }) {
           <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
             {EXPORTS.map((item) => (
               <li key={item} className="flex gap-3">
-                <span aria-hidden className="text-[var(--accent-gold)] shrink-0">
+                <span
+                  aria-hidden
+                  className="text-[var(--accent-gold)] shrink-0"
+                >
                   →
                 </span>
                 <span>{t(item)}</span>
@@ -82,7 +90,9 @@ export default async function ExporterBody({ lang }: { lang: Locale }) {
               <span className="text-sm font-bold text-[var(--accent-gold)] tabular-nums shrink-0 w-5">
                 {i + 1}.
               </span>
-              <span className="text-sm text-[var(--text-secondary)]">{t(step)}</span>
+              <span className="text-sm text-[var(--text-secondary)]">
+                {t(step)}
+              </span>
             </div>
           ))}
         </div>
@@ -97,7 +107,10 @@ export default async function ExporterBody({ lang }: { lang: Locale }) {
           <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
             {NOTES.map((item) => (
               <li key={item} className="flex gap-3">
-                <span aria-hidden className="text-[var(--accent-gold)] shrink-0">
+                <span
+                  aria-hidden
+                  className="text-[var(--accent-gold)] shrink-0"
+                >
                   →
                 </span>
                 <span>{t(item)}</span>
@@ -110,9 +123,13 @@ export default async function ExporterBody({ lang }: { lang: Locale }) {
       {/* CTA repeated at bottom for long-page reads */}
       <section>
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-6 text-center">
-          <h2 className="text-xl font-semibold mb-2">{t("Get the exporter")}</h2>
+          <h2 className="text-xl font-semibold mb-2">
+            {t("Get the exporter")}
+          </h2>
           <p className="text-sm text-[var(--text-secondary)] mb-4">
-            {t("Free, open, and you can unsubscribe from the Workshop at any time.")}
+            {t(
+              "Free, open, and you can unsubscribe from the Workshop at any time.",
+            )}
           </p>
           <a
             href={WORKSHOP_URL}

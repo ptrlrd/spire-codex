@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useT } from "@/lib/i18n";
-import type { Card } from "@/lib/api";
+import type { Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import SearchFilter from "@/app/components/SearchFilter";
@@ -57,7 +57,10 @@ interface BrowseDetailProps {
   fixedParams: Record<string, string>;
 }
 
-export default function BrowseDetail({ initialCards, fixedParams }: BrowseDetailProps) {
+export default function BrowseDetail({
+  initialCards,
+  fixedParams,
+}: BrowseDetailProps) {
   const t = useT();
   const [cards, setCards] = useState<Card[]>(initialCards);
   const [search, setSearch] = useState("");
@@ -95,7 +98,8 @@ export default function BrowseDetail({ initialCards, fixedParams }: BrowseDetail
     const sorted = [...cards];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
-    else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "compendium")
+      sorted.sort((a, b) => a.compendium_order - b.compendium_order);
     return sorted;
   }, [cards, sort]);
 

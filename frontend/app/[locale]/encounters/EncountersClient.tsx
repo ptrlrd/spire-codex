@@ -2,15 +2,16 @@
 
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Encounter } from "@/lib/api";
+import type { Encounter } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -40,10 +41,13 @@ const actOptions = [
   { label: "Act 3 - Glory", value: "glory" },
 ];
 
-function EncountersClientInner({ initialEncounters }: { initialEncounters: Encounter[] }) {
+function EncountersClientInner({
+  initialEncounters,
+}: {
+  initialEncounters: Encounter[];
+}) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [encounters, setEncounters] = useState<Encounter[]>(initialEncounters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [roomType, setRoomType] = useState(searchParams.get("roomType") || "");
@@ -60,15 +64,18 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/encounters${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, roomType, act };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, roomType, act, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = { search, roomType, act };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, roomType, act, updateUrl],
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with
@@ -76,7 +83,14 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
     // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !roomType && !act && !search && initialEncounters.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !roomType &&
+        !act &&
+        !search &&
+        initialEncounters.length > 0
+      ) {
         return;
       }
     }
@@ -85,8 +99,9 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
     if (act) params.set("act", act);
     if (search) params.set("search", search);
     params.set("lang", lang);
-    cachedFetch<Encounter[]>(`${API}/api/encounters?${params}`)
-      .then(setEncounters);
+    cachedFetch<Encounter[]>(`${API}/api/encounters?${params}`).then(
+      setEncounters,
+    );
   }, [roomType, act, search, lang, channel]);
 
   // Beta-only encounters join the stable list (the regular filters run
@@ -102,9 +117,8 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
     ),
   ];
 
-  const filtered = roomType === "Weak"
-    ? merged.filter((e) => e.is_weak)
-    : merged;
+  const filtered =
+    roomType === "Weak" ? merged.filter((e) => e.is_weak) : merged;
 
   return (
     <>
@@ -152,7 +166,8 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
               </h3>
               <span
                 className={`text-[10px] px-1.5 py-0.5 rounded border flex-shrink-0 ml-2 ${
-                  roomTypeBadge[enc.room_type] || "bg-surface text-fg-secondary border-line-strong"
+                  roomTypeBadge[enc.room_type] ||
+                  "bg-surface text-fg-secondary border-line-strong"
                 }`}
               >
                 {t(enc.room_type)}
@@ -161,9 +176,7 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
             </div>
 
             {enc.act && (
-              <p className="text-xs text-[var(--text-muted)] mb-2">
-                {enc.act}
-              </p>
+              <p className="text-xs text-[var(--text-muted)] mb-2">{enc.act}</p>
             )}
 
             {enc.monsters && enc.monsters.length > 0 && (
@@ -208,7 +221,9 @@ function EncountersClientInner({ initialEncounters }: { initialEncounters: Encou
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function EncountersClient(props: Parameters<typeof EncountersClientInner>[0]) {
+export default function EncountersClient(
+  props: Parameters<typeof EncountersClientInner>[0],
+) {
   return (
     <Suspense fallback={null}>
       <EncountersClientInner {...props} />

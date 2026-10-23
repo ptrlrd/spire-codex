@@ -1,18 +1,26 @@
 "use client";
 
 import { useGameLocale, useT } from "@/lib/i18n";
-import { Suspense, useState, useEffect, useRef, useMemo, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import type { Relic } from "@/lib/api";
+import {
+  Suspense,
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
+import { useSearchParams } from "next/navigation";
+import type { Relic } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { Link } from "@/i18n/navigation";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useEntityScores } from "@/lib/use-entity-scores";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -63,10 +71,15 @@ const sortOptions = [
   { label: "Compendium", value: "compendium" },
 ];
 
-function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
+function RelicsClientInner({
+  initialRelics,
+  initialBeta,
+}: {
+  initialRelics: Relic[];
+  initialBeta?: { lang: string; items: Relic[] };
+}) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [relics, setRelics] = useState<Relic[]>(initialRelics);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [rarity, setRarity] = useState(searchParams.get("rarity") || "");
@@ -76,7 +89,7 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
-  const betaAdditions = useBetaAdditions<Relic>("relics", lang);
+  const betaAdditions = useBetaAdditions<Relic>("relics", lang, initialBeta);
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -85,15 +98,24 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
       if (v && v !== "az") params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/relics${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, rarity, pool, ancient, sort };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, rarity, pool, ancient, sort, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = {
+        search,
+        rarity,
+        pool,
+        ancient,
+        sort,
+      };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, rarity, pool, ancient, sort, updateUrl],
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with
@@ -101,7 +123,15 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
     // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !rarity && !pool && !ancient && !search && initialRelics.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !rarity &&
+        !pool &&
+        !ancient &&
+        !search &&
+        initialRelics.length > 0
+      ) {
         return;
       }
     }
@@ -111,8 +141,7 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
     if (ancient) params.set("ancient", ancient);
     if (search) params.set("search", search);
     params.set("lang", lang);
-    cachedFetch<Relic[]>(`${API}/api/relics?${params}`)
-      .then(setRelics);
+    cachedFetch<Relic[]>(`${API}/api/relics?${params}`).then(setRelics);
   }, [rarity, pool, ancient, search, lang, channel]);
 
   const scores = useEntityScores("relics");
@@ -138,7 +167,8 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
     const sorted = [...withBeta];
     if (sort === "az") sorted.sort((a, b) => a.name.localeCompare(b.name));
     else if (sort === "za") sorted.sort((a, b) => b.name.localeCompare(a.name));
-    else if (sort === "compendium") sorted.sort((a, b) => a.compendium_order - b.compendium_order);
+    else if (sort === "compendium")
+      sorted.sort((a, b) => a.compendium_order - b.compendium_order);
     else if (sort === "score") {
       // Score-sort: scored entities desc, unscored sink to bottom in
       // compendium order so the list stays stable as new runs land.
@@ -201,13 +231,15 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
                   ? `${bp}/beta/relics/${relic.id.toLowerCase()}`
                   : `${bp}/relics/${relic.id.toLowerCase()}`
               }
-              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block`}
+              className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
             >
               <div className="flex gap-3">
                 {relic.image_url && (
                   <img
                     src={imageUrl(relic.image_url)}
-                    alt={t("{name} - Slay the Spire 2 Relic", { name: relic.name })}
+                    alt={t("{name} - Slay the Spire 2 Relic", {
+                      name: relic.name,
+                    })}
                     className="w-12 h-12 object-contain flex-shrink-0"
                     loading="lazy"
                     crossOrigin="anonymous"
@@ -215,10 +247,10 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
                 )}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className="font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
+                    <h2 className="text-base font-semibold text-[var(--text-primary)] leading-tight flex items-center gap-1.5">
                       {relic.name}
                       {relic.beta && <BetaBadge />}
-                    </h3>
+                    </h2>
                   </div>
                   <div className="flex items-center gap-2 mb-3 text-xs">
                     <span className={style.split(" ").slice(1).join(" ")}>
@@ -226,7 +258,10 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
                     </span>
                     <span className="text-[var(--text-muted)]">&middot;</span>
                     <span className="text-[var(--text-muted)] capitalize">
-                      {t(relic.pool.charAt(0).toUpperCase() + relic.pool.slice(1))}
+                      {t(
+                        relic.pool.charAt(0).toUpperCase() +
+                          relic.pool.slice(1),
+                      )}
                     </span>
                   </div>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-3">
@@ -246,9 +281,11 @@ function RelicsClientInner({ initialRelics }: { initialRelics: Relic[] }) {
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function RelicsClient(props: Parameters<typeof RelicsClientInner>[0]) {
+export default function RelicsClient(
+  props: Parameters<typeof RelicsClientInner>[0],
+) {
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<div className="min-h-screen" />}>
       <RelicsClientInner {...props} />
     </Suspense>
   );

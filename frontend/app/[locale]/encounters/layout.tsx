@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
-import { api } from "@/lib/api";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
+import { getApiEndpoint } from "@/lib/api/endpoint.server";
 
 export async function generateMetadata(): Promise<Metadata> {
   let count = "87";
   try {
-    const stats = await api.getStatsBounded();
-    count = String(stats.encounters);
+    const stats = await getApiEndpoint("stats", undefined, {
+      timeoutMs: 3000,
+      revalidate: 3600,
+    });
+    if (typeof stats?.encounters === "number") count = String(stats.encounters);
   } catch {
     // Fall back to the baseline count if the API is unreachable at build time.
   }
-  const title = "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex";
+  const title =
+    "Encounters - All Combat Encounters - Slay the Spire 2 (sts2) | Spire Codex";
   const ogDesc = `Slay the Spire 2 (sts2) encounters, browse all ${count} combat encounters including normal fights, elites, and bosses.`;
   return {
     title,
@@ -24,7 +33,10 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [{ url: DEFAULT_OG_IMAGE }],
     },
     twitter: { card: "summary_large_image", title, description: ogDesc },
-    alternates: { canonical: "/encounters", languages: buildLanguageAlternates("/encounters") },
+    alternates: {
+      canonical: "/encounters",
+      languages: buildLanguageAlternates("/encounters"),
+    },
   };
 }
 

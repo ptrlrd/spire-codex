@@ -8,18 +8,19 @@ import {
   type MouseEvent as ReactMouseEvent,
   type CSSProperties,
 } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Power, Card } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Power, Card } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import "@/app/card-revamp.css";
 import "@/app/power-ench-event-extra.css";
+import { SPINE_TEXT } from "@/lib/character-colors";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -30,7 +31,10 @@ const SPINE_BY_TYPE: Record<string, string> = {
   None: "var(--accent-gold)",
 };
 
-export default function PowerDetail({ initialPower }: { initialPower?: Power | null } = {}) {
+export default function PowerDetail({
+  initialPower,
+  heading,
+}: { initialPower?: Power | null; heading?: string } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -60,9 +64,12 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
     if (!id || allCards.length === 0) return [];
     return allCards.filter((card) =>
       card.powers_applied?.some((pa) => {
-        const powerId = pa.power.replace(/([A-Z])/g, "_$1").replace(/^_/, "").toUpperCase();
+        const powerId = pa.power
+          .replace(/([A-Z])/g, "_$1")
+          .replace(/^_/, "")
+          .toUpperCase();
         return powerId === id.toUpperCase();
-      })
+      }),
     );
   }, [id, allCards]);
 
@@ -106,7 +113,10 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
         <p className="text-[var(--text-muted)] mb-4">{t("Power not found.")}</p>
-        <Link href={`${bp}/powers`} className="text-[var(--accent-gold)] hover:underline">
+        <Link
+          href={`${bp}/powers`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Powers")}
         </Link>
       </div>
@@ -136,10 +146,14 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
   return (
     <div
       className="card-rvmp"
-      style={{
-        "--spine": spineColor,
-        ...(power.image_url ? { "--entity-bg": `url("${imageUrl(power.image_url)}?bg")` } : {}),
-      } as CSSProperties}
+      style={
+        {
+          "--spine": spineColor,
+          ...(power.image_url
+            ? { "--entity-bg": `url("${imageUrl(power.image_url)}?bg")` }
+            : {}),
+        } as CSSProperties
+      }
     >
       <div className="cd-top">
         <button className="cd-back" onClick={() => router.back()}>
@@ -158,7 +172,7 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
               <span>&middot;</span>
               <span>{power.stack_type}</span>
             </p>
-            <h1>{power.name}</h1>
+            <h1>{heading ?? power.name}</h1>
             {ledeText && <p className="lede">{ledeText}</p>}
           </div>
 
@@ -190,7 +204,11 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
                 already-localized fields (name, type, stack_type) plus a
                 count of cards that apply this power. Pushes the page past
                 Google's "thin content" floor without per-language work. */}
-            <EntityProse kind="power" power={power} appliedByCount={relatedCards.length} />
+            <EntityProse
+              kind="power"
+              power={power}
+              appliedByCount={relatedCards.length}
+            />
           </section>
 
           {/* Relations */}
@@ -201,7 +219,8 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
               <div className="rel">
                 <div className="rel-block">
                   <div className="rl">
-                    {t("Cards")} <span className="cnt">{relatedCards.length}</span>
+                    {t("Cards")}{" "}
+                    <span className="cnt">{relatedCards.length}</span>
                   </div>
                   <div className="chips">
                     {relatedCards.map((card) => (
@@ -245,7 +264,9 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
                 <img
                   className="cardimg"
                   src={imageUrl(power.image_url)}
-                  alt={t("{name} - Slay the Spire 2 Power", { name: power.name })}
+                  alt={t("{name} - Slay the Spire 2 Power", {
+                    name: power.name,
+                  })}
                   crossOrigin="anonymous"
                 />
               </div>
@@ -257,7 +278,7 @@ export default function PowerDetail({ initialPower }: { initialPower?: Power | n
               <dl>
                 <div className="frow">
                   <dt>{t("Type")}</dt>
-                  <dd style={{ color: "var(--spine)" }}>{power.type}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{power.type}</dd>
                 </div>
                 <div className="frow">
                   <dt>{t("Stacking")}</dt>

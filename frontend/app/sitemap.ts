@@ -2,14 +2,22 @@ import type { MetadataRoute } from "next";
 import { ALL_BROWSE_SLUGS } from "@/app/[locale]/cards/browse/slug-map";
 import { SUPPORTED_LANGS } from "@/lib/languages";
 import { imageUrl } from "@/lib/image-url";
-import { TIER_CARD_COLORS, TIER_RELIC_ACTS, TIER_RELIC_ANCIENTS, TIER_RELIC_POOLS } from "@/lib/tier-list-filters";
+import {
+  TIER_CARD_COLORS,
+  TIER_RELIC_ACTS,
+  TIER_RELIC_ANCIENTS,
+  TIER_RELIC_POOLS,
+} from "@/lib/tier-list-filters";
 
 // Regenerate at most every 30 minutes: crawler fetches between ticks are
 // served from cache instead of re-running ~21 API list fetches each hit.
-export const revalidate = 1800;
+export const dynamic = "force-dynamic";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://spire-codex.com";
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 /**
  * Locale-prefixed routes are only emitted when the route ACTUALLY exists
@@ -25,7 +33,7 @@ const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "
  * list-only entries get only the index page.
  *
  * Re-verified 2026-07-25 against the tree: added the hubs that had
- * landed since May (charts, community-stats, tier-list, mod, overlay,
+ * landed since May (stats, tier-list, mod, overlay,
  * knowledge-demon, giveaway, meta) plus modifiers, which always had a
  * localized list page but was only in the detail set. `runs` joined
  * when the localized runs pages became real translations (next-intl).
@@ -52,9 +60,20 @@ const LANG_LIST_ROUTES = [
   "guides",
   "news",
   "leaderboards",
+  "seed-finder",
+  "deck-builder",
   "tier-list",
-  "charts",
-  "community-stats",
+  "stats",
+  "stats/cards",
+  "stats/relics",
+  "stats/encounters",
+  "stats/charts",
+  "stats/chart-builder",
+  "stats/scoring",
+  "stats/shops",
+  "stats/events",
+  "top-players",
+  "runs/submit",
   "compare",
   "changelog",
   "developers",
@@ -66,8 +85,8 @@ const LANG_LIST_ROUTES = [
   "exporter",
   "overlay",
   "knowledge-demon",
-  "giveaway",
   "runs",
+  "replays",
   "tier-list/cards",
   "tier-list/relics",
   "tier-list/potions",
@@ -98,9 +117,6 @@ const LANG_DETAIL_ROUTES = new Set([
   "afflictions",
   "modifiers",
   "achievements",
-  // app/[locale]/guides/[slug]/page.tsx exists; localized guide URLs were
-  // never emitted even though the pages render.
-  "guides",
 ]);
 
 const STATIC_PAGES = [
@@ -121,17 +137,54 @@ const STATIC_PAGES = [
   { path: "/ancients", priority: 0.7, changeFrequency: "weekly" as const },
   { path: "/modifiers", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/leaderboards", priority: 0.7, changeFrequency: "daily" as const },
-  { path: "/leaderboards/submit", priority: 0.6, changeFrequency: "monthly" as const },
-  { path: "/leaderboards/stats", priority: 0.8, changeFrequency: "daily" as const },
-  { path: "/community-stats", priority: 0.7, changeFrequency: "daily" as const },
-  { path: "/leaderboards/scoring", priority: 0.6, changeFrequency: "monthly" as const },
+  {
+    path: "/runs/submit",
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+  },
+  {
+    path: "/top-players",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  {
+    path: "/stats",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  { path: "/stats/cards", priority: 0.8, changeFrequency: "daily" as const },
+  { path: "/stats/relics", priority: 0.8, changeFrequency: "daily" as const },
+  {
+    path: "/stats/encounters",
+    priority: 0.7,
+    changeFrequency: "daily" as const,
+  },
+  { path: "/stats/shops", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/stats/events", priority: 0.6, changeFrequency: "daily" as const },
+  {
+    path: "/stats/scoring",
+    priority: 0.6,
+    changeFrequency: "monthly" as const,
+  },
   // Tier list, high priority, daily changefreq because scores update
   // every 30 minutes as new runs arrive. Per-character variants are
   // crawled via the in-DOM filter <Link>s on /tier-list/cards.
   { path: "/tier-list", priority: 0.9, changeFrequency: "daily" as const },
-  { path: "/tier-list/cards", priority: 0.9, changeFrequency: "daily" as const },
-  { path: "/tier-list/relics", priority: 0.9, changeFrequency: "daily" as const },
-  { path: "/tier-list/potions", priority: 0.8, changeFrequency: "daily" as const },
+  {
+    path: "/tier-list/cards",
+    priority: 0.9,
+    changeFrequency: "daily" as const,
+  },
+  {
+    path: "/tier-list/relics",
+    priority: 0.9,
+    changeFrequency: "daily" as const,
+  },
+  {
+    path: "/tier-list/potions",
+    priority: 0.8,
+    changeFrequency: "daily" as const,
+  },
   { path: "/compare", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/showcase", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/developers", priority: 0.5, changeFrequency: "monthly" as const },
@@ -140,7 +193,11 @@ const STATIC_PAGES = [
   { path: "/about", priority: 0.4, changeFrequency: "monthly" as const },
   { path: "/mechanics", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/guides", priority: 0.7, changeFrequency: "weekly" as const },
-  { path: "/guides/submit", priority: 0.3, changeFrequency: "monthly" as const },
+  {
+    path: "/guides/submit",
+    priority: 0.3,
+    changeFrequency: "monthly" as const,
+  },
   { path: "/badges", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/cards/browse", priority: 0.8, changeFrequency: "daily" as const },
   // Top-level content sections that existed on the site but were
@@ -148,12 +205,21 @@ const STATIC_PAGES = [
   { path: "/news", priority: 0.7, changeFrequency: "daily" as const },
   { path: "/unlocks", priority: 0.6, changeFrequency: "weekly" as const },
   { path: "/runs", priority: 0.7, changeFrequency: "daily" as const },
-  { path: "/charts", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/replays", priority: 0.6, changeFrequency: "daily" as const },
+  { path: "/stats/charts", priority: 0.6, changeFrequency: "daily" as const },
+  {
+    path: "/stats/chart-builder",
+    priority: 0.5,
+    changeFrequency: "weekly" as const,
+  },
   { path: "/mod", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/exporter", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/overlay", priority: 0.5, changeFrequency: "monthly" as const },
-  { path: "/knowledge-demon", priority: 0.4, changeFrequency: "monthly" as const },
-  { path: "/giveaway", priority: 0.3, changeFrequency: "monthly" as const },
+  {
+    path: "/knowledge-demon",
+    priority: 0.4,
+    changeFrequency: "monthly" as const,
+  },
 ];
 
 interface EntityWithImage {
@@ -170,43 +236,142 @@ interface EntityWithImage {
  */
 const DYNAMIC_ROUTES = [
   { endpoint: "/api/cards", prefix: "/cards", priority: 0.8, localized: true },
-  { endpoint: "/api/characters", prefix: "/characters", priority: 0.9, localized: true },
-  { endpoint: "/api/relics", prefix: "/relics", priority: 0.8, localized: true },
-  { endpoint: "/api/monsters", prefix: "/monsters", priority: 0.7, localized: true },
-  { endpoint: "/api/potions", prefix: "/potions", priority: 0.7, localized: true },
-  { endpoint: "/api/enchantments", prefix: "/enchantments", priority: 0.6, localized: true },
-  { endpoint: "/api/encounters", prefix: "/encounters", priority: 0.6, localized: true },
-  { endpoint: "/api/powers", prefix: "/powers", priority: 0.6, localized: true },
-  { endpoint: "/api/events", prefix: "/events", priority: 0.6, localized: true },
-  { endpoint: "/api/keywords", prefix: "/keywords", priority: 0.7, localized: true },
-  { endpoint: "/api/glossary", prefix: "/keywords", priority: 0.6, localized: true },
+  {
+    endpoint: "/api/characters",
+    prefix: "/characters",
+    priority: 0.9,
+    localized: true,
+  },
+  {
+    endpoint: "/api/relics",
+    prefix: "/relics",
+    priority: 0.8,
+    localized: true,
+  },
+  {
+    endpoint: "/api/monsters",
+    prefix: "/monsters",
+    priority: 0.7,
+    localized: true,
+  },
+  {
+    endpoint: "/api/potions",
+    prefix: "/potions",
+    priority: 0.7,
+    localized: true,
+  },
+  {
+    endpoint: "/api/enchantments",
+    prefix: "/enchantments",
+    priority: 0.6,
+    localized: true,
+  },
+  {
+    endpoint: "/api/encounters",
+    prefix: "/encounters",
+    priority: 0.6,
+    localized: true,
+  },
+  {
+    endpoint: "/api/powers",
+    prefix: "/powers",
+    priority: 0.6,
+    localized: true,
+  },
+  {
+    endpoint: "/api/events",
+    prefix: "/events",
+    priority: 0.6,
+    localized: true,
+  },
+  {
+    endpoint: "/api/keywords",
+    prefix: "/keywords",
+    priority: 0.7,
+    localized: true,
+  },
+  {
+    endpoint: "/api/glossary",
+    prefix: "/keywords",
+    priority: 0.6,
+    localized: true,
+  },
   { endpoint: "/api/acts", prefix: "/acts", priority: 0.6, localized: true },
-  { endpoint: "/api/ascensions", prefix: "/ascensions", priority: 0.5, localized: true },
-  { endpoint: "/api/intents", prefix: "/intents", priority: 0.5, localized: true },
+  {
+    endpoint: "/api/ascensions",
+    prefix: "/ascensions",
+    priority: 0.5,
+    localized: true,
+  },
+  {
+    endpoint: "/api/intents",
+    prefix: "/intents",
+    priority: 0.5,
+    localized: true,
+  },
   { endpoint: "/api/orbs", prefix: "/orbs", priority: 0.5, localized: true },
-  { endpoint: "/api/afflictions", prefix: "/afflictions", priority: 0.5, localized: true },
-  { endpoint: "/api/modifiers", prefix: "/modifiers", priority: 0.5, localized: true },
-  { endpoint: "/api/achievements", prefix: "/achievements", priority: 0.5, localized: true },
-  { endpoint: "/api/badges", prefix: "/badges", priority: 0.5, localized: true },
+  {
+    endpoint: "/api/afflictions",
+    prefix: "/afflictions",
+    priority: 0.5,
+    localized: true,
+  },
+  {
+    endpoint: "/api/modifiers",
+    prefix: "/modifiers",
+    priority: 0.5,
+    localized: true,
+  },
+  {
+    endpoint: "/api/achievements",
+    prefix: "/achievements",
+    priority: 0.5,
+    localized: true,
+  },
+  {
+    endpoint: "/api/badges",
+    prefix: "/badges",
+    priority: 0.5,
+    localized: true,
+  },
   // /api/epochs renders at /timeline/{id}, works in English, but the
   // localized [lang]/timeline directory has no [id] folder, so we keep
   // these English-only.
-  { endpoint: "/api/epochs", prefix: "/timeline", priority: 0.5, localized: false },
-  { endpoint: "/api/guides", prefix: "/guides", priority: 0.6, localized: true },
+  {
+    endpoint: "/api/epochs",
+    prefix: "/timeline",
+    priority: 0.5,
+    localized: false,
+  },
+  {
+    endpoint: "/api/guides",
+    prefix: "/guides",
+    priority: 0.6,
+    localized: true,
+  },
 ];
 
 function isEntity(x: unknown): x is EntityWithImage {
-  return !!x && typeof x === "object" && typeof (x as { id?: unknown }).id === "string";
+  return (
+    !!x &&
+    typeof x === "object" &&
+    typeof (x as { id?: unknown }).id === "string"
+  );
 }
 
 // A failed or malformed list fetch throws instead of yielding an empty
 // section: an empty section silently drops hundreds of URLs, and Next keeps
 // serving the last good sitemap when a regeneration fails.
-async function fetchList<T>(endpoint: string, guard: (x: unknown) => x is T, revalidate = 1800): Promise<T[]> {
+async function fetchList<T>(
+  endpoint: string,
+  guard: (x: unknown) => x is T,
+  revalidate = 1800,
+): Promise<T[]> {
   const res = await fetch(`${API}${endpoint}`, { next: { revalidate } });
   if (!res.ok) throw new Error(`sitemap: ${endpoint} returned ${res.status}`);
   const body: unknown = await res.json();
-  if (!Array.isArray(body) || !body.every(guard)) throw new Error(`sitemap: ${endpoint} returned a malformed list`);
+  if (!Array.isArray(body) || !body.every(guard))
+    throw new Error(`sitemap: ${endpoint} returned a malformed list`);
   return body;
 }
 
@@ -218,7 +383,9 @@ const fetchEntities = (endpoint: string) => fetchList(endpoint, isEntity);
 // the page changed when it didn't, and it stops trusting the field.
 async function contentLastMod(): Promise<Date | undefined> {
   try {
-    const res = await fetch(`${API}/api/changelogs`, { next: { revalidate: 1800 } });
+    const res = await fetch(`${API}/api/changelogs`, {
+      next: { revalidate: 1800 },
+    });
     if (!res.ok) return undefined;
     const log = (await res.json()) as Array<{ date?: string }>;
     const latest = log.find((e) => e.date);
@@ -232,7 +399,9 @@ async function contentLastMod(): Promise<Date | undefined> {
 
 // Routes whose pages change with the game data and so carry the changelog
 // date; everything else (guides are edited on their own schedule) is undated.
-const GAME_DATA_PREFIXES = new Set(DYNAMIC_ROUTES.map((r) => r.prefix).filter((p) => p !== "/guides"));
+const GAME_DATA_PREFIXES = new Set(
+  DYNAMIC_ROUTES.map((r) => r.prefix).filter((p) => p !== "/guides"),
+);
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = STATIC_PAGES.map((p) => ({
@@ -246,22 +415,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // that included `acts`, `ascensions`, `intents`, `orbs`, `afflictions`,
   // `modifiers`, `achievements`, none of which have a localized list
   // page, so all 91 of those URLs 404'd. Removed 2026-05-19.
-  const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) => [
-    {
-      url: `${SITE_URL}/${lang}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.6,
-    },
-    ...LANG_LIST_ROUTES.map((route) => ({
-      url: `${SITE_URL}/${lang}/${route}`,
-      changeFrequency: "weekly" as const,
-      priority: 0.5,
-    })),
-  ]);
+  const langListEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap(
+    (lang) => [
+      {
+        url: `${SITE_URL}/${lang}`,
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      },
+      ...LANG_LIST_ROUTES.map((route) => ({
+        url: `${SITE_URL}/${lang}/${route}`,
+        changeFrequency: "weekly" as const,
+        priority: 0.5,
+      })),
+    ],
+  );
 
-  // `next build` prerenders this route (revalidate above) inside a container
-  // with no backend to reach, so the build ships the entries that need no
-  // network. The first live request fills in the rest and ISR keeps it fresh.
+  // Never prerendered: the build container has no backend, and the stub a
+  // build-time render would produce (static and hub pages only) used to be
+  // served for half an hour after every deploy, and Search Console read it.
+  // Cloudflare holds the generated file for an hour (next.config headers),
+  // so the origin regenerates it a handful of times a day at most.
   if (process.env.NEXT_PHASE === "phase-production-build") {
     return [...staticEntries, ...langListEntries];
   }
@@ -271,29 +444,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // English entity detail pages, kept in a side bucket so we can reuse
   // the per-route entity list for the localized expansion below without
   // re-fetching.
-  type FetchedRoute = (typeof DYNAMIC_ROUTES)[number] & { entities: EntityWithImage[] };
+  type FetchedRoute = (typeof DYNAMIC_ROUTES)[number] & {
+    entities: EntityWithImage[];
+  };
   const dynamicResults: FetchedRoute[] = await Promise.all(
     DYNAMIC_ROUTES.map(async (route) => ({
       ...route,
       entities: await fetchEntities(route.endpoint),
-    }))
+    })),
   );
 
-  const englishDetailEntries: MetadataRoute.Sitemap = dynamicResults.flatMap((route) =>
-    route.entities.map((entity) => {
-      const entry: MetadataRoute.Sitemap[number] = {
-        url: `${SITE_URL}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: GAME_DATA_PREFIXES.has(route.prefix) ? contentDate : undefined,
-        changeFrequency: "weekly",
-        priority: route.priority,
-      };
+  const englishDetailEntries: MetadataRoute.Sitemap = dynamicResults.flatMap(
+    (route) =>
+      route.entities.map((entity) => {
+        const entry: MetadataRoute.Sitemap[number] = {
+          url: `${SITE_URL}${route.prefix}/${entity.id.toLowerCase()}`,
+          lastModified: GAME_DATA_PREFIXES.has(route.prefix)
+            ? contentDate
+            : undefined,
+          changeFrequency: "weekly",
+          priority: route.priority,
+        };
 
-      if (entity.image_url) {
-        entry.images = [imageUrl(entity.image_url)];
-      }
+        if (entity.image_url) {
+          entry.images = [imageUrl(entity.image_url)];
+        }
 
-      return entry;
-    })
+        return entry;
+      }),
   );
 
   // Mechanics detail pages, fetched from /api/mechanics/sections so
@@ -302,7 +480,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   type MechanicSectionMeta = { slug: string };
   const mechanicSections = await fetchList(
     "/api/mechanics/sections",
-    (x): x is MechanicSectionMeta => !!x && typeof x === "object" && typeof (x as { slug?: unknown }).slug === "string",
+    (x): x is MechanicSectionMeta =>
+      !!x &&
+      typeof x === "object" &&
+      typeof (x as { slug?: unknown }).slug === "string",
     300,
   );
   const mechanicsEntries: MetadataRoute.Sitemap = mechanicSections.map((s) => ({
@@ -343,7 +524,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...TIER_RELIC_ACTS.flatMap((act) =>
       TIER_RELIC_ANCIENTS.map((a) => ({
-        url: `${SITE_URL}/tier-list/relics?act=${act}&ancient=${a}`,
+        url: `${SITE_URL}/tier-list/relics?act=${act}&amp;ancient=${a}`,
         changeFrequency: "daily" as const,
         priority: 0.6,
       })),
@@ -358,33 +539,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  // Localized mechanics detail pages, page.tsx lives at
-  // `app/[locale]/mechanics/[slug]/page.tsx`, so each slug × each lang
-  // is a real URL.
-  const langMechanicsEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
-    mechanicSections.map((s) => ({
-      url: `${SITE_URL}/${lang}/mechanics/${s.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.4,
-    }))
-  );
-
   // Localized entity detail pages, only for routes that have a real
   // [id]/page.tsx under `app/[locale]/`. Previously this expanded ALL
   // DYNAMIC_ROUTES including timeline/acts/etc, producing 13 × 57 = 741
   // dead `/{lang}/timeline/{epoch}` URLs and similar.
   const localizedDynamicRoutes = dynamicResults.filter(
-    (r) => r.localized && LANG_DETAIL_ROUTES.has(r.prefix.replace(/^\//, ""))
+    (r) => r.localized && LANG_DETAIL_ROUTES.has(r.prefix.replace(/^\//, "")),
   );
-  const langDetailEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap((lang) =>
-    localizedDynamicRoutes.flatMap((route) =>
-      route.entities.map((entity) => ({
-        url: `${SITE_URL}/${lang}${route.prefix}/${entity.id.toLowerCase()}`,
-        lastModified: GAME_DATA_PREFIXES.has(route.prefix) ? contentDate : undefined,
-        changeFrequency: "weekly" as const,
-        priority: 0.4,
-      }))
-    )
+  const langDetailEntries: MetadataRoute.Sitemap = SUPPORTED_LANGS.flatMap(
+    (lang) =>
+      localizedDynamicRoutes.flatMap((route) =>
+        route.entities.map((entity) => ({
+          url: `${SITE_URL}/${lang}${route.prefix}/${entity.id.toLowerCase()}`,
+          lastModified: GAME_DATA_PREFIXES.has(route.prefix)
+            ? contentDate
+            : undefined,
+          changeFrequency: "weekly" as const,
+          priority: 0.4,
+        })),
+      ),
   );
 
   const seen = new Set<string>();
@@ -394,7 +567,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tierListVariants,
     ...browseEntries,
     ...langListEntries,
-    ...langMechanicsEntries,
     ...langDetailEntries,
     ...englishDetailEntries,
   ].filter((entry) => {

@@ -34,7 +34,11 @@ import {
 
 function Gold({ cost }: { cost?: number }) {
   if (cost == null) return null;
-  return <span className="text-[var(--accent-gold)] tabular-nums font-semibold">{cost}g</span>;
+  return (
+    <span className="text-[var(--accent-gold)] tabular-nums font-semibold">
+      {cost}g
+    </span>
+  );
 }
 
 export function LiveEventPanel({
@@ -52,11 +56,14 @@ export function LiveEventPanel({
 }) {
   const t = useT();
   const id = cleanId(ev.id);
-  const titleText = events?.[id]?.name || ev.title || displayName(`EVENT.${id}`);
+  const titleText =
+    events?.[id]?.name || ev.title || displayName(`EVENT.${id}`);
   return (
     <div className="rounded-lg border border-special/30 bg-special/10 p-4">
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-special">{t("Event")}</span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-special">
+          {t("Event")}
+        </span>
         {safeId(id) ? (
           <Link
             href={`${bp}/events/${id.toLowerCase()}`}
@@ -65,7 +72,9 @@ export function LiveEventPanel({
             {titleText}
           </Link>
         ) : (
-          <span className="text-sm font-semibold text-[var(--text-primary)]">{titleText}</span>
+          <span className="text-sm font-semibold text-[var(--text-primary)]">
+            {titleText}
+          </span>
         )}
       </div>
       {ev.prompt && (
@@ -75,80 +84,89 @@ export function LiveEventPanel({
       )}
       {(ev.options?.length ?? 0) > 0 && (
         <ul className="space-y-1.5">
-          {withOrdinalKeys((ev.options ?? []).map((o, i) => o.key || o.text || String(i))).map(
-            ({ key }, i) => {
-              const o = (ev.options ?? [])[i];
-              const disabled = o.locked;
-              return (
-                <li
-                  key={key}
-                  className={`flex items-start gap-2 rounded-md border px-2.5 py-1.5 text-sm ${
-                    o.chosen
-                      ? "border-[var(--accent-gold)]/50 bg-[var(--accent-gold)]/10 text-[var(--text-primary)]"
-                      : disabled
-                        ? "border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-muted)]"
-                        : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)]"
-                  }`}
+          {withOrdinalKeys(
+            (ev.options ?? []).map((o, i) => o.key || o.text || String(i)),
+          ).map(({ key }, i) => {
+            const o = (ev.options ?? [])[i];
+            const disabled = o.locked;
+            return (
+              <li
+                key={key}
+                className={`flex items-start gap-2 rounded-md border px-2.5 py-1.5 text-sm ${
+                  o.chosen
+                    ? "border-[var(--accent-gold)] bg-[var(--bg-primary)] text-[var(--text-primary)] ring-1 ring-[var(--accent-gold)]"
+                    : disabled
+                      ? "border-[var(--border-subtle)] bg-[var(--bg-primary)] text-[var(--text-muted)]"
+                      : "border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)]"
+                }`}
+              >
+                <span className="mt-0.5 shrink-0">
+                  {o.chosen ? "✓" : disabled ? "\u{1F512}" : "•"}
+                </span>
+                <span
+                  className={`min-w-0 flex-1 ${disabled ? "line-through" : ""}`}
                 >
-                  <span className="mt-0.5 shrink-0">
-                    {o.chosen ? "✓" : disabled ? "\u{1F512}" : "•"}
-                  </span>
-                  <span className={`min-w-0 flex-1 ${disabled ? "line-through" : ""}`}>
-                    {o.text ? <RichDescriptionSimple text={o.text} /> : o.key || t("(option)")}
-                    {o.desc && o.desc !== o.text && (
-                      <span className="mt-0.5 block text-xs text-[var(--text-muted)]">
-                        <RichDescriptionSimple text={o.desc} />
-                      </span>
-                    )}
-                    {(o.card || o.relic) && (
-                      <span className="mt-1.5 flex flex-wrap items-center gap-2">
-                        {o.card && (
-                          <CardPill
-                            cardId={cleanId(o.card)}
-                            cardData={cards ?? {}}
-                            bp={bp}
-                            className="block w-16 shrink-0"
-                          >
-                            <LiveCardImg
-                              id={cleanId(o.card)}
-                              alt=""
-                              className="w-16 rounded shadow"
-                              portrait={cards?.[cleanId(o.card)]?.image_url}
-                            />
-                          </CardPill>
-                        )}
-                        {o.relic && (
-                          <RelicPill
-                            relicId={cleanId(o.relic)}
-                            relicData={relics ?? {}}
-                            bp={bp}
-                            className="block shrink-0"
-                          >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
-                              src={imageUrl(
-                                relics?.[cleanId(o.relic)]?.image_url ||
-                                  `/static/images/relics/${cleanId(o.relic).toLowerCase()}.png`,
-                              )}
-                              alt=""
-                              className="h-9 w-9 object-contain"
-                              crossOrigin="anonymous"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).style.display = "none";
-                              }}
-                            />
-                          </RelicPill>
-                        )}
-                      </span>
-                    )}
-                  </span>
-                  {o.proceed && !o.chosen && (
-                    <span className="text-[10px] text-[var(--text-muted)] shrink-0">{t("leave")}</span>
+                  {o.text ? (
+                    <RichDescriptionSimple text={o.text} />
+                  ) : (
+                    o.key || t("(option)")
                   )}
-                </li>
-              );
-            },
-          )}
+                  {o.desc && o.desc !== o.text && (
+                    <span className="mt-0.5 block text-xs text-[var(--text-muted)]">
+                      <RichDescriptionSimple text={o.desc} />
+                    </span>
+                  )}
+                  {(o.card || o.relic) && (
+                    <span className="mt-1.5 flex flex-wrap items-center gap-2">
+                      {o.card && (
+                        <CardPill
+                          cardId={cleanId(o.card)}
+                          cardData={cards ?? {}}
+                          bp={bp}
+                          className="block w-16 shrink-0"
+                        >
+                          <LiveCardImg
+                            id={cleanId(o.card)}
+                            alt=""
+                            className="w-16 rounded shadow"
+                            portrait={cards?.[cleanId(o.card)]?.image_url}
+                          />
+                        </CardPill>
+                      )}
+                      {o.relic && (
+                        <RelicPill
+                          relicId={cleanId(o.relic)}
+                          relicData={relics ?? {}}
+                          bp={bp}
+                          className="block shrink-0"
+                        >
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={imageUrl(
+                              relics?.[cleanId(o.relic)]?.image_url ||
+                                `/static/images/relics/${cleanId(o.relic).toLowerCase()}.png`,
+                            )}
+                            alt=""
+                            className="h-9 w-9 object-contain"
+                            crossOrigin="anonymous"
+                            onError={(e) => {
+                              (e.target as HTMLImageElement).style.display =
+                                "none";
+                            }}
+                          />
+                        </RelicPill>
+                      )}
+                    </span>
+                  )}
+                </span>
+                {o.proceed && !o.chosen && (
+                  <span className="text-[10px] text-[var(--text-muted)] shrink-0">
+                    {t("leave")}
+                  </span>
+                )}
+              </li>
+            );
+          })}
         </ul>
       )}
     </div>
@@ -177,75 +195,109 @@ function ShopSection({
   if (real.length === 0) return null;
   return (
     <div>
-      <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">{title}</div>
+      <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] mb-1.5">
+        {title}
+      </div>
       <ul className="space-y-1">
-        {withOrdinalKeys(real.map((it) => it.id as string)).map(({ key }, idx) => {
-          const it = real[idx];
-          const rawId = it.id as string;
-          const { id, upgraded } = parseDeckId(rawId);
-          const sold = it.stocked === false;
-          const info =
-            kind === "card" ? cards[id] : kind === "relic" ? relics[id] : potions[id];
-          const name = info?.name || displayName(`${kind.toUpperCase()}.${id}`);
-          const portrait = info?.image_url ? imageUrl(info.image_url) : "";
-          const thumb =
-            kind === "card" ? (
-              <LiveCardImg
-                id={id}
-                upgraded={upgraded}
-                alt={name}
-                className="w-7 h-auto rounded-sm"
-                portrait={info?.image_url}
-              />
-            ) : (
-              <img
-                src={
-                  portrait ||
-                  imageUrl(`/static/images/${kind === "relic" ? "relics" : "potions"}/${id.toLowerCase()}.png`)
-                }
-                alt={name}
-                className="w-7 h-7 object-contain"
-                crossOrigin="anonymous"
-                loading="lazy"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).style.visibility = "hidden";
-                }}
-              />
-            );
-          const pill =
-            kind === "card" ? (
-              <CardPill cardId={id} upgraded={upgraded} cardData={cards} bp={bp} className="block shrink-0">
-                {thumb}
-              </CardPill>
-            ) : kind === "relic" ? (
-              <RelicPill relicId={id} relicData={relics} bp={bp} className="block shrink-0">
-                {thumb}
-              </RelicPill>
-            ) : (
-              <PotionPill potionId={id} potionData={potions} bp={bp} className="block shrink-0">
-                {thumb}
-              </PotionPill>
-            );
-          return (
-            <li key={key} className={`flex items-center gap-2 ${sold ? "opacity-40" : ""}`}>
-              {pill}
-              <span className={`text-sm min-w-0 flex-1 truncate ${sold ? "line-through" : "text-[var(--text-secondary)]"}`}>
-                {name}
-                {upgraded ? "+" : ""}
-              </span>
-              {it.on_sale && !sold && (
-                <span className="text-[9px] font-bold uppercase rounded bg-success-fill px-1 text-on-fill shrink-0">
-                  {t("sale")}
-                </span>
-              )}
-              {sold ? (
-                <span className="text-[10px] text-[var(--text-muted)] shrink-0">{t("sold")}</span>
+        {withOrdinalKeys(real.map((it) => it.id as string)).map(
+          ({ key }, idx) => {
+            const it = real[idx];
+            const rawId = it.id as string;
+            const { id, upgraded } = parseDeckId(rawId);
+            const sold = it.stocked === false;
+            const info =
+              kind === "card"
+                ? cards[id]
+                : kind === "relic"
+                  ? relics[id]
+                  : potions[id];
+            const name =
+              info?.name || displayName(`${kind.toUpperCase()}.${id}`);
+            const portrait = info?.image_url ? imageUrl(info.image_url) : "";
+            const thumb =
+              kind === "card" ? (
+                <LiveCardImg
+                  id={id}
+                  upgraded={upgraded}
+                  alt={name}
+                  className="w-7 h-auto rounded-sm"
+                  portrait={info?.image_url}
+                />
               ) : (
-                <Gold cost={it.cost} />
-              )}
-            </li>
-          );
-        })}
+                <img
+                  src={
+                    portrait ||
+                    imageUrl(
+                      `/static/images/${kind === "relic" ? "relics" : "potions"}/${id.toLowerCase()}.png`,
+                    )
+                  }
+                  alt={name}
+                  className="w-7 h-7 object-contain"
+                  crossOrigin="anonymous"
+                  loading="lazy"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.visibility = "hidden";
+                  }}
+                />
+              );
+            const pill =
+              kind === "card" ? (
+                <CardPill
+                  cardId={id}
+                  upgraded={upgraded}
+                  cardData={cards}
+                  bp={bp}
+                  className="block shrink-0"
+                >
+                  {thumb}
+                </CardPill>
+              ) : kind === "relic" ? (
+                <RelicPill
+                  relicId={id}
+                  relicData={relics}
+                  bp={bp}
+                  className="block shrink-0"
+                >
+                  {thumb}
+                </RelicPill>
+              ) : (
+                <PotionPill
+                  potionId={id}
+                  potionData={potions}
+                  bp={bp}
+                  className="block shrink-0"
+                >
+                  {thumb}
+                </PotionPill>
+              );
+            return (
+              <li
+                key={key}
+                className={`flex items-center gap-2 ${sold ? "opacity-40" : ""}`}
+              >
+                {pill}
+                <span
+                  className={`text-sm min-w-0 flex-1 truncate ${sold ? "line-through" : "text-[var(--text-secondary)]"}`}
+                >
+                  {name}
+                  {upgraded ? "+" : ""}
+                </span>
+                {it.on_sale && !sold && (
+                  <span className="text-[9px] font-bold uppercase rounded bg-success-fill px-1 text-on-fill shrink-0">
+                    {t("sale")}
+                  </span>
+                )}
+                {sold ? (
+                  <span className="text-[10px] text-[var(--text-muted)] shrink-0">
+                    {t("sold")}
+                  </span>
+                ) : (
+                  <Gold cost={it.cost} />
+                )}
+              </li>
+            );
+          },
+        )}
       </ul>
     </div>
   );
@@ -271,16 +323,44 @@ export function LiveShopPanel({
       <div className="text-[10px] font-bold uppercase tracking-wider text-[var(--accent-gold)]">
         {t("Shop")}
       </div>
-      <ShopSection title={t("Cards")} items={shop.cards ?? []} kind="card" cards={cards} relics={relics} potions={potions} bp={bp} />
-      <ShopSection title={t("Relics")} items={shop.relics ?? []} kind="relic" cards={cards} relics={relics} potions={potions} bp={bp} />
-      <ShopSection title={t("Potions")} items={shop.potions ?? []} kind="potion" cards={cards} relics={relics} potions={potions} bp={bp} />
+      <ShopSection
+        title={t("Cards")}
+        items={shop.cards ?? []}
+        kind="card"
+        cards={cards}
+        relics={relics}
+        potions={potions}
+        bp={bp}
+      />
+      <ShopSection
+        title={t("Relics")}
+        items={shop.relics ?? []}
+        kind="relic"
+        cards={cards}
+        relics={relics}
+        potions={potions}
+        bp={bp}
+      />
+      <ShopSection
+        title={t("Potions")}
+        items={shop.potions ?? []}
+        kind="potion"
+        cards={cards}
+        relics={relics}
+        potions={potions}
+        bp={bp}
+      />
       {removal && removal.cost != null && (
         <div className="flex items-center gap-2 pt-1 border-t border-[var(--border-subtle)]">
-          <span className={`text-sm flex-1 ${removal.stocked === false ? "text-[var(--text-muted)] line-through" : "text-[var(--text-secondary)]"}`}>
+          <span
+            className={`text-sm flex-1 ${removal.stocked === false ? "text-[var(--text-muted)] line-through" : "text-[var(--text-secondary)]"}`}
+          >
             {t("Card removal")}
           </span>
           {removal.stocked === false ? (
-            <span className="text-[10px] text-[var(--text-muted)]">{t("used")}</span>
+            <span className="text-[10px] text-[var(--text-muted)]">
+              {t("used")}
+            </span>
           ) : (
             <Gold cost={removal.cost} />
           )}
@@ -407,26 +487,26 @@ export function LiveLootPanel({
         <div className="flex flex-wrap items-start gap-1.5">
           {!packs.length &&
             withOrdinalKeys(cardIds).map(({ item, key }) => {
-            const { id, upgraded } = parseDeckId(item);
-            return (
-              <CardPill
-                key={`c-${key}`}
-                cardId={id}
-                upgraded={upgraded}
-                cardData={cards}
-                bp={bp}
-                className="relative block w-16 shrink-0"
-              >
-                <LiveCardImg
-                  id={id}
+              const { id, upgraded } = parseDeckId(item);
+              return (
+                <CardPill
+                  key={`c-${key}`}
+                  cardId={id}
                   upgraded={upgraded}
-                  alt={cards[id]?.name || displayName(`CARD.${id}`)}
-                  className="h-auto w-16 rounded-sm"
-                  portrait={cards[id]?.image_url}
-                />
-              </CardPill>
-            );
-          })}
+                  cardData={cards}
+                  bp={bp}
+                  className="relative block w-16 shrink-0"
+                >
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
+                    alt={cards[id]?.name || displayName(`CARD.${id}`)}
+                    className="h-auto w-16 rounded-sm"
+                    portrait={cards[id]?.image_url}
+                  />
+                </CardPill>
+              );
+            })}
           {withOrdinalKeys(relicIds).map(({ item, key }) => {
             const id = cleanId(item);
             const info = relics[id];

@@ -4,7 +4,7 @@ import { useT } from "@/lib/i18n";
 
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -49,7 +49,9 @@ export default function SubmitGuidePage() {
   const [bluesky, setBluesky] = useState("");
   const [twitter, setTwitter] = useState("");
   const [twitch, setTwitch] = useState("");
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
   const validateUrl = (url: string, label: string): string | null => {
@@ -62,10 +64,20 @@ export default function SubmitGuidePage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title.trim() || !content.trim() || !authorName.trim() || !contact.trim()) return;
+    if (
+      !title.trim() ||
+      !content.trim() ||
+      !authorName.trim() ||
+      !contact.trim()
+    )
+      return;
 
     const urlError = validateUrl(website, t("Website"));
-    if (urlError) { setErrorMsg(urlError); setStatus("error"); return; }
+    if (urlError) {
+      setErrorMsg(urlError);
+      setStatus("error");
+      return;
+    }
 
     setStatus("sending");
     setErrorMsg("");
@@ -95,7 +107,11 @@ export default function SubmitGuidePage() {
       }
       setStatus("success");
     } catch (err) {
-      setErrorMsg(err instanceof Error ? err.message : t("Something went wrong. Please try again."));
+      setErrorMsg(
+        err instanceof Error
+          ? err.message
+          : t("Something went wrong. Please try again."),
+      );
       setStatus("error");
     }
   };
@@ -104,11 +120,18 @@ export default function SubmitGuidePage() {
     return (
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="bg-[var(--bg-card)] rounded-lg border border-success/40 p-8 text-center">
-          <h1 className="text-2xl font-bold text-success mb-3">{t("Guide Submitted!")}</h1>
+          <h1 className="text-2xl font-bold text-success mb-3">
+            {t("Guide Submitted!")}
+          </h1>
           <p className="text-[var(--text-secondary)] mb-6">
-            {t("Thanks for your contribution! We'll review your guide and publish it soon.")}
+            {t(
+              "Thanks for your contribution! We'll review your guide and publish it soon.",
+            )}
           </p>
-          <Link href={`${bp}/guides`} className="text-[var(--accent-gold)] hover:underline">
+          <Link
+            href={`${bp}/guides`}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
             {t("Back to Guides")}
           </Link>
         </div>
@@ -116,12 +139,17 @@ export default function SubmitGuidePage() {
     );
   }
 
-  const inputClass = "w-full bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] transition-colors";
-  const labelClass = "block text-sm font-medium text-[var(--text-secondary)] mb-1";
+  const inputClass =
+    "w-full bg-[var(--bg-primary)] border border-[var(--border-subtle)] rounded-lg px-3 py-2 text-sm text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] transition-colors";
+  const labelClass =
+    "block text-sm font-medium text-[var(--text-secondary)] mb-1";
 
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Link href={`${bp}/guides`} className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors">
+      <Link
+        href={`${bp}/guides`}
+        className="text-sm text-[var(--text-muted)] hover:text-[var(--accent-gold)] mb-6 inline-flex items-center gap-1 transition-colors"
+      >
         <span>&larr;</span> {t("Back to Guides")}
       </Link>
 
@@ -129,79 +157,207 @@ export default function SubmitGuidePage() {
         <span className="text-[var(--accent-gold)]">{t("Submit a Guide")}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {t("Share your knowledge with the community. Guides are reviewed before publishing. Markdown formatting is supported in the guide content.")}
+        {t(
+          "Share your knowledge with the community. Guides are reviewed before publishing. Markdown formatting is supported in the guide content.",
+        )}
       </p>
 
-      <form onSubmit={handleSubmit} className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-6 space-y-4"
+      >
         <div>
           <label className={labelClass}>{t("Title")} *</label>
-          <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} className={inputClass} placeholder={t("e.g. Ironclad Strength Build Guide")} maxLength={200} required />
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className={inputClass}
+            placeholder={t("e.g. Ironclad Strength Build Guide")}
+            maxLength={200}
+            required
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>{t("Your Name")} *</label>
-            <input type="text" value={authorName} onChange={(e) => setAuthorName(e.target.value)} className={inputClass} placeholder={t("Your display name")} maxLength={100} required />
+            <input
+              type="text"
+              value={authorName}
+              onChange={(e) => setAuthorName(e.target.value)}
+              className={inputClass}
+              placeholder={t("Your display name")}
+              maxLength={100}
+              required
+            />
           </div>
           <div>
             <label className={labelClass}>{t("Contact")} *</label>
-            <input type="text" value={contact} onChange={(e) => setContact(e.target.value)} className={inputClass} placeholder={t("Discord username or email")} maxLength={200} required />
+            <input
+              type="text"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
+              className={inputClass}
+              placeholder={t("Discord username or email")}
+              maxLength={200}
+              required
+            />
           </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div>
             <label className={labelClass}>{t("Category")}</label>
-            <select value={category} onChange={(e) => setCategory(e.target.value)} className={inputClass}>
-              {categories.map((c) => <option key={c.value} value={c.value}>{t(c.label)}</option>)}
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className={inputClass}
+            >
+              {categories.map((c) => (
+                <option key={c.value} value={c.value}>
+                  {t(c.label)}
+                </option>
+              ))}
             </select>
           </div>
           <div>
             <label className={labelClass}>{t("Difficulty")}</label>
-            <select value={difficulty} onChange={(e) => setDifficulty(e.target.value)} className={inputClass}>
-              {difficulties.map((d) => <option key={d.value} value={d.value}>{t(d.label)}</option>)}
+            <select
+              value={difficulty}
+              onChange={(e) => setDifficulty(e.target.value)}
+              className={inputClass}
+            >
+              {difficulties.map((d) => (
+                <option key={d.value} value={d.value}>
+                  {t(d.label)}
+                </option>
+              ))}
             </select>
           </div>
           <div>
             <label className={labelClass}>{t("Character")}</label>
-            <select value={character} onChange={(e) => setCharacter(e.target.value)} className={inputClass}>
-              {characters.map((c) => <option key={c.value} value={c.value}>{t(c.label)}</option>)}
+            <select
+              value={character}
+              onChange={(e) => setCharacter(e.target.value)}
+              className={inputClass}
+            >
+              {characters.map((c) => (
+                <option key={c.value} value={c.value}>
+                  {t(c.label)}
+                </option>
+              ))}
             </select>
           </div>
         </div>
 
         <div>
           <label className={labelClass}>{t("Tags")}</label>
-          <input type="text" value={tags} onChange={(e) => setTags(e.target.value)} className={inputClass} placeholder={t("Comma-separated, e.g. strength, scaling, act 3")} />
+          <input
+            type="text"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+            className={inputClass}
+            placeholder={t("Comma-separated, e.g. strength, scaling, act 3")}
+          />
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className={labelClass}>{t("Website")} <span className="text-[var(--text-muted)] font-normal">{t("(optional)")}</span></label>
-            <input type="url" value={website} onChange={(e) => setWebsite(e.target.value)} className={inputClass} placeholder="https://yoursite.com" pattern="https?://.*" title={t("Must start with http:// or https://")} />
+            <label className={labelClass}>
+              {t("Website")}{" "}
+              <span className="text-[var(--text-muted)] font-normal">
+                {t("(optional)")}
+              </span>
+            </label>
+            <input
+              type="url"
+              value={website}
+              onChange={(e) => setWebsite(e.target.value)}
+              className={inputClass}
+              placeholder="https://yoursite.com"
+              pattern="https?://.*"
+              title={t("Must start with http:// or https://")}
+            />
           </div>
           <div>
-            <label className={labelClass}>Bluesky <span className="text-[var(--text-muted)] font-normal">{t("(optional)")}</span></label>
-            <input type="text" value={bluesky} onChange={(e) => setBluesky(e.target.value)} className={inputClass} placeholder="handle.bsky.social" />
+            <label className={labelClass}>
+              Bluesky{" "}
+              <span className="text-[var(--text-muted)] font-normal">
+                {t("(optional)")}
+              </span>
+            </label>
+            <input
+              type="text"
+              value={bluesky}
+              onChange={(e) => setBluesky(e.target.value)}
+              className={inputClass}
+              placeholder="handle.bsky.social"
+            />
           </div>
           <div>
-            <label className={labelClass}>X / Twitter <span className="text-[var(--text-muted)] font-normal">{t("(optional)")}</span></label>
-            <input type="text" value={twitter} onChange={(e) => setTwitter(e.target.value)} className={inputClass} placeholder={t("username")} />
+            <label className={labelClass}>
+              X / Twitter{" "}
+              <span className="text-[var(--text-muted)] font-normal">
+                {t("(optional)")}
+              </span>
+            </label>
+            <input
+              type="text"
+              value={twitter}
+              onChange={(e) => setTwitter(e.target.value)}
+              className={inputClass}
+              placeholder={t("username")}
+            />
           </div>
           <div>
-            <label className={labelClass}>Twitch <span className="text-[var(--text-muted)] font-normal">{t("(optional)")}</span></label>
-            <input type="text" value={twitch} onChange={(e) => setTwitch(e.target.value)} className={inputClass} placeholder={t("username")} />
+            <label className={labelClass}>
+              Twitch{" "}
+              <span className="text-[var(--text-muted)] font-normal">
+                {t("(optional)")}
+              </span>
+            </label>
+            <input
+              type="text"
+              value={twitch}
+              onChange={(e) => setTwitch(e.target.value)}
+              className={inputClass}
+              placeholder={t("username")}
+            />
           </div>
         </div>
 
         <div>
           <label className={labelClass}>{t("Summary")} *</label>
-          <textarea value={summary} onChange={(e) => setSummary(e.target.value)} className={inputClass} rows={2} placeholder={t("A brief summary of what this guide covers")} maxLength={500} required />
+          <textarea
+            value={summary}
+            onChange={(e) => setSummary(e.target.value)}
+            className={inputClass}
+            rows={2}
+            placeholder={t("A brief summary of what this guide covers")}
+            maxLength={500}
+            required
+          />
         </div>
 
         <div>
-          <label className={labelClass}>{t("Guide Content")} * <span className="text-[var(--text-muted)] font-normal">{t("(Markdown supported)")}</span></label>
-          <textarea value={content} onChange={(e) => setContent(e.target.value)} className={`${inputClass} font-mono`} rows={15} placeholder={t("Write your guide here. Use ## for headings, **bold** for emphasis, - for lists...")} maxLength={50000} required />
+          <label className={labelClass}>
+            {t("Guide Content")} *{" "}
+            <span className="text-[var(--text-muted)] font-normal">
+              {t("(Markdown supported)")}
+            </span>
+          </label>
+          <textarea
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            className={`${inputClass} font-mono`}
+            rows={15}
+            placeholder={t(
+              "Write your guide here. Use ## for headings, **bold** for emphasis, - for lists...",
+            )}
+            maxLength={50000}
+            required
+          />
         </div>
 
         {status === "error" && errorMsg && (

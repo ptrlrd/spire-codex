@@ -14,8 +14,12 @@ import { imageUrl } from "@/lib/image-url";
 export const dynamic = "force-static";
 export const revalidate = 3600;
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-const API_PUBLIC = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
+const API_PUBLIC =
+  process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_API_URL || "";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
@@ -25,23 +29,49 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/monsters/${id}`;
   try {
-    const res = await fetch(`${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`, {
-      next: { revalidate: 3600 },
-    });
-    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Monster Not Found"), noIndex: true });
+    const res = await fetch(
+      `${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`,
+      {
+        next: { revalidate: 3600 },
+      },
+    );
+    if (!res.ok)
+      return buildPageMetadata({
+        locale,
+        path,
+        title: t("Monster Not Found"),
+        noIndex: true,
+      });
     const monster = await res.json();
-    const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
-    const movesText = monster.moves?.length ? `${monster.moves.length} known moves.` : "";
+    const hpText = monster.min_hp
+      ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP`
+      : "";
+    const movesText = monster.moves?.length
+      ? `${monster.moves.length} known moves.`
+      : "";
     return buildPageMetadata({
       locale,
       path,
-      title: `${monster.name} - ${t("Monster")}`,
-      description: clipMetaDescription(t("monster_meta_description", { name: monster.name, type: monster.type ?? "", hpText: hpText ? ` ${hpText}.` : "", movesText: movesText ? ` ${movesText}` : "" })),
+      title: monster.name,
+      entityType: `${t("Monster")}, Moveset & HP`,
+      description: clipMetaDescription(
+        t("monster_meta_description", {
+          name: monster.name,
+          type: monster.type ?? "",
+          hpText: hpText ? ` ${hpText}.` : "",
+          movesText: movesText ? ` ${movesText}` : "",
+        }),
+      ),
       ogType: "article",
       image: monster.image_url ? imageUrl(monster.image_url) : undefined,
     });
   } catch {
-    return buildPageMetadata({ locale, path, title: t("Database"), noIndex: true });
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Database"),
+      noIndex: true,
+    });
   }
 }
 
@@ -52,12 +82,17 @@ export default async function Page({ params }: Props) {
   let monster = null;
   let apiUnreachable = false;
   try {
-    const res = await fetchEntityRes(`${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`, {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetchEntityRes(
+      `${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`,
+      {
+        next: { revalidate: 3600 },
+      },
+    );
     if (res.ok) {
       monster = await res.json();
-      const hpText = monster.min_hp ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP` : "";
+      const hpText = monster.min_hp
+        ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP`
+        : "";
       const desc = `${monster.type} monster${hpText ? ` \u00b7 ${hpText}` : ""}`;
       const detailJsonLd = buildDetailPageJsonLd({
         name: monster.name,
@@ -68,15 +103,27 @@ export default async function Page({ params }: Props) {
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-          { name: uiText(locale, "Monsters"), href: localePath(locale, "/monsters") },
+          {
+            name: uiText(locale, "Monsters"),
+            href: localePath(locale, "/monsters"),
+          },
           { name: monster.name, href: localePath(locale, `/monsters/${id}`) },
         ],
       });
       const faqQuestions = [
-        { question: `How much HP does ${monster.name} have in Slay the Spire 2?`, answer: hpText || `${monster.name}'s HP varies.` },
-        { question: `What type of enemy is ${monster.name}?`, answer: `${monster.name} is a ${monster.type} type monster.` },
+        {
+          question: `How much HP does ${monster.name} have in Slay the Spire 2?`,
+          answer: hpText || `${monster.name}'s HP varies.`,
+        },
+        {
+          question: `What type of enemy is ${monster.name}?`,
+          answer: `${monster.name} is a ${monster.type} type monster.`,
+        },
       ];
-      jsonLd = locale === "eng" ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)] : detailJsonLd;
+      jsonLd =
+        locale === "eng"
+          ? [...detailJsonLd, buildFAQPageJsonLd(faqQuestions)]
+          : detailJsonLd;
     }
   } catch {
     apiUnreachable = true;

@@ -4,7 +4,7 @@ import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -95,7 +95,10 @@ function ChangeValue({ raw, color }: { raw: string; color: string }) {
   );
 }
 
-export default function EntityHistory({ entityType, entityId }: EntityHistoryProps) {
+export default function EntityHistory({
+  entityType,
+  entityId,
+}: EntityHistoryProps) {
   const t = useT();
   const bp = useBetaPrefix();
   const [history, setHistory] = useState<HistoryEntry[] | null>(null);
@@ -105,7 +108,7 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
   // a toggle that only loads on click.
   useEffect(() => {
     cachedFetch<HistoryEntry[]>(
-      `${API}/api/history/${entityType}/${entityId}`
+      `${API}/api/history/${entityType}/${entityId}`,
     ).then(setHistory);
   }, [entityType, entityId]);
 
@@ -113,106 +116,120 @@ export default function EntityHistory({ entityType, entityId }: EntityHistoryPro
     <section id="history">
       <h2>{t("Version history")}</h2>
       {history && history.length > 0 ? (
-          <div className="relative ml-2">
-            {/* Timeline line */}
-            <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
+        <div className="relative ml-2">
+          {/* Timeline line */}
+          <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
 
-            <div className="space-y-4">
-              {history.map((entry, i) => (
-                <div key={`${entry.version}-${i}`} className="relative pl-6">
-                  {/* Timeline dot */}
-                  <div
-                    className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${dotColors[entry.action] || "bg-line-strong"}`}
-                  />
+          <div className="space-y-4">
+            {history.map((entry, i) => (
+              <div key={`${entry.version}-${i}`} className="relative pl-6">
+                {/* Timeline dot */}
+                <div
+                  className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${dotColors[entry.action] || "bg-line-strong"}`}
+                />
 
-                  <div>
-                    <div className="flex items-center gap-2 text-xs">
-                      <Link
-                        href={`${bp}/changelog#${entry.version}`}
-                        className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
-                      >
-                        v{entry.version}
-                      </Link>
-                      <span className={actionColors[entry.action] || "text-fg-muted"}>
-                        {actionLabels[entry.action] ? t(actionLabels[entry.action]) : entry.action}
-                      </span>
-                      <span className="text-[var(--text-muted)]">{entry.date}</span>
-                    </div>
+                <div>
+                  <div className="flex items-center gap-2 text-xs">
+                    <Link
+                      href={`${bp}/changelog#${entry.version}`}
+                      className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                    >
+                      v{entry.version}
+                    </Link>
+                    <span
+                      className={actionColors[entry.action] || "text-fg-muted"}
+                    >
+                      {actionLabels[entry.action]
+                        ? t(actionLabels[entry.action])
+                        : entry.action}
+                    </span>
+                    <span className="text-[var(--text-muted)]">
+                      {entry.date}
+                    </span>
+                  </div>
 
-                    {entry.changes.length > 0 && (
-                      <div className="mt-1.5 space-y-2">
-                        {entry.changes.map((change, j) => {
-                          const oldStr = String(change.old ?? "");
-                          const newStr = String(change.new ?? "");
-                          const isComplex =
-                            oldStr.length + newStr.length > 80 ||
-                            oldStr.startsWith("{") ||
-                            oldStr.startsWith("[") ||
-                            newStr.startsWith("{") ||
-                            newStr.startsWith("[");
-                          if (isComplex) {
-                            return (
-                              <div
-                                key={`${change.field}-${j}`}
-                                className="text-xs text-[var(--text-muted)]"
-                              >
-                                <div className="text-[var(--text-secondary)] font-medium mb-1">
-                                  {change.field}
-                                </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
-                                  <div>
-                                    <div className="text-[10px] uppercase tracking-wider text-danger/70 mb-0.5">
-                                      {t("Before")}
-                                    </div>
-                                    <ChangeValue raw={oldStr} color="text-danger/80" />
-                                  </div>
-                                  <div>
-                                    <div className="text-[10px] uppercase tracking-wider text-success/70 mb-0.5">
-                                      {t("After")}
-                                    </div>
-                                    <ChangeValue raw={newStr} color="text-success/80" />
-                                  </div>
-                                </div>
-                              </div>
-                            );
-                          }
+                  {entry.changes.length > 0 && (
+                    <div className="mt-1.5 space-y-2">
+                      {entry.changes.map((change, j) => {
+                        const oldStr = String(change.old ?? "");
+                        const newStr = String(change.new ?? "");
+                        const isComplex =
+                          oldStr.length + newStr.length > 80 ||
+                          oldStr.startsWith("{") ||
+                          oldStr.startsWith("[") ||
+                          newStr.startsWith("{") ||
+                          newStr.startsWith("[");
+                        if (isComplex) {
                           return (
                             <div
                               key={`${change.field}-${j}`}
-                              className="text-xs text-[var(--text-muted)] flex items-baseline gap-1.5 flex-wrap"
+                              className="text-xs text-[var(--text-muted)]"
                             >
-                              <span className="text-[var(--text-secondary)] font-medium">
+                              <div className="text-[var(--text-secondary)] font-medium mb-1">
                                 {change.field}
-                              </span>
-                              <span className="text-danger/70 line-through">
-                                {oldStr}
-                              </span>
-                              <span className="text-[var(--text-muted)]">&rarr;</span>
-                              <span className="text-success/70">{newStr}</span>
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
+                                <div>
+                                  <div className="text-[10px] uppercase tracking-wider text-danger/70 mb-0.5">
+                                    {t("Before")}
+                                  </div>
+                                  <ChangeValue
+                                    raw={oldStr}
+                                    color="text-danger/80"
+                                  />
+                                </div>
+                                <div>
+                                  <div className="text-[10px] uppercase tracking-wider text-success/70 mb-0.5">
+                                    {t("After")}
+                                  </div>
+                                  <ChangeValue
+                                    raw={newStr}
+                                    color="text-success/80"
+                                  />
+                                </div>
+                              </div>
                             </div>
                           );
-                        })}
-                      </div>
-                    )}
-                  </div>
+                        }
+                        return (
+                          <div
+                            key={`${change.field}-${j}`}
+                            className="text-xs text-[var(--text-muted)] flex items-baseline gap-1.5 flex-wrap"
+                          >
+                            <span className="text-[var(--text-secondary)] font-medium">
+                              {change.field}
+                            </span>
+                            <span className="text-danger/70 line-through">
+                              {oldStr}
+                            </span>
+                            <span className="text-[var(--text-muted)]">
+                              &rarr;
+                            </span>
+                            <span className="text-success/70">{newStr}</span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        ) : history && history.length === 0 ? (
-          <p className="text-xs text-[var(--text-muted)] m-0">
-            {t("No version history recorded for this entity.")}
-          </p>
-        ) : (
-          <p className="text-xs text-[var(--text-muted)] m-0">{t("Loading…")}</p>
-        )}
+        </div>
+      ) : history && history.length === 0 ? (
+        <p className="text-xs text-[var(--text-muted)] m-0">
+          {t("No version history recorded for this entity.")}
+        </p>
+      ) : (
+        <p className="text-xs text-[var(--text-muted)] m-0">{t("Loading…")}</p>
+      )}
 
-        <Link
-          href={`${bp}/changelog`}
-          className="mt-4 inline-block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
-        >
-          {t("View the full changelog")} &rarr;
-        </Link>
+      <Link
+        href={`${bp}/changelog`}
+        className="mt-4 inline-block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
+      >
+        {t("View the full changelog")} &rarr;
+      </Link>
     </section>
   );
 }

@@ -1,10 +1,16 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, useMemo, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Character, Card, Relic, Potion } from "@/lib/api";
+import {
+  useState,
+  useEffect,
+  useMemo,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Character, Card, Relic, Potion } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { cachedFetch } from "@/lib/fetch-cache";
@@ -81,7 +87,11 @@ function TopPicks({
       <ul className="picks">
         {resolved.map(({ it, ent }) => (
           <li key={it.entity_id}>
-            <Link prefetch={false} href={`${hrefBase}/${ent.id.toLowerCase()}`} className="pick">
+            <Link
+              prefetch={false}
+              href={`${hrefBase}/${ent.id.toLowerCase()}`}
+              className="pick"
+            >
               {ent.image_url && (
                 <img
                   src={imageUrl(ent.image_url)}
@@ -96,7 +106,10 @@ function TopPicks({
                 {it.score != null && <ScoreBadge score={it.score} size="sm" />}
               </span>
               <span className="pick-sub">
-                {t("{pct}% win · {n} picks", { pct: it.win_rate.toFixed(1), n: it.picks.toLocaleString() })}
+                {t("{pct}% win · {n} picks", {
+                  pct: it.win_rate.toFixed(1),
+                  n: it.picks.toLocaleString(),
+                })}
               </span>
             </Link>
           </li>
@@ -106,7 +119,9 @@ function TopPicks({
   );
 }
 
-export default function CharacterDetail({ initialCharacter }: { initialCharacter?: Character | null } = {}) {
+export default function CharacterDetail({
+  initialCharacter,
+}: { initialCharacter?: Character | null } = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
@@ -131,26 +146,40 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   useEffect(() => {
     if (!id) return;
     Promise.all([
-      cachedFetch<Character>(`${API}/api/characters/${id}?lang=${lang}`).catch(() => {
-        if (!initialCharacter) setNotFound(true);
-        return null;
-      }),
+      cachedFetch<Character>(`${API}/api/characters/${id}?lang=${lang}`).catch(
+        () => {
+          if (!initialCharacter) setNotFound(true);
+          return null;
+        },
+      ),
       cachedFetch<Card[]>(`${API}/api/cards?lang=${lang}`),
       cachedFetch<Relic[]>(`${API}/api/relics?lang=${lang}`),
-      cachedFetch<Card[]>(`${API}/api/cards?color=${id}&lang=${lang}`).catch(() => [] as Card[]),
-      cachedFetch<Relic[]>(`${API}/api/relics?pool=${id}&lang=${lang}`).catch(() => [] as Relic[]),
+      cachedFetch<Card[]>(`${API}/api/cards?color=${id}&lang=${lang}`).catch(
+        () => [] as Card[],
+      ),
+      cachedFetch<Relic[]>(`${API}/api/relics?pool=${id}&lang=${lang}`).catch(
+        () => [] as Relic[],
+      ),
     ])
-      .then(([charData, cardsData, relicsData, charCards, charRelics]: [Character | null, Card[], Relic[], Card[], Relic[]]) => {
-        if (charData) setChar(charData);
-        const cm: Record<string, Card> = {};
-        for (const c of cardsData ?? []) cm[c.id] = c;
-        setCards(cm);
-        const rm: Record<string, Relic> = {};
-        for (const r of relicsData ?? []) rm[r.id] = r;
-        setRelics(rm);
-        setAllCards(charCards ?? []);
-        setPoolRelics(charRelics ?? []);
-      })
+      .then(
+        ([charData, cardsData, relicsData, charCards, charRelics]: [
+          Character | null,
+          Card[],
+          Relic[],
+          Card[],
+          Relic[],
+        ]) => {
+          if (charData) setChar(charData);
+          const cm: Record<string, Card> = {};
+          for (const c of cardsData ?? []) cm[c.id] = c;
+          setCards(cm);
+          const rm: Record<string, Relic> = {};
+          for (const r of relicsData ?? []) rm[r.id] = r;
+          setRelics(rm);
+          setAllCards(charCards ?? []);
+          setPoolRelics(charRelics ?? []);
+        },
+      )
       .finally(() => setLoading(false));
   }, [id, lang]);
 
@@ -163,9 +192,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     // are in every run so they top the raw list, but they're filtered out
     // below. Grab enough that 5 real picks remain after that.
     const top = (type: string) =>
-      cachedFetch<TopEntry[]>(`${API}/api/runs/top/${type}/${id}?limit=15`).catch(
-        () => [] as TopEntry[],
-      );
+      cachedFetch<TopEntry[]>(
+        `${API}/api/runs/top/${type}/${id}?limit=15`,
+      ).catch(() => [] as TopEntry[]);
     Promise.all([
       cachedFetch<Potion[]>(`${API}/api/potions?lang=${lang}`).catch(
         () => [] as Potion[],
@@ -173,14 +202,21 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
       top("cards"),
       top("relics"),
       top("potions"),
-    ]).then(([potionsData, tc, tr, tp]: [Potion[], TopEntry[], TopEntry[], TopEntry[]]) => {
-      const pm: Record<string, Potion> = {};
-      for (const p of potionsData ?? []) pm[p.id] = p;
-      setPotions(pm);
-      setTopCards(tc ?? []);
-      setTopRelics(tr ?? []);
-      setTopPotions(tp ?? []);
-    });
+    ]).then(
+      ([potionsData, tc, tr, tp]: [
+        Potion[],
+        TopEntry[],
+        TopEntry[],
+        TopEntry[],
+      ]) => {
+        const pm: Record<string, Potion> = {};
+        for (const p of potionsData ?? []) pm[p.id] = p;
+        setPotions(pm);
+        setTopCards(tc ?? []);
+        setTopRelics(tr ?? []);
+        setTopPotions(tp ?? []);
+      },
+    );
   }, [id, lang]);
 
   // Catalogs are keyed by their original id casing; run-metric entity
@@ -218,7 +254,14 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     );
     secs.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
-  }, [char, allCards.length, poolRelics.length, topCards.length, topRelics.length, topPotions.length]);
+  }, [
+    char,
+    allCards.length,
+    poolRelics.length,
+    topCards.length,
+    topRelics.length,
+    topPotions.length,
+  ]);
 
   const handleTocClick = (e: ReactMouseEvent, secId: string) => {
     e.preventDefault();
@@ -240,8 +283,14 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   if (notFound || !char) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-12 text-center">
-        <p className="text-[var(--text-muted)] mb-4">{t("Character not found.")}</p>
-        <Link prefetch={false} href="/characters" className="text-[var(--accent-gold)] hover:underline">
+        <p className="text-[var(--text-muted)] mb-4">
+          {t("Character not found.")}
+        </p>
+        <Link
+          prefetch={false}
+          href="/characters"
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Characters")}
         </Link>
       </div>
@@ -259,7 +308,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
     ...char.starting_deck.map(toUpperSnake),
     "ASCENDERS_BANE",
   ]);
-  const excludedRelics = new Set<string>(char.starting_relics.map(toUpperSnake));
+  const excludedRelics = new Set<string>(
+    char.starting_relics.map(toUpperSnake),
+  );
   const filterTop = (items: TopEntry[], excluded: Set<string>) =>
     items.filter((it) => !excluded.has(it.entity_id.toUpperCase())).slice(0, 5);
   const topCardsFiltered = filterTop(topCards, excludedCards);
@@ -294,7 +345,14 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   });
 
   // Sort pool relics by rarity then name
-  const relicRarityOrder = ["Common", "Uncommon", "Rare", "Shop", "Event", "Starter"];
+  const relicRarityOrder = [
+    "Common",
+    "Uncommon",
+    "Rare",
+    "Shop",
+    "Event",
+    "Starter",
+  ];
   const sortedPoolRelics = [...poolRelics].sort((a, b) => {
     const ai = relicRarityOrder.indexOf(a.rarity);
     const bi = relicRarityOrder.indexOf(b.rarity);
@@ -306,7 +364,7 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   const rarityBadgeColors: Record<string, string> = {
     Common: "bg-line-strong/30 text-on-fill",
     Uncommon: "bg-info/30 text-info",
-    Rare: "bg-warning/30 text-warning", 
+    Rare: "bg-warning/30 text-warning",
     Basic: "bg-surface-hover/30 text-on-fill",
     Shop: "bg-success/30 text-success",
     Event: "bg-special/30 text-special",
@@ -317,7 +375,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   const hasDeck = char.starting_deck.length > 0;
   const hasStartRelics = char.starting_relics.length > 0;
   const hasCommunity =
-    topCardsFiltered.length > 0 || topRelicsFiltered.length > 0 || topPotionsFiltered.length > 0;
+    topCardsFiltered.length > 0 ||
+    topRelicsFiltered.length > 0 ||
+    topPotionsFiltered.length > 0;
   const hasAllCards = allCards.length > 0;
   const hasPoolRelics = sortedPoolRelics.length > 0;
   const hasQuotes =
@@ -336,15 +396,20 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
   ];
 
   const combatSrc =
-    char.animation_url ?? `/static/images/characters/combat_${char.id.toLowerCase()}.webp`;
+    char.animation_url ??
+    `/static/images/characters/combat_${char.id.toLowerCase()}.webp`;
 
   return (
     <div
       className="card-rvmp"
-      style={{
-        "--spine": spineColor,
-        ...(combatSrc ? { "--entity-bg": `url("${imageUrl(combatSrc)}?bg")` } : {}),
-      } as CSSProperties}
+      style={
+        {
+          "--spine": spineColor,
+          ...(combatSrc
+            ? { "--entity-bg": `url("${imageUrl(combatSrc)}?bg")` }
+            : {}),
+        } as CSSProperties
+      }
     >
       <div className="cd-top">
         <button onClick={() => router.back()} className="cd-back">
@@ -369,7 +434,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
               {char.unlocks_after && (
                 <>
                   <span>&middot;</span>
-                  <span>{t("Unlocks after {name}", { name: char.unlocks_after })}</span>
+                  <span>
+                    {t("Unlocks after {name}", { name: char.unlocks_after })}
+                  </span>
                 </>
               )}
             </p>
@@ -405,7 +472,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
             <section id="deck">
               <h2>
                 {t("Starting Deck")}
-                <span className="sec-count">({t("{n} cards", { n: char.starting_deck.length })})</span>
+                <span className="sec-count">
+                  ({t("{n} cards", { n: char.starting_deck.length })})
+                </span>
               </h2>
               <div className="deck-grid">
                 {char.starting_deck.map((cardName, i) => {
@@ -419,8 +488,15 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                       title={cardData.name}
                     >
                       <img
-                        src={fullCardUrl(cardData.id.toLowerCase(), false, "stable", lang)}
-                        alt={t("{name} - Slay the Spire 2", { name: cardData.name })}
+                        src={fullCardUrl(
+                          cardData.id.toLowerCase(),
+                          false,
+                          "stable",
+                          lang,
+                        )}
+                        alt={t("{name} - Slay the Spire 2", {
+                          name: cardData.name,
+                        })}
                         crossOrigin="anonymous"
                         loading="lazy"
                       />
@@ -442,20 +518,27 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                     <Link
                       prefetch={false}
                       key={relicName}
-                      href={relicData ? `/relics/${relicData.id.toLowerCase()}` : "#"}
+                      href={
+                        relicData
+                          ? `/relics/${relicData.id.toLowerCase()}`
+                          : "#"
+                      }
                       className="kit-row"
                     >
                       {relicData?.image_url && (
                         <img
                           className="kit-img"
                           src={imageUrl(relicData.image_url)}
-                          alt={t("{name} - Slay the Spire 2 Relic", { name: relicData.name })}
+                          alt={t("{name} - Slay the Spire 2 Relic", {
+                            name: relicData.name,
+                          })}
                           crossOrigin="anonymous"
                         />
                       )}
                       <div className="kit-body">
                         <div className="kit-name">
-                          {relicData?.name ?? relicName.replace(/([A-Z])/g, " $1").trim()}
+                          {relicData?.name ??
+                            relicName.replace(/([A-Z])/g, " $1").trim()}
                         </div>
                         {relicData && (
                           <div className="kit-desc">
@@ -477,25 +560,32 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
               <h2>{t("Community picks")}</h2>
               <p className="h-note">
                 {t(
-                  "What this character's community-tracked runs include most, beyond the starter kit.")}
+                  "What this character's community-tracked runs include most, beyond the starter kit.",
+                )}
               </p>
               <TopPicks
                 title={t("Top cards picked by {name}", { name: char.name })}
-                subtitle={t("Most-included cards across community-tracked runs, excluding the starter deck.")}
+                subtitle={t(
+                  "Most-included cards across community-tracked runs, excluding the starter deck.",
+                )}
                 items={topCardsFiltered}
                 lookup={(eid) => cardByLower[eid.toLowerCase()]}
                 hrefBase="/cards"
               />
               <TopPicks
                 title={t("Top relics picked by {name}", { name: char.name })}
-                subtitle={t("Relics that show up most often in this character's runs, excluding the starting relic.")}
+                subtitle={t(
+                  "Relics that show up most often in this character's runs, excluding the starting relic.",
+                )}
                 items={topRelicsFiltered}
                 lookup={(eid) => relicByLower[eid.toLowerCase()]}
                 hrefBase="/relics"
               />
               <TopPicks
                 title={t("Top potions picked by {name}", { name: char.name })}
-                subtitle={t("Potions most commonly held in this character's runs.")}
+                subtitle={t(
+                  "Potions most commonly held in this character's runs.",
+                )}
                 items={topPotionsFiltered}
                 lookup={(eid) => potionByLower[eid.toLowerCase()]}
                 hrefBase="/potions"
@@ -506,10 +596,15 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
           {/* All Character Cards */}
           {hasAllCards && (
             <section id="cards">
-              <button className="sec-toggle" onClick={() => setCardsExpanded(!cardsExpanded)}>
+              <button
+                className="sec-toggle"
+                onClick={() => setCardsExpanded(!cardsExpanded)}
+              >
                 <h2>
                   {t("All {name} Cards", { name: char.name })}
-                  <span className="sec-count">({t("{n} cards", { n: allCards.length })})</span>
+                  <span className="sec-count">
+                    ({t("{n} cards", { n: allCards.length })})
+                  </span>
                 </h2>
                 <span className="chev">{cardsExpanded ? "▲" : "▼"}</span>
               </button>
@@ -518,10 +613,14 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                   {sortedRarities.map((rarity) => (
                     <div key={rarity} className="rar-group">
                       <h3 className="rgh">
-                        <span className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-line-strong/30 text-fg-secondary"}`}>
+                        <span
+                          className={`inline-block px-2 py-0.5 rounded text-xs ${rarityBadgeColors[rarity] ?? "bg-line-strong/30 text-fg-secondary"}`}
+                        >
                           {rarity}
                         </span>
-                        <span className="rgn">({cardsByRarity[rarity].length})</span>
+                        <span className="rgn">
+                          ({cardsByRarity[rarity].length})
+                        </span>
                       </h3>
                       <FullCardGrid
                         cards={cardsByRarity[rarity]}
@@ -537,10 +636,15 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
           {/* Character Relics */}
           {hasPoolRelics && (
             <section id="relics">
-              <button className="sec-toggle" onClick={() => setRelicsExpanded(!relicsExpanded)}>
+              <button
+                className="sec-toggle"
+                onClick={() => setRelicsExpanded(!relicsExpanded)}
+              >
                 <h2>
                   {t("{name} Relics", { name: char.name })}
-                  <span className="sec-count">({t("{n} relics", { n: sortedPoolRelics.length })})</span>
+                  <span className="sec-count">
+                    ({t("{n} relics", { n: sortedPoolRelics.length })})
+                  </span>
                 </h2>
                 <span className="chev">{relicsExpanded ? "▲" : "▼"}</span>
               </button>
@@ -557,14 +661,18 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                         <img
                           className="kit-img"
                           src={imageUrl(relic.image_url)}
-                          alt={t("{name} - Slay the Spire 2 Relic", { name: relic.name })}
+                          alt={t("{name} - Slay the Spire 2 Relic", {
+                            name: relic.name,
+                          })}
                           crossOrigin="anonymous"
                         />
                       )}
                       <div className="kit-body">
                         <div className="kit-name">
                           {relic.name}
-                          <span className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-line-strong/30 text-fg-secondary"}`}>
+                          <span
+                            className={`inline-block px-1.5 py-0.5 rounded text-[10px] ${relic?.rarity_key ? rarityBadgeColors[relic.rarity_key] : "bg-line-strong/30 text-fg-secondary"}`}
+                          >
                             {relic.rarity}
                           </span>
                         </div>
@@ -605,50 +713,60 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
             <section id="dialogue">
               <h2>
                 {t("NPC Dialogue")}
-                <span className="sec-count">({t("{n} conversations", { n: char.dialogues!.length })})</span>
+                <span className="sec-count">
+                  ({t("{n} conversations", { n: char.dialogues!.length })})
+                </span>
               </h2>
               <div className="dlg-list">
-                {Object.entries(dialoguesByAncient).map(([ancientId, convos]) => {
-                  const ancientName = convos![0].ancient_name;
-                  const isExpanded = expandedAncient === ancientId;
-                  return (
-                    <div key={ancientId} className="dlg-group">
-                      <button
-                        onClick={() => setExpandedAncient(isExpanded ? null : ancientId)}
-                        className="dlg-toggle"
-                      >
-                        <span className="dlg-title">{ancientName}</span>
-                        <span className="dlg-meta">
-                          {t("{n} conversations", { n: convos!.length })}
-                          <span>{isExpanded ? "▲" : "▼"}</span>
-                        </span>
-                      </button>
-                      {isExpanded && (
-                        <div className="dlg-body">
-                          {convos!.map((convo, ci) => (
-                            <div key={ci} className="dlg-convo">
-                              {convo.lines.map((line, li) => (
-                                <div
-                                  key={li}
-                                  className={`dlg-line${line.speaker === "char" ? " self" : ""}`}
-                                >
-                                  <div className={`bubble${line.speaker === "char" ? " self" : ""}`}>
-                                    <div className="bubble-who">
-                                      {line.speaker === "char" ? char.name : ancientName}
-                                    </div>
-                                    <div className="bubble-text">
-                                      <RichDescription text={line.text} />
+                {Object.entries(dialoguesByAncient).map(
+                  ([ancientId, convos]) => {
+                    const ancientName = convos![0].ancient_name;
+                    const isExpanded = expandedAncient === ancientId;
+                    return (
+                      <div key={ancientId} className="dlg-group">
+                        <button
+                          onClick={() =>
+                            setExpandedAncient(isExpanded ? null : ancientId)
+                          }
+                          className="dlg-toggle"
+                        >
+                          <span className="dlg-title">{ancientName}</span>
+                          <span className="dlg-meta">
+                            {t("{n} conversations", { n: convos!.length })}
+                            <span>{isExpanded ? "▲" : "▼"}</span>
+                          </span>
+                        </button>
+                        {isExpanded && (
+                          <div className="dlg-body">
+                            {convos!.map((convo, ci) => (
+                              <div key={ci} className="dlg-convo">
+                                {convo.lines.map((line, li) => (
+                                  <div
+                                    key={li}
+                                    className={`dlg-line${line.speaker === "char" ? " self" : ""}`}
+                                  >
+                                    <div
+                                      className={`bubble${line.speaker === "char" ? " self" : ""}`}
+                                    >
+                                      <div className="bubble-who">
+                                        {line.speaker === "char"
+                                          ? char.name
+                                          : ancientName}
+                                      </div>
+                                      <div className="bubble-text">
+                                        <RichDescription text={line.text} />
+                                      </div>
                                     </div>
                                   </div>
-                                </div>
-                              ))}
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+                                ))}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  },
+                )}
               </div>
             </section>
           )}
@@ -664,7 +782,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
             <img
               className="cardimg render charimg"
               src={imageUrl(combatSrc)}
-              alt={t("{name} - Slay the Spire 2 Character", { name: char.name })}
+              alt={t("{name} - Slay the Spire 2 Character", {
+                name: char.name,
+              })}
               loading="lazy"
               crossOrigin="anonymous"
             />
@@ -679,7 +799,9 @@ export default function CharacterDetail({ initialCharacter }: { initialCharacter
                 </div>
                 <div className="frow">
                   <dt>{t("Gold")}</dt>
-                  <dd style={{ color: "var(--accent-gold)" }}>{char.starting_gold}</dd>
+                  <dd style={{ color: "var(--accent-gold)" }}>
+                    {char.starting_gold}
+                  </dd>
                 </div>
                 <div className="frow">
                   <dt>{t("Energy")}</dt>

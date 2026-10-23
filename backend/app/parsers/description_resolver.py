@@ -85,6 +85,8 @@ def resolve_description(
                     result = branches[len(options)]
                 else:
                     result = branches[0]  # no else-branch: first as fallback
+            if result and val is not None:
+                result = result.replace("{}", str(val))
             text = text[:start] + (result or "") + text[i:]
         return text
 

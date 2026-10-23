@@ -68,3 +68,40 @@ def test_boards_shape_and_filters(lb_lake):
 
     high = boards["highest_ascension|IRONCLAD|_|_"]
     assert [r["run_hash"] for r in high["runs"]] == ["w2", "w1"]
+
+
+def test_every_party_size_the_page_sends_has_a_board(lb_lake):
+    from app.services.runs_db_mongo import _leaderboard_key
+
+    boards = ls.leaderboard_boards()
+    for cat in ("fastest", "highest_ascension"):
+        for pl in ("1", "2", "3", "4", "multi"):
+            assert (
+                _leaderboard_key(category=cat, players=pl, game_mode="standard")
+                in boards
+            )
+    assert boards["fastest|_|2|standard"]["runs"][0]["run_hash"] == "w2"
+    assert boards["fastest|_|multi|standard"]["total"] == 1
+    assert _leaderboard_key(players="1") == _leaderboard_key(players="single")
+
+
+def test_stored_board_serves_any_page_it_holds():
+    from app.services.runs_db_mongo import _slice_board
+
+    doc = {
+        "_id": "k",
+        "updated_at": 1,
+        "runs": [{"run_hash": f"r{i}"} for i in range(45)],
+        "total": 45,
+        "category": "fastest",
+    }
+    p1 = _slice_board(doc, 1, 20)
+    assert [r["run_hash"] for r in p1["runs"]] == [f"r{i}" for i in range(20)]
+    assert (p1["page"], p1["per_page"], p1["total_pages"]) == (1, 20, 3)
+    p3 = _slice_board(doc, 3, 20)
+    assert [r["run_hash"] for r in p3["runs"]] == ["r40", "r41", "r42", "r43", "r44"]
+    assert _slice_board(doc, 4, 20)["runs"] == []
+    assert "_id" not in p1 and "updated_at" not in p1
+    partial = {"runs": [{"run_hash": f"r{i}"} for i in range(50)], "total": 900}
+    assert _slice_board(partial, 2, 20) is not None
+    assert _slice_board(partial, 3, 20) is None

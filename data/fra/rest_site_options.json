@@ -1,0 +1,38 @@
+[
+  {
+    "id": "CLONE",
+    "name": "Clonage"
+  },
+  {
+    "id": "COOK",
+    "name": "Cuisiner"
+  },
+  {
+    "id": "DIG",
+    "name": "Fouiller"
+  },
+  {
+    "id": "HATCH",
+    "name": "Éclosion"
+  },
+  {
+    "id": "HEAL",
+    "name": "Repos"
+  },
+  {
+    "id": "KINDLE",
+    "name": "Raviver"
+  },
+  {
+    "id": "LIFT",
+    "name": "Entraînement"
+  },
+  {
+    "id": "MEND",
+    "name": "Soins"
+  },
+  {
+    "id": "SMITH",
+    "name": "Forger"
+  }
+]

@@ -4,11 +4,12 @@ import { useGameLocale, useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import RichDescription from "@/app/components/RichDescription";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { textColor } from "@/lib/character-colors";
 
 interface UnlockEntity {
   id: string;
@@ -44,7 +45,14 @@ interface UnlocksData {
 }
 
 type Tab = "all" | "characters" | "cards" | "relics" | "potions";
-type CharFilter = "all" | "ironclad" | "silent" | "defect" | "regent" | "necrobinder" | "shared";
+type CharFilter =
+  | "all"
+  | "ironclad"
+  | "silent"
+  | "defect"
+  | "regent"
+  | "necrobinder"
+  | "shared";
 
 const CHAR_COLORS: Record<string, string> = {
   Ironclad: "var(--color-ironclad)",
@@ -55,7 +63,15 @@ const CHAR_COLORS: Record<string, string> = {
   Shared: "var(--text-muted)",
 };
 
-function EntityCard({ entity, type, bp }: { entity: UnlockEntity; type: string; bp: string }) {
+function EntityCard({
+  entity,
+  type,
+  bp,
+}: {
+  entity: UnlockEntity;
+  type: string;
+  bp: string;
+}) {
   const href = `${bp}/${type}/${entity.id.toLowerCase()}`;
   const charColor = CHAR_COLORS[entity.character] || "var(--text-muted)";
   const [cardFailed, setCardFailed] = useState(false);
@@ -106,7 +122,9 @@ function EntityCard({ entity, type, bp }: { entity: UnlockEntity; type: string; 
           {entity.rarity && <span>{t(entity.rarity)}</span>}
           {entity.type && <span>{t(entity.type)}</span>}
           <span>&middot;</span>
-          <span style={{ color: charColor }}>{t(entity.character)}</span>
+          <span style={{ color: textColor(charColor) }}>
+            {t(entity.character)}
+          </span>
         </div>
         {entity.unlock_info && (
           <div className="text-[11px] text-[var(--text-secondary)] mt-0.5">
@@ -137,7 +155,9 @@ export default function UnlocksClient() {
   if (loading) {
     return (
       <div className="max-w-5xl mx-auto px-4 py-8">
-        <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {t("Loading...")}
+        </div>
       </div>
     );
   }
@@ -145,14 +165,24 @@ export default function UnlocksClient() {
   if (!data) return null;
 
   const filterByChar = (entities: UnlockEntity[]) =>
-    charFilter === "all" ? entities : entities.filter((e) => e.character.toLowerCase() === charFilter);
+    charFilter === "all"
+      ? entities
+      : entities.filter((e) => e.character.toLowerCase() === charFilter);
 
   const filteredCards = filterByChar(data.cards);
   const filteredRelics = filterByChar(data.relics);
   const filteredPotions = filterByChar(data.potions);
 
   const tabs: { key: Tab; label: string; count: number }[] = [
-    { key: "all", label: "All", count: data.characters.length + data.cards.length + data.relics.length + data.potions.length },
+    {
+      key: "all",
+      label: "All",
+      count:
+        data.characters.length +
+        data.cards.length +
+        data.relics.length +
+        data.potions.length,
+    },
     { key: "characters", label: "Characters", count: data.characters.length },
     { key: "cards", label: "Cards", count: data.cards.length },
     { key: "relics", label: "Relics", count: data.relics.length },
@@ -180,7 +210,9 @@ export default function UnlocksClient() {
         <span className="text-[var(--accent-gold)]">{t("Unlocks")}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {t("All unlockable content in Slay the Spire 2, earned through timeline progression.")}
+        {t(
+          "All unlockable content in Slay the Spire 2, earned through timeline progression.",
+        )}
       </p>
 
       {/* Tabs */}
@@ -201,7 +233,10 @@ export default function UnlocksClient() {
       </div>
 
       {/* Character filter */}
-      {(tab === "all" || tab === "cards" || tab === "relics" || tab === "potions") && (
+      {(tab === "all" ||
+        tab === "cards" ||
+        tab === "relics" ||
+        tab === "potions") && (
         <div className="flex flex-wrap gap-1.5 mb-6">
           {charFilters.map((f) => (
             <button
@@ -212,7 +247,14 @@ export default function UnlocksClient() {
                   ? "bg-[var(--bg-card)] text-[var(--text-primary)] border-[var(--text-muted)]"
                   : "text-[var(--text-muted)] border-[var(--border-subtle)] hover:text-[var(--text-secondary)]"
               }`}
-              style={charFilter === f.key && f.key !== "all" ? { borderColor: CHAR_COLORS[f.label] || undefined, color: CHAR_COLORS[f.label] || undefined } : undefined}
+              style={
+                charFilter === f.key && f.key !== "all"
+                  ? {
+                      borderColor: CHAR_COLORS[f.label] || undefined,
+                      color: CHAR_COLORS[f.label] || undefined,
+                    }
+                  : undefined
+              }
             >
               {t(f.label)}
             </button>
@@ -235,7 +277,9 @@ export default function UnlocksClient() {
                 className="flex items-center gap-3 px-3 py-3 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] hover:border-[var(--accent-gold)]/50 transition-colors group"
               >
                 <img
-                  src={imageUrl(`/static/images/characters/combat_${char.id.toLowerCase()}.webp`)}
+                  src={imageUrl(
+                    `/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
+                  )}
                   alt={char.name}
                   className="w-12 h-12 object-contain flex-shrink-0"
                   crossOrigin="anonymous"

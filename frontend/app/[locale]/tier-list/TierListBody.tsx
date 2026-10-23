@@ -1,16 +1,30 @@
-import { gameNameFor, hreflangOf, inLanguageOf, langQuery, localePath, type Locale } from "@/lib/locale";
+import {
+  gameNameFor,
+  hreflangOf,
+  inLanguageOf,
+  langQuery,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
-import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import {
+  buildBreadcrumbJsonLd,
+  buildCollectionPageJsonLd,
+  buildFAQPageJsonLd,
+} from "@/lib/jsonld";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { imageUrl } from "@/lib/image-url";
 import LocalizedCardImage from "@/app/components/LocalizedCardImage";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
 import { fmtDatePacific } from "@/lib/pacific";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 // Section tiles + their labels. The labels route through t(lang) so the
 // localized /[lang]/tier-list variant resolves them; the base route passes
@@ -20,19 +34,22 @@ function sections(t: TFn) {
     {
       href: "/tier-list/cards",
       label: t("Card Tier List"),
-      description: "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent).",
+      description:
+        "All 576 cards ranked S → F. Filter by character (Ironclad, Silent, Defect, Necrobinder, Regent).",
       accent: "from-warning/20 to-warning/10 border-warning/40",
     },
     {
       href: "/tier-list/relics",
       label: t("Relic Tier List"),
-      description: "289 relics ranked across every pool. Filter by Shared, Boss, Shop, Event, or character.",
+      description:
+        "289 relics ranked across every pool. Filter by Shared, Boss, Shop, Event, or character.",
       accent: "from-success/20 to-success/10 border-success/40",
     },
     {
       href: "/tier-list/potions",
       label: t("Potion Tier List"),
-      description: "All 63 potions ranked. Smaller pool, easier to memorize the top picks.",
+      description:
+        "All 63 potions ranked. Smaller pool, easier to memorize the top picks.",
       accent: "from-info/20 to-info/10 border-info/40",
     },
   ];
@@ -48,7 +65,12 @@ interface TopEntity {
 }
 
 interface ScoresResponse {
-  [id: string]: { score: number | null; picks: number; wins: number; win_rate: number };
+  [id: string]: {
+    score: number | null;
+    picks: number;
+    wins: number;
+    win_rate: number;
+  };
 }
 
 interface ApiEntity {
@@ -68,8 +90,12 @@ async function fetchTopEntities(
 ): Promise<TopEntity[]> {
   try {
     const [entitiesRes, scoresRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/${type}${langQuery(lang)}`, { next: { revalidate: 1800 } }),
-      fetch(`${API_INTERNAL}/api/runs/scores/${type}`, { next: { revalidate: 300 } }),
+      fetch(`${API_INTERNAL}/api/${type}${langQuery(lang)}`, {
+        next: { revalidate: 1800 },
+      }),
+      fetch(`${API_INTERNAL}/api/runs/scores/${type}`, {
+        next: { revalidate: 300 },
+      }),
     ]);
     if (!entitiesRes.ok || !scoresRes.ok) return [];
     const entities = (await entitiesRes.json()) as ApiEntity[];
@@ -82,11 +108,17 @@ async function fetchTopEntities(
       // For the underperforming list, ignore tiny-sample noise.
       if (order === "bottom" && (sc?.picks ?? 0) < 3) continue;
       enriched.push({
-        id: e.id, name: e.name, image_url: e.image_url, score: s,
-        picks: sc?.picks, winRate: sc?.win_rate,
+        id: e.id,
+        name: e.name,
+        image_url: e.image_url,
+        score: s,
+        picks: sc?.picks,
+        winRate: sc?.win_rate,
       });
     }
-    enriched.sort((a, b) => (order === "bottom" ? a.score - b.score : b.score - a.score));
+    enriched.sort((a, b) =>
+      order === "bottom" ? a.score - b.score : b.score - a.score,
+    );
     return enriched.slice(0, count);
   } catch {
     return [];
@@ -97,39 +129,57 @@ async function fetchTopEntities(
 // Answers are factual and short (Google strips long answers from rich
 // results). Updated values are computed at request time from the live
 // score data so they don't go stale.
-function buildFaqEntries(top: { cards: TopEntity[]; relics: TopEntity[]; potions: TopEntity[] }, t: TFn) {
+function buildFaqEntries(
+  top: { cards: TopEntity[]; relics: TopEntity[]; potions: TopEntity[] },
+  t: TFn,
+) {
   const faqs: { question: string; answer: string }[] = [];
 
   if (top.cards.length) {
     faqs.push({
       question: t("What is the best card in Slay the Spire 2?"),
-      answer: t("Based on community win-rate data, {name} (Codex Score {score}) is currently the highest-rated card across all characters. Tier rankings update every 30 minutes as new runs are submitted.", { name: top.cards[0].name, score: top.cards[0].score }),
+      answer: t(
+        "Based on community win-rate data, {name} (Codex Score {score}) is currently the highest-rated card across all characters. Tier rankings update every 30 minutes as new runs are submitted.",
+        { name: top.cards[0].name, score: top.cards[0].score },
+      ),
     });
   }
   if (top.relics.length) {
     faqs.push({
       question: t("What is the best relic in Slay the Spire 2?"),
-      answer: t("{name} sits at the top of the relic tier list with a Codex Score of {score}, derived from community-submitted run win rates with Bayesian shrinkage so low-pick outliers don't dominate the rankings.", { name: top.relics[0].name, score: top.relics[0].score }),
+      answer: t(
+        "{name} sits at the top of the relic tier list with a Codex Score of {score}, derived from community-submitted run win rates with Bayesian shrinkage so low-pick outliers don't dominate the rankings.",
+        { name: top.relics[0].name, score: top.relics[0].score },
+      ),
     });
   }
   if (top.potions.length) {
     faqs.push({
       question: t("What is the best potion in Slay the Spire 2?"),
-      answer: t("{name} (Codex Score {score}) is the top-rated potion based on the win rate of runs that included it.", { name: top.potions[0].name, score: top.potions[0].score }),
+      answer: t(
+        "{name} (Codex Score {score}) is the top-rated potion based on the win rate of runs that included it.",
+        { name: top.potions[0].name, score: top.potions[0].score },
+      ),
     });
   }
   faqs.push(
     {
       question: t("How is the Slay the Spire 2 tier list calculated?"),
-      answer: t("Every card, relic, and potion gets a 0–100 Codex Score based on the win rate of submitted runs that included it, shrunk toward the global baseline using Bayesian methods so a 5-pick perfect record doesn't outrank a 500-pick reliable one. Scores then map to letter grades S through F."),
+      answer: t(
+        "Every card, relic, and potion gets a 0–100 Codex Score based on the win rate of submitted runs that included it, shrunk toward the global baseline using Bayesian methods so a 5-pick perfect record doesn't outrank a 500-pick reliable one. Scores then map to letter grades S through F.",
+      ),
     },
     {
       question: t("How often is the tier list updated?"),
-      answer: t("Scores rebuild every 30 minutes as new community runs are submitted. The tier list reflects the current meta after the most recent game patch."),
+      answer: t(
+        "Scores rebuild every 30 minutes as new community runs are submitted. The tier list reflects the current meta after the most recent game patch.",
+      ),
     },
     {
       question: t("Is there a tier list per character?"),
-      answer: t("Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically."),
+      answer: t(
+        "Yes, the cards tier list filters to Ironclad, Silent, Defect, Necrobinder, Regent, or Colorless. The relics tier list filters by pool. Each filtered view is its own page targeting that character or pool specifically.",
+      ),
     },
   );
   return faqs;
@@ -155,13 +205,20 @@ export async function TierListBody({ lang }: { lang: Locale }) {
   // ISO 8601 date for the visible "updated" line. force-dynamic means
   // this is fresh on every request, Google rewards visible-recent
   // dates on tier-list-style pages.
-  const updatedDate = fmtDatePacific(new Date(), {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }, hreflangOf(lang));
+  const updatedDate = fmtDatePacific(
+    new Date(),
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+    hreflangOf(lang),
+  );
 
-  const faqs = buildFaqEntries({ cards: topCards, relics: topRelics, potions: topPotions }, t);
+  const faqs = buildFaqEntries(
+    { cards: topCards, relics: topRelics, potions: topPotions },
+    t,
+  );
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -170,7 +227,9 @@ export async function TierListBody({ lang }: { lang: Locale }) {
     ]),
     buildCollectionPageJsonLd({
       name: `${gameNameFor(lang, "Slay the Spire 2")} ${t("Tier List")}`,
-      description: t("Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data."),
+      description: t(
+        "Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data.",
+      ),
       path: localePath(lang, "/tier-list"),
       items: secs.map((s) => ({ name: s.label, path: s.href })),
       inLanguage,
@@ -178,10 +237,30 @@ export async function TierListBody({ lang }: { lang: Locale }) {
     buildFAQPageJsonLd(faqs),
   ];
 
-  const previewBlocks: { title: string; href: string; entities: TopEntity[]; route: string }[] = [
-    { title: t("Top-tier Cards right now"), href: "/tier-list/cards", route: "cards", entities: topCards },
-    { title: t("Top-tier Relics right now"), href: "/tier-list/relics", route: "relics", entities: topRelics },
-    { title: t("Top-tier Potions right now"), href: "/tier-list/potions", route: "potions", entities: topPotions },
+  const previewBlocks: {
+    title: string;
+    href: string;
+    entities: TopEntity[];
+    route: string;
+  }[] = [
+    {
+      title: t("Top-tier Cards right now"),
+      href: "/tier-list/cards",
+      route: "cards",
+      entities: topCards,
+    },
+    {
+      title: t("Top-tier Relics right now"),
+      href: "/tier-list/relics",
+      route: "relics",
+      entities: topRelics,
+    },
+    {
+      title: t("Top-tier Potions right now"),
+      href: "/tier-list/potions",
+      route: "potions",
+      entities: topPotions,
+    },
   ];
 
   return (
@@ -189,16 +268,30 @@ export async function TierListBody({ lang }: { lang: Locale }) {
       <JsonLd data={jsonLd} />
 
       <h1 className="text-3xl font-bold mb-2">
-        <span className="text-[var(--accent-gold)]">{gameNameFor(lang)} {t("Tier List")}</span>
+        <span className="text-[var(--accent-gold)]">
+          {gameNameFor(lang)} {t("Tier List")}
+        </span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-2">
-        {t("Updated")} <time dateTime={new Date().toISOString()}>{updatedDate}</time> · {t("Scores rebuild every 30 minutes.")}
+        {t("Updated")}{" "}
+        <time dateTime={new Date().toISOString()}>{updatedDate}</time> ·{" "}
+        {t("Scores rebuild every 30 minutes.")}
       </p>
       <p className="text-base text-[var(--text-secondary)] mb-8 max-w-3xl leading-relaxed">
-        {t("Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data.")}{" "}
-        {t("Tiers are derived from the Codex Score, a Bayesian-shrunk metric that compares each entity's win rate to the global baseline, so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one.")}{" "}
-        {t("Click any tier list below to see the full ranking with character or pool filters.")}{" "}
-        <Link href="/leaderboards/scoring" className="text-[var(--accent-gold)] hover:underline">
+        {t(
+          "Every card, relic, and potion in Slay the Spire 2 ranked S through F using community win-rate data.",
+        )}{" "}
+        {t(
+          "Tiers are derived from the Codex Score, a Bayesian-shrunk metric that compares each entity's win rate to the global baseline, so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one.",
+        )}{" "}
+        {t(
+          "Click any tier list below to see the full ranking with character or pool filters.",
+        )}{" "}
+        <Link
+          prefetch={false}
+          href="/stats/scoring"
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           {t("How is the score calculated?")}
         </Link>
       </p>
@@ -207,12 +300,17 @@ export async function TierListBody({ lang }: { lang: Locale }) {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
         {secs.map((s) => (
           <Link
+            prefetch={false}
             key={s.href}
             href={s.href}
             className={`block p-5 rounded-lg border bg-gradient-to-br ${s.accent} hover:scale-[1.02] transition-transform`}
           >
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-2">{s.label}</h2>
-            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">{t(s.description)}</p>
+            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-2">
+              {s.label}
+            </h2>
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+              {t(s.description)}
+            </p>
           </Link>
         ))}
       </div>
@@ -237,6 +335,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                       {block.title}
                     </h3>
                     <Link
+                      prefetch={false}
                       href={block.href}
                       className="text-xs text-[var(--accent-gold)] hover:underline"
                     >
@@ -247,6 +346,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                     {block.entities.map((ent) =>
                       block.route === "cards" ? (
                         <Link
+                          prefetch={false}
                           key={ent.id}
                           href={`/cards/${ent.id.toLowerCase()}`}
                           className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
@@ -262,6 +362,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                         </Link>
                       ) : (
                         <Link
+                          prefetch={false}
                           key={ent.id}
                           href={`/${block.route}/${ent.id.toLowerCase()}`}
                           className="flex flex-col items-center gap-1 w-20 p-2 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
@@ -280,11 +381,11 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                           </span>
                           <ScoreBadge score={ent.score} size="sm" showNumber />
                         </Link>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
-              )
+              ),
             )}
           </div>
         </section>
@@ -303,6 +404,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
                 {t("Lowest-scoring Cards right now")}
               </h3>
               <Link
+                prefetch={false}
                 href="/tier-list/cards"
                 className="text-xs text-[var(--accent-gold)] hover:underline"
               >
@@ -312,6 +414,7 @@ export async function TierListBody({ lang }: { lang: Locale }) {
             <div className="flex flex-wrap gap-2">
               {bottomCards.map((ent) => (
                 <Link
+                  prefetch={false}
                   key={ent.id}
                   href={`/cards/${ent.id.toLowerCase()}`}
                   className="flex flex-col items-center gap-1 w-[124px] sm:w-[144px] hover:scale-[1.04] transition-transform"
@@ -336,21 +439,44 @@ export async function TierListBody({ lang }: { lang: Locale }) {
           {t("How the rankings work")}
         </h2>
         <p className="text-sm text-[var(--text-secondary)] leading-relaxed mb-3">
-          {t("Each entity is given a 0–100 Codex Score based on the win rate of runs that included it, shrunk toward the global baseline so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one. Scores map to letter grades:")}
+          {t(
+            "Each entity is given a 0–100 Codex Score based on the win rate of runs that included it, shrunk toward the global baseline so a 5-pick perfect-record card doesn't outrank a 500-pick reliable one. Scores map to letter grades:",
+          )}
         </p>
         <div className="text-xs text-[var(--text-muted)] space-y-1">
-          <div><strong className="text-warning">S (90+)</strong> · {t("top of the win-rate signal")}</div>
-          <div><strong className="text-success">A (78–89)</strong> · {t("wins above baseline reliably")}</div>
-          <div><strong className="text-info">B (65–77)</strong> · {t("above-average")}</div>
-          <div><strong className="text-fg-secondary">C (50–64)</strong> · {t("average")}</div>
-          <div><strong className="text-warning">D (35–49)</strong> · {t("below average, often niche")}</div>
-          <div><strong className="text-danger">F (0–34)</strong> · {t("bottom of the signal, often a high-exposure staple")}</div>
+          <div>
+            <strong className="text-warning">S (90+)</strong> ·{" "}
+            {t("top of the win-rate signal")}
+          </div>
+          <div>
+            <strong className="text-success">A (78–89)</strong> ·{" "}
+            {t("wins above baseline reliably")}
+          </div>
+          <div>
+            <strong className="text-info">B (65–77)</strong> ·{" "}
+            {t("above-average")}
+          </div>
+          <div>
+            <strong className="text-fg-secondary">C (50–64)</strong> ·{" "}
+            {t("average")}
+          </div>
+          <div>
+            <strong className="text-warning">D (35–49)</strong> ·{" "}
+            {t("below average, often niche")}
+          </div>
+          <div>
+            <strong className="text-danger">F (0–34)</strong> ·{" "}
+            {t("bottom of the signal, often a high-exposure staple")}
+          </div>
         </div>
         <p className="text-xs text-[var(--text-muted)] leading-relaxed mt-3">
-          {t("This is a naive win-rate signal, not a ruling. It carries known biases, heavily-used staples sink even when they're fine, and late-game rares float because they only show up in runs already going well. Read a low grade as \"high exposure\" as often as \"weak.\"")}
+          {t(
+            'This is a naive win-rate signal, not a ruling. It carries known biases, heavily-used staples sink even when they\'re fine, and late-game rares float because they only show up in runs already going well. Read a low grade as "high exposure" as often as "weak."',
+          )}
         </p>
         <Link
-          href="/leaderboards/scoring#limitations"
+          prefetch={false}
+          href="/stats/scoring#limitations"
           className="inline-block mt-4 text-sm font-medium text-[var(--accent-gold)] hover:underline"
         >
           → {t("How the score works and where it's biased")}
@@ -360,7 +486,9 @@ export async function TierListBody({ lang }: { lang: Locale }) {
       {/* FAQ, also wired up as FAQPage JSON-LD above so each Q can
           land in Google's People-Also-Ask box. */}
       <section className="mb-4">
-        <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">{t("Frequently asked")}</h2>
+        <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
+          {t("Frequently asked")}
+        </h2>
         <div className="space-y-2">
           {faqs.map((faq, i) => (
             <details

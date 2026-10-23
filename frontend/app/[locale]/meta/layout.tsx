@@ -1,3 +1,7 @@
-export default function MetaLayout({ children }: { children: React.ReactNode }) {
+export default function MetaLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

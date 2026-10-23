@@ -1,4 +1,5 @@
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { ASCENSION_ICON } from "./types";
 import { ANCIENT_ENTITIES } from "./types";
 import type { EntityType, TierEntity, TierList } from "./types";
 
@@ -25,7 +26,10 @@ interface RawEntity {
 function monsterActGroup(encounters?: { act?: string | null }[]): string {
   for (const enc of encounters ?? []) {
     if (enc.act) {
-      return enc.act.toLowerCase().replace(/\s*-\s*/g, "-").replace(/\s+/g, "");
+      return enc.act
+        .toLowerCase()
+        .replace(/\s*-\s*/g, "-")
+        .replace(/\s+/g, "");
     }
   }
   return "other";
@@ -73,11 +77,30 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
       image: imageUrl(a.image_path),
     }));
   }
+  // Ascension levels share one flame icon; the level number rides on the
+  // chip as a badge and the modifier name is the hover text.
+  if (type === "ascensions") {
+    const res = await fetch(`${API}/api/ascensions?lang=eng`);
+    if (!res.ok) throw new Error("Failed to load ascensions");
+    const levels: { id: string; level: number; name: string }[] =
+      await res.json();
+    return levels
+      .filter((a) => a.level > 0)
+      .sort((a, b) => a.level - b.level)
+      .map((a) => ({
+        id: a.id,
+        name: `A${a.level} · ${a.name}`,
+        image: imageUrl(ASCENSION_ICON),
+        badge: String(a.level),
+      }));
+  }
   // Relics group by pool, with ancient relics broken out by their ancient,
   // so fetch the ancient map alongside the relic list.
   const [res, ancientMap] = await Promise.all([
     fetch(`${API}/api/${type}?lang=eng`),
-    type === "relics" ? fetchRelicAncientMap() : Promise.resolve<Record<string, string>>({}),
+    type === "relics"
+      ? fetchRelicAncientMap()
+      : Promise.resolve<Record<string, string>>({}),
   ]);
   if (!res.ok) throw new Error(`Failed to load ${type}`);
   const raw: RawEntity[] = await res.json();
@@ -89,16 +112,18 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
     // better with the compact round character icon instead.
     image:
       type === "characters"
-        ? imageUrl(`/static/images/characters/character_icon_${e.id.toLowerCase()}.webp`)
+        ? imageUrl(
+            `/static/images/characters/character_icon_${e.id.toLowerCase()}.webp`,
+          )
         : type === "cards"
           ? fullCardUrl(e.id.toLowerCase(), false, beta ? "beta" : "stable")
           : imageUrl(e.image_url),
     group:
       type === "relics"
-        ? ancientMap[e.id.toUpperCase()] ?? e.pool ?? undefined
+        ? (ancientMap[e.id.toUpperCase()] ?? e.pool ?? undefined)
         : type === "monsters"
           ? monsterActGroup(e.encounters)
-          : e.color ?? undefined,
+          : (e.color ?? undefined),
     // "None" is the API's placeholder for the odd un-raritied entry; treat
     // it as no rarity so it doesn't pollute the rarity dropdown.
     rarity: e.rarity_key && e.rarity_key !== "None" ? e.rarity_key : undefined,
@@ -112,18 +137,20 @@ export async function fetchEntities(type: EntityType): Promise<TierEntity[]> {
   const mainIds = new Set(raw.map((e) => e.id));
   const isBeta = (e: RawEntity) => !mainIds.has(e.id);
 
-  return [...raw, ...betaRaw.filter(isBeta)]
-    // Float beta-only entities to the top of the tray (and so to the top of
-    // whatever group filter is active) instead of letting their compendium
-    // order bury them mid-list among hundreds of cards/relics. Otherwise the
-    // only beta entity people notice is the one that happens to lack an order
-    // and sorts first by accident. Ties fall back to compendium order.
-    .sort((a, b) => {
-      const ra = isBeta(a) ? 0 : 1;
-      const rb = isBeta(b) ? 0 : 1;
-      return ra - rb || (a.compendium_order ?? 0) - (b.compendium_order ?? 0);
-    })
-    .map((e) => toEntity(e, isBeta(e)));
+  return (
+    [...raw, ...betaRaw.filter(isBeta)]
+      // Float beta-only entities to the top of the tray (and so to the top of
+      // whatever group filter is active) instead of letting their compendium
+      // order bury them mid-list among hundreds of cards/relics. Otherwise the
+      // only beta entity people notice is the one that happens to lack an order
+      // and sorts first by accident. Ties fall back to compendium order.
+      .sort((a, b) => {
+        const ra = isBeta(a) ? 0 : 1;
+        const rb = isBeta(b) ? 0 : 1;
+        return ra - rb || (a.compendium_order ?? 0) - (b.compendium_order ?? 0);
+      })
+      .map((e) => toEntity(e, isBeta(e)))
+  );
 }
 
 /** The current beta's added entities for a type, fetched from the beta
@@ -133,14 +160,18 @@ async function fetchBetaAdditions(type: EntityType): Promise<RawEntity[]> {
   try {
     const res = await fetch(`${API}/api/beta/diff`);
     if (!res.ok) return [];
-    const diff: { beta_version: string | null; types: Record<string, { added: string[] }> } =
-      await res.json();
+    const diff: {
+      beta_version: string | null;
+      types: Record<string, { added: string[] }>;
+    } = await res.json();
     const added = diff.beta_version ? (diff.types?.[type]?.added ?? []) : [];
     if (added.length === 0) return [];
     const fetched = await Promise.all(
       added.map(async (id) => {
         try {
-          const r = await fetch(`${API}/api/${type}/${id.toLowerCase()}?lang=eng&channel=beta`);
+          const r = await fetch(
+            `${API}/api/${type}/${id.toLowerCase()}?lang=eng&channel=beta`,
+          );
           return r.ok ? ((await r.json()) as RawEntity) : null;
         } catch {
           return null;
@@ -154,7 +185,9 @@ async function fetchBetaAdditions(type: EntityType): Promise<RawEntity[]> {
 }
 
 function authHeaders(): Record<string, string> {
-  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+  };
   if (typeof window !== "undefined") {
     const token = localStorage.getItem("spire_token");
     if (token) headers["Authorization"] = `Bearer ${token}`;
@@ -174,7 +207,8 @@ export async function createTierList(payload: SavePayload): Promise<TierList> {
     headers: authHeaders(),
     body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error(await errorText(res, "Could not save tier list"));
+  if (!res.ok)
+    throw new Error(await errorText(res, "Could not save tier list"));
   return res.json();
 }
 
@@ -188,13 +222,17 @@ export async function updateTierList(
     headers: authHeaders(),
     body: JSON.stringify(payload),
   });
-  if (!res.ok) throw new Error(await errorText(res, "Could not update tier list"));
+  if (!res.ok)
+    throw new Error(await errorText(res, "Could not update tier list"));
   return res.json();
 }
 
 /** Store the rendered PNG preview (data URL) for the share/OG card.
  * Best-effort — failures are swallowed by the caller. */
-export async function saveTierListImage(id: string, dataUrl: string): Promise<void> {
+export async function saveTierListImage(
+  id: string,
+  dataUrl: string,
+): Promise<void> {
   await fetch(`${API}/api/tierlists/${id}`, {
     method: "PATCH",
     credentials: "include",
@@ -233,7 +271,8 @@ export async function deleteTierList(id: string): Promise<void> {
     credentials: "include",
     headers: authHeaders(),
   });
-  if (!res.ok) throw new Error(await errorText(res, "Could not delete tier list"));
+  if (!res.ok)
+    throw new Error(await errorText(res, "Could not delete tier list"));
 }
 
 async function errorText(res: Response, fallback: string): Promise<string> {

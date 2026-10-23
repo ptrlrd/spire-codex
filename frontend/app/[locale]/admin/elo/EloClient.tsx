@@ -44,7 +44,12 @@ function TrajectoryChart({ userId }: { userId: string }) {
   }, [userId]);
 
   if (err) return <p className="text-xs text-danger py-3">{err}</p>;
-  if (!hist) return <p className="text-xs text-[var(--text-muted)] py-3">Loading trajectory…</p>;
+  if (!hist)
+    return (
+      <p className="text-xs text-[var(--text-muted)] py-3">
+        Loading trajectory…
+      </p>
+    );
 
   return (
     <div className="py-2">
@@ -91,7 +96,11 @@ export default function EloClient() {
   const sortHeader = (key: "elo" | "lifetime", label: string) => (
     <button
       onClick={() => setSortKey(key)}
-      className={sortKey === key ? "text-[var(--accent-gold)]" : "hover:text-[var(--text-primary)]"}
+      className={
+        sortKey === key
+          ? "text-[var(--accent-gold)]"
+          : "hover:text-[var(--text-primary)]"
+      }
     >
       {label}
       {sortKey === key ? " ↓" : ""}
@@ -110,7 +119,9 @@ export default function EloClient() {
             type="number"
             min={1}
             value={minRuns}
-            onChange={(e) => setMinRuns(Math.max(1, Number(e.target.value) || 1))}
+            onChange={(e) =>
+              setMinRuns(Math.max(1, Number(e.target.value) || 1))
+            }
             className="w-16 ml-1 px-2 py-1 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-primary)]"
           />
         </label>
@@ -125,9 +136,7 @@ export default function EloClient() {
           <span className="text-xs text-[var(--text-muted)]">
             {board.players.length.toLocaleString()} rated players · computed in{" "}
             {board.compute_seconds ?? "?"}s ·{" "}
-            {board.computed_at
-              ? fmtTime(board.computed_at * 1000)
-              : ""}
+            {board.computed_at ? fmtTime(board.computed_at * 1000) : ""}
           </span>
         )}
         {note && <span className="text-xs text-danger">{note}</span>}
@@ -139,8 +148,12 @@ export default function EloClient() {
             <tr className="text-left text-xs uppercase tracking-wider text-[var(--text-muted)]">
               <th className="py-1.5 pr-4">#</th>
               <th className="py-1.5 pr-4">Player</th>
-              <th className="py-1.5 pr-4 text-right">{sortHeader("elo", "Elo")}</th>
-              <th className="py-1.5 pr-4 text-right">{sortHeader("lifetime", "Lifetime")}</th>
+              <th className="py-1.5 pr-4 text-right">
+                {sortHeader("elo", "Elo")}
+              </th>
+              <th className="py-1.5 pr-4 text-right">
+                {sortHeader("lifetime", "Lifetime")}
+              </th>
               <th className="py-1.5 pr-4 text-right">A10 runs</th>
               <th className="py-1.5 pr-4 text-right">Wins</th>
               <th className="py-1.5 text-right">WR</th>
@@ -150,12 +163,20 @@ export default function EloClient() {
             {rows.slice(0, 200).map((p, i) => (
               <Fragment key={p.user_id}>
                 <tr
-                  onClick={() => setExpanded(expanded === p.user_id ? null : p.user_id)}
+                  onClick={() =>
+                    setExpanded(expanded === p.user_id ? null : p.user_id)
+                  }
                   className="border-t border-[var(--border-subtle)] cursor-pointer hover:bg-[var(--bg-card)]"
                 >
-                  <td className="py-1.5 pr-4 text-[var(--text-muted)]">{i + 1}</td>
+                  <td className="py-1.5 pr-4 text-[var(--text-muted)]">
+                    {i + 1}
+                  </td>
                   <td className="py-1.5 pr-4 text-[var(--text-primary)]">
-                    {p.username || <span className="text-[var(--text-muted)]">{p.user_id.slice(0, 8)}…</span>}
+                    {p.username || (
+                      <span className="text-[var(--text-muted)]">
+                        {p.user_id.slice(0, 8)}…
+                      </span>
+                    )}
                   </td>
                   <td className="py-1.5 pr-4 text-right font-semibold text-[var(--accent-gold)]">
                     {Math.round(p.elo)}
@@ -163,8 +184,12 @@ export default function EloClient() {
                   <td className="py-1.5 pr-4 text-right text-[var(--text-secondary)]">
                     {p.lifetime != null ? Math.round(p.lifetime) : "–"}
                   </td>
-                  <td className="py-1.5 pr-4 text-right">{p.runs.toLocaleString()}</td>
-                  <td className="py-1.5 pr-4 text-right">{p.wins.toLocaleString()}</td>
+                  <td className="py-1.5 pr-4 text-right">
+                    {p.runs.toLocaleString()}
+                  </td>
+                  <td className="py-1.5 pr-4 text-right">
+                    {p.wins.toLocaleString()}
+                  </td>
                   <td className="py-1.5 text-right">
                     {p.runs ? ((p.wins / p.runs) * 100).toFixed(1) : "0.0"}%
                   </td>

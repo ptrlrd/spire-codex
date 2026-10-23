@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
 const title = "Art Exporter - Slay the Spire 2 (sts2) | Spire Codex";
-const ogDesc = "The tool that generates every image on Spire Codex, free on the Steam Workshop. Card renders, Spine character art, animations, and full texture dumps.";
+const ogDesc =
+  "The tool that generates every image on Spire Codex, free on the Steam Workshop. Card renders, Spine character art, animations, and full texture dumps.";
 
 export const metadata: Metadata = {
   title,

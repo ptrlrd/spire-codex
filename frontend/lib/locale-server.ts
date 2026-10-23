@@ -15,8 +15,11 @@ function kindText(locale: Locale, kind: string): string {
 }
 
 /** JSON-LD description when the entity has none: English keeps the old phrasing, other locales use the localized kind. */
-export function entityFallbackDescription(locale: Locale, name: string, kind: string): string {
+export function entityFallbackDescription(
+  locale: Locale,
+  name: string,
+  kind: string,
+): string {
   if (locale === "eng") return `${name} ${kind} from Slay the Spire 2`;
   return `${gameNameFor(locale)} ${kindText(locale, kind)}, ${name}`;
 }
-

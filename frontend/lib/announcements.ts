@@ -18,25 +18,22 @@ export const ANNOUNCEMENTS: Announcement[] = [
     id: "encounter-builds",
     date: "2026-07-20",
     title: "What beats each boss",
-    body:
-      "Boss pages now show which community builds die to a fight the most and which walk past it, joined from half a million analyzed runs. Check any boss's page for the new Builds section.",
+    body: "Boss pages now show which community builds die to a fight the most and which walk past it, joined from half a million analyzed runs. Check any boss's page for the new Builds section.",
     href: "/monsters/aeonglass",
   },
   {
     id: "score-by-patch",
     date: "2026-07-19",
     title: "Codex Score by patch",
-    body:
-      "Card, relic, and potion pages now chart their Codex Score across every game version, so you can see exactly when a balance change landed and what it did.",
+    body: "Card, relic, and potion pages now chart their Codex Score across every game version, so you can see exactly when a balance change landed and what it did.",
     href: "/cards/hidden_gem",
   },
   {
     id: "post-run-insights",
     date: "2026-07-19",
     title: "Instant insights when you upload a run",
-    body:
-      "Submitting a run now shows which community archetype your deck matches, its win rate, and how your seed stacks up, right on the upload page.",
-    href: "/leaderboards/submit",
+    body: "Submitting a run now shows which community archetype your deck matches, its win rate, and how your seed stacks up, right on the upload page.",
+    href: "/runs/submit",
   },
 ];
 

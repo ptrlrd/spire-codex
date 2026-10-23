@@ -20,7 +20,10 @@ import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 interface Keyword {
   id: string;
@@ -50,7 +53,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/keywords", title: t("Keywords & Game Terms"), description: t("keywords_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/keywords",
+    title: t("Keywords & Game Terms"),
+    description: t("keywords_meta_description"),
+  });
 }
 
 export default async function KeywordsPage({ params }: Props) {
@@ -61,8 +69,12 @@ export default async function KeywordsPage({ params }: Props) {
   let glossary: GlossaryTerm[] = [];
   try {
     const [kwRes, glRes] = await Promise.all([
-      fetch(`${API}/api/keywords${langQuery(locale)}`, { next: { revalidate: 3600 } }),
-      fetch(`${API}/api/glossary${langQuery(locale)}`, { next: { revalidate: 3600 } }),
+      fetch(`${API}/api/keywords${langQuery(locale)}`, {
+        next: { revalidate: 3600 },
+      }),
+      fetch(`${API}/api/glossary${langQuery(locale)}`, {
+        next: { revalidate: 3600 },
+      }),
     ]);
     if (kwRes.ok) keywords = await kwRes.json();
     if (glRes.ok) glossary = await glRes.json();
@@ -70,10 +82,14 @@ export default async function KeywordsPage({ params }: Props) {
 
   const jsonLd = buildCollectionPageJsonLd({
     name: "Slay the Spire 2 Keywords & Game Terms",
-    description: "All card keywords and game term definitions in Slay the Spire 2.",
+    description:
+      "All card keywords and game term definitions in Slay the Spire 2.",
     path: localePath(locale, "/keywords"),
     inLanguage: inLanguageOf(locale),
-    items: keywords.map((k) => ({ name: k.name, path: `/keywords/${k.id.toLowerCase()}` })),
+    items: keywords.map((k) => ({
+      name: k.name,
+      path: `/keywords/${k.id.toLowerCase()}`,
+    })),
   });
 
   // Group glossary by category
@@ -91,11 +107,15 @@ export default async function KeywordsPage({ params }: Props) {
         {heading}
       </h1>
       <p className="text-[var(--text-secondary)] mb-8">
-        {t("Keywords define special card behaviors. Game terms explain core mechanics referenced throughout Slay the Spire 2.")}
+        {t(
+          "Keywords define special card behaviors. Game terms explain core mechanics referenced throughout Slay the Spire 2.",
+        )}
       </p>
 
       {/* Keywords */}
-      <h2 className="text-xl font-bold text-[var(--text-primary)] mb-4">{t("Card Keywords")}</h2>
+      <h2 className="text-xl font-bold text-[var(--text-primary)] mb-4">
+        {t("Card Keywords")}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
         {keywords
           .filter((k) => k.id !== "PERIOD")
@@ -117,7 +137,12 @@ export default async function KeywordsPage({ params }: Props) {
       </div>
 
       {/* Game Terms */}
-      <h2 id="game-terms" className="text-xl font-bold text-[var(--text-primary)] mb-4">{t("Game Terms")}</h2>
+      <h2
+        id="game-terms"
+        className="text-xl font-bold text-[var(--text-primary)] mb-4"
+      >
+        {t("Game Terms")}
+      </h2>
       {CATEGORY_ORDER.map((cat) => {
         const terms = grouped.get(cat);
         if (!terms?.length) return null;
@@ -138,7 +163,9 @@ export default async function KeywordsPage({ params }: Props) {
                     {term.name}
                   </h4>
                   <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-                    <RichDescription text={term.description.replace(/\n/g, " ")} />
+                    <RichDescription
+                      text={term.description.replace(/\n/g, " ")}
+                    />
                   </p>
                 </Link>
               ))}

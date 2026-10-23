@@ -998,6 +998,18 @@
       ],
       "description": "Sen → Przebudzenie → Cięcie → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Sen",
+        "text": "Koniec jest blisko..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Sen",
+        "text": "Zaczynamy?"
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1187,6 +1199,13 @@
       ],
       "description": "Always uses Zaklinanie"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Zaklinanie",
+        "text": "NASZA POTĘGA NIE MA SOBIE RÓWNYCH!"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1929,6 +1948,13 @@
       ],
       "description": "Always uses Zaklinanie"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Zaklinanie",
+        "text": "KRA!\nKRAAA"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2121,6 +2147,13 @@
       ],
       "description": "Always uses Zakazane zaklęcie"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Zakazane zaklęcie",
+        "text": "KRAAAA!!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2649,6 +2682,33 @@
       ],
       "description": "Starts with Płatność kartą"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Rozwścieczenie",
+        "text": "Oj, zapłacisz za to..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Rozwścieczenie",
+        "text": "Dziś nie zaśniesz spokojnie!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Zwrot pieniędzy",
+        "text": "BRZDĘK!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Płatność kartą",
+        "text": "Wyskakuj z kasy!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Rzut Artefaktem",
+        "text": "Tak się bawimy? Proszę bardzo!"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2701,6 +2761,13 @@
       ],
       "description": "Always uses Pobudka"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Ucieczka",
+        "text": "Spadam stąd!"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3666,6 +3733,13 @@
       ],
       "description": "Wyskakuj z kasy! → Ciach-ciach → Hehe → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Wyskakuj z kasy!",
+        "text": "Kasa!\nKasa!"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4375,6 +4449,18 @@
       ],
       "description": "Sfera kruchości → Sfera słabości → Promień energii → Mroczny rytuał → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Niemożliwe!"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Mroczny rytuał",
+        "text": "Ka Kuaaa!!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4500,6 +4586,18 @@
       ],
       "description": "Starts: Klątwa wiedzy → Chłosta → Przytłaczająca wiedza → Porażenie; then conditional: Klątwa wiedzy (if curse of knowledge counter < 3) / Chłosta (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Klątwa wiedzy",
+        "text": "Postanowione."
+      },
+      {
+        "key": "startLine",
+        "move": "Klątwa wiedzy",
+        "text": "Decyzja należy do ciebie."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5446,6 +5544,18 @@
       ],
       "description": "Szarża → Miotacz ognia → Przygotowanie → Mocne cięcie → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Osłony padły!"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Osłony znów działają!"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6569,6 +6679,18 @@
       ],
       "description": "Starts: Puppet Strings → Należysz do mnie!; then conditional: Płoń dla mnie! (if does not have amalgam died) / Ściąć im głowy! (if has amalgam died); then conditional: Płoń dla mnie! (if does not have amalgam died) / Ściąć im głowy! (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Należysz do mnie!"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

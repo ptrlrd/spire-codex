@@ -44,7 +44,7 @@ _COMBAT_ROOMS = ("monster", "elite", "boss")
 def _new_acc_one() -> dict[str, Any]:
     return {
         # (encounter_id, act, room_type, character, mp) ->
-        #   [total, fatal, total_damage, total_turns]
+        #   [total, fatal, total_damage, total_turns, abandoned]
         # `mp` is "multi" (player_count > 1) or "solo" so the multiplayer
         # filter can pick buckets at serve time without a second walk.
         "cells": {},
@@ -98,6 +98,7 @@ def accumulate(
     is_win: bool,
     player_count: int,
     killed_by: str | None,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run into the sub-accumulator of every bracket it belongs to."""
     for b in brackets:
@@ -110,6 +111,7 @@ def accumulate(
                 is_win=is_win,
                 player_count=player_count,
                 killed_by=killed_by,
+                is_abandoned=is_abandoned,
             )
 
 
@@ -121,13 +123,15 @@ def _accumulate_one(
     is_win: bool,
     player_count: int,
     killed_by: str | None,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run's combat rooms into the encounter accumulator.
 
     Mirrors the old Mongo aggregation: for each location we sum
     ``player_stats[].damage_taken`` (rooms carry no damage themselves) and
     attribute it to that location's combat room, count a fatal when the
-    run's ``killed_by`` matches this encounter on a loss, and add
+    run's ``killed_by`` matches this encounter on a loss (an abandoned run
+    counts as abandoned there instead), and add
     ``turns_taken``. Defensive like the community/charts walks: a
     malformed blob skips quietly, never raises.
     """
@@ -169,11 +173,11 @@ def _accumulate_one(
                 key = (enc_id, act, room_type, character, mp)
                 cell = cells.get(key)
                 if cell is None:
-                    cell = [0, 0, 0.0, 0.0]
+                    cell = [0, 0, 0.0, 0.0, 0]
                     cells[key] = cell
                 cell[0] += 1
                 if killed_by and enc_id == killed_by and not is_win:
-                    cell[1] += 1
+                    cell[4 if is_abandoned else 1] += 1
                 cell[2] += location_damage
                 cell[3] += turns
 
@@ -190,12 +194,24 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
     return {
         "version": ENCOUNTER_VERSION,
         "cells": [
-            [enc, act, rt, ch, mp, total, fatal, round(dmg, 1), round(turns, 1)]
+            [
+                enc,
+                act,
+                rt,
+                ch,
+                mp,
+                total,
+                fatal,
+                round(dmg, 1),
+                round(turns, 1),
+                abandoned,
+            ]
             for (enc, act, rt, ch, mp), (
                 total,
                 fatal,
                 dmg,
                 turns,
+                abandoned,
             ) in acc["cells"].items()
         ],
     }
@@ -306,7 +322,8 @@ def rollup(
     # (encounter, act, room_type) -> aggregate with a nested per-character map.
     grouped: dict[tuple[str, int, str], dict[str, Any]] = {}
     for cell in cells:
-        enc_id, act, room_type, character, mp, total, fatal, dmg, turns = cell
+        enc_id, act, room_type, character, mp, total, fatal, dmg, turns = cell[:9]
+        abandoned = cell[9] if len(cell) > 9 else 0
         # Renamed content: old-id rows fold into the current id so the same
         # fight isn't split into two half-sized entries.
         enc_id = ENCOUNTER_ID_RENAMES.get(enc_id, enc_id)
@@ -326,6 +343,7 @@ def rollup(
             g = {
                 "total": 0,
                 "fatal": 0,
+                "abandoned": 0,
                 "total_damage": 0.0,
                 "total_turns": 0.0,
                 "characters": {},
@@ -333,6 +351,7 @@ def rollup(
             grouped[gkey] = g
         g["total"] += total
         g["fatal"] += fatal
+        g["abandoned"] += abandoned
         g["total_damage"] += dmg
         g["total_turns"] += turns
         if character:
@@ -341,12 +360,14 @@ def rollup(
                 c = {
                     "total": 0,
                     "fatal": 0,
+                    "abandoned": 0,
                     "total_damage": 0.0,
                     "total_turns": 0.0,
                 }
                 g["characters"][character] = c
             c["total"] += total
             c["fatal"] += fatal
+            c["abandoned"] += abandoned
             c["total_damage"] += dmg
             c["total_turns"] += turns
 
@@ -366,6 +387,7 @@ def rollup(
             "room_type": room_type,
             "total": n,
             "fatal": g["fatal"],
+            "abandoned": g["abandoned"],
             "avg_damage": round(g["total_damage"] / n, 1) if n else 0,
             "avg_turns": round(g["total_turns"] / n, 2) if n else 0,
             "characters": [
@@ -373,6 +395,7 @@ def rollup(
                     "character": ch,
                     "total": c["total"],
                     "fatal": c["fatal"],
+                    "abandoned": c["abandoned"],
                     "avg_damage": round(c["total_damage"] / c["total"], 1)
                     if c["total"]
                     else 0,

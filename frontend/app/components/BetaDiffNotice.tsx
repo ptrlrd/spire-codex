@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useChannel } from "@/lib/use-lang-prefix";
+import { useChannel } from "@/lib/api/prefix.client";
 import { useT, type TFn } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -40,7 +40,9 @@ const FIELD_LABELS: Record<string, string> = {
 };
 
 function summarize(fields: string[], t: TFn): string {
-  const labels = [...new Set(fields.map((f) => t(FIELD_LABELS[f] ?? f.replace(/_/g, " "))))];
+  const labels = [
+    ...new Set(fields.map((f) => t(FIELD_LABELS[f] ?? f.replace(/_/g, " ")))),
+  ];
   return labels.slice(0, 5).join(", ") + (labels.length > 5 ? ", ..." : "");
 }
 
@@ -85,7 +87,9 @@ export default function BetaDiffNotice({
     } else if (changedFields) {
       body = (
         <>
-          {t("This is different in the current beta: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
+          {t("This is different in the current beta: {fields} changed.", {
+            fields: summarize(changedFields, t),
+          })}{" "}
           <Link href={counterpartPath} className="text-success hover:underline">
             {t("View the beta version")} →
           </Link>
@@ -99,11 +103,15 @@ export default function BetaDiffNotice({
     // on these detail routes), so it always renders, carrying both the channel
     // line and the per-entity status.
     if (isAdded) {
-      body = <>{t("New in this beta. There is no main version of this yet.")}</>;
+      body = (
+        <>{t("New in this beta. There is no main version of this yet.")}</>
+      );
     } else if (changedFields) {
       body = (
         <>
-          {t("Differs from main: {fields} changed.", { fields: summarize(changedFields, t) })}{" "}
+          {t("Differs from main: {fields} changed.", {
+            fields: summarize(changedFields, t),
+          })}{" "}
           <Link href={counterpartPath} className="text-success hover:underline">
             {t("View the main version")} →
           </Link>
@@ -124,7 +132,8 @@ export default function BetaDiffNotice({
   return (
     <div className="rounded-md border border-success/40 bg-success/10 px-3 py-2 my-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-xs text-[var(--text-secondary)]">
       <span className="font-semibold text-success">
-        {t("Beta")}{diff.beta_version ? ` ${diff.beta_version}` : ""}
+        {t("Beta")}
+        {diff.beta_version ? ` ${diff.beta_version}` : ""}
       </span>
       {body}
     </div>

@@ -17,7 +17,11 @@ import {
   type DragEndEvent,
   type DragStartEvent,
 } from "@dnd-kit/core";
-import { SortableContext, arrayMove, rectSortingStrategy } from "@dnd-kit/sortable";
+import {
+  SortableContext,
+  arrayMove,
+  rectSortingStrategy,
+} from "@dnd-kit/sortable";
 
 import { useAuth } from "@/app/contexts/AuthContext";
 import { Chip, SortableItem } from "./chip";
@@ -120,7 +124,11 @@ const CARD_LANG_OPTIONS: { code: string; label: string }[] = [
     .map(([code, label]) => ({ code, label })),
 ];
 
-export default function TierListBuilder({ entityType, entities, initial }: Props) {
+export default function TierListBuilder({
+  entityType,
+  entities,
+  initial,
+}: Props) {
   const t = useT();
   const router = useRouter();
   const { user, loading: authLoading, loginSteam } = useAuth();
@@ -145,8 +153,17 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
   // Tier metadata (label/color/order). Items live in `containers`.
   const [tierMeta, setTierMeta] = useState<Omit<Tier, "items">[]>(() => {
-    if (initial) return initial.tiers.map((t) => ({ id: t.id, label: t.label, color: t.color }));
-    return defaultTiers().map((t) => ({ id: t.id, label: t.label, color: t.color }));
+    if (initial)
+      return initial.tiers.map((t) => ({
+        id: t.id,
+        label: t.label,
+        color: t.color,
+      }));
+    return defaultTiers().map((t) => ({
+      id: t.id,
+      label: t.label,
+      color: t.color,
+    }));
   });
 
   const [containers, setContainers] = useState<Containers>(() => {
@@ -173,7 +190,8 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   });
 
   const [title, setTitle] = useState(
-    initial?.title ?? t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) }),
+    initial?.title ??
+      t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) }),
   );
   const [search, setSearch] = useState("");
   // Cards is a huge pool (~576), so open on the Ironclad group rather than
@@ -189,7 +207,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   const [error, setError] = useState<string | null>(null);
   const [exporting, setExporting] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [savedShareId, setSavedShareId] = useState<string | undefined>(initial?.share_id);
+  const [savedShareId, setSavedShareId] = useState<string | undefined>(
+    initial?.share_id,
+  );
   const savedIdRef = useRef<string | undefined>(initial?.id);
   // The branded region (tier rows + Spire Codex header) captured on export.
   const captureRef = useRef<HTMLDivElement | null>(null);
@@ -230,7 +250,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   // for the thin border gaps between rows where the pointer is inside no droppable.
   const collisionDetection = useCallback<CollisionDetection>((args) => {
     const pointerCollisions = pointerWithin(args);
-    return pointerCollisions.length > 0 ? pointerCollisions : rectIntersection(args);
+    return pointerCollisions.length > 0
+      ? pointerCollisions
+      : rectIntersection(args);
   }, []);
 
   function onDragStart(event: DragStartEvent) {
@@ -266,18 +288,28 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
       const activeItems = prev[ac];
       const overItems = prev[oc];
       const insertAt =
-        overId === oc ? overItems.length : Math.max(0, overItems.indexOf(overId));
+        overId === oc
+          ? overItems.length
+          : Math.max(0, overItems.indexOf(overId));
       return {
         ...prev,
         [ac]: activeItems.filter((i) => i !== activeId),
-        [oc]: [...overItems.slice(0, insertAt), activeId, ...overItems.slice(insertAt)],
+        [oc]: [
+          ...overItems.slice(0, insertAt),
+          activeId,
+          ...overItems.slice(insertAt),
+        ],
       };
     });
   }
 
   // ── Tier row controls ────────────────────────────────────────────────
   function addTier() {
-    const tier = { id: uid(), label: t("New"), color: TIER_COLORS[tierMeta.length % TIER_COLORS.length] };
+    const tier = {
+      id: uid(),
+      label: t("New"),
+      color: TIER_COLORS[tierMeta.length % TIER_COLORS.length],
+    };
     setTierMeta((m) => [...m, tier]);
     setContainers((c) => ({ ...c, [tier.id]: [] }));
   }
@@ -321,7 +353,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   // ── Save / share ─────────────────────────────────────────────────────
   function buildPayload() {
     return {
-      title: title.trim() || t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) }),
+      title:
+        title.trim() ||
+        t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) }),
       entity_type: entityType,
       tiers: tierMeta.map((t) => ({ ...t, items: containers[t.id] ?? [] })),
       unranked: containers[TRAY_ID] ?? [],
@@ -386,8 +420,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     // rounded capture card sits seamlessly on it (light card on a dark square
     // otherwise looked wrong in light mode).
     const pageBg =
-      getComputedStyle(document.documentElement).getPropertyValue("--bg-primary").trim() ||
-      "#0a0a0a";
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--bg-primary")
+        .trim() || "#0a0a0a";
     try {
       // Loaded on demand: only users who actually export pay for the library.
       const { toCanvas } = await import("html-to-image");
@@ -398,7 +433,8 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
         // were loaded without an Origin header and would taint the canvas).
         cacheBust: true,
         // Drop the per-row "edit" controls / popovers from the image.
-        filter: (n) => !(n instanceof HTMLElement && n.dataset.exportHide === "true"),
+        filter: (n) =>
+          !(n instanceof HTMLElement && n.dataset.exportHide === "true"),
       });
       // webp is smaller/faster than png and is what we store on the CDN.
       return canvas.toDataURL("image/webp", 0.92);
@@ -431,7 +467,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
   // ── Reset ────────────────────────────────────────────────────────────
   function resetBoard() {
-    if (!window.confirm(t("Reset the board? Every item goes back to the tray."))) {
+    if (
+      !window.confirm(t("Reset the board? Every item goes back to the tray."))
+    ) {
       return;
     }
     setContainers(() => {
@@ -471,7 +509,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
   // the loaded pool, so we never render an empty pill.
   const trayGroups = useMemo(() => {
     const defs = GROUPS_BY_TYPE[entityType] ?? [];
-    const present = defs.filter((g) => entities.some((e) => e.group === g.value));
+    const present = defs.filter((g) =>
+      entities.some((e) => e.group === g.value),
+    );
     // Lead with a Beta pill whenever the pool has beta-only entities, so the
     // new content is one click away no matter how it groups by color or pool.
     return entities.some((e) => e.beta)
@@ -487,7 +527,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
     return [...present].sort((a, b) => {
       const ia = RARITY_ORDER.indexOf(a);
       const ib = RARITY_ORDER.indexOf(b);
-      return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b);
+      return (
+        (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib) || a.localeCompare(b)
+      );
     });
   }, [entities]);
 
@@ -539,7 +581,11 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
           disabled={saving || authLoading}
           className="rounded bg-info-fill px-4 py-2 font-semibold text-on-fill hover:bg-info-fill disabled:opacity-50"
         >
-          {saving ? t("Saving…") : user ? t("Save") : t("Sign in with Steam to save")}
+          {saving
+            ? t("Saving…")
+            : user
+              ? t("Save")
+              : t("Sign in with Steam to save")}
         </button>
       </div>
 
@@ -547,7 +593,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
 
       {shareUrl && (
         <div className="mb-4 flex flex-wrap items-center gap-2 rounded border border-[var(--border-subtle)] bg-[var(--bg-card)] p-2">
-          <span className="text-sm text-[var(--text-secondary)]">{t("Share:")}</span>
+          <span className="text-sm text-[var(--text-secondary)]">
+            {t("Share:")}
+          </span>
           <input
             readOnly
             value={shareUrl}
@@ -561,7 +609,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               setTimeout(() => setCopied(false), 1500);
             }}
             className={`rounded px-3 py-1 text-sm text-[var(--text-primary)] ${
-              copied ? "bg-success-fill" : "bg-[var(--bg-card-hover)] hover:bg-[var(--border-accent)]"
+              copied
+                ? "bg-success-fill"
+                : "bg-[var(--bg-card-hover)] hover:bg-[var(--border-accent)]"
             }`}
           >
             {copied ? t("Copied!") : t("Copy")}
@@ -582,7 +632,8 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
           {/* Branding header — shown in the editor and baked into the export. */}
           <div className="flex items-center justify-between gap-3 border-b border-[var(--border-subtle)] px-3 py-2">
             <span className="truncate text-base font-bold text-[var(--text-primary)]">
-              {title.trim() || t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) })}
+              {title.trim() ||
+                t("My {type} Tier List", { type: t(ENTITY_LABEL[entityType]) })}
             </span>
             <div className="flex shrink-0 items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -594,8 +645,12 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 className="h-[22px] w-[22px] rounded"
               />
               <div className="leading-tight">
-                <div className="text-sm font-semibold text-[var(--text-primary)]">Spire Codex</div>
-                <div className="text-[10px] text-[var(--text-secondary)]">spire-codex.com</div>
+                <div className="text-sm font-semibold text-[var(--text-primary)]">
+                  Spire Codex
+                </div>
+                <div className="text-[10px] text-[var(--text-secondary)]">
+                  spire-codex.com
+                </div>
               </div>
             </div>
           </div>
@@ -694,7 +749,10 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
             id={TRAY_ID}
             className="flex min-h-[80px] flex-wrap content-start gap-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2"
           >
-            <SortableContext items={filteredTray} strategy={rectSortingStrategy}>
+            <SortableContext
+              items={filteredTray}
+              strategy={rectSortingStrategy}
+            >
               {filteredTray.map((id) => {
                 const e = entityMap.get(id);
                 return e ? (
@@ -738,7 +796,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
                 <div className="text-sm font-semibold text-[var(--text-primary)]">
                   {entityMap.get(commentFor)?.name ?? commentFor}
                 </div>
-                <div className="text-xs text-[var(--text-secondary)]">{t("Note / rationale")}</div>
+                <div className="text-xs text-[var(--text-secondary)]">
+                  {t("Note / rationale")}
+                </div>
               </div>
             </div>
             <textarea
@@ -751,7 +811,9 @@ export default function TierListBuilder({ entityType, entities, initial }: Props
               className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-info"
             />
             <div className="mt-3 flex items-center justify-between gap-2">
-              <span className="text-[11px] text-[var(--text-muted)]">{commentDraft.length}/500</span>
+              <span className="text-[11px] text-[var(--text-muted)]">
+                {commentDraft.length}/500
+              </span>
               <div className="flex gap-2">
                 <button
                   onClick={() => setCommentFor(null)}
@@ -811,7 +873,10 @@ function DropArea({
 }) {
   const { setNodeRef, isOver } = useDroppable({ id });
   return (
-    <div ref={setNodeRef} className={`${className ?? ""} ${isOver ? "ring-2 ring-info" : ""}`}>
+    <div
+      ref={setNodeRef}
+      className={`${className ?? ""} ${isOver ? "ring-2 ring-info" : ""}`}
+    >
       {children}
     </div>
   );
@@ -934,7 +999,9 @@ function TierRow({
             <div className="mb-2 flex items-center gap-1.5 border-t border-[var(--border-subtle)] pt-2">
               <input
                 type="color"
-                value={/^#[0-9a-fA-F]{6}$/.test(tier.color) ? tier.color : "#cccccc"}
+                value={
+                  /^#[0-9a-fA-F]{6}$/.test(tier.color) ? tier.color : "#cccccc"
+                }
                 onChange={(e) => onRecolor(tier.id, e.target.value)}
                 className="h-6 w-7 shrink-0 cursor-pointer rounded border border-[var(--border-accent)] bg-transparent p-0"
                 aria-label={t("Pick a custom color")}
@@ -945,7 +1012,8 @@ function TierRow({
                 onChange={(e) => {
                   const v = e.target.value;
                   setHexDraft(v);
-                  if (/^#[0-9a-fA-F]{6}$/.test(v.trim())) onRecolor(tier.id, v.trim());
+                  if (/^#[0-9a-fA-F]{6}$/.test(v.trim()))
+                    onRecolor(tier.id, v.trim());
                 }}
                 placeholder="#rrggbb"
                 spellCheck={false}
@@ -954,10 +1022,32 @@ function TierRow({
               />
             </div>
             <div className="flex flex-wrap gap-1 text-xs">
-              <button onClick={() => onMove(tier.id, -1)} disabled={isFirst} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↑</button>
-              <button onClick={() => onMove(tier.id, 1)} disabled={isLast} className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40">↓</button>
-              <button onClick={() => onClear(tier.id)} className="rounded bg-[var(--bg-card-hover)] px-2 py-1">{t("Clear")}</button>
-              <button onClick={() => onRemove(tier.id)} className="rounded bg-danger-fill px-2 py-1">{t("Delete")}</button>
+              <button
+                onClick={() => onMove(tier.id, -1)}
+                disabled={isFirst}
+                className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40"
+              >
+                ↑
+              </button>
+              <button
+                onClick={() => onMove(tier.id, 1)}
+                disabled={isLast}
+                className="rounded bg-[var(--bg-card-hover)] px-2 py-1 disabled:opacity-40"
+              >
+                ↓
+              </button>
+              <button
+                onClick={() => onClear(tier.id)}
+                className="rounded bg-[var(--bg-card-hover)] px-2 py-1"
+              >
+                {t("Clear")}
+              </button>
+              <button
+                onClick={() => onRemove(tier.id)}
+                className="rounded bg-danger-fill px-2 py-1"
+              >
+                {t("Delete")}
+              </button>
             </div>
           </div>
         )}

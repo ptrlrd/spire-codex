@@ -5,11 +5,8 @@ import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Link } from "@/i18n/navigation";
 import JsonLd from "@/app/components/JsonLd";
 import RichDescription from "@/app/components/RichDescription";
-import {
-  buildBreadcrumbJsonLd,
-  buildCollectionPageJsonLd,
-} from "@/lib/jsonld";
-import type { Badge } from "@/lib/api";
+import { buildBreadcrumbJsonLd, buildCollectionPageJsonLd } from "@/lib/jsonld";
+import type { Badge } from "@/lib/api/types";
 import { imageUrl } from "@/lib/image-url";
 
 export const dynamic = "force-dynamic";
@@ -35,7 +32,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/badges", title: t("Badges"), description: t("badges_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/badges",
+    title: t("Badges"),
+    description: t("badges_meta_description"),
+  });
 }
 
 export default async function BadgesPage({ params }: Props) {
@@ -45,7 +47,9 @@ export default async function BadgesPage({ params }: Props) {
   const tagline = t("badges_tagline");
   let badges: Badge[] = [];
   try {
-    const res = await fetch(`${API}/api/badges${langQuery(locale)}`, { next: { revalidate: 3600 } });
+    const res = await fetch(`${API}/api/badges${langQuery(locale)}`, {
+      next: { revalidate: 3600 },
+    });
     if (res.ok) badges = await res.json();
   } catch {}
 
@@ -144,7 +148,8 @@ async function BadgeCard({ badge }: { badge: Badge }) {
       className={`bg-[var(--bg-card)] rounded-lg border ${borderClass} p-4 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all flex gap-4 group`}
     >
       {badge.image_url && (
-        <img crossOrigin="anonymous"
+        <img
+          crossOrigin="anonymous"
           src={imageUrl(badge.image_url)}
           alt={t("Slay the Spire 2 {name} badge", { name: badge.name })}
           className="w-14 h-14 object-contain shrink-0"

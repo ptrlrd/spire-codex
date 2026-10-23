@@ -2,9 +2,9 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Card } from "@/lib/api";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Card } from "@/lib/api/types";
 import FullCardGrid from "@/app/components/FullCardGrid";
 import RichDescription from "@/app/components/RichDescription";
 import SearchFilter from "@/app/components/SearchFilter";
@@ -50,15 +50,21 @@ type InitialResult =
   | { type: "glossary"; data: GlossaryTerm }
   | null;
 
-export default function KeywordDetail({ initialResult }: { initialResult?: InitialResult } = {}) {
+export default function KeywordDetail({
+  initialResult,
+}: { initialResult?: InitialResult } = {}) {
   const params = useParams();
   const id = params.id as string;
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
 
-  const [keyword, setKeyword] = useState<Keyword | null>(initialResult?.type === "keyword" ? initialResult.data : null);
-  const [glossary, setGlossary] = useState<GlossaryTerm | null>(initialResult?.type === "glossary" ? initialResult.data : null);
+  const [keyword, setKeyword] = useState<Keyword | null>(
+    initialResult?.type === "keyword" ? initialResult.data : null,
+  );
+  const [glossary, setGlossary] = useState<GlossaryTerm | null>(
+    initialResult?.type === "glossary" ? initialResult.data : null,
+  );
   const [cards, setCards] = useState<Card[]>([]);
   const [search, setSearch] = useState("");
   const [color, setColor] = useState("");
@@ -74,12 +80,16 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
     cachedFetch<Keyword>(`${API}/api/keywords/${id}?lang=${lang}`)
       .then((kw) => {
         setKeyword(kw);
-        return cachedFetch<Card[]>(`${API}/api/cards?keyword=${encodeURIComponent(id)}&lang=${lang}`);
+        return cachedFetch<Card[]>(
+          `${API}/api/cards?keyword=${encodeURIComponent(id)}&lang=${lang}`,
+        );
       })
       .then((cardList) => setCards(cardList))
       .catch(() => {
         // Not a keyword, try glossary
-        return cachedFetch<GlossaryTerm>(`${API}/api/glossary/${id}?lang=${lang}`)
+        return cachedFetch<GlossaryTerm>(
+          `${API}/api/glossary/${id}?lang=${lang}`,
+        )
           .then((term) => setGlossary(term))
           .catch(() => {
             if (!initialResult) setNotFound(true);
@@ -91,7 +101,9 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
   if (loading) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center py-12 text-[var(--text-muted)]">{t("Loading...")}</div>
+        <div className="text-center py-12 text-[var(--text-muted)]">
+          {t("Loading...")}
+        </div>
       </div>
     );
   }
@@ -99,11 +111,16 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
   if (notFound) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link href="/keywords" className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors">
+        <Link
+          href="/keywords"
+          className="text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+        >
           &larr; {t("Back to")} {t("Keywords")}
         </Link>
         <div className="text-center py-12">
-          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">{t("Term Not Found")}</h1>
+          <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-2">
+            {t("Term Not Found")}
+          </h1>
         </div>
       </div>
     );
@@ -124,7 +141,9 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
             <div className="hero">
               <p className="eyebrow">
                 <span className="dot">&#9670;</span>
-                <span>{t(CATEGORY_LABELS[glossary.category] || "Game Term")}</span>
+                <span>
+                  {t(CATEGORY_LABELS[glossary.category] || "Game Term")}
+                </span>
               </p>
               <h1>{glossary.name}</h1>
             </div>
@@ -132,7 +151,9 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
             <section id="description">
               <h2>{t("Description")}</h2>
               <div className="desc-quote">
-                <RichDescription text={glossary.description.replace(/\n/g, "\n\n")} />
+                <RichDescription
+                  text={glossary.description.replace(/\n/g, "\n\n")}
+                />
               </div>
             </section>
           </main>
@@ -146,7 +167,10 @@ export default function KeywordDetail({ initialResult }: { initialResult?: Initi
 
   let filtered = cards;
   if (color) filtered = filtered.filter((c) => c.color === color);
-  if (search) filtered = filtered.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()));
+  if (search)
+    filtered = filtered.filter((c) =>
+      c.name.toLowerCase().includes(search.toLowerCase()),
+    );
 
   return (
     <div className="card-rvmp">

@@ -2,14 +2,15 @@
 
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Enchantment } from "@/lib/api";
+import type { Enchantment } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
 import RichDescription from "@/app/components/RichDescription";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -25,11 +26,15 @@ const cardTypeOptions = [
   { label: "Power", value: "Power" },
 ];
 
-function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments: Enchantment[] }) {
+function EnchantmentsClientInner({
+  initialEnchantments,
+}: {
+  initialEnchantments: Enchantment[];
+}) {
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
-  const router = useRouter();
-  const [enchantments, setEnchantments] = useState<Enchantment[]>(initialEnchantments);
+  const [enchantments, setEnchantments] =
+    useState<Enchantment[]>(initialEnchantments);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [cardType, setCardType] = useState(searchParams.get("cardType") || "");
   const lang = useGameLocale();
@@ -43,21 +48,30 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/enchantments${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, cardType };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, cardType, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = { search, cardType };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, cardType, updateUrl],
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with no filters
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !cardType && !search && initialEnchantments.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !cardType &&
+        !search &&
+        initialEnchantments.length > 0
+      ) {
         return;
       }
     }
@@ -65,8 +79,9 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
     if (search) params.set("search", search);
     if (cardType) params.set("card_type", cardType);
     params.set("lang", lang);
-    cachedFetch<Enchantment[]>(`${API}/api/enchantments?${params}`)
-      .then(setEnchantments);
+    cachedFetch<Enchantment[]>(`${API}/api/enchantments?${params}`).then(
+      setEnchantments,
+    );
   }, [search, cardType, lang, channel]);
 
   return (
@@ -106,27 +121,27 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
                 />
               )}
               <div className="flex-1 flex items-start justify-between">
-              <h3 className="font-semibold text-[var(--text-primary)]">
-                {ench.name}
-              </h3>
-              <div className="flex gap-1.5 ml-2 flex-shrink-0">
-                {ench.card_type?.split(", ").map((type) => (
-                  <span
-                    key={type}
-                    className={`text-[10px] px-1.5 py-0.5 rounded border ${
-                      cardTypeColors[type] ||
-                      "bg-surface text-fg-secondary border-line-strong"
-                    }`}
-                  >
-                    {t(type)}
-                  </span>
-                ))}
-                {ench.is_stackable && (
-                  <span className="text-[10px] px-1.5 py-0.5 rounded border bg-info/10 text-info border-info/30">
-                    {t("Stackable")}
-                  </span>
-                )}
-              </div>
+                <h3 className="font-semibold text-[var(--text-primary)]">
+                  {ench.name}
+                </h3>
+                <div className="flex gap-1.5 ml-2 flex-shrink-0">
+                  {ench.card_type?.split(", ").map((type) => (
+                    <span
+                      key={type}
+                      className={`text-[10px] px-1.5 py-0.5 rounded border ${
+                        cardTypeColors[type] ||
+                        "bg-surface text-fg-secondary border-line-strong"
+                      }`}
+                    >
+                      {t(type)}
+                    </span>
+                  ))}
+                  {ench.is_stackable && (
+                    <span className="text-[10px] px-1.5 py-0.5 rounded border bg-info/10 text-info border-info/30">
+                      {t("Stackable")}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -136,7 +151,8 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
 
             {ench.extra_card_text && (
               <p className="text-xs text-[var(--text-muted)] leading-relaxed italic">
-                {t("Card text:")} <RichDescription text={ench.extra_card_text} />
+                {t("Card text:")}{" "}
+                <RichDescription text={ench.extra_card_text} />
               </p>
             )}
           </Link>
@@ -150,7 +166,9 @@ function EnchantmentsClientInner({ initialEnchantments }: { initialEnchantments:
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function EnchantmentsClient(props: Parameters<typeof EnchantmentsClientInner>[0]) {
+export default function EnchantmentsClient(
+  props: Parameters<typeof EnchantmentsClientInner>[0],
+) {
   return (
     <Suspense fallback={null}>
       <EnchantmentsClientInner {...props} />

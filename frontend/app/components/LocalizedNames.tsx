@@ -2,6 +2,7 @@
 
 import { useT, useGameLocale } from "@/lib/i18n";
 import { useState, useEffect } from "react";
+import NextLink from "next/link";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { LANG_HREFLANG, type LangCode } from "@/lib/languages";
@@ -63,7 +64,7 @@ export default function LocalizedNames({
   // "Crawled - currently not indexed" bucket.
   useEffect(() => {
     cachedFetch<Record<string, string>>(
-      `${API}/api/names/${entityType}/${entityId}`
+      `${API}/api/names/${entityType}/${entityId}`,
     ).then(setNames);
   }, [entityType, entityId]);
 
@@ -85,7 +86,11 @@ export default function LocalizedNames({
           const isEnglish = apiName === "English";
           const linkLocale = isEnglish ? "eng" : code;
           const href = linkLocale ? `/${route}/${idSlug}` : null;
-          const hrefLang = isEnglish ? "en" : code ? LANG_HREFLANG[code] : undefined;
+          const hrefLang = isEnglish
+            ? "en"
+            : code
+              ? LANG_HREFLANG[code]
+              : undefined;
           return { apiName, name, href, hrefLang, linkLocale };
         })
     : [];
@@ -101,21 +106,38 @@ export default function LocalizedNames({
         <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 text-sm list-none p-0 m-0">
           {rows.map(({ apiName, name, href, hrefLang, linkLocale }) => (
             <li key={apiName}>
-              {href && linkLocale ? (
+              {href && linkLocale === "eng" ? (
+                <NextLink
+                  href={href}
+                  hrefLang={hrefLang}
+                  className="flex justify-between gap-3 rounded px-1.5 -mx-1.5 py-1 hover:bg-[var(--bg-card)] transition-colors"
+                >
+                  <span className="text-[var(--text-secondary)]">
+                    {apiName}
+                  </span>
+                  <span className="text-[var(--text-primary)] text-right">
+                    {name}
+                  </span>
+                </NextLink>
+              ) : href && linkLocale ? (
                 <Link
                   href={href}
                   locale={linkLocale}
                   hrefLang={hrefLang}
                   className="flex justify-between gap-3 rounded px-1.5 -mx-1.5 py-1 hover:bg-[var(--bg-card)] transition-colors"
                 >
-                  <span className="text-[var(--text-secondary)]">{apiName}</span>
+                  <span className="text-[var(--text-secondary)]">
+                    {apiName}
+                  </span>
                   <span className="text-[var(--text-primary)] text-right">
                     {name}
                   </span>
                 </Link>
               ) : (
                 <div className="flex justify-between gap-3 px-1.5 py-1">
-                  <span className="text-[var(--text-secondary)]">{apiName}</span>
+                  <span className="text-[var(--text-secondary)]">
+                    {apiName}
+                  </span>
                   <span className="text-[var(--text-primary)] text-right">
                     {name}
                   </span>

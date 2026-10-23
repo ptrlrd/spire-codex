@@ -41,7 +41,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/mechanics", title: t("Game Mechanics - Drop Rates, Combat & Map Data"), description: t("mechanics_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/mechanics",
+    title: t("Game Mechanics - Drop Rates, Combat & Map Data"),
+    description: t("mechanics_meta_description"),
+  });
 }
 
 export default async function MechanicsPage({ params }: Props) {
@@ -59,10 +64,14 @@ export default async function MechanicsPage({ params }: Props) {
     ]),
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Game Mechanics",
-      description: "Complete game mechanics data extracted from the source code.",
+      description:
+        "Complete game mechanics data extracted from the source code.",
       path: localePath(locale, "/mechanics"),
       inLanguage: inLanguageOf(locale),
-      items: sections.map((s) => ({ name: t(s.title), path: `/mechanics/${s.slug}` })),
+      items: sections.map((s) => ({
+        name: t(s.title),
+        path: `/mechanics/${s.slug}`,
+      })),
     }),
   ];
 
@@ -73,10 +82,17 @@ export default async function MechanicsPage({ params }: Props) {
         <span className="text-[var(--accent-gold)]">{heading}</span>
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-8">
-        {t("Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.")}
+        {t(
+          "Every drop rate, reward chance, and game formula extracted from Slay the Spire 2's decompiled source code. All values are exact.",
+        )}
       </p>
 
-      <h2 id="mechanics" className="text-xl font-semibold text-[var(--accent-gold)] mb-4">{t("Mechanics")}</h2>
+      <h2
+        id="mechanics"
+        className="text-xl font-semibold text-[var(--accent-gold)] mb-4"
+      >
+        {t("Mechanics")}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
         {mechanics.map((s) => (
           <Link
@@ -84,13 +100,19 @@ export default async function MechanicsPage({ params }: Props) {
             href={`/mechanics/${s.slug}`}
             className="bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] p-5 hover:bg-[var(--bg-card-hover)] hover:border-[var(--border-accent)] transition-all cursor-pointer block"
           >
-            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] mb-2">{t(s.title)}</h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{t(s.description)}</p>
+            <h3 className="font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent-gold)] mb-2">
+              {t(s.title)}
+            </h3>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+              {t(s.description)}
+            </p>
           </Link>
         ))}
       </div>
 
-      <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">{t("Secrets & Trivia")}</h2>
+      <h2 className="text-xl font-semibold text-[var(--accent-gold)] mb-4">
+        {t("Secrets & Trivia")}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {secrets.map((s) => (
           <Link
@@ -99,7 +121,9 @@ export default async function MechanicsPage({ params }: Props) {
             className="bg-[var(--bg-card)] rounded-lg border border-success/30 p-5 hover:bg-[var(--bg-card-hover)] hover:border-success/50 transition-all cursor-pointer block"
           >
             <h3 className="font-semibold text-success mb-2">{t(s.title)}</h3>
-            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">{t(s.description)}</p>
+            <p className="text-sm text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+              {t(s.description)}
+            </p>
           </Link>
         ))}
       </div>

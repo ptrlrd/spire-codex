@@ -993,6 +993,18 @@
       ],
       "description": "Sommeil → Éveil → Bourrasque → repeat"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Sommeil",
+        "text": "Votre périple s'achève ici..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Sommeil",
+        "text": "Commençons."
+      }
+    ],
     "image_url": "/static/images/monsters/bygone_effigy.webp",
     "beta_image_url": null
   },
@@ -1180,6 +1192,13 @@
       ],
       "description": "Always uses Incantation"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantation",
+        "text": "NOTRE PUISSANCE N'A PAS D'ÉGAL !"
+      }
+    ],
     "image_url": "/static/images/monsters/calcified_cultist.webp",
     "beta_image_url": null
   },
@@ -1922,6 +1941,13 @@
       ],
       "description": "Always uses Incantation"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantation",
+        "text": "CROA !\nCROOOA"
+      }
+    ],
     "image_url": "/static/images/monsters/damp_cultist.webp",
     "beta_image_url": null
   },
@@ -2114,6 +2140,13 @@
       ],
       "description": "Always uses Incantation interdite"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Incantation interdite",
+        "text": "CROOOOA !!"
+      }
+    ],
     "image_url": "/static/images/monsters/devoted_sculptor.webp",
     "beta_image_url": null
   },
@@ -2641,6 +2674,33 @@
       ],
       "description": "Starts with Vol"
     },
+    "quotes": [
+      {
+        "key": "speakLine1",
+        "move": "Enrager",
+        "text": "Oh, tu vas le payer cher..."
+      },
+      {
+        "key": "speakLine2",
+        "move": "Enrager",
+        "text": "Tu vas finir au fond des Bas-Quais !"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Projection de pièces",
+        "text": "JACKPOT !"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Vol",
+        "text": "Ici les sous !"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Lancer de relique",
+        "text": "Tu la veux ? Attrape !"
+      }
+    ],
     "image_url": "/static/images/monsters/fake_merchant.webp",
     "beta_image_url": null
   },
@@ -2693,6 +2753,13 @@
       ],
       "description": "Always uses Éveil"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Fuite",
+        "text": "J'me tire !"
+      }
+    ],
     "image_url": "/static/images/monsters/fat_gremlin.webp",
     "beta_image_url": null
   },
@@ -3657,6 +3724,13 @@
       ],
       "description": "Donne ! → Fracas double → Héhé → repeat"
     },
+    "quotes": [
+      {
+        "key": "banter",
+        "move": "Donne !",
+        "text": "De l'argent !\nDe l'argent !"
+      }
+    ],
     "image_url": "/static/images/monsters/gremlin_merc.webp",
     "beta_image_url": null
   },
@@ -4365,6 +4439,18 @@
       ],
       "description": "Orbe de fragilité → Orbe de faiblesse → Rayon animique → Sombre rituel → repeat"
     },
+    "quotes": [
+      {
+        "key": "followersDeathLine",
+        "move": null,
+        "text": "Impossible !"
+      },
+      {
+        "key": "speakLine1",
+        "move": "Sombre rituel",
+        "text": "Ka Quaww !!"
+      }
+    ],
     "image_url": "/static/images/monsters/kin_priest.webp",
     "beta_image_url": null
   },
@@ -4490,6 +4576,18 @@
       ],
       "description": "Starts: Malédiction du savoir → Claque → Savoir accablant → Contemplation; then conditional: Malédiction du savoir (if curse of knowledge counter < 3) / Claque (if curse of knowledge counter >= 3)"
     },
+    "quotes": [
+      {
+        "key": "doneLine",
+        "move": "Malédiction du savoir",
+        "text": "Votre choix est fait."
+      },
+      {
+        "key": "startLine",
+        "move": "Malédiction du savoir",
+        "text": "Faites votre choix."
+      }
+    ],
     "image_url": "/static/images/monsters/knowledge_demon.webp",
     "beta_image_url": null
   },
@@ -5426,6 +5524,18 @@
       ],
       "description": "Charge → Lance-flammes → Chargement → Balayage lourd → repeat"
     },
+    "quotes": [
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Boucliers hors ligne !"
+      },
+      {
+        "key": "dialogue",
+        "move": null,
+        "text": "Bouclier réactivé !"
+      }
+    ],
     "image_url": "/static/images/monsters/mecha_knight.webp",
     "beta_image_url": null
   },
@@ -6549,6 +6659,18 @@
       ],
       "description": "Starts: Puppet Strings → Tu es à moi !; then conditional: De mille feux (if does not have amalgam died) / À la guillotine (if has amalgam died); then conditional: De mille feux (if does not have amalgam died) / À la guillotine (if has amalgam died)"
     },
+    "quotes": [
+      {
+        "key": "amalgamDeathSpeakLine",
+        "move": null,
+        "text": "..."
+      },
+      {
+        "key": "banter",
+        "move": null,
+        "text": "Tu es à moi !"
+      }
+    ],
     "image_url": "/static/images/monsters/queen.webp",
     "beta_image_url": null
   },

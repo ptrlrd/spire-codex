@@ -14,7 +14,12 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/modifiers", title: t("Custom Mode Modifiers - All Modifiers"), description: t("modifiers_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/modifiers",
+    title: t("Custom Mode Modifiers - All Modifiers"),
+    description: t("modifiers_meta_description"),
+  });
 }
 
 export default async function ModifiersPage({ params }: Props) {

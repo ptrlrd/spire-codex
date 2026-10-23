@@ -2,19 +2,27 @@ import type { Metadata } from "next";
 import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
-import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api";
+import type { Epoch, Story, Card, Relic, Potion } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import TimelineClient from "./TimelineClient";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/timeline", title: t("Timeline"), description: t("timeline_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/timeline",
+    title: t("Timeline"),
+    description: t("timeline_meta_description"),
+  });
 }
 
 export default async function TimelinePage({ params }: Props) {
@@ -29,13 +37,22 @@ export default async function TimelinePage({ params }: Props) {
   let potions: Potion[] = [];
 
   try {
-    const [epochsRes, storiesRes, cardsRes, relicsRes, potionsRes] = await Promise.all([
-      fetch(`${API}/api/epochs?lang=${locale}`, { next: { revalidate: 300 } }),
-      fetch(`${API}/api/stories?lang=${locale}`, { next: { revalidate: 300 } }),
-      fetch(`${API}/api/cards?lang=${locale}`, { next: { revalidate: 300 } }),
-      fetch(`${API}/api/relics?lang=${locale}`, { next: { revalidate: 300 } }),
-      fetch(`${API}/api/potions?lang=${locale}`, { next: { revalidate: 300 } }),
-    ]);
+    const [epochsRes, storiesRes, cardsRes, relicsRes, potionsRes] =
+      await Promise.all([
+        fetch(`${API}/api/epochs?lang=${locale}`, {
+          next: { revalidate: 300 },
+        }),
+        fetch(`${API}/api/stories?lang=${locale}`, {
+          next: { revalidate: 300 },
+        }),
+        fetch(`${API}/api/cards?lang=${locale}`, { next: { revalidate: 300 } }),
+        fetch(`${API}/api/relics?lang=${locale}`, {
+          next: { revalidate: 300 },
+        }),
+        fetch(`${API}/api/potions?lang=${locale}`, {
+          next: { revalidate: 300 },
+        }),
+      ]);
     if (epochsRes.ok) epochs = await epochsRes.json();
     if (storiesRes.ok) stories = await storiesRes.json();
     if (cardsRes.ok) cards = await cardsRes.json();
@@ -53,7 +70,8 @@ export default async function TimelinePage({ params }: Props) {
     ]),
     buildCollectionPageJsonLd({
       name: "Slay the Spire 2 Timeline",
-      description: "Explore the full Slay the Spire 2 timeline across every epoch and story arc.",
+      description:
+        "Explore the full Slay the Spire 2 timeline across every epoch and story arc.",
       path: localePath(locale, "/timeline"),
       inLanguage: inLanguageOf(locale),
     }),

@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { fullCardUrl } from "@/lib/image-url";
+import CardImage from "@/app/components/CardImage";
 
-/** Card art in the page's language, falling back to the English render when a
- * locale has no image for that card. The displayed URL is derived from the
- * props on every render and only the URL that failed is state, so changing
- * locale or card retries the localized art instead of keeping a stale image. */
+/** Card art in the page's language, falling back to the English render, then
+ * the beta render, then a labelled placeholder when the catalog has no card. */
 export default function LocalizedCardImage({
   id,
   lang,
@@ -16,26 +13,20 @@ export default function LocalizedCardImage({
   loading = "lazy",
 }: {
   id: string;
-  lang: string;
+  lang?: string;
   alt: string;
   className?: string;
   upgraded?: boolean;
   loading?: "lazy" | "eager";
 }) {
-  const localized = fullCardUrl(id, upgraded, "stable", lang);
-  const english = fullCardUrl(id, upgraded);
-  const [failed, setFailed] = useState<string | null>(null);
-  const src = failed === localized ? english : localized;
   return (
-    <img
-      src={src}
+    <CardImage
+      id={id}
+      upgraded={upgraded}
+      lang={lang}
       alt={alt}
       className={className}
       loading={loading}
-      crossOrigin="anonymous"
-      onError={() => {
-        if (src !== english) setFailed(src);
-      }}
     />
   );
 }

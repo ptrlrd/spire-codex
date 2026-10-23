@@ -2,14 +2,23 @@ import type { Metadata } from "next";
 import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { buildPageMetadata, clipMetaDescription, pageHeading, stripTags, stripTagsFlat } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  clipMetaDescription,
+  pageHeading,
+  stripTags,
+  stripTagsFlat,
+} from "@/lib/seo";
 import { getT } from "@/lib/i18n-server";
 import { localeOf } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 
 export const dynamic = "force-dynamic";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ id: string; locale: string }> };
 
@@ -20,19 +29,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const path = `/timeline/${id}`;
   try {
     const res = await fetch(`${API_INTERNAL}/api/epochs/${id}`);
-    if (!res.ok) return buildPageMetadata({ locale, path, title: t("Epoch Not Found"), noIndex: true });
+    if (!res.ok)
+      return buildPageMetadata({
+        locale,
+        path,
+        title: t("Epoch Not Found"),
+        noIndex: true,
+      });
     const epoch = await res.json();
     const desc = stripTagsFlat(epoch.description || "");
     return buildPageMetadata({
       locale,
       path,
       title: `${t("Timeline")} - ${epoch.title}`,
-      description: clipMetaDescription(`${pageHeading(locale, t("Timeline"))}, ${epoch.title}${desc ? `: ${desc}` : ""}`),
+      description: clipMetaDescription(
+        `${pageHeading(locale, t("Timeline"))}, ${epoch.title}${desc ? `: ${desc}` : ""}`,
+      ),
       ogType: "article",
       supressLanguageAlternates: true,
     });
   } catch {
-    return buildPageMetadata({ locale, path, title: t("Timeline"), noIndex: true });
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Timeline"),
+      noIndex: true,
+    });
   }
 }
 
@@ -58,7 +80,10 @@ export default async function Page({ params }: Props) {
         ],
       });
       const faqJsonLd = buildFAQPageJsonLd([
-        { question: `What happens in the ${epoch.title} epoch in Slay the Spire 2?`, answer: desc || `Explore the ${epoch.title} epoch.` },
+        {
+          question: `What happens in the ${epoch.title} epoch in Slay the Spire 2?`,
+          answer: desc || `Explore the ${epoch.title} epoch.`,
+        },
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
     }

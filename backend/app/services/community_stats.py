@@ -16,6 +16,7 @@ from __future__ import annotations
 
 import logging
 import os
+import re
 from functools import lru_cache
 from typing import Any
 
@@ -96,8 +97,9 @@ def _new_acc_one() -> dict[str, Any]:
     return {
         "total_runs": 0,
         "total_wins": 0,
-        "by_ascension": {},  # asc(int) -> [runs, wins]
-        "by_character": {},  # char_id -> [runs, wins]
+        "total_abandoned": 0,
+        "by_ascension": {},  # asc(int) -> [runs, wins, abandoned]
+        "by_character": {},  # char_id -> [runs, wins, abandoned]
         "events": {},  # event_id -> {option_id -> count}
         # (act_index, map_point_type) -> [player_visits, dmg_pct_sum, deaths]. Feeds the
         # in-game map danger tinting (avg HP% lost + death rate per node type per act).
@@ -143,7 +145,13 @@ def new_accumulator(recent_versions: tuple | list = ()) -> dict[str, Any]:
 # `_INT_FIELDS` add; `_LIST_DICT_FIELDS` add element-wise per key; `events` is a
 # nested event -> {option -> count}; the counter dicts add per key; the three
 # records keep the best (min run_time / max run_time / max deck_size).
-_COMMUNITY_INT_FIELDS = ("total_runs", "total_wins", "reward_screens", "reward_skips")
+_COMMUNITY_INT_FIELDS = (
+    "total_runs",
+    "total_wins",
+    "total_abandoned",
+    "reward_screens",
+    "reward_skips",
+)
 # "ancient" belongs here, NOT in the counters: its values became
 # [chosen, offered] lists when the take-rate tip shipped, and merging it as
 # an int counter is the TypeError that broke every parallel rebuild.
@@ -223,6 +231,43 @@ def merge(dst: dict, src: dict) -> None:
             d["biggest_deck"] = s["biggest_deck"]
 
 
+def _count(rec: list, is_win: bool, is_abandoned: bool) -> None:
+    """[runs, wins, abandoned]; older cells stored two-element rows."""
+    if len(rec) < 3:
+        rec.extend([0] * (3 - len(rec)))
+    rec[0] += 1
+    if is_win:
+        rec[1] += 1
+    if is_abandoned:
+        rec[2] += 1
+
+
+def _abandoned(rec: list) -> int:
+    return rec[2] if len(rec) > 2 else 0
+
+
+RARITY_SPLIT_EVENTS = ("THE_FUTURE_OF_POTIONS",)
+
+
+@lru_cache(maxsize=1)
+def _potion_rarities() -> dict[str, str]:
+    from .data_service import load_potions
+
+    return {
+        str(p["id"]).upper(): str(p["rarity_key"]).upper()
+        for p in load_potions()
+        if p.get("id") and p.get("rarity_key")
+    }
+
+
+def _rarity_option(option_id: str, ps: dict) -> str:
+    for raw in ps.get("potion_discarded") or []:
+        rarity = _potion_rarities().get(str(raw).split(".")[-1].upper())
+        if rarity:
+            return f"{option_id}_{rarity}"
+    return option_id
+
+
 def _bump(d: dict, key: Any, n: int = 1) -> None:
     d[key] = d.get(key, 0) + n
 
@@ -236,6 +281,7 @@ def accumulate(
     is_win: bool,
     character: str,
     ascension: int,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run into the sub-accumulator of every bracket it belongs to."""
     for b in brackets:
@@ -248,6 +294,7 @@ def accumulate(
                 is_win=is_win,
                 character=character,
                 ascension=ascension,
+                is_abandoned=is_abandoned,
             )
 
 
@@ -259,23 +306,22 @@ def _accumulate_one(
     is_win: bool,
     character: str,
     ascension: int,
+    is_abandoned: bool = False,
 ) -> None:
     """Fold one run into ONE bracket's accumulator. Safe on partial/old blobs:
     every field is read defensively so a missing key never aborts the walk."""
     acc["total_runs"] += 1
     if is_win:
         acc["total_wins"] += 1
+    if is_abandoned:
+        acc["total_abandoned"] += 1
 
-    asc = acc["by_ascension"].setdefault(int(ascension or 0), [0, 0])
-    asc[0] += 1
-    if is_win:
-        asc[1] += 1
+    asc = acc["by_ascension"].setdefault(int(ascension or 0), [0, 0, 0])
+    _count(asc, is_win, is_abandoned)
     # Normalize "character.necrobinder" / "NECROBINDER" -> "necrobinder".
     char_id = (character or "unknown").split(".")[-1].lower()
-    ch = acc["by_character"].setdefault(char_id, [0, 0])
-    ch[0] += 1
-    if is_win:
-        ch[1] += 1
+    ch = acc["by_character"].setdefault(char_id, [0, 0, 0])
+    _count(ch, is_win, is_abandoned)
     ca = acc["char_asc"].setdefault(char_id, {}).setdefault(int(ascension or 0), [0, 0])
     ca[0] += 1
     if is_win:
@@ -373,6 +419,8 @@ def _accumulate_one(
                     option_id = key.split(".options.", 1)[1].split(".", 1)[0]
                     if not event_id or not option_id:
                         continue
+                    if event_id in RARITY_SPLIT_EVENTS:
+                        option_id = _rarity_option(option_id, ps)
                     opts = acc["events"].setdefault(event_id, {})
                     _bump(opts, option_id)
 
@@ -444,10 +492,82 @@ def _accumulate_one(
 # ── Finalize: resolve names + compute percentages ────────────────────────────
 
 
-@lru_cache(maxsize=1)
-def _name_maps() -> dict[str, dict[str, str]]:
+_VERSION_KEY_RE = re.compile(r"v\d+(\.\d+)*(-rc\.\d+)?")
+
+
+def _version_key(v: str) -> tuple[int, ...]:
+    return tuple(int(x) for x in v.lstrip("v").split(".") if x.isdigit())
+
+
+def _bracket_version(bracket: str | None) -> str | None:
+    """The game-version segment of a bracket key ("solo:a10:v0.107.1" ->
+    "v0.107.1"), or None for a bracket that spans every version."""
+    for part in (bracket or "").split(":"):
+        if _VERSION_KEY_RE.fullmatch(part):
+            return part
+    return None
+
+
+def _archive_versions() -> list[str]:
+    """Archived per-version catalogs, newest first."""
+    from . import data_service
+
+    try:
+        return data_service.list_data_versions()
+    except Exception:
+        logger.warning("community-stats archive listing failed", exc_info=True)
+        return []
+
+
+def _archived_rows(entity: str, version: str) -> list[dict]:
+    """One archived version's catalog file, read without the process cache:
+    the union pass touches every archive once and keeps only id -> name."""
+    import json
+
+    from . import data_service
+
+    base = data_service._resolve_base(version)
+    path = base / data_service.DEFAULT_LANG / f"{entity}.json"
+    if not path.exists():
+        return []
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        logger.warning("community-stats archive load failed: %s", path, exc_info=True)
+        return []
+
+
+def _catalog_version(version: str | None) -> str | None:
+    """The archived catalog that describes runs on `version`: the exact
+    archive when one exists, else the newest archive not newer than it
+    (an rc or hotfix build plays the content of the release it patches).
+    None when nothing fits, which falls back to the every-version union."""
+    if not version:
+        return None
+    archives = _archive_versions()
+    if version in archives:
+        return version
+    want = _version_key(version)
+    if not want:
+        return None
+    for v in archives:
+        if _version_key(v) <= want:
+            return v
+    return None
+
+
+@lru_cache(maxsize=32)
+def _name_maps(version: str | None = None) -> dict[str, dict[str, str]]:
     """Build id -> display-name lookups from the game data. Each is best
     effort; a failed load just means we fall back to a prettified id.
+
+    `version` pins the lookup to the catalog that shipped with that game
+    version, so a version bracket only knows the content players could
+    meet on it. Without a version the lookup is the current catalog plus
+    every archived one: content the game shipped and later removed (the
+    Act 3 boss before Aeonglass) stays named in the all-versions lists
+    because those runs really did meet it.
 
     Memoized: per-bracket finalize calls this once per bracket, but the catalog
     is stable within a process (a beta promotion is a deploy = restart), so the
@@ -455,15 +575,32 @@ def _name_maps() -> dict[str, dict[str, str]]:
     from . import data_service
 
     out: dict[str, dict[str, str]] = {}
+    pinned = _catalog_version(version)
 
-    def _index(loader, key="id", name="name") -> dict[str, str]:
+    def _rows(loader, entity: str) -> list[dict]:
+        if pinned:
+            return _archived_rows(entity, pinned)
+        return loader()
+
+    def _index(
+        loader, key="id", name="name", entity: str | None = None
+    ) -> dict[str, str]:
         try:
-            return {
-                r[key]: r.get(name) or _prettify(r[key]) for r in loader() if r.get(key)
+            rows = _rows(loader, entity) if entity else loader()
+            names = {
+                r[key]: r.get(name) or _prettify(r[key]) for r in rows if r.get(key)
             }
         except Exception:
             logger.warning("community-stats name load failed", exc_info=True)
             return {}
+        if pinned or not names or not entity:
+            return names
+        for v in _archive_versions():
+            for r in _archived_rows(entity, v):
+                rid = r.get(key)
+                if rid and rid not in names:
+                    names[rid] = r.get(name) or _prettify(rid)
+        return names
 
     # Ids that exist ONLY in the current beta, per type. Feeds the beta
     # spotlight in `finalize`: beta entities can't outrank main content in
@@ -480,9 +617,9 @@ def _name_maps() -> dict[str, dict[str, str]]:
         every list until the beta promotes. Genuinely modded ids stay
         filtered: they're in neither catalog. Main names win for entities
         in both."""
-        names = _index(loader, key, name)
+        names = _index(loader, key, name, entity=tkey)
         beta_only[tkey] = set()
-        if not names or not data_service.get_beta_version():
+        if pinned or not names or not data_service.get_beta_version():
             return names
         token = data_service.current_channel.set("beta")
         try:
@@ -517,7 +654,15 @@ def _name_maps() -> dict[str, dict[str, str]]:
     event_opts: dict[str, dict[str, str]] = {}
     event_opt_ids: dict[str, set[str]] = {}
     try:
-        for e in data_service.load_events():
+        event_rows: list[dict] = list(_rows(data_service.load_events, "events"))
+        if not pinned:
+            seen = {e.get("id") for e in event_rows}
+            for v in _archive_versions():
+                for e in _archived_rows("events", v):
+                    if e.get("id") and e["id"] not in seen:
+                        seen.add(e["id"])
+                        event_rows.append(e)
+        for e in event_rows:
             eid = e.get("id")
             if not eid:
                 continue
@@ -618,21 +763,32 @@ def _beta_spotlight(acc: dict[str, Any], names: dict) -> dict[str, Any]:
 
 def finalize(acc: dict[str, Any]) -> dict[str, Any]:
     """Per-bracket finalized blob for the snapshot: {bracket: <datasets>}."""
-    return {b: _finalize_one(sub) for b, sub in acc.items()}
+    return {
+        b: _finalize_one(sub, version=_bracket_version(b)) for b, sub in acc.items()
+    }
 
 
-def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
-    """Turn one bracket's raw accumulator into the JSON the API/page render."""
-    names = _name_maps()
+def _finalize_one(acc: dict[str, Any], version: str | None = None) -> dict[str, Any]:
+    """Turn one bracket's raw accumulator into the JSON the API/page render.
+    `version` names the game version the accumulator is sliced to, so the
+    official-content filter uses that version's catalog."""
+    names = _name_maps(version)
     ev_names = names["events"]
     ev_opts = names["_event_options"]  # type: ignore[index]
     ev_opt_ids = names["_event_option_ids"]  # type: ignore[index]
 
     total_runs = acc["total_runs"]
     total_wins = acc["total_wins"]
+    total_abandoned = acc.get("total_abandoned") or 0
 
     by_ascension = [
-        {"ascension": a, "runs": rw[0], "wins": rw[1], "win_rate": _pct(rw[1], rw[0])}
+        {
+            "ascension": a,
+            "runs": rw[0],
+            "wins": rw[1],
+            "abandoned": _abandoned(rw),
+            "win_rate": _pct(rw[1], rw[0]),
+        }
         for a, rw in sorted(acc["by_ascension"].items())
     ]
     chars = names["characters"]
@@ -642,6 +798,7 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
             "name": chars.get(cid) or _prettify(cid),
             "runs": rw[0],
             "wins": rw[1],
+            "abandoned": _abandoned(rw),
             "win_rate": _pct(rw[1], rw[0]),
             "share": _pct(rw[0], total_runs),
         }
@@ -719,7 +876,8 @@ def _finalize_one(acc: dict[str, Any]) -> dict[str, Any]:
     return {
         "total_runs": total_runs,
         "total_wins": total_wins,
-        "total_losses": total_runs - total_wins,
+        "total_losses": total_runs - total_wins - total_abandoned,
+        "total_abandoned": total_abandoned,
         "win_rate": _pct(total_wins, total_runs),
         "by_ascension": by_ascension,
         "by_character": by_character,

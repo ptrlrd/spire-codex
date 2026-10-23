@@ -2,22 +2,88 @@ import { createTranslator } from "next-intl";
 import { describe, expect, it } from "vitest";
 import { messagesFor } from "@/i18n/messages";
 import { safeKey } from "@/lib/i18n-keys";
-import { buildPageMetadata, pageHeading, pageTitle } from "./seo";
+import {
+  buildPageMetadata,
+  entityQualifier,
+  entityTitle,
+  pageHeading,
+  pageTitle,
+} from "./seo";
 
 describe("page titles", () => {
   it("keeps replacement metacharacters in English segments", () => {
     const segment = "Player $& $$ $' $`";
-    expect(pageTitle("eng", segment)).toBe(`${segment} - Slay the Spire 2 (sts2) | Spire Codex`);
+    expect(pageTitle("eng", segment)).toBe(
+      `${segment} - Slay the Spire 2 (sts2) | Spire Codex`,
+    );
   });
   it("uses the locale's game name and native language name elsewhere", () => {
-    expect(pageTitle("jpn", "レリック")).toMatch(/^スレイ・ザ・スパイア2 \(STS2\) レリック \| Spire Codex \(日本語\)$/);
+    expect(pageTitle("jpn", "レリック")).toMatch(
+      /^スレイ・ザ・スパイア2 \(STS2\) レリック \| Spire Codex \(日本語\)$/,
+    );
     expect(pageHeading("eng", "Relics")).toBe("Slay the Spire 2 (sts2) Relics");
+  });
+});
+describe("entity titles", () => {
+  it("puts the game name between the entity and its type word", () => {
+    expect(entityTitle("eng", "Bash", "Card")).toBe(
+      "Bash - Slay the Spire 2 Card | Spire Codex",
+    );
+  });
+  it("keeps the untranslated game name and the native suffix elsewhere", () => {
+    expect(entityTitle("deu", "Fackel", "Relikt")).toBe(
+      "Fackel - Slay the Spire 2 Relikt | Spire Codex (Deutsch)",
+    );
+  });
+  it("leads English titles with character, rarity and type", () => {
+    const qualifier = entityQualifier({
+      character: "ironclad",
+      rarity: "Rare",
+      kind: "Skill",
+    });
+    expect(entityTitle("eng", "Stoke", "Card", qualifier)).toBe(
+      "Stoke - Ironclad Rare Skill Card - Slay the Spire 2 | Spire Codex",
+    );
+    expect(
+      entityTitle(
+        "eng",
+        "Fire Potion",
+        "Potion",
+        entityQualifier({ character: "shared", rarity: "Common" }),
+      ),
+    ).toBe("Fire Potion - Common Potion - Slay the Spire 2 | Spire Codex");
+    expect(entityTitle("fra", "Attiser", "Carte", qualifier)).toBe(
+      "Attiser - Slay the Spire 2 Carte | Spire Codex (Francais)",
+    );
+  });
+  it("skips colors and rarities that are not words a player searches", () => {
+    expect(
+      entityQualifier({ character: "curse", rarity: null, kind: "Curse" }),
+    ).toBe("Curse");
+    expect(entityQualifier({ character: "shared", rarity: "None" })).toBe("");
+  });
+  it("composes entity titles through buildPageMetadata without (sts2)", () => {
+    const meta = buildPageMetadata({
+      locale: "eng",
+      path: "/cards/bash",
+      title: "Bash",
+      entityType: "Card",
+      description: "A starter card in Slay the Spire 2 (sts2).",
+    });
+    expect(meta.title).toEqual({
+      absolute: "Bash - Slay the Spire 2 Card | Spire Codex",
+    });
   });
 });
 
 describe("buildPageMetadata", () => {
   it("gives a localized page its own canonical and the full hreflang set", () => {
-    const meta = buildPageMetadata({ locale: "jpn", path: "/cards", title: "T", description: "D" });
+    const meta = buildPageMetadata({
+      locale: "jpn",
+      path: "/cards",
+      title: "T",
+      description: "D",
+    });
     expect(meta.alternates?.canonical).toBe("/jpn/cards");
     const languages = meta.alternates?.languages as Record<string, string>;
     expect(languages.ja).toMatch(/\/jpn\/cards$/);
@@ -26,32 +92,86 @@ describe("buildPageMetadata", () => {
     expect(meta.robots).toBeUndefined();
   });
   it("cannot opt localized English-only content back into the index", () => {
-    const meta = buildPageMetadata({ locale: "jpn", path: "/guides/x", title: "T", supressLanguageAlternates: true, noIndex: false });
+    const meta = buildPageMetadata({
+      locale: "jpn",
+      path: "/guides/x",
+      title: "T",
+      supressLanguageAlternates: true,
+      noIndex: false,
+    });
     expect(meta.alternates?.canonical).toBe("/guides/x");
     expect(meta.alternates?.languages).toBeUndefined();
     expect(meta.robots).toMatchObject({ index: false });
   });
   it("keeps the English copy of English-only content indexable", () => {
-    const meta = buildPageMetadata({ locale: "eng", path: "/guides/x", title: "T", supressLanguageAlternates: true });
+    const meta = buildPageMetadata({
+      locale: "eng",
+      path: "/guides/x",
+      title: "T",
+      supressLanguageAlternates: true,
+    });
     expect(meta.robots).toBeUndefined();
     expect(meta.alternates?.languages).toBeUndefined();
   });
   it("does not advertise hreflang for hidden pages or pages whose canonical lives elsewhere", () => {
-    expect(buildPageMetadata({ locale: "eng", path: "/x", title: "T", noIndex: true }).alternates?.languages).toBeUndefined();
-    const steam = buildPageMetadata({ locale: "eng", path: "/news/1", title: "T", canonical: "https://store.steampowered.com/news/app/2868840/view/1" });
-    expect(steam.alternates?.canonical).toBe("https://store.steampowered.com/news/app/2868840/view/1");
+    expect(
+      buildPageMetadata({
+        locale: "eng",
+        path: "/x",
+        title: "T",
+        noIndex: true,
+      }).alternates?.languages,
+    ).toBeUndefined();
+    const steam = buildPageMetadata({
+      locale: "eng",
+      path: "/news/1",
+      title: "T",
+      canonical: "https://store.steampowered.com/news/app/2868840/view/1",
+    });
+    expect(steam.alternates?.canonical).toBe(
+      "https://store.steampowered.com/news/app/2868840/view/1",
+    );
     expect(steam.alternates?.languages).toBeUndefined();
-    expect(steam.openGraph).toMatchObject({ url: "https://store.steampowered.com/news/app/2868840/view/1" });
-    expect(buildPageMetadata({ locale: "eng", path: "/x", title: "T", hreflang: false }).alternates?.languages).toBeUndefined();
+    expect(steam.openGraph).toMatchObject({
+      url: "https://store.steampowered.com/news/app/2868840/view/1",
+    });
+    expect(
+      buildPageMetadata({
+        locale: "eng",
+        path: "/x",
+        title: "T",
+        hreflang: false,
+      }).alternates?.languages,
+    ).toBeUndefined();
   });
 });
 
 describe("entity meta descriptions", () => {
-  const t = createTranslator({ locale: "en", messages: messagesFor("eng"), onError: (e) => { throw e; } });
+  const t = createTranslator({
+    locale: "en",
+    messages: messagesFor("eng"),
+    onError: (e) => {
+      throw e;
+    },
+  });
   it("keeps a description whose text is exactly none", () => {
-    expect(t(safeKey("relic_meta_description"), { name: "Anchor", rarity: "Common", desc: "none", hasDesc: "yes" })).toMatch(/: none$/);
+    expect(
+      t(safeKey("relic_meta_description"), {
+        name: "Anchor",
+        rarity: "Common",
+        desc: "none",
+        hasDesc: "yes",
+      }),
+    ).toMatch(/: none$/);
   });
   it("ends with a period when there is no description", () => {
-    expect(t(safeKey("relic_meta_description"), { name: "Anchor", rarity: "Common", desc: "", hasDesc: "no" })).toMatch(/\(sts2\)\.$/);
+    expect(
+      t(safeKey("relic_meta_description"), {
+        name: "Anchor",
+        rarity: "Common",
+        desc: "",
+        hasDesc: "no",
+      }),
+    ).toMatch(/\(sts2\)\.$/);
   });
 });

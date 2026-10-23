@@ -2,28 +2,57 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { isAdFree } from "@/lib/ad-free";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 declare global {
   interface Window {
     nitroAds?: {
-      createAd: (id: string, config: Record<string, unknown>) => Promise<unknown>;
+      createAd: (
+        id: string,
+        config: Record<string, unknown>,
+      ) => Promise<unknown>;
     };
   }
+}
+
+const NITRO_SRC = "https://s.nitropay.com/ads-2467.js";
+const IDLE_DELAY_MS = 4000;
+let nitroQueued = false;
+
+function loadNitroWhenIdle() {
+  if (nitroQueued) return;
+  nitroQueued = true;
+  const inject = () => {
+    const s = document.createElement("script");
+    s.src = NITRO_SRC;
+    s.async = true;
+    s.setAttribute("data-cfasync", "false");
+    s.setAttribute("data-spa", "auto");
+    document.head.appendChild(s);
+  };
+  const whenIdle = () =>
+    window.setTimeout(() => {
+      if ("requestIdleCallback" in window)
+        window.requestIdleCallback(inject, { timeout: 3000 });
+      else inject();
+    }, IDLE_DELAY_MS);
+  if (document.readyState === "complete") whenIdle();
+  else window.addEventListener("load", whenIdle, { once: true });
 }
 
 /** The site's single ad unit: the dashboard-configured "scnp-anchor"
  * floating bottom anchor. The head stub queues this call if the loader
  * hasn't arrived yet, and data-spa="auto" keeps it fresh across
  * client-side navigations. Config mirrors the placement builder output. */
-const AD_FREE_PREFIXES = ["/admin", "/deck-lab", "/seed-lab"];
-
 export default function NitroAnchor() {
   const pathname = usePathname();
-  const adFree = AD_FREE_PREFIXES.some((p) => pathname?.startsWith(p));
+  const { user, loading } = useAuth();
+  const adFree =
+    isAdFree(pathname) || loading || Boolean(user?.supporter?.active);
   useEffect(() => {
-    // Landing on an operator or hidden-lab page skips the unit entirely;
-    // ads have no business on the admin console.
     if (adFree) return;
+    loadNitroWhenIdle();
     window.nitroAds?.createAd("scnp-anchor", {
       format: "anchor-v2",
       anchor: "bottom",

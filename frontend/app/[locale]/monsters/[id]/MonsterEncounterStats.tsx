@@ -11,6 +11,9 @@ import {
   Tooltip,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { pct2 } from "@/lib/pct";
+import { DEFAULT_SOLO_BRACKET } from "@/lib/content-brackets";
+import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
@@ -18,7 +21,9 @@ const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 function cssVar(name: string): string {
   if (typeof window === "undefined") return "";
-  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return getComputedStyle(document.documentElement)
+    .getPropertyValue(name)
+    .trim();
 }
 
 function withAlpha(color: string, alpha: number): string {
@@ -78,6 +83,7 @@ interface Row {
   room_type: string;
   total: number;
   fatal: number;
+  abandoned?: number;
   avg_damage: number;
   avg_turns: number;
   characters: CharacterStat[];
@@ -106,7 +112,7 @@ function pick(rows: Row[] | undefined, id: string): Row | null {
 
 function fatalPct(r: Row | CharacterStat | null): number | null {
   if (!r || !r.total) return null;
-  return Math.round((r.fatal / r.total) * 1000) / 10;
+  return pct2((r.fatal / r.total) * 100);
 }
 
 async function fetchSeries(ids: string): Promise<Series | null> {
@@ -117,12 +123,17 @@ async function fetchSeries(ids: string): Promise<Series | null> {
     const q = new URLSearchParams({ encounter: ids, limit: "200", ...params });
     const r = await fetch(`${API}/api/runs/encounter-stats?${q}`);
     const d = r.ok ? await r.json() : null;
-    return ((d?.encounters as Row[]) || []).filter((x) => ids.split(",").includes(x.encounter_id));
+    return ((d?.encounters as Row[]) || []).filter((x) =>
+      ids.split(",").includes(x.encounter_id),
+    );
   };
-  const vr = await fetch(`${API}/api/runs/versions`).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const vr = await fetch(`${API}/api/runs/versions`)
+    .then((r) => (r.ok ? r.json() : null))
+    .catch(() => null);
   const versions: string[] = vr?.stat_versions || [];
   const brackets: Record<string, Row[]> = {};
-  for (const k of [...SKILL, ...PLAYERS]) brackets[k] = await one(k === "all" ? {} : { bracket: k });
+  for (const k of [...SKILL, ...PLAYERS])
+    brackets[k] = await one(k === "all" ? {} : { bracket: k });
   const byVersion: Record<string, Row[]> = {};
   for (const v of versions) byVersion[v] = await one({ build_id: v });
   return { brackets, versions: byVersion, version_order: versions };
@@ -141,15 +152,25 @@ const axisOpts = (th: Theme, suffix: string, max?: number) => ({
       padding: 8,
       titleColor: th.tipText,
       bodyColor: th.tipText,
-      callbacks: { label: (c: { parsed: { y: number | null } }) => ` ${c.parsed.y ?? 0}${suffix}` },
+      callbacks: {
+        label: (c: { parsed: { y: number | null } }) =>
+          ` ${c.parsed.y ?? 0}${suffix}`,
+      },
     },
   },
   scales: {
-    x: { ticks: { color: th.text, font: { size: 11 } }, grid: { display: false } },
+    x: {
+      ticks: { color: th.text, font: { size: 11 } },
+      grid: { display: false },
+    },
     y: {
       beginAtZero: true,
       max,
-      ticks: { color: th.text, font: { size: 11 }, callback: (v: number | string) => `${v}${suffix}` },
+      ticks: {
+        color: th.text,
+        font: { size: 11 },
+        callback: (v: number | string) => `${v}${suffix}`,
+      },
       grid: { color: th.grid },
     },
   },
@@ -165,7 +186,7 @@ export default function MonsterEncounterStats({
   const ids = encounters.map((e) => e.encounter_id).join(",");
   const [series, setSeries] = useState<Series | null | undefined>(undefined);
   const [enc, setEnc] = useState<string>("");
-  const [bracket, setBracket] = useState("all");
+  const [bracket, setBracket] = useState<string>(DEFAULT_SOLO_BRACKET);
   const [version, setVersion] = useState("");
   const [th, setTh] = useState<Theme | null>(null);
 
@@ -175,17 +196,25 @@ export default function MonsterEncounterStats({
 
   useEffect(() => {
     if (!ids) return;
-    fetchSeries(ids).then(setSeries).catch(() => setSeries(null));
+    fetchSeries(ids)
+      .then(setSeries)
+      .catch(() => setSeries(null));
   }, [ids]);
 
   useEffect(() => {
     if (!series || enc) return;
     const all = series.brackets.all || [];
-    const best = all.reduce<Row | null>((a, b) => (!a || b.total > a.total ? b : a), null);
+    const best = all.reduce<Row | null>(
+      (a, b) => (!a || b.total > a.total ? b : a),
+      null,
+    );
     setEnc(best?.encounter_id || encounters[0]?.encounter_id || "");
   }, [series, enc, encounters]);
 
-  const names = useMemo(() => new Map(encounters.map((e) => [e.encounter_id, e.encounter_name])), [encounters]);
+  const names = useMemo(
+    () => new Map(encounters.map((e) => [e.encounter_id, e.encounter_name])),
+    [encounters],
+  );
   const withData = useMemo(
     () => encounters.filter((e) => pick(series?.brackets.all, e.encounter_id)),
     [encounters, series],
@@ -193,23 +222,45 @@ export default function MonsterEncounterStats({
 
   if (!ids || series === null) return null;
   if (series === undefined || !th) {
-    return <div className="text-sm text-[var(--text-muted)] py-4">{t("Loading")}…</div>;
+    return (
+      <div className="text-sm text-[var(--text-muted)] py-4">
+        {t("Loading")}…
+      </div>
+    );
   }
   if (!withData.length) return null;
 
-  const current = version ? pick(series.versions[version], enc) : pick(series.brackets[bracket], enc);
+  const current = version
+    ? pick(series.versions[version], enc)
+    : pick(series.brackets[bracket], enc);
   const skillData = SKILL.map((k) => fatalPct(pick(series.brackets[k], enc)));
-  const playerData = PLAYERS.map((k) => fatalPct(pick(series.brackets[k], enc)));
+  const playerData = PLAYERS.map((k) =>
+    fatalPct(pick(series.brackets[k], enc)),
+  );
   const versionOrder = [...series.version_order].reverse();
-  const versionData = versionOrder.map((v) => fatalPct(pick(series.versions[v], enc)));
+  const versionData = versionOrder.map((v) =>
+    fatalPct(pick(series.versions[v], enc)),
+  );
   const chars = (current?.characters || []).filter((c) => c.total >= 20);
-  const charLabels = chars.map((c) => c.character.charAt(0) + c.character.slice(1).toLowerCase());
-  const yMax = Math.max(1, ...[...skillData, ...playerData, ...versionData].filter((x): x is number => x !== null)) * 1.3;
+  const charLabels = chars.map(
+    (c) => c.character.charAt(0) + c.character.slice(1).toLowerCase(),
+  );
+  const yMax =
+    Math.max(
+      1,
+      ...[...skillData, ...playerData, ...versionData].filter(
+        (x): x is number => x !== null,
+      ),
+    ) * 1.3;
 
   const tile = (label: string, value: string) => (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2">
-      <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">{label}</div>
-      <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">{value}</div>
+      <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)]">
+        {label}
+      </div>
+      <div className="text-lg font-semibold tabular-nums text-[var(--text-primary)]">
+        {value}
+      </div>
     </div>
   );
 
@@ -225,7 +276,12 @@ export default function MonsterEncounterStats({
       {withData.length > 1 && (
         <div className="flex flex-wrap items-center gap-1.5">
           {withData.map((e) => (
-            <button key={e.encounter_id} type="button" onClick={() => setEnc(e.encounter_id)} className={pill(enc === e.encounter_id)}>
+            <button
+              key={e.encounter_id}
+              type="button"
+              onClick={() => setEnc(e.encounter_id)}
+              className={pill(enc === e.encounter_id)}
+            >
               {e.encounter_name}
             </button>
           ))}
@@ -234,16 +290,31 @@ export default function MonsterEncounterStats({
 
       <div className="flex flex-col gap-2">
         <div className="flex flex-wrap items-center gap-1.5">
-          <span className="text-xs text-[var(--text-muted)] w-16">{t("Bracket")}</span>
+          <span className="text-xs text-[var(--text-muted)] w-16">
+            {t("Bracket")}
+          </span>
           {[...SKILL, ...PLAYERS].map((k) => (
-            <button key={k} type="button" onClick={() => { setBracket(k); setVersion(""); }} className={pill(!version && bracket === k)}>
+            <button
+              key={k}
+              type="button"
+              onClick={() => {
+                setBracket(k);
+                setVersion("");
+              }}
+              className={pill(!version && bracket === k)}
+            >
               {t(LABEL[k])}
             </button>
           ))}
         </div>
+        <p className="text-xs text-[var(--text-muted)]">
+          {t("Cohort")}: {version ? version : cohortLabel(bracket, t)}
+        </p>
         {series.version_order.length > 0 && (
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs text-[var(--text-muted)] w-16">{t("Version")}</span>
+            <span className="text-xs text-[var(--text-muted)] w-16">
+              {t("Version")}
+            </span>
             <select
               value={version}
               onChange={(e) => setVersion(e.target.value)}
@@ -252,7 +323,9 @@ export default function MonsterEncounterStats({
             >
               <option value="">{t("All versions")}</option>
               {series.version_order.map((v) => (
-                <option key={v} value={v}>{v}</option>
+                <option key={v} value={v}>
+                  {v}
+                </option>
               ))}
             </select>
           </div>
@@ -260,41 +333,86 @@ export default function MonsterEncounterStats({
       </div>
 
       {current ? (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
           {tile(t("Runs"), current.total.toLocaleString())}
           {tile(t("Fatal"), `${fatalPct(current)}%`)}
+          {tile(
+            t("Abandoned"),
+            `${pct2(((current.abandoned ?? 0) / Math.max(current.total, 1)) * 100)}%`,
+          )}
           {tile(t("Avg damage"), current.avg_damage.toFixed(1))}
           {tile(t("Avg turns"), current.avg_turns.toFixed(1))}
         </div>
       ) : (
-        <div className="text-sm text-[var(--text-muted)]">{t("No community data for this selection yet.")}</div>
+        <div className="text-sm text-[var(--text-muted)]">
+          {t("No community data for this selection yet.")}
+        </div>
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-          <div className="text-xs text-[var(--text-muted)] mb-2">{t("Fatal rate by skill tier")}</div>
+          <div className="text-xs text-[var(--text-muted)] mb-2">
+            {t("Fatal rate by skill tier")}
+          </div>
           <div className="h-44">
             <Bar
-              data={{ labels: SKILL.map((k) => t(LABEL[k])), datasets: [{ data: skillData, backgroundColor: SKILL.map((k) => (!version && k === bracket ? th.gold : th.goldDim)), borderRadius: 4 }] }}
+              data={{
+                labels: SKILL.map((k) => t(LABEL[k])),
+                datasets: [
+                  {
+                    data: skillData,
+                    backgroundColor: SKILL.map((k) =>
+                      !version && k === bracket ? th.gold : th.goldDim,
+                    ),
+                    borderRadius: 4,
+                  },
+                ],
+              }}
               options={axisOpts(th, "%", yMax)}
             />
           </div>
         </div>
         <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-          <div className="text-xs text-[var(--text-muted)] mb-2">{t("Fatal rate by party size")}</div>
+          <div className="text-xs text-[var(--text-muted)] mb-2">
+            {t("Fatal rate by party size")}
+          </div>
           <div className="h-44">
             <Bar
-              data={{ labels: PLAYERS.map((k) => t(LABEL[k])), datasets: [{ data: playerData, backgroundColor: PLAYERS.map((k) => (!version && k === bracket ? th.gold : th.goldDim)), borderRadius: 4 }] }}
+              data={{
+                labels: PLAYERS.map((k) => t(LABEL[k])),
+                datasets: [
+                  {
+                    data: playerData,
+                    backgroundColor: PLAYERS.map((k) =>
+                      !version && k === bracket ? th.gold : th.goldDim,
+                    ),
+                    borderRadius: 4,
+                  },
+                ],
+              }}
               options={axisOpts(th, "%", yMax)}
             />
           </div>
         </div>
         {versionOrder.length > 1 && (
           <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-            <div className="text-xs text-[var(--text-muted)] mb-2">{t("Fatal rate by game version")}</div>
+            <div className="text-xs text-[var(--text-muted)] mb-2">
+              {t("Fatal rate by game version")}
+            </div>
             <div className="h-44">
               <Bar
-                data={{ labels: versionOrder, datasets: [{ data: versionData, backgroundColor: versionOrder.map((v) => (v === version ? th.gold : th.goldDim)), borderRadius: 4 }] }}
+                data={{
+                  labels: versionOrder,
+                  datasets: [
+                    {
+                      data: versionData,
+                      backgroundColor: versionOrder.map((v) =>
+                        v === version ? th.gold : th.goldDim,
+                      ),
+                      borderRadius: 4,
+                    },
+                  ],
+                }}
                 options={axisOpts(th, "%", yMax)}
               />
             </div>
@@ -302,24 +420,52 @@ export default function MonsterEncounterStats({
         )}
         {chars.length > 0 && chars.every((c) => c.fatal === 0) && (
           <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-            <div className="text-xs text-[var(--text-muted)] mb-2">{t("Fatal rate by character")}</div>
+            <div className="text-xs text-[var(--text-muted)] mb-2">
+              {t("Fatal rate by character")}
+            </div>
             <div className="text-sm text-[var(--text-secondary)]">
-              {t("No deaths recorded in this selection")} ({chars.reduce((n, c) => n + c.total, 0).toLocaleString()} {t("runs")}).
+              {t("No deaths recorded in this selection")} (
+              {chars.reduce((n, c) => n + c.total, 0).toLocaleString()}{" "}
+              {t("runs")}).
             </div>
           </div>
         )}
         {chars.length > 0 && chars.some((c) => c.fatal > 0) && (
           <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-3">
-            <div className="text-xs text-[var(--text-muted)] mb-2">{t("Fatal rate by character")}</div>
+            <div className="text-xs text-[var(--text-muted)] mb-2">
+              {t("Fatal rate by character")}
+            </div>
             <div className="h-44">
               <Bar
-                data={{ labels: charLabels, datasets: [{ data: chars.map((c) => fatalPct(c)), backgroundColor: chars.map((c) => charColor(c.character, th.gold)), borderRadius: 4 }] }}
+                data={{
+                  labels: charLabels,
+                  datasets: [
+                    {
+                      data: chars.map((c) => fatalPct(c)),
+                      backgroundColor: chars.map((c) =>
+                        charColor(c.character, th.gold),
+                      ),
+                      borderRadius: 4,
+                    },
+                  ],
+                }}
                 options={{
                   ...axisOpts(th, "%"),
                   indexAxis: "y" as const,
                   scales: {
-                    x: { beginAtZero: true, ticks: { color: th.text, font: { size: 11 }, callback: (v: number | string) => `${v}%` }, grid: { color: th.grid } },
-                    y: { ticks: { color: th.text, font: { size: 11 } }, grid: { display: false } },
+                    x: {
+                      beginAtZero: true,
+                      ticks: {
+                        color: th.text,
+                        font: { size: 11 },
+                        callback: (v: number | string) => `${v}%`,
+                      },
+                      grid: { color: th.grid },
+                    },
+                    y: {
+                      ticks: { color: th.text, font: { size: 11 } },
+                      grid: { display: false },
+                    },
                   },
                   plugins: {
                     ...axisOpts(th, "%").plugins,

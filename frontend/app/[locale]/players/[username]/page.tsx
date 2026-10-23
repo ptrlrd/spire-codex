@@ -2,7 +2,11 @@ import type { Metadata } from "next";
 import PlayerProfileClient from "./PlayerProfileClient";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
 
-export async function generateMetadata({ params }: { params: Promise<{ username: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata> {
   const { username } = await params;
   const name = decodeURIComponent(username);
   const title = `${name} - Player Profile | Spire Codex`;
@@ -23,7 +27,11 @@ export async function generateMetadata({ params }: { params: Promise<{ username:
   };
 }
 
-export default async function PlayerPage({ params }: { params: Promise<{ username: string }> }) {
+export default async function PlayerPage({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}) {
   const { username } = await params;
   return <PlayerProfileClient username={decodeURIComponent(username)} />;
 }

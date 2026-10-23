@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import { permanentRedirect } from "next/navigation";
-import type { Character, Card } from "@/lib/api";
+import type { Character, Card } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { getT } from "@/lib/i18n-server";
-import { gameNameFor, inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import {
+  gameNameFor,
+  inLanguageOf,
+  langQuery,
+  localeOf,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 import { buildPageMetadata } from "@/lib/seo";
 import CompareDetail from "./CompareDetail";
@@ -13,7 +20,9 @@ export const dynamic = "force-static";
 export const revalidate = 3600;
 
 const API_INTERNAL =
-  process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 const CHARACTERS = ["ironclad", "silent", "defect", "necrobinder", "regent"];
 
@@ -42,15 +51,22 @@ function parsePair(pair: string): { a: string; b: string } | null {
   if (!match) return null;
   const a = match[1];
   const b = match[2];
-  if (!CHARACTERS.includes(a) || !CHARACTERS.includes(b) || a === b) return null;
+  if (!CHARACTERS.includes(a) || !CHARACTERS.includes(b) || a === b)
+    return null;
   return { a, b };
 }
 
 type Props = { params: Promise<{ locale: string; pair: string }> };
 
-async function fetchCharacterName(charId: string, locale: Locale): Promise<string> {
+async function fetchCharacterName(
+  charId: string,
+  locale: Locale,
+): Promise<string> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`, { next: { revalidate: 300 } });
+    const res = await fetch(
+      `${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`,
+      { next: { revalidate: 300 } },
+    );
     if (!res.ok) return CHAR_NAMES[charId];
     const character: Character = await res.json();
     return character.name || CHAR_NAMES[charId];
@@ -59,14 +75,20 @@ async function fetchCharacterName(charId: string, locale: Locale): Promise<strin
   }
 }
 
-async function fetchRelicNames(ids: string[], locale: Locale): Promise<Record<string, string>> {
+async function fetchRelicNames(
+  ids: string[],
+  locale: Locale,
+): Promise<Record<string, string>> {
   try {
-    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API_INTERNAL}/api/relics${langQuery(locale)}`, {
+      next: { revalidate: 300 },
+    });
     if (!res.ok) return {};
     const relics: { id: string; name: string }[] = await res.json();
     const wanted = new Set(ids);
     const names: Record<string, string> = {};
-    for (const r of relics) if (wanted.has(r.id.toUpperCase())) names[r.id.toUpperCase()] = r.name;
+    for (const r of relics)
+      if (wanted.has(r.id.toUpperCase())) names[r.id.toUpperCase()] = r.name;
     return names;
   } catch {
     return {};
@@ -79,9 +101,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/compare/${pair}`;
   const parsed = parsePair(pair);
-  if (!parsed) return buildPageMetadata({ locale, path, title: t("Comparison Not Found"), noIndex: true });
+  if (!parsed)
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Comparison Not Found"),
+      noIndex: true,
+    });
 
-  const [nameA, nameB] = await Promise.all([fetchCharacterName(parsed.a, locale), fetchCharacterName(parsed.b, locale)]);
+  const [nameA, nameB] = await Promise.all([
+    fetchCharacterName(parsed.a, locale),
+    fetchCharacterName(parsed.b, locale),
+  ]);
   return buildPageMetadata({
     locale,
     path,
@@ -97,7 +128,9 @@ async function fetchCharacterAndCards(
 ): Promise<{ character: Character; cards: Card[] } | null> {
   try {
     const [charRes, cardsRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`, { next: { revalidate: 300 } }),
+      fetch(`${API_INTERNAL}/api/characters/${charId}${langQuery(locale)}`, {
+        next: { revalidate: 300 },
+      }),
       fetch(`${API_INTERNAL}/api/cards?color=${charId}&lang=${locale}`, {
         next: { revalidate: 300 },
       }),
@@ -132,7 +165,10 @@ export default async function Page({ params }: Props) {
   const nameB = dataB?.character.name || CHAR_NAMES[parsed.b];
   const gameName = gameNameFor(locale, "Slay the Spire 2");
   const relicNames = await fetchRelicNames(
-    [...(dataA?.character.starting_relics ?? []), ...(dataB?.character.starting_relics ?? [])].map(entityIdOf),
+    [
+      ...(dataA?.character.starting_relics ?? []),
+      ...(dataB?.character.starting_relics ?? []),
+    ].map(entityIdOf),
     locale,
   );
 
@@ -145,8 +181,14 @@ export default async function Page({ params }: Props) {
       category: "Character Comparison",
       breadcrumbs: [
         { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-        { name: uiText(locale, "Compare"), href: localePath(locale, "/compare") },
-        { name: `${nameA} vs ${nameB}`, href: localePath(locale, `/compare/${pair}`) },
+        {
+          name: uiText(locale, "Compare"),
+          href: localePath(locale, "/compare"),
+        },
+        {
+          name: `${nameA} vs ${nameB}`,
+          href: localePath(locale, `/compare/${pair}`),
+        },
       ],
       inLanguage: inLanguageOf(locale),
     });

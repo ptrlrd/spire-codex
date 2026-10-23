@@ -21,7 +21,14 @@ import {
 import { Line } from "react-chartjs-2";
 import { bracketParam, CONTENT_BRACKETS } from "@/lib/content-brackets";
 
-ChartJS.register(LineElement, PointElement, LinearScale, CategoryScale, Tooltip, Filler);
+ChartJS.register(
+  LineElement,
+  PointElement,
+  LinearScale,
+  CategoryScale,
+  Tooltip,
+  Filler,
+);
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 const WEEKS = 12; // most recent N weeks
@@ -50,7 +57,9 @@ function makeOpts(): ChartOptions<"line"> {
       tooltip: {
         callbacks: {
           label: (ctx) =>
-            ctx.parsed.y == null ? "" : `${ctx.dataset.label}: ${ctx.parsed.y}%`,
+            ctx.parsed.y == null
+              ? ""
+              : `${ctx.dataset.label}: ${ctx.parsed.y}%`,
         },
       },
     },
@@ -58,7 +67,12 @@ function makeOpts(): ChartOptions<"line"> {
       x: {
         grid: { display: false },
         border: { display: false },
-        ticks: { color: TICK, font: { size: 10 }, maxRotation: 0, autoSkipPadding: 12 },
+        ticks: {
+          color: TICK,
+          font: { size: 10 },
+          maxRotation: 0,
+          autoSkipPadding: 12,
+        },
       },
       y: {
         grid: { color: GRID },
@@ -193,8 +207,7 @@ export default function EntityTrends({
     <div className="et-trends">
       <h3 className="subh">{t("Trends over time")}</h3>
       <p className="h-note">
-        {t("Weekly")} · {bracketLabel} · {t("last")} {weeks.length}{" "}
-        {t("weeks")}
+        {t("Weekly")} · {bracketLabel} · {t("last")} {weeks.length} {t("weeks")}
       </p>
       <div className="et-trend-grid">
         {hasWin && (

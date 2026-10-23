@@ -110,7 +110,8 @@ export default function ApiKeysSection() {
       </h2>
       <p className="text-sm text-[var(--text-secondary)] mb-3 max-w-2xl">
         {t(
-          "For scripts and tools that call the API directly. Send the key as the X-API-Key header to get your own rate limit instead of the shared per-IP cap.")}
+          "For scripts and tools that call the API directly. Send the key as the X-API-Key header to get your own rate limit instead of the shared per-IP cap.",
+        )}
       </p>
 
       {/* The raw key, shown exactly once after creation. */}
@@ -161,8 +162,8 @@ export default function ApiKeysSection() {
                   {k.label || t("Unnamed key")}
                 </div>
                 <div className="text-xs text-[var(--text-muted)]">
-                  {t("created")} {fmtDate(k.created_at, t("never"))} · {t("last used")}{" "}
-                  {fmtDate(k.last_used_at, t("never"))}
+                  {t("created")} {fmtDate(k.created_at, t("never"))} ·{" "}
+                  {t("last used")} {fmtDate(k.last_used_at, t("never"))}
                 </div>
               </div>
               <div className="shrink-0 text-right tabular-nums text-xs">
@@ -170,7 +171,9 @@ export default function ApiKeysSection() {
                   {(k.requests_today ?? 0).toLocaleString()} {t("today")}
                 </div>
                 <div className="text-[var(--text-muted)]">
-                  {t("{n} / 7d", { n: (k.requests_week ?? 0).toLocaleString() })}
+                  {t("{n} / 7d", {
+                    n: (k.requests_week ?? 0).toLocaleString(),
+                  })}
                 </div>
               </div>
               <span className="shrink-0 text-xs px-2 py-0.5 rounded-full border border-[var(--border-subtle)] text-[var(--text-secondary)]">
@@ -196,24 +199,24 @@ export default function ApiKeysSection() {
         </p>
       )}
       {keys !== null && active.length === 0 && (
-      <div className="flex gap-2 max-w-md">
-        <input
-          type="text"
-          value={label}
-          onChange={(e) => setLabel(e.target.value)}
-          maxLength={80}
-          placeholder={t("Label (e.g. my script)")}
-          className="flex-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text-primary)]"
-        />
-        <button
-          type="button"
-          disabled={busy}
-          onClick={createKey}
-          className="shrink-0 px-4 py-2 rounded-lg text-sm border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] disabled:opacity-50"
-        >
-          {t("Create key")}
-        </button>
-      </div>
+        <div className="flex gap-2 max-w-md">
+          <input
+            type="text"
+            value={label}
+            onChange={(e) => setLabel(e.target.value)}
+            maxLength={80}
+            placeholder={t("Label (e.g. my script)")}
+            className="flex-1 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2 text-sm text-[var(--text-primary)]"
+          />
+          <button
+            type="button"
+            disabled={busy}
+            onClick={createKey}
+            className="shrink-0 px-4 py-2 rounded-lg text-sm border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] disabled:opacity-50"
+          >
+            {t("Create key")}
+          </button>
+        </div>
       )}
     </section>
   );

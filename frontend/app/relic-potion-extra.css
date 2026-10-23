@@ -32,10 +32,19 @@
   color: var(--text-2);
   background: var(--surface-2);
   border: 1px solid var(--border-2);
-  transition: color .12s, background .12s, border-color .12s;
+  transition:
+    color 0.12s,
+    background 0.12s,
+    border-color 0.12s;
 }
-.card-rvmp .rp-vbtn:hover { color: var(--text); }
-.card-rvmp .rp-vbtn.on { background: var(--gold); color: #1a1205; border-color: var(--gold); }
+.card-rvmp .rp-vbtn:hover {
+  color: var(--text);
+}
+.card-rvmp .rp-vbtn.on {
+  background: var(--gold);
+  color: #1a1205;
+  border-color: var(--gold);
+}
 .card-rvmp .rp-hint {
   margin: 8px auto 0;
   max-width: 34ch;
@@ -69,7 +78,15 @@
 }
 
 /* Italic flavor block under the description. */
-.card-rvmp .rp-flavor { font-style: italic; color: var(--text-3); margin-top: 16px; }
+.card-rvmp .rp-flavor {
+  font-style: italic;
+  color: var(--text-3);
+  margin-top: 16px;
+}
 
 /* "Known as" alias chips: the per-character rename label. */
-.card-rvmp .rp-alias { color: var(--text-3); font-family: var(--mono); font-size: 12px; }
+.card-rvmp .rp-alias {
+  color: var(--text-3);
+  font-family: var(--mono);
+  font-size: 12px;
+}

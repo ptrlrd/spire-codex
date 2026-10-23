@@ -12,8 +12,10 @@ import { useT } from "@/lib/i18n";
 
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
+import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import { LIVE_TABLES } from "@/lib/game-messages.common";
 import {
   CardPill,
   RelicPill,
@@ -67,7 +69,9 @@ function PlayerCard({
 }) {
   const t = useT();
   const hpPct =
-    p.hp != null && p.max_hp ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100)) : null;
+    p.hp != null && p.max_hp
+      ? Math.max(0, Math.min(100, (p.hp / p.max_hp) * 100))
+      : null;
   // Newest acquisitions last in the deck array; show them newest-first.
   const recent = (p.deck ?? []).slice(-RECENT_CARDS).reverse();
 
@@ -92,7 +96,9 @@ function PlayerCard({
               </span>
             )}
             {(p.player_count ?? 1) > 1 && (
-              <span className="text-[10px] text-[var(--text-muted)]">{t("co-op ×{n}", { n: p.player_count ?? 0 })}</span>
+              <span className="text-[10px] text-[var(--text-muted)]">
+                {t("co-op ×{n}", { n: p.player_count ?? 0 })}
+              </span>
             )}
             {p.is_partner && <PartnerBadge />}
           </div>
@@ -107,7 +113,9 @@ function PlayerCard({
         <div className="text-right shrink-0">
           <div className="text-sm font-semibold text-[var(--text-primary)] tabular-nums">
             {p.act != null ? t("Act {n}", { n: p.act }) : ""}
-            {p.total_floor != null ? ` · ${t("F{n}", { n: p.total_floor })}` : ""}
+            {p.total_floor != null
+              ? ` · ${t("F{n}", { n: p.total_floor })}`
+              : ""}
           </div>
           <div className="text-xs text-[var(--text-muted)] tabular-nums">
             {p.gold != null ? t("{n} gold", { n: p.gold }) : ""}
@@ -143,7 +151,10 @@ function PlayerCard({
             </span>
           </div>
           <div className="h-1.5 rounded bg-[var(--bg-primary)]">
-            <div className="h-1.5 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
+            <div
+              className="h-1.5 rounded bg-danger-fill"
+              style={{ width: `${hpPct}%` }}
+            />
           </div>
         </div>
       )}
@@ -217,13 +228,23 @@ function PlayerCard({
       )}
 
       {p.sts2_version && (
-        <div className="mt-3 text-[10px] text-[var(--text-muted)]">{p.sts2_version}</div>
+        <div className="mt-3 text-[10px] text-[var(--text-muted)]">
+          {p.sts2_version}
+        </div>
       )}
     </div>
   );
 }
 
 export default function LiveClient() {
+  return (
+    <GameTablesProvider tables={LIVE_TABLES}>
+      <LiveRoster />
+    </GameTablesProvider>
+  );
+}
+
+function LiveRoster() {
   const bp = useBetaPrefix();
   const t = useT();
   const [players, setPlayers] = useState<LivePlayer[] | null>(null);
@@ -232,7 +253,9 @@ export default function LiveClient() {
   const relicData = useIdMap<RelicInfo>("/api/relics");
   const characterNames = useCharacterNames();
   const monsters = useMonsterMap(
-    (players ?? []).some((p) => p.screen === "combat" && (p.fighting?.length ?? 0) > 0),
+    (players ?? []).some(
+      (p) => p.screen === "combat" && (p.fighting?.length ?? 0) > 0,
+    ),
   );
 
   usePoll(async () => {
@@ -276,12 +299,16 @@ export default function LiveClient() {
         {players !== null && players.length > 0 && <LiveDot />}
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {t("Players in a run with the mod right now · refreshes every {n}s", { n: POLL_MS / 1000 })}
+        {t("Players in a run with the mod right now · refreshes every {n}s", {
+          n: POLL_MS / 1000,
+        })}
         {stale ? ` · ${t("last refresh failed, retrying")}` : ""}
       </p>
 
       {players === null && (
-        <p className="text-sm text-[var(--text-muted)]">{t("Loading the roster...")}</p>
+        <p className="text-sm text-[var(--text-muted)]">
+          {t("Loading the roster...")}
+        </p>
       )}
       {players !== null && players.length === 0 && (
         <p className="text-sm text-[var(--text-secondary)]">

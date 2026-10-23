@@ -1,7 +1,10 @@
 import { getT } from "@/lib/i18n-server";
 import { Link } from "@/i18n/navigation";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 const REVALIDATE = 1800;
 
@@ -24,12 +27,24 @@ const DIFFICULTY_LABEL: Record<string, string> = {
 };
 
 const ARROW = (
-  <svg className="arw" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+  <svg
+    className="arw"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M5 12h14M13 6l6 6-6 6" />
+  </svg>
 );
 
 async function loadLatestGuides(): Promise<GuideStub[]> {
   try {
-    const res = await fetch(`${API}/api/guides`, { next: { revalidate: REVALIDATE } });
+    const res = await fetch(`${API}/api/guides`, {
+      next: { revalidate: REVALIDATE },
+    });
     if (!res.ok) return [];
     const all = (await res.json()) as GuideStub[];
     // Newest first by date string (ISO yyyy-mm-dd sorts lexically).
@@ -64,9 +79,16 @@ export default async function HomeGuidesSection({
 
           <div className="newsrow">
             {guides.map((g) => {
-              const difficulty = g.difficulty ? DIFFICULTY_LABEL[g.difficulty] ?? g.difficulty : null;
+              const difficulty = g.difficulty
+                ? (DIFFICULTY_LABEL[g.difficulty] ?? g.difficulty)
+                : null;
               return (
-                <Link prefetch={false} key={g.slug} href={`${guidesBase}/${g.slug}`} className="gcard">
+                <Link
+                  prefetch={false}
+                  key={g.slug}
+                  href={`${guidesBase}/${g.slug}`}
+                  className="gcard"
+                >
                   <span className="gcard-k">
                     {g.category}
                     {difficulty ? ` · ${difficulty}` : ""}
@@ -75,9 +97,12 @@ export default async function HomeGuidesSection({
                   <span className="gcard-d">{g.summary}</span>
                   <span className="gcard-foot">
                     <span className="gcard-by">
-                      By <span style={{ color: "var(--text-2)" }}>{g.author}</span>
+                      By{" "}
+                      <span style={{ color: "var(--text-2)" }}>{g.author}</span>
                     </span>
-                    <span className="gcard-more">{t("View more")} {ARROW}</span>
+                    <span className="gcard-more">
+                      {t("View more")} {ARROW}
+                    </span>
                   </span>
                 </Link>
               );

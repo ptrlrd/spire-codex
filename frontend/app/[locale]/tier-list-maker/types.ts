@@ -8,7 +8,8 @@ export type EntityType =
   | "powers"
   | "badges"
   | "intents"
-  | "orbs";
+  | "orbs"
+  | "ascensions";
 
 export const ENTITY_TYPES: { value: EntityType; label: string }[] = [
   { value: "cards", label: "Cards" },
@@ -21,6 +22,7 @@ export const ENTITY_TYPES: { value: EntityType; label: string }[] = [
   { value: "badges", label: "Badges" },
   { value: "intents", label: "Intents" },
   { value: "orbs", label: "Orbs" },
+  { value: "ascensions", label: "Ascensions" },
 ];
 
 export const ENTITY_LABEL: Record<EntityType, string> = {
@@ -34,20 +36,57 @@ export const ENTITY_LABEL: Record<EntityType, string> = {
   badges: "Badges",
   intents: "Intents",
   orbs: "Orbs",
+  ascensions: "Ascensions",
 };
 
 /** Ancients aren't a normal API entity (the pool data carries no name/image),
  * so the eight are defined here with their "cute" portrait from misc/. The
  * raw path is resolved through imageUrl() in fetchEntities. */
-export const ANCIENT_ENTITIES: { id: string; name: string; image_path: string }[] = [
-  { id: "NEOW", name: "Neow", image_path: "/static/images/misc/ancients/neow.webp" },
-  { id: "TEZCATARA", name: "Tezcatara", image_path: "/static/images/misc/ancients/tezcatara.webp" },
-  { id: "PAEL", name: "Pael", image_path: "/static/images/misc/ancients/pael.webp" },
-  { id: "OROBAS", name: "Orobas", image_path: "/static/images/misc/ancients/orobas.webp" },
-  { id: "DARV", name: "Darv", image_path: "/static/images/misc/ancients/darv.webp" },
-  { id: "NONUPEIPE", name: "Nonupeipe", image_path: "/static/images/misc/ancients/nonupeipe.webp" },
-  { id: "TANX", name: "Tanx", image_path: "/static/images/misc/ancients/tanx.webp" },
-  { id: "VAKUU", name: "Vakuu", image_path: "/static/images/misc/ancients/vakuu.webp" },
+export const ANCIENT_ENTITIES: {
+  id: string;
+  name: string;
+  image_path: string;
+}[] = [
+  {
+    id: "NEOW",
+    name: "Neow",
+    image_path: "/static/images/misc/ancients/neow.webp",
+  },
+  {
+    id: "TEZCATARA",
+    name: "Tezcatara",
+    image_path: "/static/images/misc/ancients/tezcatara.webp",
+  },
+  {
+    id: "PAEL",
+    name: "Pael",
+    image_path: "/static/images/misc/ancients/pael.webp",
+  },
+  {
+    id: "OROBAS",
+    name: "Orobas",
+    image_path: "/static/images/misc/ancients/orobas.webp",
+  },
+  {
+    id: "DARV",
+    name: "Darv",
+    image_path: "/static/images/misc/ancients/darv.webp",
+  },
+  {
+    id: "NONUPEIPE",
+    name: "Nonupeipe",
+    image_path: "/static/images/misc/ancients/nonupeipe.webp",
+  },
+  {
+    id: "TANX",
+    name: "Tanx",
+    image_path: "/static/images/misc/ancients/tanx.webp",
+  },
+  {
+    id: "VAKUU",
+    name: "Vakuu",
+    image_path: "/static/images/misc/ancients/vakuu.webp",
+  },
 ];
 
 /** A single rankable thing, resolved from the entity API for display. */
@@ -64,7 +103,13 @@ export interface TierEntity {
   /** Beta-only entity (in the current beta but not main); shown with a
    * Beta marker on its chip. */
   beta?: boolean;
+  /** Short text drawn over the art, used by ascensions to show the level on
+   * the shared flame icon. */
+  badge?: string;
 }
+
+export const ASCENSION_ICON =
+  "/static/images/ui/top_bar/ascension_singleplayer.webp";
 
 /** Canonical rarity ordering for the tray's rarity dropdown. Anything not
  * listed falls to the end. Covers cards, relics, and potions. */
@@ -135,7 +180,9 @@ export const MONSTER_GROUPS: { value: string; label: string }[] = [
 ];
 
 /** Tray filter groups per entity type (cards, relics, and monsters today). */
-export const GROUPS_BY_TYPE: Partial<Record<EntityType, { value: string; label: string }[]>> = {
+export const GROUPS_BY_TYPE: Partial<
+  Record<EntityType, { value: string; label: string }[]>
+> = {
   cards: CARD_GROUPS,
   relics: RELIC_GROUPS,
   monsters: MONSTER_GROUPS,

@@ -40,7 +40,8 @@ export default function LiveNavButton({
         const r = await fetch(`${API}/api/presence/active`);
         if (!r.ok) return;
         const d = await r.json();
-        const n = typeof d.count === "number" ? d.count : (d.players?.length ?? 0);
+        const n =
+          typeof d.count === "number" ? d.count : (d.players?.length ?? 0);
         if (!cancelled) setCount(n);
       } catch {
         // Leave the last known count; the next beat recovers.
@@ -61,9 +62,15 @@ export default function LiveNavButton({
 
   if (variant === "mobile") {
     return (
-      <Link prefetch={false} href="/live" className="flex items-center gap-2 text-lg font-semibold text-[var(--color-silent)]">
+      <Link
+        prefetch={false}
+        href="/live"
+        className="flex items-center gap-2 text-lg font-semibold text-[var(--color-silent)]"
+      >
         <LiveCircle />
-        <span className="tabular-nums">{count > 0 ? t("({n}) Live", { n: count }) : t("Live")}</span>
+        <span className="tabular-nums">
+          {count > 0 ? t("({n}) Live", { n: count }) : t("Live")}
+        </span>
       </Link>
     );
   }
@@ -76,7 +83,9 @@ export default function LiveNavButton({
       className="inline-flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium text-[var(--color-silent)] hover:bg-[var(--bg-card)] transition-colors shrink-0"
     >
       <LiveCircle />
-      <span className="tabular-nums">{count > 0 ? t("({n}) Live", { n: count }) : t("Live")}</span>
+      <span className="tabular-nums">
+        {count > 0 ? t("({n}) Live", { n: count }) : t("Live")}
+      </span>
     </Link>
   );
 }

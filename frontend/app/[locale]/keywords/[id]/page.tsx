@@ -1,22 +1,38 @@
 import type { Metadata } from "next";
-import { inLanguageOf, langQuery, localeOf, localePath, type Locale } from "@/lib/locale";
+import {
+  inLanguageOf,
+  langQuery,
+  localeOf,
+  localePath,
+  type Locale,
+} from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
-import { buildPageMetadata, clipMetaDescription, stripTags, stripTagsFlat } from "@/lib/seo";
+import {
+  buildPageMetadata,
+  clipMetaDescription,
+  stripTags,
+  stripTagsFlat,
+} from "@/lib/seo";
 
 export const dynamic = "force-dynamic";
 
-const API_INTERNAL = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_INTERNAL =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
 async function fetchKeywordOrGlossary(id: string, locale: Locale) {
   // Try keyword first
   try {
-    const res = await fetch(`${API_INTERNAL}/api/keywords/${id}${langQuery(locale)}`);
+    const res = await fetch(
+      `${API_INTERNAL}/api/keywords/${id}${langQuery(locale)}`,
+    );
     if (res.ok) return { type: "keyword" as const, data: await res.json() };
   } catch {}
   // Fall back to glossary
@@ -33,7 +49,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/keywords/${id}`;
   const result = await fetchKeywordOrGlossary(id, locale);
-  if (!result) return buildPageMetadata({ locale, path, title: t("Term Not Found"), noIndex: true });
+  if (!result)
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Term Not Found"),
+      noIndex: true,
+    });
 
   const { type, data } = result;
   const desc = stripTagsFlat(data.description);
@@ -42,8 +64,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
-      title: `${data.name} - ${t("Keyword")}`,
-      description: clipMetaDescription(t("keyword_meta_description", { name: data.name, desc, hasDesc: desc ? "yes" : "no" })),
+      title: data.name,
+      entityType: t("Keyword"),
+      description: clipMetaDescription(
+        t("keyword_meta_description", {
+          name: data.name,
+          desc,
+          hasDesc: desc ? "yes" : "no",
+        }),
+      ),
       ogType: "article",
     });
   }
@@ -51,7 +80,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return buildPageMetadata({
     locale,
     path,
-    title: `${data.name} - ${t("Game Term")}`,
+    title: data.name,
+    entityType: t("Game Term"),
     description: clipMetaDescription(desc),
     ogType: "article",
   });
@@ -76,13 +106,22 @@ export default async function Page({ params }: Props) {
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
-          { name: uiText(locale, "Keywords"), href: localePath(locale, "/keywords") },
+          {
+            name: uiText(locale, "Keywords"),
+            href: localePath(locale, "/keywords"),
+          },
           { name: data.name, href: localePath(locale, `/keywords/${id}`) },
         ],
       });
       const faqJsonLd = buildFAQPageJsonLd([
-        { question: `What does ${data.name} do in Slay the Spire 2?`, answer: desc },
-        { question: `Which cards have ${data.name}?`, answer: `View the full list of ${data.name} cards on this page.` },
+        {
+          question: `What does ${data.name} do in Slay the Spire 2?`,
+          answer: desc,
+        },
+        {
+          question: `Which cards have ${data.name}?`,
+          answer: `View the full list of ${data.name} cards on this page.`,
+        },
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
     } else {
@@ -98,7 +137,10 @@ export default async function Page({ params }: Props) {
         ],
       });
       const faqJsonLd = buildFAQPageJsonLd([
-        { question: `What does ${data.name} mean in Slay the Spire 2?`, answer: desc },
+        {
+          question: `What does ${data.name} mean in Slay the Spire 2?`,
+          answer: desc,
+        },
       ]);
       jsonLd = [...detailJsonLd, faqJsonLd];
     }

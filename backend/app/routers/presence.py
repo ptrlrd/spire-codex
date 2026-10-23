@@ -700,6 +700,8 @@ def _heartbeat_sync(
 
 @router.post("")
 async def post_presence(request: Request):
+    """Heartbeat from the in-game mod. Needs a bearer token; the verified
+    steam_id keys the entry. Body {"ended": true} clears it."""
     _require_mongo()
 
     auth_header = request.headers.get("authorization") or ""
@@ -875,6 +877,7 @@ def _enrich_twitch(players: list[dict]) -> None:
 
 @router.get("/active")
 def get_active(limit: int = 50):
+    """Public roster of live runs (no deck detail), deepest first."""
     _require_mongo()
     from ..services import presence_db
 
@@ -885,6 +888,8 @@ def get_active(limit: int = 50):
 
 @router.get("/{steam_id}")
 def get_player(steam_id: str):
+    """One player's full live run (deck, relics, potions, map) for the live
+    run view. 404 when they aren't in a run."""
     _require_mongo()
     digits = "".join(ch for ch in steam_id if ch.isdigit())
     if not digits:

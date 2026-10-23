@@ -1,17 +1,22 @@
 "use client";
 
 import { useT, useGameLocale } from "@/lib/i18n";
-import { useState, useEffect, type MouseEvent as ReactMouseEvent, type CSSProperties } from "react";
-import { useParams, useRouter } from "next/navigation";
-import { Link } from "@/i18n/navigation";
-import type { Encounter } from "@/lib/api";
+import {
+  useState,
+  useEffect,
+  type MouseEvent as ReactMouseEvent,
+  type CSSProperties,
+} from "react";
+import { useParams } from "next/navigation";
+import { Link, useRouter } from "@/i18n/navigation";
+import type { Encounter } from "@/lib/api/types";
 import RichDescription from "@/app/components/RichDescription";
 import { cachedFetch } from "@/lib/fetch-cache";
 import LocalizedNames from "@/app/components/LocalizedNames";
 import EntityUpdateHistory from "@/app/components/EntityUpdateHistory";
 import EntityProse from "@/app/components/EntityProse";
 import type { EncounterStat } from "@/lib/encounter-stats";
-import { useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import "@/app/card-revamp.css";
 import "@/app/monster-encounter-extra.css";
 
@@ -30,14 +35,21 @@ const roomTypeBadge: Record<string, string> = {
   Boss: "bg-danger/10 text-danger border-danger/30",
 };
 
-
-export default function EncounterDetail({ initialEncounter, encounterStat }: { initialEncounter?: Encounter | null; encounterStat?: EncounterStat | null } = {}) {
+export default function EncounterDetail({
+  initialEncounter,
+  encounterStat,
+}: {
+  initialEncounter?: Encounter | null;
+  encounterStat?: EncounterStat | null;
+} = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
-  const [encounter, setEncounter] = useState<Encounter | null>(initialEncounter ?? null);
+  const [encounter, setEncounter] = useState<Encounter | null>(
+    initialEncounter ?? null,
+  );
   const [loading, setLoading] = useState(!initialEncounter);
   const [notFound, setNotFound] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("composition");
@@ -51,7 +63,6 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
       })
       .finally(() => setLoading(false));
   }, [id, lang]);
-
 
   // ToC scroll-spy: highlight the section currently in view.
   useEffect(() => {
@@ -92,8 +103,14 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
   if (notFound || !encounter) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-[var(--text-muted)] mb-4">{t("Encounter not found.")}</p>
-        <Link prefetch={false} href={`${bp}/encounters`} className="text-[var(--accent-gold)] hover:underline">
+        <p className="text-[var(--text-muted)] mb-4">
+          {t("Encounter not found.")}
+        </p>
+        <Link
+          prefetch={false}
+          href={`${bp}/encounters`}
+          className="text-[var(--accent-gold)] hover:underline"
+        >
           &larr; {t("Back to")} {t("Encounters")}
         </Link>
       </div>
@@ -106,7 +123,6 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
 
   const hasCommunity = !!(encounterStat && encounterStat.total > 0);
 
-
   const tocItems: { id: string; label: string }[] = [
     ...(hasCommunity ? [{ id: "community", label: t("Community") }] : []),
     ...(hasMonsters ? [{ id: "composition", label: t("Monsters") }] : []),
@@ -115,7 +131,10 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
   ];
 
   return (
-    <div className="card-rvmp" style={{ "--spine": spineColor } as CSSProperties}>
+    <div
+      className="card-rvmp"
+      style={{ "--spine": spineColor } as CSSProperties}
+    >
       <div className="cd-top">
         <button type="button" onClick={() => router.back()} className="cd-back">
           &larr; {t("Back to")} {t("Encounters")}
@@ -165,30 +184,49 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
             <section id="community">
               <h2>{t("Community")}</h2>
               <p className="desc-body">
-                {t("In community-submitted runs, {name} has been encountered {total} times and killed {fatal} players ({pct}% of the runs that reach it).", {
-                  name: encounter.name,
-                  total: encounterStat!.total.toLocaleString(),
-                  fatal: encounterStat!.fatal.toLocaleString(),
-                  pct: ((encounterStat!.fatal / encounterStat!.total) * 100).toFixed(1),
-                })}
+                {t(
+                  "In community-submitted runs, {name} has been encountered {total} times and killed {fatal} players ({pct}% of the runs that reach it).",
+                  {
+                    name: encounter.name,
+                    total: encounterStat!.total.toLocaleString(),
+                    fatal: encounterStat!.fatal.toLocaleString(),
+                    pct: (
+                      (encounterStat!.fatal / encounterStat!.total) *
+                      100
+                    ).toFixed(1),
+                  },
+                )}
               </p>
-              {(encounterStat!.avg_damage > 0 || encounterStat!.avg_turns > 0) && (
+              {(encounterStat!.avg_damage > 0 ||
+                encounterStat!.avg_turns > 0) && (
                 <p className="h-note">
-                  {t("It deals an average of {dmg} damage over {turns} turns.", { dmg: encounterStat!.avg_damage, turns: encounterStat!.avg_turns })}
+                  {t(
+                    "It deals an average of {dmg} damage over {turns} turns.",
+                    {
+                      dmg: encounterStat!.avg_damage,
+                      turns: encounterStat!.avg_turns,
+                    },
+                  )}
                 </p>
               )}
             </section>
           )}
 
-
           {/* Composition (monsters in the fight) */}
           {hasMonsters && (
             <section id="composition">
               <h2>{t("Monsters")}</h2>
-              <p className="h-note">{t("The enemies you fight in this encounter.")}</p>
+              <p className="h-note">
+                {t("The enemies you fight in this encounter.")}
+              </p>
               <div className="chips">
                 {encounter.monsters!.map((m) => (
-                  <Link prefetch={false} key={m.id} href={`${bp}/monsters/${m.id}`} className="chip">
+                  <Link
+                    prefetch={false}
+                    key={m.id}
+                    href={`${bp}/monsters/${m.id}`}
+                    className="chip"
+                  >
                     <span className="pip" />
                     <span className="cn">{m.name}</span>
                   </Link>
@@ -221,7 +259,9 @@ export default function EncounterDetail({ initialEncounter, encounterStat }: { i
                 <div className="frow">
                   <dt>{t("Type")}</dt>
                   <dd>
-                    <span className={`badge ${roomTypeBadge[encounter.room_type] || ""}`}>
+                    <span
+                      className={`badge ${roomTypeBadge[encounter.room_type] || ""}`}
+                    >
                       {encounter.room_type}
                     </span>
                   </dd>

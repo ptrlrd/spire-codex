@@ -18,7 +18,10 @@ export default function TierListView({
   return (
     <div className="rounded-lg border border-[var(--border-subtle)]">
       {list.tiers.map((tier, i) => (
-        <div key={tier.id} className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0">
+        <div
+          key={tier.id}
+          className="flex items-stretch border-b border-[var(--border-subtle)] last:border-b-0"
+        >
           <div
             style={{ background: tier.color }}
             className={`flex w-16 shrink-0 items-center justify-center p-2 text-center text-lg font-bold text-on-accent ${
@@ -36,7 +39,12 @@ export default function TierListView({
               const e = entities.get(id);
               const note = list.comments?.[id];
               return e ? (
-                <Chip key={id} entity={e} hasComment={!!note} commentText={note} />
+                <Chip
+                  key={id}
+                  entity={e}
+                  hasComment={!!note}
+                  commentText={note}
+                />
               ) : null;
             })}
           </div>

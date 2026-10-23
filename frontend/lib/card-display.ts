@@ -1,4 +1,4 @@
-import type { Card } from "./api";
+import type { Card } from "./api/types";
 
 export interface CardDisplayModel {
   isUpgraded: boolean;
@@ -25,20 +25,40 @@ const ADDED_KEYWORD_FLAGS = {
 } as const;
 
 const removedKeywordEntries = Object.entries(REMOVED_KEYWORD_FLAGS) as Array<
-  [keyof typeof REMOVED_KEYWORD_FLAGS, (typeof REMOVED_KEYWORD_FLAGS)[keyof typeof REMOVED_KEYWORD_FLAGS]]
+  [
+    keyof typeof REMOVED_KEYWORD_FLAGS,
+    (typeof REMOVED_KEYWORD_FLAGS)[keyof typeof REMOVED_KEYWORD_FLAGS],
+  ]
 >;
 
 const addedKeywordEntries = Object.entries(ADDED_KEYWORD_FLAGS) as Array<
-  [keyof typeof ADDED_KEYWORD_FLAGS, (typeof ADDED_KEYWORD_FLAGS)[keyof typeof ADDED_KEYWORD_FLAGS]]
+  [
+    keyof typeof ADDED_KEYWORD_FLAGS,
+    (typeof ADDED_KEYWORD_FLAGS)[keyof typeof ADDED_KEYWORD_FLAGS],
+  ]
 >;
 
 function escapeRegex(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+export function cardHasKeyword(
+  card: Pick<Card, "keywords" | "keywords_key" | "upgrade">,
+  keyword: string,
+): boolean {
+  const want = keyword.trim().toLowerCase();
+  if (!want) return false;
+  const named = [...(card.keywords ?? []), ...(card.keywords_key ?? [])];
+  if (named.some((k) => typeof k === "string" && k.toLowerCase() === want))
+    return true;
+  return addedKeywordEntries.some(
+    ([flag, name]) => name.toLowerCase() === want && !!card.upgrade?.[flag],
+  );
+}
+
 export function getUpgradedValue(
   base: number | null,
-  upgradeVal: string | number | null | undefined
+  upgradeVal: string | number | null | undefined,
 ): number | null {
   if (base == null || upgradeVal == null) return base;
   if (typeof upgradeVal === "number") return upgradeVal;
@@ -51,7 +71,10 @@ export function getUpgradedValue(
   return base;
 }
 
-function buildVisibleKeywords(card: Card, isUpgraded: boolean): {
+function buildVisibleKeywords(
+  card: Card,
+  isUpgraded: boolean,
+): {
   visibleKeywords: string[];
   addedKeywords: string[];
   removedKeywords: string[];
@@ -65,17 +88,27 @@ function buildVisibleKeywords(card: Card, isUpgraded: boolean): {
     .map(([, keyword]) => keyword)
     .filter((keyword) => baseKeywords.includes(keyword));
 
-  const visibleKeywords = baseKeywords.filter((keyword) => !removedKeywords.includes(keyword));
+  const visibleKeywords = baseKeywords.filter(
+    (keyword) => !removedKeywords.includes(keyword),
+  );
 
   const addedKeywords: string[] = addedKeywordEntries
-    .filter(([flag, keyword]) => Boolean(upgrade?.[flag]) && !baseKeywords.includes(keyword))
+    .filter(
+      ([flag, keyword]) =>
+        Boolean(upgrade?.[flag]) && !baseKeywords.includes(keyword),
+    )
     .map(([, keyword]) => keyword);
 
   const richTextParts: string[] = [];
   if (visibleKeywords.length > 0) {
-    richTextParts.push(visibleKeywords.map((keyword) => `[gold]${keyword}[/gold]`).join(". ") + ".");
+    richTextParts.push(
+      visibleKeywords.map((keyword) => `[gold]${keyword}[/gold]`).join(". ") +
+        ".",
+    );
   }
-  richTextParts.push(...addedKeywords.map((keyword) => `[green]${keyword}[/green].`));
+  richTextParts.push(
+    ...addedKeywords.map((keyword) => `[green]${keyword}[/green].`),
+  );
 
   return {
     visibleKeywords,
@@ -86,14 +119,22 @@ function buildVisibleKeywords(card: Card, isUpgraded: boolean): {
 }
 
 function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
-  let description = (isUpgraded && card.upgrade_description ? card.upgrade_description : card.description || "").replace(/\n/g, " ");
+  let description = (
+    isUpgraded && card.upgrade_description
+      ? card.upgrade_description
+      : card.description || ""
+  ).replace(/\n/g, " ");
   const upgrade = isUpgraded ? card.upgrade : null;
   const vars = card.vars || {};
 
   if (!upgrade) return description;
 
   const usingUpgradeDescription = isUpgraded && !!card.upgrade_description;
-  const replacements: Array<{ search: string; upgraded: string; varKey: string }> = [];
+  const replacements: Array<{
+    search: string;
+    upgraded: string;
+    varKey: string;
+  }> = [];
 
   for (const [key, upgradeValue] of Object.entries(upgrade)) {
     if (upgradeValue == null || typeof upgradeValue === "boolean") continue;
@@ -102,9 +143,13 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
 
     if (normalizedKey === "energy") {
       const baseEnergy = vars["Energy"] ?? 1;
-      const upgradedEnergy = getUpgradedValue(baseEnergy, upgradeValue) ?? baseEnergy;
+      const upgradedEnergy =
+        getUpgradedValue(baseEnergy, upgradeValue) ?? baseEnergy;
       if (upgradedEnergy !== baseEnergy) {
-        description = description.replace(/\[energy:(\d+)\]/, `[energy:${upgradedEnergy}]`);
+        description = description.replace(
+          /\[energy:(\d+)\]/,
+          `[energy:${upgradedEnergy}]`,
+        );
       }
       continue;
     }
@@ -112,9 +157,13 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
     if (normalizedKey === "stars" || normalizedKey === "starnextturnpower") {
       const starVar = normalizedKey === "stars" ? "Stars" : "StarNextTurnPower";
       const baseStars = vars[starVar] ?? 1;
-      const upgradedStars = getUpgradedValue(baseStars, upgradeValue) ?? baseStars;
+      const upgradedStars =
+        getUpgradedValue(baseStars, upgradeValue) ?? baseStars;
       if (upgradedStars !== baseStars) {
-        description = description.replace(`[star:${baseStars}]`, `[star:${upgradedStars}]`);
+        description = description.replace(
+          `[star:${baseStars}]`,
+          `[star:${upgradedStars}]`,
+        );
       }
       continue;
     }
@@ -124,15 +173,25 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
       const upgradedRepeat = getUpgradedValue(baseRepeat, upgradeValue);
       if (upgradedRepeat === null || upgradedRepeat === baseRepeat) continue;
 
-      const searchValue = String(usingUpgradeDescription ? upgradedRepeat : baseRepeat);
-      const repeatedTimesPattern = new RegExp(`\\b${escapeRegex(searchValue)}\\b(\\s*times)`, "i");
+      const searchValue = String(
+        usingUpgradeDescription ? upgradedRepeat : baseRepeat,
+      );
+      const repeatedTimesPattern = new RegExp(
+        `\\b${escapeRegex(searchValue)}\\b(\\s*times)`,
+        "i",
+      );
       if (repeatedTimesPattern.test(description)) {
-        description = description.replace(repeatedTimesPattern, `[green]${upgradedRepeat}[/green]$1`);
+        description = description.replace(
+          repeatedTimesPattern,
+          `[green]${upgradedRepeat}[/green]$1`,
+        );
         continue;
       }
     }
 
-    const varKey = Object.keys(vars).find((candidate) => candidate.toLowerCase() === normalizedKey);
+    const varKey = Object.keys(vars).find(
+      (candidate) => candidate.toLowerCase() === normalizedKey,
+    );
     if (!varKey || vars[varKey] == null) continue;
 
     const upgradedValue = getUpgradedValue(vars[varKey], upgradeValue);
@@ -151,7 +210,10 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
   for (const replacement of replacements) {
     const pattern = new RegExp(`\\b${escapeRegex(replacement.search)}\\b`, "g");
     const count = (description.match(pattern) || []).length;
-    occurrences.set(replacement.search, Math.max(occurrences.get(replacement.search) || 0, count));
+    occurrences.set(
+      replacement.search,
+      Math.max(occurrences.get(replacement.search) || 0, count),
+    );
   }
 
   const sameUpgradeAmbiguous = replacements.filter((replacement) => {
@@ -162,12 +224,16 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
   });
 
   const eligible = [
-    ...replacements.filter((replacement) => (occurrences.get(replacement.search) || 0) === 1),
+    ...replacements.filter(
+      (replacement) => (occurrences.get(replacement.search) || 0) === 1,
+    ),
     ...sameUpgradeAmbiguous,
   ];
 
   if (eligible.length > 0) {
-    const replacementMap = new Map(eligible.map((replacement) => [replacement.search, replacement.upgraded]));
+    const replacementMap = new Map(
+      eligible.map((replacement) => [replacement.search, replacement.upgraded]),
+    );
     const pattern = eligible
       .map((replacement) => replacement.search)
       .sort((a, b) => b.length - a.length)
@@ -176,7 +242,9 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
 
     const used = new Set<string>();
     description = description.replace(new RegExp(pattern, "g"), (match) => {
-      if (sameUpgradeAmbiguous.some((replacement) => replacement.search === match)) {
+      if (
+        sameUpgradeAmbiguous.some((replacement) => replacement.search === match)
+      ) {
         return `[green]${replacementMap.get(match)}[/green]`;
       }
       if (used.has(match)) return match;
@@ -188,26 +256,46 @@ function buildUpgradedDescription(card: Card, isUpgraded: boolean): string {
 
   for (const replacement of replacements) {
     if ((occurrences.get(replacement.search) || 0) <= 1) continue;
-    if (sameUpgradeAmbiguous.some((candidate) => candidate.search === replacement.search)) continue;
+    if (
+      sameUpgradeAmbiguous.some(
+        (candidate) => candidate.search === replacement.search,
+      )
+    )
+      continue;
 
     const context = replacement.varKey.toLowerCase().replace(/s$/, "");
-    const forwardPattern = new RegExp(`\\b${escapeRegex(replacement.search)}\\b(\\s+${escapeRegex(context)})(s?)`, "i");
+    const forwardPattern = new RegExp(
+      `\\b${escapeRegex(replacement.search)}\\b(\\s+${escapeRegex(context)})(s?)`,
+      "i",
+    );
     if (forwardPattern.test(description)) {
       const plural = parseInt(replacement.upgraded, 10) === 1 ? "" : "s";
-      description = description.replace(forwardPattern, `[green]${replacement.upgraded}[/green]$1${plural}`);
+      description = description.replace(
+        forwardPattern,
+        `[green]${replacement.upgraded}[/green]$1${plural}`,
+      );
       continue;
     }
 
-    const backwardPattern = new RegExp(`(${escapeRegex(context)}\\s+)\\b${escapeRegex(replacement.search)}\\b`, "i");
+    const backwardPattern = new RegExp(
+      `(${escapeRegex(context)}\\s+)\\b${escapeRegex(replacement.search)}\\b`,
+      "i",
+    );
     if (backwardPattern.test(description)) {
-      description = description.replace(backwardPattern, `$1[green]${replacement.upgraded}[/green]`);
+      description = description.replace(
+        backwardPattern,
+        `$1[green]${replacement.upgraded}[/green]`,
+      );
     }
   }
 
   return description;
 }
 
-export function getCardDisplayModel(card: Card, upgraded: boolean): CardDisplayModel {
+export function getCardDisplayModel(
+  card: Card,
+  upgraded: boolean,
+): CardDisplayModel {
   const isUpgraded = upgraded && card.upgrade != null;
   const upgrade = isUpgraded ? card.upgrade : null;
   const keywordDisplay = buildVisibleKeywords(card, isUpgraded);
@@ -221,7 +309,7 @@ export function getCardDisplayModel(card: Card, upgraded: boolean): CardDisplayM
     upgrade,
     cost:
       upgrade && upgradedCost != null && typeof upgradedCost !== "boolean"
-        ? getUpgradedValue(card.cost, upgradedCost) ?? card.cost
+        ? (getUpgradedValue(card.cost, upgradedCost) ?? card.cost)
         : card.cost,
     damage:
       upgrade && typeof upgradedDamage !== "boolean"
@@ -260,7 +348,10 @@ export interface CardProseFacts {
 
 /** The prose summary's inputs for one card + toggle state, derived from the
  * same display model as the card render so the two can never disagree. */
-export function getCardProseFacts(card: Card, upgraded: boolean): CardProseFacts {
+export function getCardProseFacts(
+  card: Card,
+  upgraded: boolean,
+): CardProseFacts {
   const display = getCardDisplayModel(card, upgraded);
   const base = getCardDisplayModel(card, false);
   const up = display.isUpgraded;
@@ -284,4 +375,31 @@ export function getCardProseFacts(card: Card, upgraded: boolean): CardProseFacts
       ...display.addedKeywords.map((keyword) => ({ keyword, added: true })),
     ],
   };
+}
+
+export function gridCard(card: Card): Card {
+  const upgrade = card.upgrade
+    ? Object.fromEntries(
+        Object.keys(ADDED_KEYWORD_FLAGS)
+          .filter((flag) => card.upgrade?.[flag])
+          .map((flag) => [flag, true]),
+      )
+    : null;
+  return {
+    id: card.id,
+    name: card.name,
+    color: card.color,
+    type: card.type,
+    rarity: card.rarity,
+    cost: card.cost,
+    star_cost: card.star_cost,
+    is_x_cost: card.is_x_cost,
+    is_x_star_cost: card.is_x_star_cost,
+    keywords: card.keywords,
+    keywords_key: card.keywords_key,
+    upgrade,
+    image_url: card.image_url,
+    beta_image_url: card.beta_image_url,
+    compendium_order: card.compendium_order,
+  } as Card;
 }

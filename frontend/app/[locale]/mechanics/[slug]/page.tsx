@@ -21,13 +21,18 @@ interface MechanicSectionDetail extends MechanicSectionMeta {
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
-async function fetchSection(slug: string): Promise<MechanicSectionDetail | null> {
+async function fetchSection(
+  slug: string,
+): Promise<MechanicSectionDetail | null> {
   // notFound() only on a definitive 404; backend 5xx or network failure
   // throws (500) so an outage window cannot mass-404 real pages. Detail
   // routes have no generateStaticParams, so nothing fetches at build time.
-  const res = await fetchEntityRes(`${API_INTERNAL}/api/mechanics/sections/${slug}`, {
-    next: { revalidate: 300 },
-  });
+  const res = await fetchEntityRes(
+    `${API_INTERNAL}/api/mechanics/sections/${slug}`,
+    {
+      next: { revalidate: 300 },
+    },
+  );
   if (!res.ok) return null;
   return (await res.json()) as MechanicSectionDetail;
 }
@@ -38,7 +43,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/mechanics/${slug}`;
   const section = await fetchSection(slug);
-  if (!section) return buildPageMetadata({ locale, path, title: t("Not Found"), noIndex: true, supressLanguageAlternates: true });
+  if (!section)
+    return buildPageMetadata({
+      locale,
+      path,
+      title: t("Not Found"),
+      noIndex: true,
+      supressLanguageAlternates: true,
+    });
   return buildPageMetadata({
     locale,
     path,
@@ -63,11 +75,15 @@ export default async function MechanicDetailPage({ params }: Props) {
     name: `${section.title} - Slay the Spire 2`,
     description: section.description,
     path: localePath(locale, `/mechanics/${slug}`),
-    category: section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
+    category:
+      section.category === "secrets" ? "Secrets & Trivia" : "Game Mechanics",
     breadcrumbs: [
       { name: t("Home"), href: localePath(locale, "/") },
       { name: t("Mechanics"), href: localePath(locale, "/mechanics") },
-      { name: t(section.title), href: localePath(locale, `/mechanics/${slug}`) },
+      {
+        name: t(section.title),
+        href: localePath(locale, `/mechanics/${slug}`),
+      },
     ],
     inLanguage: inLanguageOf(locale),
   });
@@ -84,7 +100,9 @@ export default async function MechanicDetailPage({ params }: Props) {
       <h1 className="text-3xl font-bold mb-2">
         <span className="text-[var(--accent-gold)]">{t(section.title)}</span>
       </h1>
-      <p className="text-sm text-[var(--text-muted)] mb-8">{t(section.description)}</p>
+      <p className="text-sm text-[var(--text-muted)] mb-8">
+        {t(section.description)}
+      </p>
       <MechanicMarkdown body={section.body_markdown} />
     </div>
   );

@@ -62,6 +62,8 @@
   --border-accent: #2a4555;
   /* Brand accents */
   --accent-gold: #e8b830;
+  --map-ink: #1c1712;
+  --map-paper: #d8c298;
   --accent-gold-light: #fbd91e;
   --accent-teal: #45cfd8;
   --accent-red: #c41e3a;
@@ -92,6 +94,9 @@
   --color-spire: #ac6345;
   --tier-bronze: #a87a3d;
   --tier-silver: #9ca6b4;
+  --sub-common: #f0883e;
+  --sub-rare: #e8b830;
+  --sub-ancient: #b28cff;
   /* Third-party brands, used only on their own sign-in buttons and links */
   --brand-twitch: #9146ff;
   --brand-twitch-light: #b794ff;
@@ -133,7 +138,183 @@
   --info-fill: #1d4ed8;
   --special-fill: #6d28d9;
   --color-silent: #2e7d32;
-  --shadow-card: 0 1px 2px rgba(76, 79, 105, 0.10), 0 2px 6px rgba(76, 79, 105, 0.08);
+  --shadow-card:
+    0 1px 2px rgba(76, 79, 105, 0.1), 0 2px 6px rgba(76, 79, 105, 0.08);
+  --sub-common: #b45309;
+  --sub-rare: #8a6a00;
+  --sub-ancient: #6d28d9;
+}
+
+/* Character themes: the dark ground and accent follow one character. Every
+   text and accent token is checked to 4.5:1 against the card and hover
+   surfaces, and the status colours keep their meaning unchanged. Generated
+   from the character colours; see CONTRIBUTING.md, "Colors". */
+:root[data-theme="ironclad"] {
+  --bg-primary: #120a0a;
+  --bg-secondary: #1b0f0e;
+  --bg-card: #241514;
+  --bg-card-hover: #321c1b;
+  --scrim: #000000;
+  --text-primary: #e2d6d5;
+  --text-secondary: #c6b5b3;
+  --text-muted: #b39f9e;
+  --text-on-accent: #120a0a;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3f2827;
+  --border-accent: #593936;
+  --accent-gold: #e06454;
+  --accent-gold-light: #e27061;
+  --shadow-card: none;
+}
+
+:root[data-theme="silent"] {
+  --bg-primary: #0a120e;
+  --bg-secondary: #0e1b14;
+  --bg-card: #14241c;
+  --bg-card-hover: #1b3226;
+  --scrim: #000000;
+  --text-primary: #d5e2db;
+  --text-secondary: #b3c6bd;
+  --text-muted: #9eb3a8;
+  --text-on-accent: #0a120e;
+  --text-on-fill: #ffffff;
+  --border-subtle: #273f33;
+  --border-accent: #365947;
+  --accent-gold: #29ac6a;
+  --accent-gold-light: #29ac6a;
+  --shadow-card: none;
+}
+
+:root[data-theme="defect"] {
+  --bg-primary: #090e13;
+  --bg-secondary: #0d141b;
+  --bg-card: #131c26;
+  --bg-card-hover: #192633;
+  --scrim: #000000;
+  --text-primary: #d5dbe2;
+  --text-secondary: #b3bdc6;
+  --text-muted: #9ea8b3;
+  --text-on-accent: #090e13;
+  --text-on-fill: #ffffff;
+  --border-subtle: #253341;
+  --border-accent: #34475b;
+  --accent-gold: #5792c7;
+  --accent-gold-light: #5f97ca;
+  --shadow-card: none;
+}
+
+:root[data-theme="necrobinder"] {
+  --bg-primary: #120a0f;
+  --bg-secondary: #1a0f17;
+  --bg-card: #23151f;
+  --bg-card-hover: #301c2a;
+  --scrim: #000000;
+  --text-primary: #e2d5de;
+  --text-secondary: #c6b3c0;
+  --text-muted: #b39eac;
+  --text-on-accent: #120a0f;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3e2837;
+  --border-accent: #56394d;
+  --accent-gold: #c87095;
+  --accent-gold-light: #cb779a;
+  --shadow-card: none;
+}
+
+:root[data-theme="regent"] {
+  --bg-primary: #120e0a;
+  --bg-secondary: #1b140e;
+  --bg-card: #241b14;
+  --bg-card-hover: #32251b;
+  --scrim: #000000;
+  --text-primary: #e2dbd5;
+  --text-secondary: #c6bcb3;
+  --text-muted: #b3a89e;
+  --text-on-accent: #120e0a;
+  --text-on-fill: #ffffff;
+  --border-subtle: #3f3227;
+  --border-accent: #594636;
+  --accent-gold: #f07c1e;
+  --accent-gold-light: #f07c1e;
+  --shadow-card: none;
+}
+
+:root {
+  --text-ironclad: #e67663;
+  --text-silent: #56a677;
+  --text-defect: #729bc3;
+  --text-necrobinder: #d07f9f;
+  --text-regent: #f07c1e;
+  --text-ancient: #9c92b2;
+  --text-colorless: #9196a1;
+  --text-lift: 27%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="light"] {
+  --text-ironclad: #bf3422;
+  --text-silent: #1a7548;
+  --text-defect: #346b9e;
+  --text-necrobinder: #a14b6f;
+  --text-regent: #a05110;
+  --text-ancient: #6b5b8a;
+  --text-colorless: #616774;
+  --text-lift: 28%;
+  --lift-to: #000000;
+}
+:root[data-theme="ironclad"] {
+  --text-ironclad: #e16350;
+  --text-silent: #3d9c67;
+  --text-defect: #608ebb;
+  --text-necrobinder: #c86e93;
+  --text-regent: #f07c1e;
+  --text-ancient: #9085a9;
+  --text-colorless: #858b97;
+  --text-lift: 22%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="silent"] {
+  --text-ironclad: #e67663;
+  --text-silent: #56a677;
+  --text-defect: #729bc3;
+  --text-necrobinder: #cf7d9d;
+  --text-regent: #f07c1e;
+  --text-ancient: #9c92b2;
+  --text-colorless: #9196a1;
+  --text-lift: 31%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="defect"] {
+  --text-ironclad: #e26754;
+  --text-silent: #439e6b;
+  --text-defect: #6491bd;
+  --text-necrobinder: #ca7295;
+  --text-regent: #f07c1e;
+  --text-ancient: #9388ab;
+  --text-colorless: #878d98;
+  --text-lift: 24%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="necrobinder"] {
+  --text-ironclad: #e16350;
+  --text-silent: #3d9c67;
+  --text-defect: #6290bc;
+  --text-necrobinder: #c86e93;
+  --text-regent: #f07c1e;
+  --text-ancient: #9085a9;
+  --text-colorless: #858b97;
+  --text-lift: 23%;
+  --lift-to: #ffffff;
+}
+:root[data-theme="regent"] {
+  --text-ironclad: #e46e5a;
+  --text-silent: #48a06e;
+  --text-defect: #6894be;
+  --text-necrobinder: #cc7598;
+  --text-regent: #f07c1e;
+  --text-ancient: #958aad;
+  --text-colorless: #8b919c;
+  --text-lift: 26%;
+  --lift-to: #ffffff;
 }
 
 /* Light-mode fixes that are about layout, not palette. Palette differences
@@ -162,7 +343,7 @@
 }
 :root[data-theme="light"] .card-rvmp .cardimg.render {
   background: color-mix(in srgb, var(--text-primary) 6%, transparent);
-  filter: drop-shadow(0 10px 24px rgba(76, 79, 105, 0.20));
+  filter: drop-shadow(0 10px 24px rgba(76, 79, 105, 0.2));
 }
 
 @theme inline {
@@ -204,6 +385,9 @@
   --color-spire: var(--color-spire);
   --color-bronze: var(--tier-bronze);
   --color-silver: var(--tier-silver);
+  --color-sub-common: var(--sub-common);
+  --color-sub-rare: var(--sub-rare);
+  --color-sub-ancient: var(--sub-ancient);
   --color-twitch: var(--brand-twitch);
   --color-twitch-light: var(--brand-twitch-light);
   --color-bluesky: var(--brand-bluesky);
@@ -214,14 +398,16 @@
   /* Kreon (the Slay the Spire 2 typeface) is the site font; Geist stays as the
      sans fallback if Kreon fails to load. Mono keeps Geist Mono for tabular
      alignment of ids and numbers. */
-  --font-sans: var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  --font-sans:
+    var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
 /* Kreon's deep descenders (g, y, p) get cut off by the default line boxes
@@ -256,19 +442,24 @@ body::before {
   /* webp, not the original png: at 4% opacity the 876 KB png and the 25 KB
      webp are indistinguishable, and the png was the single heaviest asset
      on every first visit. */
-  background: url("https://cdn.spire-codex.com/misc/main_menu_bg.webp") center center / cover no-repeat;
+  background: url("https://cdn.spire-codex.com/misc/main_menu_bg.webp") center
+    center / cover no-repeat;
   opacity: 0.04;
 }
 /* Phones skip the texture entirely: at 4% opacity on a small bright screen
    it's imperceptible, and mobile is where the page-weight budget hurts. */
 @media (max-width: 640px) {
-  body::before { display: none; }
+  body::before {
+    display: none;
+  }
 }
 
 /* Entity detail pages swap the global menu art for the entity's own artwork,
    passed in as --entity-bg on the .card-rvmp root. When present it replaces the
    global background (hidden below) rather than stacking on top of it. */
-body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
+body:has(.card-rvmp[style*="--entity-bg"])::before {
+  display: none;
+}
 .card-rvmp::before {
   content: "";
   position: fixed;
@@ -280,29 +471,57 @@ body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 8px; }
-::-webkit-scrollbar-track { background: var(--bg-secondary); }
-::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-accent);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
 
 /* `.no-scrollbar` — keep horizontal/vertical scrollability but hide
    the scrollbar chrome. Use on tab strips and other UI where the
    scrollbar is only there as a small-viewport escape hatch and the
    bar itself adds visual noise on desktop. */
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
 /* Rich text effects — matches game's [sine] and [jitter] tags */
 @keyframes rich-sine {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
 }
 
 @keyframes rich-jitter {
-  0%, 100% { transform: translate(0, 0); }
-  25% { transform: translate(-1px, 1px); }
-  50% { transform: translate(1px, -1px); }
-  75% { transform: translate(-1px, -1px); }
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-1px, 1px);
+  }
+  50% {
+    transform: translate(1px, -1px);
+  }
+  75% {
+    transform: translate(-1px, -1px);
+  }
 }
 
 .rich-sine {
@@ -317,8 +536,14 @@ body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
 
 /* Alert ticker: each slot fades/slides in as it becomes the active one. */
 @keyframes sc-ticker-fade {
-  from { opacity: 0; transform: translateY(4px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .sc-ticker-fade {
@@ -326,14 +551,13 @@ body:has(.card-rvmp[style*="--entity-bg"])::before { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .sc-ticker-fade { animation: none; }
+  .sc-ticker-fade {
+    animation: none;
+  }
 }
 
-
-/* Mobile nav logo mark: white on the dark ground, black on the light ground.
-   (Desktop shows the SPIRE CODEX wordmark instead, so both stay hidden there.) */
-.sc-nav-logo--b { display: none; }
-:root[data-theme="light"] .sc-nav-logo--w { display: none; }
-@media (max-width: 639px) {
-  :root[data-theme="light"] .sc-nav-logo--b { display: inline; }
+p a:not([role="button"]) {
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }

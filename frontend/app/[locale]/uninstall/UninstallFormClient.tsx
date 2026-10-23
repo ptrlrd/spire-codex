@@ -4,7 +4,8 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useState } from "react";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
-const SAVE_IMPORTER_URL = "https://steamcommunity.com/sharedfiles/filedetails/?id=3747503308";
+const SAVE_IMPORTER_URL =
+  "https://steamcommunity.com/sharedfiles/filedetails/?id=3747503308";
 const DISCORD_URL = "https://discord.gg/xMsTBeh";
 const SAVE_DIR = "%APPDATA%\\SlayTheSpire2\\steam";
 
@@ -28,7 +29,6 @@ const FOLLOW_UP: Record<string, string> = {
   [REASON_FEATURES]: "What features would make your experience better?",
 };
 
-
 const RETURN_OPTIONS: [string, string][] = [
   ["yes", "Yes"],
   ["maybe", "Maybe"],
@@ -51,14 +51,26 @@ function SavesNotice({ lang }: { lang: string }) {
         {t("Lost your characters, runs, or unlocks?")}
       </h2>
       <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
-        {t("Slay the Spire 2 keeps modded and unmodded play in separate save folders, so the first launch with a mod starts you on a fresh profile. Nothing is deleted: your original save is still where it always was, in")}{" "}
-        <code className="text-xs text-[var(--text-primary)] bg-[var(--bg-primary)] px-1 py-0.5 rounded">{SAVE_DIR}</code>.
+        {t(
+          "Slay the Spire 2 keeps modded and unmodded play in separate save folders, so the first launch with a mod starts you on a fresh profile. Nothing is deleted: your original save is still where it always was, in",
+        )}{" "}
+        <code className="text-xs text-[var(--text-primary)] bg-[var(--bg-primary)] px-1 py-0.5 rounded">
+          {SAVE_DIR}
+        </code>
+        .
       </p>
       <p className="text-sm text-[var(--text-secondary)] leading-relaxed mt-2">
-        {t("To bring your progress across, use the import save menu under F5 in the mod menu, or use the community save importer and it does the move for you. Back up both folders first, and copy rather than move.")}
+        {t(
+          "To bring your progress across, use the import save menu under F5 in the mod menu, or use the community save importer and it does the move for you. Back up both folders first, and copy rather than move.",
+        )}
       </p>
       <div className="flex flex-wrap gap-2 mt-3">
-        <a href={SAVE_IMPORTER_URL} target="_blank" rel="noopener noreferrer" className="rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-semibold px-3 py-1.5 text-xs hover:opacity-90">
+        <a
+          href={SAVE_IMPORTER_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-semibold px-3 py-1.5 text-xs hover:opacity-90"
+        >
           {t("Open the save importer")}
         </a>
       </div>
@@ -96,8 +108,11 @@ export default function UninstallFormClient() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           primary_reason: primary || null,
-          reason_detail: FOLLOW_UP[primary] ? reasonDetail.trim() || null : null,
-          saves_reimported: primary === REASON_SAVES ? savesReimported || null : null,
+          reason_detail: FOLLOW_UP[primary]
+            ? reasonDetail.trim() || null
+            : null,
+          saves_reimported:
+            primary === REASON_SAVES ? savesReimported || null : null,
           rating,
           improvement: improvement.trim() || null,
           would_return: wouldReturn || null,
@@ -109,7 +124,9 @@ export default function UninstallFormClient() {
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
         const detail = data?.detail;
-        throw new Error(typeof detail === "string" ? detail : `HTTP ${res.status}`);
+        throw new Error(
+          typeof detail === "string" ? detail : `HTTP ${res.status}`,
+        );
       }
       setStatus("success");
     } catch (err) {
@@ -128,7 +145,12 @@ export default function UninstallFormClient() {
           {t("Your answers go straight into what we fix and build next.")}
         </p>
         <div className="flex flex-wrap justify-center gap-2">
-          <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent-gold)]">
+          <a
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-md border border-[var(--border-subtle)] px-3 py-1.5 text-xs font-semibold text-[var(--text-primary)] hover:border-[var(--accent-gold)]"
+          >
             {t("Join the Discord")}
           </a>
         </div>
@@ -138,15 +160,29 @@ export default function UninstallFormClient() {
 
   return (
     <>
-      <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-1">{t("Help us improve.")}</h1>
+      <h1 className="text-2xl font-bold text-[var(--text-primary)] mb-1">
+        {t("Help us improve.")}
+      </h1>
       <p className="text-sm text-[var(--text-muted)] mb-5">
-        {t("Sorry to see you go. Thirty seconds of answers shape what we fix next. If you need support we are always available via")}{" "}
-        <a href={DISCORD_URL} target="_blank" rel="noopener noreferrer" className="text-[var(--accent-gold)] hover:underline">Discord</a>.
+        {t(
+          "Sorry to see you go. Thirty seconds of answers shape what we fix next. If you need support we are always available via",
+        )}{" "}
+        <a
+          href={DISCORD_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[var(--accent-gold)] hover:underline"
+        >
+          Discord
+        </a>
+        .
       </p>
       <SavesNotice lang={lang} />
       <form onSubmit={onSubmit} className="space-y-6">
         <fieldset>
-          <legend className={heading}>{t("What's the main reason you uninstalled?")}</legend>
+          <legend className={heading}>
+            {t("What's the main reason you uninstalled?")}
+          </legend>
           <div className="space-y-1.5">
             {PRIMARY_REASONS.map((reason) => (
               <div key={reason}>
@@ -183,7 +219,9 @@ export default function UninstallFormClient() {
                     </div>
                     {savesReimported === "no" && (
                       <p className="text-xs text-[var(--text-muted)]">
-                        {t("Your save is still there. The notice above shows where it lives and how to bring it across.")}
+                        {t(
+                          "Your save is still there. The notice above shows where it lives and how to bring it across.",
+                        )}
                       </p>
                     )}
                   </div>
@@ -207,8 +245,14 @@ export default function UninstallFormClient() {
         </fieldset>
 
         <fieldset>
-          <legend className={heading}>{t("How was your overall experience?")}</legend>
-          <div className="flex gap-1.5" role="radiogroup" aria-label={t("How was your overall experience?")}>
+          <legend className={heading}>
+            {t("How was your overall experience?")}
+          </legend>
+          <div
+            className="flex gap-1.5"
+            role="radiogroup"
+            aria-label={t("How was your overall experience?")}
+          >
             {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
               <button
                 key={n}
@@ -226,7 +270,9 @@ export default function UninstallFormClient() {
               </button>
             ))}
           </div>
-          <p className="text-xs text-[var(--text-muted)] mt-1.5">{t("1 is awful, 10 is great.")}</p>
+          <p className="text-xs text-[var(--text-muted)] mt-1.5">
+            {t("1 is awful, 10 is great.")}
+          </p>
         </fieldset>
 
         <div>
@@ -239,13 +285,17 @@ export default function UninstallFormClient() {
             onChange={(e) => setImprovement(e.target.value)}
             rows={3}
             maxLength={2000}
-            placeholder={t("Optional, but this is the answer we read most closely.")}
+            placeholder={t(
+              "Optional, but this is the answer we read most closely.",
+            )}
             className={field}
           />
         </div>
 
         <fieldset>
-          <legend className={heading}>{t("Would you try it again if that were fixed?")}</legend>
+          <legend className={heading}>
+            {t("Would you try it again if that were fixed?")}
+          </legend>
           <div className="flex gap-4">
             {RETURN_OPTIONS.map(([value, label]) => (
               <label key={value} className={choice}>
@@ -267,7 +317,9 @@ export default function UninstallFormClient() {
           <label htmlFor="uninstall-email" className={heading}>
             {t("Can we email you if we have a question?")}
           </label>
-          <p className="text-xs text-[var(--text-muted)] mb-2">{t("Optional. We won't add you to anything.")}</p>
+          <p className="text-xs text-[var(--text-muted)] mb-2">
+            {t("Optional. We won't add you to anything.")}
+          </p>
           <input
             id="uninstall-email"
             type="email"
@@ -287,7 +339,9 @@ export default function UninstallFormClient() {
 
         <button
           type="submit"
-          disabled={status === "submitting" || (!primary && !improvement.trim())}
+          disabled={
+            status === "submitting" || (!primary && !improvement.trim())
+          }
           className="w-full rounded-md bg-[var(--accent-gold)] text-[var(--bg-primary)] font-semibold px-4 py-2.5 text-sm hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
         >
           {status === "submitting" ? t("Sending...") : t("Send feedback")}

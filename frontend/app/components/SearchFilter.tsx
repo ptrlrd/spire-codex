@@ -21,7 +21,9 @@ interface SortOption {
 const selectClass =
   "filter-select px-3 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)]/50 cursor-pointer text-sm";
 
-function groupOptions(options: FilterOption[]): { group?: string; opts: FilterOption[] }[] {
+function groupOptions(
+  options: FilterOption[],
+): { group?: string; opts: FilterOption[] }[] {
   const segments: { group?: string; opts: FilterOption[] }[] = [];
   for (const opt of options) {
     const last = segments[segments.length - 1];
@@ -95,87 +97,97 @@ export default function SearchFilter({
 
   return (
     <div>
-    <div className="flex flex-wrap gap-2 items-end mb-6">
-      <div className="relative flex-1 min-w-[140px]">
-        <input
-          type="text"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          placeholder={placeholder ?? t("Search...")}
-          className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
-        />
-      </div>
-      {filters?.map((filter) => (
-        <label key={filter.label} className="flex flex-col gap-1">
-          {filter.name && caption(filter.name)}
-          {filter.options.some((o) => o.icon) ? (
-            <IconSelect
-              label={t(filter.label)}
-              value={filter.value}
-              options={filter.options}
-              onChange={filter.onChange}
-            />
-          ) : (
-          <select
-            value={filter.value}
-            onChange={(e) => filter.onChange(e.target.value)}
-            aria-label={t(filter.name ?? filter.label)}
-            className={selectClass}
-          >
-            {!filter.noEmptyOption && (
-              <option className="filter-option" value="">
-                {t(filter.label)}
-              </option>
-            )}
-            {groupOptions(filter.options).map((seg, i) =>
-              seg.group ? (
-                <optgroup key={`${seg.group}-${i}`} label={t(seg.group)}>
-                  {seg.opts.map((opt) => (
-                    <option className="filter-option" key={opt.value} value={opt.value}>
-                      {t(opt.label)}
-                    </option>
-                  ))}
-                </optgroup>
-              ) : (
-                seg.opts.map((opt) => (
-                  <option className="filter-option" key={opt.value} value={opt.value}>
-                    {t(opt.label)}
-                  </option>
-                ))
-              ),
-            )}
-          </select>
-          )}
-        </label>
-      ))}
-      {sortOptions && onSortChange && (
-        <label className="flex flex-col gap-1">
-          {caption("Sort by")}
-          <select
-            value={sortValue}
-            onChange={(e) => onSortChange(e.target.value)}
-            aria-label={t("Sort by")}
-            className={selectClass}
-          >
-            {sortOptions.map((opt) => (
-              <option className="filter-option" key={opt.value} value={opt.value}>
-                {t(opt.label)}
-              </option>
-            ))}
-          </select>
-        </label>
-      )}
-      {resultCount !== undefined && (
-        <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
-          {resultCount} {t("results")}
-        </span>
-      )}
-      {extra && (
-        <div className="flex items-center gap-2 ml-auto">
-          {extra}
+      <div className="flex flex-wrap gap-2 items-end mb-6">
+        <div className="relative flex-1 min-w-[140px]">
+          <input
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder={placeholder ?? t("Search...")}
+            className="w-full px-4 py-2.5 bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-lg text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50 transition-colors text-sm"
+          />
         </div>
-      )}
-    </div>
+        {filters?.map((filter) => (
+          <label key={filter.label} className="flex flex-col gap-1">
+            {filter.name && caption(filter.name)}
+            {filter.options.some((o) => o.icon) ? (
+              <IconSelect
+                label={t(filter.label)}
+                value={filter.value}
+                options={filter.options}
+                onChange={filter.onChange}
+              />
+            ) : (
+              <select
+                value={filter.value}
+                onChange={(e) => filter.onChange(e.target.value)}
+                aria-label={t(filter.name ?? filter.label)}
+                className={selectClass}
+              >
+                {!filter.noEmptyOption && (
+                  <option className="filter-option" value="">
+                    {t(filter.label)}
+                  </option>
+                )}
+                {groupOptions(filter.options).map((seg, i) =>
+                  seg.group ? (
+                    <optgroup key={`${seg.group}-${i}`} label={t(seg.group)}>
+                      {seg.opts.map((opt) => (
+                        <option
+                          className="filter-option"
+                          key={opt.value}
+                          value={opt.value}
+                        >
+                          {t(opt.label)}
+                        </option>
+                      ))}
+                    </optgroup>
+                  ) : (
+                    seg.opts.map((opt) => (
+                      <option
+                        className="filter-option"
+                        key={opt.value}
+                        value={opt.value}
+                      >
+                        {t(opt.label)}
+                      </option>
+                    ))
+                  ),
+                )}
+              </select>
+            )}
+          </label>
+        ))}
+        {sortOptions && onSortChange && (
+          <label className="flex flex-col gap-1">
+            {caption("Sort by")}
+            <select
+              value={sortValue}
+              onChange={(e) => onSortChange(e.target.value)}
+              aria-label={t("Sort by")}
+              className={selectClass}
+            >
+              {sortOptions.map((opt) => (
+                <option
+                  className="filter-option"
+                  key={opt.value}
+                  value={opt.value}
+                >
+                  {t(opt.label)}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
+        {resultCount !== undefined && (
+          <span className="text-sm text-[var(--text-muted)] whitespace-nowrap">
+            {resultCount} {t("results")}
+          </span>
+        )}
+        {extra && (
+          <div className="flex items-center gap-2 ml-auto">{extra}</div>
+        )}
+      </div>
       {draft !== "" && resultCount === 0 && (
         <div className="text-center py-12 text-[var(--text-muted)]">
           {t("No results found for")} &ldquo;{draft}&rdquo;

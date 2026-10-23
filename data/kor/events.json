@@ -4242,9 +4242,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "Common 포션을 삽입한다",
-        "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]Common Skill[/gold] 카드를 얻습니다."
+        "id": "POTION_COMMON",
+        "title": "일반 포션을 삽입한다",
+        "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]일반 공격/스킬[/gold] 카드를 얻습니다."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "고급 포션을 삽입한다",
+        "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]고급 공격/스킬/파워[/gold] 카드를 얻습니다."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "희귀 포션을 삽입한다",
+        "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]희귀 공격/스킬/파워[/gold] 카드를 얻습니다."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "이벤트 포션을 삽입한다",
+        "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]희귀 공격/스킬/파워[/gold] 카드를 얻습니다."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "토큰 포션을 삽입한다",
+        "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]일반 공격/스킬[/gold] 카드를 얻습니다."
       }
     ],
     "pages": [
@@ -4257,9 +4277,29 @@
         "description": "모퉁이를 도는 순간 희미한 진동이 느껴지고, 거대한 회전 장치가 당신의 눈앞에 모습을 드러냅니다!\n여러 개의 투입구가 있어, 액체를 고도로 압축해 섭취할 수 있는 알약으로 바꾸는 구조의 장치인 것으로 보입니다.\n\n이 건강 음료들을 작은 알약 한 알로 바꾼다는 발상은 영 꺼림칙하지만, 가끔은 새로운 시도를 해보는 것도 나쁘지 않을지도 모릅니다.",
         "options": [
           {
-            "id": "POTION",
-            "title": "Common 포션을 삽입한다",
-            "description": "[gold]a Potion[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]Common Skill[/gold] 카드를 얻습니다."
+            "id": "POTION_COMMON",
+            "title": "일반 포션을 삽입한다",
+            "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]일반 공격/스킬[/gold] 카드를 얻습니다."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "고급 포션을 삽입한다",
+            "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]고급 공격/스킬/파워[/gold] 카드를 얻습니다."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "희귀 포션을 삽입한다",
+            "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]희귀 공격/스킬/파워[/gold] 카드를 얻습니다."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "이벤트 포션을 삽입한다",
+            "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]희귀 공격/스킬/파워[/gold] 카드를 얻습니다."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "토큰 포션을 삽입한다",
+            "description": "[gold]물약[/gold]을(를) 잃습니다. [gold]강화[/gold]된 [gold]일반 공격/스킬[/gold] 카드를 얻습니다."
           }
         ]
       }

@@ -34,7 +34,7 @@ jobs:
     name: Poll Steam + commit changes
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           # We need full history so the commit lands on the live branch
           # rather than a detached HEAD that the push then rejects.
@@ -46,7 +46,7 @@ jobs:
           # next real push.
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
 

@@ -4244,9 +4244,29 @@
     "preconditions": null,
     "options": [
       {
-        "id": "POTION",
-        "title": "Insertar Poción Common",
-        "description": "Pierdes [gold]a Potion[/gold]. Obtienes una carta de [gold]Skill Common[/gold] [gold]Mejorada[/gold]."
+        "id": "POTION_COMMON",
+        "title": "Insertar Poción Común",
+        "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad Común[/gold] [gold]Mejorada[/gold]."
+      },
+      {
+        "id": "POTION_UNCOMMON",
+        "title": "Insertar Poción Poco común",
+        "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Poco común[/gold] [gold]Mejorada[/gold]."
+      },
+      {
+        "id": "POTION_RARE",
+        "title": "Insertar Poción Rara",
+        "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Rara[/gold] [gold]Mejorada[/gold]."
+      },
+      {
+        "id": "POTION_EVENT",
+        "title": "Insertar Poción de Evento",
+        "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Rara[/gold] [gold]Mejorada[/gold]."
+      },
+      {
+        "id": "POTION_TOKEN",
+        "title": "Insertar Poción Ficha",
+        "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad Común[/gold] [gold]Mejorada[/gold]."
       }
     ],
     "pages": [
@@ -4259,9 +4279,29 @@
         "description": "Sientes un pequeño temblor y al doblar la esquina te encuentras con un enorme aparato con engranajes.\nTiene varias ranuras que parecen convertir líquidos en pastillas comprimidas.\n\nLa idea de convertir una poción en algo tan pequeñito te resulta extraña, pero está bien probar cosas nuevas.",
         "options": [
           {
-            "id": "POTION",
-            "title": "Insertar Poción Common",
-            "description": "Pierdes [gold]a Potion[/gold]. Obtienes una carta de [gold]Skill Common[/gold] [gold]Mejorada[/gold]."
+            "id": "POTION_COMMON",
+            "title": "Insertar Poción Común",
+            "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad Común[/gold] [gold]Mejorada[/gold]."
+          },
+          {
+            "id": "POTION_UNCOMMON",
+            "title": "Insertar Poción Poco común",
+            "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Poco común[/gold] [gold]Mejorada[/gold]."
+          },
+          {
+            "id": "POTION_RARE",
+            "title": "Insertar Poción Rara",
+            "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Rara[/gold] [gold]Mejorada[/gold]."
+          },
+          {
+            "id": "POTION_EVENT",
+            "title": "Insertar Poción de Evento",
+            "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad/Poder Rara[/gold] [gold]Mejorada[/gold]."
+          },
+          {
+            "id": "POTION_TOKEN",
+            "title": "Insertar Poción Ficha",
+            "description": "Pierdes [gold]una poción[/gold]. Obtienes una carta de [gold]Ataque/Habilidad Común[/gold] [gold]Mejorada[/gold]."
           }
         ]
       }

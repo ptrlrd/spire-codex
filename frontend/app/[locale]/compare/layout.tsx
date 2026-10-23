@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
-import { buildLanguageAlternates, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/lib/seo";
+import {
+  buildLanguageAlternates,
+  DEFAULT_OG_IMAGE,
+  SITE_NAME,
+  SITE_URL,
+} from "@/lib/seo";
 
-const title = "Character Comparisons - Side by Side - Slay the Spire 2 (sts2) | Spire Codex";
+const title =
+  "Character Comparisons - Side by Side - Slay the Spire 2 (sts2) | Spire Codex";
 const ogDesc =
   "Compare Slay the Spire 2 characters side by side. Stats, card pools, keywords, and starting decks.";
 
@@ -18,7 +24,10 @@ export const metadata: Metadata = {
     images: [{ url: DEFAULT_OG_IMAGE }],
   },
   twitter: { card: "summary_large_image", title, description: ogDesc },
-  alternates: { canonical: "/compare", languages: buildLanguageAlternates("/compare") },
+  alternates: {
+    canonical: "/compare",
+    languages: buildLanguageAlternates("/compare"),
+  },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

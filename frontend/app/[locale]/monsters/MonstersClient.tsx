@@ -2,15 +2,16 @@
 
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
-import type { Monster } from "@/lib/api";
+import type { Monster } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import SearchFilter from "@/app/components/SearchFilter";
-import { useChannel, useBetaPrefix } from "@/lib/use-lang-prefix";
+import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
 import { useBetaAdditions } from "@/lib/use-beta-additions";
 import BetaBadge from "@/app/components/BetaBadge";
 import { imageUrl } from "@/lib/image-url";
+import { replaceQuery } from "@/lib/replace-query";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -45,14 +46,17 @@ interface ActInfo {
   index: number;
 }
 
-function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }) {
+function MonstersClientInner({
+  initialMonsters,
+}: {
+  initialMonsters: Monster[];
+}) {
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
   const channel = useChannel();
   const betaAdditions = useBetaAdditions<Monster>("monsters", lang);
   const searchParams = useSearchParams();
-  const router = useRouter();
   const [monsters, setMonsters] = useState<Monster[]>(initialMonsters);
   const [search, setSearch] = useState(searchParams.get("search") || "");
   const [type, setType] = useState(searchParams.get("type") || "");
@@ -61,13 +65,20 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
   const initialRender = useRef(true);
 
   useEffect(() => {
-    cachedFetch<ActInfo[]>(`${API}/api/acts?lang=${lang}`).then(setActs).catch(() => {});
+    cachedFetch<ActInfo[]>(`${API}/api/acts?lang=${lang}`)
+      .then(setActs)
+      .catch(() => {});
   }, [lang]);
 
   const actOptions = [
     ...ACT_VALUES.map((a) => {
       const info = acts.find((x) => x.id === a.id);
-      return { value: a.value, label: info ? `${t("Act {n}", { n: info.index + 1 })} - ${info.name}` : a.value };
+      return {
+        value: a.value,
+        label: info
+          ? `${t("Act {n}", { n: info.index + 1 })} - ${info.name}`
+          : a.value,
+      };
     }),
     { label: "Weak Encounters", value: "weak" },
   ];
@@ -78,15 +89,18 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
       if (v) params.set(k, v);
     }
     const qs = params.toString();
-    router.replace(`${bp}/monsters${qs ? `?${qs}` : ""}`, { scroll: false });
-  }, [router, bp]);
+    replaceQuery(qs);
+  }, []);
 
-  const setFilterAndUrl = useCallback((key: string, value: string, setter: (v: string) => void) => {
-    setter(value);
-    const current: Record<string, string> = { search, type, act };
-    current[key] = value;
-    updateUrl(current);
-  }, [search, type, act, updateUrl]);
+  const setFilterAndUrl = useCallback(
+    (key: string, value: string, setter: (v: string) => void) => {
+      setter(value);
+      const current: Record<string, string> = { search, type, act };
+      current[key] = value;
+      updateUrl(current);
+    },
+    [search, type, act, updateUrl],
+  );
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English with
@@ -94,7 +108,13 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
     // stable catalog, and cachedFetch appends channel=beta on /beta paths.
     if (initialRender.current) {
       initialRender.current = false;
-      if (channel !== "beta" && lang === "eng" && !type && !search && initialMonsters.length > 0) {
+      if (
+        channel !== "beta" &&
+        lang === "eng" &&
+        !type &&
+        !search &&
+        initialMonsters.length > 0
+      ) {
         return;
       }
     }
@@ -102,8 +122,7 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
     if (type) params.set("type", type);
     if (search) params.set("search", search);
     params.set("lang", lang);
-    cachedFetch<Monster[]>(`${API}/api/monsters?${params}`)
-      .then(setMonsters);
+    cachedFetch<Monster[]>(`${API}/api/monsters?${params}`).then(setMonsters);
   }, [type, search, lang, channel]);
 
   // Beta-only monsters join the stable list (type/search are server-side
@@ -170,7 +189,9 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
               <div className="mb-3 -mx-4 -mt-4">
                 <img
                   src={imageUrl(monster.image_url)}
-                  alt={t("{name} - Slay the Spire 2 Monster", { name: monster.name })}
+                  alt={t("{name} - Slay the Spire 2 Monster", {
+                    name: monster.name,
+                  })}
                   className="w-full h-40 object-contain rounded-t-lg"
                   loading="lazy"
                   crossOrigin="anonymous"
@@ -195,7 +216,9 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
             {monster.min_hp && (
               <div className="flex items-center gap-3 mb-3">
                 <div className="flex items-center gap-1.5">
-                  <span className="text-xs text-[var(--text-muted)]">{t("HP")}</span>
+                  <span className="text-xs text-[var(--text-muted)]">
+                    {t("HP")}
+                  </span>
                   <span className="text-sm font-medium text-danger">
                     {monster.min_hp}
                     {monster.max_hp && monster.max_hp !== monster.min_hp
@@ -256,7 +279,7 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
                           {name}: {val.normal}
                           {val.ascension ? ` (A: ${val.ascension})` : ""}
                         </span>
-                      )
+                      ),
                     )}
                   </div>
                 </div>
@@ -272,7 +295,9 @@ function MonstersClientInner({ initialMonsters }: { initialMonsters: Monster[] }
 // layout no longer provides one (the app-wide boundary made every dynamic
 // page's body invisible to non-JS crawlers). The boundary lives here so
 // every page that renders this client, English and localized, gets it.
-export default function MonstersClient(props: Parameters<typeof MonstersClientInner>[0]) {
+export default function MonstersClient(
+  props: Parameters<typeof MonstersClientInner>[0],
+) {
   return (
     <Suspense fallback={null}>
       <MonstersClientInner {...props} />

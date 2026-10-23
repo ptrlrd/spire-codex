@@ -1,7 +1,10 @@
 import HomeLeaderboardLive from "./HomeLeaderboardLive";
 import { dedupePartyRows } from "@/lib/party-dedupe";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 const RUNS_HOST = "";
 const RUNS_API = API;
 // Browser-side polling must use the PUBLIC API base; API_INTERNAL_URL only
@@ -66,7 +69,7 @@ async function loadRecentRuns(): Promise<RunRow[]> {
 async function loadDailyClimb(): Promise<RunRow[]> {
   try {
     const res = await fetch(
-      `${RUNS_API}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&limit=20`,
+      `${RUNS_API}/api/runs/leaderboard?category=highest_ascension&game_mode=daily&today=true&players=single&limit=20`,
       { next: { revalidate: REVALIDATE } },
     );
     if (!res.ok) return [];

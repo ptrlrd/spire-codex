@@ -19,8 +19,8 @@ export default function robots(): MetadataRoute.Robots {
         // asset on every page (crawlers flagged all of them).
         disallow: [
           "/api/images/", // bulk image download endpoints; the rest of /api/ must stay fetchable so Googlebot can render pages, and it carries X-Robots-Tag: noindex
-          "/static/",    // static asset trees (CDN-served)
-          "/uninstall",  // Overwolf post-uninstall survey, entered only by the OW client
+          "/static/", // static asset trees (CDN-served)
+          "/uninstall", // Overwolf post-uninstall survey, entered only by the OW client
           // Tier-list filter variants canonicalize to the unfiltered page and
           // each one is a full server render; the bracket cube alone is
           // thousands of URLs per list. Keep crawlers on the canonical pages.

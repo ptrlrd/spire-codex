@@ -126,14 +126,17 @@ export default function RunsClient() {
   }
 
   async function remove(runHash: string) {
-    if (!window.confirm(`Delete run ${runHash}? This removes it permanently.`)) return;
+    if (!window.confirm(`Delete run ${runHash}? This removes it permanently.`))
+      return;
     try {
-      const res = await adminFetch<{ deleted_docs: number; file_removed: boolean }>(
-        `/api/admin/runs/${runHash}`,
-        { method: "DELETE" },
-      );
+      const res = await adminFetch<{
+        deleted_docs: number;
+        file_removed: boolean;
+      }>(`/api/admin/runs/${runHash}`, { method: "DELETE" });
       setRows((prev) => prev.filter((r) => r.run_hash !== runHash));
-      setNote(`Deleted ${runHash}: ${res.deleted_docs} doc(s), file removed: ${String(res.file_removed)}.`);
+      setNote(
+        `Deleted ${runHash}: ${res.deleted_docs} doc(s), file removed: ${String(res.file_removed)}.`,
+      );
     } catch (e) {
       setNote(String((e as Error)?.message || e));
     }
@@ -169,16 +172,25 @@ export default function RunsClient() {
   }
 
   async function cheatSweep(dryRun: boolean) {
-    if (!dryRun && !confirm("Hide every run the sweep flags? They leave all stats and leaderboards.")) return;
+    if (
+      !dryRun &&
+      !confirm(
+        "Hide every run the sweep flags? They leave all stats and leaderboards.",
+      )
+    )
+      return;
     setBusy(true);
     setNote(null);
     try {
       // The sweep walks the whole collection on a background thread; poll
       // the status endpoint instead of holding one request open past the
       // edge's 100s ceiling.
-      await adminFetch<SweepState>(`/api/admin/runs/cheat-sweep?dry_run=${dryRun}`, {
-        method: "POST",
-      });
+      await adminFetch<SweepState>(
+        `/api/admin/runs/cheat-sweep?dry_run=${dryRun}`,
+        {
+          method: "POST",
+        },
+      );
       const t0 = Date.now();
       for (;;) {
         await new Promise((r) => setTimeout(r, 3000));
@@ -209,7 +221,9 @@ export default function RunsClient() {
         const elapsed = Math.round((Date.now() - t0) / 1000);
         setNote(`Sweep running… ${elapsed}s`);
         if (elapsed > 600) {
-          setNote("Sweep still running after 10 minutes; reload later to check.");
+          setNote(
+            "Sweep still running after 10 minutes; reload later to check.",
+          );
           return;
         }
       }
@@ -226,9 +240,24 @@ export default function RunsClient() {
   return (
     <AdminShell title="Runs" subtitle="search, inspect, hide, delete">
       <div className="flex flex-wrap gap-2 mb-4">
-        <input className={inputClass} placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
-        <input className={inputClass} placeholder="Seed" value={seed} onChange={(e) => setSeed(e.target.value)} />
-        <input className={`${inputClass} w-72`} placeholder="Run hash" value={hash} onChange={(e) => setHash(e.target.value)} />
+        <input
+          className={inputClass}
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <input
+          className={inputClass}
+          placeholder="Seed"
+          value={seed}
+          onChange={(e) => setSeed(e.target.value)}
+        />
+        <input
+          className={`${inputClass} w-72`}
+          placeholder="Run hash"
+          value={hash}
+          onChange={(e) => setHash(e.target.value)}
+        />
         <button
           onClick={search}
           disabled={busy}
@@ -278,7 +307,9 @@ export default function RunsClient() {
         </button>
       </div>
 
-      {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>
+      )}
 
       {rows.length > 0 && (
         <div className="overflow-x-auto rounded-lg border border-[var(--border-subtle)]">
@@ -304,12 +335,20 @@ export default function RunsClient() {
                 >
                   <td className="px-3 py-2 font-mono text-xs">
                     {r.run_hash ? (
-                      <Link href={`/runs/${r.run_hash}`} className="text-[var(--accent-gold)] hover:underline">
+                      <Link
+                        href={`/runs/${r.run_hash}`}
+                        className="text-[var(--accent-gold)] hover:underline"
+                      >
                         {r.run_hash.slice(0, 12)}...
                       </Link>
-                    ) : "-"}
+                    ) : (
+                      "-"
+                    )}
                     {r.hidden_reason && (
-                      <span className="block text-[10px] text-danger/80 font-mono" title="auto-hide reason">
+                      <span
+                        className="block text-[10px] text-danger/80 font-mono"
+                        title="auto-hide reason"
+                      >
                         {r.hidden_reason}
                       </span>
                     )}
@@ -324,15 +363,23 @@ export default function RunsClient() {
                         className="ml-1.5 px-1.5 py-0.5 rounded text-[10px] font-bold border bg-warning/10 text-warning border-warning/30"
                       >
                         {reason}
-                        {reason.startsWith("deck") && r.deck_size ? ` (${r.deck_size})` : ""}
+                        {reason.startsWith("deck") && r.deck_size
+                          ? ` (${r.deck_size})`
+                          : ""}
                       </span>
                     ))}
                   </td>
                   <td className="px-3 py-2">{r.username ?? "-"}</td>
-                  <td className="px-3 py-2">{(r.character ?? "-").replace("CHARACTER.", "")}</td>
-                  <td className="px-3 py-2 tabular-nums">{r.ascension ?? "-"}</td>
+                  <td className="px-3 py-2">
+                    {(r.character ?? "-").replace("CHARACTER.", "")}
+                  </td>
+                  <td className="px-3 py-2 tabular-nums">
+                    {r.ascension ?? "-"}
+                  </td>
                   <td className="px-3 py-2">{r.win ? "yes" : "no"}</td>
-                  <td className="px-3 py-2 tabular-nums text-xs">{fmtTime(r.run_time)}</td>
+                  <td className="px-3 py-2 tabular-nums text-xs">
+                    {fmtTime(r.run_time)}
+                  </td>
                   <td className="px-3 py-2 text-xs">{r.build_id ?? "-"}</td>
                   <td className="px-3 py-2 text-xs">
                     {r.submitted_at ? fmtDateTime(r.submitted_at) : "-"}

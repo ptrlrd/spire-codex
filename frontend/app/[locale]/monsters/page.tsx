@@ -3,20 +3,28 @@ import { getT } from "@/lib/i18n-server";
 import { inLanguageOf, localeOf, localePath } from "@/lib/locale";
 import { buildPageMetadata, pageHeading } from "@/lib/seo";
 import { Suspense } from "react";
-import type { Monster } from "@/lib/api";
+import type { Monster } from "@/lib/api/types";
 import JsonLd from "@/app/components/JsonLd";
 import { buildCollectionPageJsonLd, buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import RecentlyAdded from "@/app/components/RecentlyAdded";
 import MonstersClient from "./MonstersClient";
 
-const API = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API =
+  process.env.API_INTERNAL_URL ||
+  process.env.NEXT_PUBLIC_API_URL ||
+  "http://localhost:8000";
 
 type Props = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
-  return buildPageMetadata({ locale, path: "/monsters", title: t("Monsters"), description: t("monsters_meta_description") });
+  return buildPageMetadata({
+    locale,
+    path: "/monsters",
+    title: t("Monsters"),
+    description: t("monsters_meta_description"),
+  });
 }
 
 export default async function MonstersPage({ params }: Props) {
@@ -26,7 +34,9 @@ export default async function MonstersPage({ params }: Props) {
   const tagline = t("monsters_tagline");
   let monsters: Monster[] = [];
   try {
-    const res = await fetch(`${API}/api/monsters?lang=${locale}`, { next: { revalidate: 300 } });
+    const res = await fetch(`${API}/api/monsters?lang=${locale}`, {
+      next: { revalidate: 300 },
+    });
     if (res.ok) monsters = await res.json();
   } catch {}
 
@@ -40,7 +50,10 @@ export default async function MonstersPage({ params }: Props) {
       description: "Browse every monster in Slay the Spire 2.",
       path: localePath(locale, "/monsters"),
       inLanguage: inLanguageOf(locale),
-      items: monsters.map((m) => ({ name: m.name, path: `/monsters/${m.id.toLowerCase()}` })),
+      items: monsters.map((m) => ({
+        name: m.name,
+        path: `/monsters/${m.id.toLowerCase()}`,
+      })),
     }),
   ];
 
@@ -52,7 +65,11 @@ export default async function MonstersPage({ params }: Props) {
       </h1>
       <p className="text-sm text-[var(--text-muted)] mb-6">{tagline}</p>
 
-      <RecentlyAdded entityType="monsters" label="Monster" pathPrefix="/monsters" />
+      <RecentlyAdded
+        entityType="monsters"
+        label="Monster"
+        pathPrefix="/monsters"
+      />
 
       <Suspense>
         <MonstersClient initialMonsters={monsters} />

@@ -13,7 +13,10 @@ const FEATURES = [
 const HOTKEYS: { combo: string; action: string }[] = [
   { combo: "Shift + F9", action: "Show / hide the overlay" },
   { combo: "Ctrl + Space", action: "Open the quick-peek lookup" },
-  { combo: "F8", action: "Toggle click-through (move mouse through the overlay)" },
+  {
+    combo: "F8",
+    action: "Toggle click-through (move mouse through the overlay)",
+  },
   { combo: "Shift + F10", action: "Show / hide the desktop window" },
   { combo: "Shift + F1", action: "Show / hide the hotkey reminder" },
 ];
@@ -27,7 +30,9 @@ export default async function OverlayBody({ lang }: { lang: Locale }) {
         <span className="text-[var(--text-primary)]">{t("Overlay")}</span>
       </h1>
       <p className="text-[var(--text-secondary)] text-lg leading-relaxed mb-8">
-        {t("The official Overwolf companion app for Slay the Spire 2. Card, relic, monster, and event lookups without leaving the game, plus a live run tracker that reads your save file as you play.")}
+        {t(
+          "The official Overwolf companion app for Slay the Spire 2. Card, relic, monster, and event lookups without leaving the game, plus a live run tracker that reads your save file as you play.",
+        )}
       </p>
 
       <div className="flex flex-wrap gap-3 mb-12">
@@ -50,7 +55,10 @@ export default async function OverlayBody({ lang }: { lang: Locale }) {
           <ul className="space-y-2.5 text-sm text-[var(--text-secondary)]">
             {FEATURES.map((item) => (
               <li key={item} className="flex gap-3">
-                <span aria-hidden className="text-[var(--accent-gold)] shrink-0">
+                <span
+                  aria-hidden
+                  className="text-[var(--accent-gold)] shrink-0"
+                >
                   →
                 </span>
                 <span>{t(item)}</span>
@@ -66,7 +74,9 @@ export default async function OverlayBody({ lang }: { lang: Locale }) {
           {t("Default hotkeys")}
         </h2>
         <p className="text-[var(--text-secondary)] mb-4">
-          {t("All hotkeys are rebindable from Overwolf → Settings → Hotkeys if any of these conflict with your binds.")}
+          {t(
+            "All hotkeys are rebindable from Overwolf → Settings → Hotkeys if any of these conflict with your binds.",
+          )}
         </p>
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] divide-y divide-[var(--border-subtle)]">
           {HOTKEYS.map((h) => (
@@ -91,7 +101,9 @@ export default async function OverlayBody({ lang }: { lang: Locale }) {
           {t("About Overwolf")}
         </h2>
         <p className="text-[var(--text-secondary)] leading-relaxed">
-          {t("Overwolf is a sandbox for in-game overlays trusted by millions of players across League of Legends, Minecraft, World of Warcraft and more. The platform handles sign-in, updates, and game-event APIs so companion apps stay safe and unobtrusive, no DLL injection, no risk of bans. Install Overwolf once and you can launch Spire Codex Overlay (and any other companion app you like) the next time you start the game.")}
+          {t(
+            "Overwolf is a sandbox for in-game overlays trusted by millions of players across League of Legends, Minecraft, World of Warcraft and more. The platform handles sign-in, updates, and game-event APIs so companion apps stay safe and unobtrusive, no DLL injection, no risk of bans. Install Overwolf once and you can launch Spire Codex Overlay (and any other companion app you like) the next time you start the game.",
+          )}
         </p>
       </section>
 
@@ -100,7 +112,9 @@ export default async function OverlayBody({ lang }: { lang: Locale }) {
         <div className="bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] p-6 text-center">
           <h2 className="text-xl font-semibold mb-2">{t("Get the overlay")}</h2>
           <p className="text-sm text-[var(--text-secondary)] mb-4">
-            {t("Free, opt-in, and you can uninstall it from Overwolf at any time.")}
+            {t(
+              "Free, opt-in, and you can uninstall it from Overwolf at any time.",
+            )}
           </p>
           <a
             href={OVERWOLF_STORE_URL}

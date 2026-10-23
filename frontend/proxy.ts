@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { ENGLISH_ONLY_PATHS, ENGLISH_ONLY_SECTIONS, LANG_PREFIXES } from "@/lib/languages";
+import {
+  ENGLISH_ONLY_PATHS,
+  ENGLISH_ONLY_SECTIONS,
+  LANG_PREFIXES,
+} from "@/lib/languages";
 import { routing } from "@/i18n/routing";
+import { MOVED_PAGES } from "@/lib/moved-pages";
 
 /** Canonicalise news article URLs.
  *
@@ -49,10 +54,16 @@ const LANG_CODES = LANG_PREFIXES;
 const LOCALE_HEADER = "X-NEXT-INTL-LOCALE";
 
 /** Pass or rewrite the request with the URL's locale on the request header next-intl reads when no layout has set it yet (RSC navigations render pages without their layout). */
-function withLocale(req: NextRequest, locale: string, rewriteTo?: URL): NextResponse {
+function withLocale(
+  req: NextRequest,
+  locale: string,
+  rewriteTo?: URL,
+): NextResponse {
   const headers = new Headers(req.headers);
   headers.set(LOCALE_HEADER, locale);
-  return rewriteTo ? NextResponse.rewrite(rewriteTo, { request: { headers } }) : NextResponse.next({ request: { headers } });
+  return rewriteTo
+    ? NextResponse.rewrite(rewriteTo, { request: { headers } })
+    : NextResponse.next({ request: { headers } });
 }
 
 // Detail routes whose slugs are canonically lowercase (what the sitemap
@@ -85,6 +96,8 @@ const LOWERCASE_DETAIL_TYPES = new Set([
   "timeline",
 ]);
 
+const ESCAPE = /%[0-9A-Fa-f]{2}/g;
+
 function lowercaseRedirect(req: NextRequest): NextResponse | null {
   const parts = req.nextUrl.pathname.split("/");
   let i = 1;
@@ -92,11 +105,15 @@ function lowercaseRedirect(req: NextRequest): NextResponse | null {
   if (parts[i] === "beta") i++;
   if (!LOWERCASE_DETAIL_TYPES.has(parts[i])) return null;
   const slug = parts.slice(i + 1);
-  if (slug.length === 0 || !slug.some((s) => /[A-Z]/.test(s))) return null;
+  if (!slug.some((s) => /[A-Z]/.test(s.replace(ESCAPE, "")))) return null;
   const url = req.nextUrl.clone();
   url.pathname = [
     ...parts.slice(0, i + 1),
-    ...slug.map((s) => s.toLowerCase()),
+    ...slug.map((s) =>
+      s.replace(/%[0-9A-Fa-f]{2}|[^%]+/g, (m) =>
+        m.startsWith("%") ? m : m.toLowerCase(),
+      ),
+    ),
   ].join("/");
   return NextResponse.redirect(url, 308);
 }
@@ -169,20 +186,44 @@ function englishOnly(parts: string[]): boolean {
  * request without a language prefix is rewritten to the `eng` segment, and
  * an explicit /eng/ prefix redirects to the bare canonical. Other prefixes
  * pass straight through unless the section is English-only. */
-function metaRedirect(req: NextRequest): NextResponse | null {
-  const parts = req.nextUrl.pathname.split("/");
+const RENAMED_TOOLS: Record<string, string> = {
+  "seed-lab": "seed-finder",
+  "deck-lab": "deck-builder",
+};
+
+function renamedToolRedirect(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.replace(/\/+$/, "").split("/");
   const i = LANG_CODES.has(parts[1]) ? 2 : 1;
-  if (parts[i] !== "meta" || parts.length !== i + 1) return null;
-  const url = req.nextUrl.clone();
-  url.pathname = [...parts.slice(0, i), "leaderboards", "stats"].join("/");
-  return NextResponse.redirect(url, 308);
+  const renamed = RENAMED_TOOLS[parts[i]];
+  if (!renamed || parts.length !== i + 1) return null;
+  const target = new URL(req.nextUrl.origin);
+  target.pathname = [...parts.slice(0, i), renamed].join("/");
+  target.search = req.nextUrl.search;
+  return NextResponse.redirect(target, 308);
+}
+
+function movedPageRedirect(req: NextRequest): NextResponse | null {
+  const parts = req.nextUrl.pathname.replace(/\/+$/, "").split("/");
+  let i = 1;
+  if (LANG_CODES.has(parts[i])) i++;
+  if (parts[i] === "beta") i++;
+  const rest = "/" + parts.slice(i).join("/");
+  const to = MOVED_PAGES[rest];
+  if (!to) return null;
+  const target = new URL(req.nextUrl.origin);
+  target.pathname = [...parts.slice(0, i), ...to.slice(1).split("/")].join("/");
+  target.search = req.nextUrl.search;
+  return NextResponse.redirect(target, 301);
 }
 
 function localeRewrite(req: NextRequest): NextResponse {
   const { pathname } = req.nextUrl;
   const parts = pathname.split("/");
   const first = parts[1];
-  if (first === routing.defaultLocale || (LANG_CODES.has(first) && englishOnly(parts))) {
+  if (
+    first === routing.defaultLocale ||
+    (LANG_CODES.has(first) && englishOnly(parts))
+  ) {
     const url = req.nextUrl.clone();
     url.pathname = pathname.slice(first.length + 1) || "/";
     return NextResponse.redirect(url, 308);
@@ -200,8 +241,10 @@ export function proxy(req: NextRequest) {
   if (lower) return lower;
   const news = newsRedirect(req);
   if (news) return news;
-  const meta = metaRedirect(req);
-  if (meta) return meta;
+  const moved = movedPageRedirect(req);
+  if (moved) return moved;
+  const renamed = renamedToolRedirect(req);
+  if (renamed) return renamed;
   const beta = betaRewrite(req);
   if (beta) return beta;
   return localeRewrite(req);
@@ -227,5 +270,7 @@ export const config = {
   // handlers under /api, Next internals, and static files are left alone.
   // Only real asset extensions are excluded: legacy news URLs carry an
   // encoded Steam hostname with dots and still need the redirect.
-  matcher: ["/((?!api/|_next/|_vercel/|\\.well-known/|.*\\.(?:ico|png|jpe?g|gif|webp|svg|css|js|map|txt|xml|json|woff2?|ttf|mp3|webmanifest)$).*)"],
+  matcher: [
+    "/((?!api/|_next/|_vercel/|\\.well-known/|.*\\.(?:ico|png|jpe?g|gif|webp|svg|css|js|map|txt|xml|json|woff2?|ttf|mp3|webmanifest)$).*)",
+  ],
 };

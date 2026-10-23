@@ -26,7 +26,13 @@ const EMPTY: NewsEntry = {
   published: false,
 };
 
-const TOOLBAR: { label: string; title: string; before: string; after: string; block?: boolean }[] = [
+const TOOLBAR: {
+  label: string;
+  title: string;
+  before: string;
+  after: string;
+  block?: boolean;
+}[] = [
   { label: "B", title: "Bold", before: "**", after: "**" },
   { label: "I", title: "Italic", before: "*", after: "*" },
   { label: "H2", title: "Heading", before: "## ", after: "", block: true },
@@ -60,7 +66,8 @@ export default function NewsAdminClient() {
     const { selectionStart: s, selectionEnd: e, value } = el;
     let before = m.before;
     if (m.block && s > 0 && value[s - 1] !== "\n") before = "\n" + m.before;
-    const next = value.slice(0, s) + before + value.slice(s, e) + m.after + value.slice(e);
+    const next =
+      value.slice(0, s) + before + value.slice(s, e) + m.after + value.slice(e);
     setDraft((d) => ({ ...d, body: next }));
     requestAnimationFrame(() => {
       el.focus();
@@ -102,28 +109,38 @@ export default function NewsAdminClient() {
       .catch((e) => setNote(String((e as Error)?.message || e)));
   };
 
-  const card = "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4";
+  const card =
+    "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4";
   const input =
     "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] w-full";
   const goldBtn =
     "px-4 py-2 rounded-lg text-sm border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] disabled:opacity-50";
 
   return (
-    <AdminShell title="Site news" subtitle="announcements + articles, no deploy needed">
+    <AdminShell
+      title="Site news"
+      subtitle="announcements + articles, no deploy needed"
+    >
       <p className="text-sm text-[var(--text-secondary)] mb-4 max-w-2xl">
-        Entries appear on the news page&apos;s Spire Codex tab. A link target makes the card
-        point straight at a feature; a markdown body makes it a full article page. Publishing
-        a new entry lights the navbar megaphone for everyone who hasn&apos;t seen it.
+        Entries appear on the news page&apos;s Spire Codex tab. A link target
+        makes the card point straight at a feature; a markdown body makes it a
+        full article page. Publishing a new entry lights the navbar megaphone
+        for everyone who hasn&apos;t seen it.
       </p>
 
-      {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>
+      )}
 
       <div className="grid gap-4 xl:grid-cols-[320px_1fr]">
         <div className="space-y-2">
           <button
             type="button"
             onClick={() => {
-              setDraft({ ...EMPTY, date: new Date().toISOString().slice(0, 10) });
+              setDraft({
+                ...EMPTY,
+                date: new Date().toISOString().slice(0, 10),
+              });
               setEditingExisting(false);
             }}
             className={`w-full ${goldBtn}`}
@@ -141,7 +158,9 @@ export default function NewsAdminClient() {
             >
               <div className="flex items-center justify-between gap-2">
                 <div className="min-w-0">
-                  <div className="text-sm text-[var(--text-primary)] truncate">{e.title}</div>
+                  <div className="text-sm text-[var(--text-primary)] truncate">
+                    {e.title}
+                  </div>
                   <div className="text-[11px] text-[var(--text-muted)]">
                     {e.date} · {e.id} · {e.published ? "published" : "draft"}
                     {e.href ? " · link" : " · article"}
@@ -161,7 +180,9 @@ export default function NewsAdminClient() {
             </div>
           ))}
           {entries.length === 0 && (
-            <p className="text-xs text-[var(--text-muted)]">Nothing published yet.</p>
+            <p className="text-xs text-[var(--text-muted)]">
+              Nothing published yet.
+            </p>
           )}
         </div>
 
@@ -179,7 +200,9 @@ export default function NewsAdminClient() {
                   onChange={(e) =>
                     setDraft((d) => ({
                       ...d,
-                      id: e.target.value.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
+                      id: e.target.value
+                        .toLowerCase()
+                        .replace(/[^a-z0-9-]/g, "-"),
                     }))
                   }
                   placeholder="my-announcement"
@@ -187,32 +210,43 @@ export default function NewsAdminClient() {
                 />
               </div>
               <div>
-                <label className="block text-xs text-[var(--text-muted)] mb-1">Date</label>
+                <label className="block text-xs text-[var(--text-muted)] mb-1">
+                  Date
+                </label>
                 <input
                   type="date"
                   value={draft.date}
-                  onChange={(e) => setDraft((d) => ({ ...d, date: e.target.value }))}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, date: e.target.value }))
+                  }
                   className={input}
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-xs text-[var(--text-muted)] mb-1">Title</label>
+                <label className="block text-xs text-[var(--text-muted)] mb-1">
+                  Title
+                </label>
                 <input
                   type="text"
                   value={draft.title}
-                  onChange={(e) => setDraft((d) => ({ ...d, title: e.target.value }))}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, title: e.target.value }))
+                  }
                   placeholder="What beats each boss"
                   className={input}
                 />
               </div>
               <div className="sm:col-span-2">
                 <label className="block text-xs text-[var(--text-muted)] mb-1">
-                  Link target (optional; set = the card links there instead of an article page)
+                  Link target (optional; set = the card links there instead of
+                  an article page)
                 </label>
                 <input
                   type="text"
                   value={draft.href}
-                  onChange={(e) => setDraft((d) => ({ ...d, href: e.target.value }))}
+                  onChange={(e) =>
+                    setDraft((d) => ({ ...d, href: e.target.value }))
+                  }
                   placeholder="/monsters/aeonglass"
                   className={`${input} font-mono`}
                 />
@@ -240,8 +274,12 @@ export default function NewsAdminClient() {
             <textarea
               ref={bodyRef}
               value={draft.body}
-              onChange={(e) => setDraft((d) => ({ ...d, body: e.target.value }))}
-              placeholder={"Body (markdown). For a pure announcement card you can leave this as a one-liner, the card shows it as the excerpt."}
+              onChange={(e) =>
+                setDraft((d) => ({ ...d, body: e.target.value }))
+              }
+              placeholder={
+                "Body (markdown). For a pure announcement card you can leave this as a one-liner, the card shows it as the excerpt."
+              }
               rows={12}
               className={`${input} font-mono text-xs leading-relaxed resize-y`}
             />
@@ -261,7 +299,9 @@ export default function NewsAdminClient() {
               <input
                 type="checkbox"
                 checked={draft.published}
-                onChange={(e) => setDraft((d) => ({ ...d, published: e.target.checked }))}
+                onChange={(e) =>
+                  setDraft((d) => ({ ...d, published: e.target.checked }))
+                }
               />
               Published
             </label>
@@ -271,7 +311,11 @@ export default function NewsAdminClient() {
               onClick={save}
               className={goldBtn}
             >
-              {saving ? "Saving…" : draft.published ? "Save & publish" : "Save draft"}
+              {saving
+                ? "Saving…"
+                : draft.published
+                  ? "Save & publish"
+                  : "Save draft"}
             </button>
           </div>
         </div>

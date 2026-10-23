@@ -16,15 +16,86 @@ import { X8C } from "@/lib/i18n-x8c";
 import { X8D } from "@/lib/i18n-x8d";
 import { X8E } from "@/lib/i18n-x8e";
 import { X9A } from "@/lib/i18n-x9a";
+import { X9B } from "@/lib/i18n-x9b";
+import { X9C } from "@/lib/i18n-x9c";
+import { X9D } from "@/lib/i18n-x9d";
+import { X9E } from "@/lib/i18n-x9e";
+import { X9F } from "@/lib/i18n-x9f";
+import { X9G } from "@/lib/i18n-x9g";
+import { X9H } from "@/lib/i18n-x9h";
+import { X9I } from "@/lib/i18n-x9i";
+import { X9J } from "@/lib/i18n-x9j";
+import { X9K } from "@/lib/i18n-x9k";
+import { X9L } from "@/lib/i18n-x9l";
+import { X9O } from "@/lib/i18n-x9o";
+import { X9M } from "@/lib/i18n-x9m";
+import { X9N } from "@/lib/i18n-x9n";
+import { X9P } from "@/lib/i18n-x9p";
+import { X9Q } from "@/lib/i18n-x9q";
+import { X9R } from "@/lib/i18n-x9r";
+import { X9S } from "@/lib/i18n-x9s";
+import { X9U } from "@/lib/i18n-x9u";
+import { X9T } from "@/lib/i18n-x9t";
+import { X9W } from "@/lib/i18n-x9w";
+import { X9X } from "@/lib/i18n-x9x";
+import { X9Y } from "@/lib/i18n-x9y";
+import { X9Z } from "@/lib/i18n-x9z";
+import { X10 } from "@/lib/i18n-x10";
 import { UI_TRANSLATIONS } from "@/lib/ui-translations";
-import { safeKey } from "@/lib/i18n-keys";
+import { safeKey, unsafeKey } from "@/lib/i18n-keys";
+import SERVER_ONLY_KEYS from "@/lib/i18n-server-only-keys.json";
 import type { Locale } from "./routing";
 
 // The UI string tables stay the single source of truth (English text as the
 // key, one column per language). This turns them into one flat catalog per
 // locale for next-intl, once per process, with English filling any gap and
 // ICU's apostrophe escaping applied so "Couldn't" renders as written.
-const TABLES = [UI_TRANSLATIONS, X1, X2, X3, X4, X5, X6A, X6B, X6C, X6D, X6E, X6G, X7, X8A, X8B, X8C, X8D, X8E, X9A];
+const TABLES = [
+  UI_TRANSLATIONS,
+  X1,
+  X2,
+  X3,
+  X4,
+  X5,
+  X6A,
+  X6B,
+  X6C,
+  X6D,
+  X6E,
+  X6G,
+  X7,
+  X8A,
+  X8B,
+  X8C,
+  X8D,
+  X8E,
+  X9A,
+  X9B,
+  X9C,
+  X9D,
+  X9E,
+  X9F,
+  X9G,
+  X9H,
+  X9I,
+  X9J,
+  X9K,
+  X9L,
+  X9O,
+  X9M,
+  X9N,
+  X9P,
+  X9Q,
+  X9R,
+  X9S,
+  X9U,
+  X9T,
+  X9W,
+  X9X,
+  X9Y,
+  X9Z,
+  X10,
+];
 const cache = new Map<string, Record<string, string>>();
 
 function icu(text: string): string {
@@ -41,5 +112,25 @@ export function messagesFor(locale: Locale): Record<string, string> {
     }
   }
   cache.set(locale, out);
+  return out;
+}
+
+const serverOnly = new Set(SERVER_ONLY_KEYS.map(safeKey));
+const clientCache = new Map<string, Record<string, string>>();
+
+/** The part of the catalog the browser needs: strings only server code
+ * translates stay out, and so do entries that read the same as the English
+ * key, since the missing-message fallback already renders that text. */
+export function clientMessagesFor(locale: Locale): Record<string, string> {
+  const hit = clientCache.get(locale);
+  if (hit) return hit;
+  const out: Record<string, string> = {};
+  for (const [key, text] of Object.entries(messagesFor(locale))) {
+    if (serverOnly.has(key)) continue;
+    if (!/[{}<]/.test(text) && text.replace(/''/g, "'") === unsafeKey(key))
+      continue;
+    out[key] = text;
+  }
+  clientCache.set(locale, out);
   return out;
 }

@@ -45,7 +45,11 @@ export default function HighlightFeedback() {
         // Ignore selections inside form controls / editable areas / chrome.
         const node = sel.anchorNode;
         const el = node instanceof Element ? node : node?.parentElement;
-        if (el?.closest("input, textarea, select, button, [contenteditable], nav, footer")) {
+        if (
+          el?.closest(
+            "input, textarea, select, button, [contenteditable], nav, footer",
+          )
+        ) {
           setChip(null);
           return;
         }
@@ -55,7 +59,10 @@ export default function HighlightFeedback() {
           return;
         }
         setChip({
-          x: Math.min(Math.max(rect.left + rect.width / 2, 70), window.innerWidth - 70),
+          x: Math.min(
+            Math.max(rect.left + rect.width / 2, 70),
+            window.innerWidth - 70,
+          ),
           y: Math.max(rect.top - 8, 44),
           text,
         });
@@ -122,21 +129,37 @@ export default function HighlightFeedback() {
           className="fixed z-50 -translate-x-1/2 -translate-y-full inline-flex items-center gap-1.5 rounded-full border border-[var(--border-accent)] bg-[var(--bg-card)] px-3 py-1.5 text-xs font-medium text-[var(--text-primary)] shadow-lg hover:border-[var(--accent-gold)] hover:text-[var(--accent-gold)] transition-colors"
           style={{ left: chip.x, top: chip.y }}
         >
-          <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} aria-hidden>
-            <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z" strokeLinecap="round" strokeLinejoin="round" />
+          <svg
+            className="w-3.5 h-3.5 shrink-0"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2}
+            aria-hidden
+          >
+            <path
+              d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
           </svg>
           {t("Request a change")}
         </button>
       )}
 
       {open && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={() => setOpen(false)}>
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          onClick={() => setOpen(false)}
+        >
           <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
           <div
             className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">{t("Request a change")}</h2>
+            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">
+              {t("Request a change")}
+            </h2>
             <p className="text-sm text-[var(--text-secondary)] mb-4">
               {t("Is this worded wrong or incorrect? What should it be?")}
             </p>
@@ -148,14 +171,17 @@ export default function HighlightFeedback() {
             ) : (
               <div className="flex flex-col gap-3">
                 <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Selected text")}</label>
+                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                    {t("Selected text")}
+                  </label>
                   <div className="max-h-24 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm italic text-[var(--text-secondary)]">
                     &ldquo;{selected}&rdquo;
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("What should it say?")} <span className="text-[var(--color-ironclad)]">*</span>
+                    {t("What should it say?")}{" "}
+                    <span className="text-[var(--color-ironclad)]">*</span>
                   </label>
                   <textarea
                     value={suggestion}
@@ -166,7 +192,9 @@ export default function HighlightFeedback() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">{t("Supporting material")}</label>
+                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                    {t("Supporting material")}
+                  </label>
                   <textarea
                     value={material}
                     onChange={(e) => setMaterial(e.target.value)}
@@ -177,7 +205,8 @@ export default function HighlightFeedback() {
                 </div>
                 <div>
                   <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("Discord Username or Email")} <span className="text-[var(--color-ironclad)]">*</span>
+                    {t("Discord Username or Email")}{" "}
+                    <span className="text-[var(--color-ironclad)]">*</span>
                   </label>
                   <input
                     value={contact}
@@ -186,9 +215,17 @@ export default function HighlightFeedback() {
                     placeholder={t("username#1234 or email@example.com")}
                   />
                 </div>
-                {error && <p className="text-sm text-[var(--color-ironclad)]">{error}</p>}
+                {error && (
+                  <p className="text-sm text-[var(--color-ironclad)]">
+                    {error}
+                  </p>
+                )}
                 <div className="flex items-center justify-end gap-3 pt-1">
-                  <button type="button" onClick={() => setOpen(false)} className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(false)}
+                    className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  >
                     {t("Cancel")}
                   </button>
                   <button

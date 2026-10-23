@@ -33,8 +33,20 @@ export function setBetaRenderVersion(v: string | null | undefined) {
  * cards-full/stable/<lang>/ (and beta/<ver>/<lang>/), then add its code below.
  */
 export const CARD_RENDER_LANGS = new Set<string>([
-  "eng", "deu", "esp", "fra", "ita", "jpn", "kor",
-  "pol", "ptb", "rus", "spa", "tha", "tur", "zhs",
+  "eng",
+  "deu",
+  "esp",
+  "fra",
+  "ita",
+  "jpn",
+  "kor",
+  "pol",
+  "ptb",
+  "rus",
+  "spa",
+  "tha",
+  "tur",
+  "zhs",
   // zht joins after its full-catalog render export uploads to
   // cards-full/ — until then zht pages fall back to English renders.
 ]);
@@ -51,12 +63,13 @@ export function fullCardUrl(
   id: string,
   upgraded = false,
   channel: "stable" | "beta" = "stable",
-  lang = "eng"
+  lang = "eng",
 ): string {
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
   // Only route to a localized folder for languages we've actually rendered;
   // everything else uses the English base path.
-  const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+  const langSeg =
+    lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }
 
@@ -76,10 +89,11 @@ export function enchantedCardUrl(
   enchantment: string,
   upgraded = false,
   channel: "stable" | "beta" = "stable",
-  lang = "eng"
+  lang = "eng",
 ): string {
   const seg = channel === "beta" ? `beta/${_betaRenderVersion}` : "stable";
-  const langSeg = lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
+  const langSeg =
+    lang !== "eng" && CARD_RENDER_LANGS.has(lang) ? `${lang}/` : "";
   return `${CDN_BASE}/cards-full/${seg}/${langSeg}ench/${enchantment.toLowerCase()}/${id.toLowerCase()}${upgraded ? "_upg" : ""}.webp`;
 }
 
@@ -99,7 +113,7 @@ interface OgCard {
  */
 export function cardOgImages(
   card: OgCard,
-  lang = "eng"
+  lang = "eng",
 ): { url: string; width?: number; height?: number; alt?: string }[] {
   const id = card.id.toLowerCase();
   // image_url_card is null when there's no full render (e.g. mad_science).
@@ -107,7 +121,12 @@ export function cardOgImages(
     return card.image_url ? [{ url: imageUrl(card.image_url) }] : [];
   }
   const imgs = [
-    { url: fullCardUrl(id, false, "stable", lang), width: 400, height: 520, alt: card.name },
+    {
+      url: fullCardUrl(id, false, "stable", lang),
+      width: 400,
+      height: 520,
+      alt: card.name,
+    },
   ];
   if (card.image_url_card_upg) {
     imgs.push({

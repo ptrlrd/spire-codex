@@ -41,7 +41,9 @@
     CDN = tag.getAttribute("data-cdn") || CDN;
     CHANNEL = tag.getAttribute("data-channel") || CHANNEL;
     // Beta data implies beta card renders unless explicitly overridden.
-    CARD_CHANNEL = tag.getAttribute("data-card-channel") || (CHANNEL === "beta" ? "beta" : CARD_CHANNEL);
+    CARD_CHANNEL =
+      tag.getAttribute("data-card-channel") ||
+      (CHANNEL === "beta" ? "beta" : CARD_CHANNEL);
   }
 
   // --- Cache ---
@@ -89,13 +91,18 @@
   // "Neow's Sacrifice" -> neows_sacrifice: apostrophes vanish (they are
   // not in entity ids), everything else non-alphanumeric collapses to _.
   function nameSlug(name) {
-    return name.toLowerCase().replace(/['\u2019]/g, "").replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+    return name
+      .toLowerCase()
+      .replace(/['\u2019]/g, "")
+      .replace(/[^a-z0-9]+/g, "_")
+      .replace(/^_+|_+$/g, "");
   }
 
   // Entity page URL, routed into the /beta section on the beta channel.
   // Reference pages stay unprefixed (their content barely varies by channel).
   function entityUrl(urlType, slug) {
-    var base = SITE + (CHANNEL === "beta" && urlType !== "reference" ? "/beta" : "");
+    var base =
+      SITE + (CHANNEL === "beta" && urlType !== "reference" ? "/beta" : "");
     return base + "/" + urlType + "/" + encodeURIComponent(slug);
   }
 
@@ -104,7 +111,12 @@
   function upgradeHref(anchor, type, data) {
     if (!data || !data.id) return;
     var urlType = type + "s";
-    if (type === "keyword" || type === "orb" || type === "affliction" || type === "achievement") {
+    if (
+      type === "keyword" ||
+      type === "orb" ||
+      type === "affliction" ||
+      type === "achievement"
+    ) {
       urlType = "reference";
     }
     anchor.href = entityUrl(urlType, data.id.toLowerCase());
@@ -161,18 +173,36 @@
       tip.classList.add("scx-card-mode");
       var fid = (data.id || data.name || "").toLowerCase();
       tip.innerHTML =
-        '<img class="scx-tip-card" src="' + CDN + "/cards-full/" + CARD_CHANNEL + "/" + encodeURIComponent(fid) + '.webp"' +
-        ' alt="' + esc(data.name || "") + '" crossorigin="anonymous"' +
-        ' onerror="this.onerror=null;this.style.aspectRatio=\'auto\';this.style.objectFit=\'contain\';this.src=\'' + API + (data.image_url || "") + '\'">';
+        '<img class="scx-tip-card" src="' +
+        CDN +
+        "/cards-full/" +
+        CARD_CHANNEL +
+        "/" +
+        encodeURIComponent(fid) +
+        '.webp"' +
+        ' alt="' +
+        esc(data.name || "") +
+        '" crossorigin="anonymous"' +
+        " onerror=\"this.onerror=null;this.style.aspectRatio='auto';this.style.objectFit='contain';this.src='" +
+        API +
+        (data.image_url || "") +
+        "'\">";
       return;
     }
     tip.classList.remove("scx-card-mode");
     var html = "";
     if (data.image_url) {
-      html += '<img class="scx-tip-img" src="' + API + data.image_url + '" alt="" crossorigin="anonymous">';
+      html +=
+        '<img class="scx-tip-img" src="' +
+        API +
+        data.image_url +
+        '" alt="" crossorigin="anonymous">';
     }
     html += '<div class="scx-tip-body">';
-    html += '<div class="scx-tip-name">' + esc(data.name || data.title || "") + "</div>";
+    html +=
+      '<div class="scx-tip-name">' +
+      esc(data.name || data.title || "") +
+      "</div>";
     html += '<div class="scx-tip-meta">';
 
     if (type === "card") {
@@ -188,12 +218,17 @@
       if (data.pool) html += "<span>" + capitalize(data.pool) + "</span>";
     } else if (type === "character") {
       if (data.starting_hp) html += "<span>" + data.starting_hp + " HP</span>";
-      if (data.max_energy) html += "<span>" + data.max_energy + " Energy</span>";
-      if (data.starting_gold) html += "<span>" + data.starting_gold + " Gold</span>";
+      if (data.max_energy)
+        html += "<span>" + data.max_energy + " Energy</span>";
+      if (data.starting_gold)
+        html += "<span>" + data.starting_gold + " Gold</span>";
     } else if (type === "monster") {
       if (data.type) html += "<span>" + esc(data.type) + "</span>";
       if (data.min_hp != null) {
-        var hp = data.min_hp === data.max_hp ? data.min_hp : data.min_hp + "\u2013" + data.max_hp;
+        var hp =
+          data.min_hp === data.max_hp
+            ? data.min_hp
+            : data.min_hp + "\u2013" + data.max_hp;
         html += "<span>" + hp + " HP</span>";
       }
     } else if (type === "power") {
@@ -208,22 +243,38 @@
     } else if (type === "enchantment") {
       if (data.card_type) html += "<span>" + esc(data.card_type) + "</span>";
       if (data.is_stackable) html += "<span>Stackable</span>";
-    } else if (type === "keyword" || type === "orb" || type === "affliction" || type === "achievement") {
+    } else if (
+      type === "keyword" ||
+      type === "orb" ||
+      type === "affliction" ||
+      type === "achievement"
+    ) {
       // No special meta for these — just show description
     }
 
     html += "</div>";
     if (data.description) {
-      html += '<div class="scx-tip-desc">' + renderRichText(data.description) + "</div>";
+      html +=
+        '<div class="scx-tip-desc">' +
+        renderRichText(data.description) +
+        "</div>";
     }
     html += "</div>";
 
     // URL path: most types pluralize with "s", handle exceptions
     var urlType = type + "s";
-    if (type === "keyword" || type === "orb" || type === "affliction" || type === "achievement") {
+    if (
+      type === "keyword" ||
+      type === "orb" ||
+      type === "affliction" ||
+      type === "achievement"
+    ) {
       urlType = "reference";
     }
-    html += '<div class="scx-tip-attr"><a href="' + entityUrl(urlType, data.id.toLowerCase()) + '" target="_blank" rel="noopener">Spire Codex</a></div>';
+    html +=
+      '<div class="scx-tip-attr"><a href="' +
+      entityUrl(urlType, data.id.toLowerCase()) +
+      '" target="_blank" rel="noopener">Spire Codex</a></div>';
     tip.innerHTML = html;
   }
 
@@ -233,9 +284,18 @@
       .replace(/\[gold\](.*?)\[\/gold\]/g, '<span class="scx-gold">$1</span>')
       .replace(/\[red\](.*?)\[\/red\]/g, '<span class="scx-red">$1</span>')
       .replace(/\[blue\](.*?)\[\/blue\]/g, '<span class="scx-blue">$1</span>')
-      .replace(/\[green\](.*?)\[\/green\]/g, '<span class="scx-green">$1</span>')
-      .replace(/\[purple\](.*?)\[\/purple\]/g, '<span class="scx-purple">$1</span>')
-      .replace(/\[orange\](.*?)\[\/orange\]/g, '<span class="scx-orange">$1</span>')
+      .replace(
+        /\[green\](.*?)\[\/green\]/g,
+        '<span class="scx-green">$1</span>',
+      )
+      .replace(
+        /\[purple\](.*?)\[\/purple\]/g,
+        '<span class="scx-purple">$1</span>',
+      )
+      .replace(
+        /\[orange\](.*?)\[\/orange\]/g,
+        '<span class="scx-orange">$1</span>',
+      )
       .replace(/\[\/?(?:b|sine|jitter|pink|aqua)\]/g, "")
       .replace(/\[energy:(\d+)\]/g, "($1 Energy)")
       .replace(/\[star:(\d+)\]/g, "($1 Stars)");
@@ -277,17 +337,28 @@
       return;
     }
     if (fetched[fetchKey + ":pending"]) {
-      setTimeout(function () { fetchEntity(type, name, cb); }, 100);
+      setTimeout(function () {
+        fetchEntity(type, name, cb);
+      }, 100);
       return;
     }
     fetched[fetchKey + ":pending"] = true;
-    fetch(API + ep + (CHANNEL === "beta" ? (ep.indexOf("?") >= 0 ? "&" : "?") + "channel=beta" : ""))
-      .then(function (r) { return r.json(); })
+    fetch(
+      API +
+        ep +
+        (CHANNEL === "beta"
+          ? (ep.indexOf("?") >= 0 ? "&" : "?") + "channel=beta"
+          : ""),
+    )
+      .then(function (r) {
+        return r.json();
+      })
       .then(function (items) {
         items.forEach(function (item) {
           var n = (item.name || item.title || "").toLowerCase();
           if (n) cache[CHANNEL + ":" + type + ":" + n] = item;
-          if (item.id) cache[CHANNEL + ":" + type + ":" + item.id.toLowerCase()] = item;
+          if (item.id)
+            cache[CHANNEL + ":" + type + ":" + item.id.toLowerCase()] = item;
         });
         fetched[fetchKey] = true;
         delete fetched[fetchKey + ":pending"];
@@ -300,12 +371,27 @@
 
   // --- DOM scanning ---
   var ALL_TYPES = Object.keys(TYPE_ENDPOINTS).join("|");
-  var PATTERN = new RegExp("\\[\\[(?:(" + ALL_TYPES + "):)?([^\\]]+)\\]\\]", "g");
-  var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, TEXTAREA: 1, CODE: 1, PRE: 1, INPUT: 1 };
+  var PATTERN = new RegExp(
+    "\\[\\[(?:(" + ALL_TYPES + "):)?([^\\]]+)\\]\\]",
+    "g",
+  );
+  var SKIP_TAGS = {
+    SCRIPT: 1,
+    STYLE: 1,
+    TEXTAREA: 1,
+    CODE: 1,
+    PRE: 1,
+    INPUT: 1,
+  };
 
   function scan(root) {
     root = root || document.body;
-    var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+    var walker = document.createTreeWalker(
+      root,
+      NodeFilter.SHOW_TEXT,
+      null,
+      false,
+    );
     var nodes = [];
     while (walker.nextNode()) {
       if (SKIP_TAGS[walker.currentNode.parentNode.tagName]) continue;
@@ -325,12 +411,19 @@
         var type = match[1] || "card";
         var name = match[2];
         if (lastIdx < match.index) {
-          frag.appendChild(document.createTextNode(text.slice(lastIdx, match.index)));
+          frag.appendChild(
+            document.createTextNode(text.slice(lastIdx, match.index)),
+          );
         }
 
         // Build URL path
         var urlType = type + "s";
-        if (type === "keyword" || type === "orb" || type === "affliction" || type === "achievement") {
+        if (
+          type === "keyword" ||
+          type === "orb" ||
+          type === "affliction" ||
+          type === "achievement"
+        ) {
           urlType = "reference";
         }
 
@@ -342,7 +435,13 @@
         a.textContent = name;
         a.setAttribute("data-scx-type", type);
         a.setAttribute("data-scx-name", name);
-        a.addEventListener("mouseenter", function () { showTip(this, this.getAttribute("data-scx-type"), this.getAttribute("data-scx-name")); });
+        a.addEventListener("mouseenter", function () {
+          showTip(
+            this,
+            this.getAttribute("data-scx-type"),
+            this.getAttribute("data-scx-name"),
+          );
+        });
         a.addEventListener("mouseleave", hideTip);
         frag.appendChild(a);
         types[type] = true;
@@ -365,12 +464,16 @@
   // --- Public API ---
   window.SpireCodex = {
     scan: scan,
-    setChannel: function (ch) { CHANNEL = ch === "beta" ? "beta" : "stable"; },
+    setChannel: function (ch) {
+      CHANNEL = ch === "beta" ? "beta" : "stable";
+    },
   };
 
   // --- Auto-init ---
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function () { scan(); });
+    document.addEventListener("DOMContentLoaded", function () {
+      scan();
+    });
   } else {
     scan();
   }

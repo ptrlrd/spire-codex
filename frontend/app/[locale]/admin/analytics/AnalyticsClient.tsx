@@ -13,8 +13,16 @@ interface UmamiStat {
 }
 interface Analytics {
   active?: number;
-  last_24h?: { pageviews?: UmamiStat; visitors?: UmamiStat; visits?: UmamiStat } | null;
-  last_7d?: { pageviews?: UmamiStat; visitors?: UmamiStat; visits?: UmamiStat } | null;
+  last_24h?: {
+    pageviews?: UmamiStat;
+    visitors?: UmamiStat;
+    visits?: UmamiStat;
+  } | null;
+  last_7d?: {
+    pageviews?: UmamiStat;
+    visitors?: UmamiStat;
+    visits?: UmamiStat;
+  } | null;
   top_pages?: { x: string; y: number }[];
   dashboard_url?: string;
 }
@@ -56,7 +64,9 @@ export default function AnalyticsClient() {
 
   return (
     <AdminShell title="Analytics" subtitle="Umami">
-      {note && <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mb-4">{note}</p>
+      )}
 
       {data && (
         <>
@@ -91,14 +101,18 @@ export default function AnalyticsClient() {
             </span>
           </div>
 
-          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Last 24 hours</h2>
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Last 24 hours
+          </h2>
           <div className="grid grid-cols-3 gap-3 mb-8">
             <Card label="Visitors" value={n(data.last_24h?.visitors)} />
             <Card label="Visits" value={n(data.last_24h?.visits)} />
             <Card label="Pageviews" value={n(data.last_24h?.pageviews)} />
           </div>
 
-          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">Last 7 days</h2>
+          <h2 className="text-lg font-semibold text-[var(--accent-gold)] mb-3">
+            Last 7 days
+          </h2>
           <div className="grid grid-cols-3 gap-3 mb-8">
             <Card label="Visitors" value={n(data.last_7d?.visitors)} />
             <Card label="Visits" value={n(data.last_7d?.visits)} />
@@ -112,8 +126,13 @@ export default function AnalyticsClient() {
               </h2>
               <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] divide-y divide-[var(--border-subtle)]">
                 {data.top_pages!.map((p) => (
-                  <div key={p.x} className="flex items-center justify-between px-4 py-2 text-sm">
-                    <span className="font-mono text-xs text-[var(--text-primary)] truncate">{p.x}</span>
+                  <div
+                    key={p.x}
+                    className="flex items-center justify-between px-4 py-2 text-sm"
+                  >
+                    <span className="font-mono text-xs text-[var(--text-primary)] truncate">
+                      {p.x}
+                    </span>
                     <span className="text-[var(--text-secondary)] tabular-nums ml-3">
                       {p.y.toLocaleString()}
                     </span>

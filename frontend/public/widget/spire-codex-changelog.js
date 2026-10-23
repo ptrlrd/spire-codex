@@ -51,10 +51,13 @@
   var container = document.getElementById("scx-changelog");
   if (!container) return;
 
-  container.innerHTML = '<div class="scx-cl-loading">Loading changelog\u2026</div>';
+  container.innerHTML =
+    '<div class="scx-cl-loading">Loading changelog\u2026</div>';
 
   fetch(API + "/api/changelogs")
-    .then(function (r) { return r.json(); })
+    .then(function (r) {
+      return r.json();
+    })
     .then(function (versions) {
       if (!versions.length) {
         container.innerHTML = "<p>No changelogs available.</p>";
@@ -70,39 +73,67 @@
 
   function renderVersion(tag, versions) {
     fetch(API + "/api/changelogs/" + encodeURIComponent(tag))
-      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        return r.json();
+      })
       .then(function (data) {
         var html = "";
 
         // Version selector
         html += '<select class="scx-cl-select" id="scx-cl-version">';
         versions.forEach(function (v) {
-          html += '<option value="' + esc(v.tag) + '"' + (v.tag === tag ? " selected" : "") + ">" + esc(v.tag) + " — " + esc(v.title || v.tag) + "</option>";
+          html +=
+            '<option value="' +
+            esc(v.tag) +
+            '"' +
+            (v.tag === tag ? " selected" : "") +
+            ">" +
+            esc(v.tag) +
+            " — " +
+            esc(v.title || v.tag) +
+            "</option>";
         });
         html += "</select>";
 
         html += "<h2>" + esc(data.title || data.game_version) + "</h2>";
-        html += '<div class="scx-cl-date">' + esc(data.date || "") + " &middot; v" + esc(data.game_version) + "</div>";
+        html +=
+          '<div class="scx-cl-date">' +
+          esc(data.date || "") +
+          " &middot; v" +
+          esc(data.game_version) +
+          "</div>";
 
         if (data.features && data.features.length) {
-          html += '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-added">NEW</span> Features</h3><ul>';
-          data.features.forEach(function (f) { html += "<li>" + esc(f) + "</li>"; });
+          html +=
+            '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-added">NEW</span> Features</h3><ul>';
+          data.features.forEach(function (f) {
+            html += "<li>" + esc(f) + "</li>";
+          });
           html += "</ul></div>";
         }
 
         if (data.fixes && data.fixes.length) {
-          html += '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-fixed">FIX</span> Fixes</h3><ul>';
-          data.fixes.forEach(function (f) { html += "<li>" + esc(f) + "</li>"; });
+          html +=
+            '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-fixed">FIX</span> Fixes</h3><ul>';
+          data.fixes.forEach(function (f) {
+            html += "<li>" + esc(f) + "</li>";
+          });
           html += "</ul></div>";
         }
 
         if (data.api_changes && data.api_changes.length) {
-          html += '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-api">API</span> API Changes</h3><ul>';
-          data.api_changes.forEach(function (f) { html += "<li>" + esc(f) + "</li>"; });
+          html +=
+            '<div class="scx-cl-section"><h3><span class="scx-cl-badge scx-cl-api">API</span> API Changes</h3><ul>';
+          data.api_changes.forEach(function (f) {
+            html += "<li>" + esc(f) + "</li>";
+          });
           html += "</ul></div>";
         }
 
-        html += '<div class="scx-cl-attr"><a href="' + SITE + '/changelog" target="_blank" rel="noopener">Full changelog on Spire Codex</a></div>';
+        html +=
+          '<div class="scx-cl-attr"><a href="' +
+          SITE +
+          '/changelog" target="_blank" rel="noopener">Full changelog on Spire Codex</a></div>';
 
         container.innerHTML = html;
 

@@ -9,10 +9,11 @@ import { useT, useGameLocale, type TFn } from "@/lib/i18n";
 
 import { useEffect, useMemo, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { imageUrl, fullCardUrl } from "@/lib/image-url";
+import { imageUrl } from "@/lib/image-url";
 import { cleanId, displayName } from "@/lib/display-name";
 import type { CardInfo, PotionInfo, RelicInfo } from "../runs/[hash]/RunPills";
 import TwitchIcon from "@/app/components/TwitchIcon";
+import CardImage from "@/app/components/CardImage";
 
 export const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -292,6 +293,7 @@ export interface MonsterInfo {
   id: string;
   name: string;
   image_url?: string | null;
+  moves?: { id: string; name: string; intent?: string | null }[];
 }
 
 export type MonsterMap = Record<string, MonsterInfo>;
@@ -397,14 +399,23 @@ export function powerName(id: string, powers: NamedMap): string {
   return info?.name || displayName(bare);
 }
 
-export function namedOr(id: string | null | undefined, map: NamedMap, fallback?: string): string {
+export function namedOr(
+  id: string | null | undefined,
+  map: NamedMap,
+  fallback?: string,
+): string {
   const bare = cleanId(id ?? "");
-  return (bare && map[bare]?.name) || fallback || (bare ? displayName(bare) : "");
+  return (
+    (bare && map[bare]?.name) || fallback || (bare ? displayName(bare) : "")
+  );
 }
 
 /** Lazy id -> item map from a localized list endpoint; refetches on a locale
  * change and only once enabled. */
-export function useIdMap<T extends { id: string }>(path: string, enabled = true): Record<string, T> {
+export function useIdMap<T extends { id: string }>(
+  path: string,
+  enabled = true,
+): Record<string, T> {
   const lang = useGameLocale();
   const [map, setMap] = useState<Record<string, T>>({});
   useEffect(() => {
@@ -444,12 +455,35 @@ export function useLiveCatalogs(): LiveCatalogs {
   const modifiers = useIdMap<NamedInfo>("/api/modifiers");
   const characterNames = useCharacterNames();
   return useMemo(
-    () => ({ cards, relics, potions, events, powers, orbs, acts, modifiers, characterNames }),
-    [cards, relics, potions, events, powers, orbs, acts, modifiers, characterNames],
+    () => ({
+      cards,
+      relics,
+      potions,
+      events,
+      powers,
+      orbs,
+      acts,
+      modifiers,
+      characterNames,
+    }),
+    [
+      cards,
+      relics,
+      potions,
+      events,
+      powers,
+      orbs,
+      acts,
+      modifiers,
+      characterNames,
+    ],
   );
 }
 
-export function elapsed(startedAt?: string | null, underMinute = "under a minute"): string {
+export function elapsed(
+  startedAt?: string | null,
+  underMinute = "under a minute",
+): string {
   if (!startedAt) return "";
   const ms = Date.now() - new Date(startedAt).getTime();
   if (ms <= 0) return "";
@@ -490,7 +524,9 @@ export function safeId(id: string): boolean {
  * per-id occurrence ordinal, so appending or removing one item does not
  * reshuffle the keys of the items before it. Plain array-index keys do, which
  * remounts rows on every poll and drops open hover tooltips. */
-export function withOrdinalKeys(items: string[]): { item: string; key: string }[] {
+export function withOrdinalKeys(
+  items: string[],
+): { item: string; key: string }[] {
   const seen: Record<string, number> = {};
   return items.map((item) => {
     const n = seen[item] ?? 0;
@@ -518,45 +554,14 @@ export function LiveCardImg({
   className?: string;
   portrait?: string | null;
 }) {
-  const t = useT();
-  const lang = useGameLocale();
-  // The exhausted-chain marker is keyed by card+lang+chain shape so the tile
-  // resets if this slot rerenders as a different card (ordinal keys reuse list
-  // positions across polls) or the catalog portrait arrives late.
-  const cardKey = `${id}|${upgraded}|${lang}|${portrait ? 1 : 0}`;
-  const [failedKey, setFailedKey] = useState("");
-  if (!safeId(id) || failedKey === cardKey) {
-    return (
-      <span
-        className={`flex aspect-[10/13] items-center justify-center overflow-hidden rounded-sm border border-dashed border-[var(--border-subtle)] bg-[var(--bg-primary)] p-1 text-center ${className}`}
-        title={alt}
-      >
-        <span className="text-[8px] font-bold uppercase leading-tight tracking-wider text-[var(--text-muted)]">
-          {t("Modded card")}
-        </span>
-      </span>
-    );
-  }
-  const lower = id.toLowerCase();
-  const chain = [
-    fullCardUrl(lower, upgraded, "stable", lang),
-    fullCardUrl(lower, upgraded, "beta", lang),
-    ...(portrait ? [imageUrl(portrait)] : []),
-  ];
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={chain[0]}
+    <CardImage
+      id={id}
+      upgraded={upgraded}
+      art={portrait}
       alt={alt}
       className={className}
-      crossOrigin="anonymous"
-      loading="lazy"
-      onError={(e) => {
-        const el = e.target as HTMLImageElement;
-        const next = chain[chain.indexOf(el.src) + 1];
-        if (next) el.src = next;
-        else setFailedKey(cardKey);
-      }}
+      fallbackClassName={`rounded-sm ${className}`}
     />
   );
 }
@@ -602,7 +607,9 @@ export function WatchOnTwitch({
       <TwitchIcon className="w-3.5 h-3.5" />
       {t("Watch on Twitch")}
       {viewers != null && (
-        <span className="font-normal opacity-80">· {viewers.toLocaleString()}</span>
+        <span className="font-normal opacity-80">
+          · {viewers.toLocaleString()}
+        </span>
       )}
     </a>
   );
@@ -644,7 +651,10 @@ export function useEncounterMap(enabled: boolean): EncounterMap {
 /** The catalog monster for an id, also matching encounter-style ids
  * (FROG_KNIGHT_NORMAL, BATTLEWORN_DUMMY_EVENT_V2_ENCOUNTER) by dropping
  * trailing segments until a monster id is left. */
-export function findMonster(id: string, monsters: MonsterMap): MonsterInfo | undefined {
+export function findMonster(
+  id: string,
+  monsters: MonsterMap,
+): MonsterInfo | undefined {
   const parts = cleanId(id).split("_");
   for (let n = parts.length; n > 0; n--) {
     const hit = monsters[parts.slice(0, n).join("_")];
@@ -666,7 +676,10 @@ export function enemyName(
 ): string {
   const id = e.id ? cleanId(e.id) : "";
   return (
-    (id && (monsters[id]?.name || encounters?.[id]?.name || findMonster(id, monsters)?.name)) ||
+    (id &&
+      (monsters[id]?.name ||
+        encounters?.[id]?.name ||
+        findMonster(id, monsters)?.name)) ||
     e.name ||
     (id ? displayName(id) : "")
   );
@@ -737,13 +750,24 @@ export function FightingChip({
   return (
     <span className="inline-flex min-w-0 max-w-full items-center gap-1.5 px-2 py-1 rounded-full bg-danger/10 border border-danger/30 text-xs text-danger">
       <span className="flex -space-x-2 shrink-0">
-        {withOrdinalKeys(groups.slice(0, 3).map((g) => g.id)).map(({ item, key }) => (
-          <EnemyCircle key={key} id={item} monsters={monsters} className={circle} />
-        ))}
+        {withOrdinalKeys(groups.slice(0, 3).map((g) => g.id)).map(
+          ({ item, key }) => (
+            <EnemyCircle
+              key={key}
+              id={item}
+              monsters={monsters}
+              className={circle}
+            />
+          ),
+        )}
       </span>
-      <span className="min-w-0 truncate">{t("Fighting {label}", { label })}</span>
+      <span className="min-w-0 truncate">
+        {t("Fighting {label}", { label })}
+      </span>
       {p.turn != null && p.turn > 0 && (
-        <span className="text-danger/80 whitespace-nowrap shrink-0">· {t("Turn {n}", { n: p.turn })}</span>
+        <span className="text-danger/80 whitespace-nowrap shrink-0">
+          · {t("Turn {n}", { n: p.turn })}
+        </span>
       )}
     </span>
   );
@@ -760,12 +784,16 @@ function intentLabel(it: EnemyIntent, t: TFn): { text: string; cls: string } {
   const emerald = "text-success bg-success/10 border-success/30";
   const fuchsia = "text-special bg-special/10 border-special/30";
   const amber = "text-warning bg-warning/10 border-warning/30";
-  const muted = "text-[var(--text-muted)] bg-[var(--bg-primary)] border-[var(--border-subtle)]";
+  const muted =
+    "text-[var(--text-muted)] bg-[var(--bg-primary)] border-[var(--border-subtle)]";
   switch (kind) {
     case "attack":
       return { text: dmg ? t("ATK {dmg}", { dmg }) : t("ATK"), cls: rose };
     case "deathblow":
-      return { text: dmg ? t("LETHAL {dmg}", { dmg }) : t("LETHAL"), cls: "text-danger bg-danger/10 border-danger/60" };
+      return {
+        text: dmg ? t("LETHAL {dmg}", { dmg }) : t("LETHAL"),
+        cls: "text-danger bg-danger/10 border-danger/60",
+      };
     case "defend":
       return { text: t("BLOCK"), cls: sky };
     case "buff":
@@ -794,7 +822,13 @@ function intentLabel(it: EnemyIntent, t: TFn): { text: string; cls: string } {
  * still shows something on an older mod. Gated on enemy data, not the screen:
  * the backend clears enemies/fighting when combat ends, so data presence is the
  * correct gate and the panel naturally disappears after a fight. */
-export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: MonsterMap }) {
+export function LiveEnemiesPanel({
+  p,
+  monsters,
+}: {
+  p: LivePlayer;
+  monsters: MonsterMap;
+}) {
   const t = useT();
   const rich = (p.enemies ?? []).filter((e) => e && (e.id || e.name));
   const enemies: Enemy[] = rich.length
@@ -805,66 +839,84 @@ export function LiveEnemiesPanel({ p, monsters }: { p: LivePlayer; monsters: Mon
   return (
     <div className="rounded-lg border border-danger/30 bg-danger/10 p-4">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-danger">{t("Fighting")}</span>
+        <span className="text-[10px] font-bold uppercase tracking-wider text-danger">
+          {t("Fighting")}
+        </span>
         {p.turn != null && p.turn > 0 && (
-          <span className="ml-auto text-xs text-danger tabular-nums">{t("Turn {n}", { n: p.turn })}</span>
+          <span className="ml-auto text-xs text-danger tabular-nums">
+            {t("Turn {n}", { n: p.turn })}
+          </span>
         )}
       </div>
       <ul className="space-y-2.5">
-        {withOrdinalKeys(enemies.map((e) => e.id || e.name || "?")).map(({ key }, i) => {
-          const e = enemies[i];
-          const name = enemyName(e, monsters) || t("Enemy");
-          const hpPct =
-            e.hp != null && e.max_hp ? Math.max(0, Math.min(100, (e.hp / e.max_hp) * 100)) : null;
-          const intents = e.intents ?? [];
-          return (
-            <li key={key} className="flex items-center gap-2.5">
-              {e.id ? (
-                <EnemyCircle id={e.id} monsters={monsters} className="w-10 h-10" />
-              ) : (
-                <span className="inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-sm text-[var(--text-muted)]">
-                  {(name[0] || "?").toUpperCase()}
-                </span>
-              )}
-              <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-sm text-danger truncate">{name}</span>
-                  {(e.block ?? 0) > 0 && (
-                    <span className="text-[10px] text-info tabular-nums shrink-0" title={t("block")}>
-                      [{e.block}]
-                    </span>
-                  )}
-                  <span className="ml-auto flex items-center gap-1 shrink-0">
-                    {intents.map((it, j) => {
-                      const l = intentLabel(it, t);
-                      return (
-                        <span
-                          key={`${it.type}-${j}`}
-                          className={`text-[10px] font-bold rounded border px-1.5 py-0.5 ${l.cls}`}
-                        >
-                          {l.text}
-                        </span>
-                      );
-                    })}
+        {withOrdinalKeys(enemies.map((e) => e.id || e.name || "?")).map(
+          ({ key }, i) => {
+            const e = enemies[i];
+            const name = enemyName(e, monsters) || t("Enemy");
+            const hpPct =
+              e.hp != null && e.max_hp
+                ? Math.max(0, Math.min(100, (e.hp / e.max_hp) * 100))
+                : null;
+            const intents = e.intents ?? [];
+            return (
+              <li key={key} className="flex items-center gap-2.5">
+                {e.id ? (
+                  <EnemyCircle
+                    id={e.id}
+                    monsters={monsters}
+                    className="w-10 h-10"
+                  />
+                ) : (
+                  <span className="inline-flex w-10 h-10 shrink-0 items-center justify-center rounded-full border border-[var(--border-subtle)] bg-[var(--bg-primary)] text-sm text-[var(--text-muted)]">
+                    {(name[0] || "?").toUpperCase()}
                   </span>
-                </div>
-                {hpPct != null ? (
-                  <div className="mt-1">
-                    <div className="flex justify-between text-[9px] text-danger/70 tabular-nums">
-                      <span>{t("HP")}</span>
-                      <span>
-                        {e.hp}/{e.max_hp}
+                )}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-sm text-danger truncate">{name}</span>
+                    {(e.block ?? 0) > 0 && (
+                      <span
+                        className="text-[10px] text-info tabular-nums shrink-0"
+                        title={t("block")}
+                      >
+                        [{e.block}]
                       </span>
-                    </div>
-                    <div className="h-1.5 rounded bg-[var(--bg-primary)]">
-                      <div className="h-1.5 rounded bg-danger-fill" style={{ width: `${hpPct}%` }} />
-                    </div>
+                    )}
+                    <span className="ml-auto flex items-center gap-1 shrink-0">
+                      {intents.map((it, j) => {
+                        const l = intentLabel(it, t);
+                        return (
+                          <span
+                            key={`${it.type}-${j}`}
+                            className={`text-[10px] font-bold rounded border px-1.5 py-0.5 ${l.cls}`}
+                          >
+                            {l.text}
+                          </span>
+                        );
+                      })}
+                    </span>
                   </div>
-                ) : null}
-              </div>
-            </li>
-          );
-        })}
+                  {hpPct != null ? (
+                    <div className="mt-1">
+                      <div className="flex justify-between text-[9px] text-danger/70 tabular-nums">
+                        <span>{t("HP")}</span>
+                        <span>
+                          {e.hp}/{e.max_hp}
+                        </span>
+                      </div>
+                      <div className="h-1.5 rounded bg-[var(--bg-primary)]">
+                        <div
+                          className="h-1.5 rounded bg-danger-fill"
+                          style={{ width: `${hpPct}%` }}
+                        />
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </li>
+            );
+          },
+        )}
       </ul>
     </div>
   );

@@ -27,10 +27,15 @@ export default function CacheClient() {
     setBusy(true);
     setNote(null);
     try {
-      const res = await adminFetch<{ ok: boolean; purged: string; count: number }>(
-        "/api/admin/cf/purge",
-        { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ paths: list }) },
-      );
+      const res = await adminFetch<{
+        ok: boolean;
+        purged: string;
+        count: number;
+      }>("/api/admin/cf/purge", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ paths: list }),
+      });
       setNote(
         res.ok
           ? res.purged === "everything"
@@ -48,9 +53,12 @@ export default function CacheClient() {
   return (
     <AdminShell title="Cache" subtitle="Cloudflare purge">
       <p className="text-sm text-[var(--text-secondary)] mb-3">
-        One path per line, e.g. <code className="text-[var(--accent-gold)]">/cards</code> or{" "}
-        <code className="text-[var(--accent-gold)]">/api/runs/community-stats</code>. Paths purge on
-        the apex domain.
+        One path per line, e.g.{" "}
+        <code className="text-[var(--accent-gold)]">/cards</code> or{" "}
+        <code className="text-[var(--accent-gold)]">
+          /api/runs/community-stats
+        </code>
+        . Paths purge on the apex domain.
       </p>
       <textarea
         value={paths}
@@ -75,7 +83,9 @@ export default function CacheClient() {
           Purge everything
         </button>
       </div>
-      {note && <p className="text-sm text-[var(--text-secondary)] mt-4">{note}</p>}
+      {note && (
+        <p className="text-sm text-[var(--text-secondary)] mt-4">{note}</p>
+      )}
     </AdminShell>
   );
 }
