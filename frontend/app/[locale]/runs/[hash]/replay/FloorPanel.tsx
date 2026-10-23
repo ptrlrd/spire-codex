@@ -18,7 +18,7 @@ import type {
   ReplayTurn,
   ShopItem,
 } from "@/lib/replay";
-import { isCombatKind } from "@/lib/replay";
+import { isCombatKind, shelfRows } from "@/lib/replay";
 import {
   type EncounterMap,
   type MonsterMap,
@@ -709,14 +709,6 @@ function DecisionCard({
   );
 }
 
-function boughtSlots(buys: BuyLine[], kind: string): Set<number> {
-  return new Set(
-    buys
-      .filter((b) => b.kind === kind && b.slot !== undefined)
-      .map((b) => b.slot as number),
-  );
-}
-
 function StockRow({
   item,
   kind,
@@ -807,13 +799,10 @@ function ShopBlock({
   const spentKnown = goldBuys.every((l) => l.costCurrent !== undefined);
   const spent = goldBuys.reduce((sum, l) => sum + (l.costCurrent ?? 0), 0);
   const stock = f.shop;
-  const groups = stock
-    ? ([
-        ["card", stock.cards],
-        ["relic", stock.relics],
-        ["potion", stock.potions],
-      ] as const)
-    : [];
+  const shelf = shelfRows(f);
+  const groups = (["card", "relic", "potion"] as const).map(
+    (kind) => [kind, shelf.filter((r) => r.kind === kind)] as const,
+  );
   return (
     <section className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-3">
       <header className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1 text-xs tabular-nums text-[var(--text-muted)]">
@@ -839,12 +828,12 @@ function ShopBlock({
           {groups.map(([kind, items]) =>
             items.length ? (
               <ul key={kind} className="grid gap-1.5 sm:grid-cols-2">
-                {items.map((item) => (
+                {items.map(({ item, bought }) => (
                   <StockRow
-                    key={`${kind}-${item.slot}`}
+                    key={`${kind}-${item.slot}-${item.id}`}
                     item={item}
                     kind={kind}
-                    bought={boughtSlots(buys, kind).has(item.slot)}
+                    bought={bought}
                     cat={cat}
                   />
                 ))}
