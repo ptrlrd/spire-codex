@@ -192,7 +192,12 @@ def fetch_overwolf_subscription(token: str) -> dict | None:
     if resp.status_code in (400, 401, 403):
         raise OverwolfError(f"invalid token: overwolf subscriptions {resp.status_code}")
     resp.raise_for_status()
-    rows = resp.json()
+    return _best_subscription(resp.json())
+
+
+def _best_subscription(rows: Any) -> dict:
+    """The strongest of the user's subscriptions to our packages, from the
+    subscriptions API or the matching userinfo claim."""
     if isinstance(rows, dict):
         rows = rows.get("subscriptions") or rows.get("data") or [rows]
     best: dict | None = None
@@ -228,9 +233,6 @@ def link_overwolf(user_id: str, token: str) -> dict:
     """Verify the token, store the Overwolf user id on the account and
     refresh the subscription state. The overlay calls this on sign-in and
     on every launch, which is what keeps the flag from lapsing."""
-    from bson import ObjectId
-
-    from .users_db import _get_collection
 
     claims = verify_overwolf_token(token)
     ow_id = claims["overwolf_user_id"]
@@ -246,6 +248,16 @@ def link_overwolf(user_id: str, token: str) -> dict:
             raise OverwolfError("invalid token: overwolf could not confirm it")
         logger.warning("overwolf subscription check failed", exc_info=True)
         sub = {"state": "error", "package_id": None, "tier": None}
+    return _store_overwolf_link(user_id, ow_id, sub)
+
+
+def _store_overwolf_link(
+    user_id: str, ow_id: str, sub: dict | None, extra: dict | None = None
+) -> dict:
+    from bson import ObjectId
+
+    from .users_db import _get_collection
+
     now = _now()
     active = _overwolf_perks(sub)
     record = {
@@ -266,7 +278,13 @@ def link_overwolf(user_id: str, token: str) -> dict:
         record["since"] = now
     coll.update_one(
         {"_id": ObjectId(user_id)},
-        {"$set": {"overwolf_id": ow_id, "overwolf_subscription": record}},
+        {
+            "$set": {
+                "overwolf_id": ow_id,
+                "overwolf_subscription": record,
+                **(extra or {}),
+            }
+        },
     )
     return {
         "overwolf_id": ow_id,
@@ -275,6 +293,41 @@ def link_overwolf(user_id: str, token: str) -> dict:
         "state": record["state"],
         "tier": record["tier"],
     }
+
+
+def link_overwolf_oauth(
+    user_id: str,
+    ow_id: str,
+    access_token: str,
+    nickname: str | None = None,
+    subscriptions: Any = None,
+) -> dict:
+    """Link from the site's Login with Overwolf flow. Identity was read from
+    Overwolf's userinfo endpoint, so there is no token to verify here. The
+    subscription comes from the userinfo claim when the user granted that
+    scope, else from the subscriptions API; when neither answers, the link
+    is recorded without perks and the overlay's next check fills them in."""
+    from bson import ObjectId
+
+    from .users_db import _get_collection
+
+    conflict = _get_collection().find_one(
+        {"overwolf_id": ow_id, "_id": {"$ne": ObjectId(user_id)}}, {"_id": 1}
+    )
+    if conflict:
+        return {"error": "This Overwolf account is already linked to another user"}
+    if subscriptions is not None:
+        sub = _best_subscription(subscriptions)
+    else:
+        try:
+            sub = fetch_overwolf_subscription(access_token)
+        except Exception:
+            logger.info(
+                "overwolf subscription unavailable for a web login", exc_info=True
+            )
+            sub = {"state": "unverified", "package_id": None, "tier": None}
+    extra = {"overwolf_nickname": nickname} if nickname else None
+    return _store_overwolf_link(user_id, ow_id, sub, extra)
 
 
 def _overwolf_live(ow: dict) -> bool:
@@ -299,13 +352,24 @@ def linked_overwolf_tier(user: dict, now: datetime | None = None) -> str | None:
 
 
 def unlink_overwolf(user_id: str) -> dict:
+    """Drop the Overwolf link, unless it is the only way left to sign in."""
     from bson import ObjectId
 
-    from .users_db import _get_collection
+    from .users_db import _get_collection, _signin_count
 
-    _get_collection().update_one(
+    coll = _get_collection()
+    user = coll.find_one({"_id": ObjectId(user_id)}) or {}
+    if user.get("overwolf_id") and _signin_count(user) <= 1:
+        return {"error": "Cannot disconnect your only sign-in method (Overwolf)"}
+    coll.update_one(
         {"_id": ObjectId(user_id)},
-        {"$unset": {"overwolf_id": "", "overwolf_subscription": ""}},
+        {
+            "$unset": {
+                "overwolf_id": "",
+                "overwolf_nickname": "",
+                "overwolf_subscription": "",
+            }
+        },
     )
     return {"overwolf_id": None, "active": False}
 

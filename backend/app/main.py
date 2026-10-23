@@ -77,6 +77,7 @@ from .routers import (
     auth_discord,
     auth_twitch,
     auth_patreon,
+    auth_overwolf,
     auth,
     uninstall,
     qa_feedback,
@@ -774,6 +775,7 @@ app.include_router(auth_steam.router, include_in_schema=False)
 app.include_router(auth_discord.router, include_in_schema=False)
 app.include_router(auth_twitch.router, include_in_schema=False)
 app.include_router(auth_patreon.router, include_in_schema=False)
+app.include_router(auth_overwolf.router, include_in_schema=False)
 app.include_router(auth.router, include_in_schema=False)
 app.include_router(tierlists.router)
 app.include_router(mod_meta.router)

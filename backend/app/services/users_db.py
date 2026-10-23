@@ -143,6 +143,18 @@ def get_user_by_twitch_id(twitch_id: str) -> dict | None:
     return None
 
 
+def get_user_by_overwolf_id(overwolf_id: str) -> dict | None:
+    """Look up a user by Overwolf ID without creating one."""
+    if not overwolf_id:
+        return None
+    coll = _get_collection()
+    existing = coll.find_one({"overwolf_id": overwolf_id})
+    if existing:
+        existing["_id"] = str(existing["_id"])
+        return existing
+    return None
+
+
 def find_or_create_by_steam(steam_id: str, persona_name: str | None = None) -> dict:
     coll = _get_collection()
     now = datetime.now(timezone.utc)
@@ -537,7 +549,7 @@ def link_twitch(
     return {"success": True}
 
 
-_SIGNIN_FIELDS = ("steam_id", "discord_id", "twitch_id")
+_SIGNIN_FIELDS = ("steam_id", "discord_id", "twitch_id", "overwolf_id")
 
 
 def _signin_count(user: dict) -> int:

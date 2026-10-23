@@ -8,7 +8,6 @@ import ProfileSettings from "@/app/components/ProfileSettings";
 import { useToast } from "@/app/components/Toast";
 import DiscordIcon from "@/app/components/DiscordIcon";
 import TwitchIcon from "@/app/components/TwitchIcon";
-import { Link } from "@/i18n/navigation";
 
 const OVERWOLF_TIER_LABELS = {
   common: "Common Subscriber",
@@ -27,6 +26,7 @@ export default function SettingsClient() {
     loginSteam,
     loginDiscord,
     loginTwitch,
+    loginOverwolf,
     loginPatreon,
   } = useAuth();
   const [tab, setTab] = useState<"account" | "api">("account");
@@ -528,6 +528,11 @@ export default function SettingsClient() {
                     <span className="text-sm text-[var(--text-primary)] shrink-0">
                       Overwolf
                     </span>
+                    {user.overwolf_nickname && (
+                      <span className="text-xs text-[var(--text-muted)] truncate">
+                        {user.overwolf_nickname}
+                      </span>
+                    )}
                     {user.overwolf_tier && (
                       <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-[var(--accent-gold)]/15 text-[var(--accent-gold)] border border-[var(--accent-gold)]/30 shrink-0">
                         {t(OVERWOLF_TIER_LABELS[user.overwolf_tier])}
@@ -548,8 +553,8 @@ export default function SettingsClient() {
                   </div>
                 </div>
               ) : (
-                <Link
-                  href="/overlay"
+                <a
+                  href={loginOverwolf}
                   className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg bg-[var(--bg-card)] border border-[var(--border-subtle)] hover:border-[var(--border-accent)] transition-colors cursor-pointer"
                 >
                   <div className="flex items-center gap-2">
@@ -563,9 +568,9 @@ export default function SettingsClient() {
                     </span>
                   </div>
                   <span className="text-xs text-[var(--text-secondary)]">
-                    {t("Connect from the Spire Codex overlay")}
+                    {t("Connect")}
                   </span>
-                </Link>
+                </a>
               )}
             </div>
             <p className="text-xs text-[var(--text-tertiary)]">
