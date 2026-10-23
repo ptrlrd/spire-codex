@@ -190,6 +190,12 @@ export interface ShopLine extends LineBase {
   relics: ShopItem[];
   potions: ShopItem[];
 }
+export type ShelfKind = "card" | "relic" | "potion";
+export interface ShelfRow {
+  kind: ShelfKind;
+  item: ShopItem;
+  bought: boolean;
+}
 export interface GoldLine extends LineBase {
   t: "gold";
   gold: number;
@@ -1880,6 +1886,52 @@ export function parseReplay(text: string): ReplayModel {
  * by matching room kind, falling back to any reachable node and finally to the
  * first node on the row. That drew a confident route the journal never
  * recorded, and one wrong guess pushed every later floor along with it. */
+/** Every item that stood on this floor's shelves, in slot order, with
+ * restocks (The Courier refills a bought slot) listed after the item they
+ * replaced. A purchase marks the row whose slot and id it names. */
+export function shelfRows(floor: ReplayFloor): ShelfRow[] {
+  const seen = new Set<string>();
+  const kinds: Array<[ShelfKind, (s: ShopLine) => ShopItem[], ShelfRow[]]> = [
+    ["card", (s) => s.cards, []],
+    ["relic", (s) => s.relics, []],
+    ["potion", (s) => s.potions, []],
+  ];
+  for (const line of floor.lines) {
+    if (line.t !== "shop") continue;
+    for (const [kind, pick, list] of kinds) {
+      for (const item of pick(line)) {
+        if (!item.id) continue;
+        const key = `${kind}:${item.slot}:${item.id}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        const after = list.findLastIndex((r) => r.item.slot <= item.slot);
+        list.splice(after + 1, 0, { kind, item, bought: false });
+      }
+    }
+  }
+  const rows = kinds.flatMap(([, , list]) => list);
+  for (const line of floor.lines) {
+    if (line.t !== "buy" || line.slot === undefined) continue;
+    const kind = line.kind as ShelfKind;
+    const row =
+      rows.find(
+        (r) =>
+          r.kind === kind &&
+          r.item.slot === line.slot &&
+          !r.bought &&
+          (line.id === undefined || r.item.id === line.id),
+      ) ??
+      rows.find(
+        (r) =>
+          r.kind === kind &&
+          r.item.slot === line.slot &&
+          (line.id === undefined || r.item.id === line.id),
+      );
+    if (row) row.bought = true;
+  }
+  return rows;
+}
+
 export function routeForAct(model: ReplayModel, act: number): RouteEntry[] {
   const map = model.maps[act];
   const onMap = new Set((map?.nodes ?? []).map((n) => `${n[0]},${n[1]}`));
