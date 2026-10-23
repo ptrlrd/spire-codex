@@ -9,3 +9,26 @@ bao_url: "{{ lookup('env', 'VAULT_ADDR') | default('https://bao.lord.casa', true
 bao_mount: secret
 remote_env_path: "{{ spire_codex_dir }}/.env"
 origin_verify_secret: ""
+
+spire_env:
+  QA_DIR: /data/qa
+  DATA_DIR: /data
+  GITHUB_APP_PRIVATE_KEY_PATH: /secrets/knowledge-demon.private-key.pem
+  CDN_BASE_URL: https://cdn.spire-codex.com
+  R2_BUCKET: spire-codex-tierlists
+  R2_PUBLIC_BASE_URL: https://tierlists.spire-codex.com
+  ADMIN_IDS: ""
+  UMAMI_URL: ""
+  LOKI_URL: ""
+  OVERWOLF_STORE_ID: ""
+  OVERWOLF_EXTENSION_ID: ""
+  THANKS_GITHUB_REPOS: ""
+  THANKS_GITHUB_EXCLUDE: ""
+  COMMUNITY_ANCIENT_MIN_OFFERS: ""
+  ENTITY_STATS_REBUILD_WORKERS: ""
+  RUN_BLOBS_STARTUP_BACKFILL: ""
+  BACKEND_WEB_WORKERS: ""
+  BACKEND_MEM_LIMIT: ""
+  REDIS_BIND: ""
+  LAKE_BUILD_MEMORY: 7000MB
+  LAKE_R2_PUBLISH: ""

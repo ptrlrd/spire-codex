@@ -55,6 +55,31 @@ For an interactive session, `bao login -method=oidc` followed by `export VAULT_T
 
 Secrets reach OpenBao from the 1Password `Spire Codex` vault through the homelab's secrets-sync layer: one ExternalSecret per item and a CronJob that copies them into KV every 15 minutes. Rotate in 1Password, let the sync land (or force it), then run the playbook. To add an item, add it to `infrastructure/secrets-sync/spire-codex.yaml` and the `kv-sync` CronJob mounts in the homelab repo.
 
+`files/.env.j2` is the whole prod `.env`: every lookup below is required, so a missing item fails the render before anything touches the box. Plain values (paths, buckets, memory caps, admin ids) live in `group_vars/all.yml` under `spire_env`; set `spire_env_overrides` on a host in the inventory where the ingest box differs from the serving box.
+
+| OpenBao secret | 1Password item | Fields | Env vars |
+|---|---|---|---|
+| `spire-codex-auth` | JWT_SECRET | `Auth` | JWT_SECRET |
+| `spire-codex-discord-oauth` | Discord OAuth | `client-id`, `client-secret` | DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET |
+| `spire-codex-steam` | Steam Web API | `api-key` | STEAM_WEB_API_KEY |
+| `spire-codex-twitch` | Twitch OAuth | `client-id`, `client-secret` | TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET |
+| `spire-codex-patreon` | Patreon OAuth | `client-id`, `client-secret`, `webhook-secret` | PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, PATREON_WEBHOOK_SECRET |
+| `spire-codex-kofi` | Ko-fi | `verification-token` | KOFI_VERIFICATION_TOKEN |
+| `spire-codex-github` | GitHub Token | `token` | GITHUB_TOKEN |
+| `spire-codex-discord-webhooks` | Discord Webhooks | `feedback`, `guide` | FEEDBACK_WEBHOOK_URL, GUIDE_WEBHOOK_URL |
+| `spire-codex-resend` | Resend | `api-key`, `forward-to`, `forward-from` | RESEND_API_KEY, UNINSTALL_FORWARD_TO, UNINSTALL_FORWARD_FROM |
+| `spire-codex-mongodb` | MongoDB | `connection-string`, `admin-password` | MONGO_URL, MONGO_ADMIN_PASS |
+| `spire-codex-umami` | Umami | `db_password`, `app_secret` | UMAMI_DB_PASSWORD, UMAMI_APP_SECRET |
+| `spire-codex-umami-login` | Umami | `username`, `password` | UMAMI_USERNAME, UMAMI_PASSWORD |
+| `spire-codex-cloudflare` | Cloudflare | `API Token`, `Zone ID` | CF_TOKEN, CF_ZONE |
+| `spire-codex-workers-ai` | Cloudflare | `Account ID`, `Workers AI Token` | CF_ACCOUNT_ID, WORKERS_AI_TOKEN |
+| `spire-codex-cf-access` | CF Access | `client-id`, `client-secret` | CF_ACCESS_CLIENT_ID, CF_ACCESS_CLIENT_SECRET |
+| `spire-codex-r2-tierlists` | R2 | `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT` | R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_ENDPOINT |
+| `spire-codex-r2-lake` | R2 Lake | `access_key_id`, `secret_access_key`, `endpoint`, `bucket` | LAKE_R2_* |
+| `spire-codex-backblaze` | Backblaze | `rw-keyId`, `rw-applicationKey` | litestream.yml only |
+
+The 1Password item and field names are case-sensitive in the ExternalSecret `remoteRef.key` (`<Item>/<field>`). Items added in this round, which need creating in the `Spire Codex` vault before the first sync: Steam Web API, Twitch OAuth, Patreon OAuth, Ko-fi, GitHub Token, CF Access, R2 Lake, plus the `username`/`password` fields on Umami and `Account ID`/`Workers AI Token` on Cloudflare.
+
 Still read from 1Password directly: the SSH key, remote user and origin IPs (wrapper), and the two allow-list IPs `sync-config.yml` uses.
 
 ## Playbooks
@@ -75,7 +100,7 @@ Still read from 1Password directly: the SSH key, remote user and origin IPs (wra
 | Playbook | When |
 |---|---|
 | `sync-config.yml` | Pushed nginx config / QA cards |
-| `sync-secrets.yml` | A secret rotated in 1Password has landed in OpenBao, or an env var was added to `files/.env.j2` |
+| `sync-secrets.yml` | A secret rotated in 1Password has landed in OpenBao, a new item was added, or a plain value in `group_vars/all.yml` `spire_env` changed. Replaces the whole `.env` on the box. |
 | `sync-litestream.yml` | Rotated B2 credentials (Litestream is stopped, see below) |
 
 ### Data + recovery
