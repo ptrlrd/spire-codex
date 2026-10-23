@@ -1,0 +1,10 @@
+{% set b2 = lookup('community.hashi_vault.vault_kv2_get', 'spire-codex-backblaze', url=bao_url, engine_mount_point=bao_mount).secret %}
+dbs:
+  - path: /var/www/spire-codex/data/runs.db
+    replicas:
+      - type: s3
+        bucket: spire-codex
+        path: runs.db
+        endpoint: https://s3.us-west-004.backblazeb2.com
+        access-key-id: {{ b2['rw-keyId'] }}
+        secret-access-key: {{ b2['rw-applicationKey'] }}

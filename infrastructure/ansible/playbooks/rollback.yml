@@ -1,28 +1,10 @@
 ---
-# Roll back to a previous Docker image tag when a deploy goes sideways.
-# Doesn't edit docker-compose.prod.yml — retags the requested SHA as
-# `:latest` locally on each host, then recreates containers. Next time
-# you run `deploy.yml` it'll re-pull `:latest` from Docker Hub, which
-# is still the broken image, so this is a HOLD measure: roll back here,
-# then fix forward (revert PR / new release) so :latest on Hub is good
-# again.
-#
-# Usage:
-#   # Find a known-good tag (git SHA or release tag pushed to Hub):
-#   docker pull ptrlrd/spire-codex-backend:158cf27a
-#
-#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a
-#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a -e service=frontend
-#   ansible-playbook playbooks/rollback.yml -e tag=158cf27a -e service=both
-#
-# After rollback, run verify.yml to confirm the rolled-back version
-# is healthy across all origins.
 
 - name: Roll back Docker image to a known-good tag
   hosts: prod_origins
   gather_facts: false
   vars:
-    service: backend       # backend | frontend | both
+    service: backend
     image_backend: ptrlrd/spire-codex-backend
     image_frontend: ptrlrd/spire-codex-frontend
   tasks:

@@ -1,26 +1,4 @@
 ---
-# Host-level monitoring: node_exporter container + nginx wiring so
-# the scraper can reach it via https://spire-codex.com/node-metrics.
-#
-# Before running:
-#   1. Confirm playbooks/sync-config.yml has been run since the
-#      `/node-metrics` location block was added to nginx.conf.j2 —
-#      otherwise the nginx config on disk doesn't expose the endpoint.
-#
-# Usage:
-#   ./bin/do-ansible playbooks/monitoring-install.yml --limit do_origin
-#
-# What this does:
-#   - Pulls prom/node-exporter:latest and brings up the monitoring
-#     compose stack (host networking, /:/host:ro mount).
-#   - Recreates the nginx (web-server) container with
-#     `--add-host=host.docker.internal:host-gateway`, which is what
-#     lets nginx reach node_exporter's 0.0.0.0:9100 on the host
-#     network. Without it the nginx /node-metrics location 502s.
-#
-# Re-running is idempotent: docker compose up -d skips when nothing
-# changed, and the web-server recreate is conditional on the
-# host-gateway flag not already being present.
 
 - name: Install node_exporter + wire nginx
   hosts: digital_ocean
@@ -36,10 +14,6 @@
       changed_when:
         "'Started' in monitoring_up.stderr or 'Created' in monitoring_up.stderr"
 
-    # node_exporter on host networking binds 0.0.0.0:9100, which means
-    # without a firewall rule the public IP exposes system metrics to
-    # the internet. Lock it down with the same RFC1918+loopback pattern
-    # we used for Mongo (see playbooks/mongo-lockdown.yml).
     - name: Allow private + loopback to reach 9100
       iptables:
         chain: INPUT
@@ -101,7 +75,7 @@
             -v /data/nginx/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
             nginx:alpine
 
-    - name: Smoke-test: node_exporter reachable from inside nginx
+    - name: "Smoke-test: node_exporter reachable from inside nginx"
       shell: docker exec web-server wget -qO- http://host.docker.internal:9100/metrics | head -c 200
       register: probe
       changed_when: false

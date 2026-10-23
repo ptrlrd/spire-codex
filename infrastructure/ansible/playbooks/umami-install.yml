@@ -1,49 +1,4 @@
 ---
-# One-shot install for self-hosted Umami analytics on the DO box.
-#
-# Complete the steps below in order. Each runs in seconds; the only
-# wait is at step 5 (you log in to a web UI).
-#
-# 1. Cloudflare DNS — add CNAME `analytics` → `spire-codex.com`
-#    (proxied / orange cloud). Verify:
-#      dig +short analytics.spire-codex.com
-#    should return CF anycast IPs.
-#
-# 2. 1Password (Spire Codex vault) — create a new item "Umami" with:
-#      - `db_password`  — random 32+ chars (Postgres password)
-#      - `app_secret`   — random 64+ chars (Umami session signer +
-#                         visitor-IP hash salt)
-#      - `website_id`   — leave blank for now (filled in at step 6)
-#    Use the 1P desktop generator; symbols are fine.
-#
-# 3. Render the updated nginx config (it now has an
-#    `analytics.spire-codex.com` server block) + render .env (it
-#    references the three Umami fields above):
-#      ./bin/do-ansible playbooks/sync-config.yml      --limit do_origin
-#      ./bin/do-ansible playbooks/sync-secrets-do.yml  --limit do_origin
-#
-# 4. Run THIS playbook:
-#      ./bin/do-ansible playbooks/umami-install.yml --limit do_origin
-#    It pulls the images, brings the Umami + Postgres containers up,
-#    and waits for the /api/heartbeat endpoint to return 200.
-#
-# 5. First login (one-time) — open https://analytics.spire-codex.com:
-#      - Default creds: admin / umami.  Change the password
-#        immediately (Settings → Profile → Change Password). Store
-#        the new password in 1P under `Umami` → `admin_password`.
-#      - Websites → Add Website.  Name: spire-codex.  Domain:
-#        spire-codex.com.  Save.
-#      - Open the website, click "Tracking code" — copy the UUID from
-#        the `data-website-id` attribute. Paste into 1P → Umami →
-#        website_id.
-#
-# 6. Re-render .env (now with website_id filled in) + recreate the
-#    frontend so the tracker script starts emitting on SSR'd HTML:
-#      ./bin/do-ansible playbooks/sync-secrets-do.yml --limit do_origin
-#      ./bin/do-ansible playbooks/deploy.yml          --limit do_origin
-#
-# Re-running this playbook is idempotent — `docker compose up -d` is
-# a no-op when nothing changed.
 
 - name: Install Umami self-hosted analytics
   hosts: digital_ocean
@@ -92,10 +47,6 @@
       register: up
       changed_when: "'Started' in up.stderr or 'Created' in up.stderr"
 
-    # Bypass nginx — the dashboard allowlist would 403 a loopback hit
-    # from the DO host. Hitting the umami container directly via the
-    # docker bridge also avoids spinning until the analytics CNAME
-    # propagates.
     - name: Wait for Umami to be ready
       shell: docker exec web-server wget -qO- -S http://umami:3000/api/heartbeat 2>&1 | grep -q "200 OK"
       register: heartbeat

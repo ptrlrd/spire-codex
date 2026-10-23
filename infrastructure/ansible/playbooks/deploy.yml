@@ -1,29 +1,9 @@
 ---
-# Pull latest backend + frontend images and recreate containers on
-# every prod origin. Run after a code merge that triggered a CI
-# image build, or whenever you want to force-pull latest.
-#
-#   cd infrastructure/ansible
-#   ansible-playbook playbooks/deploy.yml
-#
-# Verifies the QA mount log line shows up so you know /qa survived
-# the restart. If it doesn't, the QA_DIR env or the rsync drifted —
-# run sync-config.yml first.
 
 - name: Pull latest images and recreate prod containers
   hosts: prod_origins
   gather_facts: false
   tasks:
-    # Git pull keeps the host's docker-compose.prod.yml + any other
-    # tracked config in sync with main. If you're iterating locally and
-    # rely on changes that aren't yet on origin/main, run sync-config
-    # first (or a targeted file push) — this task will overwrite local
-    # divergence on the host.
-    #
-    # become_user uses the env var directly (not `{{ ansible_user }}`)
-    # because become directives are templated before the magic var is
-    # in scope. The wrapper bin/op-ansible exports SPIRE_REMOTE_USER
-    # before invoking ansible-playbook.
     - name: Pull latest main into spire-codex working tree
       become: true
       become_user: "{{ lookup('env', 'SPIRE_REMOTE_USER') }}"
@@ -32,11 +12,6 @@
         dest: "{{ spire_codex_dir }}"
         version: main
         update: true
-        # Discard any host-local divergence — git is the source of
-        # truth, and the host should never have uncommitted edits
-        # against main. If you've been hand-editing on the box for
-        # debugging, commit those changes to a branch first, or accept
-        # that this task wipes them.
         force: true
       register: git_pull
       changed_when: git_pull.before != git_pull.after

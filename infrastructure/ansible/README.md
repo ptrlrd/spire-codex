@@ -2,7 +2,7 @@
 
 Playbooks for managing the DigitalOcean prod box (FastAPI + Next.js + nginx + co-located MongoDB). Deploys, the deploy script installer, and the housekeeping toolkit.
 
-Everything sensitive (SSH keys, usernames, IPs, third-party credentials) lives in 1Password and is fetched at runtime via the wrapper script. Nothing secret or identifying lands in git.
+The SSH key, remote user and origin IPs live in 1Password and are fetched by the wrapper script. Application secrets live in OpenBao at `secret/spire-codex-<item>`, synced there from the Spire Codex 1Password vault, and the playbooks read them directly. Nothing secret or identifying lands in git.
 
 ## Host
 
@@ -28,9 +28,60 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend, frontend 
 
 ## Wrapper
 
-`bin/op-ansible` is the only wrapper. It is a drop-in replacement for `ansible-playbook`: it fetches the SSH deploy key from 1Password into a tempfile, runs the playbook against it, and deletes the tempfile on exit, so the key never persists on disk longer than one run. The default key ref is `op://Spire Codex/AWS/private key`; override it per call with `SPIRE_SSH_KEY_REF="op://Spire Codex/Some Other Key/value" ./bin/op-ansible ...`.
+`bin/do-ansible` renders `inventory.yml` from `inventory.yml.tpl` (via `op inject` resolving the droplet IP from 1Password), fetches the SSH key + username from the `Digital Ocean` item in the Spire Codex vault (`private key`, `user`, `spire-codex-ip`) into tempfiles, and exec's `ansible-playbook`. Tempfiles wipe on any exit.
 
-> Touch ID gotcha: when the desktop app auto-locks, `op` calls block waiting for a touch. Unattended runs (cron, CI) cannot resolve `op://` refs. That's why the deploy script on the box sources its credentials from a plain `/etc/spire-codex/cf-purge.env` instead of 1Password.
+
+> Touch ID gotcha: when the desktop app auto-locks, `op` calls block waiting for a touch. Unattended runs (cron, CI) cannot resolve `op://` refs. That's why the autodeploy cron (below) sources its credentials from a plain `/etc/spire-codex/cf-purge.env` on the box instead of 1Password.
+
+## OpenBao
+
+Playbooks that need application secrets read them from OpenBao through the `community.hashi_vault` collection. One-time install:
+
+```bash
+ansible-galaxy collection install community.hashi_vault
+pip install hvac        # or: apt install python3-hvac
+```
+
+Point the lookups at the server and authenticate with the `ansible` AppRole. Its role and secret ids are in the 1Password Private vault, item `openbao-approle-ansible` (match the field labels there):
+
+```bash
+export VAULT_ADDR=https://bao.lord.casa
+export ANSIBLE_HASHI_VAULT_AUTH_METHOD=approle
+export ANSIBLE_HASHI_VAULT_ROLE_ID=$(op read 'op://Private/openbao-approle-ansible/role_id')
+export ANSIBLE_HASHI_VAULT_SECRET_ID=$(op read 'op://Private/openbao-approle-ansible/secret_id')
+```
+
+For an interactive session, `bao login -method=oidc` followed by `export VAULT_TOKEN=$(cat ~/.bao-token)` works too. The AppRole can read `secret/spire-codex-*` and nothing else.
+
+Secrets reach OpenBao from the 1Password `Spire Codex` vault through the homelab's secrets-sync layer: one ExternalSecret per item and a CronJob that copies them into KV every 15 minutes. Rotate in 1Password, let the sync land (or force it), then run the playbook. To add an item, add it to `infrastructure/secrets-sync/spire-codex.yaml` and the `kv-sync` CronJob mounts in the homelab repo.
+
+`files/.env.j2` is the whole prod `.env`: every lookup below is required, so a missing item fails the render before anything touches the box. Plain values (paths, buckets, memory caps, admin ids) live in `group_vars/all.yml` under `spire_env`; set `spire_env_overrides` on a host in the inventory where the ingest box differs from the serving box.
+
+| OpenBao secret | 1Password item | Fields | Env vars |
+|---|---|---|---|
+| `spire-codex-auth` | JWT_SECRET | `Auth` | JWT_SECRET |
+| `spire-codex-discord-oauth` | Discord OAuth | `client-id`, `client-secret` | DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET |
+| `spire-codex-steam` | Steam Web API | `api-key` | STEAM_WEB_API_KEY |
+| `spire-codex-twitch` | Twitch OAuth | `client-id`, `client-secret` | TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET |
+| `spire-codex-patreon` | Patreon OAuth | `client-id`, `client-secret`, `webhook-secret` | PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, PATREON_WEBHOOK_SECRET |
+| `spire-codex-overwolf` | Overwolf OAuth | `client-id`, `client-secret` | OVERWOLF_CLIENT_ID, OVERWOLF_CLIENT_SECRET |
+| `spire-codex-kofi` | Ko-fi | `verification-token` | KOFI_VERIFICATION_TOKEN |
+| `spire-codex-github` | GitHub Token | `token` | GITHUB_TOKEN |
+| `spire-codex-discord-webhooks` | Discord Webhooks | `feedback`, `guide` | FEEDBACK_WEBHOOK_URL, GUIDE_WEBHOOK_URL |
+| `spire-codex-resend` | Resend | `api-key`, `forward-to`, `forward-from` | RESEND_API_KEY, UNINSTALL_FORWARD_TO, UNINSTALL_FORWARD_FROM |
+| `spire-codex-mongodb` | MongoDB | `connection-string`, `admin-password` | MONGO_URL, MONGO_ADMIN_PASS |
+| `spire-codex-umami` | Umami | `db_password`, `app_secret` | UMAMI_DB_PASSWORD, UMAMI_APP_SECRET |
+| `spire-codex-umami-login` | Umami | `username`, `password` | UMAMI_USERNAME, UMAMI_PASSWORD |
+| `spire-codex-cloudflare` | Cloudflare | `API Token`, `Zone ID` | CF_TOKEN, CF_ZONE |
+| `spire-codex-workers-ai` | Cloudflare | `Account ID`, `Workers AI Token` | CF_ACCOUNT_ID, WORKERS_AI_TOKEN |
+| `spire-codex-cf-access` | CF Access | `client-id`, `client-secret` | CF_ACCESS_CLIENT_ID, CF_ACCESS_CLIENT_SECRET |
+| `spire-codex-r2-tierlists` | R2 | `R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT` | R2_ACCESS_KEY_ID, R2_SECRET_ACCESS_KEY, R2_ENDPOINT |
+| `spire-codex-r2-lake` | R2 Lake | `access_key_id`, `secret_access_key`, `endpoint`, `bucket` | LAKE_R2_* |
+| `spire-codex-backblaze` | Backblaze | `rw-keyId`, `rw-applicationKey` | litestream.yml only |
+
+The 1Password item and field names are case-sensitive in the ExternalSecret `remoteRef.key` (`<Item>/<field>`). Items added in this round, which need creating in the `Spire Codex` vault before the first sync: Steam Web API, Twitch OAuth, Patreon OAuth, Overwolf OAuth, Ko-fi, GitHub Token, CF Access, R2 Lake, plus the `username`/`password` fields on Umami and `Account ID`/`Workers AI Token` on Cloudflare.
+
+Still read from 1Password directly: the SSH key, remote user and origin IPs (wrapper), and the two allow-list IPs `sync-config.yml` uses.
 
 ## Playbooks
 
@@ -50,7 +101,7 @@ Single DigitalOcean droplet (`primary`). Runs everything: the backend, frontend 
 | Playbook | When |
 |---|---|
 | `sync-config.yml` | Pushed nginx config / QA cards |
-| `sync-secrets.yml` | Rotated a secret in 1Password or added a new env var to `files/.env.tpl` |
+| `sync-secrets.yml` | A secret rotated in 1Password has landed in OpenBao, a new item was added, or a plain value in `group_vars/all.yml` `spire_env` changed. Replaces the whole `.env` on the box. |
 | `sync-litestream.yml` | Rotated B2 credentials (Litestream is stopped, see below) |
 
 ### Data + recovery
@@ -111,9 +162,7 @@ ssh DO_BOX 'tail -f /var/log/spire-codex-autodeploy.log'
 Install / refresh (after any change to the script):
 
 ```bash
-CF_TOKEN=$(op read 'op://Spire Codex/Cloudflare/API Token') \
-CF_ZONE=$(op read 'op://Spire Codex/Cloudflare/Zone ID') \
-./bin/op-ansible playbooks/install-autodeploy.yml
+./bin/do-ansible playbooks/install-autodeploy.yml
 ```
 
 ### Purge-free deploys (2026-09)
@@ -156,3 +205,58 @@ first. If a release leaves bad data in the fetch cache,
 Deploys are manual: nothing reaches prod until `./tools/startup.sh release`
 is run on the box. If an old box still has `/etc/cron.d/spire-codex-autodeploy`,
 re-running `install-autodeploy.yml` (or `sudo rm` on the file) removes it.
+
+- **Cloudflare config** — Cache Rules, DNS records, page rules. Managed through the CF dashboard.
+- **Container image builds** — GitHub Actions / Docker Hub. Ansible only pulls pre-built images.
+- **Steam beta extraction** — `tools/beta-watch/` runs on your Mac via launchd. See that directory's README.
+- **Frontend Umami website ID injection**: baked at Docker build time from the GitHub Actions secret (`UMAMI_WEBSITE_ID`).
+
+## Common gotchas
+
+- **Plain `ansible-playbook ...` fails** — `remote_user` isn't set in `ansible.cfg`. Always go through `bin/do-ansible`.
+- **On WSL, every play skips with "no hosts matched"**: Ansible ignores `ansible.cfg` in a world-writable directory, which every path under `/mnt/c` is, so the inventory never loads. The wrapper exports `ANSIBLE_CONFIG` to get around it; if you call `ansible-playbook` directly, set it yourself.
+- **Container name conflict on deploy**: if a previous `up -d` was interrupted, you'll see `Container "/xxx" is already in use`. Fix with `docker rm -f <container>` on the box, then re-run the deploy.
+- **nginx Docker DNS gotcha**: the nginx blocks use a static `proxy_pass` to the container name. Do not switch to the `set $var ... resolver` pattern — it pins to a stale Docker DNS entry after a container recreate.
+
+## Files
+
+```
+infrastructure/ansible/
+├── ansible.cfg
+├── inventory.yml.tpl        # Origin IPs as op:// refs, resolved at render
+├── inventory.yml            # gitignored — rendered by the wrapper
+├── bin/
+│   ├── do-ansible           # DigitalOcean wrapper (use this)
+├── files/
+│   ├── .env.j2
+│   ├── litestream.yml.j2
+│   ├── autodeploy.sh
+│   └── spire-codex-autodeploy.cron
+├── templates/
+│   └── nginx.conf.j2
+├── playbooks/
+│   ├── ping.yml             # Connectivity smoke test
+│   ├── deploy.yml           # docker compose pull + recreate
+│   ├── install-autodeploy.yml  # One-time autodeploy cron install
+│   ├── restart.yml
+│   ├── verify.yml
+│   ├── sync-config.yml
+│   ├── sync-secrets.yml
+│   ├── sync-litestream.yml
+│   ├── backup.yml
+│   ├── fetch-runs-db.yml
+│   ├── dr-restore.yml
+│   ├── mongo-install.yml
+│   ├── mongo-backup.yml
+│   ├── clean-disk.yml
+│   ├── update-os.yml
+│   ├── cf-sync.yml
+│   ├── purge-cache.yml
+│   ├── rollback.yml
+│   ├── bootstrap.yml
+│   ├── check-litestream.yml
+│   ├── stop-litestream.yml
+│   ├── inspect-litestream.yml
+│   └── tail-logs.yml
+└── README.md
+```

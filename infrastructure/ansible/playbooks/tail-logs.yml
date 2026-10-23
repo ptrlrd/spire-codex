@@ -1,13 +1,4 @@
 ---
-# Fetch recent backend (or any service) logs from every origin into
-# local files for grep'ing without SSH-tab-juggling.
-#
-#   ansible-playbook playbooks/tail-logs.yml                # backend, last 500
-#   ansible-playbook playbooks/tail-logs.yml -e svc=frontend
-#   ansible-playbook playbooks/tail-logs.yml -e lines=2000
-#
-# Output:
-#   ~/spire-codex-logs/<host>-<service>-<timestamp>.log
 
 - name: Pull container logs from all origins
   hosts: prod_origins
