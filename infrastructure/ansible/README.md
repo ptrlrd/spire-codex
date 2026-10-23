@@ -64,6 +64,7 @@ Secrets reach OpenBao from the 1Password `Spire Codex` vault through the homelab
 | `spire-codex-steam` | Steam Web API | `api-key` | STEAM_WEB_API_KEY |
 | `spire-codex-twitch` | Twitch OAuth | `client-id`, `client-secret` | TWITCH_CLIENT_ID, TWITCH_CLIENT_SECRET |
 | `spire-codex-patreon` | Patreon OAuth | `client-id`, `client-secret`, `webhook-secret` | PATREON_CLIENT_ID, PATREON_CLIENT_SECRET, PATREON_WEBHOOK_SECRET |
+| `spire-codex-overwolf` | Overwolf OAuth | `client-id`, `client-secret` | OVERWOLF_CLIENT_ID, OVERWOLF_CLIENT_SECRET |
 | `spire-codex-kofi` | Ko-fi | `verification-token` | KOFI_VERIFICATION_TOKEN |
 | `spire-codex-github` | GitHub Token | `token` | GITHUB_TOKEN |
 | `spire-codex-discord-webhooks` | Discord Webhooks | `feedback`, `guide` | FEEDBACK_WEBHOOK_URL, GUIDE_WEBHOOK_URL |
@@ -78,7 +79,7 @@ Secrets reach OpenBao from the 1Password `Spire Codex` vault through the homelab
 | `spire-codex-r2-lake` | R2 Lake | `access_key_id`, `secret_access_key`, `endpoint`, `bucket` | LAKE_R2_* |
 | `spire-codex-backblaze` | Backblaze | `rw-keyId`, `rw-applicationKey` | litestream.yml only |
 
-The 1Password item and field names are case-sensitive in the ExternalSecret `remoteRef.key` (`<Item>/<field>`). Items added in this round, which need creating in the `Spire Codex` vault before the first sync: Steam Web API, Twitch OAuth, Patreon OAuth, Ko-fi, GitHub Token, CF Access, R2 Lake, plus the `username`/`password` fields on Umami and `Account ID`/`Workers AI Token` on Cloudflare.
+The 1Password item and field names are case-sensitive in the ExternalSecret `remoteRef.key` (`<Item>/<field>`). Items added in this round, which need creating in the `Spire Codex` vault before the first sync: Steam Web API, Twitch OAuth, Patreon OAuth, Overwolf OAuth, Ko-fi, GitHub Token, CF Access, R2 Lake, plus the `username`/`password` fields on Umami and `Account ID`/`Workers AI Token` on Cloudflare.
 
 Still read from 1Password directly: the SSH key, remote user and origin IPs (wrapper), and the two allow-list IPs `sync-config.yml` uses.
 
