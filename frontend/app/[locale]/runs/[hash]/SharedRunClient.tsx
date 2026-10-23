@@ -168,6 +168,10 @@ export default function SharedRunClient({
     gt(`relics.${id}.title`) ??
     relicData[id]?.name ??
     displayName(`RELIC.${id}`);
+  const potionTitle = (id: string) =>
+    gt(`potions.${id}.title`) ??
+    potionData[id]?.name ??
+    displayName(`POTION.${id}`);
   const encounterTitle = (id: string) =>
     gt(`encounters.${id}.title`) ?? displayName(`ENCOUNTER.${id}`);
   const eventTitle = (id: string) =>
@@ -579,6 +583,25 @@ export default function SharedRunClient({
                         ) || [];
                       const upgraded =
                         ps?.upgraded_cards?.map((id) => cardTitle(id)) || [];
+                      const pickedIds = new Set(
+                        ps?.card_choices
+                          ?.filter((c) => c.was_picked)
+                          .map((c) => c.card.id) || [],
+                      );
+                      const gained =
+                        ps?.cards_gained
+                          ?.filter((c) => !pickedIds.has(c.id))
+                          .map((c) => cardTitle(c.id)) || [];
+                      const removed =
+                        ps?.cards_removed?.map((c) => cardTitle(c.id)) || [];
+                      const relicsGot =
+                        ps?.relic_choices
+                          ?.filter((r) => r.was_picked)
+                          .map((r) => relicTitle(r.choice)) || [];
+                      const potionsGot =
+                        ps?.potion_choices
+                          ?.filter((p) => p.was_picked)
+                          .map((p) => potionTitle(p.choice)) || [];
                       const chose =
                         ps?.event_choices
                           ?.map((c) => eventChoiceName(c, gt))
@@ -636,6 +659,38 @@ export default function SharedRunClient({
                                 {skipped.join(", ")}
                               </span>
                             )}
+                            {gained.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--color-silent)" }}
+                              >
+                                +{gained.join(", ")}
+                              </span>
+                            )}
+                            {relicsGot.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--accent-gold)" }}
+                              >
+                                +{relicsGot.join(", ")}
+                              </span>
+                            )}
+                            {potionsGot.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--accent-teal)" }}
+                              >
+                                +{potionsGot.join(", ")}
+                              </span>
+                            )}
+                            {removed.length > 0 && (
+                              <span
+                                className="ml-2"
+                                style={{ color: "var(--color-ironclad)" }}
+                              >
+                                −{removed.join(", ")}
+                              </span>
+                            )}
                             {upgraded.length > 0 && (
                               <span
                                 className="ml-2"
@@ -658,6 +713,9 @@ export default function SharedRunClient({
                                 <span style={{ color: "var(--color-silent)" }}>
                                   +{ps.hp_healed}
                                 </span>
+                              )}
+                              {(ps.gold_spent ?? 0) > 0 && (
+                                <span>-{ps.gold_spent}g</span>
                               )}
                               <span>
                                 {ps.current_hp}/{ps.max_hp}
