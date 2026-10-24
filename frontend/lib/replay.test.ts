@@ -8,6 +8,7 @@ import {
   parseReplay,
   parseReplayLines,
   routeForAct,
+  shelfRows,
   type BuyLine,
   type PlayLine,
   type ShopLine,
@@ -3959,5 +3960,84 @@ describe("an act line names the act whose map was just recorded", () => {
       ]),
     );
     expect(model.actNames).toEqual({ 2: "HIVE" });
+  });
+});
+
+describe("shelfRows", () => {
+  const head = {
+    t: "header",
+    s: 0,
+    floor: 0,
+    act: 1,
+    replay_version: 3,
+    seed: "SEED",
+    character: "DEFECT",
+  };
+  const shelf = (s: number, gold: number, slot4: string, stocked = true) => ({
+    t: "shop",
+    s,
+    floor: 1,
+    act: 1,
+    gold,
+    removal_cost: 60,
+    removal_stocked: true,
+    cards: [
+      { slot: 0, id: "BARRAGE", cost: 70, stocked: true, sale: false },
+      { slot: 4, id: slot4, cost: 30, stocked, sale: false },
+    ],
+    relics: [{ slot: 0, id: "ANCHOR", cost: 150, stocked: true, sale: false }],
+    potions: [],
+  });
+  const buy = (s: number, id: string, gold: number) => ({
+    t: "buy",
+    s,
+    floor: 1,
+    act: 1,
+    kind: "card",
+    slot: 4,
+    id,
+    cost_current: 30,
+    cost_resource: "gold",
+    gold_on_hand: gold,
+  });
+
+  it("lists every item a Courier restock put on the shelf and marks each purchase", () => {
+    const model = parseReplay(
+      journal([
+        head,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "merchant" },
+        shelf(2, 146, "FERAL"),
+        buy(3, "FERAL", 116),
+        shelf(4, 116, "LOOP"),
+        buy(5, "LOOP", 86),
+        shelf(6, 86, "HAILSTORM"),
+      ]),
+    );
+    const rows = shelfRows(model.floors[0]);
+    expect(rows.map((r) => [r.kind, r.item.id, r.bought])).toEqual([
+      ["card", "BARRAGE", false],
+      ["card", "FERAL", true],
+      ["card", "LOOP", true],
+      ["card", "HAILSTORM", false],
+      ["relic", "ANCHOR", false],
+    ]);
+  });
+
+  it("keeps one row when a bought slot just empties", () => {
+    const model = parseReplay(
+      journal([
+        head,
+        { t: "room", s: 1, floor: 1, act: 1, kind: "merchant" },
+        shelf(2, 146, "FERAL"),
+        buy(3, "FERAL", 116),
+        shelf(4, 116, "FERAL", false),
+      ]),
+    );
+    const rows = shelfRows(model.floors[0]);
+    expect(rows.map((r) => [r.item.id, r.bought])).toEqual([
+      ["BARRAGE", false],
+      ["FERAL", true],
+      ["ANCHOR", false],
+    ]);
   });
 });
