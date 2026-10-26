@@ -245,6 +245,7 @@ def test_routes_require_login_and_verified_token(env, monkeypatch):
     assert client.patch("/api/auth/thanks-listing", json={"listed": True}).json() == {
         "thanks_listed": True
     }
+    _user(users)["steam_id"] = "7656"
     assert client.delete("/api/auth/overwolf").json() == {
         "overwolf_id": None,
         "active": False,

@@ -26,6 +26,7 @@ interface User {
   is_admin?: boolean;
   profile_private?: boolean;
   overwolf_id?: string | null;
+  overwolf_nickname?: string | null;
   overwolf_tier?: "common" | "rare" | "ancient" | null;
   supporter?: {
     active: boolean;
@@ -50,6 +51,7 @@ interface AuthContextType {
   loginDiscord: string;
   loginTwitch: string;
   loginPatreon: string;
+  loginOverwolf: string;
   logout: () => Promise<void>;
   refresh: () => Promise<void>;
 }
@@ -59,6 +61,7 @@ const LOGIN_URLS = {
   loginDiscord: `${API_BASE}/api/auth/discord/start`,
   loginTwitch: `${API_BASE}/api/auth/twitch/start`,
   loginPatreon: `${API_BASE}/api/auth/patreon/start`,
+  loginOverwolf: `${API_BASE}/api/auth/overwolf/start`,
 };
 
 const AuthContext = createContext<AuthContextType>({
