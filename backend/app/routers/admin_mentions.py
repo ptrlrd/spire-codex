@@ -86,7 +86,7 @@ def summary(request: Request, days: int = 30):
     return mentions.summary(days)
 
 
-@router.patch("/{mention_id}")
+@router.patch("/{mention_id:path}")
 def patch_mention(request: Request, mention_id: str, payload: Any = Body(None)):
     _audit(request)
     body = _object(payload)

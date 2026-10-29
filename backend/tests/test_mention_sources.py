@@ -404,9 +404,9 @@ def test_youtube_and_github_quote_phrases(monkeypatch):
     ms.fetch_github(SETTINGS, None, fake)
     yt = [c for c in fake.calls if "googleapis" in c[1]][0][2]["params"]["q"]
     assert yt == '"spire codex"|spirecodex|spire-codex'
-    gh = [c for c in fake.calls if "api.github.com" in c[1]][0][2]["params"]["q"]
-    assert gh.startswith('"spire codex" OR spirecodex OR spire-codex')
-    assert gh.endswith("-user:ptrlrd")
+    gh = [c[2]["params"]["q"] for c in fake.calls if "api.github.com" in c[1]]
+    assert gh[0] == '"spire codex" -user:ptrlrd'
+    assert "spirecodex -user:ptrlrd" in gh
 
 
 def test_search_links_cover_the_sites_without_a_free_api():
@@ -424,3 +424,135 @@ def test_source_for_url_maps_hosts():
     assert ms.source_for_url("https://example.org/post") == "web"
     assert ms.source_label("tiktok") == "TikTok"
     assert all(s.name != "x" for s in ms.SOURCES)
+
+
+def test_bluesky_since_stays_on_the_incoming_cursor(monkeypatch):
+    monkeypatch.setenv("BLUESKY_HANDLE", "me.bsky.social")
+    monkeypatch.setenv("BLUESKY_APP_PASSWORD", "pw")
+    monkeypatch.setattr(ms, "_bluesky_session", {})
+    post = {
+        "uri": "at://did:plc:a/app.bsky.feed.post/r1",
+        "author": {"handle": "a.bsky.social"},
+        "record": {"text": "spire codex", "createdAt": "2026-10-28T12:00:00Z"},
+    }
+    fake = _Client(
+        {"createSession": {"accessJwt": "jwt"}, "searchPosts": {"posts": [post]}}
+    )
+    _, cursor = ms.fetch_bluesky(SETTINGS, "2026-10-01T00:00:00Z", fake)
+    sinces = {
+        c[2]["params"].get("since") for c in fake.calls if c[1].endswith("searchPosts")
+    }
+    assert len(sinces) == 1 and next(iter(sinces)).startswith("2026-10-01")
+    assert cursor.startswith("2026-10-28")
+
+
+def test_reddit_competitor_search_has_no_site_filter(monkeypatch):
+    monkeypatch.setenv("REDDIT_CLIENT_ID", "id")
+    monkeypatch.setenv("REDDIT_CLIENT_SECRET", "secret")
+    monkeypatch.setattr(ms, "_reddit_token", {})
+    fake = _Client(
+        {
+            "access_token": {"access_token": "tok", "expires_in": 3600},
+            "oauth.reddit.com": {"data": {"children": []}},
+        }
+    )
+    ms.fetch_reddit(SETTINGS, None, fake)
+    queries = [c[2]["params"]["q"] for c in fake.calls if c[1].endswith("/search")]
+    competitor = next(q for q in queries if "spirebird" in q)
+    assert "site:" not in competitor
+
+
+def test_hn_and_github_items_carry_their_query_group():
+    hit = {
+        "objectID": "1",
+        "title": "A tracker for Slay the Spire",
+        "created_at_i": 1790000000,
+        "_tags": ["story"],
+    }
+    issue = {
+        "id": 7,
+        "html_url": "https://github.com/a/b/issues/7",
+        "title": "Use their API",
+        "body": "",
+        "user": {"login": "dev", "html_url": "https://github.com/dev"},
+        "created_at": "2026-10-28T12:00:00Z",
+        "comments": 0,
+        "repository_url": "https://api.github.com/repos/a/b",
+    }
+    fake = _Client(
+        {"hn.algolia.com": {"hits": [hit]}, "api.github.com": {"items": [issue]}}
+    )
+    hn, _ = ms.fetch_hackernews(SETTINGS, None, fake)
+    assert hn and all(i.query_group for i in hn)
+    gh, _ = ms.fetch_github(SETTINGS, None, fake)
+    assert len(gh) == 1 and gh[0].query_group == "brand"
+    gh_calls = [c for c in fake.calls if "api.github.com" in c[1]]
+    assert len(gh_calls) == 4
+    assert all(" OR " not in c[2]["params"]["q"] for c in gh_calls)
+
+
+def test_feed_links_must_be_http():
+    xml = (
+        b'<?xml version="1.0"?><rss><channel><item><title>Spire Codex</title>'
+        b"<link>javascript:alert(1)</link><guid>g1</guid></item></channel></rss>"
+    )
+    out = ms.parse_feed(
+        xml,
+        {
+            "url": "https://feeds.example/a",
+            "label": "A",
+            "group": "brand",
+            "community": False,
+        },
+    )
+    assert out[0].url == ""
+
+
+def test_public_https_url_rejects_internal_addresses():
+    assert ms.public_https_url("https://1.1.1.1/feed") is True
+    for url in (
+        "https://127.0.0.1/feed",
+        "https://10.0.0.5/feed",
+        "https://169.254.169.254/latest",
+        "https://[::1]/feed",
+        "http://1.1.1.1/feed",
+    ):
+        assert ms.public_https_url(url) is False, url
+
+
+def test_slow_feed_hits_the_wall_clock_deadline(monkeypatch):
+    class _Stream:
+        status_code = 200
+        headers = {}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+        def raise_for_status(self):
+            return None
+
+        def iter_bytes(self):
+            while True:
+                yield b"<"
+
+    class _SlowClient:
+        def stream(self, method, url, timeout=None):
+            return _Stream()
+
+    clock = iter(range(0, 10_000, 5))
+    monkeypatch.setattr(ms.time, "monotonic", lambda: next(clock))
+    monkeypatch.setattr(ms, "public_https_url", lambda url: True)
+    feed = {
+        "url": "https://feeds.example/slow",
+        "label": "Slow",
+        "group": "",
+        "community": False,
+    }
+    try:
+        ms.fetch_feeds({**SETTINGS, "feeds": [feed]}, None, _SlowClient())
+    except TimeoutError:
+        return
+    raise AssertionError("slow feed was not cut off")

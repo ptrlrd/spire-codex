@@ -1002,3 +1002,35 @@ def test_ingest_non_ascii_token_is_rejected_not_crashed(env, monkeypatch):
         json={"items": []},
     )
     assert resp.status_code == 401
+
+
+def test_patch_accepts_ids_with_slashes(env):
+    mention_id = "bluesky:at://did:plc:abc/app.bsky.feed.post/3l7"
+    _seed(env, _id=mention_id, source="bluesky")
+    from urllib.parse import quote
+
+    resp = client.patch(
+        f"/api/admin/mentions/{quote(mention_id, safe='')}", json={"status": "seen"}
+    )
+    assert resp.status_code == 200 and resp.json()["status"] == "seen"
+
+
+def test_alert_embed_skips_empty_urls():
+    embed = mentions._alert_embed(
+        {"title": "", "url": "", "text": "hi", "source": "feeds", "kind": "article"}
+    )
+    assert "url" not in embed and embed["title"] == "Feeds: Feeds article"
+
+
+def test_punctuation_terms_never_match_and_are_rejected():
+    assert mentions.compile_term("--").search("anything at all -- here") is None
+    with pytest.raises(ValueError):
+        mentions.validate_settings(
+            {
+                "terms": [{"text": "--", "group": "brand"}],
+                "subreddits": [],
+                "feeds": [],
+                "github_exclude": [],
+                "alert_groups": [],
+            }
+        )

@@ -117,6 +117,10 @@ const CHIP =
 const INPUT =
   "rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card-hover)] px-2.5 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-gold)]/50";
 
+function safeHref(url: string): string | null {
+  return /^https?:\/\//i.test(url || "") ? url : null;
+}
+
 function ago(iso: string | null): string {
   if (!iso) return "never";
   const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
@@ -227,6 +231,9 @@ function MentionCard({
   const [noteOpen, setNoteOpen] = useState(false);
   const [draft, setDraft] = useState(m.note);
   const engaged = engagementLine(m.engagement);
+  const href = safeHref(m.url);
+  const authorHref = safeHref(m.author_url);
+  const title = m.title || `${m.source_label} ${m.kind}`;
   const statusStyle =
     m.status === "replied"
       ? "border border-[var(--success)]/40 text-[var(--success)]"
@@ -246,9 +253,9 @@ function MentionCard({
         ))}
         {m.space && m.space !== m.source_label && <span>{m.space}</span>}
         {m.author &&
-          (m.author_url ? (
+          (authorHref ? (
             <a
-              href={m.author_url}
+              href={authorHref}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-[var(--accent-gold)]"
@@ -262,15 +269,19 @@ function MentionCard({
           {m.created_at ? fmtDateTimePacific(m.created_at) : ""}
         </span>
       </div>
-      {m.url && (
+      {href ? (
         <a
-          href={m.url}
+          href={href}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-1 block break-words text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)]"
         >
-          {m.title || `${m.source_label} ${m.kind}`}
+          {title}
         </a>
+      ) : (
+        <p className="mt-1 break-words text-sm font-semibold text-[var(--text-primary)]">
+          {title}
+        </p>
       )}
       <Snippet text={m.text} terms={m.terms} />
       <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1.5">
@@ -947,6 +958,7 @@ export default function MentionsClient() {
   const [error, setError] = useState<string | null>(null);
   const [pollNote, setPollNote] = useState<string | null>(null);
   const pollTimers = useRef<TimerId[]>([]);
+  const listSeq = useRef(0);
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -1005,8 +1017,10 @@ export default function MentionsClient() {
   const loadList = useCallback(
     (before?: string) => {
       const path = `/api/admin/mentions${buildQuery(before ? { before } : {})}`;
+      const seq = ++listSeq.current;
       return adminFetch<{ items: Mention[]; next_before: string | null }>(path)
         .then((data) => {
+          if (seq !== listSeq.current) return;
           setError(null);
           setItems((prev) => (before ? [...prev, ...data.items] : data.items));
           setNextBefore(data.next_before);
@@ -1086,9 +1100,9 @@ export default function MentionsClient() {
   };
 
   const markAllSeen = () => {
-    const prev = items;
-    const ids = prev.filter((x) => x.status === "new").map((x) => x.id);
+    const ids = items.filter((x) => x.status === "new").map((x) => x.id);
     if (ids.length === 0) return;
+    const marked = new Set(ids);
     setItems((list) =>
       list.map((x) => (x.status === "new" ? { ...x, status: "seen" } : x)),
     );
@@ -1099,7 +1113,13 @@ export default function MentionsClient() {
     })
       .then(() => loadSummary())
       .catch(() => {
-        setItems(prev);
+        setItems((list) =>
+          list.map((x) =>
+            marked.has(x.id) && x.status === "seen"
+              ? { ...x, status: "new" }
+              : x,
+          ),
+        );
         setError("Could not mark those mentions seen.");
       });
   };

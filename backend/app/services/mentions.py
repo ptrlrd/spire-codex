@@ -140,6 +140,8 @@ def validate_settings(payload: Any) -> dict:
         group = str(t.get("group") or "").strip() if isinstance(t, dict) else ""
         if not 2 <= len(text) <= 80:
             raise ValueError("terms: every term needs 2 to 80 characters")
+        if not any(c.isalnum() for c in text):
+            raise ValueError("terms: every term needs a letter or digit")
         if group not in GROUPS:
             raise ValueError("terms: group must be brand, competitor or community")
         key = text.lower()
@@ -233,6 +235,8 @@ def save_settings(payload: Any) -> dict:
 
 def compile_term(text: str) -> re.Pattern:
     tokens = [re.escape(part) for part in re.split(r"[\s\-_.]+", text.lower()) if part]
+    if not any(any(c.isalnum() for c in tok) for tok in tokens):
+        return re.compile(r"(?!x)x")
     body = r"[\s\-_.]*".join(tokens)
     return re.compile(rf"(?<![a-z0-9]){body}(?![a-z0-9])")
 
@@ -460,22 +464,28 @@ def run_due_sources(force=None) -> None:
                     continue
                 if backoff and now < _as_utc(backoff):
                     continue
+                if not try_lease():
+                    return
             _run_source(src, state, settings, webhook, client)
 
 
 def _alert_embed(doc: dict) -> dict:
     from .mention_sources import source_label
 
-    title = doc.get("title") or "(no title)"
-    return {
-        "title": f"{source_label(doc.get('source', ''))}: {title}"[:200],
-        "url": doc.get("url") or "",
+    label = source_label(doc.get("source", ""))
+    title = doc.get("title") or f"{label} {doc.get('kind') or 'post'}"
+    embed = {
+        "title": f"{label}: {title}"[:200],
         "description": (doc.get("text") or "")[:300],
         "footer": {
             "text": f"{doc.get('space', '')} · {', '.join(doc.get('terms') or [])}"
         },
         "timestamp": _iso(doc.get("created_at")),
     }
+    url = doc.get("url") or ""
+    if url.startswith(("https://", "http://")):
+        embed["url"] = url
+    return embed
 
 
 def _post_webhook(payload: dict) -> None:

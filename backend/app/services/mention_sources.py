@@ -10,9 +10,12 @@ term locally.
 
 import hashlib
 import html
+import ipaddress
 import logging
 import os
 import re
+import socket
+import time
 import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
@@ -145,6 +148,24 @@ def _post(
     return resp
 
 
+def public_https_url(url: str) -> bool:
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return False
+    if parsed.scheme != "https" or not parsed.hostname:
+        return False
+    try:
+        infos = socket.getaddrinfo(parsed.hostname, parsed.port or 443)
+    except OSError:
+        return False
+    for info in infos:
+        addr = ipaddress.ip_address(info[4][0].split("%")[0])
+        if not addr.is_global:
+            return False
+    return bool(infos)
+
+
 def _missing(*names: str) -> list[str]:
     return [n for n in names if not os.environ.get(n, "").strip()]
 
@@ -270,7 +291,10 @@ def fetch_reddit(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
         variants = group_variants(settings, group)
         if not variants:
             continue
-        q = " OR ".join([*map(quote_variant, variants), f"site:{SITE_DOMAIN}"])
+        parts = list(map(quote_variant, variants))
+        if group == "brand":
+            parts.append(f"site:{SITE_DOMAIN}")
+        q = " OR ".join(parts)
         resp = _get(
             client,
             "https://oauth.reddit.com/search",
@@ -353,16 +377,17 @@ def fetch_bluesky(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     ]
     queries.append((f"domain:{SITE_DOMAIN}", "brand", None))
     found: list[Found] = []
-    newest: datetime | None = None
+    since: datetime | None = None
     if cursor:
         try:
-            newest = _parse_iso(cursor)
+            since = _parse_iso(cursor)
         except (TypeError, ValueError):
-            newest = None
+            since = None
+    newest = since
     for q, group, term in queries:
         params: dict = {"q": q, "sort": "latest", "limit": 100}
-        if newest:
-            params["since"] = _iso_cursor(newest)
+        if since:
+            params["since"] = _iso_cursor(since)
         for attempt in (0, 1):
             try:
                 resp = _get(
@@ -495,7 +520,10 @@ def fetch_hackernews(settings: dict, cursor: Any, client: httpx.Client) -> tuple
             resp = _get(
                 client, "https://hn.algolia.com/api/v1/search_by_date", params=params
             )
-            found.extend(parse_hn_hits(resp.json()))
+            for item in parse_hn_hits(resp.json()):
+                item.query_group = group
+                item.query_term = term
+                found.append(item)
     for item in found:
         since = max(since, int(item.created_at.timestamp()))
     return found, since or None
@@ -535,19 +563,30 @@ def fetch_github(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     token = os.environ.get("GITHUB_TOKEN", "").strip()
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    variants = group_variants(settings, "brand") + group_variants(
-        settings, "competitor"
-    )
-    q = " OR ".join(map(quote_variant, variants)) + "".join(
-        f" -{e}" for e in settings.get("github_exclude", [])
-    )
-    resp = _get(
-        client,
-        "https://api.github.com/search/issues",
-        headers=headers,
-        params={"q": q, "sort": "created", "order": "desc", "per_page": 50},
-    )
-    items = parse_github_issues(resp.json())
+    excludes = "".join(f" -{e}" for e in settings.get("github_exclude", []))
+    items: list[Found] = []
+    seen: set[str] = set()
+    for group in ("brand", "competitor"):
+        term = _first_term(settings, group)
+        for variant in group_variants(settings, group):
+            resp = _get(
+                client,
+                "https://api.github.com/search/issues",
+                headers=headers,
+                params={
+                    "q": quote_variant(variant) + excludes,
+                    "sort": "created",
+                    "order": "desc",
+                    "per_page": 50,
+                },
+            )
+            for item in parse_github_issues(resp.json()):
+                if item.external_id in seen:
+                    continue
+                seen.add(item.external_id)
+                item.query_group = group
+                item.query_term = term
+                items.append(item)
     since = _parse_iso(cursor) if cursor else None
     kept = [i for i in items if since is None or i.created_at > since]
     newest = max((i.created_at for i in items), default=None)
@@ -577,7 +616,9 @@ def _entry_created(value: str | None) -> datetime:
 def _feed_entry(
     external_source: str, title, link, text, created, author, feed
 ) -> Found:
-    link = _unwrap_google(str(link or ""))
+    link = _unwrap_google(str(link or "")).strip()
+    if not link.lower().startswith(("https://", "http://")):
+        link = ""
     external_id = hashlib.sha1(
         (feed["url"] + (external_source or link)).encode()
     ).hexdigest()[:20]
@@ -654,9 +695,10 @@ def fetch_feeds(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     feeds = settings.get("feeds", [])
     for feed in feeds:
         url = str(feed.get("url") or "")
-        if not url.startswith("https://"):
-            continue
         try:
+            if not public_https_url(url):
+                raise ValueError("feed url is not a public https address")
+            started = time.monotonic()
             with client.stream("GET", url, timeout=FEED_TIMEOUT) as resp:
                 if resp.status_code == 429:
                     raise RateLimited(_retry_after(resp))
@@ -668,6 +710,8 @@ def fetch_feeds(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
                     total += len(chunk)
                     if total >= FEED_MAX_BYTES:
                         break
+                    if time.monotonic() - started > FEED_TIMEOUT:
+                        raise TimeoutError("feed took too long")
             found.extend(parse_feed(b"".join(chunks)[:FEED_MAX_BYTES], feed))
         except RateLimited:
             raise
