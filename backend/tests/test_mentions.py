@@ -112,8 +112,9 @@ class Fake:
             if doc["_id"] in self.docs:
                 raise DuplicateKeyError(doc["_id"])
             self.docs[doc["_id"]] = doc
+            for k, v in update.get("$inc", {}).items():
+                doc[k] = doc.get(k, 0) + v
             return type("R", (), {"matched_count": 0, "upserted_id": doc["_id"]})()
-        return type("R", (), {"matched_count": 0, "upserted_id": None})()
 
     def update_many(self, flt, update):
         n = 0
@@ -816,6 +817,8 @@ def test_ingest_stores_matched_and_drops_unmatched(env, monkeypatch):
     doc = env["mentions"].docs["discord:msg-1"]
     assert doc["groups"] == ["brand"] and doc["kind"] == "message"
     assert doc["space"] == "Server / #general"
+    discord_state = env["mention_state"].docs["discord"]
+    assert discord_state["total_new"] == 1 and discord_state["last_ok_at"] is not None
 
     quiet = {**item, "external_id": "msg-2", "text": "no relevant words here"}
     resp = client.post(

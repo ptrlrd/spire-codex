@@ -97,4 +97,18 @@ async def ingest(request: Request):
     settings = mentions.get_settings()
     stored = mentions.store(found, settings)
     mentions.send_alerts(stored, settings)
+    if stored:
+        mentions._state_col().update_one(
+            {"_id": "discord"},
+            {
+                "$set": {
+                    "last_ok_at": mentions._utcnow(),
+                    "last_new": len(stored),
+                    "last_error": None,
+                },
+                "$inc": {"total_new": len(stored)},
+                "$setOnInsert": {"_id": "discord"},
+            },
+            upsert=True,
+        )
     return {"received": len(items), "stored": len(stored)}
