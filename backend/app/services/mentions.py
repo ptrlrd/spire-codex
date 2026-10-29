@@ -14,6 +14,7 @@ import re
 import socket
 import threading
 import time
+import uuid
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -34,7 +35,7 @@ GROUPS = ["brand", "competitor", "community"]
 STATUSES = ["new", "seen", "replied", "ignored"]
 
 LEASE_SECONDS = 180
-MANUAL_POLL_SECONDS = 120
+SOURCE_LEASE_SECONDS = 900
 POLL_FIRST_DELAY_SECONDS = 30
 POLL_INTERVAL_SECONDS = 60
 ALERT_BATCH = 10
@@ -175,6 +176,8 @@ def validate_settings(payload: Any) -> dict:
             raise ValueError(
                 "feeds: url must be an https URL of at most 500 characters"
             )
+        if not _public_feed_host(url):
+            raise ValueError("feeds: url must point at a public host")
         label = str(f.get("label") or "").strip()
         if len(label) > 60:
             raise ValueError("feeds: label must be at most 60 characters")
@@ -221,6 +224,25 @@ def validate_settings(payload: Any) -> dict:
         "alert_groups": out_alerts,
         "updated_at": _utcnow(),
     }
+
+
+def _public_feed_host(url: str) -> bool:
+    import ipaddress
+    from urllib.parse import urlparse
+
+    try:
+        parsed = urlparse(url)
+    except ValueError:
+        return False
+    host = parsed.hostname or ""
+    if not host or parsed.username or parsed.password:
+        return False
+    if host == "localhost" or host.endswith(".localhost"):
+        return False
+    try:
+        return ipaddress.ip_address(host).is_global
+    except ValueError:
+        return True
 
 
 def save_settings(payload: Any) -> dict:
@@ -313,14 +335,21 @@ def store(found: list, settings: dict) -> list[dict]:
             "note": "",
             "updated_at": now,
         }
-        result = col.update_one(
-            {"_id": mention_id},
-            {
-                "$setOnInsert": base,
-                "$set": {"engagement": engagement, "last_seen_at": now},
-            },
-            upsert=True,
-        )
+        try:
+            result = col.update_one(
+                {"_id": mention_id},
+                {
+                    "$setOnInsert": base,
+                    "$set": {"engagement": engagement, "last_seen_at": now},
+                },
+                upsert=True,
+            )
+        except DuplicateKeyError:
+            col.update_one(
+                {"_id": mention_id},
+                {"$set": {"engagement": engagement, "last_seen_at": now}},
+            )
+            continue
         if getattr(result, "upserted_id", None):
             stored.append(
                 {
@@ -457,16 +486,47 @@ def run_due_sources(force=None) -> None:
             now = _utcnow()
             last_run = state.get("last_run_at")
             backoff = state.get("backoff_until")
+            if backoff and now < _as_utc(backoff):
+                continue
             if not force:
                 if last_run and now - _as_utc(last_run) < timedelta(
                     seconds=src.interval_seconds
                 ):
                     continue
-                if backoff and now < _as_utc(backoff):
-                    continue
                 if not try_lease():
                     return
-            _run_source(src, state, settings, webhook, client)
+            holder = f"{socket.gethostname()}:{os.getpid()}:{uuid.uuid4().hex[:8]}"
+            if not _take_source_lease(src.name, holder):
+                continue
+            try:
+                _run_source(src, state, settings, webhook, client)
+            finally:
+                _release_source_lease(src.name, holder)
+
+
+def _take_source_lease(name: str, holder: str) -> bool:
+    now = _utcnow()
+    try:
+        _state_col().update_one(
+            {"_id": f"_lease:{name}", "expires_at": {"$lt": now}},
+            {
+                "$set": {
+                    "holder": holder,
+                    "expires_at": now + timedelta(seconds=SOURCE_LEASE_SECONDS),
+                }
+            },
+            upsert=True,
+        )
+        return True
+    except DuplicateKeyError:
+        return False
+
+
+def _release_source_lease(name: str, holder: str) -> None:
+    _state_col().update_one(
+        {"_id": f"_lease:{name}", "holder": holder},
+        {"$set": {"expires_at": _utcnow()}},
+    )
 
 
 def _alert_embed(doc: dict) -> dict:
@@ -520,25 +580,12 @@ def send_alerts(docs: list[dict], settings: dict) -> None:
         _post_webhook(payload)
 
 
-def _claim_manual_poll() -> bool:
-    now = _utcnow()
-    try:
-        _state_col().update_one(
-            {"_id": "_manual", "expires_at": {"$lt": now}},
-            {"$set": {"expires_at": now + timedelta(seconds=MANUAL_POLL_SECONDS)}},
-            upsert=True,
-        )
-        return True
-    except DuplicateKeyError:
-        return False
-
-
 def try_manual_poll(source: str | None = None) -> bool:
     global _manual_running
     from .mention_sources import SOURCES
 
     with _manual_lock:
-        if _manual_running or not _claim_manual_poll():
+        if _manual_running:
             return False
         _manual_running = True
     force = [source] if source else [s.name for s in SOURCES if s.fetch]
@@ -548,9 +595,6 @@ def try_manual_poll(source: str | None = None) -> bool:
         try:
             run_due_sources(force=force)
         finally:
-            _state_col().update_one(
-                {"_id": "_manual"}, {"$set": {"expires_at": _utcnow()}}
-            )
             with _manual_lock:
                 _manual_running = False
 
@@ -605,33 +649,46 @@ def list_items(
     q: str | None = None,
     days: int = 30,
     limit: int = 50,
-    before: datetime | None = None,
+    before: tuple[datetime, str] | None = None,
 ) -> tuple[list[dict], str | None]:
     cutoff = _utcnow() - timedelta(days=days)
-    created: dict = {"$gte": cutoff}
+    clauses: list[dict] = [{"created_at": {"$gte": cutoff}}]
     if before is not None:
-        created["$lt"] = before
-    flt: dict = {"created_at": created}
+        when, last_id = before
+        clauses.append(
+            {
+                "$or": [
+                    {"created_at": {"$lt": when}},
+                    {"created_at": when, "_id": {"$lt": last_id}},
+                ]
+            }
+        )
     if status == "open":
-        flt["status"] = {"$in": ["new", "seen"]}
+        clauses.append({"status": {"$in": ["new", "seen"]}})
     elif status != "all":
-        flt["status"] = status
+        clauses.append({"status": status})
     if source:
-        flt["source"] = source
+        clauses.append({"source": source})
     if group:
-        flt["groups"] = group
+        clauses.append({"groups": group})
     if q:
-        escaped = re.escape(q)
-        flt["$or"] = [
-            {"title": {"$regex": escaped, "$options": "i"}},
-            {"text": {"$regex": escaped, "$options": "i"}},
-            {"author": {"$regex": escaped, "$options": "i"}},
-        ]
-    docs = list(_col().find(flt).sort([("created_at", -1)]).limit(limit))
+        escaped = re.escape(q[:100])
+        clauses.append(
+            {
+                "$or": [
+                    {"title": {"$regex": escaped, "$options": "i"}},
+                    {"text": {"$regex": escaped, "$options": "i"}},
+                    {"author": {"$regex": escaped, "$options": "i"}},
+                ]
+            }
+        )
+    flt = clauses[0] if len(clauses) == 1 else {"$and": clauses}
+    docs = list(_col().find(flt).sort([("created_at", -1), ("_id", -1)]).limit(limit))
     next_before = None
     if docs and len(docs) == limit:
-        last = docs[-1].get("created_at")
-        next_before = _iso(last) if isinstance(last, datetime) else None
+        last = docs[-1]
+        if isinstance(last.get("created_at"), datetime):
+            next_before = f"{_iso(last['created_at'])}|{last['_id']}"
     return docs, next_before
 
 

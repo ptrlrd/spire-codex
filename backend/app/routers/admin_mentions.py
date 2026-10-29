@@ -21,16 +21,17 @@ _STATUS_FILTERS = {"new", "seen", "replied", "ignored", "open", "all"}
 _MAX_NOTE = 2000
 
 
-def _parse_before(value: str | None) -> datetime | None:
+def _parse_before(value: str | None) -> tuple[datetime, str] | None:
     if not value:
         return None
+    stamp, _, last_id = value.partition("|")
     try:
-        dt = datetime.fromisoformat(value.replace("Z", "+00:00"))
+        dt = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
     except ValueError:
-        raise HTTPException(status_code=400, detail="before: expected an ISO timestamp")
+        raise HTTPException(status_code=400, detail="before: expected a page cursor")
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=timezone.utc)
-    return dt
+    return dt, last_id or "\uffff"
 
 
 def _out(doc: dict) -> dict:

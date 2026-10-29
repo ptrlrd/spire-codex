@@ -959,6 +959,8 @@ export default function MentionsClient() {
   const [pollNote, setPollNote] = useState<string | null>(null);
   const pollTimers = useRef<TimerId[]>([]);
   const listSeq = useRef(0);
+  const mutationSeq = useRef<Record<string, number>>({});
+  const [loadingMore, setLoadingMore] = useState(false);
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -1075,12 +1077,20 @@ export default function MentionsClient() {
       body: JSON.stringify(body),
     });
 
+  const bumpMutation = (key: string) => {
+    const next = (mutationSeq.current[key] ?? 0) + 1;
+    mutationSeq.current[key] = next;
+    return next;
+  };
+
   const setStatusOptimistic = (m: Mention, next: string) => {
     const prev = m.status;
+    const version = bumpMutation(`${m.id}:status`);
     setItems((list) =>
       list.map((x) => (x.id === m.id ? { ...x, status: next } : x)),
     );
     patchMention(m.id, { status: next }).catch(() => {
+      if (mutationSeq.current[`${m.id}:status`] !== version) return;
       setItems((list) =>
         list.map((x) => (x.id === m.id ? { ...x, status: prev } : x)),
       );
@@ -1090,8 +1100,10 @@ export default function MentionsClient() {
 
   const setNoteOptimistic = (m: Mention, note: string) => {
     const prev = m.note;
+    const version = bumpMutation(`${m.id}:note`);
     setItems((list) => list.map((x) => (x.id === m.id ? { ...x, note } : x)));
     patchMention(m.id, { note }).catch(() => {
+      if (mutationSeq.current[`${m.id}:note`] !== version) return;
       setItems((list) =>
         list.map((x) => (x.id === m.id ? { ...x, note: prev } : x)),
       );
@@ -1268,9 +1280,13 @@ export default function MentionsClient() {
           <button
             type="button"
             className={BTN}
-            onClick={() => loadList(nextBefore)}
+            disabled={loadingMore}
+            onClick={() => {
+              setLoadingMore(true);
+              loadList(nextBefore).finally(() => setLoadingMore(false));
+            }}
           >
-            Load more
+            {loadingMore ? "Loading..." : "Load more"}
           </button>
         </div>
       )}

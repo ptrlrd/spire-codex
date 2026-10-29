@@ -3,6 +3,7 @@ messages here with a bearer token. Same store, matcher and alerting as
 the polled sources."""
 
 import hmac
+import json
 import os
 from datetime import datetime, timezone
 
@@ -17,6 +18,7 @@ router = APIRouter(prefix="/api/mentions", tags=["Mentions"])
 
 limiter = shared_limiter
 _MAX_ITEMS = 50
+_MAX_BODY = 512_000
 
 
 def _bad(field: str, message: str):
@@ -85,9 +87,17 @@ async def ingest(request: Request):
     supplied = header[len("Bearer ") :] if header.startswith("Bearer ") else ""
     if not hmac.compare_digest(supplied.encode(), token.encode()):
         raise HTTPException(status_code=401, detail="Invalid token")
+    declared = request.headers.get("content-length", "")
+    if declared.isdigit() and int(declared) > _MAX_BODY:
+        raise HTTPException(status_code=413, detail="body: too large")
+    raw = bytearray()
+    async for chunk in request.stream():
+        raw.extend(chunk)
+        if len(raw) > _MAX_BODY:
+            raise HTTPException(status_code=413, detail="body: too large")
     try:
-        body = await request.json()
-    except Exception:
+        body = json.loads(raw)
+    except ValueError:
         _bad("body", "expected a JSON object")
     items = body.get("items") if isinstance(body, dict) else None
     if not isinstance(items, list):

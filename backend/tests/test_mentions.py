@@ -22,6 +22,10 @@ ADMIN = {"_id": "a" * 24, "username": "Admin", "steam_id": "76561198000000001"}
 
 
 def _match(doc, flt):
+    if "$and" in flt:
+        if not all(_match(doc, sub) for sub in flt["$and"]):
+            return False
+        flt = {k: v for k, v in flt.items() if k != "$and"}
     if "$or" in flt:
         if not any(_match(doc, sub) for sub in flt["$or"]):
             return False
@@ -935,17 +939,6 @@ def test_manual_poll_runs_while_the_poller_holds_the_lease(env, monkeypatch):
     assert set(seen["force"]) == polled
 
 
-def test_manual_poll_refused_while_another_worker_polls(env, monkeypatch):
-    env["mention_state"].insert_one(
-        {
-            "_id": "_manual",
-            "expires_at": datetime.now(timezone.utc) + timedelta(minutes=2),
-        }
-    )
-    monkeypatch.setattr(mentions, "run_due_sources", lambda force=None: None)
-    assert client.post("/api/admin/mentions/poll", json={}).status_code == 409
-
-
 def test_admin_bulk_rejects_non_string_ids(env):
     resp = client.post(
         "/api/admin/mentions/bulk", json={"ids": [{"$ne": None}], "status": "seen"}
@@ -1034,3 +1027,101 @@ def test_punctuation_terms_never_match_and_are_rejected():
                 "alert_groups": [],
             }
         )
+
+
+def test_forced_poll_skips_a_source_another_run_holds(env, monkeypatch):
+    calls = []
+    monkeypatch.setattr(
+        mention_sources,
+        "SOURCES",
+        [_source(lambda settings, cursor, client: calls.append(1) or ([], None))],
+    )
+    env["mention_state"].insert_one(
+        {
+            "_id": "_lease:testsrc",
+            "holder": "other",
+            "expires_at": mentions._utcnow() + timedelta(minutes=10),
+        }
+    )
+    mentions.run_due_sources(force=["testsrc"])
+    assert calls == []
+    env["mention_state"].docs["_lease:testsrc"]["expires_at"] = (
+        mentions._utcnow() - timedelta(seconds=1)
+    )
+    mentions.run_due_sources(force=["testsrc"])
+    assert calls == [1]
+    assert env["mention_state"].docs["_lease:testsrc"]["expires_at"] <= (
+        mentions._utcnow()
+    )
+
+
+def test_forced_poll_still_honours_provider_backoff(env, monkeypatch):
+    calls = []
+    monkeypatch.setattr(
+        mention_sources,
+        "SOURCES",
+        [_source(lambda settings, cursor, client: calls.append(1) or ([], None))],
+    )
+    env["mention_state"].docs["testsrc"] = {
+        "_id": "testsrc",
+        "backoff_until": mentions._utcnow() + timedelta(minutes=5),
+    }
+    mentions.run_due_sources(force=["testsrc"])
+    assert calls == []
+
+
+def test_store_survives_a_concurrent_insert(env, monkeypatch):
+    col = env["mentions"]
+    real_update = col.update_one
+
+    def racing_update(flt, update, upsert=False):
+        if upsert:
+            raise DuplicateKeyError("race")
+        return real_update(flt, update, upsert=upsert)
+
+    monkeypatch.setattr(col, "update_one", racing_update)
+    stored = mentions.store([_found()], {"terms": TERMS})
+    assert stored == []
+
+
+def test_list_pages_through_identical_timestamps(env):
+    when = mentions._utcnow() - timedelta(hours=1)
+    for i in range(51):
+        _seed(env, _id=f"discord:{i:02d}", created_at=when)
+    first = client.get("/api/admin/mentions?limit=50").json()
+    assert len(first["items"]) == 50 and first["next_before"]
+    second = client.get(
+        "/api/admin/mentions",
+        params={"limit": 50, "before": first["next_before"]},
+    ).json()
+    ids = {i["id"] for i in first["items"]} | {i["id"] for i in second["items"]}
+    assert len(second["items"]) == 1 and len(ids) == 51
+
+
+def test_settings_reject_internal_feed_hosts():
+    base = {
+        "terms": [],
+        "subreddits": [],
+        "github_exclude": [],
+        "alert_groups": [],
+    }
+    for url in (
+        "https://127.0.0.1:8443/admin",
+        "https://10.1.2.3/feed",
+        "https://localhost/feed",
+        "https://user:pw@alerts.example/feed",
+    ):
+        with pytest.raises(ValueError):
+            mentions.validate_settings(
+                {**base, "feeds": [{"url": url, "label": "x", "group": ""}]}
+            )
+
+
+def test_ingest_rejects_oversized_bodies(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "secret")
+    resp = client.post(
+        "/api/mentions/ingest",
+        headers=_ingest_headers("secret"),
+        content=b'{"items": [' + b" " * 600_000 + b"]}",
+    )
+    assert resp.status_code == 413

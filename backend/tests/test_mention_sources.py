@@ -556,3 +556,116 @@ def test_slow_feed_hits_the_wall_clock_deadline(monkeypatch):
     except TimeoutError:
         return
     raise AssertionError("slow feed was not cut off")
+
+
+def test_github_pages_until_short_and_keeps_cursor_on_incomplete():
+    def issue(n):
+        return {
+            "id": n,
+            "html_url": f"https://github.com/a/b/issues/{n}",
+            "title": "spire codex",
+            "body": "",
+            "user": {"login": "dev", "html_url": "https://github.com/dev"},
+            "created_at": "2026-10-28T12:00:00Z",
+            "comments": 0,
+            "repository_url": "https://api.github.com/repos/a/b",
+        }
+
+    class _Paged(_Client):
+        def get(self, url, **kw):
+            self.calls.append(("GET", url, kw))
+            page = kw["params"]["page"]
+            q = kw["params"]["q"]
+            if q.startswith('"spire codex"') and page == 1:
+                return _Resp(
+                    {"incomplete_results": True, "items": [issue(i) for i in range(50)]}
+                )
+            if q.startswith('"spire codex"') and page == 2:
+                return _Resp({"items": [issue(50)]})
+            return _Resp({"items": []})
+
+    fake = _Paged({})
+    found, cursor = ms.fetch_github(
+        {"terms": [{"text": "spire codex", "group": "brand"}], "github_exclude": []},
+        "2026-10-01T00:00:00Z",
+        fake,
+    )
+    assert len(found) == 51
+    assert cursor == "2026-10-01T00:00:00Z"
+
+
+def test_hn_youtube_and_bluesky_follow_full_pages(monkeypatch):
+    monkeypatch.setenv("YOUTUBE_API_KEY", "k")
+    monkeypatch.setattr(ms, "_bluesky_token", lambda client, force=False: "jwt")
+    hit = {
+        "objectID": "1",
+        "title": "spire codex",
+        "created_at_i": 1790000000,
+        "_tags": ["story"],
+    }
+    video = {
+        "id": {"videoId": "v"},
+        "snippet": {
+            "title": "spire codex",
+            "description": "",
+            "channelTitle": "c",
+            "channelId": "c",
+            "publishedAt": "2026-10-28T12:00:00Z",
+        },
+    }
+    post = {
+        "uri": "at://did:plc:a/app.bsky.feed.post/r",
+        "author": {"handle": "a.bsky.social"},
+        "record": {"text": "spire codex", "createdAt": "2026-10-28T12:00:00Z"},
+    }
+
+    class _Pages(_Client):
+        def get(self, url, **kw):
+            self.calls.append(("GET", url, kw))
+            params = kw.get("params") or {}
+            if "algolia" in url:
+                if params.get("page") == 0:
+                    return _Resp({"hits": [hit] * 50, "nbPages": 3})
+                return _Resp({"hits": [hit], "nbPages": 3})
+            if "googleapis" in url:
+                if "pageToken" not in params:
+                    return _Resp({"items": [video] * 50, "nextPageToken": "t2"})
+                return _Resp({"items": [video]})
+            if "searchPosts" in url:
+                if "cursor" not in params:
+                    return _Resp({"posts": [post] * 100, "cursor": "c2"})
+                return _Resp({"posts": [post]})
+            return _Resp({})
+
+    fake = _Pages({})
+    settings = {"terms": [{"text": "spirebird", "group": "brand"}]}
+    ms.fetch_hackernews(settings, None, fake)
+    ms.fetch_youtube(settings, None, fake)
+    ms.fetch_bluesky(settings, None, fake)
+    hn_pages = [c[2]["params"]["page"] for c in fake.calls if "algolia" in c[1]]
+    yt_tokens = [
+        c[2]["params"].get("pageToken") for c in fake.calls if "googleapis" in c[1]
+    ]
+    bs = [c[2]["params"].get("cursor") for c in fake.calls if "searchPosts" in c[1]]
+    assert hn_pages == [0, 1]
+    assert yt_tokens == [None, "t2"]
+    assert bs[:2] == [None, "c2"]
+
+
+def test_feed_entries_are_capped():
+    items = b"".join(
+        b"<item><title>Spire Codex</title><link>https://a.example/%d</link><guid>%d</guid></item>"
+        % (i, i)
+        for i in range(ms.FEED_MAX_ENTRIES + 50)
+    )
+    xml = b'<?xml version="1.0"?><rss><channel>' + items + b"</channel></rss>"
+    out = ms.parse_feed(
+        xml,
+        {
+            "url": "https://feeds.example/a",
+            "label": "A",
+            "group": "brand",
+            "community": False,
+        },
+    )
+    assert len(out) == ms.FEED_MAX_ENTRIES

@@ -32,6 +32,11 @@ logger = logging.getLogger("spire-codex")
 REDDIT_UA_DEFAULT = "web:spire-codex-mentions:1.0"
 SITE_DOMAIN = "spire-codex.com"
 FEED_MAX_BYTES = 2_000_000
+FEED_MAX_ENTRIES = 200
+YOUTUBE_MAX_PAGES = 2
+BLUESKY_MAX_PAGES = 3
+HN_MAX_PAGES = 3
+GITHUB_MAX_PAGES = 3
 
 
 class RateLimited(Exception):
@@ -388,29 +393,38 @@ def fetch_bluesky(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
         params: dict = {"q": q, "sort": "latest", "limit": 100}
         if since:
             params["since"] = _iso_cursor(since)
-        for attempt in (0, 1):
-            try:
-                resp = _get(
-                    client,
-                    "https://bsky.social/xrpc/app.bsky.feed.searchPosts",
-                    headers={
-                        "Authorization": f"Bearer {_bluesky_token(client, force=attempt > 0)}"
-                    },
-                    params=params,
-                )
+        for _ in range(BLUESKY_MAX_PAGES):
+            payload = _bluesky_search(client, params)
+            items = parse_bluesky_posts(payload)
+            for item in items:
+                item.query_group = group
+                item.query_term = term
+                if newest is None or item.created_at > newest:
+                    newest = item.created_at
+            found.extend(items)
+            page_cursor = payload.get("cursor")
+            if len(payload.get("posts") or []) < 100 or not page_cursor:
                 break
-            except httpx.HTTPStatusError as e:
-                if attempt == 0 and e.response.status_code == 401:
-                    continue
-                raise
-        items = parse_bluesky_posts(resp.json())
-        for item in items:
-            item.query_group = group
-            item.query_term = term
-            if newest is None or item.created_at > newest:
-                newest = item.created_at
-        found.extend(items)
+            params = {**params, "cursor": page_cursor}
     return found, _iso_cursor(newest)
+
+
+def _bluesky_search(client: httpx.Client, params: dict) -> dict:
+    for attempt in (0, 1):
+        try:
+            return _get(
+                client,
+                "https://bsky.social/xrpc/app.bsky.feed.searchPosts",
+                headers={
+                    "Authorization": f"Bearer {_bluesky_token(client, force=attempt > 0)}"
+                },
+                params=params,
+            ).json()
+        except httpx.HTTPStatusError as e:
+            if attempt == 0 and e.response.status_code == 401:
+                continue
+            raise
+    return {}
 
 
 def parse_youtube_search(payload: dict, group: str, term: str | None) -> list[Found]:
@@ -446,22 +460,25 @@ def fetch_youtube(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
         variants = group_variants(settings, group)
         if not variants:
             continue
-        resp = _get(
-            client,
-            "https://www.googleapis.com/youtube/v3/search",
-            params={
-                "part": "snippet",
-                "type": "video",
-                "order": "date",
-                "maxResults": 50,
-                "q": "|".join(map(quote_variant, variants)),
-                "publishedAfter": published_after,
-                "key": key,
-            },
-        )
-        found.extend(
-            parse_youtube_search(resp.json(), group, _first_term(settings, group))
-        )
+        params = {
+            "part": "snippet",
+            "type": "video",
+            "order": "date",
+            "maxResults": 50,
+            "q": "|".join(map(quote_variant, variants)),
+            "publishedAfter": published_after,
+            "key": key,
+        }
+        for _ in range(YOUTUBE_MAX_PAGES):
+            payload = _get(
+                client, "https://www.googleapis.com/youtube/v3/search", params=params
+            ).json()
+            page = parse_youtube_search(payload, group, _first_term(settings, group))
+            found.extend(page)
+            token = payload.get("nextPageToken")
+            if len(page) < 50 or not token:
+                break
+            params = {**params, "pageToken": token}
     newest = max((i.created_at for i in found), default=None)
     return found, _iso_cursor(newest) or published_after
 
@@ -517,13 +534,19 @@ def fetch_hackernews(settings: dict, cursor: Any, client: httpx.Client) -> tuple
             }
             if since:
                 params["numericFilters"] = f"created_at_i>{since}"
-            resp = _get(
-                client, "https://hn.algolia.com/api/v1/search_by_date", params=params
-            )
-            for item in parse_hn_hits(resp.json()):
-                item.query_group = group
-                item.query_term = term
-                found.append(item)
+            for page in range(HN_MAX_PAGES):
+                payload = _get(
+                    client,
+                    "https://hn.algolia.com/api/v1/search_by_date",
+                    params={**params, "page": page},
+                ).json()
+                for item in parse_hn_hits(payload):
+                    item.query_group = group
+                    item.query_term = term
+                    found.append(item)
+                hits = payload.get("hits") or []
+                if len(hits) < 50 or page + 1 >= int(payload.get("nbPages") or 0):
+                    break
     for item in found:
         since = max(since, int(item.created_at.timestamp()))
     return found, since or None
@@ -564,31 +587,39 @@ def fetch_github(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     if token:
         headers["Authorization"] = f"Bearer {token}"
     excludes = "".join(f" -{e}" for e in settings.get("github_exclude", []))
+    incomplete = False
     items: list[Found] = []
     seen: set[str] = set()
     for group in ("brand", "competitor"):
         term = _first_term(settings, group)
         for variant in group_variants(settings, group):
-            resp = _get(
-                client,
-                "https://api.github.com/search/issues",
-                headers=headers,
-                params={
-                    "q": quote_variant(variant) + excludes,
-                    "sort": "created",
-                    "order": "desc",
-                    "per_page": 50,
-                },
-            )
-            for item in parse_github_issues(resp.json()):
-                if item.external_id in seen:
-                    continue
-                seen.add(item.external_id)
-                item.query_group = group
-                item.query_term = term
-                items.append(item)
+            for page in range(1, GITHUB_MAX_PAGES + 1):
+                payload = _get(
+                    client,
+                    "https://api.github.com/search/issues",
+                    headers=headers,
+                    params={
+                        "q": quote_variant(variant) + excludes,
+                        "sort": "created",
+                        "order": "desc",
+                        "per_page": 50,
+                        "page": page,
+                    },
+                ).json()
+                incomplete = incomplete or bool(payload.get("incomplete_results"))
+                for item in parse_github_issues(payload):
+                    if item.external_id in seen:
+                        continue
+                    seen.add(item.external_id)
+                    item.query_group = group
+                    item.query_term = term
+                    items.append(item)
+                if len(payload.get("items") or []) < 50:
+                    break
     since = _parse_iso(cursor) if cursor else None
     kept = [i for i in items if since is None or i.created_at > since]
+    if incomplete:
+        return kept, cursor
     newest = max((i.created_at for i in items), default=None)
     return kept, _iso_cursor(newest) or cursor
 
@@ -646,7 +677,7 @@ def parse_feed(xml_bytes: bytes, feed: dict) -> list[Found]:
     out: list[Found] = []
     channel = root.find("channel")
     if channel is not None:
-        for item in channel.findall("item"):
+        for item in channel.findall("item")[:FEED_MAX_ENTRIES]:
             guid = item.findtext("guid")
             link = item.findtext("link") or ""
             out.append(
@@ -661,7 +692,7 @@ def parse_feed(xml_bytes: bytes, feed: dict) -> list[Found]:
                 )
             )
         return out
-    for entry in root.iter(f"{_ATOM}entry"):
+    for entry in list(root.iter(f"{_ATOM}entry"))[:FEED_MAX_ENTRIES]:
         entry_id = entry.findtext(f"{_ATOM}id")
         link = ""
         for el in entry.findall(f"{_ATOM}link"):
