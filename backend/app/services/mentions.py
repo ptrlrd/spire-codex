@@ -9,13 +9,22 @@ words.
 """
 
 import logging
+import os
 import re
-from datetime import datetime, timezone
+import socket
+import threading
+import time
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
+import httpx
 from pymongo import DESCENDING
+from pymongo.errors import DuplicateKeyError
 
 logger = logging.getLogger("spire-codex")
+
+_manual_lock = threading.Lock()
+_manual_running = False
 
 USER_AGENT = "SpireCodexMentions/1.0 (+https://spire-codex.com)"
 HTTP_TIMEOUT = 10
@@ -23,6 +32,12 @@ FEED_TIMEOUT = 15
 MAX_TEXT = 2000
 GROUPS = ["brand", "competitor", "community"]
 STATUSES = ["new", "seen", "replied", "ignored"]
+
+LEASE_SECONDS = 180
+POLL_FIRST_DELAY_SECONDS = 30
+POLL_INTERVAL_SECONDS = 60
+ALERT_BATCH = 10
+ALERT_CYCLE_CAP = 30
 
 MENTIONS_COLLECTION = "mentions"
 STATE_COLLECTION = "mention_state"
@@ -339,3 +354,203 @@ def item_out(doc: dict) -> dict:
         "status": doc.get("status", "new"),
         "note": doc.get("note", ""),
     }
+
+
+def sanitize_error(e: Exception) -> str:
+    if isinstance(e, httpx.HTTPStatusError):
+        return f"HTTP {e.response.status_code}"
+    return type(e).__name__
+
+
+def try_lease() -> bool:
+    me = f"{socket.gethostname()}:{os.getpid()}"
+    now = _utcnow()
+    try:
+        _state_col().update_one(
+            {"_id": "_lease", "$or": [{"expires_at": {"$lt": now}}, {"holder": me}]},
+            {
+                "$set": {
+                    "holder": me,
+                    "expires_at": now + timedelta(seconds=LEASE_SECONDS),
+                }
+            },
+            upsert=True,
+        )
+        return True
+    except DuplicateKeyError:
+        return False
+
+
+def _run_source(src, state: dict, settings: dict, webhook: str, client) -> None:
+    from .mention_sources import RateLimited
+
+    now = _utcnow()
+    try:
+        found, cursor = src.fetch(settings, state.get("cursor"), client)
+    except RateLimited as e:
+        wait = max(e.retry_after_seconds, src.interval_seconds)
+        _state_col().update_one(
+            {"_id": src.name},
+            {
+                "$set": {
+                    "backoff_until": now + timedelta(seconds=wait),
+                    "last_error": "rate limited",
+                },
+                "$setOnInsert": {"_id": src.name},
+            },
+            upsert=True,
+        )
+        return
+    except Exception as e:
+        _state_col().update_one(
+            {"_id": src.name},
+            {
+                "$set": {"last_run_at": now, "last_error": sanitize_error(e)},
+                "$setOnInsert": {"_id": src.name},
+            },
+            upsert=True,
+        )
+        logger.warning("mentions: %s poll failed: %s", src.name, sanitize_error(e))
+        return
+    stored = store(found, settings)
+    first_run = not state.get("cursor") and not state.get("last_ok_at")
+    if webhook and not first_run:
+        send_alerts(stored, settings)
+    _state_col().update_one(
+        {"_id": src.name},
+        {
+            "$set": {
+                "last_run_at": now,
+                "last_ok_at": now,
+                "last_new": len(stored),
+                "total_new": int(state.get("total_new") or 0) + len(stored),
+                "cursor": cursor,
+                "last_error": None,
+            },
+            "$setOnInsert": {"_id": src.name},
+        },
+        upsert=True,
+    )
+
+
+def run_due_sources(force=None) -> None:
+    from .mention_sources import SOURCES
+
+    settings = get_settings()
+    webhook = os.environ.get("MENTIONS_WEBHOOK_URL", "").strip()
+    with httpx.Client(
+        headers={"User-Agent": USER_AGENT}, timeout=HTTP_TIMEOUT
+    ) as client:
+        for src in SOURCES:
+            if src.fetch is None:
+                continue
+            if force and src.name not in force:
+                continue
+            if src.missing_env():
+                continue
+            state = _state_col().find_one({"_id": src.name}) or {}
+            now = _utcnow()
+            last_run = state.get("last_run_at")
+            backoff = state.get("backoff_until")
+            if not force:
+                if last_run and now - _as_utc(last_run) < timedelta(
+                    seconds=src.interval_seconds
+                ):
+                    continue
+                if backoff and now < _as_utc(backoff):
+                    continue
+            _run_source(src, state, settings, webhook, client)
+
+
+def _alert_embed(doc: dict) -> dict:
+    from .mention_sources import source_label
+
+    title = doc.get("title") or "(no title)"
+    return {
+        "title": f"{source_label(doc.get('source', ''))}: {title}"[:200],
+        "url": doc.get("url") or "",
+        "description": (doc.get("text") or "")[:300],
+        "footer": {
+            "text": f"{doc.get('space', '')} · {', '.join(doc.get('terms') or [])}"
+        },
+        "timestamp": _iso(doc.get("created_at")),
+    }
+
+
+def _post_webhook(payload: dict) -> None:
+    url = os.environ.get("MENTIONS_WEBHOOK_URL", "").strip()
+    if not url:
+        return
+    try:
+        with httpx.Client(
+            headers={"User-Agent": USER_AGENT}, timeout=HTTP_TIMEOUT
+        ) as client:
+            resp = client.post(url, json=payload)
+            resp.raise_for_status()
+    except Exception as e:
+        logger.warning("mentions: webhook failed: %s", sanitize_error(e))
+
+
+def send_alerts(docs: list[dict], settings: dict) -> None:
+    alert_groups = set(settings.get("alert_groups") or [])
+    alertable = [d for d in docs if alert_groups & set(d.get("groups") or [])]
+    if not alertable:
+        return
+    to_send = alertable[:ALERT_CYCLE_CAP]
+    overflow = len(alertable) - len(to_send)
+    for start in range(0, len(to_send), ALERT_BATCH):
+        batch = to_send[start : start + ALERT_BATCH]
+        payload: dict = {
+            "embeds": [_alert_embed(d) for d in batch],
+            "allowed_mentions": {"parse": []},
+        }
+        if overflow > 0 and start + ALERT_BATCH >= len(to_send):
+            payload["content"] = f"+{overflow} more in /admin/mentions"
+        _post_webhook(payload)
+
+
+def try_manual_poll(source: str | None = None) -> bool:
+    global _manual_running
+    with _manual_lock:
+        if _manual_running or not try_lease():
+            return False
+        _manual_running = True
+
+    def _run() -> None:
+        global _manual_running
+        try:
+            run_due_sources(force=[source] if source else None)
+        finally:
+            with _manual_lock:
+                _manual_running = False
+
+    threading.Thread(target=_run, daemon=True, name="mentions-manual-poll").start()
+    return True
+
+
+def start_poller() -> None:
+    from ..main import IS_BETA_BACKEND
+
+    if IS_BETA_BACKEND:
+        return
+    if not os.environ.get("MONGO_URL", "").strip():
+        return
+    if os.environ.get("MENTIONS_POLLER", "on").strip().lower() in (
+        "off",
+        "0",
+        "false",
+        "no",
+    ):
+        return
+    threading.Thread(target=_poll_loop, daemon=True, name="mentions-poller").start()
+
+
+def _poll_loop() -> None:
+    time.sleep(POLL_FIRST_DELAY_SECONDS)
+    while True:
+        try:
+            if try_lease():
+                run_due_sources()
+        except Exception:
+            logger.warning("mentions: poll cycle failed")
+        time.sleep(POLL_INTERVAL_SECONDS)

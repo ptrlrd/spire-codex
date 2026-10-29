@@ -1,17 +1,22 @@
 """Mentions inbox: term matching, store upserts, watch settings, poller,
 lease, Discord alerts, the admin API and the bot ingest endpoint."""
 
+import os
 import re
-from datetime import datetime, timezone
+import socket
+import threading
+from datetime import datetime, timedelta, timezone
 from types import SimpleNamespace
 
+import httpx
 import pytest
 from fastapi.testclient import TestClient
 from pymongo.errors import DuplicateKeyError
 
 from app.dependencies import shared_limiter
+from app import main as main_module
 from app.main import app
-from app.services import auth_jwt, mentions
+from app.services import auth_jwt, mention_sources, mentions
 
 client = TestClient(app, raise_server_exceptions=False)
 ADMIN = {"_id": "a" * 24, "username": "Admin", "steam_id": "76561198000000001"}
@@ -100,7 +105,7 @@ class Fake:
                 return type("R", (), {"matched_count": 1, "upserted_id": None})()
         if upsert:
             doc = {
-                **{k: v for k, v in flt.items() if not isinstance(v, dict)},
+                **{k: v for k, v in flt.items() if not k.startswith("$")},
                 **update.get("$setOnInsert", {}),
                 **update.get("$set", {}),
             }
@@ -347,3 +352,203 @@ def test_save_settings_persists_and_get_settings_round_trips(env):
     assert got["github_exclude"] == ["org:Prima-Codex"]
     assert got["alert_groups"] == ["brand", "competitor"]
     assert "updated_at" in got
+
+
+def _source(fetch, name="testsrc", interval=300):
+    return SimpleNamespace(
+        name=name,
+        label="Test",
+        interval_seconds=interval,
+        missing_env=lambda: [],
+        fetch=fetch,
+    )
+
+
+def _alert_doc(groups=("brand",), n=0):
+    return {
+        "_id": f"reddit:x{n}",
+        "source": "reddit",
+        "url": f"https://www.reddit.com/x{n}",
+        "title": f"Mention {n}",
+        "text": "word " * 400,
+        "space": "r/slaythespire",
+        "terms": ["spire codex"],
+        "groups": list(groups),
+        "created_at": datetime(2026, 10, 20, 12, 0, tzinfo=timezone.utc),
+    }
+
+
+def test_lease_taken_when_missing_expired_or_ours(env):
+    assert mentions.try_lease() is True
+    lease = env["mention_state"].docs["_lease"]
+    assert lease["holder"] == f"{socket.gethostname()}:{os.getpid()}"
+    assert lease["expires_at"] > mentions._utcnow()
+
+    env["mention_state"].docs["_lease"] = {
+        "_id": "_lease",
+        "holder": lease["holder"],
+        "expires_at": mentions._utcnow() - timedelta(seconds=1),
+    }
+    assert mentions.try_lease() is True
+
+    env["mention_state"].docs["_lease"]["expires_at"] = mentions._utcnow() + timedelta(
+        seconds=60
+    )
+    assert mentions.try_lease() is True
+
+
+def test_lease_refused_while_another_holder_is_live(env):
+    env["mention_state"].docs["_lease"] = {
+        "_id": "_lease",
+        "holder": "otherhost:1",
+        "expires_at": mentions._utcnow() + timedelta(seconds=120),
+    }
+    assert mentions.try_lease() is False
+
+
+def test_run_due_sources_skips_not_due_and_backoff(env, monkeypatch):
+    calls = []
+
+    def fetch(settings, cursor, client):
+        calls.append(cursor)
+        return [_found(external_id=f"t3_{len(calls)}")], "c1"
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    mentions.run_due_sources()
+    assert len(calls) == 1
+    state = env["mention_state"].docs["testsrc"]
+    assert state["cursor"] == "c1"
+    assert state["last_new"] == 1 and state["total_new"] == 1
+    assert state["last_ok_at"] is not None and state["last_error"] is None
+
+    mentions.run_due_sources()
+    assert len(calls) == 1
+
+    env["mention_state"].docs["testsrc"]["last_run_at"] = (
+        mentions._utcnow() - timedelta(seconds=301)
+    )
+    env["mention_state"].docs["testsrc"]["backoff_until"] = (
+        mentions._utcnow() + timedelta(seconds=120)
+    )
+    mentions.run_due_sources()
+    assert len(calls) == 1
+
+
+def test_run_due_sources_force_bypasses_cadence(env, monkeypatch):
+    calls = []
+
+    def fetch(settings, cursor, client):
+        calls.append(1)
+        return [], None
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    env["mention_state"].docs["testsrc"] = {
+        "_id": "testsrc",
+        "last_run_at": mentions._utcnow(),
+    }
+    mentions.run_due_sources(force=["testsrc"])
+    assert len(calls) == 1
+
+
+def test_rate_limited_source_backs_off(env, monkeypatch):
+    def fetch(settings, cursor, client):
+        raise mention_sources.RateLimited(5)
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    mentions.run_due_sources()
+    state = env["mention_state"].docs["testsrc"]
+    assert state["last_error"] == "rate limited"
+    assert state["backoff_until"] >= mentions._utcnow() + timedelta(seconds=299)
+    assert "last_ok_at" not in state
+
+
+def test_failing_fetch_stores_no_secret_in_last_error(env, monkeypatch):
+    def fetch(settings, cursor, client):
+        raise ValueError("youtube search failed with key=SECRET")
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    mentions.run_due_sources()
+    state = env["mention_state"].docs["testsrc"]
+    assert state["last_error"] == "ValueError"
+    assert "SECRET" not in state["last_error"]
+
+
+def test_http_status_error_stores_status_only(env, monkeypatch):
+    def fetch(settings, cursor, client):
+        request = httpx.Request("GET", "https://api.example.com/x?key=SECRET")
+        response = httpx.Response(403, request=request)
+        raise httpx.HTTPStatusError("boom", request=request, response=response)
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    mentions.run_due_sources()
+    state = env["mention_state"].docs["testsrc"]
+    assert state["last_error"] == "HTTP 403"
+    assert "SECRET" not in state["last_error"]
+
+
+def test_first_run_stores_but_never_alerts(env, monkeypatch):
+    sent = []
+    monkeypatch.setenv("MENTIONS_WEBHOOK_URL", "https://discord.example/hook")
+    monkeypatch.setattr(mentions, "_post_webhook", lambda payload: sent.append(payload))
+
+    def fetch(settings, cursor, client):
+        return [_found(external_id="t3_alert")], "c1"
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch)])
+    mentions.run_due_sources()
+    assert sent == []
+    assert "reddit:t3_alert" in env["mentions"].docs
+
+    env["mention_state"].docs["testsrc"]["last_run_at"] = (
+        mentions._utcnow() - timedelta(seconds=301)
+    )
+
+    def fetch_again(settings, cursor, client):
+        return [_found(external_id="t3_alert2")], "c2"
+
+    monkeypatch.setattr(mention_sources, "SOURCES", [_source(fetch_again)])
+    mentions.run_due_sources()
+    assert len(sent) == 1
+    assert len(sent[0]["embeds"]) == 1
+
+
+def test_send_alerts_batches_embeds_with_overflow_line(monkeypatch):
+    sent = []
+    monkeypatch.setattr(mentions, "_post_webhook", lambda payload: sent.append(payload))
+    settings = {"alert_groups": ["brand"]}
+    docs = [_alert_doc(n=n) for n in range(45)]
+    mentions.send_alerts(docs, settings)
+    assert [len(m["embeds"]) for m in sent] == [10, 10, 10]
+    assert sent[-1]["content"] == "+15 more in /admin/mentions"
+    for message in sent:
+        assert message["allowed_mentions"] == {"parse": []}
+    embed = sent[0]["embeds"][0]
+    assert embed["title"] == "Reddit: Mention 0"
+    assert embed["url"] == "https://www.reddit.com/x0"
+    assert len(embed["description"]) == 300
+    assert embed["footer"]["text"] == "r/slaythespire · spire codex"
+    assert embed["timestamp"].startswith("2026-10-20T12:00:00")
+
+
+def test_send_alerts_only_alert_groups(monkeypatch):
+    sent = []
+    monkeypatch.setattr(mentions, "_post_webhook", lambda payload: sent.append(payload))
+    settings = {"alert_groups": ["competitor"]}
+    docs = [_alert_doc(groups=("brand",), n=1), _alert_doc(groups=("competitor",), n=2)]
+    mentions.send_alerts(docs, settings)
+    assert len(sent) == 1
+    assert sent[0]["embeds"][0]["title"] == "Reddit: Mention 2"
+
+
+def test_start_poller_guards(monkeypatch):
+    before = len([t for t in threading.enumerate() if t.name == "mentions-poller"])
+    monkeypatch.setenv("MONGO_URL", "mongodb://test")
+    monkeypatch.setenv("MENTIONS_POLLER", "off")
+    mentions.start_poller()
+    monkeypatch.setenv("MENTIONS_POLLER", "on")
+    monkeypatch.setattr(main_module, "IS_BETA_BACKEND", True)
+    mentions.start_poller()
+    monkeypatch.delenv("MONGO_URL")
+    mentions.start_poller()
+    after = len([t for t in threading.enumerate() if t.name == "mentions-poller"])
+    assert before == after == 0
