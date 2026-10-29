@@ -123,6 +123,7 @@ function NotFound() {
 
 const SECTIONS = [
   { href: "/admin", label: "Overview" },
+  { href: "/admin/mentions", label: "Mentions" },
   { href: "/admin/runs", label: "Runs" },
   { href: "/admin/users", label: "Users" },
   { href: "/admin/feedback", label: "Feedback" },

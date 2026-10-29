@@ -661,6 +661,10 @@ is listed with where it is read.
 | `GITHUB_APP_ID`, `GITHUB_APP_INSTALLATION_ID`, `GITHUB_APP_REPO`, `GITHUB_APP_PRIVATE_KEY`, `GITHUB_APP_PRIVATE_KEY_PATH` | GitHub App that files issues from reports. |
 | `WORKERS_AI_TOKEN`                                                       | Semantic search embeddings (with `CF_ACCOUNT_ID`).               |
 | `MOD_LATEST_VERSION`, `MOD_DOWNLOAD_URL`, `MOD_STS2_TESTED`              | What `/api/mod/latest` reports.                                  |
+| `MENTIONS_POLLER`, `MENTIONS_WEBHOOK_URL`, `MENTIONS_INGEST_TOKEN`       | Mentions inbox poller toggle, Discord alert webhook, and the token bots use to push Discord messages. |
+| `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT`          | Reddit app-only OAuth for the mentions poller.                   |
+| `BLUESKY_HANDLE`, `BLUESKY_APP_PASSWORD`                                 | Bluesky login for live post search.                              |
+| `YOUTUBE_API_KEY`                                                        | YouTube data search over video titles and descriptions.          |
 
 **Stats and lake tuning**
 
