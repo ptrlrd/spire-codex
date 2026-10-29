@@ -59,8 +59,10 @@ from .routers import (
     replays_browse,
     admin,
     admin_searches,
+    admin_mentions,
     admin_news,
     admin_thanks,
+    mentions_ingest,
     thanks,
     admin_rate_limits,
     admin_api_keys,
@@ -277,6 +279,16 @@ def _warm_run_entity_stats() -> None:
         start_stats_refresher()
     except Exception:
         pass
+
+
+@app.on_event("startup")
+def _start_mentions_poller() -> None:
+    try:
+        from .services import mentions
+
+        mentions.start_poller()
+    except Exception:
+        logger.warning("mentions: poller not started", exc_info=True)
 
 
 _VERSION_RE = re.compile(r"^v?\d+\.\d+")
@@ -755,6 +767,8 @@ app.include_router(admin_searches.router, include_in_schema=False)
 app.include_router(admin_rate_limits.router, include_in_schema=False)
 app.include_router(admin_news.router, include_in_schema=False)
 app.include_router(admin_thanks.router, include_in_schema=False)
+app.include_router(admin_mentions.router, include_in_schema=False)
+app.include_router(mentions_ingest.router, include_in_schema=False)
 app.include_router(thanks.router)
 app.include_router(admin_api_keys.router, include_in_schema=False)
 app.include_router(admin_replays.router, include_in_schema=False)

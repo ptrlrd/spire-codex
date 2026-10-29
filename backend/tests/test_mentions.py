@@ -115,6 +115,14 @@ class Fake:
             return type("R", (), {"matched_count": 0, "upserted_id": doc["_id"]})()
         return type("R", (), {"matched_count": 0, "upserted_id": None})()
 
+    def update_many(self, flt, update):
+        n = 0
+        for d in self.docs.values():
+            if _match(d, flt):
+                d.update(update.get("$set", {}))
+                n += 1
+        return type("R", (), {"modified_count": n})()
+
 
 @pytest.fixture
 def env(monkeypatch):
@@ -132,6 +140,7 @@ def env(monkeypatch):
     monkeypatch.setattr(mentions, "_settings_col", lambda: cols["mention_settings"])
     app.dependency_overrides[auth_jwt.require_admin] = lambda: ADMIN
     yield cols
+    app.dependency_overrides.pop(auth_jwt.require_admin, None)
 
 
 def _found(**kw):
@@ -552,3 +561,347 @@ def test_start_poller_guards(monkeypatch):
     mentions.start_poller()
     after = len([t for t in threading.enumerate() if t.name == "mentions-poller"])
     assert before == after == 0
+
+
+def _seed(env, **kw):
+    base = {
+        "_id": kw.pop("_id"),
+        "source": kw.pop("source", "reddit"),
+        "kind": "post",
+        "url": "https://www.reddit.com/x",
+        "title": kw.pop("title", "Spire Codex talk"),
+        "text": kw.pop("text", "body"),
+        "author": kw.pop("author", "carol"),
+        "author_url": "https://www.reddit.com/u",
+        "space": "r/slaythespire",
+        "created_at": kw.pop("created_at", mentions._utcnow() - timedelta(hours=1)),
+        "found_at": mentions._utcnow(),
+        "groups": kw.pop("groups", ["brand"]),
+        "terms": ["spire codex"],
+        "engagement": {},
+        "status": kw.pop("status", "new"),
+        "note": "",
+    }
+    base.update(kw)
+    env["mentions"].docs[base["_id"]] = base
+    return base
+
+
+def test_admin_list_filters_status_source_group_and_text(env):
+    _seed(env, _id="m1", created_at=mentions._utcnow() - timedelta(hours=1))
+    _seed(
+        env,
+        _id="m2",
+        status="replied",
+        created_at=mentions._utcnow() - timedelta(hours=2),
+    )
+    _seed(
+        env,
+        _id="m3",
+        source="github",
+        title="spirebird appears",
+        author="mallory",
+        created_at=mentions._utcnow() - timedelta(hours=3),
+    )
+    _seed(
+        env,
+        _id="m4",
+        groups=["community"],
+        title="win rate post",
+        author="nadia",
+        created_at=mentions._utcnow() - timedelta(hours=4),
+    )
+
+    body = client.get("/api/admin/mentions").json()
+    assert [i["id"] for i in body["items"]] == ["m1", "m3", "m4"]
+
+    body = client.get("/api/admin/mentions?status=all").json()
+    assert [i["id"] for i in body["items"]] == ["m1", "m2", "m3", "m4"]
+
+    body = client.get("/api/admin/mentions?status=all&source=github").json()
+    assert [i["id"] for i in body["items"]] == ["m3"]
+
+    body = client.get("/api/admin/mentions?status=all&group=community").json()
+    assert [i["id"] for i in body["items"]] == ["m4"]
+
+    body = client.get("/api/admin/mentions?status=all&q=SPIREBIRD").json()
+    assert [i["id"] for i in body["items"]] == ["m3"]
+
+    body = client.get("/api/admin/mentions?status=all&q=carol").json()
+    assert [i["id"] for i in body["items"]] == ["m1", "m2"]
+
+    first = body["items"][0]
+    assert first["source_label"] == "Reddit"
+    assert first["created_at"] and first["groups"] == ["brand"]
+
+
+def test_admin_list_paginates_with_before_cursor(env):
+    for n in range(5):
+        _seed(env, _id=f"p{n}", created_at=mentions._utcnow() - timedelta(hours=n + 1))
+    page1 = client.get("/api/admin/mentions?status=all&limit=2").json()
+    assert [i["id"] for i in page1["items"]] == ["p0", "p1"]
+    assert page1["next_before"]
+    page2 = client.get(
+        f"/api/admin/mentions?status=all&limit=2&before={page1['next_before']}"
+    ).json()
+    assert [i["id"] for i in page2["items"]] == ["p2", "p3"]
+    page3 = client.get(
+        f"/api/admin/mentions?status=all&limit=2&before={page2['next_before']}"
+    ).json()
+    assert [i["id"] for i in page3["items"]] == ["p4"]
+    assert page3["next_before"] is None
+
+
+def test_admin_list_rejects_bad_params(env):
+    assert client.get("/api/admin/mentions?status=bogus").status_code == 400
+    assert client.get("/api/admin/mentions?days=0").status_code == 400
+    assert client.get("/api/admin/mentions?days=400").status_code == 400
+    assert client.get("/api/admin/mentions?limit=0").status_code == 400
+    assert client.get("/api/admin/mentions?limit=500").status_code == 400
+    assert client.get("/api/admin/mentions?group=nope").status_code == 400
+    assert client.get("/api/admin/mentions?before=nonsense").status_code == 400
+
+
+def test_admin_patch_validates_and_returns_item(env):
+    _seed(env, _id="m9")
+    resp = client.patch(
+        "/api/admin/mentions/m9", json={"status": "replied", "note": "done"}
+    )
+    assert resp.status_code == 200
+    body = resp.json()
+    assert body["status"] == "replied" and body["note"] == "done"
+    assert env["mentions"].docs["m9"]["status"] == "replied"
+
+    resp = client.patch("/api/admin/mentions/missing", json={"status": "seen"})
+    assert resp.status_code == 404
+    resp = client.patch("/api/admin/mentions/m9", json={"status": "weird"})
+    assert resp.status_code == 400
+    resp = client.patch("/api/admin/mentions/m9", json={"note": "x" * 2001})
+    assert resp.status_code == 400
+    resp = client.patch("/api/admin/mentions/m9", json={})
+    assert resp.status_code == 400
+
+
+def test_admin_bulk_updates_ids(env):
+    _seed(env, _id="b1")
+    _seed(env, _id="b2")
+    resp = client.post(
+        "/api/admin/mentions/bulk", json={"ids": ["b1", "b2"], "status": "ignored"}
+    )
+    assert resp.status_code == 200 and resp.json() == {"updated": 2}
+    assert env["mentions"].docs["b1"]["status"] == "ignored"
+    assert env["mentions"].docs["b2"]["status"] == "ignored"
+    resp = client.post(
+        "/api/admin/mentions/bulk", json={"ids": ["b1"] * 501, "status": "seen"}
+    )
+    assert resp.status_code == 400
+    resp = client.post(
+        "/api/admin/mentions/bulk", json={"ids": ["b1"], "status": "nope"}
+    )
+    assert resp.status_code == 400
+
+
+def test_admin_summary_shape_and_buckets(env):
+    _seed(env, _id="s1", groups=["brand"])
+    _seed(env, _id="s2", groups=["brand", "community"])
+    _seed(env, _id="s3", status="replied", groups=["competitor"])
+    body = client.get("/api/admin/mentions/summary?days=7").json()
+    assert body["counts"]["status"]["new"] == 2
+    assert body["counts"]["status"]["replied"] == 1
+    assert body["counts"]["groups"] == {"brand": 2, "competitor": 1, "community": 1}
+    assert body["counts"]["sources"]["reddit"] == 3
+    days = [row["date"] for row in body["per_day"]]
+    assert len(days) == 7 and len(set(days)) == 7
+    today = body["per_day"][-1]
+    assert today["brand"] == 2 and today["competitor"] == 1 and today["community"] == 1
+    assert len(body["sources"]) == 8
+    discord = next(s for s in body["sources"] if s["name"] == "discord")
+    assert discord["label"] == "Discord" and discord["enabled"] is False
+
+
+def test_admin_settings_get_and_put(env):
+    body = client.get("/api/admin/mentions/settings").json()
+    assert body["subreddits"] == ["slaythespire"]
+    resp = client.put(
+        "/api/admin/mentions/settings",
+        json={
+            "terms": [{"text": "spire codex", "group": "brand"}],
+            "subreddits": ["r/slaythespire"],
+            "feeds": [
+                {
+                    "url": "https://alerts.example/f",
+                    "label": "Alerts",
+                    "group": "",
+                    "community": True,
+                }
+            ],
+            "github_exclude": ["-user:ptrlrd"],
+            "alert_groups": ["brand"],
+        },
+    )
+    assert resp.status_code == 200
+    assert resp.json()["subreddits"] == ["slaythespire"]
+    bad = client.put(
+        "/api/admin/mentions/settings",
+        json={"terms": [{"text": "x", "group": "brand"}]},
+    )
+    assert bad.status_code == 400 and "terms" in bad.json()["detail"]
+
+
+def test_admin_poll_starts_once(env, monkeypatch):
+    release = threading.Event()
+    started = threading.Event()
+
+    def fake_run(force=None):
+        started.set()
+        release.wait(timeout=5)
+
+    monkeypatch.setattr(mentions, "run_due_sources", fake_run)
+    ok = client.post("/api/admin/mentions/poll", json={})
+    assert ok.status_code == 200 and ok.json() == {"started": True}
+    assert started.wait(timeout=5)
+    conflict = client.post("/api/admin/mentions/poll", json={})
+    assert conflict.status_code == 409
+    release.set()
+
+    monkeypatch.setattr(mentions, "try_manual_poll", lambda source=None: False)
+    assert client.post("/api/admin/mentions/poll", json={}).status_code == 409
+    assert (
+        client.post("/api/admin/mentions/poll", json={"source": "nope"}).status_code
+        == 400
+    )
+
+
+def _ingest_headers(token):
+    return {"Authorization": f"Bearer {token}"}
+
+
+def test_ingest_503_when_unset(env):
+    resp = client.post("/api/mentions/ingest", json={"items": []})
+    assert resp.status_code == 503
+
+
+def test_ingest_rejects_wrong_token(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "s3cret")
+    assert client.post("/api/mentions/ingest", json={"items": []}).status_code == 401
+    assert (
+        client.post(
+            "/api/mentions/ingest", json={"items": []}, headers=_ingest_headers("wrong")
+        ).status_code
+        == 401
+    )
+
+
+def test_ingest_stores_matched_and_drops_unmatched(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "s3cret")
+    item = {
+        "source": "discord",
+        "external_id": "msg-1",
+        "url": "https://discord.com/channels/1/2/3",
+        "author": "kate",
+        "author_url": "",
+        "space": "Server / #general",
+        "title": "",
+        "text": "spire-codex looks great",
+        "created_at": "2026-10-21T10:00:00Z",
+        "community": True,
+    }
+    resp = client.post(
+        "/api/mentions/ingest",
+        json={"items": [item]},
+        headers=_ingest_headers("s3cret"),
+    )
+    assert resp.status_code == 200
+    assert resp.json() == {"received": 1, "stored": 1}
+    doc = env["mentions"].docs["discord:msg-1"]
+    assert doc["groups"] == ["brand"] and doc["kind"] == "message"
+    assert doc["space"] == "Server / #general"
+
+    quiet = {**item, "external_id": "msg-2", "text": "no relevant words here"}
+    resp = client.post(
+        "/api/mentions/ingest",
+        json={"items": [quiet]},
+        headers=_ingest_headers("s3cret"),
+    )
+    assert resp.json() == {"received": 1, "stored": 0}
+    assert "discord:msg-2" not in env["mentions"].docs
+
+
+def test_ingest_validates_items(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "s3cret")
+    headers = _ingest_headers("s3cret")
+    assert (
+        client.post(
+            "/api/mentions/ingest",
+            json={"items": [{"source": "reddit"}] * 51},
+            headers=headers,
+        ).status_code
+        == 400
+    )
+    base = {
+        "source": "discord",
+        "external_id": "m",
+        "url": "https://discord.com/x",
+        "author": "a",
+        "space": "s",
+        "text": "t",
+        "created_at": "2026-10-21T10:00:00Z",
+    }
+    assert (
+        client.post(
+            "/api/mentions/ingest", json={"items": [base]}, headers=headers
+        ).status_code
+        == 200
+    )
+    assert (
+        client.post(
+            "/api/mentions/ingest",
+            json={"items": [{**base, "source": "reddit", "external_id": "r1"}]},
+            headers=headers,
+        ).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            "/api/mentions/ingest",
+            json={
+                "items": [{**base, "external_id": "h1", "url": "http://discord.com/x"}]
+            },
+            headers=headers,
+        ).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            "/api/mentions/ingest",
+            json={"items": [{**base, "external_id": "t1", "created_at": "not-a-date"}]},
+            headers=headers,
+        ).status_code
+        == 400
+    )
+
+
+def test_ingest_alerts_stored_mentions(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "s3cret")
+    monkeypatch.setenv("MENTIONS_WEBHOOK_URL", "https://discord.example/hook")
+    sent = []
+    monkeypatch.setattr(mentions, "_post_webhook", lambda payload: sent.append(payload))
+    item = {
+        "source": "discord",
+        "external_id": "msg-9",
+        "url": "https://discord.com/channels/1/2/9",
+        "author": "kate",
+        "space": "Server / #general",
+        "text": "spire codex update",
+        "created_at": "2026-10-21T10:00:00Z",
+        "community": True,
+    }
+    resp = client.post(
+        "/api/mentions/ingest",
+        json={"items": [item]},
+        headers=_ingest_headers("s3cret"),
+    )
+    assert resp.json()["stored"] == 1
+    assert len(sent) == 1
+    assert sent[0]["embeds"][0]["title"].startswith("Discord:")
+    assert sent[0]["allowed_mentions"] == {"parse": []}

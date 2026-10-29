@@ -554,3 +554,122 @@ def _poll_loop() -> None:
         except Exception:
             logger.warning("mentions: poll cycle failed")
         time.sleep(POLL_INTERVAL_SECONDS)
+
+
+def get_item(mention_id: str) -> dict | None:
+    return _col().find_one({"_id": mention_id})
+
+
+def set_item(mention_id: str, fields: dict) -> dict | None:
+    col = _col()
+    result = col.update_one(
+        {"_id": mention_id}, {"$set": {**fields, "updated_at": _utcnow()}}
+    )
+    if not getattr(result, "matched_count", 0):
+        return None
+    return col.find_one({"_id": mention_id})
+
+
+def list_items(
+    status: str = "open",
+    source: str | None = None,
+    group: str | None = None,
+    q: str | None = None,
+    days: int = 30,
+    limit: int = 50,
+    before: datetime | None = None,
+) -> tuple[list[dict], str | None]:
+    cutoff = _utcnow() - timedelta(days=days)
+    created: dict = {"$gte": cutoff}
+    if before is not None:
+        created["$lt"] = before
+    flt: dict = {"created_at": created}
+    if status == "open":
+        flt["status"] = {"$in": ["new", "seen"]}
+    elif status != "all":
+        flt["status"] = status
+    if source:
+        flt["source"] = source
+    if group:
+        flt["groups"] = group
+    if q:
+        escaped = re.escape(q)
+        flt["$or"] = [
+            {"title": {"$regex": escaped, "$options": "i"}},
+            {"text": {"$regex": escaped, "$options": "i"}},
+            {"author": {"$regex": escaped, "$options": "i"}},
+        ]
+    docs = list(_col().find(flt).sort([("created_at", -1)]).limit(limit))
+    next_before = None
+    if docs and len(docs) == limit:
+        last = docs[-1].get("created_at")
+        next_before = _iso(last) if isinstance(last, datetime) else None
+    return docs, next_before
+
+
+def summary(days: int = 30) -> dict:
+    from .mention_sources import SOURCES
+    from .timeutil import pacific_date
+
+    cutoff = _utcnow() - timedelta(days=days)
+    docs = list(
+        _col().find(
+            {"created_at": {"$gte": cutoff}},
+            {"groups": 1, "status": 1, "source": 1, "created_at": 1},
+        )
+    )
+    counts = {
+        "status": {s: 0 for s in STATUSES},
+        "groups": {g: 0 for g in GROUPS},
+        "sources": {},
+    }
+    today = pacific_date(_utcnow())
+    per_day: dict[str, dict] = {}
+    for offset in range(days):
+        key = (today - timedelta(days=offset)).isoformat()
+        per_day[key] = {"date": key, "brand": 0, "competitor": 0, "community": 0}
+    for doc in docs:
+        status = doc.get("status")
+        if status in counts["status"]:
+            counts["status"][status] += 1
+        src = doc.get("source")
+        if src:
+            counts["sources"][src] = counts["sources"].get(src, 0) + 1
+        groups = [g for g in doc.get("groups") or [] if g in GROUPS]
+        for g in groups:
+            counts["groups"][g] += 1
+        day = pacific_date(doc.get("created_at"))
+        if day is not None:
+            key = day.isoformat()
+            if key not in per_day:
+                per_day[key] = {
+                    "date": key,
+                    "brand": 0,
+                    "competitor": 0,
+                    "community": 0,
+                }
+            for g in groups:
+                per_day[key][g] += 1
+    sources = []
+    for src in SOURCES:
+        state = _state_col().find_one({"_id": src.name}) or {}
+        sources.append(
+            {
+                "name": src.name,
+                "label": src.label,
+                "note": src.note,
+                "enabled": not src.missing_env(),
+                "missing_env": src.missing_env(),
+                "interval_seconds": src.interval_seconds,
+                "last_run_at": _iso(state.get("last_run_at")),
+                "last_ok_at": _iso(state.get("last_ok_at")),
+                "last_error": state.get("last_error"),
+                "last_new": int(state.get("last_new") or 0),
+                "total_new": int(state.get("total_new") or 0),
+            }
+        )
+    return {
+        "counts": counts,
+        "per_day": [per_day[k] for k in sorted(per_day)],
+        "sources": sources,
+    }

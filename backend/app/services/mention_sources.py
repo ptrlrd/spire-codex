@@ -828,3 +828,7 @@ def source_label(name: str) -> str:
         if src.name == name:
             return src.label
     return name
+
+
+def source_names() -> list[str]:
+    return [s.name for s in SOURCES]
