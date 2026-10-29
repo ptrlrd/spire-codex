@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from typing import Any, Callable
-from urllib.parse import parse_qs, urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 
 import httpx
 
@@ -130,6 +130,21 @@ def _get(
     return resp
 
 
+def _post(
+    client: httpx.Client,
+    url: str,
+    *,
+    headers: dict | None = None,
+    timeout: float = HTTP_TIMEOUT,
+    **extra: Any,
+) -> httpx.Response:
+    resp = client.post(url, headers=headers, timeout=timeout, **extra)
+    if resp.status_code == 429:
+        raise RateLimited(_retry_after(resp))
+    resp.raise_for_status()
+    return resp
+
+
 def _missing(*names: str) -> list[str]:
     return [n for n in names if not os.environ.get(n, "").strip()]
 
@@ -147,6 +162,10 @@ def term_variants(term: str) -> list[str]:
     if len(parts) == 1:
         return [parts[0]]
     return [" ".join(parts), "".join(parts), "-".join(parts)]
+
+
+def quote_variant(variant: str) -> str:
+    return f'"{variant}"' if " " in variant else variant
 
 
 def group_variants(settings: dict, group: str) -> list[str]:
@@ -214,7 +233,7 @@ def _reddit_access_token(client: httpx.Client) -> str:
     now = _utcnow()
     if _reddit_token.get("token") and now < _reddit_token.get("expires", now):
         return _reddit_token["token"]
-    resp = _get(
+    resp = _post(
         client,
         "https://www.reddit.com/api/v1/access_token",
         headers={"User-Agent": _reddit_user_agent()},
@@ -251,7 +270,7 @@ def fetch_reddit(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
         variants = group_variants(settings, group)
         if not variants:
             continue
-        q = " OR ".join([*variants, f"site:{SITE_DOMAIN}"])
+        q = " OR ".join([*map(quote_variant, variants), f"site:{SITE_DOMAIN}"])
         resp = _get(
             client,
             "https://oauth.reddit.com/search",
@@ -271,7 +290,7 @@ BLUESKY_SESSION_MINUTES = 90
 
 
 def _bluesky_login(client: httpx.Client) -> str:
-    resp = _get(
+    resp = _post(
         client,
         "https://bsky.social/xrpc/com.atproto.server.createSession",
         json={
@@ -328,7 +347,7 @@ def parse_bluesky_posts(payload: dict) -> list[Found]:
 
 def fetch_bluesky(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     queries = [
-        (variant, group, _first_term(settings, group))
+        (quote_variant(variant), group, _first_term(settings, group))
         for group in ("brand", "competitor")
         for variant in group_variants(settings, group)
     ]
@@ -410,7 +429,7 @@ def fetch_youtube(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
                 "type": "video",
                 "order": "date",
                 "maxResults": 50,
-                "q": "|".join(variants),
+                "q": "|".join(map(quote_variant, variants)),
                 "publishedAfter": published_after,
                 "key": key,
             },
@@ -420,92 +439,6 @@ def fetch_youtube(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
         )
     newest = max((i.created_at for i in found), default=None)
     return found, _iso_cursor(newest) or published_after
-
-
-def parse_x_search(payload: dict) -> list[Found]:
-    users = {
-        u.get("id"): u
-        for u in (payload.get("includes") or {}).get("users", [])
-        if u.get("id")
-    }
-    out = []
-    for tweet in payload.get("data", []):
-        tweet_id = str(tweet.get("id") or "")
-        user = users.get(tweet.get("author_id"), {})
-        username = user.get("username") or ""
-        metrics = tweet.get("public_metrics") or {}
-        out.append(
-            Found(
-                source="x",
-                external_id=tweet_id,
-                kind="post",
-                url=f"https://x.com/{username}/status/{tweet_id}",
-                title="",
-                text=_cut(tweet.get("text")),
-                author=_cut(user.get("name") or username, 100),
-                author_url=f"https://x.com/{username}",
-                space="X",
-                created_at=_parse_iso(tweet.get("created_at")),
-                engagement={
-                    "likes": int(metrics.get("like_count") or 0),
-                    "reposts": int(metrics.get("retweet_count") or 0),
-                    "replies": int(metrics.get("reply_count") or 0),
-                    "quotes": int(metrics.get("quote_count") or 0),
-                    "views": int(metrics.get("impression_count") or 0),
-                },
-            )
-        )
-    return out
-
-
-def fetch_x(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
-    """Recent search only: reads are billed per post returned, so since_id
-    keeps the cost tied to new posts instead of re-billing the same window."""
-    headers = {
-        "Authorization": f"Bearer {os.environ.get('X_BEARER_TOKEN', '').strip()}"
-    }
-    new_cursor = dict(cursor) if isinstance(cursor, dict) else {}
-    found: list[Found] = []
-    for group in ("brand", "competitor"):
-        variants = group_variants(settings, group)
-        if not variants:
-            continue
-        core = " OR ".join(variants)
-        if group == "brand":
-            core += f' OR url:"{SITE_DOMAIN}"'
-        params: dict = {
-            "query": f"({core}) -is:retweet",
-            "max_results": 100,
-            "tweet.fields": "created_at,public_metrics,author_id",
-            "expansions": "author_id",
-            "user.fields": "username,name",
-        }
-        since = new_cursor.get(group)
-        if since:
-            params["since_id"] = since
-        else:
-            params["start_time"] = _iso_cursor(_utcnow() - timedelta(days=1))
-        for page in range(3):
-            resp = _get(
-                client,
-                "https://api.x.com/2/tweets/search/recent",
-                headers=headers,
-                params=params,
-            )
-            payload = resp.json()
-            items = parse_x_search(payload)
-            for item in items:
-                item.query_group = group
-                item.query_term = _first_term(settings, group)
-            found.extend(items)
-            newest = (payload.get("meta") or {}).get("newest_id")
-            if newest:
-                new_cursor[group] = newest
-            next_token = (payload.get("meta") or {}).get("next_token")
-            if not next_token or page == 2:
-                break
-            params = {**params, "next_token": next_token}
-    return found, new_cursor
 
 
 def parse_hn_hits(payload: dict) -> list[Found]:
@@ -605,7 +538,7 @@ def fetch_github(settings: dict, cursor: Any, client: httpx.Client) -> tuple:
     variants = group_variants(settings, "brand") + group_variants(
         settings, "competitor"
     )
-    q = " OR ".join(variants) + "".join(
+    q = " OR ".join(map(quote_variant, variants)) + "".join(
         f" -{e}" for e in settings.get("github_exclude", [])
     )
     resp = _get(
@@ -781,14 +714,6 @@ SOURCES: list[Source] = [
         fetch=fetch_youtube,
     ),
     Source(
-        name="x",
-        label="X",
-        interval_seconds=900,
-        note="Recent posts matching the watch terms.",
-        missing_env=lambda: _missing("X_BEARER_TOKEN"),
-        fetch=fetch_x,
-    ),
-    Source(
         name="hackernews",
         label="Hacker News",
         interval_seconds=900,
@@ -823,11 +748,83 @@ SOURCES: list[Source] = [
 ]
 
 
+MANUAL_SOURCES = {
+    "x": "X",
+    "tiktok": "TikTok",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "threads": "Threads",
+    "steam": "Steam",
+    "web": "Web",
+}
+
+_MANUAL_HOSTS = {
+    "x.com": "x",
+    "twitter.com": "x",
+    "tiktok.com": "tiktok",
+    "instagram.com": "instagram",
+    "facebook.com": "facebook",
+    "fb.com": "facebook",
+    "threads.com": "threads",
+    "threads.net": "threads",
+    "steamcommunity.com": "steam",
+    "store.steampowered.com": "steam",
+    "reddit.com": "reddit",
+    "redd.it": "reddit",
+    "youtube.com": "youtube",
+    "youtu.be": "youtube",
+    "bsky.app": "bluesky",
+    "discord.com": "discord",
+    "github.com": "github",
+    "news.ycombinator.com": "hackernews",
+}
+
+
 def source_label(name: str) -> str:
     for src in SOURCES:
         if src.name == name:
             return src.label
-    return name
+    return MANUAL_SOURCES.get(name, name)
+
+
+def source_for_url(url: str) -> str:
+    host = (urlparse(url).hostname or "").lower()
+    for domain, name in _MANUAL_HOSTS.items():
+        if host == domain or host.endswith("." + domain):
+            return name
+    return "web"
+
+
+def search_links(settings: dict) -> list[dict]:
+    variants = group_variants(settings, "brand")
+    if not variants:
+        return []
+    first = variants[0]
+    x_query = " OR ".join([*map(quote_variant, variants), SITE_DOMAIN])
+    web_query = " OR ".join(map(quote_variant, variants))
+    return [
+        {
+            "label": "X",
+            "url": "https://x.com/search?" + urlencode({"q": x_query, "f": "live"}),
+        },
+        {
+            "label": "TikTok",
+            "url": "https://www.tiktok.com/search?" + urlencode({"q": first}),
+        },
+        {
+            "label": "Threads",
+            "url": "https://www.threads.com/search?" + urlencode({"q": first}),
+        },
+        {
+            "label": "Facebook",
+            "url": "https://www.facebook.com/search/posts/?" + urlencode({"q": first}),
+        },
+        {
+            "label": "Web, last day",
+            "url": "https://www.google.com/search?"
+            + urlencode({"q": web_query, "tbs": "qdr:d"}),
+        },
+    ]
 
 
 def source_names() -> list[str]:

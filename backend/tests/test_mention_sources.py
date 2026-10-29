@@ -111,42 +111,6 @@ def test_youtube_search_carries_the_query_fallback():
     assert f.engagement == {}
 
 
-def test_x_search_joins_users_and_metrics():
-    payload = {
-        "data": [
-            {
-                "id": "199",
-                "text": "my spirebird clone lost",
-                "author_id": "7",
-                "created_at": "2026-10-12T10:15:00.000Z",
-                "public_metrics": {
-                    "like_count": 9,
-                    "retweet_count": 3,
-                    "reply_count": 5,
-                    "quote_count": 1,
-                    "impression_count": 8000,
-                },
-            }
-        ],
-        "includes": {"users": [{"id": "7", "username": "frank", "name": "Frank"}]},
-    }
-    out = ms.parse_x_search(payload)
-    f = out[0]
-    assert f.external_id == "199"
-    assert f.url == "https://x.com/frank/status/199"
-    assert f.author == "Frank"
-    assert f.author_url == "https://x.com/frank"
-    assert f.space == "X"
-    assert f.created_at.year == 2026 and f.created_at.minute == 15
-    assert f.engagement == {
-        "likes": 9,
-        "reposts": 3,
-        "replies": 5,
-        "quotes": 1,
-        "views": 8000,
-    }
-
-
 def test_hn_hits_split_stories_and_comments_and_strip_html():
     payload = {
         "hits": [
@@ -344,9 +308,119 @@ def test_missing_env_lists_unset_names(monkeypatch):
         "reddit",
         "bluesky",
         "youtube",
-        "x",
         "hackernews",
         "github",
         "feeds",
         "discord",
     ]
+
+
+class _Resp:
+    def __init__(self, payload, status=200):
+        self._payload = payload
+        self.status_code = status
+        self.headers = {}
+
+    def json(self):
+        return self._payload
+
+    def raise_for_status(self):
+        return None
+
+
+class _Client:
+    def __init__(self, payloads):
+        self.payloads = payloads
+        self.calls = []
+
+    def _answer(self, method, url, kw):
+        self.calls.append((method, url, kw))
+        for key, payload in self.payloads.items():
+            if key in url:
+                return _Resp(payload)
+        return _Resp({})
+
+    def get(self, url, **kw):
+        return self._answer("GET", url, kw)
+
+    def post(self, url, **kw):
+        return self._answer("POST", url, kw)
+
+
+SETTINGS = {
+    "terms": [
+        {"text": "spire codex", "group": "brand"},
+        {"text": "spirebird", "group": "competitor"},
+    ],
+    "subreddits": ["slaythespire"],
+    "feeds": [],
+    "github_exclude": ["user:ptrlrd"],
+    "alert_groups": ["brand"],
+}
+
+
+def test_reddit_logs_in_with_post_and_quotes_phrases(monkeypatch):
+    monkeypatch.setenv("REDDIT_CLIENT_ID", "id")
+    monkeypatch.setenv("REDDIT_CLIENT_SECRET", "secret")
+    monkeypatch.setattr(ms, "_reddit_token", {})
+    fake = _Client(
+        {
+            "access_token": {"access_token": "tok", "expires_in": 3600},
+            "oauth.reddit.com": {"data": {"children": []}},
+        }
+    )
+    ms.fetch_reddit(SETTINGS, None, fake)
+    method, url, kw = fake.calls[0]
+    assert method == "POST" and url.endswith("/api/v1/access_token")
+    assert kw["data"] == {"grant_type": "client_credentials"}
+    searches = [c for c in fake.calls if c[1].endswith("/search")]
+    brand_q = searches[0][2]["params"]["q"]
+    assert brand_q.startswith('"spire codex" OR spirecodex OR spire-codex')
+    assert "site:spire-codex.com" in brand_q
+
+
+def test_bluesky_logs_in_with_post_and_quotes_phrases(monkeypatch):
+    monkeypatch.setenv("BLUESKY_HANDLE", "me.bsky.social")
+    monkeypatch.setenv("BLUESKY_APP_PASSWORD", "pw")
+    monkeypatch.setattr(ms, "_bluesky_session", {})
+    fake = _Client(
+        {
+            "createSession": {"accessJwt": "jwt"},
+            "searchPosts": {"posts": []},
+        }
+    )
+    ms.fetch_bluesky(SETTINGS, None, fake)
+    method, url, kw = fake.calls[0]
+    assert method == "POST" and url.endswith("createSession")
+    assert kw["json"]["identifier"] == "me.bsky.social"
+    queries = [c[2]["params"]["q"] for c in fake.calls if c[1].endswith("searchPosts")]
+    assert '"spire codex"' in queries and "domain:spire-codex.com" in queries
+
+
+def test_youtube_and_github_quote_phrases(monkeypatch):
+    monkeypatch.setenv("YOUTUBE_API_KEY", "k")
+    fake = _Client({"googleapis": {"items": []}, "api.github.com": {"items": []}})
+    ms.fetch_youtube(SETTINGS, None, fake)
+    ms.fetch_github(SETTINGS, None, fake)
+    yt = [c for c in fake.calls if "googleapis" in c[1]][0][2]["params"]["q"]
+    assert yt == '"spire codex"|spirecodex|spire-codex'
+    gh = [c for c in fake.calls if "api.github.com" in c[1]][0][2]["params"]["q"]
+    assert gh.startswith('"spire codex" OR spirecodex OR spire-codex')
+    assert gh.endswith("-user:ptrlrd")
+
+
+def test_search_links_cover_the_sites_without_a_free_api():
+    links = {link["label"]: link["url"] for link in ms.search_links(SETTINGS)}
+    assert set(links) == {"X", "TikTok", "Threads", "Facebook", "Web, last day"}
+    assert links["X"].startswith("https://x.com/search?q=")
+    assert "f=live" in links["X"] and "spire-codex.com" in links["X"]
+    assert ms.search_links({"terms": []}) == []
+
+
+def test_source_for_url_maps_hosts():
+    assert ms.source_for_url("https://twitter.com/a/status/1") == "x"
+    assert ms.source_for_url("https://www.tiktok.com/@a/video/1") == "tiktok"
+    assert ms.source_for_url("https://old.reddit.com/r/a") == "reddit"
+    assert ms.source_for_url("https://example.org/post") == "web"
+    assert ms.source_label("tiktok") == "TikTok"
+    assert all(s.name != "x" for s in ms.SOURCES)

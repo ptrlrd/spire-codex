@@ -665,7 +665,6 @@ is listed with where it is read.
 | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT`          | Reddit app-only OAuth for the mentions poller.                   |
 | `BLUESKY_HANDLE`, `BLUESKY_APP_PASSWORD`                                 | Bluesky login for live post search.                              |
 | `YOUTUBE_API_KEY`                                                        | YouTube data search over video titles and descriptions.          |
-| `X_BEARER_TOKEN`                                                         | X recent search for post mentions.                               |
 
 **Stats and lake tuning**
 
