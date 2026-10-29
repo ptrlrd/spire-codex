@@ -14,7 +14,6 @@ from fastapi.testclient import TestClient
 from pymongo.errors import DuplicateKeyError
 
 from app.dependencies import shared_limiter
-from app import main as main_module
 from app.main import app
 from app.services import auth_jwt, mention_sources, mentions
 
@@ -556,7 +555,7 @@ def test_start_poller_guards(monkeypatch):
     monkeypatch.setenv("MENTIONS_POLLER", "off")
     mentions.start_poller()
     monkeypatch.setenv("MENTIONS_POLLER", "on")
-    monkeypatch.setattr(main_module, "IS_BETA_BACKEND", True)
+    monkeypatch.setenv("DISABLE_RUN_SUBMISSIONS", "1")
     mentions.start_poller()
     monkeypatch.delenv("MONGO_URL")
     mentions.start_poller()
@@ -715,7 +714,11 @@ def test_admin_summary_shape_and_buckets(env):
     assert len(days) == 7 and len(set(days)) == 7
     today = body["per_day"][-1]
     assert today["brand"] == 2 and today["competitor"] == 1 and today["community"] == 1
-    assert len(body["sources"]) == 8
+    assert today["total"] == 3
+    assert len(body["sources"]) == 7
+    assert all(s["name"] != "x" for s in body["sources"])
+    assert body["extra_sources"] == []
+    assert [link["label"] for link in body["search_links"]][0] == "X"
     discord = next(s for s in body["sources"] if s["name"] == "discord")
     assert discord["label"] == "Discord" and discord["enabled"] is False
 
@@ -908,3 +911,94 @@ def test_ingest_alerts_stored_mentions(env, monkeypatch):
     assert len(sent) == 1
     assert sent[0]["embeds"][0]["title"].startswith("Discord:")
     assert sent[0]["allowed_mentions"] == {"parse": []}
+
+
+def test_manual_poll_runs_while_the_poller_holds_the_lease(env, monkeypatch):
+    env["mention_state"].insert_one(
+        {
+            "_id": "_lease",
+            "holder": "other-host:1",
+            "expires_at": datetime.now(timezone.utc) + timedelta(minutes=3),
+        }
+    )
+    seen = {}
+    done = threading.Event()
+
+    def fake_run(force=None):
+        seen["force"] = force
+        done.set()
+
+    monkeypatch.setattr(mentions, "run_due_sources", fake_run)
+    assert client.post("/api/admin/mentions/poll", json={}).status_code == 200
+    assert done.wait(timeout=5)
+    polled = {s.name for s in mention_sources.SOURCES if s.fetch}
+    assert set(seen["force"]) == polled
+
+
+def test_manual_poll_refused_while_another_worker_polls(env, monkeypatch):
+    env["mention_state"].insert_one(
+        {
+            "_id": "_manual",
+            "expires_at": datetime.now(timezone.utc) + timedelta(minutes=2),
+        }
+    )
+    monkeypatch.setattr(mentions, "run_due_sources", lambda force=None: None)
+    assert client.post("/api/admin/mentions/poll", json={}).status_code == 409
+
+
+def test_admin_bulk_rejects_non_string_ids(env):
+    resp = client.post(
+        "/api/admin/mentions/bulk", json={"ids": [{"$ne": None}], "status": "seen"}
+    )
+    assert resp.status_code == 400
+
+
+def test_admin_manual_add_files_a_link_under_its_site(env):
+    resp = client.post(
+        "/api/admin/mentions/manual",
+        json={
+            "url": "https://x.com/someone/status/123",
+            "text": "Spire Codex has the pick rates",
+            "author": "someone",
+            "group": "community",
+        },
+    )
+    assert resp.status_code == 200
+    item = resp.json()
+    assert item["source"] == "x" and item["source_label"] == "X"
+    assert item["groups"] == ["brand", "community"]
+    assert item["status"] == "new"
+    again = client.post(
+        "/api/admin/mentions/manual",
+        json={"url": "https://x.com/someone/status/123", "group": "brand"},
+    )
+    assert again.json()["id"] == item["id"]
+    assert len(env["mentions"].docs) == 1
+    summary = client.get("/api/admin/mentions/summary?days=7").json()
+    assert summary["extra_sources"] == [{"name": "x", "label": "X"}]
+
+
+def test_admin_manual_add_validates(env):
+    assert (
+        client.post(
+            "/api/admin/mentions/manual", json={"url": "http://x.com/a"}
+        ).status_code
+        == 400
+    )
+    assert (
+        client.post(
+            "/api/admin/mentions/manual",
+            json={"url": "https://x.com/a", "group": "nope"},
+        ).status_code
+        == 400
+    )
+
+
+def test_ingest_non_ascii_token_is_rejected_not_crashed(env, monkeypatch):
+    monkeypatch.setenv("MENTIONS_INGEST_TOKEN", "secret")
+    resp = client.post(
+        "/api/mentions/ingest",
+        headers={"Authorization": b"Bearer caf\xc3\xa9"},
+        json={"items": []},
+    )
+    assert resp.status_code == 401

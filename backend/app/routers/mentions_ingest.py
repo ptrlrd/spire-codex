@@ -7,6 +7,7 @@ import os
 from datetime import datetime, timezone
 
 from fastapi import APIRouter, HTTPException, Request
+from starlette.concurrency import run_in_threadpool
 
 from ..dependencies import shared_limiter
 from ..services import mentions, rate_limit_config
@@ -82,7 +83,7 @@ async def ingest(request: Request):
         raise HTTPException(status_code=503, detail="Mentions ingest is not configured")
     header = request.headers.get("authorization", "")
     supplied = header[len("Bearer ") :] if header.startswith("Bearer ") else ""
-    if not hmac.compare_digest(supplied, token):
+    if not hmac.compare_digest(supplied.encode(), token.encode()):
         raise HTTPException(status_code=401, detail="Invalid token")
     try:
         body = await request.json()
@@ -94,6 +95,11 @@ async def ingest(request: Request):
     if len(items) > _MAX_ITEMS:
         _bad("items", f"at most {_MAX_ITEMS} per request")
     found = [_validate_item(i, item) for i, item in enumerate(items)]
+    stored = await run_in_threadpool(_store_and_alert, found)
+    return {"received": len(items), "stored": len(stored)}
+
+
+def _store_and_alert(found: list[Found]) -> list[dict]:
     settings = mentions.get_settings()
     stored = mentions.store(found, settings)
     mentions.send_alerts(stored, settings)
@@ -111,4 +117,4 @@ async def ingest(request: Request):
             },
             upsert=True,
         )
-    return {"received": len(items), "stored": len(stored)}
+    return stored

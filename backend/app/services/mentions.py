@@ -34,6 +34,7 @@ GROUPS = ["brand", "competitor", "community"]
 STATUSES = ["new", "seen", "replied", "ignored"]
 
 LEASE_SECONDS = 180
+MANUAL_POLL_SECONDS = 120
 POLL_FIRST_DELAY_SECONDS = 30
 POLL_INTERVAL_SECONDS = 60
 ALERT_BATCH = 10
@@ -509,18 +510,37 @@ def send_alerts(docs: list[dict], settings: dict) -> None:
         _post_webhook(payload)
 
 
+def _claim_manual_poll() -> bool:
+    now = _utcnow()
+    try:
+        _state_col().update_one(
+            {"_id": "_manual", "expires_at": {"$lt": now}},
+            {"$set": {"expires_at": now + timedelta(seconds=MANUAL_POLL_SECONDS)}},
+            upsert=True,
+        )
+        return True
+    except DuplicateKeyError:
+        return False
+
+
 def try_manual_poll(source: str | None = None) -> bool:
     global _manual_running
+    from .mention_sources import SOURCES
+
     with _manual_lock:
-        if _manual_running or not try_lease():
+        if _manual_running or not _claim_manual_poll():
             return False
         _manual_running = True
+    force = [source] if source else [s.name for s in SOURCES if s.fetch]
 
     def _run() -> None:
         global _manual_running
         try:
-            run_due_sources(force=[source] if source else None)
+            run_due_sources(force=force)
         finally:
+            _state_col().update_one(
+                {"_id": "_manual"}, {"$set": {"expires_at": _utcnow()}}
+            )
             with _manual_lock:
                 _manual_running = False
 
@@ -529,9 +549,7 @@ def try_manual_poll(source: str | None = None) -> bool:
 
 
 def start_poller() -> None:
-    from ..main import IS_BETA_BACKEND
-
-    if IS_BETA_BACKEND:
+    if os.environ.get("DISABLE_RUN_SUBMISSIONS") == "1":
         return
     if not os.environ.get("MONGO_URL", "").strip():
         return
@@ -608,7 +626,7 @@ def list_items(
 
 
 def summary(days: int = 30) -> dict:
-    from .mention_sources import SOURCES
+    from .mention_sources import SOURCES, search_links, source_label
     from .timeutil import pacific_date
 
     cutoff = _utcnow() - timedelta(days=days)
@@ -627,7 +645,13 @@ def summary(days: int = 30) -> dict:
     per_day: dict[str, dict] = {}
     for offset in range(days):
         key = (today - timedelta(days=offset)).isoformat()
-        per_day[key] = {"date": key, "brand": 0, "competitor": 0, "community": 0}
+        per_day[key] = {
+            "date": key,
+            "total": 0,
+            "brand": 0,
+            "competitor": 0,
+            "community": 0,
+        }
     for doc in docs:
         status = doc.get("status")
         if status in counts["status"]:
@@ -644,10 +668,12 @@ def summary(days: int = 30) -> dict:
             if key not in per_day:
                 per_day[key] = {
                     "date": key,
+                    "total": 0,
                     "brand": 0,
                     "competitor": 0,
                     "community": 0,
                 }
+            per_day[key]["total"] += 1
             for g in groups:
                 per_day[key][g] += 1
     sources = []
@@ -668,8 +694,47 @@ def summary(days: int = 30) -> dict:
                 "total_new": int(state.get("total_new") or 0),
             }
         )
+    known = {src.name for src in SOURCES}
+    extra = sorted(name for name in counts["sources"] if name not in known)
     return {
         "counts": counts,
         "per_day": [per_day[k] for k in sorted(per_day)],
         "sources": sources,
+        "extra_sources": [{"name": n, "label": source_label(n)} for n in extra],
+        "search_links": search_links(get_settings()),
     }
+
+
+def add_manual(
+    url: str, title: str, text: str, author: str, group: str, settings: dict
+) -> dict:
+    import hashlib
+
+    from .mention_sources import source_for_url, source_label
+
+    now = _utcnow()
+    source = source_for_url(url)
+    mention_id = f"{source}:link-{hashlib.sha1(url.encode()).hexdigest()[:20]}"
+    groups, terms = match(f"{title}\n{text}", settings["terms"], True)
+    doc = {
+        "_id": mention_id,
+        "source": source,
+        "kind": "post",
+        "url": _cut(url),
+        "title": _cut(title),
+        "text": _cut(text),
+        "author": _cut(author),
+        "author_url": "",
+        "space": source_label(source),
+        "created_at": now,
+        "found_at": now,
+        "last_seen_at": now,
+        "groups": [g for g in GROUPS if g in set(groups) | {group}],
+        "terms": terms,
+        "engagement": {},
+        "status": "new",
+        "note": "",
+        "updated_at": now,
+    }
+    _col().update_one({"_id": mention_id}, {"$setOnInsert": doc}, upsert=True)
+    return _col().find_one({"_id": mention_id}) or doc

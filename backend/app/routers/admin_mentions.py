@@ -3,8 +3,9 @@ and manual polling. Gated by the same require_admin dependency as the rest
 of the admin surface."""
 
 from datetime import datetime, timezone
+from typing import Any
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Body, Depends, HTTPException, Request
 
 from ..services import mention_sources, mentions
 from ..services.auth_jwt import require_admin
@@ -39,11 +40,7 @@ def _out(doc: dict) -> dict:
     }
 
 
-async def _json(request: Request) -> dict:
-    try:
-        body = await request.json()
-    except Exception:
-        raise HTTPException(status_code=400, detail="body: expected a JSON object")
+def _object(body: Any) -> dict:
     if not isinstance(body, dict):
         raise HTTPException(status_code=400, detail="body: expected a JSON object")
     return body
@@ -90,9 +87,9 @@ def summary(request: Request, days: int = 30):
 
 
 @router.patch("/{mention_id}")
-async def patch_mention(request: Request, mention_id: str):
+def patch_mention(request: Request, mention_id: str, payload: Any = Body(None)):
     _audit(request)
-    body = await _json(request)
+    body = _object(payload)
     fields = {}
     if "status" in body:
         if body["status"] not in mentions.STATUSES:
@@ -114,12 +111,17 @@ async def patch_mention(request: Request, mention_id: str):
 
 
 @router.post("/bulk")
-async def bulk(request: Request):
+def bulk(request: Request, payload: Any = Body(None)):
     _audit(request)
-    body = await _json(request)
+    body = _object(payload)
     ids = body.get("ids")
     status = body.get("status")
-    if not isinstance(ids, list) or not ids or len(ids) > 500:
+    if (
+        not isinstance(ids, list)
+        or not ids
+        or len(ids) > 500
+        or not all(isinstance(i, str) for i in ids)
+    ):
         raise HTTPException(
             status_code=400, detail="ids: a list of 1 to 500 mention ids"
         )
@@ -139,9 +141,9 @@ def get_settings(request: Request):
 
 
 @router.put("/settings")
-async def put_settings(request: Request):
+def put_settings(request: Request, payload: Any = Body(None)):
     _audit(request)
-    body = await _json(request)
+    body = _object(payload)
     try:
         return mentions.save_settings(body)
     except ValueError as e:
@@ -149,15 +151,46 @@ async def put_settings(request: Request):
 
 
 @router.post("/poll")
-async def poll(request: Request):
+def poll(request: Request, payload: Any = Body(None)):
     _audit(request)
-    body = await _json(request)
+    body = _object(payload if payload is not None else {})
     source = body.get("source")
     if source is not None and source not in mention_sources.source_names():
         raise HTTPException(status_code=400, detail="source: unknown source")
     if not mentions.try_manual_poll(source):
         raise HTTPException(
             status_code=409,
-            detail="A manual poll is already running or the poll lease is held",
+            detail="A manual poll is already running",
         )
     return {"started": True}
+
+
+@router.post("/manual")
+def add_manual(request: Request, payload: Any = Body(None)):
+    _audit(request)
+    body = _object(payload)
+    url = body.get("url")
+    if not isinstance(url, str) or not url.startswith("https://") or len(url) > 500:
+        raise HTTPException(
+            status_code=400, detail="url: an https URL of at most 500 characters"
+        )
+    fields = {}
+    for name, limit in (("title", 300), ("text", 4000), ("author", 100)):
+        value = body.get(name) or ""
+        if not isinstance(value, str) or len(value) > limit:
+            raise HTTPException(
+                status_code=400, detail=f"{name}: up to {limit} characters"
+            )
+        fields[name] = value.strip()
+    group = body.get("group") or "brand"
+    if group not in mentions.GROUPS:
+        raise HTTPException(status_code=400, detail="group: unknown group")
+    doc = mentions.add_manual(
+        url.strip(),
+        fields["title"],
+        fields["text"],
+        fields["author"],
+        group,
+        mentions.get_settings(),
+    )
+    return _out(doc)
