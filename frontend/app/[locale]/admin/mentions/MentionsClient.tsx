@@ -1,9 +1,5 @@
 "use client";
 
-// The operator inbox for public mentions: volume cards, per-day bars, source
-// health, filters that live in the URL, and triage actions with optimistic
-// updates. Watch terms and feed settings sit in a collapsed panel below.
-
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AdminShell, Card, adminFetch } from "../shared";
 import { fmtDatePacific, fmtDateTimePacific } from "@/lib/pacific";
@@ -30,6 +26,7 @@ interface Mention {
 
 interface DayRow {
   date: string;
+  total: number;
   brand: number;
   competitor: number;
   community: number;
@@ -57,6 +54,8 @@ interface Summary {
   };
   per_day: DayRow[];
   sources: SourceRow[];
+  extra_sources: Array<{ name: string; label: string }>;
+  search_links: Array<{ label: string; url: string }>;
 }
 
 interface TermRow {
@@ -245,7 +244,7 @@ function MentionCard({
         {m.groups.map((g) => (
           <GroupBadge key={g} group={g} />
         ))}
-        {m.space && <span>{m.space}</span>}
+        {m.space && m.space !== m.source_label && <span>{m.space}</span>}
         {m.author &&
           (m.author_url ? (
             <a
@@ -270,7 +269,7 @@ function MentionCard({
           rel="noopener noreferrer"
           className="mt-1 block break-words text-sm font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)]"
         >
-          {m.title || "(no title)"}
+          {m.title || `${m.source_label} ${m.kind}`}
         </a>
       )}
       <Snippet text={m.text} terms={m.terms} />
@@ -363,7 +362,7 @@ function BarChart({ days }: { days: DayRow[] }) {
     <div className="mb-6 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
       <h3 className="mb-3 flex flex-wrap items-center gap-2 text-sm font-semibold text-[var(--text-primary)]">
         Mentions per day
-        <span className="gap-2 text-xs font-normal text-[var(--text-muted)]">
+        <span className="flex gap-2 text-xs font-normal text-[var(--text-muted)]">
           <span className="text-[var(--accent-gold)]">brand</span>
           <span className="text-[var(--accent-teal)]">competitor</span>
           <span className="text-[var(--success)]">community</span>
@@ -374,7 +373,7 @@ function BarChart({ days }: { days: DayRow[] }) {
           <div
             key={d.date}
             title={`${d.date}: ${d.brand} brand, ${d.competitor} competitor, ${d.community} community`}
-            className="flex min-w-[2px] flex-1 flex-col justify-end"
+            className="flex h-full min-w-[2px] flex-1 flex-col justify-end"
           >
             {d.brand + d.competitor + d.community === 0 ? (
               <div className="h-px bg-[var(--border-subtle)]" />
@@ -407,10 +406,12 @@ function BarChart({ days }: { days: DayRow[] }) {
 
 function SourceList({
   sources,
+  links,
   onPoll,
   pollNote,
 }: {
   sources: SourceRow[];
+  links: Array<{ label: string; url: string }>;
   onPoll: (source: string | null) => void;
   pollNote: string | null;
 }) {
@@ -446,7 +447,9 @@ function SourceList({
                   ? `${s.total_new} received${s.last_ok_at ? ` · last ${ago(s.last_ok_at)} ago` : ""}`
                   : s.last_error
                     ? `Error: ${s.last_error} · ${ago(s.last_run_at)} ago`
-                    : `Every ${intervalLabel(s.interval_seconds)} · last ok ${ago(s.last_ok_at)} ago · ${s.last_new} new`}
+                    : s.last_ok_at
+                      ? `Every ${intervalLabel(s.interval_seconds)} · last ok ${ago(s.last_ok_at)} ago · ${s.last_new} new`
+                      : `Every ${intervalLabel(s.interval_seconds)} · waiting for the first poll`}
             </span>
             {s.enabled && s.interval_seconds > 0 && (
               <button
@@ -459,6 +462,116 @@ function SourceList({
             )}
           </div>
         ))}
+      </div>
+      {links.length > 0 && (
+        <div className="flex flex-wrap items-center gap-1.5 border-t border-[var(--border-subtle)] px-4 py-3">
+          <span className="mr-1 text-xs text-[var(--text-muted)]">
+            Check by hand:
+          </span>
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={BTN}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AddByLink({ onAdded }: { onAdded: () => void }) {
+  const [url, setUrl] = useState("");
+  const [text, setText] = useState("");
+  const [group, setGroup] = useState("brand");
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(
+    null,
+  );
+
+  const add = () => {
+    const link = url.trim();
+    if (!link.startsWith("https://")) {
+      setMessage({ ok: false, text: "Paste a link that starts with https://" });
+      return;
+    }
+    setBusy(true);
+    setMessage(null);
+    adminFetch<Mention>("/api/admin/mentions/manual", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: link, text: text.trim(), group }),
+    })
+      .then((m) => {
+        setBusy(false);
+        setUrl("");
+        setText("");
+        setMessage({ ok: true, text: `Added to ${m.source_label}.` });
+        onAdded();
+      })
+      .catch((e) => {
+        setBusy(false);
+        setMessage({ ok: false, text: String((e as Error)?.message || e) });
+      });
+  };
+
+  return (
+    <div className="mb-6 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4">
+      <h3 className="mb-2 text-sm font-semibold text-[var(--text-primary)]">
+        Add by link
+      </h3>
+      <p className="mb-2 text-xs text-[var(--text-muted)]">
+        For posts found by hand on X, TikTok, Instagram, Facebook, Discord or
+        anywhere else.
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        <input
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="https://"
+          className={`${INPUT} min-w-0 flex-1 basis-56`}
+        />
+        <select
+          value={group}
+          onChange={(e) => setGroup(e.target.value)}
+          className={INPUT}
+        >
+          {GROUPS.map((g) => (
+            <option key={g} value={g}>
+              {GROUP_LABELS[g]}
+            </option>
+          ))}
+        </select>
+      </div>
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        rows={2}
+        maxLength={4000}
+        placeholder="What it says (optional)"
+        className={`${INPUT} mt-1.5 w-full`}
+      />
+      <div className="mt-1.5 flex flex-wrap items-center gap-3">
+        <button
+          type="button"
+          className={BTN_ACTIVE}
+          onClick={add}
+          disabled={busy}
+        >
+          {busy ? "Adding..." : "Add"}
+        </button>
+        {message && (
+          <span
+            className={`text-xs ${message.ok ? "text-[var(--success)]" : "text-[var(--danger)]"}`}
+          >
+            {message.text}
+          </span>
+        )}
       </div>
     </div>
   );
@@ -974,17 +1087,15 @@ export default function MentionsClient() {
 
   const markAllSeen = () => {
     const prev = items;
+    const ids = prev.filter((x) => x.status === "new").map((x) => x.id);
+    if (ids.length === 0) return;
     setItems((list) =>
-      list.map((x) =>
-        x.status === "replied" || x.status === "ignored"
-          ? x
-          : { ...x, status: "seen" },
-      ),
+      list.map((x) => (x.status === "new" ? { ...x, status: "seen" } : x)),
     );
     adminFetch<{ updated: number }>("/api/admin/mentions/bulk", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ids: prev.map((x) => x.id), status: "seen" }),
+      body: JSON.stringify({ ids, status: "seen" }),
     })
       .then(() => loadSummary())
       .catch(() => {
@@ -1002,8 +1113,7 @@ export default function MentionsClient() {
   const perDay = cards?.per_day ?? [];
   const today = perDay[perDay.length - 1];
   const last7 = perDay.slice(-7);
-  const sum = (rows: DayRow[]) =>
-    rows.reduce((acc, r) => acc + r.brand + r.competitor + r.community, 0);
+  const sum = (rows: DayRow[]) => rows.reduce((acc, r) => acc + r.total, 0);
 
   return (
     <AdminShell title="Mentions" subtitle="social listening inbox">
@@ -1017,9 +1127,7 @@ export default function MentionsClient() {
         />
         <Card
           label="New today"
-          value={String(
-            today ? today.brand + today.competitor + today.community : 0,
-          )}
+          value={String(today ? today.total : 0)}
           sub="Pacific day"
         />
         <Card label="Last 7 days" value={String(sum(last7))} />
@@ -1031,10 +1139,18 @@ export default function MentionsClient() {
       {cards && (
         <SourceList
           sources={cards.sources}
+          links={cards.search_links ?? []}
           onPoll={startPoll}
           pollNote={pollNote}
         />
       )}
+
+      <AddByLink
+        onAdded={() => {
+          loadList();
+          loadSummary();
+        }}
+      />
 
       <div className="mb-4 flex flex-wrap items-center gap-1.5">
         {STATUS_FILTERS.map((f) => (
@@ -1053,11 +1169,13 @@ export default function MentionsClient() {
           className={INPUT}
         >
           <option value="">All sources</option>
-          {(cards?.sources ?? []).map((src) => (
-            <option key={src.name} value={src.name}>
-              {src.label}
-            </option>
-          ))}
+          {[...(cards?.sources ?? []), ...(cards?.extra_sources ?? [])].map(
+            (src) => (
+              <option key={src.name} value={src.name}>
+                {src.label}
+              </option>
+            ),
+          )}
         </select>
         <select
           value={group}

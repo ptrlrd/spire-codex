@@ -124,6 +124,7 @@ function NotFound() {
 const SECTIONS = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/mentions", label: "Mentions" },
+  { href: "/admin/runs", label: "Runs" },
   { href: "/admin/users", label: "Users" },
   { href: "/admin/feedback", label: "Feedback" },
   { href: "/admin/guides", label: "Guides" },
@@ -137,6 +138,7 @@ const SECTIONS = [
   { href: "/admin/elo", label: "Elo" },
   { href: "/admin/keys", label: "API keys" },
 ];
+
 export function AdminShell({
   title,
   subtitle,
