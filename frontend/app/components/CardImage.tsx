@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { cardImageChain, humanizeCardId } from "@/lib/card-fallback";
 
@@ -82,6 +82,13 @@ export default function CardImage({
   });
   const index = failed.key === key ? failed.index + 1 : 0;
   const src = chain[index];
+  const imgRef = useRef<HTMLImageElement>(null);
+  useEffect(() => {
+    const el = imgRef.current;
+    if (el?.complete && el.naturalWidth === 0) {
+      el.dispatchEvent(new Event("error"));
+    }
+  }, [src]);
   if (!src) {
     return (
       <CardFallback
@@ -95,6 +102,7 @@ export default function CardImage({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
+      ref={imgRef}
       src={src}
       alt={alt ?? ""}
       className={className}

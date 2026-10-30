@@ -227,6 +227,8 @@ export default async function NewsPage({ params, searchParams }: Props) {
   );
 }
 
+const STEAM_INTERNAL_TAG = /^(patchnotes$|mod_|modact_)/i;
+
 export function NewsRow({
   article,
   basePath,
@@ -236,7 +238,9 @@ export function NewsRow({
 }) {
   const date = formatNewsDate(article.date);
   const excerpt = newsExcerpt(article.contents ?? "", 220);
-  const tagBadges = article.tags?.slice(0, 3) ?? [];
+  const tagBadges = (article.tags ?? [])
+    .filter((tag) => !STEAM_INTERNAL_TAG.test(tag))
+    .slice(0, 3);
   const isPatchNotes = article.tags?.includes("patchnotes");
   return (
     <li>

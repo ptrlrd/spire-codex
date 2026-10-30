@@ -17,6 +17,24 @@
   src: url("/fonts/kreon_bold.ttf") format("truetype");
 }
 
+/* Kreon's regular "…" glyph overlaps its dots into "..", so this face swaps in U+2026 only. */
+@font-face {
+  font-family: "Kreon Ellipsis";
+  font-weight: 100 549;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/kreon-ellipsis-regular.woff2") format("woff2");
+  unicode-range: U+2026;
+}
+@font-face {
+  font-family: "Kreon Ellipsis";
+  font-weight: 550 900;
+  font-style: normal;
+  font-display: swap;
+  src: url("/fonts/kreon-ellipsis-bold.woff2") format("woff2");
+  unicode-range: U+2026;
+}
+
 /* ═══════════════════════════════════════════════════════════════════════════
    Design tokens
    ───────────────────────────────────────────────────────────────────────────
@@ -399,7 +417,8 @@
      sans fallback if Kreon fails to load. Mono keeps Geist Mono for tabular
      alignment of ids and numbers. */
   --font-sans:
-    var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    "Kreon Ellipsis", var(--font-kreon), var(--font-geist-sans), Arial,
+    Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
 }
 
@@ -407,7 +426,8 @@ body {
   background: var(--bg-primary);
   color: var(--text-primary);
   font-family:
-    var(--font-kreon), var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    "Kreon Ellipsis", var(--font-kreon), var(--font-geist-sans), Arial,
+    Helvetica, sans-serif;
 }
 
 /* Kreon's deep descenders (g, y, p) get cut off by the default line boxes

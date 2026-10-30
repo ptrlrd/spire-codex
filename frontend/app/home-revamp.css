@@ -18,8 +18,10 @@
   --defect: var(--color-defect);
   --necro: var(--color-necrobinder);
   --regent: var(--color-regent);
-  --serif: var(--font-kreon), Georgia, "Times New Roman", serif;
-  --sans: var(--font-kreon), system-ui, -apple-system, sans-serif;
+  --serif:
+    "Kreon Ellipsis", var(--font-kreon), Georgia, "Times New Roman", serif;
+  --sans:
+    "Kreon Ellipsis", var(--font-kreon), system-ui, -apple-system, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;
   --radius: 10px;
   --wrap: 80rem;
@@ -300,9 +302,15 @@
   font-variant-numeric: tabular-nums;
 }
 .rvmp .bgrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 11px;
+}
+.rvmp .bgrid > .btile {
+  flex: 1 1 150px;
+}
+.rvmp .bgrid > .promo {
+  flex: 1 1 100%;
 }
 .rvmp .btile {
   position: relative;

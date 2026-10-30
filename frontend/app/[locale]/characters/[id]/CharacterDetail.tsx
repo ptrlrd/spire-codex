@@ -109,7 +109,13 @@ function TopPicks({
                 {t("{pct}% win · {n} picks", {
                   pct: it.win_rate.toFixed(1),
                   n: it.picks.toLocaleString(),
-                })}
+                })
+                  .split(" · ")
+                  .map((part) => (
+                    <span key={part} className="block">
+                      {part}
+                    </span>
+                  ))}
               </span>
             </Link>
           </li>
@@ -427,13 +433,13 @@ export default function CharacterDetail({
               <span>{t("Character")}</span>
               {char.gender && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{char.gender}</span>
                 </>
               )}
               {char.unlocks_after && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>
                     {t("Unlocks after {name}", { name: char.unlocks_after })}
                   </span>

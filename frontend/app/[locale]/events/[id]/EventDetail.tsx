@@ -325,7 +325,7 @@ export default function EventDetail({
               <span>{event.type}</span>
               {event.act && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{event.act}</span>
                 </>
               )}

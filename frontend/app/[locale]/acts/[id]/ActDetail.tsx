@@ -129,7 +129,7 @@ export default function ActDetail({
               <span>{t("Act")}</span>
               {act.num_rooms != null && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{t("{n} rooms", { n: act.num_rooms })}</span>
                 </>
               )}

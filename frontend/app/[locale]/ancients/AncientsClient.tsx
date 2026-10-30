@@ -159,7 +159,7 @@ export default function AncientsClient() {
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{t("Reference")}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Ancients")}</span>
             </p>
             <h1>{t("Ancient Relic Pools")}</h1>

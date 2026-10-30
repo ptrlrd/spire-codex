@@ -577,14 +577,16 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                 prefetch={false}
                 key={r.run_hash}
                 href={browseRowHref(config, bp, r.run_hash)}
-                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-3 sm:px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
+                className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-3 sm:min-h-14 bg-[var(--bg-card)] rounded-lg border border-[var(--border-subtle)] px-3 sm:px-4 py-3 hover:bg-[var(--bg-card-hover)] transition-colors"
               >
                 <div className="flex items-center gap-2 sm:gap-3 min-w-0">
                   <span
                     className={`text-sm font-medium shrink-0 ${
                       r.win
                         ? "text-[var(--color-silent)]"
-                        : "text-[var(--color-ironclad)]"
+                        : r.was_abandoned
+                          ? "text-[var(--text-muted)]"
+                          : "text-[var(--color-ironclad)]"
                     }`}
                   >
                     {r.win ? "W" : r.was_abandoned ? "A" : "L"}

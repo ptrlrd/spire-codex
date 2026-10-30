@@ -15,6 +15,7 @@ import {
   bracketListParams,
 } from "@/lib/content-brackets";
 import { PlayerBadge } from "@/app/components/SupporterBadge";
+import CharacterTag from "@/app/components/CharacterTag";
 import { textColor } from "@/lib/character-colors";
 
 function cleanId(id: string): string {
@@ -596,11 +597,13 @@ export default function LeaderboardBrowseClient() {
                       <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                         {t("Rank")}
                       </th>
-                      <th className="hidden sm:table-cell text-left py-2 px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
+                      <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                         {t("Player")}
                       </th>
                       <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
-                        {t("Character")}
+                        <span className="sr-only sm:not-sr-only">
+                          {t("Character")}
+                        </span>
                       </th>
                       <th className="text-left py-2 px-2 sm:px-3 text-xs font-medium text-[var(--text-muted)] uppercase tracking-wider">
                         {t("Asc")}
@@ -636,7 +639,7 @@ export default function LeaderboardBrowseClient() {
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">
                             #{entry.rank}
                           </td>
-                          <td className="hidden sm:table-cell py-2.5 px-3 text-[var(--text-primary)] truncate max-w-[10rem]">
+                          <td className="py-2.5 px-2 sm:px-3 text-[var(--text-primary)] truncate max-w-[7rem] sm:max-w-[10rem]">
                             {entry.username || t("Anonymous")}
                             <PlayerBadge
                               username={entry.username}
@@ -648,7 +651,11 @@ export default function LeaderboardBrowseClient() {
                             style={{ color: textColor(charColor) }}
                           >
                             <span className="sm:hidden">
-                              {localizedName.slice(0, 3)}
+                              <CharacterTag
+                                id={entry.character}
+                                name={localizedName}
+                                showName={false}
+                              />
                             </span>
                             <span className="hidden sm:inline">
                               {localizedName}

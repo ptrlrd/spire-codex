@@ -121,7 +121,7 @@ function EntityCard({
         <div className="flex items-center gap-2 text-[11px] text-[var(--text-muted)]">
           {entity.rarity && <span>{t(entity.rarity)}</span>}
           {entity.type && <span>{t(entity.type)}</span>}
-          <span>&middot;</span>
+          <span className="sep">&middot;</span>
           <span style={{ color: textColor(charColor) }}>
             {t(entity.character)}
           </span>

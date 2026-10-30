@@ -69,7 +69,7 @@ export default function LiveNavButton({
       >
         <LiveCircle />
         <span className="tabular-nums">
-          {count > 0 ? t("({n}) Live", { n: count }) : t("Live")}
+          {count > 0 ? `${count} ${t("Live")}` : t("Live")}
         </span>
       </Link>
     );
@@ -84,7 +84,7 @@ export default function LiveNavButton({
     >
       <LiveCircle />
       <span className="tabular-nums">
-        {count > 0 ? t("({n}) Live", { n: count }) : t("Live")}
+        {count > 0 ? `${count} ${t("Live")}` : t("Live")}
       </span>
     </Link>
   );

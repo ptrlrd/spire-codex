@@ -192,7 +192,7 @@ export default function EpochDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               {epoch.story_id && <span className={accent}>{storyLabel}</span>}
-              {epoch.story_id && <span>&middot;</span>}
+              {epoch.story_id && <span className="sep">&middot;</span>}
               <span>
                 {epoch.era_name}
                 {showYear ? ` · ${epoch.era_year}` : ""}

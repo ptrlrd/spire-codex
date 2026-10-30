@@ -169,7 +169,7 @@ export default async function BadgePage({ params }: Props) {
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{t("Badge")}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>
                 {badge.tiered
                   ? `${badge.tiers.length} ${t("tiers")}`
@@ -177,13 +177,13 @@ export default async function BadgePage({ params }: Props) {
               </span>
               {badge.requires_win && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{t("Requires win")}</span>
                 </>
               )}
               {badge.multiplayer_only && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{t("Multiplayer only")}</span>
                 </>
               )}
