@@ -241,7 +241,9 @@ export function NewsRow({
   const tagBadges = (article.tags ?? [])
     .filter((tag) => !STEAM_INTERNAL_TAG.test(tag))
     .slice(0, 3);
-  const isPatchNotes = article.tags?.includes("patchnotes");
+  const isPatchNotes = article.tags?.some(
+    (tag) => tag.toLowerCase() === "patchnotes",
+  );
   return (
     <li>
       <Link

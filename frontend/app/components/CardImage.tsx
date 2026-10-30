@@ -88,7 +88,7 @@ export default function CardImage({
     if (el?.complete && el.naturalWidth === 0) {
       el.dispatchEvent(new Event("error"));
     }
-  }, [src]);
+  }, []);
   if (!src) {
     return (
       <CardFallback

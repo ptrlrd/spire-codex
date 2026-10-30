@@ -110,7 +110,7 @@ function TopPicks({
                   pct: it.win_rate.toFixed(1),
                   n: it.picks.toLocaleString(),
                 })
-                  .split(" · ")
+                  .split(/\s*·\s*/)
                   .map((part) => (
                     <span key={part} className="block">
                       {part}

@@ -302,15 +302,10 @@
   font-variant-numeric: tabular-nums;
 }
 .rvmp .bgrid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-flow: row dense;
   gap: 11px;
-}
-.rvmp .bgrid > .btile {
-  flex: 1 1 150px;
-}
-.rvmp .bgrid > .promo {
-  flex: 1 1 100%;
 }
 .rvmp .btile {
   position: relative;
