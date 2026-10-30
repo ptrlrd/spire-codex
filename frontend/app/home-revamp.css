@@ -18,8 +18,10 @@
   --defect: var(--color-defect);
   --necro: var(--color-necrobinder);
   --regent: var(--color-regent);
-  --serif: var(--font-kreon), Georgia, "Times New Roman", serif;
-  --sans: var(--font-kreon), system-ui, -apple-system, sans-serif;
+  --serif:
+    "Kreon Ellipsis", var(--font-kreon), Georgia, "Times New Roman", serif;
+  --sans:
+    "Kreon Ellipsis", var(--font-kreon), system-ui, -apple-system, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;
   --radius: 10px;
   --wrap: 80rem;
@@ -302,6 +304,7 @@
 .rvmp .bgrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-auto-flow: row dense;
   gap: 11px;
 }
 .rvmp .btile {

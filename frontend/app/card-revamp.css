@@ -22,8 +22,10 @@
   --regent: var(--color-regent);
   --good: var(--success);
   --warn: var(--warning);
-  --serif: var(--font-kreon), Georgia, "Times New Roman", serif;
-  --sans: var(--font-kreon), system-ui, -apple-system, sans-serif;
+  --serif:
+    "Kreon Ellipsis", var(--font-kreon), Georgia, "Times New Roman", serif;
+  --sans:
+    "Kreon Ellipsis", var(--font-kreon), system-ui, -apple-system, sans-serif;
   --mono: var(--font-geist-mono), ui-monospace, monospace;
   --radius: 6px;
   --wrap: 1200px;
@@ -140,6 +142,15 @@
    the digits around it; pin the line height so the row stays even. */
 .card-rvmp .eyebrow span {
   line-height: 1.2;
+}
+@media (max-width: 640px) {
+  .card-rvmp .eyebrow {
+    column-gap: 14px;
+    row-gap: 4px;
+  }
+  .card-rvmp .eyebrow .sep {
+    display: none;
+  }
 }
 .card-rvmp .lede {
   color: var(--text-2);
@@ -826,10 +837,17 @@ a.kw {
     grid-template-columns: 1fr;
     gap: 26px;
   }
+  .card-rvmp .aside,
   .card-rvmp .box {
-    position: static;
+    display: contents;
   }
-  .card-rvmp .aside {
+  .card-rvmp .box > * {
+    order: 1;
+  }
+  .card-rvmp .box > :is(img, .iconbox, .ref-icon, .sprite) {
+    order: -2;
+  }
+  .card-rvmp .box > .variant {
     order: -1;
   }
   .card-rvmp .tiles {
@@ -910,4 +928,8 @@ a.kw {
 .card-rvmp .brkt-pill,
 .card-rvmp .ench-desc {
   letter-spacing: 0.015em;
+}
+
+.card-rvmp section#relations:not(:has(.rel > *)) {
+  display: none;
 }

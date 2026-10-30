@@ -360,7 +360,7 @@ export default async function MerchantPage({ params }: Props) {
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{t("Reference")}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Economy")}</span>
             </p>
             <h1>{heading}</h1>

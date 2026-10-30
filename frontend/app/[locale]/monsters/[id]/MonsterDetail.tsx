@@ -602,7 +602,7 @@ export default function MonsterDetail({
               {acts.length > 0 && (
                 <>
                   <span>{acts.join(", ")}</span>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                 </>
               )}
               <span>{monster.type}</span>

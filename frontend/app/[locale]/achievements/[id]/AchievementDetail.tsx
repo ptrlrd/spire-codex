@@ -121,7 +121,7 @@ export default function AchievementDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{t("Reference")}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Achievement")}</span>
             </p>
             <h1>{achievement.name}</h1>

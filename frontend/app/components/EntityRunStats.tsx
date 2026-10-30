@@ -587,7 +587,7 @@ export default function EntityRunStats({
             {top && (
               <p className="insight">
                 {t("Most often taken by")}{" "}
-                <b>{characterPretty(top.character)}</b> {t("players")}(
+                <b>{characterPretty(top.character)}</b> {t("players")} (
                 {top.picks.toLocaleString()} {t("picks")} · {share}%{" "}
                 {t("share")}).
                 {tier ? (

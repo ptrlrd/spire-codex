@@ -519,9 +519,12 @@ export default function HomeClient({
               >
                 <div className="bt-top">
                   <span className="bt-name">{sectionKey(s.key)}</span>
-                  {s.count != null && (
-                    <span className="bt-count">{s.count}</span>
-                  )}
+                  <span
+                    className="bt-count"
+                    aria-hidden={s.count == null || undefined}
+                  >
+                    {s.count ?? "\u00a0"}
+                  </span>
                 </div>
                 <span className="bt-desc">{sectionDesc(s.key)}</span>
               </Link>
