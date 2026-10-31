@@ -49,6 +49,13 @@ services:
     # With lake-ingest moved to its own box, its 5g budget can go to the
     # backend: set BACKEND_MEM_LIMIT=8g in the box .env.
     mem_limit: ${BACKEND_MEM_LIMIT:-6g}
+    # Docker's default nofile limit is 1024 per process, so when a worker's
+    # requests pile up during a slow patch it hits "Too many open files"
+    # and every request fails instead of just running late (2026-10-31).
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
     # Multiple workers so a burst of POST /api/runs (Overwolf launch
     # backfills) doesn't serialise behind a single thread and block
     # everything else (GET /api/runs/stats, /api/runs/list etc.).
