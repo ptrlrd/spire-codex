@@ -57,7 +57,9 @@ def test_hollow_blob_fetch_refuses_to_build():
     import pytest
 
     with pytest.raises(RuntimeError):
-        ui._require_blob_coverage(rows, {})
+        ui._require_blob_coverage(rows, {}, read_failed=True)
+    # A read that worked but found nothing stored serves partial, not an error.
+    assert ui._require_blob_coverage(rows, {}) is False
     # Heavy-but-nonzero misses build a partial payload now instead of raising.
     assert ui._require_blob_coverage(rows, {f"h{i}": {} for i in range(85)}) is False
 

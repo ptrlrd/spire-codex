@@ -767,7 +767,12 @@ def get_run_blob(run_hash: str) -> dict | None:
     return (doc or {}).get("blob")
 
 
-def get_run_blobs(hashes: list[str]) -> dict[str, dict]:
+def get_run_blobs(
+    hashes: list[str], errors: list[Exception] | None = None
+) -> dict[str, dict]:
+    """Blobs by run hash. A failed batch read is logged and, when `errors`
+    is given, appended there so callers can tell an outage from an empty
+    result."""
     out: dict[str, dict] = {}
     for i in range(0, len(hashes), 300):
         batch = hashes[i : i + 300]
@@ -784,6 +789,8 @@ def get_run_blobs(hashes: list[str]) -> dict[str, dict]:
                 len(hashes),
                 e,
             )
+            if errors is not None:
+                errors.append(e)
             break
     return out
 
