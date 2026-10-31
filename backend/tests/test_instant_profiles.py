@@ -57,14 +57,17 @@ def test_due_pending_waits_for_the_burst_to_quiet():
     assert ui._due_pending(pending, now) == ["old"]
 
 
-def test_coverage_full_partial_and_zero():
+def test_coverage_full_partial_and_zero(monkeypatch):
     rows = [{"run_hash": f"h{i}"} for i in range(10)]
     full = {f"h{i}": {} for i in range(10)}
     half = {f"h{i}": {} for i in range(5)}
     assert ui._require_blob_coverage(rows, full) is True
     assert ui._require_blob_coverage(rows, half) is False
+    monkeypatch.setattr(ui, "_mongo_reachable", lambda: False)
     with pytest.raises(RuntimeError):
         ui._require_blob_coverage(rows, {})
+    monkeypatch.setattr(ui, "_mongo_reachable", lambda: True)
+    assert ui._require_blob_coverage(rows, {}) is False
     assert ui._require_blob_coverage([], {}) is True
 
 

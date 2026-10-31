@@ -872,17 +872,33 @@ def _compute_insights(
 _PREWARM_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 
 
+def _mongo_reachable() -> bool:
+    from .runs_db_mongo import get_database
+
+    try:
+        get_database().command("ping")
+        return True
+    except Exception:
+        return False
+
+
 def _require_blob_coverage(rows: list[dict], blobs: dict[str, dict]) -> bool:
     """True when the fetch covered enough of the account to store durably.
-    Zero coverage on a nonempty account raises (Mongo was unavailable);
-    anything between builds a payload that serves flagged partial but is
-    never durably stored, instead of the old hard refusal that left bulk
-    uploads with missing blobs stuck on "building" forever."""
+    Zero coverage on a nonempty account raises when Mongo is unreachable;
+    when Mongo answers, the blobs are simply not written yet (a first upload
+    racing its own profile build), so the payload serves flagged partial and
+    the next build fills it in. Anything between builds a payload that serves
+    flagged partial but is never durably stored, instead of the old hard
+    refusal that left bulk uploads with missing blobs stuck on "building"
+    forever."""
     if not rows:
         return True
     have = sum(1 for r in rows if r["run_hash"] in blobs)
     if not have:
-        raise RuntimeError(f"insights blob fetch returned 0/{len(rows)} runs")
+        if not _mongo_reachable():
+            raise RuntimeError(f"insights blob fetch returned 0/{len(rows)} runs")
+        logger.warning("insights blob fetch returned 0/%d runs, Mongo is up", len(rows))
+        return False
     if have < len(rows) * 0.9:
         logger.warning("insights blob fetch partial: %d/%d runs", have, len(rows))
         return False
