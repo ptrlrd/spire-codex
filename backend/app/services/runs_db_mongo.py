@@ -2548,46 +2548,103 @@ def _row_to_dict(doc: dict) -> dict:
 WINRATE_MIN_RUNS = 5
 
 
-def get_user_winrates() -> dict[str, list[int]]:
-    """Per-username [total runs, wins], cached in Redis for 5 minutes.
+_USER_WINRATES_KEY = "user_winrates:all:lc"
+_USER_WINRATES_STALE_KEY = "user_winrates:all:lc:stale"
+_USER_WINRATES_LOCK = "user_winrates:lock"
+_USER_WINRATES_TTL_SECONDS = 3600
+_USER_WINRATES_STALE_TTL_SECONDS = 24 * 3600
+_USER_WINRATES_LOCK_TTL_SECONDS = 900
+_USER_WINRATES_WAIT_SECONDS = 30
+_user_winrates_memo: dict[str, list[int]] | None = None
 
-    One $group over the collection (a few hundred ms) once per TTL instead
-    of per request. Anonymous runs (no username) are excluded; abandoned
-    runs count as losses, matching the profile-page win rate.
+
+def get_user_winrates() -> dict[str, list[int]]:
+    """Per-username [total runs, wins]: fresh for an hour, with a day-old
+    copy served while one process at a time recomputes it.
+
+    The aggregation walks every named run in the collection, which takes
+    minutes at the current size, so it must never run twice at once and
+    must never sit inside a request when an older answer exists. Anonymous
+    runs (no username) are excluded; abandoned runs count as losses,
+    matching the profile-page win rate.
 
     Keyed by username_lower (not display username) so the keys compose with the
     case-insensitive username_lower filters that consume this map (list /
     leaderboard winrate filters); otherwise mixed-case users would silently
     drop out.
     """
-    cached = app_cache.get_json("user_winrates:all:lc")
+    global _user_winrates_memo
+    cached = app_cache.get_json(_USER_WINRATES_KEY)
     if cached is not None:
+        _user_winrates_memo = cached
         return cached
-    coll = _get_collection()
-    pipeline = [
-        # Official content only: A11+ and modded-character runs aren't real skill
-        # signal, so they must not count toward the win rate that gates the
-        # winrate:xx brackets on /list and the leaderboards.
-        {
-            "$match": {
-                "username_lower": {"$nin": [None, ""]},
-                "ascension": {"$gte": 0, "$lte": 10},
-                "character": {"$in": list(OFFICIAL_CHARACTERS)},
-            }
-        },
-        {
-            "$group": {
-                "_id": "$username_lower",
-                "total": {"$sum": 1},
-                "wins": {"$sum": {"$cond": [{"$in": ["$win", [True, 1]]}, 1, 0]}},
-            }
-        },
-    ]
-    out: dict[str, list[int]] = {}
-    for row in coll.aggregate(pipeline, allowDiskUse=True):
-        out[str(row["_id"])] = [int(row["total"]), int(row["wins"])]
-    app_cache.set_json("user_winrates:all:lc", out, ttl_seconds=300)
-    return out
+    stale = app_cache.get_json(_USER_WINRATES_STALE_KEY)
+    if stale is None:
+        stale = _user_winrates_memo
+    if not app_cache.acquire_lock(
+        _USER_WINRATES_LOCK, ttl_seconds=_USER_WINRATES_LOCK_TTL_SECONDS
+    ):
+        if stale is not None:
+            return stale
+        deadline = time.time() + _USER_WINRATES_WAIT_SECONDS
+        while time.time() < deadline:
+            time.sleep(1)
+            cached = app_cache.get_json(_USER_WINRATES_KEY)
+            if cached is not None:
+                _user_winrates_memo = cached
+                return cached
+        return {}
+    if stale is not None:
+        import threading
+
+        threading.Thread(
+            target=_refresh_user_winrates, daemon=True, name="user-winrates"
+        ).start()
+        return stale
+    return _refresh_user_winrates()
+
+
+def _refresh_user_winrates() -> dict[str, list[int]]:
+    """Run the aggregation under the lock the caller took, store the result
+    under the fresh and stale keys, and always release the lock."""
+    global _user_winrates_memo
+    try:
+        coll = _get_collection()
+        pipeline = [
+            # Official content only: A11+ and modded-character runs aren't real skill
+            # signal, so they must not count toward the win rate that gates the
+            # winrate:xx brackets on /list and the leaderboards.
+            {
+                "$match": {
+                    "username_lower": {"$nin": [None, ""]},
+                    "ascension": {"$gte": 0, "$lte": 10},
+                    "character": {"$in": list(OFFICIAL_CHARACTERS)},
+                }
+            },
+            {
+                "$group": {
+                    "_id": "$username_lower",
+                    "total": {"$sum": 1},
+                    "wins": {"$sum": {"$cond": [{"$in": ["$win", [True, 1]]}, 1, 0]}},
+                }
+            },
+        ]
+        out: dict[str, list[int]] = {}
+        for row in coll.aggregate(pipeline, allowDiskUse=True):
+            out[str(row["_id"])] = [int(row["total"]), int(row["wins"])]
+        app_cache.set_json(
+            _USER_WINRATES_KEY, out, ttl_seconds=_USER_WINRATES_TTL_SECONDS
+        )
+        app_cache.set_json(
+            _USER_WINRATES_STALE_KEY, out, ttl_seconds=_USER_WINRATES_STALE_TTL_SECONDS
+        )
+        _user_winrates_memo = out
+        return out
+    except Exception:
+        logger.warning("user winrates refresh failed", exc_info=True)
+        return _user_winrates_memo or {}
+    finally:
+        app_cache.delete(_USER_WINRATES_LOCK)
 
 
 def count_with_budget(
