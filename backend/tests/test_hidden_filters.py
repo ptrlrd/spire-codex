@@ -4,6 +4,8 @@ directly into a large count disqualifies the covering index and fetches every
 candidate doc (the 60s counts that 504'd submit enrichment), so the counting
 paths use _count_visible: count(all) - count(hidden subset)."""
 
+import threading
+
 from pymongo.errors import OperationFailure
 
 from app.routers.exports import _build_match
@@ -28,12 +30,12 @@ class FakeColl:
         return self.row
 
     def count_documents(self, q, **kwargs):
+        self.hints.append(kwargs.get("hint"))
         if self.reject_hint and kwargs.get("hint"):
             raise OperationFailure(
                 "hint provided does not correspond to an existing index"
             )
         self.count_queries.append(q)
-        self.hints.append(kwargs.get("hint"))
         return self.counts.pop(0) if self.counts else 0
 
 
@@ -90,7 +92,7 @@ def test_rejected_hint_falls_back_to_an_unhinted_count():
     fake = FakeColl(counts=[10, 4], reject_hint=True)
     assert runs_db_mongo._count_visible(fake, RANK_QUERY) == 6
     _assert_subtractive_pairs(fake.count_queries)
-    assert fake.hints == [None, None]
+    assert fake.hints == [None, runs_db_mongo.HIDDEN_WINS_INDEX, None]
 
 
 def test_index_pass_builds_the_covering_hidden_wins_index():
@@ -103,6 +105,9 @@ def test_index_pass_builds_the_covering_hidden_wins_index():
 
     coll = IndexColl()
     runs_db_mongo._ensure_indexes(coll)
+    for t in threading.enumerate():
+        if t.name == "hidden-wins-index":
+            t.join(5)
     keys, kwargs = coll.created[runs_db_mongo.HIDDEN_WINS_INDEX]
     assert [k for k, _ in keys] == [
         "win",
