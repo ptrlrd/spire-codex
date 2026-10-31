@@ -9,7 +9,9 @@ from app.services import runs_db_mongo
 def _fake_backend(monkeypatch, rows, blobs, community, table, tallies):
     monkeypatch.setattr(runs_db_mongo, "get_user_run_rows", lambda uid, limit: rows)
     monkeypatch.setattr(
-        runs_db_mongo, "get_run_blobs", lambda hashes: {h: blobs[h] for h in hashes}
+        runs_db_mongo,
+        "get_run_blobs",
+        lambda hashes, errors=None: {h: blobs[h] for h in hashes},
     )
     monkeypatch.setattr(
         runs_db_mongo,
@@ -100,7 +102,7 @@ def test_insights_build_then_cache(monkeypatch):
         return []
 
     monkeypatch.setattr(runs_db_mongo, "get_user_run_rows", rows)
-    monkeypatch.setattr(runs_db_mongo, "get_run_blobs", lambda h: {})
+    monkeypatch.setattr(runs_db_mongo, "get_run_blobs", lambda h, errors=None: {})
     monkeypatch.setattr(
         runs_db_mongo,
         "get_user_card_pick_tallies",
@@ -132,7 +134,7 @@ def test_prewarm_kicks_only_when_cold(monkeypatch):
         return []
 
     monkeypatch.setattr(runs_db_mongo, "get_user_run_rows", rows)
-    monkeypatch.setattr(runs_db_mongo, "get_run_blobs", lambda h: {})
+    monkeypatch.setattr(runs_db_mongo, "get_run_blobs", lambda h, errors=None: {})
     monkeypatch.setattr(
         runs_db_mongo,
         "get_user_card_pick_tallies",
@@ -279,7 +281,9 @@ def test_character_filter_scopes_walk_and_cache(monkeypatch):
 
     monkeypatch.setattr(runs_db_mongo, "get_user_run_rows", lambda uid, limit: rows)
     monkeypatch.setattr(
-        runs_db_mongo, "get_run_blobs", lambda hashes: {h: blobs[h] for h in hashes}
+        runs_db_mongo,
+        "get_run_blobs",
+        lambda hashes, errors=None: {h: blobs[h] for h in hashes},
     )
     monkeypatch.setattr(runs_db_mongo, "get_user_card_pick_tallies", tallies)
     monkeypatch.setattr(user_insights, "get_community_stats", lambda *a, **k: {})
