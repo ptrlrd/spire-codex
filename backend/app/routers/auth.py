@@ -71,6 +71,7 @@ def _me_payload(user: dict) -> dict:
         "profile_private": bool(user.get("profile_private")),
         "supporter": supporters.status(user),
         "overwolf_id": user.get("overwolf_id"),
+        "overwolf_nickname": user.get("overwolf_nickname"),
         "overwolf_tier": supporters.linked_overwolf_tier(user),
     }
 
@@ -597,7 +598,10 @@ async def overwolf_link(request: Request):
 @limiter.limit(rate_limit_config.endpoint_limit("auth.overwolf_unlink", "10/minute"))
 def overwolf_unlink(request: Request):
     user = require_user(request)
-    return supporters.unlink_overwolf(user["_id"])
+    result = supporters.unlink_overwolf(user["_id"])
+    if result.get("error"):
+        raise HTTPException(status_code=400, detail=result["error"])
+    return result
 
 
 @router.patch("/thanks-listing")

@@ -139,6 +139,8 @@ services:
       GITHUB_TOKEN: ${GITHUB_TOKEN:-}
       OVERWOLF_STORE_ID: ${OVERWOLF_STORE_ID:-}
       OVERWOLF_EXTENSION_ID: ${OVERWOLF_EXTENSION_ID:-}
+      OVERWOLF_CLIENT_ID: ${OVERWOLF_CLIENT_ID:-}
+      OVERWOLF_CLIENT_SECRET: ${OVERWOLF_CLIENT_SECRET:-}
       SUPPORTER_EMAIL_SALT: ${SUPPORTER_EMAIL_SALT:-}
       # Mentions inbox: poller toggle, Discord alert webhook, bot token, and
       # the per-source credentials. GITHUB_TOKEN above is reused for GitHub.
