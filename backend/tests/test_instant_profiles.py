@@ -64,8 +64,34 @@ def test_coverage_full_partial_and_zero():
     assert ui._require_blob_coverage(rows, full) is True
     assert ui._require_blob_coverage(rows, half) is False
     with pytest.raises(RuntimeError):
-        ui._require_blob_coverage(rows, {})
-    assert ui._require_blob_coverage([], {}) is True
+        ui._require_blob_coverage(rows, {}, read_failed=True)
+    assert ui._require_blob_coverage(rows, {}, read_failed=False) is False
+    assert ui._require_blob_coverage(rows[:1], {}) is False
+    assert ui._require_blob_coverage([], {}, read_failed=True) is True
+
+
+def test_fetch_blobs_reports_a_failed_read(monkeypatch):
+    from app.services import runs_db_mongo
+
+    class Broken:
+        def find(self, *a, **k):
+            raise ConnectionError("down")
+
+    monkeypatch.setattr(runs_db_mongo, "_blob_collection", lambda: Broken())
+    errors: list = []
+    assert runs_db_mongo.get_run_blobs(["h1"], errors) == {}
+    assert len(errors) == 1
+    assert runs_db_mongo.get_run_blobs(["h1"]) == {}
+    blobs, failed = ui._fetch_blobs([{"run_hash": "h1"}])
+    assert blobs == {} and failed is True
+
+    class Empty:
+        def find(self, *a, **k):
+            return []
+
+    monkeypatch.setattr(runs_db_mongo, "_blob_collection", lambda: Empty())
+    blobs, failed = ui._fetch_blobs([{"run_hash": f"h{i}"} for i in range(301)])
+    assert blobs == {} and failed is False
 
 
 def test_partial_payload_never_stored_durably(monkeypatch):
