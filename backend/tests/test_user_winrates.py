@@ -11,12 +11,14 @@ class FakeCache:
         self.lock_grants = True
 
     def get_json(self, key):
+        self.gets = getattr(self, "gets", 0) + 1
         return self.store.get(key)
 
     def set_json(self, key, value, ttl_seconds):
         self.store[key] = value
 
     def acquire_lock(self, key, ttl_seconds=30, token="1"):
+        self.lock_attempts = getattr(self, "lock_attempts", 0) + 1
         if not self.lock_grants or key in self.locks:
             return False
         self.locks[key] = token
@@ -59,7 +61,8 @@ def _wire(monkeypatch, cache, coll):
     monkeypatch.setattr(rdm, "_get_collection", lambda: coll)
     monkeypatch.setattr(rdm, "_user_winrates_memo", None)
     monkeypatch.setattr(rdm, "_user_winrates_built_at", 0.0)
-    monkeypatch.setattr(rdm, "_user_winrates_checked_at", 0.0)
+    monkeypatch.setattr(rdm, "_user_winrates_checked_at", float("-inf"))
+    monkeypatch.setattr(rdm, "_user_winrates_failed_at", float("-inf"))
     monkeypatch.setattr(rdm, "_user_winrates_inflight", threading.Lock())
 
 
@@ -70,7 +73,7 @@ def _settle():
 
 
 def _force_recheck():
-    rdm._user_winrates_checked_at = 0.0
+    rdm._user_winrates_checked_at = float("-inf")
 
 
 def _refresh_is_idle():
@@ -153,18 +156,32 @@ def test_lock_held_by_another_process_never_aggregates(monkeypatch):
     assert _refresh_is_idle()
 
 
-def test_failed_refresh_releases_both_locks(monkeypatch):
+def test_failed_refresh_releases_both_locks_and_backs_off(monkeypatch):
     cache = FakeCache()
 
     class Broken:
+        calls = 0
+
         def aggregate(self, *a, **k):
+            self.calls += 1
             raise ConnectionError("down")
 
-    _wire(monkeypatch, cache, Broken())
+    coll = Broken()
+    _wire(monkeypatch, cache, coll)
     assert rdm.get_user_winrates() == {}
     _settle()
     assert cache.locks == {}
     assert _refresh_is_idle()
+    assert coll.calls == 1
+    _force_recheck()
+    assert rdm.get_user_winrates() == {}
+    _settle()
+    assert coll.calls == 1
+    rdm._user_winrates_failed_at = float("-inf")
+    _force_recheck()
+    assert rdm.get_user_winrates() == {}
+    _settle()
+    assert coll.calls == 2
 
 
 def test_refresh_thread_failing_to_start_releases_both_locks(monkeypatch):
@@ -201,3 +218,59 @@ def test_redis_down_rebuilds_at_most_once_an_hour(monkeypatch):
         assert rdm.get_user_winrates() == {"p": [10, 4]}
     _settle()
     assert coll.calls == 1
+
+
+def test_redis_is_consulted_at_most_once_per_window_even_when_cold(monkeypatch):
+    cache = FakeCache()
+    gate = threading.Event()
+    coll = FakeColl([{"_id": "p", "total": 10, "wins": 4}], gate=gate)
+    _wire(monkeypatch, cache, coll)
+    assert rdm.get_user_winrates() == {}
+    assert coll.started.wait(5)
+    assert cache.gets == 3
+    assert cache.lock_attempts == 1
+    for _ in range(20):
+        assert rdm.get_user_winrates() == {}
+    assert cache.gets == 3
+    assert cache.lock_attempts == 1
+    gate.set()
+    _settle()
+
+
+def test_concurrent_callers_share_one_redis_read(monkeypatch):
+    cache = FakeCache()
+    cache.store[rdm._USER_WINRATES_KEY] = {"at": time.time(), "rates": {"p": [10, 4]}}
+    coll = FakeColl([])
+    _wire(monkeypatch, cache, coll)
+    threads = [threading.Thread(target=rdm.get_user_winrates) for _ in range(20)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join(5)
+    assert cache.gets == 1
+    assert rdm.get_user_winrates() == {"p": [10, 4]}
+    assert coll.calls == 0
+
+
+def test_refresh_skips_the_aggregate_when_a_fresh_copy_already_landed(monkeypatch):
+    cache = FakeCache()
+    coll = FakeColl([{"_id": "p", "total": 10, "wins": 4}])
+    _wire(monkeypatch, cache, coll)
+    cache.store[rdm._USER_WINRATES_KEY] = {"at": time.time(), "rates": {"q": [3, 3]}}
+    cache.locks[rdm._USER_WINRATES_LOCK] = "tok"
+    assert rdm._user_winrates_inflight.acquire(blocking=False)
+    rdm._refresh_user_winrates("tok")
+    assert coll.calls == 0
+    assert cache.locks == {}
+    assert _refresh_is_idle()
+    assert rdm.get_user_winrates() == {"q": [3, 3]}
+
+
+def test_an_older_payload_never_replaces_a_newer_memo(monkeypatch):
+    _wire(monkeypatch, FakeCache(), FakeColl([]))
+    rdm._remember_user_winrates({"at": 200.0, "rates": {"new": [2, 1]}})
+    rdm._remember_user_winrates({"at": 100.0, "rates": {"old": [9, 0]}})
+    rdm._remember_user_winrates({"rates": {"bad": [1, 1]}})
+    rdm._remember_user_winrates({"at": 300.0, "rates": ["not", "a", "map"]})
+    assert rdm._user_winrates_memo == {"new": [2, 1]}
+    assert rdm._user_winrates_built_at == 200.0
