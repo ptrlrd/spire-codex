@@ -2557,9 +2557,12 @@ _USER_WINRATES_STALE_TTL_SECONDS = 24 * 3600
 _USER_WINRATES_LOCK_TTL_SECONDS = 30 * 60
 _USER_WINRATES_MAX_QUERY_MS = 20 * 60 * 1000
 _USER_WINRATES_RECHECK_SECONDS = 15
+_USER_WINRATES_RETRY_SECONDS = 120
 _user_winrates_memo: dict[str, list[int]] | None = None
 _user_winrates_built_at = 0.0
-_user_winrates_checked_at = 0.0
+_user_winrates_checked_at = float("-inf")
+_user_winrates_failed_at = float("-inf")
+_user_winrates_state = threading.Lock()
 _user_winrates_inflight = threading.Lock()
 
 
@@ -2569,11 +2572,12 @@ def get_user_winrates() -> dict[str, list[int]]:
     The aggregation walks every named run in the collection, which takes
     minutes at the current size, so the map lives in Redis with its build
     time: a fresh copy for an hour and a stale copy for a day. Callers get
-    the newest copy this process knows about; once that copy is an hour old
-    one background thread per process (and, through the Redis lock, one
-    process at a time) rebuilds it. Until the first build lands the map is
-    empty. Anonymous runs (no username) are excluded; abandoned runs count
-    as losses, matching the profile-page win rate.
+    the newest copy this process knows about (Redis is consulted at most
+    every 15 s per process); once that copy is an hour old one background
+    thread per process (and, through the Redis lock, one process at a time)
+    rebuilds it. Until the first build lands the map is empty. Anonymous
+    runs (no username) are excluded; abandoned runs count as losses,
+    matching the profile-page win rate.
 
     Keyed by username_lower (not display username) so the keys compose with the
     case-insensitive username_lower filters that consume this map (list /
@@ -2582,12 +2586,10 @@ def get_user_winrates() -> dict[str, list[int]]:
     """
     global _user_winrates_checked_at
     now = time.monotonic()
-    if (
-        _user_winrates_memo is not None
-        and now - _user_winrates_checked_at < _USER_WINRATES_RECHECK_SECONDS
-    ):
-        return _user_winrates_memo
-    _user_winrates_checked_at = now
+    with _user_winrates_state:
+        if now - _user_winrates_checked_at < _USER_WINRATES_RECHECK_SECONDS:
+            return _user_winrates_memo or {}
+        _user_winrates_checked_at = now
     payload = app_cache.get_json(_USER_WINRATES_KEY)
     if payload is None:
         payload = app_cache.get_json(_USER_WINRATES_STALE_KEY)
@@ -2605,12 +2607,17 @@ def _remember_user_winrates(payload: Any) -> None:
         rates = payload["rates"]
     except (KeyError, TypeError, ValueError):
         return
-    if isinstance(rates, dict) and built_at > _user_winrates_built_at:
-        _user_winrates_memo = rates
-        _user_winrates_built_at = built_at
+    if not isinstance(rates, dict):
+        return
+    with _user_winrates_state:
+        if built_at > _user_winrates_built_at:
+            _user_winrates_memo = rates
+            _user_winrates_built_at = built_at
 
 
 def _start_user_winrates_refresh() -> None:
+    if time.monotonic() - _user_winrates_failed_at < _USER_WINRATES_RETRY_SECONDS:
+        return
     if not _user_winrates_inflight.acquire(blocking=False):
         return
     token = secrets.token_hex(16)
@@ -2635,6 +2642,7 @@ def _start_user_winrates_refresh() -> None:
 def _refresh_user_winrates(token: str) -> None:
     """Rebuild the map under the locks the caller took, publish it under the
     fresh and stale keys, and always release both locks."""
+    global _user_winrates_failed_at
     try:
         payload = app_cache.get_json(_USER_WINRATES_KEY)
         if payload is not None:
@@ -2677,6 +2685,7 @@ def _refresh_user_winrates(token: str) -> None:
         )
         _remember_user_winrates(payload)
     except Exception:
+        _user_winrates_failed_at = time.monotonic()
         logger.warning("user winrates refresh failed", exc_info=True)
     finally:
         app_cache.release_lock(_USER_WINRATES_LOCK, token)
