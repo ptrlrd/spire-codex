@@ -233,9 +233,9 @@ export default function RelicDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{relic.rarity}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{relic.pool}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Relic")}</span>
             </p>
             <h1>{relic.name}</h1>

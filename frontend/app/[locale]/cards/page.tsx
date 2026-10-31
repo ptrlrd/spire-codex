@@ -275,11 +275,11 @@ export default async function CardsPage({ params }: Props) {
                     loading="lazy"
                     crossOrigin="anonymous"
                   />
-                  <div className="mt-1.5 flex items-center justify-center gap-2 text-xs">
-                    <span className="font-semibold text-[var(--accent-gold)]">
+                  <div className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
+                    <span className="font-semibold text-[var(--accent-gold)] whitespace-nowrap">
                       {score.win_rate.toFixed(0)}% {t("WR")}
                     </span>
-                    <span className="text-[var(--text-muted)]">
+                    <span className="text-[var(--text-muted)] whitespace-nowrap">
                       {score.picks.toLocaleString()} {t("picks")}
                     </span>
                     {score.score != null && (

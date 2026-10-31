@@ -151,7 +151,7 @@ export default function EncounterDetail({
               {encounter.act && (
                 <>
                   <span>{encounter.act}</span>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                 </>
               )}
               <span>

@@ -80,7 +80,7 @@ export default function AfflictionDetail({
               <span>{t("Affliction")}</span>
               {affliction.is_stackable && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span className="kw">{t("Stackable")}</span>
                 </>
               )}

@@ -132,11 +132,11 @@ export default async function HighestRated({
                   </div>
                 </>
               )}
-              <div className="mt-1.5 flex items-center justify-center gap-2 text-xs">
-                <span className="font-semibold text-[var(--accent-gold)]">
+              <div className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
+                <span className="font-semibold text-[var(--accent-gold)] whitespace-nowrap">
                   {t("{pct}% WR", { pct: s.win_rate.toFixed(0) })}
                 </span>
-                <span className="text-[var(--text-muted)]">
+                <span className="text-[var(--text-muted)] whitespace-nowrap">
                   {s.picks.toLocaleString()} {t("picks")}
                 </span>
                 {s.score != null && <ScoreBadge score={s.score} size="sm" />}

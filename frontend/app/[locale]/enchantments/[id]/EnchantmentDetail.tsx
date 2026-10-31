@@ -146,7 +146,7 @@ export default function EnchantmentDetail({
               </span>
               {enchantment.is_stackable && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{t("Stackable")}</span>
                 </>
               )}

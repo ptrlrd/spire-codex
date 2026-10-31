@@ -135,7 +135,7 @@ export default function AscensionDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{t("Ascension")}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Level {n}", { n: ascension.level })}</span>
             </p>
             <h1>{ascension.name}</h1>

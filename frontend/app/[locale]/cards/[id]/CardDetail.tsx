@@ -68,6 +68,15 @@ interface MiniStats extends MiniBracket {
   brackets?: Record<string, MiniBracket>;
 }
 
+const TOC_IDS = [
+  "performance",
+  "description",
+  "relations",
+  "pairings",
+  "other-languages",
+  "history",
+];
+
 const typeIcons: Record<string, string> = {
   Attack: "\u2694",
   Skill: "\uD83D\uDEE1",
@@ -289,6 +298,7 @@ export default function CardDetail({
   const [selectedEnch, setSelectedEnch] = useState<string>("none");
   // Scroll-spy: which section the ToC highlights.
   const [activeSection, setActiveSection] = useState<string>("performance");
+  const [toc, setToc] = useState<{ id: string; shown: string[] } | null>(null);
   const [miniStats, setMiniStats] = useState<MiniStats | null>(null);
   // Bracket shared with EntityRunStats so the infobox mini-stats track the
   // pill the user picked in the Community section.
@@ -435,6 +445,35 @@ export default function CardDetail({
     return () => obs.disconnect();
   }, [card, cardEnchantments.length]);
 
+  useEffect(() => {
+    if (!card) return;
+    const root = document.querySelector<HTMLElement>(".card-rvmp .main");
+    if (!root) return;
+    let raf = 0;
+    const sync = () => {
+      raf = 0;
+      const shown = TOC_IDS.filter((sid) => {
+        const el = document.getElementById(sid);
+        return !!el && el.getClientRects().length > 0;
+      });
+      setToc((prev) =>
+        prev && prev.id === id && prev.shown.join() === shown.join()
+          ? prev
+          : { id, shown },
+      );
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(sync);
+    };
+    schedule();
+    const mo = new MutationObserver(schedule);
+    mo.observe(root, { childList: true, subtree: true });
+    return () => {
+      cancelAnimationFrame(raf);
+      mo.disconnect();
+    };
+  }, [card, id]);
+
   const handleTocClick = (e: ReactMouseEvent, secId: string) => {
     e.preventDefault();
     const el = document.getElementById(secId);
@@ -550,13 +589,35 @@ export default function CardDetail({
       ? imageUrl(imgUrl)
       : fullCardUrl(card.id.toLowerCase(), isUpgraded, channel, lang);
 
+  const partners = initialPairings?.partners;
+  const serverToc = TOC_IDS.filter((sid) => {
+    if (sid === "relations")
+      return (
+        spawnedCards.length > 0 ||
+        initialRelated === undefined ||
+        (initialRelated?.length ?? 0) > 0
+      );
+    if (sid === "pairings")
+      return (
+        initialPairings === undefined ||
+        !!(
+          partners?.cards?.length ||
+          partners?.relics?.length ||
+          partners?.potions?.length
+        )
+      );
+    return true;
+  });
+  const tocShown = toc && toc.id === id ? toc.shown : serverToc;
+
   const tocItems: { id: string; label: string }[] = [
     { id: "performance", label: t("Community") },
     { id: "description", label: t("Description") },
     { id: "relations", label: t("Relations") },
     { id: "pairings", label: t("Synergy") },
+    { id: "other-languages", label: t("Other languages") },
     { id: "history", label: t("Version history") },
-  ];
+  ].filter((it) => tocShown.includes(it.id));
 
   return (
     <div
@@ -585,19 +646,19 @@ export default function CardDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{characterLabel}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{card.rarity}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>
                 {typeIcons[displayType] || ""} {displayType}
               </span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>
                 {costLabel} {t("Energy")}
               </span>
               {(card.star_cost != null || card.is_x_star_cost) && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>
                     {card.is_x_star_cost ? "X" : card.star_cost} &#9733;
                   </span>

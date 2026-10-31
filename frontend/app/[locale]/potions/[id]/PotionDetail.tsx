@@ -212,11 +212,11 @@ export default function PotionDetail({
               <span>{potion.rarity}</span>
               {potion.pool && (
                 <>
-                  <span>&middot;</span>
+                  <span className="sep">&middot;</span>
                   <span>{potion.pool}</span>
                 </>
               )}
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{t("Potion")}</span>
             </p>
             <h1>{potion.name}</h1>

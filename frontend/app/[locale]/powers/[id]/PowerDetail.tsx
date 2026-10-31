@@ -169,7 +169,7 @@ export default function PowerDetail({
             <p className="eyebrow">
               <span className="dot">&#9670;</span>
               <span>{typeLabel}</span>
-              <span>&middot;</span>
+              <span className="sep">&middot;</span>
               <span>{power.stack_type}</span>
             </p>
             <h1>{heading ?? power.name}</h1>

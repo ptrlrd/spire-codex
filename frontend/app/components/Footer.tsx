@@ -184,9 +184,6 @@ export default function Footer() {
         >
           {t("API")}
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <Link
           prefetch={false}
           href="/developers"
@@ -194,9 +191,6 @@ export default function Footer() {
         >
           {t("Developers")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <a
           href="https://github.com/ptrlrd/spire-codex"
           target="_blank"
@@ -205,9 +199,6 @@ export default function Footer() {
         >
           GitHub
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <a
           href="https://discord.gg/xMsTBeh"
           target="_blank"
@@ -216,9 +207,6 @@ export default function Footer() {
         >
           Discord
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <a
           href="https://ko-fi.com/spirecodex"
           target="_blank"
@@ -227,18 +215,12 @@ export default function Footer() {
         >
           Ko-Fi
         </a>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <button
           onClick={() => setShowFeedback(true)}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Submit Feedback")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <Link
           prefetch={false}
           href="/privacy"
@@ -246,27 +228,18 @@ export default function Footer() {
         >
           {t("Privacy")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <button
           onClick={() => window.__tcfapi?.("displayConsentUi", 2, () => {})}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Manage Consent")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <button
           onClick={() => window.__uspapi?.("displayUspUi")}
           className="hover:text-[var(--accent-gold)] transition-colors"
         >
           {t("Do Not Sell My Personal Information")}
         </button>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <Link
           prefetch={false}
           href="/terms"
@@ -274,9 +247,6 @@ export default function Footer() {
         >
           {t("Terms")}
         </Link>
-        <span className="text-[var(--border-subtle)]" aria-hidden>
-          ·
-        </span>
         <Link
           prefetch={false}
           href="/beta"
