@@ -42,6 +42,7 @@ import json
 import logging
 import os
 import secrets
+import threading
 import time
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
@@ -2548,67 +2549,98 @@ def _row_to_dict(doc: dict) -> dict:
 WINRATE_MIN_RUNS = 5
 
 
-_USER_WINRATES_KEY = "user_winrates:all:lc"
-_USER_WINRATES_STALE_KEY = "user_winrates:all:lc:stale"
-_USER_WINRATES_LOCK = "user_winrates:lock"
+_USER_WINRATES_KEY = "user_winrates:v2"
+_USER_WINRATES_STALE_KEY = "user_winrates:v2:stale"
+_USER_WINRATES_LOCK = "user_winrates:v2:lock"
 _USER_WINRATES_TTL_SECONDS = 3600
 _USER_WINRATES_STALE_TTL_SECONDS = 24 * 3600
-_USER_WINRATES_LOCK_TTL_SECONDS = 900
-_USER_WINRATES_WAIT_SECONDS = 30
+_USER_WINRATES_LOCK_TTL_SECONDS = 30 * 60
+_USER_WINRATES_MAX_QUERY_MS = 20 * 60 * 1000
+_USER_WINRATES_RECHECK_SECONDS = 15
 _user_winrates_memo: dict[str, list[int]] | None = None
+_user_winrates_built_at = 0.0
+_user_winrates_checked_at = 0.0
+_user_winrates_inflight = threading.Lock()
 
 
 def get_user_winrates() -> dict[str, list[int]]:
-    """Per-username [total runs, wins]: fresh for an hour, with a day-old
-    copy served while one process at a time recomputes it.
+    """Per-username [total runs, wins], never computed inside a request.
 
     The aggregation walks every named run in the collection, which takes
-    minutes at the current size, so it must never run twice at once and
-    must never sit inside a request when an older answer exists. Anonymous
-    runs (no username) are excluded; abandoned runs count as losses,
-    matching the profile-page win rate.
+    minutes at the current size, so the map lives in Redis with its build
+    time: a fresh copy for an hour and a stale copy for a day. Callers get
+    the newest copy this process knows about; once that copy is an hour old
+    one background thread per process (and, through the Redis lock, one
+    process at a time) rebuilds it. Until the first build lands the map is
+    empty. Anonymous runs (no username) are excluded; abandoned runs count
+    as losses, matching the profile-page win rate.
 
     Keyed by username_lower (not display username) so the keys compose with the
     case-insensitive username_lower filters that consume this map (list /
     leaderboard winrate filters); otherwise mixed-case users would silently
     drop out.
     """
-    global _user_winrates_memo
-    cached = app_cache.get_json(_USER_WINRATES_KEY)
-    if cached is not None:
-        _user_winrates_memo = cached
-        return cached
-    stale = app_cache.get_json(_USER_WINRATES_STALE_KEY)
-    if stale is None:
-        stale = _user_winrates_memo
-    if not app_cache.acquire_lock(
-        _USER_WINRATES_LOCK, ttl_seconds=_USER_WINRATES_LOCK_TTL_SECONDS
+    global _user_winrates_checked_at
+    now = time.monotonic()
+    if (
+        _user_winrates_memo is not None
+        and now - _user_winrates_checked_at < _USER_WINRATES_RECHECK_SECONDS
     ):
-        if stale is not None:
-            return stale
-        deadline = time.time() + _USER_WINRATES_WAIT_SECONDS
-        while time.time() < deadline:
-            time.sleep(1)
-            cached = app_cache.get_json(_USER_WINRATES_KEY)
-            if cached is not None:
-                _user_winrates_memo = cached
-                return cached
-        return {}
-    if stale is not None:
-        import threading
-
-        threading.Thread(
-            target=_refresh_user_winrates, daemon=True, name="user-winrates"
-        ).start()
-        return stale
-    return _refresh_user_winrates()
+        return _user_winrates_memo
+    _user_winrates_checked_at = now
+    payload = app_cache.get_json(_USER_WINRATES_KEY)
+    if payload is None:
+        payload = app_cache.get_json(_USER_WINRATES_STALE_KEY)
+    if payload is not None:
+        _remember_user_winrates(payload)
+    if time.time() - _user_winrates_built_at >= _USER_WINRATES_TTL_SECONDS:
+        _start_user_winrates_refresh()
+    return _user_winrates_memo or {}
 
 
-def _refresh_user_winrates() -> dict[str, list[int]]:
-    """Run the aggregation under the lock the caller took, store the result
-    under the fresh and stale keys, and always release the lock."""
-    global _user_winrates_memo
+def _remember_user_winrates(payload: Any) -> None:
+    global _user_winrates_memo, _user_winrates_built_at
     try:
+        built_at = float(payload["at"])
+        rates = payload["rates"]
+    except (KeyError, TypeError, ValueError):
+        return
+    if isinstance(rates, dict) and built_at > _user_winrates_built_at:
+        _user_winrates_memo = rates
+        _user_winrates_built_at = built_at
+
+
+def _start_user_winrates_refresh() -> None:
+    if not _user_winrates_inflight.acquire(blocking=False):
+        return
+    token = secrets.token_hex(16)
+    try:
+        if not app_cache.acquire_lock(
+            _USER_WINRATES_LOCK, _USER_WINRATES_LOCK_TTL_SECONDS, token
+        ):
+            _user_winrates_inflight.release()
+            return
+        threading.Thread(
+            target=_refresh_user_winrates,
+            args=(token,),
+            daemon=True,
+            name="user-winrates",
+        ).start()
+    except Exception:
+        app_cache.release_lock(_USER_WINRATES_LOCK, token)
+        _user_winrates_inflight.release()
+        logger.warning("user winrates refresh could not start", exc_info=True)
+
+
+def _refresh_user_winrates(token: str) -> None:
+    """Rebuild the map under the locks the caller took, publish it under the
+    fresh and stale keys, and always release both locks."""
+    try:
+        payload = app_cache.get_json(_USER_WINRATES_KEY)
+        if payload is not None:
+            _remember_user_winrates(payload)
+            if time.time() - _user_winrates_built_at < _USER_WINRATES_TTL_SECONDS:
+                return
         coll = _get_collection()
         pipeline = [
             # Official content only: A11+ and modded-character runs aren't real skill
@@ -2629,22 +2661,26 @@ def _refresh_user_winrates() -> dict[str, list[int]]:
                 }
             },
         ]
-        out: dict[str, list[int]] = {}
-        for row in coll.aggregate(pipeline, allowDiskUse=True):
-            out[str(row["_id"])] = [int(row["total"]), int(row["wins"])]
+        rates: dict[str, list[int]] = {}
+        for row in coll.aggregate(
+            pipeline, allowDiskUse=True, maxTimeMS=_USER_WINRATES_MAX_QUERY_MS
+        ):
+            rates[str(row["_id"])] = [int(row["total"]), int(row["wins"])]
+        payload = {"at": time.time(), "rates": rates}
         app_cache.set_json(
-            _USER_WINRATES_KEY, out, ttl_seconds=_USER_WINRATES_TTL_SECONDS
+            _USER_WINRATES_KEY, payload, ttl_seconds=_USER_WINRATES_TTL_SECONDS
         )
         app_cache.set_json(
-            _USER_WINRATES_STALE_KEY, out, ttl_seconds=_USER_WINRATES_STALE_TTL_SECONDS
+            _USER_WINRATES_STALE_KEY,
+            payload,
+            ttl_seconds=_USER_WINRATES_STALE_TTL_SECONDS,
         )
-        _user_winrates_memo = out
-        return out
+        _remember_user_winrates(payload)
     except Exception:
         logger.warning("user winrates refresh failed", exc_info=True)
-        return _user_winrates_memo or {}
     finally:
-        app_cache.delete(_USER_WINRATES_LOCK)
+        app_cache.release_lock(_USER_WINRATES_LOCK, token)
+        _user_winrates_inflight.release()
 
 
 def count_with_budget(

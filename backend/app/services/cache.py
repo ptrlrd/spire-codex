@@ -199,19 +199,38 @@ def set_json(key: str, value: Any, ttl_seconds: int) -> None:
         cache_errors.labels(namespace=_namespace(key), operation="set").inc()
 
 
-def acquire_lock(key: str, ttl_seconds: int = 30) -> bool:
+_RELEASE_LOCK_SCRIPT = (
+    "if redis.call('get', KEYS[1]) == ARGV[1] then "
+    "return redis.call('del', KEYS[1]) end return 0"
+)
+
+
+def acquire_lock(key: str, ttl_seconds: int = 30, token: str = "1") -> bool:
     """Best-effort single-flight lock: SET NX with a TTL so a dead holder
     never wedges the key. Fail-open like the rest of this module — Redis
     disabled or erroring reports the lock as acquired, so callers proceed
-    exactly as if there were no lock. Release with delete()."""
+    exactly as if there were no lock. Release with delete(), or pass a
+    token of your own and release with release_lock() so a holder that
+    outlives its TTL can't drop the lock its successor now owns."""
     client = _get_client()
     if client is None:
         return True
     try:
-        return bool(client.set(key, "1", nx=True, ex=ttl_seconds))
+        return bool(client.set(key, token, nx=True, ex=ttl_seconds))
     except Exception:
         cache_errors.labels(namespace=_namespace(key), operation="lock").inc()
         return True
+
+
+def release_lock(key: str, token: str) -> None:
+    """Drop `key` only while it still holds `token`. No-ops on any failure."""
+    client = _get_client()
+    if client is None:
+        return
+    try:
+        client.eval(_RELEASE_LOCK_SCRIPT, 1, key, token)
+    except Exception:
+        cache_errors.labels(namespace=_namespace(key), operation="delete").inc()
 
 
 def delete(key: str) -> None:
