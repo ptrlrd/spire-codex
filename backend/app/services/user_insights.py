@@ -838,8 +838,8 @@ def _compute_insights(
         elo_block = None
     rows = _apply_row_filters(rows, character, ascension, version, players)
     t1 = time.time()
-    blobs = _fetch_blobs(rows)
-    cov_ok = _require_blob_coverage(rows, blobs)
+    blobs, read_failed = _fetch_blobs(rows)
+    cov_ok = _require_blob_coverage(rows, blobs, read_failed)
     t2 = time.time()
     acc = community_stats._new_acc_one()
     walked = _accumulate_rows(rows, blobs, acc)
@@ -872,45 +872,55 @@ def _compute_insights(
 _PREWARM_CHARACTERS = ("IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
 
 
-def _require_blob_coverage(rows: list[dict], blobs: dict[str, dict]) -> bool:
+def _require_blob_coverage(
+    rows: list[dict], blobs: dict[str, dict], read_failed: bool = False
+) -> bool:
     """True when the fetch covered enough of the account to store durably.
-    Zero coverage on a nonempty account raises (Mongo was unavailable);
-    anything between builds a payload that serves flagged partial but is
-    never durably stored, instead of the old hard refusal that left bulk
-    uploads with missing blobs stuck on "building" forever."""
+    Zero coverage on a nonempty account raises when the blob read itself
+    failed (Mongo unavailable); when the read succeeded and the blobs are
+    simply not written yet (a first upload racing its own profile build), the
+    payload serves flagged partial and the next build fills it in. Anything
+    between builds a payload that serves flagged partial but is never durably
+    stored, instead of the old hard refusal that left bulk uploads with
+    missing blobs stuck on "building" forever."""
     if not rows:
         return True
     have = sum(1 for r in rows if r["run_hash"] in blobs)
     if not have:
-        raise RuntimeError(f"insights blob fetch returned 0/{len(rows)} runs")
+        if read_failed:
+            raise RuntimeError(f"insights blob fetch returned 0/{len(rows)} runs")
+        logger.warning("insights blob fetch found 0/%d runs stored", len(rows))
+        return False
     if have < len(rows) * 0.9:
         logger.warning("insights blob fetch partial: %d/%d runs", have, len(rows))
         return False
     return True
 
 
-def _fetch_blobs(rows: list[dict]) -> dict[str, dict]:
-    """All blobs for `rows`, fetched in parallel 300-doc batches. The blob
-    fetch dominates walk latency (map_point_history is ~90% of every blob),
-    so the batches overlap instead of running back to back."""
+def _fetch_blobs(rows: list[dict]) -> tuple[dict[str, dict], bool]:
+    """All blobs for `rows`, fetched in parallel 300-doc batches, plus whether
+    any batch read failed. The blob fetch dominates walk latency
+    (map_point_history is ~90% of every blob), so the batches overlap instead
+    of running back to back."""
     from concurrent.futures import ThreadPoolExecutor
 
     from .runs_db_mongo import get_run_blobs
 
     batches = [rows[i : i + 300] for i in range(0, len(rows), 300)]
+    errors: list[Exception] = []
     if not batches:
-        return {}
+        return {}, False
     if len(batches) == 1:
-        return get_run_blobs([r["run_hash"] for r in batches[0]])
+        return get_run_blobs([r["run_hash"] for r in batches[0]], errors), bool(errors)
     out: dict[str, dict] = {}
     # 2 workers, not 4: the 2026-08-20 load incident showed stacked walks x
     # wide fetches swapping the box; latency still roughly halves vs serial.
     with ThreadPoolExecutor(max_workers=min(2, len(batches))) as pool:
         for blobs in pool.map(
-            lambda b: get_run_blobs([r["run_hash"] for r in b]), batches
+            lambda b: get_run_blobs([r["run_hash"] for r in b], errors), batches
         ):
             out.update(blobs)
-    return out
+    return out, bool(errors)
 
 
 def _accumulate_rows(rows: list[dict], blobs: dict[str, dict], acc: dict) -> int:
@@ -956,8 +966,8 @@ def _compute_insights_all_slices(user_id: str, username: str | None) -> dict[str
         logger.warning("profile elo block failed", exc_info=True)
         elo_block = None
     t1 = time.time()
-    blobs = _fetch_blobs(rows)
-    cov_ok = _require_blob_coverage(rows, blobs)
+    blobs, read_failed = _fetch_blobs(rows)
+    cov_ok = _require_blob_coverage(rows, blobs, read_failed)
     t2 = time.time()
 
     slices: list[tuple[tuple, list[dict]]] = [((None, None, None, None), rows)]
