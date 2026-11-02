@@ -72,18 +72,22 @@ services:
     #
     # Workers creep a few MB a minute under steady traffic and got
     # OOM-killed at ~2.5G each eight hours after a deploy (2026-10-11).
-    # --limit-max-requests recycles a worker after ~50k requests as a
-    # backstop; jitter keeps the four from recycling together. A recycled
+    # --limit-max-requests recycles a worker as a backstop. A recycled
     # worker lingers until the supervisor's health ping times out
-    # (BACKEND_WORKER_HEALTHCHECK), so keep the limit high enough that
-    # recycles are hours apart.
+    # (BACKEND_WORKER_HEALTHCHECK) and the replacement spends ~2 minutes
+    # loading the snapshot, so a recycle is a partial outage and two
+    # overlapping ones are a full one: with two workers and ~80k
+    # requests/hour of presence polling, 50k/10k recycled both within a
+    # minute of each other every ~2.5 hours (2026-11-01). 600k is about a
+    # day per worker at that traffic and the 300k jitter keeps the two
+    # hours apart.
     command:
       - sh
       - -c
       - >-
         mkdir -p "$$PROMETHEUS_MULTIPROC_DIR" &&
         rm -rf "$$PROMETHEUS_MULTIPROC_DIR"/* &&
-        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${BACKEND_WEB_WORKERS:-4} --timeout-worker-healthcheck ${BACKEND_WORKER_HEALTHCHECK:-120} --limit-max-requests ${BACKEND_MAX_REQUESTS:-50000} --limit-max-requests-jitter ${BACKEND_MAX_REQUESTS_JITTER:-10000}
+        exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers ${BACKEND_WEB_WORKERS:-4} --timeout-worker-healthcheck ${BACKEND_WORKER_HEALTHCHECK:-120} --limit-max-requests ${BACKEND_MAX_REQUESTS:-600000} --limit-max-requests-jitter ${BACKEND_MAX_REQUESTS_JITTER:-300000}
     volumes:
       - ./data:/data
       - ./data-beta:/data-beta:ro
