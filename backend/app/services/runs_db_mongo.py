@@ -59,6 +59,16 @@ from . import cache as app_cache
 logger = logging.getLogger(__name__)
 
 OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+HIDDEN_WINS_INDEX = "hidden_wins"
+_hidden_wins_hint_warned = False
+_HIDDEN_WINS_FIELDS = {
+    "win",
+    "character",
+    "game_mode",
+    "player_count",
+    "ascension",
+    "run_time",
+}
 
 
 def _today_daily_seed_match() -> dict:
@@ -214,6 +224,20 @@ def _ensure_indexes(coll) -> None:
         name="hidden_win_runtime",
         partialFilterExpression={"hidden": True},
     )
+    # The planner trials hidden_win_runtime against char_win_runtime and
+    # picks the latter: cheated runs have absurd run_times, so they sit at
+    # the front of every run_time index and win the 101-result race, then
+    # the real count fetches ~300k docs to test hidden (33 s per rank lookup).
+    # hidden_wins carries every field the rank and ladder counts filter on,
+    # so a hinted count is index-only over the ~17k hidden docs. Its build
+    # still scans the whole collection, so it runs off the startup path;
+    # _count_visible counts unhinted until it exists.
+    threading.Thread(
+        target=_ensure_hidden_wins_index,
+        args=(coll,),
+        daemon=True,
+        name="hidden-wins-index",
+    ).start()
     coll.create_index([("ascension", DESCENDING), ("run_time", ASCENDING)])
     coll.create_index([("character", ASCENDING), ("submitted_at", DESCENDING)])
     coll.create_index([("character", ASCENDING), ("run_time", ASCENDING)])
@@ -3321,13 +3345,61 @@ def _leaderboard_live(
     }
 
 
+def _ensure_hidden_wins_index(coll) -> None:
+    try:
+        coll.create_index(
+            [
+                ("win", ASCENDING),
+                ("character", ASCENDING),
+                ("game_mode", ASCENDING),
+                ("player_count", ASCENDING),
+                ("ascension", DESCENDING),
+                ("run_time", ASCENDING),
+            ],
+            name=HIDDEN_WINS_INDEX,
+            partialFilterExpression={"hidden": True},
+        )
+    except Exception:
+        logger.warning("hidden_wins index build failed", exc_info=True)
+
+
+def _covered_by_hidden_wins(query: dict) -> bool:
+    if "win" not in query:
+        return False
+    for key, value in query.items():
+        if key == "$or":
+            if not all(
+                isinstance(branch, dict) and set(branch) <= _HIDDEN_WINS_FIELDS
+                for branch in value
+            ):
+                return False
+        elif key not in _HIDDEN_WINS_FIELDS:
+            return False
+    return True
+
+
 def _count_visible(coll, query: dict) -> int:
     """count_documents excluding hidden runs, index-only: count the full set,
-    then subtract the hidden subset (served by the tiny hidden_win_runtime
-    partial index). Never put hidden: {$ne: True} straight into a large
-    count — it disqualifies the covering index and fetches every candidate
-    doc, which is what stalled submit enrichment into gateway 504s."""
-    return coll.count_documents(query) - coll.count_documents({**query, "hidden": True})
+    then subtract the hidden subset. Never put hidden: {$ne: True} straight
+    into a large count — it disqualifies the covering index and fetches
+    every candidate doc, which is what stalled submit enrichment into
+    gateway 504s. The hidden count is pinned to the hidden_wins partial
+    index whenever it covers the filter, because left to itself the planner
+    picks a full-collection index for it and fetches every candidate."""
+    global _hidden_wins_hint_warned
+    total = coll.count_documents(query)
+    hidden_query = {**query, "hidden": True}
+    if _covered_by_hidden_wins(query):
+        try:
+            return total - coll.count_documents(hidden_query, hint=HIDDEN_WINS_INDEX)
+        except OperationFailure:
+            if not _hidden_wins_hint_warned:
+                _hidden_wins_hint_warned = True
+                logger.warning(
+                    "hidden_wins hint rejected (index missing or still building); "
+                    "counting unhinted"
+                )
+    return total - coll.count_documents(hidden_query)
 
 
 @_instrument("get_run_rank")
