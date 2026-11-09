@@ -8,17 +8,19 @@ function stub(status: number) {
   );
 }
 
-function stubBeta(added: string[], betaStatus = 200) {
+function stubBeta(added: string[], betaStatus = 200, diffStatus = 200) {
   const calls: string[] = [];
   vi.stubGlobal(
     "fetch",
     vi.fn(async (url: string) => {
       calls.push(url);
       if (url.endsWith("/api/beta/diff"))
-        return Response.json({
-          beta_version: "v0.112.0",
-          types: { cards: { added } },
-        });
+        return diffStatus === 200
+          ? Response.json({
+              beta_version: "v0.112.0",
+              types: { cards: { added } },
+            })
+          : new Response("", { status: diffStatus });
       if (/[?&]channel=beta/.test(url))
         return new Response(JSON.stringify({ id: "NEW_CARD" }), {
           status: betaStatus,
@@ -78,6 +80,20 @@ describe("fetchEntityRes", () => {
     stubBeta(["NEW_CARD"], 404);
     const res = await fetchEntityRes("http://api/api/cards/new_card");
     expect(res.status).toBe(404);
+  });
+
+  it("throws when the diff index is unavailable", async () => {
+    stubBeta(["NEW_CARD"], 200, 503);
+    await expect(
+      fetchEntityRes("http://api/api/cards/new_card"),
+    ).rejects.toThrow("beta diff API 503");
+  });
+
+  it("throws when the beta channel fails for a listed id", async () => {
+    stubBeta(["NEW_CARD"], 502);
+    await expect(
+      fetchEntityRes("http://api/api/cards/new_card"),
+    ).rejects.toThrow("entity API 502");
   });
 
   it("leaves 410 alone", async () => {

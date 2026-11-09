@@ -121,7 +121,7 @@ export default function CharactersClient({
               {betaIds.has(char.id) && <BetaBadge />}
               <img
                 src={imageUrl(
-                  `/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`,
+                  `${(char.image_url ?? "/static/images/characters/x").replace(/[^/]*$/, "")}character_icon_${char.id.toLowerCase()}.webp`,
                 )}
                 alt={t("{name} - Slay the Spire 2 Character", {
                   name: char.name,

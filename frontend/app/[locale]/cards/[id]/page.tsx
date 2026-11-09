@@ -82,7 +82,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? ` Keywords: ${card.keywords.join(", ")}.`
       : "";
     // Full game-rendered card (base + upgraded) as the share image, English.
-    const ogImages = cardOgImages(card, "eng");
+    const ogImages = cardOgImages(
+      card,
+      "eng",
+      betaOnlyVersion(res) ? "beta" : "stable",
+    );
     return buildPageMetadata({
       locale,
       path,
@@ -141,7 +145,8 @@ export default async function Page({ params }: Props) {
         description:
           desc || entityFallbackDescription(locale, card.name, "card"),
         path: localePath(locale, `/cards/${id}`),
-        imageUrl: cardOgImages(card, "eng")[0]?.url,
+        imageUrl: cardOgImages(card, "eng", betaVersion ? "beta" : "stable")[0]
+          ?.url,
         category: "Card",
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [

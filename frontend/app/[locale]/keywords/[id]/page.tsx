@@ -10,6 +10,8 @@ import { uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
 import KeywordDetail from "./KeywordDetail";
 import JsonLd from "@/app/components/JsonLd";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import {
   buildPageMetadata,
@@ -30,15 +32,25 @@ type Props = { params: Promise<{ locale: string; id: string }> };
 async function fetchKeywordOrGlossary(id: string, locale: Locale) {
   // Try keyword first
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/keywords/${id}${langQuery(locale)}`,
     );
-    if (res.ok) return { type: "keyword" as const, data: await res.json() };
+    if (res.ok)
+      return {
+        type: "keyword" as const,
+        data: await res.json(),
+        betaVersion: betaOnlyVersion(res),
+      };
   } catch {}
   // Fall back to glossary
   try {
     const res = await fetch(`${API_INTERNAL}/api/glossary/${id}`);
-    if (res.ok) return { type: "glossary" as const, data: await res.json() };
+    if (res.ok)
+      return {
+        type: "glossary" as const,
+        data: await res.json(),
+        betaVersion: null,
+      };
   } catch {}
   return null;
 }
@@ -57,13 +69,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       noIndex: true,
     });
 
-  const { type, data } = result;
+  const { type, data, betaVersion } = result;
   const desc = stripTagsFlat(data.description);
 
   if (type === "keyword") {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaVersion !== null,
       title: data.name,
       entityType: t("Keyword"),
       description: clipMetaDescription(
@@ -149,7 +162,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <KeywordDetail initialResult={result} />
+      <BetaOnlyScope version={result?.betaVersion ?? null}>
+        <KeywordDetail initialResult={result} />
+      </BetaOnlyScope>
     </>
   );
 }
