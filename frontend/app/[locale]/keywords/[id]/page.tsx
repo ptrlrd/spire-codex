@@ -162,7 +162,11 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={result?.betaVersion ?? null}>
+      <BetaOnlyScope
+        version={result?.betaVersion ?? null}
+        type="keywords"
+        id={id}
+      >
         <KeywordDetail initialResult={result} />
       </BetaOnlyScope>
     </>

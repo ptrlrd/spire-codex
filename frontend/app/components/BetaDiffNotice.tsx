@@ -1,15 +1,13 @@
 "use client";
 
-// The cross-link box answering "why are there two Withers": on a stable
-// entity page it says the entity differs in (or is missing from) the current
-// beta and links to the beta instance; on the beta instance it links back.
-// Driven entirely by the /api/beta/diff index, so it costs one cached fetch.
+// On a /beta entity page: how the entity differs from main, with a link
+// back. Main pages show BetaChanges instead.
 
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix, useChannel } from "@/lib/api/prefix.client";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useT, type TFn } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -54,7 +52,6 @@ export default function BetaDiffNotice({
   entityId: string;
 }) {
   const t = useT();
-  const channel = useChannel();
   const inBetaSection = useBetaPrefix() === "/beta";
   const pathname = usePathname();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
@@ -71,64 +68,37 @@ export default function BetaDiffNotice({
   const id = entityId.toUpperCase();
   const changedFields = td?.changed[id];
   const isAdded = !!td?.added.includes(id);
-  const isRemoved = !!td?.removed.includes(id);
-  if (isAdded && !inBetaSection) return null;
+  if (!inBetaSection) return null;
 
-  const counterpartPath =
-    channel === "beta"
-      ? pathname.replace(/^(\/[a-z]{3})?\/beta(?=\/)/, "$1")
-      : pathname.replace(/^(\/[a-z]{3})?(?=\/)/, "$1/beta");
+  const counterpartPath = pathname.replace(/^(\/[a-z]{3})?\/beta(?=\/)/, "$1");
   const noun = entityType.replace(/s$/, "");
 
   let body: React.ReactNode;
-  if (channel === "stable") {
-    // On main, only flag entities that differ from (or are gone in) beta; a
-    // matching entity needs no notice here.
-    if (isRemoved) {
-      body = <>{t("Removed in the current beta.")}</>;
-    } else if (changedFields) {
-      body = (
-        <>
-          {t("This is different in the current beta: {fields} changed.", {
-            fields: summarize(changedFields, t),
-          })}{" "}
-          <Link href={counterpartPath} className="text-success hover:underline">
-            {t("View the beta version")} →
-          </Link>
-        </>
-      );
-    } else {
-      return null; // matching/added entities need no notice on main
-    }
+  // On beta this is the page's only beta bar (the global banner is suppressed
+  // on these detail routes), so it always renders, carrying both the channel
+  // line and the per-entity status.
+  if (isAdded) {
+    body = <>{t("New in this beta. There is no main version of this yet.")}</>;
+  } else if (changedFields) {
+    body = (
+      <>
+        {t("Differs from main: {fields} changed.", {
+          fields: summarize(changedFields, t),
+        })}{" "}
+        <Link href={counterpartPath} className="text-success hover:underline">
+          {t("View the main version")} →
+        </Link>
+      </>
+    );
   } else {
-    // On beta this is the page's only beta bar (the global banner is suppressed
-    // on these detail routes), so it always renders, carrying both the channel
-    // line and the per-entity status.
-    if (isAdded) {
-      body = (
-        <>{t("New in this beta. There is no main version of this yet.")}</>
-      );
-    } else if (changedFields) {
-      body = (
-        <>
-          {t("Differs from main: {fields} changed.", {
-            fields: summarize(changedFields, t),
-          })}{" "}
-          <Link href={counterpartPath} className="text-success hover:underline">
-            {t("View the main version")} →
-          </Link>
-        </>
-      );
-    } else {
-      body = (
-        <>
-          {t("Viewing the beta version of this {noun}.", { noun: t(noun) })}{" "}
-          <Link href={counterpartPath} className="text-success hover:underline">
-            {t("Switch to main")} →
-          </Link>
-        </>
-      );
-    }
+    body = (
+      <>
+        {t("Viewing the beta version of this {noun}.", { noun: t(noun) })}{" "}
+        <Link href={counterpartPath} className="text-success hover:underline">
+          {t("Switch to main")} →
+        </Link>
+      </>
+    );
   }
 
   return (

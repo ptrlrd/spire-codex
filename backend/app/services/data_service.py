@@ -190,11 +190,49 @@ def _inherit_stable_image_urls(rows: list[dict], lang: str, entity: str) -> None
             r["image_url"] = url
 
 
+@lru_cache(maxsize=2048)
+def _load_json_all(lang: str, entity: str, beta_version: str) -> list | dict:
+    """Main catalog plus the rows that exist only in the current beta, for
+    surfaces that join community data (which counts beta runs) to names."""
+    stable = _load_json_versioned(lang, entity, None)
+    beta = _load_json_beta(lang, entity, beta_version)
+    if not isinstance(stable, list) or not isinstance(beta, list):
+        return stable
+    seen = {r.get("id") for r in stable if isinstance(r, dict)}
+    extra = [
+        r for r in beta if isinstance(r, dict) and r.get("id") and r["id"] not in seen
+    ]
+    return stable + extra if extra else stable
+
+
+@lru_cache(maxsize=64)
+def _beta_only_ids(entity: str, beta_version: str) -> frozenset[str]:
+    stable = _load_json_versioned(DEFAULT_LANG, entity, None)
+    beta = _load_json_beta(DEFAULT_LANG, entity, beta_version)
+    if not isinstance(stable, list) or not isinstance(beta, list):
+        return frozenset()
+    seen = {r.get("id") for r in stable if isinstance(r, dict)}
+    return frozenset(
+        r["id"]
+        for r in beta
+        if isinstance(r, dict) and r.get("id") and r["id"] not in seen
+    )
+
+
+def beta_only_ids(entity: str) -> frozenset[str]:
+    """Ids of `entity` rows that exist only in the current beta."""
+    beta_version = get_beta_version()
+    return _beta_only_ids(entity, beta_version) if beta_version else frozenset()
+
+
 def _load_json(lang: str, entity: str) -> list[dict]:
     """Load JSON using the channel + version from the current request context."""
-    if get_channel() == "beta":
+    channel = get_channel()
+    if channel in ("beta", "all") and not (channel == "all" and _get_version()):
         beta_version = get_beta_version()
         if beta_version:
+            if channel == "all":
+                return _load_json_all(lang, entity, beta_version)
             return _load_json_beta(lang, entity, beta_version)
     return _load_json_versioned(lang, entity, _get_version())
 
@@ -365,8 +403,33 @@ def _load_translation_maps_versioned(lang: str, version: str | None) -> dict:
         return json.load(f)
 
 
+@lru_cache(maxsize=64)
+def _load_translation_maps_all(lang: str, beta_version: str) -> dict:
+    """Main translation maps with keys that only the current beta has."""
+    stable = _load_translation_maps_versioned(lang, None)
+    filepath = BETA_DATA_DIR / beta_version / lang / "translations.json"
+    if not filepath.exists():
+        filepath = BETA_DATA_DIR / beta_version / DEFAULT_LANG / "translations.json"
+    if not filepath.exists():
+        return stable
+    with open(filepath, "r", encoding="utf-8") as f:
+        beta = json.load(f)
+    out = dict(stable)
+    for key, value in beta.items():
+        if isinstance(value, dict) and isinstance(out.get(key, {}), dict):
+            out[key] = {**value, **out.get(key, {})}
+        else:
+            out.setdefault(key, value)
+    return out
+
+
 def load_translation_maps(lang: str = DEFAULT_LANG) -> dict:
-    return _load_translation_maps_versioned(lang, _get_version())
+    version = _get_version()
+    if get_channel() == "all" and not version:
+        beta_version = get_beta_version()
+        if beta_version:
+            return _load_translation_maps_all(lang, beta_version)
+    return _load_translation_maps_versioned(lang, version)
 
 
 @lru_cache(maxsize=1)

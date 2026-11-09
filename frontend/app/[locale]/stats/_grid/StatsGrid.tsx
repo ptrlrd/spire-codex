@@ -6,6 +6,7 @@ import { useT, useGameLocale } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
+import BetaBadge from "@/app/components/BetaBadge";
 import StatsRebuildingNotice from "@/app/components/StatsRebuildingNotice";
 import BracketPicker from "./BracketPicker";
 import StatsLinks from "./StatsLinks";
@@ -257,6 +258,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const [preview, setPreview] = useState<{
     id: string;
     upgraded: boolean;
+    beta: boolean;
     art: string | null;
     top: number;
     left: number;
@@ -672,7 +674,14 @@ export default function StatsGrid({ data }: { data: GridData }) {
       Math.max(8, box.top + box.height / 2 - H / 2),
       window.innerHeight - H - 8,
     );
-    setPreview({ id: r.id, upgraded: r.upgraded, art: r.imageUrl, top, left });
+    setPreview({
+      id: r.id,
+      upgraded: r.upgraded,
+      beta: r.beta,
+      art: r.imageUrl,
+      top,
+      left,
+    });
   };
 
   const cohort = cohortLabel(bracket, t, character);
@@ -711,6 +720,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     {r.name}
                   </span>
                 )}
+                {r.beta && <BetaBadge />}
               </span>
               <span className="ml-2 text-xs text-[var(--text-muted)]">
                 {t(cap(r.playedBy.toLowerCase()))}
@@ -751,6 +761,11 @@ export default function StatsGrid({ data }: { data: GridData }) {
               </Link>
             ) : (
               <span className="font-medium">{r.name}</span>
+            )}
+            {r.beta && (
+              <span className="ml-2">
+                <BetaBadge />
+              </span>
             )}
             {r.sub && (
               <span className="ml-2 text-xs text-[var(--text-muted)]">
@@ -1250,7 +1265,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
           src={fullCardUrl(
             preview.id.toLowerCase(),
             preview.upgraded,
-            "stable",
+            preview.beta ? "beta" : "stable",
             lang,
           )}
           alt=""

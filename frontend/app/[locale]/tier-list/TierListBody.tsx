@@ -90,7 +90,7 @@ async function fetchTopEntities(
 ): Promise<TopEntity[]> {
   try {
     const [entitiesRes, scoresRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/${type}${langQuery(lang)}`, {
+      fetch(`${API_INTERNAL}/api/${type}?channel=all${langQuery(lang, "&")}`, {
         next: { revalidate: 1800 },
       }),
       fetch(`${API_INTERNAL}/api/runs/scores/${type}`, {

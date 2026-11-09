@@ -131,7 +131,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={betaVersion}>
+      <BetaOnlyScope version={betaVersion} type="encounters" id={id}>
         <EncounterDetail
           initialEncounter={encounter}
           encounterStat={encounterStat}

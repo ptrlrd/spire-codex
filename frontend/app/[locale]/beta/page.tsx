@@ -126,7 +126,7 @@ export default async function BetaLandingPage({
       changed: Object.entries(td.changed).map(([id, fields]): DiffEntry => ({
         id,
         name: stableNames.get(id) ?? prettify(id),
-        href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+        href: route ? `/${route}/${id.toLowerCase()}` : null,
         note: fields.join(", "),
       })),
       removed: td.removed.map((id): DiffEntry => ({

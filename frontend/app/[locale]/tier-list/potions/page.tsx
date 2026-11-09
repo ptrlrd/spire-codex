@@ -87,9 +87,12 @@ async function fetchData(
   try {
     const scoresUrl = `${API_INTERNAL}/api/runs/scores/potions${param ? `?bracket=${param}` : ""}`;
     const [potionsRes, scoresRes] = await Promise.all([
-      fetch(`${API_INTERNAL}/api/potions${langQuery(locale)}`, {
-        next: { revalidate: 1800 },
-      }),
+      fetch(
+        `${API_INTERNAL}/api/potions?channel=all${langQuery(locale, "&")}`,
+        {
+          next: { revalidate: 1800 },
+        },
+      ),
       fetch(scoresUrl, { next: { revalidate: 300 } }),
     ]);
     const potions = potionsRes.ok

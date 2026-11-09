@@ -15,6 +15,7 @@ export interface GridRow {
   imageUrl: string | null;
   upgraded: boolean;
   wax: boolean;
+  beta: boolean;
   playedBy: string | null;
   parent: string | null;
   n: number;

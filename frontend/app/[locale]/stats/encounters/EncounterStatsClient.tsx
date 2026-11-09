@@ -144,7 +144,9 @@ export default function EncounterStatsClient() {
   // so a single fetch + map lets us avoid a per-row API hit.
   const [meta, setMeta] = useState<Record<string, EncounterMeta>>({});
   useEffect(() => {
-    cachedFetch<EncounterMeta[]>(`${API}/api/encounters?lang=${lang}`)
+    cachedFetch<EncounterMeta[]>(
+      `${API}/api/encounters?lang=${lang}&channel=all`,
+    )
       .then((arr) => {
         const m: Record<string, EncounterMeta> = {};
         for (const e of arr || []) m[e.id] = e;

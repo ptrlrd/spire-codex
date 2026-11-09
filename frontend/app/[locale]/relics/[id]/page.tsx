@@ -177,7 +177,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={betaVersion}>
+      <BetaOnlyScope version={betaVersion} type="relics" id={id}>
         <Suspense fallback={null}>
           <RelicDetail
             initialRelic={relic}

@@ -141,7 +141,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={betaVersion}>
+      <BetaOnlyScope version={betaVersion} type="enchantments" id={id}>
         <EnchantmentDetail
           initialEnchantment={enchantment}
           cardIds={enchantmentCards.cardIds}

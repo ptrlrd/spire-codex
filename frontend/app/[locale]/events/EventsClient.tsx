@@ -1,5 +1,7 @@
 "use client";
 
+import BetaBadge from "@/app/components/BetaBadge";
+import { useBetaOnlyIds } from "@/lib/use-beta-additions";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
@@ -141,6 +143,7 @@ function EventsClientInner({
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
+  const betaIds = useBetaOnlyIds("events");
   const initialRender = useRef(true);
 
   const actOptions = acts.map((a) => ({
@@ -233,6 +236,7 @@ function EventsClientInner({
     if (act) params.set("act", act);
     if (search) params.set("search", search);
     params.set("lang", lang);
+    if (channel === "stable") params.set("channel", "all");
     cachedFetch<GameEvent[]>(`${API}/api/events?${params}`).then(setEvents);
   }, [type, act, search, lang, channel]);
 
@@ -294,6 +298,11 @@ function EventsClientInner({
                   <div>
                     <h3 className="font-semibold text-[var(--text-primary)]">
                       {event.name}
+                      {betaIds.has(event.id) && (
+                        <span className="ml-2 align-middle">
+                          <BetaBadge />
+                        </span>
+                      )}
                     </h3>
                     {event.epithet && (
                       <p className="text-xs text-special italic">

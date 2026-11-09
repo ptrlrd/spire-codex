@@ -115,7 +115,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={betaVersion}>
+      <BetaOnlyScope version={betaVersion} type="orbs" id={id}>
         <OrbDetail initialOrb={orb} />
       </BetaOnlyScope>
     </>

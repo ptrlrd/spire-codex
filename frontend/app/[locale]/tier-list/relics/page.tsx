@@ -223,12 +223,12 @@ async function fetchData(
   param?: string | null,
   ancient?: string,
 ): Promise<{ relics: ApiRelic[]; scores: ScoresMap }> {
-  const relicParams = new URLSearchParams();
+  const relicParams = new URLSearchParams({ channel: "all" });
   if (locale !== "eng") relicParams.set("lang", locale);
   if (pool) relicParams.set("pool", pool);
   if (ancient) relicParams.set("ancient", ancient);
   const relicQs = relicParams.toString();
-  const relicsUrl = `${API_INTERNAL}/api/relics${relicQs ? `?${relicQs}` : ""}`;
+  const relicsUrl = `${API_INTERNAL}/api/relics?${relicQs}`;
   // act and param both reslice scores; the backend prioritizes act, so mirror
   // that here (act view ignores the bracket).
   const scoreQs = act ? `?act=${act}` : param ? `?bracket=${param}` : "";

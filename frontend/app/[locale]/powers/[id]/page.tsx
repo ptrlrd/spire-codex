@@ -129,7 +129,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <BetaOnlyScope version={betaVersion}>
+      <BetaOnlyScope version={betaVersion} type="powers" id={id}>
         <PowerDetail initialPower={power} heading={heading} />
       </BetaOnlyScope>
     </>

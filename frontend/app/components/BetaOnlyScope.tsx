@@ -4,20 +4,31 @@ import { useContext, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useT } from "@/lib/i18n";
 import { ApiConfigContext } from "@/app/contexts/api/ApiConfigContext";
+import BetaChanges from "./BetaChanges";
 
-/** Wraps a beta-only entity rendered on its main URL: shows the notice and
- * switches the subtree's data and art to the beta channel while links keep
- * their main-site paths. A null version renders the children untouched. */
+/** Wraps a detail page. A beta-only entity (version set) gets the notice and
+ * its subtree's data and art switch to the beta channel while links keep
+ * their main-site paths; any other entity gets its beta changes, if any. */
 export default function BetaOnlyScope({
   version,
+  type,
+  id,
   children,
 }: {
   version: string | null;
+  type: string;
+  id: string;
   children: ReactNode;
 }) {
   const t = useT();
   const config = useContext(ApiConfigContext);
-  if (!version) return children;
+  if (!version)
+    return (
+      <>
+        <BetaChanges type={type} id={id} />
+        {children}
+      </>
+    );
   return (
     <ApiConfigContext value={{ ...config, betaOnly: true }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 -mb-2">

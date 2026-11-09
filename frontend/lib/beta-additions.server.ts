@@ -30,3 +30,15 @@ export async function fetchBetaAdditions<T extends { id: string }>(
   );
   return items.filter((item): item is T => item !== null);
 }
+
+export async function fetchBetaOnlyIds(): Promise<Record<string, Set<string>>> {
+  const diff = await getJSON<{
+    beta_version: string | null;
+    types?: Record<string, { added?: string[] }>;
+  }>(`${API}/api/beta/diff`);
+  const out: Record<string, Set<string>> = {};
+  if (!diff?.beta_version) return out;
+  for (const [type, d] of Object.entries(diff.types ?? {}))
+    out[type] = new Set(d.added ?? []);
+  return out;
+}

@@ -64,7 +64,9 @@ export default function EloBoardClient() {
 
   useEffect(() => {
     let alive = true;
-    cachedFetch<CharacterNameRow[]>(`${API}/api/characters?lang=${lang}`)
+    cachedFetch<CharacterNameRow[]>(
+      `${API}/api/characters?lang=${lang}&channel=all`,
+    )
       .then((rows) => {
         if (!alive || !Array.isArray(rows)) return;
         const m: Record<string, string> = {};

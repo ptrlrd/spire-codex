@@ -13,7 +13,7 @@ CARD_FULL_BASE = os.getenv(
 ).rstrip("/")
 
 
-def _full_render_base() -> str:
+def _full_render_base(card_id: str = "") -> str:
     """CDN base for full card renders on the current request's channel: the
     stable set by default, or the current beta archive
     (cards-full/beta/<version>) when the beta channel is active. Falls back to
@@ -23,9 +23,16 @@ def _full_render_base() -> str:
     if not CARD_FULL_BASE.endswith("/stable"):
         return CARD_FULL_BASE
     try:
-        from ..services.data_service import get_beta_render_version, get_channel
+        from ..services.data_service import (
+            beta_only_ids,
+            get_beta_render_version,
+            get_channel,
+        )
 
-        if get_channel() == "beta":
+        channel = get_channel()
+        if channel == "beta" or (
+            channel == "all" and card_id in beta_only_ids("cards")
+        ):
             version = (get_beta_render_version() or "").lstrip("v")
             if version:
                 root = CARD_FULL_BASE[: -len("/stable")]
@@ -115,7 +122,7 @@ class Card(BaseModel):
         ancients). `null` when there's no render (mad_science)."""
         if self.id.lower() == "mad_science":
             return None
-        return f"{_full_render_base()}/{self.id.lower()}.webp"
+        return f"{_full_render_base(self.id)}/{self.id.lower()}.webp"
 
     @computed_field  # type: ignore[prop-decorator]
     @property
@@ -124,7 +131,7 @@ class Card(BaseModel):
         has no upgrade."""
         if not self.upgrade or self.id.lower() == "mad_science":
             return None
-        return f"{_full_render_base()}/{self.id.lower()}_upg.webp"
+        return f"{_full_render_base(self.id)}/{self.id.lower()}_upg.webp"
 
 
 class CharacterDialogueLine(BaseModel):

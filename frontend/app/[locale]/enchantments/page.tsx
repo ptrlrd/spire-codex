@@ -34,9 +34,12 @@ export default async function EnchantmentsPage({ params }: Props) {
   const tagline = t("enchantments_tagline");
   let enchantments: Enchantment[] = [];
   try {
-    const res = await fetch(`${API}/api/enchantments?lang=${locale}`, {
-      next: { revalidate: 300 },
-    });
+    const res = await fetch(
+      `${API}/api/enchantments?lang=${locale}&channel=all`,
+      {
+        next: { revalidate: 300 },
+      },
+    );
     if (res.ok) enchantments = await res.json();
   } catch {}
 
