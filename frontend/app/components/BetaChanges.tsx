@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { fullCardUrl } from "@/lib/image-url";
+import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useGameLocale, useT, type TFn } from "@/lib/i18n";
 import RichDescription from "./RichDescription";
 
@@ -81,6 +82,7 @@ export default function BetaChanges({
   const lang = useGameLocale();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
   const [pair, setPair] = useState<{ main: Entity; beta: Entity } | null>(null);
+  const inBetaSection = useBetaPrefix() === "/beta";
   const key = id.toUpperCase();
   const td = diff?.beta_version ? diff.types?.[type] : undefined;
   const fields = td?.changed?.[key];
@@ -93,7 +95,7 @@ export default function BetaChanges({
   }, []);
 
   useEffect(() => {
-    if (!fields) return;
+    if (!fields || inBetaSection) return;
     let active = true;
     const url = `${API}/api/${type}/${id.toLowerCase()}?lang=${lang}`;
     Promise.all([
@@ -107,9 +109,9 @@ export default function BetaChanges({
     return () => {
       active = false;
     };
-  }, [fields, type, id, lang]);
+  }, [fields, type, id, lang, inBetaSection]);
 
-  if (!fields && !removed) return null;
+  if (inBetaSection || (!fields && !removed)) return null;
   const version = diff?.beta_version ?? "";
   const shown = (fields ?? []).filter((f) => !DUPLICATE_FIELDS.has(f));
   const texts = shown.filter((f) => TEXT_FIELDS.has(f));
