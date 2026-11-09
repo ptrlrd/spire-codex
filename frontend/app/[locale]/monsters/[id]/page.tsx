@@ -6,7 +6,8 @@ import MonsterDetail from "./MonsterDetail";
 import { fetchEncounterStats } from "@/lib/encounter-stats";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { buildPageMetadata, clipMetaDescription } from "@/lib/seo";
 import { imageUrl } from "@/lib/image-url";
@@ -29,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/monsters/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`,
       {
         next: { revalidate: 3600 },
@@ -52,6 +53,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: monster.name,
       entityType: `${t("Monster")}, Moveset & HP`,
       description: clipMetaDescription(
@@ -81,6 +83,7 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let monster = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/monsters/${id}${langQuery(locale)}`,
@@ -89,6 +92,7 @@ export default async function Page({ params }: Props) {
       },
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       monster = await res.json();
       const hpText = monster.min_hp
         ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP`
@@ -140,7 +144,12 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <MonsterDetail initialMonster={monster} encounterStats={encounterStats} />
+      <BetaOnlyScope version={betaVersion} type="monsters" id={id}>
+        <MonsterDetail
+          initialMonster={monster}
+          encounterStats={encounterStats}
+        />
+      </BetaOnlyScope>
     </>
   );
 }

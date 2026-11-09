@@ -1470,7 +1470,7 @@ export function InsightsPanels({
 // has arrived, and a failed request leaves the map empty instead of stale.
 function useEntityMap(path: string): Record<string, EntityInfo> {
   const lang = useGameLocale();
-  const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}`;
+  const url = `${API}${path}${path.includes("?") ? "&" : "?"}lang=${encodeURIComponent(lang)}&channel=all`;
   const [state, setState] = useState<{
     url: string;
     map: Record<string, EntityInfo>;

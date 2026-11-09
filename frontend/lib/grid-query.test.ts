@@ -17,6 +17,7 @@ function row(overrides: Partial<GridRow> = {}): GridRow {
     imageUrl: null,
     upgraded: false,
     wax: false,
+    beta: false,
     playedBy: null,
     parent: null,
     n: 100,

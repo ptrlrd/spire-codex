@@ -12,7 +12,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { imageUrl } from "@/lib/image-url";
 import { powerHeading } from "@/lib/power-heading";
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/powers/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/powers/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: await powerHeading(power, locale),
       entityType: t("Power"),
       description: clipMetaDescription(
@@ -76,11 +78,13 @@ export default async function Page({ params }: Props) {
   let power = null;
   let heading: string | undefined;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/powers/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       power = await res.json();
       heading = await powerHeading(power, locale);
       const desc = stripTags(power.description || "");
@@ -125,7 +129,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <PowerDetail initialPower={power} heading={heading} />
+      <BetaOnlyScope version={betaVersion} type="powers" id={id}>
+        <PowerDetail initialPower={power} heading={heading} />
+      </BetaOnlyScope>
     </>
   );
 }

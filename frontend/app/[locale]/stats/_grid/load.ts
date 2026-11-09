@@ -1,6 +1,7 @@
 import { getT } from "@/lib/i18n-server";
 import { restSiteLabel } from "@/lib/rest-site-labels";
 import { CHARACTERS, isValidBracket } from "./bracket";
+import { fetchBetaOnlyIds } from "@/lib/beta-additions.server";
 import type { GridData, GridKind, GridRow, GridTotals } from "./types";
 
 const API_INTERNAL =
@@ -124,6 +125,7 @@ function baseRow(key: string, id: string, name: string): GridRow {
     imageUrl: null,
     upgraded: false,
     wax: false,
+    beta: false,
     playedBy: null,
     parent: null,
     n: 0,
@@ -252,9 +254,12 @@ async function loadEntity(
   by: string,
 ): Promise<GridData> {
   const perCharacter = kind === "cards" && by === "character" && !character;
-  const [t, catalog, res, ...tables] = await Promise.all([
+  const [t, betaIds, catalog, res, ...tables] = await Promise.all([
     getT(lang as Parameters<typeof getT>[0]),
-    fetchJson<Catalog[]>(`${API_INTERNAL}/api/${kind}?lang=${lang}`),
+    fetchBetaOnlyIds(),
+    fetchJson<Catalog[]>(
+      `${API_INTERNAL}/api/${kind}?lang=${lang}&channel=all`,
+    ),
     fetchJson<ApiResponse>(
       `${API_INTERNAL}/api/runs/metrics/${kind}?bracket=${bracket}${
         character ? `&character=${character}` : ""
@@ -275,6 +280,7 @@ async function loadEntity(
     const c = byId.get(id);
     if (!c) continue;
     const row = entityRow(kind, m, c, id);
+    row.beta = betaIds[kind]?.has(id) ?? false;
     row.losses =
       m.losses ?? (row.wins === null ? null : Math.max(0, row.n - row.wins));
     if (character && kind === "cards") {
@@ -293,6 +299,7 @@ async function loadEntity(
     if (m.wax && m.wax.picks > 0) {
       const w = baseRow(`${id}:WAX`, id, t("Wax {name}", { name: c.name }));
       w.href = row.href;
+      w.beta = row.beta;
       w.imageUrl = c.image_url;
       w.color = c.color ?? null;
       w.group = row.group;
@@ -325,10 +332,13 @@ async function loadEntity(
 }
 
 async function loadShops(lang: string, bracket: string): Promise<GridData> {
-  const [cards, relics, potions, res] = await Promise.all([
-    fetchJson<Catalog[]>(`${API_INTERNAL}/api/cards?lang=${lang}`),
-    fetchJson<Catalog[]>(`${API_INTERNAL}/api/relics?lang=${lang}`),
-    fetchJson<Catalog[]>(`${API_INTERNAL}/api/potions?lang=${lang}`),
+  const [betaIds, cards, relics, potions, res] = await Promise.all([
+    fetchBetaOnlyIds(),
+    fetchJson<Catalog[]>(`${API_INTERNAL}/api/cards?lang=${lang}&channel=all`),
+    fetchJson<Catalog[]>(`${API_INTERNAL}/api/relics?lang=${lang}&channel=all`),
+    fetchJson<Catalog[]>(
+      `${API_INTERNAL}/api/potions?lang=${lang}&channel=all`,
+    ),
     fetchJson<ApiResponse>(
       `${API_INTERNAL}/api/runs/metrics/shops?bracket=${bracket}`,
     ),
@@ -346,6 +356,7 @@ async function loadShops(lang: string, bracket: string): Promise<GridData> {
     if (!c) continue;
     const row = fillCommon(baseRow(`${etype}:${id}`, id, c.name), m);
     row.href = `/${etype}/${id.toLowerCase()}`;
+    row.beta = betaIds[etype]?.has(id) ?? false;
     row.imageUrl = c.image_url;
     row.color = c.color ?? null;
     row.group = etype;
@@ -371,8 +382,11 @@ async function loadShops(lang: string, bracket: string): Promise<GridData> {
 }
 
 async function loadEvents(lang: string, bracket: string): Promise<GridData> {
-  const [events, res] = await Promise.all([
-    fetchJson<EventCatalog[]>(`${API_INTERNAL}/api/events?lang=${lang}`),
+  const [betaIds, events, res] = await Promise.all([
+    fetchBetaOnlyIds(),
+    fetchJson<EventCatalog[]>(
+      `${API_INTERNAL}/api/events?lang=${lang}&channel=all`,
+    ),
     fetchJson<ApiResponse>(
       `${API_INTERNAL}/api/runs/metrics/events?bracket=${bracket}`,
     ),
@@ -398,6 +412,7 @@ async function loadEvents(lang: string, bracket: string): Promise<GridData> {
     const opt = opts[oid] ?? opts[oid.replace(/_\d+$/, "")];
     const row = fillCommon(baseRow(`${eid}:${oid}`, eid, name), m);
     row.href = `/events/${eid.toLowerCase()}`;
+    row.beta = betaIds.events?.has(eid) ?? false;
     row.sub = opt ? stripTags(opt.title) : oid;
     row.hint = opt?.description ? stripTags(opt.description) : null;
     row.group = eid;

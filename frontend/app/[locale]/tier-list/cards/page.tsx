@@ -174,7 +174,7 @@ async function fetchData(
   // to keep payloads small) + the bulk-scores map. Failures degrade
   // gracefully to empty so the page still renders the "no data" state
   // instead of a 500 (e.g. during cold-start cache miss).
-  const cardsUrl = `${API_INTERNAL}/api/cards${color ? `?color=${color}${langQuery(locale, "&")}` : langQuery(locale)}`;
+  const cardsUrl = `${API_INTERNAL}/api/cards?channel=all${color ? `&color=${color}` : ""}${langQuery(locale, "&")}`;
   const scoresUrl = `${API_INTERNAL}/api/runs/scores/cards${param ? `?bracket=${param}` : ""}`;
   try {
     const [cardsRes, scoresRes] = await Promise.all([

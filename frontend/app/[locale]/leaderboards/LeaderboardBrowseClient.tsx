@@ -217,7 +217,7 @@ export default function LeaderboardBrowseClient() {
   // Fetch localized character names so leaderboard rows show "Sentinelle de fer"
   // instead of the English-derived "Ironclad" produced by displayName(id).
   useEffect(() => {
-    fetch(`${API}/api/characters?lang=${lang}`)
+    fetch(`${API}/api/characters?lang=${lang}&channel=all`)
       .then((r) => (r.ok ? r.json() : []))
       .then((data: CharacterNameRow[]) => {
         const m: Record<string, string> = {};

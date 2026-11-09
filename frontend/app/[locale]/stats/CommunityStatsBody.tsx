@@ -140,9 +140,10 @@ interface LocalizedEvent {
 
 async function fetchList<T>(path: string, lang: Locale): Promise<T[]> {
   try {
-    const res = await fetch(`${API_INTERNAL}${path}${langQuery(lang)}`, {
-      next: { revalidate: 3600 },
-    });
+    const res = await fetch(
+      `${API_INTERNAL}${path}?channel=all${langQuery(lang, "&")}`,
+      { next: { revalidate: 3600 } },
+    );
     if (!res.ok) return [];
     return (await res.json()) as T[];
   } catch {
@@ -155,7 +156,7 @@ async function fetchCharacterNames(
 ): Promise<Record<string, string>> {
   try {
     const res = await fetch(
-      `${API_INTERNAL}/api/translations${langQuery(lang)}`,
+      `${API_INTERNAL}/api/translations?channel=all${langQuery(lang, "&")}`,
       { next: { revalidate: 3600 } },
     );
     if (!res.ok) return {};

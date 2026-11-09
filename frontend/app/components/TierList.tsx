@@ -2,6 +2,8 @@ import { Link } from "@/i18n/navigation";
 import { imageUrl } from "@/lib/image-url";
 import { getGameLocale, getT } from "@/lib/i18n-server";
 import LocalizedCardImage from "@/app/components/LocalizedCardImage";
+import BetaBadge from "@/app/components/BetaBadge";
+import { fetchBetaOnlyIds } from "@/lib/beta-additions.server";
 
 // Use ?? not ||, production sets NEXT_PUBLIC_API_URL="" intentionally
 // so URLs resolve same-origin (nginx proxies /static to the backend
@@ -113,6 +115,7 @@ export default async function TierList({
 }: TierListProps) {
   const t = await getT();
   const lang = await getGameLocale();
+  const betaIds = (await fetchBetaOnlyIds())[route] ?? new Set<string>();
   // Group entities by tier, the unrated go to the bottom in a separate
   // "Unrated" row so they're still discoverable but don't pollute the
   // tier signal. Within each tier, sort by value desc, then by name
@@ -208,6 +211,11 @@ export default async function TierList({
                     alt={ent.name}
                     className="w-full h-auto aspect-[400/520] drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]"
                   />
+                  {betaIds.has(ent.id) && (
+                    <span className="absolute -top-1.5 right-0 flex">
+                      <BetaBadge />
+                    </span>
+                  )}
                   {tileValue(ent) != null && (
                     <span className="text-[9px] font-mono tabular-nums text-[var(--text-muted)]">
                       {tileValue(ent)}
@@ -227,6 +235,11 @@ export default async function TierList({
                   }
                   className="group relative flex flex-col items-center gap-1 w-16 sm:w-20 p-1.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
                 >
+                  {betaIds.has(ent.id) && (
+                    <span className="absolute -top-1.5 -right-1.5 flex">
+                      <BetaBadge />
+                    </span>
+                  )}
                   {ent.image_url ? (
                     <img
                       src={imageUrl(ent.image_url)}

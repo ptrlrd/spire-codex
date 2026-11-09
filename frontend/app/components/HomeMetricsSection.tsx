@@ -103,7 +103,7 @@ export default async function HomeMetricsSection({
     fetchJson<{ rows: ApiMetricRow[] }>(
       `${API}/api/runs/metrics/cards?bracket=a10`,
     ),
-    fetchJson<ApiCard[]>(`${API}/api/cards?lang=${lang}`),
+    fetchJson<ApiCard[]>(`${API}/api/cards?lang=${lang}&channel=all`),
   ]);
   if (!metrics?.rows || !cards) return null;
 

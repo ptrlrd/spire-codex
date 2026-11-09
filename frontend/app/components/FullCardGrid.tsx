@@ -29,9 +29,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const id = card.id.toLowerCase();
   const hasUpgrade = !!card.upgrade;
   const showUpgraded = upgraded && hasUpgrade;
-  // card.beta marks a beta-only card surfaced in a stable list; its render
-  // and detail page live on the beta channel.
-  const href = card.beta ? `${bp}/beta/cards/${id}` : `${bp}/cards/${id}`;
+  const href = `${bp}/cards/${id}`;
 
   return (
     <div className="group relative [content-visibility:auto] [contain-intrinsic-size:auto_230px]">

@@ -114,6 +114,7 @@ interface OgCard {
 export function cardOgImages(
   card: OgCard,
   lang = "eng",
+  channel: "stable" | "beta" = "stable",
 ): { url: string; width?: number; height?: number; alt?: string }[] {
   const id = card.id.toLowerCase();
   // image_url_card is null when there's no full render (e.g. mad_science).
@@ -122,7 +123,7 @@ export function cardOgImages(
   }
   const imgs = [
     {
-      url: fullCardUrl(id, false, "stable", lang),
+      url: fullCardUrl(id, false, channel, lang),
       width: 400,
       height: 520,
       alt: card.name,
@@ -130,7 +131,7 @@ export function cardOgImages(
   ];
   if (card.image_url_card_upg) {
     imgs.push({
-      url: fullCardUrl(id, true, "stable", lang),
+      url: fullCardUrl(id, true, channel, lang),
       width: 400,
       height: 520,
       alt: `${card.name}+`,

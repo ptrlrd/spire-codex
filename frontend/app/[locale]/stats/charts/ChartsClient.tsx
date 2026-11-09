@@ -439,7 +439,7 @@ function ChartsClientInner() {
   useEffect(() => {
     if (spec?.needs.includes("encounter") && encounters.length === 0) {
       fetchJson<{ id: string; name: string }[]>(
-        `${API}/api/encounters?lang=${lang}`,
+        `${API}/api/encounters?lang=${lang}&channel=all`,
       )
         .then((rows) => {
           const opts = rows
@@ -480,7 +480,7 @@ function ChartsClientInner() {
   useEffect(() => {
     if (!spec?.needs.includes("event") || lang === "eng") return;
     cachedFetch<{ id: string; name: string }[]>(
-      `${API}/api/events?lang=${lang}`,
+      `${API}/api/events?lang=${lang}&channel=all`,
     )
       .then((rows) =>
         setEventNames(Object.fromEntries(rows.map((r) => [r.id, r.name]))),

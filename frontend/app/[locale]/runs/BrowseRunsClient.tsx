@@ -163,7 +163,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   }, []);
 
   useEffect(() => {
-    fetch(`${API}/api/characters?lang=${lang}`)
+    fetch(`${API}/api/characters?lang=${lang}&channel=all`)
       .then((r) => (r.ok ? r.json() : []))
       .then((data: CharacterNameRow[]) => {
         const m: Record<string, string> = {};

@@ -37,7 +37,9 @@ export default async function EventsPage({ params }: Props) {
   // Settled independently: the act filter is optional chrome, so a failed
   // acts request must not cost us the event catalog.
   const [eventsRes, actsRes] = await Promise.allSettled([
-    fetch(`${API}/api/events?lang=${locale}`, { next: { revalidate: 300 } }),
+    fetch(`${API}/api/events?lang=${locale}&channel=all`, {
+      next: { revalidate: 300 },
+    }),
     fetch(`${API}/api/acts${langQuery(locale)}`, {
       next: { revalidate: 3600 },
     }),

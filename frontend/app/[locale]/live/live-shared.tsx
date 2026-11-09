@@ -420,7 +420,7 @@ export function useIdMap<T extends { id: string }>(
   const [map, setMap] = useState<Record<string, T>>({});
   useEffect(() => {
     if (!enabled) return;
-    cachedFetch<T[]>(`${API}${path}?lang=${lang}`)
+    cachedFetch<T[]>(`${API}${path}?lang=${lang}&channel=all`)
       .then((items) => {
         const m: Record<string, T> = {};
         for (const x of items) m[x.id] = x;

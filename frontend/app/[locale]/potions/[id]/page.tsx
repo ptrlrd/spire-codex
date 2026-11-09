@@ -21,7 +21,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { imageUrl } from "@/lib/image-url";
 
 const API_INTERNAL =
@@ -39,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/potions/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/potions/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -54,6 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: potion.name,
       entityType: t("Potion"),
       entityQualifier: entityQualifier({
@@ -87,11 +89,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let potion = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/potions/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       potion = await res.json();
       const desc = stripTags(potion.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -142,15 +146,17 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <Suspense fallback={null}>
-        <PotionDetail
-          initialPotion={potion}
-          initialStats={initialStats}
-          initialPairings={initialPairings}
-          initialRelated={initialRelated}
-          summary={summary}
-        />
-      </Suspense>
+      <BetaOnlyScope version={betaVersion} type="potions" id={id}>
+        <Suspense fallback={null}>
+          <PotionDetail
+            initialPotion={potion}
+            initialStats={initialStats}
+            initialPairings={initialPairings}
+            initialRelated={initialRelated}
+            summary={summary}
+          />
+        </Suspense>
+      </BetaOnlyScope>
     </>
   );
 }

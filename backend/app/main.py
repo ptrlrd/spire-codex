@@ -299,7 +299,8 @@ class VersionMiddleware(BaseHTTPMiddleware):
     """Set the data_service contextvars for the request: the legacy
     ?version= selector, and the content channel.
 
-    Channel resolution: an explicit ?channel=beta|stable wins; otherwise a
+    Channel resolution: an explicit ?channel=beta|stable|all wins ("all" is
+    the main catalog plus beta-only rows); otherwise a
     beta.* Host header means beta (so every client written against
     beta.spire-codex.com/api keeps getting beta data through the unified
     backend with zero changes); otherwise stable."""
@@ -312,7 +313,7 @@ class VersionMiddleware(BaseHTTPMiddleware):
             token = current_version.set(None)
 
         channel = request.query_params.get("channel")
-        if channel not in ("beta", "stable"):
+        if channel not in ("beta", "stable", "all"):
             host = (request.headers.get("host") or "").split(":")[0].lower()
             channel = "beta" if host.startswith("beta.") else "stable"
         channel_token = current_channel.set(channel)

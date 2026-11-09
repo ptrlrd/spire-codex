@@ -973,7 +973,7 @@ export default function Navbar() {
                     </div>
 
                     <div className="sm:hidden flex items-center gap-2 border-b border-[var(--border-subtle)] px-5 py-3">
-                      <SiteSwitcher align="left" />
+                      <SiteSwitcher />
                       <LanguageSelector align="left" />
                     </div>
 

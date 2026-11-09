@@ -9,7 +9,7 @@
 // nothing, because there the list itself already comes from the beta
 // catalog.
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { useChannel } from "@/lib/api/prefix.client";
 
@@ -66,4 +66,28 @@ export function useBetaAdditions<T extends { id: string }>(
   }, [type, lang, channel, initial]);
 
   return items;
+}
+
+/** Ids of `type` that exist only in the current beta, for badging rows of a
+ * merged (channel=all) catalog. Empty inside the /beta section. */
+export function useBetaOnlyIds(type: string): Set<string> {
+  const channel = useChannel();
+  const [added, setAdded] = useState<string[]>([]);
+  useEffect(() => {
+    if (channel === "beta") return;
+    let active = true;
+    cachedFetch<BetaDiff>(`${API}/api/beta/diff`)
+      .then((diff) => {
+        if (active && diff?.beta_version)
+          setAdded(diff.types?.[type]?.added ?? []);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [type, channel]);
+  return useMemo(
+    () => new Set(channel === "beta" ? [] : added),
+    [added, channel],
+  );
 }

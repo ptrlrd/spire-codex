@@ -120,7 +120,7 @@ export async function fetchNameMap(
   const url = catalog[source];
   if (!url) return {};
   try {
-    const res = await fetch(`${API}${url}`);
+    const res = await fetch(`${API}${url}?channel=all`);
     if (!res.ok) return {};
     const list = (await res.json()) as Record<string, unknown>[];
     const out: Record<string, MetricRow> = {};

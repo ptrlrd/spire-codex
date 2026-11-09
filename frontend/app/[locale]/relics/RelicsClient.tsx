@@ -226,11 +226,7 @@ function RelicsClientInner({
             <Link
               prefetch={false}
               key={relic.id}
-              href={
-                relic.beta
-                  ? `${bp}/beta/relics/${relic.id.toLowerCase()}`
-                  : `${bp}/relics/${relic.id.toLowerCase()}`
-              }
+              href={`${bp}/relics/${relic.id.toLowerCase()}`}
               className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer block [content-visibility:auto] [contain-intrinsic-size:auto_190px] lg:[contain-intrinsic-size:auto_140px]`}
             >
               <div className="flex gap-3">

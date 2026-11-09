@@ -1,5 +1,7 @@
 "use client";
 
+import BetaBadge from "@/app/components/BetaBadge";
+import { useBetaOnlyIds } from "@/lib/use-beta-additions";
 import { useGameLocale, useT } from "@/lib/i18n";
 import {
   Suspense,
@@ -56,6 +58,7 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
   const t = useT();
   const bp = useBetaPrefix();
   const channel = useChannel();
+  const betaIds = useBetaOnlyIds("potions");
   const searchParams = useSearchParams();
   const [potions, setPotions] = useState<Potion[]>(initialPotions);
   const [search, setSearch] = useState(searchParams.get("search") || "");
@@ -104,6 +107,7 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
     if (search) params.set("search", search);
     if (pool) params.set("pool", pool);
     params.set("lang", lang);
+    if (channel === "stable") params.set("channel", "all");
     cachedFetch<Potion[]>(`${API}/api/potions?${params}`)
       .then(setPotions)
       .finally(() => setLoading(false));
@@ -189,6 +193,11 @@ function PotionsClientInner({ initialPotions }: { initialPotions: Potion[] }) {
                     <div className="flex items-start justify-between mb-2">
                       <h3 className="font-semibold text-[var(--text-primary)] leading-tight">
                         {potion.name}
+                        {betaIds.has(potion.id) && (
+                          <span className="ml-2 align-middle">
+                            <BetaBadge />
+                          </span>
+                        )}
                       </h3>
                     </div>
                     <span

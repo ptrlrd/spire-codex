@@ -22,7 +22,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { fetchCardCatalog, fetchKeywordCatalog } from "@/lib/entity-catalogs";
 import { entityNameLinks, mentionedIn } from "@/lib/rich-links";
 import { imageUrl } from "@/lib/image-url";
@@ -48,7 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/relics/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/relics/${id}${langQuery(locale)}`,
       {
         next: { revalidate: 3600 },
@@ -66,6 +67,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: relic.name,
       entityType: t("Relic"),
       entityQualifier: entityQualifier({
@@ -99,6 +101,7 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let relic = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/relics/${id}${langQuery(locale)}`,
@@ -107,6 +110,7 @@ export default async function Page({ params }: Props) {
       },
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       relic = await res.json();
       const desc = stripTags(relic.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -173,21 +177,23 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <Suspense fallback={null}>
-        <RelicDetail
-          initialRelic={relic}
-          initialStats={initialStats}
-          initialPairings={initialPairings}
-          initialRecs={initialRecs}
-          initialRelated={initialRelated}
-          summary={summary}
-          initialEntityLinks={entityNameLinks(
-            mentionedIn(cards, relic),
-            "cards",
-          )}
-          initialKeywords={keywords}
-        />
-      </Suspense>
+      <BetaOnlyScope version={betaVersion} type="relics" id={id}>
+        <Suspense fallback={null}>
+          <RelicDetail
+            initialRelic={relic}
+            initialStats={initialStats}
+            initialPairings={initialPairings}
+            initialRecs={initialRecs}
+            initialRelated={initialRelated}
+            summary={summary}
+            initialEntityLinks={entityNameLinks(
+              mentionedIn(cards, relic),
+              "cards",
+            )}
+            initialKeywords={keywords}
+          />
+        </Suspense>
+      </BetaOnlyScope>
     </>
   );
 }

@@ -12,7 +12,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { imageUrl } from "@/lib/image-url";
 import { cardsForEnchantment } from "@/lib/card-enchantments";
 
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/enchantments/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/enchantments/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -46,6 +47,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: enchantment.name,
       entityType: t("Enchantment"),
       description: clipMetaDescription(
@@ -77,11 +79,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let enchantment = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/enchantments/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       enchantment = await res.json();
       const desc = stripTags(enchantment.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -137,11 +141,13 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EnchantmentDetail
-        initialEnchantment={enchantment}
-        cardIds={enchantmentCards.cardIds}
-        totalCards={enchantmentCards.total}
-      />
+      <BetaOnlyScope version={betaVersion} type="enchantments" id={id}>
+        <EnchantmentDetail
+          initialEnchantment={enchantment}
+          cardIds={enchantmentCards.cardIds}
+          totalCards={enchantmentCards.total}
+        />
+      </BetaOnlyScope>
     </>
   );
 }

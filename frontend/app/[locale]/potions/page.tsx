@@ -35,7 +35,7 @@ export default async function PotionsPage({ params }: Props) {
   const tagline = t("potions_tagline");
   let potions: Potion[] = [];
   try {
-    const res = await fetch(`${API}/api/potions?lang=${locale}`, {
+    const res = await fetch(`${API}/api/potions?lang=${locale}&channel=all`, {
       next: { revalidate: 300 },
     });
     if (res.ok) potions = await res.json();

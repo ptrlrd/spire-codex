@@ -81,11 +81,7 @@ function CardItem({ card }: { card: Card }) {
     >
       <Link
         prefetch={false}
-        href={
-          card.beta
-            ? `${bp}/beta/cards/${card.id.toLowerCase()}`
-            : `${bp}/cards/${card.id.toLowerCase()}`
-        }
+        href={`${bp}/cards/${card.id.toLowerCase()}`}
         className="absolute inset-0 z-10"
       />
 

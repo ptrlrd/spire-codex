@@ -176,11 +176,7 @@ function MonstersClientInner({
           <Link
             prefetch={false}
             key={monster.id}
-            href={
-              betaIds.has(monster.id)
-                ? `${bp}/beta/monsters/${monster.id.toLowerCase()}`
-                : `${bp}/monsters/${monster.id.toLowerCase()}`
-            }
+            href={`${bp}/monsters/${monster.id.toLowerCase()}`}
             className={`bg-[var(--bg-card)] rounded-lg border ${
               typeColors[monster.type] || "border-[var(--border-subtle)]"
             } p-4 hover:bg-[var(--bg-card-hover)] transition-all cursor-pointer`}

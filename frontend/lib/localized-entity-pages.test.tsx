@@ -16,6 +16,11 @@ vi.mock("@/app/components/JsonLd", () => ({
     return null;
   },
 }));
+vi.mock("@/app/components/BetaOnlyScope", () => ({
+  default: function BetaOnlyScope({ children }: { children: ReactNode }) {
+    return children;
+  },
+}));
 vi.mock("next/navigation", () => ({
   notFound: vi.fn(),
   permanentRedirect: vi.fn(),

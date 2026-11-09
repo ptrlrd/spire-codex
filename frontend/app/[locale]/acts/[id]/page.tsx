@@ -5,7 +5,8 @@ import { uiText } from "@/lib/locale-server";
 import ActDetail from "./ActDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { buildDetailPageJsonLd } from "@/lib/jsonld";
 import { clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/acts/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`,
       {
         next: { revalidate: 3600 },
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: act.name,
       entityType: t("Act"),
       description: clipMetaDescription(
@@ -66,6 +68,7 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let act = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/acts/${id}${langQuery(locale)}`,
@@ -74,6 +77,7 @@ export default async function Page({ params }: Props) {
       },
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       act = await res.json();
       jsonLd = buildDetailPageJsonLd({
         name: act.name,
@@ -100,7 +104,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <ActDetail initialAct={act} />
+      <BetaOnlyScope version={betaVersion} type="acts" id={id}>
+        <ActDetail initialAct={act} />
+      </BetaOnlyScope>
     </>
   );
 }

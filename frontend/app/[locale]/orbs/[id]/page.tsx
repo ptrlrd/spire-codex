@@ -12,7 +12,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 
 const API_INTERNAL =
   process.env.API_INTERNAL_URL ||
@@ -27,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/orbs/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/orbs/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -42,6 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: orb.name,
       entityType: t("Orb"),
       description: clipMetaDescription(
@@ -69,11 +71,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let orb = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/orbs/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       orb = await res.json();
       const desc = stripTags(orb.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -111,7 +115,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <OrbDetail initialOrb={orb} />
+      <BetaOnlyScope version={betaVersion} type="orbs" id={id}>
+        <OrbDetail initialOrb={orb} />
+      </BetaOnlyScope>
     </>
   );
 }

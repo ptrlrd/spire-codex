@@ -118,11 +118,7 @@ export default function PowersClient({
             <Link
               prefetch={false}
               key={power.id}
-              href={
-                betaIds.has(power.id)
-                  ? `${bp}/beta/powers/${power.id.toLowerCase()}`
-                  : `${bp}/powers/${power.id.toLowerCase()}`
-              }
+              href={`${bp}/powers/${power.id.toLowerCase()}`}
               className={`bg-[var(--bg-card)] rounded-lg border ${style.split(" ")[0]} p-4 hover:bg-[var(--bg-card-hover)] transition-all`}
             >
               <div className="flex items-start justify-between mb-2">

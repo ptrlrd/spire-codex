@@ -1,5 +1,7 @@
 "use client";
 
+import BetaBadge from "@/app/components/BetaBadge";
+import { useBetaOnlyIds } from "@/lib/use-beta-additions";
 import { useGameLocale, useT } from "@/lib/i18n";
 import { Suspense, useState, useEffect, useRef, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
@@ -40,6 +42,7 @@ function EnchantmentsClientInner({
   const lang = useGameLocale();
   const t = useT();
   const channel = useChannel();
+  const betaIds = useBetaOnlyIds("enchantments");
   const initialRender = useRef(true);
 
   const updateUrl = useCallback((newState: Record<string, string>) => {
@@ -79,6 +82,7 @@ function EnchantmentsClientInner({
     if (search) params.set("search", search);
     if (cardType) params.set("card_type", cardType);
     params.set("lang", lang);
+    if (channel === "stable") params.set("channel", "all");
     cachedFetch<Enchantment[]>(`${API}/api/enchantments?${params}`).then(
       setEnchantments,
     );
@@ -123,6 +127,11 @@ function EnchantmentsClientInner({
               <div className="flex-1 flex items-start justify-between">
                 <h3 className="font-semibold text-[var(--text-primary)]">
                   {ench.name}
+                  {betaIds.has(ench.id) && (
+                    <span className="ml-2 align-middle">
+                      <BetaBadge />
+                    </span>
+                  )}
                 </h3>
                 <div className="flex gap-1.5 ml-2 flex-shrink-0">
                   {ench.card_type?.split(", ").map((type) => (

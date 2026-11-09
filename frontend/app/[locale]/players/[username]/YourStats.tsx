@@ -224,7 +224,7 @@ function useCatalogs(): Record<string, CatalogEntry> {
     Promise.all(
       CATALOG_PATHS.map((p) =>
         cachedFetch<CatalogEntry[]>(
-          `${API}${p}?lang=${encodeURIComponent(lang)}`,
+          `${API}${p}?lang=${encodeURIComponent(lang)}&channel=all`,
         ).catch(() => []),
       ),
     ).then((lists) => {
@@ -638,7 +638,7 @@ function YourStatsInner({
   const eventCatalog =
     useApiData<EventCatalogEntry[]>(
       ready && tab === "events"
-        ? `${API}/api/events?lang=${encodeURIComponent(lang)}`
+        ? `${API}/api/events?lang=${encodeURIComponent(lang)}&channel=all`
         : null,
     ) ?? EMPTY_EVENTS;
 
