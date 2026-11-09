@@ -13,7 +13,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { imageUrl } from "@/lib/image-url";
 import {
   fetchCardCatalog,
@@ -69,7 +70,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/events/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/events/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -84,6 +85,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: event.name,
       entityType: t("Event"),
       description: clipMetaDescription(
@@ -114,11 +116,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let event = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/events/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       event = await res.json();
       const desc = stripTags(event.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -190,18 +194,20 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EventDetail
-        initialEvent={event}
-        voteStats={voteStats}
-        initialEntityLinks={[
-          ...entityNameLinks(mentionedIn(cards, event), "cards"),
-          ...entityNameLinks(mentionedIn(relics, event), "relics"),
-        ]}
-        initialKeywords={keywords}
-        initialRelics={relics}
-        initialPool={pool}
-        initialPoolNames={poolNames}
-      />
+      <BetaOnlyScope version={betaVersion}>
+        <EventDetail
+          initialEvent={event}
+          voteStats={voteStats}
+          initialEntityLinks={[
+            ...entityNameLinks(mentionedIn(cards, event), "cards"),
+            ...entityNameLinks(mentionedIn(relics, event), "relics"),
+          ]}
+          initialKeywords={keywords}
+          initialRelics={relics}
+          initialPool={pool}
+          initialPoolNames={poolNames}
+        />
+      </BetaOnlyScope>
     </>
   );
 }

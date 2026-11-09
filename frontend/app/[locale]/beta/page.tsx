@@ -39,15 +39,17 @@ interface BetaDiff {
 
 // Display order + labels + the stable route each type's pages live under.
 const TYPES: { key: string; label: string; route: string | null }[] = [
+  { key: "characters", label: "Characters", route: "characters" },
+  { key: "acts", label: "Acts", route: "acts" },
   { key: "cards", label: "Cards", route: "cards" },
   { key: "relics", label: "Relics", route: "relics" },
   { key: "potions", label: "Potions", route: "potions" },
   { key: "enchantments", label: "Enchantments", route: "enchantments" },
   { key: "powers", label: "Powers", route: "powers" },
   { key: "monsters", label: "Monsters", route: "monsters" },
-  { key: "encounters", label: "Encounters", route: null },
+  { key: "encounters", label: "Encounters", route: "encounters" },
   { key: "events", label: "Events", route: "events" },
-  { key: "keywords", label: "Keywords", route: null },
+  { key: "keywords", label: "Keywords", route: "keywords" },
   { key: "orbs", label: "Orbs", route: "orbs" },
 ];
 
@@ -119,7 +121,7 @@ export default async function BetaLandingPage({
       added: td.added.map((id): DiffEntry => ({
         id,
         name: betaNames.get(id) ?? prettify(id),
-        href: route ? `/beta/${route}/${id.toLowerCase()}` : null,
+        href: route ? `/${route}/${id.toLowerCase()}` : null,
       })),
       changed: Object.entries(td.changed).map(([id, fields]): DiffEntry => ({
         id,

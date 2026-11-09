@@ -30,6 +30,8 @@ _ENTITY_LOADERS: dict[str, Callable[..., list[dict]]] = {
     "keywords": data_service.load_keywords,
     "monsters": data_service.load_monsters,
     "orbs": data_service.load_orbs,
+    "characters": data_service.load_characters,
+    "acts": data_service.load_acts,
 }
 
 # Presentation/ordering keys that change without any gameplay difference.

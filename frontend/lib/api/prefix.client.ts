@@ -3,10 +3,11 @@ import { useContext } from "react";
 import { ApiConfigContext } from "@/app/contexts/api/ApiConfigContext";
 
 /** "beta" when the current path sits in the beta section
- *  (/beta/... or /<lang>/beta/...), else "stable". */
+ *  (/beta/... or /<lang>/beta/...) or the page shows a beta-only entity on
+ *  its main URL, else "stable". */
 export function useChannel(beta?: boolean): "beta" | "stable" {
   const apiConfig = useContext(ApiConfigContext);
-  return (beta ?? apiConfig.beta) ? "beta" : "stable";
+  return (beta ?? (apiConfig.beta || apiConfig.betaOnly)) ? "beta" : "stable";
 }
 
 /**

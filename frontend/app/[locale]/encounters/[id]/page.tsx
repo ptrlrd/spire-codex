@@ -7,7 +7,8 @@ import { clipMetaDescription, buildPageMetadata } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { fetchEncounterStats } from "@/lib/encounter-stats";
 
 const API_INTERNAL =
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/encounters/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -43,6 +44,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: encounter.name,
       entityType: t("Encounter"),
       description: clipMetaDescription(
@@ -71,11 +73,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let encounter = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/encounters/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       encounter = await res.json();
       const desc = encounter.monsters?.length
         ? `${encounter.name} is a ${encounter.room_type} encounter featuring ${encounter.monsters.map((m: { name: string }) => m.name).join(", ")}.`
@@ -127,10 +131,12 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <EncounterDetail
-        initialEncounter={encounter}
-        encounterStat={encounterStat}
-      />
+      <BetaOnlyScope version={betaVersion}>
+        <EncounterDetail
+          initialEncounter={encounter}
+          encounterStat={encounterStat}
+        />
+      </BetaOnlyScope>
     </>
   );
 }

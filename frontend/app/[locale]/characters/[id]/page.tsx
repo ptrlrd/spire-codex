@@ -11,7 +11,8 @@ import {
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 
 import { imageUrl } from "@/lib/image-url";
@@ -31,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/characters/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/characters/${id}${langQuery(locale)}`,
     );
     if (!res.ok)
@@ -49,6 +50,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: char.name,
       entityType: t("Character"),
       description: clipMetaDescription(
@@ -80,11 +82,13 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let char = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/characters/${id}${langQuery(locale)}`,
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       char = await res.json();
       const desc = stripTags(char.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -139,7 +143,9 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <CharacterDetail initialCharacter={char} />
+      <BetaOnlyScope version={betaVersion}>
+        <CharacterDetail initialCharacter={char} />
+      </BetaOnlyScope>
     </>
   );
 }

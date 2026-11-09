@@ -22,7 +22,8 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
-import { fetchEntityRes } from "@/lib/entity-fetch";
+import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
+import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { cardOgImages } from "@/lib/image-url";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
 import {
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getT(locale);
   const path = `/cards/${id}`;
   try {
-    const res = await fetch(
+    const res = await fetchEntityRes(
       `${API_INTERNAL}/api/cards/${id}${langQuery(locale)}`,
       {
         next: { revalidate: 3600 },
@@ -85,6 +86,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return buildPageMetadata({
       locale,
       path,
+      noIndex: betaOnlyVersion(res) !== null,
       title: card.name,
       entityType: t("Card"),
       entityQualifier: entityQualifier({
@@ -122,6 +124,7 @@ export default async function Page({ params }: Props) {
   let jsonLd = null;
   let card = null;
   let apiUnreachable = false;
+  let betaVersion: string | null = null;
   try {
     const res = await fetchEntityRes(
       `${API_INTERNAL}/api/cards/${id}${langQuery(locale)}`,
@@ -130,6 +133,7 @@ export default async function Page({ params }: Props) {
       },
     );
     if (res.ok) {
+      betaVersion = betaOnlyVersion(res);
       card = await res.json();
       const desc = stripTags(card.description || "");
       const detailJsonLd = buildDetailPageJsonLd({
@@ -220,37 +224,39 @@ export default async function Page({ params }: Props) {
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
-      <Suspense fallback={null}>
-        <CardDetail
-          initialCard={card}
-          initialEnchantments={enchantmentsForCard(id)}
-          initialStats={initialStats}
-          initialPairings={initialPairings}
-          initialRecs={initialRecs}
-          initialRelated={initialRelated}
-          summary={summary}
-          initialCatalogs={{
-            keywords,
-            powers: mentionedIn(powers, card).map(
-              ({ id, name, description, type, image_url }) => ({
-                id,
-                name,
-                description,
-                type,
-                image_url,
-              }),
-            ),
-            glossary: mentionedIn(glossary, card),
-            orbs: mentionedIn(orbs, card),
-            spawnedCards,
-          }}
-          initialEntityLinks={entityNameLinks(
-            mentionedIn(cards, card),
-            "cards",
-            card.id,
-          )}
-        />
-      </Suspense>
+      <BetaOnlyScope version={betaVersion}>
+        <Suspense fallback={null}>
+          <CardDetail
+            initialCard={card}
+            initialEnchantments={enchantmentsForCard(id)}
+            initialStats={initialStats}
+            initialPairings={initialPairings}
+            initialRecs={initialRecs}
+            initialRelated={initialRelated}
+            summary={summary}
+            initialCatalogs={{
+              keywords,
+              powers: mentionedIn(powers, card).map(
+                ({ id, name, description, type, image_url }) => ({
+                  id,
+                  name,
+                  description,
+                  type,
+                  image_url,
+                }),
+              ),
+              glossary: mentionedIn(glossary, card),
+              orbs: mentionedIn(orbs, card),
+              spawnedCards,
+            }}
+            initialEntityLinks={entityNameLinks(
+              mentionedIn(cards, card),
+              "cards",
+              card.id,
+            )}
+          />
+        </Suspense>
+      </BetaOnlyScope>
     </>
   );
 }

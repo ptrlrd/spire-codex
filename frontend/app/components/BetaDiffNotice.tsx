@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useChannel } from "@/lib/api/prefix.client";
+import { useBetaPrefix, useChannel } from "@/lib/api/prefix.client";
 import { useT, type TFn } from "@/lib/i18n";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -55,6 +55,7 @@ export default function BetaDiffNotice({
 }) {
   const t = useT();
   const channel = useChannel();
+  const inBetaSection = useBetaPrefix() === "/beta";
   const pathname = usePathname();
   const [diff, setDiff] = useState<BetaDiff | null>(null);
 
@@ -71,6 +72,7 @@ export default function BetaDiffNotice({
   const changedFields = td?.changed[id];
   const isAdded = !!td?.added.includes(id);
   const isRemoved = !!td?.removed.includes(id);
+  if (isAdded && !inBetaSection) return null;
 
   const counterpartPath =
     channel === "beta"

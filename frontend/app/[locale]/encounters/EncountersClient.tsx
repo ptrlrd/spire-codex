@@ -150,11 +150,7 @@ function EncountersClientInner({
           <Link
             prefetch={false}
             key={enc.id}
-            href={
-              betaIds.has(enc.id)
-                ? `${bp}/beta/encounters/${enc.id.toLowerCase()}`
-                : `${bp}/encounters/${enc.id.toLowerCase()}`
-            }
+            href={`${bp}/encounters/${enc.id.toLowerCase()}`}
             className={`bg-[var(--bg-card)] rounded-lg border ${
               roomTypeColors[enc.room_type] || "border-[var(--border-subtle)]"
             } p-4 hover:bg-[var(--bg-card-hover)] transition-all block`}

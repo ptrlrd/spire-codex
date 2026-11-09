@@ -7,6 +7,8 @@ import type { Character, Relic, Card } from "@/lib/api/types";
 import { cachedFetch } from "@/lib/fetch-cache";
 import RichDescription from "@/app/components/RichDescription";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
+import { useBetaAdditions } from "@/lib/use-beta-additions";
+import BetaBadge from "@/app/components/BetaBadge";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
@@ -41,6 +43,12 @@ export default function CharactersClient({
   const [cardMap, setCardMap] = useState<Record<string, Card>>({});
   const [loading, setLoading] = useState(false);
   const initialRender = useRef(true);
+  const betaAdditions = useBetaAdditions<Character>("characters", lang);
+  const betaIds = new Set(betaAdditions.map((c) => c.id));
+  const allCharacters = [
+    ...characters.filter((c) => !betaIds.has(c.id)),
+    ...betaAdditions,
+  ];
 
   useEffect(() => {
     // Skip the first fetch if we have server data and lang is English.
@@ -96,7 +104,7 @@ export default function CharactersClient({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {characters.map((char) => {
+      {allCharacters.map((char) => {
         const style =
           colorStyles[char.color || ""] ||
           "border-[var(--border-subtle)] from-line-strong/20";
@@ -110,6 +118,7 @@ export default function CharactersClient({
               <h2 className="text-2xl font-bold text-[var(--text-primary)]">
                 {char.name}
               </h2>
+              {betaIds.has(char.id) && <BetaBadge />}
               <img
                 src={imageUrl(
                   `/static/images/characters/character_icon_${char.id.toLowerCase()}.webp`,
