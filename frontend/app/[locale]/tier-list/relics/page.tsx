@@ -16,7 +16,7 @@ import {
   defaultBracket,
 } from "@/lib/content-brackets";
 import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
-import { rankWinRateTiers } from "@/lib/pool-tiers";
+import { gradePool } from "@/lib/pool-tiers";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import {
@@ -49,8 +49,6 @@ interface ScoresMap {
     picks?: number | null;
   };
 }
-
-const MIN_POOL_PICKS = 200;
 
 const POOL_FILTERS = [
   { value: "", label: "All relics" },
@@ -135,28 +133,6 @@ function parseAct(raw?: string): string {
 function parseAncient(raw?: string): string {
   const v = (raw ?? "").toLowerCase();
   return ANCIENT_FILTERS.some((a) => a.value && a.value === v) ? v : "";
-}
-
-// Same cutoffs as TierList's TIERS bands.
-function applyWinRateTiers(entities: TierEntity[], scores: ScoresMap): boolean {
-  const tiers = rankWinRateTiers(
-    entities.map((e) => e.id),
-    new Map(
-      entities.map((e) => {
-        const stat = scores[e.id.toUpperCase()];
-        const rated = (stat?.picks ?? 0) >= MIN_POOL_PICKS;
-        return [e.id, rated ? stat?.win_rate : null];
-      }),
-    ),
-  );
-  if (!tiers.size) return false;
-  for (const e of entities) {
-    const graded = tiers.get(e.id);
-    e.tier = graded?.tier ?? null;
-    e.value = graded?.value ?? null;
-    if (!graded) e.score = null;
-  }
-  return true;
 }
 
 interface PageProps {
@@ -268,8 +244,7 @@ export default async function RelicsTierListPage({
   const param = bracketParam(bracket);
   const { relics, scores } = await fetchData(locale, pool, act, param, ancient);
 
-  const entities: TierEntity[] = relics
-    .filter((r) => !rarity || (r.rarity_key ?? "").toLowerCase() === rarity)
+  const graded: TierEntity[] = relics
     // Act views rank only relics actually picked up in that act; the rest
     // would all pile into an Unrated row, so drop them instead.
     .filter((r) => !act || scores[r.id.toUpperCase()] !== undefined)
@@ -280,9 +255,16 @@ export default async function RelicsTierListPage({
       score: scores[r.id.toUpperCase()]?.score ?? null,
     }));
 
-  // Ancient views band tiers relative to the pool (tiles keep the absolute
-  // score); skipped when the pool's spread is too flat to mean anything.
-  const poolTiers = !!ancient && applyWinRateTiers(entities, scores);
+  // Ancient views grade the whole offer pool by win rate before any display
+  // filter narrows it, so a rarity pick never reshuffles the letters.
+  const poolTiers = !!ancient;
+  if (poolTiers) gradePool(graded, scores);
+  const rarityOf = new Map(
+    relics.map((r) => [r.id, (r.rarity_key ?? "").toLowerCase()]),
+  );
+  const entities = graded.filter(
+    (e) => !rarity || rarityOf.get(e.id) === rarity,
+  );
 
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
@@ -294,12 +276,16 @@ export default async function RelicsTierListPage({
   );
   const path = relicHref(pool, undefined, act, undefined, ancient);
 
-  // Top-30 by score for ItemList JSON-LD, gives Google a structured
-  // ranked list it can render as carousel-style rich results.
+  // Top-30 for ItemList JSON-LD, gives Google a structured ranked list it
+  // can render as carousel-style rich results.
   const rankValue = (e: TierEntity) => (poolTiers ? e.value : e.score);
   const rankedItems = [...entities]
     .filter((e) => rankValue(e) != null)
-    .sort((a, b) => (rankValue(b) ?? 0) - (rankValue(a) ?? 0))
+    .sort(
+      (a, b) =>
+        (rankValue(b) ?? 0) - (rankValue(a) ?? 0) ||
+        a.name.localeCompare(b.name),
+    )
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
