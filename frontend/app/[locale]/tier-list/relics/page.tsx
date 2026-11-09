@@ -16,6 +16,7 @@ import {
   defaultBracket,
 } from "@/lib/content-brackets";
 import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
+import { rankWinRateTiers } from "@/lib/pool-tiers";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import {
@@ -42,8 +43,14 @@ interface ApiRelic {
 }
 
 interface ScoresMap {
-  [id: string]: { score: number | null };
+  [id: string]: {
+    score: number | null;
+    win_rate?: number | null;
+    picks?: number | null;
+  };
 }
+
+const MIN_POOL_PICKS = 200;
 
 const POOL_FILTERS = [
   { value: "", label: "All relics" },
@@ -131,23 +138,23 @@ function parseAncient(raw?: string): string {
 }
 
 // Same cutoffs as TierList's TIERS bands.
-function relativeTier(rel: number): "S" | "A" | "B" | "C" | "D" | "F" {
-  if (rel >= 90) return "S";
-  if (rel >= 78) return "A";
-  if (rel >= 65) return "B";
-  if (rel >= 50) return "C";
-  if (rel >= 35) return "D";
-  return "F";
-}
-
-function applyRelativeTiers(entities: TierEntity[]): boolean {
-  const scored = entities.filter((e) => e.score != null);
-  if (scored.length < 2) return false;
-  const min = Math.min(...scored.map((e) => e.score as number));
-  const max = Math.max(...scored.map((e) => e.score as number));
-  if (max - min < 10) return false;
-  for (const e of scored) {
-    e.tier = relativeTier((((e.score as number) - min) / (max - min)) * 100);
+function applyWinRateTiers(entities: TierEntity[], scores: ScoresMap): boolean {
+  const tiers = rankWinRateTiers(
+    entities.map((e) => e.id),
+    new Map(
+      entities.map((e) => {
+        const stat = scores[e.id.toUpperCase()];
+        const rated = (stat?.picks ?? 0) >= MIN_POOL_PICKS;
+        return [e.id, rated ? stat?.win_rate : null];
+      }),
+    ),
+  );
+  if (!tiers.size) return false;
+  for (const e of entities) {
+    const graded = tiers.get(e.id);
+    e.tier = graded?.tier ?? null;
+    e.value = graded?.value ?? null;
+    if (!graded) e.score = null;
   }
   return true;
 }
@@ -275,7 +282,7 @@ export default async function RelicsTierListPage({
 
   // Ancient views band tiers relative to the pool (tiles keep the absolute
   // score); skipped when the pool's spread is too flat to mean anything.
-  const relativeTiers = !!ancient && applyRelativeTiers(entities);
+  const poolTiers = !!ancient && applyWinRateTiers(entities, scores);
 
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
@@ -289,9 +296,10 @@ export default async function RelicsTierListPage({
 
   // Top-30 by score for ItemList JSON-LD, gives Google a structured
   // ranked list it can render as carousel-style rich results.
+  const rankValue = (e: TierEntity) => (poolTiers ? e.value : e.score);
   const rankedItems = [...entities]
-    .filter((e) => e.score != null)
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .filter((e) => rankValue(e) != null)
+    .sort((a, b) => (rankValue(b) ?? 0) - (rankValue(a) ?? 0))
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
@@ -328,10 +336,10 @@ export default async function RelicsTierListPage({
         </span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {relativeTiers ? (
+        {poolTiers ? (
           <>
             {t(
-              "Graded within {ancient}'s pool: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, so relative placement answers the actual decision. Tiles still show the absolute Codex Score. Click any relic for full stats.",
+              "Graded within {ancient}'s pool by win rate when chosen: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, and Codex Score does not apply to forced early picks, so tiles show each relic's win rate. Click any relic for full stats.",
               { ancient: ancientLabel ?? "" },
             )}{" "}
             <Link
@@ -493,7 +501,16 @@ export default async function RelicsTierListPage({
         modeComposes
       />
 
-      <TierList route="relics" entities={entities} />
+      {poolTiers ? (
+        <TierList
+          route="relics"
+          entities={entities}
+          valueLabel="Win rate"
+          valueSuffix="%"
+        />
+      ) : (
+        <TierList route="relics" entities={entities} />
+      )}
     </div>
   );
 }

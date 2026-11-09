@@ -93,6 +93,8 @@ interface TierListProps {
   showUnrated?: boolean;
   /** Label for the per-tile number in the hover title (e.g. "Score", "Elo"). */
   valueLabel?: string;
+  /** Appended to the tile value, e.g. "%" when the value is a win rate. */
+  valueSuffix?: string;
 }
 
 /**
@@ -107,6 +109,7 @@ export default async function TierList({
   entities,
   showUnrated = true,
   valueLabel = "Score",
+  valueSuffix = "",
 }: TierListProps) {
   const t = await getT();
   const lang = await getGameLocale();
@@ -194,7 +197,7 @@ export default async function TierList({
                   href={`/cards/${ent.id.toLowerCase()}`}
                   title={
                     tileValue(ent) != null
-                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})`
+                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)}${valueSuffix})`
                       : ent.name
                   }
                   className="group relative flex flex-col items-center gap-0.5 w-[130px] sm:w-[150px] hover:scale-[1.04] transition-transform"
@@ -208,6 +211,7 @@ export default async function TierList({
                   {tileValue(ent) != null && (
                     <span className="text-[9px] font-mono tabular-nums text-[var(--text-muted)]">
                       {tileValue(ent)}
+                      {valueSuffix}
                     </span>
                   )}
                 </Link>
@@ -218,7 +222,7 @@ export default async function TierList({
                   href={`/${route}/${ent.id.toLowerCase()}`}
                   title={
                     tileValue(ent) != null
-                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)})`
+                      ? `${ent.name} (${t(valueLabel)} ${tileValue(ent)}${valueSuffix})`
                       : ent.name
                   }
                   className="group relative flex flex-col items-center gap-1 w-16 sm:w-20 p-1.5 rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] hover:border-[var(--accent-gold)]/50 transition-colors"
@@ -242,6 +246,7 @@ export default async function TierList({
                   {tileValue(ent) != null && (
                     <span className="text-[9px] font-mono tabular-nums text-[var(--text-muted)]">
                       {tileValue(ent)}
+                      {valueSuffix}
                     </span>
                   )}
                 </Link>
