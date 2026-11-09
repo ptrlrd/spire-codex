@@ -16,6 +16,7 @@ import {
   defaultBracket,
 } from "@/lib/content-brackets";
 import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
+import { gradePool } from "@/lib/pool-tiers";
 import { getT } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
 import {
@@ -42,7 +43,11 @@ interface ApiRelic {
 }
 
 interface ScoresMap {
-  [id: string]: { score: number | null };
+  [id: string]: {
+    score: number | null;
+    win_rate?: number | null;
+    picks?: number | null;
+  };
 }
 
 const POOL_FILTERS = [
@@ -128,28 +133,6 @@ function parseAct(raw?: string): string {
 function parseAncient(raw?: string): string {
   const v = (raw ?? "").toLowerCase();
   return ANCIENT_FILTERS.some((a) => a.value && a.value === v) ? v : "";
-}
-
-// Same cutoffs as TierList's TIERS bands.
-function relativeTier(rel: number): "S" | "A" | "B" | "C" | "D" | "F" {
-  if (rel >= 90) return "S";
-  if (rel >= 78) return "A";
-  if (rel >= 65) return "B";
-  if (rel >= 50) return "C";
-  if (rel >= 35) return "D";
-  return "F";
-}
-
-function applyRelativeTiers(entities: TierEntity[]): boolean {
-  const scored = entities.filter((e) => e.score != null);
-  if (scored.length < 2) return false;
-  const min = Math.min(...scored.map((e) => e.score as number));
-  const max = Math.max(...scored.map((e) => e.score as number));
-  if (max - min < 10) return false;
-  for (const e of scored) {
-    e.tier = relativeTier((((e.score as number) - min) / (max - min)) * 100);
-  }
-  return true;
 }
 
 interface PageProps {
@@ -261,8 +244,7 @@ export default async function RelicsTierListPage({
   const param = bracketParam(bracket);
   const { relics, scores } = await fetchData(locale, pool, act, param, ancient);
 
-  const entities: TierEntity[] = relics
-    .filter((r) => !rarity || (r.rarity_key ?? "").toLowerCase() === rarity)
+  const graded: TierEntity[] = relics
     // Act views rank only relics actually picked up in that act; the rest
     // would all pile into an Unrated row, so drop them instead.
     .filter((r) => !act || scores[r.id.toUpperCase()] !== undefined)
@@ -273,9 +255,16 @@ export default async function RelicsTierListPage({
       score: scores[r.id.toUpperCase()]?.score ?? null,
     }));
 
-  // Ancient views band tiers relative to the pool (tiles keep the absolute
-  // score); skipped when the pool's spread is too flat to mean anything.
-  const relativeTiers = !!ancient && applyRelativeTiers(entities);
+  // Ancient views grade the whole offer pool by win rate before any display
+  // filter narrows it, so a rarity pick never reshuffles the letters.
+  const poolTiers = !!ancient;
+  if (poolTiers) gradePool(graded, scores);
+  const rarityOf = new Map(
+    relics.map((r) => [r.id, (r.rarity_key ?? "").toLowerCase()]),
+  );
+  const entities = graded.filter(
+    (e) => !rarity || rarityOf.get(e.id) === rarity,
+  );
 
   const poolLabel = POOL_FILTERS.find((p) => p.value === pool)?.label;
   const ancientLabel = ANCIENT_FILTERS.find((a) => a.value === ancient)?.label;
@@ -287,11 +276,16 @@ export default async function RelicsTierListPage({
   );
   const path = relicHref(pool, undefined, act, undefined, ancient);
 
-  // Top-30 by score for ItemList JSON-LD, gives Google a structured
-  // ranked list it can render as carousel-style rich results.
+  // Top-30 for ItemList JSON-LD, gives Google a structured ranked list it
+  // can render as carousel-style rich results.
+  const rankValue = (e: TierEntity) => (poolTiers ? e.value : e.score);
   const rankedItems = [...entities]
-    .filter((e) => e.score != null)
-    .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+    .filter((e) => rankValue(e) != null)
+    .sort(
+      (a, b) =>
+        (rankValue(b) ?? 0) - (rankValue(a) ?? 0) ||
+        a.name.localeCompare(b.name),
+    )
     .slice(0, 30)
     .map((e) => ({
       name: e.name,
@@ -328,10 +322,10 @@ export default async function RelicsTierListPage({
         </span>
       </div>
       <p className="text-sm text-[var(--text-muted)] mb-6">
-        {relativeTiers ? (
+        {poolTiers ? (
           <>
             {t(
-              "Graded within {ancient}'s pool: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, so relative placement answers the actual decision. Tiles still show the absolute Codex Score. Click any relic for full stats.",
+              "Graded within {ancient}'s pool by win rate when chosen: S is the best of these offers and F the worst, relative to each other rather than the whole game. You always pick from exactly these options, and Codex Score does not apply to forced early picks, so tiles show each relic's win rate. Click any relic for full stats.",
               { ancient: ancientLabel ?? "" },
             )}{" "}
             <Link
@@ -493,7 +487,16 @@ export default async function RelicsTierListPage({
         modeComposes
       />
 
-      <TierList route="relics" entities={entities} />
+      {poolTiers ? (
+        <TierList
+          route="relics"
+          entities={entities}
+          valueLabel="Win rate"
+          valueSuffix="%"
+        />
+      ) : (
+        <TierList route="relics" entities={entities} />
+      )}
     </div>
   );
 }
