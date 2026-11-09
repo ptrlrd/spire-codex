@@ -64,15 +64,15 @@ export default function SiteSwitcher() {
       className="inline-flex h-9 items-center gap-1.5 rounded-lg border border-[var(--accent-gold)]/30 bg-[var(--accent-gold)]/15 px-3 text-xs font-semibold text-[var(--accent-gold)] transition-colors hover:bg-[var(--accent-gold)]/25"
     >
       <span aria-hidden>←</span>
-      {t("main")}
+      {t("Back to main")}
     </Link>
   ) : (
     <Link
       href="/beta"
       className="inline-flex h-9 items-center rounded-lg border border-success/30 bg-success/10 px-3 text-xs font-semibold text-success transition-colors hover:bg-success/20"
-      title={t("Everything new in beta")}
+      title={betaLabel}
     >
-      {betaLabel}
+      {t("View beta content")}
     </Link>
   );
 }
