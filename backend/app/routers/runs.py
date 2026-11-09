@@ -11,6 +11,7 @@ from typing import Literal
 from fastapi import APIRouter, Depends, HTTPException, Query, Request, Response
 from pymongo.errors import ExecutionTimeout
 from starlette.concurrency import run_in_threadpool
+from starlette.requests import ClientDisconnect
 from ..dependencies import get_lang, shared_limiter
 from ..models.schemas import ArchetypesResponse
 from ..services import rate_limit_config
@@ -163,7 +164,13 @@ async def submit_run_endpoint(
             status_code=403,
             detail="Run submissions are disabled on the beta site. Submit to spire-codex.com instead.",
         )
-    body = await request.body()
+    try:
+        body = await request.body()
+    except ClientDisconnect:
+        run_errors.labels(reason="disconnect").inc()
+        raise HTTPException(
+            status_code=400, detail="Upload ended before the body arrived"
+        )
     if len(body) > MAX_BODY_SIZE:
         run_errors.labels(reason="too_large").inc()
         raise HTTPException(
