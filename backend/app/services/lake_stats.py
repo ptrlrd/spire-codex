@@ -2348,12 +2348,26 @@ def entity_bracket_fold(entity_type: str, bracket: str) -> dict | None:
 def entity_character_fold(entity_type: str, bracket: str) -> dict | None:
     """{eid: {CHARACTER: [picks, wins, n_exp, wins_exp, exp_sum]}} folded
     from the cube's character axis for one bracket, cached like
-    entity_bracket_fold. None until a cube with the axis is published or
-    for unfoldable brackets."""
+    entity_bracket_fold. Official characters only. None until a cube with
+    the axis is published or for unfoldable brackets."""
     return _cached_fold(
         (f"char:{entity_type}", bracket),
-        lambda: _entity_character_fold_uncached(entity_type, bracket),
+        lambda: _official_characters_only(
+            _entity_character_fold_uncached(entity_type, bracket)
+        ),
     )
+
+
+def _official_characters_only(fold: dict | None) -> dict | None:
+    from .run_entity_stats import _official_character_ids
+
+    official = _official_character_ids()
+    if not fold or not official:
+        return fold
+    return {
+        eid: {ch: v for ch, v in chars.items() if ch.upper() in official}
+        for eid, chars in fold.items()
+    }
 
 
 def _entity_character_fold_uncached(entity_type: str, bracket: str) -> dict | None:

@@ -1585,6 +1585,29 @@ def _build_match(
     return m
 
 
+_STATS_ID_FIELDS = (
+    ("top_cards", "card_id", "cards"),
+    ("pick_rates", "card_id", "cards"),
+    ("top_relics", "relic_id", "relics"),
+    ("top_potions", "potion_id", "potions"),
+)
+
+
+def scrub_modded_stats(stats: dict) -> dict:
+    """Drop rows for ids outside the official catalogs from a /api/runs/stats
+    payload. An empty catalog set (unreadable) leaves that list alone."""
+    from .run_entity_stats import _official_entity_ids
+
+    out = dict(stats)
+    for field, key, etype in _STATS_ID_FIELDS:
+        rows = out.get(field)
+        official = _official_entity_ids(etype)
+        if not rows or not official:
+            continue
+        out[field] = [r for r in rows if str(r.get(key, "")).upper() in official]
+    return out
+
+
 def _item_stats_pipeline(field: str) -> list[dict]:
     """Per-item stats pipeline: card copies (overall, in wins, in
     losses), distinct runs, distinct winning runs — all in one pass,
@@ -1864,99 +1887,101 @@ def get_stats(
         )
     )
 
-    return {
-        "total_runs": total,
-        "total_wins": wins,
-        "total_abandoned": abandoned,
-        "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
-        "filters": {
-            "character": character,
-            "win": win,
-            "ascension": ascension,
-            "game_mode": game_mode,
-            "players": players,
-            "username": username,
-        },
-        "characters": [
-            {
-                "character": r["_id"],
-                "total": r["total"],
-                "wins": r["wins"],
-                "win_rate": round(r["wins"] / r["total"] * 100, 1)
-                if r["total"] > 0
-                else 0,
-            }
-            for r in char_stats
-            if r["_id"] in OFFICIAL_CHARACTERS
-        ],
-        "ascensions": [
-            {
-                "level": r["_id"],
-                "total": r["total"],
-                "wins": r["wins"],
-                "win_rate": round(r["wins"] / r["total"] * 100, 1)
-                if r["total"] > 0
-                else 0,
-            }
-            for r in asc_stats
-        ],
-        "top_cards": [
-            {
-                "card_id": r["_id"],
-                "count": r["count"],
-                "in_wins": r.get("in_wins", 0),
-                "in_losses": r.get("in_losses", 0),
-                "win_runs": r.get("win_runs", 0),
-                "total_runs_with": r.get("total_runs_with", 0),
-            }
-            for r in cards
-        ],
-        "pick_rates": [
-            {
-                "card_id": r["_id"],
-                "offered": r["offered"],
-                "picked": r["picked"],
-                "pick_rate": round(r["picked"] / r["offered"] * 100, 1)
-                if r["offered"] > 0
-                else 0,
-            }
-            for r in pick_rates
-        ],
-        "top_relics": [
-            {
-                "relic_id": r["_id"],
-                "count": r["count"],
-                "total_runs_with": r.get("total_runs_with", 0),
-                "win_runs": r.get("win_runs", 0),
-            }
-            for r in relics
-        ],
-        # Frontend (StatsClient.tsx) and the SQLite path use the keys
-        # `deadliest` (entries shaped as {encounter, count}) and
-        # `top_potions` (entries with a precomputed pick_rate). The
-        # initial Mongo port introduced `deaths` + `killed_by` and
-        # `potion_stats` without pick_rate; the field-name mismatch
-        # silently rendered "0 potions" and a blank deadliest panel.
-        "deadliest": [{"encounter": r["_id"], "count": r["count"]} for r in deaths],
-        "top_potions": [
-            # Merge per-potion picked/used telemetry with the
-            # owned-in-deck stats so the response includes both views.
-            {
-                "potion_id": r["_id"],
-                "offered": r["offered"],
-                "picked": r["picked"],
-                "used": r["used"],
-                "total_runs_with": potion_owned.get(r["_id"], {}).get(
-                    "total_runs_with", 0
-                ),
-                "win_runs": potion_owned.get(r["_id"], {}).get("win_runs", 0),
-                "pick_rate": round(r["picked"] / r["offered"] * 100, 1)
-                if r["offered"] > 0
-                else 0,
-            }
-            for r in potion_pu
-        ],
-    }
+    return scrub_modded_stats(
+        {
+            "total_runs": total,
+            "total_wins": wins,
+            "total_abandoned": abandoned,
+            "win_rate": round(wins / total * 100, 1) if total > 0 else 0,
+            "filters": {
+                "character": character,
+                "win": win,
+                "ascension": ascension,
+                "game_mode": game_mode,
+                "players": players,
+                "username": username,
+            },
+            "characters": [
+                {
+                    "character": r["_id"],
+                    "total": r["total"],
+                    "wins": r["wins"],
+                    "win_rate": round(r["wins"] / r["total"] * 100, 1)
+                    if r["total"] > 0
+                    else 0,
+                }
+                for r in char_stats
+                if r["_id"] in OFFICIAL_CHARACTERS
+            ],
+            "ascensions": [
+                {
+                    "level": r["_id"],
+                    "total": r["total"],
+                    "wins": r["wins"],
+                    "win_rate": round(r["wins"] / r["total"] * 100, 1)
+                    if r["total"] > 0
+                    else 0,
+                }
+                for r in asc_stats
+            ],
+            "top_cards": [
+                {
+                    "card_id": r["_id"],
+                    "count": r["count"],
+                    "in_wins": r.get("in_wins", 0),
+                    "in_losses": r.get("in_losses", 0),
+                    "win_runs": r.get("win_runs", 0),
+                    "total_runs_with": r.get("total_runs_with", 0),
+                }
+                for r in cards
+            ],
+            "pick_rates": [
+                {
+                    "card_id": r["_id"],
+                    "offered": r["offered"],
+                    "picked": r["picked"],
+                    "pick_rate": round(r["picked"] / r["offered"] * 100, 1)
+                    if r["offered"] > 0
+                    else 0,
+                }
+                for r in pick_rates
+            ],
+            "top_relics": [
+                {
+                    "relic_id": r["_id"],
+                    "count": r["count"],
+                    "total_runs_with": r.get("total_runs_with", 0),
+                    "win_runs": r.get("win_runs", 0),
+                }
+                for r in relics
+            ],
+            # Frontend (StatsClient.tsx) and the SQLite path use the keys
+            # `deadliest` (entries shaped as {encounter, count}) and
+            # `top_potions` (entries with a precomputed pick_rate). The
+            # initial Mongo port introduced `deaths` + `killed_by` and
+            # `potion_stats` without pick_rate; the field-name mismatch
+            # silently rendered "0 potions" and a blank deadliest panel.
+            "deadliest": [{"encounter": r["_id"], "count": r["count"]} for r in deaths],
+            "top_potions": [
+                # Merge per-potion picked/used telemetry with the
+                # owned-in-deck stats so the response includes both views.
+                {
+                    "potion_id": r["_id"],
+                    "offered": r["offered"],
+                    "picked": r["picked"],
+                    "used": r["used"],
+                    "total_runs_with": potion_owned.get(r["_id"], {}).get(
+                        "total_runs_with", 0
+                    ),
+                    "win_runs": potion_owned.get(r["_id"], {}).get("win_runs", 0),
+                    "pick_rate": round(r["picked"] / r["offered"] * 100, 1)
+                    if r["offered"] > 0
+                    else 0,
+                }
+                for r in potion_pu
+            ],
+        }
+    )
 
 
 # ── Materialized stats summary ────────────────────────────────────────────
@@ -2088,7 +2113,7 @@ def read_stats_summary(
         # Strip the wrapper fields before returning to the API caller.
         doc.pop("_id", None)
         doc.pop("updated_at", None)
-        return doc
+        return scrub_modded_stats(doc)
     except Exception:
         return None
 
