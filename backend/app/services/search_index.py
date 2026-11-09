@@ -22,7 +22,7 @@ from collections.abc import Callable, Iterator
 from pathlib import Path
 from typing import Any
 
-from . import data_service, mechanics_pages
+from . import data_service, mechanics_pages, published_guides
 
 logger = logging.getLogger("spire-codex")
 
@@ -316,7 +316,7 @@ def _entity_docs(lang: str) -> Iterator[dict[str, Any]]:
 def _shared_docs() -> Iterator[dict[str, Any]]:
     try:
         sections = mechanics_pages.list_sections()
-        guides = data_service.load_guides()
+        guides = published_guides.all_guides()
         news = data_service.load_news_index()
         pages = _site_pages_strict()
     except BuildError:

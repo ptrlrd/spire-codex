@@ -24,7 +24,13 @@ from fastapi import APIRouter, Depends, Query, Request, Response
 from pydantic import BaseModel, Field
 
 from ..dependencies import client_ip, get_lang
-from ..services import data_service, mechanics_pages, search_analytics, search_index
+from ..services import (
+    data_service,
+    mechanics_pages,
+    published_guides,
+    search_analytics,
+    search_index,
+)
 
 logger = logging.getLogger("spire-codex")
 
@@ -236,7 +242,7 @@ def _legacy_categories(query: str, lang: str) -> list[dict[str, Any]]:
 
     # Community guides.
     try:
-        guides = data_service.load_guides()
+        guides = published_guides.all_guides()
     except Exception:
         guides = []
     add(

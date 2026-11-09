@@ -2,7 +2,6 @@
 
 import json as _json
 import os
-import re
 from datetime import date
 
 import httpx
@@ -12,7 +11,18 @@ from pydantic import BaseModel
 from ..dependencies import shared_limiter
 from ..services import rate_limit_config
 from ..models.schemas import GuideSummary, Guide
-from ..services.data_service import load_guides
+from ..services.published_guides import (
+    MAX_CONTENT,
+    MAX_SUMMARY,
+    MAX_TITLE,
+    VALID_CATEGORIES,
+    VALID_CHARACTERS,
+    VALID_DIFFICULTIES,
+    all_guides,
+    sanitize as _sanitize,
+    slugify,
+    validate_url as _validate_url,
+)
 from ..metrics import guide_submissions
 
 router = APIRouter(prefix="/api/guides", tags=["Guides"])
@@ -29,7 +39,7 @@ def get_guides(
     tag: str | None = None,
     search: str | None = None,
 ):
-    guides = load_guides()
+    guides = all_guides()
     if category:
         guides = [g for g in guides if g["category"].lower() == category.lower()]
     if difficulty:
@@ -55,7 +65,7 @@ def get_guides(
 
 @router.get("/{slug}", response_model=Guide)
 def get_guide(slug: str):
-    guides = load_guides()
+    guides = all_guides()
     for guide in guides:
         if guide["slug"] == slug or guide["id"] == slug:
             return guide
@@ -76,43 +86,6 @@ class GuideSubmission(BaseModel):
     bluesky: str | None = None
     twitter: str | None = None
     twitch: str | None = None
-
-
-VALID_CATEGORIES = {
-    "general",
-    "character",
-    "strategy",
-    "mechanic",
-    "boss",
-    "event",
-    "advanced",
-}
-VALID_DIFFICULTIES = {"beginner", "intermediate", "advanced"}
-VALID_CHARACTERS = {"ironclad", "silent", "defect", "necrobinder", "regent", ""}
-MAX_TITLE = 200
-MAX_SUMMARY = 500
-MAX_CONTENT = 50_000
-MAX_FIELD = 200
-
-
-def _sanitize(text: str, max_len: int = MAX_FIELD) -> str:
-    """Strip HTML tags and control chars, truncate."""
-    text = re.sub(r"<[^>]+>", "", text)  # strip HTML tags
-    text = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", text)  # strip control chars
-    return text.strip()[:max_len]
-
-
-def _validate_url(url: str | None) -> str | None:
-    if not url or not url.strip():
-        return None
-    url = url.strip()[:500]
-    # Allow only http/https URLs or plain usernames (no javascript:, data:, etc.)
-    if url.startswith(("http://", "https://")):
-        return url
-    # Treat as username — alphanumeric, dots, underscores, hyphens only
-    if re.match(r"^[\w.\-]+$", url):
-        return url
-    return None
 
 
 @router.post("")
@@ -154,7 +127,7 @@ async def submit_guide(request: Request, body: GuideSubmission):
     twitch_val = _validate_url(body.twitch)
 
     socials = [s for s in [website, bluesky_val, twitter_val, twitch_val] if s]
-    slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
+    slug = slugify(title)
 
     # Build frontmatter for the .md file attachment
     fm_lines = [

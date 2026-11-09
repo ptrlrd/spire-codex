@@ -19,7 +19,8 @@ import threading
 import time
 from datetime import datetime, timedelta, timezone
 
-from fastapi import APIRouter, Depends, Request
+from fastapi import APIRouter, Depends, HTTPException, Request
+from pydantic import BaseModel
 
 from ..services import cache as app_cache
 from ..services.auth_jwt import require_admin
@@ -821,8 +822,7 @@ def feedback_resolve(request: Request, item_id: str):
 
 @router.get("/guides/pending")
 def guides_pending(request: Request, limit: int = 50):
-    """Guide submissions awaiting review. Publishing stays a git operation
-    (guides ship in data/guides.json); dismiss clears handled entries."""
+    """Guide submissions awaiting review."""
     _audit(request)
     from ..services import admin_db
 
@@ -835,6 +835,64 @@ def guides_dismiss(request: Request, sub_id: str):
     from ..services import admin_db
 
     return {"dismissed": admin_db.dismiss_guide_submission(sub_id)}
+
+
+class GuideEdit(BaseModel):
+    title: str | None = None
+    slug: str | None = None
+    author: str | None = None
+    category: str | None = None
+    difficulty: str | None = None
+    character: str | None = None
+    tags: list[str] | None = None
+    summary: str | None = None
+    content: str | None = None
+    website: str | None = None
+    bluesky: str | None = None
+    twitter: str | None = None
+    twitch: str | None = None
+
+
+@router.post("/guides/submissions/{sub_id}/publish")
+def guides_publish(request: Request, sub_id: str, body: GuideEdit):
+    """Publish a queued submission with the admin's edits applied. It is
+    served next to the repo guides without a commit."""
+    _audit(request)
+    from ..services import published_guides
+
+    try:
+        guide = published_guides.publish_submission(sub_id, body.model_dump())
+    except published_guides.GuideError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    return {"guide": guide}
+
+
+@router.get("/guides/published")
+def guides_published(request: Request):
+    _audit(request)
+    from ..services import published_guides
+
+    return {"items": published_guides.list_published(fresh=True)}
+
+
+@router.put("/guides/published/{slug}")
+def guides_update(request: Request, slug: str, body: GuideEdit):
+    _audit(request)
+    from ..services import published_guides
+
+    try:
+        guide = published_guides.update_published(slug, body.model_dump())
+    except published_guides.GuideError as exc:
+        raise HTTPException(status_code=422, detail=str(exc))
+    return {"guide": guide}
+
+
+@router.post("/guides/published/{slug}/unpublish")
+def guides_unpublish(request: Request, slug: str):
+    _audit(request)
+    from ..services import published_guides
+
+    return {"unpublished": published_guides.unpublish(slug)}
 
 
 @router.post("/cf/purge")
