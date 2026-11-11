@@ -1,10 +1,16 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Link } from "@/i18n/navigation";
 import { cachedFetch } from "@/lib/fetch-cache";
-import { useBetaPrefix } from "@/lib/api/prefix.client";
+import {
+  HISTORY_COLLAPSED_COUNT,
+  fieldLabel,
+  visibleChanges,
+} from "@/lib/history-format";
+import HistoryChangeRow, { HistoryToggle } from "./HistoryChangeRow";
+import { changelogPath, versionTag } from "@/lib/changelog";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -78,7 +84,7 @@ function tryParsePythonish(s: string): unknown {
 
 function ChangeValue({ raw, color }: { raw: string; color: string }) {
   if (raw === "none" || raw === "null" || !raw) {
-    return <span className={color}>{raw || "—"}</span>;
+    return <span className={color}>{raw || "none"}</span>;
   }
   const parsed = tryParsePythonish(raw);
   if (parsed === raw || typeof parsed === "string") {
@@ -95,13 +101,27 @@ function ChangeValue({ raw, color }: { raw: string; color: string }) {
   );
 }
 
+function changelogHref(version: string): string {
+  const tag = versionTag(version);
+  return tag ? changelogPath(tag) : "/changelog";
+}
+
 export default function EntityHistory({
   entityType,
   entityId,
 }: EntityHistoryProps) {
   const t = useT();
-  const bp = useBetaPrefix();
   const [history, setHistory] = useState<HistoryEntry[] | null>(null);
+  const [expanded, setExpanded] = useState(false);
+  const entries = useMemo(
+    () =>
+      (history ?? [])
+        .map((entry) => ({ ...entry, changes: visibleChanges(entry.changes) }))
+        .filter(
+          (entry) => entry.action !== "changed" || entry.changes.length > 0,
+        ),
+    [history],
+  );
 
   // Fetch on mount and render the full timeline directly (no drawer) so the
   // per-version history is in the DOM for crawlers rather than hidden behind
@@ -115,14 +135,19 @@ export default function EntityHistory({
   return (
     <section id="history">
       <h2>{t("Version history")}</h2>
-      {history && history.length > 0 ? (
+      {entries.length > 0 ? (
         <div className="relative ml-2">
           {/* Timeline line */}
           <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
 
           <div className="space-y-4">
-            {history.map((entry, i) => (
-              <div key={`${entry.version}-${i}`} className="relative pl-6">
+            {entries.map((entry, i) => (
+              <div
+                key={`${entry.version}-${i}`}
+                className={`relative pl-6 ${
+                  !expanded && i >= HISTORY_COLLAPSED_COUNT ? "hidden" : ""
+                }`}
+              >
                 {/* Timeline dot */}
                 <div
                   className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${dotColors[entry.action] || "bg-line-strong"}`}
@@ -131,7 +156,7 @@ export default function EntityHistory({
                 <div>
                   <div className="flex items-center gap-2 text-xs">
                     <Link
-                      href={`${bp}/changelog#${entry.version}`}
+                      href={changelogHref(entry.version)}
                       className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
                     >
                       v{entry.version}
@@ -153,59 +178,44 @@ export default function EntityHistory({
                       {entry.changes.map((change, j) => {
                         const oldStr = String(change.old ?? "");
                         const newStr = String(change.new ?? "");
-                        const isComplex =
-                          oldStr.length + newStr.length > 80 ||
-                          oldStr.startsWith("{") ||
-                          oldStr.startsWith("[") ||
-                          newStr.startsWith("{") ||
-                          newStr.startsWith("[");
-                        if (isComplex) {
+                        const isStructured =
+                          /^[{[]/.test(oldStr) || /^[{[]/.test(newStr);
+                        if (!isStructured) {
                           return (
-                            <div
+                            <HistoryChangeRow
                               key={`${change.field}-${j}`}
-                              className="text-xs text-[var(--text-muted)]"
-                            >
-                              <div className="text-[var(--text-secondary)] font-medium mb-1">
-                                {change.field}
-                              </div>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
-                                <div>
-                                  <div className="text-[10px] uppercase tracking-wider text-danger/70 mb-0.5">
-                                    {t("Before")}
-                                  </div>
-                                  <ChangeValue
-                                    raw={oldStr}
-                                    color="text-danger/80"
-                                  />
-                                </div>
-                                <div>
-                                  <div className="text-[10px] uppercase tracking-wider text-success/70 mb-0.5">
-                                    {t("After")}
-                                  </div>
-                                  <ChangeValue
-                                    raw={newStr}
-                                    color="text-success/80"
-                                  />
-                                </div>
-                              </div>
-                            </div>
+                              change={change}
+                            />
                           );
                         }
                         return (
                           <div
                             key={`${change.field}-${j}`}
-                            className="text-xs text-[var(--text-muted)] flex items-baseline gap-1.5 flex-wrap"
+                            className="text-xs text-[var(--text-muted)]"
                           >
-                            <span className="text-[var(--text-secondary)] font-medium">
-                              {change.field}
-                            </span>
-                            <span className="text-danger/70 line-through">
-                              {oldStr}
-                            </span>
-                            <span className="text-[var(--text-muted)]">
-                              &rarr;
-                            </span>
-                            <span className="text-success/70">{newStr}</span>
+                            <div className="text-[var(--text-secondary)] font-medium mb-1">
+                              {fieldLabel(change.field)}
+                            </div>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 ml-3">
+                              <div>
+                                <div className="text-[10px] uppercase tracking-wider text-danger/70 mb-0.5">
+                                  {t("Before")}
+                                </div>
+                                <ChangeValue
+                                  raw={oldStr}
+                                  color="text-danger/80"
+                                />
+                              </div>
+                              <div>
+                                <div className="text-[10px] uppercase tracking-wider text-success/70 mb-0.5">
+                                  {t("After")}
+                                </div>
+                                <ChangeValue
+                                  raw={newStr}
+                                  color="text-success/80"
+                                />
+                              </div>
+                            </div>
                           </div>
                         );
                       })}
@@ -215,8 +225,15 @@ export default function EntityHistory({
               </div>
             ))}
           </div>
+          {entries.length > HISTORY_COLLAPSED_COUNT && (
+            <HistoryToggle
+              total={entries.length}
+              expanded={expanded}
+              onToggle={() => setExpanded((v) => !v)}
+            />
+          )}
         </div>
-      ) : history && history.length === 0 ? (
+      ) : history ? (
         <p className="text-xs text-[var(--text-muted)] m-0">
           {t("No version history recorded for this entity.")}
         </p>
@@ -225,7 +242,7 @@ export default function EntityHistory({
       )}
 
       <Link
-        href={`${bp}/changelog`}
+        href="/changelog"
         className="mt-4 inline-block text-xs text-[var(--text-secondary)] hover:text-[var(--accent-gold)] transition-colors"
       >
         {t("View the full changelog")} &rarr;

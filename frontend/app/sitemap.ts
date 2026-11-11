@@ -185,7 +185,7 @@ const STATIC_PAGES = [
   { path: "/showcase", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/developers", priority: 0.5, changeFrequency: "monthly" as const },
   { path: "/images", priority: 0.5, changeFrequency: "monthly" as const },
-  { path: "/changelog", priority: 0.5, changeFrequency: "weekly" as const },
+  { path: "/changelog", priority: 0.8, changeFrequency: "weekly" as const },
   { path: "/about", priority: 0.4, changeFrequency: "monthly" as const },
   { path: "/mechanics", priority: 0.7, changeFrequency: "monthly" as const },
   { path: "/guides", priority: 0.7, changeFrequency: "weekly" as const },
@@ -404,6 +404,26 @@ async function scoresLastMod(): Promise<Date | undefined> {
   }
 }
 
+interface ChangelogRow {
+  tag: string;
+  date?: string;
+}
+
+function isChangelogRow(x: unknown): x is ChangelogRow {
+  return (
+    !!x &&
+    typeof x === "object" &&
+    typeof (x as { tag?: unknown }).tag === "string" &&
+    (x as { tag: string }).tag !== ""
+  );
+}
+
+function changelogDate(row: ChangelogRow): Date | undefined {
+  if (!row.date) return undefined;
+  const parsed = new Date(row.date);
+  return Number.isNaN(parsed.getTime()) ? undefined : parsed;
+}
+
 // Routes whose pages change with the game data and so carry the changelog
 // date; everything else (guides are edited on their own schedule) is undated.
 const GAME_DATA_PREFIXES = new Set(
@@ -499,6 +519,33 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  const [gamePatches, siteReleases] = await Promise.all([
+    fetchList("/api/changelogs?channel=beta", isChangelogRow),
+    fetchList("/api/changelogs", isChangelogRow),
+  ]);
+  const changelogEntries: MetadataRoute.Sitemap = [
+    ...gamePatches.flatMap((row) => [
+      {
+        url: `${SITE_URL}/changelog/${encodeURIComponent(row.tag)}`,
+        lastModified: changelogDate(row),
+        changeFrequency: "monthly" as const,
+        priority: 0.7,
+      },
+      ...SUPPORTED_LANGS.map((lang) => ({
+        url: `${SITE_URL}/${lang}/changelog/${encodeURIComponent(row.tag)}`,
+        lastModified: changelogDate(row),
+        changeFrequency: "monthly" as const,
+        priority: 0.4,
+      })),
+    ]),
+    ...siteReleases.map((row) => ({
+      url: `${SITE_URL}/changelog/${encodeURIComponent(row.tag)}`,
+      lastModified: changelogDate(row),
+      changeFrequency: "monthly" as const,
+      priority: 0.3,
+    })),
+  ];
+
   // News detail pages canonical-link back to Steam (see
   // news/[...slug]/page.tsx), and a sitemap must only list canonical URLs —
   // crawlers flag non-canonical entries. The /news list page stays; the
@@ -551,6 +598,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   return [
     ...staticEntries,
     ...mechanicsEntries,
+    ...changelogEntries,
     ...tierListVariants,
     ...browseEntries,
     ...langListEntries,

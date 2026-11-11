@@ -17,6 +17,7 @@ import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
+import { inCharacterOrder } from "@/lib/character-order";
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
 function cssVar(name: string): string {
@@ -242,17 +243,22 @@ export default function MonsterEncounterStats({
   const versionData = versionOrder.map((v) =>
     fatalPct(pick(series.versions[v], enc)),
   );
-  const chars = (current?.characters || []).filter((c) => c.total >= 20);
+  const chars = inCharacterOrder(
+    (current?.characters || []).filter((c) => c.total >= 20),
+    (c) => c.character,
+  );
   const charLabels = chars.map(
     (c) => c.character.charAt(0) + c.character.slice(1).toLowerCase(),
   );
-  const yMax =
+  const yPeak =
     Math.max(
       1,
       ...[...skillData, ...playerData, ...versionData].filter(
         (x): x is number => x !== null,
       ),
     ) * 1.3;
+  const yStep = yPeak <= 10 ? 1 : yPeak <= 50 ? 5 : 10;
+  const yMax = Math.min(100, Math.ceil(yPeak / yStep) * yStep);
 
   const tile = (label: string, value: string) => (
     <div className="rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-2">

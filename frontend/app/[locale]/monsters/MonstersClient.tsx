@@ -27,6 +27,19 @@ const typeBadge: Record<string, string> = {
   Boss: "bg-danger/10 text-danger",
 };
 
+function damageMoveName(
+  key: string,
+  moves: { id: string; name: string }[] | null | undefined,
+): string {
+  const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const move = (moves ?? []).find((m) => norm(m.id) === norm(key));
+  if (move) return move.name;
+  return key
+    .replace(/([a-z0-9])([A-Z])/g, "$1 $2")
+    .replace(/_/g, " ")
+    .trim();
+}
+
 const typeOptions = [
   { label: "Normal", value: "Normal" },
   { label: "Elite", value: "Elite" },
@@ -273,7 +286,7 @@ function MonstersClientInner({
                           key={name}
                           className="text-xs px-2 py-0.5 rounded bg-danger/10 text-danger border border-danger/30"
                         >
-                          {name}: {val.normal}
+                          {damageMoveName(name, monster.moves)}: {val.normal}
                           {val.ascension ? ` (A: ${val.ascension})` : ""}
                         </span>
                       ),

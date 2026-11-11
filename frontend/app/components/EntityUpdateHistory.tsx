@@ -1,9 +1,18 @@
 "use client";
 
 import { useT } from "@/lib/i18n";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
+import {
+  HISTORY_COLLAPSED_COUNT,
+  parseChangeLine,
+  visibleChanges,
+  type HistoryChange,
+} from "@/lib/history-format";
+import { Link } from "@/i18n/navigation";
+import { changelogPath, versionTag } from "@/lib/changelog";
 import EntityHistory from "./EntityHistory";
+import HistoryChangeRow, { HistoryToggle } from "./HistoryChangeRow";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -49,6 +58,22 @@ export default function EntityUpdateHistory({
 }) {
   const t = useT();
   const [entries, setEntries] = useState<UpdateEntry[] | null | "none">(null);
+  const [expanded, setExpanded] = useState(false);
+  const shown = useMemo(() => {
+    if (!Array.isArray(entries)) return [];
+    return entries
+      .map((entry) => {
+        const prose: string[] = [];
+        const parsed: HistoryChange[] = [];
+        for (const line of entry.changes) {
+          const change = parseChangeLine(line);
+          if (change) parsed.push(change);
+          else prose.push(line);
+        }
+        return { ...entry, prose, parsed: visibleChanges(parsed) };
+      })
+      .filter((entry) => entry.prose.length + entry.parsed.length > 0);
+  }, [entries]);
 
   useEffect(() => {
     cachedFetch<UpdateEntry[]>(
@@ -58,7 +83,7 @@ export default function EntityUpdateHistory({
       .catch(() => setEntries("none"));
   }, [entityType, entityId]);
 
-  if (entries === "none") {
+  if (entries === "none" || (entries !== null && shown.length === 0)) {
     return <EntityHistory entityType={entityType} entityId={entityId} />;
   }
 
@@ -71,17 +96,32 @@ export default function EntityUpdateHistory({
         <div className="relative ml-2">
           <div className="absolute left-[5px] top-2 bottom-2 w-px bg-[var(--border-subtle)]" />
           <div className="space-y-4">
-            {entries.map((entry, i) => {
+            {shown.map((entry, i) => {
               const kind = patchKind(entry.type);
+              const tag = versionTag(entry.version);
               return (
-                <div key={`${entry.version}-${i}`} className="relative pl-6">
+                <div
+                  key={`${entry.version}-${i}`}
+                  className={`relative pl-6 ${
+                    !expanded && i >= HISTORY_COLLAPSED_COUNT ? "hidden" : ""
+                  }`}
+                >
                   <div
                     className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${kindDot[kind]}`}
                   />
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="font-semibold text-[var(--text-primary)]">
-                      {entry.version ?? t("Unknown")}
-                    </span>
+                    {tag ? (
+                      <Link
+                        href={changelogPath(tag)}
+                        className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                      >
+                        {entry.version}
+                      </Link>
+                    ) : (
+                      <span className="font-semibold text-[var(--text-primary)]">
+                        {entry.version ?? t("Unknown")}
+                      </span>
+                    )}
                     {entry.type && (
                       <span className={kindText[kind]}>{entry.type}</span>
                     )}
@@ -92,9 +132,17 @@ export default function EntityUpdateHistory({
                     )}
                   </div>
                   <ul className="mt-1.5 space-y-1 list-none m-0 p-0">
-                    {entry.changes.map((change, j) => (
-                      <li key={j} className="text-xs text-[var(--text-muted)]">
-                        {change}
+                    {entry.prose.map((line, j) => (
+                      <li
+                        key={`p${j}`}
+                        className="text-xs text-[var(--text-muted)]"
+                      >
+                        {line}
+                      </li>
+                    ))}
+                    {entry.parsed.map((change, j) => (
+                      <li key={`c${j}`}>
+                        <HistoryChangeRow change={change} />
                       </li>
                     ))}
                   </ul>
@@ -102,6 +150,13 @@ export default function EntityUpdateHistory({
               );
             })}
           </div>
+          {shown.length > HISTORY_COLLAPSED_COUNT && (
+            <HistoryToggle
+              total={shown.length}
+              expanded={expanded}
+              onToggle={() => setExpanded((v) => !v)}
+            />
+          )}
         </div>
       )}
     </section>
