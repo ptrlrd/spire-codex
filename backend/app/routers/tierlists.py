@@ -14,10 +14,12 @@ from __future__ import annotations
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-from ..services import tierlists_db
+from ..dependencies import shared_limiter
+from ..services import rate_limit_config, tierlists_db
 from ..services.auth_jwt import require_user
 
 router = APIRouter(prefix="/api/tierlists", tags=["Tier Lists"])
+limiter = shared_limiter
 
 # Caps to keep a single document bounded. Cards is the largest pool
 # (~576), so the item ceiling is set well above that to allow a full
@@ -29,6 +31,10 @@ _MAX_COMMENT_LEN = 500
 # ~3MB of base64 ≈ a 2MB PNG; the saved preview is rendered at 1x so it stays
 # well under this. Keeps a single doc bounded.
 _MAX_IMAGE_B64 = 3_000_000
+_PREVIEW_FORMATS = ("WEBP", "PNG")
+_MAX_PREVIEW_SIDE = 16383
+_MAX_PREVIEW_PIXELS = 32_000_000
+_MAX_LISTS_PER_USER = 500
 
 
 def _decode_image(data: str | None) -> bytes | None:
@@ -44,6 +50,35 @@ def _decode_image(data: str | None) -> bytes | None:
         return None
     try:
         return base64.b64decode(raw, validate=True)
+    except Exception:
+        return None
+
+
+def _clean_preview(data: bytes | None) -> bytes | None:
+    """Re-encode an uploaded preview as webp, or None when it is not a webp
+    or png of sane dimensions. Only the re-encoded bytes reach the CDN."""
+    import io
+
+    from PIL import Image
+
+    if not data:
+        return None
+    try:
+        with Image.open(io.BytesIO(data), formats=_PREVIEW_FORMATS) as img:
+            width, height = img.size
+            if (
+                width < 1
+                or height < 1
+                or width > _MAX_PREVIEW_SIDE
+                or height > _MAX_PREVIEW_SIDE
+                or width * height > _MAX_PREVIEW_PIXELS
+            ):
+                return None
+            img.load()
+            frame = img if img.mode in ("RGB", "RGBA") else img.convert("RGBA")
+            out = io.BytesIO()
+            frame.save(out, format="WEBP", quality=90)
+            return out.getvalue()
     except Exception:
         return None
 
@@ -134,9 +169,16 @@ def _owner_id(request: Request) -> str:
 
 
 @router.post("")
+@limiter.limit(rate_limit_config.endpoint_limit("tierlists.create", "20/minute"))
 def create_tierlist(payload: TierListCreate, request: Request):
     """Save a new tier list to the signed-in user's account."""
     user_id = _owner_id(request)
+    if tierlists_db.count_user_tierlists(user_id) >= _MAX_LISTS_PER_USER:
+        raise HTTPException(
+            status_code=409,
+            detail=f"Tier list limit reached ({_MAX_LISTS_PER_USER}). "
+            "Delete one to save another.",
+        )
     return tierlists_db.create_tierlist(
         user_id=user_id,
         title=payload.title.strip(),
@@ -174,6 +216,7 @@ def get_my_tierlist(tierlist_id: str, request: Request):
 
 
 @router.patch("/{tierlist_id}")
+@limiter.limit(rate_limit_config.endpoint_limit("tierlists.update", "60/minute"))
 def update_my_tierlist(tierlist_id: str, payload: TierListUpdate, request: Request):
     """Owner-only update of a saved tier list."""
     user_id = _owner_id(request)
@@ -195,9 +238,9 @@ def update_my_tierlist(tierlist_id: str, payload: TierListUpdate, request: Reque
 
     # The preview is uploaded to R2 (CDN), not stored in Mongo.
     if payload.image is not None:
-        png = _decode_image(payload.image)
-        if png:
-            updated = tierlists_db.set_preview_image(tierlist_id, user_id, png)
+        preview = _clean_preview(_decode_image(payload.image))
+        if preview:
+            updated = tierlists_db.set_preview_image(tierlist_id, user_id, preview)
             if updated:
                 doc = updated
 

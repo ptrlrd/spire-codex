@@ -682,9 +682,9 @@ export default function BrowseRunsClient({
     <Suspense
       fallback={
         <div className="mx-auto max-w-[1400px] px-3 sm:px-5 py-6">
-          <h1 className="text-3xl font-bold text-[var(--accent-gold)]">
+          <div className="text-3xl font-bold text-[var(--accent-gold)]">
             {t(config.title)}
-          </h1>
+          </div>
         </div>
       }
     >

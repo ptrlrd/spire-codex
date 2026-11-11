@@ -18,6 +18,7 @@ import {
   bracketQuery,
   defaultBracket,
 } from "@/lib/content-brackets";
+import { cardTierListCanonical } from "@/lib/tier-list-filters";
 import { getT, getFormatNumber } from "@/lib/i18n-server";
 import {
   gameNameFor,
@@ -145,7 +146,7 @@ export async function generateMetadata({
         "Every {game} card ranked S through F. Tier list driven by Codex Score, community-submitted run win rates with Bayesian shrinkage.",
         { game: gameNameFor(locale) },
       );
-  const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
+  const path = cardTierListCanonical(color);
   return {
     title,
     description,
@@ -242,7 +243,7 @@ export default async function CardsTierListPage({
       : t("Card Tier List");
   // Canonical path is the Codex Score view; the ?sort=elo variant shares it
   // (set in generateMetadata) so the two don't read as duplicate content.
-  const path = `/tier-list/cards${color ? `?color=${color}` : ""}`;
+  const path = cardTierListCanonical(color);
   // Preserve color when switching sort, and vice versa.
   const sortHref = (s: SortMode) => {
     const params = new URLSearchParams();

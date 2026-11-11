@@ -15,7 +15,10 @@ import {
   bracketQuery,
   defaultBracket,
 } from "@/lib/content-brackets";
-import { TIER_RELIC_ANCIENTS } from "@/lib/tier-list-filters";
+import {
+  TIER_RELIC_ANCIENTS,
+  relicTierListCanonical,
+} from "@/lib/tier-list-filters";
 import { gradePool } from "@/lib/pool-tiers";
 import { getT, getFormatNumber } from "@/lib/i18n-server";
 import type { TFn } from "@/lib/i18n";
@@ -179,7 +182,7 @@ export async function generateMetadata({
             "Every {game} relic ranked S through F. Codex Score from community-submitted run win rates with Bayesian shrinkage.",
             { game },
           );
-  const path = relicHref(pool, undefined, act, undefined, ancient);
+  const path = relicTierListCanonical({ pool, act, ancient });
   return {
     title,
     description,
@@ -275,7 +278,7 @@ export default async function RelicsTierListPage({
     ancient ? ancientLabel : undefined,
     pool ? poolLabel : undefined,
   );
-  const path = relicHref(pool, undefined, act, undefined, ancient);
+  const path = relicTierListCanonical({ pool, act, ancient });
 
   // Top-30 for ItemList JSON-LD, gives Google a structured ranked list it
   // can render as carousel-style rich results.

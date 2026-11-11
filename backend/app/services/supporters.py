@@ -73,7 +73,17 @@ def email_hash(email: str | None) -> str | None:
     return hmac.new(salt.encode(), cleaned.encode(), hashlib.sha256).hexdigest()
 
 
+OVERWOLF_TAKEN = "This Overwolf account is already linked to another user"
+OVERWOLF_ALREADY_LINKED = (
+    "This account is already linked to a different Overwolf account"
+)
+
+
 class OverwolfError(ValueError):
+    pass
+
+
+class OverwolfConflict(OverwolfError):
     pass
 
 
@@ -248,13 +258,29 @@ def link_overwolf(user_id: str, token: str) -> dict:
             raise OverwolfError("invalid token: overwolf could not confirm it")
         logger.warning("overwolf subscription check failed", exc_info=True)
         sub = {"state": "error", "package_id": None, "tier": None}
+    _check_overwolf_pair(user_id, ow_id)
     return _store_overwolf_link(user_id, ow_id, sub)
+
+
+def _check_overwolf_pair(user_id: str, ow_id: str) -> None:
+    from bson import ObjectId
+
+    from .users_db import _get_collection
+
+    coll = _get_collection()
+    oid = ObjectId(user_id)
+    if coll.find_one({"overwolf_id": ow_id, "_id": {"$ne": oid}}, {"_id": 1}):
+        raise OverwolfConflict(OVERWOLF_TAKEN)
+    current = (coll.find_one({"_id": oid}, {"overwolf_id": 1}) or {}).get("overwolf_id")
+    if current and current != ow_id:
+        raise OverwolfConflict(OVERWOLF_ALREADY_LINKED)
 
 
 def _store_overwolf_link(
     user_id: str, ow_id: str, sub: dict | None, extra: dict | None = None
 ) -> dict:
     from bson import ObjectId
+    from pymongo.errors import DuplicateKeyError
 
     from .users_db import _get_collection
 
@@ -276,16 +302,19 @@ def _store_overwolf_link(
         record["since"] = prior["since"]
     elif active:
         record["since"] = now
-    coll.update_one(
-        {"_id": ObjectId(user_id)},
-        {
-            "$set": {
-                "overwolf_id": ow_id,
-                "overwolf_subscription": record,
-                **(extra or {}),
-            }
-        },
-    )
+    try:
+        coll.update_one(
+            {"_id": ObjectId(user_id)},
+            {
+                "$set": {
+                    "overwolf_id": ow_id,
+                    "overwolf_subscription": record,
+                    **(extra or {}),
+                }
+            },
+        )
+    except DuplicateKeyError as exc:
+        raise OverwolfConflict(OVERWOLF_TAKEN) from exc
     return {
         "overwolf_id": ow_id,
         "active": active,
@@ -307,15 +336,10 @@ def link_overwolf_oauth(
     subscription comes from the userinfo claim when the user granted that
     scope, else from the subscriptions API; when neither answers, the link
     is recorded without perks and the overlay's next check fills them in."""
-    from bson import ObjectId
-
-    from .users_db import _get_collection
-
-    conflict = _get_collection().find_one(
-        {"overwolf_id": ow_id, "_id": {"$ne": ObjectId(user_id)}}, {"_id": 1}
-    )
-    if conflict:
-        return {"error": "This Overwolf account is already linked to another user"}
+    try:
+        _check_overwolf_pair(user_id, ow_id)
+    except OverwolfConflict as exc:
+        return {"error": str(exc)}
     if subscriptions is not None:
         sub = _best_subscription(subscriptions)
     else:
@@ -327,7 +351,10 @@ def link_overwolf_oauth(
             )
             sub = {"state": "unverified", "package_id": None, "tier": None}
     extra = {"overwolf_nickname": nickname} if nickname else None
-    return _store_overwolf_link(user_id, ow_id, sub, extra)
+    try:
+        return _store_overwolf_link(user_id, ow_id, sub, extra)
+    except OverwolfConflict as exc:
+        return {"error": str(exc)}
 
 
 def _overwolf_live(ow: dict) -> bool:

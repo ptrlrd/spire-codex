@@ -2,6 +2,8 @@
 gives the run back to the live counters, and only ever touches the caller's
 own run."""
 
+from types import SimpleNamespace
+
 from app.services import replays_db, runs_db_mongo
 
 OWNER = {"_id": "u1", "steam_id": "7656"}
@@ -24,7 +26,7 @@ class FakeColl:
     def delete_one(self, query):
         key = query.get("_id")
         self.deleted.append(key)
-        self.docs.pop(key, None)
+        return SimpleNamespace(deleted_count=int(self.docs.pop(key, None) is not None))
 
 
 def _wire(monkeypatch, tmp_path, run_doc):

@@ -9,7 +9,9 @@ import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { buildPageMetadata, clipMetaDescription } from "@/lib/seo";
 import { imageUrl } from "@/lib/image-url";
 
@@ -74,7 +76,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: clipMetaDescription(
         t("monster_meta_description", {
           name: monster.name,
-          type: monster.type ? t(monster.type) : "",
+          kind: kindPhrase("monster", monster.type),
           hpText: hpText ? ` ${hpText}.` : "",
           movesText: movesText ? ` ${movesText}` : "",
         }),
@@ -119,6 +121,7 @@ export default async function Page({ params }: Props) {
         path: localePath(locale, `/monsters/${id}`),
         imageUrl: monster.image_url ? imageUrl(monster.image_url) : undefined,
         category: "Monster",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -136,7 +139,7 @@ export default async function Page({ params }: Props) {
         },
         {
           question: `What type of enemy is ${monster.name}?`,
-          answer: `${monster.name} is a ${monster.type} type monster.`,
+          answer: `${monster.name} is ${kindPhrase("monster", monster.type)}.`,
         },
       ];
       jsonLd =

@@ -20,11 +20,14 @@ import {
   entityQualifier,
 } from "@/lib/seo";
 import JsonLd from "@/app/components/JsonLd";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { cardOgImages } from "@/lib/image-url";
+import { fetchBetaRenderVersion } from "@/lib/beta-render-version.server";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
 import {
   fetchCardCatalog,
@@ -83,10 +86,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? ` Keywords: ${card.keywords.join(", ")}.`
       : "";
     // Full game-rendered card (base + upgraded) as the share image, English.
+    const betaOnly = betaOnlyVersion(res) !== null;
     const ogImages = cardOgImages(
       card,
       "eng",
-      betaOnlyVersion(res) ? "beta" : "stable",
+      betaOnly ? "beta" : "stable",
+      betaOnly ? await fetchBetaRenderVersion() : undefined,
     );
     return buildPageMetadata({
       locale,
@@ -102,10 +107,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: clipMetaDescription(
         t("card_meta_description", {
           name: card.name,
-          cost: String(card.cost ?? "X"),
-          color,
-          rarity: card.rarity,
-          type: card.type,
+          kind: kindPhrase(
+            "card",
+            card.is_x_cost || card.cost == null
+              ? "X-cost"
+              : card.cost < 0
+                ? ""
+                : `${card.cost}-cost`,
+            color,
+            card.rarity,
+            card.type,
+          ),
           descFlat,
           keywords,
         }),
@@ -146,9 +158,14 @@ export default async function Page({ params }: Props) {
         description:
           desc || entityFallbackDescription(locale, card.name, "card"),
         path: localePath(locale, `/cards/${id}`),
-        imageUrl: cardOgImages(card, "eng", betaVersion ? "beta" : "stable")[0]
-          ?.url,
+        imageUrl: cardOgImages(
+          card,
+          "eng",
+          betaVersion ? "beta" : "stable",
+          betaVersion ? await fetchBetaRenderVersion() : undefined,
+        )[0]?.url,
         category: "Card",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },
@@ -174,7 +191,7 @@ export default async function Page({ params }: Props) {
         },
         {
           question: `What type of card is ${card.name}?`,
-          answer: `${card.name} is a ${card.rarity} ${card.type} card for ${card.color}.`,
+          answer: `${card.name} is ${kindPhrase("card", card.rarity, card.type)} for ${card.color}.`,
         },
       ];
       if (card.keywords?.length) {
