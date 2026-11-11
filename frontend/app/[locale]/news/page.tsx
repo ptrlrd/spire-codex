@@ -14,6 +14,7 @@ import {
 } from "@/lib/steam-news";
 import { ANNOUNCEMENTS, type Announcement } from "@/lib/announcements";
 import MarkAnnouncementsSeen from "./MarkAnnouncementsSeen";
+import { changelogPath, fetchLatestPatch, versionLabel } from "@/lib/changelog";
 
 async function loadCodexNews(): Promise<{
   items: Announcement[];
@@ -119,6 +120,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
     : await loadNews(tabConfig.feedType);
   const items = data.items;
   const latest = items[0];
+  const latestPatch = await fetchLatestPatch();
 
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -143,12 +145,25 @@ export default async function NewsPage({ params, searchParams }: Props) {
         <span className="text-[var(--accent-gold)]">{gameName(locale)}</span>{" "}
         {t("Patch Notes")} &amp; {t("News")}
       </h1>
+      {latestPatch && (
+        <p className="text-sm mb-3">
+          <Link
+            href={changelogPath(latestPatch.tag)}
+            className="text-[var(--accent-gold)] hover:underline"
+          >
+            {t("Latest patch notes: {version}", {
+              version: versionLabel(latestPatch.game_version),
+            })}{" "}
+            →
+          </Link>
+        </p>
+      )}
       <p className="text-sm text-[var(--text-muted)] mb-6">
         Every Slay the Spire 2 (sts2) patch note, dev update, and announcement
         from Mega Crit, mirrored from Steam the moment it posts, plus press
         coverage from PCGamesN, RPS, and more.
         {latest
-          ? ` The most recent update is ${latest.title} (${formatNewsDate(latest.date)}).`
+          ? ` The most recent update is ${latest.title} (${formatNewsDate(latest.date, locale)}).`
           : ""}
       </p>
 
@@ -213,7 +228,7 @@ export default async function NewsPage({ params, searchParams }: Props) {
       ) : (
         <ul className="space-y-3">
           {items.map((n) => (
-            <NewsRow key={n.gid} article={n} basePath="/news" />
+            <NewsRow key={n.gid} article={n} basePath="/news" locale={locale} />
           ))}
         </ul>
       )}
@@ -232,11 +247,13 @@ const STEAM_INTERNAL_TAG = /^(patchnotes$|mod_|modact_)/i;
 export function NewsRow({
   article,
   basePath,
+  locale,
 }: {
   article: NewsArticle;
   basePath: string;
+  locale: string;
 }) {
-  const date = formatNewsDate(article.date);
+  const date = formatNewsDate(article.date, locale);
   const excerpt = newsExcerpt(article.contents ?? "", 220);
   const tagBadges = (article.tags ?? [])
     .filter((tag) => !STEAM_INTERNAL_TAG.test(tag))

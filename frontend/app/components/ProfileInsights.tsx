@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import {
@@ -976,6 +976,7 @@ function BestTile({
   sub?: string;
   rank?: { rank: number; total: number } | null;
 }) {
+  const fmtN = useFormatNumber();
   return (
     <Link
       prefetch={false}
@@ -994,10 +995,10 @@ function BestTile({
           {rank?.rank ? (
             <span className="text-[var(--accent-gold)]">
               {" "}
-              #{rank.rank.toLocaleString()}
+              #{fmtN(rank.rank)}
               <span className="text-[var(--text-muted)]">
                 {" "}
-                / {rank.total.toLocaleString()}
+                / {fmtN(rank.total)}
               </span>
             </span>
           ) : null}
@@ -1028,6 +1029,7 @@ export function InsightsPanels({
   personalRanks?: Record<string, { rank: number; total: number } | null>;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const deathsEnc = data.deaths?.encounters || [];
   const bosses = deathsEnc.filter((d) => d.id.endsWith("_BOSS")).slice(0, 5);
@@ -1170,7 +1172,7 @@ export function InsightsPanels({
                             {Math.round(bc.elo)}
                           </span>
                           <span className="text-[10px] text-[var(--text-muted)] ml-1.5">
-                            {bc.runs.toLocaleString()} {t("Runs")}
+                            {fmtN(bc.runs)} {t("Runs")}
                           </span>
                         </span>
                       </div>
@@ -1514,6 +1516,7 @@ export default function ProfileInsights({
 } = {}) {
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const [data, setData] = useState<Insights | null>(null);
   const [loading, setLoading] = useState(true);
   const [building, setBuilding] = useState(false);
@@ -1569,9 +1572,7 @@ export default function ProfileInsights({
         {building && (
           <p className="text-sm text-[var(--text-secondary)]">
             {t("Crunching your runs. The first load can take a minute or two.")}
-            {claimedRuns
-              ? ` · ${claimedRuns.toLocaleString()} ${t("runs")}`
-              : ""}
+            {claimedRuns ? ` · ${fmtN(claimedRuns)} ${t("runs")}` : ""}
           </p>
         )}
         {[...Array(4)].map((_, i) => (

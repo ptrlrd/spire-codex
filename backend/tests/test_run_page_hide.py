@@ -18,17 +18,28 @@ def _env(monkeypatch, user):
     monkeypatch.setenv("MONGO_URL", "mongodb://test")
     monkeypatch.setattr(auth_jwt, "get_current_user", lambda request: user)
     monkeypatch.setattr(auth_jwt, "_admin_ids", lambda: {"7656119"})
-    calls = []
+    calls = _Calls()
     monkeypatch.setattr(
         runs_db_mongo,
         "set_run_hidden",
         lambda h, hidden, reason=None: calls.append((h, hidden)) or {"changed": 1},
+    )
+    monkeypatch.setattr(
+        runs_db_mongo,
+        "drop_moderation_tombstones",
+        lambda hashes: calls.dropped.extend(hashes),
     )
     monkeypatch.setattr(runs_router, "_load_run_blob_cached", _FakeCache())
     from app.dependencies import shared_limiter
 
     monkeypatch.setattr(shared_limiter, "enabled", False)
     return calls
+
+
+class _Calls(list):
+    def __init__(self):
+        super().__init__()
+        self.dropped: list[str] = []
 
 
 class _FakeCache:
@@ -44,12 +55,14 @@ def test_admin_can_unhide_from_the_run_page(monkeypatch):
     assert r.status_code == 200, r.text
     assert r.json() == {"run_hash": "abc123", "hidden": False, "changed": 1}
     assert calls == [("abc123", False)]
+    assert calls.dropped == ["abc123"]
 
 
 def test_hidden_defaults_to_true(monkeypatch):
     calls = _env(monkeypatch, ADMIN)
     assert client.post("/api/runs/abc123/hidden").status_code == 200
     assert calls == [("abc123", True)]
+    assert calls.dropped == []
 
 
 def _owner_env(monkeypatch, result):

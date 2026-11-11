@@ -759,6 +759,7 @@ export default function Navbar() {
                 onClick={() => setOpen(!open)}
                 className="relative inline-flex items-center justify-center h-9 w-9 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-accent)] transition-colors"
                 aria-label={t("Toggle menu")}
+                aria-expanded={open}
               >
                 <svg
                   className="w-5 h-5"
@@ -864,6 +865,7 @@ export default function Navbar() {
                         >
                           <button
                             onClick={() => toggleGroup(group.label)}
+                            aria-expanded={isExpanded}
                             className={`w-full flex items-center justify-between px-5 py-4 text-lg font-semibold transition-colors ${
                               hasActive
                                 ? "text-[var(--accent-gold)]"

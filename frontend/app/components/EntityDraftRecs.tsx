@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 // "Drafted next" — the offer-conditioned recommendations. Given you already
 // hold this card/relic, the cards players take more often than usual when
 // offered them, ranked by lift over each card's usual take-rate. Stronger than
@@ -44,6 +44,7 @@ export default function EntityDraftRecs({
   initial?: Recs | null;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const [data, setData] = useState<Recs | null>(initial ?? null);
   const [loaded, setLoaded] = useState(initial !== undefined);
 
@@ -92,10 +93,10 @@ export default function EntityDraftRecs({
                 {(r.picks ?? 0) >= floor
                   ? t("{pct} win rate over {n} picks", {
                       pct: pct(r.winrate),
-                      n: (r.picks ?? 0).toLocaleString(),
+                      n: fmtN(r.picks ?? 0),
                     })
                   : t("{n} picks, too few for a win rate", {
-                      n: (r.picks ?? 0).toLocaleString(),
+                      n: fmtN(r.picks ?? 0),
                     })}
               </span>
             </div>
@@ -103,8 +104,8 @@ export default function EntityDraftRecs({
               <span>
                 {t("picked")} {pct(draftTakeRate(r))} {t("of the time")} (
                 {t("taken {picked} of {offered} times offered", {
-                  picked: (r.picks ?? 0).toLocaleString(),
-                  offered: r.offers.toLocaleString(),
+                  picked: fmtN(r.picks ?? 0),
+                  offered: fmtN(r.offers),
                 })}
                 )
               </span>

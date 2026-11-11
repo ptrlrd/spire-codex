@@ -65,6 +65,8 @@ def _wire(monkeypatch, tmp_path):
     bumps: list[tuple[str, int]] = []
     evicted: list[str] = []
     monkeypatch.setattr(runs_db_mongo, "_get_collection", lambda: runs)
+    tombstones = SimpleNamespace(update_one=lambda *a, **k: None)
+    monkeypatch.setattr(runs_db_mongo, "_tombstones", lambda: tombstones)
     monkeypatch.setattr(runs_db_mongo, "_blob_collection", lambda: blobs)
     monkeypatch.setattr(replays_db, "_coll", lambda: replays)
     monkeypatch.setattr(runs_db_mongo, "_data_dir", tmp_path)

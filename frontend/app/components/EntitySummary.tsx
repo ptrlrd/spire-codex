@@ -2,7 +2,7 @@
 
 import { Fragment } from "react";
 import { Link } from "@/i18n/navigation";
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useFormatNumber, useGameLocale, useT } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { characterName } from "@/app/components/CharacterTag";
 import {
@@ -33,6 +33,7 @@ export default function EntitySummary({
   bracket?: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const locale = useGameLocale();
   const s = stats && bracket ? summaryStats(stats, bracket) : data;
@@ -79,7 +80,7 @@ export default function EntitySummary({
           )}
           {t("entity_summary_cohort_won", {
             cohort: capFirst(cohortLabel(s.cohort, t)),
-            runs: (s.runs ?? 0).toLocaleString(),
+            runs: fmtN(s.runs ?? 0),
             name,
             winRate: pct(s.winRate ?? 0),
           })}

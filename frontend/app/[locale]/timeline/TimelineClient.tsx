@@ -340,11 +340,14 @@ export default function TimelineClient({
                         >
                           <div className="flex items-start justify-between">
                             <div className="flex items-center gap-2">
-                              <span
+                              <button
+                                type="button"
+                                aria-expanded={!!isExpanded}
+                                aria-label={epoch.title}
                                 className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${isExpanded ? "rotate-90" : ""}`}
                               >
                                 &gt;
-                              </span>
+                              </button>
                               {epoch.image_url && (
                                 <img
                                   src={imageUrl(epoch.image_url)}

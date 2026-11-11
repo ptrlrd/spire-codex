@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import {
   useState,
   useEffect,
@@ -35,6 +35,7 @@ export default function EnchantmentDetail({
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const [enchantment, setEnchantment] = useState<Enchantment | null>(
     initialEnchantment ?? null,
@@ -195,12 +196,12 @@ export default function EnchantmentDetail({
                 {cardIds.length < totalCards
                   ? t("{name} applied to {n} cards (showing {shown}).", {
                       name: enchantment.name,
-                      n: totalCards.toLocaleString(),
+                      n: fmtN(totalCards),
                       shown: cardIds.length,
                     })
                   : t("{name} applied to {n} cards.", {
                       name: enchantment.name,
-                      n: totalCards.toLocaleString(),
+                      n: fmtN(totalCards),
                     })}
               </p>
               <div className="ench-grid">
@@ -283,7 +284,7 @@ export default function EnchantmentDetail({
                 {totalCards > 0 && (
                   <div className="frow">
                     <dt>{t("Cards")}</dt>
-                    <dd>{totalCards.toLocaleString()}</dd>
+                    <dd>{fmtN(totalCards)}</dd>
                   </div>
                 )}
               </dl>

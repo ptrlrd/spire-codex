@@ -9,6 +9,7 @@ import { useT } from "@/lib/i18n";
 
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Modal from "./Modal";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -23,6 +24,7 @@ export default function HighlightFeedback() {
   const pathname = usePathname();
   const [chip, setChip] = useState<Chip | null>(null);
   const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
   const [selected, setSelected] = useState("");
   const [suggestion, setSuggestion] = useState("");
   const [material, setMaterial] = useState("");
@@ -148,99 +150,99 @@ export default function HighlightFeedback() {
       )}
 
       {open && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={() => setOpen(false)}
+        <Modal
+          onClose={close}
+          labelledBy="highlight-feedback-title"
+          overlayClassName="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
+          backdrop={
+            <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
+          }
         >
-          <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
-          <div
-            className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
-            onClick={(e) => e.stopPropagation()}
+          <h2
+            id="highlight-feedback-title"
+            className="text-lg font-bold text-[var(--text-primary)] mb-1"
           >
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-1">
-              {t("Request a change")}
-            </h2>
-            <p className="text-sm text-[var(--text-secondary)] mb-4">
-              {t("Is this worded wrong or incorrect? What should it be?")}
-            </p>
+            {t("Request a change")}
+          </h2>
+          <p className="text-sm text-[var(--text-secondary)] mb-4">
+            {t("Is this worded wrong or incorrect? What should it be?")}
+          </p>
 
-            {sent ? (
-              <p className="py-6 text-center text-[var(--color-silent)] font-medium">
-                {t("Thanks! We'll take a look.")}
-              </p>
-            ) : (
-              <div className="flex flex-col gap-3">
-                <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("Selected text")}
-                  </label>
-                  <div className="max-h-24 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm italic text-[var(--text-secondary)]">
-                    &ldquo;{selected}&rdquo;
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("What should it say?")}{" "}
-                    <span className="text-[var(--color-ironclad)]">*</span>
-                  </label>
-                  <textarea
-                    value={suggestion}
-                    onChange={(e) => setSuggestion(e.target.value)}
-                    rows={4}
-                    className={inputCls}
-                    placeholder={t("What should it say?")}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("Supporting material")}
-                  </label>
-                  <textarea
-                    value={material}
-                    onChange={(e) => setMaterial(e.target.value)}
-                    rows={2}
-                    className={inputCls}
-                    placeholder={t("Link, source, or reference (optional)")}
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs text-[var(--text-secondary)] mb-1">
-                    {t("Discord Username or Email")}{" "}
-                    <span className="text-[var(--color-ironclad)]">*</span>
-                  </label>
-                  <input
-                    value={contact}
-                    onChange={(e) => setContact(e.target.value)}
-                    className={inputCls}
-                    placeholder={t("username#1234 or email@example.com")}
-                  />
-                </div>
-                {error && (
-                  <p className="text-sm text-[var(--color-ironclad)]">
-                    {error}
-                  </p>
-                )}
-                <div className="flex items-center justify-end gap-3 pt-1">
-                  <button
-                    type="button"
-                    onClick={() => setOpen(false)}
-                    className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                  >
-                    {t("Cancel")}
-                  </button>
-                  <button
-                    type="button"
-                    onClick={submit}
-                    disabled={sending || !suggestion.trim() || !contact.trim()}
-                    className="rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-on-accent disabled:opacity-50"
-                  >
-                    {sending ? t("Sending...") : t("Send")}
-                  </button>
+          {sent ? (
+            <p className="py-6 text-center text-[var(--color-silent)] font-medium">
+              {t("Thanks! We'll take a look.")}
+            </p>
+          ) : (
+            <div className="flex flex-col gap-3">
+              <div>
+                <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                  {t("Selected text")}
+                </label>
+                <div className="max-h-24 overflow-y-auto rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm italic text-[var(--text-secondary)]">
+                  &ldquo;{selected}&rdquo;
                 </div>
               </div>
-            )}
-          </div>
-        </div>
+              <div>
+                <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                  {t("What should it say?")}{" "}
+                  <span className="text-[var(--color-ironclad)]">*</span>
+                </label>
+                <textarea
+                  value={suggestion}
+                  onChange={(e) => setSuggestion(e.target.value)}
+                  rows={4}
+                  className={inputCls}
+                  placeholder={t("What should it say?")}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                  {t("Supporting material")}
+                </label>
+                <textarea
+                  value={material}
+                  onChange={(e) => setMaterial(e.target.value)}
+                  rows={2}
+                  className={inputCls}
+                  placeholder={t("Link, source, or reference (optional)")}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-[var(--text-secondary)] mb-1">
+                  {t("Discord Username or Email")}{" "}
+                  <span className="text-[var(--color-ironclad)]">*</span>
+                </label>
+                <input
+                  value={contact}
+                  onChange={(e) => setContact(e.target.value)}
+                  className={inputCls}
+                  placeholder={t("username#1234 or email@example.com")}
+                />
+              </div>
+              {error && (
+                <p className="text-sm text-[var(--color-ironclad)]">{error}</p>
+              )}
+              <div className="flex items-center justify-end gap-3 pt-1">
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  className="text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                >
+                  {t("Cancel")}
+                </button>
+                <button
+                  type="button"
+                  onClick={submit}
+                  disabled={sending || !suggestion.trim() || !contact.trim()}
+                  className="rounded-lg bg-[var(--accent-gold)] px-4 py-2 text-sm font-semibold text-on-accent disabled:opacity-50"
+                >
+                  {sending ? t("Sending...") : t("Send")}
+                </button>
+              </div>
+            </div>
+          )}
+        </Modal>
       )}
     </>
   );

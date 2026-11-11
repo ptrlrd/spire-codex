@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 import { Fragment } from "react";
 
 import CharacterTag, { characterName } from "@/app/components/CharacterTag";
@@ -89,6 +89,7 @@ export default function AscensionHeatmap({
   names?: Record<string, string>;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const rows = CHARS.filter((id) => Object.keys(matrix[id] || {}).length > 0);
   if (rows.length === 0) return null;
   const values: number[] = [];
@@ -139,7 +140,7 @@ export default function AscensionHeatmap({
                   key={`${id}-${a}`}
                   className="rounded min-h-[36px] flex items-center justify-center text-[11px] tabular-nums"
                   style={cellStyle(cell.win_rate, lo, hi)}
-                  title={`${names[id] ?? characterName(id)} · A${a} — ${cell.win_rate}% ${t("win rate")} · ${cell.runs.toLocaleString()} ${t("runs")}`}
+                  title={`${names[id] ?? characterName(id)} · A${a}: ${cell.win_rate}% ${t("win rate")} · ${fmtN(cell.runs)} ${t("runs")}`}
                 >
                   {cell.win_rate}
                 </div>
