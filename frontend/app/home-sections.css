@@ -86,6 +86,16 @@
   font-variant-numeric: tabular-nums;
   text-align: right;
 }
+@media (max-width: 640px) {
+  .rvmp .wr-row.wr-stat {
+    grid-template-columns: 92px 1fr auto;
+    row-gap: 2px;
+  }
+  .rvmp .wr-wl {
+    grid-column: 2 / -1;
+    grid-row: 2;
+  }
+}
 
 /* Guides cards: mono kicker + footer (author + read link). */
 .rvmp .gcard-k {
