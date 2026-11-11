@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useFormatNumber, useT } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import { characterHex, textColor } from "@/lib/character-colors";
@@ -61,6 +61,7 @@ export default function HomeStatsLive({
   pollBase: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const [stats, setStats] = useState<CommunityStats>(initialStats);
 
   useEffect(() => {
@@ -113,24 +114,24 @@ export default function HomeStatsLive({
 
           <div className="statgrid six">
             <div className="stat">
-              <span className="stat-v">{stats.total_runs}</span>
+              <span className="stat-v">{fmtN(stats.total_runs)}</span>
               <span className="stat-k">{t("Runs")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--good)" }}>
-                {stats.total_wins}
+                {fmtN(stats.total_wins)}
               </span>
               <span className="stat-k">{t("Wins")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--warn)" }}>
-                {losses}
+                {fmtN(losses)}
               </span>
               <span className="stat-k">{t("Losses")}</span>
             </div>
             <div className="stat">
               <span className="stat-v" style={{ color: "var(--text-3)" }}>
-                {stats.total_abandoned || 0}
+                {fmtN(stats.total_abandoned || 0)}
               </span>
               <span className="stat-k">{t("Abandoned")}</span>
             </div>
@@ -183,8 +184,9 @@ export default function HomeStatsLive({
                         />
                       </span>
                       <span className="wr-wl">
-                        {c.wins}W / {c.total - c.wins - (c.abandoned || 0)}L
-                        {c.abandoned ? ` / ${c.abandoned}A` : ""}
+                        {fmtN(c.wins)}W /{" "}
+                        {fmtN(c.total - c.wins - (c.abandoned || 0))}L
+                        {c.abandoned ? ` / ${fmtN(c.abandoned)}A` : ""}
                       </span>
                       <span
                         className="wr-num"

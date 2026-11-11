@@ -19,7 +19,7 @@ import {
   defaultBracket,
 } from "@/lib/content-brackets";
 import { cardTierListCanonical } from "@/lib/tier-list-filters";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 import {
   gameNameFor,
   hreflangOf,
@@ -196,6 +196,7 @@ export default async function CardsTierListPage({
 }: PageProps) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const fmtN = await getFormatNumber();
   const sp = await searchParams;
   const color = sp.color?.toLowerCase();
   const sort: SortMode = sp.sort === "elo" ? "elo" : "score";
@@ -312,7 +313,7 @@ export default async function CardsTierListPage({
           </span>
         </h1>
         <span className="text-sm text-[var(--text-muted)]">
-          {t("{n} cards", { n: entities.length.toLocaleString() })}
+          {t("{n} cards", { n: fmtN(entities.length) })}
           {" · "}
           {t("Updated {date}", {
             date: fmtDatePacific(

@@ -118,6 +118,8 @@ http {
       listen 80;
       server_name spire-codex.com www.spire-codex.com;
 
+      client_max_body_size 64m;
+
       # Runtime DNS via Docker's embedded resolver: a static proxy_pass name
       # is resolved once at config load and cached forever, so a deploy that
       # recreates containers onto new IPs leaves nginx proxying into the void

@@ -1,7 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import ScoreBadge from "@/app/components/ScoreBadge";
 import { imageUrl, fullCardUrl } from "@/lib/image-url";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 
 const API =
   process.env.API_INTERNAL_URL ||
@@ -48,6 +48,7 @@ export default async function HighestRated({
   lang?: string; // card render language
 }) {
   const t = await getT();
+  const fmtN = await getFormatNumber();
   const isCards = entityType === "cards";
   let scoresRaw: Record<string, ScoreEntry> = {};
   try {
@@ -138,7 +139,7 @@ export default async function HighestRated({
                   {t("{pct}% WR", { pct: s.win_rate.toFixed(0) })}
                 </span>
                 <span className="text-[var(--text-muted)] whitespace-nowrap">
-                  {s.picks.toLocaleString()} {t("picks")}
+                  {fmtN(s.picks)} {t("picks")}
                 </span>
                 {s.score != null && <ScoreBadge score={s.score} size="sm" />}
               </div>

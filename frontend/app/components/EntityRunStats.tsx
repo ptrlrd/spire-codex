@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+import { useT, useGameLocale, type TFn, useFormatNumber } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
@@ -19,6 +19,14 @@ import {
   splitBracket,
 } from "@/lib/content-brackets";
 import { cohortLabel } from "@/app/[locale]/stats/_grid/bracket";
+import {
+  SMALL_SAMPLE_ROWS,
+  metricsUrl,
+  offerStatsFrom,
+  resolveBracket,
+  type MetricsTable,
+} from "@/lib/entity-cohort";
+import { dataThroughLabel } from "@/lib/data-through";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -29,7 +37,7 @@ interface CharacterRow {
   win_rate: number;
 }
 
-interface BracketStat {
+export interface BracketStat {
   picks: number;
   wins: number;
   win_rate: number;
@@ -37,7 +45,21 @@ interface BracketStat {
   score: number | null;
   total_runs: number;
   pick_rate: number;
+  baseline_win_rate?: number;
+  lift?: number | null;
+  lift_n?: number | null;
+  hold_rate?: number | null;
   by_character?: CharacterRow[];
+}
+
+export interface EntityOfferStats {
+  bracket: string;
+  baseline_win_rate: number | null;
+  data_through: string | null;
+  pick_rate: number | null;
+  pick_rate_by_act: (number | null)[];
+  offered: number | null;
+  picked: number | null;
 }
 
 export interface EntityStats {
@@ -58,6 +80,7 @@ export interface EntityStats {
   lift?: number | null;
   lift_n?: number | null;
   hold_rate?: number | null;
+  metrics?: EntityOfferStats | null;
 }
 
 const METRICS_PAGE: Record<string, { path: string; label: string }> = {
@@ -73,22 +96,36 @@ function fmtPts(v: number | null | undefined): string {
   return typeof v === "number" ? `${v > 0 ? "+" : ""}${v.toFixed(1)}` : "–";
 }
 
+function capFirst(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function MetricsStrip({
   entityType,
   entityName,
   stats,
+  bracketKey,
+  requested,
+  base,
+  dataThrough,
 }: {
   entityType: string;
   entityName: string;
   stats: EntityStats;
+  bracketKey: string;
+  requested: string | null;
+  base: BracketStat | null;
+  dataThrough: string | null;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
+  const lang = useGameLocale();
   const bp = useBetaPrefix();
   const page = METRICS_PAGE[entityType];
-  const base = stats.brackets?.[DEFAULT_SOLO_BRACKET];
   const winRate = base?.win_rate ?? stats.win_rate;
-  const elo = base?.elo ?? stats.elo;
+  const elo = base ? base.elo : stats.elo;
   const picks = base?.picks ?? stats.picks;
+  const through = dataThroughLabel(dataThrough, t, lang);
   const items: [string, string, string][] = [
     [
       t("Win%"),
@@ -97,12 +134,12 @@ function MetricsStrip({
     ],
     [
       t("Hold%"),
-      fmtPct(stats.hold_rate ?? base?.pick_rate ?? stats.pick_rate),
+      fmtPct(base ? (base.hold_rate ?? base.pick_rate) : stats.pick_rate),
       t("Share of all seats in the cohort that held it at some point."),
     ],
     [
       t("Lift"),
-      fmtPts(stats.lift),
+      fmtPts(base ? base.lift : stats.lift),
       t(
         "Win rate minus what the same players were expected to win from the floor where they got it, in percentage points.",
       ),
@@ -114,16 +151,12 @@ function MetricsStrip({
         "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
       ),
     ],
-    [
-      t("Sample"),
-      picks.toLocaleString(),
-      t("Seats that held it (sample size)"),
-    ],
+    [t("Sample"), fmtN(picks), t("Seats that held it (sample size)")],
   ];
   return (
     <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 px-3 py-2 text-sm">
       <span className="text-xs text-[var(--text-muted)]">
-        {t("Cohort")}: {cohortLabel(DEFAULT_SOLO_BRACKET, t)}
+        {t("Cohort")}: {capFirst(cohortLabel(bracketKey, t))}
       </span>
       {items.map(([k, v, title]) => (
         <span
@@ -140,11 +173,22 @@ function MetricsStrip({
       {page && (
         <Link
           prefetch={false}
-          href={`${bp}${page.path}?q=${encodeURIComponent(entityName)}`}
+          href={`${bp}${page.path}?q=${encodeURIComponent(entityName)}&bracket=${encodeURIComponent(bracketKey)}`}
           className="ml-auto text-xs text-[var(--accent-gold)] hover:underline"
         >
           {t(page.label)} →
         </Link>
+      )}
+      {(requested || through) && (
+        <span className="basis-full text-xs text-[var(--text-muted)]">
+          {requested &&
+            t("No data yet for {cohort}, so these numbers cover {shown}.", {
+              cohort: capFirst(cohortLabel(requested, t)),
+              shown: cohortLabel(bracketKey, t),
+            })}
+          {requested && through ? " " : ""}
+          {through}
+        </span>
       )}
     </div>
   );
@@ -238,6 +282,7 @@ function VersionScoreChart({
   lang: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const points = Object.keys(brackets)
     .filter(
       (k) => /^v\d+(\.\d+)*(-rc\.\d+)?$/.test(k) && brackets[k].score != null,
@@ -303,7 +348,7 @@ function VersionScoreChart({
               <title>
                 {`${p.version} · ${t("Codex Score")} ${p.score}` +
                   (p.elo != null ? ` · Elo ${Math.round(p.elo)}` : "") +
-                  ` · ${p.win_rate}% ${t("win rate")} · ${p.picks.toLocaleString()} ${t("picks")}`}
+                  ` · ${p.win_rate}% ${t("win rate")} · ${fmtN(p.picks)} ${t("picks")}`}
               </title>
             </circle>
             <text
@@ -354,26 +399,41 @@ export default function EntityRunStats({
 }: Props) {
   const [stats, setStats] = useState<EntityStats | null>(initialStats);
   const [internalBracket, setInternalBracket] = useState(DEFAULT_SOLO_BRACKET);
+  const [showTiny, setShowTiny] = useState(false);
+  const [fetched, setFetched] = useState<EntityOfferStats | null>(null);
   // Controlled when a parent passes `bracket`; internal otherwise.
   const selectedBracket = bracket ?? internalBracket;
   const setSelectedBracket = onBracketChange ?? setInternalBracket;
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
 
   useEffect(() => {
     cachedFetch<EntityStats>(
       `${API}/api/runs/stats/${entityType}/${entityId}`,
     ).then((fresh) =>
-      setStats((prev) => ({
-        ...fresh,
-        lift: fresh.lift ?? prev?.lift ?? null,
-        lift_n: fresh.lift_n ?? prev?.lift_n ?? null,
-        hold_rate: fresh.hold_rate ?? prev?.hold_rate ?? null,
-      })),
+      setStats((prev) => ({ ...fresh, metrics: prev?.metrics ?? null })),
     );
   }, [entityType, entityId]);
 
-  if (!stats) {
+  const resolved = stats ? resolveBracket(stats, selectedBracket) : null;
+  const resolvedKey = resolved?.key ?? null;
+  const ssrMetricsKey = stats ? (stats.metrics?.bracket ?? "") : null;
+  useEffect(() => {
+    if (!resolvedKey || ssrMetricsKey === null) return;
+    if (ssrMetricsKey === resolvedKey) return;
+    let alive = true;
+    cachedFetch<MetricsTable>(metricsUrl(API, entityType, resolvedKey))
+      .then((table) => {
+        if (alive) setFetched(offerStatsFrom(table, entityId, resolvedKey));
+      })
+      .catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [entityType, entityId, resolvedKey, ssrMetricsKey]);
+
+  if (!stats || !resolved) {
     return variant === "wiki" ? (
       <p className="h-note">{t("Loading run stats…")}</p>
     ) : (
@@ -398,22 +458,52 @@ export default function EntityRunStats({
     player: selPlayer,
     skill: selSkill,
     version: selVersion,
-  } = splitBracket(selectedBracket);
+  } = splitBracket(resolved.key);
   const pickPlayer = (p: string) =>
     setSelectedBracket(combineBracket(p, selSkill, selVersion));
   const pickSkill = (sk: string) =>
     setSelectedBracket(
       combineBracket(selPlayer, sk === "all" ? "" : sk, selVersion),
     );
-  const sel = brackets[selectedBracket] ?? brackets["all"];
+  const sel = resolved.block;
+  const metrics =
+    [stats.metrics, fetched].find((m) => m?.bracket === resolved.key) ?? null;
   // Everything below scopes to the selected bracket, with a fall back to the
   // global figures for a pre-update API response that lacks the per-bracket data.
-  const selPickRate = sel?.pick_rate ?? stats.pick_rate;
+  const selPickRate = sel
+    ? (sel.hold_rate ?? sel.pick_rate)
+    : (stats.hold_rate ?? stats.pick_rate);
   const selTotalRuns = sel?.total_runs ?? stats.total_runs;
   const selByChar = sel?.by_character ?? stats.by_character;
   const top = selByChar[0];
   const maxCharPicks = top?.picks ?? 0;
-  const isAll = selectedBracket === "all";
+  const tinyCount = selByChar.filter((r) => r.picks < SMALL_SAMPLE_ROWS).length;
+  const charRows = showTiny
+    ? selByChar
+    : selByChar.filter((r) => r.picks >= SMALL_SAMPLE_ROWS);
+  const tinyToggle = tinyCount > 0 && (
+    <label className="mt-2 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
+      <input
+        type="checkbox"
+        checked={showTiny}
+        onChange={(e) => setShowTiny(e.target.checked)}
+      />
+      {t("Show {count} rows under {min} samples", {
+        count: tinyCount,
+        min: SMALL_SAMPLE_ROWS,
+      })}
+    </label>
+  );
+  const offerActs = (metrics?.pick_rate_by_act ?? [])
+    .map((v, i) => (v === null ? null : `${t("Act {n}", { n: i + 1 })} ${v}%`))
+    .filter(Boolean)
+    .join(" · ");
+  const showOffer =
+    entityType !== "potions" &&
+    !!metrics &&
+    metrics.pick_rate !== null &&
+    (metrics.offered ?? 0) > 0;
+  const isAll = resolved.key === "all";
   const selLabel =
     [
       availablePlayers.find((b) => b.key === selPlayer)?.label,
@@ -440,13 +530,17 @@ export default function EntityRunStats({
             entityType={entityType}
             entityName={entityName}
             stats={stats}
+            bracketKey={resolved.key}
+            requested={resolved.requested}
+            base={sel}
+            dataThrough={metrics?.data_through ?? null}
           />
         )}
         {empty ? (
           <p className="h-note">
             {t(
               "{name} hasn't appeared in any submitted community run yet (across {n} tracked).",
-              { name: entityName, n: stats.total_runs.toLocaleString() },
+              { name: entityName, n: fmtN(stats.total_runs) },
             )}{" "}
             <Link href="/runs/submit">
               {t("Submit a run to seed this section.")}
@@ -509,15 +603,30 @@ export default function EntityRunStats({
                 </div>
               </div>
               <div className="tile">
-                <div className="k">{t("Pick rate")}</div>
+                <div className="k">{t("Hold rate")}</div>
                 <div className="v">
                   {selPickRate}
                   <span style={{ fontSize: 16 }}>%</span>
                 </div>
                 <div className="s">
-                  {picks.toLocaleString()} {t("picks")}
+                  {t("{n} runs held it", { n: fmtN(picks) })}
                 </div>
               </div>
+              {showOffer && metrics && (
+                <div className="tile">
+                  <div className="k">{t("Pick rate")}</div>
+                  <div className="v">
+                    {metrics.pick_rate}
+                    <span style={{ fontSize: 16 }}>%</span>
+                  </div>
+                  <div className="s">
+                    {t("{picked} of {offered} offers", {
+                      picked: fmtN(metrics.picked ?? 0),
+                      offered: fmtN(metrics.offered ?? 0),
+                    })}
+                  </div>
+                </div>
+              )}
               <div className="tile">
                 <div className="k">{t("Codex Score")}</div>
                 <div
@@ -553,6 +662,12 @@ export default function EntityRunStats({
               </div>
             </div>
 
+            {showOffer && offerActs && (
+              <p className="stat-note">
+                {t("Pick rate by act:")} {offerActs}
+              </p>
+            )}
+
             {selByChar.length > 0 && (
               <>
                 <h3 className="subh">
@@ -560,7 +675,7 @@ export default function EntityRunStats({
                   {!isAll ? ` · ${selLabel}` : ""}
                 </h3>
                 <div className="bars">
-                  {selByChar.map((row) => (
+                  {charRows.map((row) => (
                     <div className="bar-row" key={row.character}>
                       <span className="name">
                         {characterPretty(row.character)}
@@ -581,6 +696,7 @@ export default function EntityRunStats({
                     </div>
                   ))}
                 </div>
+                {tinyToggle}
               </>
             )}
 
@@ -588,8 +704,7 @@ export default function EntityRunStats({
               <p className="insight">
                 {t("Most often taken by")}{" "}
                 <b>{characterPretty(top.character)}</b> {t("players")} (
-                {top.picks.toLocaleString()} {t("picks")} · {share}%{" "}
-                {t("share")}).
+                {fmtN(top.picks)} {t("picks")} · {share}% {t("share")}).
                 {tier ? (
                   <>
                     {" "}
@@ -613,8 +728,7 @@ export default function EntityRunStats({
           {selTotalRuns > 0 && (
             <>
               {" "}
-              {t("Pick rate is")} {selPickRate}% {t("of")}{" "}
-              {selTotalRuns.toLocaleString()}
+              {t("Hold rate is")} {selPickRate}% {t("of")} {fmtN(selTotalRuns)}
               {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
             </>
           )}{" "}
@@ -631,6 +745,10 @@ export default function EntityRunStats({
           entityType={entityType}
           entityName={entityName}
           stats={stats}
+          bracketKey={resolved.key}
+          requested={resolved.requested}
+          base={sel}
+          dataThrough={metrics?.data_through ?? null}
         />
       )}
       {/* Bracket sub-menu: re-scopes the headline stats below. Only shown when
@@ -641,7 +759,7 @@ export default function EntityRunStats({
             {t("Bracket")}
           </span>
           {availableBrackets.map((b) => {
-            const isActive = selectedBracket === b.key;
+            const isActive = resolved.key === b.key;
             return (
               <button
                 key={b.key}
@@ -669,7 +787,7 @@ export default function EntityRunStats({
           <div className="text-xs text-[var(--text-muted)] leading-snug">
             <div className="text-[var(--text-secondary)] font-semibold mb-0.5">
               {t("Codex Score")}
-              {selectedBracket !== "all" ? ` · ${selLabel}` : ""}
+              {!isAll ? ` · ${selLabel}` : ""}
             </div>
             <div>
               <strong className="text-[var(--text-secondary)]">
@@ -686,7 +804,7 @@ export default function EntityRunStats({
                 </>
               )}
               {" · "}
-              {sel.picks.toLocaleString()} {t("picks")}
+              {fmtN(sel.picks)} {t("picks")}
               {" · "}
               <Link
                 href="/stats/scoring"
@@ -707,7 +825,7 @@ export default function EntityRunStats({
           <>
             {t(
               "{name} hasn't appeared in any submitted community run yet (across {n} total runs tracked).",
-              { name: entityName, n: stats.total_runs.toLocaleString() },
+              { name: entityName, n: fmtN(stats.total_runs) },
             )}{" "}
             <Link
               href="/runs/submit"
@@ -719,18 +837,19 @@ export default function EntityRunStats({
         ) : (
           <>
             <strong className="text-[var(--text-primary)]">
-              {sel.win_rate}%
+              {sel?.win_rate ?? stats.win_rate}%
             </strong>{" "}
-            {t("win rate across")} <strong>{sel.picks.toLocaleString()}</strong>{" "}
-            {t("picks")}
+            {t("win rate across")}{" "}
+            <strong>{fmtN(sel?.picks ?? stats.picks)}</strong> {t("picks")}
             {top && (
               <>
                 . {t("Most often taken by")}{" "}
                 <strong className="text-[var(--text-primary)]">
                   {characterPretty(top.character)}
                 </strong>{" "}
-                {t("players")} ({top.picks.toLocaleString()} {t("picks")} ·{" "}
-                {Math.round((top.picks / sel.picks) * 100)}% {t("share")})
+                {t("players")} ({fmtN(top.picks)} {t("picks")} ·{" "}
+                {Math.round((top.picks / (sel?.picks ?? stats.picks)) * 100)}%{" "}
+                {t("share")})
               </>
             )}
             . {t("Last picked")} <strong>{last}</strong>
@@ -780,7 +899,7 @@ export default function EntityRunStats({
                 </tr>
               </thead>
               <tbody>
-                {selByChar.map((row) => {
+                {charRows.map((row) => {
                   const pct = maxCharPicks
                     ? (row.picks / maxCharPicks) * 100
                     : 0;
@@ -793,7 +912,7 @@ export default function EntityRunStats({
                         {characterPretty(row.character)}
                       </td>
                       <td className="py-2 px-3 text-right text-[var(--text-secondary)] font-mono tabular-nums">
-                        {row.picks.toLocaleString()}
+                        {fmtN(row.picks)}
                       </td>
                       <td className="py-2 px-3 text-right text-[var(--text-secondary)] font-mono tabular-nums">
                         {row.win_rate}%
@@ -812,6 +931,7 @@ export default function EntityRunStats({
               </tbody>
             </table>
           </div>
+          {tinyToggle}
         </div>
       )}
 
@@ -822,8 +942,8 @@ export default function EntityRunStats({
         {selTotalRuns > 0 && (
           <>
             {" "}
-            {t("Pick rate:")} <strong>{selPickRate}%</strong> {t("of")}{" "}
-            {selTotalRuns.toLocaleString()}
+            {t("Hold rate:")} <strong>{selPickRate}%</strong> {t("of")}{" "}
+            {fmtN(selTotalRuns)}
             {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
           </>
         )}

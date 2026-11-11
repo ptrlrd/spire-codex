@@ -33,6 +33,7 @@ import { imageUrl, fullCardUrl, enchantedCardUrl } from "@/lib/image-url";
 import EntityRunStats, {
   type EntityStats,
 } from "@/app/components/EntityRunStats";
+import { resolveBracket } from "@/lib/entity-cohort";
 import EntityVersionSelect from "@/app/components/EntityVersionSelect";
 import HoverTooltip from "@/app/components/HoverTooltip";
 import { useChannel, useBetaPrefix } from "@/lib/api/prefix.client";
@@ -62,6 +63,7 @@ interface MiniBracket {
   picks: number;
   win_rate: number;
   pick_rate: number;
+  hold_rate?: number | null;
   score: number | null;
   elo: number | null;
 }
@@ -253,6 +255,7 @@ export interface CardCatalogs {
   glossary: KeywordEntry[];
   orbs: KeywordEntry[];
   spawnedCards: SpawnedCardEntry[];
+  enchantments?: { id: string; name: string }[];
 }
 
 export default function CardDetail({
@@ -326,16 +329,12 @@ export default function CardDetail({
   // + their localized name/description for the Enchantments section + switcher.
   const cardEnchantments = initialEnchantments ?? [];
   const [enchMeta, setEnchMeta] = useState<
-    Record<
-      string,
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }
-    >
-  >({});
+    Record<string, { id: string; name: string }>
+  >(() =>
+    Object.fromEntries(
+      (initialCatalogs?.enchantments ?? []).map((e) => [e.id.toLowerCase(), e]),
+    ),
+  );
 
   useEffect(() => {
     if (!id) return;
@@ -563,7 +562,7 @@ export default function CardDetail({
 
   const spineColor = SPINE_COLOR[card.color] ?? "var(--accent-gold)";
   const characterLabel = card.color
-    ? card.color.charAt(0).toUpperCase() + card.color.slice(1)
+    ? t(card.color.charAt(0).toUpperCase() + card.color.slice(1))
     : "—";
   const costLabel = card.is_x_cost
     ? "X"
@@ -572,7 +571,7 @@ export default function CardDetail({
       : String(cost);
   const targetLabel =
     card.target && card.target !== "None" && card.target !== "Self"
-      ? card.target.replace(/([A-Z])/g, " $1").trim()
+      ? t(card.target.replace(/([A-Z])/g, " $1").trim())
       : null;
   const enchActive =
     selectedEnch !== "none" && cardEnchantments.includes(selectedEnch);
@@ -744,7 +743,12 @@ export default function CardDetail({
           {/* Description */}
           <section id="description">
             <h2>{t("Description")}</h2>
-            <EntitySummary name={card.name} data={summary} />
+            <EntitySummary
+              name={card.name}
+              data={summary}
+              stats={initialStats}
+              bracket={statsBracket}
+            />
 
             {/* Type variant toggle (re-scopes description + render) */}
             {hasVariants && card.type_variants && (
@@ -1140,7 +1144,9 @@ export default function CardDetail({
             {/* Community mini-stats — scoped to the bracket picked in the
                 Community section (falls back to the all-runs figures). */}
             {(() => {
-              const mini = miniStats?.brackets?.[statsBracket] ?? miniStats;
+              const mini = miniStats
+                ? (resolveBracket(miniStats, statsBracket).block ?? miniStats)
+                : null;
               if (!mini || mini.picks <= 0) return null;
               return (
                 <div className="mini">
@@ -1159,8 +1165,10 @@ export default function CardDetail({
                       <div className="ml">{t("Win rate")}</div>
                     </div>
                     <div>
-                      <div className="mv">{mini.pick_rate}%</div>
-                      <div className="ml">{t("Pick rate")}</div>
+                      <div className="mv">
+                        {mini.hold_rate ?? mini.pick_rate}%
+                      </div>
+                      <div className="ml">{t("Hold rate")}</div>
                     </div>
                     {mini.score != null && (
                       <div>

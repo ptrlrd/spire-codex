@@ -51,14 +51,21 @@ from typing import Any
 
 from pymongo import ASCENDING, DESCENDING, MongoClient
 from pymongo import ReturnDocument
-from pymongo.errors import DuplicateKeyError, ExecutionTimeout, OperationFailure
+from pymongo.errors import (
+    DuplicateKeyError,
+    ExecutionTimeout,
+    OperationFailure,
+    PyMongoError,
+)
 
-from ..metrics import db_operations, db_operation_duration
+from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .official_content import official_characters
 
 logger = logging.getLogger(__name__)
 
-OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+OFFICIAL_CHARACTERS = official_characters()
+_CAST = tuple(sorted(OFFICIAL_CHARACTERS))
 HIDDEN_WINS_INDEX = "hidden_wins"
 _hidden_wins_hint_warned = False
 _HIDDEN_WINS_FIELDS = {
@@ -69,6 +76,27 @@ _HIDDEN_WINS_FIELDS = {
     "ascension",
     "run_time",
 }
+HIDDEN_BROWSE_INDEX = "hidden_browse"
+BACKGROUND_INDEX_THREAD = "runs-background-indexes"
+_HIDDEN_BROWSE_KEYS = (
+    "win",
+    "character",
+    "game_mode",
+    "player_count",
+    "ascension",
+    "build_id",
+    "username_lower",
+    "seed",
+    "has_replay",
+    "was_abandoned",
+)
+_HIDDEN_BROWSE_FIELDS = frozenset(_HIDDEN_BROWSE_KEYS)
+STEAM_BEST_WIN_INDEX = "steam_win_runtime"
+USER_PLAYED_INDEX = "user_played_submitted"
+LIST_MAX_TIME_MS = 4000
+COUNT_FALLBACK_MAX_TIME_MS = 3000
+_GLOBAL_WINS_KEY = "seed_rank:global_wins"
+_GLOBAL_WINS_TTL_SECONDS = 300
 
 
 def _today_daily_seed_match() -> dict:
@@ -134,6 +162,7 @@ _data_dir = Path(os.environ.get("DATA_DIR", "/data"))
 
 _client: MongoClient | None = None
 _coll = None  # lazy — set by _get_collection
+_coll_lock = threading.Lock()
 
 
 def _get_collection():
@@ -146,23 +175,27 @@ def _get_collection():
     if _coll is not None:
         return _coll
 
-    url = os.environ.get("MONGO_URL", "").strip()
-    if not url:
-        raise RuntimeError("MONGO_URL not set — runs_db_mongo imported in error")
+    with _coll_lock:
+        if _coll is not None:
+            return _coll
+        url = os.environ.get("MONGO_URL", "").strip()
+        if not url:
+            raise RuntimeError("MONGO_URL not set: runs_db_mongo imported in error")
 
-    _client = MongoClient(
-        url,
-        w="majority",
-        wtimeoutms=5000,
-        retryWrites=True,
-        connectTimeoutMS=5000,
-        serverSelectionTimeoutMS=5000,
-    )
-    # Database name comes from the connection string's default db.
-    _coll = _client.get_default_database().runs
-    _ensure_indexes(_coll)
-    _ensure_run_validator(_coll)
-    return _coll
+        client = MongoClient(
+            url,
+            w="majority",
+            wtimeoutms=5000,
+            retryWrites=True,
+            connectTimeoutMS=5000,
+            serverSelectionTimeoutMS=5000,
+        )
+        coll = client.get_default_database().runs
+        _client = client
+        _coll = coll
+        _ensure_indexes(coll)
+        _ensure_run_validator(coll)
+    return coll
 
 
 def _ensure_indexes(coll) -> None:
@@ -233,10 +266,10 @@ def _ensure_indexes(coll) -> None:
     # still scans the whole collection, so it runs off the startup path;
     # _count_visible counts unhinted until it exists.
     threading.Thread(
-        target=_ensure_hidden_wins_index,
+        target=_ensure_background_indexes,
         args=(coll,),
         daemon=True,
-        name="hidden-wins-index",
+        name=BACKGROUND_INDEX_THREAD,
     ).start()
     coll.create_index([("ascension", DESCENDING), ("run_time", ASCENDING)])
     coll.create_index([("character", ASCENDING), ("submitted_at", DESCENDING)])
@@ -359,33 +392,46 @@ def _ensure_run_validator(coll) -> None:
     ``submitted_at`` in the import, or temporarily set ``validationAction``
     to ``"warn"`` for that window.
     """
+    validator = {
+        "$jsonSchema": {
+            "required": ["submitted_at"],
+            "properties": {
+                "submitted_at": {
+                    "bsonType": "date",
+                    "description": (
+                        "must be a BSON date; keyset export ordering depends on it"
+                    ),
+                }
+            },
+        }
+    }
+    message = (
+        "could not apply the runs submitted_at validator; inserts are NOT "
+        "being schema-checked. New-run ordering relies on the submit path "
+        "alone until collMod succeeds on a later startup"
+    )
+    try:
+        options = coll.options()
+    except Exception:
+        options = {}
+    if (
+        options.get("validator") == validator
+        and options.get("validationLevel") == "moderate"
+        and options.get("validationAction", "error") == "error"
+    ):
+        return
     try:
         coll.database.command(
             "collMod",
             coll.name,
-            validator={
-                "$jsonSchema": {
-                    "required": ["submitted_at"],
-                    "properties": {
-                        "submitted_at": {
-                            "bsonType": "date",
-                            "description": (
-                                "must be a BSON date; keyset export ordering "
-                                "depends on it"
-                            ),
-                        }
-                    },
-                }
-            },
+            validator=validator,
             validationLevel="moderate",
             validationAction="error",
         )
+    except PyMongoError:
+        logger.warning(message, exc_info=True)
     except Exception:
-        logger.exception(
-            "could not apply the runs submitted_at validator; inserts are NOT "
-            "being schema-checked — new-run ordering relies on the submit path "
-            "alone until collMod succeeds on a later startup"
-        )
+        logger.exception(message)
 
 
 # ── helpers (mirrors of the sqlite module) ──────────────────────────────
@@ -1113,13 +1159,18 @@ def _submit_player_run(
 
     from .cheat_detect import detect_cheats
 
-    cheat_reasons = detect_cheats(data)
+    cheat_reasons = detect_cheats({**data, "floors_reached": total_floors})
     if cheat_reasons:
         doc["hidden"] = True
         doc["hidden_reason"] = "auto:" + ",".join(cheat_reasons[:4])
         logger.info("auto-hid cheated run %s: %s", run_hash, doc["hidden_reason"])
 
     coll = _get_collection()
+    tombstone_reason = moderation_tombstone(run_hash)
+    if tombstone_reason:
+        doc["hidden"] = True
+        doc["hidden_reason"] = tombstone_reason
+        logger.info("re-upload of moderated run %s stays hidden", run_hash)
     try:
         coll.insert_one(doc)
         if not doc.get("hidden"):
@@ -2058,7 +2109,7 @@ def _filter_key(
     if game_mode:
         parts.append(f"game_mode:{game_mode}")
     if players:
-        parts.append(f"players:{players}")
+        parts.append(f"players:{'1' if players == 'single' else players}")
     if username:
         # Lowercased so PeTeR and peter share one summary doc (the match is
         # case-insensitive, so the cache key must be too).
@@ -2126,14 +2177,7 @@ def read_stats_summary(
 # game_mode, players, username). Refresher iterates this list and
 # writes a doc per combo. Add to it when a new common filter combo
 # emerges in production traffic.
-HOT_FILTER_COMBOS: list[dict] = [
-    {},
-    {"character": "IRONCLAD"},
-    {"character": "SILENT"},
-    {"character": "DEFECT"},
-    {"character": "NECROBINDER"},
-    {"character": "REGENT"},
-]
+HOT_FILTER_COMBOS: list[dict] = [{}, *({"character": c} for c in _CAST)]
 
 # Second tier: every ascension slice (A0-A10, alone and per character). Their
 # live aggregation outgrew the gateway timeout at ~1.2M runs (issue #868), so
@@ -2143,7 +2187,7 @@ HOT_FILTER_COMBOS: list[dict] = [
 ASCENSION_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "ascension": str(a)}
     for a in range(0, 11)
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ]
 # Throttled after the 2026-08-20 load incident: 6 per cycle kept Mongo in a
 # continuous disk-spilling aggregation storm. 2 per cycle = full coverage in
@@ -2160,7 +2204,7 @@ _ASCENSION_COMBOS_PER_CYCLE = 2
 PLAYERS_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "players": p}
     for p in ("1", "2", "3", "4")
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ] + [
     {"players": p, "ascension": str(a)}
     for p in ("1", "2", "3", "4")
@@ -2362,22 +2406,45 @@ def refresh_home_stats() -> int:
     return 1
 
 
+def _boards_newer_than(summary, table_at: datetime | None) -> set[str]:
+    """Keys of the stored boards written after the local leaderboard table."""
+    if table_at is None:
+        return set()
+    out: set[str] = set()
+    for doc in summary.find({}, {"updated_at": 1}):
+        stamp = doc.get("updated_at")
+        if stamp is None:
+            continue
+        if stamp.tzinfo is None:
+            stamp = stamp.replace(tzinfo=timezone.utc)
+        if stamp > table_at:
+            out.add(doc["_id"])
+    return out
+
+
 @_instrument("refresh_leaderboard_summary", collection="leaderboard_summary")
-def refresh_leaderboard_summary() -> int:
-    """Compute the hot (category, character) leaderboard combos and write
-    them to leaderboard_summary. Returns count of docs written. Called by
-    the leader-only loop alongside refresh_stats_summary."""
+def refresh_leaderboard_summary(build: bool = False) -> int:
+    """Write the hot (category, character) leaderboard combos to
+    leaderboard_summary. Returns count of docs written. The ingest stage
+    passes build=True to rebuild the lake leaderboard table first, and a
+    failure there raises so the stored boards stay on the previous
+    generation. The serving refresher re-cuts the boards from the stored
+    table, and falls back to the live query per combo only when there is no
+    table. A stored board newer than the serving box's table came from an
+    ingest whose table has not been pulled yet, so it is left alone."""
     summary = _leaderboard_summary_coll()
     written = 0
-    # One lake pass for all combos (seconds) instead of 24 Mongo
-    # aggregations (~10 minutes); per-combo live fallback keeps the boards
-    # fresh when the lake is unavailable.
     boards: dict[str, dict] | None = None
+    newer: set[str] = set()
     try:
         from . import lake_stats
 
-        boards = lake_stats.leaderboard_boards()
+        boards = lake_stats.leaderboard_boards(build=build)
+        if boards and not build:
+            newer = _boards_newer_than(summary, lake_stats.leaderboard_table_time())
     except Exception:
+        if build:
+            raise
         logger.warning("lake leaderboard boards failed", exc_info=True)
     for combo in HOT_LEADERBOARD_COMBOS:
         try:
@@ -2385,14 +2452,15 @@ def refresh_leaderboard_summary() -> int:
             character = combo.get("character")
             players = combo.get("players")
             game_mode = combo.get("game_mode")
-            result = (boards or {}).get(
-                _leaderboard_key(
-                    category=category,
-                    character=character,
-                    players=players,
-                    game_mode=game_mode,
-                )
-            ) or _leaderboard_live(
+            board_key = _leaderboard_key(
+                category=category,
+                character=character,
+                players=players,
+                game_mode=game_mode,
+            )
+            if board_key in newer:
+                continue
+            result = (boards or {}).get(board_key) or _leaderboard_live(
                 category=category,
                 character=character,
                 players=players,
@@ -2428,7 +2496,7 @@ def refresh_leaderboard_summary() -> int:
                         limit=warm_limit,
                     ),
                     sliced,
-                    ttl_seconds=app_cache.WARM_TTL_SECONDS,
+                    ttl_seconds=60,
                 )
             written += 1
         except Exception:
@@ -2745,6 +2813,40 @@ def _refresh_user_winrates(token: str) -> None:
         _user_winrates_inflight.release()
 
 
+def _is_time_limit(exc: Exception) -> bool:
+    return isinstance(exc, ExecutionTimeout) or getattr(exc, "code", None) == 50
+
+
+def _count_within(coll, query: dict, max_time_ms: int) -> int:
+    """Exact count under a time limit. A public filter carries
+    hidden: {$ne: True}, which no index holds, so counting it directly
+    fetches every candidate doc. When the hidden_browse partial index holds
+    every other field of the filter, count the filter without the clause and
+    subtract the hidden subset, which that index answers on its own."""
+    if query.get("hidden") != {"$ne": True}:
+        return coll.count_documents(query, maxTimeMS=max_time_ms)
+    base = {k: v for k, v in query.items() if k != "hidden"}
+    if not set(base) <= _HIDDEN_BROWSE_FIELDS:
+        return coll.count_documents(query, maxTimeMS=max_time_ms)
+    if base:
+        total = coll.count_documents(base, maxTimeMS=max_time_ms)
+    else:
+        total = coll.estimated_document_count()
+    if not total:
+        return 0
+    hidden_query = {**base, "hidden": True}
+    try:
+        hidden = coll.count_documents(
+            hidden_query, maxTimeMS=max_time_ms, hint=HIDDEN_BROWSE_INDEX
+        )
+    except OperationFailure as exc:
+        if _is_time_limit(exc):
+            raise
+        hidden = coll.count_documents(hidden_query, maxTimeMS=max_time_ms)
+    return max(total - hidden, 0)
+
+
+@_instrument("count_with_budget")
 def count_with_budget(
     coll,
     query: dict,
@@ -2755,15 +2857,15 @@ def count_with_budget(
     """Exact count for a browse query, without the multi-second scan an
     unfiltered count over millions of heavyweight docs costs.
 
-    count_documents runs with maxTimeMS; a server timeout (code 50) means
-    the exact count is too expensive right now, so the capped count comes
-    back instead: (cap-capped total, True) — a lower bound, enough to keep
-    pagination working. Exact answers are (n, False).
+    The count runs with maxTimeMS; a server timeout (code 50) means the
+    exact count is too expensive right now, so the capped count comes back
+    instead: (cap-capped total, True), a lower bound, enough to keep
+    pagination working. Exact answers are (n, False). The capped count is
+    time-limited too, and its timeout propagates to the caller.
 
-    Filtered results are cached in Redis for 120s under a stable hash of
-    the collection name and the normalized query, so repeated pages of the
-    same browse never re-count. Unfiltered totals keep the instant
-    estimated_document_count and never reach this helper.
+    Results are cached in Redis for 120s under a stable hash of the
+    collection name and the normalized query, so repeated pages of the
+    same browse never re-count.
     """
     coll_name = getattr(coll, "name", "") or ""
     key = (
@@ -2778,18 +2880,24 @@ def count_with_budget(
     if cached is not None:
         return int(cached[0]), bool(cached[1])
     try:
-        out = (coll.count_documents(query, maxTimeMS=max_time_ms), False)
-    except ExecutionTimeout:
-        out = (coll.count_documents(query, limit=cap), True)
+        out = (_count_within(coll, query, max_time_ms), False)
     except OperationFailure as exc:
-        if getattr(exc, "code", None) != 50:
+        if not _is_time_limit(exc):
             raise
-        out = (coll.count_documents(query, limit=cap), True)
+        count_budget_timeouts.labels(stage="exact").inc()
+        try:
+            capped = coll.count_documents(
+                query, limit=cap, maxTimeMS=COUNT_FALLBACK_MAX_TIME_MS
+            )
+        except OperationFailure as capped_exc:
+            if _is_time_limit(capped_exc):
+                count_budget_timeouts.labels(stage="capped").inc()
+            raise
+        out = (capped, True)
     app_cache.set_json(key, list(out), ttl_seconds=120)
     return out
 
 
-@_instrument("list_runs")
 def _run_filter(
     character: str | None = None,
     win: str | None = None,
@@ -2915,6 +3023,7 @@ def _run_filter(
     return q
 
 
+@_instrument("list_runs")
 def list_runs(
     character: str | None = None,
     win: str | None = None,
@@ -2995,7 +3104,10 @@ def list_runs(
     per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
     cursor = (
-        coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
+        coll.find(q, _projection_row(), max_time_ms=LIST_MAX_TIME_MS)
+        .sort(sort_clause)
+        .skip(offset)
+        .limit(per_page)
     )
     runs = [_row_to_dict(r) for r in cursor]
 
@@ -3032,7 +3144,7 @@ def set_run_hidden(run_hash: str, hidden: bool, reason: str | None = None) -> di
         if reason:
             update["$set"]["hidden_reason"] = reason
     else:
-        update = {"$unset": {"hidden": "", "hidden_reason": ""}}
+        update = {"$unset": {"hidden": "", "hidden_reason": "", "hidden_before": ""}}
     result = coll.update_many(query, update)
     for row in rows:
         if bool(row.get("hidden")) != hidden:
@@ -3150,6 +3262,61 @@ def rehide_impossible_time_runs(dry_run: bool = False) -> dict:
     return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
 
 
+def unhide_relaxed_time_runs(apply: bool = False) -> dict:
+    """Give back the wins the old 15 minute cutoff auto-hid that the current
+    rules allow. Only touches runs whose stored reason is nothing but the
+    time signals, and only when the detector passes the stored run today;
+    moderator hides, owner hides and every other auto reason stay hidden."""
+    from .cheat_detect import detect_cheats
+
+    coll = _get_collection()
+    cursor = coll.find(
+        {
+            "hidden": True,
+            "win": {"$in": [1, True]},
+            "run_time": {"$gte": 300, "$lt": 900},
+        },
+        {
+            "run_time": 1,
+            "floors_reached": 1,
+            "game_mode": 1,
+            "hidden_reason": 1,
+            "map_point_history": 1,
+            "relics.id": 1,
+            "deck.id": 1,
+            "player_count": 1,
+        },
+    )
+    counts = {"candidates": 0, "other_reason": 0, "still_flagged": 0}
+    hashes: list[str] = []
+    for doc in cursor:
+        counts["candidates"] += 1
+        reason = str(doc.get("hidden_reason") or "")
+        parts = reason.removeprefix("auto:").split(",")
+        if not reason.startswith("auto:impossible_time") or not all(
+            part.startswith(("impossible_time:", "impossible_pace:")) for part in parts
+        ):
+            counts["other_reason"] += 1
+            continue
+        seat = {"relics": doc.get("relics"), "deck": doc.get("deck")}
+        stored = {
+            "win": True,
+            "run_time": doc.get("run_time"),
+            "floors_reached": doc.get("floors_reached"),
+            "game_mode": doc.get("game_mode"),
+            "map_point_history": doc.get("map_point_history") or [],
+            "players": [seat] * max(1, int(doc.get("player_count") or 1)),
+        }
+        if detect_cheats(stored):
+            counts["still_flagged"] += 1
+            continue
+        hashes.append(doc["_id"])
+        if apply:
+            set_run_hidden(doc["_id"], False)
+            logger.info("unhid run %s (was %s)", doc["_id"], reason)
+    return {**counts, "unhidden": len(hashes), "hashes": hashes}
+
+
 def rehide_coop_card_solo_runs(dry_run: bool = False) -> dict:
     """Backfill for the co-op-card-in-solo cheat signal: sweep stored solo
     runs whose decks contain a co-op-only card (submit-time detection only
@@ -3157,33 +3324,27 @@ def rehide_coop_card_solo_runs(dry_run: bool = False) -> dict:
     catalog's co-op set case-insensitively; the shared detector then
     re-checks per doc off the blob's own player list. Returns counts;
     dry_run only reports."""
-    import re as _re
-
     from .cheat_detect import coop_cards_in_solo
     from .run_entity_stats import _multiplayer_card_ids
 
     coop_ids = _multiplayer_card_ids()
     if not coop_ids:
         return {"candidates": 0, "hidden": 0, "hashes": []}
-    patterns = [
-        _re.compile(rf"^CARD\.{_re.escape(cid)}$", _re.IGNORECASE)
-        for cid in sorted(coop_ids)
-    ]
     coll = _get_collection()
     cursor = coll.find(
         {
             "hidden": {"$ne": True},
             "player_count": 1,
-            "players.deck.id": {"$in": patterns},
+            "deck.id": {"$in": sorted(coop_ids)},
         },
-        {"players.deck.id": 1, "run_hash": 1},
+        {"deck.id": 1, "run_hash": 1},
     )
     checked = 0
     hidden_runs: list[str] = []
     for doc in cursor:
         checked += 1
         run_hash = doc.get("run_hash") or doc["_id"]
-        reasons = coop_cards_in_solo({"players": doc.get("players")}, coop_ids)
+        reasons = coop_cards_in_solo({"players": [{"deck": doc.get("deck")}]}, coop_ids)
         if not reasons:
             continue
         hidden_runs.append(run_hash)
@@ -3208,34 +3369,46 @@ def leaderboard(
     """Wins-only leaderboard. Mirrors the /api/runs/leaderboard SQLite path.
 
     Read path:
-      1. Fast path -- if the request matches the materialized (category,
-         character) default view (page 1, limit 50, no today/players/
-         game_mode filter), serve from leaderboard_summary in a single
-         find_one. O(1).
-      2. Live path -- _leaderboard_live runs the count + find + sort
-         directly. The new sort indexes keep this at ~500ms even when the
-         summary doesn't cover the combo.
+      1. A stored board from leaderboard_summary when the request is one of
+         the hot combos and the page fits in its rows: one find_one.
+      2. Any other filter combination or page as a slice of the lake
+         leaderboard table (lake_stats.leaderboard_slice).
+      3. The live query, for today's daily board (it changes by the minute)
+         and for a box that has no table yet.
+    Runs hidden or deleted since the boards were built are dropped on read.
     """
-    # Fast path: serve from the materialized summary when the combo is one
-    # we materialize (find_one misses otherwise and we fall to live). Docs
-    # store LEADERBOARD_BOARD_ROWS rows, so any page that fits inside them
-    # is a slice. An ascension_min / winrate_min / build_id filter isn't
-    # materialized, so skip to live.
-    if ascension_min is None and winrate_min is None and build_id is None and not today:
+    plain = ascension_min is None and winrate_min is None and build_id is None
+    if not today:
+        if plain:
+            try:
+                key = _leaderboard_key(
+                    category=category,
+                    character=character,
+                    players=players,
+                    game_mode=game_mode,
+                )
+                doc = _leaderboard_summary_coll().find_one({"_id": key})
+                sliced = _slice_board(doc, page, limit) if doc else None
+                if sliced is not None and not _gone_board_hashes(sliced["runs"]):
+                    return sliced
+            except Exception:
+                pass
         try:
-            key = _leaderboard_key(
+            sliced = _lake_board(
                 category=category,
                 character=character,
                 players=players,
                 game_mode=game_mode,
+                page=page,
+                limit=limit,
+                ascension_min=ascension_min,
+                winrate_min=winrate_min,
+                build_id=build_id,
             )
-            doc = _leaderboard_summary_coll().find_one({"_id": key})
-            if doc:
-                sliced = _slice_board(doc, page, limit)
-                if sliced is not None:
-                    return sliced
+            if sliced is not None:
+                return sliced
         except Exception:
-            pass
+            logger.warning("lake leaderboard slice failed", exc_info=True)
 
     return _leaderboard_live(
         category=category,
@@ -3249,6 +3422,53 @@ def leaderboard(
         winrate_min=winrate_min,
         build_id=build_id,
     )
+
+
+def _gone_board_hashes(runs: list[dict]) -> list[str]:
+    """Run hashes on a stored board page (party seats included) that were
+    hidden or deleted since the board was built, so a hidden run leaves
+    every board on the next read instead of the next ingest."""
+    hashes = {r.get("run_hash") for r in runs}
+    for r in runs:
+        hashes.update(m.get("run_hash") for m in r.get("party") or [])
+    hashes.discard(None)
+    if not hashes:
+        return []
+    visible = {
+        d["_id"]
+        for d in _get_collection().find(
+            {
+                "_id": {"$in": sorted(hashes)},
+                "hidden": {"$ne": True},
+                "deleted_at": None,
+            },
+            {"_id": 1},
+        )
+    }
+    return sorted(hashes - visible)
+
+
+def _lake_board(**filters) -> dict | None:
+    from . import lake_stats
+
+    exclude: list[str] = []
+    sliced = None
+    for _ in range(4):
+        sliced = lake_stats.leaderboard_slice(**filters, exclude=exclude)
+        if sliced is None:
+            return None
+        gone = _gone_board_hashes(sliced["runs"])
+        if not gone:
+            return sliced
+        exclude.extend(gone)
+    gone_set = set(exclude)
+    sliced["runs"] = [
+        r
+        for r in sliced["runs"]
+        if not gone_set
+        & {r["run_hash"], *(m["run_hash"] for m in r.get("party") or [])}
+    ]
+    return sliced
 
 
 def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
@@ -3268,6 +3488,7 @@ def _slice_board(doc: dict, page: int, limit: int) -> dict | None:
     return out
 
 
+@_instrument("leaderboard_live")
 def _leaderboard_live(
     category: str = "fastest",
     character: str | None = None,
@@ -3347,23 +3568,34 @@ def _leaderboard_live(
     # hidden: {$ne: True} disqualifies the covering index and fetches every
     # candidate doc, a cost refresh_leaderboard_summary pays for all 24
     # combos every cycle.
-    if q:
-        base_q = {k: v for k, v in q.items() if k != "hidden"}
-        visible, visible_lb = count_with_budget(coll, base_q, max_time_ms=max_time_ms)
-        hidden_count, hidden_lb = count_with_budget(
-            coll, {**base_q, "hidden": True}, max_time_ms=max_time_ms
-        )
-        total = max(visible - hidden_count, 0)
-        total_is_lower_bound = visible_lb or hidden_lb
-    else:
-        total = coll.estimated_document_count()
-        total_is_lower_bound = False
     per_page = max(1, min(limit, 100))
     offset = (max(page, 1) - 1) * per_page
-    cursor = (
-        coll.find(q, _projection_row()).sort(sort_clause).skip(offset).limit(per_page)
-    )
-    runs = [_row_to_dict(r) for r in cursor]
+    list_max_time_ms = max(max_time_ms, LIST_MAX_TIME_MS)
+    if players in ("single", "1"):
+        total, total_is_lower_bound = count_with_budget(
+            coll, q, max_time_ms=max_time_ms
+        )
+        cursor = (
+            coll.find(q, _projection_row(), max_time_ms=list_max_time_ms)
+            .sort(sort_clause)
+            .skip(offset)
+            .limit(per_page)
+        )
+        runs = [_row_to_dict(r) for r in cursor]
+    else:
+        total, total_is_lower_bound = 0, False
+        coop_q = q
+        if "player_count" not in q:
+            total, total_is_lower_bound = count_with_budget(
+                coll, {**q, "player_count": 1}, max_time_ms=max_time_ms
+            )
+            coop_q = {**q, "player_count": {"$gt": 1}}
+        coop_total, coop_lb = _count_coop_runs(coll, coop_q, max_time_ms)
+        total += coop_total
+        total_is_lower_bound = total_is_lower_bound or coop_lb
+        runs = _collapsed_live_page(
+            coll, q, sort_clause, offset, per_page, list_max_time_ms
+        )
 
     return {
         "runs": runs,
@@ -3374,6 +3606,115 @@ def _leaderboard_live(
         "total_is_lower_bound": total_is_lower_bound,
         "category": category,
     }
+
+
+_COOP_KEY_FIELDS = ("seed", "played_at", "run_time", "player_count")
+
+
+def _coop_run_key(doc: dict):
+    """One key per run: a co-op run is stored as one document per seat, and
+    the seats share seed, start time, run time and party size."""
+    if (doc.get("player_count") or 1) <= 1:
+        return doc.get("_id")
+    return tuple(doc.get(f) for f in _COOP_KEY_FIELDS)
+
+
+def _count_coop_runs(coll, query: dict, max_time_ms: int) -> tuple[int, bool]:
+    """Distinct co-op runs matching the query. When the grouping runs out of
+    time, seat documents over the party size come back flagged as a lower
+    bound (a run never has more matching seats than players)."""
+    pipeline = [
+        {"$match": query},
+        {"$group": {"_id": {f: f"${f}" for f in _COOP_KEY_FIELDS}}},
+        {"$count": "n"},
+    ]
+    try:
+        rows = list(coll.aggregate(pipeline, maxTimeMS=max_time_ms, allowDiskUse=True))
+        return (int(rows[0]["n"]) if rows else 0, False)
+    except ExecutionTimeout:
+        pass
+    except OperationFailure as exc:
+        if getattr(exc, "code", None) != 50:
+            raise
+    docs, _ = count_with_budget(coll, query, max_time_ms=max_time_ms)
+    size = query.get("player_count")
+    return docs // (size if isinstance(size, int) and size > 1 else 4), True
+
+
+def _collapsed_live_page(
+    coll,
+    q: dict,
+    sort_clause: list,
+    offset: int,
+    per_page: int,
+    max_time_ms: int = LIST_MAX_TIME_MS,
+) -> list[dict]:
+    """A page of the live ladder with each co-op run listed once (its first
+    seat in ladder order, a named seat when one ties) and its party."""
+    keys_only = {"username": 1, "ascension": 1, **{f: 1 for f in _COOP_KEY_FIELDS}}
+    need = offset + per_page
+    order: list = []
+    chosen: dict = {}
+    last = None
+    scan = (
+        coll.find(q, keys_only, max_time_ms=max_time_ms)
+        .sort(sort_clause)
+        .limit(need * 8 + 64)
+    )
+    for doc in scan:
+        key = _coop_run_key(doc)
+        place = (doc.get("ascension"), doc.get("run_time"))
+        if key in chosen:
+            if not chosen[key].get("username") and doc.get("username"):
+                chosen[key] = doc
+            continue
+        if len(order) >= need and place != last:
+            break
+        if len(order) < need:
+            order.append(key)
+            chosen[key] = doc
+            last = place
+    ids = [chosen[k]["_id"] for k in order[offset:]]
+    projection = {**_projection_row(), "seed": 1, "played_at": 1, "player_count": 1}
+    full = {d["_id"]: d for d in coll.find({"_id": {"$in": ids}}, projection)}
+    picked = [full[i] for i in ids if i in full]
+    parties = _live_parties(
+        coll, [d for d in picked if (d.get("player_count") or 1) > 1]
+    )
+    runs = []
+    for doc in picked:
+        key = _coop_run_key(doc)
+        row = _row_to_dict(doc)
+        row.pop("seed", None)
+        row.pop("played_at", None)
+        if key in parties:
+            row["party"] = parties[key]
+        runs.append(row)
+    return runs
+
+
+def _live_parties(coll, docs: list[dict]) -> dict:
+    if not docs:
+        return {}
+    clauses = [
+        {"win": {"$in": [True, 1]}, **{f: d.get(f) for f in _COOP_KEY_FIELDS}}
+        for d in docs
+    ]
+    parties: dict = {}
+    for seat in coll.find(
+        {"$or": clauses, "hidden": {"$ne": True}},
+        {"_id": 1, "character": 1, "username": 1, **{f: 1 for f in _COOP_KEY_FIELDS}},
+    ):
+        parties.setdefault(_coop_run_key(seat), []).append(
+            {
+                "run_hash": seat["_id"],
+                "character": seat.get("character"),
+                "username": seat.get("username"),
+            }
+        )
+    for party in parties.values():
+        party.sort(key=lambda m: m["run_hash"])
+    return parties
 
 
 def _ensure_hidden_wins_index(coll) -> None:
@@ -3392,6 +3733,37 @@ def _ensure_hidden_wins_index(coll) -> None:
         )
     except Exception:
         logger.warning("hidden_wins index build failed", exc_info=True)
+
+
+def _background_index_specs() -> list[tuple[list, dict]]:
+    return [
+        (
+            [("hidden", ASCENDING)]
+            + [(field, ASCENDING) for field in _HIDDEN_BROWSE_KEYS],
+            {"name": HIDDEN_BROWSE_INDEX, "partialFilterExpression": {"hidden": True}},
+        ),
+        (
+            [("steam_id", ASCENDING), ("win", ASCENDING), ("run_time", ASCENDING)],
+            {"name": STEAM_BEST_WIN_INDEX},
+        ),
+        (
+            [
+                ("user_id", ASCENDING),
+                ("played_at", DESCENDING),
+                ("submitted_at", DESCENDING),
+            ],
+            {"name": USER_PLAYED_INDEX},
+        ),
+    ]
+
+
+def _ensure_background_indexes(coll) -> None:
+    _ensure_hidden_wins_index(coll)
+    for keys, options in _background_index_specs():
+        try:
+            coll.create_index(keys, **options)
+        except Exception:
+            logger.warning("%s index build failed", options["name"], exc_info=True)
 
 
 def _covered_by_hidden_wins(query: dict) -> bool:
@@ -3433,43 +3805,84 @@ def _count_visible(coll, query: dict) -> int:
     return total - coll.count_documents(hidden_query)
 
 
+def _own_bucket(row: dict) -> dict | None:
+    """The leaderboard pool a run competes in: its character, party size
+    (four or more is one pool), game mode and the official ascensions.
+    None when the run is on no board."""
+    asc = row.get("ascension") or 0
+    if not 0 <= asc <= 10:
+        return None
+    size = row.get("player_count") or 1
+    mode = row.get("game_mode")
+    return {
+        "character": row.get("character"),
+        "player_count": {"$gte": 4} if size >= 4 else size,
+        "game_mode": mode if mode else {"$in": [None, "standard"]},
+        "ascension": {"$gte": 0, "$lte": 10},
+    }
+
+
 @_instrument("get_run_rank")
 def get_run_rank(run_hash: str, category: str = "fastest") -> dict:
-    """Rank of a single winning run within its character's leaderboard.
-    Hidden runs neither rank nor count as ahead, matching /leaderboard."""
+    """Rank of a single winning run on the board it appears on: its
+    character, party size and game mode, ascensions 0 to 10. Hidden runs
+    neither rank nor count as ahead, matching /leaderboard. Reads the lake
+    leaderboard table when the run is in it (co-op runs count once there),
+    else counts live."""
     coll = _get_collection()
     row = coll.find_one(
         {"_id": run_hash},
-        {"win": 1, "character": 1, "run_time": 1, "ascension": 1, "hidden": 1},
+        {
+            "win": 1,
+            "character": 1,
+            "run_time": 1,
+            "ascension": 1,
+            "hidden": 1,
+            "player_count": 1,
+            "game_mode": 1,
+        },
     )
     if not row or not row.get("win") or row.get("hidden"):
         return {"rank": None}
+    bucket = _own_bucket(row)
+    if bucket is None:
+        return {"rank": None}
+    try:
+        from . import lake_stats
 
+        rank = lake_stats.leaderboard_rank(run_hash, category)
+        if rank is not None:
+            return {"rank": rank, "category": category}
+    except Exception:
+        logger.warning("lake rank failed", exc_info=True)
+
+    scope = {"win": {"$in": [True, 1]}, **bucket}
+    asc = row.get("ascension") or 0
     if category == "highest_ascension":
         ahead = _count_visible(
             coll,
             {
-                "win": {"$in": [True, 1]},
-                "character": row["character"],
+                **{k: v for k, v in scope.items() if k != "ascension"},
                 "$or": [
-                    {"ascension": {"$gt": row.get("ascension", 0)}},
-                    {
-                        "ascension": row.get("ascension", 0),
-                        "run_time": {"$lt": row.get("run_time", 0)},
-                    },
+                    {"ascension": {"$gt": asc, "$lte": 10}},
+                    {"ascension": asc, "run_time": {"$lt": row.get("run_time", 0)}},
                 ],
             },
         )
     else:
         ahead = _count_visible(
-            coll,
-            {
-                "win": {"$in": [True, 1]},
-                "character": row["character"],
-                "run_time": {"$lt": row.get("run_time", 0)},
-            },
+            coll, {**scope, "run_time": {"$lt": row.get("run_time", 0)}}
         )
     return {"rank": ahead + 1, "category": category}
+
+
+def _global_win_total(coll) -> int:
+    cached = app_cache.get_json(_GLOBAL_WINS_KEY)
+    if isinstance(cached, int) and not isinstance(cached, bool):
+        return cached
+    total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+    app_cache.set_json(_GLOBAL_WINS_KEY, total, ttl_seconds=_GLOBAL_WINS_TTL_SECONDS)
+    return total
 
 
 @_instrument("seed_rank_for")
@@ -3519,7 +3932,7 @@ def seed_rank_for(steam_id: str | None, seed: str) -> dict:
             {"run_time": 1},
             sort=[("run_time", 1)],
         )
-        global_total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+        global_total = _global_win_total(coll)
         if best and global_total:
             global_rank = (
                 _count_visible(
@@ -3531,9 +3944,10 @@ def seed_rank_for(steam_id: str | None, seed: str) -> dict:
                 )
                 + 1
             )
+            global_total = max(global_total, global_rank)
             percentile = round(global_rank * 100.0 / global_total, 1)
     else:
-        global_total = _count_visible(coll, {"win": {"$in": [True, 1]}})
+        global_total = _global_win_total(coll)
 
     return {
         "seed": seed,
@@ -3552,7 +3966,7 @@ def distinct_build_ids() -> list[str]:
     return sorted([v for v in coll.distinct("build_id") if v], reverse=True)
 
 
-@_instrument("get_user_run_rows")
+@_instrument("count_user_runs")
 def count_user_runs(user_id: str) -> int:
     """How many visible runs an account has claimed; the profile's building
     placeholder shows it so a fresh bulk upload isn't a dead spinner."""
@@ -3570,6 +3984,7 @@ def count_user_runs(user_id: str) -> int:
         return 0
 
 
+@_instrument("get_user_run_rows")
 def get_user_run_rows(user_id: str, limit: int = 2000) -> list[dict]:
     """One account's claimed run rows (newest first) for the profile insights
     walk: just the fields the community-stats accumulator needs per run.
@@ -3779,7 +4194,6 @@ def get_user_picks(steam_id: str) -> dict[str, dict]:
     return {"cards": tally(cards), "ancients": tally(ancients)}
 
 
-@_instrument("primary_share_hash")
 def player_index_for_hash(data: dict, run_hash: str) -> int | None:
     """Which players[] entry a per-player share hash belongs to. Co-op runs
     store one doc per player and every sibling serves the same blob, so the
@@ -4040,6 +4454,8 @@ def get_user_runs(
         return {"runs": [], "total": 0, "page": page, "limit": limit}
     match = {**q, "user_id": ObjectId(user_id), "deleted_at": None}
     total = coll.count_documents(match)
+    page = max(1, page)
+    limit = max(1, limit)
     skip = (page - 1) * limit
 
     # Include-projection of exactly the fields emitted below — the old
@@ -4113,6 +4529,46 @@ def _undelete_on_reupload(coll, run_hash: str, extra: dict | None = None) -> Non
 
 
 OWNER_HIDDEN = "owner"
+MODERATOR_HIDDEN = "moderator"
+
+
+def _tombstones():
+    return _get_collection().database["run_tombstones"]
+
+
+def moderation_tombstone(run_hash: str) -> str | None:
+    """The reason a moderator hid this run before its owner deleted it, or
+    None. A failed lookup reads as no tombstone so it never blocks an upload."""
+    try:
+        doc = _tombstones().find_one({"_id": run_hash}, {"reason": 1})
+    except Exception:
+        logger.warning("tombstone lookup failed for %s", run_hash, exc_info=True)
+        return None
+    if not doc:
+        return None
+    return str(doc.get("reason") or MODERATOR_HIDDEN)
+
+
+def drop_moderation_tombstones(run_hashes: list[str]) -> int:
+    """Forget the tombstones for runs a moderator has let back in, so a later
+    delete and upload of the same file is treated as a new run."""
+    hashes = [h for h in run_hashes if h]
+    if not hashes:
+        return 0
+    try:
+        return _tombstones().delete_many({"_id": {"$in": hashes}}).deleted_count
+    except Exception:
+        logger.warning("tombstone cleanup failed for %s", hashes, exc_info=True)
+        return 0
+
+
+def _is_moderator_hidden(run: dict) -> bool:
+    reason = str(run.get("hidden_reason") or "")
+    return (
+        bool(run.get("hidden"))
+        and reason != OWNER_HIDDEN
+        and not reason.startswith("auto:")
+    )
 
 
 def set_run_hidden_by_owner(run_hash: str, user: dict, hidden: bool) -> dict:
@@ -4142,7 +4598,8 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
     """Remove one of the caller's own runs for good: the run doc, its blob, the
     file on disk and its replay. The live stats counters give the run back and
     the lake drops it on the next ingest. A later upload of the same file
-    comes in as a new run."""
+    comes in as a new run, except that a run a moderator hid leaves a
+    tombstone so the new copy comes in hidden for the same reason."""
     coll = _get_collection()
     run = coll.find_one(
         {"_id": run_hash},
@@ -4150,6 +4607,7 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
             "user_id": 1,
             "steam_id": 1,
             "hidden": 1,
+            "hidden_reason": 1,
             "deleted_at": 1,
             "character": 1,
             "win": 1,
@@ -4174,6 +4632,17 @@ def _remove_run(run: dict, guard: dict | None = None) -> bool:
     """Drop a run doc and everything stored beside it. The guard narrows the
     delete so a doc that changed since it was read is left alone."""
     run_hash = run["_id"]
+    if _is_moderator_hidden(run):
+        _tombstones().update_one(
+            {"_id": run_hash},
+            {
+                "$set": {
+                    "reason": run.get("hidden_reason") or MODERATOR_HIDDEN,
+                    "deleted_at": datetime.now(timezone.utc),
+                }
+            },
+            upsert=True,
+        )
     removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
     if not removed.deleted_count:
         return False

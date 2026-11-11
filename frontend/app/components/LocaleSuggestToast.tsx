@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
+import { useSearchParams } from "next/navigation";
 import NextLink from "next/link";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useGameLocale } from "@/lib/i18n";
@@ -101,6 +102,11 @@ function englishOnly(pathname: string): boolean {
   );
 }
 
+function subscribeHash(onChange: () => void): () => void {
+  window.addEventListener("hashchange", onChange);
+  return () => window.removeEventListener("hashchange", onChange);
+}
+
 export default function LocaleSuggestToast() {
   const current = useGameLocale();
   const pathname = usePathname();
@@ -123,12 +129,37 @@ export default function LocaleSuggestToast() {
   }, [current]);
 
   if (!suggested || (suggested !== "eng" && englishOnly(pathname))) return null;
+  return (
+    <SuggestToast
+      suggested={suggested}
+      pathname={pathname}
+      onDismiss={() => setSuggested(null)}
+    />
+  );
+}
+
+function SuggestToast({
+  suggested,
+  pathname,
+  onDismiss,
+}: {
+  suggested: Locale;
+  pathname: string;
+  onDismiss: () => void;
+}) {
+  const query = useSearchParams().toString();
+  const hash = useSyncExternalStore(
+    subscribeHash,
+    () => window.location.hash,
+    () => "",
+  );
+  const href = `${pathname}${query ? `?${query}` : ""}${hash}`;
   const copy = COPY[suggested];
   const dismiss = () => {
     try {
       localStorage.setItem(STORAGE_KEY, suggested);
     } catch {}
-    setSuggested(null);
+    onDismiss();
   };
   return (
     <div
@@ -138,7 +169,7 @@ export default function LocaleSuggestToast() {
       <p className="mb-2">{copy.text}</p>
       {suggested === "eng" ? (
         <NextLink
-          href={pathname}
+          href={href}
           hrefLang="en"
           className="font-semibold underline text-[var(--accent-gold-light)]"
           onClick={dismiss}
@@ -147,7 +178,7 @@ export default function LocaleSuggestToast() {
         </NextLink>
       ) : (
         <Link
-          href={pathname}
+          href={href}
           locale={suggested}
           className="font-semibold underline text-[var(--accent-gold-light)]"
           onClick={dismiss}

@@ -1,6 +1,5 @@
 """Spire Codex API - FastAPI Application."""
 
-import json
 import logging
 import os
 import re
@@ -18,6 +17,7 @@ from pathlib import Path
 from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
+from pymongo.errors import ExecutionTimeout
 
 from .routers import (
     cards,
@@ -68,6 +68,7 @@ from .routers import (
     admin_rate_limits,
     admin_api_keys,
     admin_replays,
+    admin_cheat_review,
     api_keys,
     glossary,
     guides,
@@ -114,6 +115,9 @@ from .metrics import (
     version_usage,
     widget_loads,
     compare_views,
+    read_lake_generation,
+    read_lake_latest_attempt,
+    refresh_lake_gauges,
     sweep_dead_worker_gauges,
 )
 
@@ -184,6 +188,17 @@ app = FastAPI(
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+
+
+async def _query_time_limit_handler(request: Request, exc: ExecutionTimeout):
+    logger.warning("query hit its time limit: %s", request.url.path)
+    return JSONResponse(
+        status_code=503,
+        content={"detail": "This query took too long. Try again shortly."},
+    )
+
+
+app.add_exception_handler(ExecutionTimeout, _query_time_limit_handler)
 # Without SlowAPIMiddleware, slowapi's `default_limits` is a no-op
 # — it only applies to routes that explicitly use `@limiter.limit()`.
 # Roughly 70/85 routes (every entity GET route, exports, news, mechanics
@@ -546,6 +561,7 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
         if request.url.path in _SKIP_PATHS:
             if request.url.path == "/metrics":
                 sweep_dead_worker_gauges()
+                refresh_lake_gauges()
             return await call_next(request)
 
         # Resolve the rate-limit tier BEFORE SlowAPIMiddleware runs (this
@@ -877,6 +893,7 @@ app.include_router(mentions_ingest.router, include_in_schema=False)
 app.include_router(thanks.router)
 app.include_router(admin_api_keys.router, include_in_schema=False)
 app.include_router(admin_replays.router, include_in_schema=False)
+app.include_router(admin_cheat_review.router, include_in_schema=False)
 # Key management (create/list/revoke) is session-authed and site-internal, so
 # it stays out of /docs; only the public tier info (/api/rate-limits) shows.
 app.include_router(api_keys.router, include_in_schema=False)
@@ -966,42 +983,14 @@ def health(request: Request):
             lake[label] = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
         except OSError:
             lake[label] = None
-    data_through = None
-    try:
-        state = json.loads((lake_dir / "staging" / "state.json").read_text())
-        data_through = state.get("submitted_at")
-    except Exception:
-        pass
     # The ingest publishes this manifest last, after every artifact of a
     # cycle landed, so it names the newest COMPLETE generation; individual
     # store mtimes above can run ahead of it mid-cycle.
-    generation = None
-    try:
-        generation = json.loads((lake_dir / "generation.json").read_text())
-    except Exception:
-        pass
+    generation = read_lake_generation(lake_dir)
+    data_through = (generation or {}).get("source_watermark")
     # The newest ATTEMPT, complete or not — a failing cron would otherwise
     # be invisible here (the manifest only ever shows the last success).
-    latest_attempt = None
-    try:
-        with open(lake_dir / "ingest_metrics.jsonl", "rb") as f:
-            f.seek(0, 2)
-            f.seek(max(0, f.tell() - 8192))
-            lines = f.read().splitlines()
-        if lines:
-            rec = json.loads(lines[-1])
-            latest_attempt = {
-                k: rec.get(k)
-                for k in (
-                    "generation_id",
-                    "cycle_started_at",
-                    "published_at",
-                    "complete",
-                    "failed_stage",
-                )
-            }
-    except Exception:
-        pass
+    latest_attempt = read_lake_latest_attempt(lake_dir)
 
     return {
         "status": "ok" if data_ok else "degraded",

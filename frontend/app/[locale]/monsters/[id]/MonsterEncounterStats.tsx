@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 import { useEffect, useMemo, useState } from "react";
 import {
   BarElement,
@@ -184,6 +184,7 @@ export default function MonsterEncounterStats({
   bp: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const ids = encounters.map((e) => e.encounter_id).join(",");
   const [series, setSeries] = useState<Series | null | undefined>(undefined);
   const [enc, setEnc] = useState<string>("");
@@ -340,7 +341,7 @@ export default function MonsterEncounterStats({
 
       {current ? (
         <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
-          {tile(t("Runs"), current.total.toLocaleString())}
+          {tile(t("Runs"), fmtN(current.total))}
           {tile(t("Fatal"), `${fatalPct(current)}%`)}
           {tile(
             t("Abandoned"),
@@ -431,8 +432,7 @@ export default function MonsterEncounterStats({
             </div>
             <div className="text-sm text-[var(--text-secondary)]">
               {t("No deaths recorded in this selection")} (
-              {chars.reduce((n, c) => n + c.total, 0).toLocaleString()}{" "}
-              {t("runs")}).
+              {fmtN(chars.reduce((n, c) => n + c.total, 0))} {t("runs")}).
             </div>
           </div>
         )}
@@ -480,7 +480,7 @@ export default function MonsterEncounterStats({
                       callbacks: {
                         label: (c: { dataIndex: number }) => {
                           const ch = chars[c.dataIndex];
-                          return ` ${t("{pct}% fatal · {runs} runs · {dmg} dmg", { pct: fatalPct(ch) ?? 0, runs: ch.total.toLocaleString(), dmg: ch.avg_damage.toFixed(1) })}`;
+                          return ` ${t("{pct}% fatal · {runs} runs · {dmg} dmg", { pct: fatalPct(ch) ?? 0, runs: fmtN(ch.total), dmg: ch.avg_damage.toFixed(1) })}`;
                         },
                       },
                     },

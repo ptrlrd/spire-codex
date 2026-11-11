@@ -4,6 +4,7 @@ import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
+import Modal from "./Modal";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
 
@@ -54,92 +55,94 @@ function FeedbackModal({
   }
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      onClick={onClose}
+    <Modal
+      onClose={onClose}
+      labelledBy="site-feedback-title"
+      overlayClassName="fixed inset-0 z-50 flex items-center justify-center p-4"
+      className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
+      backdrop={
+        <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
+      }
     >
-      <div className="absolute inset-0 bg-scrim/80 backdrop-blur-sm" />
-      <div
-        className="relative w-full max-w-md bg-[var(--bg-card)] rounded-xl border border-[var(--border-subtle)] shadow-2xl shadow-scrim/50 p-6"
-        onClick={(e) => e.stopPropagation()}
+      <h2
+        id="site-feedback-title"
+        className="text-lg font-bold text-[var(--text-primary)] mb-4"
       >
-        <h2 className="text-lg font-bold text-[var(--text-primary)] mb-4">
-          {t("Submit Feedback")}
-        </h2>
+        {t("Submit Feedback")}
+      </h2>
 
-        {sent ? (
-          <p className="text-success text-sm py-4">
-            {t("Sent successfully. Thank you!")}
-          </p>
-        ) : (
-          <>
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">
-              {t("Page")}
-            </label>
-            <input
-              type="text"
-              value={page}
-              readOnly
-              className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
-            />
+      {sent ? (
+        <p className="text-success text-sm py-4">
+          {t("Sent successfully. Thank you!")}
+        </p>
+      ) : (
+        <>
+          <label className="block text-sm text-[var(--text-secondary)] mb-1">
+            {t("Page")}
+          </label>
+          <input
+            type="text"
+            value={page}
+            readOnly
+            className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-muted)] text-sm cursor-default"
+          />
 
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">
-              {t("Type")}
-            </label>
-            <select
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
+          <label className="block text-sm text-[var(--text-secondary)] mb-1">
+            {t("Type")}
+          </label>
+          <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+            className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
+          >
+            <option value="Bug">{t("Bug")}</option>
+            <option value="Feature Request">{t("Feature Request")}</option>
+            <option value="Localization">{t("Localization")}</option>
+          </select>
+
+          <label className="block text-sm text-[var(--text-secondary)] mb-1">
+            {t("Discord Username or Email")}{" "}
+            <span className="text-danger">*</span>
+          </label>
+          <input
+            type="text"
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            placeholder={t("username#1234 or email@example.com")}
+            className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
+          />
+
+          <label className="block text-sm text-[var(--text-secondary)] mb-1">
+            {t("Contents")} <span className="text-danger">*</span>
+          </label>
+          <textarea
+            value={contents}
+            onChange={(e) => setContents(e.target.value)}
+            rows={5}
+            placeholder={t("Describe the bug or feature request...")}
+            className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] resize-none"
+          />
+
+          {error && <p className="text-danger text-sm mb-3">{error}</p>}
+
+          <div className="flex justify-end gap-3">
+            <button
+              onClick={onClose}
+              className="px-4 py-2 rounded-lg text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
             >
-              <option value="Bug">{t("Bug")}</option>
-              <option value="Feature Request">{t("Feature Request")}</option>
-              <option value="Localization">{t("Localization")}</option>
-            </select>
-
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">
-              {t("Discord Username or Email")}{" "}
-              <span className="text-danger">*</span>
-            </label>
-            <input
-              type="text"
-              value={contact}
-              onChange={(e) => setContact(e.target.value)}
-              placeholder={t("username#1234 or email@example.com")}
-              className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)]"
-            />
-
-            <label className="block text-sm text-[var(--text-secondary)] mb-1">
-              {t("Contents")} <span className="text-danger">*</span>
-            </label>
-            <textarea
-              value={contents}
-              onChange={(e) => setContents(e.target.value)}
-              rows={5}
-              placeholder={t("Describe the bug or feature request...")}
-              className="w-full mb-4 px-3 py-2 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] text-sm focus:outline-none focus:border-[var(--accent-gold)] resize-none"
-            />
-
-            {error && <p className="text-danger text-sm mb-3">{error}</p>}
-
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={onClose}
-                className="px-4 py-2 rounded-lg text-sm text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-              >
-                {t("Cancel")}
-              </button>
-              <button
-                onClick={handleSubmit}
-                disabled={sending || !contents.trim() || !contact.trim()}
-                className="px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
-              >
-                {sending ? t("Sending...") : t("Submit")}
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-    </div>
+              {t("Cancel")}
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={sending || !contents.trim() || !contact.trim()}
+              className="px-4 py-2 rounded-lg text-sm font-medium bg-[var(--accent-gold)] text-[var(--bg-primary)] hover:opacity-90 transition-opacity disabled:opacity-50"
+            >
+              {sending ? t("Sending...") : t("Submit")}
+            </button>
+          </div>
+        </>
+      )}
+    </Modal>
   );
 }
 

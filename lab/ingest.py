@@ -344,6 +344,16 @@ def main() -> None:
 
         return archive_entity_metric_history_from_lake()
 
+    def _leaderboard_summary():
+        from app.services.runs_db_mongo import refresh_leaderboard_summary
+
+        return refresh_leaderboard_summary(build=True)
+
+    _stage(
+        "leaderboard_summary",
+        lambda n: f"leaderboard summary refreshed ({n} boards)",
+        _leaderboard_summary,
+    )
     _stage(
         "community_payload",
         "community payload stored",
@@ -359,6 +369,11 @@ def main() -> None:
         lambda n: f"deep tables stored ({n} combos)",
         lake_stats.build_deep_tables,
     )
+    _stage(
+        "stats_core",
+        lambda n: f"stats core refreshed ({n} combos)",
+        lake_stats.refresh_stats_core,
+    )
     _stage("charts_blob", "charts blob stored", _charts_blob)
     _stage(
         "metric_history",
@@ -369,33 +384,7 @@ def main() -> None:
         lake_stats.cleanup_build_session()
     except Exception as e:
         print(f"build session cleanup failed: {e}", flush=True)
-    # The rebuilder is retired, so the materialized summaries that fed the
-    # home overview and the leaderboards move here: plain Mongo aggregations
-    # plus a Redis warm, no snapshot involved.
-    # Core stats (homepage totals / characters / ascensions) come from the
-    # lake in seconds; the legacy Mongo aggregation only tops up the deep
-    # item tables and is allowed to fail until its own conversion lands.
     ts = time.time()
-    try:
-        n = lake_stats.refresh_stats_core()
-        print(f"stats core refreshed ({n} combos)", flush=True)
-    except Exception as e:
-        print(f"stats core failed: {e}", flush=True)
-    _mark("stats_core")
-    try:
-        from app.services.runs_db_mongo import refresh_leaderboard_summary
-
-        n = refresh_leaderboard_summary()
-        print(f"leaderboard summary refreshed ({n} boards)", flush=True)
-        # The legacy deep-tables aggregation (refresh_stats_summary) is
-        # REMOVED from the cycle: with a 600s budget it hammered Mongo for
-        # up to ~80 minutes per ingest and starved the serving workers
-        # (2026-08-27, sitewide slowness). The stats core (#920) keeps the
-        # headline numbers fresh; the deep item tables stay as-is until
-        # their lake conversion replaces them.
-    except Exception as e:
-        print(f"legacy summary refresh failed: {e}", flush=True)
-    _mark("leaderboard_summary")
     try:
         from app.services.charts_stats import store_frame_parquet
 

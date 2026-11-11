@@ -102,6 +102,42 @@ def test_lake_overlay_swaps_the_cache_instead_of_growing_it(monkeypatch, tmp_pat
     assert res._global_totals == {"total_runs": 10, "total_wins": 4}
 
 
+def test_stats_core_leaves_out_hidden_and_modded_runs(monkeypatch, tmp_path):
+    import duckdb
+
+    con = duckdb.connect()
+    con.execute(
+        f"""COPY (SELECT * FROM (VALUES
+          ('a', 'IRONCLAD', 0, 1, true, false), ('b', 'IRONCLAD', 0, 1, false, true),
+          ('c', 'IRONCLAD', 0, 1, true, false), ('d', 'IRONCLAD', 0, 1, true, false))
+          t(run_hash, character, ascension, player_count, win, was_abandoned))
+        TO '{tmp_path}/runs.parquet' (FORMAT parquet)"""
+    )
+    con.execute(
+        f"COPY (SELECT 'c' AS run_hash) TO '{tmp_path}/excluded.parquet' (FORMAT parquet)"
+    )
+    con.execute(
+        f"COPY (SELECT 'b' AS run_hash, 1 AS floors_reached) TO '{tmp_path}/run_scalars.parquet'"
+        " (FORMAT parquet)"
+    )
+    monkeypatch.setattr(lake_stats, "LAKE_DIR", tmp_path)
+
+    def headline():
+        results = dict(
+            (tuple(sorted(lake_stats.filters_compact(f).items())), r)
+            for f, r in lake_stats._stats_core_results()
+        )
+        g = results[()]
+        return g["total_runs"], g["total_wins"]
+
+    assert headline() == (3, 2)
+    con.execute(
+        f"COPY (SELECT 'd' AS run_hash, 'relics' AS kind) TO '{tmp_path}/modded.parquet'"
+        " (FORMAT parquet)"
+    )
+    assert headline() == (2, 1)
+
+
 def test_stats_core_excludes_modded_characters(monkeypatch):
     cells = [
         ("IRONCLAD", 0, 1, 100, 30, 5),

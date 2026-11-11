@@ -17,6 +17,8 @@ import {
 import { PlayerBadge } from "@/app/components/SupporterBadge";
 import CharacterTag from "@/app/components/CharacterTag";
 import { textColor } from "@/lib/character-colors";
+import { useFilterFetch, useFilterPage } from "@/lib/use-filter-fetch";
+import LoadFailed from "@/app/components/LoadFailed";
 
 function cleanId(id: string): string {
   return id.replace(
@@ -94,6 +96,20 @@ interface BrowseRun {
   run_time: number;
 }
 
+interface LeaderboardResponse {
+  runs?: Omit<LeaderboardEntry, "rank">[];
+  total?: number;
+  total_pages?: number;
+}
+
+interface BrowseResponse {
+  runs?: BrowseRun[];
+  total?: number;
+  total_pages?: number;
+}
+
+const LB_PAGE_SIZE = 20;
+
 type Tab = "fastest" | "highest_ascension" | "browse";
 type Mode = "" | "1" | "2" | "3" | "4";
 // `gameMode` mirrors the backend `game_mode` column. Empty string = no
@@ -104,6 +120,11 @@ type GameMode = "" | "standard" | "daily" | "daily_today" | "custom";
 function tabFromParam(value: string | null): Tab {
   if (value === "browse" || value === "highest_ascension") return value;
   return "fastest";
+}
+
+function pageFromParam(value: string | null): number {
+  const n = Number(value);
+  return Number.isInteger(n) && n > 1 ? n : 1;
 }
 
 function modeFromParam(value: string | null): Mode {
@@ -152,16 +173,6 @@ export default function LeaderboardBrowseClient() {
   const [lbChar, setLbChar] = useState(
     () => searchParams.get("character") || "",
   );
-  const [lbPage, setLbPage] = useState(() => {
-    if (tabFromParam(searchParams.get("tab")) === "browse") return 1;
-    const n = Number(searchParams.get("page"));
-    return Number.isInteger(n) && n > 1 ? n : 1;
-  });
-  const [lbEntries, setLbEntries] = useState<LeaderboardEntry[]>([]);
-  const [lbTotal, setLbTotal] = useState(0);
-  const [lbTotalPages, setLbTotalPages] = useState(0);
-  const [lbLoading, setLbLoading] = useState(false);
-
   // --- Browse state ---
   const [browseChar, setBrowseChar] = useState(
     () => searchParams.get("browse_character") || "",
@@ -188,16 +199,30 @@ export default function LeaderboardBrowseClient() {
       ? v
       : "date";
   });
-  const [browsePage, setBrowsePage] = useState(() => {
-    if (tabFromParam(searchParams.get("tab")) !== "browse") return 1;
-    const n = Number(searchParams.get("page"));
-    return Number.isInteger(n) && n > 1 ? n : 1;
-  });
-  const [runList, setRunList] = useState<BrowseRun[]>([]);
-  const [browseTotal, setBrowseTotal] = useState(0);
-  const [browseTotalPages, setBrowseTotalPages] = useState(0);
   const [versions, setVersions] = useState<string[]>([]);
   const [charNames, setCharNames] = useState<Record<string, string>>({});
+  const [lbPage, setLbPage] = useFilterPage(
+    [tab, lbChar, mode, gameMode, browseBracket, browseBuildId].join("|"),
+    tabFromParam(searchParams.get("tab")) === "browse"
+      ? 1
+      : pageFromParam(searchParams.get("page")),
+  );
+  const [browsePage, setBrowsePage] = useFilterPage(
+    JSON.stringify([
+      browseChar,
+      browseWin,
+      browseUser,
+      browseSeed,
+      browseBuildId,
+      browseSort,
+      browseBracket,
+      mode,
+      gameMode,
+    ]),
+    tabFromParam(searchParams.get("tab")) === "browse"
+      ? pageFromParam(searchParams.get("page"))
+      : 1,
+  );
 
   // Fetch available versions for the version dropdown
   useEffect(() => {
@@ -273,15 +298,8 @@ export default function LeaderboardBrowseClient() {
     browsePage,
   ]);
 
-  // Reset leaderboard page when filters change
-  useEffect(() => {
-    setLbPage(1);
-  }, [tab, lbChar, mode, gameMode, browseBracket, browseBuildId]);
-
-  // Fetch leaderboard (only when on a leaderboard tab)
-  useEffect(() => {
-    if (tab === "browse") return;
-    setLbLoading(true);
+  let lbUrl: string | null = null;
+  if (tab !== "browse") {
     const params = new URLSearchParams();
     params.set("category", tab);
     if (mode) params.set("players", mode);
@@ -293,50 +311,28 @@ export default function LeaderboardBrowseClient() {
     }
     if (lbChar) params.set("character", lbChar);
     // Content bracket -> ascension_min + winrate_min (A10-gated win-rate tiers).
-    const bp = bracketListParams(browseBracket);
-    if (bp.ascension_min) params.set("ascension_min", String(bp.ascension_min));
-    if (bp.winrate_min) params.set("winrate_min", String(bp.winrate_min));
+    const bracket = bracketListParams(browseBracket);
+    if (bracket.ascension_min)
+      params.set("ascension_min", String(bracket.ascension_min));
+    if (bracket.winrate_min)
+      params.set("winrate_min", String(bracket.winrate_min));
     if (browseBuildId) params.set("build_id", browseBuildId);
     params.set("page", String(lbPage));
-    params.set("limit", "20");
-    fetch(`${API}/api/runs/leaderboard?${params}`)
-      .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
-      .then((data) => {
-        // Backend returns the rows under `runs`; rank is computed client-side
-        // from pagination offset so row N on page 2 shows as #21.
-        const rows = (data.runs || []) as Omit<LeaderboardEntry, "rank">[];
-        const pageSize = 20;
-        const offset = (Math.max(lbPage, 1) - 1) * pageSize;
-        setLbEntries(rows.map((r, i) => ({ ...r, rank: offset + i + 1 })));
-        setLbTotal(data.total || 0);
-        setLbTotalPages(data.total_pages || 0);
-      })
-      .catch(() => {
-        setLbEntries([]);
-        setLbTotal(0);
-        setLbTotalPages(0);
-      })
-      .finally(() => setLbLoading(false));
-  }, [tab, lbChar, lbPage, mode, gameMode, browseBracket, browseBuildId]);
+    params.set("limit", String(LB_PAGE_SIZE));
+    lbUrl = `${API}/api/runs/leaderboard?${params}`;
+  }
+  const lb = useFilterFetch<LeaderboardResponse>(lbUrl);
+  // Backend returns the rows under `runs`; rank is computed client-side
+  // from pagination offset so row N on page 2 shows as #21.
+  const lbOffset = (Math.max(lbPage, 1) - 1) * LB_PAGE_SIZE;
+  const lbEntries: LeaderboardEntry[] = (lb.data?.runs ?? []).map((r, i) => ({
+    ...r,
+    rank: lbOffset + i + 1,
+  }));
+  const lbTotalPages = lb.data?.total_pages || 0;
 
-  // Reset browse page when filters change
-  useEffect(() => {
-    setBrowsePage(1);
-  }, [
-    browseChar,
-    browseWin,
-    browseUser,
-    browseSeed,
-    browseBuildId,
-    browseSort,
-    browseBracket,
-    mode,
-    gameMode,
-  ]);
-
-  // Fetch browse runs (only when on browse tab)
-  useEffect(() => {
-    if (tab !== "browse") return;
+  let browseUrl: string | null = null;
+  if (tab === "browse") {
     const params = new URLSearchParams();
     if (mode) params.set("players", mode);
     if (gameMode === "daily_today") {
@@ -352,31 +348,20 @@ export default function LeaderboardBrowseClient() {
     if (browseBuildId) params.set("build_id", browseBuildId);
     if (browseSort) params.set("sort", browseSort);
     // Content bracket -> per-run filters (A10-gated win-rate tiers).
-    const bp = bracketListParams(browseBracket);
-    if (bp.ascension_min) params.set("ascension_min", String(bp.ascension_min));
-    if (bp.winrate_min) params.set("winrate_min", String(bp.winrate_min));
+    const bracket = bracketListParams(browseBracket);
+    if (bracket.ascension_min)
+      params.set("ascension_min", String(bracket.ascension_min));
+    if (bracket.winrate_min)
+      params.set("winrate_min", String(bracket.winrate_min));
     params.set("page", String(browsePage));
-    fetch(`${API}/api/runs/list?${params}`)
-      .then((r) => (r.ok ? r.json() : { runs: [], total: 0, total_pages: 0 }))
-      .then((data) => {
-        setRunList(data.runs || []);
-        setBrowseTotal(data.total || 0);
-        setBrowseTotalPages(data.total_pages || 0);
-      })
-      .catch(() => {});
-  }, [
-    tab,
-    browseChar,
-    browseWin,
-    browseUser,
-    browseSeed,
-    browseBuildId,
-    browseSort,
-    browseBracket,
-    browsePage,
-    mode,
-    gameMode,
-  ]);
+    browseUrl = `${API}/api/runs/list?${params}`;
+  }
+  const browse = useFilterFetch<BrowseResponse>(browseUrl, {
+    debounceMs: 250,
+  });
+  const runList = browse.data?.runs ?? [];
+  const browseTotal = browse.data?.total || 0;
+  const browseTotalPages = browse.data?.total_pages || 0;
 
   const TABS: { key: Tab; label: string; shortLabel: string }[] = [
     { key: "fastest", label: t("Fastest Wins"), shortLabel: t("Fastest") },
@@ -411,7 +396,7 @@ export default function LeaderboardBrowseClient() {
           read from disjoint pools. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <Pills
-          options={PLAYER_OPTS}
+          options={PLAYER_OPTS.map((o) => ({ ...o, label: t(o.label) }))}
           value={mode}
           onChange={(v) => setMode(v as Mode)}
           ariaLabel={t("Filter by player count")}
@@ -580,7 +565,9 @@ export default function LeaderboardBrowseClient() {
           </div>
 
           {/* Leaderboard table */}
-          {lbLoading ? (
+          {lb.error ? (
+            <LoadFailed onRetry={lb.retry} />
+          ) : lb.loading ? (
             <p className="text-center py-8 text-[var(--text-muted)]">
               {t("Loading...")}
             </p>
@@ -639,12 +626,19 @@ export default function LeaderboardBrowseClient() {
                           <td className="py-2.5 px-2 sm:px-3 font-medium text-[var(--accent-gold)]">
                             #{entry.rank}
                           </td>
-                          <td className="py-2.5 px-2 sm:px-3 text-[var(--text-primary)] truncate max-w-[7rem] sm:max-w-[10rem]">
-                            {entry.username || t("Anonymous")}
-                            <PlayerBadge
-                              username={entry.username}
-                              className="ml-1"
-                            />
+                          <td className="text-[var(--text-primary)] max-w-[7rem] sm:max-w-[10rem]">
+                            <Link
+                              prefetch={false}
+                              href={`${bp}/runs/${entry.run_hash}`}
+                              onClick={(e) => e.stopPropagation()}
+                              className="block truncate py-2.5 px-2 sm:px-3"
+                            >
+                              {entry.username || t("Anonymous")}
+                              <PlayerBadge
+                                username={entry.username}
+                                className="ml-1"
+                              />
+                            </Link>
                           </td>
                           <td
                             className="py-2.5 px-2 sm:px-3"
@@ -677,7 +671,8 @@ export default function LeaderboardBrowseClient() {
                               onClick={(e) => e.stopPropagation()}
                               className="text-[var(--accent-gold)] hover:underline text-xs"
                               title={t("View run")}
-                              aria-label={t("View run details")}
+                              aria-hidden
+                              tabIndex={-1}
                             >
                               &#x2197;
                             </Link>
@@ -711,6 +706,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseChar}
               onChange={(e) => setBrowseChar(e.target.value)}
+              aria-label={t("Character")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Characters")}</option>
@@ -724,6 +720,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseWin}
               onChange={(e) => setBrowseWin(e.target.value)}
+              aria-label={t("Result")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Runs")}</option>
@@ -736,6 +733,7 @@ export default function LeaderboardBrowseClient() {
               value={browseUser}
               onChange={(e) => setBrowseUser(e.target.value)}
               placeholder={t("Username...")}
+              aria-label={t("Username...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-44"
             />
 
@@ -744,6 +742,7 @@ export default function LeaderboardBrowseClient() {
               value={browseSeed}
               onChange={(e) => setBrowseSeed(e.target.value)}
               placeholder={t("Seed...")}
+              aria-label={t("Seed...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-36"
             />
 
@@ -751,6 +750,7 @@ export default function LeaderboardBrowseClient() {
               <select
                 value={browseBuildId}
                 onChange={(e) => setBrowseBuildId(e.target.value)}
+                aria-label={t("Game version")}
                 className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
               >
                 <option value="">{t("All Versions")}</option>
@@ -765,6 +765,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseSort}
               onChange={(e) => setBrowseSort(e.target.value)}
+              aria-label={t("Sort by")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="date">{t("Newest")}</option>
@@ -774,12 +775,19 @@ export default function LeaderboardBrowseClient() {
             </select>
           </div>
 
-          {/* Total count */}
-          <p className="text-xs text-[var(--text-muted)] mb-3">
-            {browseTotal} {t("runs total")}
-          </p>
+          {!browse.error && (
+            <p className="text-xs text-[var(--text-muted)] mb-3">
+              {browseTotal} {t("runs total")}
+            </p>
+          )}
 
-          {runList.length === 0 ? (
+          {browse.error ? (
+            <LoadFailed onRetry={browse.retry} />
+          ) : browse.loading && !browse.data ? (
+            <p className="text-center py-8 text-[var(--text-muted)]">
+              {t("Loading...")}
+            </p>
+          ) : runList.length === 0 ? (
             <p className="text-center py-8 text-[var(--text-muted)]">
               {t("No runs found.")}
             </p>

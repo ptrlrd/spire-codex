@@ -14,6 +14,7 @@ import { useParams } from "next/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { imageUrl } from "@/lib/image-url";
 import { GameTablesProvider } from "@/app/components/GameMessagesProvider";
+import Modal from "@/app/components/Modal";
 import { LIVE_TABLES } from "@/lib/game-messages.common";
 import LiveMap from "../LiveMap";
 import LiveScene from "./LiveScene";
@@ -525,6 +526,7 @@ function LiveCombatPanel({
 }) {
   const t = useT();
   const [openPile, setOpenPile] = useState<string | null>(null);
+  const closePile = () => setOpenPile(null);
   const dmg: [string, number | null | undefined][] = [
     [t("Damage dealt"), p.damage_dealt],
     [t("This turn"), p.damage_dealt_this_turn],
@@ -667,60 +669,60 @@ function LiveCombatPanel({
         </div>
       )}
       {openPile && (
-        <div
-          className="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
-          onClick={() => setOpenPile(null)}
+        <Modal
+          onClose={closePile}
+          labelledBy="live-pile-title"
+          overlayClassName="fixed inset-0 z-[60] flex items-start justify-center overflow-y-auto bg-scrim/60 p-4"
+          className="my-8 w-full max-w-3xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
         >
-          <div
-            className="my-8 w-full max-w-3xl rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4"
-            onClick={(ev) => ev.stopPropagation()}
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-[var(--accent-gold)]">
-                {t("{label} pile ({n})", {
-                  label: t(openPile),
-                  n: openIds.length,
-                })}
-              </h3>
-              <button
-                type="button"
-                onClick={() => setOpenPile(null)}
-                aria-label={t("Close")}
-                className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
-              >
-                ✕
-              </button>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {[...openGroups.entries()].map(([raw, count]) => {
-                const { id, upgraded } = parseDeckId(raw);
-                return (
-                  <CardPill
-                    key={raw}
-                    cardId={id}
-                    upgraded={upgraded}
-                    cardData={cat.cards}
-                    bp={bp}
-                    className="relative block w-32 shrink-0"
-                  >
-                    <LiveCardImg
-                      id={id}
-                      upgraded={upgraded}
-                      alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
-                      className="h-auto w-32 rounded-sm"
-                      portrait={cat.cards[id]?.image_url}
-                    />
-                    {count > 1 && (
-                      <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
-                        ×{count}
-                      </span>
-                    )}
-                  </CardPill>
-                );
+          <div className="mb-3 flex items-center justify-between">
+            <h3
+              id="live-pile-title"
+              className="text-sm font-semibold text-[var(--accent-gold)]"
+            >
+              {t("{label} pile ({n})", {
+                label: t(openPile),
+                n: openIds.length,
               })}
-            </div>
+            </h3>
+            <button
+              type="button"
+              onClick={closePile}
+              aria-label={t("Close")}
+              className="px-1 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+            >
+              ✕
+            </button>
           </div>
-        </div>
+          <div className="flex flex-wrap gap-2">
+            {[...openGroups.entries()].map(([raw, count]) => {
+              const { id, upgraded } = parseDeckId(raw);
+              return (
+                <CardPill
+                  key={raw}
+                  cardId={id}
+                  upgraded={upgraded}
+                  cardData={cat.cards}
+                  bp={bp}
+                  className="relative block w-32 shrink-0"
+                >
+                  <LiveCardImg
+                    id={id}
+                    upgraded={upgraded}
+                    alt={cat.cards[id]?.name || displayName(`CARD.${id}`)}
+                    className="h-auto w-32 rounded-sm"
+                    portrait={cat.cards[id]?.image_url}
+                  />
+                  {count > 1 && (
+                    <span className="absolute -top-1 -right-1 rounded bg-[var(--accent-gold)] px-1 text-[10px] font-bold text-[var(--bg-primary)]">
+                      ×{count}
+                    </span>
+                  )}
+                </CardPill>
+              );
+            })}
+          </div>
+        </Modal>
       )}
     </div>
   );
@@ -847,7 +849,7 @@ function LivePlayerBody() {
     );
   }, []);
 
-  usePoll(async () => {
+  usePoll(async (isCurrent) => {
     if (!steamId) {
       setStatus("missing");
       return;
@@ -855,6 +857,7 @@ function LivePlayerBody() {
     try {
       const r = await fetch(`${API}/api/presence/${steamId}`);
       if (r.status === 404) {
+        if (!isCurrent()) return;
         // Keep the last snapshot on screen when a watched run ends, so the
         // viewer sees the final state instead of a sudden blank.
         setStatus((prev) =>
@@ -863,7 +866,9 @@ function LivePlayerBody() {
         return;
       }
       if (!r.ok) throw new Error(`presence ${r.status}`);
-      setPlayer((await r.json()) as LivePlayer);
+      const next = (await r.json()) as LivePlayer;
+      if (!isCurrent()) return;
+      setPlayer(next);
       setStatus("live");
     } catch {
       // Network blip: keep whatever we had; the next beat will recover.

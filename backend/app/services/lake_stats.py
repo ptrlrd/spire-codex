@@ -12,14 +12,13 @@ import os
 import threading
 from pathlib import Path
 
+from .official_content import official_characters, official_characters_sql
+
 logger = logging.getLogger(__name__)
 
 LAKE_DIR = Path(os.environ.get("LAKE_DIR", "/lake"))
 # "serve": /api/runs/community-stats builds its payload from the lake (the
 # snapshot stays as automatic fallback for unsupported brackets and errors).
-
-_OFFICIAL = "('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')"
-
 
 _SERVE_FILES = (
     "runs.parquet",
@@ -85,11 +84,24 @@ _payload_cache: dict[str, tuple[float, dict]] = {}
 SHORT_ABANDON_MAX_FLOOR = 5
 
 
-def _excluded_runs_sql(lake) -> str:
-    """Runs every stat leaves out: hidden or deleted runs, plus runs
-    abandoned by floor 5 (Neow rerolls and quick restarts that were never
-    really played). Headline totals read the raw runs instead."""
+def _unlisted_runs_sql(lake) -> str:
+    """Runs no surface counts: hidden or deleted runs and runs carrying
+    modded content (any seat's character, card or relic that is in no
+    official catalog; build_lake.py writes modded.parquet)."""
     sql = f"SELECT run_hash FROM read_parquet('{lake}/excluded.parquet')"
+    if (Path(lake) / "modded.parquet").exists():
+        sql += f"""
+  UNION ALL
+  SELECT run_hash FROM read_parquet('{lake}/modded.parquet')"""
+    return f"({sql})"
+
+
+def _excluded_runs_sql(lake) -> str:
+    """Runs every stat leaves out: the unlisted runs plus runs abandoned by
+    floor 5 (Neow rerolls and quick restarts that were never really
+    played). Headline totals keep those abandons and read
+    _unlisted_runs_sql instead."""
+    sql = _unlisted_runs_sql(lake)[1:-1]
     if (Path(lake) / "run_scalars.parquet").exists():
         sql += f"""
   UNION ALL
@@ -101,11 +113,44 @@ def _excluded_runs_sql(lake) -> str:
 
 
 def _eligible_sql(lake) -> str:
-    return _ELIGIBLE_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+    return _ELIGIBLE_SQL.format(
+        lake=lake,
+        excluded=_excluded_runs_sql(lake),
+        official=official_characters_sql(),
+    )
 
 
 def _cells_sql(lake) -> str:
     return _CELLS_SQL.format(lake=lake, excluded=_excluded_runs_sql(lake))
+
+
+def _headline_eligible_sql(lake) -> str:
+    """The eligible view for headline totals: every official run that is not
+    hidden, deleted or modded (_unlisted_runs_sql). Runs abandoned by floor
+    5 stay in and count as abandons; only the stats leave them out. The home
+    page totals and the community cube's totals both read this."""
+    return _ELIGIBLE_SQL.format(
+        lake=lake,
+        excluded=_unlisted_runs_sql(lake),
+        official=official_characters_sql(),
+    )
+
+
+def _headline_cell_rows(lake) -> list[tuple]:
+    """(cell, character, ascension, runs, wins, abandoned) over the headline
+    runs. Its own connection, so the views never shadow the build session's
+    cells table; the win rate bands stay the ones the stats use."""
+    con = _connect()
+    try:
+        con.execute(_headline_eligible_sql(lake))
+        con.execute(_cells_sql(lake))
+        return con.execute(
+            "SELECT cell, lower(character), coalesce(ascension, 0)::INT, count(*),"
+            " count(*) FILTER (win), count(*) FILTER (coalesce(was_abandoned, false))"
+            " FROM cells GROUP BY 1, 2, 3"
+        ).fetchall()
+    finally:
+        con.close()
 
 
 _ELIGIBLE_SQL = """
@@ -114,7 +159,7 @@ SELECT r.*
 FROM read_parquet('{lake}/runs.parquet') r
 ANTI JOIN {excluded} x ON r.run_hash = x.run_hash
 WHERE r.ascension BETWEEN 0 AND 10
-  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')
+  AND r.character IN {official}
 """
 
 _PFLOORS_SQL = """
@@ -649,7 +694,7 @@ def _parse_lake_bracket(bracket: str | None):
     return (mode, player, skill, version)
 
 
-_CHARACTER_KEYS = frozenset(("ironclad", "silent", "defect", "necrobinder", "regent"))
+_CHARACTER_KEYS = frozenset(c.lower() for c in official_characters())
 
 
 def _split_character(bracket: str | None) -> tuple[str | None, str | None]:
@@ -911,11 +956,7 @@ def _build_community_cube() -> dict[str, dict]:
     try:
         _prepare_sources(con, lake)
 
-        for cell, char, asc, runs, wins, abandoned in con.execute(
-            "SELECT cell, lower(character), coalesce(ascension, 0)::INT, count(*),"
-            " count(*) FILTER (win), count(*) FILTER (coalesce(was_abandoned, false))"
-            " FROM cells GROUP BY 1, 2, 3"
-        ).fetchall():
+        for cell, char, asc, runs, wins, abandoned in _headline_cell_rows(lake):
             acc = acc_for(cell, char)
             acc["total_runs"] += runs
             acc["total_wins"] += wins
@@ -1397,14 +1438,15 @@ def upgrade_pair_counts(con=None) -> dict[tuple[str, str], int]:
               WHERE player_id IS NOT NULL
             ),
             nplayers AS (
-              -- Solo is the BLOB's player count, not the runs doc's scalar:
-              -- they disagree on some co-op runs, and the walk trusts the blob.
-              SELECT run_hash, count(*) AS np
+              -- players.parquet holds the document's own seat, and upgrades
+              -- only that seat's smiths, so a lone row is the seat whatever
+              -- player id the floor stats carry.
+              SELECT run_hash, count(*) AS np, min(player_idx) AS only_idx
               FROM read_parquet('{LAKE_DIR}/players.parquet') GROUP BY 1
             ),
             smith AS (
               SELECT u.run_hash,
-                CASE WHEN n.np = 1 THEN 1 ELSE pm.player_idx END AS pidx,
+                CASE WHEN n.np = 1 THEN n.only_idx ELSE pm.player_idx END AS pidx,
                 u.floor AS gfloor, u.card
               FROM read_parquet('{LAKE_DIR}/upgrades.parquet') u
               JOIN eligible e ON u.run_hash = e.run_hash
@@ -2810,11 +2852,11 @@ def _players_match(pc: int, players: str | None) -> bool:
 
 def _stats_core_results() -> list[tuple[dict, dict]]:
     """(filters, core-result) for every materialized stats combo, computed
-    from one pass over runs.parquet with get_stats' core semantics:
-    ascension clamped to 0-10, hidden/deleted runs excluded via the sidecar
-    (matching every other lake surface), characters[] built without the
-    character filter and restricted to official ids, win_rate rounded to
-    one decimal."""
+    from one pass over the headline runs (_headline_eligible_sql, the same
+    runs the community cube totals count): ascension 0-10, official
+    characters, hidden/deleted runs out, runs abandoned early still in.
+    characters[] is built without the character filter, win_rate rounded
+    to one decimal."""
     from .runs_db_mongo import (
         ASCENSION_FILTER_COMBOS,
         HOT_FILTER_COMBOS,
@@ -2824,17 +2866,15 @@ def _stats_core_results() -> list[tuple[dict, dict]]:
 
     con = _connect()
     try:
+        con.execute(_headline_eligible_sql(LAKE_DIR))
         cells = con.execute(
-            f"""
+            """
             SELECT coalesce(upper(r.character), '') AS ch,
               coalesce(r.ascension, 0)::INT AS asc,
               least(coalesce(r.player_count, 1), 4)::INT AS pc,
               count(*) AS n, count(*) FILTER (r.win) AS w,
               count(*) FILTER (r.was_abandoned) AS ab
-            FROM read_parquet('{LAKE_DIR}/runs.parquet') r
-            ANTI JOIN read_parquet('{LAKE_DIR}/excluded.parquet') x
-              ON r.run_hash = x.run_hash
-            WHERE r.ascension BETWEEN 0 AND 10
+            FROM eligible r
             GROUP BY 1, 2, 3
             """
         ).fetchall()
@@ -3101,19 +3141,18 @@ def build_deep_tables() -> int:
         relics = item_rows("relics", "relic")
         potions_owned = item_rows("potions", "potion")
 
-        # The potion telemetry columns only exist in lakes built after the
-        # schema gained them; older lakes omit the section and the doc merge
-        # keeps whatever the summary already holds.
         used = []
-        if "was_used" in _parquet_columns(con, "potions"):
+        if _potion_events_available() or "was_used" in _parquet_columns(con, "potions"):
             used = con.execute(
                 f"""
-                SELECT d.character AS ch, coalesce(r.ascension, 0)::INT AS a,
+                SELECT p.character AS ch, coalesce(r.ascension, 0)::INT AS a,
                   least(coalesce(r.player_count, 1), 4)::INT AS pc,
-                  d.potion AS item, count(*) FILTER (d.was_used)::BIGINT AS used
-                FROM read_parquet('{LAKE_DIR}/potions.parquet') d
-                JOIN {runs_p} r ON d.run_hash = r.run_hash
-                ANTI JOIN {excl_p} x ON d.run_hash = x.run_hash
+                  u.potion AS item, count(*)::BIGINT AS used
+                FROM ({_potion_used_rows()}) u
+                JOIN {players_p} p
+                  ON u.run_hash = p.run_hash AND u.player_idx = p.player_idx
+                JOIN {runs_p} r ON u.run_hash = r.run_hash
+                ANTI JOIN {excl_p} x ON u.run_hash = x.run_hash
                 WHERE r.ascension BETWEEN 0 AND 10
                 GROUP BY 1, 2, 3, 4
                 """
@@ -3212,46 +3251,367 @@ def build_deep_tables() -> int:
     return len(combos)
 
 
-def leaderboard_boards() -> dict[str, dict] | None:
-    """Every HOT leaderboard combo computed from the lake in one pass over
-    a shared winning-runs table (the Mongo aggregation took ~10 minutes per
-    cycle; this takes seconds). Row shape mirrors _row_to_dict; the total
-    mirrors the legacy 10k count cap. None when the lake is incomplete."""
+_LEADERBOARD_NAME = "leaderboard.parquet"
+
+_LEADERBOARD_SQL = """
+WITH user_rate AS (
+  SELECT lower(s.username) AS uname,
+    count(*) FILTER (coalesce(try_cast(r.win AS BOOLEAN), false)) * 100.0
+      / count(*) AS wr
+  FROM read_parquet('{lake}/runs.parquet') r
+  JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
+  ANTI JOIN {unlisted} x
+    ON r.run_hash = x.run_hash
+  WHERE s.username IS NOT NULL AND s.username <> ''
+    AND r.ascension BETWEEN 0 AND 10
+    AND upper(r.character) IN {official}
+  GROUP BY 1 HAVING count(*) >= {min_runs}
+),
+seats AS (
+  SELECT r.*,
+    CASE WHEN coalesce(r.player_count, 1) > 1
+      THEN concat_ws('|', coalesce(r.seed, ''),
+        coalesce(r.start_time::VARCHAR, ''), coalesce(r.run_time::VARCHAR, ''),
+        r.player_count::VARCHAR)
+      ELSE r.run_hash END AS run_key
+  FROM read_parquet('{lake}/runs.parquet') r
+),
+gone AS (
+  SELECT DISTINCT t.run_key
+  FROM seats t
+  JOIN {unlisted} x ON t.run_hash = x.run_hash
+),
+wins AS (
+  SELECT r.run_hash, upper(r.character) AS character,
+    coalesce(r.ascension, 0)::INT AS ascension,
+    lower(coalesce(r.game_mode, 'standard')) AS game_mode,
+    r.run_time, coalesce(r.player_count, 1)::INT AS player_count,
+    s.floors_reached, s.deck_size, s.relic_count, s.username,
+    r.submitted_at, r.build_id,
+    coalesce(r.was_abandoned, false) AS was_abandoned,
+    r.run_key, u.wr AS user_wr
+  FROM seats r
+  LEFT JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
+  LEFT JOIN user_rate u ON lower(s.username) = u.uname
+  ANTI JOIN gone g ON r.run_key = g.run_key
+  WHERE coalesce(try_cast(r.win AS BOOLEAN), false)
+    AND r.ascension BETWEEN 0 AND 10
+),
+parties AS (
+  SELECT run_key,
+    list({{'run_hash': run_hash, 'character': character,
+      'username': username}} ORDER BY run_hash) AS party
+  FROM wins WHERE player_count > 1 GROUP BY 1
+)
+SELECT w.*, p.party,
+  CASE WHEN w.character IN {official} THEN row_number() OVER (
+    PARTITION BY w.run_key, w.character IN {official}
+    ORDER BY (w.username IS NULL OR w.username = ''), w.run_hash) END
+    AS seat_rank,
+  row_number() OVER (PARTITION BY w.run_key, w.character
+    ORDER BY (w.username IS NULL OR w.username = ''), w.run_hash) AS char_rank
+FROM wins w LEFT JOIN parties p USING (run_key)
+ORDER BY w.run_time, w.run_hash
+"""
+
+_BOARD_COLS = (
+    "run_hash, character, ascension, game_mode, run_time, floors_reached,"
+    " deck_size, relic_count, username, submitted_at, build_id, was_abandoned,"
+    " player_count"
+)
+
+
+def build_leaderboard_table() -> int:
+    """Every winning run the ladders can show, as leaderboard.parquet: one
+    row per stored run document with the submitter's overall win rate, a
+    run_key shared by the seats of one co-op run, and that run's party.
+    Every filter the leaderboard page can send is a slice of this table."""
+    from .runs_db_mongo import WINRATE_MIN_RUNS
+
+    con = _connect(build=True)
+    tmp = LAKE_DIR / (_LEADERBOARD_NAME + ".tmp")
+    try:
+        con.execute(
+            "COPY ("
+            + _LEADERBOARD_SQL.format(
+                lake=LAKE_DIR,
+                official=official_characters_sql(),
+                unlisted=_unlisted_runs_sql(LAKE_DIR),
+                min_runs=int(WINRATE_MIN_RUNS),
+            )
+            + f") TO '{tmp}' (FORMAT parquet, COMPRESSION zstd,"
+            " ROW_GROUP_SIZE 20000)"
+        )
+        n = con.execute(f"SELECT count(*) FROM read_parquet('{tmp}')").fetchone()[0]
+    finally:
+        con.close()
+    tmp.replace(LAKE_DIR / _LEADERBOARD_NAME)
+    logger.info("leaderboard table stored: %d rows", n)
+    return int(n)
+
+
+def _sql_strings(values) -> str:
+    """Quoted SQL string literals. Binding costs a failed pandas import per
+    parameter, which adds up over a thousand run hashes."""
+    return ", ".join("'" + str(v).replace("'", "''") + "'" for v in values)
+
+
+def _board_where(
+    character: str | None,
+    players: str | None,
+    game_mode: str | None,
+    ascension_min: int | None = None,
+    winrate_min: float | None = None,
+    build_id: str | None = None,
+) -> tuple[str, list]:
+    from .runs_db_mongo import OFFICIAL_CHARACTERS
+
+    where: list[str] = []
+    args: list = []
+    if character:
+        where.append("character = ?")
+        args.append(character.upper())
+    else:
+        official = sorted(OFFICIAL_CHARACTERS)
+        where.append(f"character IN ({', '.join('?' for _ in official)})")
+        args.extend(official)
+    if players in ("single", "1"):
+        where.append("player_count = 1")
+    elif players in ("2", "3"):
+        where.append("player_count = ?")
+        args.append(int(players))
+    elif players == "4":
+        where.append("player_count >= 4")
+    elif players == "multi":
+        where.append("player_count > 1")
+    if game_mode:
+        where.append("game_mode = ?")
+        args.append(game_mode)
+    if ascension_min is not None:
+        where.append("ascension >= ?")
+        args.append(max(int(ascension_min), 0))
+    if winrate_min is not None:
+        where.append("user_wr >= ?")
+        args.append(float(winrate_min))
+    if build_id:
+        where.append("build_id = ?")
+        args.append(build_id)
+    return " AND ".join(where), args
+
+
+def _board_page(
+    con,
+    src: str,
+    category: str,
+    filters: dict,
+    limit: int,
+    offset: int = 0,
+    exclude: list[str] | None = None,
+) -> tuple[list[dict], int]:
+    """One page of a board plus its exact size. A co-op run is one row: the
+    first matching seat (named seats first) stands for the run."""
+    where, args = _board_where(**filters)
+    order = (
+        "ascension DESC, run_time ASC, run_hash ASC"
+        if category == "highest_ascension"
+        else "run_time ASC, run_hash ASC"
+    )
+    if exclude:
+        where += (
+            f" AND run_key NOT IN (SELECT run_key FROM {src}"
+            f" WHERE run_hash IN ({_sql_strings(exclude)}))"
+        )
+    if filters.get("winrate_min") is not None:
+        picked = (
+            f"SELECT * EXCLUDE (party) FROM {src} WHERE {where}"
+            " QUALIFY row_number() OVER (PARTITION BY run_key ORDER BY"
+            " (username IS NULL OR username = ''), run_hash) = 1"
+        )
+    else:
+        rank = "char_rank" if filters.get("character") else "seat_rank"
+        picked = f"SELECT * EXCLUDE (party) FROM {src} WHERE {where} AND {rank} = 1"
+    total = con.execute(f"SELECT count(*) FROM ({picked})", args).fetchone()[0]
+    rows = con.execute(
+        f"SELECT {_BOARD_COLS} FROM ({picked}) ORDER BY {order}"
+        f" LIMIT {int(limit)} OFFSET {int(offset)}",
+        args,
+    ).fetchall()
+    parties: dict[str, list] = {}
+    coop = [r for r in rows if (r[12] or 1) > 1]
+    if coop:
+        times = [r[4] for r in coop if r[4] is not None]
+        span = (
+            f" AND run_time BETWEEN {int(min(times))} AND {int(max(times))}"
+            if len(times) == len(coop)
+            else ""
+        )
+        parties = dict(
+            con.execute(
+                f"SELECT run_hash, party FROM {src} WHERE run_hash IN"
+                f" ({_sql_strings(r[0] for r in coop)}){span}"
+            ).fetchall()
+        )
+    runs = []
+    for r in rows:
+        row = {
+            "run_hash": r[0],
+            "character": r[1],
+            "win": 1,
+            "was_abandoned": int(bool(r[11])),
+            "ascension": r[2],
+            "game_mode": r[3],
+            "run_time": r[4],
+            "floors_reached": r[5],
+            "deck_size": r[6],
+            "relic_count": r[7],
+            "username": r[8],
+            "submitted_at": r[9].isoformat() if r[9] is not None else None,
+            "build_id": r[10],
+            "player_count": r[12],
+        }
+        if parties.get(r[0]):
+            row["party"] = [
+                {
+                    "run_hash": m["run_hash"],
+                    "character": m["character"],
+                    "username": m["username"],
+                }
+                for m in parties[r[0]]
+            ]
+        runs.append(row)
+    return runs, int(total)
+
+
+def _board_doc(runs: list[dict], total: int, category: str, page: int, per: int):
+    return {
+        "runs": runs,
+        "total": total,
+        "page": page,
+        "per_page": per,
+        "total_pages": (total + per - 1) // per,
+        "total_is_lower_bound": False,
+        "category": category,
+    }
+
+
+def leaderboard_slice(
+    category: str = "fastest",
+    character: str | None = None,
+    players: str | None = None,
+    game_mode: str | None = None,
+    page: int = 1,
+    limit: int = 50,
+    ascension_min: int | None = None,
+    winrate_min: float | None = None,
+    build_id: str | None = None,
+    exclude: list[str] | None = None,
+) -> dict | None:
+    """Any leaderboard page as a slice of the stored table. None when the
+    table is not there, so the caller can fall back."""
+    path = LAKE_DIR / _LEADERBOARD_NAME
+    if not path.exists():
+        return None
+    filters = {
+        "character": character,
+        "players": players,
+        "game_mode": game_mode,
+        "ascension_min": ascension_min,
+        "winrate_min": winrate_min,
+        "build_id": build_id,
+    }
+    per_page = max(1, min(int(limit), 100))
+    page = max(int(page), 1)
+    con = _connect()
+    try:
+        runs, total = _board_page(
+            con,
+            f"read_parquet('{path}')",
+            category,
+            filters,
+            per_page,
+            (page - 1) * per_page,
+            exclude,
+        )
+    finally:
+        con.close()
+    return _board_doc(runs, total, category, page, per_page)
+
+
+def leaderboard_table_time():
+    """When the stored leaderboard table was written (UTC), None without one."""
+    from datetime import datetime, timezone
+
+    try:
+        mtime = (LAKE_DIR / _LEADERBOARD_NAME).stat().st_mtime
+    except OSError:
+        return None
+    return datetime.fromtimestamp(mtime, tz=timezone.utc)
+
+
+def leaderboard_rank(run_hash: str, category: str = "fastest") -> int | None:
+    """Where a run stands on its own board (character, party size, game
+    mode), counting each co-op run once. None when the stored table does
+    not hold the run."""
+    path = LAKE_DIR / _LEADERBOARD_NAME
+    if not path.exists():
+        return None
+    src = f"read_parquet('{path}')"
+    con = _connect()
+    try:
+        row = con.execute(
+            "SELECT character, player_count, game_mode, ascension, run_time,"
+            f" run_key FROM {src} WHERE run_hash = ?",
+            [run_hash],
+        ).fetchone()
+        if row is None:
+            return None
+        character, size, mode, asc, run_time, run_key = row
+        where = "character = ? AND game_mode = ? AND char_rank = 1 AND run_key <> ?"
+        args: list = [character, mode, run_key]
+        if size >= 4:
+            where += " AND player_count >= 4"
+        else:
+            where += " AND player_count = ?"
+            args.append(size)
+        if category == "highest_ascension":
+            where += " AND (ascension > ? OR (ascension = ? AND run_time < ?))"
+            args.extend([asc, asc, run_time])
+        else:
+            where += " AND run_time < ?"
+            args.append(run_time)
+        ahead = con.execute(
+            f"SELECT count(*) FROM {src} WHERE {where}", args
+        ).fetchone()[0]
+    finally:
+        con.close()
+    return int(ahead) + 1
+
+
+def leaderboard_boards(build: bool = True) -> dict[str, dict] | None:
+    """Every HOT leaderboard combo cut from the leaderboard table (the Mongo
+    aggregation took ~10 minutes per cycle; this takes seconds). build=True
+    rebuilds the table from the lake first, which only the ingest can do;
+    the serving refresher re-cuts from the stored table. Totals are exact.
+    None when there is nothing to cut from."""
     from .runs_db_mongo import (
         HOT_LEADERBOARD_COMBOS,
         LEADERBOARD_BOARD_ROWS,
-        OFFICIAL_CHARACTERS,
         _leaderboard_key,
     )
 
-    if not available():
+    path = LAKE_DIR / _LEADERBOARD_NAME
+    if build:
+        if not available("run_scalars.parquet", "excluded.parquet"):
+            return None
+        build_leaderboard_table()
+    elif not path.exists():
         return None
-    con = _connect(build=True)
+    con = _connect(build=build)
     try:
-        con.execute(
-            f"""
-            CREATE OR REPLACE TEMP TABLE lb AS
-            SELECT r.run_hash, upper(r.character) AS character,
-              coalesce(r.ascension, 0)::INT AS ascension,
-              lower(coalesce(r.game_mode, 'standard')) AS game_mode,
-              r.run_time, coalesce(r.player_count, 1)::INT AS player_count,
-              s.floors_reached, s.deck_size, s.relic_count, s.username,
-              r.submitted_at, r.build_id,
-              coalesce(r.was_abandoned, false) AS was_abandoned
-            FROM read_parquet('{LAKE_DIR}/runs.parquet') r
-            LEFT JOIN read_parquet('{LAKE_DIR}/run_scalars.parquet') s
-              USING (run_hash)
-            ANTI JOIN read_parquet('{LAKE_DIR}/excluded.parquet') x
-              ON r.run_hash = x.run_hash
-            WHERE coalesce(try_cast(r.win AS BOOLEAN), false)
-              AND r.ascension BETWEEN 0 AND 10
-            """
-        )
-        cols = (
-            "run_hash, character, ascension, game_mode, run_time,"
-            " floors_reached, deck_size, relic_count, username, submitted_at,"
-            " build_id, was_abandoned"
-        )
+        src = f"read_parquet('{path}')"
+        if build:
+            con.execute(f"CREATE OR REPLACE TEMP TABLE lb AS SELECT * FROM {src}")
+            src = "lb"
         out: dict[str, dict] = {}
         for combo in HOT_LEADERBOARD_COMBOS:
             cat = combo.get("category", "fastest")
@@ -3260,72 +3620,16 @@ def leaderboard_boards() -> dict[str, dict] | None:
                 combo.get("players"),
                 combo.get("game_mode"),
             )
-            where: list[str] = []
-            args: list = []
-            if ch:
-                where.append("character = ?")
-                args.append(ch.upper())
-            else:
-                ph = ", ".join("?" for _ in OFFICIAL_CHARACTERS)
-                where.append(f"character IN ({ph})")
-                args.extend(OFFICIAL_CHARACTERS)
-            if pl in ("single", "1"):
-                where.append("player_count = 1")
-            elif pl in ("2", "3"):
-                where.append("player_count = ?")
-                args.append(int(pl))
-            elif pl == "4":
-                where.append("player_count >= 4")
-            elif pl == "multi":
-                where.append("player_count > 1")
-            if gm:
-                where.append("game_mode = ?")
-                args.append(gm)
-            wsql = " AND ".join(where)
-            order = (
-                "ascension DESC, run_time ASC"
-                if cat == "highest_ascension"
-                else "run_time ASC"
+            runs, total = _board_page(
+                con,
+                src,
+                cat,
+                {"character": ch, "players": pl, "game_mode": gm},
+                LEADERBOARD_BOARD_ROWS,
             )
-            rows = con.execute(
-                f"SELECT {cols} FROM lb WHERE {wsql} ORDER BY {order}"
-                f" LIMIT {int(LEADERBOARD_BOARD_ROWS)}",
-                args,
-            ).fetchall()
-            total = min(
-                con.execute(f"SELECT count(*) FROM lb WHERE {wsql}", args).fetchone()[
-                    0
-                ],
-                10_000,
-            )
-            runs = [
-                {
-                    "run_hash": r[0],
-                    "character": r[1],
-                    "win": 1,
-                    "was_abandoned": int(bool(r[11])),
-                    "ascension": r[2],
-                    "game_mode": r[3],
-                    "run_time": r[4],
-                    "floors_reached": r[5],
-                    "deck_size": r[6],
-                    "relic_count": r[7],
-                    "username": r[8],
-                    "submitted_at": r[9].isoformat() if r[9] is not None else None,
-                    "build_id": r[10],
-                }
-                for r in rows
-            ]
             out[
                 _leaderboard_key(category=cat, character=ch, players=pl, game_mode=gm)
-            ] = {
-                "runs": runs,
-                "total": total,
-                "page": 1,
-                "per_page": 50,
-                "total_pages": (total + 49) // 50,
-                "category": cat,
-            }
+            ] = _board_doc(runs, total, cat, 1, 50)
         return out
     finally:
         con.close()

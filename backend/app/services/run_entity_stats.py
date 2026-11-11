@@ -3651,6 +3651,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
             # detail page can re-scope it instead of always dividing by the
             # global run count.
             "total_runs": total_runs,
+            "baseline_win_rate": round(baseline * 100, 1),
             "pick_rate": round(picks / all_seats * 100, 1) if all_seats else 0.0,
             **_lift_block(all_entry, fold_seats),
             # "All" reuses the global per-character split.
@@ -3699,6 +3700,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                 _bracket_prior(ctot) if entity_type == "relics" else None,
             ),
             "total_runs": ctot,
+            "baseline_win_rate": round(cbase * 100, 1),
             "pick_rate": round(cp / ctot * 100, 1) if ctot else 0.0,
             "lift": None,
             "lift_n": 0,
@@ -3784,6 +3786,7 @@ def get_entity_stats(entity_type: str, entity_id: str) -> dict[str, Any] | None:
                         _bracket_prior(ctot) if entity_type == "relics" else None,
                     ),
                     "total_runs": ctot,
+                    "baseline_win_rate": round(cbase * 100, 1),
                     "pick_rate": round(cp / cseats * 100, 1) if cseats else 0.0,
                     **_lift_block(pw, cseats),
                     "by_character": by_char_rows,

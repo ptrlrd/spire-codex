@@ -17,6 +17,7 @@ import time
 SOFT_DELETED = {"deleted_at": {"$ne": None}}
 FIELDS = {
     "hidden": 1,
+    "hidden_reason": 1,
     "deleted_at": 1,
     "character": 1,
     "win": 1,

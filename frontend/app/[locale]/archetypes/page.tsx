@@ -9,7 +9,7 @@ import {
 import JsonLd from "@/app/components/JsonLd";
 import { buildBreadcrumbJsonLd } from "@/lib/jsonld";
 import { characterHex } from "@/lib/character-colors";
-import { getT } from "@/lib/i18n-server";
+import { getT, getFormatNumber } from "@/lib/i18n-server";
 import { gameNameFor, localeOf, localePath } from "@/lib/locale";
 import { LANG_NAMES } from "@/lib/languages";
 
@@ -163,6 +163,7 @@ async function loadArchetypes(): Promise<ArchetypesResponse | null> {
 export default async function ArchetypesPage({ params }: Props) {
   const locale = localeOf((await params).locale);
   const t = await getT(locale);
+  const fmtN = await getFormatNumber();
   const data = await loadArchetypes();
   const jsonLd = [
     buildBreadcrumbJsonLd([
@@ -272,7 +273,7 @@ export default async function ArchetypesPage({ params }: Props) {
                         {t("{share}% of {character} runs · {n} decks", {
                           share: a.share,
                           character: t(characterLabel(ch)),
-                          n: a.size.toLocaleString(),
+                          n: fmtN(a.size),
                         })}
                         {a.trend && Math.abs(a.trend.delta) >= 0.5 && (
                           <span

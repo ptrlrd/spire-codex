@@ -1,12 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import CardImage from "@/app/components/CardImage";
-import { cachedFetch } from "@/lib/fetch-cache";
 import { CDN_BASE } from "@/lib/image-url";
-import { useGameLocale } from "@/lib/i18n";
-
-const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
+import { useT } from "@/lib/i18n";
+import { useIdMap } from "@/lib/use-id-map";
 
 export interface KeyCard {
   id: string;
@@ -26,18 +24,14 @@ interface Named {
 function useNames(
   kind: "cards" | "relics" | "encounters",
 ): Record<string, string> {
-  const lang = useGameLocale();
-  const [names, setNames] = useState<Record<string, string>>({});
-  useEffect(() => {
-    cachedFetch<Named[]>(`${API}/api/${kind}?lang=${lang}`)
-      .then((rows) =>
-        setNames(
-          Object.fromEntries(rows.map((r) => [r.id.toUpperCase(), r.name])),
-        ),
-      )
-      .catch(() => {});
-  }, [kind, lang]);
-  return names;
+  const rows = useIdMap<Named>(`/api/${kind}`);
+  return useMemo(
+    () =>
+      Object.fromEntries(
+        Object.values(rows).map((r) => [r.id.toUpperCase(), r.name]),
+      ),
+    [rows],
+  );
 }
 
 function pretty(id: string): string {
@@ -60,6 +54,7 @@ export default function KeyPicks({
   killedBy?: string | null;
   className?: string;
 }) {
+  const t = useT();
   const cardNames = useNames("cards");
   const relicNames = useNames("relics");
   const bossNames = useNames("encounters");
@@ -69,19 +64,35 @@ export default function KeyPicks({
     <span className={`flex items-center gap-1 ${className}`}>
       {(bosses ?? []).map((b, i) => {
         const name = bossNames[b.id] ?? pretty(b.id.replace(/_BOSS$/, ""));
+        const killed = killer === b.id;
+        const label = killed ? `${t("Killed by")} ${name}` : name;
         return (
-          <img
-            key={`b-${b.id}-${i}`}
-            src={`${CDN_BASE}/monsters/${b.monster.toLowerCase()}.webp`}
-            alt={name}
-            title={name}
-            loading="lazy"
-            className={`h-8 w-8 rounded-full object-cover border-2 bg-[var(--bg-primary)] ${
-              killer === b.id
-                ? "border-[var(--color-ironclad)]"
-                : "border-[var(--border-subtle)]"
-            }`}
-          />
+          <span key={`b-${b.id}-${i}`} className="relative inline-flex">
+            <img
+              src={`${CDN_BASE}/monsters/${b.monster.toLowerCase()}.webp`}
+              alt={label}
+              title={label}
+              loading="lazy"
+              className={`h-8 w-8 rounded-full object-cover border-2 bg-[var(--bg-primary)] ${
+                killed
+                  ? "border-[var(--color-ironclad)]"
+                  : "border-[var(--border-subtle)]"
+              }`}
+            />
+            {killed && (
+              <svg
+                aria-hidden
+                viewBox="0 0 12 12"
+                className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-[var(--color-ironclad)] p-[3px] text-[var(--bg-primary)]"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              >
+                <path d="M2 2l8 8M10 2l-8 8" />
+              </svg>
+            )}
+          </span>
         );
       })}
       {(bosses ?? []).length > 0 &&

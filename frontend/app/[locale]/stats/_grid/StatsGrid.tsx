@@ -2,8 +2,10 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useT, useGameLocale } from "@/lib/i18n";
+import type { NumberFormatter } from "@/lib/number-format";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
+import { dataThroughLabel } from "@/lib/data-through";
 import { colorTextClass } from "@/lib/character-colors";
 import { fullCardUrl, imageUrl } from "@/lib/image-url";
 import { useBetaRenderVersion } from "@/app/components/BetaRenderVersionProvider";
@@ -204,8 +206,8 @@ function pts(v: number | null): string {
   if (v === null || v === undefined) return "–";
   return `${v > 0 ? "+" : ""}${v.toFixed(1)}`;
 }
-function int(v: number | null): string {
-  return v === null || v === undefined ? "–" : Math.round(v).toLocaleString();
+function int(v: number | null, fmtN: NumberFormatter): string {
+  return v === null || v === undefined ? "–" : fmtN(Math.round(v));
 }
 function cap(s: string): string {
   return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
@@ -215,6 +217,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const { kind, totals, bracket, character } = data;
   const cfg = KINDS[kind];
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const betaRenderVersion = useBetaRenderVersion();
@@ -682,6 +685,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
 
   const cohort = cohortLabel(bracket, t, character);
   const scoreBaseline = totals.baselineWinRate;
+  const dataThrough = dataThroughLabel(totals.dataThrough, t, lang);
   const scoped = !!character && totals.characterRuns !== null;
   const seatBaseline = scoped
     ? totals.characterWins !== null && totals.characterRuns
@@ -856,7 +860,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             key={col.key}
             className="px-3 py-1.5 text-right tabular-nums text-[var(--text-secondary)]"
           >
-            {int(r.n)}
+            {int(r.n, fmtN)}
           </td>
         );
       case "offered":
@@ -866,7 +870,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             key={col.key}
             className="px-3 py-1.5 text-right tabular-nums text-[var(--text-muted)]"
           >
-            {int(r[col.key])}
+            {int(r[col.key], fmtN)}
           </td>
         );
       case "act1":
@@ -925,16 +929,17 @@ export default function StatsGrid({ data }: { data: GridData }) {
           {t("Cohort")}: {cap(cohort)} ·{" "}
           {scoped
             ? t("{n} runs", {
-                n: (totals.characterRuns ?? 0).toLocaleString(),
+                n: fmtN(totals.characterRuns ?? 0),
               })
-            : t("{n} runs", { n: totals.totalRuns.toLocaleString() })}
+            : t("{n} runs", { n: fmtN(totals.totalRuns) })}
           {!scoped &&
           totals.totalSeats !== null &&
           totals.totalSeats !== totals.totalRuns
-            ? ` · ${t("{n} seats", { n: totals.totalSeats.toLocaleString() })}`
+            ? ` · ${t("{n} seats", { n: fmtN(totals.totalSeats) })}`
             : ""}
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
+          {dataThrough && ` · ${dataThrough}`}
           {" · "}
           <button
             type="button"
@@ -997,6 +1002,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             value={search}
             onChange={(e) => onSearch(e.target.value)}
             placeholder={t("Search or filter, e.g. lift>2 win>55")}
+            aria-label={t("Search")}
             className="w-72 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] px-3 py-1.5 text-sm text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--accent-gold)] focus:outline-none"
           />
           <button
@@ -1184,6 +1190,13 @@ export default function StatsGrid({ data }: { data: GridData }) {
                 <th
                   key={col.key}
                   title={t(col.title)}
+                  aria-sort={
+                    col.key === sortKey
+                      ? dir === -1
+                        ? "descending"
+                        : "ascending"
+                      : undefined
+                  }
                   onClick={() => onSort(col)}
                   draggable={col.key !== "name"}
                   onDragStart={(e) => {
@@ -1213,7 +1226,16 @@ export default function StatsGrid({ data }: { data: GridData }) {
                         : "text-left"
                   } ${col.key === sortKey ? "text-[var(--accent-gold)]" : ""}`}
                 >
-                  {t(col.label)}
+                  {col.sortField ? (
+                    <button
+                      type="button"
+                      className="pointer-events-none rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--accent-gold)]"
+                    >
+                      {t(col.label)}
+                    </button>
+                  ) : (
+                    t(col.label)
+                  )}
                   {col.key === sortKey ? (dir === -1 ? " ▾" : " ▴") : ""}
                 </th>
               ))}
@@ -1228,8 +1250,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     href={g.href ? `${bp}${g.href}` : null}
                     totalLabel={
                       cfg.grouped
-                        ? t("{n} chosen", { n: g.total.toLocaleString() })
-                        : t("{n} picks", { n: g.total.toLocaleString() })
+                        ? t("{n} chosen", { n: fmtN(g.total) })
+                        : t("{n} picks", { n: fmtN(g.total) })
                     }
                     rows={g.rows}
                     columns={columns}

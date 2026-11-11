@@ -64,15 +64,16 @@
         group: root
       no_log: true
 
-    - name: Confirm cron installed
+    - name: Confirm deploy script installed
       become: true
-      command: ls -la "{{ cron_file }}" "{{ autodeploy_script }}"
+      command: ls -la "{{ autodeploy_script }}"
       register: install_check
       changed_when: false
 
     - name: Summary
       debug:
         msg: |
-          ✓ Auto-deploy installed. Will fire :03 every hour.
-          Manual trigger: ssh box && sudo /usr/local/bin/spire-codex-autodeploy
-          Logs:           /var/log/spire-codex-autodeploy.log
+          ✓ Deploy script installed, hourly cron removed. Deploys are manual.
+          Release:  ssh box && cd /var/www/spire-codex && ./tools/startup.sh release
+          Rollback: ./tools/startup.sh rollback
+          Logs:     /var/log/spire-codex-autodeploy.log

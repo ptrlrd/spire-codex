@@ -26,7 +26,7 @@ export function SummaryBadge({
   changed: number;
 }) {
   return (
-    <div className="flex gap-2 text-xs">
+    <span className="flex gap-2 text-xs">
       {added > 0 && (
         <span className="px-2 py-0.5 rounded bg-success/10 text-success border border-success/30">
           +{added} added
@@ -42,7 +42,7 @@ export function SummaryBadge({
           ~{changed} changed
         </span>
       )}
-    </div>
+    </span>
   );
 }
 
@@ -77,11 +77,13 @@ export default function DiffSection({
 
   return (
     <div className="border border-[var(--border-subtle)] rounded-lg overflow-hidden">
-      <div
-        className="flex items-center justify-between px-4 py-2.5 cursor-pointer hover:bg-[var(--bg-card-hover)] transition-colors"
+      <button
+        type="button"
+        aria-expanded={open}
+        className="flex w-full items-center justify-between px-4 py-2.5 text-left cursor-pointer hover:bg-[var(--bg-card-hover)] transition-colors"
         onClick={() => setOpen(!open)}
       >
-        <div className="flex items-center gap-2">
+        <span className="flex items-center gap-2">
           <span
             className={`inline-block transition-transform text-[var(--text-muted)] text-xs ${open ? "rotate-90" : ""}`}
           >
@@ -93,13 +95,13 @@ export default function DiffSection({
           <span className="text-xs text-[var(--text-muted)]">
             {total} {total === 1 ? "change" : "changes"}
           </span>
-        </div>
+        </span>
         <SummaryBadge
           added={added.length}
           removed={removed.length}
           changed={changed.length}
         />
-      </div>
+      </button>
 
       {open && (
         <div className="border-t border-[var(--border-subtle)] px-4 py-3 space-y-3">
