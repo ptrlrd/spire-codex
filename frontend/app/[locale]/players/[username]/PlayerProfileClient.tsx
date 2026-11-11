@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import {
   EMPTY_INSIGHT_FILTERS,
@@ -33,6 +33,7 @@ export default function PlayerProfileClient({
 }) {
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const [data, setData] = useState<PlayerInsights | null>(null);
   const [status, setStatus] = useState<"loading" | "ok" | "missing">("loading");
   const [building, setBuilding] = useState(false);
@@ -79,9 +80,7 @@ export default function PlayerProfileClient({
         {building && (
           <p className="text-sm text-[var(--text-secondary)]">
             {t("Crunching your runs. The first load can take a minute or two.")}
-            {claimedRuns
-              ? ` · ${claimedRuns.toLocaleString()} ${t("runs")}`
-              : ""}
+            {claimedRuns ? ` · ${fmtN(claimedRuns)} ${t("runs")}` : ""}
           </p>
         )}
         {[...Array(4)].map((_, i) => (

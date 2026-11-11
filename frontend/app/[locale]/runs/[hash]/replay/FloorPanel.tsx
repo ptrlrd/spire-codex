@@ -184,12 +184,15 @@ export function floorTitle(f: ReplayFloor, cat: Catalog, t: TFn): string {
 }
 
 function ScoreChip({ id, scores }: { id: string; scores: ScoresMap }) {
+  const t = useT();
   const sc = scores[id.toUpperCase()];
   if (!sc || sc.score === null) return null;
   return (
     <span className="ml-auto flex items-center gap-2 text-[10px] tabular-nums text-[var(--text-muted)]">
-      <span title="Codex score">{sc.score}</span>
-      <span title="Win rate at this bracket">{sc.win_rate.toFixed(0)}%</span>
+      <span title={t("Codex Score")}>{sc.score}</span>
+      <span title={t("Win rate at this bracket")}>
+        {sc.win_rate.toFixed(0)}%
+      </span>
     </span>
   );
 }

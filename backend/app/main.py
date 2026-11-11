@@ -1,6 +1,5 @@
 """Spire Codex API - FastAPI Application."""
 
-import json
 import logging
 import os
 import re
@@ -69,6 +68,7 @@ from .routers import (
     admin_rate_limits,
     admin_api_keys,
     admin_replays,
+    admin_cheat_review,
     api_keys,
     glossary,
     guides,
@@ -893,6 +893,7 @@ app.include_router(mentions_ingest.router, include_in_schema=False)
 app.include_router(thanks.router)
 app.include_router(admin_api_keys.router, include_in_schema=False)
 app.include_router(admin_replays.router, include_in_schema=False)
+app.include_router(admin_cheat_review.router, include_in_schema=False)
 # Key management (create/list/revoke) is session-authed and site-internal, so
 # it stays out of /docs; only the public tier info (/api/rate-limits) shows.
 app.include_router(api_keys.router, include_in_schema=False)
@@ -982,16 +983,11 @@ def health(request: Request):
             lake[label] = datetime.fromtimestamp(ts, tz=timezone.utc).isoformat()
         except OSError:
             lake[label] = None
-    data_through = None
-    try:
-        state = json.loads((lake_dir / "staging" / "state.json").read_text())
-        data_through = state.get("submitted_at")
-    except Exception:
-        pass
     # The ingest publishes this manifest last, after every artifact of a
     # cycle landed, so it names the newest COMPLETE generation; individual
     # store mtimes above can run ahead of it mid-cycle.
     generation = read_lake_generation(lake_dir)
+    data_through = (generation or {}).get("source_watermark")
     # The newest ATTEMPT, complete or not — a failing cron would otherwise
     # be invisible here (the manifest only ever shows the last success).
     latest_attempt = read_lake_latest_attempt(lake_dir)

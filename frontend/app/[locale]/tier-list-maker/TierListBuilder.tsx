@@ -25,6 +25,7 @@ import {
 
 import { useAuth } from "@/app/contexts/AuthContext";
 import { Chip, SortableItem } from "./chip";
+import Modal from "@/app/components/Modal";
 import { createTierList, saveTierListImage, updateTierList } from "./api";
 import { fullCardUrl, CARD_RENDER_LANGS } from "@/lib/image-url";
 import { LANG_NAMES } from "@/lib/languages";
@@ -220,6 +221,7 @@ export default function TierListBuilder({
     initial?.comments ?? {},
   );
   const [commentFor, setCommentFor] = useState<string | null>(null);
+  const closeComment = () => setCommentFor(null);
   const [commentDraft, setCommentDraft] = useState("");
 
   function openComment(id: string) {
@@ -775,62 +777,59 @@ export default function TierListBuilder({
       </DndContext>
 
       {commentFor && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-scrim/60 p-4"
-          onClick={() => setCommentFor(null)}
+        <Modal
+          onClose={closeComment}
+          label={t("Note / rationale")}
+          overlayClassName="fixed inset-0 z-50 flex items-center justify-center bg-scrim/60 p-4"
+          className="w-full max-w-md rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 shadow-xl"
         >
-          <div
-            className="w-full max-w-md rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)] p-4 shadow-xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="mb-3 flex items-center gap-3">
-              {entityMap.get(commentFor)?.image && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={entityMap.get(commentFor)!.image}
-                  alt=""
-                  className="h-10 w-10 shrink-0 rounded bg-[var(--bg-secondary)] object-contain"
-                />
-              )}
-              <div>
-                <div className="text-sm font-semibold text-[var(--text-primary)]">
-                  {entityMap.get(commentFor)?.name ?? commentFor}
-                </div>
-                <div className="text-xs text-[var(--text-secondary)]">
-                  {t("Note / rationale")}
-                </div>
+          <div className="mb-3 flex items-center gap-3">
+            {entityMap.get(commentFor)?.image && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={entityMap.get(commentFor)!.image}
+                alt=""
+                className="h-10 w-10 shrink-0 rounded bg-[var(--bg-secondary)] object-contain"
+              />
+            )}
+            <div>
+              <div className="text-sm font-semibold text-[var(--text-primary)]">
+                {entityMap.get(commentFor)?.name ?? commentFor}
               </div>
-            </div>
-            <textarea
-              autoFocus
-              value={commentDraft}
-              onChange={(e) => setCommentDraft(e.target.value)}
-              maxLength={500}
-              rows={4}
-              placeholder={t("Why is it ranked here?")}
-              className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-info"
-            />
-            <div className="mt-3 flex items-center justify-between gap-2">
-              <span className="text-[11px] text-[var(--text-muted)]">
-                {commentDraft.length}/500
-              </span>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setCommentFor(null)}
-                  className="rounded px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                >
-                  {t("Cancel")}
-                </button>
-                <button
-                  onClick={saveComment}
-                  className="rounded bg-info-fill px-3 py-1.5 text-sm font-semibold text-on-fill hover:bg-info-fill"
-                >
-                  {commentDraft.trim() ? t("Save note") : t("Remove note")}
-                </button>
+              <div className="text-xs text-[var(--text-secondary)]">
+                {t("Note / rationale")}
               </div>
             </div>
           </div>
-        </div>
+          <textarea
+            autoFocus
+            value={commentDraft}
+            onChange={(e) => setCommentDraft(e.target.value)}
+            maxLength={500}
+            rows={4}
+            placeholder={t("Why is it ranked here?")}
+            className="w-full resize-none rounded border border-[var(--border-subtle)] bg-[var(--bg-primary)] p-2 text-sm text-[var(--text-primary)] outline-none focus:border-info"
+          />
+          <div className="mt-3 flex items-center justify-between gap-2">
+            <span className="text-[11px] text-[var(--text-muted)]">
+              {commentDraft.length}/500
+            </span>
+            <div className="flex gap-2">
+              <button
+                onClick={closeComment}
+                className="rounded px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+              >
+                {t("Cancel")}
+              </button>
+              <button
+                onClick={saveComment}
+                className="rounded bg-info-fill px-3 py-1.5 text-sm font-semibold text-on-fill hover:bg-info-fill"
+              >
+                {commentDraft.trim() ? t("Save note") : t("Remove note")}
+              </button>
+            </div>
+          </div>
+        </Modal>
       )}
     </div>
   );

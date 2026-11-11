@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import {
   useState,
   useEffect,
@@ -351,11 +351,17 @@ interface EncounterBuild {
 export default function MonsterDetail({
   initialMonster,
   encounterStats,
-}: { initialMonster?: Monster | null; encounterStats?: EncounterStat[] } = {}) {
+  actNames,
+}: {
+  initialMonster?: Monster | null;
+  encounterStats?: EncounterStat[];
+  actNames?: Record<string, string>;
+} = {}) {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const [monster, setMonster] = useState<Monster | null>(
     initialMonster ?? null,
@@ -507,8 +513,16 @@ export default function MonsterDetail({
   const isEnglish = lang === "eng";
 
   // Derive acts from encounters
+  const actLabel = (raw: string) => {
+    const m = /^Act (\d+) - (.+)$/.exec(raw);
+    if (!m) return raw;
+    const name = actNames?.[m[2].toUpperCase().replace(/ /g, "_")] ?? m[2];
+    return `${t("Act {n}", { n: Number(m[1]) })} - ${name}`;
+  };
   const acts = monster.encounters
-    ? [...new Set(monster.encounters.filter((e) => e.act).map((e) => e.act!))]
+    ? [
+        ...new Set(monster.encounters.filter((e) => e.act).map((e) => e.act!)),
+      ].map(actLabel)
     : [];
 
   // The single deadliest encounter this monster shows up in (highest kill
@@ -608,7 +622,7 @@ export default function MonsterDetail({
                   <span className="sep">&middot;</span>
                 </>
               )}
-              <span>{monster.type}</span>
+              <span>{t(monster.type)}</span>
             </p>
             <h1>{monster.name}</h1>
           </div>
@@ -666,7 +680,7 @@ export default function MonsterDetail({
                       className="v"
                       style={{ color: SPINE_TEXT, fontSize: 20 }}
                     >
-                      {monster.type}
+                      {t(monster.type)}
                     </div>
                   </div>
                 </div>
@@ -944,10 +958,10 @@ export default function MonsterDetail({
                         {t(
                           "In {total} community runs, the {name} fight was fatal to {pct}% of runs ({fatal}), dealing an average of {dmg} damage over {turns} turns.",
                           {
-                            total: s.total.toLocaleString(),
+                            total: fmtN(s.total),
                             name: enc.encounter_name,
                             pct: killRate.toFixed(1),
-                            fatal: s.fatal.toLocaleString(),
+                            fatal: fmtN(s.fatal),
                             dmg: s.avg_damage,
                             turns: s.avg_turns,
                           },
@@ -973,11 +987,13 @@ export default function MonsterDetail({
                   >
                     <span className="enc-name">{enc.encounter_name}</span>
                     <div className="enc-meta">
-                      {enc.act && <span className="badge">{enc.act}</span>}
+                      {enc.act && (
+                        <span className="badge">{actLabel(enc.act)}</span>
+                      )}
                       <span
                         className={`badge ${typeBadge[enc.room_type] || ""}`}
                       >
-                        {enc.room_type}
+                        {t(enc.room_type)}
                       </span>
                       {enc.is_weak && (
                         <span className="badge bg-success/10 text-success">
@@ -1045,7 +1061,7 @@ export default function MonsterDetail({
                 )}
                 <div className="frow">
                   <dt>{t("Type")}</dt>
-                  <dd style={{ color: SPINE_TEXT }}>{monster.type}</dd>
+                  <dd style={{ color: SPINE_TEXT }}>{t(monster.type)}</dd>
                 </div>
                 {acts.length > 0 && (
                   <div className="frow">

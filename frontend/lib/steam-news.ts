@@ -12,6 +12,7 @@
 
 import sanitizeHtml from "sanitize-html";
 import { fmtDatePacific } from "@/lib/pacific";
+import { numberLocale } from "@/lib/number-format";
 
 const STEAM_CLAN_IMAGE_BASE = "https://clan.cloudflare.steamstatic.com/images/";
 
@@ -414,12 +415,12 @@ export function firstNewsImage(raw: string | undefined | null): string | null {
 
 export function formatNewsDate(
   unixSeconds: number,
-  locale: string = "en",
+  locale: string = "eng",
 ): string {
   return fmtDatePacific(
     unixSeconds * 1000,
     { year: "numeric", month: "long", day: "numeric" },
-    locale,
+    locale === "eng" ? "en" : numberLocale(locale),
   );
 }
 

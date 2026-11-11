@@ -397,7 +397,7 @@ export default function LeaderboardBrowseClient() {
           read from disjoint pools. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <Pills
-          options={PLAYER_OPTS}
+          options={PLAYER_OPTS.map((o) => ({ ...o, label: t(o.label) }))}
           value={mode}
           onChange={(v) => setMode(v as Mode)}
           ariaLabel={t("Filter by player count")}
@@ -669,7 +669,7 @@ export default function LeaderboardBrowseClient() {
                               onClick={(e) => e.stopPropagation()}
                               className="text-[var(--accent-gold)] hover:underline text-xs"
                               title={t("View run")}
-                              aria-label={t("View run details")}
+                              aria-label={t("View run")}
                             >
                               &#x2197;
                             </Link>
@@ -703,6 +703,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseChar}
               onChange={(e) => setBrowseChar(e.target.value)}
+              aria-label={t("Character")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Characters")}</option>
@@ -716,6 +717,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseWin}
               onChange={(e) => setBrowseWin(e.target.value)}
+              aria-label={t("Result")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="">{t("All Runs")}</option>
@@ -728,6 +730,7 @@ export default function LeaderboardBrowseClient() {
               value={browseUser}
               onChange={(e) => setBrowseUser(e.target.value)}
               placeholder={t("Username...")}
+              aria-label={t("Username...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-44"
             />
 
@@ -736,6 +739,7 @@ export default function LeaderboardBrowseClient() {
               value={browseSeed}
               onChange={(e) => setBrowseSeed(e.target.value)}
               placeholder={t("Seed...")}
+              aria-label={t("Seed...")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-36"
             />
 
@@ -743,6 +747,7 @@ export default function LeaderboardBrowseClient() {
               <select
                 value={browseBuildId}
                 onChange={(e) => setBrowseBuildId(e.target.value)}
+                aria-label={t("Game version")}
                 className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
               >
                 <option value="">{t("All Versions")}</option>
@@ -757,6 +762,7 @@ export default function LeaderboardBrowseClient() {
             <select
               value={browseSort}
               onChange={(e) => setBrowseSort(e.target.value)}
+              aria-label={t("Sort by")}
               className="text-sm px-3 py-1.5 rounded-lg bg-[var(--bg-primary)] border border-[var(--border-subtle)] text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent-gold)] w-full sm:w-auto"
             >
               <option value="date">{t("Newest")}</option>

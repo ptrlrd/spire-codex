@@ -3,6 +3,8 @@
 import { useT } from "@/lib/i18n";
 import { useState, useEffect } from "react";
 import { cachedFetch } from "@/lib/fetch-cache";
+import { Link } from "@/i18n/navigation";
+import { changelogPath, versionTag } from "@/lib/changelog";
 import EntityHistory from "./EntityHistory";
 
 const API = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000";
@@ -73,15 +75,25 @@ export default function EntityUpdateHistory({
           <div className="space-y-4">
             {entries.map((entry, i) => {
               const kind = patchKind(entry.type);
+              const tag = versionTag(entry.version);
               return (
                 <div key={`${entry.version}-${i}`} className="relative pl-6">
                   <div
                     className={`absolute left-0 top-1.5 w-[11px] h-[11px] rounded-full border-2 border-[var(--bg-primary)] ${kindDot[kind]}`}
                   />
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="font-semibold text-[var(--text-primary)]">
-                      {entry.version ?? t("Unknown")}
-                    </span>
+                    {tag ? (
+                      <Link
+                        href={changelogPath(tag)}
+                        className="font-semibold text-[var(--text-primary)] hover:text-[var(--accent-gold)] transition-colors"
+                      >
+                        {entry.version}
+                      </Link>
+                    ) : (
+                      <span className="font-semibold text-[var(--text-primary)]">
+                        {entry.version ?? t("Unknown")}
+                      </span>
+                    )}
                     {entry.type && (
                       <span className={kindText[kind]}>{entry.type}</span>
                     )}

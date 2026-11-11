@@ -256,6 +256,7 @@ export interface CardCatalogs {
   glossary: KeywordEntry[];
   orbs: KeywordEntry[];
   spawnedCards: SpawnedCardEntry[];
+  enchantments?: { id: string; name: string }[];
 }
 
 export default function CardDetail({
@@ -329,16 +330,12 @@ export default function CardDetail({
   // + their localized name/description for the Enchantments section + switcher.
   const cardEnchantments = initialEnchantments ?? [];
   const [enchMeta, setEnchMeta] = useState<
-    Record<
-      string,
-      {
-        id: string;
-        name: string;
-        description: string;
-        image_url: string | null;
-      }
-    >
-  >({});
+    Record<string, { id: string; name: string }>
+  >(() =>
+    Object.fromEntries(
+      (initialCatalogs?.enchantments ?? []).map((e) => [e.id.toLowerCase(), e]),
+    ),
+  );
 
   useEffect(() => {
     if (!id) return;
@@ -566,7 +563,7 @@ export default function CardDetail({
 
   const spineColor = SPINE_COLOR[card.color] ?? "var(--accent-gold)";
   const characterLabel = card.color
-    ? card.color.charAt(0).toUpperCase() + card.color.slice(1)
+    ? t(card.color.charAt(0).toUpperCase() + card.color.slice(1))
     : "—";
   const characterPath = characterHref(card.color);
   const characterNode = characterPath ? (
@@ -587,7 +584,7 @@ export default function CardDetail({
       : String(cost);
   const targetLabel =
     card.target && card.target !== "None" && card.target !== "Self"
-      ? card.target.replace(/([A-Z])/g, " $1").trim()
+      ? t(card.target.replace(/([A-Z])/g, " $1").trim())
       : null;
   const enchActive =
     selectedEnch !== "none" && cardEnchantments.includes(selectedEnch);

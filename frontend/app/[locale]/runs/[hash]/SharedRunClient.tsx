@@ -7,6 +7,7 @@ import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { useToast } from "@/app/components/Toast";
+import Modal from "@/app/components/Modal";
 import { authHeaders } from "@/app/[locale]/admin/shared";
 import { useIdMap } from "@/lib/use-id-map";
 import { useTryGameTranslations } from "@/lib/game-i18n";
@@ -78,6 +79,9 @@ export default function SharedRunClient({
     "idle" | "sending" | "sent" | "error"
   >("idle");
   const [reportError, setReportError] = useState<string | null>(null);
+  const closeReport = () => {
+    if (reportState !== "sending") setShowReport(false);
+  };
   const [unhiding, setUnhiding] = useState(false);
   const cardData = useIdMap<CardInfo>("/api/cards");
   const relicData = useIdMap<RelicInfo>("/api/relics");
@@ -260,81 +264,81 @@ export default function SharedRunClient({
         </div>
       </div>
       {showReport && (
-        <div
-          className="fixed inset-0 z-50 bg-scrim/60 flex items-center justify-center p-4"
-          onClick={() => reportState !== "sending" && setShowReport(false)}
+        <Modal
+          onClose={closeReport}
+          labelledBy="report-run-title"
+          overlayClassName="fixed inset-0 z-50 bg-scrim/60 flex items-center justify-center p-4"
+          className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-xl p-5 w-full max-w-md"
         >
-          <div
-            className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-xl p-5 w-full max-w-md"
-            onClick={(e) => e.stopPropagation()}
+          <h2
+            id="report-run-title"
+            className="text-lg font-bold text-[var(--text-primary)] mb-3"
           >
-            <h2 className="text-lg font-bold text-[var(--text-primary)] mb-3">
-              {t("Report run")}
-            </h2>
-            {reportState === "sent" ? (
-              <p className="text-sm text-[var(--color-silent)] py-4">
-                {t("Report sent. Thanks!")}
-              </p>
-            ) : (
-              <div className="space-y-3">
-                <label className="block">
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {t("Why are you reporting this run?")}
+            {t("Report run")}
+          </h2>
+          {reportState === "sent" ? (
+            <p className="text-sm text-[var(--color-silent)] py-4">
+              {t("Report sent. Thanks!")}
+            </p>
+          ) : (
+            <div className="space-y-3">
+              <label className="block">
+                <span className="text-xs text-[var(--text-muted)]">
+                  {t("Why are you reporting this run?")}
+                </span>
+                <textarea
+                  value={reportReason}
+                  onChange={(e) => setReportReason(e.target.value)}
+                  rows={4}
+                  maxLength={2000}
+                  className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
+                />
+              </label>
+              <label className="block">
+                <span className="text-xs text-[var(--text-muted)]">
+                  {t("Email")}
+                </span>
+                <input
+                  type="email"
+                  value={reportEmail}
+                  onChange={(e) => setReportEmail(e.target.value)}
+                  required
+                  maxLength={254}
+                  className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
+                />
+                {reportEmail.trim() !== "" && !emailOk && (
+                  <span className="text-xs text-[var(--color-ironclad)]">
+                    {t("Enter a valid email address.")}
                   </span>
-                  <textarea
-                    value={reportReason}
-                    onChange={(e) => setReportReason(e.target.value)}
-                    rows={4}
-                    maxLength={2000}
-                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-xs text-[var(--text-muted)]">
-                    {t("Email")}
-                  </span>
-                  <input
-                    type="email"
-                    value={reportEmail}
-                    onChange={(e) => setReportEmail(e.target.value)}
-                    required
-                    maxLength={254}
-                    className="mt-1 w-full rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-[var(--text-primary)] focus:border-[var(--border-accent)] focus:outline-none"
-                  />
-                  {reportEmail.trim() !== "" && !emailOk && (
-                    <span className="text-xs text-[var(--color-ironclad)]">
-                      {t("Enter a valid email address.")}
-                    </span>
-                  )}
-                </label>
-                {reportState === "error" && (
-                  <p className="text-xs text-[var(--color-ironclad)]">
-                    {reportError || t("Could not send the report.")}
-                  </p>
                 )}
-                <div className="flex justify-end gap-2 pt-1">
-                  <button
-                    onClick={() => setShowReport(false)}
-                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
-                  >
-                    {t("Cancel")}
-                  </button>
-                  <button
-                    onClick={submitReport}
-                    disabled={
-                      reportState === "sending" ||
-                      !emailOk ||
-                      !reportReason.trim()
-                    }
-                    className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
-                  >
-                    {reportState === "sending" ? "..." : t("Send report")}
-                  </button>
-                </div>
+              </label>
+              {reportState === "error" && (
+                <p className="text-xs text-[var(--color-ironclad)]">
+                  {reportError || t("Could not send the report.")}
+                </p>
+              )}
+              <div className="flex justify-end gap-2 pt-1">
+                <button
+                  onClick={() => setShowReport(false)}
+                  className="text-xs px-3 py-1.5 rounded-lg border border-[var(--border-subtle)] text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-colors"
+                >
+                  {t("Cancel")}
+                </button>
+                <button
+                  onClick={submitReport}
+                  disabled={
+                    reportState === "sending" ||
+                    !emailOk ||
+                    !reportReason.trim()
+                  }
+                  className="text-xs px-3 py-1.5 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 text-[var(--accent-gold)] hover:border-[var(--accent-gold)] transition-colors disabled:opacity-50"
+                >
+                  {reportState === "sending" ? "..." : t("Send report")}
+                </button>
               </div>
-            )}
-          </div>
-        </div>
+            </div>
+          )}
+        </Modal>
       )}
       {run.hidden && (
         <div className="mb-4 rounded-lg border border-[var(--accent-gold)]/40 bg-[var(--accent-gold)]/10 px-4 py-3 text-sm text-[var(--text-secondary)]">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import {
   useState,
   useEffect,
@@ -77,6 +77,7 @@ function TopPicks({
   hrefBase: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const resolved = items
     .map((it) => ({ it, ent: lookup(it.entity_id) }))
     .filter((x): x is { it: TopEntry; ent: TopEntity } => !!x.ent);
@@ -109,7 +110,7 @@ function TopPicks({
               <span className="pick-sub">
                 {t("{pct}% win · {n} picks", {
                   pct: it.win_rate.toFixed(1),
-                  n: it.picks.toLocaleString(),
+                  n: fmtN(it.picks),
                 })
                   .split(/\s*·\s*/)
                   .map((part) => (
@@ -435,7 +436,7 @@ export default function CharacterDetail({
               {char.gender && (
                 <>
                   <span className="sep">&middot;</span>
-                  <span>{char.gender}</span>
+                  <span>{t(char.gender)}</span>
                 </>
               )}
               {char.unlocks_after && (
@@ -877,7 +878,7 @@ export default function CharacterDetail({
                 {char.gender && (
                   <div className="frow">
                     <dt>{t("Gender")}</dt>
-                    <dd>{char.gender}</dd>
+                    <dd>{t(char.gender)}</dd>
                   </div>
                 )}
                 {char.unlocks_after && (

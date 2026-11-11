@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import {
   useState,
   useEffect,
@@ -47,6 +47,7 @@ export default function EncounterDetail({
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const [encounter, setEncounter] = useState<Encounter | null>(
     initialEncounter ?? null,
@@ -191,8 +192,8 @@ export default function EncounterDetail({
                   "In community-submitted runs, {name} has been encountered {total} times and killed {fatal} players ({pct}% of the runs that reach it).",
                   {
                     name: encounter.name,
-                    total: encounterStat!.total.toLocaleString(),
-                    fatal: encounterStat!.fatal.toLocaleString(),
+                    total: fmtN(encounterStat!.total),
+                    fatal: fmtN(encounterStat!.fatal),
                     pct: (
                       (encounterStat!.fatal / encounterStat!.total) *
                       100
