@@ -602,10 +602,12 @@ async def runs_set_hidden(request: Request, run_hash: str):
     except Exception:
         body = {}
     hidden = bool(body.get("hidden", True))
-    from ..services.runs_db_mongo import set_run_hidden
+    from ..services.runs_db_mongo import drop_moderation_tombstones, set_run_hidden
     from .runs import _load_run_blob
 
     result = set_run_hidden(run_hash.strip(), hidden)
+    if not hidden:
+        drop_moderation_tombstones(result.get("hashes") or [run_hash.strip()])
     # Evict the in-process blob LRU so this worker stops serving the run's
     # detail immediately; other workers age it out on their own.
     _load_run_blob.cache_clear()

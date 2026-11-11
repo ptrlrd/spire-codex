@@ -125,6 +125,7 @@ const SECTIONS = [
   { href: "/admin", label: "Overview" },
   { href: "/admin/mentions", label: "Mentions" },
   { href: "/admin/runs", label: "Runs" },
+  { href: "/admin/cheat-review", label: "Cheat review" },
   { href: "/admin/users", label: "Users" },
   { href: "/admin/feedback", label: "Feedback" },
   { href: "/admin/guides", label: "Guides" },

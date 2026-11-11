@@ -1159,13 +1159,18 @@ def _submit_player_run(
 
     from .cheat_detect import detect_cheats
 
-    cheat_reasons = detect_cheats(data)
+    cheat_reasons = detect_cheats({**data, "floors_reached": total_floors})
     if cheat_reasons:
         doc["hidden"] = True
         doc["hidden_reason"] = "auto:" + ",".join(cheat_reasons[:4])
         logger.info("auto-hid cheated run %s: %s", run_hash, doc["hidden_reason"])
 
     coll = _get_collection()
+    tombstone_reason = moderation_tombstone(run_hash)
+    if tombstone_reason:
+        doc["hidden"] = True
+        doc["hidden_reason"] = tombstone_reason
+        logger.info("re-upload of moderated run %s stays hidden", run_hash)
     try:
         coll.insert_one(doc)
         if not doc.get("hidden"):
@@ -3115,7 +3120,7 @@ def set_run_hidden(run_hash: str, hidden: bool, reason: str | None = None) -> di
         if reason:
             update["$set"]["hidden_reason"] = reason
     else:
-        update = {"$unset": {"hidden": "", "hidden_reason": ""}}
+        update = {"$unset": {"hidden": "", "hidden_reason": "", "hidden_before": ""}}
     result = coll.update_many(query, update)
     for row in rows:
         if bool(row.get("hidden")) != hidden:
@@ -3233,6 +3238,61 @@ def rehide_impossible_time_runs(dry_run: bool = False) -> dict:
     return {"candidates": checked, "hidden": len(hidden_runs), "hashes": hidden_runs}
 
 
+def unhide_relaxed_time_runs(apply: bool = False) -> dict:
+    """Give back the wins the old 15 minute cutoff auto-hid that the current
+    rules allow. Only touches runs whose stored reason is nothing but the
+    time signals, and only when the detector passes the stored run today;
+    moderator hides, owner hides and every other auto reason stay hidden."""
+    from .cheat_detect import detect_cheats
+
+    coll = _get_collection()
+    cursor = coll.find(
+        {
+            "hidden": True,
+            "win": {"$in": [1, True]},
+            "run_time": {"$gte": 300, "$lt": 900},
+        },
+        {
+            "run_time": 1,
+            "floors_reached": 1,
+            "game_mode": 1,
+            "hidden_reason": 1,
+            "map_point_history": 1,
+            "relics.id": 1,
+            "deck.id": 1,
+            "player_count": 1,
+        },
+    )
+    counts = {"candidates": 0, "other_reason": 0, "still_flagged": 0}
+    hashes: list[str] = []
+    for doc in cursor:
+        counts["candidates"] += 1
+        reason = str(doc.get("hidden_reason") or "")
+        parts = reason.removeprefix("auto:").split(",")
+        if not reason.startswith("auto:impossible_time") or not all(
+            part.startswith(("impossible_time:", "impossible_pace:")) for part in parts
+        ):
+            counts["other_reason"] += 1
+            continue
+        seat = {"relics": doc.get("relics"), "deck": doc.get("deck")}
+        stored = {
+            "win": True,
+            "run_time": doc.get("run_time"),
+            "floors_reached": doc.get("floors_reached"),
+            "game_mode": doc.get("game_mode"),
+            "map_point_history": doc.get("map_point_history") or [],
+            "players": [seat] * max(1, int(doc.get("player_count") or 1)),
+        }
+        if detect_cheats(stored):
+            counts["still_flagged"] += 1
+            continue
+        hashes.append(doc["_id"])
+        if apply:
+            set_run_hidden(doc["_id"], False)
+            logger.info("unhid run %s (was %s)", doc["_id"], reason)
+    return {**counts, "unhidden": len(hashes), "hashes": hashes}
+
+
 def rehide_coop_card_solo_runs(dry_run: bool = False) -> dict:
     """Backfill for the co-op-card-in-solo cheat signal: sweep stored solo
     runs whose decks contain a co-op-only card (submit-time detection only
@@ -3240,33 +3300,27 @@ def rehide_coop_card_solo_runs(dry_run: bool = False) -> dict:
     catalog's co-op set case-insensitively; the shared detector then
     re-checks per doc off the blob's own player list. Returns counts;
     dry_run only reports."""
-    import re as _re
-
     from .cheat_detect import coop_cards_in_solo
     from .run_entity_stats import _multiplayer_card_ids
 
     coop_ids = _multiplayer_card_ids()
     if not coop_ids:
         return {"candidates": 0, "hidden": 0, "hashes": []}
-    patterns = [
-        _re.compile(rf"^CARD\.{_re.escape(cid)}$", _re.IGNORECASE)
-        for cid in sorted(coop_ids)
-    ]
     coll = _get_collection()
     cursor = coll.find(
         {
             "hidden": {"$ne": True},
             "player_count": 1,
-            "players.deck.id": {"$in": patterns},
+            "deck.id": {"$in": sorted(coop_ids)},
         },
-        {"players.deck.id": 1, "run_hash": 1},
+        {"deck.id": 1, "run_hash": 1},
     )
     checked = 0
     hidden_runs: list[str] = []
     for doc in cursor:
         checked += 1
         run_hash = doc.get("run_hash") or doc["_id"]
-        reasons = coop_cards_in_solo({"players": doc.get("players")}, coop_ids)
+        reasons = coop_cards_in_solo({"players": [{"deck": doc.get("deck")}]}, coop_ids)
         if not reasons:
             continue
         hidden_runs.append(run_hash)
@@ -4233,6 +4287,46 @@ def _undelete_on_reupload(coll, run_hash: str, extra: dict | None = None) -> Non
 
 
 OWNER_HIDDEN = "owner"
+MODERATOR_HIDDEN = "moderator"
+
+
+def _tombstones():
+    return _get_collection().database["run_tombstones"]
+
+
+def moderation_tombstone(run_hash: str) -> str | None:
+    """The reason a moderator hid this run before its owner deleted it, or
+    None. A failed lookup reads as no tombstone so it never blocks an upload."""
+    try:
+        doc = _tombstones().find_one({"_id": run_hash}, {"reason": 1})
+    except Exception:
+        logger.warning("tombstone lookup failed for %s", run_hash, exc_info=True)
+        return None
+    if not doc:
+        return None
+    return str(doc.get("reason") or MODERATOR_HIDDEN)
+
+
+def drop_moderation_tombstones(run_hashes: list[str]) -> int:
+    """Forget the tombstones for runs a moderator has let back in, so a later
+    delete and upload of the same file is treated as a new run."""
+    hashes = [h for h in run_hashes if h]
+    if not hashes:
+        return 0
+    try:
+        return _tombstones().delete_many({"_id": {"$in": hashes}}).deleted_count
+    except Exception:
+        logger.warning("tombstone cleanup failed for %s", hashes, exc_info=True)
+        return 0
+
+
+def _is_moderator_hidden(run: dict) -> bool:
+    reason = str(run.get("hidden_reason") or "")
+    return (
+        bool(run.get("hidden"))
+        and reason != OWNER_HIDDEN
+        and not reason.startswith("auto:")
+    )
 
 
 def set_run_hidden_by_owner(run_hash: str, user: dict, hidden: bool) -> dict:
@@ -4262,7 +4356,8 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
     """Remove one of the caller's own runs for good: the run doc, its blob, the
     file on disk and its replay. The live stats counters give the run back and
     the lake drops it on the next ingest. A later upload of the same file
-    comes in as a new run."""
+    comes in as a new run, except that a run a moderator hid leaves a
+    tombstone so the new copy comes in hidden for the same reason."""
     coll = _get_collection()
     run = coll.find_one(
         {"_id": run_hash},
@@ -4270,6 +4365,7 @@ def delete_run_permanently(run_hash: str, user: dict) -> dict:
             "user_id": 1,
             "steam_id": 1,
             "hidden": 1,
+            "hidden_reason": 1,
             "deleted_at": 1,
             "character": 1,
             "win": 1,
@@ -4294,6 +4390,17 @@ def _remove_run(run: dict, guard: dict | None = None) -> bool:
     """Drop a run doc and everything stored beside it. The guard narrows the
     delete so a doc that changed since it was read is left alone."""
     run_hash = run["_id"]
+    if _is_moderator_hidden(run):
+        _tombstones().update_one(
+            {"_id": run_hash},
+            {
+                "$set": {
+                    "reason": run.get("hidden_reason") or MODERATOR_HIDDEN,
+                    "deleted_at": datetime.now(timezone.utc),
+                }
+            },
+            upsert=True,
+        )
     removed = _get_collection().delete_one({"_id": run_hash, **(guard or {})})
     if not removed.deleted_count:
         return False
