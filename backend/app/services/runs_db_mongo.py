@@ -60,10 +60,12 @@ from pymongo.errors import (
 
 from ..metrics import count_budget_timeouts, db_operations, db_operation_duration
 from . import cache as app_cache
+from .official_content import official_characters
 
 logger = logging.getLogger(__name__)
 
-OFFICIAL_CHARACTERS = {"IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT"}
+OFFICIAL_CHARACTERS = official_characters()
+_CAST = tuple(sorted(OFFICIAL_CHARACTERS))
 HIDDEN_WINS_INDEX = "hidden_wins"
 _hidden_wins_hint_warned = False
 _HIDDEN_WINS_FIELDS = {
@@ -2170,14 +2172,7 @@ def read_stats_summary(
 # game_mode, players, username). Refresher iterates this list and
 # writes a doc per combo. Add to it when a new common filter combo
 # emerges in production traffic.
-HOT_FILTER_COMBOS: list[dict] = [
-    {},
-    {"character": "IRONCLAD"},
-    {"character": "SILENT"},
-    {"character": "DEFECT"},
-    {"character": "NECROBINDER"},
-    {"character": "REGENT"},
-]
+HOT_FILTER_COMBOS: list[dict] = [{}, *({"character": c} for c in _CAST)]
 
 # Second tier: every ascension slice (A0-A10, alone and per character). Their
 # live aggregation outgrew the gateway timeout at ~1.2M runs (issue #868), so
@@ -2187,7 +2182,7 @@ HOT_FILTER_COMBOS: list[dict] = [
 ASCENSION_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "ascension": str(a)}
     for a in range(0, 11)
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ]
 # Throttled after the 2026-08-20 load incident: 6 per cycle kept Mongo in a
 # continuous disk-spilling aggregation storm. 2 per cycle = full coverage in
@@ -2204,7 +2199,7 @@ _ASCENSION_COMBOS_PER_CYCLE = 2
 PLAYERS_FILTER_COMBOS: list[dict] = [
     {**({"character": c} if c else {}), "players": p}
     for p in ("1", "2", "3", "4")
-    for c in (None, "IRONCLAD", "SILENT", "DEFECT", "NECROBINDER", "REGENT")
+    for c in (None, *_CAST)
 ] + [
     {"players": p, "ascension": str(a)}
     for p in ("1", "2", "3", "4")

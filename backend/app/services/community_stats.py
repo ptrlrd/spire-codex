@@ -20,6 +20,8 @@ import re
 from functools import lru_cache
 from typing import Any
 
+from .official_content import official_characters_ordered
+
 logger = logging.getLogger(__name__)
 
 # Namespaces stripped off raw ids ("CARD.WISP" -> "WISP",
@@ -946,7 +948,7 @@ _OFFICIAL_REST_OPTIONS = frozenset(
 )
 
 
-_OFFICIAL_CHARS = ("ironclad", "silent", "defect", "necrobinder", "regent")
+_OFFICIAL_CHARS = tuple(c.lower() for c in official_characters_ordered())
 
 
 def _character_behavior(acc: dict[str, Any]) -> list[dict]:

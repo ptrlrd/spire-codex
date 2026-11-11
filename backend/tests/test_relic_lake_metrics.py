@@ -190,7 +190,8 @@ def write_lake(tmp_path):
         f"""COPY (SELECT run_hash, act, floor_idx, map_point_type,
           json_transform(players_json, '{PLAYERS_T}') AS players,
           []::VARCHAR[] AS room_models, 'event' AS room_type,
-          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns
+          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns,
+          1::BIGINT AS player_idx
         FROM (VALUES {vals}) t(run_hash, act, floor_idx, map_point_type, players_json))
         TO '{tmp_path}/floors.parquet' (FORMAT parquet)"""
     )
@@ -575,7 +576,8 @@ def _add_modded_rows(tmp_path):
         SELECT run_hash, act, floor_idx, map_point_type,
           json_transform(players_json, '{PLAYERS_T}') AS players,
           []::VARCHAR[] AS room_models, 'event' AS room_type,
-          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns
+          NULL::VARCHAR AS room_model, NULL::BIGINT AS room_turns,
+          1::BIGINT AS player_idx
         FROM (VALUES {vals}) t(run_hash, act, floor_idx, map_point_type, players_json))
         TO '{tmp_path}/floors.modded.parquet' (FORMAT parquet)"""
     )

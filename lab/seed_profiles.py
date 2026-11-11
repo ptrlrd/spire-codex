@@ -57,30 +57,34 @@ SELECT r.run_hash, r.seed, coalesce(r.build_id, '') AS build_id,
   r.start_time, r.played_at, r.username, s.floors_reached
 FROM read_parquet('{lake}/runs.parquet') r
 LEFT JOIN read_parquet('{lake}/run_scalars.parquet') s USING (run_hash)
-ANTI JOIN read_parquet('{lake}/excluded.parquet') x ON r.run_hash = x.run_hash
+ANTI JOIN {unlisted} x ON r.run_hash = x.run_hash
 WHERE r.seed IS NOT NULL AND r.seed <> ''
   AND coalesce(r.hidden, false) = false AND coalesce(r.deleted, false) = false
   AND NOT r.has_modifiers
   AND lower(coalesce(r.game_mode, 'standard')) = 'standard'
   AND r.ascension BETWEEN 0 AND {max_asc}
-  AND r.character IN ('IRONCLAD','SILENT','DEFECT','NECROBINDER','REGENT')
+  AND r.character IN {official}
 """
 
-# The party comes from the blob's own seat list (deck.parquet carries every
-# seat with its character), so two Ironclads stay two seats in order. Co-op
-# siblings share one blob and therefore one seed, build, start time and
-# party; that tuple is the lobby, and the lobby is the evidence unit.
+# The party comes from the blob's own seat list (party.parquet carries every
+# seat's character in order), so two Ironclads stay two seats in order.
+# Co-op siblings share one blob and therefore one seed, build, start time
+# and party; that tuple is the lobby, and the lobby is the evidence unit.
 KEYS_SQL = """
 CREATE OR REPLACE TEMP TABLE run_keys AS
 WITH seats AS (
-  SELECT run_hash, list(character ORDER BY player_idx) AS party
-  FROM (SELECT DISTINCT run_hash, player_idx, character
-        FROM read_parquet('{lake}/deck.parquet') WHERE character IS NOT NULL)
-  GROUP BY run_hash
+  SELECT run_hash, list_filter(characters, c -> c IS NOT NULL) AS party
+  FROM read_parquet('{lake}/party.parquet')
+  WHERE len(list_filter(characters, c -> c IS NOT NULL)) > 0
 ),
 keyed AS (
-  SELECT e.*, coalesce(s.party, [e.character]) AS party
+  SELECT e.*, coalesce(s.party, [e.character]) AS party,
+    coalesce(o.player_idx, 1) AS seat
   FROM eligible e LEFT JOIN seats s USING (run_hash)
+  LEFT JOIN (
+    SELECT run_hash, min(player_idx) AS player_idx
+    FROM read_parquet('{lake}/players.parquet') GROUP BY 1
+  ) o USING (run_hash)
 ),
 lobbies AS (
   SELECT seed, build_id, player_count, party,
@@ -93,7 +97,9 @@ lobbies AS (
 )
 SELECT k.run_hash, k.seed, k.build_id, k.player_count, k.party,
   k.seed || '|' || k.build_id || '|' || k.player_count || '|' || array_to_string(k.party, '+') AS seed_key,
-  l.evidence, k.run_hash = l.lead_run AS is_lead, l.lobby_win,
+  l.evidence, k.run_hash = l.lead_run AS is_lead,
+  k.run_hash = min(k.run_hash) OVER (PARTITION BY l.evidence, k.seat) AS is_seat_lead,
+  l.lobby_win,
   k.character, k.win, k.was_abandoned, k.ascension, k.run_time, k.played_at,
   k.floors_reached, k.username
 FROM keyed k
@@ -101,18 +107,18 @@ JOIN lobbies l ON l.seed = k.seed AND l.build_id = k.build_id AND l.player_count
   AND l.party = k.party AND l.start_key = coalesce(cast(k.start_time AS VARCHAR), 'run:' || k.run_hash)
 """
 
-# Facts are keyed by evidence (a lobby), not by run document, so co-op
-# siblings that share a blob contribute one copy. Each family is written to
-# its own fragment and sorted once at the end.
+# Facts are keyed by evidence (a lobby), not by run document. Run-level
+# families read the lobby's lead document. Seat-level families read one
+# document per seat, because each document carries only its own seat's rows.
 FACT_FAMILIES = {
     "ancient_offer": """
 SELECT k.seed_key, k.evidence, k.lobby_win, 'ancient_offer' AS kind, upper(o.u.TextKey) AS id,
-  f.act + 1 AS act, f.floor_idx AS floor, ps.i AS seat, count(*) AS n
+  f.act + 1 AS act, f.floor_idx AS floor, f.player_idx AS seat, count(*) AS n
 FROM run_keys k
 JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash),
-  LATERAL (SELECT unnest(f.players) AS u, generate_subscripts(f.players,1) AS i) ps,
+  LATERAL (SELECT unnest(f.players) AS u) ps,
   LATERAL (SELECT unnest(ps.u.ancient_choice) AS u) o
-WHERE k.is_lead AND f.map_point_type = 'ancient' AND o.u.TextKey IS NOT NULL
+WHERE k.is_seat_lead AND f.map_point_type = 'ancient' AND o.u.TextKey IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8
 """,
     "ancient": """
@@ -134,24 +140,24 @@ WHERE k.is_lead AND fe.room_type IN ('boss', 'elite') AND fe.encounter IS NOT NU
 GROUP BY 1,2,3,4,5,6,7,8
 """,
     "card_offer": """
-SELECT k.seed_key, k.evidence, k.lobby_win, 'card_offer', upper(split_part(c.u.card.id, '.', -1)), f.act + 1, f.floor_idx, ps.i, count(*)
+SELECT k.seed_key, k.evidence, k.lobby_win, 'card_offer', upper(split_part(c.u.card.id, '.', -1)), f.act + 1, f.floor_idx, f.player_idx, count(*)
 FROM run_keys k
 JOIN read_parquet('{lake}/floors.parquet') f USING (run_hash),
-  LATERAL (SELECT unnest(f.players) AS u, generate_subscripts(f.players,1) AS i) ps,
+  LATERAL (SELECT unnest(f.players) AS u) ps,
   LATERAL (SELECT unnest(ps.u.card_choices) AS u) c
-WHERE k.is_lead AND c.u.card.id IS NOT NULL
+WHERE k.is_seat_lead AND c.u.card.id IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8
 """,
     "relic": """
 SELECT k.seed_key, k.evidence, k.lobby_win, 'relic', r.relic, NULL, r.floor_added, r.player_idx, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/relics.parquet') r USING (run_hash)
-WHERE k.is_lead AND r.relic IS NOT NULL
+WHERE k.is_seat_lead AND r.relic IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8
 """,
     "deck": """
 SELECT k.seed_key, k.evidence, k.lobby_win, 'deck', d.card, NULL, d.floor_added, d.player_idx, count(*)
 FROM run_keys k JOIN read_parquet('{lake}/deck.parquet') d USING (run_hash)
-WHERE k.is_lead AND d.card IS NOT NULL
+WHERE k.is_seat_lead AND d.card IS NOT NULL
 GROUP BY 1,2,3,4,5,6,7,8
 """,
 }
@@ -296,7 +302,16 @@ def build() -> dict:
         shutil.rmtree(work)
     work.mkdir(parents=True)
     try:
-        con.execute(ELIGIBLE_SQL.format(lake=lake, max_asc=MAX_ASCENSION))
+        from app.services.official_content import official_characters_sql
+
+        con.execute(
+            ELIGIBLE_SQL.format(
+                lake=lake,
+                max_asc=MAX_ASCENSION,
+                unlisted=lake_stats._unlisted_runs_sql(lake),
+                official=official_characters_sql(),
+            )
+        )
         con.execute(KEYS_SQL.format(lake=lake))
         shops = _replay_glob("shops")
         index = _replay_glob("replay_index")

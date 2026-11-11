@@ -70,8 +70,15 @@ docker compose -f docker-compose.lab.yml run --rm extract
 
 Streams every run (Mongo blobs first, file fallback) into
 `lake/staging/*.jsonl.gz` pages of 50k, each line tagged with `_meta`
-(username, hidden, deleted, submitted_at, played_at, player_count) - fields
-the HTTP export doesn't carry. Prints progress per page; capped at 1.5GB RAM.
+(username, hidden, deleted, submitted_at, played_at, player_count,
+character, player_index) - fields the HTTP export doesn't carry. Prints
+progress per page; capped at 1.5GB RAM.
+
+A co-op run is stored as one document per player, and every sibling carries
+the same full run blob. `_meta.player_index` says which `players[]` entry
+the document is, and the lake keeps only that seat's rows for it (see
+"One seat per document" below). Pages extracted before the field existed
+need no re-extract: the page parser derives the seat from the run hash.
 
 Incremental: `lake/staging/state.json` records the cursor, so re-running
 only appends runs submitted since the last pull (minutes, not hours). Every
@@ -98,8 +105,47 @@ parts. Editing either SQL file reparses every page on the next run.
 `lake/build.duckdb` and `lake/tmp/` are scratch; `lake/parts/` is what
 makes the next build fast, so keep it (delete it to force a full parse).
 
+### One seat per document
+
+Every per-seat table (`deck`, `relics`, `potions`, `players`,
+`relic_choices`, `shop_potions`, `shop_items`, `potion_events`,
+`relics_removed`, `card_choices`, `rest_choices`, `upgrades`,
+`event_choices`) holds the document's own seat only, with `player_idx` as
+that seat's index in the blob. `players.parquet` is one row per document, so
+seats equal documents. `floors.parquet` keeps `players` as a list with just
+that seat, plus a `player_idx` column. Anything that needs the whole party
+reads `party.parquet`: one row per document with every seat's character in
+seat order and the distinct card and relic ids any seat ended with.
+
+### One copy per run, and only runs that still exist
+
+Reassembly keeps the newest copy of a run that sits in two pages (a
+re-upload or a reconcile rewrites the document with a fresh
+`submitted_at`, so the next extract appends it again), and leaves out runs
+whose document is gone from Mongo (a permanent delete). "Gone" means absent
+from `run_scalars_current.jsonl.gz`, the extractor's scan of every current
+document; runs submitted within an hour of the newest run the scan saw, or
+later, are kept. The build prints both counts, and stops instead of
+dropping anything when the sidecar is missing more than a fifth of the
+staged runs (that is a broken scan, not deletes).
+
+### Modded runs
+
+`modded.parquet` lists runs where any seat plays a character, or ended
+with a card or relic, that is in no official catalog: the current main
+data, the current beta, and every archived version under `data-beta/v*`
+(so retired content still counts as official). Every stats reader leaves
+those runs out through `lake_stats._excluded_runs_sql`. The build needs the
+catalogs mounted (`./data` and `./data-beta`); when no archive is readable
+it writes an empty list and says so, instead of reading retired or beta
+content as modded.
+
 The build also emits the decision-level tables the metrics pages use:
 
+- `party.parquet` - one row per document: `characters` (every seat, in seat
+  order), `cards` and `relics` (distinct ids across all seats).
+- `modded.parquet` - `run_hash`, `kind` for runs carrying non-official
+  content (see above).
 - `relic_choices.parquet` - one row per relic reward screen with
   `n_options`, `n_picked`, and `is_shop` (shop screens are excluded from
   free-choice Elo/pick rate).
