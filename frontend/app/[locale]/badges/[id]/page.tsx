@@ -14,7 +14,9 @@ import JsonLd from "@/app/components/JsonLd";
 import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { fetchEntityRes } from "@/lib/entity-fetch";
 import RichDescription from "@/app/components/RichDescription";
+import { kindPhrase } from "@/lib/kind-phrase";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import {
   stripTags,
   stripTagsFlat,
@@ -82,7 +84,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     });
 
   const desc = stripTagsFlat(badge.description);
-  const subtype = badge.tiered ? "tiered" : "badge";
   return buildPageMetadata({
     locale,
     path,
@@ -91,7 +92,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: clipMetaDescription(
       t("badge_meta_description", {
         name: badge.name,
-        subtype,
+        kind: kindPhrase("run-end badge", badge.tiered ? "tiered" : ""),
         desc,
         hasDesc: desc ? "yes" : "no",
       }),
@@ -115,6 +116,7 @@ export default async function BadgePage({ params }: Props) {
     path: localePath(locale, `/badges/${id}`),
     imageUrl: badge.image_url ? imageUrl(badge.image_url) : undefined,
     category: "Badge",
+    dateModified: await gameDataLastModIso(),
     inLanguage: inLanguageOf(locale),
     breadcrumbs: [
       { name: t("Home"), href: localePath(locale, "/") },

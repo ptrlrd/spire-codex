@@ -36,7 +36,7 @@ interface CharacterUnlock {
   sort_order: number;
 }
 
-interface UnlocksData {
+export interface UnlocksData {
   characters: CharacterUnlock[];
   cards: UnlockEntity[];
   relics: UnlockEntity[];
@@ -136,21 +136,26 @@ function EntityCard({
   );
 }
 
-export default function UnlocksClient() {
+export default function UnlocksClient({
+  initial = null,
+}: {
+  initial?: UnlocksData | null;
+}) {
   const lang = useGameLocale();
   const t = useT();
   const bp = useBetaPrefix();
-  const [data, setData] = useState<UnlocksData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState<UnlocksData | null>(initial);
+  const [loading, setLoading] = useState(!initial);
   const [tab, setTab] = useState<Tab>("all");
   const [charFilter, setCharFilter] = useState<CharFilter>("all");
 
   useEffect(() => {
+    if (initial) return;
     cachedFetch<UnlocksData>(`${API}/api/unlocks?lang=${lang}`)
       .then(setData)
       .catch(() => {})
       .finally(() => setLoading(false));
-  }, [lang]);
+  }, [lang, initial]);
 
   if (loading) {
     return (

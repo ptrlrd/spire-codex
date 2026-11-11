@@ -14,6 +14,7 @@ import { redirectMissingEntity } from "@/lib/redirect-helpers";
 import { betaOnlyVersion, fetchEntityRes } from "@/lib/entity-fetch";
 import BetaOnlyScope from "@/app/components/BetaOnlyScope";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 
 import { imageUrl } from "@/lib/image-url";
 
@@ -100,6 +101,7 @@ export default async function Page({ params }: Props) {
           `/static/images/characters/combat_${char.id.toLowerCase()}.webp`,
         ),
         category: "Character",
+        dateModified: await gameDataLastModIso(),
         inLanguage: inLanguageOf(locale),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: localePath(locale, "/") },

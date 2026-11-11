@@ -158,7 +158,7 @@ describe("entity meta descriptions", () => {
     expect(
       t(safeKey("relic_meta_description"), {
         name: "Anchor",
-        rarity: "Common",
+        kind: "a Common relic",
         desc: "none",
         hasDesc: "yes",
       }),
@@ -168,7 +168,7 @@ describe("entity meta descriptions", () => {
     expect(
       t(safeKey("relic_meta_description"), {
         name: "Anchor",
-        rarity: "Common",
+        kind: "a Common relic",
         desc: "",
         hasDesc: "no",
       }),
