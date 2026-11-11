@@ -607,7 +607,7 @@ export const X9B: Record<string, Record<string, string>> = {
     ptb: "{who} - {character} - Repetição da Ascensão {ascension} {result}",
     rus: "{who} - {character} - Возвышение {ascension} {result}, повтор",
     spa: "{who} - {character} - Repetición de Ascensión {ascension} {result}",
-    tha: "{who} - {character} - รีเพลย์ผู้บรรลุ {ผู้บรรลุ} {result}",
+    tha: "{who} - {character} - รีเพลย์ผู้บรรลุ {ascension} {result}",
     tur: "{who} - {character} - Yükseliş {ascension} {result} tekrarı",
     zhs: "{who} - {character} - 进阶{ascension} {result}回放",
     zht: "{who} - {character} - 晉階{ascension} {result}回放",

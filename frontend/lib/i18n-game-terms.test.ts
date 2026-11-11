@@ -1,5 +1,10 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  parse,
+  TYPE,
+  type MessageFormatElement,
+} from "@formatjs/icu-messageformat-parser";
 import { describe, expect, it } from "vitest";
 import { messagesFor } from "@/i18n/messages";
 import { safeKey } from "@/lib/i18n-keys";
@@ -51,6 +56,50 @@ function matches(ui: string, game: string): boolean {
   if (game.endsWith(".")) return ui.startsWith(game.slice(0, -1));
   return ui === game;
 }
+
+function argumentNames(text: string): Set<string> {
+  const names = new Set<string>();
+  const walk = (nodes: MessageFormatElement[]) => {
+    for (const node of nodes) {
+      if (node.type === TYPE.literal || node.type === TYPE.pound) continue;
+      if (node.type !== TYPE.tag) names.add(node.value);
+      if ("options" in node)
+        for (const option of Object.values(node.options)) walk(option.value);
+      if ("children" in node) walk(node.children);
+    }
+  };
+  walk(parse(text));
+  return names;
+}
+
+describe("placeholders in the UI tables", () => {
+  const eng = messagesFor("eng");
+  for (const lang of SUPPORTED_LANGS) {
+    it(`${lang} only uses arguments the English string takes`, () => {
+      const ui = messagesFor(lang as LangCode);
+      const wrong: string[] = [];
+      for (const [key, text] of Object.entries(ui)) {
+        if (text === eng[key] || !text.includes("{")) continue;
+        let allowed: Set<string>;
+        try {
+          allowed = argumentNames(eng[key]);
+        } catch {
+          continue;
+        }
+        let used: Set<string>;
+        try {
+          used = argumentNames(text);
+        } catch {
+          wrong.push(`${key}: does not parse`);
+          continue;
+        }
+        const extra = [...used].filter((name) => !allowed.has(name));
+        if (extra.length) wrong.push(`${key}: ${extra.join(", ")}`);
+      }
+      expect(wrong).toEqual([]);
+    });
+  }
+});
 
 describe("core game terms in the UI tables", () => {
   for (const lang of SUPPORTED_LANGS) {

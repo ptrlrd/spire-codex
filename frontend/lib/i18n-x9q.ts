@@ -1,4 +1,3 @@
-// UI translations (batch 9q): supporter themes and badges.
 export const X9Q: Record<string, Record<string, string>> = {
   Ascensions: {
     eng: "Ascensions",

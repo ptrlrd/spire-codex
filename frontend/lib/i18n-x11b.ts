@@ -1,4 +1,3 @@
-// UI translations (batch 11b): Seed Finder, the seed page and the home compendium tiles.
 export const X11B: Record<string, Record<string, string>> = {
   "At least this many": {
     eng: "At least this many",

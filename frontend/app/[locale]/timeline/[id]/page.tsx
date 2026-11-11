@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import EpochDetail from "./EpochDetail";
 import JsonLd from "@/app/components/JsonLd";
 import { buildDetailPageJsonLd, buildFAQPageJsonLd } from "@/lib/jsonld";
+import { gameDataLastModIso } from "@/lib/content-dates";
 import {
   buildPageMetadata,
   clipMetaDescription,
@@ -73,6 +74,7 @@ export default async function Page({ params }: Props) {
         description: `${desc.slice(0, 150)} Timeline epoch in Slay the Spire 2.`,
         path: `/timeline/${id}`,
         category: "Timeline",
+        dateModified: await gameDataLastModIso(),
         breadcrumbs: [
           { name: uiText(locale, "Home"), href: "/" },
           { name: uiText(locale, "Timeline"), href: "/timeline" },

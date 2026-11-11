@@ -545,7 +545,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "Knowledge Demon，面向 殺戮尖塔2 (STS2) 社群的 Discord 機器人。用斜線指令查詢卡牌、遺物、怪物和事件，並提供管理功能和新聞推送。",
   },
   leaderboards_meta_description: {
-    eng: "Browse community-submitted Slay the Spire 2 (sts2) runs. Filter by character, ascension level, and outcome. View leaderboards and detailed run breakdowns.",
+    eng: "Slay the Spire 2 (sts2) leaderboards: the fastest wins and highest ascensions from community-submitted runs, for every character, player count, and game mode.",
     deu: "Schnellste Siege und höchste Aufstiege aus der Community. Alle eingereichten Runs durchsuchen oder einen bestimmten Charakter erkunden.",
     esp: "Victorias más rápidas y ascensiones más altas de la comunidad. Explora cada partida enviada o profundiza en un personaje específico.",
     fra: "Victoires les plus rapides et ascensions les plus hautes de la communauté. Parcourez chaque run soumise ou concentrez-vous sur un personnage spécifique.",
@@ -1344,7 +1344,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 晉階, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   badge_meta_description: {
-    eng: "{name} is a {subtype} run-end badge in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
     deu: "Slay the Spire 2 (STS2) Abzeichen, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Insignia, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Badge, {name}{hasDesc, select, yes {: {desc}} other {}}",
@@ -1361,7 +1361,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 徽章, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   card_meta_description: {
-    eng: "{name} is a {cost}-cost {color} {rarity} {type} card in Slay the Spire 2 (sts2). {descFlat}{keywords}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2). {descFlat}{keywords}",
     deu: "Slay the Spire 2 (STS2) Karte, {name}: {descFlat}",
     esp: "Slay the Spire 2 (STS2) Carta, {name}: {descFlat}",
     fra: "Slay the Spire 2 (STS2) Carte, {name}: {descFlat}",
@@ -1429,7 +1429,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 遭遇, {name}{monsterList}",
   },
   event_meta_description: {
-    eng: "{name} is a {type} event in Slay the Spire 2 (sts2){act}{hasDesc, select, yes {: {desc}} other {.}}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2){act}{hasDesc, select, yes {: {desc}} other {.}}",
     deu: "Slay the Spire 2 (STS2) Event, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Evento, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Événement, {name}{hasDesc, select, yes {: {desc}} other {}}",
@@ -1497,7 +1497,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 修改器, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   monster_meta_description: {
-    eng: "{name} is a {type} in Slay the Spire 2 (sts2).{hpText}{movesText}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2).{hpText}{movesText}",
     deu: "Slay the Spire 2 (STS2) Monster, {name}{hpText}{movesText}",
     esp: "Slay the Spire 2 (STS2) Monstruo, {name}{hpText}{movesText}",
     fra: "Slay the Spire 2 (STS2) Monstre, {name}{hpText}{movesText}",
@@ -1531,7 +1531,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 能量球, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   potion_meta_description: {
-    eng: "{name} is a {rarity} potion in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
     deu: "Slay the Spire 2 (STS2) Trank, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Poción, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Potion, {name}{hasDesc, select, yes {: {desc}} other {}}",
@@ -1548,7 +1548,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 藥水, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   power_meta_description: {
-    eng: "{name} is a {type} power in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
     deu: "Slay the Spire 2 (STS2) Macht, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Poder, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Pouvoir, {name}{hasDesc, select, yes {: {desc}} other {}}",
@@ -1565,7 +1565,7 @@ export const X7: Record<string, Record<string, string>> = {
     zht: "殺戮尖塔2 (STS2) 能力, {name}{hasDesc, select, yes {: {desc}} other {}}",
   },
   relic_meta_description: {
-    eng: "{name} is a {rarity} relic in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
+    eng: "{name} is {kind} in Slay the Spire 2 (sts2){hasDesc, select, yes {: {desc}} other {.}}",
     deu: "Slay the Spire 2 (STS2) Relikt, {name}{hasDesc, select, yes {: {desc}} other {}}",
     esp: "Slay the Spire 2 (STS2) Reliquia, {name}{hasDesc, select, yes {: {desc}} other {}}",
     fra: "Slay the Spire 2 (STS2) Relique, {name}{hasDesc, select, yes {: {desc}} other {}}",

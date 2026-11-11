@@ -1,4 +1,3 @@
-// UI translations (batch 9p): the data summary paragraph on card, relic and potion pages.
 export const X9P: Record<string, Record<string, string>> = {
   entity_summary_stats: {
     eng: "Across {runs} community runs, {name} wins {winRate} of the time when taken, against a {baseline} baseline, and appears in {pickRate} of runs.",
