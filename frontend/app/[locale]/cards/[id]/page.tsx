@@ -31,6 +31,7 @@ import { fetchBetaRenderVersion } from "@/lib/beta-render-version.server";
 import { enchantmentsForCard } from "@/lib/card-enchantments";
 import {
   fetchCardCatalog,
+  fetchEnchantmentCatalog,
   fetchGlossaryCatalog,
   fetchKeywordCatalog,
   fetchOrbCatalog,
@@ -234,7 +235,8 @@ export default async function Page({ params }: Props) {
   );
   // Tooltip catalogs and name links for the description: fetched once per
   // render here so keyword and entity links land in the server HTML.
-  const [keywords, powers, glossary, orbs, cards, spawnedCards] =
+  const cardEnchantments = enchantmentsForCard(id);
+  const [keywords, powers, glossary, orbs, cards, spawnedCards, enchantments] =
     await Promise.all([
       fetchKeywordCatalog(locale),
       fetchPowerCatalog(locale),
@@ -242,6 +244,7 @@ export default async function Page({ params }: Props) {
       fetchOrbCatalog(locale),
       fetchCardCatalog(locale),
       fetchSpawnedCards(card.spawns_cards ?? [], locale),
+      cardEnchantments.length ? fetchEnchantmentCatalog(locale) : [],
     ]);
   return (
     <>
@@ -250,7 +253,7 @@ export default async function Page({ params }: Props) {
         <Suspense fallback={null}>
           <CardDetail
             initialCard={card}
-            initialEnchantments={enchantmentsForCard(id)}
+            initialEnchantments={cardEnchantments}
             initialStats={initialStats}
             initialPairings={initialPairings}
             initialRecs={initialRecs}
@@ -270,6 +273,9 @@ export default async function Page({ params }: Props) {
               glossary: mentionedIn(glossary, card),
               orbs: mentionedIn(orbs, card),
               spawnedCards,
+              enchantments: enchantments
+                .filter((e) => cardEnchantments.includes(e.id.toLowerCase()))
+                .map(({ id, name }) => ({ id, name })),
             }}
             initialEntityLinks={entityNameLinks(
               mentionedIn(cards, card),

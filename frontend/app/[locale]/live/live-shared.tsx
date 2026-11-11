@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+import { useT, useGameLocale, type TFn, useFormatNumber } from "@/lib/i18n";
 // Shared plumbing for the live presence views: the /live roster, the
 // per-player /live/[steamId] breakdown, and the home page rail. Contract:
 // markdown-docs/live-presence.md. Every field is optional by design (old
@@ -580,6 +580,7 @@ export function WatchOnTwitch({
   className?: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   return (
     <a
       href={`https://twitch.tv/${login}`}
@@ -590,9 +591,7 @@ export function WatchOnTwitch({
       <TwitchIcon className="w-3.5 h-3.5" />
       {t("Watch on Twitch")}
       {viewers != null && (
-        <span className="font-normal opacity-80">
-          · {viewers.toLocaleString()}
-        </span>
+        <span className="font-normal opacity-80">· {fmtN(viewers)}</span>
       )}
     </a>
   );

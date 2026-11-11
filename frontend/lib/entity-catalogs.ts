@@ -73,6 +73,8 @@ export const fetchCardCatalog = (locale: Locale) =>
   fetchCatalog<CatalogEntry>("cards", locale);
 export const fetchRelicCatalog = (locale: Locale) =>
   fetchCatalog<RelicEntry>("relics", locale);
+export const fetchEnchantmentCatalog = (locale: Locale) =>
+  fetchCatalog<CatalogEntry>("enchantments", locale);
 
 /** Fetch the cards an entity spawns by id; missing ids drop out silently. */
 export async function fetchSpawnedCards(

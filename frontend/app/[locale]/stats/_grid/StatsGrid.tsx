@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useRouter } from "@/i18n/navigation";
-import { useT, useGameLocale } from "@/lib/i18n";
+import type { NumberFormatter } from "@/lib/number-format";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { dataThroughLabel } from "@/lib/data-through";
 import { colorTextClass } from "@/lib/character-colors";
@@ -211,8 +212,8 @@ function pts(v: number | null): string {
   if (v === null || v === undefined) return "–";
   return `${v > 0 ? "+" : ""}${v.toFixed(1)}`;
 }
-function int(v: number | null): string {
-  return v === null || v === undefined ? "–" : Math.round(v).toLocaleString();
+function int(v: number | null, fmtN: NumberFormatter): string {
+  return v === null || v === undefined ? "–" : fmtN(Math.round(v));
 }
 function cap(s: string): string {
   return s ? s.charAt(0).toUpperCase() + s.slice(1) : s;
@@ -222,6 +223,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
   const { kind, totals, bracket, character } = data;
   const cfg = KINDS[kind];
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const betaRenderVersion = useBetaRenderVersion();
@@ -864,7 +866,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             key={col.key}
             className="px-3 py-1.5 text-right tabular-nums text-[var(--text-secondary)]"
           >
-            {int(r.n)}
+            {int(r.n, fmtN)}
           </td>
         );
       case "offered":
@@ -874,7 +876,7 @@ export default function StatsGrid({ data }: { data: GridData }) {
             key={col.key}
             className="px-3 py-1.5 text-right tabular-nums text-[var(--text-muted)]"
           >
-            {int(r[col.key])}
+            {int(r[col.key], fmtN)}
           </td>
         );
       case "act1":
@@ -933,13 +935,13 @@ export default function StatsGrid({ data }: { data: GridData }) {
           {t("Cohort")}: {cap(cohort)} ·{" "}
           {scoped
             ? t("{n} runs", {
-                n: (totals.characterRuns ?? 0).toLocaleString(),
+                n: fmtN(totals.characterRuns ?? 0),
               })
-            : t("{n} runs", { n: totals.totalRuns.toLocaleString() })}
+            : t("{n} runs", { n: fmtN(totals.totalRuns) })}
           {!scoped &&
           totals.totalSeats !== null &&
           totals.totalSeats !== totals.totalRuns
-            ? ` · ${t("{n} seats", { n: totals.totalSeats.toLocaleString() })}`
+            ? ` · ${t("{n} seats", { n: fmtN(totals.totalSeats) })}`
             : ""}
           {" · "}
           {t("{count} rows shown", { count: visible.length })}
@@ -1240,8 +1242,8 @@ export default function StatsGrid({ data }: { data: GridData }) {
                     href={g.href ? `${bp}${g.href}` : null}
                     totalLabel={
                       cfg.grouped
-                        ? t("{n} chosen", { n: g.total.toLocaleString() })
-                        : t("{n} picks", { n: g.total.toLocaleString() })
+                        ? t("{n} chosen", { n: fmtN(g.total) })
+                        : t("{n} picks", { n: fmtN(g.total) })
                     }
                     rows={g.rows}
                     columns={columns}

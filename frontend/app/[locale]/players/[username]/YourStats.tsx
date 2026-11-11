@@ -9,7 +9,8 @@ import {
   useState,
 } from "react";
 import { useSearchParams } from "next/navigation";
-import { useGameLocale, useT } from "@/lib/i18n";
+import { useGameLocale, useT, useFormatNumber } from "@/lib/i18n";
+import type { NumberFormatter } from "@/lib/number-format";
 import { cachedFetch } from "@/lib/fetch-cache";
 import { colorTextClass } from "@/lib/character-colors";
 import { restSiteLabel } from "@/lib/rest-site-labels";
@@ -196,8 +197,8 @@ function pts(v: number | null): string {
   if (v === null || v === undefined) return "–";
   return `${v > 0 ? "+" : ""}${v.toFixed(1)}`;
 }
-function int(v: number | null): string {
-  return v === null || v === undefined ? "–" : Math.round(v).toLocaleString();
+function int(v: number | null, fmtN: NumberFormatter): string {
+  return v === null || v === undefined ? "–" : fmtN(Math.round(v));
 }
 function isStarter(c: CatalogEntry | undefined): boolean {
   const key = (c?.rarity_key || c?.rarity || "").toLowerCase();
@@ -400,6 +401,7 @@ function PersonalStatsTable<T>({
     [groups, active, dir, rowKey],
   );
   const t = useT();
+  const fmtN = useFormatNumber();
   const [expanded, setExpanded] = useState(false);
   const total = sorted.reduce((n, g) => n + g.rows.length, 0);
   const shown = useMemo(() => {
@@ -588,7 +590,7 @@ function PersonalStatsTable<T>({
           >
             {expanded
               ? t("Show less")
-              : t("Show more ({n})", { n: total.toLocaleString() })}
+              : t("Show more ({n})", { n: fmtN(total) })}
           </button>
         </div>
       )}
@@ -620,6 +622,7 @@ function YourStatsInner({
   fixedTab?: TabId;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const lang = useGameLocale();
   const searchParams = useSearchParams();
   const data = useApiData<PlayerStatsData>(
@@ -741,7 +744,7 @@ function YourStatsInner({
       groups.push({
         key: eid,
         label: names.get(eid) ?? eid,
-        note: t("{n} chosen", { n: total.toLocaleString() }),
+        note: t("{n} chosen", { n: fmtN(total) }),
         rows: list.map((r, _i, all) => {
           const opt = opts[r.option] ?? opts[r.option.replace(/_\d+$/, "")];
           const base = opt ? opt.title.replace(/\[[^\]]*\]/g, "") : r.option;
@@ -775,7 +778,7 @@ function YourStatsInner({
     }
     groups.sort((a, b) => a.label.localeCompare(b.label));
     return groups;
-  }, [eventCatalog, communityByEventOption, t, tables]);
+  }, [eventCatalog, communityByEventOption, t, fmtN, tables]);
 
   const shops = useMemo<ShopItemRow[]>(
     () =>
@@ -866,7 +869,7 @@ function YourStatsInner({
         key: "took",
         label: "You took it",
         title: t("Of your {n} runs, how many included it.", {
-          n: data.runs.toLocaleString(),
+          n: fmtN(data.runs),
         }),
         align: "right",
         descFirst: true,
@@ -875,7 +878,7 @@ function YourStatsInner({
           <span className="inline-flex items-center justify-end gap-2">
             <MiniBar value={data.runs > 0 ? (r.runs / data.runs) * 100 : 0} />
             <span className="whitespace-nowrap">
-              {r.runs.toLocaleString()} of {data.runs.toLocaleString()}
+              {fmtN(r.runs)} of {fmtN(data.runs)}
             </span>
           </span>
         ),
@@ -922,9 +925,7 @@ function YourStatsInner({
           descFirst: true,
           value: (r) => r.communityElo,
           cell: (r) =>
-            r.communityElo === null
-              ? "–"
-              : Math.round(r.communityElo).toLocaleString(),
+            r.communityElo === null ? "–" : fmtN(Math.round(r.communityElo)),
         },
         {
           key: "communityLift",
@@ -950,7 +951,7 @@ function YourStatsInner({
               <span className="text-[var(--text-muted)]">–</span>
             ) : (
               <span className="whitespace-nowrap">
-                {r.taken.toLocaleString()} / {r.offered.toLocaleString()} ·{" "}
+                {fmtN(r.taken)} / {fmtN(r.offered)} ·{" "}
                 {pct((r.taken / r.offered) * 100)}
               </span>
             ),
@@ -994,7 +995,7 @@ function YourStatsInner({
         align: "right",
         descFirst: true,
         value: (r) => r.chosen,
-        cell: (r) => int(r.chosen),
+        cell: (r) => int(r.chosen, fmtN),
       },
       {
         key: "share",
@@ -1056,7 +1057,7 @@ function YourStatsInner({
         align: "right",
         descFirst: true,
         value: (r) => r.seen,
-        cell: (r) => int(r.seen),
+        cell: (r) => int(r.seen, fmtN),
       },
       {
         key: "bought",
@@ -1064,7 +1065,7 @@ function YourStatsInner({
         align: "right",
         descFirst: true,
         value: (r) => r.bought,
-        cell: (r) => int(r.bought),
+        cell: (r) => int(r.bought, fmtN),
       },
       {
         key: "buyRate",
@@ -1104,7 +1105,7 @@ function YourStatsInner({
         align: "right",
         descFirst: true,
         value: (r) => r.chosen,
-        cell: (r) => int(r.chosen),
+        cell: (r) => int(r.chosen, fmtN),
       },
       {
         key: "share",
@@ -1166,8 +1167,8 @@ function YourStatsInner({
       )}
 
       <div className="grid grid-cols-3 gap-2 sm:gap-3 lg:grid-cols-5">
-        <SummaryCard label={t("Runs")} value={int(data.runs)} />
-        <SummaryCard label={t("Wins")} value={int(data.wins)} />
+        <SummaryCard label={t("Runs")} value={int(data.runs, fmtN)} />
+        <SummaryCard label={t("Wins")} value={int(data.wins, fmtN)} />
         <SummaryCard
           label={t("Win rate")}
           value={pct(data.runs > 0 ? (data.wins / data.runs) * 100 : null)}

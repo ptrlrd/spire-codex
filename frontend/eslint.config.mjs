@@ -33,6 +33,20 @@ const eslintConfig = defineConfig([
       "react-hooks/globals": "warn",
     },
   },
+  {
+    ignores: ["**/admin/**"],
+    rules: {
+      "no-restricted-syntax": [
+        "error",
+        {
+          selector:
+            "CallExpression[callee.property.name='toLocaleString'][arguments.length=0]",
+          message:
+            "A bare toLocaleString() formats with the runtime's locale, so the server and the browser disagree. Use useFormatNumber() or getFormatNumber().",
+        },
+      ],
+    },
+  },
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts"]),
 ]);
 

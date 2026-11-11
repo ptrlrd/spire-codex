@@ -1,6 +1,7 @@
 "use client";
 
-import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber, type TFn } from "@/lib/i18n";
+import type { NumberFormatter } from "@/lib/number-format";
 // The /charts explorer. All aggregation happens in the backend
 // (/api/charts/{key}); this component is controls + a Chart.js canvas.
 
@@ -357,6 +358,7 @@ function ChartsClientInner() {
   const searchParams = useSearchParams();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
 
   const [meta, setMeta] = useState<Meta | null>(null);
   const [chart, setChart] = useState(
@@ -936,7 +938,7 @@ function ChartsClientInner() {
           <p className="text-xs text-[var(--text-muted)] mt-3">
             {t(data.desc)}{" "}
             {t("Based on {n} runs matching the filters.", {
-              n: data.total_runs.toLocaleString(),
+              n: fmtN(data.total_runs),
             })}{" "}
             {t("Thin samples are hidden so lines don't whip around on noise.")}
           </p>
@@ -976,7 +978,11 @@ function legendOpts(count: number) {
   };
 }
 
-function baseOptions(data: ChartResponse, t: TFn): ChartOptions<"line"> {
+function baseOptions(
+  data: ChartResponse,
+  t: TFn,
+  fmtN: NumberFormatter,
+): ChartOptions<"line"> {
   return {
     responsive: true,
     maintainAspectRatio: false,
@@ -989,8 +995,7 @@ function baseOptions(data: ChartResponse, t: TFn): ChartOptions<"line"> {
         callbacks: {
           label: (item: TooltipItem<"line">) => {
             const raw = item.raw as Point;
-            const n =
-              raw?.n != null ? ` · ${raw.n.toLocaleString()} ${t("runs")}` : "";
+            const n = raw?.n != null ? ` · ${fmtN(raw.n)} ${t("runs")}` : "";
             return `${item.dataset.label}: ${fmtNum(item.parsed.y)}${n}`;
           },
         },
@@ -1047,10 +1052,11 @@ function LineChart({
   showAvg: boolean;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const numericX = data.series.every((s) =>
     s.points.every((p) => typeof p.x === "number"),
   );
-  const options = baseOptions(data, t);
+  const options = baseOptions(data, t, fmtN);
 
   if (numericX) {
     (options.scales!.x as { type?: string }).type = "linear";
@@ -1109,7 +1115,7 @@ function LineChart({
   });
   return (
     <div className="h-[460px]">
-      <Line data={{ labels, datasets }} options={baseOptions(data, t)} />
+      <Line data={{ labels, datasets }} options={baseOptions(data, t, fmtN)} />
     </div>
   );
 }
@@ -1121,6 +1127,7 @@ function BarRanking({
   data: ChartResponse;
   horizontal: boolean;
 }) {
+  const fmtN = useFormatNumber();
   const barTooltip = (
     seriesFor: (item: TooltipItem<"bar">) => Series | undefined,
   ) => ({
@@ -1130,7 +1137,7 @@ function BarRanking({
         const s = seriesFor(item);
         const p = s?.points[item.dataIndex];
         const v = horizontal ? item.parsed.x : item.parsed.y;
-        const n = p?.n != null ? ` · ${p.n.toLocaleString()}` : "";
+        const n = p?.n != null ? ` · ${fmtN(p.n)}` : "";
         return `${item.dataset.label}: ${fmtNum(v)}${n}`;
       },
     },
@@ -1244,6 +1251,7 @@ function BarRanking({
 
 function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const datasets = data.series.map((s, i) => ({
     label: s.label,
     data: s.points.map((p) => ({ x: p.x as number, y: p.y })),
@@ -1300,7 +1308,7 @@ function ScatterChart({ data, lang }: { data: ChartResponse; lang: string }) {
         />
       </div>
       <p className="text-xs text-[var(--text-muted)] mt-2">
-        {t("Sampled from {n} matching runs.", { n: sampled.toLocaleString() })}
+        {t("Sampled from {n} matching runs.", { n: fmtN(sampled) })}
       </p>
     </>
   );
