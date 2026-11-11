@@ -255,8 +255,7 @@ def get_my_runs(
     shop: str | None = None,
 ):
     user = require_user(request)
-    if limit > 100:
-        limit = 100
+    limit = max(1, min(limit, 100))
     if page < 1:
         page = 1
 
