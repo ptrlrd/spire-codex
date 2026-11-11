@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import {
   useMemo,
   useState,
@@ -139,6 +139,7 @@ export default function EventDetail({
   const router = useRouter();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const [event, setEvent] = useState<GameEvent | null>(initialEvent ?? null);
   const [loading, setLoading] = useState(!initialEvent);
@@ -415,7 +416,7 @@ export default function EventDetail({
                   <p className="h-note">
                     {t(
                       "Across {n} community-submitted runs at {name}, players chose:",
-                      { n: voteStats.total.toLocaleString(), name: event.name },
+                      { n: fmtN(voteStats.total), name: event.name },
                     )}
                   </p>
                   <div className="bars">
@@ -432,7 +433,7 @@ export default function EventDetail({
                           />
                         </span>
                         <span className="num">
-                          <b>{o.pct}%</b> · {o.count.toLocaleString()}
+                          <b>{o.pct}%</b> · {fmtN(o.count)}
                         </span>
                       </div>
                     ))}
@@ -543,7 +544,7 @@ export default function EventDetail({
                     }
                     className={`dchip${expandedDialogue === group ? " on" : ""}`}
                   >
-                    {group}
+                    {t(group)}
                   </button>
                 ))}
               </div>

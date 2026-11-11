@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { useSearchParams } from "next/navigation";
 import { Link } from "@/i18n/navigation";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
@@ -88,6 +88,7 @@ function displayName(id: string): string {
 export default function EncounterStatsClient() {
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const searchParams = useSearchParams();
 
@@ -453,16 +454,16 @@ export default function EncounterStatsClient() {
                       </span>
                     </div>
                     <div className="col-span-2 text-right tabular-nums">
-                      {row.total.toLocaleString()}
+                      {fmtN(row.total)}
                     </div>
                     <div className="col-span-2 text-right tabular-nums">
-                      {row.fatal.toLocaleString()}
+                      {fmtN(row.fatal)}
                       <span className="text-xs text-[var(--text-muted)] ml-1">
                         ({fatalPct}%)
                       </span>
                     </div>
                     <div className="col-span-2 text-right tabular-nums">
-                      {abandoned.toLocaleString()}
+                      {fmtN(abandoned)}
                       <span className="text-xs text-[var(--text-muted)] ml-1">
                         ({abandonedPct}%)
                       </span>
@@ -507,7 +508,7 @@ export default function EncounterStatsClient() {
                                 {c.character.toLowerCase()}
                               </div>
                               <div className="col-span-2 pt-2 text-right tabular-nums">
-                                {c.total.toLocaleString()}
+                                {fmtN(c.total)}
                               </div>
                               <div className="col-span-2 pt-2 text-right tabular-nums">
                                 {c.fatal}
@@ -562,7 +563,7 @@ export default function EncounterStatsClient() {
                 {t("Page {page} of {total} ({n} encounters)", {
                   page,
                   total: totalPages,
-                  n: data.total.toLocaleString(),
+                  n: fmtN(data.total),
                 })}
               </span>
               <button

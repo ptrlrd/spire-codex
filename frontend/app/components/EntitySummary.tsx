@@ -2,7 +2,7 @@
 
 import { Fragment } from "react";
 import { Link } from "@/i18n/navigation";
-import { useT } from "@/lib/i18n";
+import { useT, useFormatNumber } from "@/lib/i18n";
 import { useBetaPrefix } from "@/lib/api/prefix.client";
 import { characterName } from "@/app/components/CharacterTag";
 import {
@@ -19,6 +19,7 @@ export default function EntitySummary({
   data: EntitySummaryData | null;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   if (!data) return null;
 
@@ -47,7 +48,7 @@ export default function EntitySummary({
       {hasStats && (
         <>
           {t(statsKey, {
-            runs: (data.runs ?? 0).toLocaleString(),
+            runs: fmtN(data.runs ?? 0),
             name,
             winRate: pct(data.winRate ?? 0),
             baseline: pct(data.baseline ?? 0),

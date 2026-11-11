@@ -101,7 +101,7 @@ export default async function HomeNewsSection({
               const hero =
                 firstNewsImage(article.contents) ?? STEAM_HEADER_FALLBACK;
               const blurb = newsExcerpt(article.contents ?? "", 110);
-              const date = formatNewsDate(article.date);
+              const date = formatNewsDate(article.date, lang);
               const href = newsSlugForArticle(article.gid, newsBase);
               return (
                 <Link

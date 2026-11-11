@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale, type TFn } from "@/lib/i18n";
+import { useT, useGameLocale, type TFn, useFormatNumber } from "@/lib/i18n";
 import { useEffect, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import dynamic from "next/dynamic";
@@ -83,6 +83,7 @@ function MetricsStrip({
   stats: EntityStats;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const page = METRICS_PAGE[entityType];
   const base = stats.brackets?.[DEFAULT_SOLO_BRACKET];
@@ -114,11 +115,7 @@ function MetricsStrip({
         "Codex Elo: how often players take it over the other options on the same screen, fitted as a Bradley-Terry rating.",
       ),
     ],
-    [
-      t("Sample"),
-      picks.toLocaleString(),
-      t("Seats that held it (sample size)"),
-    ],
+    [t("Sample"), fmtN(picks), t("Seats that held it (sample size)")],
   ];
   return (
     <div className="mb-4 flex flex-wrap items-center gap-x-5 gap-y-2 rounded-lg border border-[var(--border-subtle)] bg-[var(--bg-card)]/40 px-3 py-2 text-sm">
@@ -238,6 +235,7 @@ function VersionScoreChart({
   lang: string;
 }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const points = Object.keys(brackets)
     .filter(
       (k) => /^v\d+(\.\d+)*(-rc\.\d+)?$/.test(k) && brackets[k].score != null,
@@ -303,7 +301,7 @@ function VersionScoreChart({
               <title>
                 {`${p.version} · ${t("Codex Score")} ${p.score}` +
                   (p.elo != null ? ` · Elo ${Math.round(p.elo)}` : "") +
-                  ` · ${p.win_rate}% ${t("win rate")} · ${p.picks.toLocaleString()} ${t("picks")}`}
+                  ` · ${p.win_rate}% ${t("win rate")} · ${fmtN(p.picks)} ${t("picks")}`}
               </title>
             </circle>
             <text
@@ -359,6 +357,7 @@ export default function EntityRunStats({
   const setSelectedBracket = onBracketChange ?? setInternalBracket;
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
 
   useEffect(() => {
     cachedFetch<EntityStats>(
@@ -446,7 +445,7 @@ export default function EntityRunStats({
           <p className="h-note">
             {t(
               "{name} hasn't appeared in any submitted community run yet (across {n} tracked).",
-              { name: entityName, n: stats.total_runs.toLocaleString() },
+              { name: entityName, n: fmtN(stats.total_runs) },
             )}{" "}
             <Link href="/runs/submit">
               {t("Submit a run to seed this section.")}
@@ -515,7 +514,7 @@ export default function EntityRunStats({
                   <span style={{ fontSize: 16 }}>%</span>
                 </div>
                 <div className="s">
-                  {picks.toLocaleString()} {t("picks")}
+                  {fmtN(picks)} {t("picks")}
                 </div>
               </div>
               <div className="tile">
@@ -588,8 +587,7 @@ export default function EntityRunStats({
               <p className="insight">
                 {t("Most often taken by")}{" "}
                 <b>{characterPretty(top.character)}</b> {t("players")} (
-                {top.picks.toLocaleString()} {t("picks")} · {share}%{" "}
-                {t("share")}).
+                {fmtN(top.picks)} {t("picks")} · {share}% {t("share")}).
                 {tier ? (
                   <>
                     {" "}
@@ -613,8 +611,7 @@ export default function EntityRunStats({
           {selTotalRuns > 0 && (
             <>
               {" "}
-              {t("Pick rate is")} {selPickRate}% {t("of")}{" "}
-              {selTotalRuns.toLocaleString()}
+              {t("Pick rate is")} {selPickRate}% {t("of")} {fmtN(selTotalRuns)}
               {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
             </>
           )}{" "}
@@ -686,7 +683,7 @@ export default function EntityRunStats({
                 </>
               )}
               {" · "}
-              {sel.picks.toLocaleString()} {t("picks")}
+              {fmtN(sel.picks)} {t("picks")}
               {" · "}
               <Link
                 href="/stats/scoring"
@@ -707,7 +704,7 @@ export default function EntityRunStats({
           <>
             {t(
               "{name} hasn't appeared in any submitted community run yet (across {n} total runs tracked).",
-              { name: entityName, n: stats.total_runs.toLocaleString() },
+              { name: entityName, n: fmtN(stats.total_runs) },
             )}{" "}
             <Link
               href="/runs/submit"
@@ -721,7 +718,7 @@ export default function EntityRunStats({
             <strong className="text-[var(--text-primary)]">
               {sel.win_rate}%
             </strong>{" "}
-            {t("win rate across")} <strong>{sel.picks.toLocaleString()}</strong>{" "}
+            {t("win rate across")} <strong>{fmtN(sel.picks)}</strong>{" "}
             {t("picks")}
             {top && (
               <>
@@ -729,7 +726,7 @@ export default function EntityRunStats({
                 <strong className="text-[var(--text-primary)]">
                   {characterPretty(top.character)}
                 </strong>{" "}
-                {t("players")} ({top.picks.toLocaleString()} {t("picks")} ·{" "}
+                {t("players")} ({fmtN(top.picks)} {t("picks")} ·{" "}
                 {Math.round((top.picks / sel.picks) * 100)}% {t("share")})
               </>
             )}
@@ -793,7 +790,7 @@ export default function EntityRunStats({
                         {characterPretty(row.character)}
                       </td>
                       <td className="py-2 px-3 text-right text-[var(--text-secondary)] font-mono tabular-nums">
-                        {row.picks.toLocaleString()}
+                        {fmtN(row.picks)}
                       </td>
                       <td className="py-2 px-3 text-right text-[var(--text-secondary)] font-mono tabular-nums">
                         {row.win_rate}%
@@ -823,7 +820,7 @@ export default function EntityRunStats({
           <>
             {" "}
             {t("Pick rate:")} <strong>{selPickRate}%</strong> {t("of")}{" "}
-            {selTotalRuns.toLocaleString()}
+            {fmtN(selTotalRuns)}
             {!isAll ? ` ${selLabel}` : ""} {t("tracked runs.")}
           </>
         )}

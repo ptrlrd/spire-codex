@@ -411,7 +411,7 @@ export default function LeaderboardBrowseClient() {
           read from disjoint pools. */}
       <div className="flex flex-wrap items-center gap-3 mb-6">
         <Pills
-          options={PLAYER_OPTS}
+          options={PLAYER_OPTS.map((o) => ({ ...o, label: t(o.label) }))}
           value={mode}
           onChange={(v) => setMode(v as Mode)}
           ariaLabel={t("Filter by player count")}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useT, useGameLocale } from "@/lib/i18n";
+import { useT, useGameLocale, useFormatNumber } from "@/lib/i18n";
 import { Suspense, useState, useEffect } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
@@ -89,6 +89,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
   const bp = useBetaPrefix();
   const lang = useGameLocale();
   const t = useT();
+  const fmtN = useFormatNumber();
   const searchParams = useSearchParams();
 
   // Free-text expression search ("user:bob asc:20 char:ironclad win" etc.)
@@ -553,7 +554,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
       <p className="text-xs text-[var(--text-muted)] mb-3">
         {totalIsLowerBound
           ? t("More than 10,000 runs")
-          : `${total.toLocaleString()} ${t(config.totalLabel)}`}
+          : `${fmtN(total)} ${t(config.totalLabel)}`}
       </p>
 
       {loading ? (
@@ -640,8 +641,7 @@ function BrowseRunsClientInner({ config }: { config: BrowseConfig }) {
                 ← {t("Prev")}
               </button>
               <span className="text-xs text-[var(--text-muted)]">
-                {t("Page")} {page.toLocaleString()} {t("of")}{" "}
-                {totalPages.toLocaleString()}
+                {t("Page")} {fmtN(page)} {t("of")} {fmtN(totalPages)}
               </span>
               <button
                 onClick={() => setPage((p) => p + 1)}

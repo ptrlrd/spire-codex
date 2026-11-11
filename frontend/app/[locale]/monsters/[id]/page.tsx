@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { Locale } from "@/i18n/routing";
 import { inLanguageOf, langQuery, localeOf, localePath } from "@/lib/locale";
 import { uiText } from "@/lib/locale-server";
 import { getT } from "@/lib/i18n-server";
@@ -24,6 +25,20 @@ const API_PUBLIC =
 
 type Props = { params: Promise<{ locale: string; id: string }> };
 
+async function fetchActNames(locale: Locale): Promise<Record<string, string>> {
+  if (locale === "eng") return {};
+  try {
+    const res = await fetch(`${API_INTERNAL}/api/acts${langQuery(locale)}`, {
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return {};
+    const acts: { id: string; name: string }[] = await res.json();
+    return Object.fromEntries(acts.map((a) => [a.id, a.name]));
+  } catch {
+    return {};
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale: rawLocale, id } = await params;
   const locale = localeOf(rawLocale);
@@ -48,18 +63,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ? `${monster.min_hp}${monster.max_hp && monster.max_hp !== monster.min_hp ? `\u2013${monster.max_hp}` : ""} HP`
       : "";
     const movesText = monster.moves?.length
-      ? `${monster.moves.length} known moves.`
+      ? t("{n} known moves.", { n: monster.moves.length })
       : "";
     return buildPageMetadata({
       locale,
       path,
       noIndex: betaOnlyVersion(res) !== null,
       title: monster.name,
-      entityType: `${t("Monster")}, Moveset & HP`,
+      entityType: `${t("Monster")}, ${t("Moveset & HP")}`,
       description: clipMetaDescription(
         t("monster_meta_description", {
           name: monster.name,
-          type: monster.type ?? "",
+          type: monster.type ? t(monster.type) : "",
           hpText: hpText ? ` ${hpText}.` : "",
           movesText: movesText ? ` ${movesText}` : "",
         }),
@@ -141,6 +156,9 @@ export default async function Page({ params }: Props) {
         monster.encounters.map((e: { encounter_id: string }) => e.encounter_id),
       )
     : [];
+  const actNames = monster?.encounters?.some((e: { act?: string }) => e.act)
+    ? await fetchActNames(locale)
+    : {};
   return (
     <>
       {jsonLd && <JsonLd data={jsonLd} />}
@@ -148,6 +166,7 @@ export default async function Page({ params }: Props) {
         <MonsterDetail
           initialMonster={monster}
           encounterStats={encounterStats}
+          actNames={actNames}
         />
       </BetaOnlyScope>
     </>

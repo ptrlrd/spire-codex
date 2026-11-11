@@ -1,6 +1,6 @@
 "use client";
 
-import { useT } from "@/lib/i18n";
+import { useFormatNumber, useT } from "@/lib/i18n";
 import { useState } from "react";
 import { Link } from "@/i18n/navigation";
 import type { Card } from "@/lib/api/types";
@@ -23,6 +23,7 @@ interface CardStat {
 
 function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
   const t = useT();
+  const fmtN = useFormatNumber();
   const bp = useBetaPrefix();
   const channel = useChannel();
   const [upgraded, setUpgraded] = useState(false);
@@ -59,11 +60,13 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
         >
           {stat.win_rate != null && (
             <span className="font-semibold text-[var(--accent-gold)]">
-              {Math.round(stat.win_rate)}% WR
+              {Math.round(stat.win_rate)}% {t("WR")}
             </span>
           )}
           {stat.picks != null && (
-            <span className="text-[var(--text-muted)]">{stat.picks} picks</span>
+            <span className="text-[var(--text-muted)]">
+              {fmtN(stat.picks)} {t("picks")}
+            </span>
           )}
         </Link>
       )}
@@ -79,7 +82,7 @@ function FullCardItem({ card, stat }: { card: Card; stat?: CardStat }) {
               ? "bg-success/10 border border-success/60"
               : "bg-scrim/50 border border-on-fill/15 opacity-0 group-hover:opacity-100"
           }`}
-          title={showUpgraded ? "Show base card" : "Show upgraded"}
+          title={showUpgraded ? t("Show base card") : t("Show upgraded")}
         >
           🔨
         </button>
