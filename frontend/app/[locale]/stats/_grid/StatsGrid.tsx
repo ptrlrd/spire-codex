@@ -17,6 +17,7 @@ import {
   loadPrefs,
   moveColumn,
   orderColumns,
+  parseGridView,
   savePrefs,
   writeGridView,
   type GridViewState,
@@ -481,23 +482,35 @@ export default function StatsGrid({ data }: { data: GridData }) {
   };
   useEffect(() => {
     const timer = setTimeout(() => {
+      const sp = new URLSearchParams(window.location.search);
+      const view = parseGridView(Object.fromEntries(sp), cfg.columns);
+      const fromUrl = data.fromUrl || sp.size > 0;
+      if (sp.size > 0) {
+        setSearch((sp.get("q") ?? "").slice(0, 80));
+        setOffColorState(sp.get("offcolor") === "1");
+        setSortKey(view.sort ?? first);
+        setDir(view.dir ?? -1);
+        setShowTiny(!!view.samples);
+        setShowWax(!!view.wax);
+        setShowUpgraded(!!view.upg);
+      }
       const saved = loadPrefs(kind);
       if (saved) {
         if (
-          data.sort === undefined &&
+          view.sort === undefined &&
           saved.sortKey &&
           saved.sortKey in COLUMN_DEFS
         )
           setSortKey(saved.sortKey);
-        if (data.dir === undefined && (saved.dir === 1 || saved.dir === -1))
+        if (view.dir === undefined && (saved.dir === 1 || saved.dir === -1))
           setDir(saved.dir);
-        if (data.samples === undefined && typeof saved.showTiny === "boolean")
+        if (view.samples === undefined && typeof saved.showTiny === "boolean")
           setShowTiny(saved.showTiny);
-        if (data.wax === undefined && typeof saved.showWax === "boolean")
+        if (view.wax === undefined && typeof saved.showWax === "boolean")
           setShowWax(saved.showWax);
-        if (data.upg === undefined && typeof saved.showUpgraded === "boolean")
+        if (view.upg === undefined && typeof saved.showUpgraded === "boolean")
           setShowUpgraded(saved.showUpgraded);
-        if (!data.fromUrl) {
+        if (!fromUrl) {
           if (typeof saved.query === "string") setSearch(saved.query);
           const b = saved.bracket || bracket;
           const ch = saved.character || "";

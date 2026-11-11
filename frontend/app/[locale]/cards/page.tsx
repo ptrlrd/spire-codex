@@ -259,7 +259,7 @@ export default async function CardsPage({ params }: Props) {
             )}
           </p>
           <ul className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-            {topByScore.map(({ card, score }) => (
+            {topByScore.map(({ card, score }, i) => (
               <li key={card.id}>
                 <Link
                   prefetch={false}
@@ -273,7 +273,7 @@ export default async function CardsPage({ params }: Props) {
                     })}
                     className="w-full h-auto aspect-[400/520] transition-transform group-hover:scale-[1.04] drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                     loading="eager"
-                    fetchPriority="high"
+                    fetchPriority={i < 2 ? "high" : "auto"}
                     crossOrigin="anonymous"
                   />
                   <div className="mt-1.5 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
